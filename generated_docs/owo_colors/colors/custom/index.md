@@ -54,6 +54,18 @@ A custom RGB color, determined at compile time
 
 #### Trait Implementations
 
+##### `impl Any for CustomColor<R, G, B>`
+
+- <span id="customcolor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CustomColor<R, G, B>`
+
+- <span id="customcolor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CustomColor<R, G, B>`
+
+- <span id="customcolor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for CustomColor<R, G, B>`
 
 - <span id="customcolor-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -64,7 +76,37 @@ A custom RGB color, determined at compile time
 
 - <span id="customcolor-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for CustomColor<R, G, B>`
+
+- <span id="customcolor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CustomColor<R, G, B>`
+
+- <span id="customcolor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for CustomColor<R, G, B>`
+
+##### `impl<U> TryFrom for CustomColor<R, G, B>`
+
+- <span id="customcolor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="customcolor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CustomColor<R, G, B>`
+
+- <span id="customcolor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="customcolor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -81,7 +123,49 @@ enum Plane {
 
 #### Trait Implementations
 
+##### `impl Any for Plane`
+
+- <span id="plane-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Plane`
+
+- <span id="plane-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Plane`
+
+- <span id="plane-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Plane`
+
+- <span id="plane-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Plane`
+
+- <span id="plane-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for Plane`
+
+##### `impl<U> TryFrom for Plane`
+
+- <span id="plane-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="plane-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Plane`
+
+- <span id="plane-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="plane-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

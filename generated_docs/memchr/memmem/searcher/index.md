@@ -92,19 +92,103 @@ chosen substring search implementation.
 
 - <span id="searcher-new"></span>`fn new<R: HeuristicFrequencyRank>(prefilter: PrefilterConfig, ranker: R, needle: &[u8]) -> Searcher` — [`PrefilterConfig`](#prefilterconfig), [`Searcher`](#searcher)
 
+  Creates a new "meta" substring searcher that attempts to choose the
+
+  best algorithm based on the needle, heuristics and what the current
+
+  target supports.
+
 - <span id="searcher-twoway"></span>`fn twoway(needle: &[u8], rabinkarp: rabinkarp::Finder, prestrat: Option<Prefilter>) -> Searcher` — [`Finder`](../../arch/all/rabinkarp/index.md#finder), [`Prefilter`](#prefilter), [`Searcher`](#searcher)
+
+  Creates a new searcher that always uses the Two-Way algorithm. This is
+
+  typically used when vector algorithms are unavailable or inappropriate.
+
+  (For example, when the needle is "too long.")
+
+  
+
+  If a prefilter is given, then the searcher returned will be accelerated
+
+  by the prefilter.
 
 - <span id="searcher-find"></span>`fn find(&self, prestate: &mut PrefilterState, haystack: &[u8], needle: &[u8]) -> Option<usize>` — [`PrefilterState`](#prefilterstate)
 
+  Searches the given haystack for the given needle. The needle given
+
+  should be the same as the needle that this finder was initialized
+
+  with.
+
+  
+
+  Inlining this can lead to big wins for latency, and #[`inline`](../../../compact_str/repr/inline/index.md) doesn't
+
+  seem to be enough in some cases.
+
 #### Trait Implementations
+
+##### `impl Any for Searcher`
+
+- <span id="searcher-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Searcher`
+
+- <span id="searcher-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Searcher`
+
+- <span id="searcher-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Searcher`
 
 - <span id="searcher-clone"></span>`fn clone(&self) -> Searcher` — [`Searcher`](#searcher)
 
+##### `impl CloneToUninit for Searcher`
+
+- <span id="searcher-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Searcher`
 
-- <span id="searcher-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="searcher-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for Searcher`
+
+- <span id="searcher-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Searcher`
+
+- <span id="searcher-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Searcher`
+
+- <span id="searcher-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="searcher-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="searcher-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Searcher`
+
+- <span id="searcher-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="searcher-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Searcher`
+
+- <span id="searcher-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="searcher-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TwoWayWithPrefilter`
 
@@ -121,15 +205,69 @@ A two-way substring searcher with a prefilter.
 
 #### Trait Implementations
 
+##### `impl Any for TwoWayWithPrefilter`
+
+- <span id="twowaywithprefilter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TwoWayWithPrefilter`
+
+- <span id="twowaywithprefilter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TwoWayWithPrefilter`
+
+- <span id="twowaywithprefilter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for TwoWayWithPrefilter`
 
 - <span id="twowaywithprefilter-clone"></span>`fn clone(&self) -> TwoWayWithPrefilter` — [`TwoWayWithPrefilter`](#twowaywithprefilter)
+
+##### `impl CloneToUninit for TwoWayWithPrefilter`
+
+- <span id="twowaywithprefilter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for TwoWayWithPrefilter`
 
 ##### `impl Debug for TwoWayWithPrefilter`
 
-- <span id="twowaywithprefilter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="twowaywithprefilter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for TwoWayWithPrefilter`
+
+- <span id="twowaywithprefilter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TwoWayWithPrefilter`
+
+- <span id="twowaywithprefilter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for TwoWayWithPrefilter`
+
+- <span id="twowaywithprefilter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="twowaywithprefilter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="twowaywithprefilter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TwoWayWithPrefilter`
+
+- <span id="twowaywithprefilter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="twowaywithprefilter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TwoWayWithPrefilter`
+
+- <span id="twowaywithprefilter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="twowaywithprefilter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SearcherRev`
 
@@ -148,17 +286,83 @@ A reverse substring searcher.
 
 - <span id="searcherrev-new"></span>`fn new(needle: &[u8]) -> SearcherRev` — [`SearcherRev`](#searcherrev)
 
+  Creates a new searcher for finding occurrences of the given needle in
+
+  reverse. That is, it reports the last (instead of the first) occurrence
+
+  of a needle in a haystack.
+
 - <span id="searcherrev-rfind"></span>`fn rfind(&self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
 
+  Searches the given haystack for the last occurrence of the given
+
+  needle. The needle given should be the same as the needle that this
+
+  finder was initialized with.
+
 #### Trait Implementations
+
+##### `impl Any for SearcherRev`
+
+- <span id="searcherrev-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SearcherRev`
+
+- <span id="searcherrev-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SearcherRev`
+
+- <span id="searcherrev-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for SearcherRev`
 
 - <span id="searcherrev-clone"></span>`fn clone(&self) -> SearcherRev` — [`SearcherRev`](#searcherrev)
 
+##### `impl CloneToUninit for SearcherRev`
+
+- <span id="searcherrev-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for SearcherRev`
 
-- <span id="searcherrev-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="searcherrev-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SearcherRev`
+
+- <span id="searcherrev-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SearcherRev`
+
+- <span id="searcherrev-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for SearcherRev`
+
+- <span id="searcherrev-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="searcherrev-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="searcherrev-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SearcherRev`
+
+- <span id="searcherrev-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="searcherrev-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SearcherRev`
+
+- <span id="searcherrev-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="searcherrev-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Prefilter`
 
@@ -215,25 +419,119 @@ time.)
 
 - <span id="prefilter-fallback"></span>`fn fallback<R: HeuristicFrequencyRank>(ranker: R, pair: Pair, needle: &[u8]) -> Option<Prefilter>` — [`Pair`](../../arch/all/packedpair/index.md#pair), [`Prefilter`](#prefilter)
 
+  Return a "fallback" prefilter, but only if it is believed to be
+
+  effective.
+
 - <span id="prefilter-sse2"></span>`fn sse2(finder: sse2::Finder, needle: &[u8]) -> Prefilter` — [`Finder`](../../arch/x86_64/sse2/packedpair/index.md#finder), [`Prefilter`](#prefilter)
+
+  Return a prefilter using a x86_64 SSE2 vector algorithm.
 
 - <span id="prefilter-avx2"></span>`fn avx2(finder: avx2::Finder, needle: &[u8]) -> Prefilter` — [`Finder`](../../arch/x86_64/avx2/packedpair/index.md#finder), [`Prefilter`](#prefilter)
 
+  Return a prefilter using a x86_64 AVX2 vector algorithm.
+
 - <span id="prefilter-find"></span>`fn find(&self, haystack: &[u8]) -> Option<usize>`
+
+  Return a *candidate* position for a match.
+
+  
+
+  When this returns an offset, it implies that a match could begin at
+
+  that offset, but it may not. That is, it is possible for a false
+
+  positive to be returned.
+
+  
+
+  When `None` is returned, then it is guaranteed that there are no
+
+  matches for the needle in the given haystack. That is, it is impossible
+
+  for a false negative to be returned.
+
+  
+
+  The purpose of this routine is to look for candidate matching positions
+
+  as quickly as possible before running a (likely) slower confirmation
+
+  step.
 
 - <span id="prefilter-find-simple"></span>`fn find_simple(&self, haystack: &[u8]) -> Option<usize>`
 
+  A "simple" prefilter that just looks for the occurrence of the rarest
+
+  byte from the needle. This is generally only used for very small
+
+  haystacks.
+
 #### Trait Implementations
+
+##### `impl Any for Prefilter`
+
+- <span id="prefilter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Prefilter`
+
+- <span id="prefilter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Prefilter`
+
+- <span id="prefilter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Prefilter`
 
 - <span id="prefilter-clone"></span>`fn clone(&self) -> Prefilter` — [`Prefilter`](#prefilter)
 
+##### `impl CloneToUninit for Prefilter`
+
+- <span id="prefilter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Prefilter`
 
 ##### `impl Debug for Prefilter`
 
-- <span id="prefilter-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="prefilter-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for Prefilter`
+
+- <span id="prefilter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Prefilter`
+
+- <span id="prefilter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Prefilter`
+
+- <span id="prefilter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="prefilter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="prefilter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Prefilter`
+
+- <span id="prefilter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="prefilter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Prefilter`
+
+- <span id="prefilter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="prefilter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PrefilterState`
 
@@ -279,25 +577,95 @@ created from a `Freqy`. e.g., An inert `Freqy` will produce an inert
 
 - <span id="prefilterstate-new"></span>`fn new() -> PrefilterState` — [`PrefilterState`](#prefilterstate)
 
+  Create a fresh prefilter state.
+
 - <span id="prefilterstate-update"></span>`fn update(&mut self, skipped: usize)`
+
+  Update this state with the number of bytes skipped on the last
+
+  invocation of the prefilter.
 
 - <span id="prefilterstate-is-effective"></span>`fn is_effective(&mut self) -> bool`
 
+  Return true if and only if this state indicates that a prefilter is
+
+  still effective.
+
 - <span id="prefilterstate-is-inert"></span>`fn is_inert(&self) -> bool`
+
+  Returns true if the prefilter this state represents should no longer
+
+  be used.
 
 - <span id="prefilterstate-skips"></span>`fn skips(&self) -> u32`
 
+  Returns the total number of times the prefilter has been used.
+
 #### Trait Implementations
+
+##### `impl Any for PrefilterState`
+
+- <span id="prefilterstate-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PrefilterState`
+
+- <span id="prefilterstate-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PrefilterState`
+
+- <span id="prefilterstate-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for PrefilterState`
 
 - <span id="prefilterstate-clone"></span>`fn clone(&self) -> PrefilterState` — [`PrefilterState`](#prefilterstate)
 
+##### `impl CloneToUninit for PrefilterState`
+
+- <span id="prefilterstate-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for PrefilterState`
 
 ##### `impl Debug for PrefilterState`
 
-- <span id="prefilterstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="prefilterstate-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for PrefilterState`
+
+- <span id="prefilterstate-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PrefilterState`
+
+- <span id="prefilterstate-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for PrefilterState`
+
+- <span id="prefilterstate-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="prefilterstate-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="prefilterstate-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PrefilterState`
+
+- <span id="prefilterstate-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="prefilterstate-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PrefilterState`
+
+- <span id="prefilterstate-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="prefilterstate-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Pre<'a>`
 
@@ -326,13 +694,59 @@ A combination of prefilter effectiveness state and the prefilter itself.
 
 - <span id="pre-find"></span>`fn find(&mut self, haystack: &[u8]) -> Option<usize>`
 
+  Call this prefilter on the given haystack with the given needle.
+
 - <span id="pre-is-effective"></span>`fn is_effective(&mut self) -> bool`
+
+  Return true if and only if this prefilter should be used.
 
 #### Trait Implementations
 
+##### `impl Any for Pre<'a>`
+
+- <span id="pre-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Pre<'a>`
+
+- <span id="pre-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Pre<'a>`
+
+- <span id="pre-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Pre<'a>`
 
-- <span id="pre-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pre-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Pre<'a>`
+
+- <span id="pre-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Pre<'a>`
+
+- <span id="pre-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Pre<'a>`
+
+- <span id="pre-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pre-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Pre<'a>`
+
+- <span id="pre-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pre-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -367,13 +781,67 @@ substring search.
 
 #### Trait Implementations
 
+##### `impl Any for SearcherRevKind`
+
+- <span id="searcherrevkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SearcherRevKind`
+
+- <span id="searcherrevkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SearcherRevKind`
+
+- <span id="searcherrevkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SearcherRevKind`
 
 - <span id="searcherrevkind-clone"></span>`fn clone(&self) -> SearcherRevKind` — [`SearcherRevKind`](#searcherrevkind)
 
+##### `impl CloneToUninit for SearcherRevKind`
+
+- <span id="searcherrevkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for SearcherRevKind`
 
-- <span id="searcherrevkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="searcherrevkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SearcherRevKind`
+
+- <span id="searcherrevkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SearcherRevKind`
+
+- <span id="searcherrevkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for SearcherRevKind`
+
+- <span id="searcherrevkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="searcherrevkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="searcherrevkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SearcherRevKind`
+
+- <span id="searcherrevkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="searcherrevkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SearcherRevKind`
+
+- <span id="searcherrevkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="searcherrevkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PrefilterConfig`
 
@@ -428,21 +896,77 @@ useful.
 
 - <span id="prefilterconfig-is-none"></span>`fn is_none(&self) -> bool`
 
+  Returns true when this prefilter is set to the `None` variant.
+
 #### Trait Implementations
+
+##### `impl Any for PrefilterConfig`
+
+- <span id="prefilterconfig-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PrefilterConfig`
+
+- <span id="prefilterconfig-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PrefilterConfig`
+
+- <span id="prefilterconfig-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for PrefilterConfig`
 
 - <span id="prefilterconfig-clone"></span>`fn clone(&self) -> PrefilterConfig` — [`PrefilterConfig`](#prefilterconfig)
 
+##### `impl CloneToUninit for PrefilterConfig`
+
+- <span id="prefilterconfig-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for PrefilterConfig`
 
 ##### `impl Debug for PrefilterConfig`
 
-- <span id="prefilterconfig-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="prefilterconfig-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for PrefilterConfig`
 
 - <span id="prefilterconfig-default"></span>`fn default() -> PrefilterConfig` — [`PrefilterConfig`](#prefilterconfig)
+
+##### `impl<T> From for PrefilterConfig`
+
+- <span id="prefilterconfig-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PrefilterConfig`
+
+- <span id="prefilterconfig-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for PrefilterConfig`
+
+- <span id="prefilterconfig-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="prefilterconfig-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="prefilterconfig-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PrefilterConfig`
+
+- <span id="prefilterconfig-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="prefilterconfig-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PrefilterConfig`
+
+- <span id="prefilterconfig-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="prefilterconfig-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

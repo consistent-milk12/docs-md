@@ -74,13 +74,55 @@ struct StringWrapper<'a>(&'a str);
 
 #### Trait Implementations
 
+##### `impl Any for StringWrapper<'a>`
+
+- <span id="stringwrapper-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StringWrapper<'a>`
+
+- <span id="stringwrapper-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StringWrapper<'a>`
+
+- <span id="stringwrapper-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for StringWrapper<'a>`
+
+- <span id="stringwrapper-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StringWrapper<'a>`
+
+- <span id="stringwrapper-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoIterator for &'a StringWrapper<'b>`
 
 - <span id="a-stringwrapper-intoiterator-type-item"></span>`type Item = char`
 
 - <span id="a-stringwrapper-intoiterator-type-intoiter"></span>`type IntoIter = Chars<'b>`
 
-- <span id="a-stringwrapper-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+- <span id="a-stringwrapper-intoiterator-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+
+##### `impl<U> TryFrom for StringWrapper<'a>`
+
+- <span id="stringwrapper-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="stringwrapper-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StringWrapper<'a>`
+
+- <span id="stringwrapper-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="stringwrapper-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RowId`
 
@@ -94,9 +136,25 @@ struct RowId {
 
 #### Trait Implementations
 
+##### `impl Any for RowId`
+
+- <span id="rowid-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RowId`
+
+- <span id="rowid-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RowId`
+
+- <span id="rowid-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for RowId`
 
 - <span id="rowid-clone"></span>`fn clone(&self) -> RowId` — [`RowId`](#rowid)
+
+##### `impl CloneToUninit for RowId`
+
+- <span id="rowid-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for RowId`
 
@@ -106,11 +164,49 @@ struct RowId {
 
 ##### `impl Eq for RowId`
 
+##### `impl<T> From for RowId`
+
+- <span id="rowid-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RowId`
+
+- <span id="rowid-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for RowId`
 
-- <span id="rowid-eq"></span>`fn eq(&self, other: &RowId) -> bool` — [`RowId`](#rowid)
+- <span id="rowid-partialeq-eq"></span>`fn eq(&self, other: &RowId) -> bool` — [`RowId`](#rowid)
 
 ##### `impl StructuralPartialEq for RowId`
+
+##### `impl ToOwned for RowId`
+
+- <span id="rowid-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rowid-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rowid-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RowId`
+
+- <span id="rowid-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rowid-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RowId`
+
+- <span id="rowid-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rowid-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `GrowingHashmapMapElemChar<ValueType>`
 
@@ -125,13 +221,67 @@ struct GrowingHashmapMapElemChar<ValueType> {
 
 #### Trait Implementations
 
+##### `impl Any for GrowingHashmapMapElemChar<ValueType>`
+
+- <span id="growinghashmapmapelemchar-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for GrowingHashmapMapElemChar<ValueType>`
+
+- <span id="growinghashmapmapelemchar-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for GrowingHashmapMapElemChar<ValueType>`
+
+- <span id="growinghashmapmapelemchar-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<ValueType: clone::Clone> Clone for GrowingHashmapMapElemChar<ValueType>`
 
 - <span id="growinghashmapmapelemchar-clone"></span>`fn clone(&self) -> GrowingHashmapMapElemChar<ValueType>` — [`GrowingHashmapMapElemChar`](#growinghashmapmapelemchar)
 
+##### `impl CloneToUninit for GrowingHashmapMapElemChar<ValueType>`
+
+- <span id="growinghashmapmapelemchar-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<ValueType: default::Default> Default for GrowingHashmapMapElemChar<ValueType>`
 
 - <span id="growinghashmapmapelemchar-default"></span>`fn default() -> GrowingHashmapMapElemChar<ValueType>` — [`GrowingHashmapMapElemChar`](#growinghashmapmapelemchar)
+
+##### `impl<T> From for GrowingHashmapMapElemChar<ValueType>`
+
+- <span id="growinghashmapmapelemchar-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for GrowingHashmapMapElemChar<ValueType>`
+
+- <span id="growinghashmapmapelemchar-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for GrowingHashmapMapElemChar<ValueType>`
+
+- <span id="growinghashmapmapelemchar-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="growinghashmapmapelemchar-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="growinghashmapmapelemchar-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for GrowingHashmapMapElemChar<ValueType>`
+
+- <span id="growinghashmapmapelemchar-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="growinghashmapmapelemchar-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for GrowingHashmapMapElemChar<ValueType>`
+
+- <span id="growinghashmapmapelemchar-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="growinghashmapmapelemchar-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `GrowingHashmapChar<ValueType>`
 
@@ -164,13 +314,59 @@ this implementation relies on a couple of base assumptions in order to simplify 
 
 - <span id="growinghashmapchar-lookup"></span>`fn lookup(&self, key: u32) -> usize`
 
+  lookup key inside the hashmap using a similar collision resolution
+
+  strategy to `CPython` and `Ruby`
+
 - <span id="growinghashmapchar-grow"></span>`fn grow(&mut self, min_used: i32)`
 
 #### Trait Implementations
 
+##### `impl Any for GrowingHashmapChar<ValueType>`
+
+- <span id="growinghashmapchar-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for GrowingHashmapChar<ValueType>`
+
+- <span id="growinghashmapchar-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for GrowingHashmapChar<ValueType>`
+
+- <span id="growinghashmapchar-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<ValueType> Default for GrowingHashmapChar<ValueType>`
 
 - <span id="growinghashmapchar-default"></span>`fn default() -> Self`
+
+##### `impl<T> From for GrowingHashmapChar<ValueType>`
+
+- <span id="growinghashmapchar-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for GrowingHashmapChar<ValueType>`
+
+- <span id="growinghashmapchar-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for GrowingHashmapChar<ValueType>`
+
+- <span id="growinghashmapchar-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="growinghashmapchar-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for GrowingHashmapChar<ValueType>`
+
+- <span id="growinghashmapchar-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="growinghashmapchar-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `HybridGrowingHashmapChar<ValueType>`
 
@@ -191,9 +387,51 @@ struct HybridGrowingHashmapChar<ValueType> {
 
 #### Trait Implementations
 
+##### `impl Any for HybridGrowingHashmapChar<ValueType>`
+
+- <span id="hybridgrowinghashmapchar-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HybridGrowingHashmapChar<ValueType>`
+
+- <span id="hybridgrowinghashmapchar-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HybridGrowingHashmapChar<ValueType>`
+
+- <span id="hybridgrowinghashmapchar-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<ValueType> Default for HybridGrowingHashmapChar<ValueType>`
 
 - <span id="hybridgrowinghashmapchar-default"></span>`fn default() -> Self`
+
+##### `impl<T> From for HybridGrowingHashmapChar<ValueType>`
+
+- <span id="hybridgrowinghashmapchar-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for HybridGrowingHashmapChar<ValueType>`
+
+- <span id="hybridgrowinghashmapchar-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for HybridGrowingHashmapChar<ValueType>`
+
+- <span id="hybridgrowinghashmapchar-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="hybridgrowinghashmapchar-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HybridGrowingHashmapChar<ValueType>`
+
+- <span id="hybridgrowinghashmapchar-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="hybridgrowinghashmapchar-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -209,25 +447,67 @@ enum StrSimError {
 
 #### Trait Implementations
 
+##### `impl Any for StrSimError`
+
+- <span id="strsimerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StrSimError`
+
+- <span id="strsimerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StrSimError`
+
+- <span id="strsimerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for StrSimError`
 
-- <span id="strsimerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="strsimerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for StrSimError`
 
-- <span id="strsimerror-fmt"></span>`fn fmt(&self, fmt: &mut Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="strsimerror-display-fmt"></span>`fn fmt(&self, fmt: &mut Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Error for StrSimError`
 
+##### `impl<T> From for StrSimError`
+
+- <span id="strsimerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StrSimError`
+
+- <span id="strsimerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for StrSimError`
 
-- <span id="strsimerror-eq"></span>`fn eq(&self, other: &StrSimError) -> bool` — [`StrSimError`](#strsimerror)
+- <span id="strsimerror-partialeq-eq"></span>`fn eq(&self, other: &StrSimError) -> bool` — [`StrSimError`](#strsimerror)
 
 ##### `impl StructuralPartialEq for StrSimError`
 
 ##### `impl ToString for StrSimError`
 
-- <span id="strsimerror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="strsimerror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for StrSimError`
+
+- <span id="strsimerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="strsimerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StrSimError`
+
+- <span id="strsimerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="strsimerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

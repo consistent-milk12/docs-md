@@ -47,31 +47,85 @@ struct Width(u16);
 
 #### Trait Implementations
 
+##### `impl Any for Width`
+
+- <span id="width-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Width`
+
+- <span id="width-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Width`
+
+- <span id="width-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Width`
 
 - <span id="width-clone"></span>`fn clone(&self) -> Width` — [`Width`](#width)
+
+##### `impl CloneToUninit for Width`
+
+- <span id="width-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Width`
 
 ##### `impl Debug for Width`
 
-- <span id="width-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="width-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Width`
 
+##### `impl<T> From for Width`
+
+- <span id="width-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Width`
+
+- <span id="width-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Width`
 
-- <span id="width-cmp"></span>`fn cmp(&self, other: &Width) -> cmp::Ordering` — [`Width`](#width)
+- <span id="width-ord-cmp"></span>`fn cmp(&self, other: &Width) -> cmp::Ordering` — [`Width`](#width)
 
 ##### `impl PartialEq for Width`
 
-- <span id="width-eq"></span>`fn eq(&self, other: &Width) -> bool` — [`Width`](#width)
+- <span id="width-partialeq-eq"></span>`fn eq(&self, other: &Width) -> bool` — [`Width`](#width)
 
 ##### `impl PartialOrd for Width`
 
-- <span id="width-partial-cmp"></span>`fn partial_cmp(&self, other: &Width) -> option::Option<cmp::Ordering>` — [`Width`](#width)
+- <span id="width-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Width) -> option::Option<cmp::Ordering>` — [`Width`](#width)
 
 ##### `impl StructuralPartialEq for Width`
+
+##### `impl ToOwned for Width`
+
+- <span id="width-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="width-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="width-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Width`
+
+- <span id="width-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="width-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Width`
+
+- <span id="width-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="width-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Height`
 
@@ -83,31 +137,85 @@ struct Height(u16);
 
 #### Trait Implementations
 
+##### `impl Any for Height`
+
+- <span id="height-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Height`
+
+- <span id="height-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Height`
+
+- <span id="height-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Height`
 
 - <span id="height-clone"></span>`fn clone(&self) -> Height` — [`Height`](#height)
+
+##### `impl CloneToUninit for Height`
+
+- <span id="height-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Height`
 
 ##### `impl Debug for Height`
 
-- <span id="height-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="height-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Height`
 
+##### `impl<T> From for Height`
+
+- <span id="height-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Height`
+
+- <span id="height-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Height`
 
-- <span id="height-cmp"></span>`fn cmp(&self, other: &Height) -> cmp::Ordering` — [`Height`](#height)
+- <span id="height-ord-cmp"></span>`fn cmp(&self, other: &Height) -> cmp::Ordering` — [`Height`](#height)
 
 ##### `impl PartialEq for Height`
 
-- <span id="height-eq"></span>`fn eq(&self, other: &Height) -> bool` — [`Height`](#height)
+- <span id="height-partialeq-eq"></span>`fn eq(&self, other: &Height) -> bool` — [`Height`](#height)
 
 ##### `impl PartialOrd for Height`
 
-- <span id="height-partial-cmp"></span>`fn partial_cmp(&self, other: &Height) -> option::Option<cmp::Ordering>` — [`Height`](#height)
+- <span id="height-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Height) -> option::Option<cmp::Ordering>` — [`Height`](#height)
 
 ##### `impl StructuralPartialEq for Height`
+
+##### `impl ToOwned for Height`
+
+- <span id="height-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="height-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="height-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Height`
+
+- <span id="height-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="height-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Height`
+
+- <span id="height-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="height-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

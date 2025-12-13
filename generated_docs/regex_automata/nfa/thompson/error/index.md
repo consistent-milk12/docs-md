@@ -29,7 +29,7 @@ This error does not provide many introspection capabilities. There are
 generally only two things you can do with it:
 
 * Obtain a human readable message via its `std::fmt::Display` impl.
-* Access an underlying [`regex_syntax::Error`](../../../../regex_syntax/error/index.md) type from its `source`
+* Access an underlying [`regex_syntax::Error`](../../../../regex_syntax/hir/index.md) type from its `source`
 method via the `std::error::Error` trait. This error only occurs when using
 convenience routines for building an NFA directly from a pattern string.
 
@@ -41,6 +41,16 @@ building the NFA will fail.
 #### Implementations
 
 - <span id="builderror-size-limit"></span>`fn size_limit(&self) -> Option<usize>`
+
+  If this error occurred because the NFA exceeded the configured size
+
+  limit before being built, then this returns the configured size limit.
+
+  
+
+  The limit returned is what was configured, and corresponds to the
+
+  maximum amount of heap usage in bytes.
 
 - <span id="builderror-kind"></span>`fn kind(&self) -> &BuildErrorKind` — [`BuildErrorKind`](#builderrorkind)
 
@@ -62,25 +72,79 @@ building the NFA will fail.
 
 #### Trait Implementations
 
+##### `impl Any for BuildError`
+
+- <span id="builderror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BuildError`
+
+- <span id="builderror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BuildError`
+
+- <span id="builderror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BuildError`
 
 - <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](#builderror)
 
+##### `impl CloneToUninit for BuildError`
+
+- <span id="builderror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for BuildError`
 
-- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="builderror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for BuildError`
 
-- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="builderror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for BuildError`
 
-- <span id="builderror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
+- <span id="builderror-error-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
+
+##### `impl<T> From for BuildError`
+
+- <span id="builderror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BuildError`
+
+- <span id="builderror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for BuildError`
+
+- <span id="builderror-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="builderror-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="builderror-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for BuildError`
 
-- <span id="builderror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="builderror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for BuildError`
+
+- <span id="builderror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="builderror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BuildError`
+
+- <span id="builderror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="builderror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -162,11 +226,65 @@ The kind of error that occurred during the construction of a thompson NFA.
 
 #### Trait Implementations
 
+##### `impl Any for BuildErrorKind`
+
+- <span id="builderrorkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BuildErrorKind`
+
+- <span id="builderrorkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BuildErrorKind`
+
+- <span id="builderrorkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BuildErrorKind`
 
 - <span id="builderrorkind-clone"></span>`fn clone(&self) -> BuildErrorKind` — [`BuildErrorKind`](#builderrorkind)
 
+##### `impl CloneToUninit for BuildErrorKind`
+
+- <span id="builderrorkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for BuildErrorKind`
 
-- <span id="builderrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="builderrorkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BuildErrorKind`
+
+- <span id="builderrorkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BuildErrorKind`
+
+- <span id="builderrorkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for BuildErrorKind`
+
+- <span id="builderrorkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="builderrorkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="builderrorkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BuildErrorKind`
+
+- <span id="builderrorkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="builderrorkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BuildErrorKind`
+
+- <span id="builderrorkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="builderrorkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

@@ -44,13 +44,29 @@ This preserves insertion order
 
 #### Trait Implementations
 
+##### `impl<T> Any for FlatSet<T>`
+
+- <span id="flatset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FlatSet<T>`
+
+- <span id="flatset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FlatSet<T>`
+
+- <span id="flatset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for FlatSet<T>`
 
 - <span id="flatset-clone"></span>`fn clone(&self) -> FlatSet<T>` — [`FlatSet`](#flatset)
 
+##### `impl<T> CloneToUninit for FlatSet<T>`
+
+- <span id="flatset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug> Debug for FlatSet<T>`
 
-- <span id="flatset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="flatset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: PartialEq + Eq> Default for FlatSet<T>`
 
@@ -62,9 +78,27 @@ This preserves insertion order
 
 - <span id="flatset-extend"></span>`fn extend<I: IntoIterator<Item = T>>(&mut self, iter: I)`
 
+##### `impl<T> From for FlatSet<T>`
+
+- <span id="flatset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<T: PartialEq + Eq> FromIterator for FlatSet<T>`
 
-- <span id="flatset-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
+- <span id="flatset-fromiterator-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
+
+##### `impl<T, U> Into for FlatSet<T>`
+
+- <span id="flatset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: PartialEq + Eq> IntoIterator for FlatSet<T>`
 
@@ -72,11 +106,31 @@ This preserves insertion order
 
 - <span id="flatset-intoiterator-type-intoiter"></span>`type IntoIter = IntoIter<T>`
 
-- <span id="flatset-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+- <span id="flatset-intoiterator-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl<T: cmp::PartialEq> PartialEq for FlatSet<T>`
 
-- <span id="flatset-eq"></span>`fn eq(&self, other: &FlatSet<T>) -> bool` — [`FlatSet`](#flatset)
+- <span id="flatset-partialeq-eq"></span>`fn eq(&self, other: &FlatSet<T>) -> bool` — [`FlatSet`](#flatset)
 
 ##### `impl<T> StructuralPartialEq for FlatSet<T>`
+
+##### `impl<T> ToOwned for FlatSet<T>`
+
+- <span id="flatset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="flatset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="flatset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for FlatSet<T>`
+
+- <span id="flatset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="flatset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for FlatSet<T>`
+
+- <span id="flatset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="flatset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

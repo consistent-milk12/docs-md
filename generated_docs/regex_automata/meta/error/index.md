@@ -52,9 +52,53 @@ When the `std` feature is enabled, this implements `std::error::Error`.
 
 - <span id="builderror-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](../../util/primitives/index.md#patternid)
 
+  If it is known which pattern ID caused this build error to occur, then
+
+  this method returns it.
+
+  
+
+  Some errors are not associated with a particular pattern. However, any
+
+  errors that occur as part of parsing a pattern are guaranteed to be
+
+  associated with a pattern ID.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::{meta::Regex, PatternID};
+
+  
+
+  let err = Regex::new_many(&["a", "b", r"\p{Foo}", "c"]).unwrap_err();
+
+  assert_eq!(Some(PatternID::must(2)), err.pattern());
+
+  ```
+
 - <span id="builderror-size-limit"></span>`fn size_limit(&self) -> Option<usize>`
 
+  If this error occurred because the regex exceeded the configured size
+
+  limit before being built, then this returns the configured size limit.
+
+  
+
+  The limit returned is what was configured, and corresponds to the
+
+  maximum amount of heap usage in bytes.
+
 - <span id="builderror-syntax-error"></span>`fn syntax_error(&self) -> Option<&regex_syntax::Error>`
+
+  If this error corresponds to a syntax error, then a reference to it is
+
+  returned by this method.
 
 - <span id="builderror-ast"></span>`fn ast(pid: PatternID, err: ast::Error) -> BuildError` — [`PatternID`](../../util/primitives/index.md#patternid), [`BuildError`](#builderror)
 
@@ -64,25 +108,79 @@ When the `std` feature is enabled, this implements `std::error::Error`.
 
 #### Trait Implementations
 
+##### `impl Any for BuildError`
+
+- <span id="builderror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BuildError`
+
+- <span id="builderror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BuildError`
+
+- <span id="builderror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BuildError`
 
 - <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](#builderror)
 
+##### `impl CloneToUninit for BuildError`
+
+- <span id="builderror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for BuildError`
 
-- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="builderror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for BuildError`
 
-- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="builderror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for BuildError`
 
-- <span id="builderror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
+- <span id="builderror-error-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
+
+##### `impl<T> From for BuildError`
+
+- <span id="builderror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BuildError`
+
+- <span id="builderror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for BuildError`
+
+- <span id="builderror-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="builderror-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="builderror-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for BuildError`
 
-- <span id="builderror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="builderror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for BuildError`
+
+- <span id="builderror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="builderror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BuildError`
+
+- <span id="builderror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="builderror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RetryQuadraticError`
 
@@ -104,19 +202,61 @@ and use a normal forward search.
 
 #### Trait Implementations
 
+##### `impl Any for RetryQuadraticError`
+
+- <span id="retryquadraticerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RetryQuadraticError`
+
+- <span id="retryquadraticerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RetryQuadraticError`
+
+- <span id="retryquadraticerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for RetryQuadraticError`
 
-- <span id="retryquadraticerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="retryquadraticerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for RetryQuadraticError`
 
-- <span id="retryquadraticerror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="retryquadraticerror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for RetryQuadraticError`
 
+##### `impl<T> From for RetryQuadraticError`
+
+- <span id="retryquadraticerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RetryQuadraticError`
+
+- <span id="retryquadraticerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl ToString for RetryQuadraticError`
 
-- <span id="retryquadraticerror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="retryquadraticerror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for RetryQuadraticError`
+
+- <span id="retryquadraticerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="retryquadraticerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RetryQuadraticError`
+
+- <span id="retryquadraticerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="retryquadraticerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RetryFailError`
 
@@ -147,19 +287,61 @@ regex engine internals guarantee that errors like `HaystackTooLong` and
 
 #### Trait Implementations
 
+##### `impl Any for RetryFailError`
+
+- <span id="retryfailerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RetryFailError`
+
+- <span id="retryfailerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RetryFailError`
+
+- <span id="retryfailerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for RetryFailError`
 
-- <span id="retryfailerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="retryfailerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for RetryFailError`
 
-- <span id="retryfailerror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="retryfailerror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for RetryFailError`
 
+##### `impl<T> From for RetryFailError`
+
+- <span id="retryfailerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RetryFailError`
+
+- <span id="retryfailerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl ToString for RetryFailError`
 
-- <span id="retryfailerror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="retryfailerror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for RetryFailError`
+
+- <span id="retryfailerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="retryfailerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RetryFailError`
+
+- <span id="retryfailerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="retryfailerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -179,13 +361,67 @@ enum BuildErrorKind {
 
 #### Trait Implementations
 
+##### `impl Any for BuildErrorKind`
+
+- <span id="builderrorkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BuildErrorKind`
+
+- <span id="builderrorkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BuildErrorKind`
+
+- <span id="builderrorkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BuildErrorKind`
 
 - <span id="builderrorkind-clone"></span>`fn clone(&self) -> BuildErrorKind` — [`BuildErrorKind`](#builderrorkind)
 
+##### `impl CloneToUninit for BuildErrorKind`
+
+- <span id="builderrorkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for BuildErrorKind`
 
-- <span id="builderrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="builderrorkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BuildErrorKind`
+
+- <span id="builderrorkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BuildErrorKind`
+
+- <span id="builderrorkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for BuildErrorKind`
+
+- <span id="builderrorkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="builderrorkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="builderrorkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BuildErrorKind`
+
+- <span id="builderrorkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="builderrorkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BuildErrorKind`
+
+- <span id="builderrorkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="builderrorkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RetryError`
 
@@ -218,17 +454,59 @@ API.
 
 #### Trait Implementations
 
+##### `impl Any for RetryError`
+
+- <span id="retryerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RetryError`
+
+- <span id="retryerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RetryError`
+
+- <span id="retryerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for RetryError`
 
-- <span id="retryerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="retryerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for RetryError`
 
-- <span id="retryerror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="retryerror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for RetryError`
 
+##### `impl<T> From for RetryError`
+
+- <span id="retryerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RetryError`
+
+- <span id="retryerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl ToString for RetryError`
 
-- <span id="retryerror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="retryerror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for RetryError`
+
+- <span id="retryerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="retryerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RetryError`
+
+- <span id="retryerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="retryerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

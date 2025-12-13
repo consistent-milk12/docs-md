@@ -31,13 +31,47 @@ This type is created when using the `par_bridge` method on `ParallelBridge`. See
 
 #### Trait Implementations
 
+##### `impl Any for IterBridge<Iter>`
+
+- <span id="iterbridge-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IterBridge<Iter>`
+
+- <span id="iterbridge-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IterBridge<Iter>`
+
+- <span id="iterbridge-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Iter: clone::Clone> Clone for IterBridge<Iter>`
 
 - <span id="iterbridge-clone"></span>`fn clone(&self) -> IterBridge<Iter>` — [`IterBridge`](#iterbridge)
 
+##### `impl CloneToUninit for IterBridge<Iter>`
+
+- <span id="iterbridge-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<Iter: fmt::Debug> Debug for IterBridge<Iter>`
 
-- <span id="iterbridge-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="iterbridge-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for IterBridge<Iter>`
+
+- <span id="iterbridge-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for IterBridge<Iter>`
+
+- <span id="iterbridge-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for IterBridge<Iter>`
 
@@ -47,13 +81,13 @@ This type is created when using the `par_bridge` method on `ParallelBridge`. See
 
 - <span id="iterbridge-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="iterbridge-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="iterbridge-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<Iter> ParallelIterator for IterBridge<Iter>`
 
 - <span id="iterbridge-paralleliterator-type-item"></span>`type Item = <Iter as Iterator>::Item`
 
-- <span id="iterbridge-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="iterbridge-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl Pointable for IterBridge<Iter>`
 
@@ -61,13 +95,33 @@ This type is created when using the `par_bridge` method on `ParallelBridge`. See
 
 - <span id="iterbridge-pointable-type-init"></span>`type Init = T`
 
-- <span id="iterbridge-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="iterbridge-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="iterbridge-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="iterbridge-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="iterbridge-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="iterbridge-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="iterbridge-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="iterbridge-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for IterBridge<Iter>`
+
+- <span id="iterbridge-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="iterbridge-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="iterbridge-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for IterBridge<Iter>`
+
+- <span id="iterbridge-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="iterbridge-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IterBridge<Iter>`
+
+- <span id="iterbridge-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="iterbridge-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IterParallelProducer<'a, Iter>`
 
@@ -83,6 +137,36 @@ struct IterParallelProducer<'a, Iter> {
 
 #### Trait Implementations
 
+##### `impl Any for IterParallelProducer<'a, Iter>`
+
+- <span id="iterparallelproducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IterParallelProducer<'a, Iter>`
+
+- <span id="iterparallelproducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IterParallelProducer<'a, Iter>`
+
+- <span id="iterparallelproducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for IterParallelProducer<'a, Iter>`
+
+- <span id="iterparallelproducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for IterParallelProducer<'a, Iter>`
+
+- <span id="iterparallelproducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for IterParallelProducer<'a, Iter>`
 
 ##### `impl Pointable for IterParallelProducer<'a, Iter>`
@@ -91,21 +175,33 @@ struct IterParallelProducer<'a, Iter> {
 
 - <span id="iterparallelproducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="iterparallelproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="iterparallelproducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="iterparallelproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="iterparallelproducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="iterparallelproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="iterparallelproducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="iterparallelproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="iterparallelproducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for IterParallelProducer<'a, Iter>`
+
+- <span id="iterparallelproducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="iterparallelproducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IterParallelProducer<'a, Iter>`
+
+- <span id="iterparallelproducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="iterparallelproducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<Iter: Iterator + Send> UnindexedProducer for &IterParallelProducer<'_, Iter>`
 
 - <span id="iterparallelproducer-unindexedproducer-type-item"></span>`type Item = <Iter as Iterator>::Item`
 
-- <span id="iterparallelproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
+- <span id="iterparallelproducer-unindexedproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- <span id="iterparallelproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
+- <span id="iterparallelproducer-unindexedproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ## Traits
 

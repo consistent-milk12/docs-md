@@ -141,19 +141,61 @@ fn main() {
 
 #### Trait Implementations
 
+##### `impl Any for Error`
+
+- <span id="error-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Error`
+
+- <span id="error-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Error`
+
+- <span id="error-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for crate::parse::Error`
 
-- <span id="crateparseerror-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateparseerror-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for crate::parse::Error`
 
-- <span id="crateparseerror-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateparseerror-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for crate::parse::Error`
 
+##### `impl<T> From for Error`
+
+- <span id="error-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Error`
+
+- <span id="error-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl ToString for Error`
 
-- <span id="error-to-string"></span>`fn to_string(&self) -> String`
+- <span id="error-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Error`
+
+- <span id="error-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="error-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Error`
+
+- <span id="error-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="error-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Version`
 
@@ -223,19 +265,195 @@ Example:&ensp;`1.0.0-alpha`&ensp;&lt;&ensp;`1.0.0-alpha.1`&ensp;&lt;&ensp;`1.0.0
 
 - <span id="version-new"></span>`const fn new(major: u64, minor: u64, patch: u64) -> Self`
 
+  Create `Version` with an empty pre-release and build metadata.
+
+  
+
+  Equivalent to:
+
+  
+
+  ```rust
+
+  use semver::{BuildMetadata, Prerelease, Version};
+
+  
+
+  const fn new(major: u64, minor: u64, patch: u64) -> Version {
+
+  Version {
+
+      major,
+
+      minor,
+
+      patch,
+
+      pre: Prerelease::EMPTY,
+
+      build: BuildMetadata::EMPTY,
+
+  }
+
+  }
+
+  ```
+
 - <span id="version-parse"></span>`fn parse(text: &str) -> Result<Self, Error>` — [`Error`](parse/index.md#error)
+
+  Create `Version` by parsing from string representation.
+
+  
+
+  # Errors
+
+  
+
+  Possible reasons for the parse to fail include:
+
+  
+
+  - `1.0` &mdash; too few numeric components. A SemVer version must have
+
+    exactly three. If you are looking at something that has fewer than
+
+    three numbers in it, it's possible it is a `VersionReq` instead (with
+
+    an implicit default `^` comparison operator).
+
+  
+
+  - `1.0.01` &mdash; a numeric component has a leading zero.
+
+  
+
+  - `1.0.unknown` &mdash; unexpected character in one of the components.
+
+  
+
+  - `1.0.0-` or `1.0.0+` &mdash; the pre-release or build metadata are
+
+    indicated present but empty.
+
+  
+
+  - `1.0.0-alpha_123` &mdash; pre-release or build metadata have something
+
+    outside the allowed characters, which are `0-9`, `A-Z`, `a-z`, `-`,
+
+    and `.` (dot).
+
+  
+
+  - `23456789999999999999.0.0` &mdash; overflow of a u64.
 
 - <span id="version-cmp-precedence"></span>`fn cmp_precedence(&self, other: &Self) -> Ordering`
 
+  Compare the major, minor, patch, and pre-release value of two versions,
+
+  disregarding build metadata. Versions that differ only in build metadata
+
+  are considered equal. This comparison is what the SemVer spec refers to
+
+  as "precedence".
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use semver::Version;
+
+  
+
+  let mut versions = [
+
+      "1.20.0+c144a98".parse::<Version>().unwrap(),
+
+      "1.20.0".parse().unwrap(),
+
+      "1.0.0".parse().unwrap(),
+
+      "1.0.0-alpha".parse().unwrap(),
+
+      "1.20.0+bc17664".parse().unwrap(),
+
+  ];
+
+  
+
+  // This is a stable sort, so it preserves the relative order of equal
+
+  // elements. The three 1.20.0 versions differ only in build metadata so
+
+  // they are not reordered relative to one another.
+
+  versions.sort_by(Version::cmp_precedence);
+
+  assert_eq!(versions, [
+
+      "1.0.0-alpha".parse().unwrap(),
+
+      "1.0.0".parse().unwrap(),
+
+      "1.20.0+c144a98".parse().unwrap(),
+
+      "1.20.0".parse().unwrap(),
+
+      "1.20.0+bc17664".parse().unwrap(),
+
+  ]);
+
+  
+
+  // Totally order the versions, including comparing the build metadata.
+
+  versions.sort();
+
+  assert_eq!(versions, [
+
+      "1.0.0-alpha".parse().unwrap(),
+
+      "1.0.0".parse().unwrap(),
+
+      "1.20.0".parse().unwrap(),
+
+      "1.20.0+bc17664".parse().unwrap(),
+
+      "1.20.0+c144a98".parse().unwrap(),
+
+  ]);
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for Version`
+
+- <span id="version-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Version`
+
+- <span id="version-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Version`
+
+- <span id="version-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Version`
 
 - <span id="version-clone"></span>`fn clone(&self) -> Version` — [`Version`](#version)
 
+##### `impl CloneToUninit for Version`
+
+- <span id="version-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::Version`
 
-- <span id="crateversion-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateversion-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for crate::Version`
 
@@ -245,31 +463,49 @@ Example:&ensp;`1.0.0-alpha`&ensp;&lt;&ensp;`1.0.0-alpha.1`&ensp;&lt;&ensp;`1.0.0
 
 ##### `impl Display for crate::Version`
 
-- <span id="crateversion-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateversion-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Version`
+
+##### `impl<T> From for Version`
+
+- <span id="version-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromStr for crate::Version`
 
 - <span id="crateversion-fromstr-type-err"></span>`type Err = Error`
 
-- <span id="crateversion-from-str"></span>`fn from_str(text: &str) -> Result<Self, <Self as >::Err>`
+- <span id="crateversion-fromstr-from-str"></span>`fn from_str(text: &str) -> Result<Self, <Self as >::Err>`
 
 ##### `impl Hash for Version`
 
 - <span id="version-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Version`
+
+- <span id="version-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Version`
 
-- <span id="version-cmp"></span>`fn cmp(&self, other: &Version) -> cmp::Ordering` — [`Version`](#version)
+- <span id="version-ord-cmp"></span>`fn cmp(&self, other: &Version) -> cmp::Ordering` — [`Version`](#version)
 
 ##### `impl PartialEq for Version`
 
-- <span id="version-eq"></span>`fn eq(&self, other: &Version) -> bool` — [`Version`](#version)
+- <span id="version-partialeq-eq"></span>`fn eq(&self, other: &Version) -> bool` — [`Version`](#version)
 
 ##### `impl PartialOrd for Version`
 
-- <span id="version-partial-cmp"></span>`fn partial_cmp(&self, other: &Version) -> option::Option<cmp::Ordering>` — [`Version`](#version)
+- <span id="version-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Version) -> option::Option<cmp::Ordering>` — [`Version`](#version)
 
 ##### `impl Serialize for crate::Version`
 
@@ -277,9 +513,29 @@ Example:&ensp;`1.0.0-alpha`&ensp;&lt;&ensp;`1.0.0-alpha.1`&ensp;&lt;&ensp;`1.0.0
 
 ##### `impl StructuralPartialEq for Version`
 
+##### `impl ToOwned for Version`
+
+- <span id="version-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="version-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="version-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Version`
 
-- <span id="version-to-string"></span>`fn to_string(&self) -> String`
+- <span id="version-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Version`
+
+- <span id="version-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="version-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Version`
+
+- <span id="version-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="version-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `VersionReq`
 
@@ -315,17 +571,67 @@ comparators, such as `>=1.2.3, <1.8`.
 
 - <span id="versionreq-parse"></span>`fn parse(text: &str) -> Result<Self, Error>` — [`Error`](parse/index.md#error)
 
+  Create `VersionReq` by parsing from string representation.
+
+  
+
+  # Errors
+
+  
+
+  Possible reasons for the parse to fail include:
+
+  
+
+  - `>a.b` &mdash; unexpected characters in the partial version.
+
+  
+
+  - `@1.0.0` &mdash; unrecognized comparison operator.
+
+  
+
+  - `^1.0.0, ` &mdash; unexpected end of input.
+
+  
+
+  - `>=1.0 <2.0` &mdash; missing comma between comparators.
+
+  
+
+  - `*.*` &mdash; unsupported wildcard syntax.
+
 - <span id="versionreq-matches"></span>`fn matches(&self, version: &Version) -> bool` — [`Version`](#version)
 
+  Evaluate whether the given `Version` satisfies the version requirement
+
+  described by `self`.
+
 #### Trait Implementations
+
+##### `impl Any for VersionReq`
+
+- <span id="versionreq-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for VersionReq`
+
+- <span id="versionreq-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for VersionReq`
+
+- <span id="versionreq-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for VersionReq`
 
 - <span id="versionreq-clone"></span>`fn clone(&self) -> VersionReq` — [`VersionReq`](#versionreq)
 
+##### `impl CloneToUninit for VersionReq`
+
+- <span id="versionreq-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for VersionReq`
 
-- <span id="versionreq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="versionreq-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for VersionReq`
 
@@ -339,27 +645,45 @@ comparators, such as `>=1.2.3, <1.8`.
 
 ##### `impl Display for crate::VersionReq`
 
-- <span id="crateversionreq-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateversionreq-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for VersionReq`
 
+##### `impl<T> From for VersionReq`
+
+- <span id="versionreq-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl FromIterator for crate::VersionReq`
 
-- <span id="crateversionreq-from-iter"></span>`fn from_iter<I>(iter: I) -> Self`
+- <span id="crateversionreq-fromiterator-from-iter"></span>`fn from_iter<I>(iter: I) -> Self`
 
 ##### `impl FromStr for crate::VersionReq`
 
 - <span id="crateversionreq-fromstr-type-err"></span>`type Err = Error`
 
-- <span id="crateversionreq-from-str"></span>`fn from_str(text: &str) -> Result<Self, <Self as >::Err>`
+- <span id="crateversionreq-fromstr-from-str"></span>`fn from_str(text: &str) -> Result<Self, <Self as >::Err>`
 
 ##### `impl Hash for VersionReq`
 
 - <span id="versionreq-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for VersionReq`
+
+- <span id="versionreq-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for VersionReq`
 
-- <span id="versionreq-eq"></span>`fn eq(&self, other: &VersionReq) -> bool` — [`VersionReq`](#versionreq)
+- <span id="versionreq-partialeq-eq"></span>`fn eq(&self, other: &VersionReq) -> bool` — [`VersionReq`](#versionreq)
 
 ##### `impl Serialize for crate::VersionReq`
 
@@ -367,9 +691,29 @@ comparators, such as `>=1.2.3, <1.8`.
 
 ##### `impl StructuralPartialEq for VersionReq`
 
+##### `impl ToOwned for VersionReq`
+
+- <span id="versionreq-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="versionreq-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="versionreq-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for VersionReq`
 
-- <span id="versionreq-to-string"></span>`fn to_string(&self) -> String`
+- <span id="versionreq-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for VersionReq`
+
+- <span id="versionreq-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="versionreq-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for VersionReq`
+
+- <span id="versionreq-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="versionreq-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Comparator`
 
@@ -406,13 +750,29 @@ one piece of a VersionReq.
 
 #### Trait Implementations
 
+##### `impl Any for Comparator`
+
+- <span id="comparator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Comparator`
+
+- <span id="comparator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Comparator`
+
+- <span id="comparator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Comparator`
 
 - <span id="comparator-clone"></span>`fn clone(&self) -> Comparator` — [`Comparator`](#comparator)
 
+##### `impl CloneToUninit for Comparator`
+
+- <span id="comparator-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Comparator`
 
-- <span id="comparator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="comparator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for crate::Comparator`
 
@@ -422,27 +782,45 @@ one piece of a VersionReq.
 
 ##### `impl Display for crate::Comparator`
 
-- <span id="cratecomparator-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratecomparator-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Comparator`
 
+##### `impl<T> From for Comparator`
+
+- <span id="comparator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl FromIterator for crate::VersionReq`
 
-- <span id="crateversionreq-from-iter"></span>`fn from_iter<I>(iter: I) -> Self`
+- <span id="crateversionreq-fromiterator-from-iter"></span>`fn from_iter<I>(iter: I) -> Self`
 
 ##### `impl FromStr for crate::Comparator`
 
 - <span id="cratecomparator-fromstr-type-err"></span>`type Err = Error`
 
-- <span id="cratecomparator-from-str"></span>`fn from_str(text: &str) -> Result<Self, <Self as >::Err>`
+- <span id="cratecomparator-fromstr-from-str"></span>`fn from_str(text: &str) -> Result<Self, <Self as >::Err>`
 
 ##### `impl Hash for Comparator`
 
 - <span id="comparator-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Comparator`
+
+- <span id="comparator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Comparator`
 
-- <span id="comparator-eq"></span>`fn eq(&self, other: &Comparator) -> bool` — [`Comparator`](#comparator)
+- <span id="comparator-partialeq-eq"></span>`fn eq(&self, other: &Comparator) -> bool` — [`Comparator`](#comparator)
 
 ##### `impl Serialize for crate::Comparator`
 
@@ -450,9 +828,29 @@ one piece of a VersionReq.
 
 ##### `impl StructuralPartialEq for Comparator`
 
+##### `impl ToOwned for Comparator`
+
+- <span id="comparator-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="comparator-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="comparator-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Comparator`
 
-- <span id="comparator-to-string"></span>`fn to_string(&self) -> String`
+- <span id="comparator-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Comparator`
+
+- <span id="comparator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="comparator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Comparator`
+
+- <span id="comparator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="comparator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Prerelease`
 
@@ -524,13 +922,29 @@ Example:&ensp;`alpha`&ensp;&lt;&ensp;`alpha.85`&ensp;&lt;&ensp;`alpha.90`&ensp;&
 
 #### Trait Implementations
 
+##### `impl Any for Prerelease`
+
+- <span id="prerelease-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Prerelease`
+
+- <span id="prerelease-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Prerelease`
+
+- <span id="prerelease-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Prerelease`
 
 - <span id="prerelease-clone"></span>`fn clone(&self) -> Prerelease` — [`Prerelease`](#prerelease)
 
+##### `impl CloneToUninit for Prerelease`
+
+- <span id="prerelease-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::Prerelease`
 
-- <span id="crateprerelease-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateprerelease-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Prerelease`
 
@@ -544,31 +958,49 @@ Example:&ensp;`alpha`&ensp;&lt;&ensp;`alpha.85`&ensp;&lt;&ensp;`alpha.90`&ensp;&
 
 ##### `impl Display for crate::Prerelease`
 
-- <span id="crateprerelease-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateprerelease-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Prerelease`
+
+##### `impl<T> From for Prerelease`
+
+- <span id="prerelease-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromStr for crate::Prerelease`
 
 - <span id="crateprerelease-fromstr-type-err"></span>`type Err = Error`
 
-- <span id="crateprerelease-from-str"></span>`fn from_str(text: &str) -> Result<Self, <Self as >::Err>`
+- <span id="crateprerelease-fromstr-from-str"></span>`fn from_str(text: &str) -> Result<Self, <Self as >::Err>`
 
 ##### `impl Hash for Prerelease`
 
 - <span id="prerelease-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Prerelease`
+
+- <span id="prerelease-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for crate::Prerelease`
 
-- <span id="crateprerelease-cmp"></span>`fn cmp(&self, rhs: &Self) -> Ordering`
+- <span id="crateprerelease-ord-cmp"></span>`fn cmp(&self, rhs: &Self) -> Ordering`
 
 ##### `impl PartialEq for Prerelease`
 
-- <span id="prerelease-eq"></span>`fn eq(&self, other: &Prerelease) -> bool` — [`Prerelease`](#prerelease)
+- <span id="prerelease-partialeq-eq"></span>`fn eq(&self, other: &Prerelease) -> bool` — [`Prerelease`](#prerelease)
 
 ##### `impl PartialOrd for crate::Prerelease`
 
-- <span id="crateprerelease-partial-cmp"></span>`fn partial_cmp(&self, rhs: &Self) -> Option<Ordering>`
+- <span id="crateprerelease-partialord-partial-cmp"></span>`fn partial_cmp(&self, rhs: &Self) -> Option<Ordering>`
 
 ##### `impl Receiver for Prerelease`
 
@@ -576,9 +1008,29 @@ Example:&ensp;`alpha`&ensp;&lt;&ensp;`alpha.85`&ensp;&lt;&ensp;`alpha.90`&ensp;&
 
 ##### `impl StructuralPartialEq for Prerelease`
 
+##### `impl ToOwned for Prerelease`
+
+- <span id="prerelease-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="prerelease-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="prerelease-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Prerelease`
 
-- <span id="prerelease-to-string"></span>`fn to_string(&self) -> String`
+- <span id="prerelease-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Prerelease`
+
+- <span id="prerelease-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="prerelease-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Prerelease`
+
+- <span id="prerelease-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="prerelease-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BuildMetadata`
 
@@ -654,13 +1106,29 @@ Example:&ensp;`demo`&ensp;&lt;&ensp;`demo.85`&ensp;&lt;&ensp;`demo.90`&ensp;&lt;
 
 #### Trait Implementations
 
+##### `impl Any for BuildMetadata`
+
+- <span id="buildmetadata-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BuildMetadata`
+
+- <span id="buildmetadata-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BuildMetadata`
+
+- <span id="buildmetadata-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BuildMetadata`
 
 - <span id="buildmetadata-clone"></span>`fn clone(&self) -> BuildMetadata` — [`BuildMetadata`](#buildmetadata)
 
+##### `impl CloneToUninit for BuildMetadata`
+
+- <span id="buildmetadata-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::BuildMetadata`
 
-- <span id="cratebuildmetadata-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratebuildmetadata-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for BuildMetadata`
 
@@ -674,31 +1142,49 @@ Example:&ensp;`demo`&ensp;&lt;&ensp;`demo.85`&ensp;&lt;&ensp;`demo.90`&ensp;&lt;
 
 ##### `impl Display for crate::BuildMetadata`
 
-- <span id="cratebuildmetadata-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratebuildmetadata-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for BuildMetadata`
+
+##### `impl<T> From for BuildMetadata`
+
+- <span id="buildmetadata-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromStr for crate::BuildMetadata`
 
 - <span id="cratebuildmetadata-fromstr-type-err"></span>`type Err = Error`
 
-- <span id="cratebuildmetadata-from-str"></span>`fn from_str(text: &str) -> Result<Self, <Self as >::Err>`
+- <span id="cratebuildmetadata-fromstr-from-str"></span>`fn from_str(text: &str) -> Result<Self, <Self as >::Err>`
 
 ##### `impl Hash for BuildMetadata`
 
 - <span id="buildmetadata-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for BuildMetadata`
+
+- <span id="buildmetadata-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for crate::BuildMetadata`
 
-- <span id="cratebuildmetadata-cmp"></span>`fn cmp(&self, rhs: &Self) -> Ordering`
+- <span id="cratebuildmetadata-ord-cmp"></span>`fn cmp(&self, rhs: &Self) -> Ordering`
 
 ##### `impl PartialEq for BuildMetadata`
 
-- <span id="buildmetadata-eq"></span>`fn eq(&self, other: &BuildMetadata) -> bool` — [`BuildMetadata`](#buildmetadata)
+- <span id="buildmetadata-partialeq-eq"></span>`fn eq(&self, other: &BuildMetadata) -> bool` — [`BuildMetadata`](#buildmetadata)
 
 ##### `impl PartialOrd for crate::BuildMetadata`
 
-- <span id="cratebuildmetadata-partial-cmp"></span>`fn partial_cmp(&self, rhs: &Self) -> Option<Ordering>`
+- <span id="cratebuildmetadata-partialord-partial-cmp"></span>`fn partial_cmp(&self, rhs: &Self) -> Option<Ordering>`
 
 ##### `impl Receiver for BuildMetadata`
 
@@ -706,9 +1192,29 @@ Example:&ensp;`demo`&ensp;&lt;&ensp;`demo.85`&ensp;&lt;&ensp;`demo.90`&ensp;&lt;
 
 ##### `impl StructuralPartialEq for BuildMetadata`
 
+##### `impl ToOwned for BuildMetadata`
+
+- <span id="buildmetadata-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="buildmetadata-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="buildmetadata-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for BuildMetadata`
 
-- <span id="buildmetadata-to-string"></span>`fn to_string(&self) -> String`
+- <span id="buildmetadata-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for BuildMetadata`
+
+- <span id="buildmetadata-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="buildmetadata-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BuildMetadata`
+
+- <span id="buildmetadata-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="buildmetadata-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -781,25 +1287,79 @@ SemVer comparison operator: `=`, `>`, `>=`, `<`, `<=`, `~`, `^`, `*`.
 
 #### Trait Implementations
 
+##### `impl Any for Op`
+
+- <span id="op-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Op`
+
+- <span id="op-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Op`
+
+- <span id="op-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Op`
 
 - <span id="op-clone"></span>`fn clone(&self) -> Op` — [`Op`](#op)
+
+##### `impl CloneToUninit for Op`
+
+- <span id="op-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Op`
 
 ##### `impl Debug for Op`
 
-- <span id="op-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="op-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Op`
+
+##### `impl<T> From for Op`
+
+- <span id="op-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Op`
 
 - <span id="op-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Op`
+
+- <span id="op-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Op`
 
-- <span id="op-eq"></span>`fn eq(&self, other: &Op) -> bool` — [`Op`](#op)
+- <span id="op-partialeq-eq"></span>`fn eq(&self, other: &Op) -> bool` — [`Op`](#op)
 
 ##### `impl StructuralPartialEq for Op`
+
+##### `impl ToOwned for Op`
+
+- <span id="op-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="op-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="op-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Op`
+
+- <span id="op-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="op-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Op`
+
+- <span id="op-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="op-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

@@ -21,7 +21,7 @@ fn main() {
 }
 ```
 
-Additionally, this crate provides a [`Handle`](#handle) type that permits a more efficient
+Additionally, this crate provides a [`Handle`](unix/index.md) type that permits a more efficient
 equality check depending on your access pattern. For example, if one wanted to
 check whether any path in a list of paths corresponded to the process' stdout
 handle, then one could build a handle once for stdout. The equality check for
@@ -105,47 +105,453 @@ implementation details.
 
 - <span id="handle-from-path"></span>`fn from_path<P: AsRef<Path>>(p: P) -> io::Result<Handle>` — [`Handle`](#handle)
 
+  Construct a handle from a path.
+
+  
+
+  Note that the underlying [`File`](#file) is opened in read-only mode on all
+
+  platforms.
+
+  
+
+  # Errors
+
+  This method will return an `io::Error` if the path cannot
+
+  be opened, or the file's metadata cannot be obtained.
+
+  The most common reasons for this are: the path does not
+
+  exist, or there were not enough permissions.
+
+  
+
+  # Examples
+
+  Check that two paths are not the same file:
+
+  
+
+  ```rust,no_run
+
+  use std::error::Error;
+
+  use same_file::Handle;
+
+  
+
+  fn try_main() -> Result<(), Box<Error>> {
+
+  let source = Handle::from_path("./source")?;
+
+  let target = Handle::from_path("./target")?;
+
+  assert_ne!(source, target, "The files are the same.");
+
+  Ok(())
+
+  }
+
+  
+
+  fn main() {
+
+      try_main().unwrap();
+
+  }
+
+  ```
+
 - <span id="handle-from-file"></span>`fn from_file(file: File) -> io::Result<Handle>` — [`Handle`](#handle)
+
+  Construct a handle from a file.
+
+  
+
+  # Errors
+
+  This method will return an `io::Error` if the metadata for
+
+  the given [`File`](#file) cannot be obtained.
+
+  
+
+  
+
+  # Examples
+
+  Check that two files are not in fact the same file:
+
+  
+
+  ```rust,no_run
+
+  use std::error::Error;
+
+  use std::fs::File;
+
+  use same_file::Handle;
+
+  
+
+  fn try_main() -> Result<(), Box<Error>> {
+
+  let source = File::open("./source")?;
+
+  let target = File::open("./target")?;
+
+  
+
+  assert_ne!(
+
+      Handle::from_file(source)?,
+
+      Handle::from_file(target)?,
+
+      "The files are the same."
+
+  );
+
+      Ok(())
+
+  }
+
+  
+
+  fn main() {
+
+      try_main().unwrap();
+
+  }
+
+  ```
 
 - <span id="handle-stdin"></span>`fn stdin() -> io::Result<Handle>` — [`Handle`](#handle)
 
+  Construct a handle from stdin.
+
+  
+
+  # Errors
+
+  This method will return an `io::Error` if stdin cannot
+
+  be opened due to any I/O-related reason.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use std::error::Error;
+
+  use same_file::Handle;
+
+  
+
+  fn try_main() -> Result<(), Box<Error>> {
+
+  let stdin = Handle::stdin()?;
+
+  let stdout = Handle::stdout()?;
+
+  let stderr = Handle::stderr()?;
+
+  
+
+  if stdin == stdout {
+
+      println!("stdin == stdout");
+
+  }
+
+  if stdin == stderr {
+
+      println!("stdin == stderr");
+
+  }
+
+  if stdout == stderr {
+
+      println!("stdout == stderr");
+
+  }
+
+  
+
+      Ok(())
+
+  }
+
+  
+
+  fn main() {
+
+      try_main().unwrap();
+
+  }
+
+  ```
+
+  
+
+  The output differs depending on the platform.
+
+  
+
+  On Linux:
+
+  
+
+  ```text
+
+  $ ./example
+
+  stdin == stdout
+
+  stdin == stderr
+
+  stdout == stderr
+
+  $ ./example > result
+
+  $ cat result
+
+  stdin == stderr
+
+  $ ./example > result 2>&1
+
+  $ cat result
+
+  stdout == stderr
+
+  ```
+
+  
+
+  Windows:
+
+  
+
+  ```text
+
+  > example
+
+  > example > result 2>&1
+
+  > type result
+
+  stdout == stderr
+
+  ```
+
 - <span id="handle-stdout"></span>`fn stdout() -> io::Result<Handle>` — [`Handle`](#handle)
+
+  Construct a handle from stdout.
+
+  
+
+  # Errors
+
+  This method will return an `io::Error` if stdout cannot
+
+  be opened due to any I/O-related reason.
+
+  
+
+  # Examples
+
+  See the example for `stdin()`.
 
 - <span id="handle-stderr"></span>`fn stderr() -> io::Result<Handle>` — [`Handle`](#handle)
 
+  Construct a handle from stderr.
+
+  
+
+  # Errors
+
+  This method will return an `io::Error` if stderr cannot
+
+  be opened due to any I/O-related reason.
+
+  
+
+  # Examples
+
+  See the example for `stdin()`.
+
 - <span id="handle-as-file"></span>`fn as_file(&self) -> &File`
+
+  Return a reference to the underlying file.
+
+  
+
+  # Examples
+
+  Ensure that the target file is not the same as the source one,
+
+  and copy the data to it:
+
+  
+
+  ```rust,no_run
+
+  use std::error::Error;
+
+  use std::io::prelude::*;
+
+  use std::io::Write;
+
+  use std::fs::File;
+
+  use same_file::Handle;
+
+  
+
+  fn try_main() -> Result<(), Box<Error>> {
+
+  let source = File::open("source")?;
+
+  let target = File::create("target")?;
+
+  
+
+  let source_handle = Handle::from_file(source)?;
+
+  let mut target_handle = Handle::from_file(target)?;
+
+  assert_ne!(source_handle, target_handle, "The files are the same.");
+
+  
+
+  let mut source = source_handle.as_file();
+
+  let target = target_handle.as_file_mut();
+
+  
+
+  let mut buffer = Vec::new();
+
+  // data copy is simplified for the purposes of the example
+
+  source.read_to_end(&mut buffer)?;
+
+  target.write_all(&buffer)?;
+
+  
+
+     Ok(())
+
+  }
+
+  
+
+  fn main() {
+
+     try_main().unwrap();
+
+  }
+
+  ```
 
 - <span id="handle-as-file-mut"></span>`fn as_file_mut(&mut self) -> &mut File`
 
+  Return a mutable reference to the underlying file.
+
+  
+
+  # Examples
+
+  See the example for `as_file()`.
+
 - <span id="handle-dev"></span>`fn dev(&self) -> u64`
+
+  Return the underlying device number of this handle.
+
+  
+
+  Note that this only works on unix platforms.
 
 - <span id="handle-ino"></span>`fn ino(&self) -> u64`
 
+  Return the underlying inode number of this handle.
+
+  
+
+  Note that this only works on unix platforms.
+
 #### Trait Implementations
+
+##### `impl Any for Handle`
+
+- <span id="handle-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl AsRawFd for crate::Handle`
 
-- <span id="cratehandle-as-raw-fd"></span>`fn as_raw_fd(&self) -> RawFd`
+- <span id="cratehandle-asrawfd-as-raw-fd"></span>`fn as_raw_fd(&self) -> RawFd`
+
+##### `impl<T> Borrow for Handle`
+
+- <span id="handle-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Handle`
+
+- <span id="handle-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for Handle`
 
-- <span id="handle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="handle-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Handle`
+
+##### `impl<T> From for Handle`
+
+- <span id="handle-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Handle`
 
 - <span id="handle-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Handle`
+
+- <span id="handle-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoRawFd for crate::Handle`
 
-- <span id="cratehandle-into-raw-fd"></span>`fn into_raw_fd(self) -> RawFd`
+- <span id="cratehandle-intorawfd-into-raw-fd"></span>`fn into_raw_fd(self) -> RawFd`
 
 ##### `impl PartialEq for Handle`
 
-- <span id="handle-eq"></span>`fn eq(&self, other: &Handle) -> bool` — [`Handle`](#handle)
+- <span id="handle-partialeq-eq"></span>`fn eq(&self, other: &Handle) -> bool` — [`Handle`](#handle)
 
 ##### `impl StructuralPartialEq for Handle`
+
+##### `impl<U> TryFrom for Handle`
+
+- <span id="handle-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="handle-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Handle`
+
+- <span id="handle-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="handle-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

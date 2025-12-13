@@ -38,21 +38,55 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 #### Trait Implementations
 
+##### `impl<T> Any for RChunks<'data, T>`
+
+- <span id="rchunks-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RChunks<'data, T>`
+
+- <span id="rchunks-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RChunks<'data, T>`
+
+- <span id="rchunks-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T> Clone for RChunks<'_, T>`
 
 - <span id="rchunks-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for RChunks<'data, T>`
+
+- <span id="rchunks-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug> Debug for RChunks<'data, T>`
 
-- <span id="rchunks-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rchunks-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RChunks<'data, T>`
+
+- <span id="rchunks-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: Sync> IndexedParallelIterator for RChunks<'_, T>`
 
-- <span id="rchunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
+- <span id="rchunks-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
-- <span id="rchunks-len"></span>`fn len(&self) -> usize`
+- <span id="rchunks-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="rchunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
+- <span id="rchunks-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for RChunks<'data, T>`
+
+- <span id="rchunks-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for RChunks<'data, T>`
 
@@ -62,15 +96,15 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 - <span id="rchunks-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="rchunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="rchunks-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Sync> ParallelIterator for RChunks<'data, T>`
 
 - <span id="rchunks-paralleliterator-type-item"></span>`type Item = &'data [T]`
 
-- <span id="rchunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
+- <span id="rchunks-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
-- <span id="rchunks-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="rchunks-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for RChunks<'data, T>`
 
@@ -78,13 +112,33 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 - <span id="rchunks-pointable-type-init"></span>`type Init = T`
 
-- <span id="rchunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="rchunks-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="rchunks-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="rchunks-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="rchunks-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="rchunks-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="rchunks-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="rchunks-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for RChunks<'data, T>`
+
+- <span id="rchunks-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rchunks-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rchunks-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for RChunks<'data, T>`
+
+- <span id="rchunks-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rchunks-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RChunks<'data, T>`
+
+- <span id="rchunks-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rchunks-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RChunksProducer<'data, T: Sync>`
 
@@ -99,6 +153,36 @@ struct RChunksProducer<'data, T: Sync> {
 
 #### Trait Implementations
 
+##### `impl<T> Any for RChunksProducer<'data, T>`
+
+- <span id="rchunksproducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RChunksProducer<'data, T>`
+
+- <span id="rchunksproducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RChunksProducer<'data, T>`
+
+- <span id="rchunksproducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for RChunksProducer<'data, T>`
+
+- <span id="rchunksproducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for RChunksProducer<'data, T>`
+
+- <span id="rchunksproducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T> IntoEither for RChunksProducer<'data, T>`
 
 ##### `impl<T> Pointable for RChunksProducer<'data, T>`
@@ -107,13 +191,13 @@ struct RChunksProducer<'data, T: Sync> {
 
 - <span id="rchunksproducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="rchunksproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="rchunksproducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="rchunksproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="rchunksproducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="rchunksproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="rchunksproducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="rchunksproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="rchunksproducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: 'data + Sync> Producer for RChunksProducer<'data, T>`
 
@@ -121,9 +205,21 @@ struct RChunksProducer<'data, T: Sync> {
 
 - <span id="rchunksproducer-producer-type-intoiter"></span>`type IntoIter = RChunks<'data, T>`
 
-- <span id="rchunksproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
+- <span id="rchunksproducer-producer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
 
-- <span id="rchunksproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
+- <span id="rchunksproducer-producer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
+
+##### `impl<T, U> TryFrom for RChunksProducer<'data, T>`
+
+- <span id="rchunksproducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rchunksproducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RChunksProducer<'data, T>`
+
+- <span id="rchunksproducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rchunksproducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RChunksExact<'data, T>`
 
@@ -145,23 +241,63 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 - <span id="rchunksexact-remainder"></span>`fn remainder(&self) -> &'data [T]`
 
+  Return the remainder of the original slice that is not going to be
+
+  returned by the iterator. The returned slice has at most `chunk_size-1`
+
+  elements.
+
 #### Trait Implementations
+
+##### `impl<T> Any for RChunksExact<'data, T>`
+
+- <span id="rchunksexact-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RChunksExact<'data, T>`
+
+- <span id="rchunksexact-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RChunksExact<'data, T>`
+
+- <span id="rchunksexact-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T> Clone for RChunksExact<'_, T>`
 
 - <span id="rchunksexact-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for RChunksExact<'data, T>`
+
+- <span id="rchunksexact-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug> Debug for RChunksExact<'data, T>`
 
-- <span id="rchunksexact-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rchunksexact-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RChunksExact<'data, T>`
+
+- <span id="rchunksexact-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: Sync> IndexedParallelIterator for RChunksExact<'_, T>`
 
-- <span id="rchunksexact-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
+- <span id="rchunksexact-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
-- <span id="rchunksexact-len"></span>`fn len(&self) -> usize`
+- <span id="rchunksexact-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="rchunksexact-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
+- <span id="rchunksexact-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for RChunksExact<'data, T>`
+
+- <span id="rchunksexact-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for RChunksExact<'data, T>`
 
@@ -171,15 +307,15 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 - <span id="rchunksexact-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="rchunksexact-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="rchunksexact-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Sync> ParallelIterator for RChunksExact<'data, T>`
 
 - <span id="rchunksexact-paralleliterator-type-item"></span>`type Item = &'data [T]`
 
-- <span id="rchunksexact-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
+- <span id="rchunksexact-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
-- <span id="rchunksexact-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="rchunksexact-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for RChunksExact<'data, T>`
 
@@ -187,13 +323,33 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 - <span id="rchunksexact-pointable-type-init"></span>`type Init = T`
 
-- <span id="rchunksexact-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="rchunksexact-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="rchunksexact-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="rchunksexact-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="rchunksexact-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="rchunksexact-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="rchunksexact-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="rchunksexact-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for RChunksExact<'data, T>`
+
+- <span id="rchunksexact-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rchunksexact-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rchunksexact-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for RChunksExact<'data, T>`
+
+- <span id="rchunksexact-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rchunksexact-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RChunksExact<'data, T>`
+
+- <span id="rchunksexact-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rchunksexact-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RChunksExactProducer<'data, T: Sync>`
 
@@ -208,6 +364,36 @@ struct RChunksExactProducer<'data, T: Sync> {
 
 #### Trait Implementations
 
+##### `impl<T> Any for RChunksExactProducer<'data, T>`
+
+- <span id="rchunksexactproducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RChunksExactProducer<'data, T>`
+
+- <span id="rchunksexactproducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RChunksExactProducer<'data, T>`
+
+- <span id="rchunksexactproducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for RChunksExactProducer<'data, T>`
+
+- <span id="rchunksexactproducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for RChunksExactProducer<'data, T>`
+
+- <span id="rchunksexactproducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T> IntoEither for RChunksExactProducer<'data, T>`
 
 ##### `impl<T> Pointable for RChunksExactProducer<'data, T>`
@@ -216,13 +402,13 @@ struct RChunksExactProducer<'data, T: Sync> {
 
 - <span id="rchunksexactproducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="rchunksexactproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="rchunksexactproducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="rchunksexactproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="rchunksexactproducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="rchunksexactproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="rchunksexactproducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="rchunksexactproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="rchunksexactproducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: 'data + Sync> Producer for RChunksExactProducer<'data, T>`
 
@@ -230,9 +416,21 @@ struct RChunksExactProducer<'data, T: Sync> {
 
 - <span id="rchunksexactproducer-producer-type-intoiter"></span>`type IntoIter = RChunksExact<'data, T>`
 
-- <span id="rchunksexactproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
+- <span id="rchunksexactproducer-producer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
 
-- <span id="rchunksexactproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
+- <span id="rchunksexactproducer-producer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
+
+##### `impl<T, U> TryFrom for RChunksExactProducer<'data, T>`
+
+- <span id="rchunksexactproducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rchunksexactproducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RChunksExactProducer<'data, T>`
+
+- <span id="rchunksexactproducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rchunksexactproducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RChunksMut<'data, T>`
 
@@ -253,17 +451,47 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 #### Trait Implementations
 
+##### `impl<T> Any for RChunksMut<'data, T>`
+
+- <span id="rchunksmut-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RChunksMut<'data, T>`
+
+- <span id="rchunksmut-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RChunksMut<'data, T>`
+
+- <span id="rchunksmut-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: fmt::Debug> Debug for RChunksMut<'data, T>`
 
-- <span id="rchunksmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rchunksmut-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RChunksMut<'data, T>`
+
+- <span id="rchunksmut-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: Send> IndexedParallelIterator for RChunksMut<'_, T>`
 
-- <span id="rchunksmut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
+- <span id="rchunksmut-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
-- <span id="rchunksmut-len"></span>`fn len(&self) -> usize`
+- <span id="rchunksmut-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="rchunksmut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
+- <span id="rchunksmut-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for RChunksMut<'data, T>`
+
+- <span id="rchunksmut-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for RChunksMut<'data, T>`
 
@@ -273,15 +501,15 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 - <span id="rchunksmut-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="rchunksmut-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="rchunksmut-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for RChunksMut<'data, T>`
 
 - <span id="rchunksmut-paralleliterator-type-item"></span>`type Item = &'data mut [T]`
 
-- <span id="rchunksmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
+- <span id="rchunksmut-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
-- <span id="rchunksmut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="rchunksmut-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for RChunksMut<'data, T>`
 
@@ -289,13 +517,25 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 - <span id="rchunksmut-pointable-type-init"></span>`type Init = T`
 
-- <span id="rchunksmut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="rchunksmut-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="rchunksmut-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="rchunksmut-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="rchunksmut-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="rchunksmut-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="rchunksmut-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="rchunksmut-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T, U> TryFrom for RChunksMut<'data, T>`
+
+- <span id="rchunksmut-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rchunksmut-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RChunksMut<'data, T>`
+
+- <span id="rchunksmut-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rchunksmut-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RChunksMutProducer<'data, T: Send>`
 
@@ -310,6 +550,36 @@ struct RChunksMutProducer<'data, T: Send> {
 
 #### Trait Implementations
 
+##### `impl<T> Any for RChunksMutProducer<'data, T>`
+
+- <span id="rchunksmutproducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RChunksMutProducer<'data, T>`
+
+- <span id="rchunksmutproducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RChunksMutProducer<'data, T>`
+
+- <span id="rchunksmutproducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for RChunksMutProducer<'data, T>`
+
+- <span id="rchunksmutproducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for RChunksMutProducer<'data, T>`
+
+- <span id="rchunksmutproducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T> IntoEither for RChunksMutProducer<'data, T>`
 
 ##### `impl<T> Pointable for RChunksMutProducer<'data, T>`
@@ -318,13 +588,13 @@ struct RChunksMutProducer<'data, T: Send> {
 
 - <span id="rchunksmutproducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="rchunksmutproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="rchunksmutproducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="rchunksmutproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="rchunksmutproducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="rchunksmutproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="rchunksmutproducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="rchunksmutproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="rchunksmutproducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: 'data + Send> Producer for RChunksMutProducer<'data, T>`
 
@@ -332,9 +602,21 @@ struct RChunksMutProducer<'data, T: Send> {
 
 - <span id="rchunksmutproducer-producer-type-intoiter"></span>`type IntoIter = RChunksMut<'data, T>`
 
-- <span id="rchunksmutproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
+- <span id="rchunksmutproducer-producer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
 
-- <span id="rchunksmutproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
+- <span id="rchunksmutproducer-producer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
+
+##### `impl<T, U> TryFrom for RChunksMutProducer<'data, T>`
+
+- <span id="rchunksmutproducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rchunksmutproducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RChunksMutProducer<'data, T>`
+
+- <span id="rchunksmutproducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rchunksmutproducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RChunksExactMut<'data, T: Send>`
 
@@ -356,23 +638,89 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 - <span id="rchunksexactmut-into-remainder"></span>`fn into_remainder(self) -> &'data mut [T]`
 
+  Return the remainder of the original slice that is not going to be
+
+  returned by the iterator. The returned slice has at most `chunk_size-1`
+
+  elements.
+
+  
+
+  Note that this has to consume `self` to return the original lifetime of
+
+  the data, which prevents this from actually being used as a parallel
+
+  iterator since that also consumes. This method is provided for parity
+
+  with `std::iter::RChunksExactMut`, but consider calling `remainder()` or
+
+  `take_remainder()` as alternatives.
+
 - <span id="rchunksexactmut-remainder"></span>`fn remainder(&mut self) -> &mut [T]`
+
+  Return the remainder of the original slice that is not going to be
+
+  returned by the iterator. The returned slice has at most `chunk_size-1`
+
+  elements.
+
+  
+
+  Consider `take_remainder()` if you need access to the data with its
+
+  original lifetime, rather than borrowing through `&mut self` here.
 
 - <span id="rchunksexactmut-take-remainder"></span>`fn take_remainder(&mut self) -> &'data mut [T]`
 
+  Return the remainder of the original slice that is not going to be
+
+  returned by the iterator. The returned slice has at most `chunk_size-1`
+
+  elements. Subsequent calls will return an empty slice.
+
 #### Trait Implementations
+
+##### `impl<T> Any for RChunksExactMut<'data, T>`
+
+- <span id="rchunksexactmut-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RChunksExactMut<'data, T>`
+
+- <span id="rchunksexactmut-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RChunksExactMut<'data, T>`
+
+- <span id="rchunksexactmut-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: fmt::Debug + Send> Debug for RChunksExactMut<'data, T>`
 
-- <span id="rchunksexactmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rchunksexactmut-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RChunksExactMut<'data, T>`
+
+- <span id="rchunksexactmut-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: Send + 'data> IndexedParallelIterator for RChunksExactMut<'data, T>`
 
-- <span id="rchunksexactmut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
+- <span id="rchunksexactmut-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
-- <span id="rchunksexactmut-len"></span>`fn len(&self) -> usize`
+- <span id="rchunksexactmut-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="rchunksexactmut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
+- <span id="rchunksexactmut-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for RChunksExactMut<'data, T>`
+
+- <span id="rchunksexactmut-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for RChunksExactMut<'data, T>`
 
@@ -382,15 +730,15 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 - <span id="rchunksexactmut-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="rchunksexactmut-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="rchunksexactmut-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send + 'data> ParallelIterator for RChunksExactMut<'data, T>`
 
 - <span id="rchunksexactmut-paralleliterator-type-item"></span>`type Item = &'data mut [T]`
 
-- <span id="rchunksexactmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
+- <span id="rchunksexactmut-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
-- <span id="rchunksexactmut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="rchunksexactmut-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for RChunksExactMut<'data, T>`
 
@@ -398,13 +746,25 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 - <span id="rchunksexactmut-pointable-type-init"></span>`type Init = T`
 
-- <span id="rchunksexactmut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="rchunksexactmut-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="rchunksexactmut-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="rchunksexactmut-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="rchunksexactmut-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="rchunksexactmut-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="rchunksexactmut-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="rchunksexactmut-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T, U> TryFrom for RChunksExactMut<'data, T>`
+
+- <span id="rchunksexactmut-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rchunksexactmut-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RChunksExactMut<'data, T>`
+
+- <span id="rchunksexactmut-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rchunksexactmut-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RChunksExactMutProducer<'data, T: Send>`
 
@@ -419,6 +779,36 @@ struct RChunksExactMutProducer<'data, T: Send> {
 
 #### Trait Implementations
 
+##### `impl<T> Any for RChunksExactMutProducer<'data, T>`
+
+- <span id="rchunksexactmutproducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RChunksExactMutProducer<'data, T>`
+
+- <span id="rchunksexactmutproducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RChunksExactMutProducer<'data, T>`
+
+- <span id="rchunksexactmutproducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for RChunksExactMutProducer<'data, T>`
+
+- <span id="rchunksexactmutproducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for RChunksExactMutProducer<'data, T>`
+
+- <span id="rchunksexactmutproducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T> IntoEither for RChunksExactMutProducer<'data, T>`
 
 ##### `impl<T> Pointable for RChunksExactMutProducer<'data, T>`
@@ -427,13 +817,13 @@ struct RChunksExactMutProducer<'data, T: Send> {
 
 - <span id="rchunksexactmutproducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="rchunksexactmutproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="rchunksexactmutproducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="rchunksexactmutproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="rchunksexactmutproducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="rchunksexactmutproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="rchunksexactmutproducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="rchunksexactmutproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="rchunksexactmutproducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: 'data + Send> Producer for RChunksExactMutProducer<'data, T>`
 
@@ -441,7 +831,19 @@ struct RChunksExactMutProducer<'data, T: Send> {
 
 - <span id="rchunksexactmutproducer-producer-type-intoiter"></span>`type IntoIter = RChunksExactMut<'data, T>`
 
-- <span id="rchunksexactmutproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
+- <span id="rchunksexactmutproducer-producer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
 
-- <span id="rchunksexactmutproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
+- <span id="rchunksexactmutproducer-producer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
+
+##### `impl<T, U> TryFrom for RChunksExactMutProducer<'data, T>`
+
+- <span id="rchunksexactmutproducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rchunksexactmutproducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RChunksExactMutProducer<'data, T>`
+
+- <span id="rchunksexactmutproducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rchunksexactmutproducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

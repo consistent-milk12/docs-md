@@ -66,9 +66,51 @@ overhead for [`RichFormatter`](#richformatter).
 
 #### Trait Implementations
 
+##### `impl Any for KindFormatter`
+
+- <span id="kindformatter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for KindFormatter`
+
+- <span id="kindformatter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for KindFormatter`
+
+- <span id="kindformatter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl ErrorFormatter for KindFormatter`
 
-- <span id="kindformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../index.md#error), [`StyledStr`](../../builder/styled_str/index.md#styledstr)
+- <span id="kindformatter-errorformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../index.md#error), [`StyledStr`](../../builder/styled_str/index.md#styledstr)
+
+##### `impl<T> From for KindFormatter`
+
+- <span id="kindformatter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for KindFormatter`
+
+- <span id="kindformatter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for KindFormatter`
+
+- <span id="kindformatter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="kindformatter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for KindFormatter`
+
+- <span id="kindformatter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="kindformatter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RichFormatter`
 
@@ -84,9 +126,51 @@ This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lan
 
 #### Trait Implementations
 
+##### `impl Any for RichFormatter`
+
+- <span id="richformatter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RichFormatter`
+
+- <span id="richformatter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RichFormatter`
+
+- <span id="richformatter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl ErrorFormatter for RichFormatter`
 
-- <span id="richformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../index.md#error), [`StyledStr`](../../builder/styled_str/index.md#styledstr)
+- <span id="richformatter-errorformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../index.md#error), [`StyledStr`](../../builder/styled_str/index.md#styledstr)
+
+##### `impl<T> From for RichFormatter`
+
+- <span id="richformatter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RichFormatter`
+
+- <span id="richformatter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for RichFormatter`
+
+- <span id="richformatter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="richformatter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RichFormatter`
+
+- <span id="richformatter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="richformatter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Escape<'s>`
 
@@ -98,13 +182,55 @@ struct Escape<'s>(&'s str);
 
 #### Trait Implementations
 
+##### `impl Any for Escape<'s>`
+
+- <span id="escape-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Escape<'s>`
+
+- <span id="escape-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Escape<'s>`
+
+- <span id="escape-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Display for Escape<'_>`
 
-- <span id="escape-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="escape-display-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+
+##### `impl<T> From for Escape<'s>`
+
+- <span id="escape-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Escape<'s>`
+
+- <span id="escape-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for Escape<'s>`
 
-- <span id="escape-to-string"></span>`fn to_string(&self) -> String`
+- <span id="escape-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Escape<'s>`
+
+- <span id="escape-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="escape-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Escape<'s>`
+
+- <span id="escape-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="escape-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

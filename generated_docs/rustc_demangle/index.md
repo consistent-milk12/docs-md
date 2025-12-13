@@ -89,15 +89,59 @@ Representation of a demangled symbol name.
 
 - <span id="demangle-as-str"></span>`fn as_str(&self) -> &'a str`
 
+  Returns the underlying string that's being demangled.
+
 #### Trait Implementations
+
+##### `impl Any for Demangle<'a>`
+
+- <span id="demangle-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Demangle<'a>`
+
+- <span id="demangle-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Demangle<'a>`
+
+- <span id="demangle-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for Demangle<'a>`
 
-- <span id="demangle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="demangle-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Demangle<'a>`
 
-- <span id="demangle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="demangle-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Demangle<'a>`
+
+- <span id="demangle-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Demangle<'a>`
+
+- <span id="demangle-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Demangle<'a>`
+
+- <span id="demangle-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="demangle-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Demangle<'a>`
+
+- <span id="demangle-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="demangle-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TryDemangleError`
 
@@ -113,13 +157,59 @@ Error returned from the `try_demangle` function below when demangling fails.
 
 #### Trait Implementations
 
+##### `impl Any for TryDemangleError`
+
+- <span id="trydemangleerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TryDemangleError`
+
+- <span id="trydemangleerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TryDemangleError`
+
+- <span id="trydemangleerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for TryDemangleError`
 
 - <span id="trydemangleerror-clone"></span>`fn clone(&self) -> TryDemangleError` — [`TryDemangleError`](#trydemangleerror)
 
+##### `impl CloneToUninit for TryDemangleError`
+
+- <span id="trydemangleerror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for TryDemangleError`
 
-- <span id="trydemangleerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="trydemangleerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for TryDemangleError`
+
+- <span id="trydemangleerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TryDemangleError`
+
+- <span id="trydemangleerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for TryDemangleError`
+
+- <span id="trydemangleerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="trydemangleerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TryDemangleError`
+
+- <span id="trydemangleerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="trydemangleerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SizeLimitExhausted`
 
@@ -131,15 +221,61 @@ struct SizeLimitExhausted;
 
 #### Trait Implementations
 
+##### `impl Any for SizeLimitExhausted`
+
+- <span id="sizelimitexhausted-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SizeLimitExhausted`
+
+- <span id="sizelimitexhausted-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SizeLimitExhausted`
+
+- <span id="sizelimitexhausted-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SizeLimitExhausted`
 
 - <span id="sizelimitexhausted-clone"></span>`fn clone(&self) -> SizeLimitExhausted` — [`SizeLimitExhausted`](#sizelimitexhausted)
+
+##### `impl CloneToUninit for SizeLimitExhausted`
+
+- <span id="sizelimitexhausted-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for SizeLimitExhausted`
 
 ##### `impl Debug for SizeLimitExhausted`
 
-- <span id="sizelimitexhausted-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sizelimitexhausted-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SizeLimitExhausted`
+
+- <span id="sizelimitexhausted-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SizeLimitExhausted`
+
+- <span id="sizelimitexhausted-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for SizeLimitExhausted`
+
+- <span id="sizelimitexhausted-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sizelimitexhausted-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SizeLimitExhausted`
+
+- <span id="sizelimitexhausted-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sizelimitexhausted-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SizeLimitedFmtAdapter<F>`
 
@@ -154,9 +290,51 @@ struct SizeLimitedFmtAdapter<F> {
 
 #### Trait Implementations
 
+##### `impl Any for SizeLimitedFmtAdapter<F>`
+
+- <span id="sizelimitedfmtadapter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SizeLimitedFmtAdapter<F>`
+
+- <span id="sizelimitedfmtadapter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SizeLimitedFmtAdapter<F>`
+
+- <span id="sizelimitedfmtadapter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for SizeLimitedFmtAdapter<F>`
+
+- <span id="sizelimitedfmtadapter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SizeLimitedFmtAdapter<F>`
+
+- <span id="sizelimitedfmtadapter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for SizeLimitedFmtAdapter<F>`
+
+- <span id="sizelimitedfmtadapter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sizelimitedfmtadapter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SizeLimitedFmtAdapter<F>`
+
+- <span id="sizelimitedfmtadapter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sizelimitedfmtadapter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ##### `impl<F: fmt::Write> Write for SizeLimitedFmtAdapter<F>`
 
-- <span id="sizelimitedfmtadapter-write-str"></span>`fn write_str(&mut self, s: &str) -> fmt::Result`
+- <span id="sizelimitedfmtadapter-write-write-str"></span>`fn write_str(&mut self, s: &str) -> fmt::Result`
 
 ## Enums
 
@@ -173,9 +351,51 @@ enum DemangleStyle<'a> {
 
 #### Trait Implementations
 
+##### `impl Any for DemangleStyle<'a>`
+
+- <span id="demanglestyle-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DemangleStyle<'a>`
+
+- <span id="demanglestyle-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DemangleStyle<'a>`
+
+- <span id="demanglestyle-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Display for DemangleStyle<'a>`
 
-- <span id="demanglestyle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="demanglestyle-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DemangleStyle<'a>`
+
+- <span id="demanglestyle-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DemangleStyle<'a>`
+
+- <span id="demanglestyle-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DemangleStyle<'a>`
+
+- <span id="demanglestyle-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="demanglestyle-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DemangleStyle<'a>`
+
+- <span id="demanglestyle-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="demanglestyle-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

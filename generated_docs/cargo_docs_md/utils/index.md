@@ -55,9 +55,81 @@ assert_eq!(PathUtils::short_name("Clone"), "Clone");
 
 - <span id="pathutils-short-name"></span>`fn short_name(path: &str) -> &str`
 
+  Extract the short name (last segment) from a qualified Rust path.
+
+  
+
+  Rust paths use `::` as a separator. This function returns the final
+
+  segment, which is typically the item's simple name without module prefix.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use cargo_docs_md::utils::PathUtils;
+
+  
+
+  assert_eq!(PathUtils::short_name("std::vec::Vec"), "Vec");
+
+  assert_eq!(PathUtils::short_name("std::collections::HashMap"), "HashMap");
+
+  assert_eq!(PathUtils::short_name("Clone"), "Clone");
+
+  assert_eq!(PathUtils::short_name(""), "");
+
+  ```
+
+  
+
+  # Edge Cases
+
+  
+
+  - Empty string returns empty string
+
+  - Path ending with `::` returns empty string (e.g., `"foo::"` -> `""`)
+
+  - Single segment returns itself (e.g., `"Vec"` -> `"Vec"`)
+
 #### Trait Implementations
 
+##### `impl Any for PathUtils`
+
+- <span id="pathutils-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PathUtils`
+
+- <span id="pathutils-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PathUtils`
+
+- <span id="pathutils-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for PathUtils`
+
+- <span id="pathutils-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for PathUtils`
+
+##### `impl<U> Into for PathUtils`
+
+- <span id="pathutils-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for PathUtils`
 
@@ -69,13 +141,25 @@ assert_eq!(PathUtils::short_name("Clone"), "Clone");
 
 - <span id="pathutils-pointable-type-init"></span>`type Init = T`
 
-- <span id="pathutils-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="pathutils-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="pathutils-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="pathutils-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="pathutils-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="pathutils-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="pathutils-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="pathutils-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for PathUtils`
+
+- <span id="pathutils-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pathutils-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PathUtils`
+
+- <span id="pathutils-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pathutils-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for PathUtils`
 

@@ -248,13 +248,67 @@ Specifically the compiler can use a value in this range to encode the `None` var
 
 #### Trait Implementations
 
+##### `impl Any for LastByte`
+
+- <span id="lastbyte-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LastByte`
+
+- <span id="lastbyte-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LastByte`
+
+- <span id="lastbyte-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for LastByte`
 
 - <span id="lastbyte-clone"></span>`fn clone(&self) -> LastByte` — [`LastByte`](#lastbyte)
+
+##### `impl CloneToUninit for LastByte`
+
+- <span id="lastbyte-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for LastByte`
 
 ##### `impl Debug for LastByte`
 
-- <span id="lastbyte-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lastbyte-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for LastByte`
+
+- <span id="lastbyte-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LastByte`
+
+- <span id="lastbyte-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for LastByte`
+
+- <span id="lastbyte-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="lastbyte-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="lastbyte-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LastByte`
+
+- <span id="lastbyte-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lastbyte-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LastByte`
+
+- <span id="lastbyte-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lastbyte-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

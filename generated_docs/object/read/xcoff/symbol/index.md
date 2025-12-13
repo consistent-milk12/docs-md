@@ -70,35 +70,117 @@ Returned by `FileHeader::symbols`.
 
 - <span id="symboltable-parse"></span>`fn parse(header: Xcoff, data: R) -> Result<Self>` — [`Result`](../../../index.md#result)
 
+  Parse the symbol table.
+
 - <span id="symboltable-strings"></span>`fn strings(&self) -> StringTable<'data, R>` — [`StringTable`](../../index.md#stringtable)
+
+  Return the string table used for the symbol names.
 
 - <span id="symboltable-iter"></span>`fn iter<'table>(self: &'table Self) -> SymbolIterator<'data, 'table, Xcoff, R>` — [`SymbolIterator`](../index.md#symboliterator)
 
+  Iterate over the symbols.
+
+  
+
+  This does not return null symbols.
+
 - <span id="symboltable-iter-none"></span>`fn iter_none<'table>(self: &'table Self) -> SymbolIterator<'data, 'table, Xcoff, R>` — [`SymbolIterator`](../index.md#symboliterator)
+
+  Empty symbol iterator.
 
 - <span id="symboltable-get"></span>`fn get<T: Pod>(&self, index: SymbolIndex, offset: usize) -> Result<&'data T>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result)
 
+  Return the symbol entry at the given index and offset.
+
 - <span id="symboltable-symbol-unchecked"></span>`fn symbol_unchecked(&self, index: SymbolIndex) -> Result<&'data <Xcoff as >::Symbol>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`FileHeader`](../index.md#fileheader)
+
+  Get the symbol at the given index.
+
+  
+
+  This does not check if the symbol is null, but does check if the index is in bounds.
 
 - <span id="symboltable-symbol"></span>`fn symbol(&self, index: SymbolIndex) -> Result<&'data <Xcoff as >::Symbol>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`FileHeader`](../index.md#fileheader)
 
+  Get the symbol at the given index.
+
+  
+
+  Returns an error for null symbols and out of bounds indices.
+
+  Note that this is unable to check whether the index is an auxiliary symbol.
+
 - <span id="symboltable-aux-file"></span>`fn aux_file(&self, index: SymbolIndex, offset: usize) -> Result<&'data <Xcoff as >::FileAux>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`FileHeader`](../index.md#fileheader)
+
+  Return a file auxiliary symbol.
 
 - <span id="symboltable-aux-csect"></span>`fn aux_csect(&self, index: SymbolIndex, offset: usize) -> Result<&'data <Xcoff as >::CsectAux>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`FileHeader`](../index.md#fileheader)
 
+  Return the csect auxiliary symbol.
+
 - <span id="symboltable-is-empty"></span>`fn is_empty(&self) -> bool`
+
+  Return true if the symbol table is empty.
 
 - <span id="symboltable-len"></span>`fn len(&self) -> usize`
 
+  The number of symbol table entries.
+
+  
+
+  This includes auxiliary symbol table entries.
+
 #### Trait Implementations
+
+##### `impl Any for SymbolTable<'data, Xcoff, R>`
+
+- <span id="symboltable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SymbolTable<'data, Xcoff, R>`
+
+- <span id="symboltable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SymbolTable<'data, Xcoff, R>`
+
+- <span id="symboltable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<Xcoff, R> Debug for SymbolTable<'data, Xcoff, R>`
 
-- <span id="symboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symboltable-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Xcoff, R> Default for SymbolTable<'data, Xcoff, R>`
 
 - <span id="symboltable-default"></span>`fn default() -> Self`
+
+##### `impl<T> From for SymbolTable<'data, Xcoff, R>`
+
+- <span id="symboltable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SymbolTable<'data, Xcoff, R>`
+
+- <span id="symboltable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for SymbolTable<'data, Xcoff, R>`
+
+- <span id="symboltable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symboltable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SymbolTable<'data, Xcoff, R>`
+
+- <span id="symboltable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symboltable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SymbolIterator<'data, 'table, Xcoff, R>`
 
@@ -120,9 +202,39 @@ Yields the index and symbol structure for each symbol.
 
 #### Trait Implementations
 
+##### `impl Any for SymbolIterator<'data, 'table, Xcoff, R>`
+
+- <span id="symboliterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SymbolIterator<'data, 'table, Xcoff, R>`
+
+- <span id="symboliterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SymbolIterator<'data, 'table, Xcoff, R>`
+
+- <span id="symboliterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Xcoff, R> Debug for SymbolIterator<'data, 'table, Xcoff, R>`
 
-- <span id="symboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symboliterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SymbolIterator<'data, 'table, Xcoff, R>`
+
+- <span id="symboliterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SymbolIterator<'data, 'table, Xcoff, R>`
+
+- <span id="symboliterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SymbolIterator<'data, 'table, Xcoff, R>`
 
@@ -130,13 +242,25 @@ Yields the index and symbol structure for each symbol.
 
 - <span id="symboliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="symboliterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="symboliterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Xcoff: FileHeader, R: ReadRef<'data>> Iterator for SymbolIterator<'data, 'table, Xcoff, R>`
 
 - <span id="symboliterator-iterator-type-item"></span>`type Item = (SymbolIndex, &'data <Xcoff as FileHeader>::Symbol)`
 
-- <span id="symboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="symboliterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for SymbolIterator<'data, 'table, Xcoff, R>`
+
+- <span id="symboliterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symboliterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SymbolIterator<'data, 'table, Xcoff, R>`
+
+- <span id="symboliterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symboliterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
@@ -156,15 +280,49 @@ A symbol table in an [`XcoffFile`](../index.md).
 
 #### Trait Implementations
 
+##### `impl Any for XcoffSymbolTable<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymboltable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for XcoffSymbolTable<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymboltable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for XcoffSymbolTable<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymboltable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Xcoff, R> Clone for XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsymboltable-clone"></span>`fn clone(&self) -> XcoffSymbolTable<'data, 'file, Xcoff, R>` — [`XcoffSymbolTable`](../index.md#xcoffsymboltable)
+
+##### `impl CloneToUninit for XcoffSymbolTable<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymboltable-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<Xcoff, R> Copy for XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
 ##### `impl<Xcoff, R> Debug for XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsymboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xcoffsymboltable-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for XcoffSymbolTable<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymboltable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for XcoffSymbolTable<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymboltable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Xcoff: FileHeader, R: ReadRef<'data>> ObjectSymbolTable for XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
@@ -172,11 +330,31 @@ A symbol table in an [`XcoffFile`](../index.md).
 
 - <span id="xcoffsymboltable-objectsymboltable-type-symboliterator"></span>`type SymbolIterator = XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../../index.md#objectsymboltable)
+- <span id="xcoffsymboltable-objectsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../../index.md#objectsymboltable)
 
-- <span id="xcoffsymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> read::Result<<Self as >::Symbol>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`ObjectSymbolTable`](../../index.md#objectsymboltable)
+- <span id="xcoffsymboltable-objectsymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> read::Result<<Self as >::Symbol>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`ObjectSymbolTable`](../../index.md#objectsymboltable)
 
 ##### `impl<Xcoff: FileHeader, R: ReadRef<'data>> Sealed for XcoffSymbolTable<'data, 'file, Xcoff, R>`
+
+##### `impl ToOwned for XcoffSymbolTable<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymboltable-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="xcoffsymboltable-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="xcoffsymboltable-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for XcoffSymbolTable<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymboltable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="xcoffsymboltable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for XcoffSymbolTable<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymboltable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="xcoffsymboltable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
@@ -196,9 +374,39 @@ An iterator for the symbols in an [`XcoffFile`](../index.md).
 
 #### Trait Implementations
 
+##### `impl Any for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymboliterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymboliterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymboliterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Xcoff: FileHeader, R: ReadRef<'data>> Debug for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsymboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xcoffsymboliterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymboliterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymboliterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
@@ -206,13 +414,25 @@ An iterator for the symbols in an [`XcoffFile`](../index.md).
 
 - <span id="xcoffsymboliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="xcoffsymboliterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="xcoffsymboliterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Xcoff: FileHeader, R: ReadRef<'data>> Iterator for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsymboliterator-iterator-type-item"></span>`type Item = XcoffSymbol<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="xcoffsymboliterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymboliterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="xcoffsymboliterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymboliterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="xcoffsymboliterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `XcoffSymbol<'data, 'file, Xcoff, R>`
 
@@ -238,53 +458,113 @@ Most functionality is provided by the [`ObjectSymbol`](../../index.md) trait imp
 
 - <span id="xcoffsymbol-xcoff-file"></span>`fn xcoff_file(&self) -> &'file XcoffFile<'data, Xcoff, R>` — [`XcoffFile`](../index.md#xcofffile)
 
+  Get the XCOFF file containing this symbol.
+
 - <span id="xcoffsymbol-xcoff-symbol"></span>`fn xcoff_symbol(&self) -> &'data <Xcoff as >::Symbol` — [`FileHeader`](../index.md#fileheader)
 
+  Get the raw XCOFF symbol structure.
+
 #### Trait Implementations
+
+##### `impl Any for XcoffSymbol<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymbol-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for XcoffSymbol<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymbol-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for XcoffSymbol<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymbol-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<Xcoff, R> Clone for XcoffSymbol<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsymbol-clone"></span>`fn clone(&self) -> XcoffSymbol<'data, 'file, Xcoff, R>` — [`XcoffSymbol`](../index.md#xcoffsymbol)
 
+##### `impl CloneToUninit for XcoffSymbol<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymbol-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<Xcoff, R> Copy for XcoffSymbol<'data, 'file, Xcoff, R>`
 
 ##### `impl<Xcoff, R> Debug for XcoffSymbol<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsymbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xcoffsymbol-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for XcoffSymbol<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymbol-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for XcoffSymbol<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymbol-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Xcoff: FileHeader, R: ReadRef<'data>> ObjectSymbol for XcoffSymbol<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md#symbolindex)
+- <span id="xcoffsymbol-objectsymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md#symbolindex)
 
-- <span id="xcoffsymbol-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
+- <span id="xcoffsymbol-objectsymbol-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
-- <span id="xcoffsymbol-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../../index.md#result)
+- <span id="xcoffsymbol-objectsymbol-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../../index.md#result)
 
-- <span id="xcoffsymbol-address"></span>`fn address(&self) -> u64`
+- <span id="xcoffsymbol-objectsymbol-address"></span>`fn address(&self) -> u64`
 
-- <span id="xcoffsymbol-size"></span>`fn size(&self) -> u64`
+- <span id="xcoffsymbol-objectsymbol-size"></span>`fn size(&self) -> u64`
 
-- <span id="xcoffsymbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../../index.md#symbolkind)
+- <span id="xcoffsymbol-objectsymbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../../index.md#symbolkind)
 
-- <span id="xcoffsymbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../../index.md#symbolsection)
+- <span id="xcoffsymbol-objectsymbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../../index.md#symbolsection)
 
-- <span id="xcoffsymbol-is-undefined"></span>`fn is_undefined(&self) -> bool`
+- <span id="xcoffsymbol-objectsymbol-is-undefined"></span>`fn is_undefined(&self) -> bool`
 
-- <span id="xcoffsymbol-is-definition"></span>`fn is_definition(&self) -> bool`
+- <span id="xcoffsymbol-objectsymbol-is-definition"></span>`fn is_definition(&self) -> bool`
 
-- <span id="xcoffsymbol-is-common"></span>`fn is_common(&self) -> bool`
+  Return true if the symbol is a definition of a function or data object.
 
-- <span id="xcoffsymbol-is-weak"></span>`fn is_weak(&self) -> bool`
+- <span id="xcoffsymbol-objectsymbol-is-common"></span>`fn is_common(&self) -> bool`
 
-- <span id="xcoffsymbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../../index.md#symbolscope)
+- <span id="xcoffsymbol-objectsymbol-is-weak"></span>`fn is_weak(&self) -> bool`
 
-- <span id="xcoffsymbol-is-global"></span>`fn is_global(&self) -> bool`
+- <span id="xcoffsymbol-objectsymbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../../index.md#symbolscope)
 
-- <span id="xcoffsymbol-is-local"></span>`fn is_local(&self) -> bool`
+- <span id="xcoffsymbol-objectsymbol-is-global"></span>`fn is_global(&self) -> bool`
 
-- <span id="xcoffsymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../../index.md#symbolflags), [`SectionIndex`](../../../index.md#sectionindex), [`SymbolIndex`](../../../index.md#symbolindex)
+- <span id="xcoffsymbol-objectsymbol-is-local"></span>`fn is_local(&self) -> bool`
+
+- <span id="xcoffsymbol-objectsymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../../index.md#symbolflags), [`SectionIndex`](../../../index.md#sectionindex), [`SymbolIndex`](../../../index.md#symbolindex)
 
 ##### `impl<Xcoff: FileHeader, R: ReadRef<'data>> Sealed for XcoffSymbol<'data, 'file, Xcoff, R>`
+
+##### `impl ToOwned for XcoffSymbol<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymbol-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="xcoffsymbol-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="xcoffsymbol-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for XcoffSymbol<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymbol-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="xcoffsymbol-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for XcoffSymbol<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffsymbol-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="xcoffsymbol-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

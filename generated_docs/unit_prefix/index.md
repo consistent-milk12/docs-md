@@ -277,39 +277,173 @@ A numeric prefix, either binary or decimal.
 
 - <span id="prefix-upper"></span>`fn upper(self) -> &'static str`
 
+  Returns the name in uppercase, such as “KILO”.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use unit_prefix::Prefix;
+
+  
+
+  assert_eq!("GIGA", Prefix::Giga.upper());
+
+  assert_eq!("GIBI", Prefix::Gibi.upper());
+
+  ```
+
 - <span id="prefix-caps"></span>`fn caps(self) -> &'static str`
+
+  Returns the name with the first letter capitalised, such as “Mega”.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use unit_prefix::Prefix;
+
+  
+
+  assert_eq!("Giga", Prefix::Giga.caps());
+
+  assert_eq!("Gibi", Prefix::Gibi.caps());
+
+  ```
 
 - <span id="prefix-lower"></span>`fn lower(self) -> &'static str`
 
+  Returns the name in lowercase, such as “giga”.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use unit_prefix::Prefix;
+
+  
+
+  assert_eq!("giga", Prefix::Giga.lower());
+
+  assert_eq!("gibi", Prefix::Gibi.lower());
+
+  ```
+
 - <span id="prefix-symbol"></span>`fn symbol(self) -> &'static str`
 
+  Returns the short-hand symbol, such as “T” (for “tera”).
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use unit_prefix::Prefix;
+
+  
+
+  assert_eq!("G", Prefix::Giga.symbol());
+
+  assert_eq!("Gi", Prefix::Gibi.symbol());
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for Prefix`
+
+- <span id="prefix-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Prefix`
+
+- <span id="prefix-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Prefix`
+
+- <span id="prefix-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Prefix`
 
 - <span id="prefix-clone"></span>`fn clone(&self) -> Prefix` — [`Prefix`](#prefix)
 
+##### `impl CloneToUninit for Prefix`
+
+- <span id="prefix-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Prefix`
 
 ##### `impl Debug for Prefix`
 
-- <span id="prefix-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="prefix-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Prefix`
 
-- <span id="prefix-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="prefix-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Prefix`
 
+##### `impl<T> From for Prefix`
+
+- <span id="prefix-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Prefix`
+
+- <span id="prefix-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Prefix`
 
-- <span id="prefix-eq"></span>`fn eq(&self, other: &Prefix) -> bool` — [`Prefix`](#prefix)
+- <span id="prefix-partialeq-eq"></span>`fn eq(&self, other: &Prefix) -> bool` — [`Prefix`](#prefix)
 
 ##### `impl StructuralPartialEq for Prefix`
 
+##### `impl ToOwned for Prefix`
+
+- <span id="prefix-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="prefix-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="prefix-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Prefix`
 
-- <span id="prefix-to-string"></span>`fn to_string(&self) -> String`
+- <span id="prefix-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Prefix`
+
+- <span id="prefix-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="prefix-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Prefix`
+
+- <span id="prefix-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="prefix-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `NumberPrefix<F>`
 
@@ -341,33 +475,147 @@ The result of trying to apply a prefix to a floating-point value.
 
 - <span id="numberprefix-decimal"></span>`fn decimal(amount: F) -> Self`
 
+  Formats the given floating-point number using **decimal** prefixes.
+
+  
+
+  This function accepts both `f32` and `f64` values. If you’re trying to
+
+  format an integer, you’ll have to cast it first.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use unit_prefix::{NumberPrefix, Prefix};
+
+  
+
+  assert_eq!(
+
+      NumberPrefix::decimal(1_000_000_000_f32),
+
+      NumberPrefix::Prefixed(Prefix::Giga, 1_f32)
+
+  );
+
+  ```
+
 - <span id="numberprefix-binary"></span>`fn binary(amount: F) -> Self`
+
+  Formats the given floating-point number using **binary** prefixes.
+
+  
+
+  This function accepts both `f32` and `f64` values. If you’re trying to
+
+  format an integer, you’ll have to cast it first.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use unit_prefix::{NumberPrefix, Prefix};
+
+  
+
+  assert_eq!(
+
+      NumberPrefix::binary(1_073_741_824_f64),
+
+      NumberPrefix::Prefixed(Prefix::Gibi, 1_f64)
+
+  );
+
+  ```
 
 - <span id="numberprefix-format-number"></span>`fn format_number(amount: F, kilo: F, prefixes: [Prefix; 8]) -> Self` — [`Prefix`](#prefix)
 
 #### Trait Implementations
 
+##### `impl Any for NumberPrefix<F>`
+
+- <span id="numberprefix-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for NumberPrefix<F>`
+
+- <span id="numberprefix-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for NumberPrefix<F>`
+
+- <span id="numberprefix-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<F: clone::Clone> Clone for NumberPrefix<F>`
 
 - <span id="numberprefix-clone"></span>`fn clone(&self) -> NumberPrefix<F>` — [`NumberPrefix`](#numberprefix)
 
+##### `impl CloneToUninit for NumberPrefix<F>`
+
+- <span id="numberprefix-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<F: fmt::Debug> Debug for NumberPrefix<F>`
 
-- <span id="numberprefix-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="numberprefix-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<F: cmp::Eq> Eq for NumberPrefix<F>`
+
+##### `impl<T> From for NumberPrefix<F>`
+
+- <span id="numberprefix-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: str::FromStr> FromStr for super::NumberPrefix<T>`
 
 - <span id="supernumberprefix-fromstr-type-err"></span>`type Err = NumberPrefixParseError`
 
-- <span id="supernumberprefix-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
+- <span id="supernumberprefix-fromstr-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
+
+##### `impl<U> Into for NumberPrefix<F>`
+
+- <span id="numberprefix-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<F: cmp::PartialEq> PartialEq for NumberPrefix<F>`
 
-- <span id="numberprefix-eq"></span>`fn eq(&self, other: &NumberPrefix<F>) -> bool` — [`NumberPrefix`](#numberprefix)
+- <span id="numberprefix-partialeq-eq"></span>`fn eq(&self, other: &NumberPrefix<F>) -> bool` — [`NumberPrefix`](#numberprefix)
 
 ##### `impl<F> StructuralPartialEq for NumberPrefix<F>`
+
+##### `impl ToOwned for NumberPrefix<F>`
+
+- <span id="numberprefix-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="numberprefix-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="numberprefix-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for NumberPrefix<F>`
+
+- <span id="numberprefix-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="numberprefix-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for NumberPrefix<F>`
+
+- <span id="numberprefix-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="numberprefix-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

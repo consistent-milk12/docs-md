@@ -68,6 +68,50 @@ enum PatRangeBound {
 
 - <span id="patrangebound-into-pat"></span>`fn into_pat(self) -> Pat` — [`Pat`](../index.md#pat)
 
+#### Trait Implementations
+
+##### `impl Any for PatRangeBound`
+
+- <span id="patrangebound-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PatRangeBound`
+
+- <span id="patrangebound-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PatRangeBound`
+
+- <span id="patrangebound-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for PatRangeBound`
+
+- <span id="patrangebound-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PatRangeBound`
+
+- <span id="patrangebound-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for PatRangeBound`
+
+- <span id="patrangebound-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="patrangebound-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PatRangeBound`
+
+- <span id="patrangebound-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="patrangebound-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ## Functions
 
 ### `multi_pat_impl`

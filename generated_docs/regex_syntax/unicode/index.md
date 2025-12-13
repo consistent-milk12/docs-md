@@ -94,19 +94,61 @@ aware case folding are unavailable. This only occurs when the
 
 #### Trait Implementations
 
+##### `impl Any for CaseFoldError`
+
+- <span id="casefolderror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CaseFoldError`
+
+- <span id="casefolderror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CaseFoldError`
+
+- <span id="casefolderror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for CaseFoldError`
 
-- <span id="casefolderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="casefolderror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for CaseFoldError`
 
-- <span id="casefolderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="casefolderror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for CaseFoldError`
 
+##### `impl<T> From for CaseFoldError`
+
+- <span id="casefolderror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CaseFoldError`
+
+- <span id="casefolderror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl ToString for CaseFoldError`
 
-- <span id="casefolderror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="casefolderror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for CaseFoldError`
+
+- <span id="casefolderror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="casefolderror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CaseFoldError`
+
+- <span id="casefolderror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="casefolderror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UnicodeWordError`
 
@@ -124,19 +166,61 @@ Perl character class `\w` are unavailable. This only occurs when the
 
 #### Trait Implementations
 
+##### `impl Any for UnicodeWordError`
+
+- <span id="unicodeworderror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnicodeWordError`
+
+- <span id="unicodeworderror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnicodeWordError`
+
+- <span id="unicodeworderror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for UnicodeWordError`
 
-- <span id="unicodeworderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unicodeworderror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for UnicodeWordError`
 
-- <span id="unicodeworderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="unicodeworderror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for UnicodeWordError`
 
+##### `impl<T> From for UnicodeWordError`
+
+- <span id="unicodeworderror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for UnicodeWordError`
+
+- <span id="unicodeworderror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl ToString for UnicodeWordError`
 
-- <span id="unicodeworderror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="unicodeworderror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for UnicodeWordError`
+
+- <span id="unicodeworderror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unicodeworderror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UnicodeWordError`
+
+- <span id="unicodeworderror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unicodeworderror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SimpleCaseFolder`
 
@@ -187,17 +271,123 @@ assumption enables this.
 
 - <span id="simplecasefolder-new"></span>`fn new() -> Result<SimpleCaseFolder, CaseFoldError>` — [`SimpleCaseFolder`](#simplecasefolder), [`CaseFoldError`](#casefolderror)
 
+  Create a new simple case folder, returning an error if the underlying
+
+  case folding table is unavailable.
+
 - <span id="simplecasefolder-mapping"></span>`fn mapping(&mut self, c: char) -> &'static [char]`
+
+  Return the equivalence class of case folded codepoints for the given
+
+  codepoint. The equivalence class returned never includes the codepoint
+
+  given. If the given codepoint has no case folded codepoints (i.e.,
+
+  no entry in the underlying case folding table), then this returns an
+
+  empty slice.
+
+  
+
+  # Panics
+
+  
+
+  This panics when called with a `c` that is less than or equal to the
+
+  previous call. In other words, callers need to use this method with
+
+  strictly increasing values of `c`.
 
 - <span id="simplecasefolder-overlaps"></span>`fn overlaps(&self, start: char, end: char) -> bool`
 
+  Returns true if and only if the given range overlaps with any region
+
+  of the underlying case folding table. That is, when true, there exists
+
+  at least one codepoint in the inclusive range `[start, end]` that has
+
+  a non-trivial equivalence class of case folded codepoints. Conversely,
+
+  when this returns false, all codepoints in the range `[start, end]`
+
+  correspond to the trivial equivalence class of case folded codepoints,
+
+  i.e., itself.
+
+  
+
+  This is useful to call before iterating over the codepoints in the
+
+  range and looking up the mapping for each. If you know none of the
+
+  mappings will return anything, then you might be able to skip doing it
+
+  altogether.
+
+  
+
+  # Panics
+
+  
+
+  This panics when `end < start`.
+
 - <span id="simplecasefolder-get"></span>`fn get(&self, c: char) -> Result<usize, usize>`
+
+  Returns the index at which `c` occurs in the simple case fold table. If
+
+  `c` does not occur, then this returns an `i` such that `table[i-1].0 <
+
+  c` and `table[i].0 > c`.
 
 #### Trait Implementations
 
+##### `impl Any for SimpleCaseFolder`
+
+- <span id="simplecasefolder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SimpleCaseFolder`
+
+- <span id="simplecasefolder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SimpleCaseFolder`
+
+- <span id="simplecasefolder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for SimpleCaseFolder`
 
-- <span id="simplecasefolder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="simplecasefolder-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SimpleCaseFolder`
+
+- <span id="simplecasefolder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SimpleCaseFolder`
+
+- <span id="simplecasefolder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for SimpleCaseFolder`
+
+- <span id="simplecasefolder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="simplecasefolder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SimpleCaseFolder`
+
+- <span id="simplecasefolder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="simplecasefolder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -220,9 +410,51 @@ into other public errors. (This error type isn't exported.)
 
 #### Trait Implementations
 
+##### `impl Any for Error`
+
+- <span id="error-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Error`
+
+- <span id="error-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Error`
+
+- <span id="error-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Error`
 
-- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Error`
+
+- <span id="error-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Error`
+
+- <span id="error-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Error`
+
+- <span id="error-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="error-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Error`
+
+- <span id="error-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="error-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ClassQuery<'a>`
 
@@ -281,9 +513,51 @@ and property value.
 
 #### Trait Implementations
 
+##### `impl Any for ClassQuery<'a>`
+
+- <span id="classquery-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ClassQuery<'a>`
+
+- <span id="classquery-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ClassQuery<'a>`
+
+- <span id="classquery-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ClassQuery<'a>`
 
-- <span id="classquery-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="classquery-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ClassQuery<'a>`
+
+- <span id="classquery-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ClassQuery<'a>`
+
+- <span id="classquery-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ClassQuery<'a>`
+
+- <span id="classquery-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="classquery-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ClassQuery<'a>`
+
+- <span id="classquery-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="classquery-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CanonicalClassQuery`
 
@@ -330,17 +604,59 @@ scripts.
 
 #### Trait Implementations
 
+##### `impl Any for CanonicalClassQuery`
+
+- <span id="canonicalclassquery-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CanonicalClassQuery`
+
+- <span id="canonicalclassquery-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CanonicalClassQuery`
+
+- <span id="canonicalclassquery-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for CanonicalClassQuery`
 
-- <span id="canonicalclassquery-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="canonicalclassquery-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for CanonicalClassQuery`
 
+##### `impl<T> From for CanonicalClassQuery`
+
+- <span id="canonicalclassquery-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CanonicalClassQuery`
+
+- <span id="canonicalclassquery-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for CanonicalClassQuery`
 
-- <span id="canonicalclassquery-eq"></span>`fn eq(&self, other: &CanonicalClassQuery) -> bool` — [`CanonicalClassQuery`](#canonicalclassquery)
+- <span id="canonicalclassquery-partialeq-eq"></span>`fn eq(&self, other: &CanonicalClassQuery) -> bool` — [`CanonicalClassQuery`](#canonicalclassquery)
 
 ##### `impl StructuralPartialEq for CanonicalClassQuery`
+
+##### `impl<U> TryFrom for CanonicalClassQuery`
+
+- <span id="canonicalclassquery-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="canonicalclassquery-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CanonicalClassQuery`
+
+- <span id="canonicalclassquery-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="canonicalclassquery-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

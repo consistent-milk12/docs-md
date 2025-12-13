@@ -75,9 +75,21 @@ struct ArgMatcher {
 
 #### Trait Implementations
 
+##### `impl Any for ArgMatcher`
+
+- <span id="argmatcher-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ArgMatcher`
+
+- <span id="argmatcher-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ArgMatcher`
+
+- <span id="argmatcher-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ArgMatcher`
 
-- <span id="argmatcher-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="argmatcher-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ArgMatcher`
 
@@ -89,7 +101,37 @@ struct ArgMatcher {
 
 - <span id="argmatcher-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
+##### `impl<T> From for ArgMatcher`
+
+- <span id="argmatcher-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ArgMatcher`
+
+- <span id="argmatcher-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Receiver for ArgMatcher`
 
 - <span id="argmatcher-receiver-type-target"></span>`type Target = T`
+
+##### `impl<U> TryFrom for ArgMatcher`
+
+- <span id="argmatcher-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="argmatcher-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ArgMatcher`
+
+- <span id="argmatcher-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="argmatcher-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

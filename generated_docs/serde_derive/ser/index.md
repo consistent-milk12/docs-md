@@ -140,6 +140,54 @@ struct Parameters {
 
 - <span id="parameters-type-name"></span>`fn type_name(&self) -> String`
 
+  Type name to use in error messages and `&'static str` arguments to
+
+  various Serializer methods.
+
+#### Trait Implementations
+
+##### `impl Any for Parameters`
+
+- <span id="parameters-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Parameters`
+
+- <span id="parameters-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Parameters`
+
+- <span id="parameters-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Parameters`
+
+- <span id="parameters-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Parameters`
+
+- <span id="parameters-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Parameters`
+
+- <span id="parameters-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="parameters-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Parameters`
+
+- <span id="parameters-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="parameters-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ## Enums
 
 ### `TupleVariant<'a>`
@@ -156,6 +204,50 @@ enum TupleVariant<'a> {
 ```
 
 *Defined in [`serde_derive-1.0.228/src/ser.rs:805-812`](../../../.source_1765521767/serde_derive-1.0.228/src/ser.rs#L805-L812)*
+
+#### Trait Implementations
+
+##### `impl Any for TupleVariant<'a>`
+
+- <span id="tuplevariant-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TupleVariant<'a>`
+
+- <span id="tuplevariant-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TupleVariant<'a>`
+
+- <span id="tuplevariant-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for TupleVariant<'a>`
+
+- <span id="tuplevariant-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TupleVariant<'a>`
+
+- <span id="tuplevariant-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for TupleVariant<'a>`
+
+- <span id="tuplevariant-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tuplevariant-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TupleVariant<'a>`
+
+- <span id="tuplevariant-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tuplevariant-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StructVariant<'a>`
 
@@ -175,6 +267,50 @@ enum StructVariant<'a> {
 
 *Defined in [`serde_derive-1.0.228/src/ser.rs:873-883`](../../../.source_1765521767/serde_derive-1.0.228/src/ser.rs#L873-L883)*
 
+#### Trait Implementations
+
+##### `impl Any for StructVariant<'a>`
+
+- <span id="structvariant-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StructVariant<'a>`
+
+- <span id="structvariant-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StructVariant<'a>`
+
+- <span id="structvariant-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for StructVariant<'a>`
+
+- <span id="structvariant-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StructVariant<'a>`
+
+- <span id="structvariant-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for StructVariant<'a>`
+
+- <span id="structvariant-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="structvariant-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StructVariant<'a>`
+
+- <span id="structvariant-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="structvariant-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `StructTrait`
 
 ```rust
@@ -193,6 +329,50 @@ enum StructTrait {
 
 - <span id="structtrait-skip-field"></span>`fn skip_field(&self, span: Span) -> Option<TokenStream>`
 
+#### Trait Implementations
+
+##### `impl Any for StructTrait`
+
+- <span id="structtrait-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StructTrait`
+
+- <span id="structtrait-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StructTrait`
+
+- <span id="structtrait-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for StructTrait`
+
+- <span id="structtrait-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StructTrait`
+
+- <span id="structtrait-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for StructTrait`
+
+- <span id="structtrait-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="structtrait-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StructTrait`
+
+- <span id="structtrait-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="structtrait-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `TupleTrait`
 
 ```rust
@@ -208,6 +388,50 @@ enum TupleTrait {
 #### Implementations
 
 - <span id="tupletrait-serialize-element"></span>`fn serialize_element(&self, span: Span) -> TokenStream`
+
+#### Trait Implementations
+
+##### `impl Any for TupleTrait`
+
+- <span id="tupletrait-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TupleTrait`
+
+- <span id="tupletrait-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TupleTrait`
+
+- <span id="tupletrait-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for TupleTrait`
+
+- <span id="tupletrait-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TupleTrait`
+
+- <span id="tupletrait-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for TupleTrait`
+
+- <span id="tupletrait-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tupletrait-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TupleTrait`
+
+- <span id="tupletrait-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tupletrait-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

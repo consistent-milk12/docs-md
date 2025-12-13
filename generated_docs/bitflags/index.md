@@ -302,19 +302,97 @@ A defined flags value that may be named or unnamed.
 
 - <span id="flag-new"></span>`const fn new(name: &'static str, value: B) -> Self`
 
+  Define a flag.
+
+  
+
+  If `name` is non-empty then the flag is named, otherwise it's unnamed.
+
+      
+
 - <span id="flag-name"></span>`const fn name(&self) -> &'static str`
+
+  Get the name of this flag.
+
+  
+
+  If the flag is unnamed then the returned string will be empty.
+
+      
 
 - <span id="flag-value"></span>`const fn value(&self) -> &B`
 
+  Get the flags value of this flag.
+
+      
+
 - <span id="flag-is-named"></span>`const fn is_named(&self) -> bool`
+
+  Whether the flag is named.
+
+  
+
+  If `Flag::name` returns a non-empty string then this method will return `true`.
+
+      
 
 - <span id="flag-is-unnamed"></span>`const fn is_unnamed(&self) -> bool`
 
+  Whether the flag is unnamed.
+
+  
+
+  If `Flag::name` returns a non-empty string then this method will return `false`.
+
+      
+
 #### Trait Implementations
+
+##### `impl Any for Flag<B>`
+
+- <span id="flag-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Flag<B>`
+
+- <span id="flag-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Flag<B>`
+
+- <span id="flag-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<B: fmt::Debug> Debug for Flag<B>`
 
-- <span id="flag-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="flag-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Flag<B>`
+
+- <span id="flag-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Flag<B>`
+
+- <span id="flag-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Flag<B>`
+
+- <span id="flag-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="flag-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Flag<B>`
+
+- <span id="flag-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="flag-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

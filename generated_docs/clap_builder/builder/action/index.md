@@ -399,6 +399,14 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 
 - <span id="argaction-takes-values"></span>`fn takes_values(&self) -> bool`
 
+  Returns whether this action accepts values on the command-line
+
+  
+
+  `default_values` and `env` may still be
+
+  processed.
+
 - <span id="argaction-max-num-args"></span>`fn max_num_args(&self) -> ValueRange` — [`ValueRange`](../range/index.md#valuerange)
 
 - <span id="argaction-default-num-args"></span>`fn default_num_args(&self) -> ValueRange` — [`ValueRange`](../range/index.md#valuerange)
@@ -413,17 +421,71 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 
 #### Trait Implementations
 
+##### `impl Any for ArgAction`
+
+- <span id="argaction-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ArgAction`
+
+- <span id="argaction-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ArgAction`
+
+- <span id="argaction-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ArgAction`
 
 - <span id="argaction-clone"></span>`fn clone(&self) -> ArgAction` — [`ArgAction`](#argaction)
 
+##### `impl CloneToUninit for ArgAction`
+
+- <span id="argaction-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for ArgAction`
 
-- <span id="argaction-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="argaction-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ArgAction`
+
+- <span id="argaction-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ArgAction`
+
+- <span id="argaction-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for Option<crate::builder::ArgAction>`
 
-- <span id="option-into-resettable"></span>`fn into_resettable(self) -> Resettable<ArgAction>` — [`Resettable`](../resettable/index.md#resettable), [`ArgAction`](#argaction)
+- <span id="option-intoresettable-into-resettable"></span>`fn into_resettable(self) -> Resettable<ArgAction>` — [`Resettable`](../resettable/index.md#resettable), [`ArgAction`](#argaction)
+
+##### `impl ToOwned for ArgAction`
+
+- <span id="argaction-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="argaction-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="argaction-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ArgAction`
+
+- <span id="argaction-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="argaction-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ArgAction`
+
+- <span id="argaction-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="argaction-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Type Aliases
 

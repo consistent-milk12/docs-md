@@ -32,19 +32,61 @@ can't name it and can't implement traits using it.
 
 #### Trait Implementations
 
+##### `impl Any for PrivateMarker`
+
+- <span id="privatemarker-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PrivateMarker`
+
+- <span id="privatemarker-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PrivateMarker`
+
+- <span id="privatemarker-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for PrivateMarker`
+
+- <span id="privatemarker-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PrivateMarker`
+
+- <span id="privatemarker-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Pointable for PrivateMarker`
 
 - <span id="privatemarker-pointable-const-align"></span>`const ALIGN: usize`
 
 - <span id="privatemarker-pointable-type-init"></span>`type Init = T`
 
-- <span id="privatemarker-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="privatemarker-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="privatemarker-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="privatemarker-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="privatemarker-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="privatemarker-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="privatemarker-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="privatemarker-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for PrivateMarker`
+
+- <span id="privatemarker-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="privatemarker-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PrivateMarker`
+
+- <span id="privatemarker-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="privatemarker-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Macros
 

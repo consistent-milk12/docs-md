@@ -31,6 +31,18 @@ struct ProductConsumer<P: Send> {
 
 #### Trait Implementations
 
+##### `impl Any for ProductConsumer<P>`
+
+- <span id="productconsumer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ProductConsumer<P>`
+
+- <span id="productconsumer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ProductConsumer<P>`
+
+- <span id="productconsumer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<P, T> Consumer for ProductConsumer<P>`
 
 - <span id="productconsumer-consumer-type-folder"></span>`type Folder = ProductFolder<P>`
@@ -39,11 +51,29 @@ struct ProductConsumer<P: Send> {
 
 - <span id="productconsumer-consumer-type-result"></span>`type Result = P`
 
-- <span id="productconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, Self)`
+- <span id="productconsumer-consumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, Self)`
 
-- <span id="productconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="productconsumer-consumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="productconsumer-full"></span>`fn full(&self) -> bool`
+- <span id="productconsumer-consumer-full"></span>`fn full(&self) -> bool`
+
+##### `impl<T> From for ProductConsumer<P>`
+
+- <span id="productconsumer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ProductConsumer<P>`
+
+- <span id="productconsumer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ProductConsumer<P>`
 
@@ -53,25 +83,37 @@ struct ProductConsumer<P: Send> {
 
 - <span id="productconsumer-pointable-type-init"></span>`type Init = T`
 
-- <span id="productconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="productconsumer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="productconsumer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="productconsumer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="productconsumer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="productconsumer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="productconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="productconsumer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<P> Reducer for ProductConsumer<P>`
 
-- <span id="productconsumer-reduce"></span>`fn reduce(self, left: P, right: P) -> P`
+- <span id="productconsumer-reducer-reduce"></span>`fn reduce(self, left: P, right: P) -> P`
 
 ##### `impl<P: Send> Send for ProductConsumer<P>`
 
+##### `impl<U> TryFrom for ProductConsumer<P>`
+
+- <span id="productconsumer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="productconsumer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ProductConsumer<P>`
+
+- <span id="productconsumer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="productconsumer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ##### `impl<P, T> UnindexedConsumer for ProductConsumer<P>`
 
-- <span id="productconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
+- <span id="productconsumer-unindexedconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="productconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="productconsumer-unindexedconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `ProductFolder<P>`
 
@@ -85,17 +127,47 @@ struct ProductFolder<P> {
 
 #### Trait Implementations
 
+##### `impl Any for ProductFolder<P>`
+
+- <span id="productfolder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ProductFolder<P>`
+
+- <span id="productfolder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ProductFolder<P>`
+
+- <span id="productfolder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<P, T> Folder for ProductFolder<P>`
 
 - <span id="productfolder-folder-type-result"></span>`type Result = P`
 
-- <span id="productfolder-consume"></span>`fn consume(self, item: T) -> Self`
+- <span id="productfolder-folder-consume"></span>`fn consume(self, item: T) -> Self`
 
-- <span id="productfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
+- <span id="productfolder-folder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- <span id="productfolder-complete"></span>`fn complete(self) -> P`
+- <span id="productfolder-folder-complete"></span>`fn complete(self) -> P`
 
-- <span id="productfolder-full"></span>`fn full(&self) -> bool`
+- <span id="productfolder-folder-full"></span>`fn full(&self) -> bool`
+
+##### `impl<T> From for ProductFolder<P>`
+
+- <span id="productfolder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ProductFolder<P>`
+
+- <span id="productfolder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ProductFolder<P>`
 
@@ -105,13 +177,25 @@ struct ProductFolder<P> {
 
 - <span id="productfolder-pointable-type-init"></span>`type Init = T`
 
-- <span id="productfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="productfolder-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="productfolder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="productfolder-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="productfolder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="productfolder-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="productfolder-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="productfolder-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for ProductFolder<P>`
+
+- <span id="productfolder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="productfolder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ProductFolder<P>`
+
+- <span id="productfolder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="productfolder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

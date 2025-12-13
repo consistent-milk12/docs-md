@@ -74,37 +74,401 @@ perhaps more conveniently, with `DFA::config`.
 
 - <span id="config-new"></span>`fn new() -> Config` — [`Config`](#config)
 
+  Return a new default one-pass DFA configuration.
+
 - <span id="config-match-kind"></span>`fn match_kind(self, kind: MatchKind) -> Config` — [`MatchKind`](../../index.md#matchkind), [`Config`](#config)
+
+  Set the desired match semantics.
+
+  
+
+  The default is [`MatchKind::LeftmostFirst`](../../index.md), which corresponds to the
+
+  match semantics of Perl-like regex engines. That is, when multiple
+
+  patterns would match at the same leftmost position, the pattern that
+
+  appears first in the concrete syntax is chosen.
+
+  
+
+  Currently, the only other kind of match semantics supported is
+
+  [`MatchKind::All`](../../index.md). This corresponds to "classical DFA" construction
+
+  where all possible matches are visited.
+
+  
+
+  When it comes to the one-pass DFA, it is rarer for preference order and
+
+  "longest match" to actually disagree. Since if they did disagree, then
+
+  the regex typically isn't one-pass. For example, searching `Samwise`
+
+  for `Sam|Samwise` will report `Sam` for leftmost-first matching and
+
+  `Samwise` for "longest match" or "all" matching. However, this regex is
+
+  not one-pass if taken literally. The equivalent regex, `Sam(?:|wise)`
+
+  is one-pass and `Sam|Samwise` may be optimized to it.
+
+  
+
+  The other main difference is that "all" match semantics don't support
+
+  non-greedy matches. "All" match semantics always try to match as much
+
+  as possible.
 
 - <span id="config-starts-for-each-pattern"></span>`fn starts_for_each_pattern(self, yes: bool) -> Config` — [`Config`](#config)
 
+  Whether to compile a separate start state for each pattern in the
+
+  one-pass DFA.
+
+  
+
+  When enabled, a separate **anchored** start state is added for each
+
+  pattern in the DFA. When this start state is used, then the DFA will
+
+  only search for matches for the pattern specified, even if there are
+
+  other patterns in the DFA.
+
+  
+
+  The main downside of this option is that it can potentially increase
+
+  the size of the DFA and/or increase the time it takes to build the DFA.
+
+  
+
+  You might want to enable this option when you want to both search for
+
+  anchored matches of any pattern or to search for anchored matches of
+
+  one particular pattern while using the same DFA. (Otherwise, you would
+
+  need to compile a new DFA for each pattern.)
+
+  
+
+  By default this is disabled.
+
+  
+
+  # Example
+
+  
+
+  This example shows how to build a multi-regex and then search for
+
+  matches for a any of the patterns or matches for a specific pattern.
+
+  
+
+  ```rust
+
+  use regex_automata::{
+
+      dfa::onepass::DFA, Anchored, Input, Match, PatternID,
+
+  };
+
+  
+
+  let re = DFA::builder()
+
+      .configure(DFA::config().starts_for_each_pattern(true))
+
+      .build_many(&["[a-z]+", "[0-9]+"])?;
+
+  let (mut cache, mut caps) = (re.create_cache(), re.create_captures());
+
+  let haystack = "123abc";
+
+  let input = Input::new(haystack).anchored(Anchored::Yes);
+
+  
+
+  // A normal multi-pattern search will show pattern 1 matches.
+
+  re.try_search(&mut cache, &input, &mut caps)?;
+
+  assert_eq!(Some(Match::must(1, 0..3)), caps.get_match());
+
+  
+
+  // If we only want to report pattern 0 matches, then we'll get no
+
+  // match here.
+
+  let input = input.anchored(Anchored::Pattern(PatternID::must(0)));
+
+  re.try_search(&mut cache, &input, &mut caps)?;
+
+  assert_eq!(None, caps.get_match());
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
+
 - <span id="config-byte-classes"></span>`fn byte_classes(self, yes: bool) -> Config` — [`Config`](#config)
+
+  Whether to attempt to shrink the size of the DFA's alphabet or not.
+
+  
+
+  This option is enabled by default and should never be disabled unless
+
+  one is debugging a one-pass DFA.
+
+  
+
+  When enabled, the DFA will use a map from all possible bytes to their
+
+  corresponding equivalence class. Each equivalence class represents a
+
+  set of bytes that does not discriminate between a match and a non-match
+
+  in the DFA. For example, the pattern `[ab]+` has at least two
+
+  equivalence classes: a set containing `a` and `b` and a set containing
+
+  every byte except for `a` and `b`. `a` and `b` are in the same
+
+  equivalence class because they never discriminate between a match and a
+
+  non-match.
+
+  
+
+  The advantage of this map is that the size of the transition table
+
+  can be reduced drastically from (approximately) `#states * 256 *
+
+  sizeof(StateID)` to `#states * k * sizeof(StateID)` where `k` is the
+
+  number of equivalence classes (rounded up to the nearest power of 2).
+
+  As a result, total space usage can decrease substantially. Moreover,
+
+  since a smaller alphabet is used, DFA compilation becomes faster as
+
+  well.
+
+  
+
+  **WARNING:** This is only useful for debugging DFAs. Disabling this
+
+  does not yield any speed advantages. Namely, even when this is
+
+  disabled, a byte class map is still used while searching. The only
+
+  difference is that every byte will be forced into its own distinct
+
+  equivalence class. This is useful for debugging the actual generated
+
+  transitions because it lets one see the transitions defined on actual
+
+  bytes instead of the equivalence classes.
 
 - <span id="config-size-limit"></span>`fn size_limit(self, limit: Option<usize>) -> Config` — [`Config`](#config)
 
+  Set a size limit on the total heap used by a one-pass DFA.
+
+  
+
+  This size limit is expressed in bytes and is applied during
+
+  construction of a one-pass DFA. If the DFA's heap usage exceeds
+
+  this configured limit, then construction is stopped and an error is
+
+  returned.
+
+  
+
+  The default is no limit.
+
+  
+
+  # Example
+
+  
+
+  This example shows a one-pass DFA that fails to build because of
+
+  a configured size limit. This particular example also serves as a
+
+  cautionary tale demonstrating just how big DFAs with large Unicode
+
+  character classes can get.
+
+  
+
+  ```rust
+
+  if cfg!(miri) { return Ok(()); } // miri takes too long
+
+  use regex_automata::{dfa::onepass::DFA, Match};
+
+  
+
+  // 6MB isn't enough!
+
+  DFA::builder()
+
+      .configure(DFA::config().size_limit(Some(6_000_000)))
+
+      .build(r"\w{20}")
+
+      .unwrap_err();
+
+  
+
+  // ... but 7MB probably is!
+
+  // (Note that DFA sizes aren't necessarily stable between releases.)
+
+  let re = DFA::builder()
+
+      .configure(DFA::config().size_limit(Some(7_000_000)))
+
+      .build(r"\w{20}")?;
+
+  let (mut cache, mut caps) = (re.create_cache(), re.create_captures());
+
+  let haystack = "A".repeat(20);
+
+  re.captures(&mut cache, &haystack, &mut caps);
+
+  assert_eq!(Some(Match::must(0, 0..20)), caps.get_match());
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
+
+  
+
+  While one needs a little more than 3MB to represent `\w{20}`, it
+
+  turns out that you only need a little more than 4KB to represent
+
+  `(?-u:\w{20})`. So only use Unicode if you need it!
+
 - <span id="config-get-match-kind"></span>`fn get_match_kind(&self) -> MatchKind` — [`MatchKind`](../../index.md#matchkind)
+
+  Returns the match semantics set in this configuration.
 
 - <span id="config-get-starts-for-each-pattern"></span>`fn get_starts_for_each_pattern(&self) -> bool`
 
+  Returns whether this configuration has enabled anchored starting states
+
+  for every pattern in the DFA.
+
 - <span id="config-get-byte-classes"></span>`fn get_byte_classes(&self) -> bool`
+
+  Returns whether this configuration has enabled byte classes or not.
+
+  This is typically a debugging oriented option, as disabling it confers
+
+  no speed benefit.
 
 - <span id="config-get-size-limit"></span>`fn get_size_limit(&self) -> Option<usize>`
 
+  Returns the DFA size limit of this configuration if one was set.
+
+  The size limit is total number of bytes on the heap that a DFA is
+
+  permitted to use. If the DFA exceeds this limit during construction,
+
+  then construction is stopped and an error is returned.
+
 - <span id="config-overwrite"></span>`fn overwrite(&self, o: Config) -> Config` — [`Config`](#config)
 
+  Overwrite the default configuration such that the options in `o` are
+
+  always used. If an option in `o` is not set, then the corresponding
+
+  option in `self` is used. If it's not set in `self` either, then it
+
+  remains not set.
+
 #### Trait Implementations
+
+##### `impl Any for Config`
+
+- <span id="config-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Config`
+
+- <span id="config-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Config`
+
+- <span id="config-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Config`
 
 - <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](#config)
 
+##### `impl CloneToUninit for Config`
+
+- <span id="config-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Config`
 
-- <span id="config-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="config-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Config`
 
 - <span id="config-default"></span>`fn default() -> Config` — [`Config`](#config)
+
+##### `impl<T> From for Config`
+
+- <span id="config-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Config`
+
+- <span id="config-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Config`
+
+- <span id="config-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="config-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="config-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Config`
+
+- <span id="config-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="config-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Config`
+
+- <span id="config-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="config-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Builder`
 
@@ -174,27 +538,175 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
+  Create a new one-pass DFA builder with the default configuration.
+
 - <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
+
+  Build a one-pass DFA from the given pattern.
+
+  
+
+  If there was a problem parsing or compiling the pattern, then an error
+
+  is returned.
 
 - <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
 
+  Build a one-pass DFA from the given patterns.
+
+  
+
+  When matches are returned, the pattern ID corresponds to the index of
+
+  the pattern in the slice given.
+
 - <span id="builder-build-from-nfa"></span>`fn build_from_nfa(&self, nfa: NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/nfa/index.md#nfa), [`DFA`](#dfa), [`BuildError`](#builderror)
+
+  Build a DFA from the given NFA.
+
+  
+
+  # Example
+
+  
+
+  This example shows how to build a DFA if you already have an NFA in
+
+  hand.
+
+  
+
+  ```rust
+
+  use regex_automata::{dfa::onepass::DFA, nfa::thompson::NFA, Match};
+
+  
+
+  // This shows how to set non-default options for building an NFA.
+
+  let nfa = NFA::compiler()
+
+      .configure(NFA::config().shrink(true))
+
+      .build(r"[a-z0-9]+")?;
+
+  let re = DFA::builder().build_from_nfa(nfa)?;
+
+  let (mut cache, mut caps) = (re.create_cache(), re.create_captures());
+
+  re.captures(&mut cache, "foo123bar", &mut caps);
+
+  assert_eq!(Some(Match::must(0, 0..9)), caps.get_match());
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
 
 - <span id="builder-configure"></span>`fn configure(&mut self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
+  Apply the given one-pass DFA configuration options to this builder.
+
 - <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md#config), [`Builder`](#builder)
+
+  Set the syntax configuration for this builder using
+
+  [`syntax::Config`](crate::util::syntax::Config).
+
+  
+
+  This permits setting things like case insensitivity, Unicode and multi
+
+  line mode.
+
+  
+
+  These settings only apply when constructing a one-pass DFA directly
+
+  from a pattern.
 
 - <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/compiler/index.md#config), [`Builder`](#builder)
 
+  Set the Thompson NFA configuration for this builder using
+
+  [`nfa::thompson::Config`](crate::nfa::thompson::Config).
+
+  
+
+  This permits setting things like whether additional time should be
+
+  spent shrinking the size of the NFA.
+
+  
+
+  These settings only apply when constructing a DFA directly from a
+
+  pattern.
+
 #### Trait Implementations
+
+##### `impl Any for Builder`
+
+- <span id="builder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Builder`
+
+- <span id="builder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Builder`
+
+- <span id="builder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Builder`
 
 - <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](#builder)
 
+##### `impl CloneToUninit for Builder`
+
+- <span id="builder-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Builder`
 
-- <span id="builder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="builder-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Builder`
+
+- <span id="builder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Builder`
+
+- <span id="builder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Builder`
+
+- <span id="builder-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="builder-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="builder-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Builder`
+
+- <span id="builder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="builder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Builder`
+
+- <span id="builder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="builder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `InternalBuilder<'a>`
 
@@ -303,25 +815,185 @@ because the duplication is cheap.
 
 - <span id="internalbuilder-new"></span>`fn new(config: Config, nfa: &'a NFA) -> InternalBuilder<'a>` — [`Config`](#config), [`NFA`](../../nfa/thompson/nfa/index.md#nfa), [`InternalBuilder`](#internalbuilder)
 
+  Create a new builder with an initial empty DFA.
+
 - <span id="internalbuilder-build"></span>`fn build(self) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
+
+  Build the DFA from the NFA given to this builder. If the NFA is not
+
+  one-pass, then return an error. An error may also be returned if a
+
+  particular limit is exceeded. (Some limits, like the total heap memory
+
+  used, are configurable. Others, like the total patterns or slots, are
+
+  hard-coded based on representational limitations.)
 
 - <span id="internalbuilder-shuffle-states"></span>`fn shuffle_states(&mut self)`
 
+  Shuffle all match states to the end of the transition table and set
+
+  'min_match_id' to the ID of the first such match state.
+
+  
+
+  The point of this is to make it extremely cheap to determine whether
+
+  a state is a match state or not. We need to check on this on every
+
+  transition during a search, so it being cheap is important. This
+
+  permits us to check it by simply comparing two state identifiers, as
+
+  opposed to looking for the pattern ID in the state's `PatternEpsilons`.
+
+  (Which requires a memory load and some light arithmetic.)
+
 - <span id="internalbuilder-compile-transition"></span>`fn compile_transition(&mut self, dfa_id: StateID, trans: &thompson::Transition, epsilons: Epsilons) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md#stateid), [`Transition`](../../nfa/thompson/nfa/index.md#transition), [`Epsilons`](#epsilons), [`BuildError`](#builderror)
+
+  Compile the given NFA transition into the DFA state given.
+
+  
+
+  'Epsilons' corresponds to any conditional epsilon transitions that need
+
+  to be satisfied to follow this transition, and any slots that need to
+
+  be saved if the transition is followed.
+
+  
+
+  If this transition indicates that the NFA is not one-pass, then
+
+  this returns an error. (This occurs, for example, if the DFA state
+
+  already has a transition defined for the same input symbols as the
+
+  given transition, *and* the result of the old and new transitions is
+
+  different.)
 
 - <span id="internalbuilder-add-start-state"></span>`fn add_start_state(&mut self, pid: Option<PatternID>, nfa_id: StateID) -> Result<StateID, BuildError>` — [`PatternID`](../../util/primitives/index.md#patternid), [`StateID`](../../util/primitives/index.md#stateid), [`BuildError`](#builderror)
 
+  Add a start state to the DFA corresponding to the given NFA starting
+
+  state ID.
+
+  
+
+  If adding a state would blow any limits (configured or hard-coded),
+
+  then an error is returned.
+
+  
+
+  If the starting state is an anchored state for a particular pattern,
+
+  then callers must provide the pattern ID for that starting state.
+
+  Callers must also ensure that the first starting state added is the
+
+  start state for all patterns, and then each anchored starting state for
+
+  each pattern (if necessary) added in order. Otherwise, this panics.
+
 - <span id="internalbuilder-add-dfa-state-for-nfa-state"></span>`fn add_dfa_state_for_nfa_state(&mut self, nfa_id: StateID) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md#stateid), [`BuildError`](#builderror)
+
+  Add a new DFA state corresponding to the given NFA state. If adding a
+
+  state would blow any limits (configured or hard-coded), then an error
+
+  is returned. If a DFA state already exists for the given NFA state,
+
+  then that DFA state's ID is returned and no new states are added.
+
+  
+
+  It is not expected that this routine is called for every NFA state.
+
+  Instead, an NFA state ID will usually correspond to the "start" state
+
+  for a sub-graph of the NFA, where all states in the sub-graph are
+
+  reachable via epsilon transitions (conditional or unconditional). That
+
+  sub-graph of NFA states is ultimately what produces a single DFA state.
 
 - <span id="internalbuilder-add-empty-state"></span>`fn add_empty_state(&mut self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md#stateid), [`BuildError`](#builderror)
 
+  Unconditionally add a new empty DFA state. If adding it would exceed
+
+  any limits (configured or hard-coded), then an error is returned. The
+
+  ID of the new state is returned on success.
+
+  
+
+  The added state is *not* a match state.
+
 - <span id="internalbuilder-stack-push"></span>`fn stack_push(&mut self, nfa_id: StateID, epsilons: Epsilons) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md#stateid), [`Epsilons`](#epsilons), [`BuildError`](#builderror)
+
+  Push the given NFA state ID and its corresponding epsilons (slots and
+
+  conditional epsilon transitions) on to a stack for use in a depth first
+
+  traversal of a sub-graph of the NFA.
+
+  
+
+  If the given NFA state ID has already been pushed on to the stack, then
+
+  it indicates the regex is not one-pass and this correspondingly returns
+
+  an error.
 
 #### Trait Implementations
 
+##### `impl Any for InternalBuilder<'a>`
+
+- <span id="internalbuilder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for InternalBuilder<'a>`
+
+- <span id="internalbuilder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for InternalBuilder<'a>`
+
+- <span id="internalbuilder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for InternalBuilder<'a>`
 
-- <span id="internalbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="internalbuilder-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for InternalBuilder<'a>`
+
+- <span id="internalbuilder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for InternalBuilder<'a>`
+
+- <span id="internalbuilder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for InternalBuilder<'a>`
+
+- <span id="internalbuilder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="internalbuilder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for InternalBuilder<'a>`
+
+- <span id="internalbuilder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="internalbuilder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DFA`
 
@@ -587,59 +1259,713 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="dfa-new"></span>`fn new(pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
 
+  Parse the given regular expression using the default configuration and
+
+  return the corresponding one-pass DFA.
+
+  
+
+  If you want a non-default configuration, then use the [`Builder`](#builder) to
+
+  set your own configuration.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::{dfa::onepass::DFA, Match};
+
+  
+
+  let re = DFA::new("foo[0-9]+bar")?;
+
+  let (mut cache, mut caps) = (re.create_cache(), re.create_captures());
+
+  
+
+  re.captures(&mut cache, "foo12345barzzz", &mut caps);
+
+  assert_eq!(Some(Match::must(0, 0..11)), caps.get_match());
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
+
 - <span id="dfa-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
+
+  Like `new`, but parses multiple patterns into a single "multi regex."
+
+  This similarly uses the default regex configuration.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::{dfa::onepass::DFA, Match};
+
+  
+
+  let re = DFA::new_many(&["[a-z]+", "[0-9]+"])?;
+
+  let (mut cache, mut caps) = (re.create_cache(), re.create_captures());
+
+  
+
+  re.captures(&mut cache, "abc123", &mut caps);
+
+  assert_eq!(Some(Match::must(0, 0..3)), caps.get_match());
+
+  
+
+  re.captures(&mut cache, "123abc", &mut caps);
+
+  assert_eq!(Some(Match::must(1, 0..3)), caps.get_match());
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
 
 - <span id="dfa-new-from-nfa"></span>`fn new_from_nfa(nfa: NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/nfa/index.md#nfa), [`DFA`](#dfa), [`BuildError`](#builderror)
 
+  Like `new`, but builds a one-pass DFA directly from an NFA. This is
+
+  useful if you already have an NFA, or even if you hand-assembled the
+
+  NFA.
+
+  
+
+  # Example
+
+  
+
+  This shows how to hand assemble a regular expression via its HIR,
+
+  compile an NFA from it and build a one-pass DFA from the NFA.
+
+  
+
+  ```rust
+
+  use regex_automata::{
+
+      dfa::onepass::DFA,
+
+      nfa::thompson::NFA,
+
+      Match,
+
+  };
+
+  use regex_syntax::hir::{Hir, Class, ClassBytes, ClassBytesRange};
+
+  
+
+  let hir = Hir::class(Class::Bytes(ClassBytes::new(vec![
+
+      ClassBytesRange::new(b'0', b'9'),
+
+      ClassBytesRange::new(b'A', b'Z'),
+
+      ClassBytesRange::new(b'_', b'_'),
+
+      ClassBytesRange::new(b'a', b'z'),
+
+  ])));
+
+  
+
+  let config = NFA::config().nfa_size_limit(Some(1_000));
+
+  let nfa = NFA::compiler().configure(config).build_from_hir(&hir)?;
+
+  
+
+  let re = DFA::new_from_nfa(nfa)?;
+
+  let (mut cache, mut caps) = (re.create_cache(), re.create_captures());
+
+  let expected = Some(Match::must(0, 0..1));
+
+  re.captures(&mut cache, "A", &mut caps);
+
+  assert_eq!(expected, caps.get_match());
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
+
 - <span id="dfa-always-match"></span>`fn always_match() -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
+
+  Create a new one-pass DFA that matches every input.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::{dfa::onepass::DFA, Match};
+
+  
+
+  let dfa = DFA::always_match()?;
+
+  let mut cache = dfa.create_cache();
+
+  let mut caps = dfa.create_captures();
+
+  
+
+  let expected = Match::must(0, 0..0);
+
+  dfa.captures(&mut cache, "", &mut caps);
+
+  assert_eq!(Some(expected), caps.get_match());
+
+  dfa.captures(&mut cache, "foo", &mut caps);
+
+  assert_eq!(Some(expected), caps.get_match());
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
 
 - <span id="dfa-never-match"></span>`fn never_match() -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
 
+  Create a new one-pass DFA that never matches any input.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::dfa::onepass::DFA;
+
+  
+
+  let dfa = DFA::never_match()?;
+
+  let mut cache = dfa.create_cache();
+
+  let mut caps = dfa.create_captures();
+
+  
+
+  dfa.captures(&mut cache, "", &mut caps);
+
+  assert_eq!(None, caps.get_match());
+
+  dfa.captures(&mut cache, "foo", &mut caps);
+
+  assert_eq!(None, caps.get_match());
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
+
 - <span id="dfa-config"></span>`fn config() -> Config` — [`Config`](#config)
+
+  Return a default configuration for a DFA.
+
+  
+
+  This is a convenience routine to avoid needing to import the `Config`
+
+  type when customizing the construction of a DFA.
+
+  
+
+  # Example
+
+  
+
+  This example shows how to change the match semantics of this DFA from
+
+  its default "leftmost first" to "all." When using "all," non-greediness
+
+  doesn't apply and neither does preference order matching. Instead, the
+
+  longest match possible is always returned. (Although, by construction,
+
+  it's impossible for a one-pass DFA to have a different answer for
+
+  "preference order" vs "longest match.")
+
+  
+
+  ```rust
+
+  use regex_automata::{dfa::onepass::DFA, Match, MatchKind};
+
+  
+
+  let re = DFA::builder()
+
+      .configure(DFA::config().match_kind(MatchKind::All))
+
+      .build(r"(abc)+?")?;
+
+  let mut cache = re.create_cache();
+
+  let mut caps = re.create_captures();
+
+  
+
+  re.captures(&mut cache, "abcabc", &mut caps);
+
+  // Normally, the non-greedy repetition would give us a 0..3 match.
+
+  assert_eq!(Some(Match::must(0, 0..6)), caps.get_match());
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
 
 - <span id="dfa-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
+  Return a builder for configuring the construction of a DFA.
+
+  
+
+  This is a convenience routine to avoid needing to import the
+
+  [`Builder`](#builder) type in common cases.
+
+  
+
+  # Example
+
+  
+
+  This example shows how to use the builder to disable UTF-8 mode.
+
+  
+
+  ```rust
+
+  if cfg!(miri) { return Ok(()); } // miri takes too long
+
+  use regex_automata::{
+
+      dfa::onepass::DFA,
+
+      nfa::thompson,
+
+      util::syntax,
+
+      Match,
+
+  };
+
+  
+
+  let re = DFA::builder()
+
+      .syntax(syntax::Config::new().utf8(false))
+
+      .thompson(thompson::Config::new().utf8(false))
+
+      .build(r"foo(?-u:[^b])ar.*")?;
+
+  let (mut cache, mut caps) = (re.create_cache(), re.create_captures());
+
+  
+
+  let haystack = b"foo\xFFarzz\xE2\x98\xFF\n";
+
+  let expected = Some(Match::must(0, 0..8));
+
+  re.captures(&mut cache, haystack, &mut caps);
+
+  assert_eq!(expected, caps.get_match());
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
+
 - <span id="dfa-create-captures"></span>`fn create_captures(&self) -> Captures` — [`Captures`](../../util/captures/index.md#captures)
+
+  Create a new empty set of capturing groups that is guaranteed to be
+
+  valid for the search APIs on this DFA.
+
+  
+
+  A `Captures` value created for a specific DFA cannot be used with any
+
+  other DFA.
+
+  
+
+  This is a convenience function for `Captures::all`. See the
+
+  [`Captures`](../../util/captures/index.md) documentation for an explanation of its alternative
+
+  constructors that permit the DFA to do less work during a search, and
+
+  thus might make it faster.
 
 - <span id="dfa-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](#cache)
 
+  Create a new cache for this DFA.
+
+  
+
+  The cache returned should only be used for searches for this
+
+  DFA. If you want to reuse the cache for another DFA, then you
+
+  must call `Cache::reset` with that DFA (or, equivalently,
+
+  `DFA::reset_cache`).
+
 - <span id="dfa-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](#cache)
+
+  Reset the given cache such that it can be used for searching with the
+
+  this DFA (and only this DFA).
+
+  
+
+  A cache reset permits reusing memory already allocated in this cache
+
+  with a different DFA.
+
+  
+
+  # Example
+
+  
+
+  This shows how to re-purpose a cache for use with a different DFA.
+
+  
+
+  ```rust
+
+  if cfg!(miri) { return Ok(()); } // miri takes too long
+
+  use regex_automata::{dfa::onepass::DFA, Match};
+
+  
+
+  let re1 = DFA::new(r"\w")?;
+
+  let re2 = DFA::new(r"\W")?;
+
+  let mut caps1 = re1.create_captures();
+
+  let mut caps2 = re2.create_captures();
+
+  
+
+  let mut cache = re1.create_cache();
+
+  assert_eq!(
+
+      Some(Match::must(0, 0..2)),
+
+      { re1.captures(&mut cache, "Δ", &mut caps1); caps1.get_match() },
+
+  );
+
+  
+
+  // Using 'cache' with re2 is not allowed. It may result in panics or
+
+  // incorrect results. In order to re-purpose the cache, we must reset
+
+  // it with the one-pass DFA we'd like to use it with.
+
+  //
+
+  // Similarly, after this reset, using the cache with 're1' is also not
+
+  // allowed.
+
+  re2.reset_cache(&mut cache);
+
+  assert_eq!(
+
+      Some(Match::must(0, 0..3)),
+
+      { re2.captures(&mut cache, "☃", &mut caps2); caps2.get_match() },
+
+  );
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
 
 - <span id="dfa-get-config"></span>`fn get_config(&self) -> &Config` — [`Config`](#config)
 
+  Return the config for this one-pass DFA.
+
 - <span id="dfa-get-nfa"></span>`fn get_nfa(&self) -> &NFA` — [`NFA`](../../nfa/thompson/nfa/index.md#nfa)
+
+  Returns a reference to the underlying NFA.
 
 - <span id="dfa-pattern-len"></span>`fn pattern_len(&self) -> usize`
 
+  Returns the total number of patterns compiled into this DFA.
+
+  
+
+  In the case of a DFA that contains no patterns, this returns `0`.
+
 - <span id="dfa-state-len"></span>`fn state_len(&self) -> usize`
+
+  Returns the total number of states in this one-pass DFA.
+
+  
+
+  Note that unlike dense or sparse DFAs, a one-pass DFA does not expose
+
+  a low level DFA API. Therefore, this routine has little use other than
+
+  being informational.
 
 - <span id="dfa-alphabet-len"></span>`fn alphabet_len(&self) -> usize`
 
+  Returns the total number of elements in the alphabet for this DFA.
+
+  
+
+  That is, this returns the total number of transitions that each
+
+  state in this DFA must have. The maximum alphabet size is 256, which
+
+  corresponds to each possible byte value.
+
+  
+
+  The alphabet size may be less than 256 though, and unless
+
+  `Config::byte_classes` is disabled, it is typically must less than
+
+  256. Namely, bytes are grouped into equivalence classes such that no
+
+  two bytes in the same class can distinguish a match from a non-match.
+
+  For example, in the regex `^[a-z]+$`, the ASCII bytes `a-z` could
+
+  all be in the same equivalence class. This leads to a massive space
+
+  savings.
+
+  
+
+  Note though that the alphabet length does _not_ necessarily equal the
+
+  total stride space taken up by a single DFA state in the transition
+
+  table. Namely, for performance reasons, the stride is always the
+
+  smallest power of two that is greater than or equal to the alphabet
+
+  length. For this reason, `DFA::stride` or `DFA::stride2` are
+
+  often more useful. The alphabet length is typically useful only for
+
+  informational purposes.
+
+  
+
+  Note also that unlike dense or sparse DFAs, a one-pass DFA does
+
+  not have a special end-of-input (EOI) transition. This is because
+
+  a one-pass DFA handles look-around assertions explicitly (like the
+
+  [`PikeVM`](crate::nfa::thompson::pikevm::PikeVM)) and does not build
+
+  them into the transitions of the DFA.
+
 - <span id="dfa-stride2"></span>`fn stride2(&self) -> usize`
+
+  Returns the total stride for every state in this DFA, expressed as the
+
+  exponent of a power of 2. The stride is the amount of space each state
+
+  takes up in the transition table, expressed as a number of transitions.
+
+  (Unused transitions map to dead states.)
+
+  
+
+  The stride of a DFA is always equivalent to the smallest power of
+
+  2 that is greater than or equal to the DFA's alphabet length. This
+
+  definition uses extra space, but possibly permits faster translation
+
+  between state identifiers and their corresponding offsets in this DFA's
+
+  transition table.
+
+  
+
+  For example, if the DFA's stride is 16 transitions, then its `stride2`
+
+  is `4` since `2^4 = 16`.
+
+  
+
+  The minimum `stride2` value is `1` (corresponding to a stride of `2`)
+
+  while the maximum `stride2` value is `9` (corresponding to a stride
+
+  of `512`). The maximum in theory should be `8`, but because of some
+
+  implementation quirks that may be relaxed in the future, it is one more
+
+  than `8`. (Do note that a maximal stride is incredibly rare, as it
+
+  would imply that there is almost no redundant in the regex pattern.)
+
+  
+
+  Note that unlike dense or sparse DFAs, a one-pass DFA does not expose
+
+  a low level DFA API. Therefore, this routine has little use other than
+
+  being informational.
 
 - <span id="dfa-stride"></span>`fn stride(&self) -> usize`
 
+  Returns the total stride for every state in this DFA. This corresponds
+
+  to the total number of transitions used by each state in this DFA's
+
+  transition table.
+
+  
+
+  Please see `DFA::stride2` for more information. In particular, this
+
+  returns the stride as the number of transitions, where as `stride2`
+
+  returns it as the exponent of a power of 2.
+
+  
+
+  Note that unlike dense or sparse DFAs, a one-pass DFA does not expose
+
+  a low level DFA API. Therefore, this routine has little use other than
+
+  being informational.
+
 - <span id="dfa-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
+  Returns the memory usage, in bytes, of this DFA.
+
+  
+
+  The memory usage is computed based on the number of bytes used to
+
+  represent this DFA.
+
+  
+
+  This does **not** include the stack size used up by this DFA. To
+
+  compute that, use `std::mem::size_of::<onepass::DFA>()`.
+
 #### Trait Implementations
+
+##### `impl Any for DFA`
+
+- <span id="dfa-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DFA`
+
+- <span id="dfa-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DFA`
+
+- <span id="dfa-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for DFA`
 
 - <span id="dfa-clone"></span>`fn clone(&self) -> DFA` — [`DFA`](#dfa)
 
+##### `impl CloneToUninit for DFA`
+
+- <span id="dfa-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for DFA`
 
-- <span id="dfa-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="dfa-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for DFA`
+
+- <span id="dfa-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DFA`
+
+- <span id="dfa-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Remappable for crate::dfa::onepass::DFA`
 
-- <span id="cratedfaonepassdfa-state-len"></span>`fn state_len(&self) -> usize`
+- <span id="cratedfaonepassdfa-remappable-state-len"></span>`fn state_len(&self) -> usize`
 
-- <span id="cratedfaonepassdfa-stride2"></span>`fn stride2(&self) -> usize`
+- <span id="cratedfaonepassdfa-remappable-stride2"></span>`fn stride2(&self) -> usize`
 
-- <span id="cratedfaonepassdfa-swap-states"></span>`fn swap_states(&mut self, id1: StateID, id2: StateID)` — [`StateID`](../../util/primitives/index.md#stateid)
+- <span id="cratedfaonepassdfa-remappable-swap-states"></span>`fn swap_states(&mut self, id1: StateID, id2: StateID)` — [`StateID`](../../util/primitives/index.md#stateid)
 
-- <span id="cratedfaonepassdfa-remap"></span>`fn remap(&mut self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../util/primitives/index.md#stateid)
+- <span id="cratedfaonepassdfa-remappable-remap"></span>`fn remap(&mut self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../util/primitives/index.md#stateid)
+
+##### `impl ToOwned for DFA`
+
+- <span id="dfa-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dfa-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dfa-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DFA`
+
+- <span id="dfa-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dfa-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DFA`
+
+- <span id="dfa-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dfa-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SparseTransitionIter<'a>`
 
@@ -657,9 +1983,39 @@ state.
 
 #### Trait Implementations
 
+##### `impl Any for SparseTransitionIter<'a>`
+
+- <span id="sparsetransitioniter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SparseTransitionIter<'a>`
+
+- <span id="sparsetransitioniter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SparseTransitionIter<'a>`
+
+- <span id="sparsetransitioniter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for SparseTransitionIter<'a>`
 
-- <span id="sparsetransitioniter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sparsetransitioniter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SparseTransitionIter<'a>`
+
+- <span id="sparsetransitioniter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SparseTransitionIter<'a>`
+
+- <span id="sparsetransitioniter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SparseTransitionIter<'a>`
 
@@ -667,13 +2023,25 @@ state.
 
 - <span id="sparsetransitioniter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="sparsetransitioniter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="sparsetransitioniter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for SparseTransitionIter<'a>`
 
 - <span id="sparsetransitioniter-iterator-type-item"></span>`type Item = (u8, u8, Transition)`
 
-- <span id="sparsetransitioniter-next"></span>`fn next(&mut self) -> Option<(u8, u8, Transition)>` — [`Transition`](#transition)
+- <span id="sparsetransitioniter-iterator-next"></span>`fn next(&mut self) -> Option<(u8, u8, Transition)>` — [`Transition`](#transition)
+
+##### `impl<U> TryFrom for SparseTransitionIter<'a>`
+
+- <span id="sparsetransitioniter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sparsetransitioniter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SparseTransitionIter<'a>`
+
+- <span id="sparsetransitioniter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sparsetransitioniter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Cache`
 
@@ -719,9 +2087,113 @@ only be used with the new one-pass DFA (and not the old one).
 
 - <span id="cache-new"></span>`fn new(re: &DFA) -> Cache` — [`DFA`](#dfa), [`Cache`](#cache)
 
+  Create a new [`onepass::DFA`](DFA) cache.
+
+  
+
+  A potentially more convenient routine to create a cache is
+
+  `DFA::create_cache`, as it does not require also importing the
+
+  `Cache` type.
+
+  
+
+  If you want to reuse the returned `Cache` with some other one-pass DFA,
+
+  then you must call `Cache::reset` with the desired one-pass DFA.
+
 - <span id="cache-reset"></span>`fn reset(&mut self, re: &DFA)` — [`DFA`](#dfa)
 
+  Reset this cache such that it can be used for searching with a
+
+  different [`onepass::DFA`](DFA).
+
+  
+
+  A cache reset permits reusing memory already allocated in this cache
+
+  with a different one-pass DFA.
+
+  
+
+  # Example
+
+  
+
+  This shows how to re-purpose a cache for use with a different one-pass
+
+  DFA.
+
+  
+
+  ```rust
+
+  if cfg!(miri) { return Ok(()); } // miri takes too long
+
+  use regex_automata::{dfa::onepass::DFA, Match};
+
+  
+
+  let re1 = DFA::new(r"\w")?;
+
+  let re2 = DFA::new(r"\W")?;
+
+  let mut caps1 = re1.create_captures();
+
+  let mut caps2 = re2.create_captures();
+
+  
+
+  let mut cache = re1.create_cache();
+
+  assert_eq!(
+
+      Some(Match::must(0, 0..2)),
+
+      { re1.captures(&mut cache, "Δ", &mut caps1); caps1.get_match() },
+
+  );
+
+  
+
+  // Using 'cache' with re2 is not allowed. It may result in panics or
+
+  // incorrect results. In order to re-purpose the cache, we must reset
+
+  // it with the one-pass DFA we'd like to use it with.
+
+  //
+
+  // Similarly, after this reset, using the cache with 're1' is also not
+
+  // allowed.
+
+  re2.reset_cache(&mut cache);
+
+  assert_eq!(
+
+      Some(Match::must(0, 0..3)),
+
+      { re2.captures(&mut cache, "☃", &mut caps2); caps2.get_match() },
+
+  );
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
+
 - <span id="cache-memory-usage"></span>`fn memory_usage(&self) -> usize`
+
+  Returns the heap memory usage, in bytes, of this cache.
+
+  
+
+  This does **not** include the stack size used up by this cache. To
+
+  compute that, use `std::mem::size_of::<Cache>()`.
 
 - <span id="cache-explicit-slots"></span>`fn explicit_slots(&mut self) -> &mut [Option<NonMaxUsize>]` — [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize)
 
@@ -729,13 +2201,67 @@ only be used with the new one-pass DFA (and not the old one).
 
 #### Trait Implementations
 
+##### `impl Any for Cache`
+
+- <span id="cache-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Cache`
+
+- <span id="cache-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Cache`
+
+- <span id="cache-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Cache`
 
 - <span id="cache-clone"></span>`fn clone(&self) -> Cache` — [`Cache`](#cache)
 
+##### `impl CloneToUninit for Cache`
+
+- <span id="cache-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Cache`
 
-- <span id="cache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cache-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Cache`
+
+- <span id="cache-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Cache`
+
+- <span id="cache-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Cache`
+
+- <span id="cache-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="cache-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="cache-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Cache`
+
+- <span id="cache-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cache-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Cache`
+
+- <span id="cache-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cache-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Transition`
 
@@ -767,35 +2293,115 @@ must be satisfied in order to follow this transition.
 
 - <span id="transition-new"></span>`fn new(match_wins: bool, sid: StateID, epsilons: Epsilons) -> Transition` — [`StateID`](../../util/primitives/index.md#stateid), [`Epsilons`](#epsilons), [`Transition`](#transition)
 
+  Return a new transition to the given state ID with the given epsilons.
+
 - <span id="transition-is-dead"></span>`fn is_dead(self) -> bool`
+
+  Returns true if and only if this transition points to the DEAD state.
 
 - <span id="transition-match-wins"></span>`fn match_wins(&self) -> bool`
 
+  Return whether this transition has a "match wins" property.
+
+  
+
+  When a transition has this property, it means that if a match has been
+
+  found and the search uses leftmost-first semantics, then that match
+
+  should be returned immediately instead of continuing on.
+
+  
+
+  The "match wins" name comes from RE2, which uses a pretty much
+
+  identical mechanism for implementing leftmost-first semantics.
+
 - <span id="transition-state-id"></span>`fn state_id(&self) -> StateID` — [`StateID`](../../util/primitives/index.md#stateid)
+
+  Return the "next" state ID that this transition points to.
 
 - <span id="transition-set-state-id"></span>`fn set_state_id(&mut self, sid: StateID)` — [`StateID`](../../util/primitives/index.md#stateid)
 
+  Set the "next" state ID in this transition.
+
 - <span id="transition-epsilons"></span>`fn epsilons(&self) -> Epsilons` — [`Epsilons`](#epsilons)
 
+  Return the epsilons embedded in this transition.
+
 #### Trait Implementations
+
+##### `impl Any for Transition`
+
+- <span id="transition-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Transition`
+
+- <span id="transition-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Transition`
+
+- <span id="transition-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Transition`
 
 - <span id="transition-clone"></span>`fn clone(&self) -> Transition` — [`Transition`](#transition)
 
+##### `impl CloneToUninit for Transition`
+
+- <span id="transition-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Transition`
 
 ##### `impl Debug for Transition`
 
-- <span id="transition-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="transition-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Transition`
 
+##### `impl<T> From for Transition`
+
+- <span id="transition-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Transition`
+
+- <span id="transition-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Transition`
 
-- <span id="transition-eq"></span>`fn eq(&self, other: &Transition) -> bool` — [`Transition`](#transition)
+- <span id="transition-partialeq-eq"></span>`fn eq(&self, other: &Transition) -> bool` — [`Transition`](#transition)
 
 ##### `impl StructuralPartialEq for Transition`
+
+##### `impl ToOwned for Transition`
+
+- <span id="transition-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="transition-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="transition-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Transition`
+
+- <span id="transition-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="transition-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Transition`
+
+- <span id="transition-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="transition-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PatternEpsilons`
 
@@ -836,29 +2442,117 @@ ever non-empty for match states.
 
 - <span id="patternepsilons-empty"></span>`fn empty() -> PatternEpsilons` — [`PatternEpsilons`](#patternepsilons)
 
+  Return a new empty pattern epsilons that has no pattern ID and has no
+
+  epsilons. This is suitable for non-match states.
+
 - <span id="patternepsilons-is-empty"></span>`fn is_empty(self) -> bool`
+
+  Whether this pattern epsilons is empty or not. It's empty when it has
+
+  no pattern ID and an empty epsilons.
 
 - <span id="patternepsilons-pattern-id"></span>`fn pattern_id(self) -> Option<PatternID>` — [`PatternID`](../../util/primitives/index.md#patternid)
 
+  Return the pattern ID in this pattern epsilons if one exists.
+
 - <span id="patternepsilons-pattern-id-unchecked"></span>`fn pattern_id_unchecked(self) -> PatternID` — [`PatternID`](../../util/primitives/index.md#patternid)
+
+  Returns the pattern ID without checking whether it's valid. If this is
+
+  called and there is no pattern ID in this `PatternEpsilons`, then this
+
+  will likely produce an incorrect result or possibly even a panic or
+
+  an overflow. But safety will not be violated.
+
+  
+
+  This is useful when you know a particular state is a match state. If
+
+  it's a match state, then it must have a pattern ID.
 
 - <span id="patternepsilons-set-pattern-id"></span>`fn set_pattern_id(self, pid: PatternID) -> PatternEpsilons` — [`PatternID`](../../util/primitives/index.md#patternid), [`PatternEpsilons`](#patternepsilons)
 
+  Return a new pattern epsilons with the given pattern ID, but the same
+
+  epsilons.
+
 - <span id="patternepsilons-epsilons"></span>`fn epsilons(self) -> Epsilons` — [`Epsilons`](#epsilons)
+
+  Return the epsilons part of this pattern epsilons.
 
 - <span id="patternepsilons-set-epsilons"></span>`fn set_epsilons(self, epsilons: Epsilons) -> PatternEpsilons` — [`Epsilons`](#epsilons), [`PatternEpsilons`](#patternepsilons)
 
+  Return a new pattern epsilons with the given epsilons, but the same
+
+  pattern ID.
+
 #### Trait Implementations
+
+##### `impl Any for PatternEpsilons`
+
+- <span id="patternepsilons-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PatternEpsilons`
+
+- <span id="patternepsilons-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PatternEpsilons`
+
+- <span id="patternepsilons-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for PatternEpsilons`
 
 - <span id="patternepsilons-clone"></span>`fn clone(&self) -> PatternEpsilons` — [`PatternEpsilons`](#patternepsilons)
 
+##### `impl CloneToUninit for PatternEpsilons`
+
+- <span id="patternepsilons-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for PatternEpsilons`
 
 ##### `impl Debug for PatternEpsilons`
 
-- <span id="patternepsilons-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="patternepsilons-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for PatternEpsilons`
+
+- <span id="patternepsilons-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PatternEpsilons`
+
+- <span id="patternepsilons-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for PatternEpsilons`
+
+- <span id="patternepsilons-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="patternepsilons-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="patternepsilons-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PatternEpsilons`
+
+- <span id="patternepsilons-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="patternepsilons-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PatternEpsilons`
+
+- <span id="patternepsilons-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="patternepsilons-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Epsilons`
 
@@ -895,27 +2589,95 @@ the lower 42 bits of a `Transition`. (Where the high 22 bits contains a
 
 - <span id="epsilons-empty"></span>`fn empty() -> Epsilons` — [`Epsilons`](#epsilons)
 
+  Create a new empty epsilons. It has no slots and no assertions that
+
+  need to be satisfied.
+
 - <span id="epsilons-is-empty"></span>`fn is_empty(self) -> bool`
+
+  Returns true if this epsilons contains no slots and no assertions.
 
 - <span id="epsilons-slots"></span>`fn slots(self) -> Slots` — [`Slots`](#slots)
 
+  Returns the slot epsilon transitions.
+
 - <span id="epsilons-set-slots"></span>`fn set_slots(self, slots: Slots) -> Epsilons` — [`Slots`](#slots), [`Epsilons`](#epsilons)
+
+  Set the slot epsilon transitions.
 
 - <span id="epsilons-looks"></span>`fn looks(self) -> LookSet` — [`LookSet`](../../util/look/index.md#lookset)
 
+  Return the set of look-around assertions in these epsilon transitions.
+
 - <span id="epsilons-set-looks"></span>`fn set_looks(self, look_set: LookSet) -> Epsilons` — [`LookSet`](../../util/look/index.md#lookset), [`Epsilons`](#epsilons)
 
+  Set the look-around assertions on these epsilon transitions.
+
 #### Trait Implementations
+
+##### `impl Any for Epsilons`
+
+- <span id="epsilons-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Epsilons`
+
+- <span id="epsilons-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Epsilons`
+
+- <span id="epsilons-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Epsilons`
 
 - <span id="epsilons-clone"></span>`fn clone(&self) -> Epsilons` — [`Epsilons`](#epsilons)
 
+##### `impl CloneToUninit for Epsilons`
+
+- <span id="epsilons-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Epsilons`
 
 ##### `impl Debug for Epsilons`
 
-- <span id="epsilons-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="epsilons-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for Epsilons`
+
+- <span id="epsilons-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Epsilons`
+
+- <span id="epsilons-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Epsilons`
+
+- <span id="epsilons-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="epsilons-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="epsilons-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Epsilons`
+
+- <span id="epsilons-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="epsilons-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Epsilons`
+
+- <span id="epsilons-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="epsilons-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Slots`
 
@@ -964,25 +2726,105 @@ index in the corresponding NFA.
 
 - <span id="slots-insert"></span>`fn insert(self, slot: usize) -> Slots` — [`Slots`](#slots)
 
+  Insert the slot at the given bit index.
+
 - <span id="slots-remove"></span>`fn remove(self, slot: usize) -> Slots` — [`Slots`](#slots)
+
+  Remove the slot at the given bit index.
 
 - <span id="slots-is-empty"></span>`fn is_empty(self) -> bool`
 
+  Returns true if and only if this set contains no slots.
+
 - <span id="slots-iter"></span>`fn iter(self) -> SlotsIter` — [`SlotsIter`](#slotsiter)
+
+  Returns an iterator over all of the set bits in this set.
 
 - <span id="slots-apply"></span>`fn apply(self, at: usize, caller_explicit_slots: &mut [Option<NonMaxUsize>])` — [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize)
 
+  For the position `at` in the current haystack, copy it to
+
+  `caller_explicit_slots` for all slots that are in this set.
+
+  
+
+  Callers may pass a slice of any length. Slots in this set bigger than
+
+  the length of the given explicit slots are simply skipped.
+
+  
+
+  The slice *must* correspond only to the explicit slots and the first
+
+  element of the slice must always correspond to the first explicit slot
+
+  in the corresponding NFA.
+
 #### Trait Implementations
+
+##### `impl Any for Slots`
+
+- <span id="slots-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Slots`
+
+- <span id="slots-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Slots`
+
+- <span id="slots-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Slots`
 
 - <span id="slots-clone"></span>`fn clone(&self) -> Slots` — [`Slots`](#slots)
 
+##### `impl CloneToUninit for Slots`
+
+- <span id="slots-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Slots`
 
 ##### `impl Debug for Slots`
 
-- <span id="slots-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="slots-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for Slots`
+
+- <span id="slots-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Slots`
+
+- <span id="slots-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Slots`
+
+- <span id="slots-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="slots-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="slots-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Slots`
+
+- <span id="slots-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="slots-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Slots`
+
+- <span id="slots-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="slots-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SlotsIter`
 
@@ -1001,9 +2843,39 @@ to get the actual NFA slot index.
 
 #### Trait Implementations
 
+##### `impl Any for SlotsIter`
+
+- <span id="slotsiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SlotsIter`
+
+- <span id="slotsiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SlotsIter`
+
+- <span id="slotsiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for SlotsIter`
 
-- <span id="slotsiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="slotsiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SlotsIter`
+
+- <span id="slotsiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SlotsIter`
+
+- <span id="slotsiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SlotsIter`
 
@@ -1011,13 +2883,25 @@ to get the actual NFA slot index.
 
 - <span id="slotsiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="slotsiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="slotsiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for SlotsIter`
 
 - <span id="slotsiter-iterator-type-item"></span>`type Item = usize`
 
-- <span id="slotsiter-next"></span>`fn next(&mut self) -> Option<usize>`
+- <span id="slotsiter-iterator-next"></span>`fn next(&mut self) -> Option<usize>`
+
+##### `impl<U> TryFrom for SlotsIter`
+
+- <span id="slotsiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="slotsiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SlotsIter`
+
+- <span id="slotsiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="slotsiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BuildError`
 
@@ -1061,25 +2945,79 @@ trait.
 
 #### Trait Implementations
 
+##### `impl Any for BuildError`
+
+- <span id="builderror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BuildError`
+
+- <span id="builderror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BuildError`
+
+- <span id="builderror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BuildError`
 
 - <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](#builderror)
 
+##### `impl CloneToUninit for BuildError`
+
+- <span id="builderror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for BuildError`
 
-- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="builderror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for BuildError`
 
-- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="builderror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for BuildError`
 
-- <span id="builderror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
+- <span id="builderror-error-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
+
+##### `impl<T> From for BuildError`
+
+- <span id="builderror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BuildError`
+
+- <span id="builderror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for BuildError`
+
+- <span id="builderror-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="builderror-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="builderror-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for BuildError`
 
-- <span id="builderror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="builderror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for BuildError`
+
+- <span id="builderror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="builderror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BuildError`
+
+- <span id="builderror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="builderror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -1113,11 +3051,65 @@ The kind of error that occurred during the construction of a one-pass DFA.
 
 #### Trait Implementations
 
+##### `impl Any for BuildErrorKind`
+
+- <span id="builderrorkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BuildErrorKind`
+
+- <span id="builderrorkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BuildErrorKind`
+
+- <span id="builderrorkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BuildErrorKind`
 
 - <span id="builderrorkind-clone"></span>`fn clone(&self) -> BuildErrorKind` — [`BuildErrorKind`](#builderrorkind)
 
+##### `impl CloneToUninit for BuildErrorKind`
+
+- <span id="builderrorkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for BuildErrorKind`
 
-- <span id="builderrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="builderrorkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BuildErrorKind`
+
+- <span id="builderrorkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BuildErrorKind`
+
+- <span id="builderrorkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for BuildErrorKind`
+
+- <span id="builderrorkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="builderrorkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="builderrorkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BuildErrorKind`
+
+- <span id="builderrorkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="builderrorkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BuildErrorKind`
+
+- <span id="builderrorkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="builderrorkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

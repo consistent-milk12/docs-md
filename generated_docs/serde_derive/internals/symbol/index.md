@@ -98,23 +98,77 @@ struct Symbol(&'static str);
 
 #### Trait Implementations
 
+##### `impl Any for Symbol`
+
+- <span id="symbol-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Symbol`
+
+- <span id="symbol-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Symbol`
+
+- <span id="symbol-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Symbol`
 
 - <span id="symbol-clone"></span>`fn clone(&self) -> Symbol` — [`Symbol`](#symbol)
+
+##### `impl CloneToUninit for Symbol`
+
+- <span id="symbol-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Symbol`
 
 ##### `impl Display for Symbol`
 
-- <span id="symbol-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbol-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Symbol`
+
+- <span id="symbol-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Symbol`
+
+- <span id="symbol-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for syn::Ident`
 
-- <span id="synident-eq"></span>`fn eq(&self, word: &Symbol) -> bool` — [`Symbol`](#symbol)
+- <span id="synident-partialeq-eq"></span>`fn eq(&self, word: &Symbol) -> bool` — [`Symbol`](#symbol)
+
+##### `impl ToOwned for Symbol`
+
+- <span id="symbol-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="symbol-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="symbol-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for Symbol`
 
-- <span id="symbol-to-string"></span>`fn to_string(&self) -> String`
+- <span id="symbol-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Symbol`
+
+- <span id="symbol-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symbol-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Symbol`
+
+- <span id="symbol-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symbol-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Constants
 

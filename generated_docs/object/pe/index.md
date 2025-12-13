@@ -1703,21 +1703,83 @@ DOS .EXE header
 
 - <span id="peimagedosheader-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R) -> read::Result<&'data Self>` — [`Result`](../index.md#result)
 
+  Read the DOS header.
+
+  
+
+  Also checks that the `e_magic` field in the header is valid.
+
 - <span id="peimagedosheader-nt-headers-offset"></span>`fn nt_headers_offset(&self) -> u32`
 
+  Return the file offset of the nt_headers.
+
 #### Trait Implementations
+
+##### `impl Any for ImageDosHeader`
+
+- <span id="imagedosheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageDosHeader`
+
+- <span id="imagedosheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageDosHeader`
+
+- <span id="imagedosheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ImageDosHeader`
 
 - <span id="imagedosheader-clone"></span>`fn clone(&self) -> ImageDosHeader` — [`ImageDosHeader`](#imagedosheader)
 
+##### `impl CloneToUninit for ImageDosHeader`
+
+- <span id="imagedosheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for ImageDosHeader`
 
 ##### `impl Debug for ImageDosHeader`
 
-- <span id="imagedosheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagedosheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageDosHeader`
+
+- <span id="imagedosheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageDosHeader`
+
+- <span id="imagedosheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageDosHeader`
+
+##### `impl ToOwned for ImageDosHeader`
+
+- <span id="imagedosheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagedosheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagedosheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageDosHeader`
+
+- <span id="imagedosheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagedosheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageDosHeader`
+
+- <span id="imagedosheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagedosheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageOs2Header`
 
@@ -1884,17 +1946,71 @@ OS/2 .EXE header
 
 #### Trait Implementations
 
+##### `impl Any for ImageOs2Header`
+
+- <span id="imageos2header-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageOs2Header`
+
+- <span id="imageos2header-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageOs2Header`
+
+- <span id="imageos2header-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageOs2Header`
 
 - <span id="imageos2header-clone"></span>`fn clone(&self) -> ImageOs2Header` — [`ImageOs2Header`](#imageos2header)
+
+##### `impl CloneToUninit for ImageOs2Header`
+
+- <span id="imageos2header-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageOs2Header`
 
 ##### `impl Debug for ImageOs2Header`
 
-- <span id="imageos2header-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageos2header-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageOs2Header`
+
+- <span id="imageos2header-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageOs2Header`
+
+- <span id="imageos2header-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageOs2Header`
+
+##### `impl ToOwned for ImageOs2Header`
+
+- <span id="imageos2header-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageos2header-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageos2header-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageOs2Header`
+
+- <span id="imageos2header-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageos2header-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageOs2Header`
+
+- <span id="imageos2header-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageos2header-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageVxdHeader`
 
@@ -2158,17 +2274,71 @@ Windows VXD header
 
 #### Trait Implementations
 
+##### `impl Any for ImageVxdHeader`
+
+- <span id="imagevxdheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageVxdHeader`
+
+- <span id="imagevxdheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageVxdHeader`
+
+- <span id="imagevxdheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageVxdHeader`
 
 - <span id="imagevxdheader-clone"></span>`fn clone(&self) -> ImageVxdHeader` — [`ImageVxdHeader`](#imagevxdheader)
+
+##### `impl CloneToUninit for ImageVxdHeader`
+
+- <span id="imagevxdheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageVxdHeader`
 
 ##### `impl Debug for ImageVxdHeader`
 
-- <span id="imagevxdheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagevxdheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageVxdHeader`
+
+- <span id="imagevxdheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageVxdHeader`
+
+- <span id="imagevxdheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageVxdHeader`
+
+##### `impl ToOwned for ImageVxdHeader`
+
+- <span id="imagevxdheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagevxdheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagevxdheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageVxdHeader`
+
+- <span id="imagevxdheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagevxdheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageVxdHeader`
+
+- <span id="imagevxdheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagevxdheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MaskedRichHeaderEntry`
 
@@ -2192,17 +2362,71 @@ This data is "masked", i.e. XORed with a checksum derived from the file data.
 
 #### Trait Implementations
 
+##### `impl Any for MaskedRichHeaderEntry`
+
+- <span id="maskedrichheaderentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MaskedRichHeaderEntry`
+
+- <span id="maskedrichheaderentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MaskedRichHeaderEntry`
+
+- <span id="maskedrichheaderentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for MaskedRichHeaderEntry`
 
 - <span id="maskedrichheaderentry-clone"></span>`fn clone(&self) -> MaskedRichHeaderEntry` — [`MaskedRichHeaderEntry`](#maskedrichheaderentry)
+
+##### `impl CloneToUninit for MaskedRichHeaderEntry`
+
+- <span id="maskedrichheaderentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for MaskedRichHeaderEntry`
 
 ##### `impl Debug for MaskedRichHeaderEntry`
 
-- <span id="maskedrichheaderentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="maskedrichheaderentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MaskedRichHeaderEntry`
+
+- <span id="maskedrichheaderentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MaskedRichHeaderEntry`
+
+- <span id="maskedrichheaderentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for MaskedRichHeaderEntry`
+
+##### `impl ToOwned for MaskedRichHeaderEntry`
+
+- <span id="maskedrichheaderentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="maskedrichheaderentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="maskedrichheaderentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MaskedRichHeaderEntry`
+
+- <span id="maskedrichheaderentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="maskedrichheaderentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MaskedRichHeaderEntry`
+
+- <span id="maskedrichheaderentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="maskedrichheaderentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageFileHeader`
 
@@ -2222,9 +2446,25 @@ struct ImageFileHeader {
 
 #### Trait Implementations
 
+##### `impl Any for ImageFileHeader`
+
+- <span id="imagefileheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageFileHeader`
+
+- <span id="imagefileheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageFileHeader`
+
+- <span id="imagefileheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageFileHeader`
 
 - <span id="imagefileheader-clone"></span>`fn clone(&self) -> ImageFileHeader` — [`ImageFileHeader`](#imagefileheader)
+
+##### `impl CloneToUninit for ImageFileHeader`
+
+- <span id="imagefileheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl CoffHeader for pe::ImageFileHeader`
 
@@ -2232,27 +2472,65 @@ struct ImageFileHeader {
 
 - <span id="peimagefileheader-coffheader-type-imagesymbolbytes"></span>`type ImageSymbolBytes = ImageSymbolBytes`
 
-- <span id="peimagefileheader-is-type-bigobj"></span>`fn is_type_bigobj() -> bool`
+- <span id="peimagefileheader-coffheader-is-type-bigobj"></span>`fn is_type_bigobj() -> bool`
 
-- <span id="peimagefileheader-machine"></span>`fn machine(&self) -> u16`
+- <span id="peimagefileheader-coffheader-machine"></span>`fn machine(&self) -> u16`
 
-- <span id="peimagefileheader-number-of-sections"></span>`fn number_of_sections(&self) -> u32`
+- <span id="peimagefileheader-coffheader-number-of-sections"></span>`fn number_of_sections(&self) -> u32`
 
-- <span id="peimagefileheader-pointer-to-symbol-table"></span>`fn pointer_to_symbol_table(&self) -> u32`
+- <span id="peimagefileheader-coffheader-pointer-to-symbol-table"></span>`fn pointer_to_symbol_table(&self) -> u32`
 
-- <span id="peimagefileheader-number-of-symbols"></span>`fn number_of_symbols(&self) -> u32`
+- <span id="peimagefileheader-coffheader-number-of-symbols"></span>`fn number_of_symbols(&self) -> u32`
 
-- <span id="peimagefileheader-characteristics"></span>`fn characteristics(&self) -> u16`
+- <span id="peimagefileheader-coffheader-characteristics"></span>`fn characteristics(&self) -> u16`
 
-- <span id="peimagefileheader-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<&'data Self>` — [`Result`](../index.md#result)
+- <span id="peimagefileheader-coffheader-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<&'data Self>` — [`Result`](../index.md#result)
 
 ##### `impl Copy for ImageFileHeader`
 
 ##### `impl Debug for ImageFileHeader`
 
-- <span id="imagefileheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagefileheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageFileHeader`
+
+- <span id="imagefileheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageFileHeader`
+
+- <span id="imagefileheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageFileHeader`
+
+##### `impl ToOwned for ImageFileHeader`
+
+- <span id="imagefileheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagefileheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagefileheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageFileHeader`
+
+- <span id="imagefileheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagefileheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageFileHeader`
+
+- <span id="imagefileheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagefileheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageDataDirectory`
 
@@ -2269,23 +2547,111 @@ struct ImageDataDirectory {
 
 - <span id="peimagedatadirectory-address-range"></span>`fn address_range(&self) -> (u32, u32)`
 
+  Return the virtual address range of this directory entry.
+
 - <span id="peimagedatadirectory-file-range"></span>`fn file_range(&self, sections: &SectionTable<'_>) -> Result<(u32, u32)>` — [`SectionTable`](../read/coff/index.md#sectiontable), [`Result`](../index.md#result)
+
+  Return the file offset and size of this directory entry.
+
+  
+
+  This function has some limitations:
+
+  - It requires that the data is contained in a single section.
+
+  - It uses the size field of the directory entry, which is
+
+    not desirable for all data directories.
+
+  - It uses the `virtual_address` of the directory entry as an address,
+
+    which is not valid for `IMAGE_DIRECTORY_ENTRY_SECURITY`.
 
 - <span id="peimagedatadirectory-data"></span>`fn data<'data, R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<&'data [u8]>` — [`SectionTable`](../read/coff/index.md#sectiontable), [`Result`](../index.md#result)
 
+  Get the data referenced by this directory entry.
+
+  
+
+  This function has some limitations:
+
+  - It requires that the data is contained in a single section.
+
+  - It uses the size field of the directory entry, which is
+
+    not desirable for all data directories.
+
+  - It uses the `virtual_address` of the directory entry as an address,
+
+    which is not valid for `IMAGE_DIRECTORY_ENTRY_SECURITY`.
+
 #### Trait Implementations
+
+##### `impl Any for ImageDataDirectory`
+
+- <span id="imagedatadirectory-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageDataDirectory`
+
+- <span id="imagedatadirectory-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageDataDirectory`
+
+- <span id="imagedatadirectory-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ImageDataDirectory`
 
 - <span id="imagedatadirectory-clone"></span>`fn clone(&self) -> ImageDataDirectory` — [`ImageDataDirectory`](#imagedatadirectory)
 
+##### `impl CloneToUninit for ImageDataDirectory`
+
+- <span id="imagedatadirectory-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for ImageDataDirectory`
 
 ##### `impl Debug for ImageDataDirectory`
 
-- <span id="imagedatadirectory-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagedatadirectory-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageDataDirectory`
+
+- <span id="imagedatadirectory-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageDataDirectory`
+
+- <span id="imagedatadirectory-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageDataDirectory`
+
+##### `impl ToOwned for ImageDataDirectory`
+
+- <span id="imagedatadirectory-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagedatadirectory-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagedatadirectory-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageDataDirectory`
+
+- <span id="imagedatadirectory-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagedatadirectory-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageDataDirectory`
+
+- <span id="imagedatadirectory-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagedatadirectory-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageOptionalHeader32`
 
@@ -2328,79 +2694,133 @@ struct ImageOptionalHeader32 {
 
 #### Trait Implementations
 
+##### `impl Any for ImageOptionalHeader32`
+
+- <span id="imageoptionalheader32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageOptionalHeader32`
+
+- <span id="imageoptionalheader32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageOptionalHeader32`
+
+- <span id="imageoptionalheader32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageOptionalHeader32`
 
 - <span id="imageoptionalheader32-clone"></span>`fn clone(&self) -> ImageOptionalHeader32` — [`ImageOptionalHeader32`](#imageoptionalheader32)
+
+##### `impl CloneToUninit for ImageOptionalHeader32`
+
+- <span id="imageoptionalheader32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageOptionalHeader32`
 
 ##### `impl Debug for ImageOptionalHeader32`
 
-- <span id="imageoptionalheader32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageoptionalheader32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageOptionalHeader32`
+
+- <span id="imageoptionalheader32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl ImageOptionalHeader for pe::ImageOptionalHeader32`
 
-- <span id="peimageoptionalheader32-magic"></span>`fn magic(&self) -> u16`
+- <span id="peimageoptionalheader32-imageoptionalheader-magic"></span>`fn magic(&self) -> u16`
 
-- <span id="peimageoptionalheader32-major-linker-version"></span>`fn major_linker_version(&self) -> u8`
+- <span id="peimageoptionalheader32-imageoptionalheader-major-linker-version"></span>`fn major_linker_version(&self) -> u8`
 
-- <span id="peimageoptionalheader32-minor-linker-version"></span>`fn minor_linker_version(&self) -> u8`
+- <span id="peimageoptionalheader32-imageoptionalheader-minor-linker-version"></span>`fn minor_linker_version(&self) -> u8`
 
-- <span id="peimageoptionalheader32-size-of-code"></span>`fn size_of_code(&self) -> u32`
+- <span id="peimageoptionalheader32-imageoptionalheader-size-of-code"></span>`fn size_of_code(&self) -> u32`
 
-- <span id="peimageoptionalheader32-size-of-initialized-data"></span>`fn size_of_initialized_data(&self) -> u32`
+- <span id="peimageoptionalheader32-imageoptionalheader-size-of-initialized-data"></span>`fn size_of_initialized_data(&self) -> u32`
 
-- <span id="peimageoptionalheader32-size-of-uninitialized-data"></span>`fn size_of_uninitialized_data(&self) -> u32`
+- <span id="peimageoptionalheader32-imageoptionalheader-size-of-uninitialized-data"></span>`fn size_of_uninitialized_data(&self) -> u32`
 
-- <span id="peimageoptionalheader32-address-of-entry-point"></span>`fn address_of_entry_point(&self) -> u32`
+- <span id="peimageoptionalheader32-imageoptionalheader-address-of-entry-point"></span>`fn address_of_entry_point(&self) -> u32`
 
-- <span id="peimageoptionalheader32-base-of-code"></span>`fn base_of_code(&self) -> u32`
+- <span id="peimageoptionalheader32-imageoptionalheader-base-of-code"></span>`fn base_of_code(&self) -> u32`
 
-- <span id="peimageoptionalheader32-base-of-data"></span>`fn base_of_data(&self) -> Option<u32>`
+- <span id="peimageoptionalheader32-imageoptionalheader-base-of-data"></span>`fn base_of_data(&self) -> Option<u32>`
 
-- <span id="peimageoptionalheader32-image-base"></span>`fn image_base(&self) -> u64`
+- <span id="peimageoptionalheader32-imageoptionalheader-image-base"></span>`fn image_base(&self) -> u64`
 
-- <span id="peimageoptionalheader32-section-alignment"></span>`fn section_alignment(&self) -> u32`
+- <span id="peimageoptionalheader32-imageoptionalheader-section-alignment"></span>`fn section_alignment(&self) -> u32`
 
-- <span id="peimageoptionalheader32-file-alignment"></span>`fn file_alignment(&self) -> u32`
+- <span id="peimageoptionalheader32-imageoptionalheader-file-alignment"></span>`fn file_alignment(&self) -> u32`
 
-- <span id="peimageoptionalheader32-major-operating-system-version"></span>`fn major_operating_system_version(&self) -> u16`
+- <span id="peimageoptionalheader32-imageoptionalheader-major-operating-system-version"></span>`fn major_operating_system_version(&self) -> u16`
 
-- <span id="peimageoptionalheader32-minor-operating-system-version"></span>`fn minor_operating_system_version(&self) -> u16`
+- <span id="peimageoptionalheader32-imageoptionalheader-minor-operating-system-version"></span>`fn minor_operating_system_version(&self) -> u16`
 
-- <span id="peimageoptionalheader32-major-image-version"></span>`fn major_image_version(&self) -> u16`
+- <span id="peimageoptionalheader32-imageoptionalheader-major-image-version"></span>`fn major_image_version(&self) -> u16`
 
-- <span id="peimageoptionalheader32-minor-image-version"></span>`fn minor_image_version(&self) -> u16`
+- <span id="peimageoptionalheader32-imageoptionalheader-minor-image-version"></span>`fn minor_image_version(&self) -> u16`
 
-- <span id="peimageoptionalheader32-major-subsystem-version"></span>`fn major_subsystem_version(&self) -> u16`
+- <span id="peimageoptionalheader32-imageoptionalheader-major-subsystem-version"></span>`fn major_subsystem_version(&self) -> u16`
 
-- <span id="peimageoptionalheader32-minor-subsystem-version"></span>`fn minor_subsystem_version(&self) -> u16`
+- <span id="peimageoptionalheader32-imageoptionalheader-minor-subsystem-version"></span>`fn minor_subsystem_version(&self) -> u16`
 
-- <span id="peimageoptionalheader32-win32-version-value"></span>`fn win32_version_value(&self) -> u32`
+- <span id="peimageoptionalheader32-imageoptionalheader-win32-version-value"></span>`fn win32_version_value(&self) -> u32`
 
-- <span id="peimageoptionalheader32-size-of-image"></span>`fn size_of_image(&self) -> u32`
+- <span id="peimageoptionalheader32-imageoptionalheader-size-of-image"></span>`fn size_of_image(&self) -> u32`
 
-- <span id="peimageoptionalheader32-size-of-headers"></span>`fn size_of_headers(&self) -> u32`
+- <span id="peimageoptionalheader32-imageoptionalheader-size-of-headers"></span>`fn size_of_headers(&self) -> u32`
 
-- <span id="peimageoptionalheader32-check-sum"></span>`fn check_sum(&self) -> u32`
+- <span id="peimageoptionalheader32-imageoptionalheader-check-sum"></span>`fn check_sum(&self) -> u32`
 
-- <span id="peimageoptionalheader32-subsystem"></span>`fn subsystem(&self) -> u16`
+- <span id="peimageoptionalheader32-imageoptionalheader-subsystem"></span>`fn subsystem(&self) -> u16`
 
-- <span id="peimageoptionalheader32-dll-characteristics"></span>`fn dll_characteristics(&self) -> u16`
+- <span id="peimageoptionalheader32-imageoptionalheader-dll-characteristics"></span>`fn dll_characteristics(&self) -> u16`
 
-- <span id="peimageoptionalheader32-size-of-stack-reserve"></span>`fn size_of_stack_reserve(&self) -> u64`
+- <span id="peimageoptionalheader32-imageoptionalheader-size-of-stack-reserve"></span>`fn size_of_stack_reserve(&self) -> u64`
 
-- <span id="peimageoptionalheader32-size-of-stack-commit"></span>`fn size_of_stack_commit(&self) -> u64`
+- <span id="peimageoptionalheader32-imageoptionalheader-size-of-stack-commit"></span>`fn size_of_stack_commit(&self) -> u64`
 
-- <span id="peimageoptionalheader32-size-of-heap-reserve"></span>`fn size_of_heap_reserve(&self) -> u64`
+- <span id="peimageoptionalheader32-imageoptionalheader-size-of-heap-reserve"></span>`fn size_of_heap_reserve(&self) -> u64`
 
-- <span id="peimageoptionalheader32-size-of-heap-commit"></span>`fn size_of_heap_commit(&self) -> u64`
+- <span id="peimageoptionalheader32-imageoptionalheader-size-of-heap-commit"></span>`fn size_of_heap_commit(&self) -> u64`
 
-- <span id="peimageoptionalheader32-loader-flags"></span>`fn loader_flags(&self) -> u32`
+- <span id="peimageoptionalheader32-imageoptionalheader-loader-flags"></span>`fn loader_flags(&self) -> u32`
 
-- <span id="peimageoptionalheader32-number-of-rva-and-sizes"></span>`fn number_of_rva_and_sizes(&self) -> u32`
+- <span id="peimageoptionalheader32-imageoptionalheader-number-of-rva-and-sizes"></span>`fn number_of_rva_and_sizes(&self) -> u32`
+
+##### `impl<U> Into for ImageOptionalHeader32`
+
+- <span id="imageoptionalheader32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageOptionalHeader32`
+
+##### `impl ToOwned for ImageOptionalHeader32`
+
+- <span id="imageoptionalheader32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageoptionalheader32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageoptionalheader32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageOptionalHeader32`
+
+- <span id="imageoptionalheader32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageoptionalheader32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageOptionalHeader32`
+
+- <span id="imageoptionalheader32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageoptionalheader32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageRomOptionalHeader`
 
@@ -2426,17 +2846,71 @@ struct ImageRomOptionalHeader {
 
 #### Trait Implementations
 
+##### `impl Any for ImageRomOptionalHeader`
+
+- <span id="imageromoptionalheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageRomOptionalHeader`
+
+- <span id="imageromoptionalheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageRomOptionalHeader`
+
+- <span id="imageromoptionalheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageRomOptionalHeader`
 
 - <span id="imageromoptionalheader-clone"></span>`fn clone(&self) -> ImageRomOptionalHeader` — [`ImageRomOptionalHeader`](#imageromoptionalheader)
+
+##### `impl CloneToUninit for ImageRomOptionalHeader`
+
+- <span id="imageromoptionalheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageRomOptionalHeader`
 
 ##### `impl Debug for ImageRomOptionalHeader`
 
-- <span id="imageromoptionalheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageromoptionalheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageRomOptionalHeader`
+
+- <span id="imageromoptionalheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageRomOptionalHeader`
+
+- <span id="imageromoptionalheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageRomOptionalHeader`
+
+##### `impl ToOwned for ImageRomOptionalHeader`
+
+- <span id="imageromoptionalheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageromoptionalheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageromoptionalheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageRomOptionalHeader`
+
+- <span id="imageromoptionalheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageromoptionalheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageRomOptionalHeader`
+
+- <span id="imageromoptionalheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageromoptionalheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageOptionalHeader64`
 
@@ -2478,79 +2952,133 @@ struct ImageOptionalHeader64 {
 
 #### Trait Implementations
 
+##### `impl Any for ImageOptionalHeader64`
+
+- <span id="imageoptionalheader64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageOptionalHeader64`
+
+- <span id="imageoptionalheader64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageOptionalHeader64`
+
+- <span id="imageoptionalheader64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageOptionalHeader64`
 
 - <span id="imageoptionalheader64-clone"></span>`fn clone(&self) -> ImageOptionalHeader64` — [`ImageOptionalHeader64`](#imageoptionalheader64)
+
+##### `impl CloneToUninit for ImageOptionalHeader64`
+
+- <span id="imageoptionalheader64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageOptionalHeader64`
 
 ##### `impl Debug for ImageOptionalHeader64`
 
-- <span id="imageoptionalheader64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageoptionalheader64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageOptionalHeader64`
+
+- <span id="imageoptionalheader64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl ImageOptionalHeader for pe::ImageOptionalHeader64`
 
-- <span id="peimageoptionalheader64-magic"></span>`fn magic(&self) -> u16`
+- <span id="peimageoptionalheader64-imageoptionalheader-magic"></span>`fn magic(&self) -> u16`
 
-- <span id="peimageoptionalheader64-major-linker-version"></span>`fn major_linker_version(&self) -> u8`
+- <span id="peimageoptionalheader64-imageoptionalheader-major-linker-version"></span>`fn major_linker_version(&self) -> u8`
 
-- <span id="peimageoptionalheader64-minor-linker-version"></span>`fn minor_linker_version(&self) -> u8`
+- <span id="peimageoptionalheader64-imageoptionalheader-minor-linker-version"></span>`fn minor_linker_version(&self) -> u8`
 
-- <span id="peimageoptionalheader64-size-of-code"></span>`fn size_of_code(&self) -> u32`
+- <span id="peimageoptionalheader64-imageoptionalheader-size-of-code"></span>`fn size_of_code(&self) -> u32`
 
-- <span id="peimageoptionalheader64-size-of-initialized-data"></span>`fn size_of_initialized_data(&self) -> u32`
+- <span id="peimageoptionalheader64-imageoptionalheader-size-of-initialized-data"></span>`fn size_of_initialized_data(&self) -> u32`
 
-- <span id="peimageoptionalheader64-size-of-uninitialized-data"></span>`fn size_of_uninitialized_data(&self) -> u32`
+- <span id="peimageoptionalheader64-imageoptionalheader-size-of-uninitialized-data"></span>`fn size_of_uninitialized_data(&self) -> u32`
 
-- <span id="peimageoptionalheader64-address-of-entry-point"></span>`fn address_of_entry_point(&self) -> u32`
+- <span id="peimageoptionalheader64-imageoptionalheader-address-of-entry-point"></span>`fn address_of_entry_point(&self) -> u32`
 
-- <span id="peimageoptionalheader64-base-of-code"></span>`fn base_of_code(&self) -> u32`
+- <span id="peimageoptionalheader64-imageoptionalheader-base-of-code"></span>`fn base_of_code(&self) -> u32`
 
-- <span id="peimageoptionalheader64-base-of-data"></span>`fn base_of_data(&self) -> Option<u32>`
+- <span id="peimageoptionalheader64-imageoptionalheader-base-of-data"></span>`fn base_of_data(&self) -> Option<u32>`
 
-- <span id="peimageoptionalheader64-image-base"></span>`fn image_base(&self) -> u64`
+- <span id="peimageoptionalheader64-imageoptionalheader-image-base"></span>`fn image_base(&self) -> u64`
 
-- <span id="peimageoptionalheader64-section-alignment"></span>`fn section_alignment(&self) -> u32`
+- <span id="peimageoptionalheader64-imageoptionalheader-section-alignment"></span>`fn section_alignment(&self) -> u32`
 
-- <span id="peimageoptionalheader64-file-alignment"></span>`fn file_alignment(&self) -> u32`
+- <span id="peimageoptionalheader64-imageoptionalheader-file-alignment"></span>`fn file_alignment(&self) -> u32`
 
-- <span id="peimageoptionalheader64-major-operating-system-version"></span>`fn major_operating_system_version(&self) -> u16`
+- <span id="peimageoptionalheader64-imageoptionalheader-major-operating-system-version"></span>`fn major_operating_system_version(&self) -> u16`
 
-- <span id="peimageoptionalheader64-minor-operating-system-version"></span>`fn minor_operating_system_version(&self) -> u16`
+- <span id="peimageoptionalheader64-imageoptionalheader-minor-operating-system-version"></span>`fn minor_operating_system_version(&self) -> u16`
 
-- <span id="peimageoptionalheader64-major-image-version"></span>`fn major_image_version(&self) -> u16`
+- <span id="peimageoptionalheader64-imageoptionalheader-major-image-version"></span>`fn major_image_version(&self) -> u16`
 
-- <span id="peimageoptionalheader64-minor-image-version"></span>`fn minor_image_version(&self) -> u16`
+- <span id="peimageoptionalheader64-imageoptionalheader-minor-image-version"></span>`fn minor_image_version(&self) -> u16`
 
-- <span id="peimageoptionalheader64-major-subsystem-version"></span>`fn major_subsystem_version(&self) -> u16`
+- <span id="peimageoptionalheader64-imageoptionalheader-major-subsystem-version"></span>`fn major_subsystem_version(&self) -> u16`
 
-- <span id="peimageoptionalheader64-minor-subsystem-version"></span>`fn minor_subsystem_version(&self) -> u16`
+- <span id="peimageoptionalheader64-imageoptionalheader-minor-subsystem-version"></span>`fn minor_subsystem_version(&self) -> u16`
 
-- <span id="peimageoptionalheader64-win32-version-value"></span>`fn win32_version_value(&self) -> u32`
+- <span id="peimageoptionalheader64-imageoptionalheader-win32-version-value"></span>`fn win32_version_value(&self) -> u32`
 
-- <span id="peimageoptionalheader64-size-of-image"></span>`fn size_of_image(&self) -> u32`
+- <span id="peimageoptionalheader64-imageoptionalheader-size-of-image"></span>`fn size_of_image(&self) -> u32`
 
-- <span id="peimageoptionalheader64-size-of-headers"></span>`fn size_of_headers(&self) -> u32`
+- <span id="peimageoptionalheader64-imageoptionalheader-size-of-headers"></span>`fn size_of_headers(&self) -> u32`
 
-- <span id="peimageoptionalheader64-check-sum"></span>`fn check_sum(&self) -> u32`
+- <span id="peimageoptionalheader64-imageoptionalheader-check-sum"></span>`fn check_sum(&self) -> u32`
 
-- <span id="peimageoptionalheader64-subsystem"></span>`fn subsystem(&self) -> u16`
+- <span id="peimageoptionalheader64-imageoptionalheader-subsystem"></span>`fn subsystem(&self) -> u16`
 
-- <span id="peimageoptionalheader64-dll-characteristics"></span>`fn dll_characteristics(&self) -> u16`
+- <span id="peimageoptionalheader64-imageoptionalheader-dll-characteristics"></span>`fn dll_characteristics(&self) -> u16`
 
-- <span id="peimageoptionalheader64-size-of-stack-reserve"></span>`fn size_of_stack_reserve(&self) -> u64`
+- <span id="peimageoptionalheader64-imageoptionalheader-size-of-stack-reserve"></span>`fn size_of_stack_reserve(&self) -> u64`
 
-- <span id="peimageoptionalheader64-size-of-stack-commit"></span>`fn size_of_stack_commit(&self) -> u64`
+- <span id="peimageoptionalheader64-imageoptionalheader-size-of-stack-commit"></span>`fn size_of_stack_commit(&self) -> u64`
 
-- <span id="peimageoptionalheader64-size-of-heap-reserve"></span>`fn size_of_heap_reserve(&self) -> u64`
+- <span id="peimageoptionalheader64-imageoptionalheader-size-of-heap-reserve"></span>`fn size_of_heap_reserve(&self) -> u64`
 
-- <span id="peimageoptionalheader64-size-of-heap-commit"></span>`fn size_of_heap_commit(&self) -> u64`
+- <span id="peimageoptionalheader64-imageoptionalheader-size-of-heap-commit"></span>`fn size_of_heap_commit(&self) -> u64`
 
-- <span id="peimageoptionalheader64-loader-flags"></span>`fn loader_flags(&self) -> u32`
+- <span id="peimageoptionalheader64-imageoptionalheader-loader-flags"></span>`fn loader_flags(&self) -> u32`
 
-- <span id="peimageoptionalheader64-number-of-rva-and-sizes"></span>`fn number_of_rva_and_sizes(&self) -> u32`
+- <span id="peimageoptionalheader64-imageoptionalheader-number-of-rva-and-sizes"></span>`fn number_of_rva_and_sizes(&self) -> u32`
+
+##### `impl<U> Into for ImageOptionalHeader64`
+
+- <span id="imageoptionalheader64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageOptionalHeader64`
+
+##### `impl ToOwned for ImageOptionalHeader64`
+
+- <span id="imageoptionalheader64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageoptionalheader64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageoptionalheader64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageOptionalHeader64`
+
+- <span id="imageoptionalheader64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageoptionalheader64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageOptionalHeader64`
+
+- <span id="imageoptionalheader64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageoptionalheader64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageNtHeaders64`
 
@@ -2566,15 +3094,37 @@ struct ImageNtHeaders64 {
 
 #### Trait Implementations
 
+##### `impl Any for ImageNtHeaders64`
+
+- <span id="imagentheaders64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageNtHeaders64`
+
+- <span id="imagentheaders64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageNtHeaders64`
+
+- <span id="imagentheaders64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageNtHeaders64`
 
 - <span id="imagentheaders64-clone"></span>`fn clone(&self) -> ImageNtHeaders64` — [`ImageNtHeaders64`](#imagentheaders64)
+
+##### `impl CloneToUninit for ImageNtHeaders64`
+
+- <span id="imagentheaders64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageNtHeaders64`
 
 ##### `impl Debug for ImageNtHeaders64`
 
-- <span id="imagentheaders64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagentheaders64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageNtHeaders64`
+
+- <span id="imagentheaders64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl ImageNtHeaders for pe::ImageNtHeaders64`
 
@@ -2582,17 +3132,49 @@ struct ImageNtHeaders64 {
 
 - <span id="peimagentheaders64-imagentheaders-type-imagethunkdata"></span>`type ImageThunkData = ImageThunkData64`
 
-- <span id="peimagentheaders64-is-type-64"></span>`fn is_type_64(&self) -> bool`
+- <span id="peimagentheaders64-imagentheaders-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
-- <span id="peimagentheaders64-is-valid-optional-magic"></span>`fn is_valid_optional_magic(&self) -> bool`
+- <span id="peimagentheaders64-imagentheaders-is-valid-optional-magic"></span>`fn is_valid_optional_magic(&self) -> bool`
 
-- <span id="peimagentheaders64-signature"></span>`fn signature(&self) -> u32`
+- <span id="peimagentheaders64-imagentheaders-signature"></span>`fn signature(&self) -> u32`
 
-- <span id="peimagentheaders64-file-header"></span>`fn file_header(&self) -> &pe::ImageFileHeader` — [`ImageFileHeader`](#imagefileheader)
+- <span id="peimagentheaders64-imagentheaders-file-header"></span>`fn file_header(&self) -> &pe::ImageFileHeader` — [`ImageFileHeader`](#imagefileheader)
 
-- <span id="peimagentheaders64-optional-header"></span>`fn optional_header(&self) -> &<Self as >::ImageOptionalHeader` — [`ImageNtHeaders`](../read/pe/index.md#imagentheaders)
+- <span id="peimagentheaders64-imagentheaders-optional-header"></span>`fn optional_header(&self) -> &<Self as >::ImageOptionalHeader` — [`ImageNtHeaders`](../read/pe/index.md#imagentheaders)
+
+##### `impl<U> Into for ImageNtHeaders64`
+
+- <span id="imagentheaders64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageNtHeaders64`
+
+##### `impl ToOwned for ImageNtHeaders64`
+
+- <span id="imagentheaders64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagentheaders64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagentheaders64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageNtHeaders64`
+
+- <span id="imagentheaders64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagentheaders64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageNtHeaders64`
+
+- <span id="imagentheaders64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagentheaders64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageNtHeaders32`
 
@@ -2608,15 +3190,37 @@ struct ImageNtHeaders32 {
 
 #### Trait Implementations
 
+##### `impl Any for ImageNtHeaders32`
+
+- <span id="imagentheaders32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageNtHeaders32`
+
+- <span id="imagentheaders32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageNtHeaders32`
+
+- <span id="imagentheaders32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageNtHeaders32`
 
 - <span id="imagentheaders32-clone"></span>`fn clone(&self) -> ImageNtHeaders32` — [`ImageNtHeaders32`](#imagentheaders32)
+
+##### `impl CloneToUninit for ImageNtHeaders32`
+
+- <span id="imagentheaders32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageNtHeaders32`
 
 ##### `impl Debug for ImageNtHeaders32`
 
-- <span id="imagentheaders32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagentheaders32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageNtHeaders32`
+
+- <span id="imagentheaders32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl ImageNtHeaders for pe::ImageNtHeaders32`
 
@@ -2624,17 +3228,49 @@ struct ImageNtHeaders32 {
 
 - <span id="peimagentheaders32-imagentheaders-type-imagethunkdata"></span>`type ImageThunkData = ImageThunkData32`
 
-- <span id="peimagentheaders32-is-type-64"></span>`fn is_type_64(&self) -> bool`
+- <span id="peimagentheaders32-imagentheaders-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
-- <span id="peimagentheaders32-is-valid-optional-magic"></span>`fn is_valid_optional_magic(&self) -> bool`
+- <span id="peimagentheaders32-imagentheaders-is-valid-optional-magic"></span>`fn is_valid_optional_magic(&self) -> bool`
 
-- <span id="peimagentheaders32-signature"></span>`fn signature(&self) -> u32`
+- <span id="peimagentheaders32-imagentheaders-signature"></span>`fn signature(&self) -> u32`
 
-- <span id="peimagentheaders32-file-header"></span>`fn file_header(&self) -> &pe::ImageFileHeader` — [`ImageFileHeader`](#imagefileheader)
+- <span id="peimagentheaders32-imagentheaders-file-header"></span>`fn file_header(&self) -> &pe::ImageFileHeader` — [`ImageFileHeader`](#imagefileheader)
 
-- <span id="peimagentheaders32-optional-header"></span>`fn optional_header(&self) -> &<Self as >::ImageOptionalHeader` — [`ImageNtHeaders`](../read/pe/index.md#imagentheaders)
+- <span id="peimagentheaders32-imagentheaders-optional-header"></span>`fn optional_header(&self) -> &<Self as >::ImageOptionalHeader` — [`ImageNtHeaders`](../read/pe/index.md#imagentheaders)
+
+##### `impl<U> Into for ImageNtHeaders32`
+
+- <span id="imagentheaders32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageNtHeaders32`
+
+##### `impl ToOwned for ImageNtHeaders32`
+
+- <span id="imagentheaders32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagentheaders32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagentheaders32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageNtHeaders32`
+
+- <span id="imagentheaders32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagentheaders32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageNtHeaders32`
+
+- <span id="imagentheaders32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagentheaders32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageRomHeaders`
 
@@ -2649,17 +3285,71 @@ struct ImageRomHeaders {
 
 #### Trait Implementations
 
+##### `impl Any for ImageRomHeaders`
+
+- <span id="imageromheaders-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageRomHeaders`
+
+- <span id="imageromheaders-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageRomHeaders`
+
+- <span id="imageromheaders-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageRomHeaders`
 
 - <span id="imageromheaders-clone"></span>`fn clone(&self) -> ImageRomHeaders` — [`ImageRomHeaders`](#imageromheaders)
+
+##### `impl CloneToUninit for ImageRomHeaders`
+
+- <span id="imageromheaders-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageRomHeaders`
 
 ##### `impl Debug for ImageRomHeaders`
 
-- <span id="imageromheaders-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageromheaders-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageRomHeaders`
+
+- <span id="imageromheaders-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageRomHeaders`
+
+- <span id="imageromheaders-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageRomHeaders`
+
+##### `impl ToOwned for ImageRomHeaders`
+
+- <span id="imageromheaders-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageromheaders-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageromheaders-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageRomHeaders`
+
+- <span id="imageromheaders-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageromheaders-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageRomHeaders`
+
+- <span id="imageromheaders-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageromheaders-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Guid`
 
@@ -2681,25 +3371,79 @@ struct Guid([u8; 16]);
 
 #### Trait Implementations
 
+##### `impl Any for Guid`
+
+- <span id="guid-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Guid`
+
+- <span id="guid-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Guid`
+
+- <span id="guid-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Guid`
 
 - <span id="guid-clone"></span>`fn clone(&self) -> Guid` — [`Guid`](#guid)
+
+##### `impl CloneToUninit for Guid`
+
+- <span id="guid-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Guid`
 
 ##### `impl Debug for Guid`
 
-- <span id="guid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="guid-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Guid`
 
+##### `impl<T> From for Guid`
+
+- <span id="guid-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Guid`
+
+- <span id="guid-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Guid`
 
-- <span id="guid-eq"></span>`fn eq(&self, other: &Guid) -> bool` — [`Guid`](#guid)
+- <span id="guid-partialeq-eq"></span>`fn eq(&self, other: &Guid) -> bool` — [`Guid`](#guid)
 
 ##### `impl Pod for Guid`
 
 ##### `impl StructuralPartialEq for Guid`
+
+##### `impl ToOwned for Guid`
+
+- <span id="guid-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="guid-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="guid-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Guid`
+
+- <span id="guid-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="guid-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Guid`
+
+- <span id="guid-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="guid-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ClsId`
 
@@ -2721,25 +3465,79 @@ struct ClsId([u8; 16]);
 
 #### Trait Implementations
 
+##### `impl Any for Guid`
+
+- <span id="guid-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Guid`
+
+- <span id="guid-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Guid`
+
+- <span id="guid-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Guid`
 
 - <span id="guid-clone"></span>`fn clone(&self) -> Guid` — [`Guid`](#guid)
+
+##### `impl CloneToUninit for Guid`
+
+- <span id="guid-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Guid`
 
 ##### `impl Debug for Guid`
 
-- <span id="guid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="guid-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Guid`
 
+##### `impl<T> From for Guid`
+
+- <span id="guid-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Guid`
+
+- <span id="guid-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Guid`
 
-- <span id="guid-eq"></span>`fn eq(&self, other: &Guid) -> bool` — [`Guid`](#guid)
+- <span id="guid-partialeq-eq"></span>`fn eq(&self, other: &Guid) -> bool` — [`Guid`](#guid)
 
 ##### `impl Pod for Guid`
 
 ##### `impl StructuralPartialEq for Guid`
+
+##### `impl ToOwned for Guid`
+
+- <span id="guid-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="guid-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="guid-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Guid`
+
+- <span id="guid-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="guid-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Guid`
+
+- <span id="guid-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="guid-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AnonObjectHeader`
 
@@ -2783,17 +3581,71 @@ Non-COFF Object file header
 
 #### Trait Implementations
 
+##### `impl Any for AnonObjectHeader`
+
+- <span id="anonobjectheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AnonObjectHeader`
+
+- <span id="anonobjectheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AnonObjectHeader`
+
+- <span id="anonobjectheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for AnonObjectHeader`
 
 - <span id="anonobjectheader-clone"></span>`fn clone(&self) -> AnonObjectHeader` — [`AnonObjectHeader`](#anonobjectheader)
+
+##### `impl CloneToUninit for AnonObjectHeader`
+
+- <span id="anonobjectheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for AnonObjectHeader`
 
 ##### `impl Debug for AnonObjectHeader`
 
-- <span id="anonobjectheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="anonobjectheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AnonObjectHeader`
+
+- <span id="anonobjectheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AnonObjectHeader`
+
+- <span id="anonobjectheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for AnonObjectHeader`
+
+##### `impl ToOwned for AnonObjectHeader`
+
+- <span id="anonobjectheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="anonobjectheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="anonobjectheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AnonObjectHeader`
+
+- <span id="anonobjectheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="anonobjectheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AnonObjectHeader`
+
+- <span id="anonobjectheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="anonobjectheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AnonObjectHeaderV2`
 
@@ -2850,17 +3702,71 @@ struct AnonObjectHeaderV2 {
 
 #### Trait Implementations
 
+##### `impl Any for AnonObjectHeaderV2`
+
+- <span id="anonobjectheaderv2-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AnonObjectHeaderV2`
+
+- <span id="anonobjectheaderv2-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AnonObjectHeaderV2`
+
+- <span id="anonobjectheaderv2-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for AnonObjectHeaderV2`
 
 - <span id="anonobjectheaderv2-clone"></span>`fn clone(&self) -> AnonObjectHeaderV2` — [`AnonObjectHeaderV2`](#anonobjectheaderv2)
+
+##### `impl CloneToUninit for AnonObjectHeaderV2`
+
+- <span id="anonobjectheaderv2-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for AnonObjectHeaderV2`
 
 ##### `impl Debug for AnonObjectHeaderV2`
 
-- <span id="anonobjectheaderv2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="anonobjectheaderv2-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AnonObjectHeaderV2`
+
+- <span id="anonobjectheaderv2-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AnonObjectHeaderV2`
+
+- <span id="anonobjectheaderv2-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for AnonObjectHeaderV2`
+
+##### `impl ToOwned for AnonObjectHeaderV2`
+
+- <span id="anonobjectheaderv2-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="anonobjectheaderv2-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="anonobjectheaderv2-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AnonObjectHeaderV2`
+
+- <span id="anonobjectheaderv2-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="anonobjectheaderv2-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AnonObjectHeaderV2`
+
+- <span id="anonobjectheaderv2-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="anonobjectheaderv2-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AnonObjectHeaderBigobj`
 
@@ -2928,9 +3834,25 @@ struct AnonObjectHeaderBigobj {
 
 #### Trait Implementations
 
+##### `impl Any for AnonObjectHeaderBigobj`
+
+- <span id="anonobjectheaderbigobj-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AnonObjectHeaderBigobj`
+
+- <span id="anonobjectheaderbigobj-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AnonObjectHeaderBigobj`
+
+- <span id="anonobjectheaderbigobj-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for AnonObjectHeaderBigobj`
 
 - <span id="anonobjectheaderbigobj-clone"></span>`fn clone(&self) -> AnonObjectHeaderBigobj` — [`AnonObjectHeaderBigobj`](#anonobjectheaderbigobj)
+
+##### `impl CloneToUninit for AnonObjectHeaderBigobj`
+
+- <span id="anonobjectheaderbigobj-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl CoffHeader for pe::AnonObjectHeaderBigobj`
 
@@ -2938,27 +3860,65 @@ struct AnonObjectHeaderBigobj {
 
 - <span id="peanonobjectheaderbigobj-coffheader-type-imagesymbolbytes"></span>`type ImageSymbolBytes = ImageSymbolExBytes`
 
-- <span id="peanonobjectheaderbigobj-is-type-bigobj"></span>`fn is_type_bigobj() -> bool`
+- <span id="peanonobjectheaderbigobj-coffheader-is-type-bigobj"></span>`fn is_type_bigobj() -> bool`
 
-- <span id="peanonobjectheaderbigobj-machine"></span>`fn machine(&self) -> u16`
+- <span id="peanonobjectheaderbigobj-coffheader-machine"></span>`fn machine(&self) -> u16`
 
-- <span id="peanonobjectheaderbigobj-number-of-sections"></span>`fn number_of_sections(&self) -> u32`
+- <span id="peanonobjectheaderbigobj-coffheader-number-of-sections"></span>`fn number_of_sections(&self) -> u32`
 
-- <span id="peanonobjectheaderbigobj-pointer-to-symbol-table"></span>`fn pointer_to_symbol_table(&self) -> u32`
+- <span id="peanonobjectheaderbigobj-coffheader-pointer-to-symbol-table"></span>`fn pointer_to_symbol_table(&self) -> u32`
 
-- <span id="peanonobjectheaderbigobj-number-of-symbols"></span>`fn number_of_symbols(&self) -> u32`
+- <span id="peanonobjectheaderbigobj-coffheader-number-of-symbols"></span>`fn number_of_symbols(&self) -> u32`
 
-- <span id="peanonobjectheaderbigobj-characteristics"></span>`fn characteristics(&self) -> u16`
+- <span id="peanonobjectheaderbigobj-coffheader-characteristics"></span>`fn characteristics(&self) -> u16`
 
-- <span id="peanonobjectheaderbigobj-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<&'data Self>` — [`Result`](../index.md#result)
+- <span id="peanonobjectheaderbigobj-coffheader-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<&'data Self>` — [`Result`](../index.md#result)
 
 ##### `impl Copy for AnonObjectHeaderBigobj`
 
 ##### `impl Debug for AnonObjectHeaderBigobj`
 
-- <span id="anonobjectheaderbigobj-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="anonobjectheaderbigobj-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AnonObjectHeaderBigobj`
+
+- <span id="anonobjectheaderbigobj-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AnonObjectHeaderBigobj`
+
+- <span id="anonobjectheaderbigobj-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for AnonObjectHeaderBigobj`
+
+##### `impl ToOwned for AnonObjectHeaderBigobj`
+
+- <span id="anonobjectheaderbigobj-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="anonobjectheaderbigobj-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="anonobjectheaderbigobj-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AnonObjectHeaderBigobj`
+
+- <span id="anonobjectheaderbigobj-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="anonobjectheaderbigobj-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AnonObjectHeaderBigobj`
+
+- <span id="anonobjectheaderbigobj-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="anonobjectheaderbigobj-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageSectionHeader`
 
@@ -2985,21 +3945,75 @@ struct ImageSectionHeader {
 
 #### Trait Implementations
 
+##### `impl Any for ImageSectionHeader`
+
+- <span id="imagesectionheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageSectionHeader`
+
+- <span id="imagesectionheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageSectionHeader`
+
+- <span id="imagesectionheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageSectionHeader`
 
 - <span id="imagesectionheader-clone"></span>`fn clone(&self) -> ImageSectionHeader` — [`ImageSectionHeader`](#imagesectionheader)
+
+##### `impl CloneToUninit for ImageSectionHeader`
+
+- <span id="imagesectionheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageSectionHeader`
 
 ##### `impl Debug for ImageSectionHeader`
 
-- <span id="imagesectionheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagesectionheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ImageSectionHeader`
 
 - <span id="imagesectionheader-default"></span>`fn default() -> ImageSectionHeader` — [`ImageSectionHeader`](#imagesectionheader)
 
+##### `impl<T> From for ImageSectionHeader`
+
+- <span id="imagesectionheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageSectionHeader`
+
+- <span id="imagesectionheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Pod for ImageSectionHeader`
+
+##### `impl ToOwned for ImageSectionHeader`
+
+- <span id="imagesectionheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagesectionheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagesectionheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageSectionHeader`
+
+- <span id="imagesectionheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagesectionheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageSectionHeader`
+
+- <span id="imagesectionheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagesectionheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageSymbol`
 
@@ -3024,31 +4038,85 @@ struct ImageSymbol {
 
 #### Trait Implementations
 
+##### `impl Any for ImageSymbol`
+
+- <span id="imagesymbol-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageSymbol`
+
+- <span id="imagesymbol-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageSymbol`
+
+- <span id="imagesymbol-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageSymbol`
 
 - <span id="imagesymbol-clone"></span>`fn clone(&self) -> ImageSymbol` — [`ImageSymbol`](#imagesymbol)
+
+##### `impl CloneToUninit for ImageSymbol`
+
+- <span id="imagesymbol-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageSymbol`
 
 ##### `impl Debug for ImageSymbol`
 
-- <span id="imagesymbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagesymbol-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageSymbol`
+
+- <span id="imagesymbol-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl ImageSymbol for pe::ImageSymbol`
 
-- <span id="peimagesymbol-raw-name"></span>`fn raw_name(&self) -> &[u8; 8]`
+- <span id="peimagesymbol-imagesymbol-raw-name"></span>`fn raw_name(&self) -> &[u8; 8]`
 
-- <span id="peimagesymbol-value"></span>`fn value(&self) -> u32`
+- <span id="peimagesymbol-imagesymbol-value"></span>`fn value(&self) -> u32`
 
-- <span id="peimagesymbol-section-number"></span>`fn section_number(&self) -> i32`
+- <span id="peimagesymbol-imagesymbol-section-number"></span>`fn section_number(&self) -> i32`
 
-- <span id="peimagesymbol-typ"></span>`fn typ(&self) -> u16`
+- <span id="peimagesymbol-imagesymbol-typ"></span>`fn typ(&self) -> u16`
 
-- <span id="peimagesymbol-storage-class"></span>`fn storage_class(&self) -> u8`
+- <span id="peimagesymbol-imagesymbol-storage-class"></span>`fn storage_class(&self) -> u8`
 
-- <span id="peimagesymbol-number-of-aux-symbols"></span>`fn number_of_aux_symbols(&self) -> u8`
+- <span id="peimagesymbol-imagesymbol-number-of-aux-symbols"></span>`fn number_of_aux_symbols(&self) -> u8`
+
+##### `impl<U> Into for ImageSymbol`
+
+- <span id="imagesymbol-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageSymbol`
+
+##### `impl ToOwned for ImageSymbol`
+
+- <span id="imagesymbol-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagesymbol-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagesymbol-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageSymbol`
+
+- <span id="imagesymbol-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagesymbol-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageSymbol`
+
+- <span id="imagesymbol-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagesymbol-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageSymbolBytes`
 
@@ -3060,17 +4128,71 @@ struct ImageSymbolBytes([u8; 18]);
 
 #### Trait Implementations
 
+##### `impl Any for ImageSymbolBytes`
+
+- <span id="imagesymbolbytes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageSymbolBytes`
+
+- <span id="imagesymbolbytes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageSymbolBytes`
+
+- <span id="imagesymbolbytes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageSymbolBytes`
 
 - <span id="imagesymbolbytes-clone"></span>`fn clone(&self) -> ImageSymbolBytes` — [`ImageSymbolBytes`](#imagesymbolbytes)
+
+##### `impl CloneToUninit for ImageSymbolBytes`
+
+- <span id="imagesymbolbytes-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageSymbolBytes`
 
 ##### `impl Debug for ImageSymbolBytes`
 
-- <span id="imagesymbolbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagesymbolbytes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageSymbolBytes`
+
+- <span id="imagesymbolbytes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageSymbolBytes`
+
+- <span id="imagesymbolbytes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageSymbolBytes`
+
+##### `impl ToOwned for ImageSymbolBytes`
+
+- <span id="imagesymbolbytes-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagesymbolbytes-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagesymbolbytes-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageSymbolBytes`
+
+- <span id="imagesymbolbytes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagesymbolbytes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageSymbolBytes`
+
+- <span id="imagesymbolbytes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagesymbolbytes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageSymbolEx`
 
@@ -3095,31 +4217,85 @@ struct ImageSymbolEx {
 
 #### Trait Implementations
 
+##### `impl Any for ImageSymbolEx`
+
+- <span id="imagesymbolex-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageSymbolEx`
+
+- <span id="imagesymbolex-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageSymbolEx`
+
+- <span id="imagesymbolex-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageSymbolEx`
 
 - <span id="imagesymbolex-clone"></span>`fn clone(&self) -> ImageSymbolEx` — [`ImageSymbolEx`](#imagesymbolex)
+
+##### `impl CloneToUninit for ImageSymbolEx`
+
+- <span id="imagesymbolex-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageSymbolEx`
 
 ##### `impl Debug for ImageSymbolEx`
 
-- <span id="imagesymbolex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagesymbolex-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageSymbolEx`
+
+- <span id="imagesymbolex-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl ImageSymbol for pe::ImageSymbolEx`
 
-- <span id="peimagesymbolex-raw-name"></span>`fn raw_name(&self) -> &[u8; 8]`
+- <span id="peimagesymbolex-imagesymbol-raw-name"></span>`fn raw_name(&self) -> &[u8; 8]`
 
-- <span id="peimagesymbolex-value"></span>`fn value(&self) -> u32`
+- <span id="peimagesymbolex-imagesymbol-value"></span>`fn value(&self) -> u32`
 
-- <span id="peimagesymbolex-section-number"></span>`fn section_number(&self) -> i32`
+- <span id="peimagesymbolex-imagesymbol-section-number"></span>`fn section_number(&self) -> i32`
 
-- <span id="peimagesymbolex-typ"></span>`fn typ(&self) -> u16`
+- <span id="peimagesymbolex-imagesymbol-typ"></span>`fn typ(&self) -> u16`
 
-- <span id="peimagesymbolex-storage-class"></span>`fn storage_class(&self) -> u8`
+- <span id="peimagesymbolex-imagesymbol-storage-class"></span>`fn storage_class(&self) -> u8`
 
-- <span id="peimagesymbolex-number-of-aux-symbols"></span>`fn number_of_aux_symbols(&self) -> u8`
+- <span id="peimagesymbolex-imagesymbol-number-of-aux-symbols"></span>`fn number_of_aux_symbols(&self) -> u8`
+
+##### `impl<U> Into for ImageSymbolEx`
+
+- <span id="imagesymbolex-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageSymbolEx`
+
+##### `impl ToOwned for ImageSymbolEx`
+
+- <span id="imagesymbolex-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagesymbolex-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagesymbolex-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageSymbolEx`
+
+- <span id="imagesymbolex-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagesymbolex-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageSymbolEx`
+
+- <span id="imagesymbolex-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagesymbolex-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageSymbolExBytes`
 
@@ -3131,17 +4307,71 @@ struct ImageSymbolExBytes([u8; 20]);
 
 #### Trait Implementations
 
+##### `impl Any for ImageSymbolExBytes`
+
+- <span id="imagesymbolexbytes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageSymbolExBytes`
+
+- <span id="imagesymbolexbytes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageSymbolExBytes`
+
+- <span id="imagesymbolexbytes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageSymbolExBytes`
 
 - <span id="imagesymbolexbytes-clone"></span>`fn clone(&self) -> ImageSymbolExBytes` — [`ImageSymbolExBytes`](#imagesymbolexbytes)
+
+##### `impl CloneToUninit for ImageSymbolExBytes`
+
+- <span id="imagesymbolexbytes-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageSymbolExBytes`
 
 ##### `impl Debug for ImageSymbolExBytes`
 
-- <span id="imagesymbolexbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagesymbolexbytes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageSymbolExBytes`
+
+- <span id="imagesymbolexbytes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageSymbolExBytes`
+
+- <span id="imagesymbolexbytes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageSymbolExBytes`
+
+##### `impl ToOwned for ImageSymbolExBytes`
+
+- <span id="imagesymbolexbytes-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagesymbolexbytes-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagesymbolexbytes-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageSymbolExBytes`
+
+- <span id="imagesymbolexbytes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagesymbolexbytes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageSymbolExBytes`
+
+- <span id="imagesymbolexbytes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagesymbolexbytes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageAuxSymbolTokenDef`
 
@@ -3172,17 +4402,71 @@ struct ImageAuxSymbolTokenDef {
 
 #### Trait Implementations
 
+##### `impl Any for ImageAuxSymbolTokenDef`
+
+- <span id="imageauxsymboltokendef-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageAuxSymbolTokenDef`
+
+- <span id="imageauxsymboltokendef-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageAuxSymbolTokenDef`
+
+- <span id="imageauxsymboltokendef-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageAuxSymbolTokenDef`
 
 - <span id="imageauxsymboltokendef-clone"></span>`fn clone(&self) -> ImageAuxSymbolTokenDef` — [`ImageAuxSymbolTokenDef`](#imageauxsymboltokendef)
+
+##### `impl CloneToUninit for ImageAuxSymbolTokenDef`
+
+- <span id="imageauxsymboltokendef-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageAuxSymbolTokenDef`
 
 ##### `impl Debug for ImageAuxSymbolTokenDef`
 
-- <span id="imageauxsymboltokendef-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageauxsymboltokendef-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageAuxSymbolTokenDef`
+
+- <span id="imageauxsymboltokendef-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageAuxSymbolTokenDef`
+
+- <span id="imageauxsymboltokendef-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageAuxSymbolTokenDef`
+
+##### `impl ToOwned for ImageAuxSymbolTokenDef`
+
+- <span id="imageauxsymboltokendef-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageauxsymboltokendef-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageauxsymboltokendef-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageAuxSymbolTokenDef`
+
+- <span id="imageauxsymboltokendef-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageauxsymboltokendef-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageAuxSymbolTokenDef`
+
+- <span id="imageauxsymboltokendef-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageauxsymboltokendef-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageAuxSymbolFunction`
 
@@ -3202,17 +4486,71 @@ Auxiliary symbol format 1: function definitions.
 
 #### Trait Implementations
 
+##### `impl Any for ImageAuxSymbolFunction`
+
+- <span id="imageauxsymbolfunction-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageAuxSymbolFunction`
+
+- <span id="imageauxsymbolfunction-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageAuxSymbolFunction`
+
+- <span id="imageauxsymbolfunction-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageAuxSymbolFunction`
 
 - <span id="imageauxsymbolfunction-clone"></span>`fn clone(&self) -> ImageAuxSymbolFunction` — [`ImageAuxSymbolFunction`](#imageauxsymbolfunction)
+
+##### `impl CloneToUninit for ImageAuxSymbolFunction`
+
+- <span id="imageauxsymbolfunction-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageAuxSymbolFunction`
 
 ##### `impl Debug for ImageAuxSymbolFunction`
 
-- <span id="imageauxsymbolfunction-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageauxsymbolfunction-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageAuxSymbolFunction`
+
+- <span id="imageauxsymbolfunction-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageAuxSymbolFunction`
+
+- <span id="imageauxsymbolfunction-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageAuxSymbolFunction`
+
+##### `impl ToOwned for ImageAuxSymbolFunction`
+
+- <span id="imageauxsymbolfunction-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageauxsymbolfunction-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageauxsymbolfunction-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageAuxSymbolFunction`
+
+- <span id="imageauxsymbolfunction-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageauxsymbolfunction-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageAuxSymbolFunction`
+
+- <span id="imageauxsymbolfunction-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageauxsymbolfunction-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageAuxSymbolFunctionBeginEnd`
 
@@ -3238,17 +4576,71 @@ Auxiliary symbol format 2: .bf and .ef symbols.
 
 #### Trait Implementations
 
+##### `impl Any for ImageAuxSymbolFunctionBeginEnd`
+
+- <span id="imageauxsymbolfunctionbeginend-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageAuxSymbolFunctionBeginEnd`
+
+- <span id="imageauxsymbolfunctionbeginend-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageAuxSymbolFunctionBeginEnd`
+
+- <span id="imageauxsymbolfunctionbeginend-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageAuxSymbolFunctionBeginEnd`
 
 - <span id="imageauxsymbolfunctionbeginend-clone"></span>`fn clone(&self) -> ImageAuxSymbolFunctionBeginEnd` — [`ImageAuxSymbolFunctionBeginEnd`](#imageauxsymbolfunctionbeginend)
+
+##### `impl CloneToUninit for ImageAuxSymbolFunctionBeginEnd`
+
+- <span id="imageauxsymbolfunctionbeginend-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageAuxSymbolFunctionBeginEnd`
 
 ##### `impl Debug for ImageAuxSymbolFunctionBeginEnd`
 
-- <span id="imageauxsymbolfunctionbeginend-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageauxsymbolfunctionbeginend-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageAuxSymbolFunctionBeginEnd`
+
+- <span id="imageauxsymbolfunctionbeginend-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageAuxSymbolFunctionBeginEnd`
+
+- <span id="imageauxsymbolfunctionbeginend-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageAuxSymbolFunctionBeginEnd`
+
+##### `impl ToOwned for ImageAuxSymbolFunctionBeginEnd`
+
+- <span id="imageauxsymbolfunctionbeginend-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageauxsymbolfunctionbeginend-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageauxsymbolfunctionbeginend-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageAuxSymbolFunctionBeginEnd`
+
+- <span id="imageauxsymbolfunctionbeginend-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageauxsymbolfunctionbeginend-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageAuxSymbolFunctionBeginEnd`
+
+- <span id="imageauxsymbolfunctionbeginend-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageauxsymbolfunctionbeginend-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageAuxSymbolWeak`
 
@@ -3275,19 +4667,75 @@ Used for both `ImageSymbol` and `ImageSymbolEx` (both with padding).
 
 - <span id="peimageauxsymbolweak-default-symbol"></span>`fn default_symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../index.md#symbolindex)
 
+  Get the symbol index of the default definition.
+
 #### Trait Implementations
+
+##### `impl Any for ImageAuxSymbolWeak`
+
+- <span id="imageauxsymbolweak-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageAuxSymbolWeak`
+
+- <span id="imageauxsymbolweak-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageAuxSymbolWeak`
+
+- <span id="imageauxsymbolweak-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ImageAuxSymbolWeak`
 
 - <span id="imageauxsymbolweak-clone"></span>`fn clone(&self) -> ImageAuxSymbolWeak` — [`ImageAuxSymbolWeak`](#imageauxsymbolweak)
 
+##### `impl CloneToUninit for ImageAuxSymbolWeak`
+
+- <span id="imageauxsymbolweak-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for ImageAuxSymbolWeak`
 
 ##### `impl Debug for ImageAuxSymbolWeak`
 
-- <span id="imageauxsymbolweak-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageauxsymbolweak-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageAuxSymbolWeak`
+
+- <span id="imageauxsymbolweak-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageAuxSymbolWeak`
+
+- <span id="imageauxsymbolweak-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageAuxSymbolWeak`
+
+##### `impl ToOwned for ImageAuxSymbolWeak`
+
+- <span id="imageauxsymbolweak-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageauxsymbolweak-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageauxsymbolweak-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageAuxSymbolWeak`
+
+- <span id="imageauxsymbolweak-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageauxsymbolweak-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageAuxSymbolWeak`
+
+- <span id="imageauxsymbolweak-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageauxsymbolweak-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageAuxSymbolSection`
 
@@ -3342,17 +4790,71 @@ Used for both `ImageSymbol` and `ImageSymbolEx` (with padding).
 
 #### Trait Implementations
 
+##### `impl Any for ImageAuxSymbolSection`
+
+- <span id="imageauxsymbolsection-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageAuxSymbolSection`
+
+- <span id="imageauxsymbolsection-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageAuxSymbolSection`
+
+- <span id="imageauxsymbolsection-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageAuxSymbolSection`
 
 - <span id="imageauxsymbolsection-clone"></span>`fn clone(&self) -> ImageAuxSymbolSection` — [`ImageAuxSymbolSection`](#imageauxsymbolsection)
+
+##### `impl CloneToUninit for ImageAuxSymbolSection`
+
+- <span id="imageauxsymbolsection-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageAuxSymbolSection`
 
 ##### `impl Debug for ImageAuxSymbolSection`
 
-- <span id="imageauxsymbolsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageauxsymbolsection-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageAuxSymbolSection`
+
+- <span id="imageauxsymbolsection-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageAuxSymbolSection`
+
+- <span id="imageauxsymbolsection-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageAuxSymbolSection`
+
+##### `impl ToOwned for ImageAuxSymbolSection`
+
+- <span id="imageauxsymbolsection-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageauxsymbolsection-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageauxsymbolsection-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageAuxSymbolSection`
+
+- <span id="imageauxsymbolsection-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageauxsymbolsection-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageAuxSymbolSection`
+
+- <span id="imageauxsymbolsection-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageauxsymbolsection-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageAuxSymbolCrc`
 
@@ -3366,17 +4868,71 @@ struct ImageAuxSymbolCrc {
 
 #### Trait Implementations
 
+##### `impl Any for ImageAuxSymbolCrc`
+
+- <span id="imageauxsymbolcrc-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageAuxSymbolCrc`
+
+- <span id="imageauxsymbolcrc-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageAuxSymbolCrc`
+
+- <span id="imageauxsymbolcrc-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageAuxSymbolCrc`
 
 - <span id="imageauxsymbolcrc-clone"></span>`fn clone(&self) -> ImageAuxSymbolCrc` — [`ImageAuxSymbolCrc`](#imageauxsymbolcrc)
+
+##### `impl CloneToUninit for ImageAuxSymbolCrc`
+
+- <span id="imageauxsymbolcrc-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageAuxSymbolCrc`
 
 ##### `impl Debug for ImageAuxSymbolCrc`
 
-- <span id="imageauxsymbolcrc-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageauxsymbolcrc-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageAuxSymbolCrc`
+
+- <span id="imageauxsymbolcrc-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageAuxSymbolCrc`
+
+- <span id="imageauxsymbolcrc-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageAuxSymbolCrc`
+
+##### `impl ToOwned for ImageAuxSymbolCrc`
+
+- <span id="imageauxsymbolcrc-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageauxsymbolcrc-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageauxsymbolcrc-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageAuxSymbolCrc`
+
+- <span id="imageauxsymbolcrc-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageauxsymbolcrc-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageAuxSymbolCrc`
+
+- <span id="imageauxsymbolcrc-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageauxsymbolcrc-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageRelocation`
 
@@ -3400,19 +4956,75 @@ struct ImageRelocation {
 
 - <span id="peimagerelocation-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../index.md#symbolindex)
 
+  Get the index of the symbol referenced by this relocation.
+
 #### Trait Implementations
+
+##### `impl Any for ImageRelocation`
+
+- <span id="imagerelocation-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageRelocation`
+
+- <span id="imagerelocation-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageRelocation`
+
+- <span id="imagerelocation-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ImageRelocation`
 
 - <span id="imagerelocation-clone"></span>`fn clone(&self) -> ImageRelocation` — [`ImageRelocation`](#imagerelocation)
 
+##### `impl CloneToUninit for ImageRelocation`
+
+- <span id="imagerelocation-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for ImageRelocation`
 
 ##### `impl Debug for ImageRelocation`
 
-- <span id="imagerelocation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagerelocation-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageRelocation`
+
+- <span id="imagerelocation-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageRelocation`
+
+- <span id="imagerelocation-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageRelocation`
+
+##### `impl ToOwned for ImageRelocation`
+
+- <span id="imagerelocation-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagerelocation-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagerelocation-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageRelocation`
+
+- <span id="imagerelocation-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagerelocation-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageRelocation`
+
+- <span id="imagerelocation-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagerelocation-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageLinenumber`
 
@@ -3438,17 +5050,71 @@ struct ImageLinenumber {
 
 #### Trait Implementations
 
+##### `impl Any for ImageLinenumber`
+
+- <span id="imagelinenumber-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageLinenumber`
+
+- <span id="imagelinenumber-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageLinenumber`
+
+- <span id="imagelinenumber-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageLinenumber`
 
 - <span id="imagelinenumber-clone"></span>`fn clone(&self) -> ImageLinenumber` — [`ImageLinenumber`](#imagelinenumber)
+
+##### `impl CloneToUninit for ImageLinenumber`
+
+- <span id="imagelinenumber-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageLinenumber`
 
 ##### `impl Debug for ImageLinenumber`
 
-- <span id="imagelinenumber-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagelinenumber-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageLinenumber`
+
+- <span id="imagelinenumber-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageLinenumber`
+
+- <span id="imagelinenumber-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageLinenumber`
+
+##### `impl ToOwned for ImageLinenumber`
+
+- <span id="imagelinenumber-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagelinenumber-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagelinenumber-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageLinenumber`
+
+- <span id="imagelinenumber-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagelinenumber-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageLinenumber`
+
+- <span id="imagelinenumber-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagelinenumber-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageBaseRelocation`
 
@@ -3463,17 +5129,71 @@ struct ImageBaseRelocation {
 
 #### Trait Implementations
 
+##### `impl Any for ImageBaseRelocation`
+
+- <span id="imagebaserelocation-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageBaseRelocation`
+
+- <span id="imagebaserelocation-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageBaseRelocation`
+
+- <span id="imagebaserelocation-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageBaseRelocation`
 
 - <span id="imagebaserelocation-clone"></span>`fn clone(&self) -> ImageBaseRelocation` — [`ImageBaseRelocation`](#imagebaserelocation)
+
+##### `impl CloneToUninit for ImageBaseRelocation`
+
+- <span id="imagebaserelocation-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageBaseRelocation`
 
 ##### `impl Debug for ImageBaseRelocation`
 
-- <span id="imagebaserelocation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagebaserelocation-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageBaseRelocation`
+
+- <span id="imagebaserelocation-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageBaseRelocation`
+
+- <span id="imagebaserelocation-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageBaseRelocation`
+
+##### `impl ToOwned for ImageBaseRelocation`
+
+- <span id="imagebaserelocation-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagebaserelocation-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagebaserelocation-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageBaseRelocation`
+
+- <span id="imagebaserelocation-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagebaserelocation-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageBaseRelocation`
+
+- <span id="imagebaserelocation-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagebaserelocation-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageArchiveMemberHeader`
 
@@ -3523,17 +5243,71 @@ struct ImageArchiveMemberHeader {
 
 #### Trait Implementations
 
+##### `impl Any for ImageArchiveMemberHeader`
+
+- <span id="imagearchivememberheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageArchiveMemberHeader`
+
+- <span id="imagearchivememberheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageArchiveMemberHeader`
+
+- <span id="imagearchivememberheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageArchiveMemberHeader`
 
 - <span id="imagearchivememberheader-clone"></span>`fn clone(&self) -> ImageArchiveMemberHeader` — [`ImageArchiveMemberHeader`](#imagearchivememberheader)
+
+##### `impl CloneToUninit for ImageArchiveMemberHeader`
+
+- <span id="imagearchivememberheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageArchiveMemberHeader`
 
 ##### `impl Debug for ImageArchiveMemberHeader`
 
-- <span id="imagearchivememberheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagearchivememberheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageArchiveMemberHeader`
+
+- <span id="imagearchivememberheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageArchiveMemberHeader`
+
+- <span id="imagearchivememberheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageArchiveMemberHeader`
+
+##### `impl ToOwned for ImageArchiveMemberHeader`
+
+- <span id="imagearchivememberheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagearchivememberheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagearchivememberheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageArchiveMemberHeader`
+
+- <span id="imagearchivememberheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagearchivememberheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageArchiveMemberHeader`
+
+- <span id="imagearchivememberheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagearchivememberheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageExportDirectory`
 
@@ -3571,17 +5345,71 @@ struct ImageExportDirectory {
 
 #### Trait Implementations
 
+##### `impl Any for ImageExportDirectory`
+
+- <span id="imageexportdirectory-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageExportDirectory`
+
+- <span id="imageexportdirectory-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageExportDirectory`
+
+- <span id="imageexportdirectory-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageExportDirectory`
 
 - <span id="imageexportdirectory-clone"></span>`fn clone(&self) -> ImageExportDirectory` — [`ImageExportDirectory`](#imageexportdirectory)
+
+##### `impl CloneToUninit for ImageExportDirectory`
+
+- <span id="imageexportdirectory-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageExportDirectory`
 
 ##### `impl Debug for ImageExportDirectory`
 
-- <span id="imageexportdirectory-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageexportdirectory-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageExportDirectory`
+
+- <span id="imageexportdirectory-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageExportDirectory`
+
+- <span id="imageexportdirectory-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageExportDirectory`
+
+##### `impl ToOwned for ImageExportDirectory`
+
+- <span id="imageexportdirectory-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageexportdirectory-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageexportdirectory-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageExportDirectory`
+
+- <span id="imageexportdirectory-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageexportdirectory-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageExportDirectory`
+
+- <span id="imageexportdirectory-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageexportdirectory-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageImportByName`
 
@@ -3595,17 +5423,71 @@ struct ImageImportByName {
 
 #### Trait Implementations
 
+##### `impl Any for ImageImportByName`
+
+- <span id="imageimportbyname-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageImportByName`
+
+- <span id="imageimportbyname-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageImportByName`
+
+- <span id="imageimportbyname-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageImportByName`
 
 - <span id="imageimportbyname-clone"></span>`fn clone(&self) -> ImageImportByName` — [`ImageImportByName`](#imageimportbyname)
+
+##### `impl CloneToUninit for ImageImportByName`
+
+- <span id="imageimportbyname-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageImportByName`
 
 ##### `impl Debug for ImageImportByName`
 
-- <span id="imageimportbyname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageimportbyname-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageImportByName`
+
+- <span id="imageimportbyname-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageImportByName`
+
+- <span id="imageimportbyname-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageImportByName`
+
+##### `impl ToOwned for ImageImportByName`
+
+- <span id="imageimportbyname-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageimportbyname-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageimportbyname-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageImportByName`
+
+- <span id="imageimportbyname-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageimportbyname-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageImportByName`
+
+- <span id="imageimportbyname-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageimportbyname-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageThunkData64`
 
@@ -3617,27 +5499,81 @@ struct ImageThunkData64(crate::endian::U64<crate::endian::LittleEndian>);
 
 #### Trait Implementations
 
+##### `impl Any for ImageThunkData64`
+
+- <span id="imagethunkdata64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageThunkData64`
+
+- <span id="imagethunkdata64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageThunkData64`
+
+- <span id="imagethunkdata64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageThunkData64`
 
 - <span id="imagethunkdata64-clone"></span>`fn clone(&self) -> ImageThunkData64` — [`ImageThunkData64`](#imagethunkdata64)
+
+##### `impl CloneToUninit for ImageThunkData64`
+
+- <span id="imagethunkdata64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageThunkData64`
 
 ##### `impl Debug for ImageThunkData64`
 
-- <span id="imagethunkdata64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagethunkdata64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageThunkData64`
+
+- <span id="imagethunkdata64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl ImageThunkData for pe::ImageThunkData64`
 
-- <span id="peimagethunkdata64-raw"></span>`fn raw(self) -> u64`
+- <span id="peimagethunkdata64-imagethunkdata-raw"></span>`fn raw(self) -> u64`
 
-- <span id="peimagethunkdata64-is-ordinal"></span>`fn is_ordinal(self) -> bool`
+- <span id="peimagethunkdata64-imagethunkdata-is-ordinal"></span>`fn is_ordinal(self) -> bool`
 
-- <span id="peimagethunkdata64-ordinal"></span>`fn ordinal(self) -> u16`
+- <span id="peimagethunkdata64-imagethunkdata-ordinal"></span>`fn ordinal(self) -> u16`
 
-- <span id="peimagethunkdata64-address"></span>`fn address(self) -> u32`
+- <span id="peimagethunkdata64-imagethunkdata-address"></span>`fn address(self) -> u32`
+
+##### `impl<U> Into for ImageThunkData64`
+
+- <span id="imagethunkdata64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageThunkData64`
+
+##### `impl ToOwned for ImageThunkData64`
+
+- <span id="imagethunkdata64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagethunkdata64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagethunkdata64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageThunkData64`
+
+- <span id="imagethunkdata64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagethunkdata64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageThunkData64`
+
+- <span id="imagethunkdata64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagethunkdata64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageThunkData32`
 
@@ -3649,27 +5585,81 @@ struct ImageThunkData32(crate::endian::U32<crate::endian::LittleEndian>);
 
 #### Trait Implementations
 
+##### `impl Any for ImageThunkData32`
+
+- <span id="imagethunkdata32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageThunkData32`
+
+- <span id="imagethunkdata32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageThunkData32`
+
+- <span id="imagethunkdata32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageThunkData32`
 
 - <span id="imagethunkdata32-clone"></span>`fn clone(&self) -> ImageThunkData32` — [`ImageThunkData32`](#imagethunkdata32)
+
+##### `impl CloneToUninit for ImageThunkData32`
+
+- <span id="imagethunkdata32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageThunkData32`
 
 ##### `impl Debug for ImageThunkData32`
 
-- <span id="imagethunkdata32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagethunkdata32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageThunkData32`
+
+- <span id="imagethunkdata32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl ImageThunkData for pe::ImageThunkData32`
 
-- <span id="peimagethunkdata32-raw"></span>`fn raw(self) -> u64`
+- <span id="peimagethunkdata32-imagethunkdata-raw"></span>`fn raw(self) -> u64`
 
-- <span id="peimagethunkdata32-is-ordinal"></span>`fn is_ordinal(self) -> bool`
+- <span id="peimagethunkdata32-imagethunkdata-is-ordinal"></span>`fn is_ordinal(self) -> bool`
 
-- <span id="peimagethunkdata32-ordinal"></span>`fn ordinal(self) -> u16`
+- <span id="peimagethunkdata32-imagethunkdata-ordinal"></span>`fn ordinal(self) -> u16`
 
-- <span id="peimagethunkdata32-address"></span>`fn address(self) -> u32`
+- <span id="peimagethunkdata32-imagethunkdata-address"></span>`fn address(self) -> u32`
+
+##### `impl<U> Into for ImageThunkData32`
+
+- <span id="imagethunkdata32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageThunkData32`
+
+##### `impl ToOwned for ImageThunkData32`
+
+- <span id="imagethunkdata32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagethunkdata32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagethunkdata32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageThunkData32`
+
+- <span id="imagethunkdata32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagethunkdata32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageThunkData32`
+
+- <span id="imagethunkdata32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagethunkdata32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageTlsDirectory64`
 
@@ -3698,17 +5688,71 @@ struct ImageTlsDirectory64 {
 
 #### Trait Implementations
 
+##### `impl Any for ImageTlsDirectory64`
+
+- <span id="imagetlsdirectory64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageTlsDirectory64`
+
+- <span id="imagetlsdirectory64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageTlsDirectory64`
+
+- <span id="imagetlsdirectory64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageTlsDirectory64`
 
 - <span id="imagetlsdirectory64-clone"></span>`fn clone(&self) -> ImageTlsDirectory64` — [`ImageTlsDirectory64`](#imagetlsdirectory64)
+
+##### `impl CloneToUninit for ImageTlsDirectory64`
+
+- <span id="imagetlsdirectory64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageTlsDirectory64`
 
 ##### `impl Debug for ImageTlsDirectory64`
 
-- <span id="imagetlsdirectory64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagetlsdirectory64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageTlsDirectory64`
+
+- <span id="imagetlsdirectory64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageTlsDirectory64`
+
+- <span id="imagetlsdirectory64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageTlsDirectory64`
+
+##### `impl ToOwned for ImageTlsDirectory64`
+
+- <span id="imagetlsdirectory64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagetlsdirectory64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagetlsdirectory64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageTlsDirectory64`
+
+- <span id="imagetlsdirectory64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagetlsdirectory64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageTlsDirectory64`
+
+- <span id="imagetlsdirectory64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagetlsdirectory64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageTlsDirectory32`
 
@@ -3737,17 +5781,71 @@ struct ImageTlsDirectory32 {
 
 #### Trait Implementations
 
+##### `impl Any for ImageTlsDirectory32`
+
+- <span id="imagetlsdirectory32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageTlsDirectory32`
+
+- <span id="imagetlsdirectory32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageTlsDirectory32`
+
+- <span id="imagetlsdirectory32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageTlsDirectory32`
 
 - <span id="imagetlsdirectory32-clone"></span>`fn clone(&self) -> ImageTlsDirectory32` — [`ImageTlsDirectory32`](#imagetlsdirectory32)
+
+##### `impl CloneToUninit for ImageTlsDirectory32`
+
+- <span id="imagetlsdirectory32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageTlsDirectory32`
 
 ##### `impl Debug for ImageTlsDirectory32`
 
-- <span id="imagetlsdirectory32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagetlsdirectory32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageTlsDirectory32`
+
+- <span id="imagetlsdirectory32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageTlsDirectory32`
+
+- <span id="imagetlsdirectory32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageTlsDirectory32`
+
+##### `impl ToOwned for ImageTlsDirectory32`
+
+- <span id="imagetlsdirectory32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagetlsdirectory32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagetlsdirectory32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageTlsDirectory32`
+
+- <span id="imagetlsdirectory32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagetlsdirectory32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageTlsDirectory32`
+
+- <span id="imagetlsdirectory32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagetlsdirectory32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageImportDescriptor`
 
@@ -3789,19 +5887,77 @@ struct ImageImportDescriptor {
 
 - <span id="imageimportdescriptor-is-null"></span>`fn is_null(&self) -> bool`
 
+  Tell whether this import descriptor is the null descriptor
+
+  (used to mark the end of the iterator array in a PE)
+
 #### Trait Implementations
+
+##### `impl Any for ImageImportDescriptor`
+
+- <span id="imageimportdescriptor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageImportDescriptor`
+
+- <span id="imageimportdescriptor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageImportDescriptor`
+
+- <span id="imageimportdescriptor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ImageImportDescriptor`
 
 - <span id="imageimportdescriptor-clone"></span>`fn clone(&self) -> ImageImportDescriptor` — [`ImageImportDescriptor`](#imageimportdescriptor)
 
+##### `impl CloneToUninit for ImageImportDescriptor`
+
+- <span id="imageimportdescriptor-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for ImageImportDescriptor`
 
 ##### `impl Debug for ImageImportDescriptor`
 
-- <span id="imageimportdescriptor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageimportdescriptor-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageImportDescriptor`
+
+- <span id="imageimportdescriptor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageImportDescriptor`
+
+- <span id="imageimportdescriptor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageImportDescriptor`
+
+##### `impl ToOwned for ImageImportDescriptor`
+
+- <span id="imageimportdescriptor-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageimportdescriptor-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageimportdescriptor-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageImportDescriptor`
+
+- <span id="imageimportdescriptor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageimportdescriptor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageImportDescriptor`
+
+- <span id="imageimportdescriptor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageimportdescriptor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageBoundImportDescriptor`
 
@@ -3817,17 +5973,71 @@ struct ImageBoundImportDescriptor {
 
 #### Trait Implementations
 
+##### `impl Any for ImageBoundImportDescriptor`
+
+- <span id="imageboundimportdescriptor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageBoundImportDescriptor`
+
+- <span id="imageboundimportdescriptor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageBoundImportDescriptor`
+
+- <span id="imageboundimportdescriptor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageBoundImportDescriptor`
 
 - <span id="imageboundimportdescriptor-clone"></span>`fn clone(&self) -> ImageBoundImportDescriptor` — [`ImageBoundImportDescriptor`](#imageboundimportdescriptor)
+
+##### `impl CloneToUninit for ImageBoundImportDescriptor`
+
+- <span id="imageboundimportdescriptor-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageBoundImportDescriptor`
 
 ##### `impl Debug for ImageBoundImportDescriptor`
 
-- <span id="imageboundimportdescriptor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageboundimportdescriptor-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageBoundImportDescriptor`
+
+- <span id="imageboundimportdescriptor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageBoundImportDescriptor`
+
+- <span id="imageboundimportdescriptor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageBoundImportDescriptor`
+
+##### `impl ToOwned for ImageBoundImportDescriptor`
+
+- <span id="imageboundimportdescriptor-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageboundimportdescriptor-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageboundimportdescriptor-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageBoundImportDescriptor`
+
+- <span id="imageboundimportdescriptor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageboundimportdescriptor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageBoundImportDescriptor`
+
+- <span id="imageboundimportdescriptor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageboundimportdescriptor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageBoundForwarderRef`
 
@@ -3843,17 +6053,71 @@ struct ImageBoundForwarderRef {
 
 #### Trait Implementations
 
+##### `impl Any for ImageBoundForwarderRef`
+
+- <span id="imageboundforwarderref-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageBoundForwarderRef`
+
+- <span id="imageboundforwarderref-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageBoundForwarderRef`
+
+- <span id="imageboundforwarderref-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageBoundForwarderRef`
 
 - <span id="imageboundforwarderref-clone"></span>`fn clone(&self) -> ImageBoundForwarderRef` — [`ImageBoundForwarderRef`](#imageboundforwarderref)
+
+##### `impl CloneToUninit for ImageBoundForwarderRef`
+
+- <span id="imageboundforwarderref-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageBoundForwarderRef`
 
 ##### `impl Debug for ImageBoundForwarderRef`
 
-- <span id="imageboundforwarderref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageboundforwarderref-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageBoundForwarderRef`
+
+- <span id="imageboundforwarderref-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageBoundForwarderRef`
+
+- <span id="imageboundforwarderref-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageBoundForwarderRef`
+
+##### `impl ToOwned for ImageBoundForwarderRef`
+
+- <span id="imageboundforwarderref-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageboundforwarderref-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageboundforwarderref-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageBoundForwarderRef`
+
+- <span id="imageboundforwarderref-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageboundforwarderref-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageBoundForwarderRef`
+
+- <span id="imageboundforwarderref-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageboundforwarderref-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageDelayloadDescriptor`
 
@@ -3906,19 +6170,77 @@ struct ImageDelayloadDescriptor {
 
 - <span id="imagedelayloaddescriptor-is-null"></span>`fn is_null(&self) -> bool`
 
+  Tell whether this delay-load import descriptor is the null descriptor
+
+  (used to mark the end of the iterator array in a PE)
+
 #### Trait Implementations
+
+##### `impl Any for ImageDelayloadDescriptor`
+
+- <span id="imagedelayloaddescriptor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageDelayloadDescriptor`
+
+- <span id="imagedelayloaddescriptor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageDelayloadDescriptor`
+
+- <span id="imagedelayloaddescriptor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ImageDelayloadDescriptor`
 
 - <span id="imagedelayloaddescriptor-clone"></span>`fn clone(&self) -> ImageDelayloadDescriptor` — [`ImageDelayloadDescriptor`](#imagedelayloaddescriptor)
 
+##### `impl CloneToUninit for ImageDelayloadDescriptor`
+
+- <span id="imagedelayloaddescriptor-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for ImageDelayloadDescriptor`
 
 ##### `impl Debug for ImageDelayloadDescriptor`
 
-- <span id="imagedelayloaddescriptor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagedelayloaddescriptor-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageDelayloadDescriptor`
+
+- <span id="imagedelayloaddescriptor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageDelayloadDescriptor`
+
+- <span id="imagedelayloaddescriptor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageDelayloadDescriptor`
+
+##### `impl ToOwned for ImageDelayloadDescriptor`
+
+- <span id="imagedelayloaddescriptor-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagedelayloaddescriptor-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagedelayloaddescriptor-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageDelayloadDescriptor`
+
+- <span id="imagedelayloaddescriptor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagedelayloaddescriptor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageDelayloadDescriptor`
+
+- <span id="imagedelayloaddescriptor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagedelayloaddescriptor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageResourceDirectory`
 
@@ -3937,17 +6259,71 @@ struct ImageResourceDirectory {
 
 #### Trait Implementations
 
+##### `impl Any for ImageResourceDirectory`
+
+- <span id="imageresourcedirectory-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageResourceDirectory`
+
+- <span id="imageresourcedirectory-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageResourceDirectory`
+
+- <span id="imageresourcedirectory-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageResourceDirectory`
 
 - <span id="imageresourcedirectory-clone"></span>`fn clone(&self) -> ImageResourceDirectory` — [`ImageResourceDirectory`](#imageresourcedirectory)
+
+##### `impl CloneToUninit for ImageResourceDirectory`
+
+- <span id="imageresourcedirectory-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageResourceDirectory`
 
 ##### `impl Debug for ImageResourceDirectory`
 
-- <span id="imageresourcedirectory-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageresourcedirectory-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageResourceDirectory`
+
+- <span id="imageresourcedirectory-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageResourceDirectory`
+
+- <span id="imageresourcedirectory-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageResourceDirectory`
+
+##### `impl ToOwned for ImageResourceDirectory`
+
+- <span id="imageresourcedirectory-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageresourcedirectory-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageresourcedirectory-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageResourceDirectory`
+
+- <span id="imageresourcedirectory-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageresourcedirectory-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageResourceDirectory`
+
+- <span id="imageresourcedirectory-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageresourcedirectory-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageResourceDirectoryEntry`
 
@@ -3964,31 +6340,107 @@ struct ImageResourceDirectoryEntry {
 
 - <span id="peimageresourcedirectoryentry-has-name"></span>`fn has_name(&self) -> bool`
 
+  Returns true if the entry has a name, rather than an ID.
+
 - <span id="peimageresourcedirectoryentry-name"></span>`fn name(&self) -> ResourceName` — [`ResourceName`](../read/pe/index.md#resourcename)
+
+  Returns the section offset of the name.
+
+  
+
+  Valid if `has_name()` returns true.
 
 - <span id="peimageresourcedirectoryentry-id"></span>`fn id(&self) -> u16`
 
+  Returns the ID.
+
+  
+
+  Valid if `has_string_name()` returns false.
+
 - <span id="peimageresourcedirectoryentry-name-or-id"></span>`fn name_or_id(&self) -> ResourceNameOrId` — [`ResourceNameOrId`](../read/pe/index.md#resourcenameorid)
+
+  Returns the entry name
 
 - <span id="peimageresourcedirectoryentry-is-table"></span>`fn is_table(&self) -> bool`
 
+  Returns true if the entry is a subtable.
+
 - <span id="peimageresourcedirectoryentry-data-offset"></span>`fn data_offset(&self) -> u32`
+
+  Returns the section offset of the associated table or data.
 
 - <span id="peimageresourcedirectoryentry-data"></span>`fn data<'data>(&self, section: ResourceDirectory<'data>) -> Result<ResourceDirectoryEntryData<'data>>` — [`ResourceDirectory`](../read/pe/index.md#resourcedirectory), [`Result`](../index.md#result), [`ResourceDirectoryEntryData`](../read/pe/index.md#resourcedirectoryentrydata)
 
+  Returns the data associated to this directory entry.
+
 #### Trait Implementations
+
+##### `impl Any for ImageResourceDirectoryEntry`
+
+- <span id="imageresourcedirectoryentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageResourceDirectoryEntry`
+
+- <span id="imageresourcedirectoryentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageResourceDirectoryEntry`
+
+- <span id="imageresourcedirectoryentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ImageResourceDirectoryEntry`
 
 - <span id="imageresourcedirectoryentry-clone"></span>`fn clone(&self) -> ImageResourceDirectoryEntry` — [`ImageResourceDirectoryEntry`](#imageresourcedirectoryentry)
 
+##### `impl CloneToUninit for ImageResourceDirectoryEntry`
+
+- <span id="imageresourcedirectoryentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for ImageResourceDirectoryEntry`
 
 ##### `impl Debug for ImageResourceDirectoryEntry`
 
-- <span id="imageresourcedirectoryentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageresourcedirectoryentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageResourceDirectoryEntry`
+
+- <span id="imageresourcedirectoryentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageResourceDirectoryEntry`
+
+- <span id="imageresourcedirectoryentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageResourceDirectoryEntry`
+
+##### `impl ToOwned for ImageResourceDirectoryEntry`
+
+- <span id="imageresourcedirectoryentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageresourcedirectoryentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageresourcedirectoryentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageResourceDirectoryEntry`
+
+- <span id="imageresourcedirectoryentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageresourcedirectoryentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageResourceDirectoryEntry`
+
+- <span id="imageresourcedirectoryentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageresourcedirectoryentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageResourceDirectoryString`
 
@@ -4002,17 +6454,71 @@ struct ImageResourceDirectoryString {
 
 #### Trait Implementations
 
+##### `impl Any for ImageResourceDirectoryString`
+
+- <span id="imageresourcedirectorystring-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageResourceDirectoryString`
+
+- <span id="imageresourcedirectorystring-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageResourceDirectoryString`
+
+- <span id="imageresourcedirectorystring-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageResourceDirectoryString`
 
 - <span id="imageresourcedirectorystring-clone"></span>`fn clone(&self) -> ImageResourceDirectoryString` — [`ImageResourceDirectoryString`](#imageresourcedirectorystring)
+
+##### `impl CloneToUninit for ImageResourceDirectoryString`
+
+- <span id="imageresourcedirectorystring-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageResourceDirectoryString`
 
 ##### `impl Debug for ImageResourceDirectoryString`
 
-- <span id="imageresourcedirectorystring-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageresourcedirectorystring-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageResourceDirectoryString`
+
+- <span id="imageresourcedirectorystring-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageResourceDirectoryString`
+
+- <span id="imageresourcedirectorystring-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageResourceDirectoryString`
+
+##### `impl ToOwned for ImageResourceDirectoryString`
+
+- <span id="imageresourcedirectorystring-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageresourcedirectorystring-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageresourcedirectorystring-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageResourceDirectoryString`
+
+- <span id="imageresourcedirectorystring-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageresourcedirectorystring-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageResourceDirectoryString`
+
+- <span id="imageresourcedirectorystring-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageresourcedirectorystring-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageResourceDirStringU`
 
@@ -4026,17 +6532,71 @@ struct ImageResourceDirStringU {
 
 #### Trait Implementations
 
+##### `impl Any for ImageResourceDirStringU`
+
+- <span id="imageresourcedirstringu-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageResourceDirStringU`
+
+- <span id="imageresourcedirstringu-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageResourceDirStringU`
+
+- <span id="imageresourcedirstringu-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageResourceDirStringU`
 
 - <span id="imageresourcedirstringu-clone"></span>`fn clone(&self) -> ImageResourceDirStringU` — [`ImageResourceDirStringU`](#imageresourcedirstringu)
+
+##### `impl CloneToUninit for ImageResourceDirStringU`
+
+- <span id="imageresourcedirstringu-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageResourceDirStringU`
 
 ##### `impl Debug for ImageResourceDirStringU`
 
-- <span id="imageresourcedirstringu-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageresourcedirstringu-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageResourceDirStringU`
+
+- <span id="imageresourcedirstringu-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageResourceDirStringU`
+
+- <span id="imageresourcedirstringu-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageResourceDirStringU`
+
+##### `impl ToOwned for ImageResourceDirStringU`
+
+- <span id="imageresourcedirstringu-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageresourcedirstringu-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageresourcedirstringu-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageResourceDirStringU`
+
+- <span id="imageresourcedirstringu-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageresourcedirstringu-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageResourceDirStringU`
+
+- <span id="imageresourcedirstringu-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageresourcedirstringu-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageResourceDataEntry`
 
@@ -4059,17 +6619,71 @@ struct ImageResourceDataEntry {
 
 #### Trait Implementations
 
+##### `impl Any for ImageResourceDataEntry`
+
+- <span id="imageresourcedataentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageResourceDataEntry`
+
+- <span id="imageresourcedataentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageResourceDataEntry`
+
+- <span id="imageresourcedataentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageResourceDataEntry`
 
 - <span id="imageresourcedataentry-clone"></span>`fn clone(&self) -> ImageResourceDataEntry` — [`ImageResourceDataEntry`](#imageresourcedataentry)
+
+##### `impl CloneToUninit for ImageResourceDataEntry`
+
+- <span id="imageresourcedataentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageResourceDataEntry`
 
 ##### `impl Debug for ImageResourceDataEntry`
 
-- <span id="imageresourcedataentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageresourcedataentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageResourceDataEntry`
+
+- <span id="imageresourcedataentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageResourceDataEntry`
+
+- <span id="imageresourcedataentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageResourceDataEntry`
+
+##### `impl ToOwned for ImageResourceDataEntry`
+
+- <span id="imageresourcedataentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageresourcedataentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageresourcedataentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageResourceDataEntry`
+
+- <span id="imageresourcedataentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageresourcedataentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageResourceDataEntry`
+
+- <span id="imageresourcedataentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageresourcedataentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageLoadConfigCodeIntegrity`
 
@@ -4100,17 +6714,71 @@ struct ImageLoadConfigCodeIntegrity {
 
 #### Trait Implementations
 
+##### `impl Any for ImageLoadConfigCodeIntegrity`
+
+- <span id="imageloadconfigcodeintegrity-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageLoadConfigCodeIntegrity`
+
+- <span id="imageloadconfigcodeintegrity-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageLoadConfigCodeIntegrity`
+
+- <span id="imageloadconfigcodeintegrity-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageLoadConfigCodeIntegrity`
 
 - <span id="imageloadconfigcodeintegrity-clone"></span>`fn clone(&self) -> ImageLoadConfigCodeIntegrity` — [`ImageLoadConfigCodeIntegrity`](#imageloadconfigcodeintegrity)
+
+##### `impl CloneToUninit for ImageLoadConfigCodeIntegrity`
+
+- <span id="imageloadconfigcodeintegrity-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageLoadConfigCodeIntegrity`
 
 ##### `impl Debug for ImageLoadConfigCodeIntegrity`
 
-- <span id="imageloadconfigcodeintegrity-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageloadconfigcodeintegrity-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageLoadConfigCodeIntegrity`
+
+- <span id="imageloadconfigcodeintegrity-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageLoadConfigCodeIntegrity`
+
+- <span id="imageloadconfigcodeintegrity-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageLoadConfigCodeIntegrity`
+
+##### `impl ToOwned for ImageLoadConfigCodeIntegrity`
+
+- <span id="imageloadconfigcodeintegrity-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageloadconfigcodeintegrity-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageloadconfigcodeintegrity-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageLoadConfigCodeIntegrity`
+
+- <span id="imageloadconfigcodeintegrity-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageloadconfigcodeintegrity-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageLoadConfigCodeIntegrity`
+
+- <span id="imageloadconfigcodeintegrity-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageloadconfigcodeintegrity-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageDynamicRelocationTable`
 
@@ -4125,17 +6793,71 @@ struct ImageDynamicRelocationTable {
 
 #### Trait Implementations
 
+##### `impl Any for ImageDynamicRelocationTable`
+
+- <span id="imagedynamicrelocationtable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageDynamicRelocationTable`
+
+- <span id="imagedynamicrelocationtable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageDynamicRelocationTable`
+
+- <span id="imagedynamicrelocationtable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageDynamicRelocationTable`
 
 - <span id="imagedynamicrelocationtable-clone"></span>`fn clone(&self) -> ImageDynamicRelocationTable` — [`ImageDynamicRelocationTable`](#imagedynamicrelocationtable)
+
+##### `impl CloneToUninit for ImageDynamicRelocationTable`
+
+- <span id="imagedynamicrelocationtable-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageDynamicRelocationTable`
 
 ##### `impl Debug for ImageDynamicRelocationTable`
 
-- <span id="imagedynamicrelocationtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagedynamicrelocationtable-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageDynamicRelocationTable`
+
+- <span id="imagedynamicrelocationtable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageDynamicRelocationTable`
+
+- <span id="imagedynamicrelocationtable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageDynamicRelocationTable`
+
+##### `impl ToOwned for ImageDynamicRelocationTable`
+
+- <span id="imagedynamicrelocationtable-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagedynamicrelocationtable-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagedynamicrelocationtable-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageDynamicRelocationTable`
+
+- <span id="imagedynamicrelocationtable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagedynamicrelocationtable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageDynamicRelocationTable`
+
+- <span id="imagedynamicrelocationtable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagedynamicrelocationtable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageDynamicRelocation32`
 
@@ -4150,17 +6872,71 @@ struct ImageDynamicRelocation32 {
 
 #### Trait Implementations
 
+##### `impl Any for ImageDynamicRelocation32`
+
+- <span id="imagedynamicrelocation32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageDynamicRelocation32`
+
+- <span id="imagedynamicrelocation32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageDynamicRelocation32`
+
+- <span id="imagedynamicrelocation32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageDynamicRelocation32`
 
 - <span id="imagedynamicrelocation32-clone"></span>`fn clone(&self) -> ImageDynamicRelocation32` — [`ImageDynamicRelocation32`](#imagedynamicrelocation32)
+
+##### `impl CloneToUninit for ImageDynamicRelocation32`
+
+- <span id="imagedynamicrelocation32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageDynamicRelocation32`
 
 ##### `impl Debug for ImageDynamicRelocation32`
 
-- <span id="imagedynamicrelocation32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagedynamicrelocation32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageDynamicRelocation32`
+
+- <span id="imagedynamicrelocation32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageDynamicRelocation32`
+
+- <span id="imagedynamicrelocation32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageDynamicRelocation32`
+
+##### `impl ToOwned for ImageDynamicRelocation32`
+
+- <span id="imagedynamicrelocation32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagedynamicrelocation32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagedynamicrelocation32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageDynamicRelocation32`
+
+- <span id="imagedynamicrelocation32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagedynamicrelocation32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageDynamicRelocation32`
+
+- <span id="imagedynamicrelocation32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagedynamicrelocation32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageDynamicRelocation64`
 
@@ -4175,17 +6951,71 @@ struct ImageDynamicRelocation64 {
 
 #### Trait Implementations
 
+##### `impl Any for ImageDynamicRelocation64`
+
+- <span id="imagedynamicrelocation64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageDynamicRelocation64`
+
+- <span id="imagedynamicrelocation64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageDynamicRelocation64`
+
+- <span id="imagedynamicrelocation64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageDynamicRelocation64`
 
 - <span id="imagedynamicrelocation64-clone"></span>`fn clone(&self) -> ImageDynamicRelocation64` — [`ImageDynamicRelocation64`](#imagedynamicrelocation64)
+
+##### `impl CloneToUninit for ImageDynamicRelocation64`
+
+- <span id="imagedynamicrelocation64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageDynamicRelocation64`
 
 ##### `impl Debug for ImageDynamicRelocation64`
 
-- <span id="imagedynamicrelocation64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagedynamicrelocation64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageDynamicRelocation64`
+
+- <span id="imagedynamicrelocation64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageDynamicRelocation64`
+
+- <span id="imagedynamicrelocation64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageDynamicRelocation64`
+
+##### `impl ToOwned for ImageDynamicRelocation64`
+
+- <span id="imagedynamicrelocation64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagedynamicrelocation64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagedynamicrelocation64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageDynamicRelocation64`
+
+- <span id="imagedynamicrelocation64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagedynamicrelocation64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageDynamicRelocation64`
+
+- <span id="imagedynamicrelocation64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagedynamicrelocation64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageDynamicRelocation32V2`
 
@@ -4203,17 +7033,71 @@ struct ImageDynamicRelocation32V2 {
 
 #### Trait Implementations
 
+##### `impl Any for ImageDynamicRelocation32V2`
+
+- <span id="imagedynamicrelocation32v2-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageDynamicRelocation32V2`
+
+- <span id="imagedynamicrelocation32v2-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageDynamicRelocation32V2`
+
+- <span id="imagedynamicrelocation32v2-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageDynamicRelocation32V2`
 
 - <span id="imagedynamicrelocation32v2-clone"></span>`fn clone(&self) -> ImageDynamicRelocation32V2` — [`ImageDynamicRelocation32V2`](#imagedynamicrelocation32v2)
+
+##### `impl CloneToUninit for ImageDynamicRelocation32V2`
+
+- <span id="imagedynamicrelocation32v2-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageDynamicRelocation32V2`
 
 ##### `impl Debug for ImageDynamicRelocation32V2`
 
-- <span id="imagedynamicrelocation32v2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagedynamicrelocation32v2-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageDynamicRelocation32V2`
+
+- <span id="imagedynamicrelocation32v2-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageDynamicRelocation32V2`
+
+- <span id="imagedynamicrelocation32v2-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageDynamicRelocation32V2`
+
+##### `impl ToOwned for ImageDynamicRelocation32V2`
+
+- <span id="imagedynamicrelocation32v2-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagedynamicrelocation32v2-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagedynamicrelocation32v2-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageDynamicRelocation32V2`
+
+- <span id="imagedynamicrelocation32v2-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagedynamicrelocation32v2-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageDynamicRelocation32V2`
+
+- <span id="imagedynamicrelocation32v2-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagedynamicrelocation32v2-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageDynamicRelocation64V2`
 
@@ -4231,17 +7115,71 @@ struct ImageDynamicRelocation64V2 {
 
 #### Trait Implementations
 
+##### `impl Any for ImageDynamicRelocation64V2`
+
+- <span id="imagedynamicrelocation64v2-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageDynamicRelocation64V2`
+
+- <span id="imagedynamicrelocation64v2-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageDynamicRelocation64V2`
+
+- <span id="imagedynamicrelocation64v2-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageDynamicRelocation64V2`
 
 - <span id="imagedynamicrelocation64v2-clone"></span>`fn clone(&self) -> ImageDynamicRelocation64V2` — [`ImageDynamicRelocation64V2`](#imagedynamicrelocation64v2)
+
+##### `impl CloneToUninit for ImageDynamicRelocation64V2`
+
+- <span id="imagedynamicrelocation64v2-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageDynamicRelocation64V2`
 
 ##### `impl Debug for ImageDynamicRelocation64V2`
 
-- <span id="imagedynamicrelocation64v2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagedynamicrelocation64v2-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageDynamicRelocation64V2`
+
+- <span id="imagedynamicrelocation64v2-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageDynamicRelocation64V2`
+
+- <span id="imagedynamicrelocation64v2-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageDynamicRelocation64V2`
+
+##### `impl ToOwned for ImageDynamicRelocation64V2`
+
+- <span id="imagedynamicrelocation64v2-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagedynamicrelocation64v2-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagedynamicrelocation64v2-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageDynamicRelocation64V2`
+
+- <span id="imagedynamicrelocation64v2-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagedynamicrelocation64v2-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageDynamicRelocation64V2`
+
+- <span id="imagedynamicrelocation64v2-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagedynamicrelocation64v2-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImagePrologueDynamicRelocationHeader`
 
@@ -4255,17 +7193,71 @@ struct ImagePrologueDynamicRelocationHeader {
 
 #### Trait Implementations
 
+##### `impl Any for ImagePrologueDynamicRelocationHeader`
+
+- <span id="imageprologuedynamicrelocationheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImagePrologueDynamicRelocationHeader`
+
+- <span id="imageprologuedynamicrelocationheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImagePrologueDynamicRelocationHeader`
+
+- <span id="imageprologuedynamicrelocationheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImagePrologueDynamicRelocationHeader`
 
 - <span id="imageprologuedynamicrelocationheader-clone"></span>`fn clone(&self) -> ImagePrologueDynamicRelocationHeader` — [`ImagePrologueDynamicRelocationHeader`](#imageprologuedynamicrelocationheader)
+
+##### `impl CloneToUninit for ImagePrologueDynamicRelocationHeader`
+
+- <span id="imageprologuedynamicrelocationheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImagePrologueDynamicRelocationHeader`
 
 ##### `impl Debug for ImagePrologueDynamicRelocationHeader`
 
-- <span id="imageprologuedynamicrelocationheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageprologuedynamicrelocationheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImagePrologueDynamicRelocationHeader`
+
+- <span id="imageprologuedynamicrelocationheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImagePrologueDynamicRelocationHeader`
+
+- <span id="imageprologuedynamicrelocationheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImagePrologueDynamicRelocationHeader`
+
+##### `impl ToOwned for ImagePrologueDynamicRelocationHeader`
+
+- <span id="imageprologuedynamicrelocationheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageprologuedynamicrelocationheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageprologuedynamicrelocationheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImagePrologueDynamicRelocationHeader`
+
+- <span id="imageprologuedynamicrelocationheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageprologuedynamicrelocationheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImagePrologueDynamicRelocationHeader`
+
+- <span id="imageprologuedynamicrelocationheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageprologuedynamicrelocationheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageEpilogueDynamicRelocationHeader`
 
@@ -4282,17 +7274,71 @@ struct ImageEpilogueDynamicRelocationHeader {
 
 #### Trait Implementations
 
+##### `impl Any for ImageEpilogueDynamicRelocationHeader`
+
+- <span id="imageepiloguedynamicrelocationheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageEpilogueDynamicRelocationHeader`
+
+- <span id="imageepiloguedynamicrelocationheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageEpilogueDynamicRelocationHeader`
+
+- <span id="imageepiloguedynamicrelocationheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageEpilogueDynamicRelocationHeader`
 
 - <span id="imageepiloguedynamicrelocationheader-clone"></span>`fn clone(&self) -> ImageEpilogueDynamicRelocationHeader` — [`ImageEpilogueDynamicRelocationHeader`](#imageepiloguedynamicrelocationheader)
+
+##### `impl CloneToUninit for ImageEpilogueDynamicRelocationHeader`
+
+- <span id="imageepiloguedynamicrelocationheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageEpilogueDynamicRelocationHeader`
 
 ##### `impl Debug for ImageEpilogueDynamicRelocationHeader`
 
-- <span id="imageepiloguedynamicrelocationheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageepiloguedynamicrelocationheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageEpilogueDynamicRelocationHeader`
+
+- <span id="imageepiloguedynamicrelocationheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageEpilogueDynamicRelocationHeader`
+
+- <span id="imageepiloguedynamicrelocationheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageEpilogueDynamicRelocationHeader`
+
+##### `impl ToOwned for ImageEpilogueDynamicRelocationHeader`
+
+- <span id="imageepiloguedynamicrelocationheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageepiloguedynamicrelocationheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageepiloguedynamicrelocationheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageEpilogueDynamicRelocationHeader`
+
+- <span id="imageepiloguedynamicrelocationheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageepiloguedynamicrelocationheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageEpilogueDynamicRelocationHeader`
+
+- <span id="imageepiloguedynamicrelocationheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageepiloguedynamicrelocationheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageLoadConfigDirectory32`
 
@@ -4409,17 +7455,71 @@ struct ImageLoadConfigDirectory32 {
 
 #### Trait Implementations
 
+##### `impl Any for ImageLoadConfigDirectory32`
+
+- <span id="imageloadconfigdirectory32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageLoadConfigDirectory32`
+
+- <span id="imageloadconfigdirectory32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageLoadConfigDirectory32`
+
+- <span id="imageloadconfigdirectory32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageLoadConfigDirectory32`
 
 - <span id="imageloadconfigdirectory32-clone"></span>`fn clone(&self) -> ImageLoadConfigDirectory32` — [`ImageLoadConfigDirectory32`](#imageloadconfigdirectory32)
+
+##### `impl CloneToUninit for ImageLoadConfigDirectory32`
+
+- <span id="imageloadconfigdirectory32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageLoadConfigDirectory32`
 
 ##### `impl Debug for ImageLoadConfigDirectory32`
 
-- <span id="imageloadconfigdirectory32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageloadconfigdirectory32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageLoadConfigDirectory32`
+
+- <span id="imageloadconfigdirectory32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageLoadConfigDirectory32`
+
+- <span id="imageloadconfigdirectory32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageLoadConfigDirectory32`
+
+##### `impl ToOwned for ImageLoadConfigDirectory32`
+
+- <span id="imageloadconfigdirectory32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageloadconfigdirectory32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageloadconfigdirectory32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageLoadConfigDirectory32`
+
+- <span id="imageloadconfigdirectory32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageloadconfigdirectory32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageLoadConfigDirectory32`
+
+- <span id="imageloadconfigdirectory32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageloadconfigdirectory32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageLoadConfigDirectory64`
 
@@ -4540,17 +7640,71 @@ struct ImageLoadConfigDirectory64 {
 
 #### Trait Implementations
 
+##### `impl Any for ImageLoadConfigDirectory64`
+
+- <span id="imageloadconfigdirectory64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageLoadConfigDirectory64`
+
+- <span id="imageloadconfigdirectory64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageLoadConfigDirectory64`
+
+- <span id="imageloadconfigdirectory64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageLoadConfigDirectory64`
 
 - <span id="imageloadconfigdirectory64-clone"></span>`fn clone(&self) -> ImageLoadConfigDirectory64` — [`ImageLoadConfigDirectory64`](#imageloadconfigdirectory64)
+
+##### `impl CloneToUninit for ImageLoadConfigDirectory64`
+
+- <span id="imageloadconfigdirectory64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageLoadConfigDirectory64`
 
 ##### `impl Debug for ImageLoadConfigDirectory64`
 
-- <span id="imageloadconfigdirectory64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageloadconfigdirectory64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageLoadConfigDirectory64`
+
+- <span id="imageloadconfigdirectory64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageLoadConfigDirectory64`
+
+- <span id="imageloadconfigdirectory64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageLoadConfigDirectory64`
+
+##### `impl ToOwned for ImageLoadConfigDirectory64`
+
+- <span id="imageloadconfigdirectory64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageloadconfigdirectory64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageloadconfigdirectory64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageLoadConfigDirectory64`
+
+- <span id="imageloadconfigdirectory64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageloadconfigdirectory64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageLoadConfigDirectory64`
+
+- <span id="imageloadconfigdirectory64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageloadconfigdirectory64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageHotPatchInfo`
 
@@ -4580,17 +7734,71 @@ struct ImageHotPatchInfo {
 
 #### Trait Implementations
 
+##### `impl Any for ImageHotPatchInfo`
+
+- <span id="imagehotpatchinfo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageHotPatchInfo`
+
+- <span id="imagehotpatchinfo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageHotPatchInfo`
+
+- <span id="imagehotpatchinfo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageHotPatchInfo`
 
 - <span id="imagehotpatchinfo-clone"></span>`fn clone(&self) -> ImageHotPatchInfo` — [`ImageHotPatchInfo`](#imagehotpatchinfo)
+
+##### `impl CloneToUninit for ImageHotPatchInfo`
+
+- <span id="imagehotpatchinfo-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageHotPatchInfo`
 
 ##### `impl Debug for ImageHotPatchInfo`
 
-- <span id="imagehotpatchinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagehotpatchinfo-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageHotPatchInfo`
+
+- <span id="imagehotpatchinfo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageHotPatchInfo`
+
+- <span id="imagehotpatchinfo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageHotPatchInfo`
+
+##### `impl ToOwned for ImageHotPatchInfo`
+
+- <span id="imagehotpatchinfo-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagehotpatchinfo-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagehotpatchinfo-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageHotPatchInfo`
+
+- <span id="imagehotpatchinfo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagehotpatchinfo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageHotPatchInfo`
+
+- <span id="imagehotpatchinfo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagehotpatchinfo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageHotPatchBase`
 
@@ -4617,17 +7825,71 @@ struct ImageHotPatchBase {
 
 #### Trait Implementations
 
+##### `impl Any for ImageHotPatchBase`
+
+- <span id="imagehotpatchbase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageHotPatchBase`
+
+- <span id="imagehotpatchbase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageHotPatchBase`
+
+- <span id="imagehotpatchbase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageHotPatchBase`
 
 - <span id="imagehotpatchbase-clone"></span>`fn clone(&self) -> ImageHotPatchBase` — [`ImageHotPatchBase`](#imagehotpatchbase)
+
+##### `impl CloneToUninit for ImageHotPatchBase`
+
+- <span id="imagehotpatchbase-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageHotPatchBase`
 
 ##### `impl Debug for ImageHotPatchBase`
 
-- <span id="imagehotpatchbase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagehotpatchbase-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageHotPatchBase`
+
+- <span id="imagehotpatchbase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageHotPatchBase`
+
+- <span id="imagehotpatchbase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageHotPatchBase`
+
+##### `impl ToOwned for ImageHotPatchBase`
+
+- <span id="imagehotpatchbase-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagehotpatchbase-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagehotpatchbase-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageHotPatchBase`
+
+- <span id="imagehotpatchbase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagehotpatchbase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageHotPatchBase`
+
+- <span id="imagehotpatchbase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagehotpatchbase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageHotPatchHashes`
 
@@ -4642,17 +7904,71 @@ struct ImageHotPatchHashes {
 
 #### Trait Implementations
 
+##### `impl Any for ImageHotPatchHashes`
+
+- <span id="imagehotpatchhashes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageHotPatchHashes`
+
+- <span id="imagehotpatchhashes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageHotPatchHashes`
+
+- <span id="imagehotpatchhashes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageHotPatchHashes`
 
 - <span id="imagehotpatchhashes-clone"></span>`fn clone(&self) -> ImageHotPatchHashes` — [`ImageHotPatchHashes`](#imagehotpatchhashes)
+
+##### `impl CloneToUninit for ImageHotPatchHashes`
+
+- <span id="imagehotpatchhashes-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageHotPatchHashes`
 
 ##### `impl Debug for ImageHotPatchHashes`
 
-- <span id="imagehotpatchhashes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagehotpatchhashes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageHotPatchHashes`
+
+- <span id="imagehotpatchhashes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageHotPatchHashes`
+
+- <span id="imagehotpatchhashes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageHotPatchHashes`
+
+##### `impl ToOwned for ImageHotPatchHashes`
+
+- <span id="imagehotpatchhashes-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagehotpatchhashes-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagehotpatchhashes-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageHotPatchHashes`
+
+- <span id="imagehotpatchhashes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagehotpatchhashes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageHotPatchHashes`
+
+- <span id="imagehotpatchhashes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagehotpatchhashes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageArmRuntimeFunctionEntry`
 
@@ -4667,17 +7983,71 @@ struct ImageArmRuntimeFunctionEntry {
 
 #### Trait Implementations
 
+##### `impl Any for ImageArmRuntimeFunctionEntry`
+
+- <span id="imagearmruntimefunctionentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageArmRuntimeFunctionEntry`
+
+- <span id="imagearmruntimefunctionentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageArmRuntimeFunctionEntry`
+
+- <span id="imagearmruntimefunctionentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageArmRuntimeFunctionEntry`
 
 - <span id="imagearmruntimefunctionentry-clone"></span>`fn clone(&self) -> ImageArmRuntimeFunctionEntry` — [`ImageArmRuntimeFunctionEntry`](#imagearmruntimefunctionentry)
+
+##### `impl CloneToUninit for ImageArmRuntimeFunctionEntry`
+
+- <span id="imagearmruntimefunctionentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageArmRuntimeFunctionEntry`
 
 ##### `impl Debug for ImageArmRuntimeFunctionEntry`
 
-- <span id="imagearmruntimefunctionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagearmruntimefunctionentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageArmRuntimeFunctionEntry`
+
+- <span id="imagearmruntimefunctionentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageArmRuntimeFunctionEntry`
+
+- <span id="imagearmruntimefunctionentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageArmRuntimeFunctionEntry`
+
+##### `impl ToOwned for ImageArmRuntimeFunctionEntry`
+
+- <span id="imagearmruntimefunctionentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagearmruntimefunctionentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagearmruntimefunctionentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageArmRuntimeFunctionEntry`
+
+- <span id="imagearmruntimefunctionentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagearmruntimefunctionentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageArmRuntimeFunctionEntry`
+
+- <span id="imagearmruntimefunctionentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagearmruntimefunctionentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageArm64RuntimeFunctionEntry`
 
@@ -4692,17 +8062,71 @@ struct ImageArm64RuntimeFunctionEntry {
 
 #### Trait Implementations
 
+##### `impl Any for ImageArm64RuntimeFunctionEntry`
+
+- <span id="imagearm64runtimefunctionentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageArm64RuntimeFunctionEntry`
+
+- <span id="imagearm64runtimefunctionentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageArm64RuntimeFunctionEntry`
+
+- <span id="imagearm64runtimefunctionentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageArm64RuntimeFunctionEntry`
 
 - <span id="imagearm64runtimefunctionentry-clone"></span>`fn clone(&self) -> ImageArm64RuntimeFunctionEntry` — [`ImageArm64RuntimeFunctionEntry`](#imagearm64runtimefunctionentry)
+
+##### `impl CloneToUninit for ImageArm64RuntimeFunctionEntry`
+
+- <span id="imagearm64runtimefunctionentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageArm64RuntimeFunctionEntry`
 
 ##### `impl Debug for ImageArm64RuntimeFunctionEntry`
 
-- <span id="imagearm64runtimefunctionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagearm64runtimefunctionentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageArm64RuntimeFunctionEntry`
+
+- <span id="imagearm64runtimefunctionentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageArm64RuntimeFunctionEntry`
+
+- <span id="imagearm64runtimefunctionentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageArm64RuntimeFunctionEntry`
+
+##### `impl ToOwned for ImageArm64RuntimeFunctionEntry`
+
+- <span id="imagearm64runtimefunctionentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagearm64runtimefunctionentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagearm64runtimefunctionentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageArm64RuntimeFunctionEntry`
+
+- <span id="imagearm64runtimefunctionentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagearm64runtimefunctionentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageArm64RuntimeFunctionEntry`
+
+- <span id="imagearm64runtimefunctionentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagearm64runtimefunctionentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageAlpha64RuntimeFunctionEntry`
 
@@ -4720,17 +8144,71 @@ struct ImageAlpha64RuntimeFunctionEntry {
 
 #### Trait Implementations
 
+##### `impl Any for ImageAlpha64RuntimeFunctionEntry`
+
+- <span id="imagealpha64runtimefunctionentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageAlpha64RuntimeFunctionEntry`
+
+- <span id="imagealpha64runtimefunctionentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageAlpha64RuntimeFunctionEntry`
+
+- <span id="imagealpha64runtimefunctionentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageAlpha64RuntimeFunctionEntry`
 
 - <span id="imagealpha64runtimefunctionentry-clone"></span>`fn clone(&self) -> ImageAlpha64RuntimeFunctionEntry` — [`ImageAlpha64RuntimeFunctionEntry`](#imagealpha64runtimefunctionentry)
+
+##### `impl CloneToUninit for ImageAlpha64RuntimeFunctionEntry`
+
+- <span id="imagealpha64runtimefunctionentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageAlpha64RuntimeFunctionEntry`
 
 ##### `impl Debug for ImageAlpha64RuntimeFunctionEntry`
 
-- <span id="imagealpha64runtimefunctionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagealpha64runtimefunctionentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageAlpha64RuntimeFunctionEntry`
+
+- <span id="imagealpha64runtimefunctionentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageAlpha64RuntimeFunctionEntry`
+
+- <span id="imagealpha64runtimefunctionentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageAlpha64RuntimeFunctionEntry`
+
+##### `impl ToOwned for ImageAlpha64RuntimeFunctionEntry`
+
+- <span id="imagealpha64runtimefunctionentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagealpha64runtimefunctionentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagealpha64runtimefunctionentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageAlpha64RuntimeFunctionEntry`
+
+- <span id="imagealpha64runtimefunctionentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagealpha64runtimefunctionentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageAlpha64RuntimeFunctionEntry`
+
+- <span id="imagealpha64runtimefunctionentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagealpha64runtimefunctionentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageAlphaRuntimeFunctionEntry`
 
@@ -4748,17 +8226,71 @@ struct ImageAlphaRuntimeFunctionEntry {
 
 #### Trait Implementations
 
+##### `impl Any for ImageAlphaRuntimeFunctionEntry`
+
+- <span id="imagealpharuntimefunctionentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageAlphaRuntimeFunctionEntry`
+
+- <span id="imagealpharuntimefunctionentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageAlphaRuntimeFunctionEntry`
+
+- <span id="imagealpharuntimefunctionentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageAlphaRuntimeFunctionEntry`
 
 - <span id="imagealpharuntimefunctionentry-clone"></span>`fn clone(&self) -> ImageAlphaRuntimeFunctionEntry` — [`ImageAlphaRuntimeFunctionEntry`](#imagealpharuntimefunctionentry)
+
+##### `impl CloneToUninit for ImageAlphaRuntimeFunctionEntry`
+
+- <span id="imagealpharuntimefunctionentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageAlphaRuntimeFunctionEntry`
 
 ##### `impl Debug for ImageAlphaRuntimeFunctionEntry`
 
-- <span id="imagealpharuntimefunctionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagealpharuntimefunctionentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageAlphaRuntimeFunctionEntry`
+
+- <span id="imagealpharuntimefunctionentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageAlphaRuntimeFunctionEntry`
+
+- <span id="imagealpharuntimefunctionentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageAlphaRuntimeFunctionEntry`
+
+##### `impl ToOwned for ImageAlphaRuntimeFunctionEntry`
+
+- <span id="imagealpharuntimefunctionentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagealpharuntimefunctionentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagealpharuntimefunctionentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageAlphaRuntimeFunctionEntry`
+
+- <span id="imagealpharuntimefunctionentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagealpharuntimefunctionentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageAlphaRuntimeFunctionEntry`
+
+- <span id="imagealpharuntimefunctionentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagealpharuntimefunctionentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageRuntimeFunctionEntry`
 
@@ -4774,17 +8306,71 @@ struct ImageRuntimeFunctionEntry {
 
 #### Trait Implementations
 
+##### `impl Any for ImageRuntimeFunctionEntry`
+
+- <span id="imageruntimefunctionentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageRuntimeFunctionEntry`
+
+- <span id="imageruntimefunctionentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageRuntimeFunctionEntry`
+
+- <span id="imageruntimefunctionentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageRuntimeFunctionEntry`
 
 - <span id="imageruntimefunctionentry-clone"></span>`fn clone(&self) -> ImageRuntimeFunctionEntry` — [`ImageRuntimeFunctionEntry`](#imageruntimefunctionentry)
+
+##### `impl CloneToUninit for ImageRuntimeFunctionEntry`
+
+- <span id="imageruntimefunctionentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageRuntimeFunctionEntry`
 
 ##### `impl Debug for ImageRuntimeFunctionEntry`
 
-- <span id="imageruntimefunctionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageruntimefunctionentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageRuntimeFunctionEntry`
+
+- <span id="imageruntimefunctionentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageRuntimeFunctionEntry`
+
+- <span id="imageruntimefunctionentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageRuntimeFunctionEntry`
+
+##### `impl ToOwned for ImageRuntimeFunctionEntry`
+
+- <span id="imageruntimefunctionentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageruntimefunctionentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageruntimefunctionentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageRuntimeFunctionEntry`
+
+- <span id="imageruntimefunctionentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageruntimefunctionentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageRuntimeFunctionEntry`
+
+- <span id="imageruntimefunctionentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageruntimefunctionentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageEnclaveConfig32`
 
@@ -4810,17 +8396,71 @@ struct ImageEnclaveConfig32 {
 
 #### Trait Implementations
 
+##### `impl Any for ImageEnclaveConfig32`
+
+- <span id="imageenclaveconfig32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageEnclaveConfig32`
+
+- <span id="imageenclaveconfig32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageEnclaveConfig32`
+
+- <span id="imageenclaveconfig32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageEnclaveConfig32`
 
 - <span id="imageenclaveconfig32-clone"></span>`fn clone(&self) -> ImageEnclaveConfig32` — [`ImageEnclaveConfig32`](#imageenclaveconfig32)
+
+##### `impl CloneToUninit for ImageEnclaveConfig32`
+
+- <span id="imageenclaveconfig32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageEnclaveConfig32`
 
 ##### `impl Debug for ImageEnclaveConfig32`
 
-- <span id="imageenclaveconfig32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageenclaveconfig32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageEnclaveConfig32`
+
+- <span id="imageenclaveconfig32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageEnclaveConfig32`
+
+- <span id="imageenclaveconfig32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageEnclaveConfig32`
+
+##### `impl ToOwned for ImageEnclaveConfig32`
+
+- <span id="imageenclaveconfig32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageenclaveconfig32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageenclaveconfig32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageEnclaveConfig32`
+
+- <span id="imageenclaveconfig32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageenclaveconfig32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageEnclaveConfig32`
+
+- <span id="imageenclaveconfig32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageenclaveconfig32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageEnclaveConfig64`
 
@@ -4846,17 +8486,71 @@ struct ImageEnclaveConfig64 {
 
 #### Trait Implementations
 
+##### `impl Any for ImageEnclaveConfig64`
+
+- <span id="imageenclaveconfig64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageEnclaveConfig64`
+
+- <span id="imageenclaveconfig64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageEnclaveConfig64`
+
+- <span id="imageenclaveconfig64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageEnclaveConfig64`
 
 - <span id="imageenclaveconfig64-clone"></span>`fn clone(&self) -> ImageEnclaveConfig64` — [`ImageEnclaveConfig64`](#imageenclaveconfig64)
+
+##### `impl CloneToUninit for ImageEnclaveConfig64`
+
+- <span id="imageenclaveconfig64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageEnclaveConfig64`
 
 ##### `impl Debug for ImageEnclaveConfig64`
 
-- <span id="imageenclaveconfig64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageenclaveconfig64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageEnclaveConfig64`
+
+- <span id="imageenclaveconfig64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageEnclaveConfig64`
+
+- <span id="imageenclaveconfig64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageEnclaveConfig64`
+
+##### `impl ToOwned for ImageEnclaveConfig64`
+
+- <span id="imageenclaveconfig64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageenclaveconfig64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageenclaveconfig64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageEnclaveConfig64`
+
+- <span id="imageenclaveconfig64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageenclaveconfig64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageEnclaveConfig64`
+
+- <span id="imageenclaveconfig64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageenclaveconfig64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageEnclaveImport`
 
@@ -4876,17 +8570,71 @@ struct ImageEnclaveImport {
 
 #### Trait Implementations
 
+##### `impl Any for ImageEnclaveImport`
+
+- <span id="imageenclaveimport-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageEnclaveImport`
+
+- <span id="imageenclaveimport-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageEnclaveImport`
+
+- <span id="imageenclaveimport-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageEnclaveImport`
 
 - <span id="imageenclaveimport-clone"></span>`fn clone(&self) -> ImageEnclaveImport` — [`ImageEnclaveImport`](#imageenclaveimport)
+
+##### `impl CloneToUninit for ImageEnclaveImport`
+
+- <span id="imageenclaveimport-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageEnclaveImport`
 
 ##### `impl Debug for ImageEnclaveImport`
 
-- <span id="imageenclaveimport-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageenclaveimport-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageEnclaveImport`
+
+- <span id="imageenclaveimport-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageEnclaveImport`
+
+- <span id="imageenclaveimport-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageEnclaveImport`
+
+##### `impl ToOwned for ImageEnclaveImport`
+
+- <span id="imageenclaveimport-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageenclaveimport-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageenclaveimport-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageEnclaveImport`
+
+- <span id="imageenclaveimport-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageenclaveimport-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageEnclaveImport`
+
+- <span id="imageenclaveimport-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageenclaveimport-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageDebugDirectory`
 
@@ -4907,17 +8655,71 @@ struct ImageDebugDirectory {
 
 #### Trait Implementations
 
+##### `impl Any for ImageDebugDirectory`
+
+- <span id="imagedebugdirectory-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageDebugDirectory`
+
+- <span id="imagedebugdirectory-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageDebugDirectory`
+
+- <span id="imagedebugdirectory-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageDebugDirectory`
 
 - <span id="imagedebugdirectory-clone"></span>`fn clone(&self) -> ImageDebugDirectory` — [`ImageDebugDirectory`](#imagedebugdirectory)
+
+##### `impl CloneToUninit for ImageDebugDirectory`
+
+- <span id="imagedebugdirectory-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageDebugDirectory`
 
 ##### `impl Debug for ImageDebugDirectory`
 
-- <span id="imagedebugdirectory-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagedebugdirectory-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageDebugDirectory`
+
+- <span id="imagedebugdirectory-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageDebugDirectory`
+
+- <span id="imagedebugdirectory-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageDebugDirectory`
+
+##### `impl ToOwned for ImageDebugDirectory`
+
+- <span id="imagedebugdirectory-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagedebugdirectory-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagedebugdirectory-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageDebugDirectory`
+
+- <span id="imagedebugdirectory-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagedebugdirectory-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageDebugDirectory`
+
+- <span id="imagedebugdirectory-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagedebugdirectory-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageCoffSymbolsHeader`
 
@@ -4938,17 +8740,71 @@ struct ImageCoffSymbolsHeader {
 
 #### Trait Implementations
 
+##### `impl Any for ImageCoffSymbolsHeader`
+
+- <span id="imagecoffsymbolsheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageCoffSymbolsHeader`
+
+- <span id="imagecoffsymbolsheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageCoffSymbolsHeader`
+
+- <span id="imagecoffsymbolsheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageCoffSymbolsHeader`
 
 - <span id="imagecoffsymbolsheader-clone"></span>`fn clone(&self) -> ImageCoffSymbolsHeader` — [`ImageCoffSymbolsHeader`](#imagecoffsymbolsheader)
+
+##### `impl CloneToUninit for ImageCoffSymbolsHeader`
+
+- <span id="imagecoffsymbolsheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageCoffSymbolsHeader`
 
 ##### `impl Debug for ImageCoffSymbolsHeader`
 
-- <span id="imagecoffsymbolsheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagecoffsymbolsheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageCoffSymbolsHeader`
+
+- <span id="imagecoffsymbolsheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageCoffSymbolsHeader`
+
+- <span id="imagecoffsymbolsheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageCoffSymbolsHeader`
+
+##### `impl ToOwned for ImageCoffSymbolsHeader`
+
+- <span id="imagecoffsymbolsheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagecoffsymbolsheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagecoffsymbolsheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageCoffSymbolsHeader`
+
+- <span id="imagecoffsymbolsheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagecoffsymbolsheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageCoffSymbolsHeader`
+
+- <span id="imagecoffsymbolsheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagecoffsymbolsheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageDebugMisc`
 
@@ -4979,17 +8835,71 @@ struct ImageDebugMisc {
 
 #### Trait Implementations
 
+##### `impl Any for ImageDebugMisc`
+
+- <span id="imagedebugmisc-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageDebugMisc`
+
+- <span id="imagedebugmisc-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageDebugMisc`
+
+- <span id="imagedebugmisc-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageDebugMisc`
 
 - <span id="imagedebugmisc-clone"></span>`fn clone(&self) -> ImageDebugMisc` — [`ImageDebugMisc`](#imagedebugmisc)
+
+##### `impl CloneToUninit for ImageDebugMisc`
+
+- <span id="imagedebugmisc-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageDebugMisc`
 
 ##### `impl Debug for ImageDebugMisc`
 
-- <span id="imagedebugmisc-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagedebugmisc-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageDebugMisc`
+
+- <span id="imagedebugmisc-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageDebugMisc`
+
+- <span id="imagedebugmisc-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageDebugMisc`
+
+##### `impl ToOwned for ImageDebugMisc`
+
+- <span id="imagedebugmisc-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagedebugmisc-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagedebugmisc-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageDebugMisc`
+
+- <span id="imagedebugmisc-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagedebugmisc-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageDebugMisc`
+
+- <span id="imagedebugmisc-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagedebugmisc-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageFunctionEntry`
 
@@ -5005,17 +8915,71 @@ struct ImageFunctionEntry {
 
 #### Trait Implementations
 
+##### `impl Any for ImageFunctionEntry`
+
+- <span id="imagefunctionentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageFunctionEntry`
+
+- <span id="imagefunctionentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageFunctionEntry`
+
+- <span id="imagefunctionentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageFunctionEntry`
 
 - <span id="imagefunctionentry-clone"></span>`fn clone(&self) -> ImageFunctionEntry` — [`ImageFunctionEntry`](#imagefunctionentry)
+
+##### `impl CloneToUninit for ImageFunctionEntry`
+
+- <span id="imagefunctionentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageFunctionEntry`
 
 ##### `impl Debug for ImageFunctionEntry`
 
-- <span id="imagefunctionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagefunctionentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageFunctionEntry`
+
+- <span id="imagefunctionentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageFunctionEntry`
+
+- <span id="imagefunctionentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageFunctionEntry`
+
+##### `impl ToOwned for ImageFunctionEntry`
+
+- <span id="imagefunctionentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagefunctionentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagefunctionentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageFunctionEntry`
+
+- <span id="imagefunctionentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagefunctionentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageFunctionEntry`
+
+- <span id="imagefunctionentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagefunctionentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageFunctionEntry64`
 
@@ -5031,17 +8995,71 @@ struct ImageFunctionEntry64 {
 
 #### Trait Implementations
 
+##### `impl Any for ImageFunctionEntry64`
+
+- <span id="imagefunctionentry64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageFunctionEntry64`
+
+- <span id="imagefunctionentry64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageFunctionEntry64`
+
+- <span id="imagefunctionentry64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageFunctionEntry64`
 
 - <span id="imagefunctionentry64-clone"></span>`fn clone(&self) -> ImageFunctionEntry64` — [`ImageFunctionEntry64`](#imagefunctionentry64)
+
+##### `impl CloneToUninit for ImageFunctionEntry64`
+
+- <span id="imagefunctionentry64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageFunctionEntry64`
 
 ##### `impl Debug for ImageFunctionEntry64`
 
-- <span id="imagefunctionentry64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagefunctionentry64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageFunctionEntry64`
+
+- <span id="imagefunctionentry64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageFunctionEntry64`
+
+- <span id="imagefunctionentry64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageFunctionEntry64`
+
+##### `impl ToOwned for ImageFunctionEntry64`
+
+- <span id="imagefunctionentry64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagefunctionentry64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagefunctionentry64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageFunctionEntry64`
+
+- <span id="imagefunctionentry64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagefunctionentry64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageFunctionEntry64`
+
+- <span id="imagefunctionentry64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagefunctionentry64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageSeparateDebugHeader`
 
@@ -5067,17 +9085,71 @@ struct ImageSeparateDebugHeader {
 
 #### Trait Implementations
 
+##### `impl Any for ImageSeparateDebugHeader`
+
+- <span id="imageseparatedebugheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageSeparateDebugHeader`
+
+- <span id="imageseparatedebugheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageSeparateDebugHeader`
+
+- <span id="imageseparatedebugheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageSeparateDebugHeader`
 
 - <span id="imageseparatedebugheader-clone"></span>`fn clone(&self) -> ImageSeparateDebugHeader` — [`ImageSeparateDebugHeader`](#imageseparatedebugheader)
+
+##### `impl CloneToUninit for ImageSeparateDebugHeader`
+
+- <span id="imageseparatedebugheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageSeparateDebugHeader`
 
 ##### `impl Debug for ImageSeparateDebugHeader`
 
-- <span id="imageseparatedebugheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imageseparatedebugheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageSeparateDebugHeader`
+
+- <span id="imageseparatedebugheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageSeparateDebugHeader`
+
+- <span id="imageseparatedebugheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageSeparateDebugHeader`
+
+##### `impl ToOwned for ImageSeparateDebugHeader`
+
+- <span id="imageseparatedebugheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imageseparatedebugheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imageseparatedebugheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageSeparateDebugHeader`
+
+- <span id="imageseparatedebugheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imageseparatedebugheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageSeparateDebugHeader`
+
+- <span id="imageseparatedebugheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imageseparatedebugheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `NonPagedDebugInfo`
 
@@ -5099,17 +9171,71 @@ struct NonPagedDebugInfo {
 
 #### Trait Implementations
 
+##### `impl Any for NonPagedDebugInfo`
+
+- <span id="nonpageddebuginfo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for NonPagedDebugInfo`
+
+- <span id="nonpageddebuginfo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for NonPagedDebugInfo`
+
+- <span id="nonpageddebuginfo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for NonPagedDebugInfo`
 
 - <span id="nonpageddebuginfo-clone"></span>`fn clone(&self) -> NonPagedDebugInfo` — [`NonPagedDebugInfo`](#nonpageddebuginfo)
+
+##### `impl CloneToUninit for NonPagedDebugInfo`
+
+- <span id="nonpageddebuginfo-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for NonPagedDebugInfo`
 
 ##### `impl Debug for NonPagedDebugInfo`
 
-- <span id="nonpageddebuginfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="nonpageddebuginfo-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for NonPagedDebugInfo`
+
+- <span id="nonpageddebuginfo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for NonPagedDebugInfo`
+
+- <span id="nonpageddebuginfo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for NonPagedDebugInfo`
+
+##### `impl ToOwned for NonPagedDebugInfo`
+
+- <span id="nonpageddebuginfo-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="nonpageddebuginfo-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="nonpageddebuginfo-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for NonPagedDebugInfo`
+
+- <span id="nonpageddebuginfo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="nonpageddebuginfo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for NonPagedDebugInfo`
+
+- <span id="nonpageddebuginfo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="nonpageddebuginfo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageArchitectureEntry`
 
@@ -5134,17 +9260,71 @@ struct ImageArchitectureEntry {
 
 #### Trait Implementations
 
+##### `impl Any for ImageArchitectureEntry`
+
+- <span id="imagearchitectureentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageArchitectureEntry`
+
+- <span id="imagearchitectureentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageArchitectureEntry`
+
+- <span id="imagearchitectureentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageArchitectureEntry`
 
 - <span id="imagearchitectureentry-clone"></span>`fn clone(&self) -> ImageArchitectureEntry` — [`ImageArchitectureEntry`](#imagearchitectureentry)
+
+##### `impl CloneToUninit for ImageArchitectureEntry`
+
+- <span id="imagearchitectureentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageArchitectureEntry`
 
 ##### `impl Debug for ImageArchitectureEntry`
 
-- <span id="imagearchitectureentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagearchitectureentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageArchitectureEntry`
+
+- <span id="imagearchitectureentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageArchitectureEntry`
+
+- <span id="imagearchitectureentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageArchitectureEntry`
+
+##### `impl ToOwned for ImageArchitectureEntry`
+
+- <span id="imagearchitectureentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagearchitectureentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagearchitectureentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageArchitectureEntry`
+
+- <span id="imagearchitectureentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagearchitectureentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageArchitectureEntry`
+
+- <span id="imagearchitectureentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagearchitectureentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImportObjectHeader`
 
@@ -5189,25 +9369,101 @@ struct ImportObjectHeader {
 
 - <span id="peimportobjectheader-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> Result<&'data Self>` — [`Result`](../index.md#result)
 
+  Read the short import header.
+
+  
+
+  Also checks that the signature and version are valid.
+
+  Directly following this header will be the string data.
+
 - <span id="peimportobjectheader-parse-data"></span>`fn parse_data<'data, R: ReadRef<'data>>(&self, data: R, offset: &mut u64) -> Result<ImportObjectData<'data>>` — [`Result`](../index.md#result), [`ImportObjectData`](../read/coff/index.md#importobjectdata)
+
+  Parse the data following the header.
 
 - <span id="peimportobjectheader-import-type"></span>`fn import_type(&self) -> u16`
 
+  The type of import.
+
+  
+
+  This is one of the `IMPORT_OBJECT_*` constants.
+
 - <span id="peimportobjectheader-name-type"></span>`fn name_type(&self) -> u16`
 
+  The type of import name.
+
+  
+
+  This is one of the `IMPORT_OBJECT_*` constants.
+
 #### Trait Implementations
+
+##### `impl Any for ImportObjectHeader`
+
+- <span id="importobjectheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImportObjectHeader`
+
+- <span id="importobjectheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImportObjectHeader`
+
+- <span id="importobjectheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ImportObjectHeader`
 
 - <span id="importobjectheader-clone"></span>`fn clone(&self) -> ImportObjectHeader` — [`ImportObjectHeader`](#importobjectheader)
 
+##### `impl CloneToUninit for ImportObjectHeader`
+
+- <span id="importobjectheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for ImportObjectHeader`
 
 ##### `impl Debug for ImportObjectHeader`
 
-- <span id="importobjectheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="importobjectheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImportObjectHeader`
+
+- <span id="importobjectheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImportObjectHeader`
+
+- <span id="importobjectheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImportObjectHeader`
+
+##### `impl ToOwned for ImportObjectHeader`
+
+- <span id="importobjectheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="importobjectheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="importobjectheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImportObjectHeader`
+
+- <span id="importobjectheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="importobjectheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImportObjectHeader`
+
+- <span id="importobjectheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="importobjectheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImageCor20Header`
 
@@ -5232,17 +9488,71 @@ struct ImageCor20Header {
 
 #### Trait Implementations
 
+##### `impl Any for ImageCor20Header`
+
+- <span id="imagecor20header-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImageCor20Header`
+
+- <span id="imagecor20header-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImageCor20Header`
+
+- <span id="imagecor20header-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImageCor20Header`
 
 - <span id="imagecor20header-clone"></span>`fn clone(&self) -> ImageCor20Header` — [`ImageCor20Header`](#imagecor20header)
+
+##### `impl CloneToUninit for ImageCor20Header`
+
+- <span id="imagecor20header-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImageCor20Header`
 
 ##### `impl Debug for ImageCor20Header`
 
-- <span id="imagecor20header-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="imagecor20header-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImageCor20Header`
+
+- <span id="imagecor20header-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImageCor20Header`
+
+- <span id="imagecor20header-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ImageCor20Header`
+
+##### `impl ToOwned for ImageCor20Header`
+
+- <span id="imagecor20header-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="imagecor20header-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="imagecor20header-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImageCor20Header`
+
+- <span id="imagecor20header-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="imagecor20header-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImageCor20Header`
+
+- <span id="imagecor20header-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="imagecor20header-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Constants
 

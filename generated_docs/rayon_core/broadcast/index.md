@@ -41,13 +41,59 @@ Provides context to a closure called by `broadcast`.
 
 - <span id="broadcastcontext-index"></span>`fn index(&self) -> usize`
 
+  Our index amongst the broadcast threads (ranges from `0..self.num_threads()`).
+
 - <span id="broadcastcontext-num-threads"></span>`fn num_threads(&self) -> usize`
+
+  The number of threads receiving the broadcast in the thread pool.
+
+  
+
+  # Future compatibility note
+
+  
+
+  Future versions of Rayon might vary the number of threads over time, but
+
+  this method will always return the number of threads which are actually
+
+  receiving your particular `broadcast` call.
 
 #### Trait Implementations
 
+##### `impl Any for BroadcastContext<'a>`
+
+- <span id="broadcastcontext-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BroadcastContext<'a>`
+
+- <span id="broadcastcontext-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BroadcastContext<'a>`
+
+- <span id="broadcastcontext-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for BroadcastContext<'a>`
 
-- <span id="broadcastcontext-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="broadcastcontext-debug-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BroadcastContext<'a>`
+
+- <span id="broadcastcontext-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BroadcastContext<'a>`
+
+- <span id="broadcastcontext-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for BroadcastContext<'a>`
 
@@ -55,13 +101,25 @@ Provides context to a closure called by `broadcast`.
 
 - <span id="broadcastcontext-pointable-type-init"></span>`type Init = T`
 
-- <span id="broadcastcontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="broadcastcontext-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="broadcastcontext-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="broadcastcontext-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="broadcastcontext-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="broadcastcontext-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="broadcastcontext-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="broadcastcontext-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for BroadcastContext<'a>`
+
+- <span id="broadcastcontext-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="broadcastcontext-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BroadcastContext<'a>`
+
+- <span id="broadcastcontext-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="broadcastcontext-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

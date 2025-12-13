@@ -47,19 +47,61 @@ enum Flag<'a> {
 
 #### Trait Implementations
 
+##### `impl Any for Flag<'a>`
+
+- <span id="flag-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Flag<'a>`
+
+- <span id="flag-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Flag<'a>`
+
+- <span id="flag-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Eq for Flag<'a>`
+
+##### `impl<T> From for Flag<'a>`
+
+- <span id="flag-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Flag<'a>`
+
+- <span id="flag-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Flag<'_>`
 
-- <span id="flag-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
+- <span id="flag-ord-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
 
 ##### `impl PartialEq for Flag<'_>`
 
-- <span id="flag-eq"></span>`fn eq(&self, other: &Flag<'_>) -> bool` — [`Flag`](#flag)
+- <span id="flag-partialeq-eq"></span>`fn eq(&self, other: &Flag<'_>) -> bool` — [`Flag`](#flag)
 
 ##### `impl PartialOrd for Flag<'_>`
 
-- <span id="flag-partial-cmp"></span>`fn partial_cmp(&self, other: &Flag<'_>) -> Option<Ordering>` — [`Flag`](#flag)
+- <span id="flag-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Flag<'_>) -> Option<Ordering>` — [`Flag`](#flag)
+
+##### `impl<U> TryFrom for Flag<'a>`
+
+- <span id="flag-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="flag-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Flag<'a>`
+
+- <span id="flag-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="flag-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

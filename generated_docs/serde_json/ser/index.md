@@ -90,7 +90,39 @@ A structure for serializing Rust values into JSON.
 
 - <span id="serializer-new"></span>`fn new(writer: W) -> Self`
 
+  Creates a new JSON serializer.
+
 #### Trait Implementations
+
+##### `impl Any for Serializer<W, F>`
+
+- <span id="serializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Serializer<W, F>`
+
+- <span id="serializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Serializer<W, F>`
+
+- <span id="serializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Serializer<W, F>`
+
+- <span id="serializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Serializer<W, F>`
+
+- <span id="serializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<W, F> Serializer for &'a mut Serializer<W, F>`
 
@@ -112,67 +144,81 @@ A structure for serializing Rust values into JSON.
 
 - <span id="a-mut-serializer-serializer-type-serializestructvariant"></span>`type SerializeStructVariant = Compound<'a, W, F>`
 
-- <span id="a-mut-serializer-serialize-bool"></span>`fn serialize_bool(self, value: bool) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-bool"></span>`fn serialize_bool(self, value: bool) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-i8"></span>`fn serialize_i8(self, value: i8) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-i8"></span>`fn serialize_i8(self, value: i8) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-i16"></span>`fn serialize_i16(self, value: i16) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-i16"></span>`fn serialize_i16(self, value: i16) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-i32"></span>`fn serialize_i32(self, value: i32) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-i32"></span>`fn serialize_i32(self, value: i32) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-i64"></span>`fn serialize_i64(self, value: i64) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-i64"></span>`fn serialize_i64(self, value: i64) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-i128"></span>`fn serialize_i128(self, value: i128) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-i128"></span>`fn serialize_i128(self, value: i128) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-u8"></span>`fn serialize_u8(self, value: u8) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-u8"></span>`fn serialize_u8(self, value: u8) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-u16"></span>`fn serialize_u16(self, value: u16) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-u16"></span>`fn serialize_u16(self, value: u16) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-u32"></span>`fn serialize_u32(self, value: u32) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-u32"></span>`fn serialize_u32(self, value: u32) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-u64"></span>`fn serialize_u64(self, value: u64) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-u64"></span>`fn serialize_u64(self, value: u64) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-u128"></span>`fn serialize_u128(self, value: u128) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-u128"></span>`fn serialize_u128(self, value: u128) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-f32"></span>`fn serialize_f32(self, value: f32) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-f32"></span>`fn serialize_f32(self, value: f32) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-f64"></span>`fn serialize_f64(self, value: f64) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-f64"></span>`fn serialize_f64(self, value: f64) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-char"></span>`fn serialize_char(self, value: char) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-char"></span>`fn serialize_char(self, value: char) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-str"></span>`fn serialize_str(self, value: &str) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-str"></span>`fn serialize_str(self, value: &str) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-bytes"></span>`fn serialize_bytes(self, value: &[u8]) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-bytes"></span>`fn serialize_bytes(self, value: &[u8]) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-unit"></span>`fn serialize_unit(self) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-unit"></span>`fn serialize_unit(self) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-unit-struct"></span>`fn serialize_unit_struct(self, _name: &'static str) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-unit-struct"></span>`fn serialize_unit_struct(self, _name: &'static str) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-unit-variant"></span>`fn serialize_unit_variant(self, _name: &'static str, _variant_index: u32, variant: &'static str) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-unit-variant"></span>`fn serialize_unit_variant(self, _name: &'static str, _variant_index: u32, variant: &'static str) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-newtype-struct"></span>`fn serialize_newtype_struct<T>(self, _name: &'static str, value: &T) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-newtype-struct"></span>`fn serialize_newtype_struct<T>(self, _name: &'static str, value: &T) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-newtype-variant"></span>`fn serialize_newtype_variant<T>(self, _name: &'static str, _variant_index: u32, variant: &'static str, value: &T) -> Result<()>` — [`Result`](../error/index.md#result)
+  Serialize newtypes without an object wrapper.
 
-- <span id="a-mut-serializer-serialize-none"></span>`fn serialize_none(self) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-newtype-variant"></span>`fn serialize_newtype_variant<T>(self, _name: &'static str, _variant_index: u32, variant: &'static str, value: &T) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-some"></span>`fn serialize_some<T>(self, value: &T) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-none"></span>`fn serialize_none(self) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-seq"></span>`fn serialize_seq(self, len: Option<usize>) -> Result<<Self as >::SerializeSeq>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-some"></span>`fn serialize_some<T>(self, value: &T) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-tuple"></span>`fn serialize_tuple(self, len: usize) -> Result<<Self as >::SerializeTuple>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-seq"></span>`fn serialize_seq(self, len: Option<usize>) -> Result<<Self as >::SerializeSeq>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-tuple-struct"></span>`fn serialize_tuple_struct(self, _name: &'static str, len: usize) -> Result<<Self as >::SerializeTupleStruct>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-tuple"></span>`fn serialize_tuple(self, len: usize) -> Result<<Self as >::SerializeTuple>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-tuple-variant"></span>`fn serialize_tuple_variant(self, _name: &'static str, _variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeTupleVariant>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-tuple-struct"></span>`fn serialize_tuple_struct(self, _name: &'static str, len: usize) -> Result<<Self as >::SerializeTupleStruct>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-map"></span>`fn serialize_map(self, len: Option<usize>) -> Result<<Self as >::SerializeMap>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-tuple-variant"></span>`fn serialize_tuple_variant(self, _name: &'static str, _variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeTupleVariant>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-struct"></span>`fn serialize_struct(self, name: &'static str, len: usize) -> Result<<Self as >::SerializeStruct>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-map"></span>`fn serialize_map(self, len: Option<usize>) -> Result<<Self as >::SerializeMap>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-serialize-struct-variant"></span>`fn serialize_struct_variant(self, _name: &'static str, _variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeStructVariant>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-struct"></span>`fn serialize_struct(self, name: &'static str, len: usize) -> Result<<Self as >::SerializeStruct>` — [`Result`](../error/index.md#result)
 
-- <span id="a-mut-serializer-collect-str"></span>`fn collect_str<T>(self, value: &T) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="a-mut-serializer-serializer-serialize-struct-variant"></span>`fn serialize_struct_variant(self, _name: &'static str, _variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeStructVariant>` — [`Result`](../error/index.md#result)
+
+- <span id="a-mut-serializer-serializer-collect-str"></span>`fn collect_str<T>(self, value: &T) -> Result<()>` — [`Result`](../error/index.md#result)
+
+##### `impl<U> TryFrom for Serializer<W, F>`
+
+- <span id="serializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="serializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Serializer<W, F>`
+
+- <span id="serializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="serializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MapKeySerializer<'a, W: 'a, F: 'a>`
 
@@ -186,17 +232,47 @@ struct MapKeySerializer<'a, W: 'a, F: 'a> {
 
 #### Trait Implementations
 
+##### `impl Any for MapKeySerializer<'a, W, F>`
+
+- <span id="mapkeyserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MapKeySerializer<'a, W, F>`
+
+- <span id="mapkeyserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MapKeySerializer<'a, W, F>`
+
+- <span id="mapkeyserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for MapKeySerializer<'a, W, F>`
+
+- <span id="mapkeyserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MapKeySerializer<'a, W, F>`
+
+- <span id="mapkeyserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<W, F> Serializer for MapKeySerializer<'a, W, F>`
 
 - <span id="mapkeyserializer-serializer-type-ok"></span>`type Ok = ()`
 
 - <span id="mapkeyserializer-serializer-type-error"></span>`type Error = Error`
 
-- <span id="mapkeyserializer-serialize-str"></span>`fn serialize_str(self, value: &str) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-str"></span>`fn serialize_str(self, value: &str) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-unit-variant"></span>`fn serialize_unit_variant(self, _name: &'static str, _variant_index: u32, variant: &'static str) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-unit-variant"></span>`fn serialize_unit_variant(self, _name: &'static str, _variant_index: u32, variant: &'static str) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-newtype-struct"></span>`fn serialize_newtype_struct<T>(self, _name: &'static str, value: &T) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-newtype-struct"></span>`fn serialize_newtype_struct<T>(self, _name: &'static str, value: &T) -> Result<()>` — [`Result`](../error/index.md#result)
 
 - <span id="mapkeyserializer-serializer-type-serializeseq"></span>`type SerializeSeq = Impossible<(), Error>`
 
@@ -212,61 +288,73 @@ struct MapKeySerializer<'a, W: 'a, F: 'a> {
 
 - <span id="mapkeyserializer-serializer-type-serializestructvariant"></span>`type SerializeStructVariant = Impossible<(), Error>`
 
-- <span id="mapkeyserializer-serialize-bool"></span>`fn serialize_bool(self, value: bool) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-bool"></span>`fn serialize_bool(self, value: bool) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-i8"></span>`fn serialize_i8(self, value: i8) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-i8"></span>`fn serialize_i8(self, value: i8) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-i16"></span>`fn serialize_i16(self, value: i16) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-i16"></span>`fn serialize_i16(self, value: i16) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-i32"></span>`fn serialize_i32(self, value: i32) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-i32"></span>`fn serialize_i32(self, value: i32) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-i64"></span>`fn serialize_i64(self, value: i64) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-i64"></span>`fn serialize_i64(self, value: i64) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-i128"></span>`fn serialize_i128(self, value: i128) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-i128"></span>`fn serialize_i128(self, value: i128) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-u8"></span>`fn serialize_u8(self, value: u8) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-u8"></span>`fn serialize_u8(self, value: u8) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-u16"></span>`fn serialize_u16(self, value: u16) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-u16"></span>`fn serialize_u16(self, value: u16) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-u32"></span>`fn serialize_u32(self, value: u32) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-u32"></span>`fn serialize_u32(self, value: u32) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-u64"></span>`fn serialize_u64(self, value: u64) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-u64"></span>`fn serialize_u64(self, value: u64) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-u128"></span>`fn serialize_u128(self, value: u128) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-u128"></span>`fn serialize_u128(self, value: u128) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-f32"></span>`fn serialize_f32(self, value: f32) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-f32"></span>`fn serialize_f32(self, value: f32) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-f64"></span>`fn serialize_f64(self, value: f64) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-f64"></span>`fn serialize_f64(self, value: f64) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-char"></span>`fn serialize_char(self, value: char) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-char"></span>`fn serialize_char(self, value: char) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-bytes"></span>`fn serialize_bytes(self, _value: &[u8]) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-bytes"></span>`fn serialize_bytes(self, _value: &[u8]) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-unit"></span>`fn serialize_unit(self) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-unit"></span>`fn serialize_unit(self) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-unit-struct"></span>`fn serialize_unit_struct(self, _name: &'static str) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-unit-struct"></span>`fn serialize_unit_struct(self, _name: &'static str) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-newtype-variant"></span>`fn serialize_newtype_variant<T>(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _value: &T) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-newtype-variant"></span>`fn serialize_newtype_variant<T>(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _value: &T) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-none"></span>`fn serialize_none(self) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-none"></span>`fn serialize_none(self) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-some"></span>`fn serialize_some<T>(self, value: &T) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-some"></span>`fn serialize_some<T>(self, value: &T) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-seq"></span>`fn serialize_seq(self, _len: Option<usize>) -> Result<<Self as >::SerializeSeq>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-seq"></span>`fn serialize_seq(self, _len: Option<usize>) -> Result<<Self as >::SerializeSeq>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-tuple"></span>`fn serialize_tuple(self, _len: usize) -> Result<<Self as >::SerializeTuple>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-tuple"></span>`fn serialize_tuple(self, _len: usize) -> Result<<Self as >::SerializeTuple>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-tuple-struct"></span>`fn serialize_tuple_struct(self, _name: &'static str, _len: usize) -> Result<<Self as >::SerializeTupleStruct>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-tuple-struct"></span>`fn serialize_tuple_struct(self, _name: &'static str, _len: usize) -> Result<<Self as >::SerializeTupleStruct>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-tuple-variant"></span>`fn serialize_tuple_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<<Self as >::SerializeTupleVariant>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-tuple-variant"></span>`fn serialize_tuple_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<<Self as >::SerializeTupleVariant>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-map"></span>`fn serialize_map(self, _len: Option<usize>) -> Result<<Self as >::SerializeMap>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-map"></span>`fn serialize_map(self, _len: Option<usize>) -> Result<<Self as >::SerializeMap>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-struct"></span>`fn serialize_struct(self, _name: &'static str, _len: usize) -> Result<<Self as >::SerializeStruct>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-struct"></span>`fn serialize_struct(self, _name: &'static str, _len: usize) -> Result<<Self as >::SerializeStruct>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-serialize-struct-variant"></span>`fn serialize_struct_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<<Self as >::SerializeStructVariant>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-serialize-struct-variant"></span>`fn serialize_struct_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<<Self as >::SerializeStructVariant>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-collect-str"></span>`fn collect_str<T>(self, value: &T) -> Result<()>` — [`Result`](../error/index.md#result)
+- <span id="mapkeyserializer-serializer-collect-str"></span>`fn collect_str<T>(self, value: &T) -> Result<()>` — [`Result`](../error/index.md#result)
+
+##### `impl<U> TryFrom for MapKeySerializer<'a, W, F>`
+
+- <span id="mapkeyserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="mapkeyserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MapKeySerializer<'a, W, F>`
+
+- <span id="mapkeyserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="mapkeyserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CompactFormatter`
 
@@ -280,19 +368,73 @@ This structure compacts a JSON value with no extra whitespace.
 
 #### Trait Implementations
 
+##### `impl Any for CompactFormatter`
+
+- <span id="compactformatter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CompactFormatter`
+
+- <span id="compactformatter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CompactFormatter`
+
+- <span id="compactformatter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for CompactFormatter`
 
 - <span id="compactformatter-clone"></span>`fn clone(&self) -> CompactFormatter` — [`CompactFormatter`](#compactformatter)
 
+##### `impl CloneToUninit for CompactFormatter`
+
+- <span id="compactformatter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for CompactFormatter`
 
-- <span id="compactformatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="compactformatter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for CompactFormatter`
 
 - <span id="compactformatter-default"></span>`fn default() -> CompactFormatter` — [`CompactFormatter`](#compactformatter)
 
 ##### `impl Formatter for CompactFormatter`
+
+##### `impl<T> From for CompactFormatter`
+
+- <span id="compactformatter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CompactFormatter`
+
+- <span id="compactformatter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for CompactFormatter`
+
+- <span id="compactformatter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="compactformatter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="compactformatter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CompactFormatter`
+
+- <span id="compactformatter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="compactformatter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CompactFormatter`
+
+- <span id="compactformatter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="compactformatter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PrettyFormatter<'a>`
 
@@ -312,17 +454,37 @@ This structure pretty prints a JSON value to make it human readable.
 
 - <span id="prettyformatter-new"></span>`fn new() -> Self`
 
+  Construct a pretty printer formatter that defaults to using two spaces for indentation.
+
 - <span id="prettyformatter-with-indent"></span>`fn with_indent(indent: &'a [u8]) -> Self`
 
+  Construct a pretty printer formatter that uses the `indent` string for indentation.
+
 #### Trait Implementations
+
+##### `impl Any for PrettyFormatter<'a>`
+
+- <span id="prettyformatter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PrettyFormatter<'a>`
+
+- <span id="prettyformatter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PrettyFormatter<'a>`
+
+- <span id="prettyformatter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for PrettyFormatter<'a>`
 
 - <span id="prettyformatter-clone"></span>`fn clone(&self) -> PrettyFormatter<'a>` — [`PrettyFormatter`](#prettyformatter)
 
+##### `impl CloneToUninit for PrettyFormatter<'a>`
+
+- <span id="prettyformatter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for PrettyFormatter<'a>`
 
-- <span id="prettyformatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="prettyformatter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for PrettyFormatter<'a>`
 
@@ -330,23 +492,61 @@ This structure pretty prints a JSON value to make it human readable.
 
 ##### `impl Formatter for PrettyFormatter<'a>`
 
-- <span id="prettyformatter-begin-array"></span>`fn begin_array<W>(&mut self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md#result)
+- <span id="prettyformatter-formatter-begin-array"></span>`fn begin_array<W>(&mut self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md#result)
 
-- <span id="prettyformatter-end-array"></span>`fn end_array<W>(&mut self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md#result)
+- <span id="prettyformatter-formatter-end-array"></span>`fn end_array<W>(&mut self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md#result)
 
-- <span id="prettyformatter-begin-array-value"></span>`fn begin_array_value<W>(&mut self, writer: &mut W, first: bool) -> io::Result<()>` — [`Result`](../io/index.md#result)
+- <span id="prettyformatter-formatter-begin-array-value"></span>`fn begin_array_value<W>(&mut self, writer: &mut W, first: bool) -> io::Result<()>` — [`Result`](../io/index.md#result)
 
-- <span id="prettyformatter-end-array-value"></span>`fn end_array_value<W>(&mut self, _writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md#result)
+- <span id="prettyformatter-formatter-end-array-value"></span>`fn end_array_value<W>(&mut self, _writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md#result)
 
-- <span id="prettyformatter-begin-object"></span>`fn begin_object<W>(&mut self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md#result)
+- <span id="prettyformatter-formatter-begin-object"></span>`fn begin_object<W>(&mut self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md#result)
 
-- <span id="prettyformatter-end-object"></span>`fn end_object<W>(&mut self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md#result)
+- <span id="prettyformatter-formatter-end-object"></span>`fn end_object<W>(&mut self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md#result)
 
-- <span id="prettyformatter-begin-object-key"></span>`fn begin_object_key<W>(&mut self, writer: &mut W, first: bool) -> io::Result<()>` — [`Result`](../io/index.md#result)
+- <span id="prettyformatter-formatter-begin-object-key"></span>`fn begin_object_key<W>(&mut self, writer: &mut W, first: bool) -> io::Result<()>` — [`Result`](../io/index.md#result)
 
-- <span id="prettyformatter-begin-object-value"></span>`fn begin_object_value<W>(&mut self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md#result)
+- <span id="prettyformatter-formatter-begin-object-value"></span>`fn begin_object_value<W>(&mut self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md#result)
 
-- <span id="prettyformatter-end-object-value"></span>`fn end_object_value<W>(&mut self, _writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md#result)
+- <span id="prettyformatter-formatter-end-object-value"></span>`fn end_object_value<W>(&mut self, _writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md#result)
+
+##### `impl<T> From for PrettyFormatter<'a>`
+
+- <span id="prettyformatter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PrettyFormatter<'a>`
+
+- <span id="prettyformatter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for PrettyFormatter<'a>`
+
+- <span id="prettyformatter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="prettyformatter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="prettyformatter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PrettyFormatter<'a>`
+
+- <span id="prettyformatter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="prettyformatter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PrettyFormatter<'a>`
+
+- <span id="prettyformatter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="prettyformatter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -408,6 +608,50 @@ Represents a character escape code in a type-safe manner.
 
   An escaped ASCII plane control character (usually escaped as
   `\u00XX` where `XX` are two hex characters)
+
+#### Trait Implementations
+
+##### `impl Any for CharEscape`
+
+- <span id="charescape-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CharEscape`
+
+- <span id="charescape-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CharEscape`
+
+- <span id="charescape-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for CharEscape`
+
+- <span id="charescape-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CharEscape`
+
+- <span id="charescape-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for CharEscape`
+
+- <span id="charescape-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="charescape-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CharEscape`
+
+- <span id="charescape-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="charescape-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

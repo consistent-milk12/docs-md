@@ -49,9 +49,39 @@ An iterator for the segments in an [`ElfFile`](../index.md).
 
 #### Trait Implementations
 
+##### `impl Any for ElfSegmentIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsegmentiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ElfSegmentIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsegmentiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ElfSegmentIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsegmentiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Elf, R> Debug for ElfSegmentIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="elfsegmentiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ElfSegmentIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsegmentiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ElfSegmentIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsegmentiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ElfSegmentIterator<'data, 'file, Elf, R>`
 
@@ -59,13 +89,25 @@ An iterator for the segments in an [`ElfFile`](../index.md).
 
 - <span id="elfsegmentiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="elfsegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="elfsegmentiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Elf, R> Iterator for ElfSegmentIterator<'data, 'file, Elf, R>`
 
 - <span id="elfsegmentiterator-iterator-type-item"></span>`type Item = ElfSegment<'data, 'file, Elf, R>`
 
-- <span id="elfsegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="elfsegmentiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for ElfSegmentIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsegmentiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elfsegmentiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ElfSegmentIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsegmentiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elfsegmentiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ElfSegment<'data, 'file, Elf, R>`
 
@@ -89,37 +131,83 @@ Most functionality is provided by the [`ObjectSegment`](../../index.md) trait im
 
 - <span id="elfsegment-elf-file"></span>`fn elf_file(&self) -> &'file ElfFile<'data, Elf, R>` — [`ElfFile`](../index.md#elffile)
 
+  Get the ELF file containing this segment.
+
 - <span id="elfsegment-elf-program-header"></span>`fn elf_program_header(&self) -> &'data <Elf as >::ProgramHeader` — [`FileHeader`](../index.md#fileheader)
+
+  Get the raw ELF program header for the segment.
 
 - <span id="elfsegment-bytes"></span>`fn bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
 #### Trait Implementations
 
+##### `impl Any for ElfSegment<'data, 'file, Elf, R>`
+
+- <span id="elfsegment-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ElfSegment<'data, 'file, Elf, R>`
+
+- <span id="elfsegment-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ElfSegment<'data, 'file, Elf, R>`
+
+- <span id="elfsegment-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Elf, R> Debug for ElfSegment<'data, 'file, Elf, R>`
 
-- <span id="elfsegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="elfsegment-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ElfSegment<'data, 'file, Elf, R>`
+
+- <span id="elfsegment-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ElfSegment<'data, 'file, Elf, R>`
+
+- <span id="elfsegment-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Elf, R> ObjectSegment for ElfSegment<'data, 'file, Elf, R>`
 
-- <span id="elfsegment-address"></span>`fn address(&self) -> u64`
+- <span id="elfsegment-objectsegment-address"></span>`fn address(&self) -> u64`
 
-- <span id="elfsegment-size"></span>`fn size(&self) -> u64`
+- <span id="elfsegment-objectsegment-size"></span>`fn size(&self) -> u64`
 
-- <span id="elfsegment-align"></span>`fn align(&self) -> u64`
+- <span id="elfsegment-objectsegment-align"></span>`fn align(&self) -> u64`
 
-- <span id="elfsegment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
+- <span id="elfsegment-objectsegment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
 
-- <span id="elfsegment-data"></span>`fn data(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md#result)
+- <span id="elfsegment-objectsegment-data"></span>`fn data(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
-- <span id="elfsegment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> read::Result<Option<&'data [u8]>>` — [`Result`](../../../index.md#result)
+- <span id="elfsegment-objectsegment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> read::Result<Option<&'data [u8]>>` — [`Result`](../../../index.md#result)
 
-- <span id="elfsegment-name-bytes"></span>`fn name_bytes(&self) -> read::Result<Option<&[u8]>>` — [`Result`](../../../index.md#result)
+- <span id="elfsegment-objectsegment-name-bytes"></span>`fn name_bytes(&self) -> read::Result<Option<&[u8]>>` — [`Result`](../../../index.md#result)
 
-- <span id="elfsegment-name"></span>`fn name(&self) -> read::Result<Option<&str>>` — [`Result`](../../../index.md#result)
+- <span id="elfsegment-objectsegment-name"></span>`fn name(&self) -> read::Result<Option<&str>>` — [`Result`](../../../index.md#result)
 
-- <span id="elfsegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../../index.md#segmentflags)
+- <span id="elfsegment-objectsegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../../index.md#segmentflags)
 
 ##### `impl<Elf, R> Sealed for ElfSegment<'data, 'file, Elf, R>`
+
+##### `impl<U> TryFrom for ElfSegment<'data, 'file, Elf, R>`
+
+- <span id="elfsegment-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elfsegment-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ElfSegment<'data, 'file, Elf, R>`
+
+- <span id="elfsegment-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elfsegment-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

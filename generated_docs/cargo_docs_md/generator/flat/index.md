@@ -64,15 +64,87 @@ output/
 
 - <span id="flatgenerator-new"></span>`const fn new(ctx: &'a GeneratorContext<'a>, output_dir: &'a Path, progress: &'a ProgressBar) -> Self` — [`GeneratorContext`](../context/index.md#generatorcontext)
 
+  Create a new flat generator.
+
+  
+
+  # Arguments
+
+  
+
+  * `ctx` - Shared generator context
+
+  * `output_dir` - Directory to write markdown files to
+
+  * `progress` - Progress bar for user feedback
+
 - <span id="flatgenerator-generate"></span>`fn generate(&self, root: &Item) -> Result<(), Error>` — [`Error`](../../error/index.md#error)
+
+  Generate all documentation files in flat format.
+
+  
+
+  Generates `index.md` for the root module, then recursively generates
+
+  files for all submodules with flattened names.
 
 - <span id="flatgenerator-generate-module"></span>`fn generate_module(&self, item: &Item) -> Result<(), Error>` — [`Error`](../../error/index.md#error)
 
+  Generate a single module file and its children.
+
+  
+
+  Creates `{module_name}.md` in the output directory and recursively
+
+  generates child modules with flattened names (e.g., `parent__child.md`).
+
 - <span id="flatgenerator-generate-module-recursive"></span>`fn generate_module_recursive(&self, item: &Item, prefix: &str) -> Result<(), Error>` — [`Error`](../../error/index.md#error)
+
+  Recursively generate nested module files with flattened names.
+
+  
+
+  # Arguments
+
+  
+
+  * `item` - The module item to generate
+
+  * `prefix` - Accumulated path prefix (e.g., "`parent__child`")
 
 #### Trait Implementations
 
+##### `impl Any for FlatGenerator<'a>`
+
+- <span id="flatgenerator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FlatGenerator<'a>`
+
+- <span id="flatgenerator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FlatGenerator<'a>`
+
+- <span id="flatgenerator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for FlatGenerator<'a>`
+
+- <span id="flatgenerator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for FlatGenerator<'a>`
+
+##### `impl<U> Into for FlatGenerator<'a>`
+
+- <span id="flatgenerator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlatGenerator<'a>`
 
@@ -84,13 +156,25 @@ output/
 
 - <span id="flatgenerator-pointable-type-init"></span>`type Init = T`
 
-- <span id="flatgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="flatgenerator-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="flatgenerator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="flatgenerator-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="flatgenerator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="flatgenerator-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="flatgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="flatgenerator-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for FlatGenerator<'a>`
+
+- <span id="flatgenerator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="flatgenerator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FlatGenerator<'a>`
+
+- <span id="flatgenerator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="flatgenerator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for FlatGenerator<'a>`
 

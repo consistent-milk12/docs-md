@@ -147,15 +147,85 @@ A struct containing huffman code lengths and the huffman code tree used by the d
 
 - <span id="huffmantable-fast-lookup"></span>`fn fast_lookup(&self, bit_buf: u64) -> i16`
 
+  Look for a symbol in the fast lookup table.
+
+  The symbol is stored in the lower 9 bits, the length in the next 6.
+
+  If the returned value is negative, the code wasn't found in the
+
+  fast lookup table and the full tree has to be traversed to find the code.
+
 - <span id="huffmantable-tree-lookup"></span>`fn tree_lookup(&self, fast_symbol: i32, bit_buf: u64, code_len: u8) -> (i32, u32)`
+
+  Get the symbol and the code length from the huffman tree.
 
 - <span id="huffmantable-lookup"></span>`fn lookup(&self, bit_buf: u64) -> (i32, u32)`
 
+  Look up a symbol and code length from the bits in the provided bit buffer.
+
+  
+
+  Returns Some(symbol, length) on success,
+
+  None if the length is 0.
+
+  
+
+  It's possible we could avoid checking for 0 if we can guarantee a sane table.
+
+  TODO: Check if a smaller type for code_len helps performance.
+
 #### Trait Implementations
+
+##### `impl Any for HuffmanTable`
+
+- <span id="huffmantable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HuffmanTable`
+
+- <span id="huffmantable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HuffmanTable`
+
+- <span id="huffmantable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for HuffmanTable`
 
 - <span id="huffmantable-clone"></span>`fn clone(&self) -> HuffmanTable` — [`HuffmanTable`](#huffmantable)
+
+##### `impl CloneToUninit for HuffmanTable`
+
+- <span id="huffmantable-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
+##### `impl<T> From for HuffmanTable`
+
+- <span id="huffmantable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for HuffmanTable`
+
+- <span id="huffmantable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for HuffmanTable`
+
+- <span id="huffmantable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="huffmantable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HuffmanTable`
+
+- <span id="huffmantable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="huffmantable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DecompressorOxide`
 
@@ -259,21 +329,79 @@ Main decompression struct.
 
 - <span id="decompressoroxide-new"></span>`fn new() -> DecompressorOxide` — [`DecompressorOxide`](#decompressoroxide)
 
+  Create a new tinfl_decompressor with all fields set to 0.
+
 - <span id="decompressoroxide-init"></span>`fn init(&mut self)`
+
+  Set the current state to `Start`.
 
 - <span id="decompressoroxide-adler32"></span>`fn adler32(&self) -> Option<u32>`
 
+  Returns the adler32 checksum of the currently decompressed data.
+
+  Note: Will return Some(1) if decompressing zlib but ignoring adler32.
+
 - <span id="decompressoroxide-adler32-header"></span>`fn adler32_header(&self) -> Option<u32>`
 
+  Returns the adler32 that was read from the zlib header if it exists.
+
 #### Trait Implementations
+
+##### `impl Any for DecompressorOxide`
+
+- <span id="decompressoroxide-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DecompressorOxide`
+
+- <span id="decompressoroxide-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DecompressorOxide`
+
+- <span id="decompressoroxide-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for DecompressorOxide`
 
 - <span id="decompressoroxide-clone"></span>`fn clone(&self) -> DecompressorOxide` — [`DecompressorOxide`](#decompressoroxide)
 
+##### `impl CloneToUninit for DecompressorOxide`
+
+- <span id="decompressoroxide-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Default for DecompressorOxide`
 
 - <span id="decompressoroxide-default"></span>`fn default() -> Self`
+
+  Create a new tinfl_decompressor with all fields set to 0.
+
+##### `impl<T> From for DecompressorOxide`
+
+- <span id="decompressoroxide-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DecompressorOxide`
+
+- <span id="decompressoroxide-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DecompressorOxide`
+
+- <span id="decompressoroxide-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="decompressoroxide-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DecompressorOxide`
+
+- <span id="decompressoroxide-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="decompressoroxide-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LocalVars`
 
@@ -291,11 +419,57 @@ struct LocalVars {
 
 #### Trait Implementations
 
+##### `impl Any for LocalVars`
+
+- <span id="localvars-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LocalVars`
+
+- <span id="localvars-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LocalVars`
+
+- <span id="localvars-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for LocalVars`
 
 - <span id="localvars-clone"></span>`fn clone(&self) -> LocalVars` — [`LocalVars`](#localvars)
 
+##### `impl CloneToUninit for LocalVars`
+
+- <span id="localvars-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for LocalVars`
+
+##### `impl<T> From for LocalVars`
+
+- <span id="localvars-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LocalVars`
+
+- <span id="localvars-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for LocalVars`
+
+- <span id="localvars-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="localvars-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LocalVars`
+
+- <span id="localvars-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="localvars-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -351,23 +525,69 @@ enum State {
 
 #### Trait Implementations
 
+##### `impl Any for State`
+
+- <span id="state-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for State`
+
+- <span id="state-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for State`
+
+- <span id="state-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for State`
 
 - <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](#state)
+
+##### `impl CloneToUninit for State`
+
+- <span id="state-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for State`
 
 ##### `impl Debug for State`
 
-- <span id="state-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="state-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for State`
 
+##### `impl<T> From for State`
+
+- <span id="state-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for State`
+
+- <span id="state-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for State`
 
-- <span id="state-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](#state)
+- <span id="state-partialeq-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](#state)
 
 ##### `impl StructuralPartialEq for State`
+
+##### `impl<U> TryFrom for State`
+
+- <span id="state-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="state-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for State`
+
+- <span id="state-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="state-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Action`
 
@@ -380,6 +600,50 @@ enum Action {
 ```
 
 *Defined in [`miniz_oxide-0.8.9/src/inflate/core.rs:594-598`](../../../../.source_1765521767/miniz_oxide-0.8.9/src/inflate/core.rs#L594-L598)*
+
+#### Trait Implementations
+
+##### `impl Any for Action`
+
+- <span id="action-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Action`
+
+- <span id="action-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Action`
+
+- <span id="action-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Action`
+
+- <span id="action-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Action`
+
+- <span id="action-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Action`
+
+- <span id="action-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="action-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Action`
+
+- <span id="action-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="action-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

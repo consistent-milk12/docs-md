@@ -45,11 +45,21 @@ let cmd = clap::Command::new("mybin")
 
 - <span id="styledstr-new"></span>`const fn new() -> Self`
 
+  Create an empty buffer
+
 - <span id="styledstr-ansi"></span>`fn ansi(&self) -> impl std::fmt::Display + '_`
+
+  Display using [ANSI Escape Code](https://en.wikipedia.org/wiki/ANSI_escape_code) styling
 
 - <span id="styledstr-push-string"></span>`fn push_string(&mut self, msg: String)`
 
+  May allow the compiler to consolidate the `Drop`s for `msg`, reducing code size compared to
+
+  `styled.push_str(&msg)`
+
 - <span id="styledstr-push-str"></span>`fn push_str(&mut self, msg: &str)`
+
+  Appends a given string slice onto the end of this `StyledStr`.
 
 - <span id="styledstr-trim-start-lines"></span>`fn trim_start_lines(&mut self)`
 
@@ -75,13 +85,29 @@ let cmd = clap::Command::new("mybin")
 
 #### Trait Implementations
 
+##### `impl Any for StyledStr`
+
+- <span id="styledstr-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StyledStr`
+
+- <span id="styledstr-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StyledStr`
+
+- <span id="styledstr-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for StyledStr`
 
 - <span id="styledstr-clone"></span>`fn clone(&self) -> StyledStr` — [`StyledStr`](#styledstr)
 
+##### `impl CloneToUninit for StyledStr`
+
+- <span id="styledstr-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for StyledStr`
 
-- <span id="styledstr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledstr-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for StyledStr`
 
@@ -89,35 +115,73 @@ let cmd = clap::Command::new("mybin")
 
 ##### `impl Display for StyledStr`
 
-- <span id="styledstr-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="styledstr-display-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for StyledStr`
 
+##### `impl<T> From for StyledStr`
+
+- <span id="styledstr-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StyledStr`
+
+- <span id="styledstr-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoResettable for StyledStr`
 
-- <span id="styledstr-into-resettable"></span>`fn into_resettable(self) -> Resettable<StyledStr>` — [`Resettable`](../resettable/index.md#resettable), [`StyledStr`](#styledstr)
+- <span id="styledstr-intoresettable-into-resettable"></span>`fn into_resettable(self) -> Resettable<StyledStr>` — [`Resettable`](../resettable/index.md#resettable), [`StyledStr`](#styledstr)
 
 ##### `impl Ord for StyledStr`
 
-- <span id="styledstr-cmp"></span>`fn cmp(&self, other: &StyledStr) -> cmp::Ordering` — [`StyledStr`](#styledstr)
+- <span id="styledstr-ord-cmp"></span>`fn cmp(&self, other: &StyledStr) -> cmp::Ordering` — [`StyledStr`](#styledstr)
 
 ##### `impl PartialEq for StyledStr`
 
-- <span id="styledstr-eq"></span>`fn eq(&self, other: &StyledStr) -> bool` — [`StyledStr`](#styledstr)
+- <span id="styledstr-partialeq-eq"></span>`fn eq(&self, other: &StyledStr) -> bool` — [`StyledStr`](#styledstr)
 
 ##### `impl PartialOrd for StyledStr`
 
-- <span id="styledstr-partial-cmp"></span>`fn partial_cmp(&self, other: &StyledStr) -> option::Option<cmp::Ordering>` — [`StyledStr`](#styledstr)
+- <span id="styledstr-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &StyledStr) -> option::Option<cmp::Ordering>` — [`StyledStr`](#styledstr)
 
 ##### `impl StructuralPartialEq for StyledStr`
 
+##### `impl ToOwned for StyledStr`
+
+- <span id="styledstr-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="styledstr-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="styledstr-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for StyledStr`
 
-- <span id="styledstr-to-string"></span>`fn to_string(&self) -> String`
+- <span id="styledstr-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for StyledStr`
+
+- <span id="styledstr-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="styledstr-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StyledStr`
+
+- <span id="styledstr-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="styledstr-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Write for StyledStr`
 
-- <span id="styledstr-write-str"></span>`fn write_str(&mut self, s: &str) -> Result<(), std::fmt::Error>`
+- <span id="styledstr-write-write-str"></span>`fn write_str(&mut self, s: &str) -> Result<(), std::fmt::Error>`
 
-- <span id="styledstr-write-char"></span>`fn write_char(&mut self, c: char) -> Result<(), std::fmt::Error>`
+- <span id="styledstr-write-write-char"></span>`fn write_char(&mut self, c: char) -> Result<(), std::fmt::Error>`
 

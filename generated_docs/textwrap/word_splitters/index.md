@@ -118,19 +118,103 @@ details.
 
 - <span id="wordsplitter-split-points"></span>`fn split_points(&self, word: &str) -> Vec<usize>`
 
+  Return all possible indices where `word` can be split.
+
+  
+
+  The indices are in the range `0..word.len()`. They point to
+
+  the index _after_ the split point, i.e., after `-` if
+
+  splitting on hyphens. This way, `word.split_at(idx)` will
+
+  break the word into two well-formed pieces.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use textwrap::WordSplitter;
+
+  assert_eq!(WordSplitter::NoHyphenation.split_points("cannot-be-split"), vec![]);
+
+  assert_eq!(WordSplitter::HyphenSplitter.split_points("can-be-split"), vec![4, 7]);
+
+  assert_eq!(WordSplitter::Custom(|word| vec![word.len()/2]).split_points("middle"), vec![3]);
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for WordSplitter`
+
+- <span id="wordsplitter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WordSplitter`
+
+- <span id="wordsplitter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WordSplitter`
+
+- <span id="wordsplitter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for WordSplitter`
 
 - <span id="wordsplitter-clone"></span>`fn clone(&self) -> WordSplitter` — [`WordSplitter`](#wordsplitter)
 
+##### `impl CloneToUninit for WordSplitter`
+
+- <span id="wordsplitter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for WordSplitter`
 
-- <span id="wordsplitter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="wordsplitter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for WordSplitter`
+
+- <span id="wordsplitter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WordSplitter`
+
+- <span id="wordsplitter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for WordSplitter`
 
-- <span id="wordsplitter-eq"></span>`fn eq(&self, other: &WordSplitter) -> bool` — [`WordSplitter`](#wordsplitter)
+- <span id="wordsplitter-partialeq-eq"></span>`fn eq(&self, other: &WordSplitter) -> bool` — [`WordSplitter`](#wordsplitter)
+
+##### `impl ToOwned for WordSplitter`
+
+- <span id="wordsplitter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="wordsplitter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="wordsplitter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for WordSplitter`
+
+- <span id="wordsplitter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="wordsplitter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WordSplitter`
+
+- <span id="wordsplitter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="wordsplitter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

@@ -31,23 +31,77 @@ all readers. If values are not unique then errors may point to the wrong reader.
 
 #### Trait Implementations
 
+##### `impl Any for ReaderOffsetId`
+
+- <span id="readeroffsetid-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ReaderOffsetId`
+
+- <span id="readeroffsetid-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ReaderOffsetId`
+
+- <span id="readeroffsetid-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ReaderOffsetId`
 
 - <span id="readeroffsetid-clone"></span>`fn clone(&self) -> ReaderOffsetId` — [`ReaderOffsetId`](../index.md#readeroffsetid)
+
+##### `impl CloneToUninit for ReaderOffsetId`
+
+- <span id="readeroffsetid-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ReaderOffsetId`
 
 ##### `impl Debug for ReaderOffsetId`
 
-- <span id="readeroffsetid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="readeroffsetid-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ReaderOffsetId`
 
+##### `impl<T> From for ReaderOffsetId`
+
+- <span id="readeroffsetid-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ReaderOffsetId`
+
+- <span id="readeroffsetid-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ReaderOffsetId`
 
-- <span id="readeroffsetid-eq"></span>`fn eq(&self, other: &ReaderOffsetId) -> bool` — [`ReaderOffsetId`](../index.md#readeroffsetid)
+- <span id="readeroffsetid-partialeq-eq"></span>`fn eq(&self, other: &ReaderOffsetId) -> bool` — [`ReaderOffsetId`](../index.md#readeroffsetid)
 
 ##### `impl StructuralPartialEq for ReaderOffsetId`
+
+##### `impl ToOwned for ReaderOffsetId`
+
+- <span id="readeroffsetid-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="readeroffsetid-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="readeroffsetid-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ReaderOffsetId`
+
+- <span id="readeroffsetid-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="readeroffsetid-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ReaderOffsetId`
+
+- <span id="readeroffsetid-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="readeroffsetid-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

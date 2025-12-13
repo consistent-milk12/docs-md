@@ -90,27 +90,109 @@ found in the `.debug_line` section.
 
 - <span id="debugline-new"></span>`fn new(debug_line_section: &'input [u8], endian: Endian) -> Self`
 
+  Construct a new `DebugLine` instance from the data in the `.debug_line`
+
+  section.
+
+  
+
+  It is the caller's responsibility to read the `.debug_line` section and
+
+  present it as a `&[u8]` slice. That means using some ELF loader on
+
+  Linux, a Mach-O loader on macOS, etc.
+
+  
+
+  ```rust
+
+  use gimli::{DebugLine, LittleEndian};
+
+  
+
+  let buf = [0x00, 0x01, 0x02, 0x03];
+
+  let read_debug_line_section_somehow = || &buf;
+
+  let debug_line = DebugLine::new(read_debug_line_section_somehow(), LittleEndian);
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for DebugLine<R>`
+
+- <span id="debugline-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugLine<R>`
+
+- <span id="debugline-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugLine<R>`
+
+- <span id="debugline-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R: clone::Clone> Clone for DebugLine<R>`
 
 - <span id="debugline-clone"></span>`fn clone(&self) -> DebugLine<R>` — [`DebugLine`](../index.md#debugline)
 
+##### `impl CloneToUninit for DebugLine<R>`
+
+- <span id="debugline-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R: marker::Copy> Copy for DebugLine<R>`
 
 ##### `impl<R: fmt::Debug> Debug for DebugLine<R>`
 
-- <span id="debugline-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugline-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: default::Default> Default for DebugLine<R>`
 
 - <span id="debugline-default"></span>`fn default() -> DebugLine<R>` — [`DebugLine`](../index.md#debugline)
 
+##### `impl<T> From for DebugLine<R>`
+
+- <span id="debugline-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DebugLine<R>`
+
+- <span id="debugline-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<R> Section for DebugLine<R>`
 
-- <span id="debugline-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
+- <span id="debugline-section-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
-- <span id="debugline-reader"></span>`fn reader(&self) -> &R`
+- <span id="debugline-section-reader"></span>`fn reader(&self) -> &R`
+
+##### `impl ToOwned for DebugLine<R>`
+
+- <span id="debugline-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugline-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugline-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DebugLine<R>`
+
+- <span id="debugline-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugline-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DebugLine<R>`
+
+- <span id="debugline-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugline-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LineRows<R, Program, Offset>`
 
@@ -142,17 +224,95 @@ information." -- Section 6.2.1
 
 - <span id="linerows-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md#lineprogramheader)
 
+  Get a reference to the header for this state machine's line number
+
+  program.
+
 - <span id="linerows-next-row"></span>`fn next_row(&mut self) -> Result<Option<(&LineProgramHeader<R, Offset>, &LineRow)>>` — [`Result`](../../index.md#result), [`LineProgramHeader`](../index.md#lineprogramheader), [`LineRow`](../index.md#linerow)
 
+  Parse and execute the next instructions in the line number program until
+
+  another row in the line number matrix is computed.
+
+  
+
+  The freshly computed row is returned as `Ok(Some((header, row)))`.
+
+  If the matrix is complete, and there are no more new rows in the line
+
+  number matrix, then `Ok(None)` is returned. If there was an error parsing
+
+  an instruction, then `Err(e)` is returned.
+
+  
+
+  Unfortunately, the references mean that this cannot be a
+
+  `FallibleIterator`.
+
 #### Trait Implementations
+
+##### `impl Any for LineRows<R, Program, Offset>`
+
+- <span id="linerows-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LineRows<R, Program, Offset>`
+
+- <span id="linerows-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LineRows<R, Program, Offset>`
+
+- <span id="linerows-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R, Program, Offset> Clone for LineRows<R, Program, Offset>`
 
 - <span id="linerows-clone"></span>`fn clone(&self) -> LineRows<R, Program, Offset>` — [`LineRows`](../index.md#linerows)
 
+##### `impl CloneToUninit for LineRows<R, Program, Offset>`
+
+- <span id="linerows-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R, Program, Offset> Debug for LineRows<R, Program, Offset>`
 
-- <span id="linerows-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="linerows-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for LineRows<R, Program, Offset>`
+
+- <span id="linerows-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LineRows<R, Program, Offset>`
+
+- <span id="linerows-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for LineRows<R, Program, Offset>`
+
+- <span id="linerows-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="linerows-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="linerows-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LineRows<R, Program, Offset>`
+
+- <span id="linerows-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="linerows-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LineRows<R, Program, Offset>`
+
+- <span id="linerows-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="linerows-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LineInstructions<R: Reader>`
 
@@ -176,13 +336,67 @@ for more details.
 
 #### Trait Implementations
 
+##### `impl Any for LineInstructions<R>`
+
+- <span id="lineinstructions-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LineInstructions<R>`
+
+- <span id="lineinstructions-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LineInstructions<R>`
+
+- <span id="lineinstructions-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: clone::Clone + Reader> Clone for LineInstructions<R>`
 
 - <span id="lineinstructions-clone"></span>`fn clone(&self) -> LineInstructions<R>` — [`LineInstructions`](../index.md#lineinstructions)
 
+##### `impl CloneToUninit for LineInstructions<R>`
+
+- <span id="lineinstructions-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R: fmt::Debug + Reader> Debug for LineInstructions<R>`
 
-- <span id="lineinstructions-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lineinstructions-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for LineInstructions<R>`
+
+- <span id="lineinstructions-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LineInstructions<R>`
+
+- <span id="lineinstructions-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for LineInstructions<R>`
+
+- <span id="lineinstructions-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="lineinstructions-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="lineinstructions-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LineInstructions<R>`
+
+- <span id="lineinstructions-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lineinstructions-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LineInstructions<R>`
+
+- <span id="lineinstructions-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lineinstructions-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LineRow`
 
@@ -214,63 +428,233 @@ Each row is a copy of the registers of the state machine, as defined in section 
 
 - <span id="linerow-new"></span>`fn new<R: Reader>(header: &LineProgramHeader<R>) -> Self` — [`LineProgramHeader`](../index.md#lineprogramheader)
 
+  Create a line number row in the initial state for the given program.
+
 - <span id="linerow-address"></span>`fn address(&self) -> u64`
+
+  "The program-counter value corresponding to a machine instruction
+
+  generated by the compiler."
 
 - <span id="linerow-op-index"></span>`fn op_index(&self) -> u64`
 
+  > An unsigned integer representing the index of an operation within a VLIW
+
+  > instruction. The index of the first operation is 0. For non-VLIW
+
+  > architectures, this register will always be 0.
+
+  >
+
+  > The address and op_index registers, taken together, form an operation
+
+  > pointer that can reference any individual operation with the
+
+  > instruction stream.
+
 - <span id="linerow-file-index"></span>`fn file_index(&self) -> u64`
+
+  "An unsigned integer indicating the identity of the source file
+
+  corresponding to a machine instruction."
 
 - <span id="linerow-file"></span>`fn file<'header, R: Reader>(&self, header: &'header LineProgramHeader<R>) -> Option<&'header FileEntry<R>>` — [`LineProgramHeader`](../index.md#lineprogramheader), [`FileEntry`](../index.md#fileentry)
 
+  The source file corresponding to the current machine instruction.
+
 - <span id="linerow-line"></span>`fn line(&self) -> Option<NonZeroU64>`
+
+  "An unsigned integer indicating a source line number. Lines are numbered
+
+  beginning at 1. The compiler may emit the value 0 in cases where an
+
+  instruction cannot be attributed to any source line."
+
+  Line number values of 0 are represented as `None`.
 
 - <span id="linerow-column"></span>`fn column(&self) -> ColumnType` — [`ColumnType`](../index.md#columntype)
 
+  "An unsigned integer indicating a column number within a source
+
+  line. Columns are numbered beginning at 1. The value 0 is reserved to
+
+  indicate that a statement begins at the “left edge” of the line."
+
 - <span id="linerow-is-stmt"></span>`fn is_stmt(&self) -> bool`
+
+  "A boolean indicating that the current instruction is a recommended
+
+  breakpoint location. A recommended breakpoint location is intended to
+
+  “represent” a line, a statement and/or a semantically distinct subpart
+
+  of a statement."
 
 - <span id="linerow-basic-block"></span>`fn basic_block(&self) -> bool`
 
+  "A boolean indicating that the current instruction is the beginning of a
+
+  basic block."
+
 - <span id="linerow-end-sequence"></span>`fn end_sequence(&self) -> bool`
+
+  "A boolean indicating that the current address is that of the first byte
+
+  after the end of a sequence of target machine instructions. end_sequence
+
+  terminates a sequence of lines; therefore other information in the same
+
+  row is not meaningful."
 
 - <span id="linerow-prologue-end"></span>`fn prologue_end(&self) -> bool`
 
+  "A boolean indicating that the current address is one (of possibly many)
+
+  where execution should be suspended for an entry breakpoint of a
+
+  function."
+
 - <span id="linerow-epilogue-begin"></span>`fn epilogue_begin(&self) -> bool`
+
+  "A boolean indicating that the current address is one (of possibly many)
+
+  where execution should be suspended for an exit breakpoint of a
+
+  function."
 
 - <span id="linerow-isa"></span>`fn isa(&self) -> u64`
 
+  Tag for the current instruction set architecture.
+
+  
+
+  > An unsigned integer whose value encodes the applicable instruction set
+
+  > architecture for the current instruction.
+
+  >
+
+  > The encoding of instruction sets should be shared by all users of a
+
+  > given architecture. It is recommended that this encoding be defined by
+
+  > the ABI authoring committee for each architecture.
+
 - <span id="linerow-discriminator"></span>`fn discriminator(&self) -> u64`
+
+  "An unsigned integer identifying the block to which the current
+
+  instruction belongs. Discriminator values are assigned arbitrarily by
+
+  the DWARF producer and serve to distinguish among multiple blocks that
+
+  may all be associated with the same source file, line, and column. Where
+
+  only one block exists for a given source position, the discriminator
+
+  value should be zero."
 
 - <span id="linerow-execute"></span>`fn execute<R, Program>(&mut self, instruction: LineInstruction<R>, program: &mut Program) -> Result<bool>` — [`LineInstruction`](../index.md#lineinstruction), [`Result`](../../index.md#result)
 
+  Execute the given instruction, and return true if a new row in the
+
+  line number matrix needs to be generated.
+
+  
+
+  Unknown opcodes are treated as no-ops.
+
 - <span id="linerow-reset"></span>`fn reset<R: Reader>(&mut self, header: &LineProgramHeader<R>)` — [`LineProgramHeader`](../index.md#lineprogramheader)
+
+  Perform any reset that was required after copying the previous row.
 
 - <span id="linerow-apply-line-advance"></span>`fn apply_line_advance(&mut self, line_increment: i64)`
 
+  Step 1 of section 6.2.5.1
+
 - <span id="linerow-apply-operation-advance"></span>`fn apply_operation_advance<R: Reader>(&mut self, operation_advance: u64, header: &LineProgramHeader<R>) -> Result<()>` — [`LineProgramHeader`](../index.md#lineprogramheader), [`Result`](../../index.md#result)
+
+  Step 2 of section 6.2.5.1
 
 - <span id="linerow-adjust-opcode"></span>`fn adjust_opcode<R: Reader>(&self, opcode: u8, header: &LineProgramHeader<R>) -> u8` — [`LineProgramHeader`](../index.md#lineprogramheader)
 
 - <span id="linerow-exec-special-opcode"></span>`fn exec_special_opcode<R: Reader>(&mut self, opcode: u8, header: &LineProgramHeader<R>) -> Result<()>` — [`LineProgramHeader`](../index.md#lineprogramheader), [`Result`](../../index.md#result)
 
+  Section 6.2.5.1
+
 #### Trait Implementations
+
+##### `impl Any for LineRow`
+
+- <span id="linerow-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LineRow`
+
+- <span id="linerow-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LineRow`
+
+- <span id="linerow-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for LineRow`
 
 - <span id="linerow-clone"></span>`fn clone(&self) -> LineRow` — [`LineRow`](../index.md#linerow)
 
+##### `impl CloneToUninit for LineRow`
+
+- <span id="linerow-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for LineRow`
 
 ##### `impl Debug for LineRow`
 
-- <span id="linerow-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="linerow-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LineRow`
 
+##### `impl<T> From for LineRow`
+
+- <span id="linerow-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LineRow`
+
+- <span id="linerow-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for LineRow`
 
-- <span id="linerow-eq"></span>`fn eq(&self, other: &LineRow) -> bool` — [`LineRow`](../index.md#linerow)
+- <span id="linerow-partialeq-eq"></span>`fn eq(&self, other: &LineRow) -> bool` — [`LineRow`](../index.md#linerow)
 
 ##### `impl StructuralPartialEq for LineRow`
+
+##### `impl ToOwned for LineRow`
+
+- <span id="linerow-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="linerow-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="linerow-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LineRow`
+
+- <span id="linerow-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="linerow-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LineRow`
+
+- <span id="linerow-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="linerow-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LineSequence<R: Reader>`
 
@@ -302,13 +686,67 @@ which addresses are monotonically increasing.
 
 #### Trait Implementations
 
+##### `impl Any for LineSequence<R>`
+
+- <span id="linesequence-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LineSequence<R>`
+
+- <span id="linesequence-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LineSequence<R>`
+
+- <span id="linesequence-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: clone::Clone + Reader> Clone for LineSequence<R>`
 
 - <span id="linesequence-clone"></span>`fn clone(&self) -> LineSequence<R>` — [`LineSequence`](../index.md#linesequence)
 
+##### `impl CloneToUninit for LineSequence<R>`
+
+- <span id="linesequence-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R: fmt::Debug + Reader> Debug for LineSequence<R>`
 
-- <span id="linesequence-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="linesequence-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for LineSequence<R>`
+
+- <span id="linesequence-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LineSequence<R>`
+
+- <span id="linesequence-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for LineSequence<R>`
+
+- <span id="linesequence-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="linesequence-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="linesequence-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LineSequence<R>`
+
+- <span id="linesequence-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="linesequence-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LineSequence<R>`
+
+- <span id="linesequence-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="linesequence-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LineProgramHeader<R, Offset>`
 
@@ -393,77 +831,263 @@ in section 6.2.4 of the standard.
 
 - <span id="lineprogramheader-offset"></span>`fn offset(&self) -> DebugLineOffset<<R as >::Offset>` — [`DebugLineOffset`](../../index.md#debuglineoffset), [`Reader`](../index.md#reader)
 
+  Return the offset of the line number program header in the `.debug_line` section.
+
 - <span id="lineprogramheader-unit-length"></span>`fn unit_length(&self) -> <R as >::Offset` — [`Reader`](../index.md#reader)
+
+  Return the length of the line number program and header, not including
+
+  the length of the encoded length itself.
 
 - <span id="lineprogramheader-encoding"></span>`fn encoding(&self) -> Encoding` — [`Encoding`](../../index.md#encoding)
 
+  Return the encoding parameters for this header's line program.
+
 - <span id="lineprogramheader-version"></span>`fn version(&self) -> u16`
+
+  Get the version of this header's line program.
 
 - <span id="lineprogramheader-header-length"></span>`fn header_length(&self) -> <R as >::Offset` — [`Reader`](../index.md#reader)
 
+  Get the length of the encoded line number program header, not including
+
+  the length of the encoded length itself.
+
 - <span id="lineprogramheader-address-size"></span>`fn address_size(&self) -> u8`
+
+  Get the size in bytes of a target machine address.
 
 - <span id="lineprogramheader-format"></span>`fn format(&self) -> Format` — [`Format`](../../index.md#format)
 
+  Whether this line program is encoded in 64- or 32-bit DWARF.
+
 - <span id="lineprogramheader-line-encoding"></span>`fn line_encoding(&self) -> LineEncoding` — [`LineEncoding`](../../index.md#lineencoding)
+
+  Get the line encoding parameters for this header's line program.
 
 - <span id="lineprogramheader-minimum-instruction-length"></span>`fn minimum_instruction_length(&self) -> u8`
 
+  Get the minimum instruction length any instruction in this header's line
+
+  program may have.
+
 - <span id="lineprogramheader-maximum-operations-per-instruction"></span>`fn maximum_operations_per_instruction(&self) -> u8`
+
+  Get the maximum number of operations each instruction in this header's
+
+  line program may have.
 
 - <span id="lineprogramheader-default-is-stmt"></span>`fn default_is_stmt(&self) -> bool`
 
+  Get the default value of the `is_stmt` register for this header's line
+
+  program.
+
 - <span id="lineprogramheader-line-base"></span>`fn line_base(&self) -> i8`
+
+  Get the line base for this header's line program.
 
 - <span id="lineprogramheader-line-range"></span>`fn line_range(&self) -> u8`
 
+  Get the line range for this header's line program.
+
 - <span id="lineprogramheader-opcode-base"></span>`fn opcode_base(&self) -> u8`
+
+  Get opcode base for this header's line program.
 
 - <span id="lineprogramheader-standard-opcode-lengths"></span>`fn standard_opcode_lengths(&self) -> &R`
 
+  An array of `u8` that specifies the number of LEB128 operands for
+
+  each of the standard opcodes.
+
 - <span id="lineprogramheader-directory-entry-format"></span>`fn directory_entry_format(&self) -> &[FileEntryFormat]` — [`FileEntryFormat`](../index.md#fileentryformat)
+
+  Get the format of a directory entry.
 
 - <span id="lineprogramheader-include-directories"></span>`fn include_directories(&self) -> &[AttributeValue<R, Offset>]` — [`AttributeValue`](../index.md#attributevalue)
 
+  Get the set of include directories for this header's line program.
+
+  
+
+  For DWARF version <= 4, the compilation's current directory is not included
+
+  in the return value, but is implicitly considered to be in the set per spec.
+
 - <span id="lineprogramheader-directory"></span>`fn directory(&self, directory: u64) -> Option<AttributeValue<R, Offset>>` — [`AttributeValue`](../index.md#attributevalue)
+
+  The include directory with the given directory index.
+
+  
+
+  A directory index of 0 corresponds to the compilation unit directory.
 
 - <span id="lineprogramheader-file-name-entry-format"></span>`fn file_name_entry_format(&self) -> &[FileEntryFormat]` — [`FileEntryFormat`](../index.md#fileentryformat)
 
+  Get the format of a file name entry.
+
 - <span id="lineprogramheader-file-has-timestamp"></span>`fn file_has_timestamp(&self) -> bool`
+
+  Return true if the file entries may have valid timestamps.
+
+  
+
+  Only returns false if we definitely know that all timestamp fields
+
+  are invalid.
 
 - <span id="lineprogramheader-file-has-size"></span>`fn file_has_size(&self) -> bool`
 
+  Return true if the file entries may have valid sizes.
+
+  
+
+  Only returns false if we definitely know that all size fields
+
+  are invalid.
+
 - <span id="lineprogramheader-file-has-md5"></span>`fn file_has_md5(&self) -> bool`
+
+  Return true if the file name entry format contains an MD5 field.
 
 - <span id="lineprogramheader-file-has-source"></span>`fn file_has_source(&self) -> bool`
 
+  Return true if the file name entry format contains a source field.
+
 - <span id="lineprogramheader-file-names"></span>`fn file_names(&self) -> &[FileEntry<R, Offset>]` — [`FileEntry`](../index.md#fileentry)
+
+  Get the list of source files that appear in this header's line program.
 
 - <span id="lineprogramheader-file"></span>`fn file(&self, file: u64) -> Option<&FileEntry<R, Offset>>` — [`FileEntry`](../index.md#fileentry)
 
+  The source file with the given file index.
+
+  
+
+  A file index of 0 corresponds to the compilation unit file.
+
+  Note that a file index of 0 is invalid for DWARF version <= 4,
+
+  but we support it anyway.
+
 - <span id="lineprogramheader-raw-program-buf"></span>`fn raw_program_buf(&self) -> R`
 
+  Get the raw, un-parsed `EndianSlice` containing this header's line number
+
+  program.
+
+  
+
+  ```rust
+
+  fn foo() {
+
+  use gimli::{LineProgramHeader, EndianSlice, NativeEndian};
+
+  
+
+  fn get_line_number_program_header<'a>() -> LineProgramHeader<EndianSlice<'a, NativeEndian>> {
+
+      // Get a line number program header from some offset in a
+
+      // `.debug_line` section...
+
+    unimplemented!()
+
+  }
+
+  
+
+  let header = get_line_number_program_header();
+
+  let raw_program = header.raw_program_buf();
+
+  println!("The length of the raw program in bytes is {}", raw_program.len());
+
+  }
+
+  ```
+
 - <span id="lineprogramheader-instructions"></span>`fn instructions(&self) -> LineInstructions<R>` — [`LineInstructions`](../index.md#lineinstructions)
+
+  Iterate over the instructions in this header's line number program, parsing
+
+  them as we go.
 
 - <span id="lineprogramheader-parse"></span>`fn parse(input: &mut R, offset: DebugLineOffset<Offset>, address_size: u8, comp_dir: Option<R>, comp_name: Option<R>) -> Result<LineProgramHeader<R, Offset>>` — [`DebugLineOffset`](../../index.md#debuglineoffset), [`Result`](../../index.md#result), [`LineProgramHeader`](../index.md#lineprogramheader)
 
 #### Trait Implementations
 
+##### `impl Any for LineProgramHeader<R, Offset>`
+
+- <span id="lineprogramheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LineProgramHeader<R, Offset>`
+
+- <span id="lineprogramheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LineProgramHeader<R, Offset>`
+
+- <span id="lineprogramheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R, Offset> Clone for LineProgramHeader<R, Offset>`
 
 - <span id="lineprogramheader-clone"></span>`fn clone(&self) -> LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md#lineprogramheader)
 
+##### `impl CloneToUninit for LineProgramHeader<R, Offset>`
+
+- <span id="lineprogramheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R, Offset> Debug for LineProgramHeader<R, Offset>`
 
-- <span id="lineprogramheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lineprogramheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for LineProgramHeader<R, Offset>`
 
+##### `impl<T> From for LineProgramHeader<R, Offset>`
+
+- <span id="lineprogramheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LineProgramHeader<R, Offset>`
+
+- <span id="lineprogramheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<R, Offset> PartialEq for LineProgramHeader<R, Offset>`
 
-- <span id="lineprogramheader-eq"></span>`fn eq(&self, other: &LineProgramHeader<R, Offset>) -> bool` — [`LineProgramHeader`](../index.md#lineprogramheader)
+- <span id="lineprogramheader-partialeq-eq"></span>`fn eq(&self, other: &LineProgramHeader<R, Offset>) -> bool` — [`LineProgramHeader`](../index.md#lineprogramheader)
 
 ##### `impl<R, Offset> StructuralPartialEq for LineProgramHeader<R, Offset>`
+
+##### `impl ToOwned for LineProgramHeader<R, Offset>`
+
+- <span id="lineprogramheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="lineprogramheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="lineprogramheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LineProgramHeader<R, Offset>`
+
+- <span id="lineprogramheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lineprogramheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LineProgramHeader<R, Offset>`
+
+- <span id="lineprogramheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lineprogramheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IncompleteLineProgram<R, Offset>`
 
@@ -484,33 +1108,133 @@ A line number program that has not been run to completion.
 
 - <span id="incompletelineprogram-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md#lineprogramheader)
 
+  Retrieve the `LineProgramHeader` for this program.
+
 - <span id="incompletelineprogram-rows"></span>`fn rows(self) -> LineRows<R, IncompleteLineProgram<R, Offset>, Offset>` — [`LineRows`](../index.md#linerows), [`IncompleteLineProgram`](../index.md#incompletelineprogram)
+
+  Construct a new `LineRows` for executing this program to iterate
+
+  over rows in the line information matrix.
 
 - <span id="incompletelineprogram-sequences"></span>`fn sequences(self) -> Result<(CompleteLineProgram<R, Offset>, Vec<LineSequence<R>>)>` — [`Result`](../../index.md#result), [`CompleteLineProgram`](../index.md#completelineprogram), [`LineSequence`](../index.md#linesequence)
 
+  Execute the line number program, completing the `IncompleteLineProgram`
+
+  into a `CompleteLineProgram` and producing an array of sequences within
+
+  the line number program that can later be used with
+
+  `CompleteLineProgram::resume_from`.
+
+  
+
+  ```rust
+
+  fn foo() {
+
+  use gimli::{IncompleteLineProgram, EndianSlice, NativeEndian};
+
+  
+
+  fn get_line_number_program<'a>() -> IncompleteLineProgram<EndianSlice<'a, NativeEndian>> {
+
+      // Get a line number program from some offset in a
+
+      // `.debug_line` section...
+
+    unimplemented!()
+
+  }
+
+  
+
+  let program = get_line_number_program();
+
+  let (program, sequences) = program.sequences().unwrap();
+
+  println!("There are {} sequences in this line number program", sequences.len());
+
+  }
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for IncompleteLineProgram<R, Offset>`
+
+- <span id="incompletelineprogram-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IncompleteLineProgram<R, Offset>`
+
+- <span id="incompletelineprogram-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IncompleteLineProgram<R, Offset>`
+
+- <span id="incompletelineprogram-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R, Offset> Clone for IncompleteLineProgram<R, Offset>`
 
 - <span id="incompletelineprogram-clone"></span>`fn clone(&self) -> IncompleteLineProgram<R, Offset>` — [`IncompleteLineProgram`](../index.md#incompletelineprogram)
 
+##### `impl CloneToUninit for IncompleteLineProgram<R, Offset>`
+
+- <span id="incompletelineprogram-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R, Offset> Debug for IncompleteLineProgram<R, Offset>`
 
-- <span id="incompletelineprogram-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="incompletelineprogram-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for IncompleteLineProgram<R, Offset>`
 
+##### `impl<T> From for IncompleteLineProgram<R, Offset>`
+
+- <span id="incompletelineprogram-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for IncompleteLineProgram<R, Offset>`
+
+- <span id="incompletelineprogram-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<R, Offset> LineProgram for IncompleteLineProgram<R, Offset>`
 
-- <span id="incompletelineprogram-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md#lineprogramheader)
+- <span id="incompletelineprogram-lineprogram-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md#lineprogramheader)
 
-- <span id="incompletelineprogram-add-file"></span>`fn add_file(&mut self, file: FileEntry<R, Offset>)` — [`FileEntry`](../index.md#fileentry)
+- <span id="incompletelineprogram-lineprogram-add-file"></span>`fn add_file(&mut self, file: FileEntry<R, Offset>)` — [`FileEntry`](../index.md#fileentry)
 
 ##### `impl<R, Offset> PartialEq for IncompleteLineProgram<R, Offset>`
 
-- <span id="incompletelineprogram-eq"></span>`fn eq(&self, other: &IncompleteLineProgram<R, Offset>) -> bool` — [`IncompleteLineProgram`](../index.md#incompletelineprogram)
+- <span id="incompletelineprogram-partialeq-eq"></span>`fn eq(&self, other: &IncompleteLineProgram<R, Offset>) -> bool` — [`IncompleteLineProgram`](../index.md#incompletelineprogram)
 
 ##### `impl<R, Offset> StructuralPartialEq for IncompleteLineProgram<R, Offset>`
+
+##### `impl ToOwned for IncompleteLineProgram<R, Offset>`
+
+- <span id="incompletelineprogram-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="incompletelineprogram-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="incompletelineprogram-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for IncompleteLineProgram<R, Offset>`
+
+- <span id="incompletelineprogram-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="incompletelineprogram-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IncompleteLineProgram<R, Offset>`
+
+- <span id="incompletelineprogram-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="incompletelineprogram-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CompleteLineProgram<R, Offset>`
 
@@ -531,31 +1255,129 @@ A line number program that has previously been run to completion.
 
 - <span id="completelineprogram-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md#lineprogramheader)
 
+  Retrieve the `LineProgramHeader` for this program.
+
 - <span id="completelineprogram-resume-from"></span>`fn resume_from<'program>(self: &'program Self, sequence: &LineSequence<R>) -> LineRows<R, &'program CompleteLineProgram<R, Offset>, Offset>` — [`LineSequence`](../index.md#linesequence), [`LineRows`](../index.md#linerows), [`CompleteLineProgram`](../index.md#completelineprogram)
 
+  Construct a new `LineRows` for executing the subset of the line
+
+  number program identified by 'sequence' and  generating the line information
+
+  matrix.
+
+  
+
+  ```rust
+
+  fn foo() {
+
+  use gimli::{IncompleteLineProgram, EndianSlice, NativeEndian};
+
+  
+
+  fn get_line_number_program<'a>() -> IncompleteLineProgram<EndianSlice<'a, NativeEndian>> {
+
+      // Get a line number program from some offset in a
+
+      // `.debug_line` section...
+
+    unimplemented!()
+
+  }
+
+  
+
+  let program = get_line_number_program();
+
+  let (program, sequences) = program.sequences().unwrap();
+
+  for sequence in &sequences {
+
+      let mut sm = program.resume_from(sequence);
+
+  }
+
+  }
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for CompleteLineProgram<R, Offset>`
+
+- <span id="completelineprogram-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CompleteLineProgram<R, Offset>`
+
+- <span id="completelineprogram-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CompleteLineProgram<R, Offset>`
+
+- <span id="completelineprogram-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R, Offset> Clone for CompleteLineProgram<R, Offset>`
 
 - <span id="completelineprogram-clone"></span>`fn clone(&self) -> CompleteLineProgram<R, Offset>` — [`CompleteLineProgram`](../index.md#completelineprogram)
 
+##### `impl CloneToUninit for CompleteLineProgram<R, Offset>`
+
+- <span id="completelineprogram-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R, Offset> Debug for CompleteLineProgram<R, Offset>`
 
-- <span id="completelineprogram-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="completelineprogram-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for CompleteLineProgram<R, Offset>`
 
+##### `impl<T> From for CompleteLineProgram<R, Offset>`
+
+- <span id="completelineprogram-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CompleteLineProgram<R, Offset>`
+
+- <span id="completelineprogram-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<R, Offset> LineProgram for &'program CompleteLineProgram<R, Offset>`
 
-- <span id="program-completelineprogram-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md#lineprogramheader)
+- <span id="program-completelineprogram-lineprogram-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md#lineprogramheader)
 
-- <span id="program-completelineprogram-add-file"></span>`fn add_file(&mut self, _: FileEntry<R, Offset>)` — [`FileEntry`](../index.md#fileentry)
+- <span id="program-completelineprogram-lineprogram-add-file"></span>`fn add_file(&mut self, _: FileEntry<R, Offset>)` — [`FileEntry`](../index.md#fileentry)
 
 ##### `impl<R, Offset> PartialEq for CompleteLineProgram<R, Offset>`
 
-- <span id="completelineprogram-eq"></span>`fn eq(&self, other: &CompleteLineProgram<R, Offset>) -> bool` — [`CompleteLineProgram`](../index.md#completelineprogram)
+- <span id="completelineprogram-partialeq-eq"></span>`fn eq(&self, other: &CompleteLineProgram<R, Offset>) -> bool` — [`CompleteLineProgram`](../index.md#completelineprogram)
 
 ##### `impl<R, Offset> StructuralPartialEq for CompleteLineProgram<R, Offset>`
+
+##### `impl ToOwned for CompleteLineProgram<R, Offset>`
+
+- <span id="completelineprogram-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="completelineprogram-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="completelineprogram-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CompleteLineProgram<R, Offset>`
+
+- <span id="completelineprogram-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="completelineprogram-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CompleteLineProgram<R, Offset>`
+
+- <span id="completelineprogram-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="completelineprogram-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FileEntry<R, Offset>`
 
@@ -583,37 +1405,153 @@ An entry in the `LineProgramHeader`'s `file_names` set.
 
 - <span id="fileentry-path-name"></span>`fn path_name(&self) -> AttributeValue<R, Offset>` — [`AttributeValue`](../index.md#attributevalue)
 
+  > A slice containing the full or relative path name of
+
+  > a source file. If the entry contains a file name or a relative path
+
+  > name, the file is located relative to either the compilation directory
+
+  > (as specified by the DW_AT_comp_dir attribute given in the compilation
+
+  > unit) or one of the directories in the include_directories section.
+
 - <span id="fileentry-directory-index"></span>`fn directory_index(&self) -> u64`
+
+  > An unsigned LEB128 number representing the directory index of the
+
+  > directory in which the file was found.
+
+  >
+
+  > ...
+
+  >
+
+  > The directory index represents an entry in the include_directories
+
+  > section of the line number program header. The index is 0 if the file
+
+  > was found in the current directory of the compilation, 1 if it was found
+
+  > in the first directory in the include_directories section, and so
+
+  > on. The directory index is ignored for file names that represent full
+
+  > path names.
 
 - <span id="fileentry-directory"></span>`fn directory(&self, header: &LineProgramHeader<R>) -> Option<AttributeValue<R, Offset>>` — [`LineProgramHeader`](../index.md#lineprogramheader), [`AttributeValue`](../index.md#attributevalue)
 
+  Get this file's directory.
+
+  
+
+  A directory index of 0 corresponds to the compilation unit directory.
+
 - <span id="fileentry-timestamp"></span>`fn timestamp(&self) -> u64`
+
+  The implementation-defined time of last modification of the file,
+
+  or 0 if not available.
 
 - <span id="fileentry-size"></span>`fn size(&self) -> u64`
 
+  The size of the file in bytes, or 0 if not available.
+
 - <span id="fileentry-md5"></span>`fn md5(&self) -> &[u8; 16]`
+
+  A 16-byte MD5 digest of the file contents.
+
+  
+
+  Only valid if `LineProgramHeader::file_has_md5` returns `true`.
 
 - <span id="fileentry-source"></span>`fn source(&self) -> Option<AttributeValue<R, Offset>>` — [`AttributeValue`](../index.md#attributevalue)
 
+  The source code of this file. (UTF-8 source text string with "\n" line
+
+  endings).
+
+  
+
+  Note: For DWARF v5 files this may return an empty attribute that
+
+  indicates that no source code is available, which this function
+
+  represents as `Some(<zero-length attr>)`.
+
 #### Trait Implementations
+
+##### `impl Any for FileEntry<R, Offset>`
+
+- <span id="fileentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FileEntry<R, Offset>`
+
+- <span id="fileentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FileEntry<R, Offset>`
+
+- <span id="fileentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R, Offset> Clone for FileEntry<R, Offset>`
 
 - <span id="fileentry-clone"></span>`fn clone(&self) -> FileEntry<R, Offset>` — [`FileEntry`](../index.md#fileentry)
 
+##### `impl CloneToUninit for FileEntry<R, Offset>`
+
+- <span id="fileentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R, Offset> Copy for FileEntry<R, Offset>`
 
 ##### `impl<R, Offset> Debug for FileEntry<R, Offset>`
 
-- <span id="fileentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fileentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for FileEntry<R, Offset>`
 
+##### `impl<T> From for FileEntry<R, Offset>`
+
+- <span id="fileentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FileEntry<R, Offset>`
+
+- <span id="fileentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<R, Offset> PartialEq for FileEntry<R, Offset>`
 
-- <span id="fileentry-eq"></span>`fn eq(&self, other: &FileEntry<R, Offset>) -> bool` — [`FileEntry`](../index.md#fileentry)
+- <span id="fileentry-partialeq-eq"></span>`fn eq(&self, other: &FileEntry<R, Offset>) -> bool` — [`FileEntry`](../index.md#fileentry)
 
 ##### `impl<R, Offset> StructuralPartialEq for FileEntry<R, Offset>`
+
+##### `impl ToOwned for FileEntry<R, Offset>`
+
+- <span id="fileentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="fileentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="fileentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FileEntry<R, Offset>`
+
+- <span id="fileentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fileentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FileEntry<R, Offset>`
+
+- <span id="fileentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fileentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FileEntryFormat`
 
@@ -644,23 +1582,77 @@ The format of a component of an include directory or file name entry.
 
 #### Trait Implementations
 
+##### `impl Any for FileEntryFormat`
+
+- <span id="fileentryformat-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FileEntryFormat`
+
+- <span id="fileentryformat-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FileEntryFormat`
+
+- <span id="fileentryformat-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for FileEntryFormat`
 
 - <span id="fileentryformat-clone"></span>`fn clone(&self) -> FileEntryFormat` — [`FileEntryFormat`](../index.md#fileentryformat)
+
+##### `impl CloneToUninit for FileEntryFormat`
+
+- <span id="fileentryformat-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for FileEntryFormat`
 
 ##### `impl Debug for FileEntryFormat`
 
-- <span id="fileentryformat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fileentryformat-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for FileEntryFormat`
 
+##### `impl<T> From for FileEntryFormat`
+
+- <span id="fileentryformat-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FileEntryFormat`
+
+- <span id="fileentryformat-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for FileEntryFormat`
 
-- <span id="fileentryformat-eq"></span>`fn eq(&self, other: &FileEntryFormat) -> bool` — [`FileEntryFormat`](../index.md#fileentryformat)
+- <span id="fileentryformat-partialeq-eq"></span>`fn eq(&self, other: &FileEntryFormat) -> bool` — [`FileEntryFormat`](../index.md#fileentryformat)
 
 ##### `impl StructuralPartialEq for FileEntryFormat`
+
+##### `impl ToOwned for FileEntryFormat`
+
+- <span id="fileentryformat-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="fileentryformat-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="fileentryformat-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FileEntryFormat`
+
+- <span id="fileentryformat-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fileentryformat-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FileEntryFormat`
+
+- <span id="fileentryformat-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fileentryformat-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -856,23 +1848,77 @@ A parsed line number program instruction.
 
 #### Trait Implementations
 
+##### `impl Any for LineInstruction<R, Offset>`
+
+- <span id="lineinstruction-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LineInstruction<R, Offset>`
+
+- <span id="lineinstruction-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LineInstruction<R, Offset>`
+
+- <span id="lineinstruction-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R, Offset> Clone for LineInstruction<R, Offset>`
 
 - <span id="lineinstruction-clone"></span>`fn clone(&self) -> LineInstruction<R, Offset>` — [`LineInstruction`](../index.md#lineinstruction)
+
+##### `impl CloneToUninit for LineInstruction<R, Offset>`
+
+- <span id="lineinstruction-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<R, Offset> Copy for LineInstruction<R, Offset>`
 
 ##### `impl<R, Offset> Debug for LineInstruction<R, Offset>`
 
-- <span id="lineinstruction-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lineinstruction-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for LineInstruction<R, Offset>`
 
+##### `impl<T> From for LineInstruction<R, Offset>`
+
+- <span id="lineinstruction-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LineInstruction<R, Offset>`
+
+- <span id="lineinstruction-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<R, Offset> PartialEq for LineInstruction<R, Offset>`
 
-- <span id="lineinstruction-eq"></span>`fn eq(&self, other: &LineInstruction<R, Offset>) -> bool` — [`LineInstruction`](../index.md#lineinstruction)
+- <span id="lineinstruction-partialeq-eq"></span>`fn eq(&self, other: &LineInstruction<R, Offset>) -> bool` — [`LineInstruction`](../index.md#lineinstruction)
 
 ##### `impl<R, Offset> StructuralPartialEq for LineInstruction<R, Offset>`
+
+##### `impl ToOwned for LineInstruction<R, Offset>`
+
+- <span id="lineinstruction-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="lineinstruction-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="lineinstruction-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LineInstruction<R, Offset>`
+
+- <span id="lineinstruction-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lineinstruction-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LineInstruction<R, Offset>`
+
+- <span id="lineinstruction-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lineinstruction-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ColumnType`
 
@@ -900,31 +1946,85 @@ The type of column that a row is referring to.
 
 #### Trait Implementations
 
+##### `impl Any for ColumnType`
+
+- <span id="columntype-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ColumnType`
+
+- <span id="columntype-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ColumnType`
+
+- <span id="columntype-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ColumnType`
 
 - <span id="columntype-clone"></span>`fn clone(&self) -> ColumnType` — [`ColumnType`](../index.md#columntype)
+
+##### `impl CloneToUninit for ColumnType`
+
+- <span id="columntype-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ColumnType`
 
 ##### `impl Debug for ColumnType`
 
-- <span id="columntype-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="columntype-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ColumnType`
 
+##### `impl<T> From for ColumnType`
+
+- <span id="columntype-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ColumnType`
+
+- <span id="columntype-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for ColumnType`
 
-- <span id="columntype-cmp"></span>`fn cmp(&self, other: &ColumnType) -> cmp::Ordering` — [`ColumnType`](../index.md#columntype)
+- <span id="columntype-ord-cmp"></span>`fn cmp(&self, other: &ColumnType) -> cmp::Ordering` — [`ColumnType`](../index.md#columntype)
 
 ##### `impl PartialEq for ColumnType`
 
-- <span id="columntype-eq"></span>`fn eq(&self, other: &ColumnType) -> bool` — [`ColumnType`](../index.md#columntype)
+- <span id="columntype-partialeq-eq"></span>`fn eq(&self, other: &ColumnType) -> bool` — [`ColumnType`](../index.md#columntype)
 
 ##### `impl PartialOrd for ColumnType`
 
-- <span id="columntype-partial-cmp"></span>`fn partial_cmp(&self, other: &ColumnType) -> option::Option<cmp::Ordering>` — [`ColumnType`](../index.md#columntype)
+- <span id="columntype-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &ColumnType) -> option::Option<cmp::Ordering>` — [`ColumnType`](../index.md#columntype)
 
 ##### `impl StructuralPartialEq for ColumnType`
+
+##### `impl ToOwned for ColumnType`
+
+- <span id="columntype-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="columntype-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="columntype-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ColumnType`
+
+- <span id="columntype-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="columntype-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ColumnType`
+
+- <span id="columntype-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="columntype-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

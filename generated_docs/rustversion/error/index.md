@@ -35,6 +35,50 @@ struct Error {
 
 - <span id="error-into-compile-error"></span>`fn into_compile_error(self) -> TokenStream`
 
+#### Trait Implementations
+
+##### `impl Any for Error`
+
+- <span id="error-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Error`
+
+- <span id="error-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Error`
+
+- <span id="error-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Error`
+
+- <span id="error-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Error`
+
+- <span id="error-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Error`
+
+- <span id="error-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="error-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Error`
+
+- <span id="error-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="error-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ## Type Aliases
 
 ### `Result<T, E>`

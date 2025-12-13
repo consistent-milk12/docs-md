@@ -65,17 +65,87 @@ size and a heap size proportional to the size of the `Ast`.
 
 - <span id="heapvisitor-induct"></span>`fn induct<V: Visitor>(&mut self, ast: &'a Ast, visitor: &mut V) -> Result<Option<Frame<'a>>, <V as >::Err>` — [`Ast`](../index.md#ast), [`Frame`](#frame), [`Visitor`](#visitor)
 
+  Build a stack frame for the given AST if one is needed (which occurs if
+
+  and only if there are child nodes in the AST). Otherwise, return None.
+
+  
+
+  If this visits a class, then the underlying visitor implementation may
+
+  return an error which will be passed on here.
+
 - <span id="heapvisitor-pop"></span>`fn pop(&self, induct: Frame<'a>) -> Option<Frame<'a>>` — [`Frame`](#frame)
+
+  Pops the given frame. If the frame has an additional inductive step,
+
+  then return it, otherwise return `None`.
 
 - <span id="heapvisitor-visit-class"></span>`fn visit_class<V: Visitor>(&mut self, ast: &'a ast::ClassBracketed, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassBracketed`](../index.md#classbracketed), [`Visitor`](#visitor)
 
 - <span id="heapvisitor-visit-class-pre"></span>`fn visit_class_pre<V: Visitor>(&self, ast: &ClassInduct<'a>, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassInduct`](#classinduct), [`Visitor`](#visitor)
 
+  Call the appropriate `Visitor` methods given an inductive step.
+
 - <span id="heapvisitor-visit-class-post"></span>`fn visit_class_post<V: Visitor>(&self, ast: &ClassInduct<'a>, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassInduct`](#classinduct), [`Visitor`](#visitor)
+
+  Call the appropriate `Visitor` methods given an inductive step.
 
 - <span id="heapvisitor-induct-class"></span>`fn induct_class(&self, ast: &ClassInduct<'a>) -> Option<ClassFrame<'a>>` — [`ClassInduct`](#classinduct), [`ClassFrame`](#classframe)
 
+  Build a stack frame for the given class node if one is needed (which
+
+  occurs if and only if there are child nodes). Otherwise, return None.
+
 - <span id="heapvisitor-pop-class"></span>`fn pop_class(&self, induct: ClassFrame<'a>) -> Option<ClassFrame<'a>>` — [`ClassFrame`](#classframe)
+
+  Pops the given frame. If the frame has an additional inductive step,
+
+  then return it, otherwise return `None`.
+
+#### Trait Implementations
+
+##### `impl Any for HeapVisitor<'a>`
+
+- <span id="heapvisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HeapVisitor<'a>`
+
+- <span id="heapvisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HeapVisitor<'a>`
+
+- <span id="heapvisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for HeapVisitor<'a>`
+
+- <span id="heapvisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for HeapVisitor<'a>`
+
+- <span id="heapvisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for HeapVisitor<'a>`
+
+- <span id="heapvisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="heapvisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HeapVisitor<'a>`
+
+- <span id="heapvisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="heapvisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -126,6 +196,54 @@ an `Ast`.
 #### Implementations
 
 - <span id="frame-child"></span>`fn child(&self) -> &'a Ast` — [`Ast`](../index.md#ast)
+
+  Perform the next inductive step on this frame and return the next
+
+  child AST node to visit.
+
+#### Trait Implementations
+
+##### `impl Any for Frame<'a>`
+
+- <span id="frame-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Frame<'a>`
+
+- <span id="frame-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Frame<'a>`
+
+- <span id="frame-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Frame<'a>`
+
+- <span id="frame-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Frame<'a>`
+
+- <span id="frame-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Frame<'a>`
+
+- <span id="frame-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="frame-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Frame<'a>`
+
+- <span id="frame-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="frame-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ClassFrame<'a>`
 
@@ -180,11 +298,57 @@ a character class.
 
 - <span id="classframe-child"></span>`fn child(&self) -> ClassInduct<'a>` — [`ClassInduct`](#classinduct)
 
+  Perform the next inductive step on this frame and return the next
+
+  child class node to visit.
+
 #### Trait Implementations
+
+##### `impl Any for ClassFrame<'a>`
+
+- <span id="classframe-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ClassFrame<'a>`
+
+- <span id="classframe-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ClassFrame<'a>`
+
+- <span id="classframe-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for ClassFrame<'a>`
 
-- <span id="classframe-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="classframe-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for ClassFrame<'a>`
+
+- <span id="classframe-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ClassFrame<'a>`
+
+- <span id="classframe-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ClassFrame<'a>`
+
+- <span id="classframe-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="classframe-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ClassFrame<'a>`
+
+- <span id="classframe-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="classframe-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ClassInduct<'a>`
 
@@ -215,9 +379,51 @@ syntax, which is not possible.)
 
 #### Trait Implementations
 
+##### `impl Any for ClassInduct<'a>`
+
+- <span id="classinduct-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ClassInduct<'a>`
+
+- <span id="classinduct-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ClassInduct<'a>`
+
+- <span id="classinduct-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ClassInduct<'a>`
 
-- <span id="classinduct-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="classinduct-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for ClassInduct<'a>`
+
+- <span id="classinduct-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ClassInduct<'a>`
+
+- <span id="classinduct-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ClassInduct<'a>`
+
+- <span id="classinduct-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="classinduct-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ClassInduct<'a>`
+
+- <span id="classinduct-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="classinduct-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

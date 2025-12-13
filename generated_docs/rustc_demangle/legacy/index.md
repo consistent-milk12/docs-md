@@ -35,9 +35,51 @@ Representation of a demangled symbol name.
 
 #### Trait Implementations
 
+##### `impl Any for Demangle<'a>`
+
+- <span id="demangle-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Demangle<'a>`
+
+- <span id="demangle-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Demangle<'a>`
+
+- <span id="demangle-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Display for Demangle<'a>`
 
-- <span id="demangle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="demangle-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Demangle<'a>`
+
+- <span id="demangle-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Demangle<'a>`
+
+- <span id="demangle-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Demangle<'a>`
+
+- <span id="demangle-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="demangle-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Demangle<'a>`
+
+- <span id="demangle-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="demangle-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

@@ -53,11 +53,49 @@ it. We also carry the "execute fn" from the `Job` trait.
 
 - <span id="jobref-new"></span>`unsafe fn new<T>(data: *const T) -> JobRef` — [`JobRef`](#jobref)
 
+  Unsafe: caller asserts that `data` will remain valid until the
+
+  job is executed.
+
 - <span id="jobref-id"></span>`fn id(&self) -> impl Eq`
+
+  Returns an opaque handle that can be saved and compared,
+
+  without making `JobRef` itself `Copy + Eq`.
 
 - <span id="jobref-execute"></span>`unsafe fn execute(self)`
 
 #### Trait Implementations
+
+##### `impl Any for JobRef`
+
+- <span id="jobref-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for JobRef`
+
+- <span id="jobref-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for JobRef`
+
+- <span id="jobref-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for JobRef`
+
+- <span id="jobref-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for JobRef`
+
+- <span id="jobref-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for JobRef`
 
@@ -65,17 +103,29 @@ it. We also carry the "execute fn" from the `Job` trait.
 
 - <span id="jobref-pointable-type-init"></span>`type Init = T`
 
-- <span id="jobref-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="jobref-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="jobref-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="jobref-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="jobref-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="jobref-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="jobref-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="jobref-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl Send for JobRef`
 
 ##### `impl Sync for JobRef`
+
+##### `impl<U> TryFrom for JobRef`
+
+- <span id="jobref-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="jobref-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for JobRef`
+
+- <span id="jobref-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="jobref-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StackJob<L, F, R>`
 
@@ -110,9 +160,39 @@ the stack frame is later popped.  The function parameter indicates
 
 #### Trait Implementations
 
+##### `impl Any for StackJob<L, F, R>`
+
+- <span id="stackjob-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StackJob<L, F, R>`
+
+- <span id="stackjob-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StackJob<L, F, R>`
+
+- <span id="stackjob-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for StackJob<L, F, R>`
+
+- <span id="stackjob-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StackJob<L, F, R>`
+
+- <span id="stackjob-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<L, F, R> Job for StackJob<L, F, R>`
 
-- <span id="stackjob-execute"></span>`unsafe fn execute(this: *const ())`
+- <span id="stackjob-job-execute"></span>`unsafe fn execute(this: *const ())`
 
 ##### `impl Pointable for StackJob<L, F, R>`
 
@@ -120,13 +200,25 @@ the stack frame is later popped.  The function parameter indicates
 
 - <span id="stackjob-pointable-type-init"></span>`type Init = T`
 
-- <span id="stackjob-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="stackjob-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="stackjob-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="stackjob-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="stackjob-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="stackjob-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="stackjob-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="stackjob-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for StackJob<L, F, R>`
+
+- <span id="stackjob-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="stackjob-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StackJob<L, F, R>`
+
+- <span id="stackjob-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="stackjob-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `HeapJob<BODY>`
 
@@ -153,13 +245,51 @@ signal that the job executed.
 
 - <span id="heapjob-into-job-ref"></span>`unsafe fn into_job_ref(self: Box<Self>) -> JobRef` — [`JobRef`](#jobref)
 
+  Creates a `JobRef` from this job -- note that this hides all
+
+  lifetimes, so it is up to you to ensure that this JobRef
+
+  doesn't outlive any data that it closes over.
+
 - <span id="heapjob-into-static-job-ref"></span>`fn into_static_job_ref(self: Box<Self>) -> JobRef` — [`JobRef`](#jobref)
+
+  Creates a static `JobRef` from this job.
 
 #### Trait Implementations
 
+##### `impl Any for HeapJob<BODY>`
+
+- <span id="heapjob-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HeapJob<BODY>`
+
+- <span id="heapjob-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HeapJob<BODY>`
+
+- <span id="heapjob-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for HeapJob<BODY>`
+
+- <span id="heapjob-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for HeapJob<BODY>`
+
+- <span id="heapjob-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<BODY> Job for HeapJob<BODY>`
 
-- <span id="heapjob-execute"></span>`unsafe fn execute(this: *const ())`
+- <span id="heapjob-job-execute"></span>`unsafe fn execute(this: *const ())`
 
 ##### `impl Pointable for HeapJob<BODY>`
 
@@ -167,13 +297,25 @@ signal that the job executed.
 
 - <span id="heapjob-pointable-type-init"></span>`type Init = T`
 
-- <span id="heapjob-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="heapjob-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="heapjob-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="heapjob-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="heapjob-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="heapjob-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="heapjob-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="heapjob-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for HeapJob<BODY>`
+
+- <span id="heapjob-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="heapjob-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HeapJob<BODY>`
+
+- <span id="heapjob-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="heapjob-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ArcJob<BODY>`
 
@@ -196,13 +338,51 @@ be turned into multiple `JobRef`s and called multiple times.
 
 - <span id="arcjob-as-job-ref"></span>`unsafe fn as_job_ref(this: &Arc<Self>) -> JobRef` — [`JobRef`](#jobref)
 
+  Creates a `JobRef` from this job -- note that this hides all
+
+  lifetimes, so it is up to you to ensure that this JobRef
+
+  doesn't outlive any data that it closes over.
+
 - <span id="arcjob-as-static-job-ref"></span>`fn as_static_job_ref(this: &Arc<Self>) -> JobRef` — [`JobRef`](#jobref)
+
+  Creates a static `JobRef` from this job.
 
 #### Trait Implementations
 
+##### `impl Any for ArcJob<BODY>`
+
+- <span id="arcjob-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ArcJob<BODY>`
+
+- <span id="arcjob-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ArcJob<BODY>`
+
+- <span id="arcjob-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for ArcJob<BODY>`
+
+- <span id="arcjob-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ArcJob<BODY>`
+
+- <span id="arcjob-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<BODY> Job for ArcJob<BODY>`
 
-- <span id="arcjob-execute"></span>`unsafe fn execute(this: *const ())`
+- <span id="arcjob-job-execute"></span>`unsafe fn execute(this: *const ())`
 
 ##### `impl Pointable for ArcJob<BODY>`
 
@@ -210,13 +390,25 @@ be turned into multiple `JobRef`s and called multiple times.
 
 - <span id="arcjob-pointable-type-init"></span>`type Init = T`
 
-- <span id="arcjob-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="arcjob-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="arcjob-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="arcjob-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="arcjob-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="arcjob-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="arcjob-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="arcjob-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for ArcJob<BODY>`
+
+- <span id="arcjob-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="arcjob-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ArcJob<BODY>`
+
+- <span id="arcjob-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="arcjob-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `JobFifo`
 
@@ -238,9 +430,39 @@ Indirect queue to provide FIFO job priority.
 
 #### Trait Implementations
 
+##### `impl Any for JobFifo`
+
+- <span id="jobfifo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for JobFifo`
+
+- <span id="jobfifo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for JobFifo`
+
+- <span id="jobfifo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for JobFifo`
+
+- <span id="jobfifo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for JobFifo`
+
+- <span id="jobfifo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Job for JobFifo`
 
-- <span id="jobfifo-execute"></span>`unsafe fn execute(this: *const ())`
+- <span id="jobfifo-job-execute"></span>`unsafe fn execute(this: *const ())`
 
 ##### `impl Pointable for JobFifo`
 
@@ -248,13 +470,25 @@ Indirect queue to provide FIFO job priority.
 
 - <span id="jobfifo-pointable-type-init"></span>`type Init = T`
 
-- <span id="jobfifo-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="jobfifo-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="jobfifo-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="jobfifo-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="jobfifo-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="jobfifo-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="jobfifo-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="jobfifo-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for JobFifo`
+
+- <span id="jobfifo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="jobfifo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for JobFifo`
+
+- <span id="jobfifo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="jobfifo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -276,7 +510,45 @@ enum JobResult<T> {
 
 - <span id="jobresult-into-return-value"></span>`fn into_return_value(self) -> T`
 
+  Convert the `JobResult` for a job that has finished (and hence
+
+  its JobResult is populated) into its return value.
+
+  
+
+  NB. This will panic if the job panicked.
+
 #### Trait Implementations
+
+##### `impl<T> Any for JobResult<T>`
+
+- <span id="jobresult-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for JobResult<T>`
+
+- <span id="jobresult-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for JobResult<T>`
+
+- <span id="jobresult-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for JobResult<T>`
+
+- <span id="jobresult-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for JobResult<T>`
+
+- <span id="jobresult-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for JobResult<T>`
 
@@ -284,13 +556,25 @@ enum JobResult<T> {
 
 - <span id="jobresult-pointable-type-init"></span>`type Init = T`
 
-- <span id="jobresult-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="jobresult-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="jobresult-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="jobresult-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="jobresult-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="jobresult-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="jobresult-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="jobresult-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T, U> TryFrom for JobResult<T>`
+
+- <span id="jobresult-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="jobresult-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for JobResult<T>`
+
+- <span id="jobresult-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="jobresult-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

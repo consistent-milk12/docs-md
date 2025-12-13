@@ -154,9 +154,99 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-new"></span>`fn new() -> Self`
 
+  Creates an empty `HashSet`.
+
+  
+
+  The hash set is initially created with a capacity of 0, so it will not allocate until it
+
+  is first inserted into.
+
+  
+
+  # HashDoS resistance
+
+  
+
+  The `hash_builder` normally use a fixed key by default and that does
+
+  not allow the `HashSet` to be protected against attacks such as `HashDoS`.
+
+  Users who require HashDoS resistance should explicitly use
+
+  `std::collections::hash_map::RandomState`
+
+  as the hasher when creating a [`HashSet`](#hashset), for example with
+
+  [`with_hasher`](HashSet::with_hasher) method.
+
+  
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  let set: HashSet<i32> = HashSet::new();
+
+  ```
+
 - <span id="hashset-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
+  Creates an empty `HashSet` with the specified capacity.
+
+  
+
+  The hash set will be able to hold at least `capacity` elements without
+
+  reallocating. If `capacity` is 0, the hash set will not allocate.
+
+  
+
+  # HashDoS resistance
+
+  
+
+  The `hash_builder` normally use a fixed key by default and that does
+
+  not allow the `HashSet` to be protected against attacks such as `HashDoS`.
+
+  Users who require HashDoS resistance should explicitly use
+
+  `std::collections::hash_map::RandomState`
+
+  as the hasher when creating a [`HashSet`](#hashset), for example with
+
+  [`with_capacity_and_hasher`](HashSet::with_capacity_and_hasher) method.
+
+  
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  let set: HashSet<i32> = HashSet::with_capacity(10);
+
+  assert!(set.capacity() >= 10);
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for HashSet<T, S, A>`
+
+- <span id="hashset-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl<T, S, A> BitAnd for &HashSet<T, S, A>`
 
@@ -164,9 +254,89 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-bitand"></span>`fn bitand(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](#hashset)
 
+  Returns the intersection of `self` and `rhs` as a new `HashSet<T, S>`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
+
+  let b: HashSet<_> = vec![2, 3, 4].into_iter().collect();
+
+  
+
+  let set = &a & &b;
+
+  
+
+  let mut i = 0;
+
+  let expected = [2, 3];
+
+  for x in &set {
+
+      assert!(expected.contains(x));
+
+      i += 1;
+
+  }
+
+  assert_eq!(i, expected.len());
+
+  ```
+
 ##### `impl<T, S, A> BitAndAssign for HashSet<T, S, A>`
 
-- <span id="hashset-bitand-assign"></span>`fn bitand_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+- <span id="hashset-bitandassign-bitand-assign"></span>`fn bitand_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+
+  Modifies this set to contain the intersection of `self` and `rhs`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let mut a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
+
+  let b: HashSet<_> = vec![2, 3, 4].into_iter().collect();
+
+  
+
+  a &= &b;
+
+  
+
+  let mut i = 0;
+
+  let expected = [2, 3];
+
+  for x in &a {
+
+      assert!(expected.contains(x));
+
+      i += 1;
+
+  }
+
+  assert_eq!(i, expected.len());
+
+  ```
 
 ##### `impl<T, S, A> BitOr for &HashSet<T, S, A>`
 
@@ -174,9 +344,89 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-bitor"></span>`fn bitor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](#hashset)
 
+  Returns the union of `self` and `rhs` as a new `HashSet<T, S>`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
+
+  let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
+
+  
+
+  let set = &a | &b;
+
+  
+
+  let mut i = 0;
+
+  let expected = [1, 2, 3, 4, 5];
+
+  for x in &set {
+
+      assert!(expected.contains(x));
+
+      i += 1;
+
+  }
+
+  assert_eq!(i, expected.len());
+
+  ```
+
 ##### `impl<T, S, A> BitOrAssign for HashSet<T, S, A>`
 
-- <span id="hashset-bitor-assign"></span>`fn bitor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+- <span id="hashset-bitorassign-bitor-assign"></span>`fn bitor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+
+  Modifies this set to contain the union of `self` and `rhs`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let mut a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
+
+  let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
+
+  
+
+  a |= &b;
+
+  
+
+  let mut i = 0;
+
+  let expected = [1, 2, 3, 4, 5];
+
+  for x in &a {
+
+      assert!(expected.contains(x));
+
+      i += 1;
+
+  }
+
+  assert_eq!(i, expected.len());
+
+  ```
 
 ##### `impl<T, S, A> BitXor for &HashSet<T, S, A>`
 
@@ -184,23 +434,117 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-bitxor"></span>`fn bitxor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](#hashset)
 
+  Returns the symmetric difference of `self` and `rhs` as a new `HashSet<T, S>`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
+
+  let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
+
+  
+
+  let set = &a ^ &b;
+
+  
+
+  let mut i = 0;
+
+  let expected = [1, 2, 4, 5];
+
+  for x in &set {
+
+      assert!(expected.contains(x));
+
+      i += 1;
+
+  }
+
+  assert_eq!(i, expected.len());
+
+  ```
+
 ##### `impl<T, S, A> BitXorAssign for HashSet<T, S, A>`
 
-- <span id="hashset-bitxor-assign"></span>`fn bitxor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+- <span id="hashset-bitxorassign-bitxor-assign"></span>`fn bitxor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+
+  Modifies this set to contain the symmetric difference of `self` and `rhs`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let mut a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
+
+  let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
+
+  
+
+  a ^= &b;
+
+  
+
+  let mut i = 0;
+
+  let expected = [1, 2, 4, 5];
+
+  for x in &a {
+
+      assert!(expected.contains(x));
+
+      i += 1;
+
+  }
+
+  assert_eq!(i, expected.len());
+
+  ```
+
+##### `impl<T> Borrow for HashSet<T, S, A>`
+
+- <span id="hashset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HashSet<T, S, A>`
+
+- <span id="hashset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: Clone, S: Clone, A: Allocator + Clone> Clone for HashSet<T, S, A>`
 
 - <span id="hashset-clone"></span>`fn clone(&self) -> Self`
 
-- <span id="hashset-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
+- <span id="hashset-clone-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
+
+##### `impl<T> CloneToUninit for HashSet<T, S, A>`
+
+- <span id="hashset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T, S, A> Debug for HashSet<T, S, A>`
 
-- <span id="hashset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hashset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, S, A> Default for HashSet<T, S, A>`
 
 - <span id="hashset-default"></span>`fn default() -> Self`
+
+  Creates an empty `HashSet<T, S>` with the `Default` value for the hasher.
 
 ##### `impl<T, S, A> Eq for HashSet<T, S, A>`
 
@@ -212,9 +556,27 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-extend"></span>`fn extend<I: IntoIterator<Item = T>>(&mut self, iter: I)`
 
+##### `impl<T> From for HashSet<T, S, A>`
+
+- <span id="hashset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<T, S, A> FromIterator for HashSet<T, S, A>`
 
-- <span id="hashset-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
+- <span id="hashset-fromiterator-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
+
+##### `impl<T, U> Into for HashSet<T, S, A>`
+
+- <span id="hashset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, S, A: Allocator> IntoIterator for &'a HashSet<T, S, A>`
 
@@ -222,11 +584,11 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="a-hashset-intoiterator-type-intoiter"></span>`type IntoIter = Iter<'a, T>`
 
-- <span id="a-hashset-into-iter"></span>`fn into_iter(self) -> Iter<'a, T>` — [`Iter`](#iter)
+- <span id="a-hashset-intoiterator-into-iter"></span>`fn into_iter(self) -> Iter<'a, T>` — [`Iter`](#iter)
 
 ##### `impl<T, S, A> PartialEq for HashSet<T, S, A>`
 
-- <span id="hashset-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="hashset-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T, S, A> Sub for &HashSet<T, S, A>`
 
@@ -234,9 +596,109 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-sub"></span>`fn sub(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](#hashset)
 
+  Returns the difference of `self` and `rhs` as a new `HashSet<T, S>`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
+
+  let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
+
+  
+
+  let set = &a - &b;
+
+  
+
+  let mut i = 0;
+
+  let expected = [1, 2];
+
+  for x in &set {
+
+      assert!(expected.contains(x));
+
+      i += 1;
+
+  }
+
+  assert_eq!(i, expected.len());
+
+  ```
+
 ##### `impl<T, S, A> SubAssign for HashSet<T, S, A>`
 
-- <span id="hashset-sub-assign"></span>`fn sub_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+- <span id="hashset-subassign-sub-assign"></span>`fn sub_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+
+  Modifies this set to contain the difference of `self` and `rhs`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let mut a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
+
+  let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
+
+  
+
+  a -= &b;
+
+  
+
+  let mut i = 0;
+
+  let expected = [1, 2];
+
+  for x in &a {
+
+      assert!(expected.contains(x));
+
+      i += 1;
+
+  }
+
+  assert_eq!(i, expected.len());
+
+  ```
+
+##### `impl<T> ToOwned for HashSet<T, S, A>`
+
+- <span id="hashset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="hashset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="hashset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for HashSet<T, S, A>`
+
+- <span id="hashset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="hashset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for HashSet<T, S, A>`
+
+- <span id="hashset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="hashset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Iter<'a, K>`
 
@@ -257,13 +719,29 @@ See its documentation for more.
 
 #### Trait Implementations
 
+##### `impl Any for Iter<'a, K>`
+
+- <span id="iter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Iter<'a, K>`
+
+- <span id="iter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Iter<'a, K>`
+
+- <span id="iter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<K> Clone for Iter<'_, K>`
 
 - <span id="iter-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for Iter<'a, K>`
+
+- <span id="iter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<K: fmt::Debug> Debug for Iter<'_, K>`
 
-- <span id="iter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="iter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K> Default for Iter<'_, K>`
 
@@ -271,9 +749,27 @@ See its documentation for more.
 
 ##### `impl<K> ExactSizeIterator for Iter<'_, K>`
 
-- <span id="iter-len"></span>`fn len(&self) -> usize`
+- <span id="iter-exactsizeiterator-len"></span>`fn len(&self) -> usize`
+
+##### `impl<T> From for Iter<'a, K>`
+
+- <span id="iter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<K> FusedIterator for Iter<'_, K>`
+
+##### `impl<U> Into for Iter<'a, K>`
+
+- <span id="iter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Iter<'a, K>`
 
@@ -281,17 +777,37 @@ See its documentation for more.
 
 - <span id="iter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="iter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K> Iterator for Iter<'a, K>`
 
 - <span id="iter-iterator-type-item"></span>`type Item = &'a K`
 
-- <span id="iter-next"></span>`fn next(&mut self) -> Option<&'a K>`
+- <span id="iter-iterator-next"></span>`fn next(&mut self) -> Option<&'a K>`
 
-- <span id="iter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="iter-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- <span id="iter-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+- <span id="iter-iterator-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+
+##### `impl ToOwned for Iter<'a, K>`
+
+- <span id="iter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="iter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="iter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Iter<'a, K>`
+
+- <span id="iter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="iter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Iter<'a, K>`
+
+- <span id="iter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="iter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IntoIter<K, A: Allocator>`
 
@@ -312,9 +828,21 @@ This `struct` is created by the `into_iter` method on [`HashSet`](#hashset)
 
 #### Trait Implementations
 
+##### `impl Any for IntoIter<K, A>`
+
+- <span id="intoiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IntoIter<K, A>`
+
+- <span id="intoiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IntoIter<K, A>`
+
+- <span id="intoiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<K: fmt::Debug, A: Allocator> Debug for IntoIter<K, A>`
 
-- <span id="intoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="intoiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, A: Allocator> Default for IntoIter<K, A>`
 
@@ -322,9 +850,27 @@ This `struct` is created by the `into_iter` method on [`HashSet`](#hashset)
 
 ##### `impl<K, A: Allocator> ExactSizeIterator for IntoIter<K, A>`
 
-- <span id="intoiter-len"></span>`fn len(&self) -> usize`
+- <span id="intoiter-exactsizeiterator-len"></span>`fn len(&self) -> usize`
+
+##### `impl<T> From for IntoIter<K, A>`
+
+- <span id="intoiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<K, A: Allocator> FusedIterator for IntoIter<K, A>`
+
+##### `impl<U> Into for IntoIter<K, A>`
+
+- <span id="intoiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IntoIter<K, A>`
 
@@ -332,17 +878,29 @@ This `struct` is created by the `into_iter` method on [`HashSet`](#hashset)
 
 - <span id="intoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="intoiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, A: Allocator> Iterator for IntoIter<K, A>`
 
 - <span id="intoiter-iterator-type-item"></span>`type Item = K`
 
-- <span id="intoiter-next"></span>`fn next(&mut self) -> Option<K>`
+- <span id="intoiter-iterator-next"></span>`fn next(&mut self) -> Option<K>`
 
-- <span id="intoiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="intoiter-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- <span id="intoiter-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+- <span id="intoiter-iterator-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+
+##### `impl<U> TryFrom for IntoIter<K, A>`
+
+- <span id="intoiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="intoiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IntoIter<K, A>`
+
+- <span id="intoiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="intoiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Drain<'a, K, A: Allocator>`
 
@@ -363,15 +921,45 @@ See its documentation for more.
 
 #### Trait Implementations
 
+##### `impl Any for Drain<'a, K, A>`
+
+- <span id="drain-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Drain<'a, K, A>`
+
+- <span id="drain-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Drain<'a, K, A>`
+
+- <span id="drain-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<K: fmt::Debug, A: Allocator> Debug for Drain<'_, K, A>`
 
-- <span id="drain-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="drain-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, A: Allocator> ExactSizeIterator for Drain<'_, K, A>`
 
-- <span id="drain-len"></span>`fn len(&self) -> usize`
+- <span id="drain-exactsizeiterator-len"></span>`fn len(&self) -> usize`
+
+##### `impl<T> From for Drain<'a, K, A>`
+
+- <span id="drain-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<K, A: Allocator> FusedIterator for Drain<'_, K, A>`
+
+##### `impl<U> Into for Drain<'a, K, A>`
+
+- <span id="drain-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Drain<'a, K, A>`
 
@@ -379,17 +967,29 @@ See its documentation for more.
 
 - <span id="drain-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="drain-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, A: Allocator> Iterator for Drain<'_, K, A>`
 
 - <span id="drain-iterator-type-item"></span>`type Item = K`
 
-- <span id="drain-next"></span>`fn next(&mut self) -> Option<K>`
+- <span id="drain-iterator-next"></span>`fn next(&mut self) -> Option<K>`
 
-- <span id="drain-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="drain-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- <span id="drain-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+- <span id="drain-iterator-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+
+##### `impl<U> TryFrom for Drain<'a, K, A>`
+
+- <span id="drain-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="drain-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Drain<'a, K, A>`
+
+- <span id="drain-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="drain-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ExtractIf<'a, K, F, A: Allocator>`
 
@@ -411,7 +1011,37 @@ documentation for more.
 
 #### Trait Implementations
 
+##### `impl Any for ExtractIf<'a, K, F, A>`
+
+- <span id="extractif-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ExtractIf<'a, K, F, A>`
+
+- <span id="extractif-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ExtractIf<'a, K, F, A>`
+
+- <span id="extractif-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for ExtractIf<'a, K, F, A>`
+
+- <span id="extractif-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<K, F, A: Allocator> FusedIterator for ExtractIf<'_, K, F, A>`
+
+##### `impl<U> Into for ExtractIf<'a, K, F, A>`
+
+- <span id="extractif-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ExtractIf<'a, K, F, A>`
 
@@ -419,15 +1049,27 @@ documentation for more.
 
 - <span id="extractif-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="extractif-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="extractif-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, F, A: Allocator> Iterator for ExtractIf<'_, K, F, A>`
 
 - <span id="extractif-iterator-type-item"></span>`type Item = K`
 
-- <span id="extractif-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="extractif-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- <span id="extractif-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="extractif-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+
+##### `impl<U> TryFrom for ExtractIf<'a, K, F, A>`
+
+- <span id="extractif-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="extractif-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ExtractIf<'a, K, F, A>`
+
+- <span id="extractif-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="extractif-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Intersection<'a, T, S, A: Allocator>`
 
@@ -449,15 +1091,49 @@ See its documentation for more.
 
 #### Trait Implementations
 
+##### `impl<T> Any for Intersection<'a, T, S, A>`
+
+- <span id="intersection-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Intersection<'a, T, S, A>`
+
+- <span id="intersection-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Intersection<'a, T, S, A>`
+
+- <span id="intersection-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T, S, A: Allocator> Clone for Intersection<'_, T, S, A>`
 
 - <span id="intersection-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for Intersection<'a, T, S, A>`
+
+- <span id="intersection-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T, S, A> Debug for Intersection<'_, T, S, A>`
 
-- <span id="intersection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="intersection-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Intersection<'a, T, S, A>`
+
+- <span id="intersection-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T, S, A> FusedIterator for Intersection<'_, T, S, A>`
+
+##### `impl<T, U> Into for Intersection<'a, T, S, A>`
+
+- <span id="intersection-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Intersection<'a, T, S, A>`
 
@@ -465,17 +1141,37 @@ See its documentation for more.
 
 - <span id="intersection-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="intersection-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="intersection-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, S, A> Iterator for Intersection<'a, T, S, A>`
 
 - <span id="intersection-iterator-type-item"></span>`type Item = &'a T`
 
-- <span id="intersection-next"></span>`fn next(&mut self) -> Option<&'a T>`
+- <span id="intersection-iterator-next"></span>`fn next(&mut self) -> Option<&'a T>`
 
-- <span id="intersection-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="intersection-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- <span id="intersection-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+- <span id="intersection-iterator-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+
+##### `impl<T> ToOwned for Intersection<'a, T, S, A>`
+
+- <span id="intersection-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="intersection-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="intersection-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for Intersection<'a, T, S, A>`
+
+- <span id="intersection-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="intersection-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Intersection<'a, T, S, A>`
+
+- <span id="intersection-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="intersection-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Difference<'a, T, S, A: Allocator>`
 
@@ -497,15 +1193,49 @@ See its documentation for more.
 
 #### Trait Implementations
 
+##### `impl<T> Any for Difference<'a, T, S, A>`
+
+- <span id="difference-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Difference<'a, T, S, A>`
+
+- <span id="difference-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Difference<'a, T, S, A>`
+
+- <span id="difference-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T, S, A: Allocator> Clone for Difference<'_, T, S, A>`
 
 - <span id="difference-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for Difference<'a, T, S, A>`
+
+- <span id="difference-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T, S, A> Debug for Difference<'_, T, S, A>`
 
-- <span id="difference-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="difference-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Difference<'a, T, S, A>`
+
+- <span id="difference-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T, S, A> FusedIterator for Difference<'_, T, S, A>`
+
+##### `impl<T, U> Into for Difference<'a, T, S, A>`
+
+- <span id="difference-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Difference<'a, T, S, A>`
 
@@ -513,17 +1243,37 @@ See its documentation for more.
 
 - <span id="difference-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="difference-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="difference-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, S, A> Iterator for Difference<'a, T, S, A>`
 
 - <span id="difference-iterator-type-item"></span>`type Item = &'a T`
 
-- <span id="difference-next"></span>`fn next(&mut self) -> Option<&'a T>`
+- <span id="difference-iterator-next"></span>`fn next(&mut self) -> Option<&'a T>`
 
-- <span id="difference-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="difference-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- <span id="difference-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+- <span id="difference-iterator-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+
+##### `impl<T> ToOwned for Difference<'a, T, S, A>`
+
+- <span id="difference-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="difference-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="difference-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for Difference<'a, T, S, A>`
+
+- <span id="difference-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="difference-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Difference<'a, T, S, A>`
+
+- <span id="difference-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="difference-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SymmetricDifference<'a, T, S, A: Allocator>`
 
@@ -544,15 +1294,49 @@ This `struct` is created by the `symmetric_difference` method on
 
 #### Trait Implementations
 
+##### `impl<T> Any for SymmetricDifference<'a, T, S, A>`
+
+- <span id="symmetricdifference-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SymmetricDifference<'a, T, S, A>`
+
+- <span id="symmetricdifference-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SymmetricDifference<'a, T, S, A>`
+
+- <span id="symmetricdifference-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T, S, A: Allocator> Clone for SymmetricDifference<'_, T, S, A>`
 
 - <span id="symmetricdifference-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for SymmetricDifference<'a, T, S, A>`
+
+- <span id="symmetricdifference-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T, S, A> Debug for SymmetricDifference<'_, T, S, A>`
 
-- <span id="symmetricdifference-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symmetricdifference-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SymmetricDifference<'a, T, S, A>`
+
+- <span id="symmetricdifference-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T, S, A> FusedIterator for SymmetricDifference<'_, T, S, A>`
+
+##### `impl<T, U> Into for SymmetricDifference<'a, T, S, A>`
+
+- <span id="symmetricdifference-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SymmetricDifference<'a, T, S, A>`
 
@@ -560,17 +1344,37 @@ This `struct` is created by the `symmetric_difference` method on
 
 - <span id="symmetricdifference-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="symmetricdifference-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="symmetricdifference-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, S, A> Iterator for SymmetricDifference<'a, T, S, A>`
 
 - <span id="symmetricdifference-iterator-type-item"></span>`type Item = &'a T`
 
-- <span id="symmetricdifference-next"></span>`fn next(&mut self) -> Option<&'a T>`
+- <span id="symmetricdifference-iterator-next"></span>`fn next(&mut self) -> Option<&'a T>`
 
-- <span id="symmetricdifference-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="symmetricdifference-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- <span id="symmetricdifference-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+- <span id="symmetricdifference-iterator-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+
+##### `impl<T> ToOwned for SymmetricDifference<'a, T, S, A>`
+
+- <span id="symmetricdifference-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="symmetricdifference-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="symmetricdifference-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for SymmetricDifference<'a, T, S, A>`
+
+- <span id="symmetricdifference-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symmetricdifference-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for SymmetricDifference<'a, T, S, A>`
+
+- <span id="symmetricdifference-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symmetricdifference-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Union<'a, T, S, A: Allocator>`
 
@@ -591,15 +1395,49 @@ See its documentation for more.
 
 #### Trait Implementations
 
+##### `impl<T> Any for Union<'a, T, S, A>`
+
+- <span id="union-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Union<'a, T, S, A>`
+
+- <span id="union-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Union<'a, T, S, A>`
+
+- <span id="union-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T, S, A: Allocator> Clone for Union<'_, T, S, A>`
 
 - <span id="union-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for Union<'a, T, S, A>`
+
+- <span id="union-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T, S, A> Debug for Union<'_, T, S, A>`
 
-- <span id="union-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="union-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Union<'a, T, S, A>`
+
+- <span id="union-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T, S, A> FusedIterator for Union<'_, T, S, A>`
+
+##### `impl<T, U> Into for Union<'a, T, S, A>`
+
+- <span id="union-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Union<'a, T, S, A>`
 
@@ -607,17 +1445,37 @@ See its documentation for more.
 
 - <span id="union-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="union-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="union-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, S, A> Iterator for Union<'a, T, S, A>`
 
 - <span id="union-iterator-type-item"></span>`type Item = &'a T`
 
-- <span id="union-next"></span>`fn next(&mut self) -> Option<&'a T>`
+- <span id="union-iterator-next"></span>`fn next(&mut self) -> Option<&'a T>`
 
-- <span id="union-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="union-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- <span id="union-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+- <span id="union-iterator-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+
+##### `impl<T> ToOwned for Union<'a, T, S, A>`
+
+- <span id="union-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="union-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="union-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for Union<'a, T, S, A>`
+
+- <span id="union-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="union-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Union<'a, T, S, A>`
+
+- <span id="union-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="union-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `OccupiedEntry<'a, T, S, A: Allocator>`
 
@@ -630,7 +1488,7 @@ struct OccupiedEntry<'a, T, S, A: Allocator> {
 *Defined in [`hashbrown-0.16.1/src/set.rs:2301-2303`](../../../.source_1765521767/hashbrown-0.16.1/src/set.rs#L2301-L2303)*
 
 A view into an occupied entry in a `HashSet`.
-It is part of the [`Entry`](../hash_map/index.md) enum.
+It is part of the [`Entry`](#entry) enum.
 
 # Examples
 
@@ -668,13 +1526,133 @@ assert_eq!(set.len(), 2);
 
 - <span id="occupiedentry-get"></span>`fn get(&self) -> &T`
 
+  Gets a reference to the value in the entry.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::hash_set::{Entry, HashSet};
+
+  
+
+  let mut set: HashSet<&str> = HashSet::new();
+
+  set.entry("poneyland").or_insert();
+
+  
+
+  match set.entry("poneyland") {
+
+      Entry::Vacant(_) => panic!(),
+
+      Entry::Occupied(entry) => assert_eq!(entry.get(), &"poneyland"),
+
+  }
+
+  ```
+
 - <span id="occupiedentry-remove"></span>`fn remove(self) -> T`
+
+  Takes the value out of the entry, and returns it.
+
+  Keeps the allocated memory for reuse.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  use hashbrown::hash_set::Entry;
+
+  
+
+  let mut set: HashSet<&str> = HashSet::new();
+
+  // The set is empty
+
+  assert!(set.is_empty() && set.capacity() == 0);
+
+  
+
+  set.entry("poneyland").or_insert();
+
+  let capacity_before_remove = set.capacity();
+
+  
+
+  if let Entry::Occupied(o) = set.entry("poneyland") {
+
+      assert_eq!(o.remove(), "poneyland");
+
+  }
+
+  
+
+  assert_eq!(set.contains("poneyland"), false);
+
+  // Now set hold none elements but capacity is equal to the old one
+
+  assert!(set.len() == 0 && set.capacity() == capacity_before_remove);
+
+  ```
 
 #### Trait Implementations
 
+##### `impl<T> Any for OccupiedEntry<'a, T, S, A>`
+
+- <span id="occupiedentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for OccupiedEntry<'a, T, S, A>`
+
+- <span id="occupiedentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for OccupiedEntry<'a, T, S, A>`
+
+- <span id="occupiedentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: fmt::Debug, S, A: Allocator> Debug for OccupiedEntry<'_, T, S, A>`
 
-- <span id="occupiedentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="occupiedentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for OccupiedEntry<'a, T, S, A>`
+
+- <span id="occupiedentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for OccupiedEntry<'a, T, S, A>`
+
+- <span id="occupiedentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<T, U> TryFrom for OccupiedEntry<'a, T, S, A>`
+
+- <span id="occupiedentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="occupiedentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for OccupiedEntry<'a, T, S, A>`
+
+- <span id="occupiedentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="occupiedentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `VacantEntry<'a, T, S, A: Allocator>`
 
@@ -687,7 +1665,7 @@ struct VacantEntry<'a, T, S, A: Allocator> {
 *Defined in [`hashbrown-0.16.1/src/set.rs:2339-2341`](../../../.source_1765521767/hashbrown-0.16.1/src/set.rs#L2339-L2341)*
 
 A view into a vacant entry in a `HashSet`.
-It is part of the [`Entry`](../hash_map/index.md) enum.
+It is part of the [`Entry`](#entry) enum.
 
 # Examples
 
@@ -715,15 +1693,137 @@ assert!(set.contains("b") && set.len() == 2);
 
 - <span id="vacantentry-get"></span>`fn get(&self) -> &T`
 
+  Gets a reference to the value that would be used when inserting
+
+  through the `VacantEntry`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let mut set: HashSet<&str> = HashSet::new();
+
+  assert_eq!(set.entry("poneyland").get(), &"poneyland");
+
+  ```
+
 - <span id="vacantentry-into-value"></span>`fn into_value(self) -> T`
+
+  Take ownership of the value.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::hash_set::{Entry, HashSet};
+
+  
+
+  let mut set: HashSet<&str> = HashSet::new();
+
+  
+
+  match set.entry("poneyland") {
+
+      Entry::Occupied(_) => panic!(),
+
+      Entry::Vacant(v) => assert_eq!(v.into_value(), "poneyland"),
+
+  }
+
+  ```
 
 - <span id="vacantentry-insert"></span>`fn insert(self) -> OccupiedEntry<'a, T, S, A>` — [`OccupiedEntry`](#occupiedentry)
 
+  Sets the value of the entry with the `VacantEntry`'s value.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  use hashbrown::hash_set::Entry;
+
+  
+
+  let mut set: HashSet<&str> = HashSet::new();
+
+  
+
+  if let Entry::Vacant(o) = set.entry("poneyland") {
+
+      o.insert();
+
+  }
+
+  assert!(set.contains("poneyland"));
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for VacantEntry<'a, T, S, A>`
+
+- <span id="vacantentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for VacantEntry<'a, T, S, A>`
+
+- <span id="vacantentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for VacantEntry<'a, T, S, A>`
+
+- <span id="vacantentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: fmt::Debug, S, A: Allocator> Debug for VacantEntry<'_, T, S, A>`
 
-- <span id="vacantentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="vacantentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for VacantEntry<'a, T, S, A>`
+
+- <span id="vacantentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for VacantEntry<'a, T, S, A>`
+
+- <span id="vacantentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<T, U> TryFrom for VacantEntry<'a, T, S, A>`
+
+- <span id="vacantentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="vacantentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for VacantEntry<'a, T, S, A>`
+
+- <span id="vacantentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="vacantentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -813,15 +1913,145 @@ assert_eq!(vec, ["a", "b", "c", "d", "e"]);
 
 - <span id="entry-insert"></span>`fn insert(self) -> OccupiedEntry<'a, T, S, A>` — [`OccupiedEntry`](#occupiedentry)
 
+  Sets the value of the entry, and returns an `OccupiedEntry`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let mut set: HashSet<&str> = HashSet::new();
+
+  let entry = set.entry("horseyland").insert();
+
+  
+
+  assert_eq!(entry.get(), &"horseyland");
+
+  ```
+
 - <span id="entry-or-insert"></span>`fn or_insert(self)`
+
+  Ensures a value is in the entry by inserting if it was vacant.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let mut set: HashSet<&str> = HashSet::new();
+
+  
+
+  // nonexistent key
+
+  set.entry("poneyland").or_insert();
+
+  assert!(set.contains("poneyland"));
+
+  
+
+  // existing key
+
+  set.entry("poneyland").or_insert();
+
+  assert!(set.contains("poneyland"));
+
+  assert_eq!(set.len(), 1);
+
+  ```
 
 - <span id="entry-get"></span>`fn get(&self) -> &T`
 
+  Returns a reference to this entry's value.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let mut set: HashSet<&str> = HashSet::new();
+
+  set.entry("poneyland").or_insert();
+
+  // existing key
+
+  assert_eq!(set.entry("poneyland").get(), &"poneyland");
+
+  // nonexistent key
+
+  assert_eq!(set.entry("horseland").get(), &"horseland");
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for Entry<'a, T, S, A>`
+
+- <span id="entry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Entry<'a, T, S, A>`
+
+- <span id="entry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Entry<'a, T, S, A>`
+
+- <span id="entry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: fmt::Debug, S, A: Allocator> Debug for Entry<'_, T, S, A>`
 
-- <span id="entry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="entry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Entry<'a, T, S, A>`
+
+- <span id="entry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Entry<'a, T, S, A>`
+
+- <span id="entry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<T, U> TryFrom for Entry<'a, T, S, A>`
+
+- <span id="entry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="entry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Entry<'a, T, S, A>`
+
+- <span id="entry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="entry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

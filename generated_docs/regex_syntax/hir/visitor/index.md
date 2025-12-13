@@ -43,7 +43,59 @@ size and a heap size proportional to the size of the `Hir`.
 
 - <span id="heapvisitor-induct"></span>`fn induct(&mut self, hir: &'a Hir) -> Option<Frame<'a>>` — [`Hir`](../index.md#hir), [`Frame`](#frame)
 
+  Build a stack frame for the given HIR if one is needed (which occurs if
+
+  and only if there are child nodes in the HIR). Otherwise, return None.
+
 - <span id="heapvisitor-pop"></span>`fn pop(&self, induct: Frame<'a>) -> Option<Frame<'a>>` — [`Frame`](#frame)
+
+  Pops the given frame. If the frame has an additional inductive step,
+
+  then return it, otherwise return `None`.
+
+#### Trait Implementations
+
+##### `impl Any for HeapVisitor<'a>`
+
+- <span id="heapvisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HeapVisitor<'a>`
+
+- <span id="heapvisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HeapVisitor<'a>`
+
+- <span id="heapvisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for HeapVisitor<'a>`
+
+- <span id="heapvisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for HeapVisitor<'a>`
+
+- <span id="heapvisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for HeapVisitor<'a>`
+
+- <span id="heapvisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="heapvisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HeapVisitor<'a>`
+
+- <span id="heapvisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="heapvisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -94,6 +146,54 @@ an `Hir`.
 #### Implementations
 
 - <span id="frame-child"></span>`fn child(&self) -> &'a Hir` — [`Hir`](../index.md#hir)
+
+  Perform the next inductive step on this frame and return the next
+
+  child HIR node to visit.
+
+#### Trait Implementations
+
+##### `impl Any for Frame<'a>`
+
+- <span id="frame-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Frame<'a>`
+
+- <span id="frame-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Frame<'a>`
+
+- <span id="frame-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Frame<'a>`
+
+- <span id="frame-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Frame<'a>`
+
+- <span id="frame-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Frame<'a>`
+
+- <span id="frame-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="frame-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Frame<'a>`
+
+- <span id="frame-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="frame-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

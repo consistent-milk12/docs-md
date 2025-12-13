@@ -116,7 +116,7 @@ struct Termios {
 
 *Defined in [`rustix-1.1.2/src/termios/types.rs:14-75`](../../../.source_1765521767/rustix-1.1.2/src/termios/types.rs#L14-L75)*
 
-`struct termios` for use with [`tcgetattr`](../backend/termios/syscalls/index.md) and [`tcsetattr`](#tcsetattr).
+`struct termios` for use with [`tcgetattr`](#tcgetattr) and [`tcsetattr`](#tcsetattr).
 
 
 
@@ -164,25 +164,157 @@ struct Termios {
 
 - <span id="termios-make-raw"></span>`fn make_raw(&mut self)`
 
+  `cfmakeraw(self)`—Set a `Termios` value to the settings for “raw” mode.
+
+  
+
+  In raw mode, input is available a byte at a time, echoing is disabled,
+
+  and special terminal input and output codes are disabled.
+
 - <span id="termios-input-speed"></span>`fn input_speed(&self) -> u32`
+
+  Return the input communication speed.
+
+  
+
+  Unlike the `c_ispeed` field in glibc and others, this returns the
+
+  integer value of the speed, rather than the `B*` encoded constant
+
+  value.
 
 - <span id="termios-output-speed"></span>`fn output_speed(&self) -> u32`
 
+  Return the output communication speed.
+
+  
+
+  Unlike the `c_ospeed` field in glibc and others, this returns the
+
+  arbitrary integer value of the speed, rather than the `B*` encoded
+
+  constant value.
+
 - <span id="termios-set-speed"></span>`fn set_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../io/errno/index.md#result)
+
+  Set the input and output communication speeds.
+
+  
+
+  Unlike the `c_ispeed` and `c_ospeed` fields in glibc and others, this
+
+  takes the arbitrary integer value of the speed, rather than the `B*`
+
+  encoded constant value. Not all implementations support all integer
+
+  values; use the constants in the [`speed`](#speed) module for likely-supported
+
+  speeds.
 
 - <span id="termios-set-input-speed"></span>`fn set_input_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../io/errno/index.md#result)
 
+  Set the input communication speed.
+
+  
+
+  Unlike the `c_ispeed` field in glibc and others, this takes the
+
+  arbitrary integer value of the speed, rather than the `B*` encoded
+
+  constant value. Not all implementations support all integer values; use
+
+  the constants in the [`speed`](#speed) module for known-supported speeds.
+
+  
+
+  On some platforms, changing the input speed changes the output speed to
+
+  the same speed.
+
 - <span id="termios-set-output-speed"></span>`fn set_output_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../io/errno/index.md#result)
 
+  Set the output communication speed.
+
+  
+
+  Unlike the `c_ospeed` field in glibc and others, this takes the
+
+  arbitrary integer value of the speed, rather than the `B*` encoded
+
+  constant value. Not all implementations support all integer values; use
+
+  the constants in the [`speed`](#speed) module for known-supported speeds.
+
+  
+
+  On some platforms, changing the output speed changes the input speed to
+
+  the same speed.
+
 #### Trait Implementations
+
+##### `impl Any for Termios`
+
+- <span id="termios-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Termios`
+
+- <span id="termios-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Termios`
+
+- <span id="termios-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Termios`
 
 - <span id="termios-clone"></span>`fn clone(&self) -> Termios` — [`Termios`](#termios)
 
+##### `impl CloneToUninit for Termios`
+
+- <span id="termios-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Termios`
 
-- <span id="termios-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="termios-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for Termios`
+
+- <span id="termios-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Termios`
+
+- <span id="termios-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Termios`
+
+- <span id="termios-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="termios-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="termios-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Termios`
+
+- <span id="termios-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="termios-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Termios`
+
+- <span id="termios-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="termios-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `InputModes`
 
@@ -228,9 +360,13 @@ Flags controlling terminal input.
 
 #### Trait Implementations
 
+##### `impl Any for InputModes`
+
+- <span id="inputmodes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl Binary for InputModes`
 
-- <span id="inputmodes-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="inputmodes-binary-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl BitAnd for InputModes`
 
@@ -238,9 +374,13 @@ Flags controlling terminal input.
 
 - <span id="inputmodes-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
+  The bitwise and (`&`) of the bits in two flags values.
+
 ##### `impl BitAndAssign for InputModes`
 
-- <span id="inputmodes-bitand-assign"></span>`fn bitand_assign(&mut self, other: Self)`
+- <span id="inputmodes-bitandassign-bitand-assign"></span>`fn bitand_assign(&mut self, other: Self)`
+
+  The bitwise and (`&`) of the bits in two flags values.
 
 ##### `impl BitOr for InputModes`
 
@@ -248,9 +388,13 @@ Flags controlling terminal input.
 
 - <span id="inputmodes-bitor"></span>`fn bitor(self, other: InputModes) -> Self` — [`InputModes`](#inputmodes)
 
+  The bitwise or (`|`) of the bits in two flags values.
+
 ##### `impl BitOrAssign for InputModes`
 
-- <span id="inputmodes-bitor-assign"></span>`fn bitor_assign(&mut self, other: Self)`
+- <span id="inputmodes-bitorassign-bitor-assign"></span>`fn bitor_assign(&mut self, other: Self)`
+
+  The bitwise or (`|`) of the bits in two flags values.
 
 ##### `impl BitXor for InputModes`
 
@@ -258,19 +402,35 @@ Flags controlling terminal input.
 
 - <span id="inputmodes-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
+  The bitwise exclusive-or (`^`) of the bits in two flags values.
+
 ##### `impl BitXorAssign for InputModes`
 
-- <span id="inputmodes-bitxor-assign"></span>`fn bitxor_assign(&mut self, other: Self)`
+- <span id="inputmodes-bitxorassign-bitxor-assign"></span>`fn bitxor_assign(&mut self, other: Self)`
+
+  The bitwise exclusive-or (`^`) of the bits in two flags values.
+
+##### `impl<T> Borrow for InputModes`
+
+- <span id="inputmodes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for InputModes`
+
+- <span id="inputmodes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for InputModes`
 
 - <span id="inputmodes-clone"></span>`fn clone(&self) -> InputModes` — [`InputModes`](#inputmodes)
 
+##### `impl CloneToUninit for InputModes`
+
+- <span id="inputmodes-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for InputModes`
 
 ##### `impl Debug for InputModes`
 
-- <span id="inputmodes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="inputmodes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for InputModes`
 
@@ -278,23 +438,45 @@ Flags controlling terminal input.
 
 - <span id="inputmodes-extend"></span>`fn extend<T: __private::core::iter::IntoIterator<Item = Self>>(&mut self, iterator: T)`
 
+  The bitwise or (`|`) of the bits in each flags value.
+
 ##### `impl Flags for InputModes`
 
 - <span id="inputmodes-flags-const-flags"></span>`const FLAGS: &'static [Flag<InputModes>]`
 
 - <span id="inputmodes-flags-type-bits"></span>`type Bits = u32`
 
-- <span id="inputmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md#c-uint)
+- <span id="inputmodes-flags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md#c-uint)
 
-- <span id="inputmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> InputModes` — [`c_uint`](../ffi/index.md#c-uint), [`InputModes`](#inputmodes)
+- <span id="inputmodes-flags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> InputModes` — [`c_uint`](../ffi/index.md#c-uint), [`InputModes`](#inputmodes)
+
+##### `impl<T> From for InputModes`
+
+- <span id="inputmodes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromIterator for InputModes`
 
-- <span id="inputmodes-from-iter"></span>`fn from_iter<T: __private::core::iter::IntoIterator<Item = Self>>(iterator: T) -> Self`
+- <span id="inputmodes-fromiterator-from-iter"></span>`fn from_iter<T: __private::core::iter::IntoIterator<Item = Self>>(iterator: T) -> Self`
+
+  The bitwise or (`|`) of the bits in each flags value.
 
 ##### `impl Hash for InputModes`
 
 - <span id="inputmodes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
+
+##### `impl<U> Into for InputModes`
+
+- <span id="inputmodes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for InputModes`
 
@@ -302,11 +484,11 @@ Flags controlling terminal input.
 
 - <span id="inputmodes-intoiterator-type-intoiter"></span>`type IntoIter = Iter<InputModes>`
 
-- <span id="inputmodes-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+- <span id="inputmodes-intoiterator-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl LowerHex for InputModes`
 
-- <span id="inputmodes-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="inputmodes-lowerhex-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl Not for InputModes`
 
@@ -314,13 +496,15 @@ Flags controlling terminal input.
 
 - <span id="inputmodes-not"></span>`fn not(self) -> Self`
 
+  The bitwise negation (`!`) of the bits in a flags value, truncating the result.
+
 ##### `impl Octal for InputModes`
 
-- <span id="inputmodes-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="inputmodes-octal-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl PartialEq for InputModes`
 
-- <span id="inputmodes-eq"></span>`fn eq(&self, other: &InputModes) -> bool` — [`InputModes`](#inputmodes)
+- <span id="inputmodes-partialeq-eq"></span>`fn eq(&self, other: &InputModes) -> bool` — [`InputModes`](#inputmodes)
 
 ##### `impl PublicFlags for InputModes`
 
@@ -336,13 +520,49 @@ Flags controlling terminal input.
 
 - <span id="inputmodes-sub"></span>`fn sub(self, other: Self) -> Self`
 
+  The intersection of a source flags value with the complement of a target flags value (`&!`).
+
+  
+
+  This method is not equivalent to `self & !other` when `other` has unknown bits set.
+
+  `difference` won't truncate `other`, but the `!` operator will.
+
 ##### `impl SubAssign for InputModes`
 
-- <span id="inputmodes-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
+- <span id="inputmodes-subassign-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
+
+  The intersection of a source flags value with the complement of a target flags value (`&!`).
+
+  
+
+  This method is not equivalent to `self & !other` when `other` has unknown bits set.
+
+  `difference` won't truncate `other`, but the `!` operator will.
+
+##### `impl ToOwned for InputModes`
+
+- <span id="inputmodes-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="inputmodes-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="inputmodes-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for InputModes`
+
+- <span id="inputmodes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="inputmodes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for InputModes`
+
+- <span id="inputmodes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="inputmodes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl UpperHex for InputModes`
 
-- <span id="inputmodes-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="inputmodes-upperhex-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ### `OutputModes`
 
@@ -420,9 +640,13 @@ Flags controlling terminal output.
 
 #### Trait Implementations
 
+##### `impl Any for OutputModes`
+
+- <span id="outputmodes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl Binary for OutputModes`
 
-- <span id="outputmodes-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="outputmodes-binary-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl BitAnd for OutputModes`
 
@@ -430,9 +654,13 @@ Flags controlling terminal output.
 
 - <span id="outputmodes-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
+  The bitwise and (`&`) of the bits in two flags values.
+
 ##### `impl BitAndAssign for OutputModes`
 
-- <span id="outputmodes-bitand-assign"></span>`fn bitand_assign(&mut self, other: Self)`
+- <span id="outputmodes-bitandassign-bitand-assign"></span>`fn bitand_assign(&mut self, other: Self)`
+
+  The bitwise and (`&`) of the bits in two flags values.
 
 ##### `impl BitOr for OutputModes`
 
@@ -440,9 +668,13 @@ Flags controlling terminal output.
 
 - <span id="outputmodes-bitor"></span>`fn bitor(self, other: OutputModes) -> Self` — [`OutputModes`](#outputmodes)
 
+  The bitwise or (`|`) of the bits in two flags values.
+
 ##### `impl BitOrAssign for OutputModes`
 
-- <span id="outputmodes-bitor-assign"></span>`fn bitor_assign(&mut self, other: Self)`
+- <span id="outputmodes-bitorassign-bitor-assign"></span>`fn bitor_assign(&mut self, other: Self)`
+
+  The bitwise or (`|`) of the bits in two flags values.
 
 ##### `impl BitXor for OutputModes`
 
@@ -450,19 +682,35 @@ Flags controlling terminal output.
 
 - <span id="outputmodes-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
+  The bitwise exclusive-or (`^`) of the bits in two flags values.
+
 ##### `impl BitXorAssign for OutputModes`
 
-- <span id="outputmodes-bitxor-assign"></span>`fn bitxor_assign(&mut self, other: Self)`
+- <span id="outputmodes-bitxorassign-bitxor-assign"></span>`fn bitxor_assign(&mut self, other: Self)`
+
+  The bitwise exclusive-or (`^`) of the bits in two flags values.
+
+##### `impl<T> Borrow for OutputModes`
+
+- <span id="outputmodes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for OutputModes`
+
+- <span id="outputmodes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for OutputModes`
 
 - <span id="outputmodes-clone"></span>`fn clone(&self) -> OutputModes` — [`OutputModes`](#outputmodes)
 
+##### `impl CloneToUninit for OutputModes`
+
+- <span id="outputmodes-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for OutputModes`
 
 ##### `impl Debug for OutputModes`
 
-- <span id="outputmodes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="outputmodes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for OutputModes`
 
@@ -470,23 +718,45 @@ Flags controlling terminal output.
 
 - <span id="outputmodes-extend"></span>`fn extend<T: __private::core::iter::IntoIterator<Item = Self>>(&mut self, iterator: T)`
 
+  The bitwise or (`|`) of the bits in each flags value.
+
 ##### `impl Flags for OutputModes`
 
 - <span id="outputmodes-flags-const-flags"></span>`const FLAGS: &'static [Flag<OutputModes>]`
 
 - <span id="outputmodes-flags-type-bits"></span>`type Bits = u32`
 
-- <span id="outputmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md#c-uint)
+- <span id="outputmodes-flags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md#c-uint)
 
-- <span id="outputmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> OutputModes` — [`c_uint`](../ffi/index.md#c-uint), [`OutputModes`](#outputmodes)
+- <span id="outputmodes-flags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> OutputModes` — [`c_uint`](../ffi/index.md#c-uint), [`OutputModes`](#outputmodes)
+
+##### `impl<T> From for OutputModes`
+
+- <span id="outputmodes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromIterator for OutputModes`
 
-- <span id="outputmodes-from-iter"></span>`fn from_iter<T: __private::core::iter::IntoIterator<Item = Self>>(iterator: T) -> Self`
+- <span id="outputmodes-fromiterator-from-iter"></span>`fn from_iter<T: __private::core::iter::IntoIterator<Item = Self>>(iterator: T) -> Self`
+
+  The bitwise or (`|`) of the bits in each flags value.
 
 ##### `impl Hash for OutputModes`
 
 - <span id="outputmodes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
+
+##### `impl<U> Into for OutputModes`
+
+- <span id="outputmodes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for OutputModes`
 
@@ -494,11 +764,11 @@ Flags controlling terminal output.
 
 - <span id="outputmodes-intoiterator-type-intoiter"></span>`type IntoIter = Iter<OutputModes>`
 
-- <span id="outputmodes-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+- <span id="outputmodes-intoiterator-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl LowerHex for OutputModes`
 
-- <span id="outputmodes-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="outputmodes-lowerhex-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl Not for OutputModes`
 
@@ -506,13 +776,15 @@ Flags controlling terminal output.
 
 - <span id="outputmodes-not"></span>`fn not(self) -> Self`
 
+  The bitwise negation (`!`) of the bits in a flags value, truncating the result.
+
 ##### `impl Octal for OutputModes`
 
-- <span id="outputmodes-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="outputmodes-octal-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl PartialEq for OutputModes`
 
-- <span id="outputmodes-eq"></span>`fn eq(&self, other: &OutputModes) -> bool` — [`OutputModes`](#outputmodes)
+- <span id="outputmodes-partialeq-eq"></span>`fn eq(&self, other: &OutputModes) -> bool` — [`OutputModes`](#outputmodes)
 
 ##### `impl PublicFlags for OutputModes`
 
@@ -528,13 +800,49 @@ Flags controlling terminal output.
 
 - <span id="outputmodes-sub"></span>`fn sub(self, other: Self) -> Self`
 
+  The intersection of a source flags value with the complement of a target flags value (`&!`).
+
+  
+
+  This method is not equivalent to `self & !other` when `other` has unknown bits set.
+
+  `difference` won't truncate `other`, but the `!` operator will.
+
 ##### `impl SubAssign for OutputModes`
 
-- <span id="outputmodes-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
+- <span id="outputmodes-subassign-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
+
+  The intersection of a source flags value with the complement of a target flags value (`&!`).
+
+  
+
+  This method is not equivalent to `self & !other` when `other` has unknown bits set.
+
+  `difference` won't truncate `other`, but the `!` operator will.
+
+##### `impl ToOwned for OutputModes`
+
+- <span id="outputmodes-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="outputmodes-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="outputmodes-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for OutputModes`
+
+- <span id="outputmodes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="outputmodes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for OutputModes`
+
+- <span id="outputmodes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="outputmodes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl UpperHex for OutputModes`
 
-- <span id="outputmodes-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="outputmodes-upperhex-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ### `ControlModes`
 
@@ -582,9 +890,13 @@ probably these flags.
 
 #### Trait Implementations
 
+##### `impl Any for ControlModes`
+
+- <span id="controlmodes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl Binary for ControlModes`
 
-- <span id="controlmodes-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="controlmodes-binary-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl BitAnd for ControlModes`
 
@@ -592,9 +904,13 @@ probably these flags.
 
 - <span id="controlmodes-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
+  The bitwise and (`&`) of the bits in two flags values.
+
 ##### `impl BitAndAssign for ControlModes`
 
-- <span id="controlmodes-bitand-assign"></span>`fn bitand_assign(&mut self, other: Self)`
+- <span id="controlmodes-bitandassign-bitand-assign"></span>`fn bitand_assign(&mut self, other: Self)`
+
+  The bitwise and (`&`) of the bits in two flags values.
 
 ##### `impl BitOr for ControlModes`
 
@@ -602,9 +918,13 @@ probably these flags.
 
 - <span id="controlmodes-bitor"></span>`fn bitor(self, other: ControlModes) -> Self` — [`ControlModes`](#controlmodes)
 
+  The bitwise or (`|`) of the bits in two flags values.
+
 ##### `impl BitOrAssign for ControlModes`
 
-- <span id="controlmodes-bitor-assign"></span>`fn bitor_assign(&mut self, other: Self)`
+- <span id="controlmodes-bitorassign-bitor-assign"></span>`fn bitor_assign(&mut self, other: Self)`
+
+  The bitwise or (`|`) of the bits in two flags values.
 
 ##### `impl BitXor for ControlModes`
 
@@ -612,19 +932,35 @@ probably these flags.
 
 - <span id="controlmodes-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
+  The bitwise exclusive-or (`^`) of the bits in two flags values.
+
 ##### `impl BitXorAssign for ControlModes`
 
-- <span id="controlmodes-bitxor-assign"></span>`fn bitxor_assign(&mut self, other: Self)`
+- <span id="controlmodes-bitxorassign-bitxor-assign"></span>`fn bitxor_assign(&mut self, other: Self)`
+
+  The bitwise exclusive-or (`^`) of the bits in two flags values.
+
+##### `impl<T> Borrow for ControlModes`
+
+- <span id="controlmodes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ControlModes`
+
+- <span id="controlmodes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ControlModes`
 
 - <span id="controlmodes-clone"></span>`fn clone(&self) -> ControlModes` — [`ControlModes`](#controlmodes)
 
+##### `impl CloneToUninit for ControlModes`
+
+- <span id="controlmodes-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for ControlModes`
 
 ##### `impl Debug for ControlModes`
 
-- <span id="controlmodes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="controlmodes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ControlModes`
 
@@ -632,23 +968,45 @@ probably these flags.
 
 - <span id="controlmodes-extend"></span>`fn extend<T: __private::core::iter::IntoIterator<Item = Self>>(&mut self, iterator: T)`
 
+  The bitwise or (`|`) of the bits in each flags value.
+
 ##### `impl Flags for ControlModes`
 
 - <span id="controlmodes-flags-const-flags"></span>`const FLAGS: &'static [Flag<ControlModes>]`
 
 - <span id="controlmodes-flags-type-bits"></span>`type Bits = u32`
 
-- <span id="controlmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md#c-uint)
+- <span id="controlmodes-flags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md#c-uint)
 
-- <span id="controlmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> ControlModes` — [`c_uint`](../ffi/index.md#c-uint), [`ControlModes`](#controlmodes)
+- <span id="controlmodes-flags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> ControlModes` — [`c_uint`](../ffi/index.md#c-uint), [`ControlModes`](#controlmodes)
+
+##### `impl<T> From for ControlModes`
+
+- <span id="controlmodes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromIterator for ControlModes`
 
-- <span id="controlmodes-from-iter"></span>`fn from_iter<T: __private::core::iter::IntoIterator<Item = Self>>(iterator: T) -> Self`
+- <span id="controlmodes-fromiterator-from-iter"></span>`fn from_iter<T: __private::core::iter::IntoIterator<Item = Self>>(iterator: T) -> Self`
+
+  The bitwise or (`|`) of the bits in each flags value.
 
 ##### `impl Hash for ControlModes`
 
 - <span id="controlmodes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
+
+##### `impl<U> Into for ControlModes`
+
+- <span id="controlmodes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ControlModes`
 
@@ -656,11 +1014,11 @@ probably these flags.
 
 - <span id="controlmodes-intoiterator-type-intoiter"></span>`type IntoIter = Iter<ControlModes>`
 
-- <span id="controlmodes-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+- <span id="controlmodes-intoiterator-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl LowerHex for ControlModes`
 
-- <span id="controlmodes-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="controlmodes-lowerhex-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl Not for ControlModes`
 
@@ -668,13 +1026,15 @@ probably these flags.
 
 - <span id="controlmodes-not"></span>`fn not(self) -> Self`
 
+  The bitwise negation (`!`) of the bits in a flags value, truncating the result.
+
 ##### `impl Octal for ControlModes`
 
-- <span id="controlmodes-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="controlmodes-octal-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl PartialEq for ControlModes`
 
-- <span id="controlmodes-eq"></span>`fn eq(&self, other: &ControlModes) -> bool` — [`ControlModes`](#controlmodes)
+- <span id="controlmodes-partialeq-eq"></span>`fn eq(&self, other: &ControlModes) -> bool` — [`ControlModes`](#controlmodes)
 
 ##### `impl PublicFlags for ControlModes`
 
@@ -690,13 +1050,49 @@ probably these flags.
 
 - <span id="controlmodes-sub"></span>`fn sub(self, other: Self) -> Self`
 
+  The intersection of a source flags value with the complement of a target flags value (`&!`).
+
+  
+
+  This method is not equivalent to `self & !other` when `other` has unknown bits set.
+
+  `difference` won't truncate `other`, but the `!` operator will.
+
 ##### `impl SubAssign for ControlModes`
 
-- <span id="controlmodes-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
+- <span id="controlmodes-subassign-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
+
+  The intersection of a source flags value with the complement of a target flags value (`&!`).
+
+  
+
+  This method is not equivalent to `self & !other` when `other` has unknown bits set.
+
+  `difference` won't truncate `other`, but the `!` operator will.
+
+##### `impl ToOwned for ControlModes`
+
+- <span id="controlmodes-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="controlmodes-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="controlmodes-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ControlModes`
+
+- <span id="controlmodes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="controlmodes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ControlModes`
+
+- <span id="controlmodes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="controlmodes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl UpperHex for ControlModes`
 
-- <span id="controlmodes-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="controlmodes-upperhex-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ### `LocalModes`
 
@@ -744,9 +1140,13 @@ Flags controlling “local” terminal modes.
 
 #### Trait Implementations
 
+##### `impl Any for LocalModes`
+
+- <span id="localmodes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl Binary for LocalModes`
 
-- <span id="localmodes-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="localmodes-binary-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl BitAnd for LocalModes`
 
@@ -754,9 +1154,13 @@ Flags controlling “local” terminal modes.
 
 - <span id="localmodes-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
+  The bitwise and (`&`) of the bits in two flags values.
+
 ##### `impl BitAndAssign for LocalModes`
 
-- <span id="localmodes-bitand-assign"></span>`fn bitand_assign(&mut self, other: Self)`
+- <span id="localmodes-bitandassign-bitand-assign"></span>`fn bitand_assign(&mut self, other: Self)`
+
+  The bitwise and (`&`) of the bits in two flags values.
 
 ##### `impl BitOr for LocalModes`
 
@@ -764,9 +1168,13 @@ Flags controlling “local” terminal modes.
 
 - <span id="localmodes-bitor"></span>`fn bitor(self, other: LocalModes) -> Self` — [`LocalModes`](#localmodes)
 
+  The bitwise or (`|`) of the bits in two flags values.
+
 ##### `impl BitOrAssign for LocalModes`
 
-- <span id="localmodes-bitor-assign"></span>`fn bitor_assign(&mut self, other: Self)`
+- <span id="localmodes-bitorassign-bitor-assign"></span>`fn bitor_assign(&mut self, other: Self)`
+
+  The bitwise or (`|`) of the bits in two flags values.
 
 ##### `impl BitXor for LocalModes`
 
@@ -774,19 +1182,35 @@ Flags controlling “local” terminal modes.
 
 - <span id="localmodes-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
+  The bitwise exclusive-or (`^`) of the bits in two flags values.
+
 ##### `impl BitXorAssign for LocalModes`
 
-- <span id="localmodes-bitxor-assign"></span>`fn bitxor_assign(&mut self, other: Self)`
+- <span id="localmodes-bitxorassign-bitxor-assign"></span>`fn bitxor_assign(&mut self, other: Self)`
+
+  The bitwise exclusive-or (`^`) of the bits in two flags values.
+
+##### `impl<T> Borrow for LocalModes`
+
+- <span id="localmodes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LocalModes`
+
+- <span id="localmodes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for LocalModes`
 
 - <span id="localmodes-clone"></span>`fn clone(&self) -> LocalModes` — [`LocalModes`](#localmodes)
 
+##### `impl CloneToUninit for LocalModes`
+
+- <span id="localmodes-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for LocalModes`
 
 ##### `impl Debug for LocalModes`
 
-- <span id="localmodes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="localmodes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LocalModes`
 
@@ -794,23 +1218,45 @@ Flags controlling “local” terminal modes.
 
 - <span id="localmodes-extend"></span>`fn extend<T: __private::core::iter::IntoIterator<Item = Self>>(&mut self, iterator: T)`
 
+  The bitwise or (`|`) of the bits in each flags value.
+
 ##### `impl Flags for LocalModes`
 
 - <span id="localmodes-flags-const-flags"></span>`const FLAGS: &'static [Flag<LocalModes>]`
 
 - <span id="localmodes-flags-type-bits"></span>`type Bits = u32`
 
-- <span id="localmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md#c-uint)
+- <span id="localmodes-flags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md#c-uint)
 
-- <span id="localmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> LocalModes` — [`c_uint`](../ffi/index.md#c-uint), [`LocalModes`](#localmodes)
+- <span id="localmodes-flags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> LocalModes` — [`c_uint`](../ffi/index.md#c-uint), [`LocalModes`](#localmodes)
+
+##### `impl<T> From for LocalModes`
+
+- <span id="localmodes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromIterator for LocalModes`
 
-- <span id="localmodes-from-iter"></span>`fn from_iter<T: __private::core::iter::IntoIterator<Item = Self>>(iterator: T) -> Self`
+- <span id="localmodes-fromiterator-from-iter"></span>`fn from_iter<T: __private::core::iter::IntoIterator<Item = Self>>(iterator: T) -> Self`
+
+  The bitwise or (`|`) of the bits in each flags value.
 
 ##### `impl Hash for LocalModes`
 
 - <span id="localmodes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
+
+##### `impl<U> Into for LocalModes`
+
+- <span id="localmodes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for LocalModes`
 
@@ -818,11 +1264,11 @@ Flags controlling “local” terminal modes.
 
 - <span id="localmodes-intoiterator-type-intoiter"></span>`type IntoIter = Iter<LocalModes>`
 
-- <span id="localmodes-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+- <span id="localmodes-intoiterator-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl LowerHex for LocalModes`
 
-- <span id="localmodes-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="localmodes-lowerhex-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl Not for LocalModes`
 
@@ -830,13 +1276,15 @@ Flags controlling “local” terminal modes.
 
 - <span id="localmodes-not"></span>`fn not(self) -> Self`
 
+  The bitwise negation (`!`) of the bits in a flags value, truncating the result.
+
 ##### `impl Octal for LocalModes`
 
-- <span id="localmodes-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="localmodes-octal-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl PartialEq for LocalModes`
 
-- <span id="localmodes-eq"></span>`fn eq(&self, other: &LocalModes) -> bool` — [`LocalModes`](#localmodes)
+- <span id="localmodes-partialeq-eq"></span>`fn eq(&self, other: &LocalModes) -> bool` — [`LocalModes`](#localmodes)
 
 ##### `impl PublicFlags for LocalModes`
 
@@ -852,13 +1300,49 @@ Flags controlling “local” terminal modes.
 
 - <span id="localmodes-sub"></span>`fn sub(self, other: Self) -> Self`
 
+  The intersection of a source flags value with the complement of a target flags value (`&!`).
+
+  
+
+  This method is not equivalent to `self & !other` when `other` has unknown bits set.
+
+  `difference` won't truncate `other`, but the `!` operator will.
+
 ##### `impl SubAssign for LocalModes`
 
-- <span id="localmodes-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
+- <span id="localmodes-subassign-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
+
+  The intersection of a source flags value with the complement of a target flags value (`&!`).
+
+  
+
+  This method is not equivalent to `self & !other` when `other` has unknown bits set.
+
+  `difference` won't truncate `other`, but the `!` operator will.
+
+##### `impl ToOwned for LocalModes`
+
+- <span id="localmodes-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="localmodes-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="localmodes-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LocalModes`
+
+- <span id="localmodes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="localmodes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LocalModes`
+
+- <span id="localmodes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="localmodes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl UpperHex for LocalModes`
 
-- <span id="localmodes-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="localmodes-upperhex-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ### `SpecialCodes`
 
@@ -873,13 +1357,35 @@ various special control codes.
 
 #### Trait Implementations
 
+##### `impl Any for SpecialCodes`
+
+- <span id="specialcodes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SpecialCodes`
+
+- <span id="specialcodes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SpecialCodes`
+
+- <span id="specialcodes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SpecialCodes`
 
 - <span id="specialcodes-clone"></span>`fn clone(&self) -> SpecialCodes` — [`SpecialCodes`](#specialcodes)
 
+##### `impl CloneToUninit for SpecialCodes`
+
+- <span id="specialcodes-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for SpecialCodes`
 
-- <span id="specialcodes-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="specialcodes-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for SpecialCodes`
+
+- <span id="specialcodes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Index for SpecialCodes`
 
@@ -889,7 +1395,39 @@ various special control codes.
 
 ##### `impl IndexMut for SpecialCodes`
 
-- <span id="specialcodes-index-mut"></span>`fn index_mut(&mut self, index: SpecialCodeIndex) -> &mut <Self as >::Output` — [`SpecialCodeIndex`](#specialcodeindex)
+- <span id="specialcodes-indexmut-index-mut"></span>`fn index_mut(&mut self, index: SpecialCodeIndex) -> &mut <Self as >::Output` — [`SpecialCodeIndex`](#specialcodeindex)
+
+##### `impl<U> Into for SpecialCodes`
+
+- <span id="specialcodes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for SpecialCodes`
+
+- <span id="specialcodes-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="specialcodes-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="specialcodes-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SpecialCodes`
+
+- <span id="specialcodes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="specialcodes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SpecialCodes`
+
+- <span id="specialcodes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="specialcodes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SpecialCode`
 
@@ -903,9 +1441,51 @@ A newtype for pretty printing.
 
 #### Trait Implementations
 
+##### `impl Any for SpecialCode`
+
+- <span id="specialcode-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SpecialCode`
+
+- <span id="specialcode-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SpecialCode`
+
+- <span id="specialcode-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for SpecialCode`
 
-- <span id="specialcode-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="specialcode-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for SpecialCode`
+
+- <span id="specialcode-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SpecialCode`
+
+- <span id="specialcode-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for SpecialCode`
+
+- <span id="specialcode-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="specialcode-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SpecialCode`
+
+- <span id="specialcode-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="specialcode-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SpecialCodeIndex`
 
@@ -955,17 +1535,39 @@ Indices for use with `Termios::special_codes`.
 
 #### Trait Implementations
 
+##### `impl Any for SpecialCodeIndex`
+
+- <span id="specialcodeindex-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SpecialCodeIndex`
+
+- <span id="specialcodeindex-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SpecialCodeIndex`
+
+- <span id="specialcodeindex-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SpecialCodeIndex`
 
 - <span id="specialcodeindex-clone"></span>`fn clone(&self) -> SpecialCodeIndex` — [`SpecialCodeIndex`](#specialcodeindex)
+
+##### `impl CloneToUninit for SpecialCodeIndex`
+
+- <span id="specialcodeindex-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for SpecialCodeIndex`
 
 ##### `impl Debug for SpecialCodeIndex`
 
-- <span id="specialcodeindex-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="specialcodeindex-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for SpecialCodeIndex`
+
+##### `impl<T> From for SpecialCodeIndex`
+
+- <span id="specialcodeindex-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for SpecialCodeIndex`
 
@@ -979,13 +1581,45 @@ Indices for use with `Termios::special_codes`.
 
 ##### `impl IndexMut for SpecialCodes`
 
-- <span id="specialcodes-index-mut"></span>`fn index_mut(&mut self, index: SpecialCodeIndex) -> &mut <Self as >::Output` — [`SpecialCodeIndex`](#specialcodeindex)
+- <span id="specialcodes-indexmut-index-mut"></span>`fn index_mut(&mut self, index: SpecialCodeIndex) -> &mut <Self as >::Output` — [`SpecialCodeIndex`](#specialcodeindex)
+
+##### `impl<U> Into for SpecialCodeIndex`
+
+- <span id="specialcodeindex-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SpecialCodeIndex`
 
-- <span id="specialcodeindex-eq"></span>`fn eq(&self, other: &SpecialCodeIndex) -> bool` — [`SpecialCodeIndex`](#specialcodeindex)
+- <span id="specialcodeindex-partialeq-eq"></span>`fn eq(&self, other: &SpecialCodeIndex) -> bool` — [`SpecialCodeIndex`](#specialcodeindex)
 
 ##### `impl StructuralPartialEq for SpecialCodeIndex`
+
+##### `impl ToOwned for SpecialCodeIndex`
+
+- <span id="specialcodeindex-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="specialcodeindex-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="specialcodeindex-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SpecialCodeIndex`
+
+- <span id="specialcodeindex-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="specialcodeindex-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SpecialCodeIndex`
+
+- <span id="specialcodeindex-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="specialcodeindex-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Winsize`
 
@@ -1000,7 +1634,7 @@ struct Winsize {
 
 *Defined in [`rustix-1.1.2/src/termios/types.rs:1436-1444`](../../../.source_1765521767/rustix-1.1.2/src/termios/types.rs#L1436-L1444)*
 
-`struct winsize` for use with [`tcgetwinsize`](../backend/termios/syscalls/index.md).
+`struct winsize` for use with [`tcgetwinsize`](#tcgetwinsize).
 
 
 #### Fields
@@ -1015,27 +1649,81 @@ struct Winsize {
 
 #### Trait Implementations
 
+##### `impl Any for Winsize`
+
+- <span id="winsize-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Winsize`
+
+- <span id="winsize-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Winsize`
+
+- <span id="winsize-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Winsize`
 
 - <span id="winsize-clone"></span>`fn clone(&self) -> Winsize` — [`Winsize`](#winsize)
+
+##### `impl CloneToUninit for Winsize`
+
+- <span id="winsize-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Winsize`
 
 ##### `impl Debug for Winsize`
 
-- <span id="winsize-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="winsize-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Winsize`
+
+##### `impl<T> From for Winsize`
+
+- <span id="winsize-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Winsize`
 
 - <span id="winsize-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Winsize`
+
+- <span id="winsize-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Winsize`
 
-- <span id="winsize-eq"></span>`fn eq(&self, other: &Winsize) -> bool` — [`Winsize`](#winsize)
+- <span id="winsize-partialeq-eq"></span>`fn eq(&self, other: &Winsize) -> bool` — [`Winsize`](#winsize)
 
 ##### `impl StructuralPartialEq for Winsize`
+
+##### `impl ToOwned for Winsize`
+
+- <span id="winsize-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="winsize-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="winsize-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Winsize`
+
+- <span id="winsize-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="winsize-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Winsize`
+
+- <span id="winsize-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="winsize-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -1071,27 +1759,81 @@ enum OptionalActions {
 
 #### Trait Implementations
 
+##### `impl Any for OptionalActions`
+
+- <span id="optionalactions-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for OptionalActions`
+
+- <span id="optionalactions-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for OptionalActions`
+
+- <span id="optionalactions-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for OptionalActions`
 
 - <span id="optionalactions-clone"></span>`fn clone(&self) -> OptionalActions` — [`OptionalActions`](#optionalactions)
+
+##### `impl CloneToUninit for OptionalActions`
+
+- <span id="optionalactions-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for OptionalActions`
 
 ##### `impl Debug for OptionalActions`
 
-- <span id="optionalactions-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="optionalactions-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for OptionalActions`
+
+##### `impl<T> From for OptionalActions`
+
+- <span id="optionalactions-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for OptionalActions`
 
 - <span id="optionalactions-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for OptionalActions`
+
+- <span id="optionalactions-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for OptionalActions`
 
-- <span id="optionalactions-eq"></span>`fn eq(&self, other: &OptionalActions) -> bool` — [`OptionalActions`](#optionalactions)
+- <span id="optionalactions-partialeq-eq"></span>`fn eq(&self, other: &OptionalActions) -> bool` — [`OptionalActions`](#optionalactions)
 
 ##### `impl StructuralPartialEq for OptionalActions`
+
+##### `impl ToOwned for OptionalActions`
+
+- <span id="optionalactions-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="optionalactions-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="optionalactions-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for OptionalActions`
+
+- <span id="optionalactions-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="optionalactions-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for OptionalActions`
+
+- <span id="optionalactions-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="optionalactions-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `QueueSelector`
 
@@ -1124,27 +1866,81 @@ enum QueueSelector {
 
 #### Trait Implementations
 
+##### `impl Any for QueueSelector`
+
+- <span id="queueselector-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for QueueSelector`
+
+- <span id="queueselector-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for QueueSelector`
+
+- <span id="queueselector-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for QueueSelector`
 
 - <span id="queueselector-clone"></span>`fn clone(&self) -> QueueSelector` — [`QueueSelector`](#queueselector)
+
+##### `impl CloneToUninit for QueueSelector`
+
+- <span id="queueselector-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for QueueSelector`
 
 ##### `impl Debug for QueueSelector`
 
-- <span id="queueselector-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="queueselector-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for QueueSelector`
+
+##### `impl<T> From for QueueSelector`
+
+- <span id="queueselector-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for QueueSelector`
 
 - <span id="queueselector-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for QueueSelector`
+
+- <span id="queueselector-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for QueueSelector`
 
-- <span id="queueselector-eq"></span>`fn eq(&self, other: &QueueSelector) -> bool` — [`QueueSelector`](#queueselector)
+- <span id="queueselector-partialeq-eq"></span>`fn eq(&self, other: &QueueSelector) -> bool` — [`QueueSelector`](#queueselector)
 
 ##### `impl StructuralPartialEq for QueueSelector`
+
+##### `impl ToOwned for QueueSelector`
+
+- <span id="queueselector-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="queueselector-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="queueselector-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for QueueSelector`
+
+- <span id="queueselector-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="queueselector-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for QueueSelector`
+
+- <span id="queueselector-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="queueselector-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Action`
 
@@ -1182,27 +1978,81 @@ enum Action {
 
 #### Trait Implementations
 
+##### `impl Any for Action`
+
+- <span id="action-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Action`
+
+- <span id="action-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Action`
+
+- <span id="action-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Action`
 
 - <span id="action-clone"></span>`fn clone(&self) -> Action` — [`Action`](#action)
+
+##### `impl CloneToUninit for Action`
+
+- <span id="action-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Action`
 
 ##### `impl Debug for Action`
 
-- <span id="action-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="action-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Action`
+
+##### `impl<T> From for Action`
+
+- <span id="action-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Action`
 
 - <span id="action-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Action`
+
+- <span id="action-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Action`
 
-- <span id="action-eq"></span>`fn eq(&self, other: &Action) -> bool` — [`Action`](#action)
+- <span id="action-partialeq-eq"></span>`fn eq(&self, other: &Action) -> bool` — [`Action`](#action)
 
 ##### `impl StructuralPartialEq for Action`
+
+##### `impl ToOwned for Action`
+
+- <span id="action-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="action-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="action-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Action`
+
+- <span id="action-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="action-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Action`
+
+- <span id="action-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="action-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

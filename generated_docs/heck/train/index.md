@@ -21,7 +21,7 @@ struct AsTrainCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/train.rs:41`](../../../.source_1765521767/heck-0.5.0/src/train.rs#L41)*
 
-This wrapper performs a train case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
+This wrapper performs a train case conversion in [`fmt::Display`](../../miette_derive/index.md).
 
 ## Example:
 
@@ -34,13 +34,55 @@ assert_eq!(format!("{}", AsTrainCase(sentence)), "We-Are-Going-To-Inherit-The-Ea
 
 #### Trait Implementations
 
+##### `impl<T> Any for AsTrainCase<T>`
+
+- <span id="astraincase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AsTrainCase<T>`
+
+- <span id="astraincase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AsTrainCase<T>`
+
+- <span id="astraincase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: AsRef<str>> Display for AsTrainCase<T>`
 
-- <span id="astraincase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="astraincase-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AsTrainCase<T>`
+
+- <span id="astraincase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for AsTrainCase<T>`
+
+- <span id="astraincase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for AsTrainCase<T>`
 
-- <span id="astraincase-to-string"></span>`fn to_string(&self) -> String`
+- <span id="astraincase-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for AsTrainCase<T>`
+
+- <span id="astraincase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="astraincase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for AsTrainCase<T>`
+
+- <span id="astraincase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="astraincase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

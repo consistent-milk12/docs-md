@@ -91,6 +91,18 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
+##### `impl Any for Black`
+
+- <span id="black-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Black`
+
+- <span id="black-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Black`
+
+- <span id="black-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for Black`
 
 - <span id="black-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -101,7 +113,37 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - <span id="black-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for Black`
+
+- <span id="black-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Black`
+
+- <span id="black-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for Black`
+
+##### `impl<U> TryFrom for Black`
+
+- <span id="black-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="black-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Black`
+
+- <span id="black-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="black-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Red`
 
@@ -115,6 +157,18 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
+##### `impl Any for Red`
+
+- <span id="red-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Red`
+
+- <span id="red-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Red`
+
+- <span id="red-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for Red`
 
 - <span id="red-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -125,7 +179,37 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - <span id="red-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for Red`
+
+- <span id="red-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Red`
+
+- <span id="red-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for Red`
+
+##### `impl<U> TryFrom for Red`
+
+- <span id="red-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="red-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Red`
+
+- <span id="red-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="red-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Green`
 
@@ -139,6 +223,18 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
+##### `impl Any for Green`
+
+- <span id="green-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Green`
+
+- <span id="green-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Green`
+
+- <span id="green-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for Green`
 
 - <span id="green-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -149,7 +245,37 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - <span id="green-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for Green`
+
+- <span id="green-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Green`
+
+- <span id="green-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for Green`
+
+##### `impl<U> TryFrom for Green`
+
+- <span id="green-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="green-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Green`
+
+- <span id="green-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="green-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Yellow`
 
@@ -163,6 +289,18 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
+##### `impl Any for Yellow`
+
+- <span id="yellow-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Yellow`
+
+- <span id="yellow-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Yellow`
+
+- <span id="yellow-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for Yellow`
 
 - <span id="yellow-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -173,7 +311,37 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - <span id="yellow-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for Yellow`
+
+- <span id="yellow-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Yellow`
+
+- <span id="yellow-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for Yellow`
+
+##### `impl<U> TryFrom for Yellow`
+
+- <span id="yellow-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="yellow-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Yellow`
+
+- <span id="yellow-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="yellow-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Blue`
 
@@ -187,6 +355,18 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
+##### `impl Any for Blue`
+
+- <span id="blue-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Blue`
+
+- <span id="blue-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Blue`
+
+- <span id="blue-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for Blue`
 
 - <span id="blue-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -197,7 +377,37 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - <span id="blue-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for Blue`
+
+- <span id="blue-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Blue`
+
+- <span id="blue-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for Blue`
+
+##### `impl<U> TryFrom for Blue`
+
+- <span id="blue-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="blue-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Blue`
+
+- <span id="blue-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="blue-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Magenta`
 
@@ -211,6 +421,18 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
+##### `impl Any for Magenta`
+
+- <span id="magenta-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Magenta`
+
+- <span id="magenta-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Magenta`
+
+- <span id="magenta-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for Magenta`
 
 - <span id="magenta-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -221,7 +443,37 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - <span id="magenta-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for Magenta`
+
+- <span id="magenta-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Magenta`
+
+- <span id="magenta-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for Magenta`
+
+##### `impl<U> TryFrom for Magenta`
+
+- <span id="magenta-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="magenta-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Magenta`
+
+- <span id="magenta-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="magenta-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Cyan`
 
@@ -235,6 +487,18 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
+##### `impl Any for Cyan`
+
+- <span id="cyan-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Cyan`
+
+- <span id="cyan-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Cyan`
+
+- <span id="cyan-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for Cyan`
 
 - <span id="cyan-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -245,7 +509,37 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - <span id="cyan-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for Cyan`
+
+- <span id="cyan-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Cyan`
+
+- <span id="cyan-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for Cyan`
+
+##### `impl<U> TryFrom for Cyan`
+
+- <span id="cyan-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cyan-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Cyan`
+
+- <span id="cyan-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cyan-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `White`
 
@@ -259,6 +553,18 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
+##### `impl Any for White`
+
+- <span id="white-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for White`
+
+- <span id="white-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for White`
+
+- <span id="white-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for White`
 
 - <span id="white-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -269,7 +575,37 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - <span id="white-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for White`
+
+- <span id="white-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for White`
+
+- <span id="white-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for White`
+
+##### `impl<U> TryFrom for White`
+
+- <span id="white-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="white-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for White`
+
+- <span id="white-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="white-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Default`
 
@@ -283,6 +619,18 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
+##### `impl Any for Default`
+
+- <span id="default-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Default`
+
+- <span id="default-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Default`
+
+- <span id="default-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for Default`
 
 - <span id="default-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -293,7 +641,37 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - <span id="default-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for Default`
+
+- <span id="default-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Default`
+
+- <span id="default-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for Default`
+
+##### `impl<U> TryFrom for Default`
+
+- <span id="default-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="default-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Default`
+
+- <span id="default-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="default-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BrightBlack`
 
@@ -307,6 +685,18 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
+##### `impl Any for BrightBlack`
+
+- <span id="brightblack-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BrightBlack`
+
+- <span id="brightblack-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BrightBlack`
+
+- <span id="brightblack-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for BrightBlack`
 
 - <span id="brightblack-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -317,7 +707,37 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - <span id="brightblack-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for BrightBlack`
+
+- <span id="brightblack-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BrightBlack`
+
+- <span id="brightblack-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for BrightBlack`
+
+##### `impl<U> TryFrom for BrightBlack`
+
+- <span id="brightblack-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="brightblack-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BrightBlack`
+
+- <span id="brightblack-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="brightblack-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BrightRed`
 
@@ -331,6 +751,18 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
+##### `impl Any for BrightRed`
+
+- <span id="brightred-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BrightRed`
+
+- <span id="brightred-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BrightRed`
+
+- <span id="brightred-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for BrightRed`
 
 - <span id="brightred-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -341,7 +773,37 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - <span id="brightred-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for BrightRed`
+
+- <span id="brightred-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BrightRed`
+
+- <span id="brightred-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for BrightRed`
+
+##### `impl<U> TryFrom for BrightRed`
+
+- <span id="brightred-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="brightred-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BrightRed`
+
+- <span id="brightred-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="brightred-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BrightGreen`
 
@@ -355,6 +817,18 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
+##### `impl Any for BrightGreen`
+
+- <span id="brightgreen-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BrightGreen`
+
+- <span id="brightgreen-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BrightGreen`
+
+- <span id="brightgreen-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for BrightGreen`
 
 - <span id="brightgreen-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -365,7 +839,37 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - <span id="brightgreen-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for BrightGreen`
+
+- <span id="brightgreen-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BrightGreen`
+
+- <span id="brightgreen-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for BrightGreen`
+
+##### `impl<U> TryFrom for BrightGreen`
+
+- <span id="brightgreen-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="brightgreen-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BrightGreen`
+
+- <span id="brightgreen-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="brightgreen-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BrightYellow`
 
@@ -379,6 +883,18 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
+##### `impl Any for BrightYellow`
+
+- <span id="brightyellow-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BrightYellow`
+
+- <span id="brightyellow-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BrightYellow`
+
+- <span id="brightyellow-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for BrightYellow`
 
 - <span id="brightyellow-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -389,7 +905,37 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - <span id="brightyellow-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for BrightYellow`
+
+- <span id="brightyellow-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BrightYellow`
+
+- <span id="brightyellow-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for BrightYellow`
+
+##### `impl<U> TryFrom for BrightYellow`
+
+- <span id="brightyellow-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="brightyellow-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BrightYellow`
+
+- <span id="brightyellow-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="brightyellow-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BrightBlue`
 
@@ -403,6 +949,18 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
+##### `impl Any for BrightBlue`
+
+- <span id="brightblue-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BrightBlue`
+
+- <span id="brightblue-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BrightBlue`
+
+- <span id="brightblue-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for BrightBlue`
 
 - <span id="brightblue-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -413,7 +971,37 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - <span id="brightblue-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for BrightBlue`
+
+- <span id="brightblue-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BrightBlue`
+
+- <span id="brightblue-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for BrightBlue`
+
+##### `impl<U> TryFrom for BrightBlue`
+
+- <span id="brightblue-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="brightblue-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BrightBlue`
+
+- <span id="brightblue-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="brightblue-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BrightMagenta`
 
@@ -427,6 +1015,18 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
+##### `impl Any for BrightMagenta`
+
+- <span id="brightmagenta-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BrightMagenta`
+
+- <span id="brightmagenta-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BrightMagenta`
+
+- <span id="brightmagenta-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for BrightMagenta`
 
 - <span id="brightmagenta-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -437,7 +1037,37 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - <span id="brightmagenta-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for BrightMagenta`
+
+- <span id="brightmagenta-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BrightMagenta`
+
+- <span id="brightmagenta-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for BrightMagenta`
+
+##### `impl<U> TryFrom for BrightMagenta`
+
+- <span id="brightmagenta-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="brightmagenta-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BrightMagenta`
+
+- <span id="brightmagenta-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="brightmagenta-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BrightCyan`
 
@@ -451,6 +1081,18 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
+##### `impl Any for BrightCyan`
+
+- <span id="brightcyan-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BrightCyan`
+
+- <span id="brightcyan-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BrightCyan`
+
+- <span id="brightcyan-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for BrightCyan`
 
 - <span id="brightcyan-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -461,7 +1103,37 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - <span id="brightcyan-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for BrightCyan`
+
+- <span id="brightcyan-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BrightCyan`
+
+- <span id="brightcyan-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for BrightCyan`
+
+##### `impl<U> TryFrom for BrightCyan`
+
+- <span id="brightcyan-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="brightcyan-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BrightCyan`
+
+- <span id="brightcyan-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="brightcyan-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BrightWhite`
 
@@ -475,6 +1147,18 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
+##### `impl Any for BrightWhite`
+
+- <span id="brightwhite-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BrightWhite`
+
+- <span id="brightwhite-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BrightWhite`
+
+- <span id="brightwhite-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for BrightWhite`
 
 - <span id="brightwhite-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -485,7 +1169,37 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - <span id="brightwhite-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for BrightWhite`
+
+- <span id="brightwhite-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BrightWhite`
+
+- <span id="brightwhite-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for BrightWhite`
+
+##### `impl<U> TryFrom for BrightWhite`
+
+- <span id="brightwhite-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="brightwhite-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BrightWhite`
+
+- <span id="brightwhite-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="brightwhite-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CustomColor<const R: u8, const G: u8, const B: u8>`
 
@@ -509,6 +1223,18 @@ A custom RGB color, determined at compile time
 
 #### Trait Implementations
 
+##### `impl Any for CustomColor<R, G, B>`
+
+- <span id="customcolor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CustomColor<R, G, B>`
+
+- <span id="customcolor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CustomColor<R, G, B>`
+
+- <span id="customcolor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Color for CustomColor<R, G, B>`
 
 - <span id="customcolor-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
@@ -519,7 +1245,37 @@ A custom RGB color, determined at compile time
 
 - <span id="customcolor-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
+##### `impl<T> From for CustomColor<R, G, B>`
+
+- <span id="customcolor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CustomColor<R, G, B>`
+
+- <span id="customcolor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for CustomColor<R, G, B>`
+
+##### `impl<U> TryFrom for CustomColor<R, G, B>`
+
+- <span id="customcolor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="customcolor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CustomColor<R, G, B>`
+
+- <span id="customcolor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="customcolor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Macros
 

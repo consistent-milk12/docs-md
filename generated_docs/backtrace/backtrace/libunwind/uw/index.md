@@ -56,6 +56,50 @@ enum _Unwind_Reason_Code {
 
 *Defined in [`backtrace-0.3.76/src/backtrace/libunwind.rs:155-166`](../../../../../.source_1765521767/backtrace-0.3.76/src/backtrace/libunwind.rs#L155-L166)*
 
+#### Trait Implementations
+
+##### `impl Any for _Unwind_Reason_Code`
+
+- <span id="unwind-reason-code-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for _Unwind_Reason_Code`
+
+- <span id="unwind-reason-code-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for _Unwind_Reason_Code`
+
+- <span id="unwind-reason-code-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for _Unwind_Reason_Code`
+
+- <span id="unwind-reason-code-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for _Unwind_Reason_Code`
+
+- <span id="unwind-reason-code-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for _Unwind_Reason_Code`
+
+- <span id="unwind-reason-code-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unwind-reason-code-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for _Unwind_Reason_Code`
+
+- <span id="unwind-reason-code-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unwind-reason-code-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `_Unwind_Context`
 
 ```rust
@@ -64,6 +108,50 @@ enum _Unwind_Context {
 ```
 
 *Defined in [`backtrace-0.3.76/src/backtrace/libunwind.rs:168`](../../../../../.source_1765521767/backtrace-0.3.76/src/backtrace/libunwind.rs#L168)*
+
+#### Trait Implementations
+
+##### `impl Any for _Unwind_Context`
+
+- <span id="unwind-context-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for _Unwind_Context`
+
+- <span id="unwind-context-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for _Unwind_Context`
+
+- <span id="unwind-context-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for _Unwind_Context`
+
+- <span id="unwind-context-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for _Unwind_Context`
+
+- <span id="unwind-context-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for _Unwind_Context`
+
+- <span id="unwind-context-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unwind-context-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for _Unwind_Context`
+
+- <span id="unwind-context-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unwind-context-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

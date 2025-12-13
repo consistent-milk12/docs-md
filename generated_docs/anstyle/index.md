@@ -130,19 +130,33 @@ struct Ansi256Color(u8);
 
 - <span id="ansi256color-on"></span>`fn on(self, background: impl Into<Color>) -> crate::Style` — [`Color`](#color), [`Style`](#style)
 
+  Create a `Style` with this as the foreground
+
 - <span id="ansi256color-on-default"></span>`const fn on_default(self) -> crate::Style` — [`Style`](#style)
+
+  Create a `Style` with this as the foreground
 
 - <span id="ansi256color-index"></span>`const fn index(self) -> u8`
 
+  Get the raw value
+
 - <span id="ansi256color-into-ansi"></span>`const fn into_ansi(self) -> Option<AnsiColor>` — [`AnsiColor`](#ansicolor)
+
+  Convert to [`AnsiColor`](#ansicolor) when there is a 1:1 mapping
 
 - <span id="ansi256color-from-ansi"></span>`const fn from_ansi(color: AnsiColor) -> Self` — [`AnsiColor`](#ansicolor)
 
+  Losslessly convert from [`AnsiColor`](#ansicolor)
+
 - <span id="ansi256color-render-fg"></span>`fn render_fg(self) -> impl core::fmt::Display + Copy`
+
+  Render the ANSI code for a foreground color
 
 - <span id="ansi256color-as-fg-buffer"></span>`fn as_fg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md#displaybuffer)
 
 - <span id="ansi256color-render-bg"></span>`fn render_bg(self) -> impl core::fmt::Display + Copy`
+
+  Render the ANSI code for a background color
 
 - <span id="ansi256color-as-bg-buffer"></span>`fn as_bg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md#displaybuffer)
 
@@ -150,35 +164,89 @@ struct Ansi256Color(u8);
 
 #### Trait Implementations
 
+##### `impl Any for Ansi256Color`
+
+- <span id="ansi256color-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Ansi256Color`
+
+- <span id="ansi256color-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Ansi256Color`
+
+- <span id="ansi256color-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Ansi256Color`
 
 - <span id="ansi256color-clone"></span>`fn clone(&self) -> Ansi256Color` — [`Ansi256Color`](#ansi256color)
+
+##### `impl CloneToUninit for Ansi256Color`
+
+- <span id="ansi256color-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Ansi256Color`
 
 ##### `impl Debug for Ansi256Color`
 
-- <span id="ansi256color-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ansi256color-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Ansi256Color`
+
+##### `impl<T> From for Ansi256Color`
+
+- <span id="ansi256color-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Ansi256Color`
 
 - <span id="ansi256color-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Ansi256Color`
+
+- <span id="ansi256color-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Ansi256Color`
 
-- <span id="ansi256color-cmp"></span>`fn cmp(&self, other: &Ansi256Color) -> cmp::Ordering` — [`Ansi256Color`](#ansi256color)
+- <span id="ansi256color-ord-cmp"></span>`fn cmp(&self, other: &Ansi256Color) -> cmp::Ordering` — [`Ansi256Color`](#ansi256color)
 
 ##### `impl PartialEq for Ansi256Color`
 
-- <span id="ansi256color-eq"></span>`fn eq(&self, other: &Ansi256Color) -> bool` — [`Ansi256Color`](#ansi256color)
+- <span id="ansi256color-partialeq-eq"></span>`fn eq(&self, other: &Ansi256Color) -> bool` — [`Ansi256Color`](#ansi256color)
 
 ##### `impl PartialOrd for Ansi256Color`
 
-- <span id="ansi256color-partial-cmp"></span>`fn partial_cmp(&self, other: &Ansi256Color) -> option::Option<cmp::Ordering>` — [`Ansi256Color`](#ansi256color)
+- <span id="ansi256color-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Ansi256Color) -> option::Option<cmp::Ordering>` — [`Ansi256Color`](#ansi256color)
 
 ##### `impl StructuralPartialEq for Ansi256Color`
+
+##### `impl ToOwned for Ansi256Color`
+
+- <span id="ansi256color-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="ansi256color-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="ansi256color-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Ansi256Color`
+
+- <span id="ansi256color-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ansi256color-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Ansi256Color`
+
+- <span id="ansi256color-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ansi256color-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RgbColor`
 
@@ -194,19 +262,33 @@ struct RgbColor(u8, u8, u8);
 
 - <span id="rgbcolor-on"></span>`fn on(self, background: impl Into<Color>) -> crate::Style` — [`Color`](#color), [`Style`](#style)
 
+  Create a `Style` with this as the foreground
+
 - <span id="rgbcolor-on-default"></span>`const fn on_default(self) -> crate::Style` — [`Style`](#style)
+
+  Create a `Style` with this as the foreground
 
 - <span id="rgbcolor-r"></span>`const fn r(self) -> u8`
 
+  Red
+
 - <span id="rgbcolor-g"></span>`const fn g(self) -> u8`
+
+  Green
 
 - <span id="rgbcolor-b"></span>`const fn b(self) -> u8`
 
+  Blue
+
 - <span id="rgbcolor-render-fg"></span>`fn render_fg(self) -> impl core::fmt::Display + Copy`
+
+  Render the ANSI code for a foreground color
 
 - <span id="rgbcolor-as-fg-buffer"></span>`fn as_fg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md#displaybuffer)
 
 - <span id="rgbcolor-render-bg"></span>`fn render_bg(self) -> impl core::fmt::Display + Copy`
+
+  Render the ANSI code for a background color
 
 - <span id="rgbcolor-as-bg-buffer"></span>`fn as_bg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md#displaybuffer)
 
@@ -214,35 +296,89 @@ struct RgbColor(u8, u8, u8);
 
 #### Trait Implementations
 
+##### `impl Any for RgbColor`
+
+- <span id="rgbcolor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RgbColor`
+
+- <span id="rgbcolor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RgbColor`
+
+- <span id="rgbcolor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for RgbColor`
 
 - <span id="rgbcolor-clone"></span>`fn clone(&self) -> RgbColor` — [`RgbColor`](#rgbcolor)
+
+##### `impl CloneToUninit for RgbColor`
+
+- <span id="rgbcolor-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for RgbColor`
 
 ##### `impl Debug for RgbColor`
 
-- <span id="rgbcolor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rgbcolor-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RgbColor`
+
+##### `impl<T> From for RgbColor`
+
+- <span id="rgbcolor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for RgbColor`
 
 - <span id="rgbcolor-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for RgbColor`
+
+- <span id="rgbcolor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for RgbColor`
 
-- <span id="rgbcolor-cmp"></span>`fn cmp(&self, other: &RgbColor) -> cmp::Ordering` — [`RgbColor`](#rgbcolor)
+- <span id="rgbcolor-ord-cmp"></span>`fn cmp(&self, other: &RgbColor) -> cmp::Ordering` — [`RgbColor`](#rgbcolor)
 
 ##### `impl PartialEq for RgbColor`
 
-- <span id="rgbcolor-eq"></span>`fn eq(&self, other: &RgbColor) -> bool` — [`RgbColor`](#rgbcolor)
+- <span id="rgbcolor-partialeq-eq"></span>`fn eq(&self, other: &RgbColor) -> bool` — [`RgbColor`](#rgbcolor)
 
 ##### `impl PartialOrd for RgbColor`
 
-- <span id="rgbcolor-partial-cmp"></span>`fn partial_cmp(&self, other: &RgbColor) -> option::Option<cmp::Ordering>` — [`RgbColor`](#rgbcolor)
+- <span id="rgbcolor-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &RgbColor) -> option::Option<cmp::Ordering>` — [`RgbColor`](#rgbcolor)
 
 ##### `impl StructuralPartialEq for RgbColor`
+
+##### `impl ToOwned for RgbColor`
+
+- <span id="rgbcolor-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rgbcolor-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rgbcolor-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RgbColor`
+
+- <span id="rgbcolor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rgbcolor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RgbColor`
+
+- <span id="rgbcolor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rgbcolor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DisplayBuffer`
 
@@ -267,15 +403,31 @@ struct DisplayBuffer {
 
 #### Trait Implementations
 
+##### `impl Any for DisplayBuffer`
+
+- <span id="displaybuffer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DisplayBuffer`
+
+- <span id="displaybuffer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DisplayBuffer`
+
+- <span id="displaybuffer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DisplayBuffer`
 
 - <span id="displaybuffer-clone"></span>`fn clone(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md#displaybuffer)
+
+##### `impl CloneToUninit for DisplayBuffer`
+
+- <span id="displaybuffer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DisplayBuffer`
 
 ##### `impl Debug for DisplayBuffer`
 
-- <span id="displaybuffer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="displaybuffer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for DisplayBuffer`
 
@@ -283,11 +435,49 @@ struct DisplayBuffer {
 
 ##### `impl Display for DisplayBuffer`
 
-- <span id="displaybuffer-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="displaybuffer-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for DisplayBuffer`
+
+- <span id="displaybuffer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DisplayBuffer`
+
+- <span id="displaybuffer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for DisplayBuffer`
+
+- <span id="displaybuffer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="displaybuffer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="displaybuffer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for DisplayBuffer`
 
-- <span id="displaybuffer-to-string"></span>`fn to_string(&self) -> String`
+- <span id="displaybuffer-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DisplayBuffer`
+
+- <span id="displaybuffer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="displaybuffer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DisplayBuffer`
+
+- <span id="displaybuffer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="displaybuffer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `NullFormatter`
 
@@ -299,15 +489,31 @@ struct NullFormatter(&'static str);
 
 #### Trait Implementations
 
+##### `impl Any for NullFormatter`
+
+- <span id="nullformatter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for NullFormatter`
+
+- <span id="nullformatter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for NullFormatter`
+
+- <span id="nullformatter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for NullFormatter`
 
 - <span id="nullformatter-clone"></span>`fn clone(&self) -> NullFormatter` — [`NullFormatter`](color/index.md#nullformatter)
+
+##### `impl CloneToUninit for NullFormatter`
+
+- <span id="nullformatter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for NullFormatter`
 
 ##### `impl Debug for NullFormatter`
 
-- <span id="nullformatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="nullformatter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for NullFormatter`
 
@@ -315,11 +521,49 @@ struct NullFormatter(&'static str);
 
 ##### `impl Display for NullFormatter`
 
-- <span id="nullformatter-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="nullformatter-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for NullFormatter`
+
+- <span id="nullformatter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for NullFormatter`
+
+- <span id="nullformatter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for NullFormatter`
+
+- <span id="nullformatter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="nullformatter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="nullformatter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for NullFormatter`
 
-- <span id="nullformatter-to-string"></span>`fn to_string(&self) -> String`
+- <span id="nullformatter-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for NullFormatter`
+
+- <span id="nullformatter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="nullformatter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for NullFormatter`
+
+- <span id="nullformatter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="nullformatter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Effects`
 
@@ -367,27 +611,163 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 - <span id="effects-new"></span>`const fn new() -> Self`
 
+  No effects enabled
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  let effects = anstyle::Effects::new();
+
+  ```
+
 - <span id="effects-is-plain"></span>`const fn is_plain(self) -> bool`
+
+  Check if no effects are enabled
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  let effects = anstyle::Effects::new();
+
+  assert!(effects.is_plain());
+
+  
+
+  let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
+
+  assert!(!effects.is_plain());
+
+  ```
 
 - <span id="effects-contains"></span>`const fn contains(self, other: Effects) -> bool` — [`Effects`](#effects)
 
+  Returns `true` if all of the effects in `other` are contained within `self`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
+
+  assert!(effects.contains(anstyle::Effects::BOLD));
+
+  
+
+  let effects = anstyle::Effects::new();
+
+  assert!(!effects.contains(anstyle::Effects::BOLD));
+
+  ```
+
 - <span id="effects-insert"></span>`const fn insert(self, other: Effects) -> Self` — [`Effects`](#effects)
+
+  Inserts the specified effects in-place.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  let effects = anstyle::Effects::new().insert(anstyle::Effects::new());
+
+  assert!(effects.is_plain());
+
+  
+
+  let effects = anstyle::Effects::new().insert(anstyle::Effects::BOLD);
+
+  assert!(effects.contains(anstyle::Effects::BOLD));
+
+  ```
 
 - <span id="effects-remove"></span>`const fn remove(self, other: Effects) -> Self` — [`Effects`](#effects)
 
+  Removes the specified effects in-place.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  let effects = (anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE).remove(anstyle::Effects::BOLD);
+
+  assert!(!effects.contains(anstyle::Effects::BOLD));
+
+  assert!(effects.contains(anstyle::Effects::UNDERLINE));
+
+  ```
+
 - <span id="effects-clear"></span>`const fn clear(self) -> Self`
+
+  Reset all effects in-place
+
+  ```rust
+
+  let effects = (anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE).clear();
+
+  assert!(!effects.contains(anstyle::Effects::BOLD));
+
+  assert!(!effects.contains(anstyle::Effects::UNDERLINE));
+
+  ```
 
 - <span id="effects-set"></span>`const fn set(self, other: Self, enable: bool) -> Self`
 
+  Enable or disable the specified effects depending on the passed value.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  let effects = anstyle::Effects::new().set(anstyle::Effects::BOLD, true);
+
+  assert!(effects.contains(anstyle::Effects::BOLD));
+
+  ```
+
 - <span id="effects-iter"></span>`fn iter(self) -> EffectIter` — [`EffectIter`](#effectiter)
+
+  Iterate over enabled effects
 
 - <span id="effects-index-iter"></span>`fn index_iter(self) -> EffectIndexIter` — [`EffectIndexIter`](effect/index.md#effectindexiter)
 
+  Iterate over enabled effect indices
+
 - <span id="effects-render"></span>`fn render(self) -> impl core::fmt::Display + Copy`
+
+  Render the ANSI code
 
 - <span id="effects-write-to"></span>`fn write_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
 #### Trait Implementations
+
+##### `impl Any for Effects`
+
+- <span id="effects-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl BitOr for Effects`
 
@@ -397,17 +777,29 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 ##### `impl BitOrAssign for Effects`
 
-- <span id="effects-bitor-assign"></span>`fn bitor_assign(&mut self, other: Self)`
+- <span id="effects-bitorassign-bitor-assign"></span>`fn bitor_assign(&mut self, other: Self)`
+
+##### `impl<T> Borrow for Effects`
+
+- <span id="effects-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Effects`
+
+- <span id="effects-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Effects`
 
 - <span id="effects-clone"></span>`fn clone(&self) -> Effects` — [`Effects`](#effects)
 
+##### `impl CloneToUninit for Effects`
+
+- <span id="effects-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Effects`
 
 ##### `impl Debug for Effects`
 
-- <span id="effects-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="effects-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for Effects`
 
@@ -415,21 +807,39 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 ##### `impl Eq for Effects`
 
+##### `impl<T> From for Effects`
+
+- <span id="effects-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Effects`
 
 - <span id="effects-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Effects`
+
+- <span id="effects-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Effects`
 
-- <span id="effects-cmp"></span>`fn cmp(&self, other: &Effects) -> cmp::Ordering` — [`Effects`](#effects)
+- <span id="effects-ord-cmp"></span>`fn cmp(&self, other: &Effects) -> cmp::Ordering` — [`Effects`](#effects)
 
 ##### `impl PartialEq for Effects`
 
-- <span id="effects-eq"></span>`fn eq(&self, other: &Effects) -> bool` — [`Effects`](#effects)
+- <span id="effects-partialeq-eq"></span>`fn eq(&self, other: &Effects) -> bool` — [`Effects`](#effects)
 
 ##### `impl PartialOrd for Effects`
 
-- <span id="effects-partial-cmp"></span>`fn partial_cmp(&self, other: &Effects) -> option::Option<cmp::Ordering>` — [`Effects`](#effects)
+- <span id="effects-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Effects) -> option::Option<cmp::Ordering>` — [`Effects`](#effects)
 
 ##### `impl StructuralPartialEq for Effects`
 
@@ -441,7 +851,27 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 ##### `impl SubAssign for Effects`
 
-- <span id="effects-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
+- <span id="effects-subassign-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
+
+##### `impl ToOwned for Effects`
+
+- <span id="effects-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="effects-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="effects-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Effects`
+
+- <span id="effects-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="effects-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Effects`
+
+- <span id="effects-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="effects-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Metadata`
 
@@ -454,6 +884,50 @@ struct Metadata {
 
 *Defined in [`anstyle-1.0.13/src/effect.rs:263-266`](../../.source_1765521767/anstyle-1.0.13/src/effect.rs#L263-L266)*
 
+#### Trait Implementations
+
+##### `impl Any for Metadata`
+
+- <span id="metadata-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Metadata`
+
+- <span id="metadata-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Metadata`
+
+- <span id="metadata-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Metadata`
+
+- <span id="metadata-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Metadata`
+
+- <span id="metadata-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Metadata`
+
+- <span id="metadata-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="metadata-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Metadata`
+
+- <span id="metadata-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="metadata-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `EffectsDisplay`
 
 ```rust
@@ -464,15 +938,31 @@ struct EffectsDisplay(Effects);
 
 #### Trait Implementations
 
+##### `impl Any for EffectsDisplay`
+
+- <span id="effectsdisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for EffectsDisplay`
+
+- <span id="effectsdisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for EffectsDisplay`
+
+- <span id="effectsdisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for EffectsDisplay`
 
 - <span id="effectsdisplay-clone"></span>`fn clone(&self) -> EffectsDisplay` — [`EffectsDisplay`](effect/index.md#effectsdisplay)
+
+##### `impl CloneToUninit for EffectsDisplay`
+
+- <span id="effectsdisplay-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for EffectsDisplay`
 
 ##### `impl Debug for EffectsDisplay`
 
-- <span id="effectsdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="effectsdisplay-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for EffectsDisplay`
 
@@ -480,11 +970,49 @@ struct EffectsDisplay(Effects);
 
 ##### `impl Display for EffectsDisplay`
 
-- <span id="effectsdisplay-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="effectsdisplay-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for EffectsDisplay`
+
+- <span id="effectsdisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for EffectsDisplay`
+
+- <span id="effectsdisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for EffectsDisplay`
+
+- <span id="effectsdisplay-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="effectsdisplay-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="effectsdisplay-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for EffectsDisplay`
 
-- <span id="effectsdisplay-to-string"></span>`fn to_string(&self) -> String`
+- <span id="effectsdisplay-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for EffectsDisplay`
+
+- <span id="effectsdisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="effectsdisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for EffectsDisplay`
+
+- <span id="effectsdisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="effectsdisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `EffectIter`
 
@@ -501,15 +1029,49 @@ Enumerate each enabled value in [`Effects`](#effects)
 
 #### Trait Implementations
 
+##### `impl Any for EffectIter`
+
+- <span id="effectiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for EffectIter`
+
+- <span id="effectiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for EffectIter`
+
+- <span id="effectiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for EffectIter`
 
 - <span id="effectiter-clone"></span>`fn clone(&self) -> EffectIter` — [`EffectIter`](#effectiter)
 
+##### `impl CloneToUninit for EffectIter`
+
+- <span id="effectiter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for EffectIter`
 
-- <span id="effectiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="effectiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for EffectIter`
+
+##### `impl<T> From for EffectIter`
+
+- <span id="effectiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for EffectIter`
+
+- <span id="effectiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for EffectIter`
 
@@ -517,19 +1079,39 @@ Enumerate each enabled value in [`Effects`](#effects)
 
 - <span id="effectiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="effectiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="effectiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for EffectIter`
 
 - <span id="effectiter-iterator-type-item"></span>`type Item = Effects`
 
-- <span id="effectiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="effectiter-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl PartialEq for EffectIter`
 
-- <span id="effectiter-eq"></span>`fn eq(&self, other: &EffectIter) -> bool` — [`EffectIter`](#effectiter)
+- <span id="effectiter-partialeq-eq"></span>`fn eq(&self, other: &EffectIter) -> bool` — [`EffectIter`](#effectiter)
 
 ##### `impl StructuralPartialEq for EffectIter`
+
+##### `impl ToOwned for EffectIter`
+
+- <span id="effectiter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="effectiter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="effectiter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for EffectIter`
+
+- <span id="effectiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="effectiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for EffectIter`
+
+- <span id="effectiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="effectiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `EffectIndexIter`
 
@@ -544,15 +1126,49 @@ struct EffectIndexIter {
 
 #### Trait Implementations
 
+##### `impl Any for EffectIndexIter`
+
+- <span id="effectindexiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for EffectIndexIter`
+
+- <span id="effectindexiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for EffectIndexIter`
+
+- <span id="effectindexiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for EffectIndexIter`
 
 - <span id="effectindexiter-clone"></span>`fn clone(&self) -> EffectIndexIter` — [`EffectIndexIter`](effect/index.md#effectindexiter)
 
+##### `impl CloneToUninit for EffectIndexIter`
+
+- <span id="effectindexiter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for EffectIndexIter`
 
-- <span id="effectindexiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="effectindexiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for EffectIndexIter`
+
+##### `impl<T> From for EffectIndexIter`
+
+- <span id="effectindexiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for EffectIndexIter`
+
+- <span id="effectindexiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for EffectIndexIter`
 
@@ -560,19 +1176,39 @@ struct EffectIndexIter {
 
 - <span id="effectindexiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="effectindexiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="effectindexiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for EffectIndexIter`
 
 - <span id="effectindexiter-iterator-type-item"></span>`type Item = usize`
 
-- <span id="effectindexiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="effectindexiter-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl PartialEq for EffectIndexIter`
 
-- <span id="effectindexiter-eq"></span>`fn eq(&self, other: &EffectIndexIter) -> bool` — [`EffectIndexIter`](effect/index.md#effectindexiter)
+- <span id="effectindexiter-partialeq-eq"></span>`fn eq(&self, other: &EffectIndexIter) -> bool` — [`EffectIndexIter`](effect/index.md#effectindexiter)
 
 ##### `impl StructuralPartialEq for EffectIndexIter`
+
+##### `impl ToOwned for EffectIndexIter`
+
+- <span id="effectindexiter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="effectindexiter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="effectindexiter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for EffectIndexIter`
+
+- <span id="effectindexiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="effectindexiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for EffectIndexIter`
+
+- <span id="effectindexiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="effectindexiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Reset`
 
@@ -588,17 +1224,39 @@ Reset terminal formatting
 
 - <span id="reset-render"></span>`fn render(self) -> impl core::fmt::Display + Copy`
 
+  Render the ANSI code
+
+  
+
+  `Reset` also implements `Display` directly, so calling this method is optional.
+
 #### Trait Implementations
+
+##### `impl Any for Reset`
+
+- <span id="reset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Reset`
+
+- <span id="reset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Reset`
+
+- <span id="reset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Reset`
 
 - <span id="reset-clone"></span>`fn clone(&self) -> Reset` — [`Reset`](#reset)
 
+##### `impl CloneToUninit for Reset`
+
+- <span id="reset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Reset`
 
 ##### `impl Debug for Reset`
 
-- <span id="reset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Reset`
 
@@ -606,31 +1264,69 @@ Reset terminal formatting
 
 ##### `impl Display for Reset`
 
-- <span id="reset-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="reset-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Reset`
+
+##### `impl<T> From for Reset`
+
+- <span id="reset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Reset`
 
 - <span id="reset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Reset`
+
+- <span id="reset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Reset`
 
-- <span id="reset-cmp"></span>`fn cmp(&self, other: &Reset) -> cmp::Ordering` — [`Reset`](#reset)
+- <span id="reset-ord-cmp"></span>`fn cmp(&self, other: &Reset) -> cmp::Ordering` — [`Reset`](#reset)
 
 ##### `impl PartialEq for Reset`
 
-- <span id="reset-eq"></span>`fn eq(&self, other: &Reset) -> bool` — [`Reset`](#reset)
+- <span id="reset-partialeq-eq"></span>`fn eq(&self, other: &Reset) -> bool` — [`Reset`](#reset)
 
 ##### `impl PartialOrd for Reset`
 
-- <span id="reset-partial-cmp"></span>`fn partial_cmp(&self, other: &Reset) -> option::Option<cmp::Ordering>` — [`Reset`](#reset)
+- <span id="reset-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Reset) -> option::Option<cmp::Ordering>` — [`Reset`](#reset)
 
 ##### `impl StructuralPartialEq for Reset`
 
+##### `impl ToOwned for Reset`
+
+- <span id="reset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="reset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="reset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Reset`
 
-- <span id="reset-to-string"></span>`fn to_string(&self) -> String`
+- <span id="reset-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Reset`
+
+- <span id="reset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="reset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Reset`
+
+- <span id="reset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="reset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Style`
 
@@ -664,25 +1360,119 @@ println!("{style}{value}{style:#}");
 
 - <span id="style-new"></span>`const fn new() -> Self`
 
+  No effects enabled
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  let style = anstyle::Style::new();
+
+  ```
+
 - <span id="style-fg-color"></span>`const fn fg_color(self, fg: Option<crate::Color>) -> Self` — [`Color`](#color)
+
+  Set foreground color
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  let style = anstyle::Style::new().fg_color(Some(anstyle::AnsiColor::Red.into()));
+
+  ```
 
 - <span id="style-bg-color"></span>`const fn bg_color(self, bg: Option<crate::Color>) -> Self` — [`Color`](#color)
 
+  Set background color
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  let style = anstyle::Style::new().bg_color(Some(anstyle::AnsiColor::Red.into()));
+
+  ```
+
 - <span id="style-underline-color"></span>`const fn underline_color(self, underline: Option<crate::Color>) -> Self` — [`Color`](#color)
+
+  Set underline color
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  let style = anstyle::Style::new().underline_color(Some(anstyle::AnsiColor::Red.into()));
+
+  ```
 
 - <span id="style-effects"></span>`const fn effects(self, effects: crate::Effects) -> Self` — [`Effects`](#effects)
 
+  Set text effects
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  let style = anstyle::Style::new().effects(anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE);
+
+  ```
+
 - <span id="style-render"></span>`fn render(self) -> impl core::fmt::Display + Copy`
+
+  Render the ANSI code
+
+  
+
+  `Style` also implements `Display` directly, so calling this method is optional.
 
 - <span id="style-fmt-to"></span>`fn fmt_to(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 - <span id="style-write-to"></span>`fn write_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
+  Write the ANSI code
+
 - <span id="style-render-reset"></span>`fn render_reset(self) -> impl core::fmt::Display + Copy`
+
+  Renders the relevant `Reset` code
+
+  
+
+  Unlike `Reset::render`, this will elide the code if there is nothing to reset.
 
 - <span id="style-write-reset-to"></span>`fn write_reset_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
+  Write the relevant `Reset` code
+
+  
+
+  Unlike `Reset::render`, this will elide the code if there is nothing to reset.
+
 #### Trait Implementations
+
+##### `impl Any for Style`
+
+- <span id="style-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl BitOr for Style`
 
@@ -692,17 +1482,29 @@ println!("{style}{value}{style:#}");
 
 ##### `impl BitOrAssign for Style`
 
-- <span id="style-bitor-assign"></span>`fn bitor_assign(&mut self, other: crate::Effects)` — [`Effects`](#effects)
+- <span id="style-bitorassign-bitor-assign"></span>`fn bitor_assign(&mut self, other: crate::Effects)` — [`Effects`](#effects)
+
+##### `impl<T> Borrow for Style`
+
+- <span id="style-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Style`
+
+- <span id="style-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Style`
 
 - <span id="style-clone"></span>`fn clone(&self) -> Style` — [`Style`](#style)
 
+##### `impl CloneToUninit for Style`
+
+- <span id="style-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Style`
 
 ##### `impl Debug for Style`
 
-- <span id="style-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="style-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Style`
 
@@ -710,25 +1512,43 @@ println!("{style}{value}{style:#}");
 
 ##### `impl Display for Style`
 
-- <span id="style-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="style-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Style`
+
+##### `impl<T> From for Style`
+
+- <span id="style-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Style`
 
 - <span id="style-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Style`
+
+- <span id="style-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Style`
 
-- <span id="style-cmp"></span>`fn cmp(&self, other: &Style) -> cmp::Ordering` — [`Style`](#style)
+- <span id="style-ord-cmp"></span>`fn cmp(&self, other: &Style) -> cmp::Ordering` — [`Style`](#style)
 
 ##### `impl PartialEq for Style`
 
-- <span id="style-eq"></span>`fn eq(&self, other: &Style) -> bool` — [`Style`](#style)
+- <span id="style-partialeq-eq"></span>`fn eq(&self, other: &Style) -> bool` — [`Style`](#style)
 
 ##### `impl PartialOrd for Style`
 
-- <span id="style-partial-cmp"></span>`fn partial_cmp(&self, other: &Style) -> option::Option<cmp::Ordering>` — [`Style`](#style)
+- <span id="style-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Style) -> option::Option<cmp::Ordering>` — [`Style`](#style)
 
 ##### `impl StructuralPartialEq for Style`
 
@@ -740,11 +1560,31 @@ println!("{style}{value}{style:#}");
 
 ##### `impl SubAssign for Style`
 
-- <span id="style-sub-assign"></span>`fn sub_assign(&mut self, other: crate::Effects)` — [`Effects`](#effects)
+- <span id="style-subassign-sub-assign"></span>`fn sub_assign(&mut self, other: crate::Effects)` — [`Effects`](#effects)
+
+##### `impl ToOwned for Style`
+
+- <span id="style-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="style-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="style-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for Style`
 
-- <span id="style-to-string"></span>`fn to_string(&self) -> String`
+- <span id="style-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Style`
+
+- <span id="style-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="style-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Style`
+
+- <span id="style-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="style-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StyleDisplay`
 
@@ -756,15 +1596,31 @@ struct StyleDisplay(Style);
 
 #### Trait Implementations
 
+##### `impl Any for StyleDisplay`
+
+- <span id="styledisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StyleDisplay`
+
+- <span id="styledisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StyleDisplay`
+
+- <span id="styledisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for StyleDisplay`
 
 - <span id="styledisplay-clone"></span>`fn clone(&self) -> StyleDisplay` — [`StyleDisplay`](style/index.md#styledisplay)
+
+##### `impl CloneToUninit for StyleDisplay`
+
+- <span id="styledisplay-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for StyleDisplay`
 
 ##### `impl Debug for StyleDisplay`
 
-- <span id="styledisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledisplay-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for StyleDisplay`
 
@@ -772,11 +1628,49 @@ struct StyleDisplay(Style);
 
 ##### `impl Display for StyleDisplay`
 
-- <span id="styledisplay-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="styledisplay-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for StyleDisplay`
+
+- <span id="styledisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StyleDisplay`
+
+- <span id="styledisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for StyleDisplay`
+
+- <span id="styledisplay-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="styledisplay-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="styledisplay-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for StyleDisplay`
 
-- <span id="styledisplay-to-string"></span>`fn to_string(&self) -> String`
+- <span id="styledisplay-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for StyleDisplay`
+
+- <span id="styledisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="styledisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StyleDisplay`
+
+- <span id="styledisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="styledisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -818,13 +1712,21 @@ Any ANSI color code scheme
 
 - <span id="color-on"></span>`fn on(self, background: impl Into<Color>) -> crate::Style` — [`Color`](#color), [`Style`](#style)
 
+  Create a `Style` with this as the foreground
+
 - <span id="color-on-default"></span>`const fn on_default(self) -> crate::Style` — [`Style`](#style)
 
+  Create a `Style` with this as the foreground
+
 - <span id="color-render-fg"></span>`fn render_fg(self) -> impl core::fmt::Display + Copy`
+
+  Render the ANSI code for a foreground color
 
 - <span id="color-write-fg-to"></span>`fn write_fg_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
 - <span id="color-render-bg"></span>`fn render_bg(self) -> impl core::fmt::Display + Copy`
+
+  Render the ANSI code for a background color
 
 - <span id="color-write-bg-to"></span>`fn write_bg_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
@@ -834,35 +1736,89 @@ Any ANSI color code scheme
 
 #### Trait Implementations
 
+##### `impl Any for Color`
+
+- <span id="color-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Color`
+
+- <span id="color-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Color`
+
+- <span id="color-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Color`
 
 - <span id="color-clone"></span>`fn clone(&self) -> Color` — [`Color`](#color)
+
+##### `impl CloneToUninit for Color`
+
+- <span id="color-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Color`
 
 ##### `impl Debug for Color`
 
-- <span id="color-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="color-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Color`
+
+##### `impl<T> From for Color`
+
+- <span id="color-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Color`
 
 - <span id="color-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Color`
+
+- <span id="color-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Color`
 
-- <span id="color-cmp"></span>`fn cmp(&self, other: &Color) -> cmp::Ordering` — [`Color`](#color)
+- <span id="color-ord-cmp"></span>`fn cmp(&self, other: &Color) -> cmp::Ordering` — [`Color`](#color)
 
 ##### `impl PartialEq for Color`
 
-- <span id="color-eq"></span>`fn eq(&self, other: &Color) -> bool` — [`Color`](#color)
+- <span id="color-partialeq-eq"></span>`fn eq(&self, other: &Color) -> bool` — [`Color`](#color)
 
 ##### `impl PartialOrd for Color`
 
-- <span id="color-partial-cmp"></span>`fn partial_cmp(&self, other: &Color) -> option::Option<cmp::Ordering>` — [`Color`](#color)
+- <span id="color-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Color) -> option::Option<cmp::Ordering>` — [`Color`](#color)
 
 ##### `impl StructuralPartialEq for Color`
+
+##### `impl ToOwned for Color`
+
+- <span id="color-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="color-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="color-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Color`
+
+- <span id="color-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="color-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Color`
+
+- <span id="color-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="color-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AnsiColor`
 
@@ -963,15 +1919,23 @@ The user's terminal defines the meaning of the each palette code.
 
 - <span id="ansicolor-on"></span>`fn on(self, background: impl Into<Color>) -> crate::Style` — [`Color`](#color), [`Style`](#style)
 
+  Create a `Style` with this as the foreground
+
 - <span id="ansicolor-on-default"></span>`const fn on_default(self) -> crate::Style` — [`Style`](#style)
 
+  Create a `Style` with this as the foreground
+
 - <span id="ansicolor-render-fg"></span>`fn render_fg(self) -> impl core::fmt::Display + Copy`
+
+  Render the ANSI code for a foreground color
 
 - <span id="ansicolor-as-fg-str"></span>`fn as_fg_str(&self) -> &'static str`
 
 - <span id="ansicolor-as-fg-buffer"></span>`fn as_fg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md#displaybuffer)
 
 - <span id="ansicolor-render-bg"></span>`fn render_bg(self) -> impl core::fmt::Display + Copy`
+
+  Render the ANSI code for a background color
 
 - <span id="ansicolor-as-bg-str"></span>`fn as_bg_str(&self) -> &'static str`
 
@@ -981,39 +1945,97 @@ The user's terminal defines the meaning of the each palette code.
 
 - <span id="ansicolor-bright"></span>`fn bright(self, yes: bool) -> Self`
 
+  Change the color to/from bright
+
 - <span id="ansicolor-is-bright"></span>`fn is_bright(self) -> bool`
 
+  Report whether the color is bright
+
 #### Trait Implementations
+
+##### `impl Any for AnsiColor`
+
+- <span id="ansicolor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AnsiColor`
+
+- <span id="ansicolor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AnsiColor`
+
+- <span id="ansicolor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for AnsiColor`
 
 - <span id="ansicolor-clone"></span>`fn clone(&self) -> AnsiColor` — [`AnsiColor`](#ansicolor)
 
+##### `impl CloneToUninit for AnsiColor`
+
+- <span id="ansicolor-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for AnsiColor`
 
 ##### `impl Debug for AnsiColor`
 
-- <span id="ansicolor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ansicolor-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for AnsiColor`
+
+##### `impl<T> From for AnsiColor`
+
+- <span id="ansicolor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for AnsiColor`
 
 - <span id="ansicolor-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for AnsiColor`
+
+- <span id="ansicolor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for AnsiColor`
 
-- <span id="ansicolor-cmp"></span>`fn cmp(&self, other: &AnsiColor) -> cmp::Ordering` — [`AnsiColor`](#ansicolor)
+- <span id="ansicolor-ord-cmp"></span>`fn cmp(&self, other: &AnsiColor) -> cmp::Ordering` — [`AnsiColor`](#ansicolor)
 
 ##### `impl PartialEq for AnsiColor`
 
-- <span id="ansicolor-eq"></span>`fn eq(&self, other: &AnsiColor) -> bool` — [`AnsiColor`](#ansicolor)
+- <span id="ansicolor-partialeq-eq"></span>`fn eq(&self, other: &AnsiColor) -> bool` — [`AnsiColor`](#ansicolor)
 
 ##### `impl PartialOrd for AnsiColor`
 
-- <span id="ansicolor-partial-cmp"></span>`fn partial_cmp(&self, other: &AnsiColor) -> option::Option<cmp::Ordering>` — [`AnsiColor`](#ansicolor)
+- <span id="ansicolor-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &AnsiColor) -> option::Option<cmp::Ordering>` — [`AnsiColor`](#ansicolor)
 
 ##### `impl StructuralPartialEq for AnsiColor`
+
+##### `impl ToOwned for AnsiColor`
+
+- <span id="ansicolor-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="ansicolor-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="ansicolor-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AnsiColor`
+
+- <span id="ansicolor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ansicolor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AnsiColor`
+
+- <span id="ansicolor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ansicolor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Constants
 

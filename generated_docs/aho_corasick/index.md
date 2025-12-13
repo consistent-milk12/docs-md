@@ -321,9 +321,39 @@ The lifetime `'a` refers to the lifetime of the corresponding
 
 #### Trait Implementations
 
+##### `impl Any for StreamFindIter<'a, R>`
+
+- <span id="streamfinditer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StreamFindIter<'a, R>`
+
+- <span id="streamfinditer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StreamFindIter<'a, R>`
+
+- <span id="streamfinditer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug> Debug for StreamFindIter<'a, R>`
 
-- <span id="streamfinditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="streamfinditer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for StreamFindIter<'a, R>`
+
+- <span id="streamfinditer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StreamFindIter<'a, R>`
+
+- <span id="streamfinditer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for StreamFindIter<'a, R>`
 
@@ -331,13 +361,25 @@ The lifetime `'a` refers to the lifetime of the corresponding
 
 - <span id="streamfinditer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="streamfinditer-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="streamfinditer-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<R: std::io::Read> Iterator for StreamFindIter<'a, R>`
 
 - <span id="streamfinditer-iterator-type-item"></span>`type Item = Result<Match, Error>`
 
-- <span id="streamfinditer-next"></span>`fn next(&mut self) -> Option<Result<Match, std::io::Error>>` — [`Match`](util/search/index.md#match)
+- <span id="streamfinditer-iterator-next"></span>`fn next(&mut self) -> Option<Result<Match, std::io::Error>>` — [`Match`](util/search/index.md#match)
+
+##### `impl<U> TryFrom for StreamFindIter<'a, R>`
+
+- <span id="streamfinditer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="streamfinditer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StreamFindIter<'a, R>`
+
+- <span id="streamfinditer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="streamfinditer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AhoCorasick`
 
@@ -556,17 +598,153 @@ assert_eq!(result, "The slow grey sloth.");
 
 - <span id="ahocorasick-new"></span>`fn new<I, P>(patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](ahocorasick/index.md#ahocorasick), [`BuildError`](util/error/index.md#builderror)
 
+  Create a new Aho-Corasick automaton using the default configuration.
+
+  
+
+  The default configuration optimizes for less space usage, but at the
+
+  expense of longer search times. To change the configuration, use
+
+  [`AhoCorasickBuilder`](ahocorasick/index.md).
+
+  
+
+  This uses the default [`MatchKind::Standard`](#matchkindstandard) match semantics, which
+
+  reports a match as soon as it is found. This corresponds to the
+
+  standard match semantics supported by textbook descriptions of the
+
+  Aho-Corasick algorithm.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use aho_corasick::{AhoCorasick, PatternID};
+
+  
+
+  let ac = AhoCorasick::new(&["foo", "bar", "baz"]).unwrap();
+
+  assert_eq!(
+
+      Some(PatternID::must(1)),
+
+      ac.find("xxx bar xxx").map(|m| m.pattern()),
+
+  );
+
+  ```
+
 - <span id="ahocorasick-builder"></span>`fn builder() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
 
+  A convenience method for returning a new Aho-Corasick builder.
+
+  
+
+  This usually permits one to just import the `AhoCorasick` type.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use aho_corasick::{AhoCorasick, Match, MatchKind};
+
+  
+
+  let ac = AhoCorasick::builder()
+
+      .match_kind(MatchKind::LeftmostFirst)
+
+      .build(&["samwise", "sam"])
+
+      .unwrap();
+
+  assert_eq!(Some(Match::must(0, 0..7)), ac.find("samwise"));
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for AhoCorasick`
+
+- <span id="ahocorasick-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AhoCorasick`
+
+- <span id="ahocorasick-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AhoCorasick`
+
+- <span id="ahocorasick-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for AhoCorasick`
 
 - <span id="ahocorasick-clone"></span>`fn clone(&self) -> AhoCorasick` — [`AhoCorasick`](ahocorasick/index.md#ahocorasick)
 
+##### `impl CloneToUninit for AhoCorasick`
+
+- <span id="ahocorasick-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for AhoCorasick`
 
-- <span id="ahocorasick-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="ahocorasick-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for AhoCorasick`
+
+- <span id="ahocorasick-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AhoCorasick`
+
+- <span id="ahocorasick-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for AhoCorasick`
+
+- <span id="ahocorasick-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="ahocorasick-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="ahocorasick-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AhoCorasick`
+
+- <span id="ahocorasick-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ahocorasick-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AhoCorasick`
+
+- <span id="ahocorasick-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ahocorasick-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AhoCorasickBuilder`
 
@@ -608,37 +786,755 @@ usage.
 
 - <span id="ahocorasickbuilder-new"></span>`fn new() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
 
+  Create a new builder for configuring an Aho-Corasick automaton.
+
+  
+
+  The builder provides a way to configure a number of things, including
+
+  ASCII case insensitivity and what kind of match semantics are used.
+
 - <span id="ahocorasickbuilder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](ahocorasick/index.md#ahocorasick), [`BuildError`](util/error/index.md#builderror)
+
+  Build an Aho-Corasick automaton using the configuration set on this
+
+  builder.
+
+  
+
+  A builder may be reused to create more automatons.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use aho_corasick::{AhoCorasickBuilder, PatternID};
+
+  
+
+  let patterns = &["foo", "bar", "baz"];
+
+  let ac = AhoCorasickBuilder::new().build(patterns).unwrap();
+
+  assert_eq!(
+
+      Some(PatternID::must(1)),
+
+      ac.find("xxx bar xxx").map(|m| m.pattern()),
+
+  );
+
+  ```
 
 - <span id="ahocorasickbuilder-build-auto"></span>`fn build_auto(&self, nfa: noncontiguous::NFA) -> (Arc<dyn AcAutomaton>, AhoCorasickKind)` — [`NFA`](nfa/noncontiguous/index.md#nfa), [`AcAutomaton`](ahocorasick/index.md#acautomaton), [`AhoCorasickKind`](ahocorasick/index.md#ahocorasickkind)
 
+  Implements the automatic selection logic for the Aho-Corasick
+
+  implementation to use. Since all Aho-Corasick automatons are built
+
+  from a non-contiguous NFA, the caller is responsible for building
+
+  that first.
+
 - <span id="ahocorasickbuilder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut AhoCorasickBuilder` — [`MatchKind`](util/search/index.md#matchkind), [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
+
+  Set the desired match semantics.
+
+  
+
+  The default is [`MatchKind::Standard`](#matchkindstandard), which corresponds to the match
+
+  semantics supported by the standard textbook description of the
+
+  Aho-Corasick algorithm. Namely, matches are reported as soon as they
+
+  are found. Moreover, this is the only way to get overlapping matches
+
+  or do stream searching.
+
+  
+
+  The other kinds of match semantics that are supported are
+
+  [`MatchKind::LeftmostFirst`](#matchkindleftmostfirst) and [`MatchKind::LeftmostLongest`](#matchkindleftmostlongest). The
+
+  former corresponds to the match you would get if you were to try to
+
+  match each pattern at each position in the haystack in the same order
+
+  that you give to the automaton. That is, it returns the leftmost match
+
+  corresponding to the earliest pattern given to the automaton. The
+
+  latter corresponds to finding the longest possible match among all
+
+  leftmost matches.
+
+  
+
+  For more details on match semantics, see the [documentation for
+
+  `MatchKind`](MatchKind).
+
+  
+
+  Note that setting this to [`MatchKind::LeftmostFirst`](#matchkindleftmostfirst) or
+
+  [`MatchKind::LeftmostLongest`](#matchkindleftmostlongest) will cause some search routines on
+
+  [`AhoCorasick`](ahocorasick/index.md) to return an error (or panic if you're using the
+
+  infallible API). Notably, this includes stream and overlapping
+
+  searches.
+
+  
+
+  # Examples
+
+  
+
+  In these examples, we demonstrate the differences between match
+
+  semantics for a particular set of patterns in a specific order:
+
+  `b`, `abc`, `abcd`.
+
+  
+
+  Standard semantics:
+
+  
+
+  ```rust
+
+  use aho_corasick::{AhoCorasick, MatchKind};
+
+  
+
+  let patterns = &["b", "abc", "abcd"];
+
+  let haystack = "abcd";
+
+  
+
+  let ac = AhoCorasick::builder()
+
+      .match_kind(MatchKind::Standard) // default, not necessary
+
+      .build(patterns)
+
+      .unwrap();
+
+  let mat = ac.find(haystack).expect("should have a match");
+
+  assert_eq!("b", &haystack[mat.start()..mat.end()]);
+
+  ```
+
+  
+
+  Leftmost-first semantics:
+
+  
+
+  ```rust
+
+  use aho_corasick::{AhoCorasick, MatchKind};
+
+  
+
+  let patterns = &["b", "abc", "abcd"];
+
+  let haystack = "abcd";
+
+  
+
+  let ac = AhoCorasick::builder()
+
+      .match_kind(MatchKind::LeftmostFirst)
+
+      .build(patterns)
+
+      .unwrap();
+
+  let mat = ac.find(haystack).expect("should have a match");
+
+  assert_eq!("abc", &haystack[mat.start()..mat.end()]);
+
+  ```
+
+  
+
+  Leftmost-longest semantics:
+
+  
+
+  ```rust
+
+  use aho_corasick::{AhoCorasick, MatchKind};
+
+  
+
+  let patterns = &["b", "abc", "abcd"];
+
+  let haystack = "abcd";
+
+  
+
+  let ac = AhoCorasick::builder()
+
+      .match_kind(MatchKind::LeftmostLongest)
+
+      .build(patterns)
+
+      .unwrap();
+
+  let mat = ac.find(haystack).expect("should have a match");
+
+  assert_eq!("abcd", &haystack[mat.start()..mat.end()]);
+
+  ```
 
 - <span id="ahocorasickbuilder-start-kind"></span>`fn start_kind(&mut self, kind: StartKind) -> &mut AhoCorasickBuilder` — [`StartKind`](util/search/index.md#startkind), [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
 
+  Sets the starting state configuration for the automaton.
+
+  
+
+  Every Aho-Corasick automaton is capable of having two start states: one
+
+  that is used for unanchored searches and one that is used for anchored
+
+  searches. Some automatons, like the NFAs, support this with almost zero
+
+  additional cost. Other automatons, like the DFA, require two copies of
+
+  the underlying transition table to support both simultaneously.
+
+  
+
+  Because there may be an added non-trivial cost to supporting both, it
+
+  is possible to configure which starting state configuration is needed.
+
+  
+
+  Indeed, since anchored searches tend to be somewhat more rare,
+
+  _only_ unanchored searches are supported by default. Thus,
+
+  [`StartKind::Unanchored`](#startkindunanchored) is the default.
+
+  
+
+  Note that when this is set to [`StartKind::Unanchored`](#startkindunanchored), then
+
+  running an anchored search will result in an error (or a panic
+
+  if using the infallible APIs). Similarly, when this is set to
+
+  [`StartKind::Anchored`](#startkindanchored), then running an unanchored search will
+
+  result in an error (or a panic if using the infallible APIs). When
+
+  [`StartKind::Both`](#startkindboth) is used, then both unanchored and anchored searches
+
+  are always supported.
+
+  
+
+  Also note that even if an `AhoCorasick` searcher is using an NFA
+
+  internally (which always supports both unanchored and anchored
+
+  searches), an error will still be reported for a search that isn't
+
+  supported by the configuration set via this method. This means,
+
+  for example, that an error is never dependent on which internal
+
+  implementation of Aho-Corasick is used.
+
+  
+
+  # Example: anchored search
+
+  
+
+  This shows how to build a searcher that only supports anchored
+
+  searches:
+
+  
+
+  ```rust
+
+  use aho_corasick::{
+
+      AhoCorasick, Anchored, Input, Match, MatchKind, StartKind,
+
+  };
+
+  
+
+  let ac = AhoCorasick::builder()
+
+      .match_kind(MatchKind::LeftmostFirst)
+
+      .start_kind(StartKind::Anchored)
+
+      .build(&["b", "abc", "abcd"])
+
+      .unwrap();
+
+  
+
+  // An unanchored search is not supported! An error here is guaranteed
+
+  // given the configuration above regardless of which kind of
+
+  // Aho-Corasick implementation ends up being used internally.
+
+  let input = Input::new("foo abcd").anchored(Anchored::No);
+
+  assert!(ac.try_find(input).is_err());
+
+  
+
+  let input = Input::new("foo abcd").anchored(Anchored::Yes);
+
+  assert_eq!(None, ac.try_find(input)?);
+
+  
+
+  let input = Input::new("abcd").anchored(Anchored::Yes);
+
+  assert_eq!(Some(Match::must(1, 0..3)), ac.try_find(input)?);
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
+
+  
+
+  # Example: unanchored and anchored searches
+
+  
+
+  This shows how to build a searcher that supports both unanchored and
+
+  anchored searches:
+
+  
+
+  ```rust
+
+  use aho_corasick::{
+
+      AhoCorasick, Anchored, Input, Match, MatchKind, StartKind,
+
+  };
+
+  
+
+  let ac = AhoCorasick::builder()
+
+      .match_kind(MatchKind::LeftmostFirst)
+
+      .start_kind(StartKind::Both)
+
+      .build(&["b", "abc", "abcd"])
+
+      .unwrap();
+
+  
+
+  let input = Input::new("foo abcd").anchored(Anchored::No);
+
+  assert_eq!(Some(Match::must(1, 4..7)), ac.try_find(input)?);
+
+  
+
+  let input = Input::new("foo abcd").anchored(Anchored::Yes);
+
+  assert_eq!(None, ac.try_find(input)?);
+
+  
+
+  let input = Input::new("abcd").anchored(Anchored::Yes);
+
+  assert_eq!(Some(Match::must(1, 0..3)), ac.try_find(input)?);
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
+
 - <span id="ahocorasickbuilder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(&mut self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
+
+  Enable ASCII-aware case insensitive matching.
+
+  
+
+  When this option is enabled, searching will be performed without
+
+  respect to case for ASCII letters (`a-z` and `A-Z`) only.
+
+  
+
+  Enabling this option does not change the search algorithm, but it may
+
+  increase the size of the automaton.
+
+  
+
+  **NOTE:** It is unlikely that support for Unicode case folding will
+
+  be added in the future. The ASCII case works via a simple hack to the
+
+  underlying automaton, but full Unicode handling requires a fair bit of
+
+  sophistication. If you do need Unicode handling, you might consider
+
+  using the [`regex` crate](https://docs.rs/regex) or the lower level
+
+  [`regex-automata` crate](https://docs.rs/regex-automata).
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use aho_corasick::AhoCorasick;
+
+  
+
+  let patterns = &["FOO", "bAr", "BaZ"];
+
+  let haystack = "foo bar baz";
+
+  
+
+  let ac = AhoCorasick::builder()
+
+      .ascii_case_insensitive(true)
+
+      .build(patterns)
+
+      .unwrap();
+
+  assert_eq!(3, ac.find_iter(haystack).count());
+
+  ```
 
 - <span id="ahocorasickbuilder-kind"></span>`fn kind(&mut self, kind: Option<AhoCorasickKind>) -> &mut AhoCorasickBuilder` — [`AhoCorasickKind`](ahocorasick/index.md#ahocorasickkind), [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
 
+  Choose the type of underlying automaton to use.
+
+  
+
+  Currently, there are four choices:
+
+  
+
+  * [`AhoCorasickKind::NoncontiguousNFA`](#ahocorasickkindnoncontiguousnfa) instructs the searcher to
+
+  use a [`noncontiguous::NFA`](nfa/noncontiguous/index.md). A noncontiguous NFA is the fastest to
+
+  be built, has moderate memory usage and is typically the slowest to
+
+  execute a search.
+
+  * [`AhoCorasickKind::ContiguousNFA`](#ahocorasickkindcontiguousnfa) instructs the searcher to use a
+
+  [`contiguous::NFA`](nfa/contiguous/index.md). A contiguous NFA is a little slower to build than
+
+  a noncontiguous NFA, has excellent memory usage and is typically a
+
+  little slower than a DFA for a search.
+
+  * [`AhoCorasickKind::DFA`](#ahocorasickkinddfa) instructs the searcher to use a
+
+  [`dfa::DFA`](dfa/index.md). A DFA is very slow to build, uses exorbitant amounts of
+
+  memory, but will typically execute searches the fastest.
+
+  * `None` (the default) instructs the searcher to choose the "best"
+
+  Aho-Corasick implementation. This choice is typically based primarily
+
+  on the number of patterns.
+
+  
+
+  Setting this configuration does not change the time complexity for
+
+  constructing the Aho-Corasick automaton (which is `O(p)` where `p`
+
+  is the total number of patterns being compiled). Setting this to
+
+  [`AhoCorasickKind::DFA`](#ahocorasickkinddfa) does however reduce the time complexity of
+
+  non-overlapping searches from `O(n + p)` to `O(n)`, where `n` is the
+
+  length of the haystack.
+
+  
+
+  In general, you should probably stick to the default unless you have
+
+  some kind of reason to use a specific Aho-Corasick implementation. For
+
+  example, you might choose `AhoCorasickKind::DFA` if you don't care
+
+  about memory usage and want the fastest possible search times.
+
+  
+
+  Setting this guarantees that the searcher returned uses the chosen
+
+  implementation. If that implementation could not be constructed, then
+
+  an error will be returned. In contrast, when `None` is used, it is
+
+  possible for it to attempt to construct, for example, a contiguous
+
+  NFA and have it fail. In which case, it will fall back to using a
+
+  noncontiguous NFA.
+
+  
+
+  If `None` is given, then one may use `AhoCorasick::kind` to determine
+
+  which Aho-Corasick implementation was chosen.
+
+  
+
+  Note that the heuristics used for choosing which `AhoCorasickKind`
+
+  may be changed in a semver compatible release.
+
 - <span id="ahocorasickbuilder-prefilter"></span>`fn prefilter(&mut self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
+
+  Enable heuristic prefilter optimizations.
+
+  
+
+  When enabled, searching will attempt to quickly skip to match
+
+  candidates using specialized literal search routines. A prefilter
+
+  cannot always be used, and is generally treated as a heuristic. It
+
+  can be useful to disable this if the prefilter is observed to be
+
+  sub-optimal for a particular workload.
+
+  
+
+  Currently, prefilters are typically only active when building searchers
+
+  with a small (less than 100) number of patterns.
+
+  
+
+  This is enabled by default.
 
 - <span id="ahocorasickbuilder-dense-depth"></span>`fn dense_depth(&mut self, depth: usize) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
 
+  Set the limit on how many states use a dense representation for their
+
+  transitions. Other states will generally use a sparse representation.
+
+  
+
+  A dense representation uses more memory but is generally faster, since
+
+  the next transition in a dense representation can be computed in a
+
+  constant number of instructions. A sparse representation uses less
+
+  memory but is generally slower, since the next transition in a sparse
+
+  representation requires executing a variable number of instructions.
+
+  
+
+  This setting is only used when an Aho-Corasick implementation is used
+
+  that supports the dense versus sparse representation trade off. Not all
+
+  do.
+
+  
+
+  This limit is expressed in terms of the depth of a state, i.e., the
+
+  number of transitions from the starting state of the automaton. The
+
+  idea is that most of the time searching will be spent near the starting
+
+  state of the automaton, so states near the start state should use a
+
+  dense representation. States further away from the start state would
+
+  then use a sparse representation.
+
+  
+
+  By default, this is set to a low but non-zero number. Setting this to
+
+  `0` is almost never what you want, since it is likely to make searches
+
+  very slow due to the start state itself being forced to use a sparse
+
+  representation. However, it is unlikely that increasing this number
+
+  will help things much, since the most active states have a small depth.
+
+  More to the point, the memory usage increases superlinearly as this
+
+  number increases.
+
 - <span id="ahocorasickbuilder-byte-classes"></span>`fn byte_classes(&mut self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
 
+  A debug settting for whether to attempt to shrink the size of the
+
+  automaton's alphabet or not.
+
+  
+
+  This option is enabled by default and should never be disabled unless
+
+  one is debugging the underlying automaton.
+
+  
+
+  When enabled, some (but not all) Aho-Corasick automatons will use a map
+
+  from all possible bytes to their corresponding equivalence class. Each
+
+  equivalence class represents a set of bytes that does not discriminate
+
+  between a match and a non-match in the automaton.
+
+  
+
+  The advantage of this map is that the size of the transition table can
+
+  be reduced drastically from `#states * 256 * sizeof(u32)` to
+
+  `#states * k * sizeof(u32)` where `k` is the number of equivalence
+
+  classes (rounded up to the nearest power of 2). As a result, total
+
+  space usage can decrease substantially. Moreover, since a smaller
+
+  alphabet is used, automaton compilation becomes faster as well.
+
+  
+
+  **WARNING:** This is only useful for debugging automatons. Disabling
+
+  this does not yield any speed advantages. Namely, even when this is
+
+  disabled, a byte class map is still used while searching. The only
+
+  difference is that every byte will be forced into its own distinct
+
+  equivalence class. This is useful for debugging the actual generated
+
+  transitions because it lets one see the transitions defined on actual
+
+  bytes instead of the equivalence classes.
+
 #### Trait Implementations
+
+##### `impl Any for AhoCorasickBuilder`
+
+- <span id="ahocorasickbuilder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AhoCorasickBuilder`
+
+- <span id="ahocorasickbuilder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AhoCorasickBuilder`
+
+- <span id="ahocorasickbuilder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for AhoCorasickBuilder`
 
 - <span id="ahocorasickbuilder-clone"></span>`fn clone(&self) -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
 
+##### `impl CloneToUninit for AhoCorasickBuilder`
+
+- <span id="ahocorasickbuilder-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for AhoCorasickBuilder`
 
-- <span id="ahocorasickbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ahocorasickbuilder-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AhoCorasickBuilder`
 
 - <span id="ahocorasickbuilder-default"></span>`fn default() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
+
+##### `impl<T> From for AhoCorasickBuilder`
+
+- <span id="ahocorasickbuilder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AhoCorasickBuilder`
+
+- <span id="ahocorasickbuilder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for AhoCorasickBuilder`
+
+- <span id="ahocorasickbuilder-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="ahocorasickbuilder-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="ahocorasickbuilder-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AhoCorasickBuilder`
+
+- <span id="ahocorasickbuilder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ahocorasickbuilder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AhoCorasickBuilder`
+
+- <span id="ahocorasickbuilder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ahocorasickbuilder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FindIter<'a, 'h>`
 
@@ -662,9 +1558,39 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
+##### `impl Any for FindIter<'a, 'h>`
+
+- <span id="finditer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FindIter<'a, 'h>`
+
+- <span id="finditer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FindIter<'a, 'h>`
+
+- <span id="finditer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for FindIter<'a, 'h>`
 
-- <span id="finditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="finditer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FindIter<'a, 'h>`
+
+- <span id="finditer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FindIter<'a, 'h>`
+
+- <span id="finditer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for FindIter<'a, 'h>`
 
@@ -672,13 +1598,25 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - <span id="finditer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="finditer-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="finditer-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for FindIter<'a, 'h>`
 
 - <span id="finditer-iterator-type-item"></span>`type Item = Match`
 
-- <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](util/search/index.md#match)
+- <span id="finditer-iterator-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](util/search/index.md#match)
+
+##### `impl<U> TryFrom for FindIter<'a, 'h>`
+
+- <span id="finditer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="finditer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FindIter<'a, 'h>`
+
+- <span id="finditer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="finditer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FindOverlappingIter<'a, 'h>`
 
@@ -702,9 +1640,39 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
+##### `impl Any for FindOverlappingIter<'a, 'h>`
+
+- <span id="findoverlappingiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FindOverlappingIter<'a, 'h>`
+
+- <span id="findoverlappingiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FindOverlappingIter<'a, 'h>`
+
+- <span id="findoverlappingiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for FindOverlappingIter<'a, 'h>`
 
-- <span id="findoverlappingiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="findoverlappingiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FindOverlappingIter<'a, 'h>`
+
+- <span id="findoverlappingiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FindOverlappingIter<'a, 'h>`
+
+- <span id="findoverlappingiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for FindOverlappingIter<'a, 'h>`
 
@@ -712,13 +1680,25 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - <span id="findoverlappingiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="findoverlappingiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="findoverlappingiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for FindOverlappingIter<'a, 'h>`
 
 - <span id="findoverlappingiter-iterator-type-item"></span>`type Item = Match`
 
-- <span id="findoverlappingiter-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](util/search/index.md#match)
+- <span id="findoverlappingiter-iterator-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](util/search/index.md#match)
+
+##### `impl<U> TryFrom for FindOverlappingIter<'a, 'h>`
+
+- <span id="findoverlappingiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="findoverlappingiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FindOverlappingIter<'a, 'h>`
+
+- <span id="findoverlappingiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="findoverlappingiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BuildError`
 
@@ -751,23 +1731,77 @@ trait.
 
 #### Trait Implementations
 
+##### `impl Any for BuildError`
+
+- <span id="builderror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BuildError`
+
+- <span id="builderror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BuildError`
+
+- <span id="builderror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BuildError`
 
 - <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](util/error/index.md#builderror)
 
+##### `impl CloneToUninit for BuildError`
+
+- <span id="builderror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for BuildError`
 
-- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="builderror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for BuildError`
 
-- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="builderror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for BuildError`
 
+##### `impl<T> From for BuildError`
+
+- <span id="builderror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BuildError`
+
+- <span id="builderror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for BuildError`
+
+- <span id="builderror-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="builderror-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="builderror-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for BuildError`
 
-- <span id="builderror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="builderror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for BuildError`
+
+- <span id="builderror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="builderror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BuildError`
+
+- <span id="builderror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="builderror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MatchError`
 
@@ -799,45 +1833,163 @@ trait.
 
 - <span id="matcherror-new"></span>`fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](util/error/index.md#matcherrorkind), [`MatchError`](util/error/index.md#matcherror)
 
+  Create a new error value with the given kind.
+
+  
+
+  This is a more verbose version of the kind-specific constructors, e.g.,
+
+  `MatchError::unsupported_stream`.
+
 - <span id="matcherror-kind"></span>`fn kind(&self) -> &MatchErrorKind` — [`MatchErrorKind`](util/error/index.md#matcherrorkind)
+
+  Returns a reference to the underlying error kind.
 
 - <span id="matcherror-invalid-input-anchored"></span>`fn invalid_input_anchored() -> MatchError` — [`MatchError`](util/error/index.md#matcherror)
 
+  Create a new "invalid anchored search" error. This occurs when the
+
+  caller requests an anchored search but where anchored searches aren't
+
+  supported.
+
+  
+
+  This is the same as calling `MatchError::new` with a
+
+  [`MatchErrorKind::InvalidInputAnchored`](#matcherrorkindinvalidinputanchored) kind.
+
 - <span id="matcherror-invalid-input-unanchored"></span>`fn invalid_input_unanchored() -> MatchError` — [`MatchError`](util/error/index.md#matcherror)
+
+  Create a new "invalid unanchored search" error. This occurs when the
+
+  caller requests an unanchored search but where unanchored searches
+
+  aren't supported.
+
+  
+
+  This is the same as calling `MatchError::new` with a
+
+  [`MatchErrorKind::InvalidInputUnanchored`](#matcherrorkindinvalidinputunanchored) kind.
 
 - <span id="matcherror-unsupported-stream"></span>`fn unsupported_stream(got: MatchKind) -> MatchError` — [`MatchKind`](util/search/index.md#matchkind), [`MatchError`](util/error/index.md#matcherror)
 
+  Create a new "unsupported stream search" error. This occurs when the
+
+  caller requests a stream search while using an Aho-Corasick automaton
+
+  with a match kind other than [`MatchKind::Standard`](#matchkindstandard).
+
+  
+
+  The match kind given should be the match kind of the automaton. It
+
+  should never be `MatchKind::Standard`.
+
 - <span id="matcherror-unsupported-overlapping"></span>`fn unsupported_overlapping(got: MatchKind) -> MatchError` — [`MatchKind`](util/search/index.md#matchkind), [`MatchError`](util/error/index.md#matcherror)
+
+  Create a new "unsupported overlapping search" error. This occurs when
+
+  the caller requests an overlapping search while using an Aho-Corasick
+
+  automaton with a match kind other than [`MatchKind::Standard`](#matchkindstandard).
+
+  
+
+  The match kind given should be the match kind of the automaton. It
+
+  should never be `MatchKind::Standard`.
 
 - <span id="matcherror-unsupported-empty"></span>`fn unsupported_empty() -> MatchError` — [`MatchError`](util/error/index.md#matcherror)
 
+  Create a new "unsupported empty pattern" error. This occurs when the
+
+  caller requests a search for which matching an automaton that contains
+
+  an empty pattern string is not supported.
+
 #### Trait Implementations
+
+##### `impl Any for MatchError`
+
+- <span id="matcherror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MatchError`
+
+- <span id="matcherror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MatchError`
+
+- <span id="matcherror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for MatchError`
 
 - <span id="matcherror-clone"></span>`fn clone(&self) -> MatchError` — [`MatchError`](util/error/index.md#matcherror)
 
+##### `impl CloneToUninit for MatchError`
+
+- <span id="matcherror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for MatchError`
 
-- <span id="matcherror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="matcherror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for MatchError`
 
-- <span id="matcherror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="matcherror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for MatchError`
 
 ##### `impl Error for MatchError`
 
+##### `impl<T> From for MatchError`
+
+- <span id="matcherror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MatchError`
+
+- <span id="matcherror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for MatchError`
 
-- <span id="matcherror-eq"></span>`fn eq(&self, other: &MatchError) -> bool` — [`MatchError`](util/error/index.md#matcherror)
+- <span id="matcherror-partialeq-eq"></span>`fn eq(&self, other: &MatchError) -> bool` — [`MatchError`](util/error/index.md#matcherror)
 
 ##### `impl StructuralPartialEq for MatchError`
 
+##### `impl ToOwned for MatchError`
+
+- <span id="matcherror-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="matcherror-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="matcherror-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for MatchError`
 
-- <span id="matcherror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="matcherror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for MatchError`
+
+- <span id="matcherror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="matcherror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MatchError`
+
+- <span id="matcherror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="matcherror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PatternID`
 
@@ -877,47 +2029,179 @@ panics or silent logical errors.
 
 - <span id="patternid-new"></span>`fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md#patternid), [`PatternIDError`](util/primitives/index.md#patterniderror)
 
+  Create a new value that is represented by a "small index."
+
+  
+
+  If the given index exceeds the maximum allowed value, then this
+
+  returns an error.
+
 - <span id="patternid-new-unchecked"></span>`const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
+
+  Create a new value without checking whether the given argument
+
+  exceeds the maximum.
+
+  
+
+  Using this routine with an invalid value will result in
+
+  unspecified behavior, but *not* undefined behavior. In
+
+  particular, an invalid ID value is likely to cause panics or
+
+  possibly even silent logical errors.
+
+  
+
+  Callers must never rely on this type to be within a certain
+
+  range for memory safety.
 
 - <span id="patternid-from-u32-unchecked"></span>`const fn from_u32_unchecked(index: u32) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
+  Create a new value from a `u32` without checking whether the
+
+  given value exceeds the maximum.
+
+  
+
+  Using this routine with an invalid value will result in
+
+  unspecified behavior, but *not* undefined behavior. In
+
+  particular, an invalid ID value is likely to cause panics or
+
+  possibly even silent logical errors.
+
+  
+
+  Callers must never rely on this type to be within a certain
+
+  range for memory safety.
+
 - <span id="patternid-must"></span>`fn must(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
+
+  Like `new`, but panics if the given value is not valid.
 
 - <span id="patternid-as-usize"></span>`const fn as_usize(&self) -> usize`
 
+  Return the internal value as a `usize`. This is guaranteed to
+
+  never overflow `usize`.
+
 - <span id="patternid-as-u64"></span>`const fn as_u64(&self) -> u64`
+
+  Return the internal value as a `u64`. This is guaranteed to
+
+  never overflow.
 
 - <span id="patternid-as-u32"></span>`const fn as_u32(&self) -> u32`
 
+  Return the internal value as a `u32`. This is guaranteed to
+
+  never overflow `u32`.
+
 - <span id="patternid-as-i32"></span>`const fn as_i32(&self) -> i32`
+
+  Return the internal value as a `i32`. This is guaranteed to
+
+  never overflow an `i32`.
 
 - <span id="patternid-one-more"></span>`fn one_more(&self) -> usize`
 
+  Returns one more than this value as a usize.
+
+  
+
+  Since values represented by a "small index" have constraints
+
+  on their maximum value, adding `1` to it will always fit in a
+
+  `usize`, `u32` and a `i32`.
+
 - <span id="patternid-from-ne-bytes"></span>`fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md#patternid), [`PatternIDError`](util/primitives/index.md#patterniderror)
+
+  Decode this value from the bytes given using the native endian
+
+  byte order for the current target.
+
+  
+
+  If the decoded integer is not representable as a small index
+
+  for the current target, then this returns an error.
 
 - <span id="patternid-from-ne-bytes-unchecked"></span>`fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
+  Decode this value from the bytes given using the native endian
+
+  byte order for the current target.
+
+  
+
+  This is analogous to `new_unchecked` in that is does not check
+
+  whether the decoded integer is representable as a small index.
+
 - <span id="patternid-to-ne-bytes"></span>`fn to_ne_bytes(&self) -> [u8; 4]`
+
+  Return the underlying integer as raw bytes in native endian
+
+  format.
 
 - <span id="patternid-iter"></span>`fn iter(len: usize) -> PatternIDIter` — [`PatternIDIter`](util/primitives/index.md#patterniditer)
 
+  Returns an iterator over all values from 0 up to and not
+
+  including the given length.
+
+  
+
+  If the given length exceeds this type's limit, then this
+
+  panics.
+
 #### Trait Implementations
+
+##### `impl Any for PatternID`
+
+- <span id="patternid-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PatternID`
+
+- <span id="patternid-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PatternID`
+
+- <span id="patternid-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for PatternID`
 
 - <span id="patternid-clone"></span>`fn clone(&self) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
+##### `impl CloneToUninit for PatternID`
+
+- <span id="patternid-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for PatternID`
 
 ##### `impl Debug for PatternID`
 
-- <span id="patternid-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="patternid-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for PatternID`
 
 - <span id="patternid-default"></span>`fn default() -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
 ##### `impl Eq for PatternID`
+
+##### `impl<T> From for PatternID`
+
+- <span id="patternid-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for PatternID`
 
@@ -931,21 +2215,53 @@ panics or silent logical errors.
 
 ##### `impl<T> IndexMut for [T]`
 
-- <span id="t-index-mut"></span>`fn index_mut(&mut self, index: PatternID) -> &mut T` — [`PatternID`](util/primitives/index.md#patternid)
+- <span id="t-indexmut-index-mut"></span>`fn index_mut(&mut self, index: PatternID) -> &mut T` — [`PatternID`](util/primitives/index.md#patternid)
+
+##### `impl<U> Into for PatternID`
+
+- <span id="patternid-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for PatternID`
 
-- <span id="patternid-cmp"></span>`fn cmp(&self, other: &PatternID) -> cmp::Ordering` — [`PatternID`](util/primitives/index.md#patternid)
+- <span id="patternid-ord-cmp"></span>`fn cmp(&self, other: &PatternID) -> cmp::Ordering` — [`PatternID`](util/primitives/index.md#patternid)
 
 ##### `impl PartialEq for PatternID`
 
-- <span id="patternid-eq"></span>`fn eq(&self, other: &PatternID) -> bool` — [`PatternID`](util/primitives/index.md#patternid)
+- <span id="patternid-partialeq-eq"></span>`fn eq(&self, other: &PatternID) -> bool` — [`PatternID`](util/primitives/index.md#patternid)
 
 ##### `impl PartialOrd for PatternID`
 
-- <span id="patternid-partial-cmp"></span>`fn partial_cmp(&self, other: &PatternID) -> option::Option<cmp::Ordering>` — [`PatternID`](util/primitives/index.md#patternid)
+- <span id="patternid-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &PatternID) -> option::Option<cmp::Ordering>` — [`PatternID`](util/primitives/index.md#patternid)
 
 ##### `impl StructuralPartialEq for PatternID`
+
+##### `impl ToOwned for PatternID`
+
+- <span id="patternid-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="patternid-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="patternid-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PatternID`
+
+- <span id="patternid-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="patternid-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PatternID`
+
+- <span id="patternid-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="patternid-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PatternIDError`
 
@@ -967,33 +2283,89 @@ trait.
 
 - <span id="patterniderror-attempted"></span>`fn attempted(&self) -> u64`
 
+  Returns the value that could not be converted to an ID.
+
 #### Trait Implementations
+
+##### `impl Any for PatternIDError`
+
+- <span id="patterniderror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PatternIDError`
+
+- <span id="patterniderror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PatternIDError`
+
+- <span id="patterniderror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for PatternIDError`
 
 - <span id="patterniderror-clone"></span>`fn clone(&self) -> PatternIDError` — [`PatternIDError`](util/primitives/index.md#patterniderror)
 
+##### `impl CloneToUninit for PatternIDError`
+
+- <span id="patterniderror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for PatternIDError`
 
-- <span id="patterniderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="patterniderror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for PatternIDError`
 
-- <span id="patterniderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="patterniderror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for PatternIDError`
 
 ##### `impl Error for PatternIDError`
 
+##### `impl<T> From for PatternIDError`
+
+- <span id="patterniderror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PatternIDError`
+
+- <span id="patterniderror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for PatternIDError`
 
-- <span id="patterniderror-eq"></span>`fn eq(&self, other: &PatternIDError) -> bool` — [`PatternIDError`](util/primitives/index.md#patterniderror)
+- <span id="patterniderror-partialeq-eq"></span>`fn eq(&self, other: &PatternIDError) -> bool` — [`PatternIDError`](util/primitives/index.md#patterniderror)
 
 ##### `impl StructuralPartialEq for PatternIDError`
 
+##### `impl ToOwned for PatternIDError`
+
+- <span id="patterniderror-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="patterniderror-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="patterniderror-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for PatternIDError`
 
-- <span id="patterniderror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="patterniderror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for PatternIDError`
+
+- <span id="patterniderror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="patterniderror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PatternIDError`
+
+- <span id="patterniderror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="patterniderror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Input<'h>`
 
@@ -1090,51 +2462,927 @@ assert_eq!(
 
 - <span id="input-new"></span>`fn new<H: ?Sized + AsRef<[u8]>>(haystack: &'h H) -> Input<'h>` — [`Input`](util/search/index.md#input)
 
+  Create a new search configuration for the given haystack.
+
 - <span id="input-span"></span>`fn span<S: Into<Span>>(self, span: S) -> Input<'h>` — [`Input`](util/search/index.md#input)
+
+  Set the span for this search.
+
+  
+
+  This routine is generic over how a span is provided. While
+
+  a [`Span`](util/search/index.md) may be given directly, one may also provide a
+
+  `std::ops::Range<usize>`. To provide anything supported by range
+
+  syntax, use the `Input::range` method.
+
+  
+
+  The default span is the entire haystack.
+
+  
+
+  Note that `Input::range` overrides this method and vice versa.
+
+  
+
+  # Panics
+
+  
+
+  This panics if the given span does not correspond to valid bounds in
+
+  the haystack or the termination of a search.
+
+  
+
+  # Example
+
+  
+
+  This example shows how the span of the search can impact whether a
+
+  match is reported or not.
+
+  
+
+  ```rust
+
+  use aho_corasick::{AhoCorasick, Input, MatchKind};
+
+  
+
+  let patterns = &["b", "abcd", "abc"];
+
+  let haystack = "abcd";
+
+  
+
+  let ac = AhoCorasick::builder()
+
+      .match_kind(MatchKind::LeftmostFirst)
+
+      .build(patterns)
+
+      .unwrap();
+
+  let input = Input::new(haystack).span(0..3);
+
+  let mat = ac.try_find(input)?.expect("should have a match");
+
+  // Without the span stopping the search early, 'abcd' would be reported
+
+  // because it is the correct leftmost-first match.
+
+  assert_eq!("abc", &haystack[mat.span()]);
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
 
 - <span id="input-range"></span>`fn range<R: RangeBounds<usize>>(self, range: R) -> Input<'h>` — [`Input`](util/search/index.md#input)
 
+  Like `Input::span`, but accepts any range instead.
+
+  
+
+  The default range is the entire haystack.
+
+  
+
+  Note that `Input::span` overrides this method and vice versa.
+
+  
+
+  # Panics
+
+  
+
+  This routine will panic if the given range could not be converted
+
+  to a valid [`Range`](../gimli/read/index.md). For example, this would panic when given
+
+  `0..=usize::MAX` since it cannot be represented using a half-open
+
+  interval in terms of `usize`.
+
+  
+
+  This routine also panics if the given range does not correspond to
+
+  valid bounds in the haystack or the termination of a search.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use aho_corasick::Input;
+
+  
+
+  let input = Input::new("foobar");
+
+  assert_eq!(0..6, input.get_range());
+
+  
+
+  let input = Input::new("foobar").range(2..=4);
+
+  assert_eq!(2..5, input.get_range());
+
+  ```
+
 - <span id="input-anchored"></span>`fn anchored(self, mode: Anchored) -> Input<'h>` — [`Anchored`](util/search/index.md#anchored), [`Input`](util/search/index.md#input)
+
+  Sets the anchor mode of a search.
+
+  
+
+  When a search is anchored (via [`Anchored::Yes`](#anchoredyes)), a match must begin
+
+  at the start of a search. When a search is not anchored (that's
+
+  [`Anchored::No`](#anchoredno)), searchers will look for a match anywhere in the
+
+  haystack.
+
+  
+
+  By default, the anchored mode is [`Anchored::No`](#anchoredno).
+
+  
+
+  # Support for anchored searches
+
+  
+
+  Anchored or unanchored searches might not always be available,
+
+  depending on the type of searcher used and its configuration:
+
+  
+
+  * [`noncontiguous::NFA`](crate::nfa::noncontiguous::NFA) always
+
+  supports both unanchored and anchored searches.
+
+  * [`contiguous::NFA`](crate::nfa::contiguous::NFA) always supports both
+
+  unanchored and anchored searches.
+
+  * [`dfa::DFA`](crate::dfa::DFA) supports only unanchored
+
+  searches by default.
+
+  [`dfa::Builder::start_kind`](crate::dfa::Builder::start_kind) can
+
+  be used to change the default to supporting both kinds of searches
+
+  or even just anchored searches.
+
+  * [`AhoCorasick`](crate::AhoCorasick) inherits the same setup as a
+
+  `DFA`. Namely, it only supports unanchored searches by default, but
+
+  [`AhoCorasickBuilder::start_kind`](crate::AhoCorasickBuilder::start_kind)
+
+  can change this.
+
+  
+
+  If you try to execute a search using a `try_` ("fallible") method with
+
+  an unsupported anchor mode, then an error will be returned. For calls
+
+  to infallible search methods, a panic will result.
+
+  
+
+  # Example
+
+  
+
+  This demonstrates the differences between an anchored search and
+
+  an unanchored search. Notice that we build our `AhoCorasick` searcher
+
+  with [`StartKind::Both`](#startkindboth) so that it supports both unanchored and
+
+  anchored searches simultaneously.
+
+  
+
+  ```rust
+
+  use aho_corasick::{
+
+      AhoCorasick, Anchored, Input, MatchKind, StartKind,
+
+  };
+
+  
+
+  let patterns = &["bcd"];
+
+  let haystack = "abcd";
+
+  
+
+  let ac = AhoCorasick::builder()
+
+      .start_kind(StartKind::Both)
+
+      .build(patterns)
+
+      .unwrap();
+
+  
+
+  // Note that 'Anchored::No' is the default, so it doesn't need to
+
+  // be explicitly specified here.
+
+  let input = Input::new(haystack);
+
+  let mat = ac.try_find(input)?.expect("should have a match");
+
+  assert_eq!("bcd", &haystack[mat.span()]);
+
+  
+
+  // While 'bcd' occurs in the haystack, it does not begin where our
+
+  // search begins, so no match is found.
+
+  let input = Input::new(haystack).anchored(Anchored::Yes);
+
+  assert_eq!(None, ac.try_find(input)?);
+
+  
+
+  // However, if we start our search where 'bcd' starts, then we will
+
+  // find a match.
+
+  let input = Input::new(haystack).range(1..).anchored(Anchored::Yes);
+
+  let mat = ac.try_find(input)?.expect("should have a match");
+
+  assert_eq!("bcd", &haystack[mat.span()]);
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
 
 - <span id="input-earliest"></span>`fn earliest(self, yes: bool) -> Input<'h>` — [`Input`](util/search/index.md#input)
 
+  Whether to execute an "earliest" search or not.
+
+  
+
+  When running a non-overlapping search, an "earliest" search will
+
+  return the match location as early as possible. For example, given
+
+  the patterns `abc` and `b`, and a haystack of `abc`, a normal
+
+  leftmost-first search will return `abc` as a match. But an "earliest"
+
+  search will return as soon as it is known that a match occurs, which
+
+  happens once `b` is seen.
+
+  
+
+  Note that when using [`MatchKind::Standard`](#matchkindstandard), the "earliest" option
+
+  has no effect since standard semantics are already "earliest." Note
+
+  also that this has no effect in overlapping searches, since overlapping
+
+  searches also use standard semantics and report all possible matches.
+
+  
+
+  This is disabled by default.
+
+  
+
+  # Example
+
+  
+
+  This example shows the difference between "earliest" searching and
+
+  normal leftmost searching.
+
+  
+
+  ```rust
+
+  use aho_corasick::{AhoCorasick, Anchored, Input, MatchKind, StartKind};
+
+  
+
+  let patterns = &["abc", "b"];
+
+  let haystack = "abc";
+
+  
+
+  let ac = AhoCorasick::builder()
+
+      .match_kind(MatchKind::LeftmostFirst)
+
+      .build(patterns)
+
+      .unwrap();
+
+  
+
+  // The normal leftmost-first match.
+
+  let input = Input::new(haystack);
+
+  let mat = ac.try_find(input)?.expect("should have a match");
+
+  assert_eq!("abc", &haystack[mat.span()]);
+
+  
+
+  // The "earliest" possible match, even if it isn't leftmost-first.
+
+  let input = Input::new(haystack).earliest(true);
+
+  let mat = ac.try_find(input)?.expect("should have a match");
+
+  assert_eq!("b", &haystack[mat.span()]);
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
+
 - <span id="input-set-span"></span>`fn set_span<S: Into<Span>>(&mut self, span: S)`
+
+  Set the span for this search configuration.
+
+  
+
+  This is like the `Input::span` method, except this mutates the
+
+  span in place.
+
+  
+
+  This routine is generic over how a span is provided. While
+
+  a [`Span`](util/search/index.md) may be given directly, one may also provide a
+
+  `std::ops::Range<usize>`.
+
+  
+
+  # Panics
+
+  
+
+  This panics if the given span does not correspond to valid bounds in
+
+  the haystack or the termination of a search.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use aho_corasick::Input;
+
+  
+
+  let mut input = Input::new("foobar");
+
+  assert_eq!(0..6, input.get_range());
+
+  input.set_span(2..4);
+
+  assert_eq!(2..4, input.get_range());
+
+  ```
 
 - <span id="input-set-range"></span>`fn set_range<R: RangeBounds<usize>>(&mut self, range: R)`
 
+  Set the span for this search configuration given any range.
+
+  
+
+  This is like the `Input::range` method, except this mutates the
+
+  span in place.
+
+  
+
+  # Panics
+
+  
+
+  This routine will panic if the given range could not be converted
+
+  to a valid [`Range`](../gimli/read/index.md). For example, this would panic when given
+
+  `0..=usize::MAX` since it cannot be represented using a half-open
+
+  interval in terms of `usize`.
+
+  
+
+  This routine also panics if the given range does not correspond to
+
+  valid bounds in the haystack or the termination of a search.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use aho_corasick::Input;
+
+  
+
+  let mut input = Input::new("foobar");
+
+  assert_eq!(0..6, input.get_range());
+
+  input.set_range(2..=4);
+
+  assert_eq!(2..5, input.get_range());
+
+  ```
+
 - <span id="input-set-start"></span>`fn set_start(&mut self, start: usize)`
+
+  Set the starting offset for the span for this search configuration.
+
+  
+
+  This is a convenience routine for only mutating the start of a span
+
+  without having to set the entire span.
+
+  
+
+  # Panics
+
+  
+
+  This panics if the given span does not correspond to valid bounds in
+
+  the haystack or the termination of a search.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use aho_corasick::Input;
+
+  
+
+  let mut input = Input::new("foobar");
+
+  assert_eq!(0..6, input.get_range());
+
+  input.set_start(5);
+
+  assert_eq!(5..6, input.get_range());
+
+  ```
 
 - <span id="input-set-end"></span>`fn set_end(&mut self, end: usize)`
 
+  Set the ending offset for the span for this search configuration.
+
+  
+
+  This is a convenience routine for only mutating the end of a span
+
+  without having to set the entire span.
+
+  
+
+  # Panics
+
+  
+
+  This panics if the given span does not correspond to valid bounds in
+
+  the haystack or the termination of a search.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use aho_corasick::Input;
+
+  
+
+  let mut input = Input::new("foobar");
+
+  assert_eq!(0..6, input.get_range());
+
+  input.set_end(5);
+
+  assert_eq!(0..5, input.get_range());
+
+  ```
+
 - <span id="input-set-anchored"></span>`fn set_anchored(&mut self, mode: Anchored)` — [`Anchored`](util/search/index.md#anchored)
+
+  Set the anchor mode of a search.
+
+  
+
+  This is like `Input::anchored`, except it mutates the search
+
+  configuration in place.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use aho_corasick::{Anchored, Input};
+
+  
+
+  let mut input = Input::new("foobar");
+
+  assert_eq!(Anchored::No, input.get_anchored());
+
+  
+
+  input.set_anchored(Anchored::Yes);
+
+  assert_eq!(Anchored::Yes, input.get_anchored());
+
+  ```
 
 - <span id="input-set-earliest"></span>`fn set_earliest(&mut self, yes: bool)`
 
+  Set whether the search should execute in "earliest" mode or not.
+
+  
+
+  This is like `Input::earliest`, except it mutates the search
+
+  configuration in place.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use aho_corasick::Input;
+
+  
+
+  let mut input = Input::new("foobar");
+
+  assert!(!input.get_earliest());
+
+  input.set_earliest(true);
+
+  assert!(input.get_earliest());
+
+  ```
+
 - <span id="input-haystack"></span>`fn haystack(&self) -> &[u8]`
+
+  Return a borrow of the underlying haystack as a slice of bytes.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use aho_corasick::Input;
+
+  
+
+  let input = Input::new("foobar");
+
+  assert_eq!(b"foobar", input.haystack());
+
+  ```
 
 - <span id="input-start"></span>`fn start(&self) -> usize`
 
+  Return the start position of this search.
+
+  
+
+  This is a convenience routine for `search.get_span().start()`.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use aho_corasick::Input;
+
+  
+
+  let input = Input::new("foobar");
+
+  assert_eq!(0, input.start());
+
+  
+
+  let input = Input::new("foobar").span(2..4);
+
+  assert_eq!(2, input.start());
+
+  ```
+
 - <span id="input-end"></span>`fn end(&self) -> usize`
+
+  Return the end position of this search.
+
+  
+
+  This is a convenience routine for `search.get_span().end()`.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use aho_corasick::Input;
+
+  
+
+  let input = Input::new("foobar");
+
+  assert_eq!(6, input.end());
+
+  
+
+  let input = Input::new("foobar").span(2..4);
+
+  assert_eq!(4, input.end());
+
+  ```
 
 - <span id="input-get-span"></span>`fn get_span(&self) -> Span` — [`Span`](util/search/index.md#span)
 
+  Return the span for this search configuration.
+
+  
+
+  If one was not explicitly set, then the span corresponds to the entire
+
+  range of the haystack.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use aho_corasick::{Input, Span};
+
+  
+
+  let input = Input::new("foobar");
+
+  assert_eq!(Span { start: 0, end: 6 }, input.get_span());
+
+  ```
+
 - <span id="input-get-range"></span>`fn get_range(&self) -> Range<usize>`
+
+  Return the span as a range for this search configuration.
+
+  
+
+  If one was not explicitly set, then the span corresponds to the entire
+
+  range of the haystack.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use aho_corasick::Input;
+
+  
+
+  let input = Input::new("foobar");
+
+  assert_eq!(0..6, input.get_range());
+
+  ```
 
 - <span id="input-get-anchored"></span>`fn get_anchored(&self) -> Anchored` — [`Anchored`](util/search/index.md#anchored)
 
+  Return the anchored mode for this search configuration.
+
+  
+
+  If no anchored mode was set, then it defaults to [`Anchored::No`](#anchoredno).
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use aho_corasick::{Anchored, Input};
+
+  
+
+  let mut input = Input::new("foobar");
+
+  assert_eq!(Anchored::No, input.get_anchored());
+
+  
+
+  input.set_anchored(Anchored::Yes);
+
+  assert_eq!(Anchored::Yes, input.get_anchored());
+
+  ```
+
 - <span id="input-get-earliest"></span>`fn get_earliest(&self) -> bool`
+
+  Return whether this search should execute in "earliest" mode.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use aho_corasick::Input;
+
+  
+
+  let input = Input::new("foobar");
+
+  assert!(!input.get_earliest());
+
+  ```
 
 - <span id="input-is-done"></span>`fn is_done(&self) -> bool`
 
+  Return true if this input has been exhausted, which in turn means all
+
+  subsequent searches will return no matches.
+
+  
+
+  This occurs precisely when the start position of this search is greater
+
+  than the end position of the search.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use aho_corasick::Input;
+
+  
+
+  let mut input = Input::new("foobar");
+
+  assert!(!input.is_done());
+
+  input.set_start(6);
+
+  assert!(!input.is_done());
+
+  input.set_start(7);
+
+  assert!(input.is_done());
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for Input<'h>`
+
+- <span id="input-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Input<'h>`
+
+- <span id="input-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Input<'h>`
+
+- <span id="input-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Input<'h>`
 
 - <span id="input-clone"></span>`fn clone(&self) -> Input<'h>` — [`Input`](util/search/index.md#input)
 
+##### `impl CloneToUninit for Input<'h>`
+
+- <span id="input-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Input<'h>`
 
-- <span id="input-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="input-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for Input<'h>`
+
+- <span id="input-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Input<'h>`
+
+- <span id="input-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Input<'h>`
+
+- <span id="input-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="input-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="input-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Input<'h>`
+
+- <span id="input-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="input-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Input<'h>`
+
+- <span id="input-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="input-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Match`
 
@@ -1174,47 +3422,249 @@ offset as less than or equal to its end offset.
 
 - <span id="match-new"></span>`fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](util/primitives/index.md#patternid), [`Match`](util/search/index.md#match)
 
+  Create a new match from a pattern ID and a span.
+
+  
+
+  This constructor is generic over how a span is provided. While
+
+  a [`Span`](util/search/index.md) may be given directly, one may also provide a
+
+  `std::ops::Range<usize>`.
+
+  
+
+  # Panics
+
+  
+
+  This panics if `end < start`.
+
+  
+
+  # Example
+
+  
+
+  This shows how to create a match for the first pattern in an
+
+  Aho-Corasick searcher using convenient range syntax.
+
+  
+
+  ```rust
+
+  use aho_corasick::{Match, PatternID};
+
+  
+
+  let m = Match::new(PatternID::ZERO, 5..10);
+
+  assert_eq!(0, m.pattern().as_usize());
+
+  assert_eq!(5, m.start());
+
+  assert_eq!(10, m.end());
+
+  ```
+
 - <span id="match-must"></span>`fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](util/search/index.md#match)
+
+  Create a new match from a pattern ID and a byte offset span.
+
+  
+
+  This constructor is generic over how a span is provided. While
+
+  a [`Span`](util/search/index.md) may be given directly, one may also provide a
+
+  `std::ops::Range<usize>`.
+
+  
+
+  This is like `Match::new`, but accepts a `usize` instead of a
+
+  [`PatternID`](util/primitives/index.md). This panics if the given `usize` is not representable
+
+  as a `PatternID`.
+
+  
+
+  # Panics
+
+  
+
+  This panics if `end < start` or if `pattern > PatternID::MAX`.
+
+  
+
+  # Example
+
+  
+
+  This shows how to create a match for the third pattern in an
+
+  Aho-Corasick searcher using convenient range syntax.
+
+  
+
+  ```rust
+
+  use aho_corasick::Match;
+
+  
+
+  let m = Match::must(3, 5..10);
+
+  assert_eq!(3, m.pattern().as_usize());
+
+  assert_eq!(5, m.start());
+
+  assert_eq!(10, m.end());
+
+  ```
 
 - <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
+  Returns the ID of the pattern that matched.
+
+  
+
+  The ID of a pattern is derived from the position in which it was
+
+  originally inserted into the corresponding searcher. The first pattern
+
+  has identifier `0`, and each subsequent pattern is `1`, `2` and so on.
+
 - <span id="match-start"></span>`fn start(&self) -> usize`
+
+  The starting position of the match.
+
+  
+
+  This is a convenience routine for `Match::span().start`.
 
 - <span id="match-end"></span>`fn end(&self) -> usize`
 
+  The ending position of the match.
+
+  
+
+  This is a convenience routine for `Match::span().end`.
+
 - <span id="match-range"></span>`fn range(&self) -> core::ops::Range<usize>`
+
+  Returns the match span as a range.
+
+  
+
+  This is a convenience routine for `Match::span().range()`.
 
 - <span id="match-span"></span>`fn span(&self) -> Span` — [`Span`](util/search/index.md#span)
 
+  Returns the span for this match.
+
 - <span id="match-is-empty"></span>`fn is_empty(&self) -> bool`
+
+  Returns true when the span in this match is empty.
+
+  
+
+  An empty match can only be returned when empty pattern is in the
+
+  Aho-Corasick searcher.
 
 - <span id="match-len"></span>`fn len(&self) -> usize`
 
+  Returns the length of this match.
+
+  
+
+  This returns `0` in precisely the cases that `is_empty` returns `true`.
+
 - <span id="match-offset"></span>`fn offset(&self, offset: usize) -> Match` — [`Match`](util/search/index.md#match)
 
+  Returns a new match with `offset` added to its span's `start` and `end`
+
+  values.
+
 #### Trait Implementations
+
+##### `impl Any for Match`
+
+- <span id="match-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Match`
+
+- <span id="match-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Match`
+
+- <span id="match-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Match`
 
 - <span id="match-clone"></span>`fn clone(&self) -> Match` — [`Match`](util/search/index.md#match)
 
+##### `impl CloneToUninit for Match`
+
+- <span id="match-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Match`
 
 ##### `impl Debug for Match`
 
-- <span id="match-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="match-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Match`
+
+##### `impl<T> From for Match`
+
+- <span id="match-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Match`
 
 - <span id="match-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Match`
+
+- <span id="match-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Match`
 
-- <span id="match-eq"></span>`fn eq(&self, other: &Match) -> bool` — [`Match`](util/search/index.md#match)
+- <span id="match-partialeq-eq"></span>`fn eq(&self, other: &Match) -> bool` — [`Match`](util/search/index.md#match)
 
 ##### `impl StructuralPartialEq for Match`
+
+##### `impl ToOwned for Match`
+
+- <span id="match-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="match-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="match-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Match`
+
+- <span id="match-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="match-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Match`
+
+- <span id="match-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="match-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Span`
 
@@ -1261,27 +3711,71 @@ to create a span where `start > end`.
 
 - <span id="span-range"></span>`fn range(&self) -> Range<usize>`
 
+  Returns this span as a range.
+
 - <span id="span-is-empty"></span>`fn is_empty(&self) -> bool`
+
+  Returns true when this span is empty. That is, when `start >= end`.
 
 - <span id="span-len"></span>`fn len(&self) -> usize`
 
+  Returns the length of this span.
+
+  
+
+  This returns `0` in precisely the cases that `is_empty` returns `true`.
+
 - <span id="span-contains"></span>`fn contains(&self, offset: usize) -> bool`
+
+  Returns true when the given offset is contained within this span.
+
+  
+
+  Note that an empty span contains no offsets and will always return
+
+  false.
 
 - <span id="span-offset"></span>`fn offset(&self, offset: usize) -> Span` — [`Span`](util/search/index.md#span)
 
+  Returns a new span with `offset` added to this span's `start` and `end`
+
+  values.
+
 #### Trait Implementations
+
+##### `impl Any for Span`
+
+- <span id="span-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Span`
+
+- <span id="span-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Span`
+
+- <span id="span-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Span`
 
 - <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](util/search/index.md#span)
 
+##### `impl CloneToUninit for Span`
+
+- <span id="span-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Span`
 
 ##### `impl Debug for Span`
 
-- <span id="span-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="span-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Span`
+
+##### `impl<T> From for Span`
+
+- <span id="span-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Span`
 
@@ -1295,13 +3789,45 @@ to create a span where `start > end`.
 
 ##### `impl IndexMut for [u8]`
 
-- <span id="u8-index-mut"></span>`fn index_mut(&mut self, index: Span) -> &mut [u8]` — [`Span`](util/search/index.md#span)
+- <span id="u8-indexmut-index-mut"></span>`fn index_mut(&mut self, index: Span) -> &mut [u8]` — [`Span`](util/search/index.md#span)
+
+##### `impl<U> Into for Span`
+
+- <span id="span-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Span`
 
-- <span id="span-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](util/search/index.md#span)
+- <span id="span-partialeq-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](util/search/index.md#span)
 
 ##### `impl StructuralPartialEq for Span`
+
+##### `impl ToOwned for Span`
+
+- <span id="span-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="span-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="span-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Span`
+
+- <span id="span-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="span-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Span`
+
+- <span id="span-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="span-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -1340,23 +3866,77 @@ detail about each choice.
 
 #### Trait Implementations
 
+##### `impl Any for AhoCorasickKind`
+
+- <span id="ahocorasickkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AhoCorasickKind`
+
+- <span id="ahocorasickkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AhoCorasickKind`
+
+- <span id="ahocorasickkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for AhoCorasickKind`
 
 - <span id="ahocorasickkind-clone"></span>`fn clone(&self) -> AhoCorasickKind` — [`AhoCorasickKind`](ahocorasick/index.md#ahocorasickkind)
+
+##### `impl CloneToUninit for AhoCorasickKind`
+
+- <span id="ahocorasickkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for AhoCorasickKind`
 
 ##### `impl Debug for AhoCorasickKind`
 
-- <span id="ahocorasickkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ahocorasickkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for AhoCorasickKind`
 
+##### `impl<T> From for AhoCorasickKind`
+
+- <span id="ahocorasickkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AhoCorasickKind`
+
+- <span id="ahocorasickkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for AhoCorasickKind`
 
-- <span id="ahocorasickkind-eq"></span>`fn eq(&self, other: &AhoCorasickKind) -> bool` — [`AhoCorasickKind`](ahocorasick/index.md#ahocorasickkind)
+- <span id="ahocorasickkind-partialeq-eq"></span>`fn eq(&self, other: &AhoCorasickKind) -> bool` — [`AhoCorasickKind`](ahocorasick/index.md#ahocorasickkind)
 
 ##### `impl StructuralPartialEq for AhoCorasickKind`
+
+##### `impl ToOwned for AhoCorasickKind`
+
+- <span id="ahocorasickkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="ahocorasickkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="ahocorasickkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AhoCorasickKind`
+
+- <span id="ahocorasickkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ahocorasickkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AhoCorasickKind`
+
+- <span id="ahocorasickkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ahocorasickkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MatchErrorKind`
 
@@ -1410,21 +3990,75 @@ a semver-compatible release.
 
 #### Trait Implementations
 
+##### `impl Any for MatchErrorKind`
+
+- <span id="matcherrorkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MatchErrorKind`
+
+- <span id="matcherrorkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MatchErrorKind`
+
+- <span id="matcherrorkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for MatchErrorKind`
 
 - <span id="matcherrorkind-clone"></span>`fn clone(&self) -> MatchErrorKind` — [`MatchErrorKind`](util/error/index.md#matcherrorkind)
 
+##### `impl CloneToUninit for MatchErrorKind`
+
+- <span id="matcherrorkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for MatchErrorKind`
 
-- <span id="matcherrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="matcherrorkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for MatchErrorKind`
 
+##### `impl<T> From for MatchErrorKind`
+
+- <span id="matcherrorkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MatchErrorKind`
+
+- <span id="matcherrorkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for MatchErrorKind`
 
-- <span id="matcherrorkind-eq"></span>`fn eq(&self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](util/error/index.md#matcherrorkind)
+- <span id="matcherrorkind-partialeq-eq"></span>`fn eq(&self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](util/error/index.md#matcherrorkind)
 
 ##### `impl StructuralPartialEq for MatchErrorKind`
+
+##### `impl ToOwned for MatchErrorKind`
+
+- <span id="matcherrorkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="matcherrorkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="matcherrorkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MatchErrorKind`
+
+- <span id="matcherrorkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="matcherrorkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MatchErrorKind`
+
+- <span id="matcherrorkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="matcherrorkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Anchored`
 
@@ -1460,25 +4094,101 @@ fallible or an infallible routine was called.
 
 - <span id="anchored-is-anchored"></span>`fn is_anchored(&self) -> bool`
 
+  Returns true if and only if this anchor mode corresponds to an anchored
+
+  search.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use aho_corasick::Anchored;
+
+  
+
+  assert!(!Anchored::No.is_anchored());
+
+  assert!(Anchored::Yes.is_anchored());
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for Anchored`
+
+- <span id="anchored-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Anchored`
+
+- <span id="anchored-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Anchored`
+
+- <span id="anchored-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Anchored`
 
 - <span id="anchored-clone"></span>`fn clone(&self) -> Anchored` — [`Anchored`](util/search/index.md#anchored)
 
+##### `impl CloneToUninit for Anchored`
+
+- <span id="anchored-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Anchored`
 
 ##### `impl Debug for Anchored`
 
-- <span id="anchored-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="anchored-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Anchored`
 
+##### `impl<T> From for Anchored`
+
+- <span id="anchored-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Anchored`
+
+- <span id="anchored-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Anchored`
 
-- <span id="anchored-eq"></span>`fn eq(&self, other: &Anchored) -> bool` — [`Anchored`](util/search/index.md#anchored)
+- <span id="anchored-partialeq-eq"></span>`fn eq(&self, other: &Anchored) -> bool` — [`Anchored`](util/search/index.md#anchored)
 
 ##### `impl StructuralPartialEq for Anchored`
+
+##### `impl ToOwned for Anchored`
+
+- <span id="anchored-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="anchored-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="anchored-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Anchored`
+
+- <span id="anchored-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="anchored-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Anchored`
+
+- <span id="anchored-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="anchored-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MatchKind`
 
@@ -1616,17 +4326,39 @@ POSIX regex alternations.
 
 - <span id="matchkind-as-packed"></span>`fn as_packed(&self) -> Option<crate::packed::MatchKind>` — [`MatchKind`](packed/api/index.md#matchkind)
 
+  Convert this match kind into a packed match kind. If this match kind
+
+  corresponds to standard semantics, then this returns None, since
+
+  packed searching does not support standard semantics.
+
 #### Trait Implementations
+
+##### `impl Any for MatchKind`
+
+- <span id="matchkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MatchKind`
+
+- <span id="matchkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MatchKind`
+
+- <span id="matchkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for MatchKind`
 
 - <span id="matchkind-clone"></span>`fn clone(&self) -> MatchKind` — [`MatchKind`](util/search/index.md#matchkind)
 
+##### `impl CloneToUninit for MatchKind`
+
+- <span id="matchkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for MatchKind`
 
 ##### `impl Debug for MatchKind`
 
-- <span id="matchkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="matchkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MatchKind`
 
@@ -1634,11 +4366,49 @@ POSIX regex alternations.
 
 ##### `impl Eq for MatchKind`
 
+##### `impl<T> From for MatchKind`
+
+- <span id="matchkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MatchKind`
+
+- <span id="matchkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for MatchKind`
 
-- <span id="matchkind-eq"></span>`fn eq(&self, other: &MatchKind) -> bool` — [`MatchKind`](util/search/index.md#matchkind)
+- <span id="matchkind-partialeq-eq"></span>`fn eq(&self, other: &MatchKind) -> bool` — [`MatchKind`](util/search/index.md#matchkind)
 
 ##### `impl StructuralPartialEq for MatchKind`
+
+##### `impl ToOwned for MatchKind`
+
+- <span id="matchkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="matchkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="matchkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MatchKind`
+
+- <span id="matchkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="matchkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MatchKind`
+
+- <span id="matchkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="matchkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StartKind`
 
@@ -1687,15 +4457,31 @@ depending on whether you're using infallible or fallibe APIs, respectively.
 
 #### Trait Implementations
 
+##### `impl Any for StartKind`
+
+- <span id="startkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StartKind`
+
+- <span id="startkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StartKind`
+
+- <span id="startkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for StartKind`
 
 - <span id="startkind-clone"></span>`fn clone(&self) -> StartKind` — [`StartKind`](util/search/index.md#startkind)
+
+##### `impl CloneToUninit for StartKind`
+
+- <span id="startkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for StartKind`
 
 ##### `impl Debug for StartKind`
 
-- <span id="startkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="startkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for StartKind`
 
@@ -1703,9 +4489,47 @@ depending on whether you're using infallible or fallibe APIs, respectively.
 
 ##### `impl Eq for StartKind`
 
+##### `impl<T> From for StartKind`
+
+- <span id="startkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StartKind`
+
+- <span id="startkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for StartKind`
 
-- <span id="startkind-eq"></span>`fn eq(&self, other: &StartKind) -> bool` — [`StartKind`](util/search/index.md#startkind)
+- <span id="startkind-partialeq-eq"></span>`fn eq(&self, other: &StartKind) -> bool` — [`StartKind`](util/search/index.md#startkind)
 
 ##### `impl StructuralPartialEq for StartKind`
+
+##### `impl ToOwned for StartKind`
+
+- <span id="startkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="startkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="startkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for StartKind`
+
+- <span id="startkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="startkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StartKind`
+
+- <span id="startkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="startkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

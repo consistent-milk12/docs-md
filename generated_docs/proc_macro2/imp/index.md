@@ -69,9 +69,63 @@ struct DeferredTokenStream {
 
 #### Trait Implementations
 
+##### `impl Any for DeferredTokenStream`
+
+- <span id="deferredtokenstream-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DeferredTokenStream`
+
+- <span id="deferredtokenstream-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DeferredTokenStream`
+
+- <span id="deferredtokenstream-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DeferredTokenStream`
 
 - <span id="deferredtokenstream-clone"></span>`fn clone(&self) -> DeferredTokenStream` — [`DeferredTokenStream`](#deferredtokenstream)
+
+##### `impl CloneToUninit for DeferredTokenStream`
+
+- <span id="deferredtokenstream-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
+##### `impl<T> From for DeferredTokenStream`
+
+- <span id="deferredtokenstream-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DeferredTokenStream`
+
+- <span id="deferredtokenstream-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for DeferredTokenStream`
+
+- <span id="deferredtokenstream-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="deferredtokenstream-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="deferredtokenstream-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DeferredTokenStream`
+
+- <span id="deferredtokenstream-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="deferredtokenstream-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DeferredTokenStream`
+
+- <span id="deferredtokenstream-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="deferredtokenstream-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -100,25 +154,59 @@ enum TokenStream {
 
 #### Trait Implementations
 
+##### `impl Any for TokenStream`
+
+- <span id="tokenstream-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TokenStream`
+
+- <span id="tokenstream-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TokenStream`
+
+- <span id="tokenstream-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for TokenStream`
 
 - <span id="tokenstream-clone"></span>`fn clone(&self) -> TokenStream` — [`TokenStream`](#tokenstream)
 
+##### `impl CloneToUninit for TokenStream`
+
+- <span id="tokenstream-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for TokenStream`
 
-- <span id="tokenstream-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tokenstream-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for TokenStream`
 
-- <span id="tokenstream-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tokenstream-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Extend for TokenStream`
 
 - <span id="tokenstream-extend"></span>`fn extend<I: IntoIterator<Item = TokenTree>>(&mut self, stream: I)`
 
+##### `impl<T> From for TokenStream`
+
+- <span id="tokenstream-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl FromIterator for TokenStream`
 
-- <span id="tokenstream-from-iter"></span>`fn from_iter<I: IntoIterator<Item = TokenTree>>(trees: I) -> Self`
+- <span id="tokenstream-fromiterator-from-iter"></span>`fn from_iter<I: IntoIterator<Item = TokenTree>>(trees: I) -> Self`
+
+##### `impl<U> Into for TokenStream`
+
+- <span id="tokenstream-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for TokenStream`
 
@@ -126,25 +214,45 @@ enum TokenStream {
 
 - <span id="tokenstream-intoiterator-type-intoiter"></span>`type IntoIter = TokenTreeIter`
 
-- <span id="tokenstream-into-iter"></span>`fn into_iter(self) -> TokenTreeIter` — [`TokenTreeIter`](#tokentreeiter)
+- <span id="tokenstream-intoiterator-into-iter"></span>`fn into_iter(self) -> TokenTreeIter` — [`TokenTreeIter`](#tokentreeiter)
 
 ##### `impl Parse for proc_macro2::TokenStream`
 
 ##### `impl Sealed for proc_macro2::TokenStream`
 
+##### `impl ToOwned for TokenStream`
+
+- <span id="tokenstream-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="tokenstream-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="tokenstream-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for TokenStream`
 
-- <span id="tokenstream-to-string"></span>`fn to_string(&self) -> String`
+- <span id="tokenstream-tostring-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ToTokens for proc_macro2::TokenStream`
 
-- <span id="proc-macro2tokenstream-raw-string"></span>`fn raw_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md#cursor), [`Reject`](../parse/index.md#reject)
+- <span id="proc-macro2tokenstream-totokens-raw-string"></span>`fn raw_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md#cursor), [`Reject`](../parse/index.md#reject)
 
-- <span id="proc-macro2tokenstream-byte-string"></span>`fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md#cursor), [`Reject`](../parse/index.md#reject)
+- <span id="proc-macro2tokenstream-totokens-byte-string"></span>`fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md#cursor), [`Reject`](../parse/index.md#reject)
 
 ##### `impl TokenStreamExt for proc_macro2::TokenStream`
 
-- <span id="proc-macro2tokenstream-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+- <span id="proc-macro2tokenstream-tokenstreamext-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<U> TryFrom for TokenStream`
+
+- <span id="tokenstream-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tokenstream-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TokenStream`
+
+- <span id="tokenstream-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tokenstream-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LexError`
 
@@ -164,17 +272,59 @@ enum LexError {
 
 #### Trait Implementations
 
+##### `impl Any for LexError`
+
+- <span id="lexerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LexError`
+
+- <span id="lexerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LexError`
+
+- <span id="lexerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for LexError`
 
-- <span id="lexerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lexerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for LexError`
 
-- <span id="lexerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lexerror-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for LexError`
+
+- <span id="lexerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LexError`
+
+- <span id="lexerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for LexError`
 
-- <span id="lexerror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="lexerror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for LexError`
+
+- <span id="lexerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lexerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LexError`
+
+- <span id="lexerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lexerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TokenTreeIter`
 
@@ -189,9 +339,43 @@ enum TokenTreeIter {
 
 #### Trait Implementations
 
+##### `impl Any for TokenTreeIter`
+
+- <span id="tokentreeiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TokenTreeIter`
+
+- <span id="tokentreeiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TokenTreeIter`
+
+- <span id="tokentreeiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for TokenTreeIter`
 
 - <span id="tokentreeiter-clone"></span>`fn clone(&self) -> TokenTreeIter` — [`TokenTreeIter`](#tokentreeiter)
+
+##### `impl CloneToUninit for TokenTreeIter`
+
+- <span id="tokentreeiter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
+##### `impl<T> From for TokenTreeIter`
+
+- <span id="tokentreeiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TokenTreeIter`
+
+- <span id="tokentreeiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for TokenTreeIter`
 
@@ -199,15 +383,35 @@ enum TokenTreeIter {
 
 - <span id="tokentreeiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="tokentreeiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="tokentreeiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for TokenTreeIter`
 
 - <span id="tokentreeiter-iterator-type-item"></span>`type Item = TokenTree`
 
-- <span id="tokentreeiter-next"></span>`fn next(&mut self) -> Option<TokenTree>` — [`TokenTree`](../index.md#tokentree)
+- <span id="tokentreeiter-iterator-next"></span>`fn next(&mut self) -> Option<TokenTree>` — [`TokenTree`](../index.md#tokentree)
 
-- <span id="tokentreeiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="tokentreeiter-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+
+##### `impl ToOwned for TokenTreeIter`
+
+- <span id="tokentreeiter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="tokentreeiter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="tokentreeiter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TokenTreeIter`
+
+- <span id="tokentreeiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tokentreeiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TokenTreeIter`
+
+- <span id="tokentreeiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tokentreeiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Span`
 
@@ -250,17 +454,71 @@ enum Span {
 
 #### Trait Implementations
 
+##### `impl Any for Span`
+
+- <span id="span-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Span`
+
+- <span id="span-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Span`
+
+- <span id="span-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Span`
 
 - <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](#span)
+
+##### `impl CloneToUninit for Span`
+
+- <span id="span-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Span`
 
 ##### `impl Debug for Span`
 
-- <span id="span-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="span-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Span`
+
+- <span id="span-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Span`
+
+- <span id="span-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl SpanError for proc_macro2::Span`
+
+##### `impl ToOwned for Span`
+
+- <span id="span-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="span-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="span-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Span`
+
+- <span id="span-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="span-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Span`
+
+- <span id="span-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="span-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Group`
 
@@ -293,31 +551,85 @@ enum Group {
 
 #### Trait Implementations
 
+##### `impl Any for Group`
+
+- <span id="group-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Group`
+
+- <span id="group-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Group`
+
+- <span id="group-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Group`
 
 - <span id="group-clone"></span>`fn clone(&self) -> Group` — [`Group`](#group)
 
+##### `impl CloneToUninit for Group`
+
+- <span id="group-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Group`
 
-- <span id="group-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="group-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Group`
 
-- <span id="group-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="group-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Group`
+
+- <span id="group-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Group`
+
+- <span id="group-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for proc_macro2::Group`
 
 ##### `impl Sealed for proc_macro2::Group`
 
+##### `impl ToOwned for Group`
+
+- <span id="group-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="group-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="group-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Group`
 
-- <span id="group-to-string"></span>`fn to_string(&self) -> String`
+- <span id="group-tostring-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ToTokens for proc_macro2::Group`
 
-- <span id="proc-macro2group-lex-error"></span>`fn lex_error(cursor: Cursor<'_>) -> crate::fallback::LexError` — [`Cursor`](../parse/index.md#cursor)
+- <span id="proc-macro2group-totokens-lex-error"></span>`fn lex_error(cursor: Cursor<'_>) -> crate::fallback::LexError` — [`Cursor`](../parse/index.md#cursor)
 
 ##### `impl Token for proc_macro2::Group`
+
+##### `impl<U> TryFrom for Group`
+
+- <span id="group-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="group-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Group`
+
+- <span id="group-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="group-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Ident`
 
@@ -344,17 +656,39 @@ enum Ident {
 
 #### Trait Implementations
 
+##### `impl Any for Ident`
+
+- <span id="ident-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Ident`
+
+- <span id="ident-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Ident`
+
+- <span id="ident-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Ident`
 
 - <span id="ident-clone"></span>`fn clone(&self) -> Ident` — [`Ident`](#ident)
 
+##### `impl CloneToUninit for Ident`
+
+- <span id="ident-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Ident`
 
-- <span id="ident-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ident-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Ident`
 
-- <span id="ident-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ident-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Ident`
+
+- <span id="ident-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl IdentExt for proc_macro2::Ident`
 
@@ -362,23 +696,55 @@ enum Ident {
 
 - <span id="proc-macro2ident-identfragment-type-error"></span>`type Error = Infallible`
 
+##### `impl<U> Into for Ident`
+
+- <span id="ident-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Parse for proc_macro2::Ident`
 
 ##### `impl PartialEq for Ident`
 
-- <span id="ident-eq"></span>`fn eq(&self, other: &Ident) -> bool` — [`Ident`](#ident)
+- <span id="ident-partialeq-eq"></span>`fn eq(&self, other: &Ident) -> bool` — [`Ident`](#ident)
 
 ##### `impl Sealed for proc_macro2::Ident`
 
+##### `impl ToOwned for Ident`
+
+- <span id="ident-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="ident-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="ident-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Ident`
 
-- <span id="ident-to-string"></span>`fn to_string(&self) -> String`
+- <span id="ident-tostring-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ToTokens for proc_macro2::Ident`
 
-- <span id="proc-macro2ident-ident"></span>`fn ident(input: Cursor<'_>) -> Result<(Cursor<'_>, crate::Ident), Reject>` — [`Cursor`](../parse/index.md#cursor), [`Ident`](../index.md#ident), [`Reject`](../parse/index.md#reject)
+- <span id="proc-macro2ident-totokens-ident"></span>`fn ident(input: Cursor<'_>) -> Result<(Cursor<'_>, crate::Ident), Reject>` — [`Cursor`](../parse/index.md#cursor), [`Ident`](../index.md#ident), [`Reject`](../parse/index.md#reject)
 
 ##### `impl Token for proc_macro2::Ident`
+
+##### `impl<U> TryFrom for Ident`
+
+- <span id="ident-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ident-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Ident`
+
+- <span id="ident-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ident-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Literal`
 
@@ -473,29 +839,83 @@ enum Literal {
 
 #### Trait Implementations
 
+##### `impl Any for Literal`
+
+- <span id="literal-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Literal`
+
+- <span id="literal-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Literal`
+
+- <span id="literal-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Literal`
 
 - <span id="literal-clone"></span>`fn clone(&self) -> Literal` — [`Literal`](#literal)
 
+##### `impl CloneToUninit for Literal`
+
+- <span id="literal-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Literal`
 
-- <span id="literal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="literal-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Literal`
 
-- <span id="literal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="literal-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Literal`
+
+- <span id="literal-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Literal`
+
+- <span id="literal-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for proc_macro2::Literal`
 
 ##### `impl Sealed for proc_macro2::Literal`
 
+##### `impl ToOwned for Literal`
+
+- <span id="literal-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="literal-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="literal-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Literal`
 
-- <span id="literal-to-string"></span>`fn to_string(&self) -> String`
+- <span id="literal-tostring-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ToTokens for proc_macro2::Literal`
 
 ##### `impl Token for proc_macro2::Literal`
+
+##### `impl<U> TryFrom for Literal`
+
+- <span id="literal-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="literal-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Literal`
+
+- <span id="literal-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="literal-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

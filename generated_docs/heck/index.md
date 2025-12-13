@@ -140,7 +140,7 @@ struct AsKebabCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/kebab.rs:40`](../../.source_1765521767/heck-0.5.0/src/kebab.rs#L40)*
 
-This wrapper performs a kebab case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a kebab case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -153,13 +153,55 @@ assert_eq!(format!("{}", AsKebabCase(sentence)), "we-are-going-to-inherit-the-ea
 
 #### Trait Implementations
 
+##### `impl<T> Any for AsKebabCase<T>`
+
+- <span id="askebabcase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AsKebabCase<T>`
+
+- <span id="askebabcase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AsKebabCase<T>`
+
+- <span id="askebabcase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: AsRef<str>> Display for AsKebabCase<T>`
 
-- <span id="askebabcase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="askebabcase-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AsKebabCase<T>`
+
+- <span id="askebabcase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for AsKebabCase<T>`
+
+- <span id="askebabcase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for AsKebabCase<T>`
 
-- <span id="askebabcase-to-string"></span>`fn to_string(&self) -> String`
+- <span id="askebabcase-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for AsKebabCase<T>`
+
+- <span id="askebabcase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="askebabcase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for AsKebabCase<T>`
+
+- <span id="askebabcase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="askebabcase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AsLowerCamelCase<T: AsRef<str>>`
 
@@ -169,7 +211,7 @@ struct AsLowerCamelCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/lower_camel.rs:44`](../../.source_1765521767/heck-0.5.0/src/lower_camel.rs#L44)*
 
-This wrapper performs a lower camel case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a lower camel case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -182,13 +224,55 @@ assert_eq!(format!("{}", AsLowerCamelCase(sentence)), "itIsWeWhoBuiltThesePalace
 
 #### Trait Implementations
 
+##### `impl<T> Any for AsLowerCamelCase<T>`
+
+- <span id="aslowercamelcase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AsLowerCamelCase<T>`
+
+- <span id="aslowercamelcase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AsLowerCamelCase<T>`
+
+- <span id="aslowercamelcase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: AsRef<str>> Display for AsLowerCamelCase<T>`
 
-- <span id="aslowercamelcase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="aslowercamelcase-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AsLowerCamelCase<T>`
+
+- <span id="aslowercamelcase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for AsLowerCamelCase<T>`
+
+- <span id="aslowercamelcase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for AsLowerCamelCase<T>`
 
-- <span id="aslowercamelcase-to-string"></span>`fn to_string(&self) -> String`
+- <span id="aslowercamelcase-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for AsLowerCamelCase<T>`
+
+- <span id="aslowercamelcase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="aslowercamelcase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for AsLowerCamelCase<T>`
+
+- <span id="aslowercamelcase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="aslowercamelcase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AsShoutyKebabCase<T: AsRef<str>>`
 
@@ -198,7 +282,7 @@ struct AsShoutyKebabCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/shouty_kebab.rs:41`](../../.source_1765521767/heck-0.5.0/src/shouty_kebab.rs#L41)*
 
-This wrapper performs a kebab case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a kebab case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -211,13 +295,55 @@ assert_eq!(format!("{}", AsShoutyKebabCase(sentence)), "WE-ARE-GOING-TO-INHERIT-
 
 #### Trait Implementations
 
+##### `impl<T> Any for AsShoutyKebabCase<T>`
+
+- <span id="asshoutykebabcase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AsShoutyKebabCase<T>`
+
+- <span id="asshoutykebabcase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AsShoutyKebabCase<T>`
+
+- <span id="asshoutykebabcase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: AsRef<str>> Display for AsShoutyKebabCase<T>`
 
-- <span id="asshoutykebabcase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="asshoutykebabcase-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AsShoutyKebabCase<T>`
+
+- <span id="asshoutykebabcase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for AsShoutyKebabCase<T>`
+
+- <span id="asshoutykebabcase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for AsShoutyKebabCase<T>`
 
-- <span id="asshoutykebabcase-to-string"></span>`fn to_string(&self) -> String`
+- <span id="asshoutykebabcase-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for AsShoutyKebabCase<T>`
+
+- <span id="asshoutykebabcase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="asshoutykebabcase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for AsShoutyKebabCase<T>`
+
+- <span id="asshoutykebabcase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="asshoutykebabcase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AsShoutySnakeCase<T: AsRef<str>>`
 
@@ -227,7 +353,7 @@ struct AsShoutySnakeCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/shouty_snake.rs:55`](../../.source_1765521767/heck-0.5.0/src/shouty_snake.rs#L55)*
 
-This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -240,13 +366,55 @@ assert_eq!(format!("{}", AsShoutySnakeCase(sentence)), "THAT_WORLD_IS_GROWING_IN
 
 #### Trait Implementations
 
+##### `impl<T> Any for AsShoutySnakeCase<T>`
+
+- <span id="asshoutysnakecase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AsShoutySnakeCase<T>`
+
+- <span id="asshoutysnakecase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AsShoutySnakeCase<T>`
+
+- <span id="asshoutysnakecase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: AsRef<str>> Display for AsShoutySnakeCase<T>`
 
-- <span id="asshoutysnakecase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="asshoutysnakecase-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AsShoutySnakeCase<T>`
+
+- <span id="asshoutysnakecase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for AsShoutySnakeCase<T>`
+
+- <span id="asshoutysnakecase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for AsShoutySnakeCase<T>`
 
-- <span id="asshoutysnakecase-to-string"></span>`fn to_string(&self) -> String`
+- <span id="asshoutysnakecase-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for AsShoutySnakeCase<T>`
+
+- <span id="asshoutysnakecase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="asshoutysnakecase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for AsShoutySnakeCase<T>`
+
+- <span id="asshoutysnakecase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="asshoutysnakecase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AsShoutySnekCase<T: AsRef<str>>`
 
@@ -256,7 +424,7 @@ struct AsShoutySnekCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/shouty_snake.rs:55`](../../.source_1765521767/heck-0.5.0/src/shouty_snake.rs#L55)*
 
-This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -269,13 +437,55 @@ assert_eq!(format!("{}", AsShoutySnakeCase(sentence)), "THAT_WORLD_IS_GROWING_IN
 
 #### Trait Implementations
 
+##### `impl<T> Any for AsShoutySnakeCase<T>`
+
+- <span id="asshoutysnakecase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AsShoutySnakeCase<T>`
+
+- <span id="asshoutysnakecase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AsShoutySnakeCase<T>`
+
+- <span id="asshoutysnakecase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: AsRef<str>> Display for AsShoutySnakeCase<T>`
 
-- <span id="asshoutysnakecase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="asshoutysnakecase-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AsShoutySnakeCase<T>`
+
+- <span id="asshoutysnakecase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for AsShoutySnakeCase<T>`
+
+- <span id="asshoutysnakecase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for AsShoutySnakeCase<T>`
 
-- <span id="asshoutysnakecase-to-string"></span>`fn to_string(&self) -> String`
+- <span id="asshoutysnakecase-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for AsShoutySnakeCase<T>`
+
+- <span id="asshoutysnakecase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="asshoutysnakecase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for AsShoutySnakeCase<T>`
+
+- <span id="asshoutysnakecase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="asshoutysnakecase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AsSnakeCase<T: AsRef<str>>`
 
@@ -285,7 +495,7 @@ struct AsSnakeCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/snake.rs:55`](../../.source_1765521767/heck-0.5.0/src/snake.rs#L55)*
 
-This wrapper performs a snake case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a snake case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -298,13 +508,55 @@ assert_eq!(format!("{}", AsSnakeCase(sentence)), "we_carry_a_new_world_here_in_o
 
 #### Trait Implementations
 
+##### `impl<T> Any for AsSnakeCase<T>`
+
+- <span id="assnakecase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AsSnakeCase<T>`
+
+- <span id="assnakecase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AsSnakeCase<T>`
+
+- <span id="assnakecase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: AsRef<str>> Display for AsSnakeCase<T>`
 
-- <span id="assnakecase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="assnakecase-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AsSnakeCase<T>`
+
+- <span id="assnakecase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for AsSnakeCase<T>`
+
+- <span id="assnakecase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for AsSnakeCase<T>`
 
-- <span id="assnakecase-to-string"></span>`fn to_string(&self) -> String`
+- <span id="assnakecase-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for AsSnakeCase<T>`
+
+- <span id="assnakecase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="assnakecase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for AsSnakeCase<T>`
+
+- <span id="assnakecase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="assnakecase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AsSnekCase<T: AsRef<str>>`
 
@@ -314,7 +566,7 @@ struct AsSnekCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/snake.rs:55`](../../.source_1765521767/heck-0.5.0/src/snake.rs#L55)*
 
-This wrapper performs a snake case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a snake case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -327,13 +579,55 @@ assert_eq!(format!("{}", AsSnakeCase(sentence)), "we_carry_a_new_world_here_in_o
 
 #### Trait Implementations
 
+##### `impl<T> Any for AsSnakeCase<T>`
+
+- <span id="assnakecase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AsSnakeCase<T>`
+
+- <span id="assnakecase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AsSnakeCase<T>`
+
+- <span id="assnakecase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: AsRef<str>> Display for AsSnakeCase<T>`
 
-- <span id="assnakecase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="assnakecase-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AsSnakeCase<T>`
+
+- <span id="assnakecase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for AsSnakeCase<T>`
+
+- <span id="assnakecase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for AsSnakeCase<T>`
 
-- <span id="assnakecase-to-string"></span>`fn to_string(&self) -> String`
+- <span id="assnakecase-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for AsSnakeCase<T>`
+
+- <span id="assnakecase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="assnakecase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for AsSnakeCase<T>`
+
+- <span id="assnakecase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="assnakecase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AsTitleCase<T: AsRef<str>>`
 
@@ -343,7 +637,7 @@ struct AsTitleCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/title.rs:44`](../../.source_1765521767/heck-0.5.0/src/title.rs#L44)*
 
-This wrapper performs a title case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a title case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -356,13 +650,55 @@ assert_eq!(format!("{}", AsTitleCase(sentence)), "We Have Always Lived In Slums 
 
 #### Trait Implementations
 
+##### `impl<T> Any for AsTitleCase<T>`
+
+- <span id="astitlecase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AsTitleCase<T>`
+
+- <span id="astitlecase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AsTitleCase<T>`
+
+- <span id="astitlecase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: AsRef<str>> Display for AsTitleCase<T>`
 
-- <span id="astitlecase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="astitlecase-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AsTitleCase<T>`
+
+- <span id="astitlecase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for AsTitleCase<T>`
+
+- <span id="astitlecase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for AsTitleCase<T>`
 
-- <span id="astitlecase-to-string"></span>`fn to_string(&self) -> String`
+- <span id="astitlecase-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for AsTitleCase<T>`
+
+- <span id="astitlecase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="astitlecase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for AsTitleCase<T>`
+
+- <span id="astitlecase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="astitlecase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AsTrainCase<T: AsRef<str>>`
 
@@ -372,7 +708,7 @@ struct AsTrainCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/train.rs:41`](../../.source_1765521767/heck-0.5.0/src/train.rs#L41)*
 
-This wrapper performs a train case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a train case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -385,13 +721,55 @@ assert_eq!(format!("{}", AsTrainCase(sentence)), "We-Are-Going-To-Inherit-The-Ea
 
 #### Trait Implementations
 
+##### `impl<T> Any for AsTrainCase<T>`
+
+- <span id="astraincase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AsTrainCase<T>`
+
+- <span id="astraincase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AsTrainCase<T>`
+
+- <span id="astraincase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: AsRef<str>> Display for AsTrainCase<T>`
 
-- <span id="astraincase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="astraincase-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AsTrainCase<T>`
+
+- <span id="astraincase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for AsTrainCase<T>`
+
+- <span id="astraincase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for AsTrainCase<T>`
 
-- <span id="astraincase-to-string"></span>`fn to_string(&self) -> String`
+- <span id="astraincase-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for AsTrainCase<T>`
+
+- <span id="astraincase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="astraincase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for AsTrainCase<T>`
+
+- <span id="astraincase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="astraincase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AsUpperCamelCase<T: AsRef<str>>`
 
@@ -401,7 +779,7 @@ struct AsUpperCamelCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/upper_camel.rs:57`](../../.source_1765521767/heck-0.5.0/src/upper_camel.rs#L57)*
 
-This wrapper performs a upper camel case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a upper camel case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -414,13 +792,55 @@ assert_eq!(format!("{}", AsUpperCamelCase(sentence)), "WeAreNotInTheLeastAfraidO
 
 #### Trait Implementations
 
+##### `impl<T> Any for AsUpperCamelCase<T>`
+
+- <span id="asuppercamelcase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AsUpperCamelCase<T>`
+
+- <span id="asuppercamelcase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AsUpperCamelCase<T>`
+
+- <span id="asuppercamelcase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: AsRef<str>> Display for AsUpperCamelCase<T>`
 
-- <span id="asuppercamelcase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="asuppercamelcase-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AsUpperCamelCase<T>`
+
+- <span id="asuppercamelcase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for AsUpperCamelCase<T>`
+
+- <span id="asuppercamelcase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for AsUpperCamelCase<T>`
 
-- <span id="asuppercamelcase-to-string"></span>`fn to_string(&self) -> String`
+- <span id="asuppercamelcase-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for AsUpperCamelCase<T>`
+
+- <span id="asuppercamelcase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="asuppercamelcase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for AsUpperCamelCase<T>`
+
+- <span id="asuppercamelcase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="asuppercamelcase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AsPascalCase<T: AsRef<str>>`
 
@@ -430,7 +850,7 @@ struct AsPascalCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/upper_camel.rs:57`](../../.source_1765521767/heck-0.5.0/src/upper_camel.rs#L57)*
 
-This wrapper performs a upper camel case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a upper camel case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -443,13 +863,55 @@ assert_eq!(format!("{}", AsUpperCamelCase(sentence)), "WeAreNotInTheLeastAfraidO
 
 #### Trait Implementations
 
+##### `impl<T> Any for AsUpperCamelCase<T>`
+
+- <span id="asuppercamelcase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AsUpperCamelCase<T>`
+
+- <span id="asuppercamelcase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AsUpperCamelCase<T>`
+
+- <span id="asuppercamelcase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: AsRef<str>> Display for AsUpperCamelCase<T>`
 
-- <span id="asuppercamelcase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="asuppercamelcase-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AsUpperCamelCase<T>`
+
+- <span id="asuppercamelcase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for AsUpperCamelCase<T>`
+
+- <span id="asuppercamelcase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for AsUpperCamelCase<T>`
 
-- <span id="asuppercamelcase-to-string"></span>`fn to_string(&self) -> String`
+- <span id="asuppercamelcase-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for AsUpperCamelCase<T>`
+
+- <span id="asuppercamelcase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="asuppercamelcase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for AsUpperCamelCase<T>`
+
+- <span id="asuppercamelcase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="asuppercamelcase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

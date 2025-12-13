@@ -25,6 +25,50 @@ struct HeapBufferInnerInlineCapacity {
 
 *Defined in [`compact_str-0.9.0/src/repr/heap.rs:405-407`](../../../../../.source_1765521767/compact_str-0.9.0/src/repr/heap.rs#L405-L407)*
 
+#### Trait Implementations
+
+##### `impl Any for HeapBufferInnerInlineCapacity`
+
+- <span id="heapbufferinnerinlinecapacity-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HeapBufferInnerInlineCapacity`
+
+- <span id="heapbufferinnerinlinecapacity-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HeapBufferInnerInlineCapacity`
+
+- <span id="heapbufferinnerinlinecapacity-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for HeapBufferInnerInlineCapacity`
+
+- <span id="heapbufferinnerinlinecapacity-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for HeapBufferInnerInlineCapacity`
+
+- <span id="heapbufferinnerinlinecapacity-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for HeapBufferInnerInlineCapacity`
+
+- <span id="heapbufferinnerinlinecapacity-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="heapbufferinnerinlinecapacity-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HeapBufferInnerInlineCapacity`
+
+- <span id="heapbufferinnerinlinecapacity-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="heapbufferinnerinlinecapacity-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ## Functions
 
 ### `alloc`

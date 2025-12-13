@@ -176,6 +176,50 @@ struct Elf_Ehdr {
 
 *Defined in [`linux-raw-sys-0.11.0/src/elf.rs:107-122`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/elf.rs#L107-L122)*
 
+#### Trait Implementations
+
+##### `impl Any for Elf_Ehdr`
+
+- <span id="elf-ehdr-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Elf_Ehdr`
+
+- <span id="elf-ehdr-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Elf_Ehdr`
+
+- <span id="elf-ehdr-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Elf_Ehdr`
+
+- <span id="elf-ehdr-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Elf_Ehdr`
+
+- <span id="elf-ehdr-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Elf_Ehdr`
+
+- <span id="elf-ehdr-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elf-ehdr-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Elf_Ehdr`
+
+- <span id="elf-ehdr-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elf-ehdr-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `Elf_Phdr`
 
 ```rust
@@ -193,6 +237,50 @@ struct Elf_Phdr {
 
 *Defined in [`linux-raw-sys-0.11.0/src/elf.rs:139-148`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/elf.rs#L139-L148)*
 
+#### Trait Implementations
+
+##### `impl Any for Elf_Phdr`
+
+- <span id="elf-phdr-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Elf_Phdr`
+
+- <span id="elf-phdr-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Elf_Phdr`
+
+- <span id="elf-phdr-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Elf_Phdr`
+
+- <span id="elf-phdr-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Elf_Phdr`
+
+- <span id="elf-phdr-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Elf_Phdr`
+
+- <span id="elf-phdr-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elf-phdr-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Elf_Phdr`
+
+- <span id="elf-phdr-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elf-phdr-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `Elf_Sym`
 
 ```rust
@@ -207,6 +295,50 @@ struct Elf_Sym {
 ```
 
 *Defined in [`linux-raw-sys-0.11.0/src/elf.rs:163-170`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/elf.rs#L163-L170)*
+
+#### Trait Implementations
+
+##### `impl Any for Elf_Sym`
+
+- <span id="elf-sym-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Elf_Sym`
+
+- <span id="elf-sym-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Elf_Sym`
+
+- <span id="elf-sym-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Elf_Sym`
+
+- <span id="elf-sym-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Elf_Sym`
+
+- <span id="elf-sym-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Elf_Sym`
+
+- <span id="elf-sym-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elf-sym-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Elf_Sym`
+
+- <span id="elf-sym-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elf-sym-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Elf_Verdef`
 
@@ -224,6 +356,50 @@ struct Elf_Verdef {
 
 *Defined in [`linux-raw-sys-0.11.0/src/elf.rs:173-181`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/elf.rs#L173-L181)*
 
+#### Trait Implementations
+
+##### `impl Any for Elf_Verdef`
+
+- <span id="elf-verdef-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Elf_Verdef`
+
+- <span id="elf-verdef-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Elf_Verdef`
+
+- <span id="elf-verdef-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Elf_Verdef`
+
+- <span id="elf-verdef-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Elf_Verdef`
+
+- <span id="elf-verdef-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Elf_Verdef`
+
+- <span id="elf-verdef-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elf-verdef-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Elf_Verdef`
+
+- <span id="elf-verdef-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elf-verdef-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `Elf_Verdaux`
 
 ```rust
@@ -234,6 +410,50 @@ struct Elf_Verdaux {
 ```
 
 *Defined in [`linux-raw-sys-0.11.0/src/elf.rs:184-187`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/elf.rs#L184-L187)*
+
+#### Trait Implementations
+
+##### `impl Any for Elf_Verdaux`
+
+- <span id="elf-verdaux-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Elf_Verdaux`
+
+- <span id="elf-verdaux-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Elf_Verdaux`
+
+- <span id="elf-verdaux-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Elf_Verdaux`
+
+- <span id="elf-verdaux-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Elf_Verdaux`
+
+- <span id="elf-verdaux-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Elf_Verdaux`
+
+- <span id="elf-verdaux-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elf-verdaux-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Elf_Verdaux`
+
+- <span id="elf-verdaux-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elf-verdaux-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Elf_Dyn`
 
@@ -248,11 +468,57 @@ struct Elf_Dyn {
 
 #### Trait Implementations
 
+##### `impl Any for Elf_Dyn`
+
+- <span id="elf-dyn-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Elf_Dyn`
+
+- <span id="elf-dyn-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Elf_Dyn`
+
+- <span id="elf-dyn-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Elf_Dyn`
 
 - <span id="elf-dyn-clone"></span>`fn clone(&self) -> Elf_Dyn` — [`Elf_Dyn`](#elf-dyn)
 
+##### `impl CloneToUninit for Elf_Dyn`
+
+- <span id="elf-dyn-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Elf_Dyn`
+
+##### `impl<T> From for Elf_Dyn`
+
+- <span id="elf-dyn-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Elf_Dyn`
+
+- <span id="elf-dyn-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Elf_Dyn`
+
+- <span id="elf-dyn-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elf-dyn-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Elf_Dyn`
+
+- <span id="elf-dyn-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elf-dyn-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Elf_Rela`
 
@@ -270,6 +536,50 @@ struct Elf_Rela {
 
 - <span id="elf-rela-type"></span>`fn type_(&self) -> u32`
 
+#### Trait Implementations
+
+##### `impl Any for Elf_Rela`
+
+- <span id="elf-rela-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Elf_Rela`
+
+- <span id="elf-rela-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Elf_Rela`
+
+- <span id="elf-rela-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Elf_Rela`
+
+- <span id="elf-rela-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Elf_Rela`
+
+- <span id="elf-rela-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Elf_Rela`
+
+- <span id="elf-rela-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elf-rela-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Elf_Rela`
+
+- <span id="elf-rela-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elf-rela-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `Elf_Rel`
 
 ```rust
@@ -285,6 +595,50 @@ struct Elf_Rel {
 
 - <span id="elf-rel-type"></span>`fn type_(&self) -> u32`
 
+#### Trait Implementations
+
+##### `impl Any for Elf_Rel`
+
+- <span id="elf-rel-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Elf_Rel`
+
+- <span id="elf-rel-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Elf_Rel`
+
+- <span id="elf-rel-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Elf_Rel`
+
+- <span id="elf-rel-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Elf_Rel`
+
+- <span id="elf-rel-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Elf_Rel`
+
+- <span id="elf-rel-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elf-rel-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Elf_Rel`
+
+- <span id="elf-rel-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elf-rel-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `Elf_auxv_t`
 
 ```rust
@@ -298,9 +652,55 @@ struct Elf_auxv_t {
 
 #### Trait Implementations
 
+##### `impl Any for Elf_auxv_t`
+
+- <span id="elf-auxv-t-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Elf_auxv_t`
+
+- <span id="elf-auxv-t-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Elf_auxv_t`
+
+- <span id="elf-auxv-t-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Elf_auxv_t`
 
 - <span id="elf-auxv-t-clone"></span>`fn clone(&self) -> Elf_auxv_t` — [`Elf_auxv_t`](#elf-auxv-t)
+
+##### `impl CloneToUninit for Elf_auxv_t`
+
+- <span id="elf-auxv-t-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
+##### `impl<T> From for Elf_auxv_t`
+
+- <span id="elf-auxv-t-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Elf_auxv_t`
+
+- <span id="elf-auxv-t-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Elf_auxv_t`
+
+- <span id="elf-auxv-t-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elf-auxv-t-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Elf_auxv_t`
+
+- <span id="elf-auxv-t-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elf-auxv-t-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

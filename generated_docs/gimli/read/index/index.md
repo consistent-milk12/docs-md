@@ -49,27 +49,85 @@ This section contains the compilation unit index.
 
 - <span id="debugcuindex-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
+  Construct a new `DebugCuIndex` instance from the data in the `.debug_cu_index`
+
+  section.
+
 #### Trait Implementations
+
+##### `impl Any for DebugCuIndex<R>`
+
+- <span id="debugcuindex-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugCuIndex<R>`
+
+- <span id="debugcuindex-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugCuIndex<R>`
+
+- <span id="debugcuindex-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R: clone::Clone> Clone for DebugCuIndex<R>`
 
 - <span id="debugcuindex-clone"></span>`fn clone(&self) -> DebugCuIndex<R>` — [`DebugCuIndex`](../index.md#debugcuindex)
 
+##### `impl CloneToUninit for DebugCuIndex<R>`
+
+- <span id="debugcuindex-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R: marker::Copy> Copy for DebugCuIndex<R>`
 
 ##### `impl<R: fmt::Debug> Debug for DebugCuIndex<R>`
 
-- <span id="debugcuindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugcuindex-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: default::Default> Default for DebugCuIndex<R>`
 
 - <span id="debugcuindex-default"></span>`fn default() -> DebugCuIndex<R>` — [`DebugCuIndex`](../index.md#debugcuindex)
 
+##### `impl<T> From for DebugCuIndex<R>`
+
+- <span id="debugcuindex-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DebugCuIndex<R>`
+
+- <span id="debugcuindex-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<R> Section for DebugCuIndex<R>`
 
-- <span id="debugcuindex-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
+- <span id="debugcuindex-section-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
-- <span id="debugcuindex-reader"></span>`fn reader(&self) -> &R`
+- <span id="debugcuindex-section-reader"></span>`fn reader(&self) -> &R`
+
+##### `impl ToOwned for DebugCuIndex<R>`
+
+- <span id="debugcuindex-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugcuindex-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugcuindex-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DebugCuIndex<R>`
+
+- <span id="debugcuindex-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugcuindex-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DebugCuIndex<R>`
+
+- <span id="debugcuindex-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugcuindex-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugTuIndex<R>`
 
@@ -89,27 +147,85 @@ This section contains the type unit index.
 
 - <span id="debugtuindex-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
+  Construct a new `DebugTuIndex` instance from the data in the `.debug_tu_index`
+
+  section.
+
 #### Trait Implementations
+
+##### `impl Any for DebugTuIndex<R>`
+
+- <span id="debugtuindex-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugTuIndex<R>`
+
+- <span id="debugtuindex-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugTuIndex<R>`
+
+- <span id="debugtuindex-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R: clone::Clone> Clone for DebugTuIndex<R>`
 
 - <span id="debugtuindex-clone"></span>`fn clone(&self) -> DebugTuIndex<R>` — [`DebugTuIndex`](../index.md#debugtuindex)
 
+##### `impl CloneToUninit for DebugTuIndex<R>`
+
+- <span id="debugtuindex-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R: marker::Copy> Copy for DebugTuIndex<R>`
 
 ##### `impl<R: fmt::Debug> Debug for DebugTuIndex<R>`
 
-- <span id="debugtuindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugtuindex-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: default::Default> Default for DebugTuIndex<R>`
 
 - <span id="debugtuindex-default"></span>`fn default() -> DebugTuIndex<R>` — [`DebugTuIndex`](../index.md#debugtuindex)
 
+##### `impl<T> From for DebugTuIndex<R>`
+
+- <span id="debugtuindex-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DebugTuIndex<R>`
+
+- <span id="debugtuindex-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<R> Section for DebugTuIndex<R>`
 
-- <span id="debugtuindex-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
+- <span id="debugtuindex-section-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
-- <span id="debugtuindex-reader"></span>`fn reader(&self) -> &R`
+- <span id="debugtuindex-section-reader"></span>`fn reader(&self) -> &R`
+
+##### `impl ToOwned for DebugTuIndex<R>`
+
+- <span id="debugtuindex-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugtuindex-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugtuindex-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DebugTuIndex<R>`
+
+- <span id="debugtuindex-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugtuindex-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DebugTuIndex<R>`
+
+- <span id="debugtuindex-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugtuindex-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UnitIndex<R: Reader>`
 
@@ -137,25 +253,101 @@ The partially parsed index from a `DebugCuIndex` or `DebugTuIndex`.
 
 - <span id="unitindex-find"></span>`fn find(&self, id: u64) -> Option<u32>`
 
+  Find `id` in the index hash table, and return the row index.
+
+  
+
+  `id` may be a compilation unit ID if this index is from `.debug_cu_index`,
+
+  or a type signature if this index is from `.debug_tu_index`.
+
 - <span id="unitindex-sections"></span>`fn sections(&self, row: u32) -> Result<UnitIndexSectionIterator<'_, R>>` — [`Result`](../../index.md#result), [`UnitIndexSectionIterator`](../index.md#unitindexsectioniterator)
+
+  Return the section offsets and sizes for the given row index.
 
 - <span id="unitindex-version"></span>`fn version(&self) -> u16`
 
+  Return the version.
+
+  
+
+  Defaults to 0 for empty sections.
+
 - <span id="unitindex-section-count"></span>`fn section_count(&self) -> u32`
+
+  Return the number of sections.
 
 - <span id="unitindex-unit-count"></span>`fn unit_count(&self) -> u32`
 
+  Return the number of units.
+
 - <span id="unitindex-slot-count"></span>`fn slot_count(&self) -> u32`
 
+  Return the number of slots.
+
 #### Trait Implementations
+
+##### `impl Any for UnitIndex<R>`
+
+- <span id="unitindex-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnitIndex<R>`
+
+- <span id="unitindex-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnitIndex<R>`
+
+- <span id="unitindex-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R: clone::Clone + Reader> Clone for UnitIndex<R>`
 
 - <span id="unitindex-clone"></span>`fn clone(&self) -> UnitIndex<R>` — [`UnitIndex`](../index.md#unitindex)
 
+##### `impl CloneToUninit for UnitIndex<R>`
+
+- <span id="unitindex-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R: fmt::Debug + Reader> Debug for UnitIndex<R>`
 
-- <span id="unitindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unitindex-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for UnitIndex<R>`
+
+- <span id="unitindex-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for UnitIndex<R>`
+
+- <span id="unitindex-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for UnitIndex<R>`
+
+- <span id="unitindex-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="unitindex-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="unitindex-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for UnitIndex<R>`
+
+- <span id="unitindex-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unitindex-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UnitIndex<R>`
+
+- <span id="unitindex-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unitindex-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UnitIndexSectionIterator<'index, R: Reader>`
 
@@ -173,13 +365,47 @@ An iterator over the section offsets and sizes for a row in a `UnitIndex`.
 
 #### Trait Implementations
 
+##### `impl Any for UnitIndexSectionIterator<'index, R>`
+
+- <span id="unitindexsectioniterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnitIndexSectionIterator<'index, R>`
+
+- <span id="unitindexsectioniterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnitIndexSectionIterator<'index, R>`
+
+- <span id="unitindexsectioniterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: clone::Clone + Reader> Clone for UnitIndexSectionIterator<'index, R>`
 
 - <span id="unitindexsectioniterator-clone"></span>`fn clone(&self) -> UnitIndexSectionIterator<'index, R>` — [`UnitIndexSectionIterator`](../index.md#unitindexsectioniterator)
 
+##### `impl CloneToUninit for UnitIndexSectionIterator<'index, R>`
+
+- <span id="unitindexsectioniterator-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R: fmt::Debug + Reader> Debug for UnitIndexSectionIterator<'index, R>`
 
-- <span id="unitindexsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unitindexsectioniterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for UnitIndexSectionIterator<'index, R>`
+
+- <span id="unitindexsectioniterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for UnitIndexSectionIterator<'index, R>`
+
+- <span id="unitindexsectioniterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for UnitIndexSectionIterator<'index, R>`
 
@@ -187,13 +413,33 @@ An iterator over the section offsets and sizes for a row in a `UnitIndex`.
 
 - <span id="unitindexsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="unitindexsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="unitindexsectioniterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<R: Reader> Iterator for UnitIndexSectionIterator<'index, R>`
 
 - <span id="unitindexsectioniterator-iterator-type-item"></span>`type Item = UnitIndexSection`
 
-- <span id="unitindexsectioniterator-next"></span>`fn next(&mut self) -> Option<UnitIndexSection>` — [`UnitIndexSection`](../index.md#unitindexsection)
+- <span id="unitindexsectioniterator-iterator-next"></span>`fn next(&mut self) -> Option<UnitIndexSection>` — [`UnitIndexSection`](../index.md#unitindexsection)
+
+##### `impl ToOwned for UnitIndexSectionIterator<'index, R>`
+
+- <span id="unitindexsectioniterator-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="unitindexsectioniterator-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="unitindexsectioniterator-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for UnitIndexSectionIterator<'index, R>`
+
+- <span id="unitindexsectioniterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unitindexsectioniterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UnitIndexSectionIterator<'index, R>`
+
+- <span id="unitindexsectioniterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unitindexsectioniterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UnitIndexSection`
 
@@ -225,23 +471,77 @@ Information about a unit's contribution to a section in a `.dwp` file.
 
 #### Trait Implementations
 
+##### `impl Any for UnitIndexSection`
+
+- <span id="unitindexsection-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnitIndexSection`
+
+- <span id="unitindexsection-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnitIndexSection`
+
+- <span id="unitindexsection-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for UnitIndexSection`
 
 - <span id="unitindexsection-clone"></span>`fn clone(&self) -> UnitIndexSection` — [`UnitIndexSection`](../index.md#unitindexsection)
+
+##### `impl CloneToUninit for UnitIndexSection`
+
+- <span id="unitindexsection-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for UnitIndexSection`
 
 ##### `impl Debug for UnitIndexSection`
 
-- <span id="unitindexsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unitindexsection-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for UnitIndexSection`
 
+##### `impl<T> From for UnitIndexSection`
+
+- <span id="unitindexsection-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for UnitIndexSection`
+
+- <span id="unitindexsection-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for UnitIndexSection`
 
-- <span id="unitindexsection-eq"></span>`fn eq(&self, other: &UnitIndexSection) -> bool` — [`UnitIndexSection`](../index.md#unitindexsection)
+- <span id="unitindexsection-partialeq-eq"></span>`fn eq(&self, other: &UnitIndexSection) -> bool` — [`UnitIndexSection`](../index.md#unitindexsection)
 
 ##### `impl StructuralPartialEq for UnitIndexSection`
+
+##### `impl ToOwned for UnitIndexSection`
+
+- <span id="unitindexsection-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="unitindexsection-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="unitindexsection-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for UnitIndexSection`
+
+- <span id="unitindexsection-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unitindexsection-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UnitIndexSection`
+
+- <span id="unitindexsection-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unitindexsection-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -312,27 +612,85 @@ Section kinds which are permitted in a `.dwp` index.
 
 - <span id="indexsectionid-section-id"></span>`fn section_id(self) -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
+  Returns the corresponding `SectionId`.
+
 - <span id="indexsectionid-dwo-name"></span>`fn dwo_name(self) -> &'static str`
 
+  Returns the ELF section name for this kind, when found in a .dwo or .dwp file.
+
 #### Trait Implementations
+
+##### `impl Any for IndexSectionId`
+
+- <span id="indexsectionid-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IndexSectionId`
+
+- <span id="indexsectionid-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IndexSectionId`
+
+- <span id="indexsectionid-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for IndexSectionId`
 
 - <span id="indexsectionid-clone"></span>`fn clone(&self) -> IndexSectionId` — [`IndexSectionId`](../index.md#indexsectionid)
 
+##### `impl CloneToUninit for IndexSectionId`
+
+- <span id="indexsectionid-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for IndexSectionId`
 
 ##### `impl Debug for IndexSectionId`
 
-- <span id="indexsectionid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="indexsectionid-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for IndexSectionId`
 
+##### `impl<T> From for IndexSectionId`
+
+- <span id="indexsectionid-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for IndexSectionId`
+
+- <span id="indexsectionid-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for IndexSectionId`
 
-- <span id="indexsectionid-eq"></span>`fn eq(&self, other: &IndexSectionId) -> bool` — [`IndexSectionId`](../index.md#indexsectionid)
+- <span id="indexsectionid-partialeq-eq"></span>`fn eq(&self, other: &IndexSectionId) -> bool` — [`IndexSectionId`](../index.md#indexsectionid)
 
 ##### `impl StructuralPartialEq for IndexSectionId`
+
+##### `impl ToOwned for IndexSectionId`
+
+- <span id="indexsectionid-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="indexsectionid-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="indexsectionid-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for IndexSectionId`
+
+- <span id="indexsectionid-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="indexsectionid-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IndexSectionId`
+
+- <span id="indexsectionid-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="indexsectionid-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Constants
 

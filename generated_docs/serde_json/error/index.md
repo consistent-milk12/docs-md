@@ -63,43 +63,229 @@ deserializing JSON data.
 
 - <span id="error-line"></span>`fn line(&self) -> usize`
 
+  One-based line number at which the error was detected.
+
+  
+
+  Characters in the first line of the input (before the first newline
+
+  character) are in line 1.
+
 - <span id="error-column"></span>`fn column(&self) -> usize`
+
+  One-based column number at which the error was detected.
+
+  
+
+  The first character in the input and any characters immediately
+
+  following a newline character are in column 1.
+
+  
+
+  Note that errors may occur in column 0, for example if a read from an
+
+  I/O stream fails immediately following a previously read newline
+
+  character.
 
 - <span id="error-classify"></span>`fn classify(&self) -> Category` — [`Category`](#category)
 
+  Categorizes the cause of this error.
+
+  
+
+  - `Category::Io` - failure to read or write bytes on an I/O stream
+
+  - `Category::Syntax` - input that is not syntactically valid JSON
+
+  - `Category::Data` - input data that is semantically incorrect
+
+  - `Category::Eof` - unexpected end of the input data
+
 - <span id="error-is-io"></span>`fn is_io(&self) -> bool`
+
+  Returns true if this error was caused by a failure to read or write
+
+  bytes on an I/O stream.
 
 - <span id="error-is-syntax"></span>`fn is_syntax(&self) -> bool`
 
+  Returns true if this error was caused by input that was not
+
+  syntactically valid JSON.
+
 - <span id="error-is-data"></span>`fn is_data(&self) -> bool`
+
+  Returns true if this error was caused by input data that was
+
+  semantically incorrect.
+
+  
+
+  For example, JSON containing a number is semantically incorrect when the
+
+  type being deserialized into holds a String.
 
 - <span id="error-is-eof"></span>`fn is_eof(&self) -> bool`
 
+  Returns true if this error was caused by prematurely reaching the end of
+
+  the input data.
+
+  
+
+  Callers that process streaming input may be interested in retrying the
+
+  deserialization once more data is available.
+
 - <span id="error-io-error-kind"></span>`fn io_error_kind(&self) -> Option<ErrorKind>` — [`ErrorKind`](../io/index.md#errorkind)
+
+  The kind reported by the underlying standard library I/O error, if this
+
+  error was caused by a failure to read or write bytes on an I/O stream.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use serde_json::Value;
+
+  use std::io::{self, ErrorKind, Read};
+
+  use std::process;
+
+  
+
+  struct ReaderThatWillTimeOut<'a>(&'a [u8]);
+
+  
+
+  impl<'a> Read for ReaderThatWillTimeOut<'a> {
+
+      fn read(&mut self, buf: &mut [u8]) -> io::Result<usize> {
+
+          if self.0.is_empty() {
+
+              Err(io::Error::new(ErrorKind::TimedOut, "timed out"))
+
+          } else {
+
+              self.0.read(buf)
+
+          }
+
+      }
+
+  }
+
+  
+
+  fn main() {
+
+      let reader = ReaderThatWillTimeOut(br#" {"k": "#);
+
+  
+
+      let _: Value = match serde_json::from_reader(reader) {
+
+          Ok(value) => value,
+
+          Err(error) => {
+
+              if error.io_error_kind() == Some(ErrorKind::TimedOut) {
+
+                  // Maybe this application needs to retry certain kinds of errors.
+
+  
+
+                  return;
+
+              } else {
+
+                  eprintln!("error: {}", error);
+
+                  process::exit(1);
+
+              }
+
+          }
+
+      };
+
+  }
+
+  ```
 
 #### Trait Implementations
 
+##### `impl Any for Error`
+
+- <span id="error-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Error`
+
+- <span id="error-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Error`
+
+- <span id="error-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Error`
 
-- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for Error`
 
-- <span id="error-source"></span>`fn source(&self) -> Option<&dyn error::Error>`
+- <span id="error-error-source"></span>`fn source(&self) -> Option<&dyn error::Error>`
+
+##### `impl<T> From for Error`
+
+- <span id="error-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Error`
+
+- <span id="error-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
 
 - <span id="map-intodeserializer-type-deserializer"></span>`type Deserializer = Map<String, Value>`
 
-- <span id="map-into-deserializer"></span>`fn into_deserializer(self) -> <Self as >::Deserializer`
+- <span id="map-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> <Self as >::Deserializer`
 
 ##### `impl ToString for Error`
 
-- <span id="error-to-string"></span>`fn to_string(&self) -> String`
+- <span id="error-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Error`
+
+- <span id="error-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="error-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Error`
+
+- <span id="error-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="error-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ErrorImpl`
 
@@ -115,13 +301,55 @@ struct ErrorImpl {
 
 #### Trait Implementations
 
+##### `impl Any for ErrorImpl`
+
+- <span id="errorimpl-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ErrorImpl`
+
+- <span id="errorimpl-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ErrorImpl`
+
+- <span id="errorimpl-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Display for ErrorImpl`
 
-- <span id="errorimpl-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errorimpl-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ErrorImpl`
+
+- <span id="errorimpl-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ErrorImpl`
+
+- <span id="errorimpl-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for ErrorImpl`
 
-- <span id="errorimpl-to-string"></span>`fn to_string(&self) -> String`
+- <span id="errorimpl-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for ErrorImpl`
+
+- <span id="errorimpl-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="errorimpl-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ErrorImpl`
+
+- <span id="errorimpl-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="errorimpl-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `JsonUnexpected<'a>`
 
@@ -133,13 +361,55 @@ struct JsonUnexpected<'a>(de::Unexpected<'a>);
 
 #### Trait Implementations
 
+##### `impl Any for JsonUnexpected<'a>`
+
+- <span id="jsonunexpected-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for JsonUnexpected<'a>`
+
+- <span id="jsonunexpected-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for JsonUnexpected<'a>`
+
+- <span id="jsonunexpected-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Display for JsonUnexpected<'a>`
 
-- <span id="jsonunexpected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="jsonunexpected-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for JsonUnexpected<'a>`
+
+- <span id="jsonunexpected-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for JsonUnexpected<'a>`
+
+- <span id="jsonunexpected-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for JsonUnexpected<'a>`
 
-- <span id="jsonunexpected-to-string"></span>`fn to_string(&self) -> String`
+- <span id="jsonunexpected-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for JsonUnexpected<'a>`
+
+- <span id="jsonunexpected-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="jsonunexpected-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for JsonUnexpected<'a>`
+
+- <span id="jsonunexpected-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="jsonunexpected-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -185,23 +455,77 @@ Categorizes the cause of a `serde_json::Error`.
 
 #### Trait Implementations
 
+##### `impl Any for Category`
+
+- <span id="category-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Category`
+
+- <span id="category-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Category`
+
+- <span id="category-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Category`
 
 - <span id="category-clone"></span>`fn clone(&self) -> Category` — [`Category`](#category)
+
+##### `impl CloneToUninit for Category`
+
+- <span id="category-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Category`
 
 ##### `impl Debug for Category`
 
-- <span id="category-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="category-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Category`
 
+##### `impl<T> From for Category`
+
+- <span id="category-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Category`
+
+- <span id="category-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Category`
 
-- <span id="category-eq"></span>`fn eq(&self, other: &Category) -> bool` — [`Category`](#category)
+- <span id="category-partialeq-eq"></span>`fn eq(&self, other: &Category) -> bool` — [`Category`](#category)
 
 ##### `impl StructuralPartialEq for Category`
+
+##### `impl ToOwned for Category`
+
+- <span id="category-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="category-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="category-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Category`
+
+- <span id="category-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="category-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Category`
+
+- <span id="category-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="category-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ErrorCode`
 
@@ -341,13 +665,55 @@ enum ErrorCode {
 
 #### Trait Implementations
 
+##### `impl Any for ErrorCode`
+
+- <span id="errorcode-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ErrorCode`
+
+- <span id="errorcode-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ErrorCode`
+
+- <span id="errorcode-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Display for ErrorCode`
 
-- <span id="errorcode-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errorcode-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ErrorCode`
+
+- <span id="errorcode-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ErrorCode`
+
+- <span id="errorcode-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for ErrorCode`
 
-- <span id="errorcode-to-string"></span>`fn to_string(&self) -> String`
+- <span id="errorcode-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for ErrorCode`
+
+- <span id="errorcode-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="errorcode-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ErrorCode`
+
+- <span id="errorcode-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="errorcode-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

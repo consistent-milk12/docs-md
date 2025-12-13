@@ -57,11 +57,53 @@ struct private;
 
 #### Trait Implementations
 
+##### `impl Any for private`
+
+- <span id="private-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for private`
+
+- <span id="private-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for private`
+
+- <span id="private-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for private`
+
+- <span id="private-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for private`
+
+- <span id="private-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Spanned for private`
 
-- <span id="private-span"></span>`fn span(&self) -> Span`
+- <span id="private-spanned-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for private`
 
-- <span id="private-to-tokens"></span>`fn to_tokens(&self, tokens: &mut proc_macro2::TokenStream)`
+- <span id="private-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut proc_macro2::TokenStream)`
+
+##### `impl<U> TryFrom for private`
+
+- <span id="private-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="private-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for private`
+
+- <span id="private-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="private-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

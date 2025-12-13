@@ -116,19 +116,293 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="regex-new"></span>`fn new(pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md#builderror)
 
+  Parse the given regular expression using the default configuration and
+
+  return the corresponding regex.
+
+  
+
+  If you want a non-default configuration, then use the [`Builder`](#builder) to
+
+  set your own configuration.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::{hybrid::regex::Regex, Match};
+
+  
+
+  let re = Regex::new("foo[0-9]+bar")?;
+
+  let mut cache = re.create_cache();
+
+  assert_eq!(
+
+      Some(Match::must(0, 3..14)),
+
+      re.find(&mut cache, "zzzfoo12345barzzz"),
+
+  );
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
+
 - <span id="regex-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md#builderror)
+
+  Like `new`, but parses multiple patterns into a single "multi regex."
+
+  This similarly uses the default regex configuration.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::{hybrid::regex::Regex, Match};
+
+  
+
+  let re = Regex::new_many(&["[a-z]+", "[0-9]+"])?;
+
+  let mut cache = re.create_cache();
+
+  
+
+  let mut it = re.find_iter(&mut cache, "abc 1 foo 4567 0 quux");
+
+  assert_eq!(Some(Match::must(0, 0..3)), it.next());
+
+  assert_eq!(Some(Match::must(1, 4..5)), it.next());
+
+  assert_eq!(Some(Match::must(0, 6..9)), it.next());
+
+  assert_eq!(Some(Match::must(1, 10..14)), it.next());
+
+  assert_eq!(Some(Match::must(1, 15..16)), it.next());
+
+  assert_eq!(Some(Match::must(0, 17..21)), it.next());
+
+  assert_eq!(None, it.next());
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
 
 - <span id="regex-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
+  Return a builder for configuring the construction of a `Regex`.
+
+  
+
+  This is a convenience routine to avoid needing to import the
+
+  [`Builder`](#builder) type in common cases.
+
+  
+
+  # Example
+
+  
+
+  This example shows how to use the builder to disable UTF-8 mode
+
+  everywhere.
+
+  
+
+  ```rust
+
+  if cfg!(miri) { return Ok(()); } // miri takes too long
+
+  use regex_automata::{
+
+      hybrid::regex::Regex, nfa::thompson, util::syntax, Match,
+
+  };
+
+  
+
+  let re = Regex::builder()
+
+      .syntax(syntax::Config::new().utf8(false))
+
+      .thompson(thompson::Config::new().utf8(false))
+
+      .build(r"foo(?-u:[^b])ar.*")?;
+
+  let mut cache = re.create_cache();
+
+  
+
+  let haystack = b"\xFEfoo\xFFarzz\xE2\x98\xFF\n";
+
+  let expected = Some(Match::must(0, 1..9));
+
+  let got = re.find(&mut cache, haystack);
+
+  assert_eq!(expected, got);
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
+
 - <span id="regex-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](#cache)
+
+  Create a new cache for this `Regex`.
+
+  
+
+  The cache returned should only be used for searches for this
+
+  `Regex`. If you want to reuse the cache for another `Regex`, then
+
+  you must call `Cache::reset` with that `Regex` (or, equivalently,
+
+  `Regex::reset_cache`).
 
 - <span id="regex-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](#cache)
 
+  Reset the given cache such that it can be used for searching with the
+
+  this `Regex` (and only this `Regex`).
+
+  
+
+  A cache reset permits reusing memory already allocated in this cache
+
+  with a different `Regex`.
+
+  
+
+  Resetting a cache sets its "clear count" to 0. This is relevant if the
+
+  `Regex` has been configured to "give up" after it has cleared the cache
+
+  a certain number of times.
+
+  
+
+  # Example
+
+  
+
+  This shows how to re-purpose a cache for use with a different `Regex`.
+
+  
+
+  ```rust
+
+  if cfg!(miri) { return Ok(()); } // miri takes too long
+
+  use regex_automata::{hybrid::regex::Regex, Match};
+
+  
+
+  let re1 = Regex::new(r"\w")?;
+
+  let re2 = Regex::new(r"\W")?;
+
+  
+
+  let mut cache = re1.create_cache();
+
+  assert_eq!(
+
+      Some(Match::must(0, 0..2)),
+
+      re1.find(&mut cache, "Δ"),
+
+  );
+
+  
+
+  // Using 'cache' with re2 is not allowed. It may result in panics or
+
+  // incorrect results. In order to re-purpose the cache, we must reset
+
+  // it with the Regex we'd like to use it with.
+
+  //
+
+  // Similarly, after this reset, using the cache with 're1' is also not
+
+  // allowed.
+
+  re2.reset_cache(&mut cache);
+
+  assert_eq!(
+
+      Some(Match::must(0, 0..3)),
+
+      re2.find(&mut cache, "☃"),
+
+  );
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for Regex`
+
+- <span id="regex-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Regex`
+
+- <span id="regex-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Regex`
+
+- <span id="regex-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for Regex`
 
-- <span id="regex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="regex-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Regex`
+
+- <span id="regex-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Regex`
+
+- <span id="regex-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Regex`
+
+- <span id="regex-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="regex-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Regex`
+
+- <span id="regex-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="regex-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FindMatches<'r, 'c, 'h>`
 
@@ -157,9 +431,39 @@ This iterator can be created with the `Regex::find_iter` method.
 
 #### Trait Implementations
 
+##### `impl Any for FindMatches<'r, 'c, 'h>`
+
+- <span id="findmatches-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FindMatches<'r, 'c, 'h>`
+
+- <span id="findmatches-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FindMatches<'r, 'c, 'h>`
+
+- <span id="findmatches-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for FindMatches<'r, 'c, 'h>`
 
-- <span id="findmatches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="findmatches-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FindMatches<'r, 'c, 'h>`
+
+- <span id="findmatches-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FindMatches<'r, 'c, 'h>`
+
+- <span id="findmatches-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for FindMatches<'r, 'c, 'h>`
 
@@ -167,13 +471,25 @@ This iterator can be created with the `Regex::find_iter` method.
 
 - <span id="findmatches-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="findmatches-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="findmatches-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for FindMatches<'r, 'c, 'h>`
 
 - <span id="findmatches-iterator-type-item"></span>`type Item = Match`
 
-- <span id="findmatches-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../index.md#match)
+- <span id="findmatches-iterator-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../index.md#match)
+
+##### `impl<U> TryFrom for FindMatches<'r, 'c, 'h>`
+
+- <span id="findmatches-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="findmatches-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FindMatches<'r, 'c, 'h>`
+
+- <span id="findmatches-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="findmatches-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Cache`
 
@@ -206,31 +522,213 @@ panics or incorrect results.
 
 - <span id="cache-new"></span>`fn new(re: &Regex) -> Cache` — [`Regex`](#regex), [`Cache`](#cache)
 
+  Create a new cache for the given `Regex`.
+
+  
+
+  The cache returned should only be used for searches for the given
+
+  `Regex`. If you want to reuse the cache for another `Regex`, then you
+
+  must call `Cache::reset` with that `Regex`.
+
 - <span id="cache-reset"></span>`fn reset(&mut self, re: &Regex)` — [`Regex`](#regex)
+
+  Reset this cache such that it can be used for searching with the given
+
+  `Regex` (and only that `Regex`).
+
+  
+
+  A cache reset permits reusing memory already allocated in this cache
+
+  with a different `Regex`.
+
+  
+
+  Resetting a cache sets its "clear count" to 0. This is relevant if the
+
+  `Regex` has been configured to "give up" after it has cleared the cache
+
+  a certain number of times.
+
+  
+
+  # Example
+
+  
+
+  This shows how to re-purpose a cache for use with a different `Regex`.
+
+  
+
+  ```rust
+
+  if cfg!(miri) { return Ok(()); } // miri takes too long
+
+  use regex_automata::{hybrid::regex::Regex, Match};
+
+  
+
+  let re1 = Regex::new(r"\w")?;
+
+  let re2 = Regex::new(r"\W")?;
+
+  
+
+  let mut cache = re1.create_cache();
+
+  assert_eq!(
+
+      Some(Match::must(0, 0..2)),
+
+      re1.find(&mut cache, "Δ"),
+
+  );
+
+  
+
+  // Using 'cache' with re2 is not allowed. It may result in panics or
+
+  // incorrect results. In order to re-purpose the cache, we must reset
+
+  // it with the Regex we'd like to use it with.
+
+  //
+
+  // Similarly, after this reset, using the cache with 're1' is also not
+
+  // allowed.
+
+  cache.reset(&re2);
+
+  assert_eq!(
+
+      Some(Match::must(0, 0..3)),
+
+      re2.find(&mut cache, "☃"),
+
+  );
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
 
 - <span id="cache-forward"></span>`fn forward(&mut self) -> &dfa::Cache` — [`Cache`](../dfa/index.md#cache)
 
+  Return a reference to the forward cache.
+
 - <span id="cache-reverse"></span>`fn reverse(&mut self) -> &dfa::Cache` — [`Cache`](../dfa/index.md#cache)
+
+  Return a reference to the reverse cache.
 
 - <span id="cache-forward-mut"></span>`fn forward_mut(&mut self) -> &mut dfa::Cache` — [`Cache`](../dfa/index.md#cache)
 
+  Return a mutable reference to the forward cache.
+
+  
+
+  If you need mutable references to both the forward and reverse caches,
+
+  then use `Cache::as_parts_mut`.
+
 - <span id="cache-reverse-mut"></span>`fn reverse_mut(&mut self) -> &mut dfa::Cache` — [`Cache`](../dfa/index.md#cache)
+
+  Return a mutable reference to the reverse cache.
+
+  
+
+  If you need mutable references to both the forward and reverse caches,
+
+  then use `Cache::as_parts_mut`.
 
 - <span id="cache-as-parts"></span>`fn as_parts(&self) -> (&dfa::Cache, &dfa::Cache)` — [`Cache`](../dfa/index.md#cache)
 
+  Return references to the forward and reverse caches, respectively.
+
 - <span id="cache-as-parts-mut"></span>`fn as_parts_mut(&mut self) -> (&mut dfa::Cache, &mut dfa::Cache)` — [`Cache`](../dfa/index.md#cache)
+
+  Return mutable references to the forward and reverse caches,
+
+  respectively.
 
 - <span id="cache-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
+  Returns the heap memory usage, in bytes, as a sum of the forward and
+
+  reverse lazy DFA caches.
+
+  
+
+  This does **not** include the stack size used up by this cache. To
+
+  compute that, use `std::mem::size_of::<Cache>()`.
+
 #### Trait Implementations
+
+##### `impl Any for Cache`
+
+- <span id="cache-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Cache`
+
+- <span id="cache-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Cache`
+
+- <span id="cache-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Cache`
 
 - <span id="cache-clone"></span>`fn clone(&self) -> Cache` — [`Cache`](#cache)
 
+##### `impl CloneToUninit for Cache`
+
+- <span id="cache-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Cache`
 
-- <span id="cache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cache-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Cache`
+
+- <span id="cache-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Cache`
+
+- <span id="cache-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Cache`
+
+- <span id="cache-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="cache-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="cache-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Cache`
+
+- <span id="cache-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cache-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Cache`
+
+- <span id="cache-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cache-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Builder`
 
@@ -302,29 +800,213 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
+  Create a new regex builder with the default configuration.
+
 - <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md#builderror)
+
+  Build a regex from the given pattern.
+
+  
+
+  If there was a problem parsing or compiling the pattern, then an error
+
+  is returned.
 
 - <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md#builderror)
 
+  Build a regex from the given patterns.
+
 - <span id="builder-build-from-dfas"></span>`fn build_from_dfas(&self, forward: DFA, reverse: DFA) -> Regex` — [`DFA`](../dfa/index.md#dfa), [`Regex`](#regex)
+
+  Build a regex from its component forward and reverse hybrid NFA/DFAs.
+
+  
+
+  This is useful when you've built a forward and reverse lazy DFA
+
+  separately, and want to combine them into a single regex. Once build,
+
+  the individual DFAs given can still be accessed via `Regex::forward`
+
+  and `Regex::reverse`.
+
+  
+
+  It is important that the reverse lazy DFA be compiled under the
+
+  following conditions:
+
+  
+
+  * It should use [`MatchKind::All`](../../index.md) semantics.
+
+  * It should match in reverse.
+
+  * Otherwise, its configuration should match the forward DFA.
+
+  
+
+  If these conditions aren't satisfied, then the behavior of searches is
+
+  unspecified.
+
+  
+
+  Note that when using this constructor, no configuration is applied.
+
+  Since this routine provides the DFAs to the builder, there is no
+
+  opportunity to apply other configuration options.
+
+  
+
+  # Example
+
+  
+
+  This shows how to build individual lazy forward and reverse DFAs, and
+
+  then combine them into a single `Regex`.
+
+  
+
+  ```rust
+
+  use regex_automata::{
+
+      hybrid::{dfa::DFA, regex::Regex},
+
+      nfa::thompson,
+
+      MatchKind,
+
+  };
+
+  
+
+  let fwd = DFA::new(r"foo[0-9]+")?;
+
+  let rev = DFA::builder()
+
+      .configure(DFA::config().match_kind(MatchKind::All))
+
+      .thompson(thompson::Config::new().reverse(true))
+
+      .build(r"foo[0-9]+")?;
+
+  
+
+  let re = Regex::builder().build_from_dfas(fwd, rev);
+
+  let mut cache = re.create_cache();
+
+  assert_eq!(true, re.is_match(&mut cache, "foo123"));
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
 
 - <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md#config), [`Builder`](#builder)
 
+  Set the syntax configuration for this builder using
+
+  [`syntax::Config`](crate::util::syntax::Config).
+
+  
+
+  This permits setting things like case insensitivity, Unicode and multi
+
+  line mode.
+
 - <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/compiler/index.md#config), [`Builder`](#builder)
+
+  Set the Thompson NFA configuration for this builder using
+
+  [`nfa::thompson::Config`](thompson::Config).
+
+  
+
+  This permits setting things like whether additional time should be
+
+  spent shrinking the size of the NFA.
 
 - <span id="builder-dfa"></span>`fn dfa(&mut self, config: dfa::Config) -> &mut Builder` — [`Config`](../dfa/index.md#config), [`Builder`](#builder)
 
+  Set the lazy DFA compilation configuration for this builder using
+
+  [`dfa::Config`](../dfa/index.md).
+
+  
+
+  This permits setting things like whether Unicode word boundaries should
+
+  be heuristically supported or settings how the behavior of the cache.
+
 #### Trait Implementations
+
+##### `impl Any for Builder`
+
+- <span id="builder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Builder`
+
+- <span id="builder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Builder`
+
+- <span id="builder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Builder`
 
 - <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](#builder)
 
+##### `impl CloneToUninit for Builder`
+
+- <span id="builder-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Builder`
 
-- <span id="builder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="builder-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Builder`
 
 - <span id="builder-default"></span>`fn default() -> Builder` — [`Builder`](#builder)
+
+##### `impl<T> From for Builder`
+
+- <span id="builder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Builder`
+
+- <span id="builder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Builder`
+
+- <span id="builder-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="builder-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="builder-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Builder`
+
+- <span id="builder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="builder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Builder`
+
+- <span id="builder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="builder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

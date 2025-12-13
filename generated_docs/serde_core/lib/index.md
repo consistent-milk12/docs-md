@@ -82,6 +82,52 @@ An iterator over function frames.
 
 - <span id="frameiter-next"></span>`fn next(&mut self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`PhantomData`](#phantomdata), [`lib`](#lib), [`Cow`](#cow), [`net`](#net)
 
+  Advances the iterator and returns the next frame.
+
+#### Trait Implementations
+
+##### `impl Any for FrameIter<'ctx, R>`
+
+- <span id="frameiter-any-type-id"></span>`fn type_id(&self) -> TypeId` — [`RangeFrom`](#rangefrom)
+
+##### `impl<T> Borrow for FrameIter<'ctx, R>`
+
+- <span id="frameiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FrameIter<'ctx, R>`
+
+- <span id="frameiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for FrameIter<'ctx, R>`
+
+- <span id="frameiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FrameIter<'ctx, R>`
+
+- <span id="frameiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for FrameIter<'ctx, R>`
+
+- <span id="frameiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="frameiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>` — [`PhantomData`](#phantomdata), [`FmtWrite`](#fmtwrite)
+
+##### `impl<U> TryInto for FrameIter<'ctx, R>`
+
+- <span id="frameiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="frameiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>` — [`PhantomData`](#phantomdata), [`FmtWrite`](#fmtwrite)
+
 ### `VecDeque<R: gimli::Reader>`
 
 ```rust
@@ -105,6 +151,12 @@ struct VecDeque<R: gimli::Reader> {
 
 - <span id="resunit-dwarf-and-unit"></span>`fn dwarf_and_unit<'unit, 'ctx: 'unit>(self: &'unit Self, ctx: &'ctx Context<R>) -> LookupResult<SimpleLookup<Result<(crate::DebugFile, gimli::UnitRef<'unit, R>), gimli::Error>, R, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(crate::DebugFile, gimli::UnitRef<'unit, R>), gimli::Error>>>` — [`PhantomData`](#phantomdata), [`Visitor`](../de/index.md#visitor), [`net`](#net), [`lib`](#lib), [`I8Deserializer`](../de/value/index.md#i8deserializer), [`CStr`](#cstr)
 
+  Returns the DWARF sections and the unit.
+
+  
+
+  Loads the DWO unit if necessary.
+
 - <span id="resunit-parse-lines"></span>`fn parse_lines(&self, sections: &gimli::Dwarf<R>) -> Result<Option<&Lines>, gimli::Error>` — [`CStr`](#cstr), [`PhantomData`](#phantomdata), [`lib`](#lib), [`net`](#net)
 
 - <span id="resunit-parse-functions"></span>`fn parse_functions<'unit, 'ctx: 'unit>(self: &'unit Self, ctx: &'ctx Context<R>) -> LookupResult<impl LookupContinuation<Output = Result<&'unit Functions<R>, gimli::Error>, Buf = R>>` — [`PhantomData`](#phantomdata), [`net`](#net)
@@ -116,6 +168,50 @@ struct VecDeque<R: gimli::Reader> {
 - <span id="resunit-find-location-range"></span>`fn find_location_range(&self, probe_low: u64, probe_high: u64, sections: &gimli::Dwarf<R>) -> Result<Option<LineLocationRangeIter<'_>>, gimli::Error>` — [`CStr`](#cstr), [`PhantomData`](#phantomdata), [`lib`](#lib), [`net`](#net)
 
 - <span id="resunit-find-function-or-location"></span>`fn find_function_or_location<'unit, 'ctx: 'unit>(self: &'unit Self, probe: u64, ctx: &'ctx Context<R>) -> LookupResult<impl LookupContinuation<Output = Result<(Option<&'unit Function<R>>, Option<Location<'unit>>), gimli::Error>, Buf = R>>` — [`PhantomData`](#phantomdata), [`lib`](#lib), [`CStr`](#cstr), [`f64`](#f64), [`net`](#net)
+
+#### Trait Implementations
+
+##### `impl Any for ResUnit<R>`
+
+- <span id="resunit-any-type-id"></span>`fn type_id(&self) -> TypeId` — [`RangeFrom`](#rangefrom)
+
+##### `impl<T> Borrow for ResUnit<R>`
+
+- <span id="resunit-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ResUnit<R>`
+
+- <span id="resunit-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for ResUnit<R>`
+
+- <span id="resunit-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ResUnit<R>`
+
+- <span id="resunit-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ResUnit<R>`
+
+- <span id="resunit-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="resunit-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>` — [`PhantomData`](#phantomdata), [`FmtWrite`](#fmtwrite)
+
+##### `impl<U> TryInto for ResUnit<R>`
+
+- <span id="resunit-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="resunit-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>` — [`PhantomData`](#phantomdata), [`FmtWrite`](#fmtwrite)
 
 ### `CStr<R: gimli::Reader>`
 
@@ -152,6 +248,52 @@ struct CStr<R: gimli::Reader> {
 
 - <span id="function-find-inlined-functions"></span>`fn find_inlined_functions(&self, probe: u64) -> alloc::vec::Vec<&InlinedFunction<R>>` — [`crate_root`](../crate_root/index.md#crate-root), [`CString`](#cstring)
 
+  Build the list of inlined functions that contain `probe`.
+
+#### Trait Implementations
+
+##### `impl Any for Function<R>`
+
+- <span id="function-any-type-id"></span>`fn type_id(&self) -> TypeId` — [`RangeFrom`](#rangefrom)
+
+##### `impl<T> Borrow for Function<R>`
+
+- <span id="function-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Function<R>`
+
+- <span id="function-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Function<R>`
+
+- <span id="function-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Function<R>`
+
+- <span id="function-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Function<R>`
+
+- <span id="function-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="function-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>` — [`PhantomData`](#phantomdata), [`FmtWrite`](#fmtwrite)
+
+##### `impl<U> TryInto for Function<R>`
+
+- <span id="function-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="function-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>` — [`PhantomData`](#phantomdata), [`FmtWrite`](#fmtwrite)
+
 ### `Write<'ctx, R>`
 
 ```rust
@@ -170,6 +312,50 @@ where
 
 *Re-exported from `addr2line`*
 
+#### Trait Implementations
+
+##### `impl Any for FrameIterFrames<'ctx, R>`
+
+- <span id="frameiterframes-any-type-id"></span>`fn type_id(&self) -> TypeId` — [`RangeFrom`](#rangefrom)
+
+##### `impl<T> Borrow for FrameIterFrames<'ctx, R>`
+
+- <span id="frameiterframes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FrameIterFrames<'ctx, R>`
+
+- <span id="frameiterframes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for FrameIterFrames<'ctx, R>`
+
+- <span id="frameiterframes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FrameIterFrames<'ctx, R>`
+
+- <span id="frameiterframes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for FrameIterFrames<'ctx, R>`
+
+- <span id="frameiterframes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="frameiterframes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>` — [`PhantomData`](#phantomdata), [`FmtWrite`](#fmtwrite)
+
+##### `impl<U> TryInto for FrameIterFrames<'ctx, R>`
+
+- <span id="frameiterframes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="frameiterframes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>` — [`PhantomData`](#phantomdata), [`FmtWrite`](#fmtwrite)
+
 ## Enums
 
 ### `BTreeSet<'ctx, R>`
@@ -187,6 +373,50 @@ where
 *Defined in [`addr2line-0.25.1/src/frame.rs:34-41`](../../../.source_1765521767/addr2line-0.25.1/src/frame.rs#L34-L41)*
 
 *Re-exported from `addr2line`*
+
+#### Trait Implementations
+
+##### `impl Any for FrameIterState<'ctx, R>`
+
+- <span id="frameiterstate-any-type-id"></span>`fn type_id(&self) -> TypeId` — [`RangeFrom`](#rangefrom)
+
+##### `impl<T> Borrow for FrameIterState<'ctx, R>`
+
+- <span id="frameiterstate-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FrameIterState<'ctx, R>`
+
+- <span id="frameiterstate-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for FrameIterState<'ctx, R>`
+
+- <span id="frameiterstate-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FrameIterState<'ctx, R>`
+
+- <span id="frameiterstate-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for FrameIterState<'ctx, R>`
+
+- <span id="frameiterstate-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="frameiterstate-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>` — [`PhantomData`](#phantomdata), [`FmtWrite`](#fmtwrite)
+
+##### `impl<U> TryInto for FrameIterState<'ctx, R>`
+
+- <span id="frameiterstate-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="frameiterstate-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>` — [`PhantomData`](#phantomdata), [`FmtWrite`](#fmtwrite)
 
 ## Functions
 

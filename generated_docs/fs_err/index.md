@@ -216,37 +216,139 @@ Wrapper around [`std::fs::OpenOptions`](https://doc.rust-lang.org/std/fs/struct.
 
 - <span id="openoptions-new"></span>`fn new() -> Self`
 
+  Creates a blank new set of options ready for configuration.
+
+  
+
+  Wrapper for [`std::fs::OpenOptions::new`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.new)
+
 - <span id="openoptions-read"></span>`fn read(&mut self, read: bool) -> &mut Self`
+
+  Sets the option for read access.
+
+  
+
+  Wrapper for [`std::fs::OpenOptions::read`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.read)
 
 - <span id="openoptions-write"></span>`fn write(&mut self, write: bool) -> &mut Self`
 
+  Sets the option for write access.
+
+  
+
+  Wrapper for [`std::fs::OpenOptions::write`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.write)
+
 - <span id="openoptions-append"></span>`fn append(&mut self, append: bool) -> &mut Self`
+
+  Sets the option for the append mode.
+
+  
+
+  Wrapper for [`std::fs::OpenOptions::append`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.append)
 
 - <span id="openoptions-truncate"></span>`fn truncate(&mut self, truncate: bool) -> &mut Self`
 
+  Sets the option for truncating a previous file.
+
+  
+
+  Wrapper for [`std::fs::OpenOptions::truncate`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.truncate)
+
 - <span id="openoptions-create"></span>`fn create(&mut self, create: bool) -> &mut Self`
+
+  Sets the option to create a new file, or open it if it already exists.
+
+  
+
+  Wrapper for [`std::fs::OpenOptions::create`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.create)
 
 - <span id="openoptions-create-new"></span>`fn create_new(&mut self, create_new: bool) -> &mut Self`
 
+  Sets the option to create a new file, failing if it already exists.
+
+  
+
+  Wrapper for [`std::fs::OpenOptions::create_new`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.create_new)
+
 - <span id="openoptions-open"></span>`fn open<P>(&self, path: P) -> io::Result<crate::File>` — [`File`](#file)
 
+  Opens a file at `path` with the options specified by `self`.
+
+  
+
+  Wrapper for [`std::fs::OpenOptions::open`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.open)
+
 #### Trait Implementations
+
+##### `impl Any for OpenOptions`
+
+- <span id="openoptions-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for OpenOptions`
+
+- <span id="openoptions-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for OpenOptions`
+
+- <span id="openoptions-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for OpenOptions`
 
 - <span id="openoptions-clone"></span>`fn clone(&self) -> OpenOptions` — [`OpenOptions`](open_options/index.md#openoptions)
 
+##### `impl CloneToUninit for OpenOptions`
+
+- <span id="openoptions-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for OpenOptions`
 
-- <span id="openoptions-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="openoptions-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for OpenOptions`
+
+- <span id="openoptions-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for OpenOptions`
+
+- <span id="openoptions-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OpenOptionsExt for crate::OpenOptions`
 
-- <span id="crateopenoptions-mode"></span>`fn mode(&mut self, mode: u32) -> &mut Self`
+- <span id="crateopenoptions-openoptionsext-mode"></span>`fn mode(&mut self, mode: u32) -> &mut Self`
 
-- <span id="crateopenoptions-custom-flags"></span>`fn custom_flags(&mut self, flags: i32) -> &mut Self`
+- <span id="crateopenoptions-openoptionsext-custom-flags"></span>`fn custom_flags(&mut self, flags: i32) -> &mut Self`
 
 ##### `impl Sealed for crate::OpenOptions`
+
+##### `impl ToOwned for OpenOptions`
+
+- <span id="openoptions-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="openoptions-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="openoptions-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for OpenOptions`
+
+- <span id="openoptions-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="openoptions-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for OpenOptions`
+
+- <span id="openoptions-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="openoptions-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ReadDir`
 
@@ -268,9 +370,39 @@ This struct is created via `fs_err::read_dir`.
 
 #### Trait Implementations
 
+##### `impl Any for ReadDir`
+
+- <span id="readdir-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ReadDir`
+
+- <span id="readdir-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ReadDir`
+
+- <span id="readdir-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ReadDir`
 
-- <span id="readdir-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="readdir-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ReadDir`
+
+- <span id="readdir-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ReadDir`
+
+- <span id="readdir-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ReadDir`
 
@@ -278,13 +410,25 @@ This struct is created via `fs_err::read_dir`.
 
 - <span id="readdir-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="readdir-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="readdir-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ReadDir`
 
 - <span id="readdir-iterator-type-item"></span>`type Item = Result<DirEntry, Error>`
 
-- <span id="readdir-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="readdir-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for ReadDir`
+
+- <span id="readdir-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="readdir-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ReadDir`
+
+- <span id="readdir-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="readdir-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DirEntry`
 
@@ -304,21 +448,87 @@ helpful information to all errors.
 
 - <span id="direntry-path"></span>`fn path(&self) -> PathBuf`
 
+  Returns the full path to the file that this entry represents.
+
+  
+
+  Wrapper for [`DirEntry::path`](https://doc.rust-lang.org/stable/std/fs/struct.DirEntry.html#method.path).
+
 - <span id="direntry-metadata"></span>`fn metadata(&self) -> io::Result<fs::Metadata>`
+
+  Returns the metadata for the file that this entry points at.
+
+  
+
+  Wrapper for [`DirEntry::metadata`](https://doc.rust-lang.org/stable/std/fs/struct.DirEntry.html#method.metadata).
 
 - <span id="direntry-file-type"></span>`fn file_type(&self) -> io::Result<fs::FileType>`
 
+  Returns the file type for the file that this entry points at.
+
+  
+
+  Wrapper for [`DirEntry::file_type`](https://doc.rust-lang.org/stable/std/fs/struct.DirEntry.html#method.file_type).
+
 - <span id="direntry-file-name"></span>`fn file_name(&self) -> OsString`
+
+  Returns the file name of this directory entry without any leading path component(s).
+
+  
+
+  Wrapper for [`DirEntry::file_name`](https://doc.rust-lang.org/stable/std/fs/struct.DirEntry.html#method.file_name).
 
 #### Trait Implementations
 
+##### `impl Any for DirEntry`
+
+- <span id="direntry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DirEntry`
+
+- <span id="direntry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DirEntry`
+
+- <span id="direntry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for DirEntry`
 
-- <span id="direntry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="direntry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DirEntryExt for DirEntry`
 
-- <span id="direntry-ino"></span>`fn ino(&self) -> u64`
+- <span id="direntry-direntryext-ino"></span>`fn ino(&self) -> u64`
+
+##### `impl<T> From for DirEntry`
+
+- <span id="direntry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DirEntry`
+
+- <span id="direntry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DirEntry`
+
+- <span id="direntry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="direntry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DirEntry`
+
+- <span id="direntry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="direntry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `File`
 
@@ -339,53 +549,147 @@ information to all errors.
 
 - <span id="file-open"></span>`fn open<P>(path: P) -> Result<Self, io::Error>`
 
+  Attempts to open a file in read-only mode.
+
+  
+
+  Wrapper for [`File::open`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.open).
+
 - <span id="file-create"></span>`fn create<P>(path: P) -> Result<Self, io::Error>`
+
+  Opens a file in write-only mode.
+
+  
+
+  Wrapper for [`File::create`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.create).
 
 - <span id="file-create-new"></span>`fn create_new<P>(path: P) -> Result<Self, io::Error>`
 
+  Opens a file in read-write mode.
+
+  
+
+  Wrapper for [`File::create_new`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.create_new).
+
 - <span id="file-options"></span>`fn options() -> OpenOptions` — [`OpenOptions`](open_options/index.md#openoptions)
+
+  Returns a new `OpenOptions` object.
+
+  
+
+  Wrapper for [`File::options`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.options).
 
 - <span id="file-sync-all"></span>`fn sync_all(&self) -> Result<(), io::Error>`
 
+  Attempts to sync all OS-internal metadata to disk.
+
+  
+
+  Wrapper for [`File::sync_all`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.sync_all).
+
 - <span id="file-sync-data"></span>`fn sync_data(&self) -> Result<(), io::Error>`
+
+  This function is similar to `sync_all`, except that it might not synchronize file metadata to the filesystem.
+
+  
+
+  Wrapper for [`File::sync_data`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.sync_data).
 
 - <span id="file-set-len"></span>`fn set_len(&self, size: u64) -> Result<(), io::Error>`
 
+  Truncates or extends the underlying file, updating the size of this file to become `size`.
+
+  
+
+  Wrapper for [`File::set_len`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.set_len).
+
 - <span id="file-metadata"></span>`fn metadata(&self) -> Result<fs::Metadata, io::Error>`
+
+  Queries metadata about the underlying file.
+
+  
+
+  Wrapper for [`File::metadata`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.metadata).
 
 - <span id="file-try-clone"></span>`fn try_clone(&self) -> Result<Self, io::Error>`
 
+  Creates a new `File` instance that shares the same underlying file handle as the
+
+  existing `File` instance. Reads, writes, and seeks will affect both `File`
+
+  instances simultaneously.
+
+  
+
+  Wrapper for [`File::try_clone`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.try_clone).
+
 - <span id="file-set-permissions"></span>`fn set_permissions(&self, perm: fs::Permissions) -> Result<(), io::Error>`
+
+  Changes the permissions on the underlying file.
+
+  
+
+  Wrapper for [`File::set_permissions`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.set_permissions).
 
 #### Trait Implementations
 
+##### `impl Any for File`
+
+- <span id="file-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl AsFd for crate::File`
 
-- <span id="cratefile-as-fd"></span>`fn as_fd(&self) -> BorrowedFd<'_>`
+- <span id="cratefile-asfd-as-fd"></span>`fn as_fd(&self) -> BorrowedFd<'_>`
 
 ##### `impl AsRawFd for crate::File`
 
-- <span id="cratefile-as-raw-fd"></span>`fn as_raw_fd(&self) -> RawFd`
+- <span id="cratefile-asrawfd-as-raw-fd"></span>`fn as_raw_fd(&self) -> RawFd`
+
+##### `impl<T> Borrow for File`
+
+- <span id="file-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for File`
+
+- <span id="file-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for File`
 
-- <span id="file-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="file-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FileExt for crate::File`
 
-- <span id="cratefile-read-at"></span>`fn read_at(&self, buf: &mut [u8], offset: u64) -> io::Result<usize>`
+- <span id="cratefile-fileext-read-at"></span>`fn read_at(&self, buf: &mut [u8], offset: u64) -> io::Result<usize>`
 
-- <span id="cratefile-write-at"></span>`fn write_at(&self, buf: &[u8], offset: u64) -> io::Result<usize>`
+- <span id="cratefile-fileext-write-at"></span>`fn write_at(&self, buf: &[u8], offset: u64) -> io::Result<usize>`
+
+##### `impl<T> From for File`
+
+- <span id="file-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for File`
+
+- <span id="file-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoRawFd for crate::File`
 
-- <span id="cratefile-into-raw-fd"></span>`fn into_raw_fd(self) -> RawFd`
+- <span id="cratefile-intorawfd-into-raw-fd"></span>`fn into_raw_fd(self) -> RawFd`
 
 ##### `impl Read for File`
 
 - <span id="file-read"></span>`fn read(&mut self, buf: &mut [u8]) -> std::io::Result<usize>`
 
-- <span id="file-read-vectored"></span>`fn read_vectored(&mut self, bufs: &mut [std::io::IoSliceMut<'_>]) -> std::io::Result<usize>`
+- <span id="file-read-read-vectored"></span>`fn read_vectored(&mut self, bufs: &mut [std::io::IoSliceMut<'_>]) -> std::io::Result<usize>`
 
 ##### `impl Sealed for crate::File`
 
@@ -393,13 +697,25 @@ information to all errors.
 
 - <span id="file-seek"></span>`fn seek(&mut self, pos: std::io::SeekFrom) -> std::io::Result<u64>`
 
+##### `impl<U> TryFrom for File`
+
+- <span id="file-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="file-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for File`
+
+- <span id="file-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="file-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ##### `impl Write for File`
 
 - <span id="file-write"></span>`fn write(&mut self, buf: &[u8]) -> std::io::Result<usize>`
 
-- <span id="file-write-vectored"></span>`fn write_vectored(&mut self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
+- <span id="file-write-write-vectored"></span>`fn write_vectored(&mut self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
 
-- <span id="file-flush"></span>`fn flush(&mut self) -> std::io::Result<()>`
+- <span id="file-write-flush"></span>`fn flush(&mut self) -> std::io::Result<()>`
 
 ## Traits
 

@@ -70,9 +70,51 @@ A forward substring searcher that uses the Two-Way algorithm.
 
 - <span id="finder-new"></span>`fn new(needle: &[u8]) -> Finder` — [`Finder`](#finder)
 
+  Create a searcher that finds occurrences of the given `needle`.
+
+  
+
+  An empty `needle` results in a match at every position in a haystack,
+
+  including at `haystack.len()`.
+
 - <span id="finder-find"></span>`fn find(&self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
 
+  Returns the first occurrence of `needle` in the given `haystack`, or
+
+  `None` if no such occurrence could be found.
+
+  
+
+  The `needle` given must be the same as the `needle` provided to
+
+  `Finder::new`.
+
+  
+
+  An empty `needle` results in a match at every position in a haystack,
+
+  including at `haystack.len()`.
+
 - <span id="finder-find-with-prefilter"></span>`fn find_with_prefilter(&self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8]) -> Option<usize>` — [`Pre`](../../../memmem/searcher/index.md#pre)
+
+  This is like `Finder::find`, but it accepts a prefilter for
+
+  accelerating searches.
+
+  
+
+  Currently this is not exposed in the public API because, at the time
+
+  of writing, I didn't want to spend time thinking about how to expose
+
+  the prefilter infrastructure (if at all). If you have a compelling use
+
+  case for exposing this routine, please create an issue. Do *not* open
+
+  a PR that just exposes `Pre` and friends. Exporting this routine will
+
+  require API design.
 
 - <span id="finder-find-small-imp"></span>`fn find_small_imp(&self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8], period: usize) -> Option<usize>` — [`Pre`](../../../memmem/searcher/index.md#pre)
 
@@ -80,15 +122,69 @@ A forward substring searcher that uses the Two-Way algorithm.
 
 #### Trait Implementations
 
+##### `impl Any for Finder`
+
+- <span id="finder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Finder`
+
+- <span id="finder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Finder`
+
+- <span id="finder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Finder`
 
 - <span id="finder-clone"></span>`fn clone(&self) -> Finder` — [`Finder`](#finder)
+
+##### `impl CloneToUninit for Finder`
+
+- <span id="finder-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Finder`
 
 ##### `impl Debug for Finder`
 
-- <span id="finder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="finder-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Finder`
+
+- <span id="finder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Finder`
+
+- <span id="finder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Finder`
+
+- <span id="finder-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="finder-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="finder-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Finder`
+
+- <span id="finder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="finder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Finder`
+
+- <span id="finder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="finder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FinderRev`
 
@@ -104,7 +200,31 @@ A reverse substring searcher that uses the Two-Way algorithm.
 
 - <span id="finderrev-new"></span>`fn new(needle: &[u8]) -> FinderRev` — [`FinderRev`](#finderrev)
 
+  Create a searcher that finds occurrences of the given `needle`.
+
+  
+
+  An empty `needle` results in a match at every position in a haystack,
+
+  including at `haystack.len()`.
+
 - <span id="finderrev-rfind"></span>`fn rfind(&self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
+
+  Returns the last occurrence of `needle` in the given `haystack`, or
+
+  `None` if no such occurrence could be found.
+
+  
+
+  The `needle` given must be the same as the `needle` provided to
+
+  `FinderRev::new`.
+
+  
+
+  An empty `needle` results in a match at every position in a haystack,
+
+  including at `haystack.len()`.
 
 - <span id="finderrev-rfind-small-imp"></span>`fn rfind_small_imp(&self, haystack: &[u8], needle: &[u8], period: usize) -> Option<usize>`
 
@@ -112,15 +232,69 @@ A reverse substring searcher that uses the Two-Way algorithm.
 
 #### Trait Implementations
 
+##### `impl Any for FinderRev`
+
+- <span id="finderrev-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FinderRev`
+
+- <span id="finderrev-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FinderRev`
+
+- <span id="finderrev-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for FinderRev`
 
 - <span id="finderrev-clone"></span>`fn clone(&self) -> FinderRev` — [`FinderRev`](#finderrev)
+
+##### `impl CloneToUninit for FinderRev`
+
+- <span id="finderrev-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for FinderRev`
 
 ##### `impl Debug for FinderRev`
 
-- <span id="finderrev-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="finderrev-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FinderRev`
+
+- <span id="finderrev-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FinderRev`
+
+- <span id="finderrev-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for FinderRev`
+
+- <span id="finderrev-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="finderrev-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="finderrev-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FinderRev`
+
+- <span id="finderrev-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="finderrev-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FinderRev`
+
+- <span id="finderrev-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="finderrev-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TwoWay`
 
@@ -206,15 +380,69 @@ consistent forward or reverse APIs.
 
 #### Trait Implementations
 
+##### `impl Any for TwoWay`
+
+- <span id="twoway-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TwoWay`
+
+- <span id="twoway-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TwoWay`
+
+- <span id="twoway-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for TwoWay`
 
 - <span id="twoway-clone"></span>`fn clone(&self) -> TwoWay` — [`TwoWay`](#twoway)
+
+##### `impl CloneToUninit for TwoWay`
+
+- <span id="twoway-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for TwoWay`
 
 ##### `impl Debug for TwoWay`
 
-- <span id="twoway-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="twoway-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for TwoWay`
+
+- <span id="twoway-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TwoWay`
+
+- <span id="twoway-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for TwoWay`
+
+- <span id="twoway-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="twoway-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="twoway-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TwoWay`
+
+- <span id="twoway-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="twoway-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TwoWay`
+
+- <span id="twoway-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="twoway-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Suffix`
 
@@ -256,9 +484,51 @@ A suffix extracted from a needle along with its period.
 
 #### Trait Implementations
 
+##### `impl Any for Suffix`
+
+- <span id="suffix-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Suffix`
+
+- <span id="suffix-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Suffix`
+
+- <span id="suffix-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Suffix`
 
-- <span id="suffix-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="suffix-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Suffix`
+
+- <span id="suffix-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Suffix`
+
+- <span id="suffix-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Suffix`
+
+- <span id="suffix-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="suffix-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Suffix`
+
+- <span id="suffix-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="suffix-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ApproximateByteSet`
 
@@ -279,19 +549,79 @@ in the haystack by needle.len() bytes.
 
 - <span id="approximatebyteset-new"></span>`fn new(needle: &[u8]) -> ApproximateByteSet` — [`ApproximateByteSet`](#approximatebyteset)
 
+  Create a new set from the given needle.
+
 - <span id="approximatebyteset-contains"></span>`fn contains(&self, byte: u8) -> bool`
 
+  Return true if and only if the given byte might be in this set. This
+
+  may return a false positive, but will never return a false negative.
+
 #### Trait Implementations
+
+##### `impl Any for ApproximateByteSet`
+
+- <span id="approximatebyteset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ApproximateByteSet`
+
+- <span id="approximatebyteset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ApproximateByteSet`
+
+- <span id="approximatebyteset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ApproximateByteSet`
 
 - <span id="approximatebyteset-clone"></span>`fn clone(&self) -> ApproximateByteSet` — [`ApproximateByteSet`](#approximatebyteset)
 
+##### `impl CloneToUninit for ApproximateByteSet`
+
+- <span id="approximatebyteset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for ApproximateByteSet`
 
 ##### `impl Debug for ApproximateByteSet`
 
-- <span id="approximatebyteset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="approximatebyteset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ApproximateByteSet`
+
+- <span id="approximatebyteset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ApproximateByteSet`
+
+- <span id="approximatebyteset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for ApproximateByteSet`
+
+- <span id="approximatebyteset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="approximatebyteset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="approximatebyteset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ApproximateByteSet`
+
+- <span id="approximatebyteset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="approximatebyteset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ApproximateByteSet`
+
+- <span id="approximatebyteset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="approximatebyteset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -345,19 +675,97 @@ grok why the authors didn't pursue that path.
 
 - <span id="shift-forward"></span>`fn forward(needle: &[u8], period_lower_bound: usize, critical_pos: usize) -> Shift` — [`Shift`](#shift)
 
+  Compute the shift for a given needle in the forward direction.
+
+  
+
+  This requires a lower bound on the period and a critical position.
+
+  These can be computed by extracting both the minimal and maximal
+
+  lexicographic suffixes, and choosing the right-most starting position.
+
+  The lower bound on the period is then the period of the chosen suffix.
+
 - <span id="shift-reverse"></span>`fn reverse(needle: &[u8], period_lower_bound: usize, critical_pos: usize) -> Shift` — [`Shift`](#shift)
 
+  Compute the shift for a given needle in the reverse direction.
+
+  
+
+  This requires a lower bound on the period and a critical position.
+
+  These can be computed by extracting both the minimal and maximal
+
+  lexicographic suffixes, and choosing the left-most starting position.
+
+  The lower bound on the period is then the period of the chosen suffix.
+
 #### Trait Implementations
+
+##### `impl Any for Shift`
+
+- <span id="shift-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Shift`
+
+- <span id="shift-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Shift`
+
+- <span id="shift-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Shift`
 
 - <span id="shift-clone"></span>`fn clone(&self) -> Shift` — [`Shift`](#shift)
 
+##### `impl CloneToUninit for Shift`
+
+- <span id="shift-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Shift`
 
 ##### `impl Debug for Shift`
 
-- <span id="shift-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shift-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Shift`
+
+- <span id="shift-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Shift`
+
+- <span id="shift-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Shift`
+
+- <span id="shift-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="shift-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="shift-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Shift`
+
+- <span id="shift-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="shift-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Shift`
+
+- <span id="shift-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="shift-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SuffixKind`
 
@@ -396,17 +804,77 @@ The kind of suffix to extract.
 
 - <span id="suffixkind-cmp"></span>`fn cmp(self, current: u8, candidate: u8) -> SuffixOrdering` — [`SuffixOrdering`](#suffixordering)
 
+  Returns true if and only if the given candidate byte indicates that
+
+  it should replace the current suffix as the maximal (or minimal)
+
+  suffix.
+
 #### Trait Implementations
+
+##### `impl Any for SuffixKind`
+
+- <span id="suffixkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SuffixKind`
+
+- <span id="suffixkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SuffixKind`
+
+- <span id="suffixkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for SuffixKind`
 
 - <span id="suffixkind-clone"></span>`fn clone(&self) -> SuffixKind` — [`SuffixKind`](#suffixkind)
 
+##### `impl CloneToUninit for SuffixKind`
+
+- <span id="suffixkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for SuffixKind`
 
 ##### `impl Debug for SuffixKind`
 
-- <span id="suffixkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="suffixkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SuffixKind`
+
+- <span id="suffixkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SuffixKind`
+
+- <span id="suffixkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for SuffixKind`
+
+- <span id="suffixkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="suffixkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="suffixkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SuffixKind`
+
+- <span id="suffixkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="suffixkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SuffixKind`
+
+- <span id="suffixkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="suffixkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SuffixOrdering`
 
@@ -446,13 +914,67 @@ The result of comparing corresponding bytes between two suffixes.
 
 #### Trait Implementations
 
+##### `impl Any for SuffixOrdering`
+
+- <span id="suffixordering-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SuffixOrdering`
+
+- <span id="suffixordering-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SuffixOrdering`
+
+- <span id="suffixordering-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SuffixOrdering`
 
 - <span id="suffixordering-clone"></span>`fn clone(&self) -> SuffixOrdering` — [`SuffixOrdering`](#suffixordering)
+
+##### `impl CloneToUninit for SuffixOrdering`
+
+- <span id="suffixordering-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for SuffixOrdering`
 
 ##### `impl Debug for SuffixOrdering`
 
-- <span id="suffixordering-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="suffixordering-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SuffixOrdering`
+
+- <span id="suffixordering-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SuffixOrdering`
+
+- <span id="suffixordering-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for SuffixOrdering`
+
+- <span id="suffixordering-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="suffixordering-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="suffixordering-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SuffixOrdering`
+
+- <span id="suffixordering-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="suffixordering-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SuffixOrdering`
+
+- <span id="suffixordering-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="suffixordering-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

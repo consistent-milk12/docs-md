@@ -75,13 +75,111 @@ into the `rustdoc_types::Crate` structure.
 
 - <span id="parser-parse-json"></span>`fn parse_json(json: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md#error)
 
+  Parse a rustdoc JSON file from disk into a `Crate` structure.
+
+  
+
+  This is the primary entry point for loading documentation data.
+
+  The file should be generated with `cargo doc --output-format json`.
+
+  Parse a JSON string into a Crate structure.
+
+  
+
+  # Errors
+
+  Returns an error if it faills to parse the JSON.
+
 - <span id="parser-parse-file"></span>`fn parse_file(path: impl AsRef<std::path::Path>) -> Result<Crate, Error>` — [`Error`](../error/index.md#error)
+
+  Parse a JSON file.
+
+  
+
+  # Errors
+
+  Returns error if fails to read the JSON file.
 
 - <span id="parser-parse-json-string"></span>`fn parse_json_string(content: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md#error)
 
+  Parse a rustdoc JSON string into a `Crate` structure.
+
+  
+
+  This function is useful when the JSON content is already in memory
+
+  (e.g., fetched from a URL or embedded in tests).
+
+  
+
+  # Arguments
+
+  
+
+  * `content` - The raw JSON string to parse
+
+  
+
+  # Returns
+
+  
+
+  A parsed `Crate` structure containing all documentation data.
+
+  
+
+  # Errors
+
+  
+
+  Returns `Error::JsonParse` if the JSON is invalid or doesn't match
+
+  the expected rustdoc JSON schema.
+
+  
+
+  # Schema Compatibility
+
+  
+
+  The `rustdoc-types` crate version must match the rustdoc JSON format
+
+  version. Mismatches can cause parsing failures or missing fields.
+
 #### Trait Implementations
 
+##### `impl Any for Parser`
+
+- <span id="parser-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Parser`
+
+- <span id="parser-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Parser`
+
+- <span id="parser-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Parser`
+
+- <span id="parser-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for Parser`
+
+##### `impl<U> Into for Parser`
+
+- <span id="parser-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Parser`
 
@@ -93,13 +191,25 @@ into the `rustdoc_types::Crate` structure.
 
 - <span id="parser-pointable-type-init"></span>`type Init = T`
 
-- <span id="parser-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="parser-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="parser-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="parser-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="parser-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="parser-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="parser-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="parser-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for Parser`
+
+- <span id="parser-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="parser-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Parser`
+
+- <span id="parser-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="parser-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for Parser`
 

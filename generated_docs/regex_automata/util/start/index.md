@@ -141,27 +141,141 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="config-new"></span>`fn new() -> Config` — [`Config`](#config)
 
+  Create a new default start configuration.
+
+  
+
+  The default is an unanchored search that starts at the beginning of the
+
+  haystack.
+
 - <span id="config-from-input-forward"></span>`fn from_input_forward(input: &Input<'_>) -> Config` — [`Input`](../../index.md#input), [`Config`](#config)
+
+  A convenience routine for building a start configuration from an
+
+  [`Input`](../../index.md) for a forward search.
+
+  
+
+  This automatically sets the look-behind byte to the byte immediately
+
+  preceding the start of the search. If the start of the search is at
+
+  offset `0`, then no look-behind byte is set.
 
 - <span id="config-from-input-reverse"></span>`fn from_input_reverse(input: &Input<'_>) -> Config` — [`Input`](../../index.md#input), [`Config`](#config)
 
+  A convenience routine for building a start configuration from an
+
+  [`Input`](../../index.md) for a reverse search.
+
+  
+
+  This automatically sets the look-behind byte to the byte immediately
+
+  following the end of the search. If the end of the search is at
+
+  offset `haystack.len()`, then no look-behind byte is set.
+
 - <span id="config-look-behind"></span>`fn look_behind(self, byte: Option<u8>) -> Config` — [`Config`](#config)
+
+  Set the look-behind byte at the start of a search.
+
+  
+
+  Unless the search is intended to logically start at the beginning of a
+
+  haystack, this should _always_ be set to the byte immediately preceding
+
+  the start of the search. If no look-behind byte is set, then the start
+
+  configuration will assume it is at the beginning of the haystack. For
+
+  example, the anchor `^` will match.
+
+  
+
+  The default is that no look-behind byte is set.
 
 - <span id="config-anchored"></span>`fn anchored(self, mode: Anchored) -> Config` — [`Anchored`](../../index.md#anchored), [`Config`](#config)
 
+  Set the anchored mode of a search.
+
+  
+
+  The default is an unanchored search.
+
 - <span id="config-get-look-behind"></span>`fn get_look_behind(&self) -> Option<u8>`
+
+  Return the look-behind byte in this configuration, if one exists.
 
 - <span id="config-get-anchored"></span>`fn get_anchored(&self) -> Anchored` — [`Anchored`](../../index.md#anchored)
 
+  Return the anchored mode in this configuration.
+
 #### Trait Implementations
+
+##### `impl Any for Config`
+
+- <span id="config-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Config`
+
+- <span id="config-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Config`
+
+- <span id="config-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Config`
 
 - <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](#config)
 
+##### `impl CloneToUninit for Config`
+
+- <span id="config-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Config`
 
-- <span id="config-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="config-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Config`
+
+- <span id="config-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Config`
+
+- <span id="config-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Config`
+
+- <span id="config-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="config-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="config-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Config`
+
+- <span id="config-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="config-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Config`
+
+- <span id="config-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="config-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StartByteMap`
 
@@ -192,23 +306,109 @@ result of the epsilon closure that the NFA engines tend to need to do.)
 
 - <span id="startbytemap-new"></span>`fn new(lookm: &LookMatcher) -> StartByteMap` — [`LookMatcher`](../look/index.md#lookmatcher), [`StartByteMap`](#startbytemap)
 
+  Create a new map from byte values to their corresponding starting
+
+  configurations. The map is determined, in part, by how look-around
+
+  assertions are matched via the matcher given.
+
 - <span id="startbytemap-get"></span>`fn get(&self, byte: u8) -> Start` — [`Start`](#start)
+
+  Return the starting configuration for the given look-behind byte.
+
+  
+
+  If no look-behind exists, callers should use `Start::Text`.
 
 - <span id="startbytemap-from-bytes"></span>`fn from_bytes(slice: &[u8]) -> Result<(StartByteMap, usize), DeserializeError>` — [`StartByteMap`](#startbytemap), [`DeserializeError`](../wire/index.md#deserializeerror)
 
+  Deserializes a byte class map from the given slice. If the slice is of
+
+  insufficient length or otherwise contains an impossible mapping, then
+
+  an error is returned. Upon success, the number of bytes read along with
+
+  the map are returned. The number of bytes read is always a multiple of
+
+  8.
+
 - <span id="startbytemap-write-to"></span>`fn write_to(&self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../wire/index.md#serializeerror)
+
+  Writes this map to the given byte buffer. if the given buffer is too
+
+  small, then an error is returned. Upon success, the total number of
+
+  bytes written is returned. The number of bytes written is guaranteed to
+
+  be a multiple of 8.
 
 - <span id="startbytemap-write-to-len"></span>`fn write_to_len(&self) -> usize`
 
+  Returns the total number of bytes written by `write_to`.
+
 #### Trait Implementations
+
+##### `impl Any for StartByteMap`
+
+- <span id="startbytemap-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StartByteMap`
+
+- <span id="startbytemap-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StartByteMap`
+
+- <span id="startbytemap-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for StartByteMap`
 
 - <span id="startbytemap-clone"></span>`fn clone(&self) -> StartByteMap` — [`StartByteMap`](#startbytemap)
 
+##### `impl CloneToUninit for StartByteMap`
+
+- <span id="startbytemap-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for StartByteMap`
 
-- <span id="startbytemap-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="startbytemap-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for StartByteMap`
+
+- <span id="startbytemap-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StartByteMap`
+
+- <span id="startbytemap-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for StartByteMap`
+
+- <span id="startbytemap-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="startbytemap-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="startbytemap-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for StartByteMap`
+
+- <span id="startbytemap-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="startbytemap-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StartByteMap`
+
+- <span id="startbytemap-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="startbytemap-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -289,29 +489,97 @@ and can be found at `crate::util::determinize::set_lookbehind_from_start`.
 
 - <span id="start-from-usize"></span>`fn from_usize(n: usize) -> Option<Start>` — [`Start`](#start)
 
+  Return the starting state corresponding to the given integer. If no
+
+  starting state exists for the given integer, then None is returned.
+
 - <span id="start-len"></span>`fn len() -> usize`
+
+  Returns the total number of starting state configurations.
 
 - <span id="start-as-u8"></span>`fn as_u8(&self) -> u8`
 
+  Return this starting configuration as `u8` integer. It is guaranteed to
+
+  be less than `Start::len()`.
+
 - <span id="start-as-usize"></span>`fn as_usize(&self) -> usize`
 
+  Return this starting configuration as a `usize` integer. It is
+
+  guaranteed to be less than `Start::len()`.
+
 #### Trait Implementations
+
+##### `impl Any for Start`
+
+- <span id="start-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Start`
+
+- <span id="start-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Start`
+
+- <span id="start-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Start`
 
 - <span id="start-clone"></span>`fn clone(&self) -> Start` — [`Start`](#start)
 
+##### `impl CloneToUninit for Start`
+
+- <span id="start-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Start`
 
 ##### `impl Debug for Start`
 
-- <span id="start-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="start-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Start`
 
+##### `impl<T> From for Start`
+
+- <span id="start-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Start`
+
+- <span id="start-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Start`
 
-- <span id="start-eq"></span>`fn eq(&self, other: &Start) -> bool` — [`Start`](#start)
+- <span id="start-partialeq-eq"></span>`fn eq(&self, other: &Start) -> bool` — [`Start`](#start)
 
 ##### `impl StructuralPartialEq for Start`
+
+##### `impl ToOwned for Start`
+
+- <span id="start-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="start-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="start-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Start`
+
+- <span id="start-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="start-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Start`
+
+- <span id="start-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="start-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

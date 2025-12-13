@@ -38,33 +38,113 @@ more information on span ID generation.
 
 - <span id="id-from-u64"></span>`fn from_u64(u: u64) -> Self`
 
+  Constructs a new span ID from the given `u64`.
+
+  
+
+  <pre class="ignore" style="white-space:normal;font:inherit;">
+
+      <strong>Note</strong>: Span IDs must be greater than zero.
+
+  </pre>
+
+  
+
+  # Panics
+
+  - If the provided `u64` is 0.
+
 - <span id="id-from-non-zero-u64"></span>`const fn from_non_zero_u64(id: NonZeroU64) -> Self`
+
+  Constructs a new span ID from the given `NonZeroU64`.
+
+  
+
+  Unlike [`Id::from_u64`](Id::from_u64()), this will never panic.
 
 - <span id="id-into-u64"></span>`fn into_u64(&self) -> u64`
 
+  Returns the span's ID as a `u64`.
+
 - <span id="id-into-non-zero-u64"></span>`const fn into_non_zero_u64(&self) -> NonZeroU64`
 
+  Returns the span's ID as a `NonZeroU64`.
+
 #### Trait Implementations
+
+##### `impl Any for Id`
+
+- <span id="id-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Id`
+
+- <span id="id-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Id`
+
+- <span id="id-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Id`
 
 - <span id="id-clone"></span>`fn clone(&self) -> Id` — [`Id`](#id)
 
+##### `impl CloneToUninit for Id`
+
+- <span id="id-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Id`
 
-- <span id="id-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="id-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Id`
+
+##### `impl<T> From for Id`
+
+- <span id="id-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Id`
 
 - <span id="id-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Id`
+
+- <span id="id-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Id`
 
-- <span id="id-eq"></span>`fn eq(&self, other: &Id) -> bool` — [`Id`](#id)
+- <span id="id-partialeq-eq"></span>`fn eq(&self, other: &Id) -> bool` — [`Id`](#id)
 
 ##### `impl StructuralPartialEq for Id`
+
+##### `impl ToOwned for Id`
+
+- <span id="id-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="id-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="id-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Id`
+
+- <span id="id-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="id-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Id`
+
+- <span id="id-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="id-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Attributes<'a>`
 
@@ -85,33 +165,145 @@ created.
 
 - <span id="attributes-new"></span>`fn new(metadata: &'static Metadata<'static>, values: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../metadata/index.md#metadata), [`ValueSet`](../field/index.md#valueset)
 
+  Returns `Attributes` describing a new child span of the current span,
+
+  with the provided metadata and values.
+
 - <span id="attributes-new-root"></span>`fn new_root(metadata: &'static Metadata<'static>, values: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../metadata/index.md#metadata), [`ValueSet`](../field/index.md#valueset)
+
+  Returns `Attributes` describing a new span at the root of its own trace
+
+  tree, with the provided metadata and values.
 
 - <span id="attributes-child-of"></span>`fn child_of(parent: Id, metadata: &'static Metadata<'static>, values: &'a field::ValueSet<'a>) -> Self` — [`Id`](#id), [`Metadata`](../metadata/index.md#metadata), [`ValueSet`](../field/index.md#valueset)
 
+  Returns `Attributes` describing a new child span of the specified
+
+  parent span, with the provided metadata and values.
+
 - <span id="attributes-metadata"></span>`fn metadata(&self) -> &'static Metadata<'static>` — [`Metadata`](../metadata/index.md#metadata)
+
+  Returns a reference to the new span's metadata.
 
 - <span id="attributes-values"></span>`fn values(&self) -> &field::ValueSet<'a>` — [`ValueSet`](../field/index.md#valueset)
 
+  Returns a reference to a `ValueSet` containing any values the new span
+
+  was created with.
+
 - <span id="attributes-is-root"></span>`fn is_root(&self) -> bool`
+
+  Returns true if the new span should be a root.
 
 - <span id="attributes-is-contextual"></span>`fn is_contextual(&self) -> bool`
 
+  Returns true if the new span's parent should be determined based on the
+
+  current context.
+
+  
+
+  If this is true and the current thread is currently inside a span, then
+
+  that span should be the new span's parent. Otherwise, if the current
+
+  thread is _not_ inside a span, then the new span will be the root of its
+
+  own trace tree.
+
 - <span id="attributes-parent"></span>`fn parent(&self) -> Option<&Id>` — [`Id`](#id)
+
+  Returns the new span's explicitly-specified parent, if there is one.
+
+  
+
+  Otherwise (if the new span is a root or is a child of the current span),
+
+  returns `None`.
 
 - <span id="attributes-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](../field/index.md#visit)
 
+  Records all the fields in this set of `Attributes` with the provided
+
+  [Visitor].
+
 - <span id="attributes-contains"></span>`fn contains(&self, field: &field::Field) -> bool` — [`Field`](../field/index.md#field)
+
+  Returns `true` if this set of `Attributes` contains a value for the
+
+  given `Field`.
 
 - <span id="attributes-is-empty"></span>`fn is_empty(&self) -> bool`
 
+  Returns true if this set of `Attributes` contains _no_ values.
+
 - <span id="attributes-fields"></span>`fn fields(&self) -> &FieldSet` — [`FieldSet`](../field/index.md#fieldset)
+
+  Returns the set of all [`fields`](../../tracing_attributes/attr/kw/index.md) defined by this span's [`Metadata`](../metadata/index.md).
+
+  
+
+  Note that the [`FieldSet`](../field/index.md) returned by this method includes *all* the
+
+  fields declared by this span, not just those with values that are recorded
+
+  as part of this set of `Attributes`. Other fields with values not present in
+
+  this `Attributes`' value set may [record] values later.
+
+  
+
+  
+
+  
 
 #### Trait Implementations
 
+##### `impl Any for Attributes<'a>`
+
+- <span id="attributes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Attributes<'a>`
+
+- <span id="attributes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Attributes<'a>`
+
+- <span id="attributes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Attributes<'a>`
 
-- <span id="attributes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="attributes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Attributes<'a>`
+
+- <span id="attributes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Attributes<'a>`
+
+- <span id="attributes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Attributes<'a>`
+
+- <span id="attributes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="attributes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Attributes<'a>`
+
+- <span id="attributes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="attributes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Record<'a>`
 
@@ -129,19 +321,73 @@ A set of fields recorded by a span.
 
 - <span id="record-new"></span>`fn new(values: &'a field::ValueSet<'a>) -> Self` — [`ValueSet`](../field/index.md#valueset)
 
+  Constructs a new `Record` from a `ValueSet`.
+
 - <span id="record-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](../field/index.md#visit)
+
+  Records all the fields in this `Record` with the provided [Visitor].
 
 - <span id="record-len"></span>`fn len(&self) -> usize`
 
+  Returns the number of fields that would be visited from this `Record`
+
+  when `Record::record()` is called
+
 - <span id="record-contains"></span>`fn contains(&self, field: &field::Field) -> bool` — [`Field`](../field/index.md#field)
+
+  Returns `true` if this `Record` contains a value for the given `Field`.
 
 - <span id="record-is-empty"></span>`fn is_empty(&self) -> bool`
 
+  Returns true if this `Record` contains _no_ values.
+
 #### Trait Implementations
+
+##### `impl Any for Record<'a>`
+
+- <span id="record-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Record<'a>`
+
+- <span id="record-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Record<'a>`
+
+- <span id="record-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for Record<'a>`
 
-- <span id="record-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="record-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Record<'a>`
+
+- <span id="record-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Record<'a>`
+
+- <span id="record-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Record<'a>`
+
+- <span id="record-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="record-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Record<'a>`
+
+- <span id="record-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="record-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Current`
 
@@ -167,23 +413,105 @@ possible states:
 
 - <span id="current-new"></span>`fn new(id: Id, metadata: &'static Metadata<'static>) -> Self` — [`Id`](#id), [`Metadata`](../metadata/index.md#metadata)
 
+  Constructs a new `Current` that indicates the current context is a span
+
+  with the given `metadata` and `metadata`.
+
 - <span id="current-none"></span>`fn none() -> Self`
+
+  Constructs a new `Current` that indicates the current context is *not*
+
+  in a span.
 
 - <span id="current-unknown"></span>`fn unknown() -> Self`
 
+  Constructs a new `Current` that indicates the `Subscriber` does not
+
+  track a current span.
+
 - <span id="current-is-known"></span>`fn is_known(&self) -> bool`
+
+  Returns `true` if the `Subscriber` that constructed this `Current` tracks a
+
+  current span.
+
+  
+
+  If this returns `true` and `id`, [`metadata`](../metadata/index.md), or `into_inner`
+
+  return `None`, that indicates that we are currently known to *not* be
+
+  inside a span. If this returns `false`, those methods will also return
+
+  `None`, but in this case, that is because the subscriber does not keep
+
+  track of the currently-entered span.
+
+  
+
+  
 
 - <span id="current-into-inner"></span>`fn into_inner(self) -> Option<(Id, &'static Metadata<'static>)>` — [`Id`](#id), [`Metadata`](../metadata/index.md#metadata)
 
+  Consumes `self` and returns the span `Id` and `Metadata` of the current
+
+  span, if one exists and is known.
+
 - <span id="current-id"></span>`fn id(&self) -> Option<&Id>` — [`Id`](#id)
+
+  Borrows the `Id` of the current span, if one exists and is known.
 
 - <span id="current-metadata"></span>`fn metadata(&self) -> Option<&'static Metadata<'static>>` — [`Metadata`](../metadata/index.md#metadata)
 
+  Borrows the `Metadata` of the current span, if one exists and is known.
+
 #### Trait Implementations
+
+##### `impl Any for Current`
+
+- <span id="current-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Current`
+
+- <span id="current-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Current`
+
+- <span id="current-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for Current`
 
-- <span id="current-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="current-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Current`
+
+- <span id="current-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Current`
+
+- <span id="current-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Current`
+
+- <span id="current-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="current-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Current`
+
+- <span id="current-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="current-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -204,7 +532,49 @@ enum CurrentInner {
 
 #### Trait Implementations
 
+##### `impl Any for CurrentInner`
+
+- <span id="currentinner-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CurrentInner`
+
+- <span id="currentinner-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CurrentInner`
+
+- <span id="currentinner-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for CurrentInner`
 
-- <span id="currentinner-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="currentinner-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CurrentInner`
+
+- <span id="currentinner-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CurrentInner`
+
+- <span id="currentinner-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for CurrentInner`
+
+- <span id="currentinner-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="currentinner-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CurrentInner`
+
+- <span id="currentinner-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="currentinner-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

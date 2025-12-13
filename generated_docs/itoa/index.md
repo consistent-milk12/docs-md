@@ -88,19 +88,73 @@ assert_eq!(printed, "1234");
 
 - <span id="buffer-new"></span>`fn new() -> Buffer` — [`Buffer`](#buffer)
 
+  This is a cheap operation; you don't need to worry about reusing buffers
+
+  for efficiency.
+
 - <span id="buffer-format"></span>`fn format<I: Integer>(&mut self, i: I) -> &str`
 
+  Print an integer into this buffer and return a reference to its string
+
+  representation within the buffer.
+
 #### Trait Implementations
+
+##### `impl Any for Buffer`
+
+- <span id="buffer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Buffer`
+
+- <span id="buffer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Buffer`
+
+- <span id="buffer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Buffer`
 
 - <span id="buffer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for Buffer`
+
+- <span id="buffer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Buffer`
 
 ##### `impl Default for Buffer`
 
 - <span id="buffer-default"></span>`fn default() -> Buffer` — [`Buffer`](#buffer)
+
+##### `impl<T> From for Buffer`
+
+- <span id="buffer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Buffer`
+
+- <span id="buffer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Buffer`
+
+- <span id="buffer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="buffer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Buffer`
+
+- <span id="buffer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="buffer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

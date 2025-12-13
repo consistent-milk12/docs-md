@@ -77,6 +77,50 @@ A source location.
   
   A value of `Some(0)` indicates the left edge.
 
+#### Trait Implementations
+
+##### `impl Any for Location<'a>`
+
+- <span id="location-any-type-id"></span>`fn type_id(&self) -> TypeId` — [`Vec`](#vec)
+
+##### `impl<T> Borrow for Location<'a>`
+
+- <span id="location-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Location<'a>`
+
+- <span id="location-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Location<'a>`
+
+- <span id="location-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Location<'a>`
+
+- <span id="location-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Location<'a>`
+
+- <span id="location-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="location-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>` — [`Cow`](#cow), [`result`](#result)
+
+##### `impl<U> TryInto for Location<'a>`
+
+- <span id="location-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="location-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>` — [`Cow`](#cow), [`result`](#result)
+
 ### `default`
 
 ```rust
@@ -108,7 +152,7 @@ this type directly. Using a `DFA` directly is typically only necessary when
 one needs access to the `Automaton` trait implementation.
 
 This DFA can only be built by first constructing a [`noncontiguous::NFA`](#noncontiguousnfa).
-Both [`DFA::new`](../../addr2line/index.md) and `Builder::build` do this for you automatically, but
+Both [`DFA::new`](../../cargo_docs_md/error/index.md) and `Builder::build` do this for you automatically, but
 [`Builder::build_from_noncontiguous`](../../clap_builder/index.md) permits doing it explicitly.
 
 A DFA provides the best possible search performance (in this crate) via two
@@ -234,57 +278,127 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
+- <span id="dfa-new"></span>`fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`FmtWrite`](#fmtwrite), [`default`](#default), [`FmtWrite`](#fmtwrite)
+
+  Create a new Aho-Corasick DFA using the default configuration.
+
+  
+
+  Use a `Builder` if you want to change the configuration.
+
+- <span id="dfa-builder"></span>`fn builder() -> Builder`
+
+  A convenience method for returning a new Aho-Corasick DFA builder.
+
+  
+
+  This usually permits one to just import the `DFA` type.
+
 - <span id="dfa-const-dead"></span>`const DEAD: StateID`
 
 - <span id="dfa-set-matches"></span>`fn set_matches(&mut self, sid: StateID, pids: impl Iterator<Item = PatternID>)`
 
-- <span id="dfa-new"></span>`fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`FmtWrite`](#fmtwrite), [`default`](#default), [`FmtWrite`](#fmtwrite)
+  Adds the given pattern IDs as matches to the given state and also
 
-- <span id="dfa-builder"></span>`fn builder() -> Builder`
+  records the added memory usage.
 
 #### Trait Implementations
 
+##### `impl Any for DFA`
+
+- <span id="dfa-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl Automaton for DFA`
 
-- <span id="dfa-start-state"></span>`fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>` — [`FmtWrite`](#fmtwrite)
+- <span id="dfa-automaton-start-state"></span>`fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>` — [`FmtWrite`](#fmtwrite)
 
-- <span id="dfa-next-state"></span>`fn next_state(&self, _anchored: Anchored, sid: StateID, byte: u8) -> StateID`
+- <span id="dfa-automaton-next-state"></span>`fn next_state(&self, _anchored: Anchored, sid: StateID, byte: u8) -> StateID`
 
-- <span id="dfa-is-special"></span>`fn is_special(&self, sid: StateID) -> bool`
+- <span id="dfa-automaton-is-special"></span>`fn is_special(&self, sid: StateID) -> bool`
 
-- <span id="dfa-is-dead"></span>`fn is_dead(&self, sid: StateID) -> bool`
+- <span id="dfa-automaton-is-dead"></span>`fn is_dead(&self, sid: StateID) -> bool`
 
-- <span id="dfa-is-match"></span>`fn is_match(&self, sid: StateID) -> bool`
+- <span id="dfa-automaton-is-match"></span>`fn is_match(&self, sid: StateID) -> bool`
 
-- <span id="dfa-is-start"></span>`fn is_start(&self, sid: StateID) -> bool`
+- <span id="dfa-automaton-is-start"></span>`fn is_start(&self, sid: StateID) -> bool`
 
-- <span id="dfa-match-kind"></span>`fn match_kind(&self) -> MatchKind`
+- <span id="dfa-automaton-match-kind"></span>`fn match_kind(&self) -> MatchKind`
 
-- <span id="dfa-patterns-len"></span>`fn patterns_len(&self) -> usize`
+- <span id="dfa-automaton-patterns-len"></span>`fn patterns_len(&self) -> usize`
 
-- <span id="dfa-pattern-len"></span>`fn pattern_len(&self, pid: PatternID) -> usize`
+- <span id="dfa-automaton-pattern-len"></span>`fn pattern_len(&self, pid: PatternID) -> usize`
 
-- <span id="dfa-min-pattern-len"></span>`fn min_pattern_len(&self) -> usize`
+- <span id="dfa-automaton-min-pattern-len"></span>`fn min_pattern_len(&self) -> usize`
 
-- <span id="dfa-max-pattern-len"></span>`fn max_pattern_len(&self) -> usize`
+- <span id="dfa-automaton-max-pattern-len"></span>`fn max_pattern_len(&self) -> usize`
 
-- <span id="dfa-match-len"></span>`fn match_len(&self, sid: StateID) -> usize`
+- <span id="dfa-automaton-match-len"></span>`fn match_len(&self, sid: StateID) -> usize`
 
-- <span id="dfa-match-pattern"></span>`fn match_pattern(&self, sid: StateID, index: usize) -> PatternID`
+- <span id="dfa-automaton-match-pattern"></span>`fn match_pattern(&self, sid: StateID, index: usize) -> PatternID`
 
-- <span id="dfa-memory-usage"></span>`fn memory_usage(&self) -> usize`
+- <span id="dfa-automaton-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="dfa-prefilter"></span>`fn prefilter(&self) -> Option<&Prefilter>` — [`Cow`](#cow)
+- <span id="dfa-automaton-prefilter"></span>`fn prefilter(&self) -> Option<&Prefilter>` — [`Cow`](#cow)
+
+##### `impl<T> Borrow for DFA`
+
+- <span id="dfa-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DFA`
+
+- <span id="dfa-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for DFA`
 
 - <span id="dfa-clone"></span>`fn clone(&self) -> DFA` — [`default`](#default)
 
+##### `impl CloneToUninit for DFA`
+
+- <span id="dfa-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for DFA`
 
-- <span id="dfa-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="dfa-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for DFA`
+
+- <span id="dfa-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DFA`
+
+- <span id="dfa-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Sealed for crate::dfa::DFA`
+
+##### `impl ToOwned for DFA`
+
+- <span id="dfa-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dfa-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dfa-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DFA`
+
+- <span id="dfa-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dfa-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>` — [`FmtWrite`](#fmtwrite)
+
+##### `impl<U> TryInto for DFA`
+
+- <span id="dfa-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dfa-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>` — [`FmtWrite`](#fmtwrite)
 
 ## Functions
 

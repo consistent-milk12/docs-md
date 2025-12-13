@@ -37,7 +37,49 @@ This saves off I/O errors. instead of discarding them
 
 #### Trait Implementations
 
+##### `impl Any for Adapter<W>`
+
+- <span id="adapter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Adapter<W>`
+
+- <span id="adapter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Adapter<W>`
+
+- <span id="adapter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Adapter<W>`
+
+- <span id="adapter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Adapter<W>`
+
+- <span id="adapter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Adapter<W>`
+
+- <span id="adapter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="adapter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Adapter<W>`
+
+- <span id="adapter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="adapter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ##### `impl<W> Write for Adapter<W>`
 
-- <span id="adapter-write-str"></span>`fn write_str(&mut self, s: &str) -> std::fmt::Result`
+- <span id="adapter-write-write-str"></span>`fn write_str(&mut self, s: &str) -> std::fmt::Result`
 

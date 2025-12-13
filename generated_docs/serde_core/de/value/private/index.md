@@ -48,17 +48,59 @@ struct UnitOnly<E> {
 
 #### Trait Implementations
 
+##### `impl Any for UnitOnly<E>`
+
+- <span id="unitonly-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnitOnly<E>`
+
+- <span id="unitonly-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnitOnly<E>`
+
+- <span id="unitonly-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for UnitOnly<E>`
+
+- <span id="unitonly-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for UnitOnly<E>`
+
+- <span id="unitonly-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for UnitOnly<E>`
+
+- <span id="unitonly-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unitonly-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UnitOnly<E>`
+
+- <span id="unitonly-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unitonly-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ##### `impl<E> VariantAccess for UnitOnly<E>`
 
 - <span id="unitonly-variantaccess-type-error"></span>`type Error = E`
 
-- <span id="unitonly-unit-variant"></span>`fn unit_variant(self) -> Result<(), <Self as >::Error>` — [`VariantAccess`](../../index.md#variantaccess)
+- <span id="unitonly-variantaccess-unit-variant"></span>`fn unit_variant(self) -> Result<(), <Self as >::Error>` — [`VariantAccess`](../../index.md#variantaccess)
 
-- <span id="unitonly-newtype-variant-seed"></span>`fn newtype_variant_seed<T>(self, _seed: T) -> Result<<T as >::Value, <Self as >::Error>` — [`DeserializeSeed`](../../index.md#deserializeseed)
+- <span id="unitonly-variantaccess-newtype-variant-seed"></span>`fn newtype_variant_seed<T>(self, _seed: T) -> Result<<T as >::Value, <Self as >::Error>` — [`DeserializeSeed`](../../index.md#deserializeseed)
 
-- <span id="unitonly-tuple-variant"></span>`fn tuple_variant<V>(self, _len: usize, _visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md#visitor)
+- <span id="unitonly-variantaccess-tuple-variant"></span>`fn tuple_variant<V>(self, _len: usize, _visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md#visitor)
 
-- <span id="unitonly-struct-variant"></span>`fn struct_variant<V>(self, _fields: &'static [&'static str], _visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md#visitor)
+- <span id="unitonly-variantaccess-struct-variant"></span>`fn struct_variant<V>(self, _fields: &'static [&'static str], _visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md#visitor)
 
 ### `MapAsEnum<A>`
 
@@ -72,17 +114,59 @@ struct MapAsEnum<A> {
 
 #### Trait Implementations
 
+##### `impl Any for MapAsEnum<A>`
+
+- <span id="mapasenum-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MapAsEnum<A>`
+
+- <span id="mapasenum-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MapAsEnum<A>`
+
+- <span id="mapasenum-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for MapAsEnum<A>`
+
+- <span id="mapasenum-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MapAsEnum<A>`
+
+- <span id="mapasenum-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for MapAsEnum<A>`
+
+- <span id="mapasenum-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="mapasenum-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MapAsEnum<A>`
+
+- <span id="mapasenum-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="mapasenum-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ##### `impl<A> VariantAccess for MapAsEnum<A>`
 
 - <span id="mapasenum-variantaccess-type-error"></span>`type Error = <A as MapAccess>::Error`
 
-- <span id="mapasenum-unit-variant"></span>`fn unit_variant(self) -> Result<(), <Self as >::Error>` — [`VariantAccess`](../../index.md#variantaccess)
+- <span id="mapasenum-variantaccess-unit-variant"></span>`fn unit_variant(self) -> Result<(), <Self as >::Error>` — [`VariantAccess`](../../index.md#variantaccess)
 
-- <span id="mapasenum-newtype-variant-seed"></span>`fn newtype_variant_seed<T>(self, seed: T) -> Result<<T as >::Value, <Self as >::Error>` — [`DeserializeSeed`](../../index.md#deserializeseed)
+- <span id="mapasenum-variantaccess-newtype-variant-seed"></span>`fn newtype_variant_seed<T>(self, seed: T) -> Result<<T as >::Value, <Self as >::Error>` — [`DeserializeSeed`](../../index.md#deserializeseed)
 
-- <span id="mapasenum-tuple-variant"></span>`fn tuple_variant<V>(self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md#visitor)
+- <span id="mapasenum-variantaccess-tuple-variant"></span>`fn tuple_variant<V>(self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md#visitor)
 
-- <span id="mapasenum-struct-variant"></span>`fn struct_variant<V>(self, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md#visitor)
+- <span id="mapasenum-variantaccess-struct-variant"></span>`fn struct_variant<V>(self, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md#visitor)
 
 ### `SeedTupleVariant<V>`
 
@@ -97,11 +181,53 @@ struct SeedTupleVariant<V> {
 
 #### Trait Implementations
 
+##### `impl Any for SeedTupleVariant<V>`
+
+- <span id="seedtuplevariant-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SeedTupleVariant<V>`
+
+- <span id="seedtuplevariant-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SeedTupleVariant<V>`
+
+- <span id="seedtuplevariant-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<V> DeserializeSeed for SeedTupleVariant<V>`
 
 - <span id="seedtuplevariant-deserializeseed-type-value"></span>`type Value = <V as Visitor>::Value`
 
-- <span id="seedtuplevariant-deserialize"></span>`fn deserialize<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`DeserializeSeed`](../../index.md#deserializeseed)
+- <span id="seedtuplevariant-deserializeseed-deserialize"></span>`fn deserialize<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`DeserializeSeed`](../../index.md#deserializeseed)
+
+##### `impl<T> From for SeedTupleVariant<V>`
+
+- <span id="seedtuplevariant-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SeedTupleVariant<V>`
+
+- <span id="seedtuplevariant-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for SeedTupleVariant<V>`
+
+- <span id="seedtuplevariant-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="seedtuplevariant-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SeedTupleVariant<V>`
+
+- <span id="seedtuplevariant-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="seedtuplevariant-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SeedStructVariant<V>`
 
@@ -115,11 +241,53 @@ struct SeedStructVariant<V> {
 
 #### Trait Implementations
 
+##### `impl Any for SeedStructVariant<V>`
+
+- <span id="seedstructvariant-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SeedStructVariant<V>`
+
+- <span id="seedstructvariant-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SeedStructVariant<V>`
+
+- <span id="seedstructvariant-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<V> DeserializeSeed for SeedStructVariant<V>`
 
 - <span id="seedstructvariant-deserializeseed-type-value"></span>`type Value = <V as Visitor>::Value`
 
-- <span id="seedstructvariant-deserialize"></span>`fn deserialize<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`DeserializeSeed`](../../index.md#deserializeseed)
+- <span id="seedstructvariant-deserializeseed-deserialize"></span>`fn deserialize<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`DeserializeSeed`](../../index.md#deserializeseed)
+
+##### `impl<T> From for SeedStructVariant<V>`
+
+- <span id="seedstructvariant-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SeedStructVariant<V>`
+
+- <span id="seedstructvariant-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for SeedStructVariant<V>`
+
+- <span id="seedstructvariant-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="seedstructvariant-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SeedStructVariant<V>`
+
+- <span id="seedstructvariant-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="seedstructvariant-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

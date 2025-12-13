@@ -363,15 +363,69 @@ https://github.com/ARM-software/abi-aa/blob/main/aadwarf32/aadwarf32.rst).
 
 #### Trait Implementations
 
+##### `impl Any for Arm`
+
+- <span id="arm-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Arm`
+
+- <span id="arm-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Arm`
+
+- <span id="arm-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Arm`
 
 - <span id="arm-clone"></span>`fn clone(&self) -> Arm` — [`Arm`](../index.md#arm)
+
+##### `impl CloneToUninit for Arm`
+
+- <span id="arm-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Arm`
 
 ##### `impl Debug for Arm`
 
-- <span id="arm-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="arm-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Arm`
+
+- <span id="arm-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Arm`
+
+- <span id="arm-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Arm`
+
+- <span id="arm-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="arm-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="arm-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Arm`
+
+- <span id="arm-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="arm-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Arm`
+
+- <span id="arm-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="arm-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AArch64`
 
@@ -634,15 +688,69 @@ https://github.com/ARM-software/abi-aa/blob/main/aadwarf64/aadwarf64.rst).
 
 #### Trait Implementations
 
+##### `impl Any for AArch64`
+
+- <span id="aarch64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AArch64`
+
+- <span id="aarch64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AArch64`
+
+- <span id="aarch64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for AArch64`
 
 - <span id="aarch64-clone"></span>`fn clone(&self) -> AArch64` — [`AArch64`](../index.md#aarch64)
+
+##### `impl CloneToUninit for AArch64`
+
+- <span id="aarch64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for AArch64`
 
 ##### `impl Debug for AArch64`
 
-- <span id="aarch64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="aarch64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AArch64`
+
+- <span id="aarch64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AArch64`
+
+- <span id="aarch64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for AArch64`
+
+- <span id="aarch64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="aarch64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="aarch64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AArch64`
+
+- <span id="aarch64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="aarch64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AArch64`
+
+- <span id="aarch64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="aarch64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LoongArch`
 
@@ -930,15 +1038,69 @@ See [LoongArch ELF psABI specification](https://loongson.github.io/LoongArch-Doc
 
 #### Trait Implementations
 
+##### `impl Any for LoongArch`
+
+- <span id="loongarch-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LoongArch`
+
+- <span id="loongarch-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LoongArch`
+
+- <span id="loongarch-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for LoongArch`
 
 - <span id="loongarch-clone"></span>`fn clone(&self) -> LoongArch` — [`LoongArch`](../index.md#loongarch)
+
+##### `impl CloneToUninit for LoongArch`
+
+- <span id="loongarch-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for LoongArch`
 
 ##### `impl Debug for LoongArch`
 
-- <span id="loongarch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="loongarch-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for LoongArch`
+
+- <span id="loongarch-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LoongArch`
+
+- <span id="loongarch-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for LoongArch`
+
+- <span id="loongarch-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="loongarch-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="loongarch-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LoongArch`
+
+- <span id="loongarch-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="loongarch-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LoongArch`
+
+- <span id="loongarch-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="loongarch-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MIPS`
 
@@ -1154,15 +1316,69 @@ See [MIPS Details](https://en.wikibooks.org/wiki/MIPS_Assembly/MIPS_Details).
 
 #### Trait Implementations
 
+##### `impl Any for MIPS`
+
+- <span id="mips-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MIPS`
+
+- <span id="mips-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MIPS`
+
+- <span id="mips-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for MIPS`
 
 - <span id="mips-clone"></span>`fn clone(&self) -> MIPS` — [`MIPS`](../index.md#mips)
+
+##### `impl CloneToUninit for MIPS`
+
+- <span id="mips-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for MIPS`
 
 ##### `impl Debug for MIPS`
 
-- <span id="mips-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mips-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MIPS`
+
+- <span id="mips-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MIPS`
+
+- <span id="mips-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for MIPS`
+
+- <span id="mips-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="mips-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="mips-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MIPS`
+
+- <span id="mips-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="mips-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MIPS`
+
+- <span id="mips-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="mips-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RiscV`
 
@@ -1436,15 +1652,69 @@ See [RISC-V ELF psABI specification](https://github.com/riscv/riscv-elf-psabi-do
 
 #### Trait Implementations
 
+##### `impl Any for RiscV`
+
+- <span id="riscv-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RiscV`
+
+- <span id="riscv-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RiscV`
+
+- <span id="riscv-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for RiscV`
 
 - <span id="riscv-clone"></span>`fn clone(&self) -> RiscV` — [`RiscV`](../index.md#riscv)
+
+##### `impl CloneToUninit for RiscV`
+
+- <span id="riscv-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for RiscV`
 
 ##### `impl Debug for RiscV`
 
-- <span id="riscv-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="riscv-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RiscV`
+
+- <span id="riscv-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RiscV`
+
+- <span id="riscv-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for RiscV`
+
+- <span id="riscv-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="riscv-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="riscv-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RiscV`
+
+- <span id="riscv-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="riscv-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RiscV`
+
+- <span id="riscv-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="riscv-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `X86`
 
@@ -1550,15 +1820,69 @@ See section 2.4.2 of the [i386 psABI](https://gitlab.com/x86-psABIs/i386-ABI).
 
 #### Trait Implementations
 
+##### `impl Any for X86`
+
+- <span id="x86-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for X86`
+
+- <span id="x86-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for X86`
+
+- <span id="x86-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for X86`
 
 - <span id="x86-clone"></span>`fn clone(&self) -> X86` — [`X86`](../index.md#x86)
+
+##### `impl CloneToUninit for X86`
+
+- <span id="x86-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for X86`
 
 ##### `impl Debug for X86`
 
-- <span id="x86-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="x86-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for X86`
+
+- <span id="x86-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for X86`
+
+- <span id="x86-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for X86`
+
+- <span id="x86-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="x86-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="x86-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for X86`
+
+- <span id="x86-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="x86-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for X86`
+
+- <span id="x86-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="x86-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `X86_64`
 
@@ -1800,15 +2124,69 @@ See section 3.6.2 of the [x86-64 psABI](https://gitlab.com/x86-psABIs/x86-64-ABI
 
 #### Trait Implementations
 
+##### `impl Any for X86_64`
+
+- <span id="x86-64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for X86_64`
+
+- <span id="x86-64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for X86_64`
+
+- <span id="x86-64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for X86_64`
 
 - <span id="x86-64-clone"></span>`fn clone(&self) -> X86_64` — [`X86_64`](../index.md#x86-64)
+
+##### `impl CloneToUninit for X86_64`
+
+- <span id="x86-64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for X86_64`
 
 ##### `impl Debug for X86_64`
 
-- <span id="x86-64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="x86-64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for X86_64`
+
+- <span id="x86-64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for X86_64`
+
+- <span id="x86-64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for X86_64`
+
+- <span id="x86-64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="x86-64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="x86-64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for X86_64`
+
+- <span id="x86-64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="x86-64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for X86_64`
+
+- <span id="x86-64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="x86-64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PowerPc64`
 
@@ -2048,15 +2426,69 @@ See [64-bit ELF ABI Specification for OpenPOWER Architecture](https://openpowerf
 
 #### Trait Implementations
 
+##### `impl Any for PowerPc64`
+
+- <span id="powerpc64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PowerPc64`
+
+- <span id="powerpc64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PowerPc64`
+
+- <span id="powerpc64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for PowerPc64`
 
 - <span id="powerpc64-clone"></span>`fn clone(&self) -> PowerPc64` — [`PowerPc64`](../index.md#powerpc64)
+
+##### `impl CloneToUninit for PowerPc64`
+
+- <span id="powerpc64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for PowerPc64`
 
 ##### `impl Debug for PowerPc64`
 
-- <span id="powerpc64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="powerpc64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for PowerPc64`
+
+- <span id="powerpc64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PowerPc64`
+
+- <span id="powerpc64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for PowerPc64`
+
+- <span id="powerpc64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="powerpc64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="powerpc64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PowerPc64`
+
+- <span id="powerpc64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="powerpc64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PowerPc64`
+
+- <span id="powerpc64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="powerpc64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Macros
 

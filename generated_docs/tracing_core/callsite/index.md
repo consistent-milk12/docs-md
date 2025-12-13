@@ -156,23 +156,77 @@ Two `Identifier`s are equal if they both refer to the same callsite.
 
 #### Trait Implementations
 
+##### `impl Any for Identifier`
+
+- <span id="identifier-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Identifier`
+
+- <span id="identifier-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Identifier`
+
+- <span id="identifier-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Identifier`
 
 - <span id="identifier-clone"></span>`fn clone(&self) -> Identifier` — [`Identifier`](#identifier)
 
+##### `impl CloneToUninit for Identifier`
+
+- <span id="identifier-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Identifier`
 
-- <span id="identifier-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="identifier-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Identifier`
+
+##### `impl<T> From for Identifier`
+
+- <span id="identifier-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Identifier`
 
 - <span id="identifier-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
+##### `impl<U> Into for Identifier`
+
+- <span id="identifier-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Identifier`
 
-- <span id="identifier-eq"></span>`fn eq(&self, other: &Identifier) -> bool` — [`Identifier`](#identifier)
+- <span id="identifier-partialeq-eq"></span>`fn eq(&self, other: &Identifier) -> bool` — [`Identifier`](#identifier)
+
+##### `impl ToOwned for Identifier`
+
+- <span id="identifier-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="identifier-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="identifier-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Identifier`
+
+- <span id="identifier-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="identifier-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Identifier`
+
+- <span id="identifier-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="identifier-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DefaultCallsite`
 
@@ -205,21 +259,95 @@ A default [`Callsite`](#callsite) implementation.
 
 - <span id="defaultcallsite-new"></span>`const fn new(meta: &'static Metadata<'static>) -> Self` — [`Metadata`](../metadata/index.md#metadata)
 
+  Returns a new `DefaultCallsite` with the specified `Metadata`.
+
 - <span id="defaultcallsite-register"></span>`fn register(self: &'static Self) -> Interest` — [`Interest`](../subscriber/index.md#interest)
+
+  Registers this callsite with the global callsite registry.
+
+  
+
+  If the callsite is already registered, this does nothing. When using
+
+  [`DefaultCallsite`](#defaultcallsite), this method should be preferred over
+
+  `tracing_core::callsite::register`, as it ensures that the callsite is
+
+  only registered a single time.
+
+  
+
+  Other callsite implementations will generally ensure that
+
+  callsites are not re-registered through another mechanism.
+
+  
+
+  See the [documentation on callsite registration][reg-docs] for details
+
+  on the global callsite registry.
+
+  
 
 - <span id="defaultcallsite-interest"></span>`fn interest(self: &'static Self) -> Interest` — [`Interest`](../subscriber/index.md#interest)
 
+  Returns the callsite's cached `Interest`, or registers it for the
+
+  first time if it has not yet been registered.
+
 #### Trait Implementations
+
+##### `impl Any for DefaultCallsite`
+
+- <span id="defaultcallsite-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DefaultCallsite`
+
+- <span id="defaultcallsite-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DefaultCallsite`
+
+- <span id="defaultcallsite-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Callsite for DefaultCallsite`
 
-- <span id="defaultcallsite-set-interest"></span>`fn set_interest(&self, interest: Interest)` — [`Interest`](../subscriber/index.md#interest)
+- <span id="defaultcallsite-callsite-set-interest"></span>`fn set_interest(&self, interest: Interest)` — [`Interest`](../subscriber/index.md#interest)
 
-- <span id="defaultcallsite-metadata"></span>`fn metadata(&self) -> &Metadata<'static>` — [`Metadata`](../metadata/index.md#metadata)
+- <span id="defaultcallsite-callsite-metadata"></span>`fn metadata(&self) -> &Metadata<'static>` — [`Metadata`](../metadata/index.md#metadata)
 
 ##### `impl Debug for DefaultCallsite`
 
-- <span id="defaultcallsite-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="defaultcallsite-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DefaultCallsite`
+
+- <span id="defaultcallsite-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DefaultCallsite`
+
+- <span id="defaultcallsite-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DefaultCallsite`
+
+- <span id="defaultcallsite-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="defaultcallsite-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DefaultCallsite`
+
+- <span id="defaultcallsite-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="defaultcallsite-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Callsites`
 
@@ -236,11 +364,77 @@ struct Callsites {
 
 - <span id="callsites-rebuild-interest"></span>`fn rebuild_interest(&self, dispatchers: dispatchers::Rebuilder<'_>)` — [`Rebuilder`](dispatchers/index.md#rebuilder)
 
+  Rebuild `Interest`s for all callsites in the registry.
+
+  
+
+  This also re-computes the max level hint.
+
 - <span id="callsites-push-dyn"></span>`fn push_dyn(&self, callsite: &'static dyn Callsite)` — [`Callsite`](#callsite)
+
+  Push a `dyn Callsite` trait object to the callsite registry.
+
+  
+
+  This will attempt to lock the callsites vector.
 
 - <span id="callsites-push-default"></span>`fn push_default(&self, callsite: &'static DefaultCallsite)` — [`DefaultCallsite`](#defaultcallsite)
 
+  Push a `DefaultCallsite` to the callsite registry.
+
+  
+
+  If we know the callsite being pushed is a `DefaultCallsite`, we can push
+
+  it to the linked list without having to acquire a lock.
+
 - <span id="callsites-for-each"></span>`fn for_each(&self, f: impl FnMut(&'static dyn Callsite))` — [`Callsite`](#callsite)
+
+  Invokes the provided closure `f` with each callsite in the registry.
+
+#### Trait Implementations
+
+##### `impl Any for Callsites`
+
+- <span id="callsites-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Callsites`
+
+- <span id="callsites-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Callsites`
+
+- <span id="callsites-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Callsites`
+
+- <span id="callsites-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Callsites`
+
+- <span id="callsites-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Callsites`
+
+- <span id="callsites-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="callsites-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Callsites`
+
+- <span id="callsites-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="callsites-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

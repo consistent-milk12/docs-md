@@ -68,21 +68,125 @@ always available in a symbol, however, so all methods return an `Option`.
 
 - <span id="symbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](#symbolname)
 
+  Returns the name of this function.
+
+  
+
+  The returned structure can be used to query various properties about the
+
+  symbol name:
+
+  
+
+  * The `Display` implementation will print out the demangled symbol.
+
+  * The raw `str` value of the symbol can be accessed (if it's valid
+
+    utf-8).
+
+  * The raw bytes for the symbol name can be accessed.
+
 - <span id="symbol-addr"></span>`fn addr(&self) -> Option<*mut c_void>`
+
+  Returns the starting address of this function.
 
 - <span id="symbol-filename-raw"></span>`fn filename_raw(&self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../types/index.md#bytesorwidestring)
 
+  Returns the raw filename as a slice. This is mainly useful for `no_std`
+
+  environments.
+
 - <span id="symbol-colno"></span>`fn colno(&self) -> Option<u32>`
+
+  Returns the column number for where this symbol is currently executing.
+
+  
+
+  Only gimli currently provides a value here and even then only if `filename`
+
+  returns `Some`, and so it is then consequently subject to similar caveats.
 
 - <span id="symbol-lineno"></span>`fn lineno(&self) -> Option<u32>`
 
+  Returns the line number for where this symbol is currently executing.
+
+  
+
+  This return value is typically `Some` if `filename` returns `Some`, and
+
+  is consequently subject to similar caveats.
+
 - <span id="symbol-filename"></span>`fn filename(&self) -> Option<&Path>`
+
+  Returns the file name where this function was defined.
+
+  
+
+  This is currently only available when libbacktrace or gimli is being
+
+  used (e.g. unix platforms other) and when a binary is compiled with
+
+  debuginfo. If neither of these conditions is met then this will likely
+
+  return `None`.
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
 
 #### Trait Implementations
 
+##### `impl Any for Symbol`
+
+- <span id="symbol-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Symbol`
+
+- <span id="symbol-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Symbol`
+
+- <span id="symbol-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Symbol`
 
-- <span id="symbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbol-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Symbol`
+
+- <span id="symbol-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Symbol`
+
+- <span id="symbol-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Symbol`
+
+- <span id="symbol-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symbol-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Symbol`
+
+- <span id="symbol-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symbol-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SymbolName<'a>`
 
@@ -102,23 +206,75 @@ demangled name, the raw bytes, the raw string, etc.
 
 - <span id="symbolname-new"></span>`fn new(bytes: &'a [u8]) -> SymbolName<'a>` — [`SymbolName`](#symbolname)
 
+  Creates a new symbol name from the raw underlying bytes.
+
 - <span id="symbolname-as-str"></span>`fn as_str(&self) -> Option<&'a str>`
+
+  Returns the raw (mangled) symbol name as a `str` if the symbol is valid utf-8.
+
+  
+
+  Use the `Display` implementation if you want the demangled version.
 
 - <span id="symbolname-as-bytes"></span>`fn as_bytes(&self) -> &'a [u8]`
 
+  Returns the raw symbol name as a list of bytes
+
 #### Trait Implementations
+
+##### `impl Any for SymbolName<'a>`
+
+- <span id="symbolname-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SymbolName<'a>`
+
+- <span id="symbolname-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SymbolName<'a>`
+
+- <span id="symbolname-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for SymbolName<'a>`
 
-- <span id="symbolname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbolname-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for SymbolName<'a>`
 
-- <span id="symbolname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbolname-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SymbolName<'a>`
+
+- <span id="symbolname-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SymbolName<'a>`
+
+- <span id="symbolname-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for SymbolName<'a>`
 
-- <span id="symbolname-to-string"></span>`fn to_string(&self) -> String`
+- <span id="symbolname-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for SymbolName<'a>`
+
+- <span id="symbolname-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symbolname-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SymbolName<'a>`
+
+- <span id="symbolname-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symbolname-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -136,6 +292,50 @@ enum ResolveWhat<'a> {
 #### Implementations
 
 - <span id="resolvewhat-address-or-ip"></span>`fn address_or_ip(&self) -> *mut c_void`
+
+#### Trait Implementations
+
+##### `impl Any for ResolveWhat<'a>`
+
+- <span id="resolvewhat-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ResolveWhat<'a>`
+
+- <span id="resolvewhat-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ResolveWhat<'a>`
+
+- <span id="resolvewhat-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for ResolveWhat<'a>`
+
+- <span id="resolvewhat-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ResolveWhat<'a>`
+
+- <span id="resolvewhat-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ResolveWhat<'a>`
+
+- <span id="resolvewhat-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="resolvewhat-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ResolveWhat<'a>`
+
+- <span id="resolvewhat-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="resolvewhat-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

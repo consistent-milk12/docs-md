@@ -44,6 +44,36 @@ Common producer for splitting on a predicate.
 
 #### Trait Implementations
 
+##### `impl Any for SplitProducer<'p, P, V, INCL>`
+
+- <span id="splitproducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SplitProducer<'p, P, V, INCL>`
+
+- <span id="splitproducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SplitProducer<'p, P, V, INCL>`
+
+- <span id="splitproducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for SplitProducer<'p, P, V, INCL>`
+
+- <span id="splitproducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SplitProducer<'p, P, V, INCL>`
+
+- <span id="splitproducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for SplitProducer<'p, P, V, INCL>`
 
 ##### `impl Pointable for SplitProducer<'p, P, V, INCL>`
@@ -52,21 +82,33 @@ Common producer for splitting on a predicate.
 
 - <span id="splitproducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="splitproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitproducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="splitproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitproducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="splitproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitproducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="splitproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="splitproducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for SplitProducer<'p, P, V, INCL>`
+
+- <span id="splitproducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="splitproducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SplitProducer<'p, P, V, INCL>`
+
+- <span id="splitproducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="splitproducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<P, V> UnindexedProducer for SplitProducer<'p, P, V, INCL>`
 
 - <span id="splitproducer-unindexedproducer-type-item"></span>`type Item = V`
 
-- <span id="splitproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
+- <span id="splitproducer-unindexedproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- <span id="splitproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
+- <span id="splitproducer-unindexedproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ## Traits
 

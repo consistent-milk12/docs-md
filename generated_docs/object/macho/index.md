@@ -1511,29 +1511,99 @@ right after the theader.
 
 - <span id="machodyldcacheheader-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R) -> Result<&'data Self>` — [`Result`](../index.md#result)
 
+  Read the dyld cache header.
+
 - <span id="machodyldcacheheader-parse-magic"></span>`fn parse_magic(&self) -> Result<(Architecture, E)>` — [`Result`](../index.md#result), [`Architecture`](../index.md#architecture)
+
+  Returns (arch, endian) based on the magic string.
 
 - <span id="machodyldcacheheader-mappings"></span>`fn mappings<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<DyldCacheMappingSlice<'data, E>>` — [`Result`](../index.md#result), [`DyldCacheMappingSlice`](../read/macho/index.md#dyldcachemappingslice)
 
+  Return the mapping information table.
+
 - <span id="machodyldcacheheader-subcaches"></span>`fn subcaches<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<Option<DyldSubCacheSlice<'data, E>>>` — [`Result`](../index.md#result), [`DyldSubCacheSlice`](../read/macho/index.md#dyldsubcacheslice)
+
+  Return the information about subcaches, if present.
+
+  
+
+  Returns `None` for dyld caches produced before dyld-940 (macOS 12).
 
 - <span id="machodyldcacheheader-symbols-subcache-uuid"></span>`fn symbols_subcache_uuid(&self, endian: E) -> Option<[u8; 16]>`
 
+  Return the UUID for the .symbols subcache, if present.
+
 - <span id="machodyldcacheheader-images"></span>`fn images<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<&'data [macho::DyldCacheImageInfo<E>]>` — [`Result`](../index.md#result), [`DyldCacheImageInfo`](#dyldcacheimageinfo)
 
+  Return the image information table.
+
 #### Trait Implementations
+
+##### `impl Any for DyldCacheHeader<E>`
+
+- <span id="dyldcacheheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheHeader<E>`
+
+- <span id="dyldcacheheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheHeader<E>`
+
+- <span id="dyldcacheheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for DyldCacheHeader<E>`
 
 - <span id="dyldcacheheader-clone"></span>`fn clone(&self) -> DyldCacheHeader<E>` — [`DyldCacheHeader`](#dyldcacheheader)
 
+##### `impl CloneToUninit for DyldCacheHeader<E>`
+
+- <span id="dyldcacheheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for DyldCacheHeader<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheHeader<E>`
 
-- <span id="dyldcacheheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcacheheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheHeader<E>`
+
+- <span id="dyldcacheheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheHeader<E>`
+
+- <span id="dyldcacheheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for DyldCacheHeader<E>`
+
+##### `impl ToOwned for DyldCacheHeader<E>`
+
+- <span id="dyldcacheheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyldcacheheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyldcacheheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DyldCacheHeader<E>`
+
+- <span id="dyldcacheheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcacheheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheHeader<E>`
+
+- <span id="dyldcacheheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcacheheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheMappingInfo<E: Endian>`
 
@@ -1553,17 +1623,71 @@ Corresponds to struct dyld_cache_mapping_info from dyld_cache_format.h.
 
 #### Trait Implementations
 
+##### `impl Any for DyldCacheMappingInfo<E>`
+
+- <span id="dyldcachemappinginfo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheMappingInfo<E>`
+
+- <span id="dyldcachemappinginfo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheMappingInfo<E>`
+
+- <span id="dyldcachemappinginfo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for DyldCacheMappingInfo<E>`
 
 - <span id="dyldcachemappinginfo-clone"></span>`fn clone(&self) -> DyldCacheMappingInfo<E>` — [`DyldCacheMappingInfo`](#dyldcachemappinginfo)
+
+##### `impl CloneToUninit for DyldCacheMappingInfo<E>`
+
+- <span id="dyldcachemappinginfo-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for DyldCacheMappingInfo<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheMappingInfo<E>`
 
-- <span id="dyldcachemappinginfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcachemappinginfo-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheMappingInfo<E>`
+
+- <span id="dyldcachemappinginfo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheMappingInfo<E>`
+
+- <span id="dyldcachemappinginfo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for DyldCacheMappingInfo<E>`
+
+##### `impl ToOwned for DyldCacheMappingInfo<E>`
+
+- <span id="dyldcachemappinginfo-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyldcachemappinginfo-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyldcachemappinginfo-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DyldCacheMappingInfo<E>`
+
+- <span id="dyldcachemappinginfo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcachemappinginfo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheMappingInfo<E>`
+
+- <span id="dyldcachemappinginfo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcachemappinginfo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheMappingAndSlideInfo<E: Endian>`
 
@@ -1588,19 +1712,75 @@ Corresponds to struct dyld_cache_mapping_and_slide_info from dyld_cache_format.h
 
 - <span id="machodyldcachemappingandslideinfo-slide"></span>`fn slide<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<DyldCacheSlideInfo<'data, E>>` — [`Result`](../index.md#result), [`DyldCacheSlideInfo`](../read/macho/index.md#dyldcacheslideinfo)
 
+  Return the (optional) array of slide information structs
+
 #### Trait Implementations
+
+##### `impl Any for DyldCacheMappingAndSlideInfo<E>`
+
+- <span id="dyldcachemappingandslideinfo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheMappingAndSlideInfo<E>`
+
+- <span id="dyldcachemappingandslideinfo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheMappingAndSlideInfo<E>`
+
+- <span id="dyldcachemappingandslideinfo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for DyldCacheMappingAndSlideInfo<E>`
 
 - <span id="dyldcachemappingandslideinfo-clone"></span>`fn clone(&self) -> DyldCacheMappingAndSlideInfo<E>` — [`DyldCacheMappingAndSlideInfo`](#dyldcachemappingandslideinfo)
 
+##### `impl CloneToUninit for DyldCacheMappingAndSlideInfo<E>`
+
+- <span id="dyldcachemappingandslideinfo-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for DyldCacheMappingAndSlideInfo<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheMappingAndSlideInfo<E>`
 
-- <span id="dyldcachemappingandslideinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcachemappingandslideinfo-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheMappingAndSlideInfo<E>`
+
+- <span id="dyldcachemappingandslideinfo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheMappingAndSlideInfo<E>`
+
+- <span id="dyldcachemappingandslideinfo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for DyldCacheMappingAndSlideInfo<E>`
+
+##### `impl ToOwned for DyldCacheMappingAndSlideInfo<E>`
+
+- <span id="dyldcachemappingandslideinfo-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyldcachemappingandslideinfo-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyldcachemappingandslideinfo-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DyldCacheMappingAndSlideInfo<E>`
+
+- <span id="dyldcachemappingandslideinfo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcachemappingandslideinfo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheMappingAndSlideInfo<E>`
+
+- <span id="dyldcachemappingandslideinfo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcachemappingandslideinfo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheImageInfo<E: Endian>`
 
@@ -1622,19 +1802,79 @@ Corresponds to struct dyld_cache_image_info from dyld_cache_format.h.
 
 - <span id="machodyldcacheimageinfo-path"></span>`fn path<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<&'data [u8]>` — [`Result`](../index.md#result)
 
+  The file system path of this image.
+
+  
+
+  `data` should be the main cache file, not the subcache containing the image.
+
 #### Trait Implementations
+
+##### `impl Any for DyldCacheImageInfo<E>`
+
+- <span id="dyldcacheimageinfo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheImageInfo<E>`
+
+- <span id="dyldcacheimageinfo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheImageInfo<E>`
+
+- <span id="dyldcacheimageinfo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for DyldCacheImageInfo<E>`
 
 - <span id="dyldcacheimageinfo-clone"></span>`fn clone(&self) -> DyldCacheImageInfo<E>` — [`DyldCacheImageInfo`](#dyldcacheimageinfo)
 
+##### `impl CloneToUninit for DyldCacheImageInfo<E>`
+
+- <span id="dyldcacheimageinfo-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for DyldCacheImageInfo<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheImageInfo<E>`
 
-- <span id="dyldcacheimageinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcacheimageinfo-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheImageInfo<E>`
+
+- <span id="dyldcacheimageinfo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheImageInfo<E>`
+
+- <span id="dyldcacheimageinfo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for DyldCacheImageInfo<E>`
+
+##### `impl ToOwned for DyldCacheImageInfo<E>`
+
+- <span id="dyldcacheimageinfo-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyldcacheimageinfo-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyldcacheimageinfo-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DyldCacheImageInfo<E>`
+
+- <span id="dyldcacheimageinfo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcacheimageinfo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheImageInfo<E>`
+
+- <span id="dyldcacheimageinfo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcacheimageinfo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheSlideInfo2<E: Endian>`
 
@@ -1657,17 +1897,71 @@ Corresponds to struct dyld_cache_slide_info2 from dyld_cache_format.h.
 
 #### Trait Implementations
 
+##### `impl Any for DyldCacheSlideInfo2<E>`
+
+- <span id="dyldcacheslideinfo2-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheSlideInfo2<E>`
+
+- <span id="dyldcacheslideinfo2-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheSlideInfo2<E>`
+
+- <span id="dyldcacheslideinfo2-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for DyldCacheSlideInfo2<E>`
 
 - <span id="dyldcacheslideinfo2-clone"></span>`fn clone(&self) -> DyldCacheSlideInfo2<E>` — [`DyldCacheSlideInfo2`](#dyldcacheslideinfo2)
+
+##### `impl CloneToUninit for DyldCacheSlideInfo2<E>`
+
+- <span id="dyldcacheslideinfo2-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for DyldCacheSlideInfo2<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheSlideInfo2<E>`
 
-- <span id="dyldcacheslideinfo2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcacheslideinfo2-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheSlideInfo2<E>`
+
+- <span id="dyldcacheslideinfo2-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheSlideInfo2<E>`
+
+- <span id="dyldcacheslideinfo2-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for DyldCacheSlideInfo2<E>`
+
+##### `impl ToOwned for DyldCacheSlideInfo2<E>`
+
+- <span id="dyldcacheslideinfo2-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyldcacheslideinfo2-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyldcacheslideinfo2-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DyldCacheSlideInfo2<E>`
+
+- <span id="dyldcacheslideinfo2-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcacheslideinfo2-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheSlideInfo2<E>`
+
+- <span id="dyldcacheslideinfo2-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcacheslideinfo2-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheSlideInfo3<E: Endian>`
 
@@ -1687,17 +1981,71 @@ Corresponds to struct dyld_cache_slide_info3 from dyld_cache_format.h.
 
 #### Trait Implementations
 
+##### `impl Any for DyldCacheSlideInfo3<E>`
+
+- <span id="dyldcacheslideinfo3-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheSlideInfo3<E>`
+
+- <span id="dyldcacheslideinfo3-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheSlideInfo3<E>`
+
+- <span id="dyldcacheslideinfo3-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for DyldCacheSlideInfo3<E>`
 
 - <span id="dyldcacheslideinfo3-clone"></span>`fn clone(&self) -> DyldCacheSlideInfo3<E>` — [`DyldCacheSlideInfo3`](#dyldcacheslideinfo3)
+
+##### `impl CloneToUninit for DyldCacheSlideInfo3<E>`
+
+- <span id="dyldcacheslideinfo3-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for DyldCacheSlideInfo3<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheSlideInfo3<E>`
 
-- <span id="dyldcacheslideinfo3-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcacheslideinfo3-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheSlideInfo3<E>`
+
+- <span id="dyldcacheslideinfo3-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheSlideInfo3<E>`
+
+- <span id="dyldcacheslideinfo3-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for DyldCacheSlideInfo3<E>`
+
+##### `impl ToOwned for DyldCacheSlideInfo3<E>`
+
+- <span id="dyldcacheslideinfo3-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyldcacheslideinfo3-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyldcacheslideinfo3-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DyldCacheSlideInfo3<E>`
+
+- <span id="dyldcacheslideinfo3-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcacheslideinfo3-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheSlideInfo3<E>`
+
+- <span id="dyldcacheslideinfo3-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcacheslideinfo3-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheSlidePointer3`
 
@@ -1713,31 +2061,129 @@ Corresponds to union dyld_cache_slide_pointer3 from dyld_cache_format.h.
 
 - <span id="dyldcacheslidepointer3-is-auth"></span>`fn is_auth(&self) -> bool`
 
+  Whether the pointer is authenticated.
+
 - <span id="dyldcacheslidepointer3-target"></span>`fn target(&self) -> u64`
+
+  The target of the pointer.
+
+  
+
+  Only valid if `is_auth` is false.
 
 - <span id="dyldcacheslidepointer3-high8"></span>`fn high8(&self) -> u64`
 
+  The high 8 bits of the pointer.
+
+  
+
+  Only valid if `is_auth` is false.
+
 - <span id="dyldcacheslidepointer3-runtime-offset"></span>`fn runtime_offset(&self) -> u64`
+
+  The target of the pointer as an offset from the start of the shared cache.
+
+  
+
+  Only valid if `is_auth` is true.
 
 - <span id="dyldcacheslidepointer3-diversity"></span>`fn diversity(&self) -> u16`
 
+  The diversity value for authentication.
+
+  
+
+  Only valid if `is_auth` is true.
+
 - <span id="dyldcacheslidepointer3-addr-div"></span>`fn addr_div(&self) -> bool`
+
+  Whether to use address diversity for authentication.
+
+  
+
+  Only valid if `is_auth` is true.
 
 - <span id="dyldcacheslidepointer3-key"></span>`fn key(&self) -> u8`
 
+  The key for authentication.
+
+  
+
+  Only valid if `is_auth` is true.
+
 - <span id="dyldcacheslidepointer3-next"></span>`fn next(&self) -> u64`
 
+  The offset to the next slide pointer in 8-byte units.
+
+  
+
+  0 if no next slide pointer.
+
 #### Trait Implementations
+
+##### `impl Any for DyldCacheSlidePointer3`
+
+- <span id="dyldcacheslidepointer3-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheSlidePointer3`
+
+- <span id="dyldcacheslidepointer3-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheSlidePointer3`
+
+- <span id="dyldcacheslidepointer3-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for DyldCacheSlidePointer3`
 
 - <span id="dyldcacheslidepointer3-clone"></span>`fn clone(&self) -> DyldCacheSlidePointer3` — [`DyldCacheSlidePointer3`](#dyldcacheslidepointer3)
 
+##### `impl CloneToUninit for DyldCacheSlidePointer3`
+
+- <span id="dyldcacheslidepointer3-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for DyldCacheSlidePointer3`
 
 ##### `impl Debug for DyldCacheSlidePointer3`
 
-- <span id="dyldcacheslidepointer3-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcacheslidepointer3-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheSlidePointer3`
+
+- <span id="dyldcacheslidepointer3-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheSlidePointer3`
+
+- <span id="dyldcacheslidepointer3-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for DyldCacheSlidePointer3`
+
+- <span id="dyldcacheslidepointer3-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyldcacheslidepointer3-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyldcacheslidepointer3-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DyldCacheSlidePointer3`
+
+- <span id="dyldcacheslidepointer3-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcacheslidepointer3-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheSlidePointer3`
+
+- <span id="dyldcacheslidepointer3-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcacheslidepointer3-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheSlideInfo5<E: Endian>`
 
@@ -1757,17 +2203,71 @@ Corresponds to struct dyld_cache_slide_info5 from dyld_cache_format.h.
 
 #### Trait Implementations
 
+##### `impl Any for DyldCacheSlideInfo5<E>`
+
+- <span id="dyldcacheslideinfo5-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheSlideInfo5<E>`
+
+- <span id="dyldcacheslideinfo5-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheSlideInfo5<E>`
+
+- <span id="dyldcacheslideinfo5-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for DyldCacheSlideInfo5<E>`
 
 - <span id="dyldcacheslideinfo5-clone"></span>`fn clone(&self) -> DyldCacheSlideInfo5<E>` — [`DyldCacheSlideInfo5`](#dyldcacheslideinfo5)
+
+##### `impl CloneToUninit for DyldCacheSlideInfo5<E>`
+
+- <span id="dyldcacheslideinfo5-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for DyldCacheSlideInfo5<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheSlideInfo5<E>`
 
-- <span id="dyldcacheslideinfo5-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcacheslideinfo5-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheSlideInfo5<E>`
+
+- <span id="dyldcacheslideinfo5-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheSlideInfo5<E>`
+
+- <span id="dyldcacheslideinfo5-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for DyldCacheSlideInfo5<E>`
+
+##### `impl ToOwned for DyldCacheSlideInfo5<E>`
+
+- <span id="dyldcacheslideinfo5-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyldcacheslideinfo5-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyldcacheslideinfo5-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DyldCacheSlideInfo5<E>`
+
+- <span id="dyldcacheslideinfo5-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcacheslideinfo5-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheSlideInfo5<E>`
+
+- <span id="dyldcacheslideinfo5-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcacheslideinfo5-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheSlidePointer5`
 
@@ -1783,29 +2283,117 @@ Corresponds to struct dyld_cache_slide_pointer5 from dyld_cache_format.h.
 
 - <span id="dyldcacheslidepointer5-is-auth"></span>`fn is_auth(&self) -> bool`
 
+  Whether the pointer is authenticated.
+
 - <span id="dyldcacheslidepointer5-runtime-offset"></span>`fn runtime_offset(&self) -> u64`
+
+  The target of the pointer as an offset from the start of the shared cache.
 
 - <span id="dyldcacheslidepointer5-high8"></span>`fn high8(&self) -> u64`
 
+  The high 8 bits of the pointer.
+
+  
+
+  Only valid if `is_auth` is false.
+
 - <span id="dyldcacheslidepointer5-diversity"></span>`fn diversity(&self) -> u16`
+
+  The diversity value for authentication.
+
+  
+
+  Only valid if `is_auth` is true.
 
 - <span id="dyldcacheslidepointer5-addr-div"></span>`fn addr_div(&self) -> bool`
 
+  Whether to use address diversity for authentication.
+
+  
+
+  Only valid if `is_auth` is true.
+
 - <span id="dyldcacheslidepointer5-key-is-data"></span>`fn key_is_data(&self) -> bool`
+
+  Whether the key is IA or DA.
+
+  
+
+  Only valid if `is_auth` is true.
 
 - <span id="dyldcacheslidepointer5-next"></span>`fn next(&self) -> u64`
 
+  The offset to the next slide pointer in 8-byte units.
+
+  
+
+  0 if no next slide pointer.
+
 #### Trait Implementations
+
+##### `impl Any for DyldCacheSlidePointer5`
+
+- <span id="dyldcacheslidepointer5-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheSlidePointer5`
+
+- <span id="dyldcacheslidepointer5-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheSlidePointer5`
+
+- <span id="dyldcacheslidepointer5-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for DyldCacheSlidePointer5`
 
 - <span id="dyldcacheslidepointer5-clone"></span>`fn clone(&self) -> DyldCacheSlidePointer5` — [`DyldCacheSlidePointer5`](#dyldcacheslidepointer5)
 
+##### `impl CloneToUninit for DyldCacheSlidePointer5`
+
+- <span id="dyldcacheslidepointer5-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for DyldCacheSlidePointer5`
 
 ##### `impl Debug for DyldCacheSlidePointer5`
 
-- <span id="dyldcacheslidepointer5-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcacheslidepointer5-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheSlidePointer5`
+
+- <span id="dyldcacheslidepointer5-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheSlidePointer5`
+
+- <span id="dyldcacheslidepointer5-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for DyldCacheSlidePointer5`
+
+- <span id="dyldcacheslidepointer5-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyldcacheslidepointer5-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyldcacheslidepointer5-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DyldCacheSlidePointer5`
+
+- <span id="dyldcacheslidepointer5-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcacheslidepointer5-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheSlidePointer5`
+
+- <span id="dyldcacheslidepointer5-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcacheslidepointer5-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldSubCacheEntryV1<E: Endian>`
 
@@ -1834,17 +2422,71 @@ in dyld-1042.1.
 
 #### Trait Implementations
 
+##### `impl Any for DyldSubCacheEntryV1<E>`
+
+- <span id="dyldsubcacheentryv1-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldSubCacheEntryV1<E>`
+
+- <span id="dyldsubcacheentryv1-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldSubCacheEntryV1<E>`
+
+- <span id="dyldsubcacheentryv1-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for DyldSubCacheEntryV1<E>`
 
 - <span id="dyldsubcacheentryv1-clone"></span>`fn clone(&self) -> DyldSubCacheEntryV1<E>` — [`DyldSubCacheEntryV1`](#dyldsubcacheentryv1)
+
+##### `impl CloneToUninit for DyldSubCacheEntryV1<E>`
+
+- <span id="dyldsubcacheentryv1-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for DyldSubCacheEntryV1<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DyldSubCacheEntryV1<E>`
 
-- <span id="dyldsubcacheentryv1-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldsubcacheentryv1-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldSubCacheEntryV1<E>`
+
+- <span id="dyldsubcacheentryv1-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldSubCacheEntryV1<E>`
+
+- <span id="dyldsubcacheentryv1-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for DyldSubCacheEntryV1<E>`
+
+##### `impl ToOwned for DyldSubCacheEntryV1<E>`
+
+- <span id="dyldsubcacheentryv1-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyldsubcacheentryv1-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyldsubcacheentryv1-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DyldSubCacheEntryV1<E>`
+
+- <span id="dyldsubcacheentryv1-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldsubcacheentryv1-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldSubCacheEntryV1<E>`
+
+- <span id="dyldsubcacheentryv1-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldsubcacheentryv1-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldSubCacheEntryV2<E: Endian>`
 
@@ -1877,17 +2519,71 @@ Called `dyld_subcache_entry` as of dyld-1042.1.
 
 #### Trait Implementations
 
+##### `impl Any for DyldSubCacheEntryV2<E>`
+
+- <span id="dyldsubcacheentryv2-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldSubCacheEntryV2<E>`
+
+- <span id="dyldsubcacheentryv2-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldSubCacheEntryV2<E>`
+
+- <span id="dyldsubcacheentryv2-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for DyldSubCacheEntryV2<E>`
 
 - <span id="dyldsubcacheentryv2-clone"></span>`fn clone(&self) -> DyldSubCacheEntryV2<E>` — [`DyldSubCacheEntryV2`](#dyldsubcacheentryv2)
+
+##### `impl CloneToUninit for DyldSubCacheEntryV2<E>`
+
+- <span id="dyldsubcacheentryv2-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for DyldSubCacheEntryV2<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DyldSubCacheEntryV2<E>`
 
-- <span id="dyldsubcacheentryv2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldsubcacheentryv2-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldSubCacheEntryV2<E>`
+
+- <span id="dyldsubcacheentryv2-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldSubCacheEntryV2<E>`
+
+- <span id="dyldsubcacheentryv2-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for DyldSubCacheEntryV2<E>`
+
+##### `impl ToOwned for DyldSubCacheEntryV2<E>`
+
+- <span id="dyldsubcacheentryv2-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyldsubcacheentryv2-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyldsubcacheentryv2-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DyldSubCacheEntryV2<E>`
+
+- <span id="dyldsubcacheentryv2-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldsubcacheentryv2-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldSubCacheEntryV2<E>`
+
+- <span id="dyldsubcacheentryv2-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldsubcacheentryv2-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FatHeader`
 
@@ -1912,17 +2608,71 @@ struct FatHeader {
 
 #### Trait Implementations
 
+##### `impl Any for FatHeader`
+
+- <span id="fatheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FatHeader`
+
+- <span id="fatheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FatHeader`
+
+- <span id="fatheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for FatHeader`
 
 - <span id="fatheader-clone"></span>`fn clone(&self) -> FatHeader` — [`FatHeader`](#fatheader)
+
+##### `impl CloneToUninit for FatHeader`
+
+- <span id="fatheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for FatHeader`
 
 ##### `impl Debug for FatHeader`
 
-- <span id="fatheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fatheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FatHeader`
+
+- <span id="fatheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FatHeader`
+
+- <span id="fatheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for FatHeader`
+
+##### `impl ToOwned for FatHeader`
+
+- <span id="fatheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="fatheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="fatheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FatHeader`
+
+- <span id="fatheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fatheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FatHeader`
+
+- <span id="fatheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fatheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FatArch32`
 
@@ -1962,15 +2712,31 @@ struct FatArch32 {
 
 #### Trait Implementations
 
+##### `impl Any for FatArch32`
+
+- <span id="fatarch32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FatArch32`
+
+- <span id="fatarch32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FatArch32`
+
+- <span id="fatarch32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for FatArch32`
 
 - <span id="fatarch32-clone"></span>`fn clone(&self) -> FatArch32` — [`FatArch32`](#fatarch32)
+
+##### `impl CloneToUninit for FatArch32`
+
+- <span id="fatarch32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for FatArch32`
 
 ##### `impl Debug for FatArch32`
 
-- <span id="fatarch32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fatarch32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FatArch for FatArch32`
 
@@ -1978,17 +2744,55 @@ struct FatArch32 {
 
 - <span id="fatarch32-fatarch-const-magic"></span>`const MAGIC: u32`
 
-- <span id="fatarch32-cputype"></span>`fn cputype(&self) -> u32`
+- <span id="fatarch32-fatarch-cputype"></span>`fn cputype(&self) -> u32`
 
-- <span id="fatarch32-cpusubtype"></span>`fn cpusubtype(&self) -> u32`
+- <span id="fatarch32-fatarch-cpusubtype"></span>`fn cpusubtype(&self) -> u32`
 
-- <span id="fatarch32-offset"></span>`fn offset(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md#fatarch)
+- <span id="fatarch32-fatarch-offset"></span>`fn offset(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md#fatarch)
 
-- <span id="fatarch32-size"></span>`fn size(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md#fatarch)
+- <span id="fatarch32-fatarch-size"></span>`fn size(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md#fatarch)
 
-- <span id="fatarch32-align"></span>`fn align(&self) -> u32`
+- <span id="fatarch32-fatarch-align"></span>`fn align(&self) -> u32`
+
+##### `impl<T> From for FatArch32`
+
+- <span id="fatarch32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FatArch32`
+
+- <span id="fatarch32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for FatArch32`
+
+##### `impl ToOwned for FatArch32`
+
+- <span id="fatarch32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="fatarch32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="fatarch32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FatArch32`
+
+- <span id="fatarch32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fatarch32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FatArch32`
+
+- <span id="fatarch32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fatarch32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FatArch64`
 
@@ -2033,15 +2837,31 @@ struct FatArch64 {
 
 #### Trait Implementations
 
+##### `impl Any for FatArch64`
+
+- <span id="fatarch64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FatArch64`
+
+- <span id="fatarch64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FatArch64`
+
+- <span id="fatarch64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for FatArch64`
 
 - <span id="fatarch64-clone"></span>`fn clone(&self) -> FatArch64` — [`FatArch64`](#fatarch64)
+
+##### `impl CloneToUninit for FatArch64`
+
+- <span id="fatarch64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for FatArch64`
 
 ##### `impl Debug for FatArch64`
 
-- <span id="fatarch64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fatarch64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FatArch for FatArch64`
 
@@ -2049,17 +2869,55 @@ struct FatArch64 {
 
 - <span id="fatarch64-fatarch-const-magic"></span>`const MAGIC: u32`
 
-- <span id="fatarch64-cputype"></span>`fn cputype(&self) -> u32`
+- <span id="fatarch64-fatarch-cputype"></span>`fn cputype(&self) -> u32`
 
-- <span id="fatarch64-cpusubtype"></span>`fn cpusubtype(&self) -> u32`
+- <span id="fatarch64-fatarch-cpusubtype"></span>`fn cpusubtype(&self) -> u32`
 
-- <span id="fatarch64-offset"></span>`fn offset(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md#fatarch)
+- <span id="fatarch64-fatarch-offset"></span>`fn offset(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md#fatarch)
 
-- <span id="fatarch64-size"></span>`fn size(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md#fatarch)
+- <span id="fatarch64-fatarch-size"></span>`fn size(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md#fatarch)
 
-- <span id="fatarch64-align"></span>`fn align(&self) -> u32`
+- <span id="fatarch64-fatarch-align"></span>`fn align(&self) -> u32`
+
+##### `impl<T> From for FatArch64`
+
+- <span id="fatarch64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FatArch64`
+
+- <span id="fatarch64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for FatArch64`
+
+##### `impl ToOwned for FatArch64`
+
+- <span id="fatarch64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="fatarch64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="fatarch64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FatArch64`
+
+- <span id="fatarch64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fatarch64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FatArch64`
+
+- <span id="fatarch64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fatarch64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachHeader32<E: Endian>`
 
@@ -2113,15 +2971,49 @@ Appears at the very beginning of the object file for 32-bit architectures.
 
 #### Trait Implementations
 
+##### `impl Any for MachHeader32<E>`
+
+- <span id="machheader32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachHeader32<E>`
+
+- <span id="machheader32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachHeader32<E>`
+
+- <span id="machheader32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for MachHeader32<E>`
 
 - <span id="machheader32-clone"></span>`fn clone(&self) -> MachHeader32<E>` — [`MachHeader32`](#machheader32)
+
+##### `impl CloneToUninit for MachHeader32<E>`
+
+- <span id="machheader32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for MachHeader32<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for MachHeader32<E>`
 
-- <span id="machheader32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machheader32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachHeader32<E>`
+
+- <span id="machheader32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachHeader32<E>`
+
+- <span id="machheader32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Endian: endian::Endian> MachHeader for macho::MachHeader32<Endian>`
 
@@ -2135,27 +3027,47 @@ Appears at the very beginning of the object file for 32-bit architectures.
 
 - <span id="machomachheader32-machheader-type-nlist"></span>`type Nlist = Nlist32<Endian>`
 
-- <span id="machomachheader32-is-type-64"></span>`fn is_type_64(&self) -> bool`
+- <span id="machomachheader32-machheader-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
-- <span id="machomachheader32-is-big-endian"></span>`fn is_big_endian(&self) -> bool`
+- <span id="machomachheader32-machheader-is-big-endian"></span>`fn is_big_endian(&self) -> bool`
 
-- <span id="machomachheader32-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
+- <span id="machomachheader32-machheader-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
 
-- <span id="machomachheader32-magic"></span>`fn magic(&self) -> u32`
+- <span id="machomachheader32-machheader-magic"></span>`fn magic(&self) -> u32`
 
-- <span id="machomachheader32-cputype"></span>`fn cputype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
+- <span id="machomachheader32-machheader-cputype"></span>`fn cputype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader32-cpusubtype"></span>`fn cpusubtype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
+- <span id="machomachheader32-machheader-cpusubtype"></span>`fn cpusubtype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader32-filetype"></span>`fn filetype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
+- <span id="machomachheader32-machheader-filetype"></span>`fn filetype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader32-ncmds"></span>`fn ncmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
+- <span id="machomachheader32-machheader-ncmds"></span>`fn ncmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader32-sizeofcmds"></span>`fn sizeofcmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
+- <span id="machomachheader32-machheader-sizeofcmds"></span>`fn sizeofcmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader32-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
+- <span id="machomachheader32-machheader-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
 ##### `impl<E: Endian> Pod for MachHeader32<E>`
+
+##### `impl ToOwned for MachHeader32<E>`
+
+- <span id="machheader32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="machheader32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="machheader32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MachHeader32<E>`
+
+- <span id="machheader32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machheader32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachHeader32<E>`
+
+- <span id="machheader32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machheader32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachHeader64<E: Endian>`
 
@@ -2214,15 +3126,49 @@ Appears at the very beginning of object files for 64-bit architectures.
 
 #### Trait Implementations
 
+##### `impl Any for MachHeader64<E>`
+
+- <span id="machheader64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachHeader64<E>`
+
+- <span id="machheader64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachHeader64<E>`
+
+- <span id="machheader64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for MachHeader64<E>`
 
 - <span id="machheader64-clone"></span>`fn clone(&self) -> MachHeader64<E>` — [`MachHeader64`](#machheader64)
+
+##### `impl CloneToUninit for MachHeader64<E>`
+
+- <span id="machheader64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for MachHeader64<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for MachHeader64<E>`
 
-- <span id="machheader64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machheader64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachHeader64<E>`
+
+- <span id="machheader64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachHeader64<E>`
+
+- <span id="machheader64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Endian: endian::Endian> MachHeader for macho::MachHeader64<Endian>`
 
@@ -2236,27 +3182,47 @@ Appears at the very beginning of object files for 64-bit architectures.
 
 - <span id="machomachheader64-machheader-type-nlist"></span>`type Nlist = Nlist64<Endian>`
 
-- <span id="machomachheader64-is-type-64"></span>`fn is_type_64(&self) -> bool`
+- <span id="machomachheader64-machheader-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
-- <span id="machomachheader64-is-big-endian"></span>`fn is_big_endian(&self) -> bool`
+- <span id="machomachheader64-machheader-is-big-endian"></span>`fn is_big_endian(&self) -> bool`
 
-- <span id="machomachheader64-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
+- <span id="machomachheader64-machheader-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
 
-- <span id="machomachheader64-magic"></span>`fn magic(&self) -> u32`
+- <span id="machomachheader64-machheader-magic"></span>`fn magic(&self) -> u32`
 
-- <span id="machomachheader64-cputype"></span>`fn cputype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
+- <span id="machomachheader64-machheader-cputype"></span>`fn cputype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader64-cpusubtype"></span>`fn cpusubtype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
+- <span id="machomachheader64-machheader-cpusubtype"></span>`fn cpusubtype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader64-filetype"></span>`fn filetype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
+- <span id="machomachheader64-machheader-filetype"></span>`fn filetype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader64-ncmds"></span>`fn ncmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
+- <span id="machomachheader64-machheader-ncmds"></span>`fn ncmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader64-sizeofcmds"></span>`fn sizeofcmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
+- <span id="machomachheader64-machheader-sizeofcmds"></span>`fn sizeofcmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader64-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
+- <span id="machomachheader64-machheader-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
 ##### `impl<E: Endian> Pod for MachHeader64<E>`
+
+##### `impl ToOwned for MachHeader64<E>`
+
+- <span id="machheader64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="machheader64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="machheader64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MachHeader64<E>`
+
+- <span id="machheader64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machheader64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachHeader64<E>`
+
+- <span id="machheader64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machheader64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LoadCommand<E: Endian>`
 
@@ -2301,17 +3267,71 @@ padding zeroed like objects will compare byte for byte.
 
 #### Trait Implementations
 
+##### `impl Any for LoadCommand<E>`
+
+- <span id="loadcommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LoadCommand<E>`
+
+- <span id="loadcommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LoadCommand<E>`
+
+- <span id="loadcommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for LoadCommand<E>`
 
 - <span id="loadcommand-clone"></span>`fn clone(&self) -> LoadCommand<E>` — [`LoadCommand`](#loadcommand)
+
+##### `impl CloneToUninit for LoadCommand<E>`
+
+- <span id="loadcommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for LoadCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for LoadCommand<E>`
 
-- <span id="loadcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="loadcommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for LoadCommand<E>`
+
+- <span id="loadcommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LoadCommand<E>`
+
+- <span id="loadcommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for LoadCommand<E>`
+
+##### `impl ToOwned for LoadCommand<E>`
+
+- <span id="loadcommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="loadcommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="loadcommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LoadCommand<E>`
+
+- <span id="loadcommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="loadcommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LoadCommand<E>`
+
+- <span id="loadcommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="loadcommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LcStr<E: Endian>`
 
@@ -2339,17 +3359,71 @@ of 4 bytes must be zero.
 
 #### Trait Implementations
 
+##### `impl Any for LcStr<E>`
+
+- <span id="lcstr-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LcStr<E>`
+
+- <span id="lcstr-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LcStr<E>`
+
+- <span id="lcstr-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for LcStr<E>`
 
 - <span id="lcstr-clone"></span>`fn clone(&self) -> LcStr<E>` — [`LcStr`](#lcstr)
+
+##### `impl CloneToUninit for LcStr<E>`
+
+- <span id="lcstr-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for LcStr<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for LcStr<E>`
 
-- <span id="lcstr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lcstr-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for LcStr<E>`
+
+- <span id="lcstr-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LcStr<E>`
+
+- <span id="lcstr-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for LcStr<E>`
+
+##### `impl ToOwned for LcStr<E>`
+
+- <span id="lcstr-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="lcstr-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="lcstr-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LcStr<E>`
+
+- <span id="lcstr-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lcstr-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LcStr<E>`
+
+- <span id="lcstr-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lcstr-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SegmentCommand32<E: Endian>`
 
@@ -2432,15 +3506,49 @@ reflected in `cmdsize`.
 
 #### Trait Implementations
 
+##### `impl Any for SegmentCommand32<E>`
+
+- <span id="segmentcommand32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SegmentCommand32<E>`
+
+- <span id="segmentcommand32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SegmentCommand32<E>`
+
+- <span id="segmentcommand32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for SegmentCommand32<E>`
 
 - <span id="segmentcommand32-clone"></span>`fn clone(&self) -> SegmentCommand32<E>` — [`SegmentCommand32`](#segmentcommand32)
+
+##### `impl CloneToUninit for SegmentCommand32<E>`
+
+- <span id="segmentcommand32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for SegmentCommand32<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for SegmentCommand32<E>`
 
-- <span id="segmentcommand32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="segmentcommand32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SegmentCommand32<E>`
+
+- <span id="segmentcommand32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SegmentCommand32<E>`
+
+- <span id="segmentcommand32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for SegmentCommand32<E>`
 
@@ -2452,29 +3560,49 @@ reflected in `cmdsize`.
 
 - <span id="machosegmentcommand32-segment-type-section"></span>`type Section = Section32<<SegmentCommand32<Endian> as Segment>::Endian>`
 
-- <span id="machosegmentcommand32-from-command"></span>`fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../read/macho/index.md#loadcommanddata), [`Segment`](../read/macho/index.md#segment), [`Result`](../index.md#result)
+- <span id="machosegmentcommand32-segment-from-command"></span>`fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../read/macho/index.md#loadcommanddata), [`Segment`](../read/macho/index.md#segment), [`Result`](../index.md#result)
 
-- <span id="machosegmentcommand32-cmd"></span>`fn cmd(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand32-segment-cmd"></span>`fn cmd(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand32-cmdsize"></span>`fn cmdsize(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand32-segment-cmdsize"></span>`fn cmdsize(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand32-segname"></span>`fn segname(&self) -> &[u8; 16]`
+- <span id="machosegmentcommand32-segment-segname"></span>`fn segname(&self) -> &[u8; 16]`
 
-- <span id="machosegmentcommand32-vmaddr"></span>`fn vmaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand32-segment-vmaddr"></span>`fn vmaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand32-vmsize"></span>`fn vmsize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand32-segment-vmsize"></span>`fn vmsize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand32-fileoff"></span>`fn fileoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand32-segment-fileoff"></span>`fn fileoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand32-filesize"></span>`fn filesize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand32-segment-filesize"></span>`fn filesize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand32-maxprot"></span>`fn maxprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand32-segment-maxprot"></span>`fn maxprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand32-initprot"></span>`fn initprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand32-segment-initprot"></span>`fn initprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand32-nsects"></span>`fn nsects(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand32-segment-nsects"></span>`fn nsects(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand32-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand32-segment-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
+
+##### `impl ToOwned for SegmentCommand32<E>`
+
+- <span id="segmentcommand32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="segmentcommand32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="segmentcommand32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SegmentCommand32<E>`
+
+- <span id="segmentcommand32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="segmentcommand32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SegmentCommand32<E>`
+
+- <span id="segmentcommand32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="segmentcommand32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SegmentCommand64<E: Endian>`
 
@@ -2551,15 +3679,49 @@ command and their size is reflected in `cmdsize`.
 
 #### Trait Implementations
 
+##### `impl Any for SegmentCommand64<E>`
+
+- <span id="segmentcommand64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SegmentCommand64<E>`
+
+- <span id="segmentcommand64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SegmentCommand64<E>`
+
+- <span id="segmentcommand64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for SegmentCommand64<E>`
 
 - <span id="segmentcommand64-clone"></span>`fn clone(&self) -> SegmentCommand64<E>` — [`SegmentCommand64`](#segmentcommand64)
+
+##### `impl CloneToUninit for SegmentCommand64<E>`
+
+- <span id="segmentcommand64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for SegmentCommand64<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for SegmentCommand64<E>`
 
-- <span id="segmentcommand64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="segmentcommand64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SegmentCommand64<E>`
+
+- <span id="segmentcommand64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SegmentCommand64<E>`
+
+- <span id="segmentcommand64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for SegmentCommand64<E>`
 
@@ -2571,29 +3733,49 @@ command and their size is reflected in `cmdsize`.
 
 - <span id="machosegmentcommand64-segment-type-section"></span>`type Section = Section64<<SegmentCommand64<Endian> as Segment>::Endian>`
 
-- <span id="machosegmentcommand64-from-command"></span>`fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../read/macho/index.md#loadcommanddata), [`Segment`](../read/macho/index.md#segment), [`Result`](../index.md#result)
+- <span id="machosegmentcommand64-segment-from-command"></span>`fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../read/macho/index.md#loadcommanddata), [`Segment`](../read/macho/index.md#segment), [`Result`](../index.md#result)
 
-- <span id="machosegmentcommand64-cmd"></span>`fn cmd(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand64-segment-cmd"></span>`fn cmd(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand64-cmdsize"></span>`fn cmdsize(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand64-segment-cmdsize"></span>`fn cmdsize(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand64-segname"></span>`fn segname(&self) -> &[u8; 16]`
+- <span id="machosegmentcommand64-segment-segname"></span>`fn segname(&self) -> &[u8; 16]`
 
-- <span id="machosegmentcommand64-vmaddr"></span>`fn vmaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand64-segment-vmaddr"></span>`fn vmaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand64-vmsize"></span>`fn vmsize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand64-segment-vmsize"></span>`fn vmsize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand64-fileoff"></span>`fn fileoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand64-segment-fileoff"></span>`fn fileoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand64-filesize"></span>`fn filesize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand64-segment-filesize"></span>`fn filesize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand64-maxprot"></span>`fn maxprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand64-segment-maxprot"></span>`fn maxprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand64-initprot"></span>`fn initprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand64-segment-initprot"></span>`fn initprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand64-nsects"></span>`fn nsects(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand64-segment-nsects"></span>`fn nsects(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand64-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
+- <span id="machosegmentcommand64-segment-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
+
+##### `impl ToOwned for SegmentCommand64<E>`
+
+- <span id="segmentcommand64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="segmentcommand64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="segmentcommand64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SegmentCommand64<E>`
+
+- <span id="segmentcommand64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="segmentcommand64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SegmentCommand64<E>`
+
+- <span id="segmentcommand64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="segmentcommand64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Section32<E: Endian>`
 
@@ -2665,15 +3847,49 @@ struct Section32<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for Section32<E>`
+
+- <span id="section32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Section32<E>`
+
+- <span id="section32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Section32<E>`
+
+- <span id="section32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for Section32<E>`
 
 - <span id="section32-clone"></span>`fn clone(&self) -> Section32<E>` — [`Section32`](#section32)
+
+##### `impl CloneToUninit for Section32<E>`
+
+- <span id="section32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for Section32<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Section32<E>`
 
-- <span id="section32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="section32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Section32<E>`
+
+- <span id="section32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Section32<E>`
+
+- <span id="section32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Section32<E>`
 
@@ -2683,23 +3899,43 @@ struct Section32<E: Endian> {
 
 - <span id="machosection32-section-type-endian"></span>`type Endian = Endian`
 
-- <span id="machosection32-sectname"></span>`fn sectname(&self) -> &[u8; 16]`
+- <span id="machosection32-section-sectname"></span>`fn sectname(&self) -> &[u8; 16]`
 
-- <span id="machosection32-segname"></span>`fn segname(&self) -> &[u8; 16]`
+- <span id="machosection32-section-segname"></span>`fn segname(&self) -> &[u8; 16]`
 
-- <span id="machosection32-addr"></span>`fn addr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md#section)
+- <span id="machosection32-section-addr"></span>`fn addr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection32-size"></span>`fn size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md#section)
+- <span id="machosection32-section-size"></span>`fn size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection32-offset"></span>`fn offset(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
+- <span id="machosection32-section-offset"></span>`fn offset(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection32-align"></span>`fn align(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
+- <span id="machosection32-section-align"></span>`fn align(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection32-reloff"></span>`fn reloff(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
+- <span id="machosection32-section-reloff"></span>`fn reloff(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection32-nreloc"></span>`fn nreloc(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
+- <span id="machosection32-section-nreloc"></span>`fn nreloc(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection32-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
+- <span id="machosection32-section-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
+
+##### `impl ToOwned for Section32<E>`
+
+- <span id="section32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="section32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="section32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Section32<E>`
+
+- <span id="section32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="section32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Section32<E>`
+
+- <span id="section32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="section32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Section64<E: Endian>`
 
@@ -2776,15 +4012,49 @@ struct Section64<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for Section64<E>`
+
+- <span id="section64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Section64<E>`
+
+- <span id="section64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Section64<E>`
+
+- <span id="section64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for Section64<E>`
 
 - <span id="section64-clone"></span>`fn clone(&self) -> Section64<E>` — [`Section64`](#section64)
+
+##### `impl CloneToUninit for Section64<E>`
+
+- <span id="section64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for Section64<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Section64<E>`
 
-- <span id="section64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="section64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Section64<E>`
+
+- <span id="section64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Section64<E>`
+
+- <span id="section64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Section64<E>`
 
@@ -2794,23 +4064,43 @@ struct Section64<E: Endian> {
 
 - <span id="machosection64-section-type-endian"></span>`type Endian = Endian`
 
-- <span id="machosection64-sectname"></span>`fn sectname(&self) -> &[u8; 16]`
+- <span id="machosection64-section-sectname"></span>`fn sectname(&self) -> &[u8; 16]`
 
-- <span id="machosection64-segname"></span>`fn segname(&self) -> &[u8; 16]`
+- <span id="machosection64-section-segname"></span>`fn segname(&self) -> &[u8; 16]`
 
-- <span id="machosection64-addr"></span>`fn addr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md#section)
+- <span id="machosection64-section-addr"></span>`fn addr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection64-size"></span>`fn size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md#section)
+- <span id="machosection64-section-size"></span>`fn size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection64-offset"></span>`fn offset(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
+- <span id="machosection64-section-offset"></span>`fn offset(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection64-align"></span>`fn align(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
+- <span id="machosection64-section-align"></span>`fn align(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection64-reloff"></span>`fn reloff(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
+- <span id="machosection64-section-reloff"></span>`fn reloff(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection64-nreloc"></span>`fn nreloc(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
+- <span id="machosection64-section-nreloc"></span>`fn nreloc(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection64-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
+- <span id="machosection64-section-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
+
+##### `impl ToOwned for Section64<E>`
+
+- <span id="section64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="section64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="section64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Section64<E>`
+
+- <span id="section64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="section64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Section64<E>`
+
+- <span id="section64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="section64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Fvmlib<E: Endian>`
 
@@ -2840,17 +4130,71 @@ struct Fvmlib<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for Fvmlib<E>`
+
+- <span id="fvmlib-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Fvmlib<E>`
+
+- <span id="fvmlib-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Fvmlib<E>`
+
+- <span id="fvmlib-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for Fvmlib<E>`
 
 - <span id="fvmlib-clone"></span>`fn clone(&self) -> Fvmlib<E>` — [`Fvmlib`](#fvmlib)
+
+##### `impl CloneToUninit for Fvmlib<E>`
+
+- <span id="fvmlib-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for Fvmlib<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Fvmlib<E>`
 
-- <span id="fvmlib-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fvmlib-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Fvmlib<E>`
+
+- <span id="fvmlib-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Fvmlib<E>`
+
+- <span id="fvmlib-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Fvmlib<E>`
+
+##### `impl ToOwned for Fvmlib<E>`
+
+- <span id="fvmlib-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="fvmlib-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="fvmlib-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Fvmlib<E>`
+
+- <span id="fvmlib-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fvmlib-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Fvmlib<E>`
+
+- <span id="fvmlib-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fvmlib-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FvmlibCommand<E: Endian>`
 
@@ -2880,17 +4224,71 @@ struct FvmlibCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for FvmlibCommand<E>`
+
+- <span id="fvmlibcommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FvmlibCommand<E>`
+
+- <span id="fvmlibcommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FvmlibCommand<E>`
+
+- <span id="fvmlibcommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for FvmlibCommand<E>`
 
 - <span id="fvmlibcommand-clone"></span>`fn clone(&self) -> FvmlibCommand<E>` — [`FvmlibCommand`](#fvmlibcommand)
+
+##### `impl CloneToUninit for FvmlibCommand<E>`
+
+- <span id="fvmlibcommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for FvmlibCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for FvmlibCommand<E>`
 
-- <span id="fvmlibcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fvmlibcommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FvmlibCommand<E>`
+
+- <span id="fvmlibcommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FvmlibCommand<E>`
+
+- <span id="fvmlibcommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for FvmlibCommand<E>`
+
+##### `impl ToOwned for FvmlibCommand<E>`
+
+- <span id="fvmlibcommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="fvmlibcommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="fvmlibcommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FvmlibCommand<E>`
+
+- <span id="fvmlibcommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fvmlibcommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FvmlibCommand<E>`
+
+- <span id="fvmlibcommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fvmlibcommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Dylib<E: Endian>`
 
@@ -2925,17 +4323,71 @@ struct Dylib<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for Dylib<E>`
+
+- <span id="dylib-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Dylib<E>`
+
+- <span id="dylib-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Dylib<E>`
+
+- <span id="dylib-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for Dylib<E>`
 
 - <span id="dylib-clone"></span>`fn clone(&self) -> Dylib<E>` — [`Dylib`](#dylib)
+
+##### `impl CloneToUninit for Dylib<E>`
+
+- <span id="dylib-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for Dylib<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Dylib<E>`
 
-- <span id="dylib-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dylib-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Dylib<E>`
+
+- <span id="dylib-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Dylib<E>`
+
+- <span id="dylib-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Dylib<E>`
+
+##### `impl ToOwned for Dylib<E>`
+
+- <span id="dylib-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dylib-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dylib-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Dylib<E>`
+
+- <span id="dylib-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dylib-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Dylib<E>`
+
+- <span id="dylib-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dylib-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DylibCommand<E: Endian>`
 
@@ -2965,17 +4417,71 @@ struct DylibCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for DylibCommand<E>`
+
+- <span id="dylibcommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DylibCommand<E>`
+
+- <span id="dylibcommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DylibCommand<E>`
+
+- <span id="dylibcommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for DylibCommand<E>`
 
 - <span id="dylibcommand-clone"></span>`fn clone(&self) -> DylibCommand<E>` — [`DylibCommand`](#dylibcommand)
+
+##### `impl CloneToUninit for DylibCommand<E>`
+
+- <span id="dylibcommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for DylibCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DylibCommand<E>`
 
-- <span id="dylibcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dylibcommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DylibCommand<E>`
+
+- <span id="dylibcommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DylibCommand<E>`
+
+- <span id="dylibcommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for DylibCommand<E>`
+
+##### `impl ToOwned for DylibCommand<E>`
+
+- <span id="dylibcommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dylibcommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dylibcommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DylibCommand<E>`
+
+- <span id="dylibcommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dylibcommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DylibCommand<E>`
+
+- <span id="dylibcommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dylibcommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SubFrameworkCommand<E: Endian>`
 
@@ -3005,17 +4511,71 @@ struct SubFrameworkCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for SubFrameworkCommand<E>`
+
+- <span id="subframeworkcommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SubFrameworkCommand<E>`
+
+- <span id="subframeworkcommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SubFrameworkCommand<E>`
+
+- <span id="subframeworkcommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for SubFrameworkCommand<E>`
 
 - <span id="subframeworkcommand-clone"></span>`fn clone(&self) -> SubFrameworkCommand<E>` — [`SubFrameworkCommand`](#subframeworkcommand)
+
+##### `impl CloneToUninit for SubFrameworkCommand<E>`
+
+- <span id="subframeworkcommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for SubFrameworkCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for SubFrameworkCommand<E>`
 
-- <span id="subframeworkcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="subframeworkcommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SubFrameworkCommand<E>`
+
+- <span id="subframeworkcommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SubFrameworkCommand<E>`
+
+- <span id="subframeworkcommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for SubFrameworkCommand<E>`
+
+##### `impl ToOwned for SubFrameworkCommand<E>`
+
+- <span id="subframeworkcommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="subframeworkcommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="subframeworkcommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SubFrameworkCommand<E>`
+
+- <span id="subframeworkcommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="subframeworkcommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SubFrameworkCommand<E>`
+
+- <span id="subframeworkcommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="subframeworkcommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SubClientCommand<E: Endian>`
 
@@ -3045,17 +4605,71 @@ struct SubClientCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for SubClientCommand<E>`
+
+- <span id="subclientcommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SubClientCommand<E>`
+
+- <span id="subclientcommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SubClientCommand<E>`
+
+- <span id="subclientcommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for SubClientCommand<E>`
 
 - <span id="subclientcommand-clone"></span>`fn clone(&self) -> SubClientCommand<E>` — [`SubClientCommand`](#subclientcommand)
+
+##### `impl CloneToUninit for SubClientCommand<E>`
+
+- <span id="subclientcommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for SubClientCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for SubClientCommand<E>`
 
-- <span id="subclientcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="subclientcommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SubClientCommand<E>`
+
+- <span id="subclientcommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SubClientCommand<E>`
+
+- <span id="subclientcommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for SubClientCommand<E>`
+
+##### `impl ToOwned for SubClientCommand<E>`
+
+- <span id="subclientcommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="subclientcommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="subclientcommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SubClientCommand<E>`
+
+- <span id="subclientcommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="subclientcommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SubClientCommand<E>`
+
+- <span id="subclientcommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="subclientcommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SubUmbrellaCommand<E: Endian>`
 
@@ -3085,17 +4699,71 @@ struct SubUmbrellaCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for SubUmbrellaCommand<E>`
+
+- <span id="subumbrellacommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SubUmbrellaCommand<E>`
+
+- <span id="subumbrellacommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SubUmbrellaCommand<E>`
+
+- <span id="subumbrellacommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for SubUmbrellaCommand<E>`
 
 - <span id="subumbrellacommand-clone"></span>`fn clone(&self) -> SubUmbrellaCommand<E>` — [`SubUmbrellaCommand`](#subumbrellacommand)
+
+##### `impl CloneToUninit for SubUmbrellaCommand<E>`
+
+- <span id="subumbrellacommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for SubUmbrellaCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for SubUmbrellaCommand<E>`
 
-- <span id="subumbrellacommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="subumbrellacommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SubUmbrellaCommand<E>`
+
+- <span id="subumbrellacommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SubUmbrellaCommand<E>`
+
+- <span id="subumbrellacommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for SubUmbrellaCommand<E>`
+
+##### `impl ToOwned for SubUmbrellaCommand<E>`
+
+- <span id="subumbrellacommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="subumbrellacommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="subumbrellacommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SubUmbrellaCommand<E>`
+
+- <span id="subumbrellacommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="subumbrellacommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SubUmbrellaCommand<E>`
+
+- <span id="subumbrellacommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="subumbrellacommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SubLibraryCommand<E: Endian>`
 
@@ -3125,17 +4793,71 @@ struct SubLibraryCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for SubLibraryCommand<E>`
+
+- <span id="sublibrarycommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SubLibraryCommand<E>`
+
+- <span id="sublibrarycommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SubLibraryCommand<E>`
+
+- <span id="sublibrarycommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for SubLibraryCommand<E>`
 
 - <span id="sublibrarycommand-clone"></span>`fn clone(&self) -> SubLibraryCommand<E>` — [`SubLibraryCommand`](#sublibrarycommand)
+
+##### `impl CloneToUninit for SubLibraryCommand<E>`
+
+- <span id="sublibrarycommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for SubLibraryCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for SubLibraryCommand<E>`
 
-- <span id="sublibrarycommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sublibrarycommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SubLibraryCommand<E>`
+
+- <span id="sublibrarycommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SubLibraryCommand<E>`
+
+- <span id="sublibrarycommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for SubLibraryCommand<E>`
+
+##### `impl ToOwned for SubLibraryCommand<E>`
+
+- <span id="sublibrarycommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sublibrarycommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sublibrarycommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SubLibraryCommand<E>`
+
+- <span id="sublibrarycommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sublibrarycommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SubLibraryCommand<E>`
+
+- <span id="sublibrarycommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sublibrarycommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PreboundDylibCommand<E: Endian>`
 
@@ -3175,17 +4897,71 @@ struct PreboundDylibCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for PreboundDylibCommand<E>`
+
+- <span id="prebounddylibcommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PreboundDylibCommand<E>`
+
+- <span id="prebounddylibcommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PreboundDylibCommand<E>`
+
+- <span id="prebounddylibcommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for PreboundDylibCommand<E>`
 
 - <span id="prebounddylibcommand-clone"></span>`fn clone(&self) -> PreboundDylibCommand<E>` — [`PreboundDylibCommand`](#prebounddylibcommand)
+
+##### `impl CloneToUninit for PreboundDylibCommand<E>`
+
+- <span id="prebounddylibcommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for PreboundDylibCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for PreboundDylibCommand<E>`
 
-- <span id="prebounddylibcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="prebounddylibcommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for PreboundDylibCommand<E>`
+
+- <span id="prebounddylibcommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PreboundDylibCommand<E>`
+
+- <span id="prebounddylibcommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for PreboundDylibCommand<E>`
+
+##### `impl ToOwned for PreboundDylibCommand<E>`
+
+- <span id="prebounddylibcommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="prebounddylibcommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="prebounddylibcommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PreboundDylibCommand<E>`
+
+- <span id="prebounddylibcommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="prebounddylibcommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PreboundDylibCommand<E>`
+
+- <span id="prebounddylibcommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="prebounddylibcommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DylinkerCommand<E: Endian>`
 
@@ -3215,17 +4991,71 @@ struct DylinkerCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for DylinkerCommand<E>`
+
+- <span id="dylinkercommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DylinkerCommand<E>`
+
+- <span id="dylinkercommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DylinkerCommand<E>`
+
+- <span id="dylinkercommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for DylinkerCommand<E>`
 
 - <span id="dylinkercommand-clone"></span>`fn clone(&self) -> DylinkerCommand<E>` — [`DylinkerCommand`](#dylinkercommand)
+
+##### `impl CloneToUninit for DylinkerCommand<E>`
+
+- <span id="dylinkercommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for DylinkerCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DylinkerCommand<E>`
 
-- <span id="dylinkercommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dylinkercommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DylinkerCommand<E>`
+
+- <span id="dylinkercommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DylinkerCommand<E>`
+
+- <span id="dylinkercommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for DylinkerCommand<E>`
+
+##### `impl ToOwned for DylinkerCommand<E>`
+
+- <span id="dylinkercommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dylinkercommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dylinkercommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DylinkerCommand<E>`
+
+- <span id="dylinkercommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dylinkercommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DylinkerCommand<E>`
+
+- <span id="dylinkercommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dylinkercommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ThreadCommand<E: Endian>`
 
@@ -3250,17 +5080,71 @@ struct ThreadCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for ThreadCommand<E>`
+
+- <span id="threadcommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ThreadCommand<E>`
+
+- <span id="threadcommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ThreadCommand<E>`
+
+- <span id="threadcommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for ThreadCommand<E>`
 
 - <span id="threadcommand-clone"></span>`fn clone(&self) -> ThreadCommand<E>` — [`ThreadCommand`](#threadcommand)
+
+##### `impl CloneToUninit for ThreadCommand<E>`
+
+- <span id="threadcommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for ThreadCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for ThreadCommand<E>`
 
-- <span id="threadcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="threadcommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ThreadCommand<E>`
+
+- <span id="threadcommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ThreadCommand<E>`
+
+- <span id="threadcommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for ThreadCommand<E>`
+
+##### `impl ToOwned for ThreadCommand<E>`
+
+- <span id="threadcommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="threadcommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="threadcommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ThreadCommand<E>`
+
+- <span id="threadcommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="threadcommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ThreadCommand<E>`
+
+- <span id="threadcommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="threadcommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RoutinesCommand32<E: Endian>`
 
@@ -3301,17 +5185,71 @@ struct RoutinesCommand32<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for RoutinesCommand32<E>`
+
+- <span id="routinescommand32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RoutinesCommand32<E>`
+
+- <span id="routinescommand32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RoutinesCommand32<E>`
+
+- <span id="routinescommand32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for RoutinesCommand32<E>`
 
 - <span id="routinescommand32-clone"></span>`fn clone(&self) -> RoutinesCommand32<E>` — [`RoutinesCommand32`](#routinescommand32)
+
+##### `impl CloneToUninit for RoutinesCommand32<E>`
+
+- <span id="routinescommand32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for RoutinesCommand32<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for RoutinesCommand32<E>`
 
-- <span id="routinescommand32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="routinescommand32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RoutinesCommand32<E>`
+
+- <span id="routinescommand32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RoutinesCommand32<E>`
+
+- <span id="routinescommand32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for RoutinesCommand32<E>`
+
+##### `impl ToOwned for RoutinesCommand32<E>`
+
+- <span id="routinescommand32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="routinescommand32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="routinescommand32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RoutinesCommand32<E>`
+
+- <span id="routinescommand32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="routinescommand32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RoutinesCommand32<E>`
+
+- <span id="routinescommand32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="routinescommand32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RoutinesCommand64<E: Endian>`
 
@@ -3352,17 +5290,71 @@ struct RoutinesCommand64<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for RoutinesCommand64<E>`
+
+- <span id="routinescommand64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RoutinesCommand64<E>`
+
+- <span id="routinescommand64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RoutinesCommand64<E>`
+
+- <span id="routinescommand64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for RoutinesCommand64<E>`
 
 - <span id="routinescommand64-clone"></span>`fn clone(&self) -> RoutinesCommand64<E>` — [`RoutinesCommand64`](#routinescommand64)
+
+##### `impl CloneToUninit for RoutinesCommand64<E>`
+
+- <span id="routinescommand64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for RoutinesCommand64<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for RoutinesCommand64<E>`
 
-- <span id="routinescommand64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="routinescommand64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RoutinesCommand64<E>`
+
+- <span id="routinescommand64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RoutinesCommand64<E>`
+
+- <span id="routinescommand64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for RoutinesCommand64<E>`
+
+##### `impl ToOwned for RoutinesCommand64<E>`
+
+- <span id="routinescommand64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="routinescommand64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="routinescommand64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RoutinesCommand64<E>`
+
+- <span id="routinescommand64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="routinescommand64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RoutinesCommand64<E>`
+
+- <span id="routinescommand64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="routinescommand64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SymtabCommand<E: Endian>`
 
@@ -3409,19 +5401,75 @@ struct SymtabCommand<E: Endian> {
 
 - <span id="machosymtabcommand-symbols"></span>`fn symbols<'data, Mach: MachHeader<Endian = E>, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<SymbolTable<'data, Mach, R>>` — [`Result`](../index.md#result), [`SymbolTable`](../read/macho/index.md#symboltable)
 
+  Return the symbol table that this command references.
+
 #### Trait Implementations
+
+##### `impl Any for SymtabCommand<E>`
+
+- <span id="symtabcommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SymtabCommand<E>`
+
+- <span id="symtabcommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SymtabCommand<E>`
+
+- <span id="symtabcommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for SymtabCommand<E>`
 
 - <span id="symtabcommand-clone"></span>`fn clone(&self) -> SymtabCommand<E>` — [`SymtabCommand`](#symtabcommand)
 
+##### `impl CloneToUninit for SymtabCommand<E>`
+
+- <span id="symtabcommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for SymtabCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for SymtabCommand<E>`
 
-- <span id="symtabcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symtabcommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SymtabCommand<E>`
+
+- <span id="symtabcommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SymtabCommand<E>`
+
+- <span id="symtabcommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for SymtabCommand<E>`
+
+##### `impl ToOwned for SymtabCommand<E>`
+
+- <span id="symtabcommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="symtabcommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="symtabcommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SymtabCommand<E>`
+
+- <span id="symtabcommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symtabcommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SymtabCommand<E>`
+
+- <span id="symtabcommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symtabcommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DysymtabCommand<E: Endian>`
 
@@ -3536,17 +5584,71 @@ struct DysymtabCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for DysymtabCommand<E>`
+
+- <span id="dysymtabcommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DysymtabCommand<E>`
+
+- <span id="dysymtabcommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DysymtabCommand<E>`
+
+- <span id="dysymtabcommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for DysymtabCommand<E>`
 
 - <span id="dysymtabcommand-clone"></span>`fn clone(&self) -> DysymtabCommand<E>` — [`DysymtabCommand`](#dysymtabcommand)
+
+##### `impl CloneToUninit for DysymtabCommand<E>`
+
+- <span id="dysymtabcommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for DysymtabCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DysymtabCommand<E>`
 
-- <span id="dysymtabcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dysymtabcommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DysymtabCommand<E>`
+
+- <span id="dysymtabcommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DysymtabCommand<E>`
+
+- <span id="dysymtabcommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for DysymtabCommand<E>`
+
+##### `impl ToOwned for DysymtabCommand<E>`
+
+- <span id="dysymtabcommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dysymtabcommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dysymtabcommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DysymtabCommand<E>`
+
+- <span id="dysymtabcommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dysymtabcommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DysymtabCommand<E>`
+
+- <span id="dysymtabcommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dysymtabcommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DylibTableOfContents<E: Endian>`
 
@@ -3571,17 +5673,71 @@ struct DylibTableOfContents<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for DylibTableOfContents<E>`
+
+- <span id="dylibtableofcontents-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DylibTableOfContents<E>`
+
+- <span id="dylibtableofcontents-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DylibTableOfContents<E>`
+
+- <span id="dylibtableofcontents-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for DylibTableOfContents<E>`
 
 - <span id="dylibtableofcontents-clone"></span>`fn clone(&self) -> DylibTableOfContents<E>` — [`DylibTableOfContents`](#dylibtableofcontents)
+
+##### `impl CloneToUninit for DylibTableOfContents<E>`
+
+- <span id="dylibtableofcontents-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for DylibTableOfContents<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DylibTableOfContents<E>`
 
-- <span id="dylibtableofcontents-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dylibtableofcontents-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DylibTableOfContents<E>`
+
+- <span id="dylibtableofcontents-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DylibTableOfContents<E>`
+
+- <span id="dylibtableofcontents-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for DylibTableOfContents<E>`
+
+##### `impl ToOwned for DylibTableOfContents<E>`
+
+- <span id="dylibtableofcontents-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dylibtableofcontents-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dylibtableofcontents-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DylibTableOfContents<E>`
+
+- <span id="dylibtableofcontents-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dylibtableofcontents-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DylibTableOfContents<E>`
+
+- <span id="dylibtableofcontents-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dylibtableofcontents-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DylibModule32<E: Endian>`
 
@@ -3661,17 +5817,71 @@ struct DylibModule32<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for DylibModule32<E>`
+
+- <span id="dylibmodule32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DylibModule32<E>`
+
+- <span id="dylibmodule32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DylibModule32<E>`
+
+- <span id="dylibmodule32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for DylibModule32<E>`
 
 - <span id="dylibmodule32-clone"></span>`fn clone(&self) -> DylibModule32<E>` — [`DylibModule32`](#dylibmodule32)
+
+##### `impl CloneToUninit for DylibModule32<E>`
+
+- <span id="dylibmodule32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for DylibModule32<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DylibModule32<E>`
 
-- <span id="dylibmodule32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dylibmodule32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DylibModule32<E>`
+
+- <span id="dylibmodule32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DylibModule32<E>`
+
+- <span id="dylibmodule32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for DylibModule32<E>`
+
+##### `impl ToOwned for DylibModule32<E>`
+
+- <span id="dylibmodule32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dylibmodule32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dylibmodule32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DylibModule32<E>`
+
+- <span id="dylibmodule32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dylibmodule32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DylibModule32<E>`
+
+- <span id="dylibmodule32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dylibmodule32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DylibModule64<E: Endian>`
 
@@ -3751,17 +5961,71 @@ struct DylibModule64<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for DylibModule64<E>`
+
+- <span id="dylibmodule64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DylibModule64<E>`
+
+- <span id="dylibmodule64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DylibModule64<E>`
+
+- <span id="dylibmodule64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for DylibModule64<E>`
 
 - <span id="dylibmodule64-clone"></span>`fn clone(&self) -> DylibModule64<E>` — [`DylibModule64`](#dylibmodule64)
+
+##### `impl CloneToUninit for DylibModule64<E>`
+
+- <span id="dylibmodule64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for DylibModule64<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DylibModule64<E>`
 
-- <span id="dylibmodule64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dylibmodule64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DylibModule64<E>`
+
+- <span id="dylibmodule64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DylibModule64<E>`
+
+- <span id="dylibmodule64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for DylibModule64<E>`
+
+##### `impl ToOwned for DylibModule64<E>`
+
+- <span id="dylibmodule64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dylibmodule64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dylibmodule64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DylibModule64<E>`
+
+- <span id="dylibmodule64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dylibmodule64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DylibModule64<E>`
+
+- <span id="dylibmodule64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dylibmodule64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DylibReference<E: Endian>`
 
@@ -3775,17 +6039,71 @@ struct DylibReference<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for DylibReference<E>`
+
+- <span id="dylibreference-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DylibReference<E>`
+
+- <span id="dylibreference-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DylibReference<E>`
+
+- <span id="dylibreference-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for DylibReference<E>`
 
 - <span id="dylibreference-clone"></span>`fn clone(&self) -> DylibReference<E>` — [`DylibReference`](#dylibreference)
+
+##### `impl CloneToUninit for DylibReference<E>`
+
+- <span id="dylibreference-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for DylibReference<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DylibReference<E>`
 
-- <span id="dylibreference-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dylibreference-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DylibReference<E>`
+
+- <span id="dylibreference-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DylibReference<E>`
+
+- <span id="dylibreference-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for DylibReference<E>`
+
+##### `impl ToOwned for DylibReference<E>`
+
+- <span id="dylibreference-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dylibreference-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dylibreference-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DylibReference<E>`
+
+- <span id="dylibreference-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dylibreference-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DylibReference<E>`
+
+- <span id="dylibreference-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dylibreference-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TwolevelHintsCommand<E: Endian>`
 
@@ -3820,17 +6138,71 @@ struct TwolevelHintsCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for TwolevelHintsCommand<E>`
+
+- <span id="twolevelhintscommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TwolevelHintsCommand<E>`
+
+- <span id="twolevelhintscommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TwolevelHintsCommand<E>`
+
+- <span id="twolevelhintscommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for TwolevelHintsCommand<E>`
 
 - <span id="twolevelhintscommand-clone"></span>`fn clone(&self) -> TwolevelHintsCommand<E>` — [`TwolevelHintsCommand`](#twolevelhintscommand)
+
+##### `impl CloneToUninit for TwolevelHintsCommand<E>`
+
+- <span id="twolevelhintscommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for TwolevelHintsCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for TwolevelHintsCommand<E>`
 
-- <span id="twolevelhintscommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="twolevelhintscommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for TwolevelHintsCommand<E>`
+
+- <span id="twolevelhintscommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TwolevelHintsCommand<E>`
+
+- <span id="twolevelhintscommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for TwolevelHintsCommand<E>`
+
+##### `impl ToOwned for TwolevelHintsCommand<E>`
+
+- <span id="twolevelhintscommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="twolevelhintscommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="twolevelhintscommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TwolevelHintsCommand<E>`
+
+- <span id="twolevelhintscommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="twolevelhintscommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TwolevelHintsCommand<E>`
+
+- <span id="twolevelhintscommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="twolevelhintscommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TwolevelHint<E: Endian>`
 
@@ -3844,17 +6216,71 @@ struct TwolevelHint<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for TwolevelHint<E>`
+
+- <span id="twolevelhint-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TwolevelHint<E>`
+
+- <span id="twolevelhint-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TwolevelHint<E>`
+
+- <span id="twolevelhint-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for TwolevelHint<E>`
 
 - <span id="twolevelhint-clone"></span>`fn clone(&self) -> TwolevelHint<E>` — [`TwolevelHint`](#twolevelhint)
+
+##### `impl CloneToUninit for TwolevelHint<E>`
+
+- <span id="twolevelhint-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for TwolevelHint<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for TwolevelHint<E>`
 
-- <span id="twolevelhint-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="twolevelhint-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for TwolevelHint<E>`
+
+- <span id="twolevelhint-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TwolevelHint<E>`
+
+- <span id="twolevelhint-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for TwolevelHint<E>`
+
+##### `impl ToOwned for TwolevelHint<E>`
+
+- <span id="twolevelhint-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="twolevelhint-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="twolevelhint-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TwolevelHint<E>`
+
+- <span id="twolevelhint-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="twolevelhint-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TwolevelHint<E>`
+
+- <span id="twolevelhint-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="twolevelhint-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PrebindCksumCommand<E: Endian>`
 
@@ -3884,17 +6310,71 @@ struct PrebindCksumCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for PrebindCksumCommand<E>`
+
+- <span id="prebindcksumcommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PrebindCksumCommand<E>`
+
+- <span id="prebindcksumcommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PrebindCksumCommand<E>`
+
+- <span id="prebindcksumcommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for PrebindCksumCommand<E>`
 
 - <span id="prebindcksumcommand-clone"></span>`fn clone(&self) -> PrebindCksumCommand<E>` — [`PrebindCksumCommand`](#prebindcksumcommand)
+
+##### `impl CloneToUninit for PrebindCksumCommand<E>`
+
+- <span id="prebindcksumcommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for PrebindCksumCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for PrebindCksumCommand<E>`
 
-- <span id="prebindcksumcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="prebindcksumcommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for PrebindCksumCommand<E>`
+
+- <span id="prebindcksumcommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PrebindCksumCommand<E>`
+
+- <span id="prebindcksumcommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for PrebindCksumCommand<E>`
+
+##### `impl ToOwned for PrebindCksumCommand<E>`
+
+- <span id="prebindcksumcommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="prebindcksumcommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="prebindcksumcommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PrebindCksumCommand<E>`
+
+- <span id="prebindcksumcommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="prebindcksumcommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PrebindCksumCommand<E>`
+
+- <span id="prebindcksumcommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="prebindcksumcommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UuidCommand<E: Endian>`
 
@@ -3924,17 +6404,71 @@ struct UuidCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for UuidCommand<E>`
+
+- <span id="uuidcommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UuidCommand<E>`
+
+- <span id="uuidcommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UuidCommand<E>`
+
+- <span id="uuidcommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for UuidCommand<E>`
 
 - <span id="uuidcommand-clone"></span>`fn clone(&self) -> UuidCommand<E>` — [`UuidCommand`](#uuidcommand)
+
+##### `impl CloneToUninit for UuidCommand<E>`
+
+- <span id="uuidcommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for UuidCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for UuidCommand<E>`
 
-- <span id="uuidcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="uuidcommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for UuidCommand<E>`
+
+- <span id="uuidcommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for UuidCommand<E>`
+
+- <span id="uuidcommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for UuidCommand<E>`
+
+##### `impl ToOwned for UuidCommand<E>`
+
+- <span id="uuidcommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="uuidcommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="uuidcommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for UuidCommand<E>`
+
+- <span id="uuidcommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="uuidcommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UuidCommand<E>`
+
+- <span id="uuidcommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="uuidcommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RpathCommand<E: Endian>`
 
@@ -3964,17 +6498,71 @@ struct RpathCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for RpathCommand<E>`
+
+- <span id="rpathcommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RpathCommand<E>`
+
+- <span id="rpathcommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RpathCommand<E>`
+
+- <span id="rpathcommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for RpathCommand<E>`
 
 - <span id="rpathcommand-clone"></span>`fn clone(&self) -> RpathCommand<E>` — [`RpathCommand`](#rpathcommand)
+
+##### `impl CloneToUninit for RpathCommand<E>`
+
+- <span id="rpathcommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for RpathCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for RpathCommand<E>`
 
-- <span id="rpathcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rpathcommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RpathCommand<E>`
+
+- <span id="rpathcommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RpathCommand<E>`
+
+- <span id="rpathcommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for RpathCommand<E>`
+
+##### `impl ToOwned for RpathCommand<E>`
+
+- <span id="rpathcommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rpathcommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rpathcommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RpathCommand<E>`
+
+- <span id="rpathcommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rpathcommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RpathCommand<E>`
+
+- <span id="rpathcommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rpathcommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LinkeditDataCommand<E: Endian>`
 
@@ -4011,17 +6599,71 @@ struct LinkeditDataCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for LinkeditDataCommand<E>`
+
+- <span id="linkeditdatacommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LinkeditDataCommand<E>`
+
+- <span id="linkeditdatacommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LinkeditDataCommand<E>`
+
+- <span id="linkeditdatacommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for LinkeditDataCommand<E>`
 
 - <span id="linkeditdatacommand-clone"></span>`fn clone(&self) -> LinkeditDataCommand<E>` — [`LinkeditDataCommand`](#linkeditdatacommand)
+
+##### `impl CloneToUninit for LinkeditDataCommand<E>`
+
+- <span id="linkeditdatacommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for LinkeditDataCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for LinkeditDataCommand<E>`
 
-- <span id="linkeditdatacommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="linkeditdatacommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for LinkeditDataCommand<E>`
+
+- <span id="linkeditdatacommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LinkeditDataCommand<E>`
+
+- <span id="linkeditdatacommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for LinkeditDataCommand<E>`
+
+##### `impl ToOwned for LinkeditDataCommand<E>`
+
+- <span id="linkeditdatacommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="linkeditdatacommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="linkeditdatacommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LinkeditDataCommand<E>`
+
+- <span id="linkeditdatacommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="linkeditdatacommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LinkeditDataCommand<E>`
+
+- <span id="linkeditdatacommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="linkeditdatacommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FilesetEntryCommand<E: Endian>`
 
@@ -4062,17 +6704,71 @@ struct FilesetEntryCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for FilesetEntryCommand<E>`
+
+- <span id="filesetentrycommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FilesetEntryCommand<E>`
+
+- <span id="filesetentrycommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FilesetEntryCommand<E>`
+
+- <span id="filesetentrycommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for FilesetEntryCommand<E>`
 
 - <span id="filesetentrycommand-clone"></span>`fn clone(&self) -> FilesetEntryCommand<E>` — [`FilesetEntryCommand`](#filesetentrycommand)
+
+##### `impl CloneToUninit for FilesetEntryCommand<E>`
+
+- <span id="filesetentrycommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for FilesetEntryCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for FilesetEntryCommand<E>`
 
-- <span id="filesetentrycommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="filesetentrycommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FilesetEntryCommand<E>`
+
+- <span id="filesetentrycommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FilesetEntryCommand<E>`
+
+- <span id="filesetentrycommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for FilesetEntryCommand<E>`
+
+##### `impl ToOwned for FilesetEntryCommand<E>`
+
+- <span id="filesetentrycommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="filesetentrycommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="filesetentrycommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FilesetEntryCommand<E>`
+
+- <span id="filesetentrycommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="filesetentrycommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FilesetEntryCommand<E>`
+
+- <span id="filesetentrycommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="filesetentrycommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `EncryptionInfoCommand32<E: Endian>`
 
@@ -4112,17 +6808,71 @@ struct EncryptionInfoCommand32<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for EncryptionInfoCommand32<E>`
+
+- <span id="encryptioninfocommand32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for EncryptionInfoCommand32<E>`
+
+- <span id="encryptioninfocommand32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for EncryptionInfoCommand32<E>`
+
+- <span id="encryptioninfocommand32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for EncryptionInfoCommand32<E>`
 
 - <span id="encryptioninfocommand32-clone"></span>`fn clone(&self) -> EncryptionInfoCommand32<E>` — [`EncryptionInfoCommand32`](#encryptioninfocommand32)
+
+##### `impl CloneToUninit for EncryptionInfoCommand32<E>`
+
+- <span id="encryptioninfocommand32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for EncryptionInfoCommand32<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for EncryptionInfoCommand32<E>`
 
-- <span id="encryptioninfocommand32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="encryptioninfocommand32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for EncryptionInfoCommand32<E>`
+
+- <span id="encryptioninfocommand32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for EncryptionInfoCommand32<E>`
+
+- <span id="encryptioninfocommand32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for EncryptionInfoCommand32<E>`
+
+##### `impl ToOwned for EncryptionInfoCommand32<E>`
+
+- <span id="encryptioninfocommand32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="encryptioninfocommand32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="encryptioninfocommand32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for EncryptionInfoCommand32<E>`
+
+- <span id="encryptioninfocommand32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="encryptioninfocommand32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for EncryptionInfoCommand32<E>`
+
+- <span id="encryptioninfocommand32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="encryptioninfocommand32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `EncryptionInfoCommand64<E: Endian>`
 
@@ -4167,17 +6917,71 @@ struct EncryptionInfoCommand64<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for EncryptionInfoCommand64<E>`
+
+- <span id="encryptioninfocommand64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for EncryptionInfoCommand64<E>`
+
+- <span id="encryptioninfocommand64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for EncryptionInfoCommand64<E>`
+
+- <span id="encryptioninfocommand64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for EncryptionInfoCommand64<E>`
 
 - <span id="encryptioninfocommand64-clone"></span>`fn clone(&self) -> EncryptionInfoCommand64<E>` — [`EncryptionInfoCommand64`](#encryptioninfocommand64)
+
+##### `impl CloneToUninit for EncryptionInfoCommand64<E>`
+
+- <span id="encryptioninfocommand64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for EncryptionInfoCommand64<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for EncryptionInfoCommand64<E>`
 
-- <span id="encryptioninfocommand64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="encryptioninfocommand64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for EncryptionInfoCommand64<E>`
+
+- <span id="encryptioninfocommand64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for EncryptionInfoCommand64<E>`
+
+- <span id="encryptioninfocommand64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for EncryptionInfoCommand64<E>`
+
+##### `impl ToOwned for EncryptionInfoCommand64<E>`
+
+- <span id="encryptioninfocommand64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="encryptioninfocommand64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="encryptioninfocommand64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for EncryptionInfoCommand64<E>`
+
+- <span id="encryptioninfocommand64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="encryptioninfocommand64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for EncryptionInfoCommand64<E>`
+
+- <span id="encryptioninfocommand64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="encryptioninfocommand64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `VersionMinCommand<E: Endian>`
 
@@ -4212,17 +7016,71 @@ struct VersionMinCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for VersionMinCommand<E>`
+
+- <span id="versionmincommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for VersionMinCommand<E>`
+
+- <span id="versionmincommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for VersionMinCommand<E>`
+
+- <span id="versionmincommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for VersionMinCommand<E>`
 
 - <span id="versionmincommand-clone"></span>`fn clone(&self) -> VersionMinCommand<E>` — [`VersionMinCommand`](#versionmincommand)
+
+##### `impl CloneToUninit for VersionMinCommand<E>`
+
+- <span id="versionmincommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for VersionMinCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for VersionMinCommand<E>`
 
-- <span id="versionmincommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="versionmincommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for VersionMinCommand<E>`
+
+- <span id="versionmincommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for VersionMinCommand<E>`
+
+- <span id="versionmincommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for VersionMinCommand<E>`
+
+##### `impl ToOwned for VersionMinCommand<E>`
+
+- <span id="versionmincommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="versionmincommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="versionmincommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for VersionMinCommand<E>`
+
+- <span id="versionmincommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="versionmincommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for VersionMinCommand<E>`
+
+- <span id="versionmincommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="versionmincommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BuildVersionCommand<E: Endian>`
 
@@ -4267,17 +7125,71 @@ struct BuildVersionCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for BuildVersionCommand<E>`
+
+- <span id="buildversioncommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BuildVersionCommand<E>`
+
+- <span id="buildversioncommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BuildVersionCommand<E>`
+
+- <span id="buildversioncommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for BuildVersionCommand<E>`
 
 - <span id="buildversioncommand-clone"></span>`fn clone(&self) -> BuildVersionCommand<E>` — [`BuildVersionCommand`](#buildversioncommand)
+
+##### `impl CloneToUninit for BuildVersionCommand<E>`
+
+- <span id="buildversioncommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for BuildVersionCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for BuildVersionCommand<E>`
 
-- <span id="buildversioncommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="buildversioncommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BuildVersionCommand<E>`
+
+- <span id="buildversioncommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BuildVersionCommand<E>`
+
+- <span id="buildversioncommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for BuildVersionCommand<E>`
+
+##### `impl ToOwned for BuildVersionCommand<E>`
+
+- <span id="buildversioncommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="buildversioncommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="buildversioncommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BuildVersionCommand<E>`
+
+- <span id="buildversioncommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="buildversioncommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BuildVersionCommand<E>`
+
+- <span id="buildversioncommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="buildversioncommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BuildToolVersion<E: Endian>`
 
@@ -4302,17 +7214,71 @@ struct BuildToolVersion<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for BuildToolVersion<E>`
+
+- <span id="buildtoolversion-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BuildToolVersion<E>`
+
+- <span id="buildtoolversion-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BuildToolVersion<E>`
+
+- <span id="buildtoolversion-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for BuildToolVersion<E>`
 
 - <span id="buildtoolversion-clone"></span>`fn clone(&self) -> BuildToolVersion<E>` — [`BuildToolVersion`](#buildtoolversion)
+
+##### `impl CloneToUninit for BuildToolVersion<E>`
+
+- <span id="buildtoolversion-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for BuildToolVersion<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for BuildToolVersion<E>`
 
-- <span id="buildtoolversion-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="buildtoolversion-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BuildToolVersion<E>`
+
+- <span id="buildtoolversion-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BuildToolVersion<E>`
+
+- <span id="buildtoolversion-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for BuildToolVersion<E>`
+
+##### `impl ToOwned for BuildToolVersion<E>`
+
+- <span id="buildtoolversion-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="buildtoolversion-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="buildtoolversion-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BuildToolVersion<E>`
+
+- <span id="buildtoolversion-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="buildtoolversion-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BuildToolVersion<E>`
+
+- <span id="buildtoolversion-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="buildtoolversion-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldInfoCommand<E: Endian>`
 
@@ -4387,17 +7353,71 @@ struct DyldInfoCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for DyldInfoCommand<E>`
+
+- <span id="dyldinfocommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldInfoCommand<E>`
+
+- <span id="dyldinfocommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldInfoCommand<E>`
+
+- <span id="dyldinfocommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for DyldInfoCommand<E>`
 
 - <span id="dyldinfocommand-clone"></span>`fn clone(&self) -> DyldInfoCommand<E>` — [`DyldInfoCommand`](#dyldinfocommand)
+
+##### `impl CloneToUninit for DyldInfoCommand<E>`
+
+- <span id="dyldinfocommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for DyldInfoCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DyldInfoCommand<E>`
 
-- <span id="dyldinfocommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldinfocommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldInfoCommand<E>`
+
+- <span id="dyldinfocommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldInfoCommand<E>`
+
+- <span id="dyldinfocommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for DyldInfoCommand<E>`
+
+##### `impl ToOwned for DyldInfoCommand<E>`
+
+- <span id="dyldinfocommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyldinfocommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyldinfocommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DyldInfoCommand<E>`
+
+- <span id="dyldinfocommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldinfocommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldInfoCommand<E>`
+
+- <span id="dyldinfocommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldinfocommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LinkerOptionCommand<E: Endian>`
 
@@ -4423,17 +7443,71 @@ struct LinkerOptionCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for LinkerOptionCommand<E>`
+
+- <span id="linkeroptioncommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LinkerOptionCommand<E>`
+
+- <span id="linkeroptioncommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LinkerOptionCommand<E>`
+
+- <span id="linkeroptioncommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for LinkerOptionCommand<E>`
 
 - <span id="linkeroptioncommand-clone"></span>`fn clone(&self) -> LinkerOptionCommand<E>` — [`LinkerOptionCommand`](#linkeroptioncommand)
+
+##### `impl CloneToUninit for LinkerOptionCommand<E>`
+
+- <span id="linkeroptioncommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for LinkerOptionCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for LinkerOptionCommand<E>`
 
-- <span id="linkeroptioncommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="linkeroptioncommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for LinkerOptionCommand<E>`
+
+- <span id="linkeroptioncommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LinkerOptionCommand<E>`
+
+- <span id="linkeroptioncommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for LinkerOptionCommand<E>`
+
+##### `impl ToOwned for LinkerOptionCommand<E>`
+
+- <span id="linkeroptioncommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="linkeroptioncommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="linkeroptioncommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LinkerOptionCommand<E>`
+
+- <span id="linkeroptioncommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="linkeroptioncommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LinkerOptionCommand<E>`
+
+- <span id="linkeroptioncommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="linkeroptioncommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SymsegCommand<E: Endian>`
 
@@ -4468,17 +7542,71 @@ struct SymsegCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for SymsegCommand<E>`
+
+- <span id="symsegcommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SymsegCommand<E>`
+
+- <span id="symsegcommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SymsegCommand<E>`
+
+- <span id="symsegcommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for SymsegCommand<E>`
 
 - <span id="symsegcommand-clone"></span>`fn clone(&self) -> SymsegCommand<E>` — [`SymsegCommand`](#symsegcommand)
+
+##### `impl CloneToUninit for SymsegCommand<E>`
+
+- <span id="symsegcommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for SymsegCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for SymsegCommand<E>`
 
-- <span id="symsegcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symsegcommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SymsegCommand<E>`
+
+- <span id="symsegcommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SymsegCommand<E>`
+
+- <span id="symsegcommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for SymsegCommand<E>`
+
+##### `impl ToOwned for SymsegCommand<E>`
+
+- <span id="symsegcommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="symsegcommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="symsegcommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SymsegCommand<E>`
+
+- <span id="symsegcommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symsegcommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SymsegCommand<E>`
+
+- <span id="symsegcommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symsegcommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IdentCommand<E: Endian>`
 
@@ -4503,17 +7631,71 @@ struct IdentCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for IdentCommand<E>`
+
+- <span id="identcommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IdentCommand<E>`
+
+- <span id="identcommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IdentCommand<E>`
+
+- <span id="identcommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for IdentCommand<E>`
 
 - <span id="identcommand-clone"></span>`fn clone(&self) -> IdentCommand<E>` — [`IdentCommand`](#identcommand)
+
+##### `impl CloneToUninit for IdentCommand<E>`
+
+- <span id="identcommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for IdentCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for IdentCommand<E>`
 
-- <span id="identcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="identcommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for IdentCommand<E>`
+
+- <span id="identcommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for IdentCommand<E>`
+
+- <span id="identcommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for IdentCommand<E>`
+
+##### `impl ToOwned for IdentCommand<E>`
+
+- <span id="identcommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="identcommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="identcommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for IdentCommand<E>`
+
+- <span id="identcommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="identcommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IdentCommand<E>`
+
+- <span id="identcommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="identcommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FvmfileCommand<E: Endian>`
 
@@ -4548,17 +7730,71 @@ struct FvmfileCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for FvmfileCommand<E>`
+
+- <span id="fvmfilecommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FvmfileCommand<E>`
+
+- <span id="fvmfilecommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FvmfileCommand<E>`
+
+- <span id="fvmfilecommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for FvmfileCommand<E>`
 
 - <span id="fvmfilecommand-clone"></span>`fn clone(&self) -> FvmfileCommand<E>` — [`FvmfileCommand`](#fvmfilecommand)
+
+##### `impl CloneToUninit for FvmfileCommand<E>`
+
+- <span id="fvmfilecommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for FvmfileCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for FvmfileCommand<E>`
 
-- <span id="fvmfilecommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fvmfilecommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FvmfileCommand<E>`
+
+- <span id="fvmfilecommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FvmfileCommand<E>`
+
+- <span id="fvmfilecommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for FvmfileCommand<E>`
+
+##### `impl ToOwned for FvmfileCommand<E>`
+
+- <span id="fvmfilecommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="fvmfilecommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="fvmfilecommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FvmfileCommand<E>`
+
+- <span id="fvmfilecommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fvmfilecommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FvmfileCommand<E>`
+
+- <span id="fvmfilecommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fvmfilecommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `EntryPointCommand<E: Endian>`
 
@@ -4593,17 +7829,71 @@ struct EntryPointCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for EntryPointCommand<E>`
+
+- <span id="entrypointcommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for EntryPointCommand<E>`
+
+- <span id="entrypointcommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for EntryPointCommand<E>`
+
+- <span id="entrypointcommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for EntryPointCommand<E>`
 
 - <span id="entrypointcommand-clone"></span>`fn clone(&self) -> EntryPointCommand<E>` — [`EntryPointCommand`](#entrypointcommand)
+
+##### `impl CloneToUninit for EntryPointCommand<E>`
+
+- <span id="entrypointcommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for EntryPointCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for EntryPointCommand<E>`
 
-- <span id="entrypointcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="entrypointcommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for EntryPointCommand<E>`
+
+- <span id="entrypointcommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for EntryPointCommand<E>`
+
+- <span id="entrypointcommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for EntryPointCommand<E>`
+
+##### `impl ToOwned for EntryPointCommand<E>`
+
+- <span id="entrypointcommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="entrypointcommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="entrypointcommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for EntryPointCommand<E>`
+
+- <span id="entrypointcommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="entrypointcommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for EntryPointCommand<E>`
+
+- <span id="entrypointcommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="entrypointcommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SourceVersionCommand<E: Endian>`
 
@@ -4633,17 +7923,71 @@ struct SourceVersionCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for SourceVersionCommand<E>`
+
+- <span id="sourceversioncommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SourceVersionCommand<E>`
+
+- <span id="sourceversioncommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SourceVersionCommand<E>`
+
+- <span id="sourceversioncommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for SourceVersionCommand<E>`
 
 - <span id="sourceversioncommand-clone"></span>`fn clone(&self) -> SourceVersionCommand<E>` — [`SourceVersionCommand`](#sourceversioncommand)
+
+##### `impl CloneToUninit for SourceVersionCommand<E>`
+
+- <span id="sourceversioncommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for SourceVersionCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for SourceVersionCommand<E>`
 
-- <span id="sourceversioncommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sourceversioncommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SourceVersionCommand<E>`
+
+- <span id="sourceversioncommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SourceVersionCommand<E>`
+
+- <span id="sourceversioncommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for SourceVersionCommand<E>`
+
+##### `impl ToOwned for SourceVersionCommand<E>`
+
+- <span id="sourceversioncommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sourceversioncommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sourceversioncommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SourceVersionCommand<E>`
+
+- <span id="sourceversioncommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sourceversioncommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SourceVersionCommand<E>`
+
+- <span id="sourceversioncommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sourceversioncommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DataInCodeEntry<E: Endian>`
 
@@ -4673,17 +8017,71 @@ struct DataInCodeEntry<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for DataInCodeEntry<E>`
+
+- <span id="dataincodeentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DataInCodeEntry<E>`
+
+- <span id="dataincodeentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DataInCodeEntry<E>`
+
+- <span id="dataincodeentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for DataInCodeEntry<E>`
 
 - <span id="dataincodeentry-clone"></span>`fn clone(&self) -> DataInCodeEntry<E>` — [`DataInCodeEntry`](#dataincodeentry)
+
+##### `impl CloneToUninit for DataInCodeEntry<E>`
+
+- <span id="dataincodeentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for DataInCodeEntry<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DataInCodeEntry<E>`
 
-- <span id="dataincodeentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dataincodeentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DataInCodeEntry<E>`
+
+- <span id="dataincodeentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DataInCodeEntry<E>`
+
+- <span id="dataincodeentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for DataInCodeEntry<E>`
+
+##### `impl ToOwned for DataInCodeEntry<E>`
+
+- <span id="dataincodeentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dataincodeentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dataincodeentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DataInCodeEntry<E>`
+
+- <span id="dataincodeentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dataincodeentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DataInCodeEntry<E>`
+
+- <span id="dataincodeentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dataincodeentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `NoteCommand<E: Endian>`
 
@@ -4723,17 +8121,71 @@ struct NoteCommand<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for NoteCommand<E>`
+
+- <span id="notecommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for NoteCommand<E>`
+
+- <span id="notecommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for NoteCommand<E>`
+
+- <span id="notecommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for NoteCommand<E>`
 
 - <span id="notecommand-clone"></span>`fn clone(&self) -> NoteCommand<E>` — [`NoteCommand`](#notecommand)
+
+##### `impl CloneToUninit for NoteCommand<E>`
+
+- <span id="notecommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for NoteCommand<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for NoteCommand<E>`
 
-- <span id="notecommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="notecommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for NoteCommand<E>`
+
+- <span id="notecommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for NoteCommand<E>`
+
+- <span id="notecommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for NoteCommand<E>`
+
+##### `impl ToOwned for NoteCommand<E>`
+
+- <span id="notecommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="notecommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="notecommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for NoteCommand<E>`
+
+- <span id="notecommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="notecommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for NoteCommand<E>`
+
+- <span id="notecommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="notecommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Nlist32<E: Endian>`
 
@@ -4773,15 +8225,49 @@ struct Nlist32<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for Nlist32<E>`
+
+- <span id="nlist32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Nlist32<E>`
+
+- <span id="nlist32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Nlist32<E>`
+
+- <span id="nlist32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for Nlist32<E>`
 
 - <span id="nlist32-clone"></span>`fn clone(&self) -> Nlist32<E>` — [`Nlist32`](#nlist32)
+
+##### `impl CloneToUninit for Nlist32<E>`
+
+- <span id="nlist32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for Nlist32<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Nlist32<E>`
 
-- <span id="nlist32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="nlist32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Nlist32<E>`
+
+- <span id="nlist32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Nlist32<E>`
+
+- <span id="nlist32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Endian: endian::Endian> Nlist for macho::Nlist32<Endian>`
 
@@ -4789,17 +8275,37 @@ struct Nlist32<E: Endian> {
 
 - <span id="machonlist32-nlist-type-endian"></span>`type Endian = Endian`
 
-- <span id="machonlist32-n-strx"></span>`fn n_strx(&self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../read/macho/index.md#nlist)
+- <span id="machonlist32-nlist-n-strx"></span>`fn n_strx(&self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../read/macho/index.md#nlist)
 
-- <span id="machonlist32-n-type"></span>`fn n_type(&self) -> u8`
+- <span id="machonlist32-nlist-n-type"></span>`fn n_type(&self) -> u8`
 
-- <span id="machonlist32-n-sect"></span>`fn n_sect(&self) -> u8`
+- <span id="machonlist32-nlist-n-sect"></span>`fn n_sect(&self) -> u8`
 
-- <span id="machonlist32-n-desc"></span>`fn n_desc(&self, endian: <Self as >::Endian) -> u16` — [`Nlist`](../read/macho/index.md#nlist)
+- <span id="machonlist32-nlist-n-desc"></span>`fn n_desc(&self, endian: <Self as >::Endian) -> u16` — [`Nlist`](../read/macho/index.md#nlist)
 
-- <span id="machonlist32-n-value"></span>`fn n_value(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Nlist`](../read/macho/index.md#nlist)
+- <span id="machonlist32-nlist-n-value"></span>`fn n_value(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Nlist`](../read/macho/index.md#nlist)
 
 ##### `impl<E: Endian> Pod for Nlist32<E>`
+
+##### `impl ToOwned for Nlist32<E>`
+
+- <span id="nlist32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="nlist32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="nlist32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Nlist32<E>`
+
+- <span id="nlist32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="nlist32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Nlist32<E>`
+
+- <span id="nlist32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="nlist32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Nlist64<E: Endian>`
 
@@ -4839,15 +8345,49 @@ struct Nlist64<E: Endian> {
 
 #### Trait Implementations
 
+##### `impl Any for Nlist64<E>`
+
+- <span id="nlist64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Nlist64<E>`
+
+- <span id="nlist64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Nlist64<E>`
+
+- <span id="nlist64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for Nlist64<E>`
 
 - <span id="nlist64-clone"></span>`fn clone(&self) -> Nlist64<E>` — [`Nlist64`](#nlist64)
+
+##### `impl CloneToUninit for Nlist64<E>`
+
+- <span id="nlist64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for Nlist64<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Nlist64<E>`
 
-- <span id="nlist64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="nlist64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Nlist64<E>`
+
+- <span id="nlist64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Nlist64<E>`
+
+- <span id="nlist64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Endian: endian::Endian> Nlist for macho::Nlist64<Endian>`
 
@@ -4855,17 +8395,37 @@ struct Nlist64<E: Endian> {
 
 - <span id="machonlist64-nlist-type-endian"></span>`type Endian = Endian`
 
-- <span id="machonlist64-n-strx"></span>`fn n_strx(&self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../read/macho/index.md#nlist)
+- <span id="machonlist64-nlist-n-strx"></span>`fn n_strx(&self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../read/macho/index.md#nlist)
 
-- <span id="machonlist64-n-type"></span>`fn n_type(&self) -> u8`
+- <span id="machonlist64-nlist-n-type"></span>`fn n_type(&self) -> u8`
 
-- <span id="machonlist64-n-sect"></span>`fn n_sect(&self) -> u8`
+- <span id="machonlist64-nlist-n-sect"></span>`fn n_sect(&self) -> u8`
 
-- <span id="machonlist64-n-desc"></span>`fn n_desc(&self, endian: <Self as >::Endian) -> u16` — [`Nlist`](../read/macho/index.md#nlist)
+- <span id="machonlist64-nlist-n-desc"></span>`fn n_desc(&self, endian: <Self as >::Endian) -> u16` — [`Nlist`](../read/macho/index.md#nlist)
 
-- <span id="machonlist64-n-value"></span>`fn n_value(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Nlist`](../read/macho/index.md#nlist)
+- <span id="machonlist64-nlist-n-value"></span>`fn n_value(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Nlist`](../read/macho/index.md#nlist)
 
 ##### `impl<E: Endian> Pod for Nlist64<E>`
+
+##### `impl ToOwned for Nlist64<E>`
+
+- <span id="nlist64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="nlist64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="nlist64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Nlist64<E>`
+
+- <span id="nlist64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="nlist64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Nlist64<E>`
+
+- <span id="nlist64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="nlist64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Relocation<E: Endian>`
 
@@ -4890,23 +8450,83 @@ is scattered, and for accessing the fields of each variant.
 
 - <span id="relocation-r-scattered"></span>`fn r_scattered(self, endian: E, cputype: u32) -> bool`
 
+  Determine whether this is a scattered relocation.
+
 - <span id="relocation-info"></span>`fn info(self, endian: E) -> RelocationInfo` — [`RelocationInfo`](#relocationinfo)
+
+  Return the fields of a plain relocation.
 
 - <span id="relocation-scattered-info"></span>`fn scattered_info(self, endian: E) -> ScatteredRelocationInfo` — [`ScatteredRelocationInfo`](#scatteredrelocationinfo)
 
+  Return the fields of a scattered relocation.
+
 #### Trait Implementations
+
+##### `impl Any for Relocation<E>`
+
+- <span id="relocation-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Relocation<E>`
+
+- <span id="relocation-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Relocation<E>`
+
+- <span id="relocation-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for Relocation<E>`
 
 - <span id="relocation-clone"></span>`fn clone(&self) -> Relocation<E>` — [`Relocation`](#relocation)
 
+##### `impl CloneToUninit for Relocation<E>`
+
+- <span id="relocation-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for Relocation<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Relocation<E>`
 
-- <span id="relocation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="relocation-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Relocation<E>`
+
+- <span id="relocation-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Relocation<E>`
+
+- <span id="relocation-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Relocation<E>`
+
+##### `impl ToOwned for Relocation<E>`
+
+- <span id="relocation-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="relocation-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="relocation-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Relocation<E>`
+
+- <span id="relocation-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="relocation-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Relocation<E>`
+
+- <span id="relocation-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="relocation-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RelocationInfo`
 
@@ -4953,17 +8573,73 @@ struct RelocationInfo {
 
 - <span id="relocationinfo-relocation"></span>`fn relocation<E: Endian>(self, endian: E) -> Relocation<E>` — [`Relocation`](#relocation)
 
+  Combine the fields into a `Relocation`.
+
 #### Trait Implementations
+
+##### `impl Any for RelocationInfo`
+
+- <span id="relocationinfo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RelocationInfo`
+
+- <span id="relocationinfo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RelocationInfo`
+
+- <span id="relocationinfo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for RelocationInfo`
 
 - <span id="relocationinfo-clone"></span>`fn clone(&self) -> RelocationInfo` — [`RelocationInfo`](#relocationinfo)
 
+##### `impl CloneToUninit for RelocationInfo`
+
+- <span id="relocationinfo-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for RelocationInfo`
 
 ##### `impl Debug for RelocationInfo`
 
-- <span id="relocationinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="relocationinfo-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RelocationInfo`
+
+- <span id="relocationinfo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RelocationInfo`
+
+- <span id="relocationinfo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for RelocationInfo`
+
+- <span id="relocationinfo-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="relocationinfo-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="relocationinfo-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RelocationInfo`
+
+- <span id="relocationinfo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="relocationinfo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RelocationInfo`
+
+- <span id="relocationinfo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="relocationinfo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ScatteredRelocationInfo`
 
@@ -5005,17 +8681,73 @@ struct ScatteredRelocationInfo {
 
 - <span id="scatteredrelocationinfo-relocation"></span>`fn relocation<E: Endian>(self, endian: E) -> Relocation<E>` — [`Relocation`](#relocation)
 
+  Combine the fields into a `Relocation`.
+
 #### Trait Implementations
+
+##### `impl Any for ScatteredRelocationInfo`
+
+- <span id="scatteredrelocationinfo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ScatteredRelocationInfo`
+
+- <span id="scatteredrelocationinfo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ScatteredRelocationInfo`
+
+- <span id="scatteredrelocationinfo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ScatteredRelocationInfo`
 
 - <span id="scatteredrelocationinfo-clone"></span>`fn clone(&self) -> ScatteredRelocationInfo` — [`ScatteredRelocationInfo`](#scatteredrelocationinfo)
 
+##### `impl CloneToUninit for ScatteredRelocationInfo`
+
+- <span id="scatteredrelocationinfo-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for ScatteredRelocationInfo`
 
 ##### `impl Debug for ScatteredRelocationInfo`
 
-- <span id="scatteredrelocationinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scatteredrelocationinfo-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ScatteredRelocationInfo`
+
+- <span id="scatteredrelocationinfo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ScatteredRelocationInfo`
+
+- <span id="scatteredrelocationinfo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for ScatteredRelocationInfo`
+
+- <span id="scatteredrelocationinfo-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="scatteredrelocationinfo-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="scatteredrelocationinfo-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ScatteredRelocationInfo`
+
+- <span id="scatteredrelocationinfo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="scatteredrelocationinfo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ScatteredRelocationInfo`
+
+- <span id="scatteredrelocationinfo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="scatteredrelocationinfo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -5057,23 +8789,77 @@ The variant values correspond to the values used in the
 
 #### Trait Implementations
 
+##### `impl Any for PtrauthKey`
+
+- <span id="ptrauthkey-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PtrauthKey`
+
+- <span id="ptrauthkey-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PtrauthKey`
+
+- <span id="ptrauthkey-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for PtrauthKey`
 
 - <span id="ptrauthkey-clone"></span>`fn clone(&self) -> PtrauthKey` — [`PtrauthKey`](#ptrauthkey)
+
+##### `impl CloneToUninit for PtrauthKey`
+
+- <span id="ptrauthkey-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for PtrauthKey`
 
 ##### `impl Debug for PtrauthKey`
 
-- <span id="ptrauthkey-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ptrauthkey-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for PtrauthKey`
 
+##### `impl<T> From for PtrauthKey`
+
+- <span id="ptrauthkey-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PtrauthKey`
+
+- <span id="ptrauthkey-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for PtrauthKey`
 
-- <span id="ptrauthkey-eq"></span>`fn eq(&self, other: &PtrauthKey) -> bool` — [`PtrauthKey`](#ptrauthkey)
+- <span id="ptrauthkey-partialeq-eq"></span>`fn eq(&self, other: &PtrauthKey) -> bool` — [`PtrauthKey`](#ptrauthkey)
 
 ##### `impl StructuralPartialEq for PtrauthKey`
+
+##### `impl ToOwned for PtrauthKey`
+
+- <span id="ptrauthkey-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="ptrauthkey-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="ptrauthkey-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PtrauthKey`
+
+- <span id="ptrauthkey-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ptrauthkey-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PtrauthKey`
+
+- <span id="ptrauthkey-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ptrauthkey-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

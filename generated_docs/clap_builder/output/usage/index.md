@@ -37,6 +37,50 @@ struct Usage<'cmd> {
 
 - <span id="usage-write-usage-no-title"></span>`fn write_usage_no_title(&self, styled: &mut StyledStr, used: &[Id]) -> bool` — [`StyledStr`](../../builder/styled_str/index.md#styledstr), [`Id`](../../util/id/index.md#id)
 
+#### Trait Implementations
+
+##### `impl Any for Usage<'cmd>`
+
+- <span id="usage-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Usage<'cmd>`
+
+- <span id="usage-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Usage<'cmd>`
+
+- <span id="usage-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Usage<'cmd>`
+
+- <span id="usage-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Usage<'cmd>`
+
+- <span id="usage-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Usage<'cmd>`
+
+- <span id="usage-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="usage-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Usage<'cmd>`
+
+- <span id="usage-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="usage-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ## Constants
 
 ### `USAGE_SEP`

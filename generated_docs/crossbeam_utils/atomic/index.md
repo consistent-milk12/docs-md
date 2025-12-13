@@ -73,21 +73,211 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
 - <span id="atomiccell-new"></span>`const fn new(val: T) -> AtomicCell<T>` — [`AtomicCell`](atomic_cell/index.md#atomiccell)
 
+  Creates a new atomic cell initialized with `val`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::atomic::AtomicCell;
+
+  
+
+  let a = AtomicCell::new(7);
+
+  ```
+
 - <span id="atomiccell-into-inner"></span>`fn into_inner(self) -> T`
+
+  Consumes the atomic and returns the contained value.
+
+  
+
+  This is safe because passing `self` by value guarantees that no other threads are
+
+  concurrently accessing the atomic data.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::atomic::AtomicCell;
+
+  
+
+  let a = AtomicCell::new(7);
+
+  let v = a.into_inner();
+
+  
+
+  assert_eq!(v, 7);
+
+  ```
 
 - <span id="atomiccell-is-lock-free"></span>`const fn is_lock_free() -> bool`
 
+  Returns `true` if operations on values of this type are lock-free.
+
+  
+
+  If the compiler or the platform doesn't support the necessary atomic instructions,
+
+  `AtomicCell<T>` will use global locks for every potentially concurrent atomic operation.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::atomic::AtomicCell;
+
+  
+
+  // This type is internally represented as `AtomicUsize` so we can just use atomic
+
+  // operations provided by it.
+
+  assert_eq!(AtomicCell::<usize>::is_lock_free(), true);
+
+  
+
+  // A wrapper struct around `isize`.
+
+  struct Foo {
+
+      bar: isize,
+
+  }
+
+  // `AtomicCell<Foo>` will be internally represented as `AtomicIsize`.
+
+  assert_eq!(AtomicCell::<Foo>::is_lock_free(), true);
+
+  
+
+  // Operations on zero-sized types are always lock-free.
+
+  assert_eq!(AtomicCell::<()>::is_lock_free(), true);
+
+  
+
+  // Very large types cannot be represented as any of the standard atomic types, so atomic
+
+  // operations on them will have to use global locks for synchronization.
+
+  assert_eq!(AtomicCell::<[u8; 1000]>::is_lock_free(), false);
+
+  ```
+
 - <span id="atomiccell-store"></span>`fn store(&self, val: T)`
+
+  Stores `val` into the atomic cell.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::atomic::AtomicCell;
+
+  
+
+  let a = AtomicCell::new(7);
+
+  
+
+  assert_eq!(a.load(), 7);
+
+  a.store(8);
+
+  assert_eq!(a.load(), 8);
+
+  ```
 
 - <span id="atomiccell-swap"></span>`fn swap(&self, val: T) -> T`
 
+  Stores `val` into the atomic cell and returns the previous value.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::atomic::AtomicCell;
+
+  
+
+  let a = AtomicCell::new(7);
+
+  
+
+  assert_eq!(a.load(), 7);
+
+  assert_eq!(a.swap(8), 7);
+
+  assert_eq!(a.load(), 8);
+
+  ```
+
 - <span id="atomiccell-as-ptr"></span>`fn as_ptr(&self) -> *mut T`
+
+  Returns a raw pointer to the underlying data in this atomic cell.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::atomic::AtomicCell;
+
+  
+
+  let a = AtomicCell::new(5);
+
+  
+
+  let ptr = a.as_ptr();
+
+  ```
 
 #### Trait Implementations
 
+##### `impl<T> Any for AtomicCell<T>`
+
+- <span id="atomiccell-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AtomicCell<T>`
+
+- <span id="atomiccell-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AtomicCell<T>`
+
+- <span id="atomiccell-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: Copy + fmt::Debug> Debug for AtomicCell<T>`
 
-- <span id="atomiccell-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomiccell-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Default> Default for AtomicCell<T>`
 
@@ -97,11 +287,41 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
 - <span id="atomiccell-drop"></span>`fn drop(&mut self)`
 
+##### `impl<T> From for AtomicCell<T>`
+
+- <span id="atomiccell-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for AtomicCell<T>`
+
+- <span id="atomiccell-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T> RefUnwindSafe for AtomicCell<T>`
 
 ##### `impl<T: Send> Send for AtomicCell<T>`
 
 ##### `impl<T: Send> Sync for AtomicCell<T>`
+
+##### `impl<T, U> TryFrom for AtomicCell<T>`
+
+- <span id="atomiccell-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="atomiccell-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for AtomicCell<T>`
+
+- <span id="atomiccell-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="atomiccell-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T> UnwindSafe for AtomicCell<T>`
 

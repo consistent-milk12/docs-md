@@ -70,39 +70,93 @@ A identifier
 
 #### Trait Implementations
 
+##### `impl Any for Ident`
+
+- <span id="ident-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Ident`
+
+- <span id="ident-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Ident`
+
+- <span id="ident-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Ident`
 
 - <span id="ident-clone"></span>`fn clone(&self) -> Ident` — [`Ident`](#ident)
 
+##### `impl CloneToUninit for Ident`
+
+- <span id="ident-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Ident`
 
-- <span id="ident-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ident-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Ident`
 
-- <span id="ident-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ident-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Ident`
+
+##### `impl<T> From for Ident`
+
+- <span id="ident-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Ident`
 
 - <span id="ident-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
+##### `impl<U> Into for Ident`
+
+- <span id="ident-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Ident`
 
-- <span id="ident-cmp"></span>`fn cmp(&self, other: &Ident) -> cmp::Ordering` — [`Ident`](#ident)
+- <span id="ident-ord-cmp"></span>`fn cmp(&self, other: &Ident) -> cmp::Ordering` — [`Ident`](#ident)
 
 ##### `impl PartialEq for Ident`
 
-- <span id="ident-eq"></span>`fn eq(&self, other: &str) -> bool`
+- <span id="ident-partialeq-eq"></span>`fn eq(&self, other: &str) -> bool`
 
 ##### `impl PartialOrd for Ident`
 
-- <span id="ident-partial-cmp"></span>`fn partial_cmp(&self, other: &Ident) -> option::Option<cmp::Ordering>` — [`Ident`](#ident)
+- <span id="ident-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Ident) -> option::Option<cmp::Ordering>` — [`Ident`](#ident)
+
+##### `impl ToOwned for Ident`
+
+- <span id="ident-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="ident-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="ident-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for Ident`
 
-- <span id="ident-to-string"></span>`fn to_string(&self) -> String`
+- <span id="ident-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Ident`
+
+- <span id="ident-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ident-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Ident`
+
+- <span id="ident-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ident-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Tokenizer<'a>`
 
@@ -117,9 +171,43 @@ struct Tokenizer<'a> {
 
 #### Trait Implementations
 
+##### `impl Any for Tokenizer<'a>`
+
+- <span id="tokenizer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Tokenizer<'a>`
+
+- <span id="tokenizer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Tokenizer<'a>`
+
+- <span id="tokenizer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Tokenizer<'a>`
 
 - <span id="tokenizer-clone"></span>`fn clone(&self) -> Tokenizer<'a>` — [`Tokenizer`](#tokenizer)
+
+##### `impl CloneToUninit for Tokenizer<'a>`
+
+- <span id="tokenizer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
+##### `impl<T> From for Tokenizer<'a>`
+
+- <span id="tokenizer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Tokenizer<'a>`
+
+- <span id="tokenizer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Tokenizer<'a>`
 
@@ -127,13 +215,33 @@ struct Tokenizer<'a> {
 
 - <span id="tokenizer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="tokenizer-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="tokenizer-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Tokenizer<'a>`
 
 - <span id="tokenizer-iterator-type-item"></span>`type Item = Result<Token<'a>, ParseError>`
 
-- <span id="tokenizer-next"></span>`fn next(&mut self) -> Option<Result<Token<'a>, ParseError>>` — [`Token`](#token), [`ParseError`](../error/index.md#parseerror)
+- <span id="tokenizer-iterator-next"></span>`fn next(&mut self) -> Option<Result<Token<'a>, ParseError>>` — [`Token`](#token), [`ParseError`](../error/index.md#parseerror)
+
+##### `impl ToOwned for Tokenizer<'a>`
+
+- <span id="tokenizer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="tokenizer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="tokenizer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Tokenizer<'a>`
+
+- <span id="tokenizer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tokenizer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Tokenizer<'a>`
+
+- <span id="tokenizer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tokenizer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Parser<'a>`
 
@@ -161,6 +269,52 @@ struct Parser<'a> {
 
 - <span id="parser-rest"></span>`fn rest(&self) -> Option<&str>`
 
+  Returns the rest of the input from the current location.
+
+#### Trait Implementations
+
+##### `impl Any for Parser<'a>`
+
+- <span id="parser-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Parser<'a>`
+
+- <span id="parser-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Parser<'a>`
+
+- <span id="parser-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Parser<'a>`
+
+- <span id="parser-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Parser<'a>`
+
+- <span id="parser-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Parser<'a>`
+
+- <span id="parser-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="parser-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Parser<'a>`
+
+- <span id="parser-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="parser-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `CommaSep<'a, T>`
 
 ```rust
@@ -171,13 +325,55 @@ struct CommaSep<'a, T>(&'a [T]);
 
 #### Trait Implementations
 
+##### `impl<T> Any for CommaSep<'a, T>`
+
+- <span id="commasep-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CommaSep<'a, T>`
+
+- <span id="commasep-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CommaSep<'a, T>`
+
+- <span id="commasep-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: fmt::Display> Display for CommaSep<'a, T>`
 
-- <span id="commasep-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="commasep-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CommaSep<'a, T>`
+
+- <span id="commasep-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for CommaSep<'a, T>`
+
+- <span id="commasep-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for CommaSep<'a, T>`
 
-- <span id="commasep-to-string"></span>`fn to_string(&self) -> String`
+- <span id="commasep-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for CommaSep<'a, T>`
+
+- <span id="commasep-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="commasep-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for CommaSep<'a, T>`
+
+- <span id="commasep-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="commasep-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -202,51 +398,107 @@ A cfg expression.
 
 - <span id="cfgexpr-matches-key"></span>`fn matches_key(key: &str, target_cfg: &[Cfg]) -> bool` — [`Cfg`](#cfg)
 
+  Utility function to check if the key, "cfg(..)" matches the `target_cfg`
+
 - <span id="cfgexpr-matches"></span>`fn matches(&self, cfg: &[Cfg]) -> bool` — [`Cfg`](#cfg)
 
 #### Trait Implementations
+
+##### `impl Any for CfgExpr`
+
+- <span id="cfgexpr-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CfgExpr`
+
+- <span id="cfgexpr-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CfgExpr`
+
+- <span id="cfgexpr-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for CfgExpr`
 
 - <span id="cfgexpr-clone"></span>`fn clone(&self) -> CfgExpr` — [`CfgExpr`](#cfgexpr)
 
+##### `impl CloneToUninit for CfgExpr`
+
+- <span id="cfgexpr-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for CfgExpr`
 
-- <span id="cfgexpr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cfgexpr-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for CfgExpr`
 
-- <span id="cfgexpr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cfgexpr-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for CfgExpr`
+
+##### `impl<T> From for CfgExpr`
+
+- <span id="cfgexpr-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromStr for CfgExpr`
 
 - <span id="cfgexpr-fromstr-type-err"></span>`type Err = ParseError`
 
-- <span id="cfgexpr-from-str"></span>`fn from_str(s: &str) -> Result<CfgExpr, <Self as >::Err>` — [`CfgExpr`](#cfgexpr)
+- <span id="cfgexpr-fromstr-from-str"></span>`fn from_str(s: &str) -> Result<CfgExpr, <Self as >::Err>` — [`CfgExpr`](#cfgexpr)
 
 ##### `impl Hash for CfgExpr`
 
 - <span id="cfgexpr-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for CfgExpr`
+
+- <span id="cfgexpr-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for CfgExpr`
 
-- <span id="cfgexpr-cmp"></span>`fn cmp(&self, other: &CfgExpr) -> cmp::Ordering` — [`CfgExpr`](#cfgexpr)
+- <span id="cfgexpr-ord-cmp"></span>`fn cmp(&self, other: &CfgExpr) -> cmp::Ordering` — [`CfgExpr`](#cfgexpr)
 
 ##### `impl PartialEq for CfgExpr`
 
-- <span id="cfgexpr-eq"></span>`fn eq(&self, other: &CfgExpr) -> bool` — [`CfgExpr`](#cfgexpr)
+- <span id="cfgexpr-partialeq-eq"></span>`fn eq(&self, other: &CfgExpr) -> bool` — [`CfgExpr`](#cfgexpr)
 
 ##### `impl PartialOrd for CfgExpr`
 
-- <span id="cfgexpr-partial-cmp"></span>`fn partial_cmp(&self, other: &CfgExpr) -> option::Option<cmp::Ordering>` — [`CfgExpr`](#cfgexpr)
+- <span id="cfgexpr-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &CfgExpr) -> option::Option<cmp::Ordering>` — [`CfgExpr`](#cfgexpr)
 
 ##### `impl StructuralPartialEq for CfgExpr`
 
+##### `impl ToOwned for CfgExpr`
+
+- <span id="cfgexpr-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="cfgexpr-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="cfgexpr-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for CfgExpr`
 
-- <span id="cfgexpr-to-string"></span>`fn to_string(&self) -> String`
+- <span id="cfgexpr-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for CfgExpr`
+
+- <span id="cfgexpr-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cfgexpr-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CfgExpr`
+
+- <span id="cfgexpr-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cfgexpr-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Cfg`
 
@@ -273,47 +525,101 @@ A cfg value.
 
 #### Trait Implementations
 
+##### `impl Any for Cfg`
+
+- <span id="cfg-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Cfg`
+
+- <span id="cfg-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Cfg`
+
+- <span id="cfg-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Cfg`
 
 - <span id="cfg-clone"></span>`fn clone(&self) -> Cfg` — [`Cfg`](#cfg)
 
+##### `impl CloneToUninit for Cfg`
+
+- <span id="cfg-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Cfg`
 
-- <span id="cfg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cfg-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Cfg`
 
-- <span id="cfg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cfg-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Cfg`
+
+##### `impl<T> From for Cfg`
+
+- <span id="cfg-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromStr for Cfg`
 
 - <span id="cfg-fromstr-type-err"></span>`type Err = ParseError`
 
-- <span id="cfg-from-str"></span>`fn from_str(s: &str) -> Result<Cfg, <Self as >::Err>` — [`Cfg`](#cfg)
+- <span id="cfg-fromstr-from-str"></span>`fn from_str(s: &str) -> Result<Cfg, <Self as >::Err>` — [`Cfg`](#cfg)
 
 ##### `impl Hash for Cfg`
 
 - <span id="cfg-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Cfg`
+
+- <span id="cfg-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Cfg`
 
-- <span id="cfg-cmp"></span>`fn cmp(&self, other: &Cfg) -> cmp::Ordering` — [`Cfg`](#cfg)
+- <span id="cfg-ord-cmp"></span>`fn cmp(&self, other: &Cfg) -> cmp::Ordering` — [`Cfg`](#cfg)
 
 ##### `impl PartialEq for Cfg`
 
-- <span id="cfg-eq"></span>`fn eq(&self, other: &Cfg) -> bool` — [`Cfg`](#cfg)
+- <span id="cfg-partialeq-eq"></span>`fn eq(&self, other: &Cfg) -> bool` — [`Cfg`](#cfg)
 
 ##### `impl PartialOrd for Cfg`
 
-- <span id="cfg-partial-cmp"></span>`fn partial_cmp(&self, other: &Cfg) -> option::Option<cmp::Ordering>` — [`Cfg`](#cfg)
+- <span id="cfg-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Cfg) -> option::Option<cmp::Ordering>` — [`Cfg`](#cfg)
 
 ##### `impl StructuralPartialEq for Cfg`
 
+##### `impl ToOwned for Cfg`
+
+- <span id="cfg-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="cfg-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="cfg-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Cfg`
 
-- <span id="cfg-to-string"></span>`fn to_string(&self) -> String`
+- <span id="cfg-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Cfg`
+
+- <span id="cfg-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cfg-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Cfg`
+
+- <span id="cfg-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cfg-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Token<'a>`
 
@@ -336,11 +642,53 @@ enum Token<'a> {
 
 #### Trait Implementations
 
+##### `impl Any for Token<'a>`
+
+- <span id="token-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Token<'a>`
+
+- <span id="token-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Token<'a>`
+
+- <span id="token-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Token<'a>`
+
+- <span id="token-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Token<'a>`
+
+- <span id="token-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Token<'a>`
 
-- <span id="token-eq"></span>`fn eq(&self, other: &Token<'a>) -> bool` — [`Token`](#token)
+- <span id="token-partialeq-eq"></span>`fn eq(&self, other: &Token<'a>) -> bool` — [`Token`](#token)
 
 ##### `impl StructuralPartialEq for Token<'a>`
+
+##### `impl<U> TryFrom for Token<'a>`
+
+- <span id="token-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="token-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Token<'a>`
+
+- <span id="token-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="token-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

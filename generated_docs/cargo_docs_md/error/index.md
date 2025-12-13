@@ -174,25 +174,55 @@ Each variant includes:
 
 #### Trait Implementations
 
+##### `impl Any for Error`
+
+- <span id="error-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Error`
+
+- <span id="error-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Error`
+
+- <span id="error-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Error`
 
-- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Diagnostic for Error`
 
-- <span id="error-code"></span>`fn code(&self) -> std::option::Option<std::boxed::Box<dyn std::fmt::Display>>`
+- <span id="error-diagnostic-code"></span>`fn code(&self) -> std::option::Option<std::boxed::Box<dyn std::fmt::Display>>`
 
-- <span id="error-help"></span>`fn help(&self) -> std::option::Option<std::boxed::Box<dyn std::fmt::Display>>`
+- <span id="error-diagnostic-help"></span>`fn help(&self) -> std::option::Option<std::boxed::Box<dyn std::fmt::Display>>`
 
 ##### `impl Display for Error`
 
-- <span id="error-fmt"></span>`fn fmt(&self, __formatter: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result`
+- <span id="error-display-fmt"></span>`fn fmt(&self, __formatter: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result`
 
 ##### `impl Error for Error`
 
-- <span id="error-source"></span>`fn source(&self) -> ::core::option::Option<&dyn ::thiserror::__private17::Error>`
+- <span id="error-error-source"></span>`fn source(&self) -> ::core::option::Option<&dyn ::thiserror::__private17::Error>`
+
+##### `impl<T> From for Error`
+
+- <span id="error-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Instrument for Error`
+
+##### `impl<U> Into for Error`
+
+- <span id="error-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Error`
 
@@ -204,21 +234,33 @@ Each variant includes:
 
 - <span id="error-pointable-type-init"></span>`type Init = T`
 
-- <span id="error-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="error-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="error-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="error-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="error-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="error-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="error-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="error-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl ToCompactString for Error`
 
-- <span id="error-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>`
+- <span id="error-tocompactstring-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>`
 
 ##### `impl ToString for Error`
 
-- <span id="error-to-string"></span>`fn to_string(&self) -> String`
+- <span id="error-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Error`
+
+- <span id="error-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="error-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Error`
+
+- <span id="error-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="error-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for Error`
 

@@ -282,33 +282,79 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 #### Trait Implementations
 
+##### `impl Any for XtermColors`
+
+- <span id="xtermcolors-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for XtermColors`
+
+- <span id="xtermcolors-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for XtermColors`
+
+- <span id="xtermcolors-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for XtermColors`
 
 - <span id="xtermcolors-clone"></span>`fn clone(&self) -> XtermColors` — [`XtermColors`](#xtermcolors)
+
+##### `impl CloneToUninit for XtermColors`
+
+- <span id="xtermcolors-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for XtermColors`
 
 ##### `impl Debug for XtermColors`
 
-- <span id="xtermcolors-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xtermcolors-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DynColor for XtermColors`
 
-- <span id="xtermcolors-fmt-ansi-fg"></span>`fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xtermcolors-dyncolor-fmt-ansi-fg"></span>`fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="xtermcolors-fmt-ansi-bg"></span>`fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xtermcolors-dyncolor-fmt-ansi-bg"></span>`fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="xtermcolors-fmt-raw-ansi-fg"></span>`fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xtermcolors-dyncolor-fmt-raw-ansi-fg"></span>`fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="xtermcolors-fmt-raw-ansi-bg"></span>`fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xtermcolors-dyncolor-fmt-raw-ansi-bg"></span>`fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for XtermColors`
+
+##### `impl<T> From for XtermColors`
+
+- <span id="xtermcolors-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for XtermColors`
+
+- <span id="xtermcolors-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for XtermColors`
 
 ##### `impl PartialEq for XtermColors`
 
-- <span id="xtermcolors-eq"></span>`fn eq(&self, other: &XtermColors) -> bool` — [`XtermColors`](#xtermcolors)
+- <span id="xtermcolors-partialeq-eq"></span>`fn eq(&self, other: &XtermColors) -> bool` — [`XtermColors`](#xtermcolors)
 
 ##### `impl StructuralPartialEq for XtermColors`
+
+##### `impl<U> TryFrom for XtermColors`
+
+- <span id="xtermcolors-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="xtermcolors-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for XtermColors`
+
+- <span id="xtermcolors-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="xtermcolors-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

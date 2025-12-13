@@ -41,35 +41,97 @@ movemask instructions. But neon has no such native equivalent.
 
 - <span id="sensiblemovemask-get-for-offset"></span>`fn get_for_offset(self) -> u32`
 
+  Get the mask in a form suitable for computing offsets.
+
+  
+
+  Basically, this normalizes to little endian. On big endian, this swaps
+
+  the bytes.
+
 #### Trait Implementations
+
+##### `impl Any for SensibleMoveMask`
+
+- <span id="sensiblemovemask-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SensibleMoveMask`
+
+- <span id="sensiblemovemask-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SensibleMoveMask`
+
+- <span id="sensiblemovemask-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for SensibleMoveMask`
 
 - <span id="sensiblemovemask-clone"></span>`fn clone(&self) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
 
+##### `impl CloneToUninit for SensibleMoveMask`
+
+- <span id="sensiblemovemask-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for SensibleMoveMask`
 
 ##### `impl Debug for SensibleMoveMask`
 
-- <span id="sensiblemovemask-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sensiblemovemask-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SensibleMoveMask`
+
+- <span id="sensiblemovemask-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SensibleMoveMask`
+
+- <span id="sensiblemovemask-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl MoveMask for SensibleMoveMask`
 
-- <span id="sensiblemovemask-all-zeros-except-least-significant"></span>`fn all_zeros_except_least_significant(n: usize) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
+- <span id="sensiblemovemask-movemask-all-zeros-except-least-significant"></span>`fn all_zeros_except_least_significant(n: usize) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
 
-- <span id="sensiblemovemask-has-non-zero"></span>`fn has_non_zero(self) -> bool`
+- <span id="sensiblemovemask-movemask-has-non-zero"></span>`fn has_non_zero(self) -> bool`
 
-- <span id="sensiblemovemask-count-ones"></span>`fn count_ones(self) -> usize`
+- <span id="sensiblemovemask-movemask-count-ones"></span>`fn count_ones(self) -> usize`
 
-- <span id="sensiblemovemask-and"></span>`fn and(self, other: SensibleMoveMask) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
+- <span id="sensiblemovemask-movemask-and"></span>`fn and(self, other: SensibleMoveMask) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
 
-- <span id="sensiblemovemask-or"></span>`fn or(self, other: SensibleMoveMask) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
+- <span id="sensiblemovemask-movemask-or"></span>`fn or(self, other: SensibleMoveMask) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
 
-- <span id="sensiblemovemask-clear-least-significant-bit"></span>`fn clear_least_significant_bit(self) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
+- <span id="sensiblemovemask-movemask-clear-least-significant-bit"></span>`fn clear_least_significant_bit(self) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
 
-- <span id="sensiblemovemask-first-offset"></span>`fn first_offset(self) -> usize`
+- <span id="sensiblemovemask-movemask-first-offset"></span>`fn first_offset(self) -> usize`
 
-- <span id="sensiblemovemask-last-offset"></span>`fn last_offset(self) -> usize`
+- <span id="sensiblemovemask-movemask-last-offset"></span>`fn last_offset(self) -> usize`
+
+##### `impl ToOwned for SensibleMoveMask`
+
+- <span id="sensiblemovemask-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sensiblemovemask-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sensiblemovemask-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SensibleMoveMask`
+
+- <span id="sensiblemovemask-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sensiblemovemask-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SensibleMoveMask`
+
+- <span id="sensiblemovemask-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sensiblemovemask-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

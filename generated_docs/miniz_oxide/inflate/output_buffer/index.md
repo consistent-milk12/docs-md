@@ -40,13 +40,69 @@ performance on 32-bit systems.
 
 - <span id="outputbuffer-write-byte"></span>`fn write_byte(&mut self, byte: u8)`
 
+  Write a byte to the current position and increment
+
+  
+
+  Assumes that there is space.
+
 - <span id="outputbuffer-write-slice"></span>`fn write_slice(&mut self, data: &[u8])`
+
+  Write a slice to the current position and increment
+
+  
+
+  Assumes that there is space.
 
 - <span id="outputbuffer-bytes-left"></span>`const fn bytes_left(&self) -> usize`
 
 - <span id="outputbuffer-get-ref"></span>`const fn get_ref(&self) -> &[u8]`
 
 - <span id="outputbuffer-get-mut"></span>`fn get_mut(&mut self) -> &mut [u8]`
+
+#### Trait Implementations
+
+##### `impl Any for OutputBuffer<'a>`
+
+- <span id="outputbuffer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for OutputBuffer<'a>`
+
+- <span id="outputbuffer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for OutputBuffer<'a>`
+
+- <span id="outputbuffer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for OutputBuffer<'a>`
+
+- <span id="outputbuffer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for OutputBuffer<'a>`
+
+- <span id="outputbuffer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for OutputBuffer<'a>`
+
+- <span id="outputbuffer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="outputbuffer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for OutputBuffer<'a>`
+
+- <span id="outputbuffer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="outputbuffer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `InputWrapper<'a>`
 
@@ -80,9 +136,55 @@ performance on 32-bit systems.
 
 #### Trait Implementations
 
+##### `impl Any for InputWrapper<'a>`
+
+- <span id="inputwrapper-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for InputWrapper<'a>`
+
+- <span id="inputwrapper-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for InputWrapper<'a>`
+
+- <span id="inputwrapper-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for InputWrapper<'a>`
 
 - <span id="inputwrapper-clone"></span>`fn clone(&self) -> InputWrapper<'a>` — [`InputWrapper`](#inputwrapper)
 
+##### `impl CloneToUninit for InputWrapper<'a>`
+
+- <span id="inputwrapper-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for InputWrapper<'a>`
+
+##### `impl<T> From for InputWrapper<'a>`
+
+- <span id="inputwrapper-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for InputWrapper<'a>`
+
+- <span id="inputwrapper-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for InputWrapper<'a>`
+
+- <span id="inputwrapper-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="inputwrapper-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for InputWrapper<'a>`
+
+- <span id="inputwrapper-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="inputwrapper-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

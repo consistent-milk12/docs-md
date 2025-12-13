@@ -108,13 +108,47 @@ Parallel iterator over the characters of a string
 
 #### Trait Implementations
 
+##### `impl Any for Chars<'ch>`
+
+- <span id="chars-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Chars<'ch>`
+
+- <span id="chars-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Chars<'ch>`
+
+- <span id="chars-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Chars<'ch>`
 
 - <span id="chars-clone"></span>`fn clone(&self) -> Chars<'ch>` — [`Chars`](#chars)
 
+##### `impl CloneToUninit for Chars<'ch>`
+
+- <span id="chars-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Chars<'ch>`
 
-- <span id="chars-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="chars-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Chars<'ch>`
+
+- <span id="chars-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Chars<'ch>`
+
+- <span id="chars-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Chars<'ch>`
 
@@ -124,13 +158,13 @@ Parallel iterator over the characters of a string
 
 - <span id="chars-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="chars-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="chars-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl ParallelIterator for Chars<'ch>`
 
 - <span id="chars-paralleliterator-type-item"></span>`type Item = char`
 
-- <span id="chars-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="chars-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for Chars<'ch>`
 
@@ -138,13 +172,33 @@ Parallel iterator over the characters of a string
 
 - <span id="chars-pointable-type-init"></span>`type Init = T`
 
-- <span id="chars-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chars-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="chars-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chars-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="chars-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chars-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="chars-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="chars-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Chars<'ch>`
+
+- <span id="chars-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="chars-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="chars-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Chars<'ch>`
+
+- <span id="chars-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="chars-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Chars<'ch>`
+
+- <span id="chars-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="chars-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CharsProducer<'ch>`
 
@@ -158,6 +212,36 @@ struct CharsProducer<'ch> {
 
 #### Trait Implementations
 
+##### `impl Any for CharsProducer<'ch>`
+
+- <span id="charsproducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CharsProducer<'ch>`
+
+- <span id="charsproducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CharsProducer<'ch>`
+
+- <span id="charsproducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for CharsProducer<'ch>`
+
+- <span id="charsproducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CharsProducer<'ch>`
+
+- <span id="charsproducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for CharsProducer<'ch>`
 
 ##### `impl Pointable for CharsProducer<'ch>`
@@ -166,21 +250,33 @@ struct CharsProducer<'ch> {
 
 - <span id="charsproducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="charsproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="charsproducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="charsproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="charsproducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="charsproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="charsproducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="charsproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="charsproducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for CharsProducer<'ch>`
+
+- <span id="charsproducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="charsproducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CharsProducer<'ch>`
+
+- <span id="charsproducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="charsproducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl UnindexedProducer for CharsProducer<'ch>`
 
 - <span id="charsproducer-unindexedproducer-type-item"></span>`type Item = char`
 
-- <span id="charsproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
+- <span id="charsproducer-unindexedproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- <span id="charsproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
+- <span id="charsproducer-unindexedproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ### `CharIndices<'ch>`
 
@@ -196,13 +292,47 @@ Parallel iterator over the characters of a string, with their positions
 
 #### Trait Implementations
 
+##### `impl Any for CharIndices<'ch>`
+
+- <span id="charindices-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CharIndices<'ch>`
+
+- <span id="charindices-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CharIndices<'ch>`
+
+- <span id="charindices-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for CharIndices<'ch>`
 
 - <span id="charindices-clone"></span>`fn clone(&self) -> CharIndices<'ch>` — [`CharIndices`](#charindices)
 
+##### `impl CloneToUninit for CharIndices<'ch>`
+
+- <span id="charindices-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for CharIndices<'ch>`
 
-- <span id="charindices-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="charindices-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CharIndices<'ch>`
+
+- <span id="charindices-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CharIndices<'ch>`
+
+- <span id="charindices-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CharIndices<'ch>`
 
@@ -212,13 +342,13 @@ Parallel iterator over the characters of a string, with their positions
 
 - <span id="charindices-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="charindices-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="charindices-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl ParallelIterator for CharIndices<'ch>`
 
 - <span id="charindices-paralleliterator-type-item"></span>`type Item = (usize, char)`
 
-- <span id="charindices-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="charindices-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for CharIndices<'ch>`
 
@@ -226,13 +356,33 @@ Parallel iterator over the characters of a string, with their positions
 
 - <span id="charindices-pointable-type-init"></span>`type Init = T`
 
-- <span id="charindices-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="charindices-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="charindices-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="charindices-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="charindices-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="charindices-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="charindices-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="charindices-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for CharIndices<'ch>`
+
+- <span id="charindices-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="charindices-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="charindices-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CharIndices<'ch>`
+
+- <span id="charindices-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="charindices-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CharIndices<'ch>`
+
+- <span id="charindices-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="charindices-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CharIndicesProducer<'ch>`
 
@@ -247,6 +397,36 @@ struct CharIndicesProducer<'ch> {
 
 #### Trait Implementations
 
+##### `impl Any for CharIndicesProducer<'ch>`
+
+- <span id="charindicesproducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CharIndicesProducer<'ch>`
+
+- <span id="charindicesproducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CharIndicesProducer<'ch>`
+
+- <span id="charindicesproducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for CharIndicesProducer<'ch>`
+
+- <span id="charindicesproducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CharIndicesProducer<'ch>`
+
+- <span id="charindicesproducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for CharIndicesProducer<'ch>`
 
 ##### `impl Pointable for CharIndicesProducer<'ch>`
@@ -255,21 +435,33 @@ struct CharIndicesProducer<'ch> {
 
 - <span id="charindicesproducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="charindicesproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="charindicesproducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="charindicesproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="charindicesproducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="charindicesproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="charindicesproducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="charindicesproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="charindicesproducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for CharIndicesProducer<'ch>`
+
+- <span id="charindicesproducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="charindicesproducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CharIndicesProducer<'ch>`
+
+- <span id="charindicesproducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="charindicesproducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl UnindexedProducer for CharIndicesProducer<'ch>`
 
 - <span id="charindicesproducer-unindexedproducer-type-item"></span>`type Item = (usize, char)`
 
-- <span id="charindicesproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
+- <span id="charindicesproducer-unindexedproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- <span id="charindicesproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
+- <span id="charindicesproducer-unindexedproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ### `Bytes<'ch>`
 
@@ -285,13 +477,47 @@ Parallel iterator over the bytes of a string
 
 #### Trait Implementations
 
+##### `impl Any for Bytes<'ch>`
+
+- <span id="bytes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Bytes<'ch>`
+
+- <span id="bytes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Bytes<'ch>`
+
+- <span id="bytes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Bytes<'ch>`
 
 - <span id="bytes-clone"></span>`fn clone(&self) -> Bytes<'ch>` — [`Bytes`](#bytes)
 
+##### `impl CloneToUninit for Bytes<'ch>`
+
+- <span id="bytes-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Bytes<'ch>`
 
-- <span id="bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bytes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Bytes<'ch>`
+
+- <span id="bytes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Bytes<'ch>`
+
+- <span id="bytes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Bytes<'ch>`
 
@@ -301,13 +527,13 @@ Parallel iterator over the bytes of a string
 
 - <span id="bytes-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="bytes-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="bytes-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl ParallelIterator for Bytes<'ch>`
 
 - <span id="bytes-paralleliterator-type-item"></span>`type Item = u8`
 
-- <span id="bytes-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="bytes-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for Bytes<'ch>`
 
@@ -315,13 +541,33 @@ Parallel iterator over the bytes of a string
 
 - <span id="bytes-pointable-type-init"></span>`type Init = T`
 
-- <span id="bytes-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="bytes-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="bytes-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="bytes-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="bytes-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="bytes-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="bytes-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="bytes-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Bytes<'ch>`
+
+- <span id="bytes-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="bytes-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="bytes-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Bytes<'ch>`
+
+- <span id="bytes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="bytes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Bytes<'ch>`
+
+- <span id="bytes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="bytes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BytesProducer<'ch>`
 
@@ -335,6 +581,36 @@ struct BytesProducer<'ch> {
 
 #### Trait Implementations
 
+##### `impl Any for BytesProducer<'ch>`
+
+- <span id="bytesproducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BytesProducer<'ch>`
+
+- <span id="bytesproducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BytesProducer<'ch>`
+
+- <span id="bytesproducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for BytesProducer<'ch>`
+
+- <span id="bytesproducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BytesProducer<'ch>`
+
+- <span id="bytesproducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for BytesProducer<'ch>`
 
 ##### `impl Pointable for BytesProducer<'ch>`
@@ -343,21 +619,33 @@ struct BytesProducer<'ch> {
 
 - <span id="bytesproducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="bytesproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="bytesproducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="bytesproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="bytesproducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="bytesproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="bytesproducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="bytesproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="bytesproducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for BytesProducer<'ch>`
+
+- <span id="bytesproducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="bytesproducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BytesProducer<'ch>`
+
+- <span id="bytesproducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="bytesproducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl UnindexedProducer for BytesProducer<'ch>`
 
 - <span id="bytesproducer-unindexedproducer-type-item"></span>`type Item = u8`
 
-- <span id="bytesproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
+- <span id="bytesproducer-unindexedproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- <span id="bytesproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
+- <span id="bytesproducer-unindexedproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ### `EncodeUtf16<'ch>`
 
@@ -373,13 +661,47 @@ Parallel iterator over a string encoded as UTF-16
 
 #### Trait Implementations
 
+##### `impl Any for EncodeUtf16<'ch>`
+
+- <span id="encodeutf16-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for EncodeUtf16<'ch>`
+
+- <span id="encodeutf16-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for EncodeUtf16<'ch>`
+
+- <span id="encodeutf16-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for EncodeUtf16<'ch>`
 
 - <span id="encodeutf16-clone"></span>`fn clone(&self) -> EncodeUtf16<'ch>` — [`EncodeUtf16`](#encodeutf16)
 
+##### `impl CloneToUninit for EncodeUtf16<'ch>`
+
+- <span id="encodeutf16-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for EncodeUtf16<'ch>`
 
-- <span id="encodeutf16-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="encodeutf16-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for EncodeUtf16<'ch>`
+
+- <span id="encodeutf16-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for EncodeUtf16<'ch>`
+
+- <span id="encodeutf16-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for EncodeUtf16<'ch>`
 
@@ -389,13 +711,13 @@ Parallel iterator over a string encoded as UTF-16
 
 - <span id="encodeutf16-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="encodeutf16-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="encodeutf16-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl ParallelIterator for EncodeUtf16<'ch>`
 
 - <span id="encodeutf16-paralleliterator-type-item"></span>`type Item = u16`
 
-- <span id="encodeutf16-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="encodeutf16-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for EncodeUtf16<'ch>`
 
@@ -403,13 +725,33 @@ Parallel iterator over a string encoded as UTF-16
 
 - <span id="encodeutf16-pointable-type-init"></span>`type Init = T`
 
-- <span id="encodeutf16-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="encodeutf16-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="encodeutf16-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="encodeutf16-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="encodeutf16-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="encodeutf16-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="encodeutf16-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="encodeutf16-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for EncodeUtf16<'ch>`
+
+- <span id="encodeutf16-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="encodeutf16-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="encodeutf16-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for EncodeUtf16<'ch>`
+
+- <span id="encodeutf16-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="encodeutf16-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for EncodeUtf16<'ch>`
+
+- <span id="encodeutf16-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="encodeutf16-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `EncodeUtf16Producer<'ch>`
 
@@ -423,6 +765,36 @@ struct EncodeUtf16Producer<'ch> {
 
 #### Trait Implementations
 
+##### `impl Any for EncodeUtf16Producer<'ch>`
+
+- <span id="encodeutf16producer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for EncodeUtf16Producer<'ch>`
+
+- <span id="encodeutf16producer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for EncodeUtf16Producer<'ch>`
+
+- <span id="encodeutf16producer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for EncodeUtf16Producer<'ch>`
+
+- <span id="encodeutf16producer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for EncodeUtf16Producer<'ch>`
+
+- <span id="encodeutf16producer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for EncodeUtf16Producer<'ch>`
 
 ##### `impl Pointable for EncodeUtf16Producer<'ch>`
@@ -431,21 +803,33 @@ struct EncodeUtf16Producer<'ch> {
 
 - <span id="encodeutf16producer-pointable-type-init"></span>`type Init = T`
 
-- <span id="encodeutf16producer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="encodeutf16producer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="encodeutf16producer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="encodeutf16producer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="encodeutf16producer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="encodeutf16producer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="encodeutf16producer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="encodeutf16producer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for EncodeUtf16Producer<'ch>`
+
+- <span id="encodeutf16producer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="encodeutf16producer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for EncodeUtf16Producer<'ch>`
+
+- <span id="encodeutf16producer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="encodeutf16producer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl UnindexedProducer for EncodeUtf16Producer<'ch>`
 
 - <span id="encodeutf16producer-unindexedproducer-type-item"></span>`type Item = u16`
 
-- <span id="encodeutf16producer-split"></span>`fn split(self) -> (Self, Option<Self>)`
+- <span id="encodeutf16producer-unindexedproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- <span id="encodeutf16producer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
+- <span id="encodeutf16producer-unindexedproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ### `Split<'ch, P: Pattern>`
 
@@ -466,13 +850,47 @@ Parallel iterator over substrings separated by a pattern
 
 #### Trait Implementations
 
+##### `impl Any for Split<'ch, P>`
+
+- <span id="split-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Split<'ch, P>`
+
+- <span id="split-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Split<'ch, P>`
+
+- <span id="split-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<P: clone::Clone + Pattern> Clone for Split<'ch, P>`
 
 - <span id="split-clone"></span>`fn clone(&self) -> Split<'ch, P>` — [`Split`](#split)
 
+##### `impl CloneToUninit for Split<'ch, P>`
+
+- <span id="split-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<P: fmt::Debug + Pattern> Debug for Split<'ch, P>`
 
-- <span id="split-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="split-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Split<'ch, P>`
+
+- <span id="split-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Split<'ch, P>`
+
+- <span id="split-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Split<'ch, P>`
 
@@ -482,13 +900,13 @@ Parallel iterator over substrings separated by a pattern
 
 - <span id="split-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="split-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="split-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<P: Pattern> ParallelIterator for Split<'ch, P>`
 
 - <span id="split-paralleliterator-type-item"></span>`type Item = &'ch str`
 
-- <span id="split-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="split-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for Split<'ch, P>`
 
@@ -496,13 +914,33 @@ Parallel iterator over substrings separated by a pattern
 
 - <span id="split-pointable-type-init"></span>`type Init = T`
 
-- <span id="split-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="split-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="split-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="split-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="split-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="split-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="split-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="split-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Split<'ch, P>`
+
+- <span id="split-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="split-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="split-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Split<'ch, P>`
+
+- <span id="split-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="split-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Split<'ch, P>`
+
+- <span id="split-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="split-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SplitInclusive<'ch, P: Pattern>`
 
@@ -523,13 +961,47 @@ Parallel iterator over substrings separated by a pattern
 
 #### Trait Implementations
 
+##### `impl Any for SplitInclusive<'ch, P>`
+
+- <span id="splitinclusive-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SplitInclusive<'ch, P>`
+
+- <span id="splitinclusive-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SplitInclusive<'ch, P>`
+
+- <span id="splitinclusive-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<P: clone::Clone + Pattern> Clone for SplitInclusive<'ch, P>`
 
 - <span id="splitinclusive-clone"></span>`fn clone(&self) -> SplitInclusive<'ch, P>` — [`SplitInclusive`](#splitinclusive)
 
+##### `impl CloneToUninit for SplitInclusive<'ch, P>`
+
+- <span id="splitinclusive-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<P: fmt::Debug + Pattern> Debug for SplitInclusive<'ch, P>`
 
-- <span id="splitinclusive-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="splitinclusive-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SplitInclusive<'ch, P>`
+
+- <span id="splitinclusive-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SplitInclusive<'ch, P>`
+
+- <span id="splitinclusive-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SplitInclusive<'ch, P>`
 
@@ -539,13 +1011,13 @@ Parallel iterator over substrings separated by a pattern
 
 - <span id="splitinclusive-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="splitinclusive-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="splitinclusive-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<P: Pattern> ParallelIterator for SplitInclusive<'ch, P>`
 
 - <span id="splitinclusive-paralleliterator-type-item"></span>`type Item = &'ch str`
 
-- <span id="splitinclusive-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="splitinclusive-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for SplitInclusive<'ch, P>`
 
@@ -553,13 +1025,33 @@ Parallel iterator over substrings separated by a pattern
 
 - <span id="splitinclusive-pointable-type-init"></span>`type Init = T`
 
-- <span id="splitinclusive-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitinclusive-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="splitinclusive-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitinclusive-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="splitinclusive-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitinclusive-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="splitinclusive-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="splitinclusive-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for SplitInclusive<'ch, P>`
+
+- <span id="splitinclusive-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="splitinclusive-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="splitinclusive-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SplitInclusive<'ch, P>`
+
+- <span id="splitinclusive-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="splitinclusive-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SplitInclusive<'ch, P>`
+
+- <span id="splitinclusive-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="splitinclusive-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SplitTerminator<'ch, P: Pattern>`
 
@@ -580,13 +1072,47 @@ Parallel iterator over substrings separated by a terminator pattern
 
 #### Trait Implementations
 
+##### `impl Any for SplitTerminator<'ch, P>`
+
+- <span id="splitterminator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SplitTerminator<'ch, P>`
+
+- <span id="splitterminator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SplitTerminator<'ch, P>`
+
+- <span id="splitterminator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<P: clone::Clone + Pattern> Clone for SplitTerminator<'ch, P>`
 
 - <span id="splitterminator-clone"></span>`fn clone(&self) -> SplitTerminator<'ch, P>` — [`SplitTerminator`](#splitterminator)
 
+##### `impl CloneToUninit for SplitTerminator<'ch, P>`
+
+- <span id="splitterminator-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<P: fmt::Debug + Pattern> Debug for SplitTerminator<'ch, P>`
 
-- <span id="splitterminator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="splitterminator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SplitTerminator<'ch, P>`
+
+- <span id="splitterminator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SplitTerminator<'ch, P>`
+
+- <span id="splitterminator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SplitTerminator<'ch, P>`
 
@@ -596,13 +1122,13 @@ Parallel iterator over substrings separated by a terminator pattern
 
 - <span id="splitterminator-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="splitterminator-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="splitterminator-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<P: Pattern> ParallelIterator for SplitTerminator<'ch, P>`
 
 - <span id="splitterminator-paralleliterator-type-item"></span>`type Item = &'ch str`
 
-- <span id="splitterminator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="splitterminator-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for SplitTerminator<'ch, P>`
 
@@ -610,13 +1136,33 @@ Parallel iterator over substrings separated by a terminator pattern
 
 - <span id="splitterminator-pointable-type-init"></span>`type Init = T`
 
-- <span id="splitterminator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitterminator-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="splitterminator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitterminator-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="splitterminator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitterminator-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="splitterminator-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="splitterminator-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for SplitTerminator<'ch, P>`
+
+- <span id="splitterminator-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="splitterminator-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="splitterminator-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SplitTerminator<'ch, P>`
+
+- <span id="splitterminator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="splitterminator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SplitTerminator<'ch, P>`
+
+- <span id="splitterminator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="splitterminator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SplitTerminatorProducer<'ch, 'sep, P: Pattern>`
 
@@ -635,6 +1181,36 @@ struct SplitTerminatorProducer<'ch, 'sep, P: Pattern> {
 
 #### Trait Implementations
 
+##### `impl Any for SplitTerminatorProducer<'ch, 'sep, P>`
+
+- <span id="splitterminatorproducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SplitTerminatorProducer<'ch, 'sep, P>`
+
+- <span id="splitterminatorproducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SplitTerminatorProducer<'ch, 'sep, P>`
+
+- <span id="splitterminatorproducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for SplitTerminatorProducer<'ch, 'sep, P>`
+
+- <span id="splitterminatorproducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SplitTerminatorProducer<'ch, 'sep, P>`
+
+- <span id="splitterminatorproducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for SplitTerminatorProducer<'ch, 'sep, P>`
 
 ##### `impl Pointable for SplitTerminatorProducer<'ch, 'sep, P>`
@@ -643,21 +1219,33 @@ struct SplitTerminatorProducer<'ch, 'sep, P: Pattern> {
 
 - <span id="splitterminatorproducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="splitterminatorproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitterminatorproducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="splitterminatorproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitterminatorproducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="splitterminatorproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitterminatorproducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="splitterminatorproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="splitterminatorproducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for SplitTerminatorProducer<'ch, 'sep, P>`
+
+- <span id="splitterminatorproducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="splitterminatorproducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SplitTerminatorProducer<'ch, 'sep, P>`
+
+- <span id="splitterminatorproducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="splitterminatorproducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<P: Pattern + 'sep> UnindexedProducer for SplitTerminatorProducer<'ch, 'sep, P>`
 
 - <span id="splitterminatorproducer-unindexedproducer-type-item"></span>`type Item = &'ch str`
 
-- <span id="splitterminatorproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
+- <span id="splitterminatorproducer-unindexedproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- <span id="splitterminatorproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
+- <span id="splitterminatorproducer-unindexedproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ### `Lines<'ch>`
 
@@ -671,13 +1259,47 @@ Parallel iterator over lines in a string
 
 #### Trait Implementations
 
+##### `impl Any for Lines<'ch>`
+
+- <span id="lines-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Lines<'ch>`
+
+- <span id="lines-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Lines<'ch>`
+
+- <span id="lines-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Lines<'ch>`
 
 - <span id="lines-clone"></span>`fn clone(&self) -> Lines<'ch>` — [`Lines`](#lines)
 
+##### `impl CloneToUninit for Lines<'ch>`
+
+- <span id="lines-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Lines<'ch>`
 
-- <span id="lines-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lines-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Lines<'ch>`
+
+- <span id="lines-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Lines<'ch>`
+
+- <span id="lines-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Lines<'ch>`
 
@@ -687,13 +1309,13 @@ Parallel iterator over lines in a string
 
 - <span id="lines-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="lines-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="lines-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl ParallelIterator for Lines<'ch>`
 
 - <span id="lines-paralleliterator-type-item"></span>`type Item = &'ch str`
 
-- <span id="lines-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="lines-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for Lines<'ch>`
 
@@ -701,13 +1323,33 @@ Parallel iterator over lines in a string
 
 - <span id="lines-pointable-type-init"></span>`type Init = T`
 
-- <span id="lines-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="lines-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="lines-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="lines-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="lines-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="lines-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="lines-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="lines-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Lines<'ch>`
+
+- <span id="lines-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="lines-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="lines-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Lines<'ch>`
+
+- <span id="lines-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lines-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Lines<'ch>`
+
+- <span id="lines-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lines-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SplitWhitespace<'ch>`
 
@@ -721,13 +1363,47 @@ Parallel iterator over substrings separated by whitespace
 
 #### Trait Implementations
 
+##### `impl Any for SplitWhitespace<'ch>`
+
+- <span id="splitwhitespace-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SplitWhitespace<'ch>`
+
+- <span id="splitwhitespace-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SplitWhitespace<'ch>`
+
+- <span id="splitwhitespace-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SplitWhitespace<'ch>`
 
 - <span id="splitwhitespace-clone"></span>`fn clone(&self) -> SplitWhitespace<'ch>` — [`SplitWhitespace`](#splitwhitespace)
 
+##### `impl CloneToUninit for SplitWhitespace<'ch>`
+
+- <span id="splitwhitespace-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for SplitWhitespace<'ch>`
 
-- <span id="splitwhitespace-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="splitwhitespace-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SplitWhitespace<'ch>`
+
+- <span id="splitwhitespace-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SplitWhitespace<'ch>`
+
+- <span id="splitwhitespace-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SplitWhitespace<'ch>`
 
@@ -737,13 +1413,13 @@ Parallel iterator over substrings separated by whitespace
 
 - <span id="splitwhitespace-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="splitwhitespace-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="splitwhitespace-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl ParallelIterator for SplitWhitespace<'ch>`
 
 - <span id="splitwhitespace-paralleliterator-type-item"></span>`type Item = &'ch str`
 
-- <span id="splitwhitespace-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="splitwhitespace-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for SplitWhitespace<'ch>`
 
@@ -751,13 +1427,33 @@ Parallel iterator over substrings separated by whitespace
 
 - <span id="splitwhitespace-pointable-type-init"></span>`type Init = T`
 
-- <span id="splitwhitespace-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitwhitespace-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="splitwhitespace-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitwhitespace-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="splitwhitespace-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitwhitespace-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="splitwhitespace-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="splitwhitespace-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for SplitWhitespace<'ch>`
+
+- <span id="splitwhitespace-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="splitwhitespace-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="splitwhitespace-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SplitWhitespace<'ch>`
+
+- <span id="splitwhitespace-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="splitwhitespace-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SplitWhitespace<'ch>`
+
+- <span id="splitwhitespace-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="splitwhitespace-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SplitAsciiWhitespace<'ch>`
 
@@ -771,13 +1467,47 @@ Parallel iterator over substrings separated by ASCII whitespace
 
 #### Trait Implementations
 
+##### `impl Any for SplitAsciiWhitespace<'ch>`
+
+- <span id="splitasciiwhitespace-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SplitAsciiWhitespace<'ch>`
+
+- <span id="splitasciiwhitespace-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SplitAsciiWhitespace<'ch>`
+
+- <span id="splitasciiwhitespace-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SplitAsciiWhitespace<'ch>`
 
 - <span id="splitasciiwhitespace-clone"></span>`fn clone(&self) -> SplitAsciiWhitespace<'ch>` — [`SplitAsciiWhitespace`](#splitasciiwhitespace)
 
+##### `impl CloneToUninit for SplitAsciiWhitespace<'ch>`
+
+- <span id="splitasciiwhitespace-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for SplitAsciiWhitespace<'ch>`
 
-- <span id="splitasciiwhitespace-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="splitasciiwhitespace-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SplitAsciiWhitespace<'ch>`
+
+- <span id="splitasciiwhitespace-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SplitAsciiWhitespace<'ch>`
+
+- <span id="splitasciiwhitespace-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SplitAsciiWhitespace<'ch>`
 
@@ -787,13 +1517,13 @@ Parallel iterator over substrings separated by ASCII whitespace
 
 - <span id="splitasciiwhitespace-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="splitasciiwhitespace-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="splitasciiwhitespace-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl ParallelIterator for SplitAsciiWhitespace<'ch>`
 
 - <span id="splitasciiwhitespace-paralleliterator-type-item"></span>`type Item = &'ch str`
 
-- <span id="splitasciiwhitespace-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="splitasciiwhitespace-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for SplitAsciiWhitespace<'ch>`
 
@@ -801,13 +1531,33 @@ Parallel iterator over substrings separated by ASCII whitespace
 
 - <span id="splitasciiwhitespace-pointable-type-init"></span>`type Init = T`
 
-- <span id="splitasciiwhitespace-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitasciiwhitespace-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="splitasciiwhitespace-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitasciiwhitespace-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="splitasciiwhitespace-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitasciiwhitespace-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="splitasciiwhitespace-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="splitasciiwhitespace-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for SplitAsciiWhitespace<'ch>`
+
+- <span id="splitasciiwhitespace-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="splitasciiwhitespace-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="splitasciiwhitespace-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SplitAsciiWhitespace<'ch>`
+
+- <span id="splitasciiwhitespace-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="splitasciiwhitespace-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SplitAsciiWhitespace<'ch>`
+
+- <span id="splitasciiwhitespace-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="splitasciiwhitespace-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Matches<'ch, P: Pattern>`
 
@@ -824,13 +1574,47 @@ Parallel iterator over substrings that match a pattern
 
 #### Trait Implementations
 
+##### `impl Any for Matches<'ch, P>`
+
+- <span id="matches-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Matches<'ch, P>`
+
+- <span id="matches-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Matches<'ch, P>`
+
+- <span id="matches-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<P: clone::Clone + Pattern> Clone for Matches<'ch, P>`
 
 - <span id="matches-clone"></span>`fn clone(&self) -> Matches<'ch, P>` — [`Matches`](#matches)
 
+##### `impl CloneToUninit for Matches<'ch, P>`
+
+- <span id="matches-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<P: fmt::Debug + Pattern> Debug for Matches<'ch, P>`
 
-- <span id="matches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="matches-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Matches<'ch, P>`
+
+- <span id="matches-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Matches<'ch, P>`
+
+- <span id="matches-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Matches<'ch, P>`
 
@@ -840,13 +1624,13 @@ Parallel iterator over substrings that match a pattern
 
 - <span id="matches-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="matches-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="matches-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<P: Pattern> ParallelIterator for Matches<'ch, P>`
 
 - <span id="matches-paralleliterator-type-item"></span>`type Item = &'ch str`
 
-- <span id="matches-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="matches-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for Matches<'ch, P>`
 
@@ -854,13 +1638,33 @@ Parallel iterator over substrings that match a pattern
 
 - <span id="matches-pointable-type-init"></span>`type Init = T`
 
-- <span id="matches-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="matches-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="matches-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="matches-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="matches-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="matches-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="matches-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="matches-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Matches<'ch, P>`
+
+- <span id="matches-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="matches-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="matches-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Matches<'ch, P>`
+
+- <span id="matches-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="matches-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Matches<'ch, P>`
+
+- <span id="matches-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="matches-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MatchesProducer<'ch, 'pat, P: Pattern>`
 
@@ -875,6 +1679,36 @@ struct MatchesProducer<'ch, 'pat, P: Pattern> {
 
 #### Trait Implementations
 
+##### `impl Any for MatchesProducer<'ch, 'pat, P>`
+
+- <span id="matchesproducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MatchesProducer<'ch, 'pat, P>`
+
+- <span id="matchesproducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MatchesProducer<'ch, 'pat, P>`
+
+- <span id="matchesproducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for MatchesProducer<'ch, 'pat, P>`
+
+- <span id="matchesproducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MatchesProducer<'ch, 'pat, P>`
+
+- <span id="matchesproducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for MatchesProducer<'ch, 'pat, P>`
 
 ##### `impl Pointable for MatchesProducer<'ch, 'pat, P>`
@@ -883,21 +1717,33 @@ struct MatchesProducer<'ch, 'pat, P: Pattern> {
 
 - <span id="matchesproducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="matchesproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="matchesproducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="matchesproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="matchesproducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="matchesproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="matchesproducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="matchesproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="matchesproducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for MatchesProducer<'ch, 'pat, P>`
+
+- <span id="matchesproducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="matchesproducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MatchesProducer<'ch, 'pat, P>`
+
+- <span id="matchesproducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="matchesproducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<P: Pattern> UnindexedProducer for MatchesProducer<'ch, 'pat, P>`
 
 - <span id="matchesproducer-unindexedproducer-type-item"></span>`type Item = &'ch str`
 
-- <span id="matchesproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
+- <span id="matchesproducer-unindexedproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- <span id="matchesproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
+- <span id="matchesproducer-unindexedproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ### `MatchIndices<'ch, P: Pattern>`
 
@@ -914,13 +1760,47 @@ Parallel iterator over substrings that match a pattern, with their positions
 
 #### Trait Implementations
 
+##### `impl Any for MatchIndices<'ch, P>`
+
+- <span id="matchindices-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MatchIndices<'ch, P>`
+
+- <span id="matchindices-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MatchIndices<'ch, P>`
+
+- <span id="matchindices-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<P: clone::Clone + Pattern> Clone for MatchIndices<'ch, P>`
 
 - <span id="matchindices-clone"></span>`fn clone(&self) -> MatchIndices<'ch, P>` — [`MatchIndices`](#matchindices)
 
+##### `impl CloneToUninit for MatchIndices<'ch, P>`
+
+- <span id="matchindices-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<P: fmt::Debug + Pattern> Debug for MatchIndices<'ch, P>`
 
-- <span id="matchindices-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="matchindices-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MatchIndices<'ch, P>`
+
+- <span id="matchindices-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MatchIndices<'ch, P>`
+
+- <span id="matchindices-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MatchIndices<'ch, P>`
 
@@ -930,13 +1810,13 @@ Parallel iterator over substrings that match a pattern, with their positions
 
 - <span id="matchindices-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="matchindices-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="matchindices-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<P: Pattern> ParallelIterator for MatchIndices<'ch, P>`
 
 - <span id="matchindices-paralleliterator-type-item"></span>`type Item = (usize, &'ch str)`
 
-- <span id="matchindices-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="matchindices-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for MatchIndices<'ch, P>`
 
@@ -944,13 +1824,33 @@ Parallel iterator over substrings that match a pattern, with their positions
 
 - <span id="matchindices-pointable-type-init"></span>`type Init = T`
 
-- <span id="matchindices-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="matchindices-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="matchindices-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="matchindices-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="matchindices-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="matchindices-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="matchindices-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="matchindices-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for MatchIndices<'ch, P>`
+
+- <span id="matchindices-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="matchindices-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="matchindices-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MatchIndices<'ch, P>`
+
+- <span id="matchindices-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="matchindices-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MatchIndices<'ch, P>`
+
+- <span id="matchindices-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="matchindices-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MatchIndicesProducer<'ch, 'pat, P: Pattern>`
 
@@ -966,6 +1866,36 @@ struct MatchIndicesProducer<'ch, 'pat, P: Pattern> {
 
 #### Trait Implementations
 
+##### `impl Any for MatchIndicesProducer<'ch, 'pat, P>`
+
+- <span id="matchindicesproducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MatchIndicesProducer<'ch, 'pat, P>`
+
+- <span id="matchindicesproducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MatchIndicesProducer<'ch, 'pat, P>`
+
+- <span id="matchindicesproducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for MatchIndicesProducer<'ch, 'pat, P>`
+
+- <span id="matchindicesproducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MatchIndicesProducer<'ch, 'pat, P>`
+
+- <span id="matchindicesproducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for MatchIndicesProducer<'ch, 'pat, P>`
 
 ##### `impl Pointable for MatchIndicesProducer<'ch, 'pat, P>`
@@ -974,21 +1904,33 @@ struct MatchIndicesProducer<'ch, 'pat, P: Pattern> {
 
 - <span id="matchindicesproducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="matchindicesproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="matchindicesproducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="matchindicesproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="matchindicesproducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="matchindicesproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="matchindicesproducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="matchindicesproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="matchindicesproducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for MatchIndicesProducer<'ch, 'pat, P>`
+
+- <span id="matchindicesproducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="matchindicesproducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MatchIndicesProducer<'ch, 'pat, P>`
+
+- <span id="matchindicesproducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="matchindicesproducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<P: Pattern> UnindexedProducer for MatchIndicesProducer<'ch, 'pat, P>`
 
 - <span id="matchindicesproducer-unindexedproducer-type-item"></span>`type Item = (usize, &'ch str)`
 
-- <span id="matchindicesproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
+- <span id="matchindicesproducer-unindexedproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- <span id="matchindicesproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
+- <span id="matchindicesproducer-unindexedproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ## Traits
 

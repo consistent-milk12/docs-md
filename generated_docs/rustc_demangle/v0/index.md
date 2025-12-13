@@ -59,9 +59,51 @@ Representation of a demangled symbol name.
 
 #### Trait Implementations
 
+##### `impl Any for Demangle<'a>`
+
+- <span id="demangle-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Demangle<'a>`
+
+- <span id="demangle-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Demangle<'a>`
+
+- <span id="demangle-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Display for Demangle<'s>`
 
-- <span id="demangle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="demangle-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Demangle<'a>`
+
+- <span id="demangle-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Demangle<'a>`
+
+- <span id="demangle-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Demangle<'a>`
+
+- <span id="demangle-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="demangle-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Demangle<'a>`
+
+- <span id="demangle-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="demangle-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Ident<'s>`
 
@@ -88,13 +130,67 @@ struct Ident<'s> {
 
 - <span id="ident-try-small-punycode-decode"></span>`fn try_small_punycode_decode<F: FnOnce(&[char]) -> R, R>(&self, f: F) -> Option<R>`
 
+  Attempt to decode punycode on the stack (allocation-free),
+
+  and pass the char slice to the closure, if successful.
+
+  This supports up to `SMALL_PUNYCODE_LEN` characters.
+
 - <span id="ident-punycode-decode"></span>`fn punycode_decode<F: FnMut(usize, char) -> Result<(), ()>>(&self, insert: F) -> Result<(), ()>`
+
+  Decode punycode as insertion positions and characters
+
+  and pass them to the closure, which can return `Err(())`
+
+  to stop the decoding process.
 
 #### Trait Implementations
 
+##### `impl Any for Ident<'s>`
+
+- <span id="ident-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Ident<'s>`
+
+- <span id="ident-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Ident<'s>`
+
+- <span id="ident-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Display for Ident<'s>`
 
-- <span id="ident-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ident-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Ident<'s>`
+
+- <span id="ident-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Ident<'s>`
+
+- <span id="ident-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Ident<'s>`
+
+- <span id="ident-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ident-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Ident<'s>`
+
+- <span id="ident-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ident-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `HexNibbles<'s>`
 
@@ -112,7 +208,59 @@ Sequence of lowercase hexadecimal nibbles (`0-9a-f`), used by leaf consts.
 
 - <span id="hexnibbles-try-parse-uint"></span>`fn try_parse_uint(&self) -> Option<u64>`
 
+  Decode an integer value (with the "most significant nibble" first),
+
+  returning `None` if it can't fit in an `u64`.
+
 - <span id="hexnibbles-try-parse-str-chars"></span>`fn try_parse_str_chars(&self) -> Option<impl Iterator<Item = char> + 's>`
+
+  Decode a UTF-8 byte sequence (with each byte using a pair of nibbles)
+
+  into individual `char`s, returning `None` for invalid UTF-8.
+
+#### Trait Implementations
+
+##### `impl Any for HexNibbles<'s>`
+
+- <span id="hexnibbles-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HexNibbles<'s>`
+
+- <span id="hexnibbles-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HexNibbles<'s>`
+
+- <span id="hexnibbles-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for HexNibbles<'s>`
+
+- <span id="hexnibbles-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for HexNibbles<'s>`
+
+- <span id="hexnibbles-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for HexNibbles<'s>`
+
+- <span id="hexnibbles-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="hexnibbles-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HexNibbles<'s>`
+
+- <span id="hexnibbles-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="hexnibbles-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Parser<'s>`
 
@@ -156,6 +304,50 @@ struct Parser<'s> {
 
 - <span id="parser-ident"></span>`fn ident(&mut self) -> Result<Ident<'s>, ParseError>` — [`Ident`](#ident), [`ParseError`](#parseerror)
 
+#### Trait Implementations
+
+##### `impl Any for Parser<'s>`
+
+- <span id="parser-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Parser<'s>`
+
+- <span id="parser-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Parser<'s>`
+
+- <span id="parser-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Parser<'s>`
+
+- <span id="parser-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Parser<'s>`
+
+- <span id="parser-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Parser<'s>`
+
+- <span id="parser-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="parser-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Parser<'s>`
+
+- <span id="parser-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="parser-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `Printer<'a, 'b: 'a, 's>`
 
 ```rust
@@ -193,21 +385,65 @@ struct Printer<'a, 'b: 'a, 's> {
 
 - <span id="printer-eat"></span>`fn eat(&mut self, b: u8) -> bool`
 
+  Eat the given character from the parser,
+
+  returning `false` if the parser errored.
+
 - <span id="printer-skipping-printing"></span>`fn skipping_printing<F>(&mut self, f: F)`
 
+  Skip printing (i.e. `self.out` will be `None`) for the duration of the
+
+  given closure. This should not change parsing behavior, only disable the
+
+  output, but there may be optimizations (such as not traversing backrefs).
+
 - <span id="printer-print-backref"></span>`fn print_backref<F>(&mut self, f: F) -> fmt::Result`
+
+  Print the target of a backref, using the given closure.
+
+  When printing is being skipped, the backref will only be parsed,
+
+  ignoring the backref's target completely.
 
 - <span id="printer-pop-depth"></span>`fn pop_depth(&mut self)`
 
 - <span id="printer-print"></span>`fn print(&mut self, x: impl fmt::Display) -> fmt::Result`
 
+  Output the given value to `self.out` (using `fmt::Display` formatting),
+
+  if printing isn't being skipped.
+
 - <span id="printer-print-quoted-escaped-chars"></span>`fn print_quoted_escaped_chars(&mut self, quote: char, chars: impl Iterator<Item = char>) -> fmt::Result`
+
+  Output the given `char`s (escaped using `char::escape_debug`), with the
+
+  whole sequence wrapped in quotes, for either a `char` or `&str` literal,
+
+  if printing isn't being skipped.
 
 - <span id="printer-print-lifetime-from-index"></span>`fn print_lifetime_from_index(&mut self, lt: u64) -> fmt::Result`
 
+  Print the lifetime according to the previously decoded index.
+
+  An index of `0` always refers to `'_`, but starting with `1`,
+
+  indices refer to late-bound lifetimes introduced by a binder.
+
 - <span id="printer-in-binder"></span>`fn in_binder<F>(&mut self, f: F) -> fmt::Result`
 
+  Optionally enter a binder ('G') for late-bound lifetimes,
+
+  printing e.g. `for<'a, 'b> ` before calling the closure,
+
+  and make those lifetimes visible to it (via depth level).
+
 - <span id="printer-print-sep-list"></span>`fn print_sep_list<F>(&mut self, f: F, sep: &str) -> Result<usize, fmt::Error>`
+
+  Print list elements using the given closure and separator,
+
+  until the end of the list ('E') is found, or the parser errors.
+
+  Returns the number of elements printed.
 
 - <span id="printer-print-path"></span>`fn print_path(&mut self, in_value: bool) -> fmt::Result`
 
@@ -216,6 +452,16 @@ struct Printer<'a, 'b: 'a, 's> {
 - <span id="printer-print-type"></span>`fn print_type(&mut self) -> fmt::Result`
 
 - <span id="printer-print-path-maybe-open-generics"></span>`fn print_path_maybe_open_generics(&mut self) -> Result<bool, fmt::Error>`
+
+  A trait in a trait object may have some "existential projections"
+
+  (i.e. associated type bindings) after it, which should be printed
+
+  in the `<...>` of the trait, e.g. `dyn Trait<T, U, Assoc=X>`.
+
+  To this end, this method will keep the `<...>` of an 'I' path
+
+  open, by omitting the `>`, and return `Ok(true)` in that case.
 
 - <span id="printer-print-dyn-trait"></span>`fn print_dyn_trait(&mut self) -> fmt::Result`
 
@@ -226,6 +472,50 @@ struct Printer<'a, 'b: 'a, 's> {
 - <span id="printer-print-const-uint"></span>`fn print_const_uint(&mut self, ty_tag: u8) -> fmt::Result`
 
 - <span id="printer-print-const-str-literal"></span>`fn print_const_str_literal(&mut self) -> fmt::Result`
+
+#### Trait Implementations
+
+##### `impl Any for Printer<'a, 'b, 's>`
+
+- <span id="printer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Printer<'a, 'b, 's>`
+
+- <span id="printer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Printer<'a, 'b, 's>`
+
+- <span id="printer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Printer<'a, 'b, 's>`
+
+- <span id="printer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Printer<'a, 'b, 's>`
+
+- <span id="printer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Printer<'a, 'b, 's>`
+
+- <span id="printer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="printer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Printer<'a, 'b, 's>`
+
+- <span id="printer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="printer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -254,19 +544,63 @@ enum ParseError {
 
 - <span id="parseerror-message"></span>`fn message(&self) -> &str`
 
+  Snippet to print when the error is initially encountered.
+
 #### Trait Implementations
+
+##### `impl Any for ParseError`
+
+- <span id="parseerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ParseError`
+
+- <span id="parseerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ParseError`
+
+- <span id="parseerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for ParseError`
 
-- <span id="parseerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parseerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ParseError`
 
+##### `impl<T> From for ParseError`
+
+- <span id="parseerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ParseError`
+
+- <span id="parseerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ParseError`
 
-- <span id="parseerror-eq"></span>`fn eq(&self, other: &ParseError) -> bool` — [`ParseError`](#parseerror)
+- <span id="parseerror-partialeq-eq"></span>`fn eq(&self, other: &ParseError) -> bool` — [`ParseError`](#parseerror)
 
 ##### `impl StructuralPartialEq for ParseError`
+
+##### `impl<U> TryFrom for ParseError`
+
+- <span id="parseerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="parseerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ParseError`
+
+- <span id="parseerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="parseerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

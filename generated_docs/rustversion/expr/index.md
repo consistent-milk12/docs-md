@@ -59,6 +59,50 @@ enum Expr {
 
 - <span id="expr-eval"></span>`fn eval(&self, rustc: Version) -> bool` — [`Version`](../version/index.md#version)
 
+#### Trait Implementations
+
+##### `impl Any for Expr`
+
+- <span id="expr-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Expr`
+
+- <span id="expr-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Expr`
+
+- <span id="expr-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Expr`
+
+- <span id="expr-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Expr`
+
+- <span id="expr-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Expr`
+
+- <span id="expr-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="expr-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Expr`
+
+- <span id="expr-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="expr-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ## Functions
 
 ### `parse`

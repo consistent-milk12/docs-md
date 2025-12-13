@@ -110,29 +110,263 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 - <span id="parker-new"></span>`fn new() -> Parker` — [`Parker`](parker/index.md#parker)
 
+  Creates a new `Parker`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::sync::Parker;
+
+  
+
+  let p = Parker::new();
+
+  ```
+
 - <span id="parker-park"></span>`fn park(&self)`
+
+  Blocks the current thread until the token is made available.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::sync::Parker;
+
+  
+
+  let p = Parker::new();
+
+  let u = p.unparker().clone();
+
+  
+
+  // Make the token available.
+
+  u.unpark();
+
+  
+
+  // Wakes up immediately and consumes the token.
+
+  p.park();
+
+  ```
 
 - <span id="parker-park-timeout"></span>`fn park_timeout(&self, timeout: Duration)`
 
+  Blocks the current thread until the token is made available, but only for a limited time.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use std::time::Duration;
+
+  use crossbeam_utils::sync::Parker;
+
+  
+
+  let p = Parker::new();
+
+  
+
+  // Waits for the token to become available, but will not wait longer than 500 ms.
+
+  p.park_timeout(Duration::from_millis(500));
+
+  ```
+
 - <span id="parker-park-deadline"></span>`fn park_deadline(&self, deadline: Instant)`
+
+  Blocks the current thread until the token is made available, or until a certain deadline.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use std::time::{Duration, Instant};
+
+  use crossbeam_utils::sync::Parker;
+
+  
+
+  let p = Parker::new();
+
+  let deadline = Instant::now() + Duration::from_millis(500);
+
+  
+
+  // Waits for the token to become available, but will not wait longer than 500 ms.
+
+  p.park_deadline(deadline);
+
+  ```
 
 - <span id="parker-unparker"></span>`fn unparker(&self) -> &Unparker` — [`Unparker`](parker/index.md#unparker)
 
+  Returns a reference to an associated [`Unparker`](parker/index.md).
+
+  
+
+  The returned [`Unparker`](parker/index.md) doesn't have to be used by reference - it can also be cloned.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::sync::Parker;
+
+  
+
+  let p = Parker::new();
+
+  let u = p.unparker().clone();
+
+  
+
+  // Make the token available.
+
+  u.unpark();
+
+  // Wakes up immediately and consumes the token.
+
+  p.park();
+
+  ```
+
+  
+
 - <span id="parker-into-raw"></span>`fn into_raw(this: Parker) -> *const ()` — [`Parker`](parker/index.md#parker)
+
+  Converts a `Parker` into a raw pointer.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::sync::Parker;
+
+  
+
+  let p = Parker::new();
+
+  let raw = Parker::into_raw(p);
+
+  let _ = unsafe { Parker::from_raw(raw) };
+
+  ```
 
 - <span id="parker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Parker` — [`Parker`](parker/index.md#parker)
 
+  Converts a raw pointer into a `Parker`.
+
+  
+
+  # Safety
+
+  
+
+  This method is safe to use only with pointers returned by `Parker::into_raw`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::sync::Parker;
+
+  
+
+  let p = Parker::new();
+
+  let raw = Parker::into_raw(p);
+
+  let p = unsafe { Parker::from_raw(raw) };
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for Parker`
+
+- <span id="parker-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Parker`
+
+- <span id="parker-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Parker`
+
+- <span id="parker-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for Parker`
 
-- <span id="parker-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parker-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Parker`
 
 - <span id="parker-default"></span>`fn default() -> Self`
 
+##### `impl<T> From for Parker`
+
+- <span id="parker-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Parker`
+
+- <span id="parker-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Send for Parker`
+
+##### `impl<U> TryFrom for Parker`
+
+- <span id="parker-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="parker-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Parker`
+
+- <span id="parker-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="parker-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Unparker`
 
@@ -150,23 +384,185 @@ Unparks a thread parked by the associated [`Parker`](parker/index.md).
 
 - <span id="unparker-unpark"></span>`fn unpark(&self)`
 
+  Atomically makes the token available if it is not already.
+
+  
+
+  This method will wake up the thread blocked on `park` or `park_timeout`, if there is
+
+  any.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use std::thread;
+
+  use std::time::Duration;
+
+  use crossbeam_utils::sync::Parker;
+
+  
+
+  let p = Parker::new();
+
+  let u = p.unparker().clone();
+
+  
+
+  thread::spawn(move || {
+
+      thread::sleep(Duration::from_millis(500));
+
+      u.unpark();
+
+  });
+
+  
+
+  // Wakes up when `u.unpark()` provides the token.
+
+  p.park();
+
+  std::thread::sleep(std::time::Duration::from_millis(500)); // wait for background threads closed: https://github.com/rust-lang/miri/issues/1371
+
+  ```
+
+  
+
 - <span id="unparker-into-raw"></span>`fn into_raw(this: Unparker) -> *const ()` — [`Unparker`](parker/index.md#unparker)
+
+  Converts an `Unparker` into a raw pointer.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::sync::{Parker, Unparker};
+
+  
+
+  let p = Parker::new();
+
+  let u = p.unparker().clone();
+
+  let raw = Unparker::into_raw(u);
+
+  let _ = unsafe { Unparker::from_raw(raw) };
+
+  ```
 
 - <span id="unparker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Unparker` — [`Unparker`](parker/index.md#unparker)
 
+  Converts a raw pointer into an `Unparker`.
+
+  
+
+  # Safety
+
+  
+
+  This method is safe to use only with pointers returned by `Unparker::into_raw`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::sync::{Parker, Unparker};
+
+  
+
+  let p = Parker::new();
+
+  let u = p.unparker().clone();
+
+  
+
+  let raw = Unparker::into_raw(u);
+
+  let u = unsafe { Unparker::from_raw(raw) };
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for Unparker`
+
+- <span id="unparker-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Unparker`
+
+- <span id="unparker-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Unparker`
+
+- <span id="unparker-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Unparker`
 
 - <span id="unparker-clone"></span>`fn clone(&self) -> Unparker` — [`Unparker`](parker/index.md#unparker)
 
+##### `impl CloneToUninit for Unparker`
+
+- <span id="unparker-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Unparker`
 
-- <span id="unparker-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unparker-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Unparker`
+
+- <span id="unparker-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Unparker`
+
+- <span id="unparker-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Send for Unparker`
 
 ##### `impl Sync for Unparker`
+
+##### `impl ToOwned for Unparker`
+
+- <span id="unparker-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="unparker-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="unparker-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Unparker`
+
+- <span id="unparker-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unparker-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Unparker`
+
+- <span id="unparker-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unparker-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ShardedLock<T: ?Sized>`
 
@@ -239,23 +635,121 @@ let lock = ShardedLock::new(5);
 
 - <span id="shardedlock-new"></span>`fn new(value: T) -> ShardedLock<T>` — [`ShardedLock`](sharded_lock/index.md#shardedlock)
 
+  Creates a new sharded reader-writer lock.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::sync::ShardedLock;
+
+  
+
+  let lock = ShardedLock::new(5);
+
+  ```
+
 - <span id="shardedlock-into-inner"></span>`fn into_inner(self) -> LockResult<T>`
+
+  Consumes this lock, returning the underlying data.
+
+  
+
+  # Errors
+
+  
+
+  This method will return an error if the lock is poisoned. A lock gets poisoned when a write
+
+  operation panics.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::sync::ShardedLock;
+
+  
+
+  let lock = ShardedLock::new(String::new());
+
+  {
+
+      let mut s = lock.write().unwrap();
+
+      *s = "modified".to_owned();
+
+  }
+
+  assert_eq!(lock.into_inner().unwrap(), "modified");
+
+  ```
 
 #### Trait Implementations
 
+##### `impl<T> Any for ShardedLock<T>`
+
+- <span id="shardedlock-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ShardedLock<T>`
+
+- <span id="shardedlock-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ShardedLock<T>`
+
+- <span id="shardedlock-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: ?Sized + fmt::Debug> Debug for ShardedLock<T>`
 
-- <span id="shardedlock-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlock-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Default> Default for ShardedLock<T>`
 
 - <span id="shardedlock-default"></span>`fn default() -> ShardedLock<T>` — [`ShardedLock`](sharded_lock/index.md#shardedlock)
+
+##### `impl<T> From for ShardedLock<T>`
+
+- <span id="shardedlock-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for ShardedLock<T>`
+
+- <span id="shardedlock-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized> RefUnwindSafe for ShardedLock<T>`
 
 ##### `impl<T: ?Sized + Send> Send for ShardedLock<T>`
 
 ##### `impl<T: ?Sized + Send + Sync> Sync for ShardedLock<T>`
+
+##### `impl<T, U> TryFrom for ShardedLock<T>`
+
+- <span id="shardedlock-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="shardedlock-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for ShardedLock<T>`
+
+- <span id="shardedlock-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="shardedlock-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T: ?Sized> UnwindSafe for ShardedLock<T>`
 
@@ -275,9 +769,21 @@ A guard used to release the shared read access of a [`ShardedLock`](sharded_lock
 
 #### Trait Implementations
 
+##### `impl<T> Any for ShardedLockReadGuard<'a, T>`
+
+- <span id="shardedlockreadguard-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ShardedLockReadGuard<'a, T>`
+
+- <span id="shardedlockreadguard-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ShardedLockReadGuard<'a, T>`
+
+- <span id="shardedlockreadguard-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: fmt::Debug> Debug for ShardedLockReadGuard<'_, T>`
 
-- <span id="shardedlockreadguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockreadguard-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized> Deref for ShardedLockReadGuard<'_, T>`
 
@@ -287,7 +793,25 @@ A guard used to release the shared read access of a [`ShardedLock`](sharded_lock
 
 ##### `impl<T: ?Sized + fmt::Display> Display for ShardedLockReadGuard<'_, T>`
 
-- <span id="shardedlockreadguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockreadguard-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ShardedLockReadGuard<'a, T>`
+
+- <span id="shardedlockreadguard-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for ShardedLockReadGuard<'a, T>`
+
+- <span id="shardedlockreadguard-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Receiver for ShardedLockReadGuard<'a, T>`
 
@@ -297,7 +821,19 @@ A guard used to release the shared read access of a [`ShardedLock`](sharded_lock
 
 ##### `impl<T> ToString for ShardedLockReadGuard<'a, T>`
 
-- <span id="shardedlockreadguard-to-string"></span>`fn to_string(&self) -> String`
+- <span id="shardedlockreadguard-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for ShardedLockReadGuard<'a, T>`
+
+- <span id="shardedlockreadguard-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="shardedlockreadguard-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for ShardedLockReadGuard<'a, T>`
+
+- <span id="shardedlockreadguard-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="shardedlockreadguard-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ShardedLockWriteGuard<'a, T: ?Sized>`
 
@@ -314,9 +850,21 @@ A guard used to release the exclusive write access of a [`ShardedLock`](sharded_
 
 #### Trait Implementations
 
+##### `impl<T> Any for ShardedLockWriteGuard<'a, T>`
+
+- <span id="shardedlockwriteguard-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ShardedLockWriteGuard<'a, T>`
+
+- <span id="shardedlockwriteguard-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ShardedLockWriteGuard<'a, T>`
+
+- <span id="shardedlockwriteguard-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: fmt::Debug> Debug for ShardedLockWriteGuard<'_, T>`
 
-- <span id="shardedlockwriteguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockwriteguard-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized> Deref for ShardedLockWriteGuard<'_, T>`
 
@@ -326,15 +874,33 @@ A guard used to release the exclusive write access of a [`ShardedLock`](sharded_
 
 ##### `impl<T: ?Sized> DerefMut for ShardedLockWriteGuard<'_, T>`
 
-- <span id="shardedlockwriteguard-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
+- <span id="shardedlockwriteguard-derefmut-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + fmt::Display> Display for ShardedLockWriteGuard<'_, T>`
 
-- <span id="shardedlockwriteguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockwriteguard-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized> Drop for ShardedLockWriteGuard<'_, T>`
 
 - <span id="shardedlockwriteguard-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for ShardedLockWriteGuard<'a, T>`
+
+- <span id="shardedlockwriteguard-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for ShardedLockWriteGuard<'a, T>`
+
+- <span id="shardedlockwriteguard-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Receiver for ShardedLockWriteGuard<'a, T>`
 
@@ -344,7 +910,19 @@ A guard used to release the exclusive write access of a [`ShardedLock`](sharded_
 
 ##### `impl<T> ToString for ShardedLockWriteGuard<'a, T>`
 
-- <span id="shardedlockwriteguard-to-string"></span>`fn to_string(&self) -> String`
+- <span id="shardedlockwriteguard-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for ShardedLockWriteGuard<'a, T>`
+
+- <span id="shardedlockwriteguard-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="shardedlockwriteguard-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for ShardedLockWriteGuard<'a, T>`
+
+- <span id="shardedlockwriteguard-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="shardedlockwriteguard-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `WaitGroup`
 
@@ -402,17 +980,95 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 - <span id="waitgroup-new"></span>`fn new() -> Self`
 
+  Creates a new wait group and returns the single reference to it.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::sync::WaitGroup;
+
+  
+
+  let wg = WaitGroup::new();
+
+  ```
+
 - <span id="waitgroup-wait"></span>`fn wait(self)`
 
+  Drops this reference and waits until all other references are dropped.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::sync::WaitGroup;
+
+  use std::thread;
+
+  
+
+  let wg = WaitGroup::new();
+
+  
+
+  thread::spawn({
+
+      let wg = wg.clone();
+
+      move || {
+
+          // Block until both threads have reached `wait()`.
+
+          wg.wait();
+
+      }
+
+  });
+
+  
+
+  // Block until both threads have reached `wait()`.
+
+  wg.wait();
+
+  std::thread::sleep(std::time::Duration::from_millis(500)); // wait for background threads closed: https://github.com/rust-lang/miri/issues/1371
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for WaitGroup`
+
+- <span id="waitgroup-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WaitGroup`
+
+- <span id="waitgroup-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WaitGroup`
+
+- <span id="waitgroup-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for WaitGroup`
 
 - <span id="waitgroup-clone"></span>`fn clone(&self) -> WaitGroup` — [`WaitGroup`](wait_group/index.md#waitgroup)
 
+##### `impl CloneToUninit for WaitGroup`
+
+- <span id="waitgroup-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for WaitGroup`
 
-- <span id="waitgroup-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="waitgroup-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for WaitGroup`
 
@@ -421,4 +1077,42 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 ##### `impl Drop for WaitGroup`
 
 - <span id="waitgroup-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for WaitGroup`
+
+- <span id="waitgroup-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WaitGroup`
+
+- <span id="waitgroup-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for WaitGroup`
+
+- <span id="waitgroup-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="waitgroup-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="waitgroup-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for WaitGroup`
+
+- <span id="waitgroup-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="waitgroup-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WaitGroup`
+
+- <span id="waitgroup-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="waitgroup-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

@@ -74,17 +74,67 @@ anchor link, and first-sentence summary.
 
 - <span id="quickrefentry-new"></span>`fn new(name: impl Into<String>, kind: &'static str, anchor: impl Into<String>, summary: impl Into<String>) -> Self`
 
+  Create a new quick reference entry.
+
+  
+
+  # Arguments
+
+  
+
+  * `name` - Display name for the entry
+
+  * `kind` - Item kind (struct, enum, fn, etc.)
+
+  * `anchor` - Anchor link target (without `#`)
+
+  * `summary` - First-sentence summary
+
 #### Trait Implementations
+
+##### `impl Any for QuickRefEntry`
+
+- <span id="quickrefentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for QuickRefEntry`
+
+- <span id="quickrefentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for QuickRefEntry`
+
+- <span id="quickrefentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for QuickRefEntry`
 
 - <span id="quickrefentry-clone"></span>`fn clone(&self) -> QuickRefEntry` — [`QuickRefEntry`](#quickrefentry)
 
+##### `impl CloneToUninit for QuickRefEntry`
+
+- <span id="quickrefentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for QuickRefEntry`
 
-- <span id="quickrefentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="quickrefentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for QuickRefEntry`
+
+- <span id="quickrefentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Instrument for QuickRefEntry`
+
+##### `impl<U> Into for QuickRefEntry`
+
+- <span id="quickrefentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for QuickRefEntry`
 
@@ -96,13 +146,33 @@ anchor link, and first-sentence summary.
 
 - <span id="quickrefentry-pointable-type-init"></span>`type Init = T`
 
-- <span id="quickrefentry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="quickrefentry-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="quickrefentry-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="quickrefentry-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="quickrefentry-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="quickrefentry-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="quickrefentry-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="quickrefentry-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for QuickRefEntry`
+
+- <span id="quickrefentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="quickrefentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="quickrefentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for QuickRefEntry`
+
+- <span id="quickrefentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="quickrefentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for QuickRefEntry`
+
+- <span id="quickrefentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="quickrefentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for QuickRefEntry`
 
@@ -123,23 +193,81 @@ kinds, and first-sentence descriptions.
 
 - <span id="quickrefgenerator-new"></span>`const fn new() -> Self`
 
+  Create a new quick reference generator.
+
 - <span id="quickrefgenerator-generate"></span>`fn generate(&self, entries: &[QuickRefEntry]) -> String` — [`QuickRefEntry`](#quickrefentry)
 
+  Generate a markdown quick reference table from the given entries.
+
+  
+
+  Returns an empty string if there are no entries.
+
+  
+
+  # Arguments
+
+  
+
+  * `entries` - Quick reference entries to include in the table
+
+  
+
+  # Returns
+
+  
+
+  A formatted markdown table string.
+
 #### Trait Implementations
+
+##### `impl Any for QuickRefGenerator`
+
+- <span id="quickrefgenerator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for QuickRefGenerator`
+
+- <span id="quickrefgenerator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for QuickRefGenerator`
+
+- <span id="quickrefgenerator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for QuickRefGenerator`
 
 - <span id="quickrefgenerator-clone"></span>`fn clone(&self) -> QuickRefGenerator` — [`QuickRefGenerator`](#quickrefgenerator)
 
+##### `impl CloneToUninit for QuickRefGenerator`
+
+- <span id="quickrefgenerator-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for QuickRefGenerator`
 
-- <span id="quickrefgenerator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="quickrefgenerator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for QuickRefGenerator`
 
 - <span id="quickrefgenerator-default"></span>`fn default() -> QuickRefGenerator` — [`QuickRefGenerator`](#quickrefgenerator)
 
+##### `impl<T> From for QuickRefGenerator`
+
+- <span id="quickrefgenerator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for QuickRefGenerator`
+
+##### `impl<U> Into for QuickRefGenerator`
+
+- <span id="quickrefgenerator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for QuickRefGenerator`
 
@@ -151,13 +279,33 @@ kinds, and first-sentence descriptions.
 
 - <span id="quickrefgenerator-pointable-type-init"></span>`type Init = T`
 
-- <span id="quickrefgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="quickrefgenerator-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="quickrefgenerator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="quickrefgenerator-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="quickrefgenerator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="quickrefgenerator-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="quickrefgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="quickrefgenerator-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for QuickRefGenerator`
+
+- <span id="quickrefgenerator-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="quickrefgenerator-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="quickrefgenerator-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for QuickRefGenerator`
+
+- <span id="quickrefgenerator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="quickrefgenerator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for QuickRefGenerator`
+
+- <span id="quickrefgenerator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="quickrefgenerator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for QuickRefGenerator`
 

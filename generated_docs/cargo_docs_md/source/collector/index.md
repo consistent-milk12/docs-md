@@ -67,13 +67,29 @@ Metadata about a collected crate.
 
 #### Trait Implementations
 
+##### `impl Any for CollectedCrate`
+
+- <span id="collectedcrate-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CollectedCrate`
+
+- <span id="collectedcrate-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CollectedCrate`
+
+- <span id="collectedcrate-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for CollectedCrate`
 
 - <span id="collectedcrate-clone"></span>`fn clone(&self) -> CollectedCrate` — [`CollectedCrate`](#collectedcrate)
 
+##### `impl CloneToUninit for CollectedCrate`
+
+- <span id="collectedcrate-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for CollectedCrate`
 
-- <span id="collectedcrate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="collectedcrate-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for CollectedCrate`
 
@@ -81,7 +97,25 @@ Metadata about a collected crate.
 
 ##### `impl DeserializeOwned for CollectedCrate`
 
+##### `impl<T> From for CollectedCrate`
+
+- <span id="collectedcrate-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for CollectedCrate`
+
+##### `impl<U> Into for CollectedCrate`
+
+- <span id="collectedcrate-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CollectedCrate`
 
@@ -93,17 +127,37 @@ Metadata about a collected crate.
 
 - <span id="collectedcrate-pointable-type-init"></span>`type Init = T`
 
-- <span id="collectedcrate-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="collectedcrate-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="collectedcrate-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="collectedcrate-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="collectedcrate-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="collectedcrate-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="collectedcrate-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="collectedcrate-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl Serialize for CollectedCrate`
 
 - <span id="collectedcrate-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl ToOwned for CollectedCrate`
+
+- <span id="collectedcrate-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="collectedcrate-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="collectedcrate-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CollectedCrate`
+
+- <span id="collectedcrate-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="collectedcrate-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CollectedCrate`
+
+- <span id="collectedcrate-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="collectedcrate-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for CollectedCrate`
 
@@ -137,9 +191,21 @@ Manifest stored in `.source_*/manifest.json`.
 
 #### Trait Implementations
 
+##### `impl Any for SourceManifest`
+
+- <span id="sourcemanifest-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SourceManifest`
+
+- <span id="sourcemanifest-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SourceManifest`
+
+- <span id="sourcemanifest-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for SourceManifest`
 
-- <span id="sourcemanifest-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sourcemanifest-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for SourceManifest`
 
@@ -147,7 +213,25 @@ Manifest stored in `.source_*/manifest.json`.
 
 ##### `impl DeserializeOwned for SourceManifest`
 
+##### `impl<T> From for SourceManifest`
+
+- <span id="sourcemanifest-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for SourceManifest`
+
+##### `impl<U> Into for SourceManifest`
+
+- <span id="sourcemanifest-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SourceManifest`
 
@@ -159,17 +243,29 @@ Manifest stored in `.source_*/manifest.json`.
 
 - <span id="sourcemanifest-pointable-type-init"></span>`type Init = T`
 
-- <span id="sourcemanifest-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="sourcemanifest-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="sourcemanifest-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="sourcemanifest-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="sourcemanifest-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="sourcemanifest-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="sourcemanifest-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="sourcemanifest-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl Serialize for SourceManifest`
 
 - <span id="sourcemanifest-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl<U> TryFrom for SourceManifest`
+
+- <span id="sourcemanifest-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sourcemanifest-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SourceManifest`
+
+- <span id="sourcemanifest-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sourcemanifest-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for SourceManifest`
 
@@ -203,11 +299,41 @@ Result of a collection operation.
 
 #### Trait Implementations
 
+##### `impl Any for CollectionResult`
+
+- <span id="collectionresult-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CollectionResult`
+
+- <span id="collectionresult-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CollectionResult`
+
+- <span id="collectionresult-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for CollectionResult`
 
-- <span id="collectionresult-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="collectionresult-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CollectionResult`
+
+- <span id="collectionresult-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Instrument for CollectionResult`
+
+##### `impl<U> Into for CollectionResult`
+
+- <span id="collectionresult-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CollectionResult`
 
@@ -219,13 +345,25 @@ Result of a collection operation.
 
 - <span id="collectionresult-pointable-type-init"></span>`type Init = T`
 
-- <span id="collectionresult-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="collectionresult-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="collectionresult-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="collectionresult-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="collectionresult-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="collectionresult-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="collectionresult-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="collectionresult-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for CollectionResult`
+
+- <span id="collectionresult-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="collectionresult-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CollectionResult`
+
+- <span id="collectionresult-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="collectionresult-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for CollectionResult`
 
@@ -259,15 +397,45 @@ Options for source collection.
 
 #### Trait Implementations
 
+##### `impl Any for CollectOptions`
+
+- <span id="collectoptions-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CollectOptions`
+
+- <span id="collectoptions-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CollectOptions`
+
+- <span id="collectoptions-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for CollectOptions`
 
-- <span id="collectoptions-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="collectoptions-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for CollectOptions`
 
 - <span id="collectoptions-default"></span>`fn default() -> CollectOptions` — [`CollectOptions`](#collectoptions)
 
+##### `impl<T> From for CollectOptions`
+
+- <span id="collectoptions-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for CollectOptions`
+
+##### `impl<U> Into for CollectOptions`
+
+- <span id="collectoptions-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CollectOptions`
 
@@ -279,13 +447,25 @@ Options for source collection.
 
 - <span id="collectoptions-pointable-type-init"></span>`type Init = T`
 
-- <span id="collectoptions-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="collectoptions-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="collectoptions-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="collectoptions-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="collectoptions-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="collectoptions-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="collectoptions-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="collectoptions-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for CollectOptions`
+
+- <span id="collectoptions-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="collectoptions-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CollectOptions`
+
+- <span id="collectoptions-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="collectoptions-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for CollectOptions`
 
@@ -316,33 +496,115 @@ Collector for gathering dependency sources.
 
 - <span id="sourcecollector-new"></span>`fn new() -> Result<Self, Error>` — [`Error`](../../error/index.md#error)
 
+  Create a new collector for the current directory.
+
+  
+
+  # Errors
+
+  
+
+  Returns an error if cargo metadata cannot be loaded.
+
 - <span id="sourcecollector-from-manifest"></span>`fn from_manifest(manifest_path: Option<&Path>) -> Result<Self, Error>` — [`Error`](../../error/index.md#error)
+
+  Create a new collector from a specific manifest path.
+
+  
+
+  # Errors
+
+  
+
+  Returns an error if cargo metadata cannot be loaded.
 
 - <span id="sourcecollector-collect"></span>`fn collect(&self, options: &CollectOptions) -> Result<CollectionResult, Error>` — [`CollectOptions`](#collectoptions), [`CollectionResult`](#collectionresult), [`Error`](../../error/index.md#error)
 
+  Collect all dependency sources.
+
+  
+
+  # Errors
+
+  
+
+  Returns an error if collection fails.
+
 - <span id="sourcecollector-generate-output-dir"></span>`fn generate_output_dir(&self) -> Result<PathBuf, Error>` — [`Error`](../../error/index.md#error)
+
+  Generate a timestamp-based output directory name.
 
 - <span id="sourcecollector-find-registry-source"></span>`fn find_registry_source(&self, name: &str, version: &str) -> Option<PathBuf>`
 
+  Find a crate's source in the cargo registry.
+
 - <span id="sourcecollector-copy-crate-source"></span>`fn copy_crate_source(source: &Path, dest: &Path) -> Result<(), Error>` — [`Error`](../../error/index.md#error)
+
+  Copy crate source to destination.
 
 - <span id="sourcecollector-get-dev-only-packages"></span>`fn get_dev_only_packages(&self) -> HashSet<PackageId>`
 
+  Get the set of package IDs that are dev-only dependencies.
+
+  
+
+  A package is considered dev-only if it is only reachable from workspace
+
+  members via dev-dependencies (not normal or build dependencies).
+
 - <span id="sourcecollector-dry-run-collect"></span>`fn dry_run_collect(&self, output_dir: &Path, options: &CollectOptions) -> Result<CollectionResult, Error>` — [`CollectOptions`](#collectoptions), [`CollectionResult`](#collectionresult), [`Error`](../../error/index.md#error)
+
+  Perform a dry run, returning what would be collected.
 
 - <span id="sourcecollector-update-gitignore"></span>`fn update_gitignore(&self) -> Result<(), Error>` — [`Error`](../../error/index.md#error)
 
+  Update .gitignore to include .source_* pattern.
+
 - <span id="sourcecollector-list-dependencies"></span>`fn list_dependencies(&self) -> Vec<(&str, &str)>`
+
+  List all external dependencies.
 
 - <span id="sourcecollector-copy-dir-recursive"></span>`fn copy_dir_recursive(src: &Path, dest: &Path) -> Result<(), Error>` — [`Error`](../../error/index.md#error)
 
+  Recursively copy a directory.
+
 #### Trait Implementations
+
+##### `impl Any for SourceCollector`
+
+- <span id="sourcecollector-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SourceCollector`
+
+- <span id="sourcecollector-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SourceCollector`
+
+- <span id="sourcecollector-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for SourceCollector`
 
-- <span id="sourcecollector-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sourcecollector-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SourceCollector`
+
+- <span id="sourcecollector-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Instrument for SourceCollector`
+
+##### `impl<U> Into for SourceCollector`
+
+- <span id="sourcecollector-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SourceCollector`
 
@@ -354,13 +616,25 @@ Collector for gathering dependency sources.
 
 - <span id="sourcecollector-pointable-type-init"></span>`type Init = T`
 
-- <span id="sourcecollector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="sourcecollector-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="sourcecollector-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="sourcecollector-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="sourcecollector-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="sourcecollector-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="sourcecollector-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="sourcecollector-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for SourceCollector`
+
+- <span id="sourcecollector-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sourcecollector-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SourceCollector`
+
+- <span id="sourcecollector-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sourcecollector-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for SourceCollector`
 
@@ -376,11 +650,43 @@ struct TimeUtils;
 
 - <span id="timeutils-chrono-lite-now"></span>`fn chrono_lite_now() -> String`
 
+  Simple ISO 8601 timestamp without external dependency.
+
 - <span id="timeutils-is-leap-year"></span>`const fn is_leap_year(year: u64) -> bool`
 
 #### Trait Implementations
 
+##### `impl Any for TimeUtils`
+
+- <span id="timeutils-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TimeUtils`
+
+- <span id="timeutils-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TimeUtils`
+
+- <span id="timeutils-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for TimeUtils`
+
+- <span id="timeutils-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for TimeUtils`
+
+##### `impl<U> Into for TimeUtils`
+
+- <span id="timeutils-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TimeUtils`
 
@@ -392,13 +698,25 @@ struct TimeUtils;
 
 - <span id="timeutils-pointable-type-init"></span>`type Init = T`
 
-- <span id="timeutils-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="timeutils-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="timeutils-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="timeutils-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="timeutils-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="timeutils-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="timeutils-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="timeutils-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for TimeUtils`
+
+- <span id="timeutils-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="timeutils-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TimeUtils`
+
+- <span id="timeutils-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="timeutils-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for TimeUtils`
 

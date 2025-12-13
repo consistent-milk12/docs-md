@@ -30,3 +30,47 @@ where
 
 *Re-exported from `addr2line`*
 
+#### Trait Implementations
+
+##### `impl Any for FrameIterFrames<'ctx, R>`
+
+- <span id="frameiterframes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FrameIterFrames<'ctx, R>`
+
+- <span id="frameiterframes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FrameIterFrames<'ctx, R>`
+
+- <span id="frameiterframes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for FrameIterFrames<'ctx, R>`
+
+- <span id="frameiterframes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FrameIterFrames<'ctx, R>`
+
+- <span id="frameiterframes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for FrameIterFrames<'ctx, R>`
+
+- <span id="frameiterframes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="frameiterframes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>` — [`Buffer`](../../buffer/index.md#buffer), [`buffer`](../../buffer/index.md#buffer)
+
+##### `impl<U> TryInto for FrameIterFrames<'ctx, R>`
+
+- <span id="frameiterframes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="frameiterframes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>` — [`Buffer`](../../buffer/index.md#buffer), [`buffer`](../../buffer/index.md#buffer)
+

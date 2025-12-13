@@ -55,9 +55,39 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
+##### `impl Any for XcoffComdatIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdatiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for XcoffComdatIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdatiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for XcoffComdatIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdatiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Xcoff, R> Debug for XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xcoffcomdatiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for XcoffComdatIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdatiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for XcoffComdatIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdatiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
@@ -65,13 +95,25 @@ This is a stub that doesn't implement any functionality.
 
 - <span id="xcoffcomdatiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="xcoffcomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="xcoffcomdatiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Xcoff, R> Iterator for XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffcomdatiterator-iterator-type-item"></span>`type Item = XcoffComdat<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="xcoffcomdatiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for XcoffComdatIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdatiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="xcoffcomdatiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for XcoffComdatIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdatiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="xcoffcomdatiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `XcoffComdat<'data, 'file, Xcoff, R>`
 
@@ -92,25 +134,67 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
+##### `impl Any for XcoffComdat<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdat-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for XcoffComdat<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdat-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for XcoffComdat<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdat-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Xcoff, R> Debug for XcoffComdat<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xcoffcomdat-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for XcoffComdat<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdat-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for XcoffComdat<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdat-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Xcoff, R> ObjectComdat for XcoffComdat<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffcomdat-objectcomdat-type-sectioniterator"></span>`type SectionIterator = XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../../index.md#comdatkind)
+- <span id="xcoffcomdat-objectcomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../../index.md#comdatkind)
 
-- <span id="xcoffcomdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md#symbolindex)
+- <span id="xcoffcomdat-objectcomdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md#symbolindex)
 
-- <span id="xcoffcomdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
+- <span id="xcoffcomdat-objectcomdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
-- <span id="xcoffcomdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../../index.md#result)
+- <span id="xcoffcomdat-objectcomdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../../index.md#result)
 
-- <span id="xcoffcomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../../index.md#objectcomdat)
+- <span id="xcoffcomdat-objectcomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../../index.md#objectcomdat)
 
 ##### `impl<Xcoff, R> Sealed for XcoffComdat<'data, 'file, Xcoff, R>`
+
+##### `impl<U> TryFrom for XcoffComdat<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdat-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="xcoffcomdat-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for XcoffComdat<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdat-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="xcoffcomdat-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
@@ -131,9 +215,39 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
+##### `impl Any for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdatsectioniterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdatsectioniterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdatsectioniterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Xcoff, R> Debug for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xcoffcomdatsectioniterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdatsectioniterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdatsectioniterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
@@ -141,13 +255,25 @@ This is a stub that doesn't implement any functionality.
 
 - <span id="xcoffcomdatsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="xcoffcomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="xcoffcomdatsectioniterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Xcoff, R> Iterator for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffcomdatsectioniterator-iterator-type-item"></span>`type Item = SectionIndex`
 
-- <span id="xcoffcomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="xcoffcomdatsectioniterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdatsectioniterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="xcoffcomdatsectioniterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffcomdatsectioniterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="xcoffcomdatsectioniterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Type Aliases
 

@@ -45,13 +45,29 @@ struct ArrayVec<A: ArrayLike> {
 
 #### Trait Implementations
 
+##### `impl Any for ArrayVec<A>`
+
+- <span id="arrayvec-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ArrayVec<A>`
+
+- <span id="arrayvec-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ArrayVec<A>`
+
+- <span id="arrayvec-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<A: ArrayLike> Clone for ArrayVec<A>`
 
 - <span id="arrayvec-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ArrayVec<A>`
+
+- <span id="arrayvec-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<A: ArrayLike> Debug for ArrayVec<A>`
 
-- <span id="arrayvec-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="arrayvec-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<A: ArrayLike> Default for ArrayVec<A>`
 
@@ -65,7 +81,7 @@ struct ArrayVec<A: ArrayLike> {
 
 ##### `impl<A: ArrayLike> DerefMut for ArrayVec<A>`
 
-- <span id="arrayvec-deref-mut"></span>`fn deref_mut(&mut self) -> &mut [<A as >::Item]` — [`ArrayLike`](../index.md#arraylike)
+- <span id="arrayvec-derefmut-deref-mut"></span>`fn deref_mut(&mut self) -> &mut [<A as >::Item]` — [`ArrayLike`](../index.md#arraylike)
 
 ##### `impl<A: ArrayLike> Drop for ArrayVec<A>`
 
@@ -73,13 +89,51 @@ struct ArrayVec<A: ArrayLike> {
 
 ##### `impl<A: ArrayLike> Eq for ArrayVec<A>`
 
+##### `impl<T> From for ArrayVec<A>`
+
+- <span id="arrayvec-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ArrayVec<A>`
+
+- <span id="arrayvec-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<A: ArrayLike> PartialEq for ArrayVec<A>`
 
-- <span id="arrayvec-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="arrayvec-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Receiver for ArrayVec<A>`
 
 - <span id="arrayvec-receiver-type-target"></span>`type Target = T`
+
+##### `impl ToOwned for ArrayVec<A>`
+
+- <span id="arrayvec-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="arrayvec-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="arrayvec-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ArrayVec<A>`
+
+- <span id="arrayvec-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="arrayvec-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ArrayVec<A>`
+
+- <span id="arrayvec-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="arrayvec-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

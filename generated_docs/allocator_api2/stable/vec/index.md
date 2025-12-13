@@ -125,13 +125,25 @@ let iter: std::vec::Splice<_> = v.splice(1.., new);
 
 #### Trait Implementations
 
+##### `impl Any for Splice<'a, I, A>`
+
+- <span id="splice-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Splice<'a, I, A>`
+
+- <span id="splice-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Splice<'a, I, A>`
+
+- <span id="splice-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<I: fmt::Debug + Iterator + 'a, A: fmt::Debug + Allocator + 'a> Debug for Splice<'a, I, A>`
 
-- <span id="splice-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="splice-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I: Iterator, A: Allocator> DoubleEndedIterator for Splice<'_, I, A>`
 
-- <span id="splice-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
+- <span id="splice-doubleendediterator-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl<I: Iterator, A: Allocator> Drop for Splice<'_, I, A>`
 
@@ -139,21 +151,51 @@ let iter: std::vec::Splice<_> = v.splice(1.., new);
 
 ##### `impl<I: Iterator, A: Allocator> ExactSizeIterator for Splice<'_, I, A>`
 
+##### `impl<T> From for Splice<'a, I, A>`
+
+- <span id="splice-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Splice<'a, I, A>`
+
+- <span id="splice-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<I> IntoIterator for Splice<'a, I, A>`
 
 - <span id="splice-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="splice-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="splice-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="splice-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator, A: Allocator> Iterator for Splice<'_, I, A>`
 
 - <span id="splice-iterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="splice-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="splice-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- <span id="splice-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="splice-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+
+##### `impl<U> TryFrom for Splice<'a, I, A>`
+
+- <span id="splice-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="splice-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Splice<'a, I, A>`
+
+- <span id="splice-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="splice-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Drain<'a, T: 'a, A: Allocator + 'a>`
 
@@ -198,21 +240,43 @@ let iter: std::vec::Drain<_> = v.drain(..);
 
 - <span id="superdrain-fill"></span>`unsafe fn fill<I: Iterator<Item = T>>(&mut self, replace_with: &mut I) -> bool`
 
+  The range from `self.vec.len` to `self.tail_start` contains elements
+
+  that have been moved out.
+
+  Fill that range as much as possible with new elements from the `replace_with` iterator.
+
+  Returns `true` if we filled the entire range. (`replace_with.next()` didn’t return `None`.)
+
 - <span id="superdrain-move-tail"></span>`unsafe fn move_tail(&mut self, additional: usize)`
+
+  Makes room for inserting more elements before the tail.
 
 #### Trait Implementations
 
+##### `impl<T> Any for Drain<'a, T, A>`
+
+- <span id="drain-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl<T, A: Allocator> AsRef for Drain<'a, T, A>`
 
-- <span id="drain-as-ref"></span>`fn as_ref(&self) -> &[T]`
+- <span id="drain-asref-as-ref"></span>`fn as_ref(&self) -> &[T]`
+
+##### `impl<T> Borrow for Drain<'a, T, A>`
+
+- <span id="drain-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Drain<'a, T, A>`
+
+- <span id="drain-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: fmt::Debug, A: Allocator> Debug for Drain<'_, T, A>`
 
-- <span id="drain-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="drain-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, A: Allocator> DoubleEndedIterator for Drain<'_, T, A>`
 
-- <span id="drain-next-back"></span>`fn next_back(&mut self) -> Option<T>`
+- <span id="drain-doubleendediterator-next-back"></span>`fn next_back(&mut self) -> Option<T>`
 
 ##### `impl<T, A: Allocator> Drop for Drain<'_, T, A>`
 
@@ -220,7 +284,25 @@ let iter: std::vec::Drain<_> = v.drain(..);
 
 ##### `impl<T, A: Allocator> ExactSizeIterator for Drain<'_, T, A>`
 
+##### `impl<T> From for Drain<'a, T, A>`
+
+- <span id="drain-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<T, A: Allocator> FusedIterator for Drain<'_, T, A>`
+
+##### `impl<T, U> Into for Drain<'a, T, A>`
+
+- <span id="drain-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Drain<'a, T, A>`
 
@@ -228,19 +310,31 @@ let iter: std::vec::Drain<_> = v.drain(..);
 
 - <span id="drain-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="drain-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for Drain<'_, T, A>`
 
 - <span id="drain-iterator-type-item"></span>`type Item = T`
 
-- <span id="drain-next"></span>`fn next(&mut self) -> Option<T>`
+- <span id="drain-iterator-next"></span>`fn next(&mut self) -> Option<T>`
 
-- <span id="drain-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="drain-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ##### `impl<T: Send, A: Send + Allocator> Send for Drain<'_, T, A>`
 
 ##### `impl<T: Sync, A: Sync + Allocator> Sync for Drain<'_, T, A>`
+
+##### `impl<T, U> TryFrom for Drain<'a, T, A>`
+
+- <span id="drain-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="drain-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Drain<'a, T, A>`
+
+- <span id="drain-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="drain-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IntoIter<T, A: Allocator>`
 
@@ -273,29 +367,95 @@ let iter: std::vec::IntoIter<_> = v.into_iter();
 
 - <span id="intoiter-as-slice"></span>`fn as_slice(&self) -> &[T]`
 
+  Returns the remaining items of this iterator as a slice.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  let vec = vec!['a', 'b', 'c'];
+
+  let mut into_iter = vec.into_iter();
+
+  assert_eq!(into_iter.as_slice(), &['a', 'b', 'c']);
+
+  let _ = into_iter.next().unwrap();
+
+  assert_eq!(into_iter.as_slice(), &['b', 'c']);
+
+  ```
+
 - <span id="intoiter-as-mut-slice"></span>`fn as_mut_slice(&mut self) -> &mut [T]`
 
+  Returns the remaining items of this iterator as a mutable slice.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  let vec = vec!['a', 'b', 'c'];
+
+  let mut into_iter = vec.into_iter();
+
+  assert_eq!(into_iter.as_slice(), &['a', 'b', 'c']);
+
+  into_iter.as_mut_slice()[2] = 'z';
+
+  assert_eq!(into_iter.next().unwrap(), 'a');
+
+  assert_eq!(into_iter.next().unwrap(), 'b');
+
+  assert_eq!(into_iter.next().unwrap(), 'z');
+
+  ```
+
 - <span id="intoiter-allocator"></span>`fn allocator(&self) -> &A`
+
+  Returns a reference to the underlying allocator.
 
 - <span id="intoiter-as-raw-mut-slice"></span>`fn as_raw_mut_slice(&mut self) -> *mut [T]`
 
 #### Trait Implementations
 
+##### `impl<T> Any for IntoIter<T, A>`
+
+- <span id="intoiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl<T, A: Allocator> AsRef for IntoIter<T, A>`
 
-- <span id="intoiter-as-ref"></span>`fn as_ref(&self) -> &[T]`
+- <span id="intoiter-asref-as-ref"></span>`fn as_ref(&self) -> &[T]`
+
+##### `impl<T> Borrow for IntoIter<T, A>`
+
+- <span id="intoiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IntoIter<T, A>`
+
+- <span id="intoiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: Clone, A: Allocator + Clone> Clone for IntoIter<T, A>`
 
 - <span id="intoiter-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for IntoIter<T, A>`
+
+- <span id="intoiter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug, A: Allocator> Debug for IntoIter<T, A>`
 
-- <span id="intoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="intoiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, A: Allocator> DoubleEndedIterator for IntoIter<T, A>`
 
-- <span id="intoiter-next-back"></span>`fn next_back(&mut self) -> Option<T>`
+- <span id="intoiter-doubleendediterator-next-back"></span>`fn next_back(&mut self) -> Option<T>`
 
 ##### `impl<T, A: Allocator> Drop for IntoIter<T, A>`
 
@@ -303,7 +463,25 @@ let iter: std::vec::IntoIter<_> = v.into_iter();
 
 ##### `impl<T, A: Allocator> ExactSizeIterator for IntoIter<T, A>`
 
+##### `impl<T> From for IntoIter<T, A>`
+
+- <span id="intoiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<T, A: Allocator> FusedIterator for IntoIter<T, A>`
+
+##### `impl<T, U> Into for IntoIter<T, A>`
+
+- <span id="intoiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IntoIter<T, A>`
 
@@ -311,21 +489,41 @@ let iter: std::vec::IntoIter<_> = v.into_iter();
 
 - <span id="intoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="intoiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for IntoIter<T, A>`
 
 - <span id="intoiter-iterator-type-item"></span>`type Item = T`
 
-- <span id="intoiter-next"></span>`fn next(&mut self) -> Option<T>`
+- <span id="intoiter-iterator-next"></span>`fn next(&mut self) -> Option<T>`
 
-- <span id="intoiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="intoiter-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- <span id="intoiter-count"></span>`fn count(self) -> usize`
+- <span id="intoiter-iterator-count"></span>`fn count(self) -> usize`
 
 ##### `impl<T: Send, A: Allocator + Send> Send for IntoIter<T, A>`
 
 ##### `impl<T: Sync, A: Allocator + Sync> Sync for IntoIter<T, A>`
+
+##### `impl<T> ToOwned for IntoIter<T, A>`
+
+- <span id="intoiter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="intoiter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="intoiter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for IntoIter<T, A>`
+
+- <span id="intoiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="intoiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for IntoIter<T, A>`
+
+- <span id="intoiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="intoiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Vec<T, A: Allocator>`
 
@@ -588,33 +786,365 @@ The order has changed in the past and may change again.
 
 - <span id="vec-new"></span>`const fn new() -> Self`
 
+  Constructs a new, empty `Vec<T>`.
+
+  
+
+  The vector will not allocate until elements are pushed onto it.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  #![allow(unused_mut)]
+
+  let mut vec: Vec<i32> = Vec::new();
+
+  ```
+
 - <span id="vec-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
+
+  Constructs a new, empty `Vec<T>` with at least the specified capacity.
+
+  
+
+  The vector will be able to hold at least `capacity` elements without
+
+  reallocating. This method is allowed to allocate for more elements than
+
+  `capacity`. If `capacity` is 0, the vector will not allocate.
+
+  
+
+  It is important to note that although the returned vector has the
+
+  minimum *capacity* specified, the vector will have a zero *length*. For
+
+  an explanation of the difference between length and capacity, see
+
+  *[Capacity and reallocation]*.
+
+  
+
+  If it is important to know the exact allocated capacity of a `Vec`,
+
+  always use the `capacity` method after construction.
+
+  
+
+  For `Vec<T>` where `T` is a zero-sized type, there will be no allocation
+
+  and the capacity will always be `usize::MAX`.
+
+  
+
+  
+
+  # Panics
+
+  
+
+  Panics if the new capacity exceeds `isize::MAX` bytes.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  let mut vec = Vec::with_capacity(10);
+
+  
+
+  // The vector contains no items, even though it has capacity for more
+
+  assert_eq!(vec.len(), 0);
+
+  assert!(vec.capacity() >= 10);
+
+  
+
+  // These are all done without reallocating...
+
+  for i in 0..10 {
+
+      vec.push(i);
+
+  }
+
+  assert_eq!(vec.len(), 10);
+
+  assert!(vec.capacity() >= 10);
+
+  
+
+  // ...but this may make the vector reallocate
+
+  vec.push(11);
+
+  assert_eq!(vec.len(), 11);
+
+  assert!(vec.capacity() >= 11);
+
+  
+
+  // A vector of a zero-sized type will always over-allocate, since no
+
+  // allocation is necessary
+
+  let vec_units = Vec::<()>::with_capacity(10);
+
+  assert_eq!(vec_units.capacity(), usize::MAX);
+
+  ```
 
 - <span id="vec-from-raw-parts"></span>`unsafe fn from_raw_parts(ptr: *mut T, length: usize, capacity: usize) -> Self`
 
+  Creates a `Vec<T>` directly from a pointer, a capacity, and a length.
+
+  
+
+  # Safety
+
+  
+
+  This is highly unsafe, due to the number of invariants that aren't
+
+  checked:
+
+  
+
+  * `T` needs to have the same alignment as what `ptr` was allocated with.
+
+    (`T` having a less strict alignment is not sufficient, the alignment really
+
+    needs to be equal to satisfy the [`dealloc`](../alloc/index.md) requirement that memory must be
+
+    allocated and deallocated with the same layout.)
+
+  * The size of `T` times the `capacity` (ie. the allocated size in bytes) needs
+
+    to be the same size as the pointer was allocated with. (Because similar to
+
+    alignment, [`dealloc`](../alloc/index.md) must be called with the same layout `size`.)
+
+  * `length` needs to be less than or equal to `capacity`.
+
+  * The first `length` values must be properly initialized values of type `T`.
+
+  * `capacity` needs to be the capacity that the pointer was allocated with.
+
+  * The allocated size in bytes must be no larger than `isize::MAX`.
+
+    See the safety documentation of [`pointer::offset`](https://doc.rust-lang.org/nightly/std/primitive.pointer.html#method.offset).
+
+  
+
+  These requirements are always upheld by any `ptr` that has been allocated
+
+  via `Vec<T>`. Other allocation sources are allowed if the invariants are
+
+  upheld.
+
+  
+
+  Violating these may cause problems like corrupting the allocator's
+
+  internal data structures. For example it is normally **not** safe
+
+  to build a `Vec<u8>` from a pointer to a C `char` array with length
+
+  `size_t`, doing so is only safe if the array was initially allocated by
+
+  a `Vec` or `String`.
+
+  It's also not safe to build one from a `Vec<u16>` and its length, because
+
+  the allocator cares about the alignment, and these two types have different
+
+  alignments. The buffer was allocated with alignment 2 (for `u16`), but after
+
+  turning it into a `Vec<u8>` it'll be deallocated with alignment 1. To avoid
+
+  these issues, it is often preferable to do casting/transmuting using
+
+  `slice::from_raw_parts` instead.
+
+  
+
+  The ownership of `ptr` is effectively transferred to the
+
+  `Vec<T>` which may then deallocate, reallocate or change the
+
+  contents of memory pointed to by the pointer at will. Ensure
+
+  that nothing else uses the pointer after calling this
+
+  function.
+
+  
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use std::ptr;
+
+  use std::mem;
+
+  
+
+  let v = vec![1, 2, 3];
+
+  
+
+  // Prevent running `v`'s destructor so we are in complete control
+
+  // of the allocation.
+
+  let mut v = mem::ManuallyDrop::new(v);
+
+  
+
+  // Pull out the various important pieces of information about `v`
+
+  let p = v.as_mut_ptr();
+
+  let len = v.len();
+
+  let cap = v.capacity();
+
+  
+
+  unsafe {
+
+      // Overwrite memory with 4, 5, 6
+
+      for i in 0..len {
+
+          ptr::write(p.add(i), 4 + i);
+
+      }
+
+  
+
+      // Put everything back together into a Vec
+
+      let rebuilt = Vec::from_raw_parts(p, len, cap);
+
+      assert_eq!(rebuilt, [4, 5, 6]);
+
+  }
+
+  ```
+
+  
+
+  Using memory that was allocated elsewhere:
+
+  
+
+  ```rust
+
+  #![feature(allocator_api)]
+
+  
+
+  use std::alloc::{AllocError, Allocator, Global, Layout};
+
+  
+
+  fn main() {
+
+      let layout = Layout::array::<u32>(16).expect("overflow cannot happen");
+
+  
+
+      let vec = unsafe {
+
+          let mem = match Global.allocate(layout) {
+
+              Ok(mem) => mem.cast::<u32>().as_ptr(),
+
+              Err(AllocError) => return,
+
+          };
+
+  
+
+          mem.write(1_000_000);
+
+  
+
+          Vec::from_raw_parts_in(mem, 1, 16, Global)
+
+      };
+
+  
+
+      assert_eq!(vec, &[1_000_000]);
+
+      assert_eq!(vec.capacity(), 16);
+
+  }
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for Vec<T, A>`
+
+- <span id="vec-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl<T, A: Allocator> AsMut for Vec<T, A>`
 
-- <span id="vec-as-mut"></span>`fn as_mut(&mut self) -> &mut Vec<T, A>` — [`Vec`](#vec)
+- <span id="vec-asmut-as-mut"></span>`fn as_mut(&mut self) -> &mut Vec<T, A>` — [`Vec`](#vec)
 
 ##### `impl<T, A: Allocator> AsRef for Vec<T, A>`
 
-- <span id="vec-as-ref"></span>`fn as_ref(&self) -> &Vec<T, A>` — [`Vec`](#vec)
+- <span id="vec-asref-as-ref"></span>`fn as_ref(&self) -> &Vec<T, A>` — [`Vec`](#vec)
+
+##### `impl<T> Borrow for Vec<T, A>`
+
+- <span id="vec-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Vec<T, A>`
+
+- <span id="vec-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: Clone, A: Allocator + Clone> Clone for Vec<T, A>`
 
 - <span id="vec-clone"></span>`fn clone(&self) -> Self`
 
-- <span id="vec-clone-from"></span>`fn clone_from(&mut self, other: &Self)`
+- <span id="vec-clone-clone-from"></span>`fn clone_from(&mut self, other: &Self)`
+
+##### `impl<T> CloneToUninit for Vec<T, A>`
+
+- <span id="vec-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: fmt::Debug, A: Allocator> Debug for Vec<T, A>`
 
-- <span id="vec-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="vec-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Default for Vec<T>`
 
 - <span id="vec-default"></span>`fn default() -> Vec<T>` — [`Vec`](#vec)
+
+  Creates an empty `Vec<T>`.
+
+  
+
+  The vector will not allocate until elements are pushed onto it.
 
 ##### `impl<T, A: Allocator> Deref for Vec<T, A>`
 
@@ -624,7 +1154,7 @@ The order has changed in the past and may change again.
 
 ##### `impl<T, A: Allocator> DerefMut for Vec<T, A>`
 
-- <span id="vec-deref-mut"></span>`fn deref_mut(&mut self) -> &mut [T]`
+- <span id="vec-derefmut-deref-mut"></span>`fn deref_mut(&mut self) -> &mut [T]`
 
 ##### `impl<T, A: Allocator> Drop for Vec<T, A>`
 
@@ -636,9 +1166,15 @@ The order has changed in the past and may change again.
 
 - <span id="vec-extend"></span>`fn extend<I: IntoIterator<Item = T>>(&mut self, iter: I)`
 
+##### `impl<T> From for Vec<T, A>`
+
+- <span id="vec-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<T> FromIterator for Vec<T>`
 
-- <span id="vec-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Vec<T>` — [`Vec`](#vec)
+- <span id="vec-fromiterator-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Vec<T>` — [`Vec`](#vec)
 
 ##### `impl<T: Hash, A: Allocator> Hash for Vec<T, A>`
 
@@ -652,7 +1188,19 @@ The order has changed in the past and may change again.
 
 ##### `impl<T, I: SliceIndex<[T]>, A: Allocator> IndexMut for Vec<T, A>`
 
-- <span id="vec-index-mut"></span>`fn index_mut(&mut self, index: I) -> &mut <Self as >::Output`
+- <span id="vec-indexmut-index-mut"></span>`fn index_mut(&mut self, index: I) -> &mut <Self as >::Output`
+
+##### `impl<T, U> Into for Vec<T, A>`
+
+- <span id="vec-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, A: Allocator> IntoIterator for Vec<T, A>`
 
@@ -660,25 +1208,77 @@ The order has changed in the past and may change again.
 
 - <span id="vec-intoiterator-type-intoiter"></span>`type IntoIter = IntoIter<T, A>`
 
-- <span id="vec-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+- <span id="vec-intoiterator-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+
+  Creates a consuming iterator, that is, one that moves each value out of
+
+  the vector (from start to end). The vector cannot be used after calling
+
+  this.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  let v = vec!["a".to_string(), "b".to_string()];
+
+  let mut v_iter = v.into_iter();
+
+  
+
+  let first_element: Option<String> = v_iter.next();
+
+  
+
+  assert_eq!(first_element, Some("a".to_string()));
+
+  assert_eq!(v_iter.next(), Some("b".to_string()));
+
+  assert_eq!(v_iter.next(), None);
+
+  ```
 
 ##### `impl<T: Ord, A: Allocator> Ord for Vec<T, A>`
 
-- <span id="vec-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
+- <span id="vec-ord-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
 
 ##### `impl<T, U, A1: Allocator, A2: Allocator> PartialEq for super::Vec<T, A1>`
 
-- <span id="supervec-eq"></span>`fn eq(&self, other: &Vec<U, A2>) -> bool` — [`Vec`](#vec)
+- <span id="supervec-partialeq-eq"></span>`fn eq(&self, other: &Vec<U, A2>) -> bool` — [`Vec`](#vec)
 
-- <span id="supervec-ne"></span>`fn ne(&self, other: &Vec<U, A2>) -> bool` — [`Vec`](#vec)
+- <span id="supervec-partialeq-ne"></span>`fn ne(&self, other: &Vec<U, A2>) -> bool` — [`Vec`](#vec)
 
 ##### `impl<T: PartialOrd, A: Allocator> PartialOrd for Vec<T, A>`
 
-- <span id="vec-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
+- <span id="vec-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
 
 ##### `impl<T> Receiver for Vec<T, A>`
 
 - <span id="vec-receiver-type-target"></span>`type Target = T`
+
+##### `impl<T> ToOwned for Vec<T, A>`
+
+- <span id="vec-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="vec-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="vec-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for Vec<T, A>`
+
+- <span id="vec-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="vec-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Vec<T, A>`
+
+- <span id="vec-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="vec-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ExtendElement<T>`
 
@@ -690,11 +1290,53 @@ struct ExtendElement<T>(T);
 
 #### Trait Implementations
 
+##### `impl<T> Any for ExtendElement<T>`
+
+- <span id="extendelement-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ExtendElement<T>`
+
+- <span id="extendelement-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ExtendElement<T>`
+
+- <span id="extendelement-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: Clone> ExtendWith for ExtendElement<T>`
 
-- <span id="extendelement-next"></span>`fn next(&mut self) -> T`
+- <span id="extendelement-extendwith-next"></span>`fn next(&mut self) -> T`
 
-- <span id="extendelement-last"></span>`fn last(self) -> T`
+- <span id="extendelement-extendwith-last"></span>`fn last(self) -> T`
+
+##### `impl<T> From for ExtendElement<T>`
+
+- <span id="extendelement-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for ExtendElement<T>`
+
+- <span id="extendelement-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<T, U> TryFrom for ExtendElement<T>`
+
+- <span id="extendelement-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="extendelement-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for ExtendElement<T>`
+
+- <span id="extendelement-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="extendelement-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

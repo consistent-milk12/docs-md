@@ -80,13 +80,29 @@ target.
 
 #### Trait Implementations
 
+##### `impl Any for ArtifactProfile`
+
+- <span id="artifactprofile-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ArtifactProfile`
+
+- <span id="artifactprofile-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ArtifactProfile`
+
+- <span id="artifactprofile-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ArtifactProfile`
 
 - <span id="artifactprofile-clone"></span>`fn clone(&self) -> ArtifactProfile` — [`ArtifactProfile`](#artifactprofile)
 
+##### `impl CloneToUninit for ArtifactProfile`
+
+- <span id="artifactprofile-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for ArtifactProfile`
 
-- <span id="artifactprofile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="artifactprofile-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for ArtifactProfile`
 
@@ -96,19 +112,57 @@ target.
 
 ##### `impl Eq for ArtifactProfile`
 
+##### `impl<T> From for ArtifactProfile`
+
+- <span id="artifactprofile-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for ArtifactProfile`
 
 - <span id="artifactprofile-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for ArtifactProfile`
+
+- <span id="artifactprofile-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ArtifactProfile`
 
-- <span id="artifactprofile-eq"></span>`fn eq(&self, other: &ArtifactProfile) -> bool` — [`ArtifactProfile`](#artifactprofile)
+- <span id="artifactprofile-partialeq-eq"></span>`fn eq(&self, other: &ArtifactProfile) -> bool` — [`ArtifactProfile`](#artifactprofile)
 
 ##### `impl Serialize for ArtifactProfile`
 
 - <span id="artifactprofile-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ArtifactProfile`
+
+##### `impl ToOwned for ArtifactProfile`
+
+- <span id="artifactprofile-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="artifactprofile-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="artifactprofile-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ArtifactProfile`
+
+- <span id="artifactprofile-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="artifactprofile-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ArtifactProfile`
+
+- <span id="artifactprofile-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="artifactprofile-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Artifact`
 
@@ -166,13 +220,29 @@ A compiler-generated file.
 
 #### Trait Implementations
 
+##### `impl Any for Artifact`
+
+- <span id="artifact-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Artifact`
+
+- <span id="artifact-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Artifact`
+
+- <span id="artifact-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Artifact`
 
 - <span id="artifact-clone"></span>`fn clone(&self) -> Artifact` — [`Artifact`](#artifact)
 
+##### `impl CloneToUninit for Artifact`
+
+- <span id="artifact-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Artifact`
 
-- <span id="artifact-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="artifact-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Artifact`
 
@@ -182,19 +252,57 @@ A compiler-generated file.
 
 ##### `impl Eq for Artifact`
 
+##### `impl<T> From for Artifact`
+
+- <span id="artifact-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Artifact`
 
 - <span id="artifact-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Artifact`
+
+- <span id="artifact-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Artifact`
 
-- <span id="artifact-eq"></span>`fn eq(&self, other: &Artifact) -> bool` — [`Artifact`](#artifact)
+- <span id="artifact-partialeq-eq"></span>`fn eq(&self, other: &Artifact) -> bool` — [`Artifact`](#artifact)
 
 ##### `impl Serialize for Artifact`
 
 - <span id="artifact-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Artifact`
+
+##### `impl ToOwned for Artifact`
+
+- <span id="artifact-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="artifact-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="artifact-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Artifact`
+
+- <span id="artifact-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="artifact-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Artifact`
+
+- <span id="artifact-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="artifact-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CompilerMessage`
 
@@ -226,13 +334,29 @@ Message left by the compiler
 
 #### Trait Implementations
 
+##### `impl Any for CompilerMessage`
+
+- <span id="compilermessage-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CompilerMessage`
+
+- <span id="compilermessage-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CompilerMessage`
+
+- <span id="compilermessage-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for CompilerMessage`
 
 - <span id="compilermessage-clone"></span>`fn clone(&self) -> CompilerMessage` — [`CompilerMessage`](#compilermessage)
 
+##### `impl CloneToUninit for CompilerMessage`
+
+- <span id="compilermessage-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for CompilerMessage`
 
-- <span id="compilermessage-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="compilermessage-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for CompilerMessage`
 
@@ -242,17 +366,35 @@ Message left by the compiler
 
 ##### `impl Display for CompilerMessage`
 
-- <span id="compilermessage-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="compilermessage-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for CompilerMessage`
+
+##### `impl<T> From for CompilerMessage`
+
+- <span id="compilermessage-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for CompilerMessage`
 
 - <span id="compilermessage-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for CompilerMessage`
+
+- <span id="compilermessage-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for CompilerMessage`
 
-- <span id="compilermessage-eq"></span>`fn eq(&self, other: &CompilerMessage) -> bool` — [`CompilerMessage`](#compilermessage)
+- <span id="compilermessage-partialeq-eq"></span>`fn eq(&self, other: &CompilerMessage) -> bool` — [`CompilerMessage`](#compilermessage)
 
 ##### `impl Serialize for CompilerMessage`
 
@@ -260,9 +402,29 @@ Message left by the compiler
 
 ##### `impl StructuralPartialEq for CompilerMessage`
 
+##### `impl ToOwned for CompilerMessage`
+
+- <span id="compilermessage-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="compilermessage-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="compilermessage-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for CompilerMessage`
 
-- <span id="compilermessage-to-string"></span>`fn to_string(&self) -> String`
+- <span id="compilermessage-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for CompilerMessage`
+
+- <span id="compilermessage-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="compilermessage-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CompilerMessage`
+
+- <span id="compilermessage-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="compilermessage-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BuildScript`
 
@@ -311,13 +473,29 @@ Output of a build script execution.
 
 #### Trait Implementations
 
+##### `impl Any for BuildScript`
+
+- <span id="buildscript-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BuildScript`
+
+- <span id="buildscript-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BuildScript`
+
+- <span id="buildscript-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BuildScript`
 
 - <span id="buildscript-clone"></span>`fn clone(&self) -> BuildScript` — [`BuildScript`](#buildscript)
 
+##### `impl CloneToUninit for BuildScript`
+
+- <span id="buildscript-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for BuildScript`
 
-- <span id="buildscript-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="buildscript-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for BuildScript`
 
@@ -327,19 +505,57 @@ Output of a build script execution.
 
 ##### `impl Eq for BuildScript`
 
+##### `impl<T> From for BuildScript`
+
+- <span id="buildscript-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for BuildScript`
 
 - <span id="buildscript-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for BuildScript`
+
+- <span id="buildscript-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for BuildScript`
 
-- <span id="buildscript-eq"></span>`fn eq(&self, other: &BuildScript) -> bool` — [`BuildScript`](#buildscript)
+- <span id="buildscript-partialeq-eq"></span>`fn eq(&self, other: &BuildScript) -> bool` — [`BuildScript`](#buildscript)
 
 ##### `impl Serialize for BuildScript`
 
 - <span id="buildscript-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for BuildScript`
+
+##### `impl ToOwned for BuildScript`
+
+- <span id="buildscript-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="buildscript-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="buildscript-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BuildScript`
+
+- <span id="buildscript-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="buildscript-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BuildScript`
+
+- <span id="buildscript-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="buildscript-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BuildFinished`
 
@@ -361,13 +577,29 @@ Final result of a build.
 
 #### Trait Implementations
 
+##### `impl Any for BuildFinished`
+
+- <span id="buildfinished-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BuildFinished`
+
+- <span id="buildfinished-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BuildFinished`
+
+- <span id="buildfinished-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BuildFinished`
 
 - <span id="buildfinished-clone"></span>`fn clone(&self) -> BuildFinished` — [`BuildFinished`](#buildfinished)
 
+##### `impl CloneToUninit for BuildFinished`
+
+- <span id="buildfinished-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for BuildFinished`
 
-- <span id="buildfinished-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="buildfinished-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for BuildFinished`
 
@@ -377,19 +609,57 @@ Final result of a build.
 
 ##### `impl Eq for BuildFinished`
 
+##### `impl<T> From for BuildFinished`
+
+- <span id="buildfinished-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for BuildFinished`
 
 - <span id="buildfinished-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for BuildFinished`
+
+- <span id="buildfinished-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for BuildFinished`
 
-- <span id="buildfinished-eq"></span>`fn eq(&self, other: &BuildFinished) -> bool` — [`BuildFinished`](#buildfinished)
+- <span id="buildfinished-partialeq-eq"></span>`fn eq(&self, other: &BuildFinished) -> bool` — [`BuildFinished`](#buildfinished)
 
 ##### `impl Serialize for BuildFinished`
 
 - <span id="buildfinished-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for BuildFinished`
+
+##### `impl ToOwned for BuildFinished`
+
+- <span id="buildfinished-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="buildfinished-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="buildfinished-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BuildFinished`
+
+- <span id="buildfinished-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="buildfinished-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BuildFinished`
+
+- <span id="buildfinished-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="buildfinished-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MessageIter<R>`
 
@@ -405,19 +675,61 @@ An iterator of Messages.
 
 #### Trait Implementations
 
+##### `impl Any for MessageIter<R>`
+
+- <span id="messageiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MessageIter<R>`
+
+- <span id="messageiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MessageIter<R>`
+
+- <span id="messageiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for MessageIter<R>`
+
+- <span id="messageiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MessageIter<R>`
+
+- <span id="messageiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoIterator for MessageIter<R>`
 
 - <span id="messageiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="messageiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="messageiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="messageiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<R: BufRead> Iterator for MessageIter<R>`
 
 - <span id="messageiter-iterator-type-item"></span>`type Item = Result<Message, Error>`
 
-- <span id="messageiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="messageiter-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for MessageIter<R>`
+
+- <span id="messageiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="messageiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MessageIter<R>`
+
+- <span id="messageiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="messageiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -479,13 +791,29 @@ The kind of debug information included in the artifact.
 
 #### Trait Implementations
 
+##### `impl Any for ArtifactDebuginfo`
+
+- <span id="artifactdebuginfo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ArtifactDebuginfo`
+
+- <span id="artifactdebuginfo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ArtifactDebuginfo`
+
+- <span id="artifactdebuginfo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ArtifactDebuginfo`
 
 - <span id="artifactdebuginfo-clone"></span>`fn clone(&self) -> ArtifactDebuginfo` — [`ArtifactDebuginfo`](#artifactdebuginfo)
 
+##### `impl CloneToUninit for ArtifactDebuginfo`
+
+- <span id="artifactdebuginfo-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for ArtifactDebuginfo`
 
-- <span id="artifactdebuginfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="artifactdebuginfo-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ArtifactDebuginfo`
 
@@ -499,17 +827,35 @@ The kind of debug information included in the artifact.
 
 ##### `impl Display for ArtifactDebuginfo`
 
-- <span id="artifactdebuginfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="artifactdebuginfo-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ArtifactDebuginfo`
+
+##### `impl<T> From for ArtifactDebuginfo`
+
+- <span id="artifactdebuginfo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for ArtifactDebuginfo`
 
 - <span id="artifactdebuginfo-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for ArtifactDebuginfo`
+
+- <span id="artifactdebuginfo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ArtifactDebuginfo`
 
-- <span id="artifactdebuginfo-eq"></span>`fn eq(&self, other: &ArtifactDebuginfo) -> bool` — [`ArtifactDebuginfo`](#artifactdebuginfo)
+- <span id="artifactdebuginfo-partialeq-eq"></span>`fn eq(&self, other: &ArtifactDebuginfo) -> bool` — [`ArtifactDebuginfo`](#artifactdebuginfo)
 
 ##### `impl Serialize for ArtifactDebuginfo`
 
@@ -517,9 +863,29 @@ The kind of debug information included in the artifact.
 
 ##### `impl StructuralPartialEq for ArtifactDebuginfo`
 
+##### `impl ToOwned for ArtifactDebuginfo`
+
+- <span id="artifactdebuginfo-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="artifactdebuginfo-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="artifactdebuginfo-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for ArtifactDebuginfo`
 
-- <span id="artifactdebuginfo-to-string"></span>`fn to_string(&self) -> String`
+- <span id="artifactdebuginfo-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for ArtifactDebuginfo`
+
+- <span id="artifactdebuginfo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="artifactdebuginfo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ArtifactDebuginfo`
+
+- <span id="artifactdebuginfo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="artifactdebuginfo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Message`
 
@@ -567,15 +933,35 @@ A cargo message
 
 - <span id="message-parse-stream"></span>`fn parse_stream<R: Read>(input: R) -> MessageIter<R>` — [`MessageIter`](#messageiter)
 
+  Creates an iterator of Message from a Read outputting a stream of JSON
+
+  messages. For usage information, look at the top-level documentation.
+
 #### Trait Implementations
+
+##### `impl Any for Message`
+
+- <span id="message-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Message`
+
+- <span id="message-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Message`
+
+- <span id="message-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Message`
 
 - <span id="message-clone"></span>`fn clone(&self) -> Message` — [`Message`](#message)
 
+##### `impl CloneToUninit for Message`
+
+- <span id="message-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Message`
 
-- <span id="message-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="message-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Message`
 
@@ -585,19 +971,57 @@ A cargo message
 
 ##### `impl Eq for Message`
 
+##### `impl<T> From for Message`
+
+- <span id="message-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Message`
 
 - <span id="message-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Message`
+
+- <span id="message-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Message`
 
-- <span id="message-eq"></span>`fn eq(&self, other: &Message) -> bool` — [`Message`](#message)
+- <span id="message-partialeq-eq"></span>`fn eq(&self, other: &Message) -> bool` — [`Message`](#message)
 
 ##### `impl Serialize for Message`
 
 - <span id="message-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Message`
+
+##### `impl ToOwned for Message`
+
+- <span id="message-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="message-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="message-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Message`
+
+- <span id="message-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="message-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Message`
+
+- <span id="message-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="message-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

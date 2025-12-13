@@ -68,9 +68,51 @@ enum Input<T> {
 
 #### Trait Implementations
 
+##### `impl<T> Any for Input<T>`
+
+- <span id="input-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl AsRawFd for Input<fs::File>`
 
-- <span id="input-as-raw-fd"></span>`fn as_raw_fd(&self) -> RawFd`
+- <span id="input-asrawfd-as-raw-fd"></span>`fn as_raw_fd(&self) -> RawFd`
+
+##### `impl<T> Borrow for Input<T>`
+
+- <span id="input-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Input<T>`
+
+- <span id="input-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Input<T>`
+
+- <span id="input-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Input<T>`
+
+- <span id="input-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<T, U> TryFrom for Input<T>`
+
+- <span id="input-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="input-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Input<T>`
+
+- <span id="input-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="input-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

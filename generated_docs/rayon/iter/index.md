@@ -63,7 +63,7 @@ check out the [`ParallelIterator`](#paralleliterator) and [`IndexedParallelItera
 traits.
 
 If you'd like to build a custom parallel iterator, or to write your own
-combinator, then check out the [`split`](../str/index.md) function and the [`plumbing`](plumbing/index.md) module.
+combinator, then check out the [`split`](splitter/index.md) function and the [`plumbing`](plumbing/index.md) module.
 
 
 
@@ -437,13 +437,47 @@ This struct is created by the `by_exponential_blocks()` method on [`IndexedParal
 
 #### Trait Implementations
 
+##### `impl Any for ExponentialBlocks<I>`
+
+- <span id="exponentialblocks-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ExponentialBlocks<I>`
+
+- <span id="exponentialblocks-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ExponentialBlocks<I>`
+
+- <span id="exponentialblocks-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<I: clone::Clone> Clone for ExponentialBlocks<I>`
 
 - <span id="exponentialblocks-clone"></span>`fn clone(&self) -> ExponentialBlocks<I>` — [`ExponentialBlocks`](blocks/index.md#exponentialblocks)
 
+##### `impl CloneToUninit for ExponentialBlocks<I>`
+
+- <span id="exponentialblocks-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug> Debug for ExponentialBlocks<I>`
 
-- <span id="exponentialblocks-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="exponentialblocks-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ExponentialBlocks<I>`
+
+- <span id="exponentialblocks-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ExponentialBlocks<I>`
+
+- <span id="exponentialblocks-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ExponentialBlocks<I>`
 
@@ -453,13 +487,13 @@ This struct is created by the `by_exponential_blocks()` method on [`IndexedParal
 
 - <span id="exponentialblocks-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="exponentialblocks-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="exponentialblocks-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for ExponentialBlocks<I>`
 
 - <span id="exponentialblocks-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="exponentialblocks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="exponentialblocks-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for ExponentialBlocks<I>`
 
@@ -467,13 +501,33 @@ This struct is created by the `by_exponential_blocks()` method on [`IndexedParal
 
 - <span id="exponentialblocks-pointable-type-init"></span>`type Init = T`
 
-- <span id="exponentialblocks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="exponentialblocks-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="exponentialblocks-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="exponentialblocks-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="exponentialblocks-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="exponentialblocks-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="exponentialblocks-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="exponentialblocks-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for ExponentialBlocks<I>`
+
+- <span id="exponentialblocks-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="exponentialblocks-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="exponentialblocks-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ExponentialBlocks<I>`
+
+- <span id="exponentialblocks-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="exponentialblocks-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ExponentialBlocks<I>`
+
+- <span id="exponentialblocks-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="exponentialblocks-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UniformBlocks<I>`
 
@@ -498,13 +552,47 @@ This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelI
 
 #### Trait Implementations
 
+##### `impl Any for UniformBlocks<I>`
+
+- <span id="uniformblocks-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UniformBlocks<I>`
+
+- <span id="uniformblocks-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UniformBlocks<I>`
+
+- <span id="uniformblocks-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<I: clone::Clone> Clone for UniformBlocks<I>`
 
 - <span id="uniformblocks-clone"></span>`fn clone(&self) -> UniformBlocks<I>` — [`UniformBlocks`](blocks/index.md#uniformblocks)
 
+##### `impl CloneToUninit for UniformBlocks<I>`
+
+- <span id="uniformblocks-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug> Debug for UniformBlocks<I>`
 
-- <span id="uniformblocks-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="uniformblocks-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for UniformBlocks<I>`
+
+- <span id="uniformblocks-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for UniformBlocks<I>`
+
+- <span id="uniformblocks-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for UniformBlocks<I>`
 
@@ -514,13 +602,13 @@ This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelI
 
 - <span id="uniformblocks-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="uniformblocks-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="uniformblocks-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for UniformBlocks<I>`
 
 - <span id="uniformblocks-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="uniformblocks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="uniformblocks-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for UniformBlocks<I>`
 
@@ -528,13 +616,33 @@ This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelI
 
 - <span id="uniformblocks-pointable-type-init"></span>`type Init = T`
 
-- <span id="uniformblocks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="uniformblocks-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="uniformblocks-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="uniformblocks-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="uniformblocks-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="uniformblocks-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="uniformblocks-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="uniformblocks-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for UniformBlocks<I>`
+
+- <span id="uniformblocks-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="uniformblocks-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="uniformblocks-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for UniformBlocks<I>`
+
+- <span id="uniformblocks-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="uniformblocks-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UniformBlocks<I>`
+
+- <span id="uniformblocks-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="uniformblocks-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Chain<A, B>`
 
@@ -555,23 +663,59 @@ This struct is created by the `chain()` method on [`ParallelIterator`](#parallel
 
 - <span id="chain-new"></span>`fn new(a: A, b: B) -> Self`
 
+  Creates a new `Chain` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for Chain<A, B>`
+
+- <span id="chain-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Chain<A, B>`
+
+- <span id="chain-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Chain<A, B>`
+
+- <span id="chain-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<A: clone::Clone, B: clone::Clone> Clone for Chain<A, B>`
 
 - <span id="chain-clone"></span>`fn clone(&self) -> Chain<A, B>` — [`Chain`](chain/index.md#chain)
 
+##### `impl CloneToUninit for Chain<A, B>`
+
+- <span id="chain-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<A: fmt::Debug, B: fmt::Debug> Debug for Chain<A, B>`
 
-- <span id="chain-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="chain-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Chain<A, B>`
+
+- <span id="chain-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<A, B> IndexedParallelIterator for Chain<A, B>`
 
-- <span id="chain-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="chain-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="chain-len"></span>`fn len(&self) -> usize`
+- <span id="chain-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="chain-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="chain-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for Chain<A, B>`
+
+- <span id="chain-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Chain<A, B>`
 
@@ -581,15 +725,15 @@ This struct is created by the `chain()` method on [`ParallelIterator`](#parallel
 
 - <span id="chain-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="chain-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="chain-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A, B> ParallelIterator for Chain<A, B>`
 
 - <span id="chain-paralleliterator-type-item"></span>`type Item = <A as ParallelIterator>::Item`
 
-- <span id="chain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="chain-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="chain-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="chain-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for Chain<A, B>`
 
@@ -597,13 +741,33 @@ This struct is created by the `chain()` method on [`ParallelIterator`](#parallel
 
 - <span id="chain-pointable-type-init"></span>`type Init = T`
 
-- <span id="chain-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chain-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="chain-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chain-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="chain-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chain-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="chain-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="chain-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Chain<A, B>`
+
+- <span id="chain-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="chain-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="chain-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Chain<A, B>`
+
+- <span id="chain-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="chain-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Chain<A, B>`
+
+- <span id="chain-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="chain-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Chunks<I>`
 
@@ -625,23 +789,59 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](#
 
 - <span id="chunks-new"></span>`fn new(i: I, size: usize) -> Self`
 
+  Creates a new `Chunks` iterator
+
 #### Trait Implementations
+
+##### `impl Any for Chunks<I>`
+
+- <span id="chunks-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Chunks<I>`
+
+- <span id="chunks-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Chunks<I>`
+
+- <span id="chunks-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone> Clone for Chunks<I>`
 
 - <span id="chunks-clone"></span>`fn clone(&self) -> Chunks<I>` — [`Chunks`](chunks/index.md#chunks)
 
+##### `impl CloneToUninit for Chunks<I>`
+
+- <span id="chunks-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug> Debug for Chunks<I>`
 
-- <span id="chunks-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="chunks-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Chunks<I>`
+
+- <span id="chunks-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I> IndexedParallelIterator for Chunks<I>`
 
-- <span id="chunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="chunks-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="chunks-len"></span>`fn len(&self) -> usize`
+- <span id="chunks-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="chunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="chunks-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for Chunks<I>`
+
+- <span id="chunks-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Chunks<I>`
 
@@ -651,15 +851,15 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](#
 
 - <span id="chunks-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="chunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="chunks-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Chunks<I>`
 
 - <span id="chunks-paralleliterator-type-item"></span>`type Item = Vec<<I as ParallelIterator>::Item>`
 
-- <span id="chunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="chunks-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="chunks-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="chunks-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for Chunks<I>`
 
@@ -667,13 +867,33 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](#
 
 - <span id="chunks-pointable-type-init"></span>`type Init = T`
 
-- <span id="chunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chunks-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="chunks-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chunks-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="chunks-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chunks-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="chunks-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="chunks-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Chunks<I>`
+
+- <span id="chunks-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="chunks-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="chunks-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Chunks<I>`
+
+- <span id="chunks-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="chunks-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Chunks<I>`
+
+- <span id="chunks-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="chunks-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Cloned<I>`
 
@@ -694,23 +914,59 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](#paralle
 
 - <span id="cloned-new"></span>`fn new(base: I) -> Self`
 
+  Creates a new `Cloned` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for Cloned<I>`
+
+- <span id="cloned-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Cloned<I>`
+
+- <span id="cloned-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Cloned<I>`
+
+- <span id="cloned-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone> Clone for Cloned<I>`
 
 - <span id="cloned-clone"></span>`fn clone(&self) -> Cloned<I>` — [`Cloned`](cloned/index.md#cloned)
 
+##### `impl CloneToUninit for Cloned<I>`
+
+- <span id="cloned-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug> Debug for Cloned<I>`
 
-- <span id="cloned-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cloned-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Cloned<I>`
+
+- <span id="cloned-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I> IndexedParallelIterator for Cloned<I>`
 
-- <span id="cloned-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="cloned-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="cloned-len"></span>`fn len(&self) -> usize`
+- <span id="cloned-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="cloned-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="cloned-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for Cloned<I>`
+
+- <span id="cloned-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Cloned<I>`
 
@@ -720,15 +976,15 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](#paralle
 
 - <span id="cloned-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="cloned-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="cloned-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Cloned<I>`
 
 - <span id="cloned-paralleliterator-type-item"></span>`type Item = T`
 
-- <span id="cloned-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="cloned-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="cloned-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="cloned-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for Cloned<I>`
 
@@ -736,13 +992,33 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](#paralle
 
 - <span id="cloned-pointable-type-init"></span>`type Init = T`
 
-- <span id="cloned-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="cloned-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="cloned-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="cloned-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="cloned-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="cloned-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="cloned-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="cloned-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Cloned<I>`
+
+- <span id="cloned-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="cloned-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="cloned-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Cloned<I>`
+
+- <span id="cloned-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cloned-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Cloned<I>`
+
+- <span id="cloned-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cloned-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Copied<I>`
 
@@ -763,23 +1039,59 @@ This struct is created by the `copied()` method on [`ParallelIterator`](#paralle
 
 - <span id="copied-new"></span>`fn new(base: I) -> Self`
 
+  Creates a new `Copied` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for Copied<I>`
+
+- <span id="copied-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Copied<I>`
+
+- <span id="copied-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Copied<I>`
+
+- <span id="copied-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone> Clone for Copied<I>`
 
 - <span id="copied-clone"></span>`fn clone(&self) -> Copied<I>` — [`Copied`](copied/index.md#copied)
 
+##### `impl CloneToUninit for Copied<I>`
+
+- <span id="copied-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug> Debug for Copied<I>`
 
-- <span id="copied-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="copied-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Copied<I>`
+
+- <span id="copied-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I> IndexedParallelIterator for Copied<I>`
 
-- <span id="copied-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="copied-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="copied-len"></span>`fn len(&self) -> usize`
+- <span id="copied-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="copied-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="copied-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for Copied<I>`
+
+- <span id="copied-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Copied<I>`
 
@@ -789,15 +1101,15 @@ This struct is created by the `copied()` method on [`ParallelIterator`](#paralle
 
 - <span id="copied-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="copied-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="copied-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Copied<I>`
 
 - <span id="copied-paralleliterator-type-item"></span>`type Item = T`
 
-- <span id="copied-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="copied-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="copied-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="copied-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for Copied<I>`
 
@@ -805,13 +1117,33 @@ This struct is created by the `copied()` method on [`ParallelIterator`](#paralle
 
 - <span id="copied-pointable-type-init"></span>`type Init = T`
 
-- <span id="copied-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="copied-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="copied-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="copied-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="copied-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="copied-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="copied-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="copied-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Copied<I>`
+
+- <span id="copied-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="copied-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="copied-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Copied<I>`
+
+- <span id="copied-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="copied-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Copied<I>`
+
+- <span id="copied-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="copied-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Empty<T>`
 
@@ -828,21 +1160,55 @@ Iterator adaptor for [the `empty()` function].
 
 #### Trait Implementations
 
+##### `impl<T> Any for Empty<T>`
+
+- <span id="empty-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Empty<T>`
+
+- <span id="empty-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Empty<T>`
+
+- <span id="empty-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T> Clone for Empty<T>`
 
 - <span id="empty-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for Empty<T>`
+
+- <span id="empty-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: Send> Debug for Empty<T>`
 
-- <span id="empty-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="empty-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Empty<T>`
+
+- <span id="empty-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: Send> IndexedParallelIterator for Empty<T>`
 
-- <span id="empty-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="empty-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="empty-len"></span>`fn len(&self) -> usize`
+- <span id="empty-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="empty-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="empty-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for Empty<T>`
+
+- <span id="empty-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Empty<T>`
 
@@ -852,15 +1218,15 @@ Iterator adaptor for [the `empty()` function].
 
 - <span id="empty-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="empty-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="empty-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for Empty<T>`
 
 - <span id="empty-paralleliterator-type-item"></span>`type Item = T`
 
-- <span id="empty-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="empty-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="empty-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="empty-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for Empty<T>`
 
@@ -868,13 +1234,33 @@ Iterator adaptor for [the `empty()` function].
 
 - <span id="empty-pointable-type-init"></span>`type Init = T`
 
-- <span id="empty-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="empty-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="empty-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="empty-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="empty-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="empty-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="empty-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="empty-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for Empty<T>`
+
+- <span id="empty-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="empty-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="empty-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for Empty<T>`
+
+- <span id="empty-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="empty-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Empty<T>`
+
+- <span id="empty-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="empty-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Enumerate<I>`
 
@@ -894,23 +1280,59 @@ This struct is created by the `enumerate()` method on [`IndexedParallelIterator`
 
 - <span id="enumerate-new"></span>`fn new(base: I) -> Self`
 
+  Creates a new `Enumerate` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for Enumerate<I>`
+
+- <span id="enumerate-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Enumerate<I>`
+
+- <span id="enumerate-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Enumerate<I>`
+
+- <span id="enumerate-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone> Clone for Enumerate<I>`
 
 - <span id="enumerate-clone"></span>`fn clone(&self) -> Enumerate<I>` — [`Enumerate`](enumerate/index.md#enumerate)
 
+##### `impl CloneToUninit for Enumerate<I>`
+
+- <span id="enumerate-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug> Debug for Enumerate<I>`
 
-- <span id="enumerate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="enumerate-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Enumerate<I>`
+
+- <span id="enumerate-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I> IndexedParallelIterator for Enumerate<I>`
 
-- <span id="enumerate-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="enumerate-indexedparalleliterator-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="enumerate-len"></span>`fn len(&self) -> usize`
+- <span id="enumerate-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="enumerate-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="enumerate-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for Enumerate<I>`
+
+- <span id="enumerate-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Enumerate<I>`
 
@@ -920,15 +1342,15 @@ This struct is created by the `enumerate()` method on [`IndexedParallelIterator`
 
 - <span id="enumerate-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="enumerate-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="enumerate-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Enumerate<I>`
 
 - <span id="enumerate-paralleliterator-type-item"></span>`type Item = (usize, <I as ParallelIterator>::Item)`
 
-- <span id="enumerate-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="enumerate-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="enumerate-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="enumerate-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for Enumerate<I>`
 
@@ -936,13 +1358,33 @@ This struct is created by the `enumerate()` method on [`IndexedParallelIterator`
 
 - <span id="enumerate-pointable-type-init"></span>`type Init = T`
 
-- <span id="enumerate-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="enumerate-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="enumerate-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="enumerate-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="enumerate-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="enumerate-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="enumerate-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="enumerate-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Enumerate<I>`
+
+- <span id="enumerate-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="enumerate-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="enumerate-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Enumerate<I>`
+
+- <span id="enumerate-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="enumerate-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Enumerate<I>`
+
+- <span id="enumerate-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="enumerate-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Filter<I, P>`
 
@@ -963,15 +1405,51 @@ This struct is created by the `filter()` method on [`ParallelIterator`](#paralle
 
 - <span id="filter-new"></span>`fn new(base: I, filter_op: P) -> Self`
 
+  Creates a new `Filter` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for Filter<I, P>`
+
+- <span id="filter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Filter<I, P>`
+
+- <span id="filter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Filter<I, P>`
+
+- <span id="filter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone, P: clone::Clone> Clone for Filter<I, P>`
 
 - <span id="filter-clone"></span>`fn clone(&self) -> Filter<I, P>` — [`Filter`](filter/index.md#filter)
 
+##### `impl CloneToUninit for Filter<I, P>`
+
+- <span id="filter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: Debug, P> Debug for Filter<I, P>`
 
-- <span id="filter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="filter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Filter<I, P>`
+
+- <span id="filter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Filter<I, P>`
+
+- <span id="filter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Filter<I, P>`
 
@@ -981,13 +1459,13 @@ This struct is created by the `filter()` method on [`ParallelIterator`](#paralle
 
 - <span id="filter-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="filter-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="filter-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for Filter<I, P>`
 
 - <span id="filter-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="filter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="filter-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for Filter<I, P>`
 
@@ -995,13 +1473,33 @@ This struct is created by the `filter()` method on [`ParallelIterator`](#paralle
 
 - <span id="filter-pointable-type-init"></span>`type Init = T`
 
-- <span id="filter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="filter-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="filter-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="filter-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="filter-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="filter-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="filter-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="filter-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Filter<I, P>`
+
+- <span id="filter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="filter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="filter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Filter<I, P>`
+
+- <span id="filter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="filter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Filter<I, P>`
+
+- <span id="filter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="filter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FilterMap<I, P>`
 
@@ -1022,15 +1520,51 @@ This struct is created by the `filter_map()` method on [`ParallelIterator`](#par
 
 - <span id="filtermap-new"></span>`fn new(base: I, filter_op: P) -> Self`
 
+  Creates a new `FilterMap` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for FilterMap<I, P>`
+
+- <span id="filtermap-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FilterMap<I, P>`
+
+- <span id="filtermap-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FilterMap<I, P>`
+
+- <span id="filtermap-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone, P: clone::Clone> Clone for FilterMap<I, P>`
 
 - <span id="filtermap-clone"></span>`fn clone(&self) -> FilterMap<I, P>` — [`FilterMap`](filter_map/index.md#filtermap)
 
+##### `impl CloneToUninit for FilterMap<I, P>`
+
+- <span id="filtermap-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: Debug, P> Debug for FilterMap<I, P>`
 
-- <span id="filtermap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="filtermap-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FilterMap<I, P>`
+
+- <span id="filtermap-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FilterMap<I, P>`
+
+- <span id="filtermap-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FilterMap<I, P>`
 
@@ -1040,13 +1574,13 @@ This struct is created by the `filter_map()` method on [`ParallelIterator`](#par
 
 - <span id="filtermap-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="filtermap-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="filtermap-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for FilterMap<I, P>`
 
 - <span id="filtermap-paralleliterator-type-item"></span>`type Item = R`
 
-- <span id="filtermap-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="filtermap-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for FilterMap<I, P>`
 
@@ -1054,13 +1588,33 @@ This struct is created by the `filter_map()` method on [`ParallelIterator`](#par
 
 - <span id="filtermap-pointable-type-init"></span>`type Init = T`
 
-- <span id="filtermap-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="filtermap-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="filtermap-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="filtermap-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="filtermap-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="filtermap-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="filtermap-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="filtermap-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for FilterMap<I, P>`
+
+- <span id="filtermap-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="filtermap-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="filtermap-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FilterMap<I, P>`
+
+- <span id="filtermap-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="filtermap-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FilterMap<I, P>`
+
+- <span id="filtermap-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="filtermap-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FlatMap<I, F>`
 
@@ -1081,15 +1635,51 @@ This struct is created by the `flat_map()` method on [`ParallelIterator`](#paral
 
 - <span id="flatmap-new"></span>`fn new(base: I, map_op: F) -> Self`
 
+  Creates a new `FlatMap` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for FlatMap<I, F>`
+
+- <span id="flatmap-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FlatMap<I, F>`
+
+- <span id="flatmap-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FlatMap<I, F>`
+
+- <span id="flatmap-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone, F: clone::Clone> Clone for FlatMap<I, F>`
 
 - <span id="flatmap-clone"></span>`fn clone(&self) -> FlatMap<I, F>` — [`FlatMap`](flat_map/index.md#flatmap)
 
+##### `impl CloneToUninit for FlatMap<I, F>`
+
+- <span id="flatmap-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: Debug, F> Debug for FlatMap<I, F>`
 
-- <span id="flatmap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="flatmap-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FlatMap<I, F>`
+
+- <span id="flatmap-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FlatMap<I, F>`
+
+- <span id="flatmap-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlatMap<I, F>`
 
@@ -1099,13 +1689,13 @@ This struct is created by the `flat_map()` method on [`ParallelIterator`](#paral
 
 - <span id="flatmap-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="flatmap-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="flatmap-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, F> ParallelIterator for FlatMap<I, F>`
 
 - <span id="flatmap-paralleliterator-type-item"></span>`type Item = <PI as IntoParallelIterator>::Item`
 
-- <span id="flatmap-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="flatmap-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for FlatMap<I, F>`
 
@@ -1113,13 +1703,33 @@ This struct is created by the `flat_map()` method on [`ParallelIterator`](#paral
 
 - <span id="flatmap-pointable-type-init"></span>`type Init = T`
 
-- <span id="flatmap-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="flatmap-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="flatmap-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="flatmap-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="flatmap-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="flatmap-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="flatmap-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="flatmap-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for FlatMap<I, F>`
+
+- <span id="flatmap-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="flatmap-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="flatmap-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FlatMap<I, F>`
+
+- <span id="flatmap-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="flatmap-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FlatMap<I, F>`
+
+- <span id="flatmap-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="flatmap-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FlatMapIter<I, F>`
 
@@ -1140,15 +1750,51 @@ This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](#
 
 - <span id="flatmapiter-new"></span>`fn new(base: I, map_op: F) -> Self`
 
+  Creates a new `FlatMapIter` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for FlatMapIter<I, F>`
+
+- <span id="flatmapiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FlatMapIter<I, F>`
+
+- <span id="flatmapiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FlatMapIter<I, F>`
+
+- <span id="flatmapiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone, F: clone::Clone> Clone for FlatMapIter<I, F>`
 
 - <span id="flatmapiter-clone"></span>`fn clone(&self) -> FlatMapIter<I, F>` — [`FlatMapIter`](flat_map_iter/index.md#flatmapiter)
 
+##### `impl CloneToUninit for FlatMapIter<I, F>`
+
+- <span id="flatmapiter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: Debug, F> Debug for FlatMapIter<I, F>`
 
-- <span id="flatmapiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="flatmapiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FlatMapIter<I, F>`
+
+- <span id="flatmapiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FlatMapIter<I, F>`
+
+- <span id="flatmapiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlatMapIter<I, F>`
 
@@ -1158,13 +1804,13 @@ This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](#
 
 - <span id="flatmapiter-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="flatmapiter-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="flatmapiter-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, F> ParallelIterator for FlatMapIter<I, F>`
 
 - <span id="flatmapiter-paralleliterator-type-item"></span>`type Item = <SI as IntoIterator>::Item`
 
-- <span id="flatmapiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="flatmapiter-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for FlatMapIter<I, F>`
 
@@ -1172,13 +1818,33 @@ This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](#
 
 - <span id="flatmapiter-pointable-type-init"></span>`type Init = T`
 
-- <span id="flatmapiter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="flatmapiter-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="flatmapiter-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="flatmapiter-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="flatmapiter-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="flatmapiter-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="flatmapiter-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="flatmapiter-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for FlatMapIter<I, F>`
+
+- <span id="flatmapiter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="flatmapiter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="flatmapiter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FlatMapIter<I, F>`
+
+- <span id="flatmapiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="flatmapiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FlatMapIter<I, F>`
+
+- <span id="flatmapiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="flatmapiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Flatten<I>`
 
@@ -1198,15 +1864,51 @@ together. This struct is created by the `flatten()` method on [`ParallelIterator
 
 - <span id="flatten-new"></span>`fn new(base: I) -> Self`
 
+  Creates a new `Flatten` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for Flatten<I>`
+
+- <span id="flatten-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Flatten<I>`
+
+- <span id="flatten-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Flatten<I>`
+
+- <span id="flatten-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone> Clone for Flatten<I>`
 
 - <span id="flatten-clone"></span>`fn clone(&self) -> Flatten<I>` — [`Flatten`](flatten/index.md#flatten)
 
+##### `impl CloneToUninit for Flatten<I>`
+
+- <span id="flatten-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug> Debug for Flatten<I>`
 
-- <span id="flatten-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="flatten-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Flatten<I>`
+
+- <span id="flatten-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Flatten<I>`
+
+- <span id="flatten-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Flatten<I>`
 
@@ -1216,13 +1918,13 @@ together. This struct is created by the `flatten()` method on [`ParallelIterator
 
 - <span id="flatten-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="flatten-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="flatten-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Flatten<I>`
 
 - <span id="flatten-paralleliterator-type-item"></span>`type Item = <<I as ParallelIterator>::Item as IntoParallelIterator>::Item`
 
-- <span id="flatten-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="flatten-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for Flatten<I>`
 
@@ -1230,13 +1932,33 @@ together. This struct is created by the `flatten()` method on [`ParallelIterator
 
 - <span id="flatten-pointable-type-init"></span>`type Init = T`
 
-- <span id="flatten-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="flatten-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="flatten-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="flatten-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="flatten-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="flatten-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="flatten-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="flatten-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Flatten<I>`
+
+- <span id="flatten-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="flatten-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="flatten-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Flatten<I>`
+
+- <span id="flatten-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="flatten-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Flatten<I>`
+
+- <span id="flatten-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="flatten-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FlattenIter<I>`
 
@@ -1256,15 +1978,51 @@ together. This struct is created by the `flatten_iter()` method on [`ParallelIte
 
 - <span id="flatteniter-new"></span>`fn new(base: I) -> Self`
 
+  Creates a new `FlattenIter` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for FlattenIter<I>`
+
+- <span id="flatteniter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FlattenIter<I>`
+
+- <span id="flatteniter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FlattenIter<I>`
+
+- <span id="flatteniter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone> Clone for FlattenIter<I>`
 
 - <span id="flatteniter-clone"></span>`fn clone(&self) -> FlattenIter<I>` — [`FlattenIter`](flatten_iter/index.md#flatteniter)
 
+##### `impl CloneToUninit for FlattenIter<I>`
+
+- <span id="flatteniter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug> Debug for FlattenIter<I>`
 
-- <span id="flatteniter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="flatteniter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FlattenIter<I>`
+
+- <span id="flatteniter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FlattenIter<I>`
+
+- <span id="flatteniter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlattenIter<I>`
 
@@ -1274,13 +2032,13 @@ together. This struct is created by the `flatten_iter()` method on [`ParallelIte
 
 - <span id="flatteniter-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="flatteniter-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="flatteniter-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for FlattenIter<I>`
 
 - <span id="flatteniter-paralleliterator-type-item"></span>`type Item = <<I as ParallelIterator>::Item as IntoIterator>::Item`
 
-- <span id="flatteniter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="flatteniter-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for FlattenIter<I>`
 
@@ -1288,13 +2046,33 @@ together. This struct is created by the `flatten_iter()` method on [`ParallelIte
 
 - <span id="flatteniter-pointable-type-init"></span>`type Init = T`
 
-- <span id="flatteniter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="flatteniter-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="flatteniter-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="flatteniter-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="flatteniter-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="flatteniter-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="flatteniter-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="flatteniter-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for FlattenIter<I>`
+
+- <span id="flatteniter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="flatteniter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="flatteniter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FlattenIter<I>`
+
+- <span id="flatteniter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="flatteniter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FlattenIter<I>`
+
+- <span id="flatteniter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="flatteniter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Fold<I, ID, F>`
 
@@ -1318,13 +2096,47 @@ This struct is created by the `fold()` method on [`ParallelIterator`](#paralleli
 
 #### Trait Implementations
 
+##### `impl Any for Fold<I, ID, F>`
+
+- <span id="fold-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Fold<I, ID, F>`
+
+- <span id="fold-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Fold<I, ID, F>`
+
+- <span id="fold-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<I: clone::Clone, ID: clone::Clone, F: clone::Clone> Clone for Fold<I, ID, F>`
 
 - <span id="fold-clone"></span>`fn clone(&self) -> Fold<I, ID, F>` — [`Fold`](fold/index.md#fold)
 
+##### `impl CloneToUninit for Fold<I, ID, F>`
+
+- <span id="fold-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: Debug, ID, F> Debug for Fold<I, ID, F>`
 
-- <span id="fold-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fold-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Fold<I, ID, F>`
+
+- <span id="fold-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Fold<I, ID, F>`
+
+- <span id="fold-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Fold<I, ID, F>`
 
@@ -1334,13 +2146,13 @@ This struct is created by the `fold()` method on [`ParallelIterator`](#paralleli
 
 - <span id="fold-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="fold-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="fold-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, ID, F> ParallelIterator for Fold<I, ID, F>`
 
 - <span id="fold-paralleliterator-type-item"></span>`type Item = U`
 
-- <span id="fold-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="fold-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for Fold<I, ID, F>`
 
@@ -1348,13 +2160,33 @@ This struct is created by the `fold()` method on [`ParallelIterator`](#paralleli
 
 - <span id="fold-pointable-type-init"></span>`type Init = T`
 
-- <span id="fold-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="fold-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="fold-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="fold-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="fold-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="fold-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="fold-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="fold-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Fold<I, ID, F>`
+
+- <span id="fold-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="fold-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="fold-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Fold<I, ID, F>`
+
+- <span id="fold-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fold-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Fold<I, ID, F>`
+
+- <span id="fold-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fold-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FoldWith<I, U, F>`
 
@@ -1378,13 +2210,47 @@ This struct is created by the `fold_with()` method on [`ParallelIterator`](#para
 
 #### Trait Implementations
 
+##### `impl Any for FoldWith<I, U, F>`
+
+- <span id="foldwith-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FoldWith<I, U, F>`
+
+- <span id="foldwith-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FoldWith<I, U, F>`
+
+- <span id="foldwith-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<I: clone::Clone, U: clone::Clone, F: clone::Clone> Clone for FoldWith<I, U, F>`
 
 - <span id="foldwith-clone"></span>`fn clone(&self) -> FoldWith<I, U, F>` — [`FoldWith`](fold/index.md#foldwith)
 
+##### `impl CloneToUninit for FoldWith<I, U, F>`
+
+- <span id="foldwith-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: Debug, U: Debug, F> Debug for FoldWith<I, U, F>`
 
-- <span id="foldwith-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="foldwith-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FoldWith<I, U, F>`
+
+- <span id="foldwith-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FoldWith<I, U, F>`
+
+- <span id="foldwith-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FoldWith<I, U, F>`
 
@@ -1394,13 +2260,13 @@ This struct is created by the `fold_with()` method on [`ParallelIterator`](#para
 
 - <span id="foldwith-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="foldwith-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="foldwith-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<U, I, F> ParallelIterator for FoldWith<I, U, F>`
 
 - <span id="foldwith-paralleliterator-type-item"></span>`type Item = U`
 
-- <span id="foldwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="foldwith-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for FoldWith<I, U, F>`
 
@@ -1408,13 +2274,33 @@ This struct is created by the `fold_with()` method on [`ParallelIterator`](#para
 
 - <span id="foldwith-pointable-type-init"></span>`type Init = T`
 
-- <span id="foldwith-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="foldwith-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="foldwith-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="foldwith-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="foldwith-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="foldwith-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="foldwith-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="foldwith-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for FoldWith<I, U, F>`
+
+- <span id="foldwith-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="foldwith-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="foldwith-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FoldWith<I, U, F>`
+
+- <span id="foldwith-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="foldwith-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FoldWith<I, U, F>`
+
+- <span id="foldwith-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="foldwith-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FoldChunks<I, ID, F>`
 
@@ -1439,23 +2325,59 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 
 - <span id="foldchunks-new"></span>`fn new(base: I, chunk_size: usize, identity: ID, fold_op: F) -> Self`
 
+  Creates a new `FoldChunks` iterator
+
 #### Trait Implementations
+
+##### `impl Any for FoldChunks<I, ID, F>`
+
+- <span id="foldchunks-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FoldChunks<I, ID, F>`
+
+- <span id="foldchunks-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FoldChunks<I, ID, F>`
+
+- <span id="foldchunks-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone, ID: clone::Clone, F: clone::Clone> Clone for FoldChunks<I, ID, F>`
 
 - <span id="foldchunks-clone"></span>`fn clone(&self) -> FoldChunks<I, ID, F>` — [`FoldChunks`](fold_chunks/index.md#foldchunks)
 
+##### `impl CloneToUninit for FoldChunks<I, ID, F>`
+
+- <span id="foldchunks-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: Debug, ID, F> Debug for FoldChunks<I, ID, F>`
 
-- <span id="foldchunks-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="foldchunks-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FoldChunks<I, ID, F>`
+
+- <span id="foldchunks-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I, ID, F> IndexedParallelIterator for FoldChunks<I, ID, F>`
 
-- <span id="foldchunks-len"></span>`fn len(&self) -> usize`
+- <span id="foldchunks-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="foldchunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="foldchunks-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="foldchunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="foldchunks-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for FoldChunks<I, ID, F>`
+
+- <span id="foldchunks-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FoldChunks<I, ID, F>`
 
@@ -1465,15 +2387,15 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 
 - <span id="foldchunks-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="foldchunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="foldchunks-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, ID, F> ParallelIterator for FoldChunks<I, ID, F>`
 
 - <span id="foldchunks-paralleliterator-type-item"></span>`type Item = U`
 
-- <span id="foldchunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="foldchunks-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="foldchunks-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="foldchunks-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for FoldChunks<I, ID, F>`
 
@@ -1481,13 +2403,33 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 
 - <span id="foldchunks-pointable-type-init"></span>`type Init = T`
 
-- <span id="foldchunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="foldchunks-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="foldchunks-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="foldchunks-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="foldchunks-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="foldchunks-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="foldchunks-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="foldchunks-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for FoldChunks<I, ID, F>`
+
+- <span id="foldchunks-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="foldchunks-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="foldchunks-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FoldChunks<I, ID, F>`
+
+- <span id="foldchunks-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="foldchunks-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FoldChunks<I, ID, F>`
+
+- <span id="foldchunks-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="foldchunks-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FoldChunksWith<I, U, F>`
 
@@ -1512,23 +2454,59 @@ This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIt
 
 - <span id="foldchunkswith-new"></span>`fn new(base: I, chunk_size: usize, item: U, fold_op: F) -> Self`
 
+  Creates a new `FoldChunksWith` iterator
+
 #### Trait Implementations
+
+##### `impl Any for FoldChunksWith<I, U, F>`
+
+- <span id="foldchunkswith-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FoldChunksWith<I, U, F>`
+
+- <span id="foldchunkswith-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FoldChunksWith<I, U, F>`
+
+- <span id="foldchunkswith-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone, U: clone::Clone, F: clone::Clone> Clone for FoldChunksWith<I, U, F>`
 
 - <span id="foldchunkswith-clone"></span>`fn clone(&self) -> FoldChunksWith<I, U, F>` — [`FoldChunksWith`](fold_chunks_with/index.md#foldchunkswith)
 
+##### `impl CloneToUninit for FoldChunksWith<I, U, F>`
+
+- <span id="foldchunkswith-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: Debug, U: Debug, F> Debug for FoldChunksWith<I, U, F>`
 
-- <span id="foldchunkswith-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="foldchunkswith-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FoldChunksWith<I, U, F>`
+
+- <span id="foldchunkswith-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I, U, F> IndexedParallelIterator for FoldChunksWith<I, U, F>`
 
-- <span id="foldchunkswith-len"></span>`fn len(&self) -> usize`
+- <span id="foldchunkswith-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="foldchunkswith-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="foldchunkswith-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="foldchunkswith-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="foldchunkswith-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for FoldChunksWith<I, U, F>`
+
+- <span id="foldchunkswith-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FoldChunksWith<I, U, F>`
 
@@ -1538,15 +2516,15 @@ This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIt
 
 - <span id="foldchunkswith-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="foldchunkswith-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="foldchunkswith-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, U, F> ParallelIterator for FoldChunksWith<I, U, F>`
 
 - <span id="foldchunkswith-paralleliterator-type-item"></span>`type Item = U`
 
-- <span id="foldchunkswith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="foldchunkswith-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="foldchunkswith-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="foldchunkswith-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for FoldChunksWith<I, U, F>`
 
@@ -1554,13 +2532,33 @@ This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIt
 
 - <span id="foldchunkswith-pointable-type-init"></span>`type Init = T`
 
-- <span id="foldchunkswith-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="foldchunkswith-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="foldchunkswith-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="foldchunkswith-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="foldchunkswith-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="foldchunkswith-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="foldchunkswith-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="foldchunkswith-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for FoldChunksWith<I, U, F>`
+
+- <span id="foldchunkswith-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="foldchunkswith-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="foldchunkswith-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FoldChunksWith<I, U, F>`
+
+- <span id="foldchunkswith-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="foldchunkswith-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FoldChunksWith<I, U, F>`
+
+- <span id="foldchunkswith-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="foldchunkswith-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Inspect<I, F>`
 
@@ -1583,23 +2581,59 @@ This struct is created by the `inspect()` method on [`ParallelIterator`](#parall
 
 - <span id="inspect-new"></span>`fn new(base: I, inspect_op: F) -> Self`
 
+  Creates a new `Inspect` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for Inspect<I, F>`
+
+- <span id="inspect-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Inspect<I, F>`
+
+- <span id="inspect-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Inspect<I, F>`
+
+- <span id="inspect-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone, F: clone::Clone> Clone for Inspect<I, F>`
 
 - <span id="inspect-clone"></span>`fn clone(&self) -> Inspect<I, F>` — [`Inspect`](inspect/index.md#inspect)
 
+##### `impl CloneToUninit for Inspect<I, F>`
+
+- <span id="inspect-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: Debug, F> Debug for Inspect<I, F>`
 
-- <span id="inspect-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="inspect-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Inspect<I, F>`
+
+- <span id="inspect-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I, F> IndexedParallelIterator for Inspect<I, F>`
 
-- <span id="inspect-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="inspect-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="inspect-len"></span>`fn len(&self) -> usize`
+- <span id="inspect-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="inspect-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="inspect-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for Inspect<I, F>`
+
+- <span id="inspect-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Inspect<I, F>`
 
@@ -1609,15 +2643,15 @@ This struct is created by the `inspect()` method on [`ParallelIterator`](#parall
 
 - <span id="inspect-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="inspect-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="inspect-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, F> ParallelIterator for Inspect<I, F>`
 
 - <span id="inspect-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="inspect-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="inspect-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="inspect-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="inspect-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for Inspect<I, F>`
 
@@ -1625,13 +2659,33 @@ This struct is created by the `inspect()` method on [`ParallelIterator`](#parall
 
 - <span id="inspect-pointable-type-init"></span>`type Init = T`
 
-- <span id="inspect-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="inspect-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="inspect-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="inspect-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="inspect-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="inspect-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="inspect-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="inspect-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Inspect<I, F>`
+
+- <span id="inspect-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="inspect-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="inspect-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Inspect<I, F>`
+
+- <span id="inspect-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="inspect-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Inspect<I, F>`
+
+- <span id="inspect-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="inspect-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Interleave<I, J>`
 
@@ -1653,23 +2707,59 @@ the `interleave()` method on [`IndexedParallelIterator`](#indexedparalleliterato
 
 - <span id="interleave-new"></span>`fn new(i: I, j: J) -> Self`
 
+  Creates a new `Interleave` iterator
+
 #### Trait Implementations
+
+##### `impl Any for Interleave<I, J>`
+
+- <span id="interleave-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Interleave<I, J>`
+
+- <span id="interleave-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Interleave<I, J>`
+
+- <span id="interleave-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone, J: clone::Clone> Clone for Interleave<I, J>`
 
 - <span id="interleave-clone"></span>`fn clone(&self) -> Interleave<I, J>` — [`Interleave`](interleave/index.md#interleave)
 
+##### `impl CloneToUninit for Interleave<I, J>`
+
+- <span id="interleave-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug, J: fmt::Debug> Debug for Interleave<I, J>`
 
-- <span id="interleave-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="interleave-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Interleave<I, J>`
+
+- <span id="interleave-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I, J> IndexedParallelIterator for Interleave<I, J>`
 
-- <span id="interleave-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="interleave-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="interleave-len"></span>`fn len(&self) -> usize`
+- <span id="interleave-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="interleave-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="interleave-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for Interleave<I, J>`
+
+- <span id="interleave-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Interleave<I, J>`
 
@@ -1679,15 +2769,15 @@ the `interleave()` method on [`IndexedParallelIterator`](#indexedparalleliterato
 
 - <span id="interleave-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="interleave-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="interleave-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, J> ParallelIterator for Interleave<I, J>`
 
 - <span id="interleave-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="interleave-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="interleave-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="interleave-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="interleave-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for Interleave<I, J>`
 
@@ -1695,13 +2785,33 @@ the `interleave()` method on [`IndexedParallelIterator`](#indexedparalleliterato
 
 - <span id="interleave-pointable-type-init"></span>`type Init = T`
 
-- <span id="interleave-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="interleave-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="interleave-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="interleave-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="interleave-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="interleave-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="interleave-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="interleave-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Interleave<I, J>`
+
+- <span id="interleave-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="interleave-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="interleave-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Interleave<I, J>`
+
+- <span id="interleave-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="interleave-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Interleave<I, J>`
+
+- <span id="interleave-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="interleave-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `InterleaveShortest<I, J>`
 
@@ -1725,23 +2835,59 @@ This struct is created by the `interleave_shortest()` method on
 
 - <span id="interleaveshortest-new"></span>`fn new(i: I, j: J) -> Self`
 
+  Creates a new `InterleaveShortest` iterator
+
 #### Trait Implementations
+
+##### `impl Any for InterleaveShortest<I, J>`
+
+- <span id="interleaveshortest-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for InterleaveShortest<I, J>`
+
+- <span id="interleaveshortest-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for InterleaveShortest<I, J>`
+
+- <span id="interleaveshortest-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone, J: clone::Clone> Clone for InterleaveShortest<I, J>`
 
 - <span id="interleaveshortest-clone"></span>`fn clone(&self) -> InterleaveShortest<I, J>` — [`InterleaveShortest`](interleave_shortest/index.md#interleaveshortest)
 
+##### `impl CloneToUninit for InterleaveShortest<I, J>`
+
+- <span id="interleaveshortest-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug, J: fmt::Debug> Debug for InterleaveShortest<I, J>`
 
-- <span id="interleaveshortest-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="interleaveshortest-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for InterleaveShortest<I, J>`
+
+- <span id="interleaveshortest-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I, J> IndexedParallelIterator for InterleaveShortest<I, J>`
 
-- <span id="interleaveshortest-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="interleaveshortest-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="interleaveshortest-len"></span>`fn len(&self) -> usize`
+- <span id="interleaveshortest-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="interleaveshortest-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="interleaveshortest-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for InterleaveShortest<I, J>`
+
+- <span id="interleaveshortest-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for InterleaveShortest<I, J>`
 
@@ -1751,15 +2897,15 @@ This struct is created by the `interleave_shortest()` method on
 
 - <span id="interleaveshortest-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="interleaveshortest-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="interleaveshortest-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, J> ParallelIterator for InterleaveShortest<I, J>`
 
 - <span id="interleaveshortest-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="interleaveshortest-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="interleaveshortest-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="interleaveshortest-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="interleaveshortest-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for InterleaveShortest<I, J>`
 
@@ -1767,13 +2913,33 @@ This struct is created by the `interleave_shortest()` method on
 
 - <span id="interleaveshortest-pointable-type-init"></span>`type Init = T`
 
-- <span id="interleaveshortest-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="interleaveshortest-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="interleaveshortest-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="interleaveshortest-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="interleaveshortest-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="interleaveshortest-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="interleaveshortest-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="interleaveshortest-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for InterleaveShortest<I, J>`
+
+- <span id="interleaveshortest-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="interleaveshortest-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="interleaveshortest-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for InterleaveShortest<I, J>`
+
+- <span id="interleaveshortest-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="interleaveshortest-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for InterleaveShortest<I, J>`
+
+- <span id="interleaveshortest-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="interleaveshortest-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Intersperse<I>`
 
@@ -1797,23 +2963,59 @@ item of the adapted iterator.  This struct is created by the
 
 - <span id="intersperse-new"></span>`fn new(base: I, item: <I as >::Item) -> Self` — [`ParallelIterator`](#paralleliterator)
 
+  Creates a new `Intersperse` iterator
+
 #### Trait Implementations
+
+##### `impl Any for Intersperse<I>`
+
+- <span id="intersperse-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Intersperse<I>`
+
+- <span id="intersperse-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Intersperse<I>`
+
+- <span id="intersperse-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I> Clone for Intersperse<I>`
 
 - <span id="intersperse-clone"></span>`fn clone(&self) -> Intersperse<I>` — [`Intersperse`](intersperse/index.md#intersperse)
 
+##### `impl CloneToUninit for Intersperse<I>`
+
+- <span id="intersperse-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I> Debug for Intersperse<I>`
 
-- <span id="intersperse-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="intersperse-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Intersperse<I>`
+
+- <span id="intersperse-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I> IndexedParallelIterator for Intersperse<I>`
 
-- <span id="intersperse-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="intersperse-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="intersperse-len"></span>`fn len(&self) -> usize`
+- <span id="intersperse-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="intersperse-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="intersperse-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for Intersperse<I>`
+
+- <span id="intersperse-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Intersperse<I>`
 
@@ -1823,15 +3025,15 @@ item of the adapted iterator.  This struct is created by the
 
 - <span id="intersperse-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="intersperse-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="intersperse-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Intersperse<I>`
 
 - <span id="intersperse-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="intersperse-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="intersperse-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="intersperse-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="intersperse-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for Intersperse<I>`
 
@@ -1839,13 +3041,33 @@ item of the adapted iterator.  This struct is created by the
 
 - <span id="intersperse-pointable-type-init"></span>`type Init = T`
 
-- <span id="intersperse-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="intersperse-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="intersperse-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="intersperse-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="intersperse-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="intersperse-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="intersperse-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="intersperse-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Intersperse<I>`
+
+- <span id="intersperse-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="intersperse-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="intersperse-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Intersperse<I>`
+
+- <span id="intersperse-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="intersperse-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Intersperse<I>`
+
+- <span id="intersperse-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="intersperse-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MaxLen<I>`
 
@@ -1866,23 +3088,59 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 
 - <span id="maxlen-new"></span>`fn new(base: I, max: usize) -> Self`
 
+  Creates a new `MaxLen` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for MaxLen<I>`
+
+- <span id="maxlen-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MaxLen<I>`
+
+- <span id="maxlen-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MaxLen<I>`
+
+- <span id="maxlen-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone> Clone for MaxLen<I>`
 
 - <span id="maxlen-clone"></span>`fn clone(&self) -> MaxLen<I>` — [`MaxLen`](len/index.md#maxlen)
 
+##### `impl CloneToUninit for MaxLen<I>`
+
+- <span id="maxlen-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug> Debug for MaxLen<I>`
 
-- <span id="maxlen-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="maxlen-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MaxLen<I>`
+
+- <span id="maxlen-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I> IndexedParallelIterator for MaxLen<I>`
 
-- <span id="maxlen-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="maxlen-indexedparalleliterator-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="maxlen-len"></span>`fn len(&self) -> usize`
+- <span id="maxlen-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="maxlen-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="maxlen-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for MaxLen<I>`
+
+- <span id="maxlen-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MaxLen<I>`
 
@@ -1892,15 +3150,15 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 
 - <span id="maxlen-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="maxlen-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="maxlen-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for MaxLen<I>`
 
 - <span id="maxlen-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="maxlen-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="maxlen-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="maxlen-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="maxlen-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for MaxLen<I>`
 
@@ -1908,13 +3166,33 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 
 - <span id="maxlen-pointable-type-init"></span>`type Init = T`
 
-- <span id="maxlen-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="maxlen-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="maxlen-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="maxlen-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="maxlen-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="maxlen-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="maxlen-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="maxlen-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for MaxLen<I>`
+
+- <span id="maxlen-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="maxlen-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="maxlen-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MaxLen<I>`
+
+- <span id="maxlen-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="maxlen-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MaxLen<I>`
+
+- <span id="maxlen-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="maxlen-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MinLen<I>`
 
@@ -1935,23 +3213,59 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 
 - <span id="minlen-new"></span>`fn new(base: I, min: usize) -> Self`
 
+  Creates a new `MinLen` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for MinLen<I>`
+
+- <span id="minlen-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MinLen<I>`
+
+- <span id="minlen-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MinLen<I>`
+
+- <span id="minlen-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone> Clone for MinLen<I>`
 
 - <span id="minlen-clone"></span>`fn clone(&self) -> MinLen<I>` — [`MinLen`](len/index.md#minlen)
 
+##### `impl CloneToUninit for MinLen<I>`
+
+- <span id="minlen-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug> Debug for MinLen<I>`
 
-- <span id="minlen-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="minlen-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MinLen<I>`
+
+- <span id="minlen-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I> IndexedParallelIterator for MinLen<I>`
 
-- <span id="minlen-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="minlen-indexedparalleliterator-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="minlen-len"></span>`fn len(&self) -> usize`
+- <span id="minlen-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="minlen-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="minlen-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for MinLen<I>`
+
+- <span id="minlen-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MinLen<I>`
 
@@ -1961,15 +3275,15 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 
 - <span id="minlen-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="minlen-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="minlen-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for MinLen<I>`
 
 - <span id="minlen-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="minlen-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="minlen-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="minlen-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="minlen-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for MinLen<I>`
 
@@ -1977,13 +3291,33 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 
 - <span id="minlen-pointable-type-init"></span>`type Init = T`
 
-- <span id="minlen-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="minlen-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="minlen-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="minlen-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="minlen-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="minlen-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="minlen-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="minlen-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for MinLen<I>`
+
+- <span id="minlen-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="minlen-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="minlen-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MinLen<I>`
+
+- <span id="minlen-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="minlen-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MinLen<I>`
+
+- <span id="minlen-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="minlen-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Map<I, F>`
 
@@ -2005,23 +3339,59 @@ This struct is created by the `map()` method on [`ParallelIterator`](#parallelit
 
 - <span id="map-new"></span>`fn new(base: I, map_op: F) -> Self`
 
+  Creates a new `Map` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for Map<I, F>`
+
+- <span id="map-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Map<I, F>`
+
+- <span id="map-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Map<I, F>`
+
+- <span id="map-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone, F: clone::Clone> Clone for Map<I, F>`
 
 - <span id="map-clone"></span>`fn clone(&self) -> Map<I, F>` — [`Map`](map/index.md#map)
 
+##### `impl CloneToUninit for Map<I, F>`
+
+- <span id="map-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: Debug, F> Debug for Map<I, F>`
 
-- <span id="map-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="map-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Map<I, F>`
+
+- <span id="map-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I, F> IndexedParallelIterator for Map<I, F>`
 
-- <span id="map-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="map-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="map-len"></span>`fn len(&self) -> usize`
+- <span id="map-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="map-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="map-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for Map<I, F>`
+
+- <span id="map-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Map<I, F>`
 
@@ -2031,15 +3401,15 @@ This struct is created by the `map()` method on [`ParallelIterator`](#parallelit
 
 - <span id="map-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="map-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="map-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, F> ParallelIterator for Map<I, F>`
 
 - <span id="map-paralleliterator-type-item"></span>`type Item = <F as FnOnce>::Output`
 
-- <span id="map-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="map-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="map-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="map-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for Map<I, F>`
 
@@ -2047,13 +3417,33 @@ This struct is created by the `map()` method on [`ParallelIterator`](#parallelit
 
 - <span id="map-pointable-type-init"></span>`type Init = T`
 
-- <span id="map-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="map-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="map-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="map-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="map-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="map-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="map-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="map-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Map<I, F>`
+
+- <span id="map-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="map-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="map-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Map<I, F>`
+
+- <span id="map-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="map-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Map<I, F>`
+
+- <span id="map-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="map-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MapInit<I, INIT, F>`
 
@@ -2076,23 +3466,59 @@ This struct is created by the `map_init()` method on [`ParallelIterator`](#paral
 
 - <span id="mapinit-new"></span>`fn new(base: I, init: INIT, map_op: F) -> Self`
 
+  Creates a new `MapInit` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for MapInit<I, INIT, F>`
+
+- <span id="mapinit-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MapInit<I, INIT, F>`
+
+- <span id="mapinit-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MapInit<I, INIT, F>`
+
+- <span id="mapinit-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone, INIT: clone::Clone, F: clone::Clone> Clone for MapInit<I, INIT, F>`
 
 - <span id="mapinit-clone"></span>`fn clone(&self) -> MapInit<I, INIT, F>` — [`MapInit`](map_with/index.md#mapinit)
 
+##### `impl CloneToUninit for MapInit<I, INIT, F>`
+
+- <span id="mapinit-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: Debug, INIT, F> Debug for MapInit<I, INIT, F>`
 
-- <span id="mapinit-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mapinit-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MapInit<I, INIT, F>`
+
+- <span id="mapinit-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I, INIT, F> IndexedParallelIterator for MapInit<I, INIT, F>`
 
-- <span id="mapinit-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="mapinit-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="mapinit-len"></span>`fn len(&self) -> usize`
+- <span id="mapinit-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="mapinit-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="mapinit-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for MapInit<I, INIT, F>`
+
+- <span id="mapinit-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MapInit<I, INIT, F>`
 
@@ -2102,15 +3528,15 @@ This struct is created by the `map_init()` method on [`ParallelIterator`](#paral
 
 - <span id="mapinit-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="mapinit-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="mapinit-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, INIT, F> ParallelIterator for MapInit<I, INIT, F>`
 
 - <span id="mapinit-paralleliterator-type-item"></span>`type Item = R`
 
-- <span id="mapinit-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="mapinit-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="mapinit-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="mapinit-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for MapInit<I, INIT, F>`
 
@@ -2118,13 +3544,33 @@ This struct is created by the `map_init()` method on [`ParallelIterator`](#paral
 
 - <span id="mapinit-pointable-type-init"></span>`type Init = T`
 
-- <span id="mapinit-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="mapinit-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="mapinit-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="mapinit-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="mapinit-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="mapinit-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="mapinit-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="mapinit-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for MapInit<I, INIT, F>`
+
+- <span id="mapinit-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="mapinit-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="mapinit-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MapInit<I, INIT, F>`
+
+- <span id="mapinit-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="mapinit-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MapInit<I, INIT, F>`
+
+- <span id="mapinit-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="mapinit-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MapWith<I, T, F>`
 
@@ -2147,23 +3593,59 @@ This struct is created by the `map_with()` method on [`ParallelIterator`](#paral
 
 - <span id="mapwith-new"></span>`fn new(base: I, item: T, map_op: F) -> Self`
 
+  Creates a new `MapWith` iterator.
+
 #### Trait Implementations
+
+##### `impl<T> Any for MapWith<I, T, F>`
+
+- <span id="mapwith-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MapWith<I, T, F>`
+
+- <span id="mapwith-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MapWith<I, T, F>`
+
+- <span id="mapwith-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone, T: clone::Clone, F: clone::Clone> Clone for MapWith<I, T, F>`
 
 - <span id="mapwith-clone"></span>`fn clone(&self) -> MapWith<I, T, F>` — [`MapWith`](map_with/index.md#mapwith)
 
+##### `impl<T> CloneToUninit for MapWith<I, T, F>`
+
+- <span id="mapwith-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: Debug, T: Debug, F> Debug for MapWith<I, T, F>`
 
-- <span id="mapwith-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mapwith-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MapWith<I, T, F>`
+
+- <span id="mapwith-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I, T, F> IndexedParallelIterator for MapWith<I, T, F>`
 
-- <span id="mapwith-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="mapwith-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="mapwith-len"></span>`fn len(&self) -> usize`
+- <span id="mapwith-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="mapwith-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="mapwith-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for MapWith<I, T, F>`
+
+- <span id="mapwith-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for MapWith<I, T, F>`
 
@@ -2173,15 +3655,15 @@ This struct is created by the `map_with()` method on [`ParallelIterator`](#paral
 
 - <span id="mapwith-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="mapwith-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="mapwith-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, T, F> ParallelIterator for MapWith<I, T, F>`
 
 - <span id="mapwith-paralleliterator-type-item"></span>`type Item = R`
 
-- <span id="mapwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="mapwith-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="mapwith-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="mapwith-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for MapWith<I, T, F>`
 
@@ -2189,13 +3671,33 @@ This struct is created by the `map_with()` method on [`ParallelIterator`](#paral
 
 - <span id="mapwith-pointable-type-init"></span>`type Init = T`
 
-- <span id="mapwith-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="mapwith-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="mapwith-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="mapwith-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="mapwith-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="mapwith-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="mapwith-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="mapwith-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for MapWith<I, T, F>`
+
+- <span id="mapwith-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="mapwith-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="mapwith-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for MapWith<I, T, F>`
+
+- <span id="mapwith-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="mapwith-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for MapWith<I, T, F>`
+
+- <span id="mapwith-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="mapwith-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MultiZip<T>`
 
@@ -2284,21 +3786,55 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 #### Trait Implementations
 
+##### `impl<T> Any for MultiZip<T>`
+
+- <span id="multizip-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MultiZip<T>`
+
+- <span id="multizip-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MultiZip<T>`
+
+- <span id="multizip-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for MultiZip<T>`
 
 - <span id="multizip-clone"></span>`fn clone(&self) -> MultiZip<T>` — [`MultiZip`](multizip/index.md#multizip)
 
+##### `impl<T> CloneToUninit for MultiZip<T>`
+
+- <span id="multizip-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug> Debug for MultiZip<T>`
 
-- <span id="multizip-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="multizip-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MultiZip<T>`
+
+- <span id="multizip-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<A> IndexedParallelIterator for MultiZip<(A)>`
 
-- <span id="multizip-drive"></span>`fn drive<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="multizip-indexedparalleliterator-drive"></span>`fn drive<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="multizip-len"></span>`fn len(&self) -> usize`
+- <span id="multizip-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="multizip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="multizip-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for MultiZip<T>`
+
+- <span id="multizip-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for MultiZip<T>`
 
@@ -2308,15 +3844,15 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 - <span id="multizip-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="multizip-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="multizip-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A> ParallelIterator for MultiZip<(A)>`
 
 - <span id="multizip-paralleliterator-type-item"></span>`type Item = (<A as ParallelIterator>::Item)`
 
-- <span id="multizip-drive-unindexed"></span>`fn drive_unindexed<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="multizip-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="multizip-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="multizip-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for MultiZip<T>`
 
@@ -2324,13 +3860,33 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 - <span id="multizip-pointable-type-init"></span>`type Init = T`
 
-- <span id="multizip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="multizip-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="multizip-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="multizip-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="multizip-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="multizip-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="multizip-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="multizip-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for MultiZip<T>`
+
+- <span id="multizip-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="multizip-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="multizip-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for MultiZip<T>`
+
+- <span id="multizip-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="multizip-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for MultiZip<T>`
+
+- <span id="multizip-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="multizip-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Once<T>`
 
@@ -2347,21 +3903,55 @@ Iterator adaptor for [the `once()` function].
 
 #### Trait Implementations
 
+##### `impl<T> Any for Once<T>`
+
+- <span id="once-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Once<T>`
+
+- <span id="once-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Once<T>`
+
+- <span id="once-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for Once<T>`
 
 - <span id="once-clone"></span>`fn clone(&self) -> Once<T>` — [`Once`](once/index.md#once)
 
+##### `impl<T> CloneToUninit for Once<T>`
+
+- <span id="once-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug> Debug for Once<T>`
 
-- <span id="once-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="once-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Once<T>`
+
+- <span id="once-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: Send> IndexedParallelIterator for Once<T>`
 
-- <span id="once-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="once-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="once-len"></span>`fn len(&self) -> usize`
+- <span id="once-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="once-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="once-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for Once<T>`
+
+- <span id="once-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Once<T>`
 
@@ -2371,15 +3961,15 @@ Iterator adaptor for [the `once()` function].
 
 - <span id="once-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="once-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="once-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for Once<T>`
 
 - <span id="once-paralleliterator-type-item"></span>`type Item = T`
 
-- <span id="once-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="once-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="once-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="once-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for Once<T>`
 
@@ -2387,13 +3977,33 @@ Iterator adaptor for [the `once()` function].
 
 - <span id="once-pointable-type-init"></span>`type Init = T`
 
-- <span id="once-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="once-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="once-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="once-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="once-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="once-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="once-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="once-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for Once<T>`
+
+- <span id="once-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="once-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="once-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for Once<T>`
+
+- <span id="once-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="once-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Once<T>`
+
+- <span id="once-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="once-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PanicFuse<I>`
 
@@ -2415,23 +4025,59 @@ This struct is created by the `panic_fuse()` method on [`ParallelIterator`](#par
 
 - <span id="panicfuse-new"></span>`fn new(base: I) -> PanicFuse<I>` — [`PanicFuse`](panic_fuse/index.md#panicfuse)
 
+  Creates a new `PanicFuse` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for PanicFuse<I>`
+
+- <span id="panicfuse-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PanicFuse<I>`
+
+- <span id="panicfuse-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PanicFuse<I>`
+
+- <span id="panicfuse-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone> Clone for PanicFuse<I>`
 
 - <span id="panicfuse-clone"></span>`fn clone(&self) -> PanicFuse<I>` — [`PanicFuse`](panic_fuse/index.md#panicfuse)
 
+##### `impl CloneToUninit for PanicFuse<I>`
+
+- <span id="panicfuse-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug> Debug for PanicFuse<I>`
 
-- <span id="panicfuse-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="panicfuse-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for PanicFuse<I>`
+
+- <span id="panicfuse-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I> IndexedParallelIterator for PanicFuse<I>`
 
-- <span id="panicfuse-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="panicfuse-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="panicfuse-len"></span>`fn len(&self) -> usize`
+- <span id="panicfuse-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="panicfuse-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="panicfuse-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for PanicFuse<I>`
+
+- <span id="panicfuse-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for PanicFuse<I>`
 
@@ -2441,15 +4087,15 @@ This struct is created by the `panic_fuse()` method on [`ParallelIterator`](#par
 
 - <span id="panicfuse-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="panicfuse-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="panicfuse-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for PanicFuse<I>`
 
 - <span id="panicfuse-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="panicfuse-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="panicfuse-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="panicfuse-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="panicfuse-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for PanicFuse<I>`
 
@@ -2457,13 +4103,33 @@ This struct is created by the `panic_fuse()` method on [`ParallelIterator`](#par
 
 - <span id="panicfuse-pointable-type-init"></span>`type Init = T`
 
-- <span id="panicfuse-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="panicfuse-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="panicfuse-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="panicfuse-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="panicfuse-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="panicfuse-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="panicfuse-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="panicfuse-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for PanicFuse<I>`
+
+- <span id="panicfuse-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="panicfuse-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="panicfuse-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PanicFuse<I>`
+
+- <span id="panicfuse-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="panicfuse-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PanicFuse<I>`
+
+- <span id="panicfuse-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="panicfuse-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IterBridge<Iter>`
 
@@ -2482,13 +4148,47 @@ This type is created when using the `par_bridge` method on `ParallelBridge`. See
 
 #### Trait Implementations
 
+##### `impl Any for IterBridge<Iter>`
+
+- <span id="iterbridge-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IterBridge<Iter>`
+
+- <span id="iterbridge-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IterBridge<Iter>`
+
+- <span id="iterbridge-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Iter: clone::Clone> Clone for IterBridge<Iter>`
 
 - <span id="iterbridge-clone"></span>`fn clone(&self) -> IterBridge<Iter>` — [`IterBridge`](par_bridge/index.md#iterbridge)
 
+##### `impl CloneToUninit for IterBridge<Iter>`
+
+- <span id="iterbridge-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<Iter: fmt::Debug> Debug for IterBridge<Iter>`
 
-- <span id="iterbridge-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="iterbridge-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for IterBridge<Iter>`
+
+- <span id="iterbridge-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for IterBridge<Iter>`
+
+- <span id="iterbridge-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for IterBridge<Iter>`
 
@@ -2498,13 +4198,13 @@ This type is created when using the `par_bridge` method on `ParallelBridge`. See
 
 - <span id="iterbridge-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="iterbridge-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="iterbridge-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<Iter> ParallelIterator for IterBridge<Iter>`
 
 - <span id="iterbridge-paralleliterator-type-item"></span>`type Item = <Iter as Iterator>::Item`
 
-- <span id="iterbridge-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="iterbridge-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for IterBridge<Iter>`
 
@@ -2512,13 +4212,33 @@ This type is created when using the `par_bridge` method on `ParallelBridge`. See
 
 - <span id="iterbridge-pointable-type-init"></span>`type Init = T`
 
-- <span id="iterbridge-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="iterbridge-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="iterbridge-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="iterbridge-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="iterbridge-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="iterbridge-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="iterbridge-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="iterbridge-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for IterBridge<Iter>`
+
+- <span id="iterbridge-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="iterbridge-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="iterbridge-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for IterBridge<Iter>`
+
+- <span id="iterbridge-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="iterbridge-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IterBridge<Iter>`
+
+- <span id="iterbridge-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="iterbridge-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Positions<I, P>`
 
@@ -2541,15 +4261,51 @@ This struct is created by the `positions()` method on [`IndexedParallelIterator`
 
 - <span id="positions-new"></span>`fn new(base: I, predicate: P) -> Self`
 
+  Create a new `Positions` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for Positions<I, P>`
+
+- <span id="positions-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Positions<I, P>`
+
+- <span id="positions-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Positions<I, P>`
+
+- <span id="positions-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone, P: clone::Clone> Clone for Positions<I, P>`
 
 - <span id="positions-clone"></span>`fn clone(&self) -> Positions<I, P>` — [`Positions`](positions/index.md#positions)
 
+##### `impl CloneToUninit for Positions<I, P>`
+
+- <span id="positions-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: Debug, P> Debug for Positions<I, P>`
 
-- <span id="positions-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="positions-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Positions<I, P>`
+
+- <span id="positions-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Positions<I, P>`
+
+- <span id="positions-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Positions<I, P>`
 
@@ -2559,13 +4315,13 @@ This struct is created by the `positions()` method on [`IndexedParallelIterator`
 
 - <span id="positions-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="positions-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="positions-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for Positions<I, P>`
 
 - <span id="positions-paralleliterator-type-item"></span>`type Item = usize`
 
-- <span id="positions-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="positions-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for Positions<I, P>`
 
@@ -2573,13 +4329,33 @@ This struct is created by the `positions()` method on [`IndexedParallelIterator`
 
 - <span id="positions-pointable-type-init"></span>`type Init = T`
 
-- <span id="positions-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="positions-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="positions-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="positions-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="positions-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="positions-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="positions-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="positions-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Positions<I, P>`
+
+- <span id="positions-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="positions-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="positions-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Positions<I, P>`
+
+- <span id="positions-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="positions-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Positions<I, P>`
+
+- <span id="positions-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="positions-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Repeat<T>`
 
@@ -2598,17 +4374,65 @@ Iterator adaptor for [the `repeat()` function].
 
 - <span id="repeat-take"></span>`fn take(self, n: usize) -> RepeatN<T>` — [`RepeatN`](repeat/index.md#repeatn)
 
+  Takes only `n` repeats of the element, similar to the general
+
+  `take()`.
+
+  
+
+  The resulting `RepeatN` is an `IndexedParallelIterator`, allowing
+
+  more functionality than `Repeat` alone.
+
 - <span id="repeat-zip"></span>`fn zip<Z>(self, zip_op: Z) -> Zip<RepeatN<T>, <Z as >::Iter>` — [`Zip`](zip/index.md#zip), [`RepeatN`](repeat/index.md#repeatn), [`IntoParallelIterator`](#intoparalleliterator)
 
+  Iterates tuples, repeating the element with items from another
+
+  iterator, similar to the general `zip()`.
+
 #### Trait Implementations
+
+##### `impl<T> Any for Repeat<T>`
+
+- <span id="repeat-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Repeat<T>`
+
+- <span id="repeat-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Repeat<T>`
+
+- <span id="repeat-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: clone::Clone> Clone for Repeat<T>`
 
 - <span id="repeat-clone"></span>`fn clone(&self) -> Repeat<T>` — [`Repeat`](repeat/index.md#repeat)
 
+##### `impl<T> CloneToUninit for Repeat<T>`
+
+- <span id="repeat-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug> Debug for Repeat<T>`
 
-- <span id="repeat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="repeat-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Repeat<T>`
+
+- <span id="repeat-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Repeat<T>`
+
+- <span id="repeat-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Repeat<T>`
 
@@ -2618,13 +4442,13 @@ Iterator adaptor for [the `repeat()` function].
 
 - <span id="repeat-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="repeat-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="repeat-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T> ParallelIterator for Repeat<T>`
 
 - <span id="repeat-paralleliterator-type-item"></span>`type Item = T`
 
-- <span id="repeat-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="repeat-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for Repeat<T>`
 
@@ -2632,13 +4456,33 @@ Iterator adaptor for [the `repeat()` function].
 
 - <span id="repeat-pointable-type-init"></span>`type Init = T`
 
-- <span id="repeat-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="repeat-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="repeat-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="repeat-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="repeat-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="repeat-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="repeat-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="repeat-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for Repeat<T>`
+
+- <span id="repeat-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="repeat-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="repeat-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for Repeat<T>`
+
+- <span id="repeat-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="repeat-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Repeat<T>`
+
+- <span id="repeat-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="repeat-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RepeatN<T>`
 
@@ -2655,21 +4499,55 @@ Iterator adaptor for [the `repeat_n()` function].
 
 #### Trait Implementations
 
+##### `impl<T> Any for RepeatN<T>`
+
+- <span id="repeatn-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RepeatN<T>`
+
+- <span id="repeatn-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RepeatN<T>`
+
+- <span id="repeatn-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for RepeatN<T>`
 
 - <span id="repeatn-clone"></span>`fn clone(&self) -> RepeatN<T>` — [`RepeatN`](repeat/index.md#repeatn)
 
+##### `impl<T> CloneToUninit for RepeatN<T>`
+
+- <span id="repeatn-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug> Debug for RepeatN<T>`
 
-- <span id="repeatn-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="repeatn-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RepeatN<T>`
+
+- <span id="repeatn-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T> IndexedParallelIterator for RepeatN<T>`
 
-- <span id="repeatn-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="repeatn-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="repeatn-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="repeatn-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-- <span id="repeatn-len"></span>`fn len(&self) -> usize`
+- <span id="repeatn-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
+
+##### `impl<T, U> Into for RepeatN<T>`
+
+- <span id="repeatn-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for RepeatN<T>`
 
@@ -2679,15 +4557,15 @@ Iterator adaptor for [the `repeat_n()` function].
 
 - <span id="repeatn-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="repeatn-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="repeatn-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T> ParallelIterator for RepeatN<T>`
 
 - <span id="repeatn-paralleliterator-type-item"></span>`type Item = T`
 
-- <span id="repeatn-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="repeatn-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="repeatn-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="repeatn-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for RepeatN<T>`
 
@@ -2695,13 +4573,33 @@ Iterator adaptor for [the `repeat_n()` function].
 
 - <span id="repeatn-pointable-type-init"></span>`type Init = T`
 
-- <span id="repeatn-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="repeatn-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="repeatn-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="repeatn-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="repeatn-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="repeatn-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="repeatn-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="repeatn-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for RepeatN<T>`
+
+- <span id="repeatn-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="repeatn-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="repeatn-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for RepeatN<T>`
+
+- <span id="repeatn-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="repeatn-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RepeatN<T>`
+
+- <span id="repeatn-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="repeatn-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Rev<I>`
 
@@ -2721,23 +4619,59 @@ is created by the `rev()` method on [`IndexedParallelIterator`](#indexedparallel
 
 - <span id="rev-new"></span>`fn new(base: I) -> Self`
 
+  Creates a new `Rev` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for Rev<I>`
+
+- <span id="rev-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Rev<I>`
+
+- <span id="rev-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Rev<I>`
+
+- <span id="rev-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone> Clone for Rev<I>`
 
 - <span id="rev-clone"></span>`fn clone(&self) -> Rev<I>` — [`Rev`](rev/index.md#rev)
 
+##### `impl CloneToUninit for Rev<I>`
+
+- <span id="rev-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug> Debug for Rev<I>`
 
-- <span id="rev-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rev-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Rev<I>`
+
+- <span id="rev-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I> IndexedParallelIterator for Rev<I>`
 
-- <span id="rev-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="rev-indexedparalleliterator-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="rev-len"></span>`fn len(&self) -> usize`
+- <span id="rev-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="rev-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="rev-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for Rev<I>`
+
+- <span id="rev-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Rev<I>`
 
@@ -2747,15 +4681,15 @@ is created by the `rev()` method on [`IndexedParallelIterator`](#indexedparallel
 
 - <span id="rev-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="rev-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="rev-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Rev<I>`
 
 - <span id="rev-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="rev-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="rev-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="rev-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="rev-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for Rev<I>`
 
@@ -2763,13 +4697,33 @@ is created by the `rev()` method on [`IndexedParallelIterator`](#indexedparallel
 
 - <span id="rev-pointable-type-init"></span>`type Init = T`
 
-- <span id="rev-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="rev-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="rev-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="rev-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="rev-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="rev-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="rev-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="rev-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Rev<I>`
+
+- <span id="rev-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rev-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rev-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Rev<I>`
+
+- <span id="rev-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rev-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Rev<I>`
+
+- <span id="rev-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rev-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Skip<I>`
 
@@ -2790,23 +4744,59 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](#in
 
 - <span id="skip-new"></span>`fn new(base: I, n: usize) -> Self`
 
+  Creates a new `Skip` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for Skip<I>`
+
+- <span id="skip-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Skip<I>`
+
+- <span id="skip-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Skip<I>`
+
+- <span id="skip-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone> Clone for Skip<I>`
 
 - <span id="skip-clone"></span>`fn clone(&self) -> Skip<I>` — [`Skip`](skip/index.md#skip)
 
+##### `impl CloneToUninit for Skip<I>`
+
+- <span id="skip-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug> Debug for Skip<I>`
 
-- <span id="skip-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="skip-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Skip<I>`
+
+- <span id="skip-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I> IndexedParallelIterator for Skip<I>`
 
-- <span id="skip-len"></span>`fn len(&self) -> usize`
+- <span id="skip-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="skip-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="skip-indexedparalleliterator-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="skip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="skip-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for Skip<I>`
+
+- <span id="skip-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Skip<I>`
 
@@ -2816,15 +4806,15 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](#in
 
 - <span id="skip-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="skip-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="skip-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Skip<I>`
 
 - <span id="skip-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="skip-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="skip-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="skip-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="skip-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for Skip<I>`
 
@@ -2832,13 +4822,33 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](#in
 
 - <span id="skip-pointable-type-init"></span>`type Init = T`
 
-- <span id="skip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="skip-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="skip-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="skip-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="skip-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="skip-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="skip-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="skip-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Skip<I>`
+
+- <span id="skip-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="skip-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="skip-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Skip<I>`
+
+- <span id="skip-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="skip-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Skip<I>`
+
+- <span id="skip-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="skip-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SkipAny<I>`
 
@@ -2859,15 +4869,51 @@ This struct is created by the `skip_any()` method on [`ParallelIterator`](#paral
 
 - <span id="skipany-new"></span>`fn new(base: I, count: usize) -> Self`
 
+  Creates a new `SkipAny` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for SkipAny<I>`
+
+- <span id="skipany-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SkipAny<I>`
+
+- <span id="skipany-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SkipAny<I>`
+
+- <span id="skipany-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone> Clone for SkipAny<I>`
 
 - <span id="skipany-clone"></span>`fn clone(&self) -> SkipAny<I>` — [`SkipAny`](skip_any/index.md#skipany)
 
+##### `impl CloneToUninit for SkipAny<I>`
+
+- <span id="skipany-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug> Debug for SkipAny<I>`
 
-- <span id="skipany-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="skipany-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SkipAny<I>`
+
+- <span id="skipany-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SkipAny<I>`
+
+- <span id="skipany-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SkipAny<I>`
 
@@ -2877,13 +4923,13 @@ This struct is created by the `skip_any()` method on [`ParallelIterator`](#paral
 
 - <span id="skipany-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="skipany-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="skipany-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for SkipAny<I>`
 
 - <span id="skipany-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="skipany-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="skipany-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for SkipAny<I>`
 
@@ -2891,13 +4937,33 @@ This struct is created by the `skip_any()` method on [`ParallelIterator`](#paral
 
 - <span id="skipany-pointable-type-init"></span>`type Init = T`
 
-- <span id="skipany-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="skipany-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="skipany-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="skipany-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="skipany-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="skipany-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="skipany-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="skipany-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for SkipAny<I>`
+
+- <span id="skipany-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="skipany-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="skipany-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SkipAny<I>`
+
+- <span id="skipany-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="skipany-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SkipAny<I>`
+
+- <span id="skipany-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="skipany-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SkipAnyWhile<I, P>`
 
@@ -2919,15 +4985,51 @@ This struct is created by the `skip_any_while()` method on [`ParallelIterator`](
 
 - <span id="skipanywhile-new"></span>`fn new(base: I, predicate: P) -> Self`
 
+  Creates a new `SkipAnyWhile` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for SkipAnyWhile<I, P>`
+
+- <span id="skipanywhile-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SkipAnyWhile<I, P>`
+
+- <span id="skipanywhile-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SkipAnyWhile<I, P>`
+
+- <span id="skipanywhile-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone, P: clone::Clone> Clone for SkipAnyWhile<I, P>`
 
 - <span id="skipanywhile-clone"></span>`fn clone(&self) -> SkipAnyWhile<I, P>` — [`SkipAnyWhile`](skip_any_while/index.md#skipanywhile)
 
+##### `impl CloneToUninit for SkipAnyWhile<I, P>`
+
+- <span id="skipanywhile-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug, P> Debug for SkipAnyWhile<I, P>`
 
-- <span id="skipanywhile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="skipanywhile-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SkipAnyWhile<I, P>`
+
+- <span id="skipanywhile-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SkipAnyWhile<I, P>`
+
+- <span id="skipanywhile-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SkipAnyWhile<I, P>`
 
@@ -2937,13 +5039,13 @@ This struct is created by the `skip_any_while()` method on [`ParallelIterator`](
 
 - <span id="skipanywhile-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="skipanywhile-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="skipanywhile-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for SkipAnyWhile<I, P>`
 
 - <span id="skipanywhile-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="skipanywhile-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="skipanywhile-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for SkipAnyWhile<I, P>`
 
@@ -2951,13 +5053,33 @@ This struct is created by the `skip_any_while()` method on [`ParallelIterator`](
 
 - <span id="skipanywhile-pointable-type-init"></span>`type Init = T`
 
-- <span id="skipanywhile-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="skipanywhile-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="skipanywhile-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="skipanywhile-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="skipanywhile-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="skipanywhile-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="skipanywhile-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="skipanywhile-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for SkipAnyWhile<I, P>`
+
+- <span id="skipanywhile-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="skipanywhile-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="skipanywhile-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SkipAnyWhile<I, P>`
+
+- <span id="skipanywhile-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="skipanywhile-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SkipAnyWhile<I, P>`
+
+- <span id="skipanywhile-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="skipanywhile-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Split<D, S>`
 
@@ -2975,13 +5097,47 @@ This struct is created by the [`split()`](splitter/index.md) function.
 
 #### Trait Implementations
 
+##### `impl Any for Split<D, S>`
+
+- <span id="split-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Split<D, S>`
+
+- <span id="split-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Split<D, S>`
+
+- <span id="split-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<D: clone::Clone, S: clone::Clone> Clone for Split<D, S>`
 
 - <span id="split-clone"></span>`fn clone(&self) -> Split<D, S>` — [`Split`](splitter/index.md#split)
 
+##### `impl CloneToUninit for Split<D, S>`
+
+- <span id="split-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<D: Debug, S> Debug for Split<D, S>`
 
-- <span id="split-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="split-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Split<D, S>`
+
+- <span id="split-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Split<D, S>`
+
+- <span id="split-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Split<D, S>`
 
@@ -2991,13 +5147,13 @@ This struct is created by the [`split()`](splitter/index.md) function.
 
 - <span id="split-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="split-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="split-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<D, S> ParallelIterator for Split<D, S>`
 
 - <span id="split-paralleliterator-type-item"></span>`type Item = D`
 
-- <span id="split-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="split-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for Split<D, S>`
 
@@ -3005,13 +5161,33 @@ This struct is created by the [`split()`](splitter/index.md) function.
 
 - <span id="split-pointable-type-init"></span>`type Init = T`
 
-- <span id="split-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="split-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="split-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="split-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="split-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="split-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="split-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="split-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Split<D, S>`
+
+- <span id="split-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="split-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="split-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Split<D, S>`
+
+- <span id="split-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="split-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Split<D, S>`
+
+- <span id="split-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="split-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StepBy<I>`
 
@@ -3032,23 +5208,59 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 
 - <span id="stepby-new"></span>`fn new(base: I, step: usize) -> Self`
 
+  Creates a new `StepBy` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for StepBy<I>`
+
+- <span id="stepby-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StepBy<I>`
+
+- <span id="stepby-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StepBy<I>`
+
+- <span id="stepby-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone> Clone for StepBy<I>`
 
 - <span id="stepby-clone"></span>`fn clone(&self) -> StepBy<I>` — [`StepBy`](step_by/index.md#stepby)
 
+##### `impl CloneToUninit for StepBy<I>`
+
+- <span id="stepby-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug> Debug for StepBy<I>`
 
-- <span id="stepby-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stepby-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for StepBy<I>`
+
+- <span id="stepby-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I> IndexedParallelIterator for StepBy<I>`
 
-- <span id="stepby-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="stepby-indexedparalleliterator-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="stepby-len"></span>`fn len(&self) -> usize`
+- <span id="stepby-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="stepby-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="stepby-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for StepBy<I>`
+
+- <span id="stepby-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for StepBy<I>`
 
@@ -3058,15 +5270,15 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 
 - <span id="stepby-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="stepby-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="stepby-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for StepBy<I>`
 
 - <span id="stepby-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="stepby-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="stepby-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="stepby-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="stepby-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for StepBy<I>`
 
@@ -3074,13 +5286,33 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 
 - <span id="stepby-pointable-type-init"></span>`type Init = T`
 
-- <span id="stepby-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="stepby-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="stepby-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="stepby-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="stepby-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="stepby-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="stepby-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="stepby-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for StepBy<I>`
+
+- <span id="stepby-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="stepby-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="stepby-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for StepBy<I>`
+
+- <span id="stepby-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="stepby-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StepBy<I>`
+
+- <span id="stepby-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="stepby-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Take<I>`
 
@@ -3101,23 +5333,59 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](#in
 
 - <span id="take-new"></span>`fn new(base: I, n: usize) -> Self`
 
+  Creates a new `Take` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for Take<I>`
+
+- <span id="take-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Take<I>`
+
+- <span id="take-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Take<I>`
+
+- <span id="take-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone> Clone for Take<I>`
 
 - <span id="take-clone"></span>`fn clone(&self) -> Take<I>` — [`Take`](take/index.md#take)
 
+##### `impl CloneToUninit for Take<I>`
+
+- <span id="take-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug> Debug for Take<I>`
 
-- <span id="take-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="take-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Take<I>`
+
+- <span id="take-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I> IndexedParallelIterator for Take<I>`
 
-- <span id="take-len"></span>`fn len(&self) -> usize`
+- <span id="take-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="take-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="take-indexedparalleliterator-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="take-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="take-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for Take<I>`
+
+- <span id="take-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Take<I>`
 
@@ -3127,15 +5395,15 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](#in
 
 - <span id="take-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="take-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="take-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Take<I>`
 
 - <span id="take-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="take-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="take-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="take-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="take-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for Take<I>`
 
@@ -3143,13 +5411,33 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](#in
 
 - <span id="take-pointable-type-init"></span>`type Init = T`
 
-- <span id="take-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="take-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="take-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="take-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="take-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="take-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="take-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="take-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Take<I>`
+
+- <span id="take-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="take-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="take-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Take<I>`
+
+- <span id="take-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="take-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Take<I>`
+
+- <span id="take-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="take-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TakeAny<I>`
 
@@ -3170,15 +5458,51 @@ This struct is created by the `take_any()` method on [`ParallelIterator`](#paral
 
 - <span id="takeany-new"></span>`fn new(base: I, count: usize) -> Self`
 
+  Creates a new `TakeAny` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for TakeAny<I>`
+
+- <span id="takeany-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TakeAny<I>`
+
+- <span id="takeany-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TakeAny<I>`
+
+- <span id="takeany-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone> Clone for TakeAny<I>`
 
 - <span id="takeany-clone"></span>`fn clone(&self) -> TakeAny<I>` — [`TakeAny`](take_any/index.md#takeany)
 
+##### `impl CloneToUninit for TakeAny<I>`
+
+- <span id="takeany-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug> Debug for TakeAny<I>`
 
-- <span id="takeany-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="takeany-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for TakeAny<I>`
+
+- <span id="takeany-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TakeAny<I>`
+
+- <span id="takeany-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TakeAny<I>`
 
@@ -3188,13 +5512,13 @@ This struct is created by the `take_any()` method on [`ParallelIterator`](#paral
 
 - <span id="takeany-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="takeany-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="takeany-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for TakeAny<I>`
 
 - <span id="takeany-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="takeany-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="takeany-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for TakeAny<I>`
 
@@ -3202,13 +5526,33 @@ This struct is created by the `take_any()` method on [`ParallelIterator`](#paral
 
 - <span id="takeany-pointable-type-init"></span>`type Init = T`
 
-- <span id="takeany-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="takeany-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="takeany-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="takeany-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="takeany-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="takeany-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="takeany-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="takeany-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for TakeAny<I>`
+
+- <span id="takeany-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="takeany-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="takeany-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TakeAny<I>`
+
+- <span id="takeany-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="takeany-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TakeAny<I>`
+
+- <span id="takeany-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="takeany-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TakeAnyWhile<I, P>`
 
@@ -3230,15 +5574,51 @@ This struct is created by the `take_any_while()` method on [`ParallelIterator`](
 
 - <span id="takeanywhile-new"></span>`fn new(base: I, predicate: P) -> Self`
 
+  Creates a new `TakeAnyWhile` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for TakeAnyWhile<I, P>`
+
+- <span id="takeanywhile-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TakeAnyWhile<I, P>`
+
+- <span id="takeanywhile-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TakeAnyWhile<I, P>`
+
+- <span id="takeanywhile-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone, P: clone::Clone> Clone for TakeAnyWhile<I, P>`
 
 - <span id="takeanywhile-clone"></span>`fn clone(&self) -> TakeAnyWhile<I, P>` — [`TakeAnyWhile`](take_any_while/index.md#takeanywhile)
 
+##### `impl CloneToUninit for TakeAnyWhile<I, P>`
+
+- <span id="takeanywhile-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug, P> Debug for TakeAnyWhile<I, P>`
 
-- <span id="takeanywhile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="takeanywhile-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for TakeAnyWhile<I, P>`
+
+- <span id="takeanywhile-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TakeAnyWhile<I, P>`
+
+- <span id="takeanywhile-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TakeAnyWhile<I, P>`
 
@@ -3248,13 +5628,13 @@ This struct is created by the `take_any_while()` method on [`ParallelIterator`](
 
 - <span id="takeanywhile-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="takeanywhile-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="takeanywhile-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for TakeAnyWhile<I, P>`
 
 - <span id="takeanywhile-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="takeanywhile-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="takeanywhile-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for TakeAnyWhile<I, P>`
 
@@ -3262,13 +5642,33 @@ This struct is created by the `take_any_while()` method on [`ParallelIterator`](
 
 - <span id="takeanywhile-pointable-type-init"></span>`type Init = T`
 
-- <span id="takeanywhile-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="takeanywhile-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="takeanywhile-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="takeanywhile-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="takeanywhile-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="takeanywhile-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="takeanywhile-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="takeanywhile-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for TakeAnyWhile<I, P>`
+
+- <span id="takeanywhile-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="takeanywhile-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="takeanywhile-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TakeAnyWhile<I, P>`
+
+- <span id="takeanywhile-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="takeanywhile-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TakeAnyWhile<I, P>`
+
+- <span id="takeanywhile-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="takeanywhile-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TryFold<I, U, ID, F>`
 
@@ -3293,13 +5693,47 @@ This struct is created by the `try_fold()` method on [`ParallelIterator`](#paral
 
 #### Trait Implementations
 
+##### `impl Any for TryFold<I, U, ID, F>`
+
+- <span id="tryfold-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TryFold<I, U, ID, F>`
+
+- <span id="tryfold-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TryFold<I, U, ID, F>`
+
+- <span id="tryfold-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<I: clone::Clone, U: clone::Clone, ID: clone::Clone, F: clone::Clone> Clone for TryFold<I, U, ID, F>`
 
 - <span id="tryfold-clone"></span>`fn clone(&self) -> TryFold<I, U, ID, F>` — [`TryFold`](try_fold/index.md#tryfold)
 
+##### `impl CloneToUninit for TryFold<I, U, ID, F>`
+
+- <span id="tryfold-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<U, I: ParallelIterator + Debug, ID, F> Debug for TryFold<I, U, ID, F>`
 
-- <span id="tryfold-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tryfold-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for TryFold<I, U, ID, F>`
+
+- <span id="tryfold-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TryFold<I, U, ID, F>`
+
+- <span id="tryfold-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TryFold<I, U, ID, F>`
 
@@ -3309,13 +5743,13 @@ This struct is created by the `try_fold()` method on [`ParallelIterator`](#paral
 
 - <span id="tryfold-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="tryfold-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="tryfold-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<U, I, ID, F> ParallelIterator for TryFold<I, U, ID, F>`
 
 - <span id="tryfold-paralleliterator-type-item"></span>`type Item = U`
 
-- <span id="tryfold-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="tryfold-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for TryFold<I, U, ID, F>`
 
@@ -3323,13 +5757,33 @@ This struct is created by the `try_fold()` method on [`ParallelIterator`](#paral
 
 - <span id="tryfold-pointable-type-init"></span>`type Init = T`
 
-- <span id="tryfold-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="tryfold-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="tryfold-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="tryfold-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="tryfold-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="tryfold-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="tryfold-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="tryfold-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for TryFold<I, U, ID, F>`
+
+- <span id="tryfold-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="tryfold-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="tryfold-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TryFold<I, U, ID, F>`
+
+- <span id="tryfold-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tryfold-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TryFold<I, U, ID, F>`
+
+- <span id="tryfold-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tryfold-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TryFoldWith<I, U: Try, F>`
 
@@ -3353,13 +5807,47 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](#
 
 #### Trait Implementations
 
+##### `impl Any for TryFoldWith<I, U, F>`
+
+- <span id="tryfoldwith-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TryFoldWith<I, U, F>`
+
+- <span id="tryfoldwith-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TryFoldWith<I, U, F>`
+
+- <span id="tryfoldwith-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<I: clone::Clone, U: clone::Clone + Try, F: clone::Clone> Clone for TryFoldWith<I, U, F>`
 
 - <span id="tryfoldwith-clone"></span>`fn clone(&self) -> TryFoldWith<I, U, F>` — [`TryFoldWith`](try_fold/index.md#tryfoldwith)
 
+##### `impl CloneToUninit for TryFoldWith<I, U, F>`
+
+- <span id="tryfoldwith-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I, U, F> Debug for TryFoldWith<I, U, F>`
 
-- <span id="tryfoldwith-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tryfoldwith-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for TryFoldWith<I, U, F>`
+
+- <span id="tryfoldwith-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TryFoldWith<I, U, F>`
+
+- <span id="tryfoldwith-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TryFoldWith<I, U, F>`
 
@@ -3369,13 +5857,13 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](#
 
 - <span id="tryfoldwith-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="tryfoldwith-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="tryfoldwith-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<U, I, F> ParallelIterator for TryFoldWith<I, U, F>`
 
 - <span id="tryfoldwith-paralleliterator-type-item"></span>`type Item = U`
 
-- <span id="tryfoldwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="tryfoldwith-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for TryFoldWith<I, U, F>`
 
@@ -3383,13 +5871,33 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](#
 
 - <span id="tryfoldwith-pointable-type-init"></span>`type Init = T`
 
-- <span id="tryfoldwith-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="tryfoldwith-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="tryfoldwith-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="tryfoldwith-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="tryfoldwith-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="tryfoldwith-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="tryfoldwith-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="tryfoldwith-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for TryFoldWith<I, U, F>`
+
+- <span id="tryfoldwith-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="tryfoldwith-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="tryfoldwith-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TryFoldWith<I, U, F>`
+
+- <span id="tryfoldwith-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tryfoldwith-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TryFoldWith<I, U, F>`
+
+- <span id="tryfoldwith-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tryfoldwith-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Update<I, F>`
 
@@ -3412,23 +5920,59 @@ This struct is created by the `update()` method on [`ParallelIterator`](#paralle
 
 - <span id="update-new"></span>`fn new(base: I, update_op: F) -> Self`
 
+  Creates a new `Update` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for Update<I, F>`
+
+- <span id="update-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Update<I, F>`
+
+- <span id="update-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Update<I, F>`
+
+- <span id="update-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone, F: clone::Clone> Clone for Update<I, F>`
 
 - <span id="update-clone"></span>`fn clone(&self) -> Update<I, F>` — [`Update`](update/index.md#update)
 
+##### `impl CloneToUninit for Update<I, F>`
+
+- <span id="update-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: Debug, F> Debug for Update<I, F>`
 
-- <span id="update-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="update-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Update<I, F>`
+
+- <span id="update-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<I, F> IndexedParallelIterator for Update<I, F>`
 
-- <span id="update-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="update-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="update-len"></span>`fn len(&self) -> usize`
+- <span id="update-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="update-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="update-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for Update<I, F>`
+
+- <span id="update-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Update<I, F>`
 
@@ -3438,15 +5982,15 @@ This struct is created by the `update()` method on [`ParallelIterator`](#paralle
 
 - <span id="update-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="update-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="update-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, F> ParallelIterator for Update<I, F>`
 
 - <span id="update-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="update-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="update-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="update-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="update-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for Update<I, F>`
 
@@ -3454,13 +5998,33 @@ This struct is created by the `update()` method on [`ParallelIterator`](#paralle
 
 - <span id="update-pointable-type-init"></span>`type Init = T`
 
-- <span id="update-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="update-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="update-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="update-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="update-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="update-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="update-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="update-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Update<I, F>`
+
+- <span id="update-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="update-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="update-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Update<I, F>`
+
+- <span id="update-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="update-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Update<I, F>`
+
+- <span id="update-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="update-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `WalkTree<S, B>`
 
@@ -3475,9 +6039,39 @@ Returned by the [`walk_tree()`](walk_tree/index.md) function.
 
 #### Trait Implementations
 
+##### `impl Any for WalkTree<S, B>`
+
+- <span id="walktree-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WalkTree<S, B>`
+
+- <span id="walktree-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WalkTree<S, B>`
+
+- <span id="walktree-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<S: fmt::Debug, B: fmt::Debug> Debug for WalkTree<S, B>`
 
-- <span id="walktree-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="walktree-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for WalkTree<S, B>`
+
+- <span id="walktree-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WalkTree<S, B>`
+
+- <span id="walktree-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for WalkTree<S, B>`
 
@@ -3487,13 +6081,13 @@ Returned by the [`walk_tree()`](walk_tree/index.md) function.
 
 - <span id="walktree-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="walktree-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="walktree-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<S, B> ParallelIterator for WalkTree<S, B>`
 
 - <span id="walktree-paralleliterator-type-item"></span>`type Item = S`
 
-- <span id="walktree-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="walktree-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for WalkTree<S, B>`
 
@@ -3501,13 +6095,25 @@ Returned by the [`walk_tree()`](walk_tree/index.md) function.
 
 - <span id="walktree-pointable-type-init"></span>`type Init = T`
 
-- <span id="walktree-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="walktree-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="walktree-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="walktree-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="walktree-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="walktree-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="walktree-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="walktree-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for WalkTree<S, B>`
+
+- <span id="walktree-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="walktree-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WalkTree<S, B>`
+
+- <span id="walktree-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="walktree-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `WalkTreePostfix<S, B>`
 
@@ -3525,9 +6131,39 @@ Returned by the [`walk_tree_postfix()`](walk_tree/index.md) function.
 
 #### Trait Implementations
 
+##### `impl Any for WalkTreePostfix<S, B>`
+
+- <span id="walktreepostfix-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WalkTreePostfix<S, B>`
+
+- <span id="walktreepostfix-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WalkTreePostfix<S, B>`
+
+- <span id="walktreepostfix-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<S: fmt::Debug, B: fmt::Debug> Debug for WalkTreePostfix<S, B>`
 
-- <span id="walktreepostfix-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="walktreepostfix-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for WalkTreePostfix<S, B>`
+
+- <span id="walktreepostfix-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WalkTreePostfix<S, B>`
+
+- <span id="walktreepostfix-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for WalkTreePostfix<S, B>`
 
@@ -3537,13 +6173,13 @@ Returned by the [`walk_tree_postfix()`](walk_tree/index.md) function.
 
 - <span id="walktreepostfix-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="walktreepostfix-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="walktreepostfix-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<S, B> ParallelIterator for WalkTreePostfix<S, B>`
 
 - <span id="walktreepostfix-paralleliterator-type-item"></span>`type Item = S`
 
-- <span id="walktreepostfix-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="walktreepostfix-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for WalkTreePostfix<S, B>`
 
@@ -3551,13 +6187,25 @@ Returned by the [`walk_tree_postfix()`](walk_tree/index.md) function.
 
 - <span id="walktreepostfix-pointable-type-init"></span>`type Init = T`
 
-- <span id="walktreepostfix-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="walktreepostfix-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="walktreepostfix-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="walktreepostfix-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="walktreepostfix-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="walktreepostfix-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="walktreepostfix-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="walktreepostfix-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for WalkTreePostfix<S, B>`
+
+- <span id="walktreepostfix-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="walktreepostfix-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WalkTreePostfix<S, B>`
+
+- <span id="walktreepostfix-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="walktreepostfix-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `WalkTreePrefix<S, B>`
 
@@ -3575,9 +6223,39 @@ Returned by the [`walk_tree_prefix()`](walk_tree/index.md) function.
 
 #### Trait Implementations
 
+##### `impl Any for WalkTreePrefix<S, B>`
+
+- <span id="walktreeprefix-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WalkTreePrefix<S, B>`
+
+- <span id="walktreeprefix-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WalkTreePrefix<S, B>`
+
+- <span id="walktreeprefix-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<S: fmt::Debug, B: fmt::Debug> Debug for WalkTreePrefix<S, B>`
 
-- <span id="walktreeprefix-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="walktreeprefix-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for WalkTreePrefix<S, B>`
+
+- <span id="walktreeprefix-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WalkTreePrefix<S, B>`
+
+- <span id="walktreeprefix-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for WalkTreePrefix<S, B>`
 
@@ -3587,13 +6265,13 @@ Returned by the [`walk_tree_prefix()`](walk_tree/index.md) function.
 
 - <span id="walktreeprefix-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="walktreeprefix-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="walktreeprefix-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<S, B> ParallelIterator for WalkTreePrefix<S, B>`
 
 - <span id="walktreeprefix-paralleliterator-type-item"></span>`type Item = S`
 
-- <span id="walktreeprefix-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="walktreeprefix-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for WalkTreePrefix<S, B>`
 
@@ -3601,13 +6279,25 @@ Returned by the [`walk_tree_prefix()`](walk_tree/index.md) function.
 
 - <span id="walktreeprefix-pointable-type-init"></span>`type Init = T`
 
-- <span id="walktreeprefix-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="walktreeprefix-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="walktreeprefix-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="walktreeprefix-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="walktreeprefix-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="walktreeprefix-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="walktreeprefix-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="walktreeprefix-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for WalkTreePrefix<S, B>`
+
+- <span id="walktreeprefix-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="walktreeprefix-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WalkTreePrefix<S, B>`
+
+- <span id="walktreeprefix-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="walktreeprefix-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `WhileSome<I>`
 
@@ -3629,15 +6319,51 @@ This struct is created by the `while_some()` method on [`ParallelIterator`](#par
 
 - <span id="whilesome-new"></span>`fn new(base: I) -> Self`
 
+  Creates a new `WhileSome` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for WhileSome<I>`
+
+- <span id="whilesome-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WhileSome<I>`
+
+- <span id="whilesome-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WhileSome<I>`
+
+- <span id="whilesome-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone> Clone for WhileSome<I>`
 
 - <span id="whilesome-clone"></span>`fn clone(&self) -> WhileSome<I>` — [`WhileSome`](while_some/index.md#whilesome)
 
+##### `impl CloneToUninit for WhileSome<I>`
+
+- <span id="whilesome-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I: fmt::Debug> Debug for WhileSome<I>`
 
-- <span id="whilesome-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="whilesome-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for WhileSome<I>`
+
+- <span id="whilesome-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WhileSome<I>`
+
+- <span id="whilesome-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for WhileSome<I>`
 
@@ -3647,13 +6373,13 @@ This struct is created by the `while_some()` method on [`ParallelIterator`](#par
 
 - <span id="whilesome-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="whilesome-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="whilesome-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for WhileSome<I>`
 
 - <span id="whilesome-paralleliterator-type-item"></span>`type Item = T`
 
-- <span id="whilesome-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="whilesome-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl Pointable for WhileSome<I>`
 
@@ -3661,13 +6387,33 @@ This struct is created by the `while_some()` method on [`ParallelIterator`](#par
 
 - <span id="whilesome-pointable-type-init"></span>`type Init = T`
 
-- <span id="whilesome-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="whilesome-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="whilesome-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="whilesome-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="whilesome-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="whilesome-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="whilesome-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="whilesome-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for WhileSome<I>`
+
+- <span id="whilesome-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="whilesome-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="whilesome-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for WhileSome<I>`
+
+- <span id="whilesome-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="whilesome-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WhileSome<I>`
+
+- <span id="whilesome-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="whilesome-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Zip<A, B>`
 
@@ -3689,23 +6435,59 @@ of pairs. This struct is created by the `zip()` method on
 
 - <span id="zip-new"></span>`fn new(a: A, b: B) -> Self`
 
+  Creates a new `Zip` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for Zip<A, B>`
+
+- <span id="zip-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Zip<A, B>`
+
+- <span id="zip-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Zip<A, B>`
+
+- <span id="zip-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<A: clone::Clone, B: clone::Clone> Clone for Zip<A, B>`
 
 - <span id="zip-clone"></span>`fn clone(&self) -> Zip<A, B>` — [`Zip`](zip/index.md#zip)
 
+##### `impl CloneToUninit for Zip<A, B>`
+
+- <span id="zip-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<A: fmt::Debug, B: fmt::Debug> Debug for Zip<A, B>`
 
-- <span id="zip-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="zip-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Zip<A, B>`
+
+- <span id="zip-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<A, B> IndexedParallelIterator for Zip<A, B>`
 
-- <span id="zip-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="zip-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="zip-len"></span>`fn len(&self) -> usize`
+- <span id="zip-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="zip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="zip-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for Zip<A, B>`
+
+- <span id="zip-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Zip<A, B>`
 
@@ -3715,15 +6497,15 @@ of pairs. This struct is created by the `zip()` method on
 
 - <span id="zip-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="zip-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="zip-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A, B> ParallelIterator for Zip<A, B>`
 
 - <span id="zip-paralleliterator-type-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
 
-- <span id="zip-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="zip-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="zip-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="zip-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for Zip<A, B>`
 
@@ -3731,13 +6513,33 @@ of pairs. This struct is created by the `zip()` method on
 
 - <span id="zip-pointable-type-init"></span>`type Init = T`
 
-- <span id="zip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="zip-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="zip-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="zip-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="zip-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="zip-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="zip-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="zip-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Zip<A, B>`
+
+- <span id="zip-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="zip-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="zip-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Zip<A, B>`
+
+- <span id="zip-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="zip-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Zip<A, B>`
+
+- <span id="zip-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="zip-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ZipEq<A, B>`
 
@@ -3760,23 +6562,59 @@ see its documentation for more information.
 
 - <span id="zipeq-new"></span>`fn new(a: A, b: B) -> Self`
 
+  Creates a new `ZipEq` iterator.
+
 #### Trait Implementations
+
+##### `impl Any for ZipEq<A, B>`
+
+- <span id="zipeq-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ZipEq<A, B>`
+
+- <span id="zipeq-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ZipEq<A, B>`
+
+- <span id="zipeq-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<A: clone::Clone, B: clone::Clone> Clone for ZipEq<A, B>`
 
 - <span id="zipeq-clone"></span>`fn clone(&self) -> ZipEq<A, B>` — [`ZipEq`](zip_eq/index.md#zipeq)
 
+##### `impl CloneToUninit for ZipEq<A, B>`
+
+- <span id="zipeq-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<A: fmt::Debug, B: fmt::Debug> Debug for ZipEq<A, B>`
 
-- <span id="zipeq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="zipeq-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ZipEq<A, B>`
+
+- <span id="zipeq-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<A, B> IndexedParallelIterator for ZipEq<A, B>`
 
-- <span id="zipeq-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="zipeq-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="zipeq-len"></span>`fn len(&self) -> usize`
+- <span id="zipeq-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="zipeq-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+- <span id="zipeq-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
+
+##### `impl<U> Into for ZipEq<A, B>`
+
+- <span id="zipeq-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ZipEq<A, B>`
 
@@ -3786,15 +6624,15 @@ see its documentation for more information.
 
 - <span id="zipeq-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="zipeq-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="zipeq-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A, B> ParallelIterator for ZipEq<A, B>`
 
 - <span id="zipeq-paralleliterator-type-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
 
-- <span id="zipeq-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
+- <span id="zipeq-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="zipeq-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="zipeq-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for ZipEq<A, B>`
 
@@ -3802,13 +6640,33 @@ see its documentation for more information.
 
 - <span id="zipeq-pointable-type-init"></span>`type Init = T`
 
-- <span id="zipeq-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="zipeq-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="zipeq-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="zipeq-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="zipeq-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="zipeq-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="zipeq-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="zipeq-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for ZipEq<A, B>`
+
+- <span id="zipeq-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="zipeq-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="zipeq-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ZipEq<A, B>`
+
+- <span id="zipeq-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="zipeq-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ZipEq<A, B>`
+
+- <span id="zipeq-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="zipeq-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

@@ -200,13 +200,59 @@ Provides context to a closure called by `broadcast`.
 
 - <span id="broadcastcontext-index"></span>`fn index(&self) -> usize`
 
+  Our index amongst the broadcast threads (ranges from `0..self.num_threads()`).
+
 - <span id="broadcastcontext-num-threads"></span>`fn num_threads(&self) -> usize`
+
+  The number of threads receiving the broadcast in the thread pool.
+
+  
+
+  # Future compatibility note
+
+  
+
+  Future versions of Rayon might vary the number of threads over time, but
+
+  this method will always return the number of threads which are actually
+
+  receiving your particular `broadcast` call.
 
 #### Trait Implementations
 
+##### `impl Any for BroadcastContext<'a>`
+
+- <span id="broadcastcontext-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BroadcastContext<'a>`
+
+- <span id="broadcastcontext-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BroadcastContext<'a>`
+
+- <span id="broadcastcontext-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for BroadcastContext<'a>`
 
-- <span id="broadcastcontext-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="broadcastcontext-debug-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BroadcastContext<'a>`
+
+- <span id="broadcastcontext-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BroadcastContext<'a>`
+
+- <span id="broadcastcontext-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for BroadcastContext<'a>`
 
@@ -214,13 +260,25 @@ Provides context to a closure called by `broadcast`.
 
 - <span id="broadcastcontext-pointable-type-init"></span>`type Init = T`
 
-- <span id="broadcastcontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="broadcastcontext-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="broadcastcontext-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="broadcastcontext-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="broadcastcontext-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="broadcastcontext-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="broadcastcontext-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="broadcastcontext-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for BroadcastContext<'a>`
+
+- <span id="broadcastcontext-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="broadcastcontext-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BroadcastContext<'a>`
+
+- <span id="broadcastcontext-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="broadcastcontext-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ThreadBuilder`
 
@@ -243,17 +301,57 @@ Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 
 - <span id="threadbuilder-index"></span>`fn index(&self) -> usize`
 
+  Gets the index of this thread in the pool, within `0..num_threads`.
+
 - <span id="threadbuilder-name"></span>`fn name(&self) -> Option<&str>`
+
+  Gets the string that was specified by `ThreadPoolBuilder::name()`.
 
 - <span id="threadbuilder-stack-size"></span>`fn stack_size(&self) -> Option<usize>`
 
+  Gets the value that was specified by `ThreadPoolBuilder::stack_size()`.
+
 - <span id="threadbuilder-run"></span>`fn run(self)`
+
+  Executes the main loop for this thread. This will not return until the
+
+  thread pool is dropped.
 
 #### Trait Implementations
 
+##### `impl Any for ThreadBuilder`
+
+- <span id="threadbuilder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ThreadBuilder`
+
+- <span id="threadbuilder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ThreadBuilder`
+
+- <span id="threadbuilder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ThreadBuilder`
 
-- <span id="threadbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="threadbuilder-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ThreadBuilder`
+
+- <span id="threadbuilder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ThreadBuilder`
+
+- <span id="threadbuilder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for ThreadBuilder`
 
@@ -261,13 +359,25 @@ Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 
 - <span id="threadbuilder-pointable-type-init"></span>`type Init = T`
 
-- <span id="threadbuilder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="threadbuilder-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="threadbuilder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="threadbuilder-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="threadbuilder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="threadbuilder-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="threadbuilder-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="threadbuilder-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for ThreadBuilder`
+
+- <span id="threadbuilder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="threadbuilder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ThreadBuilder`
+
+- <span id="threadbuilder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="threadbuilder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Scope<'scope>`
 
@@ -288,13 +398,151 @@ See [`scope()`](scope/index.md) for more information.
 
 - <span id="scope-spawn"></span>`fn spawn<BODY>(&self, body: BODY)`
 
+  Spawns a job into the fork-join scope `self`. This job will
+
+  execute sometime before the fork-join scope completes.  The
+
+  job is specified as a closure, and this closure receives its
+
+  own reference to the scope `self` as argument. This can be
+
+  used to inject new jobs into `self`.
+
+  
+
+  # Returns
+
+  
+
+  Nothing. The spawned closures cannot pass back values to the
+
+  caller directly, though they can write to local variables on
+
+  the stack (if those variables outlive the scope) or
+
+  communicate through shared channels.
+
+  
+
+  (The intention is to eventually integrate with Rust futures to
+
+  support spawns of functions that compute a value.)
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use rayon_core as rayon;
+
+  let mut value_a = None;
+
+  let mut value_b = None;
+
+  let mut value_c = None;
+
+  rayon::scope(|s| {
+
+      s.spawn(|s1| {
+
+            // ^ this is the same scope as `s`; this handle `s1`
+
+            //   is intended for use by the spawned task,
+
+            //   since scope handles cannot cross thread boundaries.
+
+  
+
+          value_a = Some(22);
+
+  
+
+          // the scope `s` will not end until all these tasks are done
+
+          s1.spawn(|_| {
+
+              value_b = Some(44);
+
+          });
+
+      });
+
+  
+
+      s.spawn(|_| {
+
+          value_c = Some(66);
+
+      });
+
+  });
+
+  assert_eq!(value_a, Some(22));
+
+  assert_eq!(value_b, Some(44));
+
+  assert_eq!(value_c, Some(66));
+
+  ```
+
+  
+
+  # See also
+
+  
+
+  The [`scope` function] has more extensive documentation about
+
+  task spawning.
+
 - <span id="scope-spawn-broadcast"></span>`fn spawn_broadcast<BODY>(&self, body: BODY)`
+
+  Spawns a job into every thread of the fork-join scope `self`. This job will
+
+  execute on each thread sometime before the fork-join scope completes.  The
+
+  job is specified as a closure, and this closure receives its own reference
+
+  to the scope `self` as argument, as well as a `BroadcastContext`.
 
 #### Trait Implementations
 
+##### `impl Any for Scope<'scope>`
+
+- <span id="scope-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Scope<'scope>`
+
+- <span id="scope-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Scope<'scope>`
+
+- <span id="scope-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Scope<'scope>`
 
-- <span id="scope-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scope-debug-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Scope<'scope>`
+
+- <span id="scope-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Scope<'scope>`
+
+- <span id="scope-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for Scope<'scope>`
 
@@ -302,13 +550,25 @@ See [`scope()`](scope/index.md) for more information.
 
 - <span id="scope-pointable-type-init"></span>`type Init = T`
 
-- <span id="scope-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="scope-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="scope-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="scope-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="scope-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="scope-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="scope-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="scope-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for Scope<'scope>`
+
+- <span id="scope-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="scope-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Scope<'scope>`
+
+- <span id="scope-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="scope-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ScopeFifo<'scope>`
 
@@ -331,13 +591,73 @@ See [`scope_fifo()`](scope/index.md) for more information.
 
 - <span id="scopefifo-spawn-fifo"></span>`fn spawn_fifo<BODY>(&self, body: BODY)`
 
+  Spawns a job into the fork-join scope `self`. This job will
+
+  execute sometime before the fork-join scope completes.  The
+
+  job is specified as a closure, and this closure receives its
+
+  own reference to the scope `self` as argument. This can be
+
+  used to inject new jobs into `self`.
+
+  
+
+  # See also
+
+  
+
+  This method is akin to `Scope::spawn()`, but with a FIFO
+
+  priority.  The [`scope_fifo` function] has more details about
+
+  this distinction.
+
 - <span id="scopefifo-spawn-broadcast"></span>`fn spawn_broadcast<BODY>(&self, body: BODY)`
+
+  Spawns a job into every thread of the fork-join scope `self`. This job will
+
+  execute on each thread sometime before the fork-join scope completes.  The
+
+  job is specified as a closure, and this closure receives its own reference
+
+  to the scope `self` as argument, as well as a `BroadcastContext`.
 
 #### Trait Implementations
 
+##### `impl Any for ScopeFifo<'scope>`
+
+- <span id="scopefifo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ScopeFifo<'scope>`
+
+- <span id="scopefifo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ScopeFifo<'scope>`
+
+- <span id="scopefifo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ScopeFifo<'scope>`
 
-- <span id="scopefifo-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scopefifo-debug-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ScopeFifo<'scope>`
+
+- <span id="scopefifo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ScopeFifo<'scope>`
+
+- <span id="scopefifo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for ScopeFifo<'scope>`
 
@@ -345,13 +665,25 @@ See [`scope_fifo()`](scope/index.md) for more information.
 
 - <span id="scopefifo-pointable-type-init"></span>`type Init = T`
 
-- <span id="scopefifo-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="scopefifo-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="scopefifo-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="scopefifo-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="scopefifo-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="scopefifo-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="scopefifo-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="scopefifo-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for ScopeFifo<'scope>`
+
+- <span id="scopefifo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="scopefifo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ScopeFifo<'scope>`
+
+- <span id="scopefifo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="scopefifo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ThreadPool`
 
@@ -394,47 +726,487 @@ terminate.
 
 - <span id="threadpool-new"></span>`fn new(configuration: crate::Configuration) -> Result<ThreadPool, Box<dyn Error>>` — [`Configuration`](#configuration), [`ThreadPool`](thread_pool/index.md#threadpool)
 
+  Deprecated in favor of `ThreadPoolBuilder::build`.
+
 - <span id="threadpool-build"></span>`fn build<S>(builder: ThreadPoolBuilder<S>) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](#threadpoolbuilder), [`ThreadPool`](thread_pool/index.md#threadpool), [`ThreadPoolBuildError`](#threadpoolbuilderror)
 
 - <span id="threadpool-install"></span>`fn install<OP, R>(&self, op: OP) -> R`
 
+  Executes `op` within the thread pool. Any attempts to use
+
+  `join`, `scope`, or parallel iterators will then operate
+
+  within that thread pool.
+
+  
+
+  # Warning: thread-local data
+
+  
+
+  Because `op` is executing within the Rayon thread pool,
+
+  thread-local data from the current thread will not be
+
+  accessible.
+
+  
+
+  # Warning: execution order
+
+  
+
+  If the current thread is part of a different thread pool, it will try to
+
+  keep busy while the `op` completes in its target pool, similar to
+
+  calling `ThreadPool::yield_now()` in a loop. Therefore, it may
+
+  potentially schedule other tasks to run on the current thread in the
+
+  meantime. For example
+
+  
+
+  ```ignore-wasm
+
+  use rayon_core as rayon;
+
+  fn main() {
+
+      rayon::ThreadPoolBuilder::new().num_threads(1).build_global().unwrap();
+
+      let pool = rayon_core::ThreadPoolBuilder::default().build().unwrap();
+
+      let do_it = || {
+
+          print!("one ");
+
+          pool.install(||{});
+
+          print!("two ");
+
+      };
+
+      rayon::join(|| do_it(), || do_it());
+
+  }
+
+  ```
+
+  
+
+  Since we configured just one thread in the global pool, one might
+
+  expect `do_it()` to run sequentially, producing:
+
+  
+
+  ```ascii
+
+  one two one two
+
+  ```
+
+  
+
+  However each call to `install()` yields implicitly, allowing rayon to
+
+  run multiple instances of `do_it()` concurrently on the single, global
+
+  thread. The following output would be equally valid:
+
+  
+
+  ```ascii
+
+  one one two two
+
+  ```
+
+  
+
+  # Panics
+
+  
+
+  If `op` should panic, that panic will be propagated.
+
+  
+
+  ## Using `install()`
+
+  
+
+  ```ignore-wasm
+
+     use rayon_core as rayon;
+
+     fn main() {
+
+          let pool = rayon::ThreadPoolBuilder::new().num_threads(8).build().unwrap();
+
+          let n = pool.install(|| fib(20));
+
+          println!("{}", n);
+
+     }
+
+  
+
+     fn fib(n: usize) -> usize {
+
+          if n == 0 || n == 1 {
+
+              return n;
+
+          }
+
+          let (a, b) = rayon::join(|| fib(n - 1), || fib(n - 2)); // runs inside of `pool`
+
+          return a + b;
+
+      }
+
+  ```
+
 - <span id="threadpool-broadcast"></span>`fn broadcast<OP, R>(&self, op: OP) -> Vec<R>`
+
+  Executes `op` within every thread in the thread pool. Any attempts to use
+
+  `join`, `scope`, or parallel iterators will then operate within that
+
+  thread pool.
+
+  
+
+  Broadcasts are executed on each thread after they have exhausted their
+
+  local work queue, before they attempt work-stealing from other threads.
+
+  The goal of that strategy is to run everywhere in a timely manner
+
+  *without* being too disruptive to current work. There may be alternative
+
+  broadcast styles added in the future for more or less aggressive
+
+  injection, if the need arises.
+
+  
+
+  # Warning: thread-local data
+
+  
+
+  Because `op` is executing within the Rayon thread pool,
+
+  thread-local data from the current thread will not be
+
+  accessible.
+
+  
+
+  # Panics
+
+  
+
+  If `op` should panic on one or more threads, exactly one panic
+
+  will be propagated, only after all threads have completed
+
+  (or panicked) their own `op`.
+
+  
+
+  # Examples
+
+  
+
+  ```ignore-wasm
+
+     use rayon_core as rayon;
+
+     use std::sync::atomic::{AtomicUsize, Ordering};
+
+  
+
+     fn main() {
+
+          let pool = rayon::ThreadPoolBuilder::new().num_threads(5).build().unwrap();
+
+  
+
+          // The argument gives context, including the index of each thread.
+
+          let v: Vec<usize> = pool.broadcast(|ctx| ctx.index() * ctx.index());
+
+          assert_eq!(v, &[0, 1, 4, 9, 16]);
+
+  
+
+          // The closure can reference the local stack
+
+          let count = AtomicUsize::new(0);
+
+          pool.broadcast(|_| count.fetch_add(1, Ordering::Relaxed));
+
+          assert_eq!(count.into_inner(), 5);
+
+     }
+
+  ```
 
 - <span id="threadpool-current-num-threads"></span>`fn current_num_threads(&self) -> usize`
 
+  Returns the (current) number of threads in the thread pool.
+
+  
+
+  # Future compatibility note
+
+  
+
+  Note that unless this thread pool was created with a
+
+  [`ThreadPoolBuilder`](#threadpoolbuilder) that specifies the number of threads,
+
+  then this number may vary over time in future versions (see [the
+
+  `num_threads()` method for details][snt]).
+
 - <span id="threadpool-current-thread-index"></span>`fn current_thread_index(&self) -> Option<usize>`
+
+  If called from a Rayon worker thread in this thread pool,
+
+  returns the index of that thread; if not called from a Rayon
+
+  thread, or called from a Rayon thread that belongs to a
+
+  different thread pool, returns `None`.
+
+  
+
+  The index for a given thread will not change over the thread's
+
+  lifetime. However, multiple threads may share the same index if
+
+  they are in distinct thread pools.
+
+  
+
+  # Future compatibility note
+
+  
+
+  Currently, every thread pool (including the global
+
+  thread pool) has a fixed number of threads, but this may
+
+  change in future Rayon versions (see [the `num_threads()` method
+
+  for details][snt]). In that case, the index for a
+
+  thread would not change during its lifetime, but thread
+
+  indices may wind up being reused if threads are terminated and
+
+  restarted.
 
 - <span id="threadpool-current-thread-has-pending-tasks"></span>`fn current_thread_has_pending_tasks(&self) -> Option<bool>`
 
+  Returns true if the current worker thread currently has "local
+
+  tasks" pending. This can be useful as part of a heuristic for
+
+  deciding whether to spawn a new task or execute code on the
+
+  current thread, particularly in breadth-first
+
+  schedulers. However, keep in mind that this is an inherently
+
+  racy check, as other worker threads may be actively "stealing"
+
+  tasks from our local deque.
+
+  
+
+  **Background:** Rayon's uses a [work-stealing] scheduler. The
+
+  key idea is that each thread has its own [`deque`](../crossbeam_deque/deque/index.md) of
+
+  tasks. Whenever a new task is spawned -- whether through
+
+  `join()`, `Scope::spawn()`, or some other means -- that new
+
+  task is pushed onto the thread's *local* deque. Worker threads
+
+  have a preference for executing their own tasks; if however
+
+  they run out of tasks, they will go try to "steal" tasks from
+
+  other threads. This function therefore has an inherent race
+
+  with other active worker threads, which may be removing items
+
+  from the local deque.
+
+  
+
 - <span id="threadpool-join"></span>`fn join<A, B, RA, RB>(&self, oper_a: A, oper_b: B) -> (RA, RB)`
+
+  Execute `oper_a` and `oper_b` in the thread pool and return
+
+  the results. Equivalent to `self.install(|| join(oper_a,
+
+  oper_b))`.
 
 - <span id="threadpool-scope"></span>`fn scope<'scope, OP, R>(&self, op: OP) -> R`
 
+  Creates a scope that executes within this thread pool.
+
+  Equivalent to `self.install(|| scope(...))`.
+
+  
+
+  See also: [the `scope()` function].
+
 - <span id="threadpool-scope-fifo"></span>`fn scope_fifo<'scope, OP, R>(&self, op: OP) -> R`
+
+  Creates a scope that executes within this thread pool.
+
+  Spawns from the same thread are prioritized in relative FIFO order.
+
+  Equivalent to `self.install(|| scope_fifo(...))`.
+
+  
+
+  See also: [the `scope_fifo()` function].
 
 - <span id="threadpool-in-place-scope"></span>`fn in_place_scope<'scope, OP, R>(&self, op: OP) -> R`
 
+  Creates a scope that spawns work into this thread pool.
+
+  
+
+  See also: [the `in_place_scope()` function].
+
 - <span id="threadpool-in-place-scope-fifo"></span>`fn in_place_scope_fifo<'scope, OP, R>(&self, op: OP) -> R`
+
+  Creates a scope that spawns work into this thread pool in FIFO order.
+
+  
+
+  See also: [the `in_place_scope_fifo()` function].
 
 - <span id="threadpool-spawn"></span>`fn spawn<OP>(&self, op: OP)`
 
+  Spawns an asynchronous task in this thread pool. This task will
+
+  run in the implicit, global scope, which means that it may outlast
+
+  the current stack frame -- therefore, it cannot capture any references
+
+  onto the stack (you will likely need a `move` closure).
+
+  
+
+  See also: [the `spawn()` function defined on scopes][`spawn`](spawn/index.md).
+
 - <span id="threadpool-spawn-fifo"></span>`fn spawn_fifo<OP>(&self, op: OP)`
+
+  Spawns an asynchronous task in this thread pool. This task will
+
+  run in the implicit, global scope, which means that it may outlast
+
+  the current stack frame -- therefore, it cannot capture any references
+
+  onto the stack (you will likely need a `move` closure).
+
+  
+
+  See also: [the `spawn_fifo()` function defined on scopes][`spawn_fifo`](spawn/index.md).
 
 - <span id="threadpool-spawn-broadcast"></span>`fn spawn_broadcast<OP>(&self, op: OP)`
 
+  Spawns an asynchronous task on every thread in this thread pool. This task
+
+  will run in the implicit, global scope, which means that it may outlast the
+
+  current stack frame -- therefore, it cannot capture any references onto the
+
+  stack (you will likely need a `move` closure).
+
 - <span id="threadpool-yield-now"></span>`fn yield_now(&self) -> Option<Yield>` — [`Yield`](thread_pool/index.md#yield)
+
+  Cooperatively yields execution to Rayon.
+
+  
+
+  This is similar to the general [`yield_now()`](thread_pool/index.md), but only if the current
+
+  thread is part of *this* thread pool.
+
+  
+
+  Returns `Some(Yield::Executed)` if anything was executed, `Some(Yield::Idle)` if
+
+  nothing was available, or `None` if the current thread is not part this pool.
 
 - <span id="threadpool-yield-local"></span>`fn yield_local(&self) -> Option<Yield>` — [`Yield`](thread_pool/index.md#yield)
 
+  Cooperatively yields execution to local Rayon work.
+
+  
+
+  This is similar to the general [`yield_local()`](thread_pool/index.md), but only if the current
+
+  thread is part of *this* thread pool.
+
+  
+
+  Returns `Some(Yield::Executed)` if anything was executed, `Some(Yield::Idle)` if
+
+  nothing was available, or `None` if the current thread is not part this pool.
+
 #### Trait Implementations
+
+##### `impl Any for ThreadPool`
+
+- <span id="threadpool-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ThreadPool`
+
+- <span id="threadpool-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ThreadPool`
+
+- <span id="threadpool-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for ThreadPool`
 
-- <span id="threadpool-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="threadpool-debug-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for ThreadPool`
 
 - <span id="threadpool-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for ThreadPool`
+
+- <span id="threadpool-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ThreadPool`
+
+- <span id="threadpool-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for ThreadPool`
 
@@ -442,13 +1214,25 @@ terminate.
 
 - <span id="threadpool-pointable-type-init"></span>`type Init = T`
 
-- <span id="threadpool-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="threadpool-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="threadpool-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="threadpool-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="threadpool-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="threadpool-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="threadpool-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="threadpool-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for ThreadPool`
+
+- <span id="threadpool-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="threadpool-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ThreadPool`
+
+- <span id="threadpool-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="threadpool-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ThreadPoolBuildError`
 
@@ -470,19 +1254,49 @@ Error when initializing a thread pool.
 
 #### Trait Implementations
 
+##### `impl Any for ThreadPoolBuildError`
+
+- <span id="threadpoolbuilderror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ThreadPoolBuildError`
+
+- <span id="threadpoolbuilderror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ThreadPoolBuildError`
+
+- <span id="threadpoolbuilderror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ThreadPoolBuildError`
 
-- <span id="threadpoolbuilderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="threadpoolbuilderror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ThreadPoolBuildError`
 
-- <span id="threadpoolbuilderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="threadpoolbuilderror-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for ThreadPoolBuildError`
 
-- <span id="threadpoolbuilderror-description"></span>`fn description(&self) -> &str`
+- <span id="threadpoolbuilderror-error-description"></span>`fn description(&self) -> &str`
 
-- <span id="threadpoolbuilderror-source"></span>`fn source(&self) -> Option<&dyn Error>`
+- <span id="threadpoolbuilderror-error-source"></span>`fn source(&self) -> Option<&dyn Error>`
+
+##### `impl<T> From for ThreadPoolBuildError`
+
+- <span id="threadpoolbuilderror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ThreadPoolBuildError`
+
+- <span id="threadpoolbuilderror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for ThreadPoolBuildError`
 
@@ -490,17 +1304,29 @@ Error when initializing a thread pool.
 
 - <span id="threadpoolbuilderror-pointable-type-init"></span>`type Init = T`
 
-- <span id="threadpoolbuilderror-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="threadpoolbuilderror-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="threadpoolbuilderror-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="threadpoolbuilderror-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="threadpoolbuilderror-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="threadpoolbuilderror-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="threadpoolbuilderror-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="threadpoolbuilderror-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl ToString for ThreadPoolBuildError`
 
-- <span id="threadpoolbuilderror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="threadpoolbuilderror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for ThreadPoolBuildError`
+
+- <span id="threadpoolbuilderror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="threadpoolbuilderror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ThreadPoolBuildError`
+
+- <span id="threadpoolbuilderror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="threadpoolbuilderror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ThreadPoolBuilder<S>`
 
@@ -584,15 +1410,47 @@ rayon::ThreadPoolBuilder::new().num_threads(22).build_global().unwrap();
 
 - <span id="threadpoolbuilder-new"></span>`fn new() -> Self`
 
+  Creates and returns a valid rayon thread pool builder, but does not initialize it.
+
 #### Trait Implementations
+
+##### `impl Any for ThreadPoolBuilder<S>`
+
+- <span id="threadpoolbuilder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ThreadPoolBuilder<S>`
+
+- <span id="threadpoolbuilder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ThreadPoolBuilder<S>`
+
+- <span id="threadpoolbuilder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<S> Debug for ThreadPoolBuilder<S>`
 
-- <span id="threadpoolbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="threadpoolbuilder-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ThreadPoolBuilder`
 
 - <span id="threadpoolbuilder-default"></span>`fn default() -> Self`
+
+##### `impl<T> From for ThreadPoolBuilder<S>`
+
+- <span id="threadpoolbuilder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ThreadPoolBuilder<S>`
+
+- <span id="threadpoolbuilder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for ThreadPoolBuilder<S>`
 
@@ -600,13 +1458,25 @@ rayon::ThreadPoolBuilder::new().num_threads(22).build_global().unwrap();
 
 - <span id="threadpoolbuilder-pointable-type-init"></span>`type Init = T`
 
-- <span id="threadpoolbuilder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="threadpoolbuilder-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="threadpoolbuilder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="threadpoolbuilder-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="threadpoolbuilder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="threadpoolbuilder-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="threadpoolbuilder-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="threadpoolbuilder-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for ThreadPoolBuilder<S>`
+
+- <span id="threadpoolbuilder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="threadpoolbuilder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ThreadPoolBuilder<S>`
+
+- <span id="threadpoolbuilder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="threadpoolbuilder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Configuration`
 
@@ -624,33 +1494,83 @@ Contains the rayon thread pool configuration. Use [`ThreadPoolBuilder`](#threadp
 
 - <span id="configuration-new"></span>`fn new() -> Configuration` — [`Configuration`](#configuration)
 
+  Creates and return a valid rayon thread pool configuration, but does not initialize it.
+
 - <span id="configuration-build"></span>`fn build(self) -> Result<ThreadPool, Box<dyn Error>>` — [`ThreadPool`](thread_pool/index.md#threadpool)
+
+  Deprecated in favor of `ThreadPoolBuilder::build`.
 
 - <span id="configuration-thread-name"></span>`fn thread_name<F>(self, closure: F) -> Self`
 
+  Deprecated in favor of `ThreadPoolBuilder::thread_name`.
+
 - <span id="configuration-num-threads"></span>`fn num_threads(self, num_threads: usize) -> Configuration` — [`Configuration`](#configuration)
+
+  Deprecated in favor of `ThreadPoolBuilder::num_threads`.
 
 - <span id="configuration-panic-handler"></span>`fn panic_handler<H>(self, panic_handler: H) -> Configuration` — [`Configuration`](#configuration)
 
+  Deprecated in favor of `ThreadPoolBuilder::panic_handler`.
+
 - <span id="configuration-stack-size"></span>`fn stack_size(self, stack_size: usize) -> Self`
+
+  Deprecated in favor of `ThreadPoolBuilder::stack_size`.
 
 - <span id="configuration-breadth-first"></span>`fn breadth_first(self) -> Self`
 
+  Deprecated in favor of `ThreadPoolBuilder::breadth_first`.
+
 - <span id="configuration-start-handler"></span>`fn start_handler<H>(self, start_handler: H) -> Configuration` — [`Configuration`](#configuration)
+
+  Deprecated in favor of `ThreadPoolBuilder::start_handler`.
 
 - <span id="configuration-exit-handler"></span>`fn exit_handler<H>(self, exit_handler: H) -> Configuration` — [`Configuration`](#configuration)
 
+  Deprecated in favor of `ThreadPoolBuilder::exit_handler`.
+
 - <span id="configuration-into-builder"></span>`fn into_builder(self) -> ThreadPoolBuilder` — [`ThreadPoolBuilder`](#threadpoolbuilder)
+
+  Returns a ThreadPoolBuilder with identical parameters.
 
 #### Trait Implementations
 
+##### `impl Any for Configuration`
+
+- <span id="configuration-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Configuration`
+
+- <span id="configuration-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Configuration`
+
+- <span id="configuration-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Configuration`
 
-- <span id="configuration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="configuration-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Configuration`
 
 - <span id="configuration-default"></span>`fn default() -> Configuration` — [`Configuration`](#configuration)
+
+##### `impl<T> From for Configuration`
+
+- <span id="configuration-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Configuration`
+
+- <span id="configuration-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for Configuration`
 
@@ -658,13 +1578,25 @@ Contains the rayon thread pool configuration. Use [`ThreadPoolBuilder`](#threadp
 
 - <span id="configuration-pointable-type-init"></span>`type Init = T`
 
-- <span id="configuration-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="configuration-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="configuration-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="configuration-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="configuration-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="configuration-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="configuration-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="configuration-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for Configuration`
+
+- <span id="configuration-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="configuration-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Configuration`
+
+- <span id="configuration-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="configuration-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FnContext`
 
@@ -691,9 +1623,39 @@ Provides the calling context to a closure called by `join_context`.
 
 #### Trait Implementations
 
+##### `impl Any for FnContext`
+
+- <span id="fncontext-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FnContext`
+
+- <span id="fncontext-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FnContext`
+
+- <span id="fncontext-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for FnContext`
 
-- <span id="fncontext-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fncontext-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FnContext`
+
+- <span id="fncontext-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FnContext`
+
+- <span id="fncontext-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for FnContext`
 
@@ -701,13 +1663,25 @@ Provides the calling context to a closure called by `join_context`.
 
 - <span id="fncontext-pointable-type-init"></span>`type Init = T`
 
-- <span id="fncontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="fncontext-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="fncontext-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="fncontext-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="fncontext-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="fncontext-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="fncontext-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="fncontext-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for FnContext`
+
+- <span id="fncontext-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fncontext-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FnContext`
+
+- <span id="fncontext-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fncontext-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -736,21 +1710,55 @@ Result of [`yield_now()`](thread_pool/index.md) or [`yield_local()`](thread_pool
 
 #### Trait Implementations
 
+##### `impl Any for Yield`
+
+- <span id="yield-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Yield`
+
+- <span id="yield-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Yield`
+
+- <span id="yield-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Yield`
 
 - <span id="yield-clone"></span>`fn clone(&self) -> Yield` — [`Yield`](thread_pool/index.md#yield)
+
+##### `impl CloneToUninit for Yield`
+
+- <span id="yield-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Yield`
 
 ##### `impl Debug for Yield`
 
-- <span id="yield-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="yield-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Yield`
 
+##### `impl<T> From for Yield`
+
+- <span id="yield-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Yield`
+
+- <span id="yield-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Yield`
 
-- <span id="yield-eq"></span>`fn eq(&self, other: &Yield) -> bool` — [`Yield`](thread_pool/index.md#yield)
+- <span id="yield-partialeq-eq"></span>`fn eq(&self, other: &Yield) -> bool` — [`Yield`](thread_pool/index.md#yield)
 
 ##### `impl Pointable for Yield`
 
@@ -758,15 +1766,35 @@ Result of [`yield_now()`](thread_pool/index.md) or [`yield_local()`](thread_pool
 
 - <span id="yield-pointable-type-init"></span>`type Init = T`
 
-- <span id="yield-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="yield-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="yield-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="yield-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="yield-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="yield-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="yield-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="yield-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl StructuralPartialEq for Yield`
+
+##### `impl ToOwned for Yield`
+
+- <span id="yield-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="yield-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="yield-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Yield`
+
+- <span id="yield-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="yield-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Yield`
+
+- <span id="yield-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="yield-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ErrorKind`
 
@@ -782,9 +1810,39 @@ enum ErrorKind {
 
 #### Trait Implementations
 
+##### `impl Any for ErrorKind`
+
+- <span id="errorkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ErrorKind`
+
+- <span id="errorkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ErrorKind`
+
+- <span id="errorkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ErrorKind`
 
-- <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errorkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ErrorKind`
+
+- <span id="errorkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ErrorKind`
+
+- <span id="errorkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for ErrorKind`
 
@@ -792,13 +1850,25 @@ enum ErrorKind {
 
 - <span id="errorkind-pointable-type-init"></span>`type Init = T`
 
-- <span id="errorkind-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="errorkind-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="errorkind-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="errorkind-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="errorkind-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="errorkind-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="errorkind-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="errorkind-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for ErrorKind`
+
+- <span id="errorkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="errorkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ErrorKind`
+
+- <span id="errorkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="errorkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

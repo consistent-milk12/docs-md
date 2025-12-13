@@ -82,6 +82,50 @@ To preserve provenance, syscall arguments and return values are passed as
 pointer types. They need a type to point to, so we define a custom private
 type, to prevent it from being used for anything else.
 
+#### Trait Implementations
+
+##### `impl Any for Opaque`
+
+- <span id="opaque-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Opaque`
+
+- <span id="opaque-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Opaque`
+
+- <span id="opaque-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Opaque`
+
+- <span id="opaque-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Opaque`
+
+- <span id="opaque-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Opaque`
+
+- <span id="opaque-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="opaque-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Opaque`
+
+- <span id="opaque-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="opaque-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `A0`
 
 ```rust
@@ -92,9 +136,51 @@ struct A0(());
 
 #### Trait Implementations
 
+##### `impl Any for A0`
+
+- <span id="a0-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl ArgNumber for A0`
 
+##### `impl<T> Borrow for A0`
+
+- <span id="a0-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for A0`
+
+- <span id="a0-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for A0`
+
+- <span id="a0-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for A0`
+
+- <span id="a0-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Sealed for super::A0`
+
+##### `impl<U> TryFrom for A0`
+
+- <span id="a0-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="a0-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for A0`
+
+- <span id="a0-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="a0-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `A1`
 
@@ -106,9 +192,51 @@ struct A1(());
 
 #### Trait Implementations
 
+##### `impl Any for A1`
+
+- <span id="a1-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl ArgNumber for A1`
 
+##### `impl<T> Borrow for A1`
+
+- <span id="a1-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for A1`
+
+- <span id="a1-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for A1`
+
+- <span id="a1-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for A1`
+
+- <span id="a1-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Sealed for super::A1`
+
+##### `impl<U> TryFrom for A1`
+
+- <span id="a1-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="a1-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for A1`
+
+- <span id="a1-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="a1-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `A2`
 
@@ -120,9 +248,51 @@ struct A2(());
 
 #### Trait Implementations
 
+##### `impl Any for A2`
+
+- <span id="a2-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl ArgNumber for A2`
 
+##### `impl<T> Borrow for A2`
+
+- <span id="a2-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for A2`
+
+- <span id="a2-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for A2`
+
+- <span id="a2-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for A2`
+
+- <span id="a2-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Sealed for super::A2`
+
+##### `impl<U> TryFrom for A2`
+
+- <span id="a2-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="a2-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for A2`
+
+- <span id="a2-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="a2-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `A3`
 
@@ -134,9 +304,51 @@ struct A3(());
 
 #### Trait Implementations
 
+##### `impl Any for A3`
+
+- <span id="a3-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl ArgNumber for A3`
 
+##### `impl<T> Borrow for A3`
+
+- <span id="a3-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for A3`
+
+- <span id="a3-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for A3`
+
+- <span id="a3-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for A3`
+
+- <span id="a3-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Sealed for super::A3`
+
+##### `impl<U> TryFrom for A3`
+
+- <span id="a3-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="a3-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for A3`
+
+- <span id="a3-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="a3-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `A4`
 
@@ -148,9 +360,51 @@ struct A4(());
 
 #### Trait Implementations
 
+##### `impl Any for A4`
+
+- <span id="a4-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl ArgNumber for A4`
 
+##### `impl<T> Borrow for A4`
+
+- <span id="a4-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for A4`
+
+- <span id="a4-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for A4`
+
+- <span id="a4-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for A4`
+
+- <span id="a4-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Sealed for super::A4`
+
+##### `impl<U> TryFrom for A4`
+
+- <span id="a4-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="a4-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for A4`
+
+- <span id="a4-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="a4-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `A5`
 
@@ -162,9 +416,51 @@ struct A5(());
 
 #### Trait Implementations
 
+##### `impl Any for A5`
+
+- <span id="a5-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl ArgNumber for A5`
 
+##### `impl<T> Borrow for A5`
+
+- <span id="a5-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for A5`
+
+- <span id="a5-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for A5`
+
+- <span id="a5-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for A5`
+
+- <span id="a5-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Sealed for super::A5`
+
+##### `impl<U> TryFrom for A5`
+
+- <span id="a5-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="a5-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for A5`
+
+- <span id="a5-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="a5-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `R0`
 
@@ -176,9 +472,51 @@ struct R0(());
 
 #### Trait Implementations
 
+##### `impl Any for R0`
+
+- <span id="r0-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for R0`
+
+- <span id="r0-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for R0`
+
+- <span id="r0-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for R0`
+
+- <span id="r0-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for R0`
+
+- <span id="r0-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl RetNumber for R0`
 
 ##### `impl Sealed for super::R0`
+
+##### `impl<U> TryFrom for R0`
+
+- <span id="r0-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="r0-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for R0`
+
+- <span id="r0-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="r0-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ArgReg<'a, Num: ArgNumber>`
 
@@ -200,11 +538,53 @@ it might be pointing to.
 
 #### Trait Implementations
 
+##### `impl Any for ArgReg<'a, Num>`
+
+- <span id="argreg-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ArgReg<'a, Num>`
+
+- <span id="argreg-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ArgReg<'a, Num>`
+
+- <span id="argreg-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for ArgReg<'a, Num>`
+
+- <span id="argreg-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ArgReg<'a, Num>`
+
+- <span id="argreg-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<Num: super::ArgNumber> Sealed for super::ArgReg<'a, Num>`
 
 ##### `impl<Num: ArgNumber> ToAsm for ArgReg<'a, Num>`
 
-- <span id="argreg-to-asm"></span>`unsafe fn to_asm(self) -> *mut Opaque` — [`Opaque`](#opaque)
+- <span id="argreg-toasm-to-asm"></span>`unsafe fn to_asm(self) -> *mut Opaque` — [`Opaque`](#opaque)
+
+##### `impl<U> TryFrom for ArgReg<'a, Num>`
+
+- <span id="argreg-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="argreg-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ArgReg<'a, Num>`
+
+- <span id="argreg-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="argreg-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RetReg<Num: RetNumber>`
 
@@ -249,11 +629,53 @@ once.
 
 #### Trait Implementations
 
+##### `impl Any for RetReg<Num>`
+
+- <span id="retreg-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RetReg<Num>`
+
+- <span id="retreg-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RetReg<Num>`
+
+- <span id="retreg-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for RetReg<Num>`
+
+- <span id="retreg-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<Num: RetNumber> FromAsm for RetReg<Num>`
 
-- <span id="retreg-from-asm"></span>`unsafe fn from_asm(raw: *mut Opaque) -> Self` — [`Opaque`](#opaque)
+- <span id="retreg-fromasm-from-asm"></span>`unsafe fn from_asm(raw: *mut Opaque) -> Self` — [`Opaque`](#opaque)
+
+##### `impl<U> Into for RetReg<Num>`
+
+- <span id="retreg-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Num: super::RetNumber> Sealed for super::RetReg<Num>`
+
+##### `impl<U> TryFrom for RetReg<Num>`
+
+- <span id="retreg-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="retreg-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RetReg<Num>`
+
+- <span id="retreg-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="retreg-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SyscallNumber<'a>`
 
@@ -268,11 +690,53 @@ struct SyscallNumber<'a> {
 
 #### Trait Implementations
 
+##### `impl Any for SyscallNumber<'a>`
+
+- <span id="syscallnumber-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SyscallNumber<'a>`
+
+- <span id="syscallnumber-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SyscallNumber<'a>`
+
+- <span id="syscallnumber-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for SyscallNumber<'a>`
+
+- <span id="syscallnumber-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SyscallNumber<'a>`
+
+- <span id="syscallnumber-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Sealed for super::SyscallNumber<'a>`
 
 ##### `impl ToAsm for SyscallNumber<'a>`
 
-- <span id="syscallnumber-to-asm"></span>`unsafe fn to_asm(self) -> *mut Opaque` — [`Opaque`](#opaque)
+- <span id="syscallnumber-toasm-to-asm"></span>`unsafe fn to_asm(self) -> *mut Opaque` — [`Opaque`](#opaque)
+
+##### `impl<U> TryFrom for SyscallNumber<'a>`
+
+- <span id="syscallnumber-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="syscallnumber-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SyscallNumber<'a>`
+
+- <span id="syscallnumber-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="syscallnumber-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

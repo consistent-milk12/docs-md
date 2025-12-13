@@ -136,15 +136,63 @@ needle.
 
 - <span id="finditer-into-owned"></span>`fn into_owned(self) -> FindIter<'h, 'static>` — [`FindIter`](#finditer)
 
+  Convert this iterator into its owned variant, such that it no longer
+
+  borrows the finder and needle.
+
+  
+
+  If this is already an owned iterator, then this is a no-op. Otherwise,
+
+  this copies the needle.
+
+  
+
+  This is only available when the `alloc` feature is enabled.
+
 #### Trait Implementations
+
+##### `impl Any for FindIter<'h, 'n>`
+
+- <span id="finditer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FindIter<'h, 'n>`
+
+- <span id="finditer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FindIter<'h, 'n>`
+
+- <span id="finditer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for FindIter<'h, 'n>`
 
 - <span id="finditer-clone"></span>`fn clone(&self) -> FindIter<'h, 'n>` — [`FindIter`](#finditer)
 
+##### `impl CloneToUninit for FindIter<'h, 'n>`
+
+- <span id="finditer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for FindIter<'h, 'n>`
 
-- <span id="finditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="finditer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FindIter<'h, 'n>`
+
+- <span id="finditer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FindIter<'h, 'n>`
+
+- <span id="finditer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for FindIter<'h, 'n>`
 
@@ -152,15 +200,35 @@ needle.
 
 - <span id="finditer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="finditer-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="finditer-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for FindIter<'h, 'n>`
 
 - <span id="finditer-iterator-type-item"></span>`type Item = usize`
 
-- <span id="finditer-next"></span>`fn next(&mut self) -> Option<usize>`
+- <span id="finditer-iterator-next"></span>`fn next(&mut self) -> Option<usize>`
 
-- <span id="finditer-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="finditer-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+
+##### `impl ToOwned for FindIter<'h, 'n>`
+
+- <span id="finditer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="finditer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="finditer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FindIter<'h, 'n>`
+
+- <span id="finditer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="finditer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FindIter<'h, 'n>`
+
+- <span id="finditer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="finditer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FindRevIter<'h, 'n>`
 
@@ -194,15 +262,63 @@ needle.
 
 - <span id="findreviter-into-owned"></span>`fn into_owned(self) -> FindRevIter<'h, 'static>` — [`FindRevIter`](#findreviter)
 
+  Convert this iterator into its owned variant, such that it no longer
+
+  borrows the finder and needle.
+
+  
+
+  If this is already an owned iterator, then this is a no-op. Otherwise,
+
+  this copies the needle.
+
+  
+
+  This is only available when the `std` feature is enabled.
+
 #### Trait Implementations
+
+##### `impl Any for FindRevIter<'h, 'n>`
+
+- <span id="findreviter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FindRevIter<'h, 'n>`
+
+- <span id="findreviter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FindRevIter<'h, 'n>`
+
+- <span id="findreviter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for FindRevIter<'h, 'n>`
 
 - <span id="findreviter-clone"></span>`fn clone(&self) -> FindRevIter<'h, 'n>` — [`FindRevIter`](#findreviter)
 
+##### `impl CloneToUninit for FindRevIter<'h, 'n>`
+
+- <span id="findreviter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for FindRevIter<'h, 'n>`
 
-- <span id="findreviter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="findreviter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FindRevIter<'h, 'n>`
+
+- <span id="findreviter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FindRevIter<'h, 'n>`
+
+- <span id="findreviter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for FindRevIter<'h, 'n>`
 
@@ -210,13 +326,33 @@ needle.
 
 - <span id="findreviter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="findreviter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="findreviter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for FindRevIter<'h, 'n>`
 
 - <span id="findreviter-iterator-type-item"></span>`type Item = usize`
 
-- <span id="findreviter-next"></span>`fn next(&mut self) -> Option<usize>`
+- <span id="findreviter-iterator-next"></span>`fn next(&mut self) -> Option<usize>`
+
+##### `impl ToOwned for FindRevIter<'h, 'n>`
+
+- <span id="findreviter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="findreviter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="findreviter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FindRevIter<'h, 'n>`
+
+- <span id="findreviter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="findreviter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FindRevIter<'h, 'n>`
+
+- <span id="findreviter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="findreviter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Finder<'n>`
 
@@ -247,25 +383,227 @@ the lifetime of its needle.
 
 - <span id="finder-new"></span>`fn new<B: ?Sized + AsRef<[u8]>>(needle: &'n B) -> Finder<'n>` — [`Finder`](#finder)
 
+  Create a new finder for the given needle.
+
 - <span id="finder-find"></span>`fn find(&self, haystack: &[u8]) -> Option<usize>`
+
+  Returns the index of the first occurrence of this needle in the given
+
+  haystack.
+
+  
+
+  # Complexity
+
+  
+
+  This routine is guaranteed to have worst case linear time complexity
+
+  with respect to both the needle and the haystack. That is, this runs
+
+  in `O(needle.len() + haystack.len())` time.
+
+  
+
+  This routine is also guaranteed to have worst case constant space
+
+  complexity.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use memchr::memmem::Finder;
+
+  
+
+  let haystack = b"foo bar baz";
+
+  assert_eq!(Some(0), Finder::new("foo").find(haystack));
+
+  assert_eq!(Some(4), Finder::new("bar").find(haystack));
+
+  assert_eq!(None, Finder::new("quux").find(haystack));
+
+  ```
 
 - <span id="finder-find-iter"></span>`fn find_iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> FindIter<'h, 'a>` — [`FindIter`](#finditer)
 
+  Returns an iterator over all occurrences of a substring in a haystack.
+
+  
+
+  # Complexity
+
+  
+
+  This routine is guaranteed to have worst case linear time complexity
+
+  with respect to both the needle and the haystack. That is, this runs
+
+  in `O(needle.len() + haystack.len())` time.
+
+  
+
+  This routine is also guaranteed to have worst case constant space
+
+  complexity.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use memchr::memmem::Finder;
+
+  
+
+  let haystack = b"foo bar foo baz foo";
+
+  let finder = Finder::new(b"foo");
+
+  let mut it = finder.find_iter(haystack);
+
+  assert_eq!(Some(0), it.next());
+
+  assert_eq!(Some(8), it.next());
+
+  assert_eq!(Some(16), it.next());
+
+  assert_eq!(None, it.next());
+
+  ```
+
 - <span id="finder-into-owned"></span>`fn into_owned(self) -> Finder<'static>` — [`Finder`](#finder)
+
+  Convert this finder into its owned variant, such that it no longer
+
+  borrows the needle.
+
+  
+
+  If this is already an owned finder, then this is a no-op. Otherwise,
+
+  this copies the needle.
+
+  
+
+  This is only available when the `alloc` feature is enabled.
 
 - <span id="finder-as-ref"></span>`fn as_ref(&self) -> Finder<'_>` — [`Finder`](#finder)
 
+  Convert this finder into its borrowed variant.
+
+  
+
+  This is primarily useful if your finder is owned and you'd like to
+
+  store its borrowed variant in some intermediate data structure.
+
+  
+
+  Note that the lifetime parameter of the returned finder is tied to the
+
+  lifetime of `self`, and may be shorter than the `'n` lifetime of the
+
+  needle itself. Namely, a finder's needle can be either borrowed or
+
+  owned, so the lifetime of the needle returned must necessarily be the
+
+  shorter of the two.
+
 - <span id="finder-needle"></span>`fn needle(&self) -> &[u8]`
 
+  Returns the needle that this finder searches for.
+
+  
+
+  Note that the lifetime of the needle returned is tied to the lifetime
+
+  of the finder, and may be shorter than the `'n` lifetime. Namely, a
+
+  finder's needle can be either borrowed or owned, so the lifetime of the
+
+  needle returned must necessarily be the shorter of the two.
+
 #### Trait Implementations
+
+##### `impl Any for Finder<'n>`
+
+- <span id="finder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Finder<'n>`
+
+- <span id="finder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Finder<'n>`
+
+- <span id="finder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Finder<'n>`
 
 - <span id="finder-clone"></span>`fn clone(&self) -> Finder<'n>` — [`Finder`](#finder)
 
+##### `impl CloneToUninit for Finder<'n>`
+
+- <span id="finder-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Finder<'n>`
 
-- <span id="finder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="finder-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Finder<'n>`
+
+- <span id="finder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Finder<'n>`
+
+- <span id="finder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Finder<'n>`
+
+- <span id="finder-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="finder-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="finder-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Finder<'n>`
+
+- <span id="finder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="finder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Finder<'n>`
+
+- <span id="finder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="finder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FinderRev<'n>`
 
@@ -296,25 +634,235 @@ the lifetime of its needle.
 
 - <span id="finderrev-new"></span>`fn new<B: ?Sized + AsRef<[u8]>>(needle: &'n B) -> FinderRev<'n>` — [`FinderRev`](#finderrev)
 
+  Create a new reverse finder for the given needle.
+
 - <span id="finderrev-rfind"></span>`fn rfind<B: AsRef<[u8]>>(&self, haystack: B) -> Option<usize>`
+
+  Returns the index of the last occurrence of this needle in the given
+
+  haystack.
+
+  
+
+  The haystack may be any type that can be cheaply converted into a
+
+  `&[u8]`. This includes, but is not limited to, `&str` and `&[u8]`.
+
+  
+
+  # Complexity
+
+  
+
+  This routine is guaranteed to have worst case linear time complexity
+
+  with respect to both the needle and the haystack. That is, this runs
+
+  in `O(needle.len() + haystack.len())` time.
+
+  
+
+  This routine is also guaranteed to have worst case constant space
+
+  complexity.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use memchr::memmem::FinderRev;
+
+  
+
+  let haystack = b"foo bar baz";
+
+  assert_eq!(Some(0), FinderRev::new("foo").rfind(haystack));
+
+  assert_eq!(Some(4), FinderRev::new("bar").rfind(haystack));
+
+  assert_eq!(None, FinderRev::new("quux").rfind(haystack));
+
+  ```
 
 - <span id="finderrev-rfind-iter"></span>`fn rfind_iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> FindRevIter<'h, 'a>` — [`FindRevIter`](#findreviter)
 
+  Returns a reverse iterator over all occurrences of a substring in a
+
+  haystack.
+
+  
+
+  # Complexity
+
+  
+
+  This routine is guaranteed to have worst case linear time complexity
+
+  with respect to both the needle and the haystack. That is, this runs
+
+  in `O(needle.len() + haystack.len())` time.
+
+  
+
+  This routine is also guaranteed to have worst case constant space
+
+  complexity.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use memchr::memmem::FinderRev;
+
+  
+
+  let haystack = b"foo bar foo baz foo";
+
+  let finder = FinderRev::new(b"foo");
+
+  let mut it = finder.rfind_iter(haystack);
+
+  assert_eq!(Some(16), it.next());
+
+  assert_eq!(Some(8), it.next());
+
+  assert_eq!(Some(0), it.next());
+
+  assert_eq!(None, it.next());
+
+  ```
+
 - <span id="finderrev-into-owned"></span>`fn into_owned(self) -> FinderRev<'static>` — [`FinderRev`](#finderrev)
+
+  Convert this finder into its owned variant, such that it no longer
+
+  borrows the needle.
+
+  
+
+  If this is already an owned finder, then this is a no-op. Otherwise,
+
+  this copies the needle.
+
+  
+
+  This is only available when the `std` feature is enabled.
 
 - <span id="finderrev-as-ref"></span>`fn as_ref(&self) -> FinderRev<'_>` — [`FinderRev`](#finderrev)
 
+  Convert this finder into its borrowed variant.
+
+  
+
+  This is primarily useful if your finder is owned and you'd like to
+
+  store its borrowed variant in some intermediate data structure.
+
+  
+
+  Note that the lifetime parameter of the returned finder is tied to the
+
+  lifetime of `self`, and may be shorter than the `'n` lifetime of the
+
+  needle itself. Namely, a finder's needle can be either borrowed or
+
+  owned, so the lifetime of the needle returned must necessarily be the
+
+  shorter of the two.
+
 - <span id="finderrev-needle"></span>`fn needle(&self) -> &[u8]`
 
+  Returns the needle that this finder searches for.
+
+  
+
+  Note that the lifetime of the needle returned is tied to the lifetime
+
+  of the finder, and may be shorter than the `'n` lifetime. Namely, a
+
+  finder's needle can be either borrowed or owned, so the lifetime of the
+
+  needle returned must necessarily be the shorter of the two.
+
 #### Trait Implementations
+
+##### `impl Any for FinderRev<'n>`
+
+- <span id="finderrev-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FinderRev<'n>`
+
+- <span id="finderrev-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FinderRev<'n>`
+
+- <span id="finderrev-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for FinderRev<'n>`
 
 - <span id="finderrev-clone"></span>`fn clone(&self) -> FinderRev<'n>` — [`FinderRev`](#finderrev)
 
+##### `impl CloneToUninit for FinderRev<'n>`
+
+- <span id="finderrev-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for FinderRev<'n>`
 
-- <span id="finderrev-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="finderrev-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FinderRev<'n>`
+
+- <span id="finderrev-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FinderRev<'n>`
+
+- <span id="finderrev-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for FinderRev<'n>`
+
+- <span id="finderrev-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="finderrev-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="finderrev-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FinderRev<'n>`
+
+- <span id="finderrev-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="finderrev-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FinderRev<'n>`
+
+- <span id="finderrev-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="finderrev-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FinderBuilder`
 
@@ -336,27 +884,105 @@ heuristic prefilters used to speed up certain searches.
 
 - <span id="finderbuilder-new"></span>`fn new() -> FinderBuilder` — [`FinderBuilder`](#finderbuilder)
 
+  Create a new finder builder with default settings.
+
 - <span id="finderbuilder-build-forward"></span>`fn build_forward<'n, B: ?Sized + AsRef<[u8]>>(&self, needle: &'n B) -> Finder<'n>` — [`Finder`](#finder)
+
+  Build a forward finder using the given needle from the current
+
+  settings.
 
 - <span id="finderbuilder-build-forward-with-ranker"></span>`fn build_forward_with_ranker<'n, R: HeuristicFrequencyRank, B: ?Sized + AsRef<[u8]>>(&self, ranker: R, needle: &'n B) -> Finder<'n>` — [`Finder`](#finder)
 
+  Build a forward finder using the given needle and a custom heuristic for
+
+  determining the frequency of a given byte in the dataset.
+
+  See [`HeuristicFrequencyRank`](../arch/all/packedpair/index.md) for more details.
+
 - <span id="finderbuilder-build-reverse"></span>`fn build_reverse<'n, B: ?Sized + AsRef<[u8]>>(&self, needle: &'n B) -> FinderRev<'n>` — [`FinderRev`](#finderrev)
+
+  Build a reverse finder using the given needle from the current
+
+  settings.
 
 - <span id="finderbuilder-prefilter"></span>`fn prefilter(&mut self, prefilter: Prefilter) -> &mut FinderBuilder` — [`PrefilterConfig`](searcher/index.md#prefilterconfig), [`FinderBuilder`](#finderbuilder)
 
+  Configure the prefilter setting for the finder.
+
+  
+
+  See the documentation for [`Prefilter`](searcher/index.md) for more discussion on why
+
+  you might want to configure this.
+
 #### Trait Implementations
+
+##### `impl Any for FinderBuilder`
+
+- <span id="finderbuilder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FinderBuilder`
+
+- <span id="finderbuilder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FinderBuilder`
+
+- <span id="finderbuilder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for FinderBuilder`
 
 - <span id="finderbuilder-clone"></span>`fn clone(&self) -> FinderBuilder` — [`FinderBuilder`](#finderbuilder)
 
+##### `impl CloneToUninit for FinderBuilder`
+
+- <span id="finderbuilder-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for FinderBuilder`
 
-- <span id="finderbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="finderbuilder-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for FinderBuilder`
 
 - <span id="finderbuilder-default"></span>`fn default() -> FinderBuilder` — [`FinderBuilder`](#finderbuilder)
+
+##### `impl<T> From for FinderBuilder`
+
+- <span id="finderbuilder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FinderBuilder`
+
+- <span id="finderbuilder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for FinderBuilder`
+
+- <span id="finderbuilder-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="finderbuilder-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="finderbuilder-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FinderBuilder`
+
+- <span id="finderbuilder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="finderbuilder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FinderBuilder`
+
+- <span id="finderbuilder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="finderbuilder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -413,21 +1039,77 @@ useful.
 
 - <span id="prefilterconfig-is-none"></span>`fn is_none(&self) -> bool`
 
+  Returns true when this prefilter is set to the `None` variant.
+
 #### Trait Implementations
+
+##### `impl Any for PrefilterConfig`
+
+- <span id="prefilterconfig-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PrefilterConfig`
+
+- <span id="prefilterconfig-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PrefilterConfig`
+
+- <span id="prefilterconfig-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for PrefilterConfig`
 
 - <span id="prefilterconfig-clone"></span>`fn clone(&self) -> PrefilterConfig` — [`PrefilterConfig`](searcher/index.md#prefilterconfig)
 
+##### `impl CloneToUninit for PrefilterConfig`
+
+- <span id="prefilterconfig-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for PrefilterConfig`
 
 ##### `impl Debug for PrefilterConfig`
 
-- <span id="prefilterconfig-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="prefilterconfig-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for PrefilterConfig`
 
 - <span id="prefilterconfig-default"></span>`fn default() -> PrefilterConfig` — [`PrefilterConfig`](searcher/index.md#prefilterconfig)
+
+##### `impl<T> From for PrefilterConfig`
+
+- <span id="prefilterconfig-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PrefilterConfig`
+
+- <span id="prefilterconfig-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for PrefilterConfig`
+
+- <span id="prefilterconfig-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="prefilterconfig-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="prefilterconfig-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PrefilterConfig`
+
+- <span id="prefilterconfig-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="prefilterconfig-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PrefilterConfig`
+
+- <span id="prefilterconfig-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="prefilterconfig-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

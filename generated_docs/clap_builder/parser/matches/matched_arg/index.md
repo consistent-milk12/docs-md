@@ -75,17 +75,71 @@ struct MatchedArg {
 
 #### Trait Implementations
 
+##### `impl Any for MatchedArg`
+
+- <span id="matchedarg-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MatchedArg`
+
+- <span id="matchedarg-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MatchedArg`
+
+- <span id="matchedarg-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for MatchedArg`
 
 - <span id="matchedarg-clone"></span>`fn clone(&self) -> MatchedArg` — [`MatchedArg`](#matchedarg)
 
+##### `impl CloneToUninit for MatchedArg`
+
+- <span id="matchedarg-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for MatchedArg`
 
-- <span id="matchedarg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="matchedarg-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for MatchedArg`
 
+##### `impl<T> From for MatchedArg`
+
+- <span id="matchedarg-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MatchedArg`
+
+- <span id="matchedarg-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for MatchedArg`
 
-- <span id="matchedarg-eq"></span>`fn eq(&self, other: &MatchedArg) -> bool` — [`MatchedArg`](#matchedarg)
+- <span id="matchedarg-partialeq-eq"></span>`fn eq(&self, other: &MatchedArg) -> bool` — [`MatchedArg`](#matchedarg)
+
+##### `impl ToOwned for MatchedArg`
+
+- <span id="matchedarg-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="matchedarg-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="matchedarg-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MatchedArg`
+
+- <span id="matchedarg-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="matchedarg-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MatchedArg`
+
+- <span id="matchedarg-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="matchedarg-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

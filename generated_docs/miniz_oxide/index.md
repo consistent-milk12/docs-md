@@ -75,27 +75,73 @@ A structure containing the result of a call to the inflate or deflate streaming 
 
 #### Trait Implementations
 
+##### `impl Any for StreamResult`
+
+- <span id="streamresult-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StreamResult`
+
+- <span id="streamresult-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StreamResult`
+
+- <span id="streamresult-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for StreamResult`
 
 - <span id="streamresult-clone"></span>`fn clone(&self) -> StreamResult` — [`StreamResult`](#streamresult)
+
+##### `impl CloneToUninit for StreamResult`
+
+- <span id="streamresult-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for StreamResult`
 
 ##### `impl Debug for StreamResult`
 
-- <span id="streamresult-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="streamresult-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for StreamResult`
+
+##### `impl<T> From for StreamResult`
+
+- <span id="streamresult-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for StreamResult`
 
 - <span id="streamresult-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for StreamResult`
+
+- <span id="streamresult-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for StreamResult`
 
-- <span id="streamresult-eq"></span>`fn eq(&self, other: &StreamResult) -> bool` — [`StreamResult`](#streamresult)
+- <span id="streamresult-partialeq-eq"></span>`fn eq(&self, other: &StreamResult) -> bool` — [`StreamResult`](#streamresult)
 
 ##### `impl StructuralPartialEq for StreamResult`
+
+##### `impl<U> TryFrom for StreamResult`
+
+- <span id="streamresult-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="streamresult-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StreamResult`
+
+- <span id="streamresult-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="streamresult-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -154,29 +200,81 @@ See <http://www.bolet.org/~pornin/deflate-flush.html> for more in-depth info.
 
 - <span id="mzflush-new"></span>`fn new(flush: i32) -> Result<Self, MZError>` — [`MZError`](#mzerror)
 
+  Create an MZFlush value from an integer value.
+
+  
+
+  Returns `MZError::Param` on invalid values.
+
 #### Trait Implementations
+
+##### `impl Any for MZFlush`
+
+- <span id="mzflush-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MZFlush`
+
+- <span id="mzflush-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MZFlush`
+
+- <span id="mzflush-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for MZFlush`
 
 - <span id="mzflush-clone"></span>`fn clone(&self) -> MZFlush` — [`MZFlush`](#mzflush)
 
+##### `impl CloneToUninit for MZFlush`
+
+- <span id="mzflush-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for MZFlush`
 
 ##### `impl Debug for MZFlush`
 
-- <span id="mzflush-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mzflush-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for MZFlush`
+
+##### `impl<T> From for MZFlush`
+
+- <span id="mzflush-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for MZFlush`
 
 - <span id="mzflush-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for MZFlush`
+
+- <span id="mzflush-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for MZFlush`
 
-- <span id="mzflush-eq"></span>`fn eq(&self, other: &MZFlush) -> bool` — [`MZFlush`](#mzflush)
+- <span id="mzflush-partialeq-eq"></span>`fn eq(&self, other: &MZFlush) -> bool` — [`MZFlush`](#mzflush)
 
 ##### `impl StructuralPartialEq for MZFlush`
+
+##### `impl<U> TryFrom for MZFlush`
+
+- <span id="mzflush-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="mzflush-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MZFlush`
+
+- <span id="mzflush-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="mzflush-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MZStatus`
 
@@ -218,27 +316,73 @@ These are emitted as the [`Ok`](#ok) side of a [`MZResult`](#mzresult) in the [`
 
 #### Trait Implementations
 
+##### `impl Any for MZStatus`
+
+- <span id="mzstatus-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MZStatus`
+
+- <span id="mzstatus-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MZStatus`
+
+- <span id="mzstatus-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for MZStatus`
 
 - <span id="mzstatus-clone"></span>`fn clone(&self) -> MZStatus` — [`MZStatus`](#mzstatus)
+
+##### `impl CloneToUninit for MZStatus`
+
+- <span id="mzstatus-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for MZStatus`
 
 ##### `impl Debug for MZStatus`
 
-- <span id="mzstatus-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mzstatus-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for MZStatus`
+
+##### `impl<T> From for MZStatus`
+
+- <span id="mzstatus-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for MZStatus`
 
 - <span id="mzstatus-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for MZStatus`
+
+- <span id="mzstatus-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for MZStatus`
 
-- <span id="mzstatus-eq"></span>`fn eq(&self, other: &MZStatus) -> bool` — [`MZStatus`](#mzstatus)
+- <span id="mzstatus-partialeq-eq"></span>`fn eq(&self, other: &MZStatus) -> bool` — [`MZStatus`](#mzstatus)
 
 ##### `impl StructuralPartialEq for MZStatus`
+
+##### `impl<U> TryFrom for MZStatus`
+
+- <span id="mzstatus-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="mzstatus-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MZStatus`
+
+- <span id="mzstatus-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="mzstatus-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MZError`
 
@@ -306,27 +450,73 @@ These are emitted as the `Err` side of a [`MZResult`](#mzresult) in the [`Stream
 
 #### Trait Implementations
 
+##### `impl Any for MZError`
+
+- <span id="mzerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MZError`
+
+- <span id="mzerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MZError`
+
+- <span id="mzerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for MZError`
 
 - <span id="mzerror-clone"></span>`fn clone(&self) -> MZError` — [`MZError`](#mzerror)
+
+##### `impl CloneToUninit for MZError`
+
+- <span id="mzerror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for MZError`
 
 ##### `impl Debug for MZError`
 
-- <span id="mzerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mzerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for MZError`
+
+##### `impl<T> From for MZError`
+
+- <span id="mzerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for MZError`
 
 - <span id="mzerror-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for MZError`
+
+- <span id="mzerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for MZError`
 
-- <span id="mzerror-eq"></span>`fn eq(&self, other: &MZError) -> bool` — [`MZError`](#mzerror)
+- <span id="mzerror-partialeq-eq"></span>`fn eq(&self, other: &MZError) -> bool` — [`MZError`](#mzerror)
 
 ##### `impl StructuralPartialEq for MZError`
+
+##### `impl<U> TryFrom for MZError`
+
+- <span id="mzerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="mzerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MZError`
+
+- <span id="mzerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="mzerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DataFormat`
 
@@ -365,27 +555,73 @@ How compressed data is wrapped.
 
 #### Trait Implementations
 
+##### `impl Any for DataFormat`
+
+- <span id="dataformat-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DataFormat`
+
+- <span id="dataformat-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DataFormat`
+
+- <span id="dataformat-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DataFormat`
 
 - <span id="dataformat-clone"></span>`fn clone(&self) -> DataFormat` — [`DataFormat`](#dataformat)
+
+##### `impl CloneToUninit for DataFormat`
+
+- <span id="dataformat-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DataFormat`
 
 ##### `impl Debug for DataFormat`
 
-- <span id="dataformat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dataformat-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for DataFormat`
+
+##### `impl<T> From for DataFormat`
+
+- <span id="dataformat-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DataFormat`
 
 - <span id="dataformat-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DataFormat`
+
+- <span id="dataformat-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for DataFormat`
 
-- <span id="dataformat-eq"></span>`fn eq(&self, other: &DataFormat) -> bool` — [`DataFormat`](#dataformat)
+- <span id="dataformat-partialeq-eq"></span>`fn eq(&self, other: &DataFormat) -> bool` — [`DataFormat`](#dataformat)
 
 ##### `impl StructuralPartialEq for DataFormat`
+
+##### `impl<U> TryFrom for DataFormat`
+
+- <span id="dataformat-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dataformat-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DataFormat`
+
+- <span id="dataformat-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dataformat-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Type Aliases
 

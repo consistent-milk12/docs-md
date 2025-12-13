@@ -65,23 +65,77 @@ enum Ty {
 
 #### Trait Implementations
 
+##### `impl Any for Ty`
+
+- <span id="ty-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Ty`
+
+- <span id="ty-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Ty`
+
+- <span id="ty-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Ty`
 
 - <span id="ty-clone"></span>`fn clone(&self) -> Ty` — [`Ty`](#ty)
+
+##### `impl CloneToUninit for Ty`
+
+- <span id="ty-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Ty`
 
 ##### `impl Debug for Ty`
 
-- <span id="ty-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ty-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Ty`
 
+##### `impl<T> From for Ty`
+
+- <span id="ty-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Ty`
+
+- <span id="ty-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Ty`
 
-- <span id="ty-eq"></span>`fn eq(&self, other: &Ty) -> bool` — [`Ty`](#ty)
+- <span id="ty-partialeq-eq"></span>`fn eq(&self, other: &Ty) -> bool` — [`Ty`](#ty)
 
 ##### `impl StructuralPartialEq for Ty`
+
+##### `impl ToOwned for Ty`
+
+- <span id="ty-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="ty-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="ty-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Ty`
+
+- <span id="ty-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ty-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Ty`
+
+- <span id="ty-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ty-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

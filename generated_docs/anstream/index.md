@@ -116,45 +116,163 @@ to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream,
 
 - <span id="autostream-new"></span>`fn new(raw: S, choice: ColorChoice) -> Self` — [`ColorChoice`](#colorchoice)
 
+  Runtime control over styling behavior
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  #[cfg(feature = "auto")] {
+
+  use std::io::IsTerminal as _;
+
+  // Like `AutoStream::choice` but without `NO_COLOR`, `CLICOLOR_FORCE`, `CI`
+
+  fn choice(raw: &dyn anstream::stream::RawStream) -> anstream::ColorChoice {
+
+      let choice = anstream::ColorChoice::global();
+
+      if choice == anstream::ColorChoice::Auto {
+
+          if raw.is_terminal() && anstyle_query::term_supports_color() {
+
+              anstream::ColorChoice::Always
+
+          } else {
+
+              anstream::ColorChoice::Never
+
+          }
+
+      } else {
+
+          choice
+
+      }
+
+  }
+
+  
+
+  let stream = std::io::stdout();
+
+  let choice = choice(&stream);
+
+  let auto = anstream::AutoStream::new(stream, choice);
+
+  }
+
+  ```
+
 - <span id="autostream-auto"></span>`fn auto(raw: S) -> Self`
+
+  Auto-adapt for the stream's capabilities
 
 - <span id="autostream-choice"></span>`fn choice(raw: &S) -> ColorChoice` — [`ColorChoice`](#colorchoice)
 
+  Report the desired choice for the given stream
+
 - <span id="autostream-always-ansi"></span>`fn always_ansi(raw: S) -> Self`
+
+  Force ANSI escape codes to be passed through as-is, no matter what the inner `Write`
+
+  supports.
 
 - <span id="autostream-always-ansi"></span>`fn always_ansi_(raw: S) -> Self`
 
 - <span id="autostream-always"></span>`fn always(raw: S) -> Self`
 
+  Force color, no matter what the inner `Write` supports.
+
 - <span id="autostream-never"></span>`fn never(raw: S) -> Self`
+
+  Only pass printable data to the inner `Write`.
 
 - <span id="autostream-wincon"></span>`fn wincon(raw: S) -> Result<Self, S>`
 
 - <span id="autostream-into-inner"></span>`fn into_inner(self) -> S`
 
+  Get the wrapped [`RawStream`](stream/index.md)
+
 - <span id="autostream-as-inner"></span>`fn as_inner(&self) -> &S`
+
+  Get the wrapped [`RawStream`](stream/index.md)
 
 - <span id="autostream-is-terminal"></span>`fn is_terminal(&self) -> bool`
 
+  Returns `true` if the descriptor/handle refers to a terminal/tty.
+
 - <span id="autostream-current-choice"></span>`fn current_choice(&self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
+
+  Prefer `AutoStream::choice`
+
+  
+
+  This doesn't report what is requested but what is currently active.
 
 #### Trait Implementations
 
+##### `impl Any for AutoStream<S>`
+
+- <span id="autostream-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AutoStream<S>`
+
+- <span id="autostream-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AutoStream<S>`
+
+- <span id="autostream-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<S: fmt::Debug + RawStream> Debug for AutoStream<S>`
 
-- <span id="autostream-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="autostream-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AutoStream<S>`
+
+- <span id="autostream-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AutoStream<S>`
+
+- <span id="autostream-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for AutoStream<S>`
+
+- <span id="autostream-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="autostream-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AutoStream<S>`
+
+- <span id="autostream-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="autostream-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<S> Write for AutoStream<S>`
 
 - <span id="autostream-write"></span>`fn write(&mut self, buf: &[u8]) -> std::io::Result<usize>`
 
-- <span id="autostream-write-vectored"></span>`fn write_vectored(&mut self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
+- <span id="autostream-write-write-vectored"></span>`fn write_vectored(&mut self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
 
-- <span id="autostream-flush"></span>`fn flush(&mut self) -> std::io::Result<()>`
+- <span id="autostream-write-flush"></span>`fn flush(&mut self) -> std::io::Result<()>`
 
-- <span id="autostream-write-all"></span>`fn write_all(&mut self, buf: &[u8]) -> std::io::Result<()>`
+- <span id="autostream-write-write-all"></span>`fn write_all(&mut self, buf: &[u8]) -> std::io::Result<()>`
 
-- <span id="autostream-write-fmt"></span>`fn write_fmt(&mut self, args: std::fmt::Arguments<'_>) -> std::io::Result<()>`
+- <span id="autostream-write-write-fmt"></span>`fn write_fmt(&mut self, args: std::fmt::Arguments<'_>) -> std::io::Result<()>`
 
 ### `StripStream<S>`
 
@@ -175,27 +293,75 @@ Only pass printable data to the inner `Write`
 
 - <span id="stripstream-new"></span>`fn new(raw: S) -> Self`
 
+  Only pass printable data to the inner `Write`
+
 - <span id="stripstream-into-inner"></span>`fn into_inner(self) -> S`
+
+  Get the wrapped [`std::io::Write`](../fs_err/index.md)
 
 - <span id="stripstream-as-inner"></span>`fn as_inner(&self) -> &S`
 
+  Get the wrapped [`std::io::Write`](../fs_err/index.md)
+
 #### Trait Implementations
+
+##### `impl Any for StripStream<S>`
+
+- <span id="stripstream-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StripStream<S>`
+
+- <span id="stripstream-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StripStream<S>`
+
+- <span id="stripstream-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<S> Debug for StripStream<S>`
 
-- <span id="stripstream-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stripstream-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for StripStream<S>`
+
+- <span id="stripstream-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StripStream<S>`
+
+- <span id="stripstream-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for StripStream<S>`
+
+- <span id="stripstream-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="stripstream-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StripStream<S>`
+
+- <span id="stripstream-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="stripstream-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<S> Write for StripStream<S>`
 
 - <span id="stripstream-write"></span>`fn write(&mut self, buf: &[u8]) -> std::io::Result<usize>`
 
-- <span id="stripstream-write-vectored"></span>`fn write_vectored(&mut self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
+- <span id="stripstream-write-write-vectored"></span>`fn write_vectored(&mut self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
 
-- <span id="stripstream-flush"></span>`fn flush(&mut self) -> std::io::Result<()>`
+- <span id="stripstream-write-flush"></span>`fn flush(&mut self) -> std::io::Result<()>`
 
-- <span id="stripstream-write-all"></span>`fn write_all(&mut self, buf: &[u8]) -> std::io::Result<()>`
+- <span id="stripstream-write-write-all"></span>`fn write_all(&mut self, buf: &[u8]) -> std::io::Result<()>`
 
-- <span id="stripstream-write-fmt"></span>`fn write_fmt(&mut self, args: std::fmt::Arguments<'_>) -> std::io::Result<()>`
+- <span id="stripstream-write-write-fmt"></span>`fn write_fmt(&mut self, args: std::fmt::Arguments<'_>) -> std::io::Result<()>`
 
 ## Functions
 

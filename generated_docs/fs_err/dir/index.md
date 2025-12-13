@@ -39,9 +39,39 @@ This struct is created via `fs_err::read_dir`.
 
 #### Trait Implementations
 
+##### `impl Any for ReadDir`
+
+- <span id="readdir-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ReadDir`
+
+- <span id="readdir-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ReadDir`
+
+- <span id="readdir-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ReadDir`
 
-- <span id="readdir-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="readdir-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ReadDir`
+
+- <span id="readdir-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ReadDir`
+
+- <span id="readdir-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ReadDir`
 
@@ -49,13 +79,25 @@ This struct is created via `fs_err::read_dir`.
 
 - <span id="readdir-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="readdir-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="readdir-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ReadDir`
 
 - <span id="readdir-iterator-type-item"></span>`type Item = Result<DirEntry, Error>`
 
-- <span id="readdir-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="readdir-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for ReadDir`
+
+- <span id="readdir-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="readdir-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ReadDir`
+
+- <span id="readdir-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="readdir-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DirEntry`
 
@@ -75,21 +117,87 @@ helpful information to all errors.
 
 - <span id="direntry-path"></span>`fn path(&self) -> PathBuf`
 
+  Returns the full path to the file that this entry represents.
+
+  
+
+  Wrapper for [`DirEntry::path`](https://doc.rust-lang.org/stable/std/fs/struct.DirEntry.html#method.path).
+
 - <span id="direntry-metadata"></span>`fn metadata(&self) -> io::Result<fs::Metadata>`
+
+  Returns the metadata for the file that this entry points at.
+
+  
+
+  Wrapper for [`DirEntry::metadata`](https://doc.rust-lang.org/stable/std/fs/struct.DirEntry.html#method.metadata).
 
 - <span id="direntry-file-type"></span>`fn file_type(&self) -> io::Result<fs::FileType>`
 
+  Returns the file type for the file that this entry points at.
+
+  
+
+  Wrapper for [`DirEntry::file_type`](https://doc.rust-lang.org/stable/std/fs/struct.DirEntry.html#method.file_type).
+
 - <span id="direntry-file-name"></span>`fn file_name(&self) -> OsString`
+
+  Returns the file name of this directory entry without any leading path component(s).
+
+  
+
+  Wrapper for [`DirEntry::file_name`](https://doc.rust-lang.org/stable/std/fs/struct.DirEntry.html#method.file_name).
 
 #### Trait Implementations
 
+##### `impl Any for DirEntry`
+
+- <span id="direntry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DirEntry`
+
+- <span id="direntry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DirEntry`
+
+- <span id="direntry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for DirEntry`
 
-- <span id="direntry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="direntry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DirEntryExt for DirEntry`
 
-- <span id="direntry-ino"></span>`fn ino(&self) -> u64`
+- <span id="direntry-direntryext-ino"></span>`fn ino(&self) -> u64`
+
+##### `impl<T> From for DirEntry`
+
+- <span id="direntry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DirEntry`
+
+- <span id="direntry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DirEntry`
+
+- <span id="direntry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="direntry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DirEntry`
+
+- <span id="direntry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="direntry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

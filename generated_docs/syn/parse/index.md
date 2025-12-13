@@ -116,7 +116,7 @@ The `parse_quote!` macro also uses this approach.
 
 Some types can be parsed in several ways depending on context. For example
 an [`Attribute`](../attr/index.md) can be either "outer" like `#[...]` or "inner" like
-`#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](../punctuated/index.md)
+`#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](../index.md)
 may or may not allow trailing punctuation, and parsing it the wrong way
 would either reject valid input or accept invalid input.
 
@@ -332,29 +332,211 @@ mod expand {
 
 - <span id="error-new"></span>`fn new<T: Display>(span: Span, message: T) -> Self`
 
+  Usually the `ParseStream::error` method will be used instead, which
+
+  automatically uses the correct span from the current position of the
+
+  parse stream.
+
+  
+
+  Use `Error::new` when the error needs to be triggered on some span other
+
+  than where the parse stream is currently positioned.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use syn::{Error, Ident, LitStr, Result, Token};
+
+  use syn::parse::ParseStream;
+
+  
+
+  // Parses input that looks like `name = "string"` where the key must be
+
+  // the identifier `name` and the value may be any string literal.
+
+  // Returns the string literal.
+
+  fn parse_name(input: ParseStream) -> Result<LitStr> {
+
+      let name_token: Ident = input.parse()?;
+
+      if name_token != "name" {
+
+          // Trigger an error not on the current position of the stream,
+
+          // but on the position of the unexpected identifier.
+
+          return Err(Error::new(name_token.span(), "expected `name`"));
+
+      }
+
+      input.parse::<Token![=]>()?;
+
+      let s: LitStr = input.parse()?;
+
+      Ok(s)
+
+  }
+
+  ```
+
 - <span id="error-new-spanned"></span>`fn new_spanned<T: ToTokens, U: Display>(tokens: T, message: U) -> Self`
+
+  Creates an error with the specified message spanning the given syntax
+
+  tree node.
+
+  
+
+  Unlike the `Error::new` constructor, this constructor takes an argument
+
+  `tokens` which is a syntax tree node. This allows the resulting `Error`
+
+  to attempt to span all tokens inside of `tokens`. While you would
+
+  typically be able to use the `Spanned` trait with the above `Error::new`
+
+  constructor, implementation limitations today mean that
+
+  `Error::new_spanned` may provide a higher-quality error message on
+
+  stable Rust.
+
+  
+
+  When in doubt it's recommended to stick to `Error::new` (or
+
+  `ParseStream::error`)!
 
 - <span id="error-span"></span>`fn span(&self) -> Span`
 
+  The source location of the error.
+
+  
+
+  Spans are not thread-safe so this function returns `Span::call_site()`
+
+  if called from a different thread than the one on which the `Error` was
+
+  originally created.
+
 - <span id="error-to-compile-error"></span>`fn to_compile_error(&self) -> TokenStream`
+
+  Render the error as an invocation of `compile_error!`.
+
+  
+
+  The `parse_macro_input!` macro provides a convenient way to invoke
+
+  this method correctly in a procedural macro.
+
+  
 
 - <span id="error-into-compile-error"></span>`fn into_compile_error(self) -> TokenStream`
 
+  Render the error as an invocation of `compile_error!`.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  extern crate proc_macro;
+
+  
+
+  use proc_macro::TokenStream;
+
+  use syn::{parse_macro_input, DeriveInput, Error};
+
+  
+
+  const _: &str = stringify! {
+
+  #[proc_macro_derive(MyTrait)]
+
+  };
+
+  pub fn derive_my_trait(input: TokenStream) -> TokenStream {
+
+      let input = parse_macro_input!(input as DeriveInput);
+
+      my_trait::expand(input)
+
+          .unwrap_or_else(Error::into_compile_error)
+
+          .into()
+
+  }
+
+  
+
+  mod my_trait {
+
+      use proc_macro2::TokenStream;
+
+      use syn::{DeriveInput, Result};
+
+  
+
+      pub(crate) fn expand(input: DeriveInput) -> Result<TokenStream> {
+
+          /* ... */
+
+          unimplemented!()
+
+      }
+
+  }
+
+  ```
+
 - <span id="error-combine"></span>`fn combine(&mut self, another: Error)` — [`Error`](../error/index.md#error)
 
+  Add another error message to self such that when `to_compile_error()` is
+
+  called, both errors will be emitted together.
+
 #### Trait Implementations
+
+##### `impl Any for Error`
+
+- <span id="error-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Error`
+
+- <span id="error-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Error`
+
+- <span id="error-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Error`
 
 - <span id="error-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for Error`
+
+- <span id="error-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Error`
 
-- <span id="error-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- <span id="error-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for Error`
 
@@ -362,17 +544,55 @@ mod expand {
 
 - <span id="error-extend"></span>`fn extend<T: IntoIterator<Item = Error>>(&mut self, iter: T)`
 
+##### `impl<T> From for Error`
+
+- <span id="error-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Error`
+
+- <span id="error-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoIterator for Error`
 
 - <span id="error-intoiterator-type-item"></span>`type Item = Error`
 
 - <span id="error-intoiterator-type-intoiter"></span>`type IntoIter = IntoIter`
 
-- <span id="error-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+- <span id="error-intoiterator-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+
+##### `impl ToOwned for Error`
+
+- <span id="error-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="error-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="error-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for Error`
 
-- <span id="error-to-string"></span>`fn to_string(&self) -> String`
+- <span id="error-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Error`
+
+- <span id="error-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="error-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Error`
+
+- <span id="error-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="error-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `End`
 
@@ -515,21 +735,75 @@ Ok(())
 
 #### Trait Implementations
 
+##### `impl Any for End`
+
+- <span id="end-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for End`
+
+- <span id="end-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for End`
+
+- <span id="end-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for End`
 
 - <span id="end-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for End`
+
+- <span id="end-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for End`
+
+##### `impl<T> From for End`
+
+- <span id="end-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for End`
+
+- <span id="end-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Peek for End`
 
 ##### `impl Sealed for End`
 
+##### `impl ToOwned for End`
+
+- <span id="end-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="end-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="end-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl Token for End`
 
-- <span id="end-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../buffer/index.md#cursor)
+- <span id="end-token-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../buffer/index.md#cursor)
 
-- <span id="end-display"></span>`fn display() -> &'static str`
+- <span id="end-token-display"></span>`fn display() -> &'static str`
+
+##### `impl<U> TryFrom for End`
+
+- <span id="end-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="end-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for End`
+
+- <span id="end-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="end-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Lookahead1<'a>`
 
@@ -599,7 +873,87 @@ impl Parse for GenericParam {
 
 - <span id="lookahead1-peek"></span>`fn peek<T: Peek>(&self, token: T) -> bool`
 
+  Looks at the next token in the parse stream to determine whether it
+
+  matches the requested type of token.
+
+  
+
+  # Syntax
+
+  
+
+  Note that this method does not use turbofish syntax. Pass the peek type
+
+  inside of parentheses.
+
+  
+
+  - `input.peek(Token![struct])`
+
+  - `input.peek(Token![==])`
+
+  - `input.peek(Ident)`&emsp;*(does not accept keywords)*
+
+  - `input.peek(Ident::peek_any)`
+
+  - `input.peek(Lifetime)`
+
+  - `input.peek(token::Brace)`
+
 - <span id="lookahead1-error"></span>`fn error(self) -> Error` — [`Error`](../error/index.md#error)
+
+  Triggers an error at the current position of the parse stream.
+
+  
+
+  The error message will identify all of the expected token types that
+
+  have been peeked against this lookahead instance.
+
+#### Trait Implementations
+
+##### `impl Any for Lookahead1<'a>`
+
+- <span id="lookahead1-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Lookahead1<'a>`
+
+- <span id="lookahead1-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Lookahead1<'a>`
+
+- <span id="lookahead1-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Lookahead1<'a>`
+
+- <span id="lookahead1-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Lookahead1<'a>`
+
+- <span id="lookahead1-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Lookahead1<'a>`
+
+- <span id="lookahead1-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lookahead1-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Lookahead1<'a>`
+
+- <span id="lookahead1-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lookahead1-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ParseBuffer<'a>`
 
@@ -638,59 +992,1249 @@ you will need to go through one of the public parsing entry points.
 
 - <span id="parsebuffer-parse"></span>`fn parse<T: Parse>(&self) -> Result<T>` — [`Result`](../error/index.md#result)
 
+  Parses a syntax tree node of type `T`, advancing the position of our
+
+  parse stream past it.
+
 - <span id="parsebuffer-call"></span>`fn call<T>(self: &'a Self, function: fn(ParseStream<'a>) -> Result<T>) -> Result<T>` — [`ParseStream`](#parsestream), [`Result`](../error/index.md#result)
+
+  Calls the given parser function to parse a syntax tree node of type `T`
+
+  from this stream.
+
+  
+
+  # Example
+
+  
+
+  The parser below invokes `Attribute::parse_outer` to parse a vector of
+
+  zero or more outer attributes.
+
+  
+
+  ```rust
+
+  use syn::{Attribute, Ident, Result, Token};
+
+  use syn::parse::{Parse, ParseStream};
+
+  
+
+  // Parses a unit struct with attributes.
+
+  //
+
+  //     #[path = "s.tmpl"]
+
+  //     struct S;
+
+  struct UnitStruct {
+
+      attrs: Vec<Attribute>,
+
+      struct_token: Token![struct],
+
+      name: Ident,
+
+      semi_token: Token![;],
+
+  }
+
+  
+
+  impl Parse for UnitStruct {
+
+      fn parse(input: ParseStream) -> Result<Self> {
+
+          Ok(UnitStruct {
+
+              attrs: input.call(Attribute::parse_outer)?,
+
+              struct_token: input.parse()?,
+
+              name: input.parse()?,
+
+              semi_token: input.parse()?,
+
+          })
+
+      }
+
+  }
+
+  ```
 
 - <span id="parsebuffer-peek"></span>`fn peek<T: Peek>(&self, token: T) -> bool`
 
+  Looks at the next token in the parse stream to determine whether it
+
+  matches the requested type of token.
+
+  
+
+  Does not advance the position of the parse stream.
+
+  
+
+  # Syntax
+
+  
+
+  Note that this method does not use turbofish syntax. Pass the peek type
+
+  inside of parentheses.
+
+  
+
+  - `input.peek(Token![struct])`
+
+  - `input.peek(Token![==])`
+
+  - `input.peek(syn::Ident)`&emsp;*(does not accept keywords)*
+
+  - `input.peek(syn::Ident::peek_any)`
+
+  - `input.peek(Lifetime)`
+
+  - `input.peek(token::Brace)`
+
+  
+
+  # Example
+
+  
+
+  In this example we finish parsing the list of supertraits when the next
+
+  token in the input is either `where` or an opening curly brace.
+
+  
+
+  ```rust
+
+  use syn::{braced, token, Generics, Ident, Result, Token, TypeParamBound};
+
+  use syn::parse::{Parse, ParseStream};
+
+  use syn::punctuated::Punctuated;
+
+  
+
+  // Parses a trait definition containing no associated items.
+
+  //
+
+  //     trait Marker<'de, T>: A + B<'de> where Box<T>: Clone {}
+
+  struct MarkerTrait {
+
+      trait_token: Token![trait],
+
+      ident: Ident,
+
+      generics: Generics,
+
+      colon_token: Option<Token![:]>,
+
+      supertraits: Punctuated<TypeParamBound, Token![+]>,
+
+      brace_token: token::Brace,
+
+  }
+
+  
+
+  impl Parse for MarkerTrait {
+
+      fn parse(input: ParseStream) -> Result<Self> {
+
+          let trait_token: Token![trait] = input.parse()?;
+
+          let ident: Ident = input.parse()?;
+
+          let mut generics: Generics = input.parse()?;
+
+          let colon_token: Option<Token![:]> = input.parse()?;
+
+  
+
+          let mut supertraits = Punctuated::new();
+
+          if colon_token.is_some() {
+
+              loop {
+
+                  supertraits.push_value(input.parse()?);
+
+                  if input.peek(Token![where]) || input.peek(token::Brace) {
+
+                      break;
+
+                  }
+
+                  supertraits.push_punct(input.parse()?);
+
+              }
+
+          }
+
+  
+
+          generics.where_clause = input.parse()?;
+
+          let content;
+
+          let empty_brace_token = braced!(content in input);
+
+  
+
+          Ok(MarkerTrait {
+
+              trait_token,
+
+              ident,
+
+              generics,
+
+              colon_token,
+
+              supertraits,
+
+              brace_token: empty_brace_token,
+
+          })
+
+      }
+
+  }
+
+  ```
+
 - <span id="parsebuffer-peek2"></span>`fn peek2<T: Peek>(&self, token: T) -> bool`
+
+  Looks at the second-next token in the parse stream.
+
+  
+
+  This is commonly useful as a way to implement contextual keywords.
+
+  
+
+  # Example
+
+  
+
+  This example needs to use `peek2` because the symbol `union` is not a
+
+  keyword in Rust. We can't use just `peek` and decide to parse a union if
+
+  the very next token is `union`, because someone is free to write a `mod
+
+  union` and a macro invocation that looks like `union::some_macro! { ...
+
+  }`. In other words `union` is a contextual keyword.
+
+  
+
+  ```rust
+
+  use syn::{Ident, ItemUnion, Macro, Result, Token};
+
+  use syn::parse::{Parse, ParseStream};
+
+  
+
+  // Parses either a union or a macro invocation.
+
+  enum UnionOrMacro {
+
+      // union MaybeUninit<T> { uninit: (), value: T }
+
+      Union(ItemUnion),
+
+      // lazy_static! { ... }
+
+      Macro(Macro),
+
+  }
+
+  
+
+  impl Parse for UnionOrMacro {
+
+      fn parse(input: ParseStream) -> Result<Self> {
+
+          if input.peek(Token![union]) && input.peek2(Ident) {
+
+              input.parse().map(UnionOrMacro::Union)
+
+          } else {
+
+              input.parse().map(UnionOrMacro::Macro)
+
+          }
+
+      }
+
+  }
+
+  ```
 
 - <span id="parsebuffer-peek3"></span>`fn peek3<T: Peek>(&self, token: T) -> bool`
 
+  Looks at the third-next token in the parse stream.
+
 - <span id="parsebuffer-parse-terminated"></span>`fn parse_terminated<T, P>(self: &'a Self, parser: fn(ParseStream<'a>) -> Result<T>, separator: P) -> Result<Punctuated<T, <P as >::Token>>` — [`ParseStream`](#parsestream), [`Result`](../error/index.md#result), [`Punctuated`](../punctuated/index.md#punctuated), [`Peek`](../lookahead/index.md#peek)
+
+  Parses zero or more occurrences of `T` separated by punctuation of type
+
+  `P`, with optional trailing punctuation.
+
+  
+
+  Parsing continues until the end of this parse stream. The entire content
+
+  of this parse stream must consist of `T` and `P`.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use quote::quote;
+
+  
+
+  use syn::{parenthesized, token, Ident, Result, Token, Type};
+
+  use syn::parse::{Parse, ParseStream};
+
+  use syn::punctuated::Punctuated;
+
+  
+
+  // Parse a simplified tuple struct syntax like:
+
+  //
+
+  //     struct S(A, B);
+
+  struct TupleStruct {
+
+      struct_token: Token![struct],
+
+      ident: Ident,
+
+      paren_token: token::Paren,
+
+      fields: Punctuated<Type, Token![,]>,
+
+      semi_token: Token![;],
+
+  }
+
+  
+
+  impl Parse for TupleStruct {
+
+      fn parse(input: ParseStream) -> Result<Self> {
+
+          let content;
+
+          Ok(TupleStruct {
+
+              struct_token: input.parse()?,
+
+              ident: input.parse()?,
+
+              paren_token: parenthesized!(content in input),
+
+              fields: content.parse_terminated(Type::parse, Token![,])?,
+
+              semi_token: input.parse()?,
+
+          })
+
+      }
+
+  }
+
+  
+
+  let input = quote! {
+
+      struct S(A, B);
+
+  };
+
+  syn::parse2::<TupleStruct>(input).unwrap();
+
+  ```
+
+  
+
+  # See also
+
+  
+
+  If your separator is anything more complicated than an invocation of the
+
+  `Token!` macro, this method won't be applicable and you can instead
+
+  directly use `Punctuated`'s parser functions: `parse_terminated`,
+
+  `parse_separated_nonempty` etc.
+
+  
+
+  
+
+  ```rust
+
+  use syn::{custom_keyword, Expr, Result, Token};
+
+  use syn::parse::{Parse, ParseStream};
+
+  use syn::punctuated::Punctuated;
+
+  
+
+  mod kw {
+
+      syn::custom_keyword!(fin);
+
+  }
+
+  
+
+  struct Fin(kw::fin, Token![;]);
+
+  
+
+  impl Parse for Fin {
+
+      fn parse(input: ParseStream) -> Result<Self> {
+
+          Ok(Self(input.parse()?, input.parse()?))
+
+      }
+
+  }
+
+  
+
+  struct Thing {
+
+      steps: Punctuated<Expr, Fin>,
+
+  }
+
+  
+
+  impl Parse for Thing {
+
+      fn parse(input: ParseStream) -> Result<Self> {
+
+  if true {
+
+          Ok(Thing {
+
+              steps: Punctuated::parse_terminated(input)?,
+
+          })
+
+  } else {
+
+          // or equivalently, this means the same thing:
+
+        Ok(Thing {
+
+              steps: input.call(Punctuated::parse_terminated)?,
+
+        })
+
+  }
+
+      }
+
+  }
+
+  ```
 
 - <span id="parsebuffer-is-empty"></span>`fn is_empty(&self) -> bool`
 
+  Returns whether there are no more tokens remaining to be parsed from
+
+  this stream.
+
+  
+
+  This method returns true upon reaching the end of the content within a
+
+  set of delimiters, as well as at the end of the tokens provided to the
+
+  outermost parsing entry point.
+
+  
+
+  This is equivalent to
+
+  <code>.<a href="#method.peek">peek</a>(<a href="struct.End.html">syn::parse::End</a>)</code>.
+
+  Use `.peek2(End)` or `.peek3(End)` to look for the end of a parse stream
+
+  further ahead than the current position.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use syn::{braced, token, Ident, Item, Result, Token};
+
+  use syn::parse::{Parse, ParseStream};
+
+  
+
+  // Parses a Rust `mod m { ... }` containing zero or more items.
+
+  struct Mod {
+
+      mod_token: Token![mod],
+
+      name: Ident,
+
+      brace_token: token::Brace,
+
+      items: Vec<Item>,
+
+  }
+
+  
+
+  impl Parse for Mod {
+
+      fn parse(input: ParseStream) -> Result<Self> {
+
+          let content;
+
+          Ok(Mod {
+
+              mod_token: input.parse()?,
+
+              name: input.parse()?,
+
+              brace_token: braced!(content in input),
+
+              items: {
+
+                  let mut items = Vec::new();
+
+                  while !content.is_empty() {
+
+                      items.push(content.parse()?);
+
+                  }
+
+                  items
+
+              },
+
+          })
+
+      }
+
+  }
+
+  ```
+
 - <span id="parsebuffer-lookahead1"></span>`fn lookahead1(&self) -> Lookahead1<'a>` — [`Lookahead1`](../lookahead/index.md#lookahead1)
+
+  Constructs a helper for peeking at the next token in this stream and
+
+  building an error message if it is not one of a set of expected tokens.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use syn::{ConstParam, Ident, Lifetime, LifetimeParam, Result, Token, TypeParam};
+
+  use syn::parse::{Parse, ParseStream};
+
+  
+
+  // A generic parameter, a single one of the comma-separated elements inside
+
+  // angle brackets in:
+
+  //
+
+  //     fn f<T: Clone, 'a, 'b: 'a, const N: usize>() { ... }
+
+  //
+
+  // On invalid input, lookahead gives us a reasonable error message.
+
+  //
+
+  //     error: expected one of: identifier, lifetime, `const`
+
+  //       |
+
+  //     5 |     fn f<!Sized>() {}
+
+  //       |          ^
+
+  enum GenericParam {
+
+      Type(TypeParam),
+
+      Lifetime(LifetimeParam),
+
+      Const(ConstParam),
+
+  }
+
+  
+
+  impl Parse for GenericParam {
+
+      fn parse(input: ParseStream) -> Result<Self> {
+
+          let lookahead = input.lookahead1();
+
+          if lookahead.peek(Ident) {
+
+              input.parse().map(GenericParam::Type)
+
+          } else if lookahead.peek(Lifetime) {
+
+              input.parse().map(GenericParam::Lifetime)
+
+          } else if lookahead.peek(Token![const]) {
+
+              input.parse().map(GenericParam::Const)
+
+          } else {
+
+              Err(lookahead.error())
+
+          }
+
+      }
+
+  }
+
+  ```
 
 - <span id="parsebuffer-fork"></span>`fn fork(&self) -> Self`
 
+  Forks a parse stream so that parsing tokens out of either the original
+
+  or the fork does not advance the position of the other.
+
+  
+
+  # Performance
+
+  
+
+  Forking a parse stream is a cheap fixed amount of work and does not
+
+  involve copying token buffers. Where you might hit performance problems
+
+  is if your macro ends up parsing a large amount of content more than
+
+  once.
+
+  
+
+  ```rust
+
+  use syn::{Expr, Result};
+
+  use syn::parse::ParseStream;
+
+  
+
+  fn bad(input: ParseStream) -> Result<Expr> {
+
+  // Do not do this.
+
+  if input.fork().parse::<Expr>().is_ok() {
+
+      return input.parse::<Expr>();
+
+  }
+
+  unimplemented!()
+
+  }
+
+  ```
+
+  
+
+  As a rule, avoid parsing an unbounded amount of tokens out of a forked
+
+  parse stream. Only use a fork when the amount of work performed against
+
+  the fork is small and bounded.
+
+  
+
+  When complex speculative parsing against the forked stream is
+
+  unavoidable, use `parse::discouraged::Speculative` to advance the
+
+  original stream once the fork's parse is determined to have been
+
+  successful.
+
+  
+
+  For a lower level way to perform speculative parsing at the token level,
+
+  consider using `ParseStream::step` instead.
+
+  
+
+  
+
+  # Example
+
+  
+
+  The parse implementation shown here parses possibly restricted `pub`
+
+  visibilities.
+
+  
+
+  - `pub`
+
+  - `pub(crate)`
+
+  - `pub(self)`
+
+  - `pub(super)`
+
+  - `pub(in some::path)`
+
+  
+
+  To handle the case of visibilities inside of tuple structs, the parser
+
+  needs to distinguish parentheses that specify visibility restrictions
+
+  from parentheses that form part of a tuple type.
+
+  
+
+  ```rust
+
+  struct A;
+
+  struct B;
+
+  struct C;
+
+  
+
+  struct S(pub(crate) A, pub (B, C));
+
+  ```
+
+  
+
+  In this example input the first tuple struct element of `S` has
+
+  `pub(crate)` visibility while the second tuple struct element has `pub`
+
+  visibility; the parentheses around `(B, C)` are part of the type rather
+
+  than part of a visibility restriction.
+
+  
+
+  The parser uses a forked parse stream to check the first token inside of
+
+  parentheses after the `pub` keyword. This is a small bounded amount of
+
+  work performed against the forked parse stream.
+
+  
+
+  ```rust
+
+  use syn::{parenthesized, token, Ident, Path, Result, Token};
+
+  use syn::ext::IdentExt;
+
+  use syn::parse::{Parse, ParseStream};
+
+  
+
+  struct PubVisibility {
+
+      pub_token: Token![pub],
+
+      restricted: Option<Restricted>,
+
+  }
+
+  
+
+  struct Restricted {
+
+      paren_token: token::Paren,
+
+      in_token: Option<Token![in]>,
+
+      path: Path,
+
+  }
+
+  
+
+  impl Parse for PubVisibility {
+
+      fn parse(input: ParseStream) -> Result<Self> {
+
+          let pub_token: Token![pub] = input.parse()?;
+
+  
+
+          if input.peek(token::Paren) {
+
+              let ahead = input.fork();
+
+              let mut content;
+
+              parenthesized!(content in ahead);
+
+  
+
+              if content.peek(Token![crate])
+
+                  || content.peek(Token![self])
+
+                  || content.peek(Token![super])
+
+              {
+
+                  return Ok(PubVisibility {
+
+                      pub_token,
+
+                      restricted: Some(Restricted {
+
+                          paren_token: parenthesized!(content in input),
+
+                          in_token: None,
+
+                          path: Path::from(content.call(Ident::parse_any)?),
+
+                      }),
+
+                  });
+
+              } else if content.peek(Token![in]) {
+
+                  return Ok(PubVisibility {
+
+                      pub_token,
+
+                      restricted: Some(Restricted {
+
+                          paren_token: parenthesized!(content in input),
+
+                          in_token: Some(content.parse()?),
+
+                          path: content.call(Path::parse_mod_style)?,
+
+                      }),
+
+                  });
+
+              }
+
+          }
+
+  
+
+          Ok(PubVisibility {
+
+              pub_token,
+
+              restricted: None,
+
+          })
+
+      }
+
+  }
+
+  ```
+
 - <span id="parsebuffer-error"></span>`fn error<T: Display>(&self, message: T) -> Error` — [`Error`](../error/index.md#error)
+
+  Triggers an error at the current position of the parse stream.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use syn::{Expr, Result, Token};
+
+  use syn::parse::{Parse, ParseStream};
+
+  
+
+  // Some kind of loop: `while` or `for` or `loop`.
+
+  struct Loop {
+
+      expr: Expr,
+
+  }
+
+  
+
+  impl Parse for Loop {
+
+      fn parse(input: ParseStream) -> Result<Self> {
+
+          if input.peek(Token![while])
+
+              || input.peek(Token![for])
+
+              || input.peek(Token![loop])
+
+          {
+
+              Ok(Loop {
+
+                  expr: input.parse()?,
+
+              })
+
+          } else {
+
+              Err(input.error("expected some kind of loop"))
+
+          }
+
+      }
+
+  }
+
+  ```
 
 - <span id="parsebuffer-step"></span>`fn step<F, R>(&self, function: F) -> Result<R>` — [`Result`](../error/index.md#result)
 
+  Speculatively parses tokens from this parse stream, advancing the
+
+  position of this stream only if parsing succeeds.
+
+  
+
+  This is a powerful low-level API used for defining the `Parse` impls of
+
+  the basic built-in token types. It is not something that will be used
+
+  widely outside of the Syn codebase.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use proc_macro2::TokenTree;
+
+  use syn::Result;
+
+  use syn::parse::ParseStream;
+
+  
+
+  // This function advances the stream past the next occurrence of `@`. If
+
+  // no `@` is present in the stream, the stream position is unchanged and
+
+  // an error is returned.
+
+  fn skip_past_next_at(input: ParseStream) -> Result<()> {
+
+      input.step(|cursor| {
+
+          let mut rest = *cursor;
+
+          while let Some((tt, next)) = rest.token_tree() {
+
+              match &tt {
+
+                  TokenTree::Punct(punct) if punct.as_char() == '@' => {
+
+                      return Ok(((), next));
+
+                  }
+
+                  _ => rest = next,
+
+              }
+
+          }
+
+          Err(cursor.error("no `@` was found after this point"))
+
+      })
+
+  }
+
+  
+
+  fn remainder_after_skipping_past_next_at(
+
+      input: ParseStream,
+
+  ) -> Result<proc_macro2::TokenStream> {
+
+      skip_past_next_at(input)?;
+
+      input.parse()
+
+  }
+
+  
+
+  use syn::parse::Parser;
+
+  let remainder = remainder_after_skipping_past_next_at
+
+      .parse_str("a @ b c")
+
+      .unwrap();
+
+  assert_eq!(remainder.to_string(), "b c");
+
+  ```
+
 - <span id="parsebuffer-span"></span>`fn span(&self) -> Span`
 
+  Returns the `Span` of the next token in the parse stream, or
+
+  `Span::call_site()` if this parse stream has completely exhausted its
+
+  input `TokenStream`.
+
 - <span id="parsebuffer-cursor"></span>`fn cursor(&self) -> Cursor<'a>` — [`Cursor`](../buffer/index.md#cursor)
+
+  Provides low-level access to the token representation underlying this
+
+  parse stream.
+
+  
+
+  Cursors are immutable so no operations you perform against the cursor
+
+  will affect the state of this parse stream.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use proc_macro2::TokenStream;
+
+  use syn::buffer::Cursor;
+
+  use syn::parse::{ParseStream, Result};
+
+  
+
+  // Run a parser that returns T, but get its output as TokenStream instead of T.
+
+  // This works without T needing to implement ToTokens.
+
+  fn recognize_token_stream<T>(
+
+      recognizer: fn(ParseStream) -> Result<T>,
+
+  ) -> impl Fn(ParseStream) -> Result<TokenStream> {
+
+      move |input| {
+
+          let begin = input.cursor();
+
+          recognizer(input)?;
+
+          let end = input.cursor();
+
+          Ok(tokens_between(begin, end))
+
+      }
+
+  }
+
+  
+
+  // Collect tokens between two cursors as a TokenStream.
+
+  fn tokens_between(begin: Cursor, end: Cursor) -> TokenStream {
+
+      assert!(begin <= end);
+
+  
+
+      let mut cursor = begin;
+
+      let mut tokens = TokenStream::new();
+
+      while cursor < end {
+
+          let (token, next) = cursor.token_tree().unwrap();
+
+          tokens.extend(std::iter::once(token));
+
+          cursor = next;
+
+      }
+
+      tokens
+
+  }
+
+  
+
+  fn main() {
+
+      use quote::quote;
+
+      use syn::parse::{Parse, Parser};
+
+      use syn::Token;
+
+  
+
+      // Parse syn::Type as a TokenStream, surrounded by angle brackets.
+
+      fn example(input: ParseStream) -> Result<TokenStream> {
+
+          let _langle: Token![<] = input.parse()?;
+
+          let ty = recognize_token_stream(syn::Type::parse)(input)?;
+
+          let _rangle: Token![>] = input.parse()?;
+
+          Ok(ty)
+
+      }
+
+  
+
+      let tokens = quote! { <fn() -> u8> };
+
+      println!("{}", example.parse2(tokens).unwrap());
+
+  }
+
+  ```
 
 - <span id="parsebuffer-check-unexpected"></span>`fn check_unexpected(&self) -> Result<()>` — [`Result`](../error/index.md#result)
 
 #### Trait Implementations
 
+##### `impl Any for ParseBuffer<'a>`
+
+- <span id="parsebuffer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl AnyDelimiter for crate::parse::ParseBuffer<'a>`
 
-- <span id="crateparseparsebuffer-parse-any-delimiter"></span>`fn parse_any_delimiter(&self) -> Result<(Delimiter, DelimSpan, ParseBuffer<'_>)>` — [`Result`](../error/index.md#result), [`ParseBuffer`](#parsebuffer)
+- <span id="crateparseparsebuffer-anydelimiter-parse-any-delimiter"></span>`fn parse_any_delimiter(&self) -> Result<(Delimiter, DelimSpan, ParseBuffer<'_>)>` — [`Result`](../error/index.md#result), [`ParseBuffer`](#parsebuffer)
+
+##### `impl<T> Borrow for ParseBuffer<'a>`
+
+- <span id="parsebuffer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ParseBuffer<'a>`
+
+- <span id="parsebuffer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for ParseBuffer<'a>`
 
-- <span id="parsebuffer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parsebuffer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ParseBuffer<'a>`
 
-- <span id="parsebuffer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parsebuffer-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for ParseBuffer<'a>`
 
 - <span id="parsebuffer-drop"></span>`fn drop(&mut self)`
 
+##### `impl<T> From for ParseBuffer<'a>`
+
+- <span id="parsebuffer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ParseBuffer<'a>`
+
+- <span id="parsebuffer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl RefUnwindSafe for ParseBuffer<'a>`
 
 ##### `impl Speculative for crate::parse::ParseBuffer<'a>`
 
-- <span id="crateparseparsebuffer-advance-to"></span>`fn advance_to(&self, fork: &Self)`
+- <span id="crateparseparsebuffer-speculative-advance-to"></span>`fn advance_to(&self, fork: &Self)`
 
 ##### `impl ToString for ParseBuffer<'a>`
 
-- <span id="parsebuffer-to-string"></span>`fn to_string(&self) -> String`
+- <span id="parsebuffer-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for ParseBuffer<'a>`
+
+- <span id="parsebuffer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="parsebuffer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ParseBuffer<'a>`
+
+- <span id="parsebuffer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="parsebuffer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl UnwindSafe for ParseBuffer<'a>`
 
@@ -753,11 +2297,35 @@ assert_eq!(remainder.to_string(), "b c");
 
 - <span id="stepcursor-error"></span>`fn error<T: Display>(self, message: T) -> Error` — [`Error`](../error/index.md#error)
 
+  Triggers an error at the current position of the parse stream.
+
+  
+
+  The `ParseStream::step` invocation will return this same error without
+
+  advancing the stream state.
+
 #### Trait Implementations
+
+##### `impl Any for StepCursor<'c, 'a>`
+
+- <span id="stepcursor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StepCursor<'c, 'a>`
+
+- <span id="stepcursor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StepCursor<'c, 'a>`
+
+- <span id="stepcursor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for StepCursor<'c, 'a>`
 
 - <span id="stepcursor-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for StepCursor<'c, 'a>`
+
+- <span id="stepcursor-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for StepCursor<'c, 'a>`
 
@@ -767,9 +2335,47 @@ assert_eq!(remainder.to_string(), "b c");
 
 - <span id="stepcursor-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
+##### `impl<T> From for StepCursor<'c, 'a>`
+
+- <span id="stepcursor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StepCursor<'c, 'a>`
+
+- <span id="stepcursor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Receiver for StepCursor<'c, 'a>`
 
 - <span id="stepcursor-receiver-type-target"></span>`type Target = T`
+
+##### `impl ToOwned for StepCursor<'c, 'a>`
+
+- <span id="stepcursor-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="stepcursor-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="stepcursor-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for StepCursor<'c, 'a>`
+
+- <span id="stepcursor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="stepcursor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StepCursor<'c, 'a>`
+
+- <span id="stepcursor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="stepcursor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Nothing`
 
@@ -812,21 +2418,55 @@ error: unexpected token
 
 #### Trait Implementations
 
+##### `impl Any for Nothing`
+
+- <span id="nothing-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Nothing`
+
+- <span id="nothing-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Nothing`
+
+- <span id="nothing-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Nothing`
 
 - <span id="nothing-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for Nothing`
+
+- <span id="nothing-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Nothing`
 
 ##### `impl Debug for Nothing`
 
-- <span id="nothing-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="nothing-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Nothing`
+
+##### `impl<T> From for Nothing`
+
+- <span id="nothing-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Nothing`
 
 - <span id="nothing-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
+
+##### `impl<U> Into for Nothing`
+
+- <span id="nothing-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Nothing`
 
@@ -834,17 +2474,37 @@ error: unexpected token
 
 ##### `impl PartialEq for Nothing`
 
-- <span id="nothing-eq"></span>`fn eq(&self, _other: &Self) -> bool`
+- <span id="nothing-partialeq-eq"></span>`fn eq(&self, _other: &Self) -> bool`
 
 ##### `impl Sealed for Nothing`
 
 ##### `impl Spanned for Nothing`
 
-- <span id="nothing-span"></span>`fn span(&self) -> Span`
+- <span id="nothing-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for Nothing`
+
+- <span id="nothing-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="nothing-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="nothing-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for Nothing`
 
-- <span id="nothing-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="nothing-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for Nothing`
+
+- <span id="nothing-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="nothing-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Nothing`
+
+- <span id="nothing-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="nothing-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -862,13 +2522,67 @@ enum Unexpected {
 
 #### Trait Implementations
 
+##### `impl Any for Unexpected`
+
+- <span id="unexpected-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Unexpected`
+
+- <span id="unexpected-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Unexpected`
+
+- <span id="unexpected-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Unexpected`
 
 - <span id="unexpected-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for Unexpected`
+
+- <span id="unexpected-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Default for Unexpected`
 
 - <span id="unexpected-default"></span>`fn default() -> Self`
+
+##### `impl<T> From for Unexpected`
+
+- <span id="unexpected-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Unexpected`
+
+- <span id="unexpected-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Unexpected`
+
+- <span id="unexpected-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="unexpected-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="unexpected-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Unexpected`
+
+- <span id="unexpected-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unexpected-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Unexpected`
+
+- <span id="unexpected-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unexpected-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

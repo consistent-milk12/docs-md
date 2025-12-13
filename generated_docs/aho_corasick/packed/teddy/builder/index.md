@@ -66,29 +66,133 @@ and number of patterns given to the builder.
 
 - <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
+  Create a new builder for configuring a Teddy matcher.
+
 - <span id="builder-build"></span>`fn build(&self, patterns: Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../pattern/index.md#patterns), [`Searcher`](#searcher)
+
+  Build a matcher for the set of patterns given. If a matcher could not
+
+  be built, then `None` is returned.
+
+  
+
+  Generally, a matcher isn't built if the necessary CPU features aren't
+
+  available, an unsupported target or if the searcher is believed to be
+
+  slower than standard techniques (i.e., if there are too many literals).
 
 - <span id="builder-only-fat"></span>`fn only_fat(&mut self, yes: Option<bool>) -> &mut Builder` — [`Builder`](#builder)
 
+  Require the use of Fat (true) or Slim (false) Teddy. Fat Teddy uses
+
+  16 buckets where as Slim Teddy uses 8 buckets. More buckets are useful
+
+  for a larger set of literals.
+
+  
+
+  `None` is the default, which results in an automatic selection based
+
+  on the number of literals and available CPU features.
+
 - <span id="builder-only-256bit"></span>`fn only_256bit(&mut self, yes: Option<bool>) -> &mut Builder` — [`Builder`](#builder)
 
+  Request the use of 256-bit vectors (true) or 128-bit vectors (false).
+
+  Generally, a larger vector size is better since it either permits
+
+  matching more patterns or matching more bytes in the haystack at once.
+
+  
+
+  `None` is the default, which results in an automatic selection based on
+
+  the number of literals and available CPU features.
+
 - <span id="builder-heuristic-pattern-limits"></span>`fn heuristic_pattern_limits(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+
+  Request that heuristic limitations on the number of patterns be
+
+  employed. This useful to disable for benchmarking where one wants to
+
+  explore how Teddy performs on large number of patterns even if the
+
+  heuristics would otherwise refuse construction.
+
+  
+
+  This is enabled by default.
 
 - <span id="builder-build-imp"></span>`fn build_imp(&self, patterns: Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../pattern/index.md#patterns), [`Searcher`](#searcher)
 
 #### Trait Implementations
 
+##### `impl Any for Builder`
+
+- <span id="builder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Builder`
+
+- <span id="builder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Builder`
+
+- <span id="builder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Builder`
 
 - <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](#builder)
 
+##### `impl CloneToUninit for Builder`
+
+- <span id="builder-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Builder`
 
-- <span id="builder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="builder-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Builder`
 
 - <span id="builder-default"></span>`fn default() -> Builder` — [`Builder`](#builder)
+
+##### `impl<T> From for Builder`
+
+- <span id="builder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Builder`
+
+- <span id="builder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Builder`
+
+- <span id="builder-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="builder-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="builder-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Builder`
+
+- <span id="builder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="builder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Builder`
+
+- <span id="builder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="builder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Searcher`
 
@@ -130,19 +234,95 @@ A searcher that dispatches to one of several possible Teddy variants.
 
 - <span id="searcher-find"></span>`fn find(&self, haystack: &[u8], at: usize) -> Option<crate::Match>` — [`Match`](../../../util/search/index.md#match)
 
+  Look for the leftmost occurrence of any pattern in this search in the
+
+  given haystack starting at the given position.
+
+  
+
+  # Panics
+
+  
+
+  This panics when `haystack[at..].len()` is less than the minimum length
+
+  for this haystack.
+
 - <span id="searcher-memory-usage"></span>`fn memory_usage(&self) -> usize`
+
+  Returns the approximate total amount of heap used by this type, in
+
+  units of bytes.
 
 - <span id="searcher-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
+  Returns the minimum length, in bytes, that a haystack must be in order
+
+  to use it with this searcher.
+
 #### Trait Implementations
+
+##### `impl Any for Searcher`
+
+- <span id="searcher-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Searcher`
+
+- <span id="searcher-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Searcher`
+
+- <span id="searcher-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Searcher`
 
 - <span id="searcher-clone"></span>`fn clone(&self) -> Searcher` — [`Searcher`](#searcher)
 
+##### `impl CloneToUninit for Searcher`
+
+- <span id="searcher-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Searcher`
 
-- <span id="searcher-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="searcher-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Searcher`
+
+- <span id="searcher-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Searcher`
+
+- <span id="searcher-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Searcher`
+
+- <span id="searcher-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="searcher-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="searcher-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Searcher`
+
+- <span id="searcher-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="searcher-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Searcher`
+
+- <span id="searcher-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="searcher-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

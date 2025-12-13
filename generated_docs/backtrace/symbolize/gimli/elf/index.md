@@ -50,6 +50,50 @@ struct ParsedSym {
 
 *Defined in [`backtrace-0.3.76/src/symbolize/gimli/elf.rs:145-149`](../../../../../.source_1765521767/backtrace-0.3.76/src/symbolize/gimli/elf.rs#L145-L149)*
 
+#### Trait Implementations
+
+##### `impl Any for ParsedSym`
+
+- <span id="parsedsym-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ParsedSym`
+
+- <span id="parsedsym-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ParsedSym`
+
+- <span id="parsedsym-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for ParsedSym`
+
+- <span id="parsedsym-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ParsedSym`
+
+- <span id="parsedsym-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ParsedSym`
+
+- <span id="parsedsym-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="parsedsym-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ParsedSym`
+
+- <span id="parsedsym-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="parsedsym-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `Object<'a>`
 
 ```rust
@@ -97,6 +141,50 @@ struct Object<'a> {
 - <span id="object-gnu-debuglink-path"></span>`fn gnu_debuglink_path(&self, path: &Path) -> Option<(PathBuf, u32)>`
 
 - <span id="object-gnu-debugaltlink-path"></span>`fn gnu_debugaltlink_path(&self, path: &Path) -> Option<(PathBuf, &'a [u8])>`
+
+#### Trait Implementations
+
+##### `impl Any for Object<'a>`
+
+- <span id="object-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Object<'a>`
+
+- <span id="object-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Object<'a>`
+
+- <span id="object-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Object<'a>`
+
+- <span id="object-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Object<'a>`
+
+- <span id="object-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Object<'a>`
+
+- <span id="object-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="object-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Object<'a>`
+
+- <span id="object-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="object-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

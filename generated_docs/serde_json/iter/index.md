@@ -57,17 +57,59 @@ struct LineColIterator<I> {
 
 #### Trait Implementations
 
+##### `impl Any for LineColIterator<I>`
+
+- <span id="linecoliterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LineColIterator<I>`
+
+- <span id="linecoliterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LineColIterator<I>`
+
+- <span id="linecoliterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for LineColIterator<I>`
+
+- <span id="linecoliterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LineColIterator<I>`
+
+- <span id="linecoliterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<I> IntoIterator for LineColIterator<I>`
 
 - <span id="linecoliterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="linecoliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="linecoliterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="linecoliterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I> Iterator for LineColIterator<I>`
 
 - <span id="linecoliterator-iterator-type-item"></span>`type Item = Result<u8, Error>`
 
-- <span id="linecoliterator-next"></span>`fn next(&mut self) -> Option<io::Result<u8>>` — [`Result`](../io/index.md#result)
+- <span id="linecoliterator-iterator-next"></span>`fn next(&mut self) -> Option<io::Result<u8>>` — [`Result`](../io/index.md#result)
+
+##### `impl<U> TryFrom for LineColIterator<I>`
+
+- <span id="linecoliterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="linecoliterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LineColIterator<I>`
+
+- <span id="linecoliterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="linecoliterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

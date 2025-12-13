@@ -144,19 +144,73 @@ struct Cursor<'a> {
 
 #### Trait Implementations
 
+##### `impl Any for Cursor<'a>`
+
+- <span id="cursor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Cursor<'a>`
+
+- <span id="cursor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Cursor<'a>`
+
+- <span id="cursor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Cursor<'a>`
 
 - <span id="cursor-clone"></span>`fn clone(&self) -> Cursor<'a>` — [`Cursor`](#cursor)
+
+##### `impl CloneToUninit for Cursor<'a>`
+
+- <span id="cursor-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Cursor<'a>`
 
 ##### `impl Eq for Cursor<'a>`
 
+##### `impl<T> From for Cursor<'a>`
+
+- <span id="cursor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Cursor<'a>`
+
+- <span id="cursor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Cursor<'a>`
 
-- <span id="cursor-eq"></span>`fn eq(&self, other: &Cursor<'a>) -> bool` — [`Cursor`](#cursor)
+- <span id="cursor-partialeq-eq"></span>`fn eq(&self, other: &Cursor<'a>) -> bool` — [`Cursor`](#cursor)
 
 ##### `impl StructuralPartialEq for Cursor<'a>`
+
+##### `impl ToOwned for Cursor<'a>`
+
+- <span id="cursor-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="cursor-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="cursor-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Cursor<'a>`
+
+- <span id="cursor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cursor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Cursor<'a>`
+
+- <span id="cursor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cursor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Reject`
 
@@ -165,6 +219,50 @@ struct Reject;
 ```
 
 *Defined in [`proc-macro2-1.0.103/src/parse.rs:74`](../../../.source_1765521767/proc-macro2-1.0.103/src/parse.rs#L74)*
+
+#### Trait Implementations
+
+##### `impl Any for Reject`
+
+- <span id="reject-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Reject`
+
+- <span id="reject-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Reject`
+
+- <span id="reject-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Reject`
+
+- <span id="reject-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Reject`
+
+- <span id="reject-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Reject`
+
+- <span id="reject-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="reject-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Reject`
+
+- <span id="reject-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="reject-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

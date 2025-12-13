@@ -66,11 +66,63 @@ events. See the `README.md` in this module for more details.
 
 - <span id="sleep-notify-worker-latch-is-set"></span>`fn notify_worker_latch_is_set(&self, target_worker_index: usize)`
 
+  Notify the given thread that it should wake up (if it is
+
+  sleeping).  When this method is invoked, we typically know the
+
+  thread is asleep, though in rare cases it could have been
+
+  awoken by (e.g.) new work having been posted.
+
 - <span id="sleep-new-injected-jobs"></span>`fn new_injected_jobs(&self, num_jobs: u32, queue_was_empty: bool)`
+
+  Signals that `num_jobs` new jobs were injected into the thread
+
+  pool from outside. This function will ensure that there are
+
+  threads available to process them, waking threads from sleep
+
+  if necessary.
+
+  
+
+  # Parameters
+
+  
+
+  - `num_jobs` -- lower bound on number of jobs available for stealing.
+
+    We'll try to get at least one thread per job.
 
 - <span id="sleep-new-internal-jobs"></span>`fn new_internal_jobs(&self, num_jobs: u32, queue_was_empty: bool)`
 
+  Signals that `num_jobs` new jobs were pushed onto a thread's
+
+  local deque. This function will try to ensure that there are
+
+  threads available to process them, waking threads from sleep
+
+  if necessary. However, this is not guaranteed: under certain
+
+  race conditions, the function may fail to wake any new
+
+  threads; in that case the existing thread should eventually
+
+  pop the job.
+
+  
+
+  # Parameters
+
+  
+
+  - `num_jobs` -- lower bound on number of jobs available for stealing.
+
+    We'll try to get at least one thread per job.
+
 - <span id="sleep-new-jobs"></span>`fn new_jobs(&self, num_jobs: u32, queue_was_empty: bool)`
+
+  Common helper for `new_injected_jobs` and `new_internal_jobs`.
 
 - <span id="sleep-wake-any-threads"></span>`fn wake_any_threads(&self, num_to_wake: u32)`
 
@@ -78,19 +130,61 @@ events. See the `README.md` in this module for more details.
 
 #### Trait Implementations
 
+##### `impl Any for Sleep`
+
+- <span id="sleep-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Sleep`
+
+- <span id="sleep-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Sleep`
+
+- <span id="sleep-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Sleep`
+
+- <span id="sleep-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Sleep`
+
+- <span id="sleep-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Pointable for Sleep`
 
 - <span id="sleep-pointable-const-align"></span>`const ALIGN: usize`
 
 - <span id="sleep-pointable-type-init"></span>`type Init = T`
 
-- <span id="sleep-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="sleep-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="sleep-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="sleep-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="sleep-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="sleep-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="sleep-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="sleep-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for Sleep`
+
+- <span id="sleep-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sleep-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Sleep`
+
+- <span id="sleep-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sleep-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IdleState`
 
@@ -133,19 +227,61 @@ idle.) It tracks state such as how long the thread has been idle.
 
 #### Trait Implementations
 
+##### `impl Any for IdleState`
+
+- <span id="idlestate-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IdleState`
+
+- <span id="idlestate-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IdleState`
+
+- <span id="idlestate-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for IdleState`
+
+- <span id="idlestate-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for IdleState`
+
+- <span id="idlestate-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Pointable for IdleState`
 
 - <span id="idlestate-pointable-const-align"></span>`const ALIGN: usize`
 
 - <span id="idlestate-pointable-type-init"></span>`type Init = T`
 
-- <span id="idlestate-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="idlestate-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="idlestate-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="idlestate-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="idlestate-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="idlestate-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="idlestate-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="idlestate-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for IdleState`
+
+- <span id="idlestate-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="idlestate-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IdleState`
+
+- <span id="idlestate-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="idlestate-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `WorkerSleepState`
 
@@ -169,9 +305,39 @@ The "sleep state" for an individual worker.
 
 #### Trait Implementations
 
+##### `impl Any for WorkerSleepState`
+
+- <span id="workersleepstate-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WorkerSleepState`
+
+- <span id="workersleepstate-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WorkerSleepState`
+
+- <span id="workersleepstate-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Default for WorkerSleepState`
 
 - <span id="workersleepstate-default"></span>`fn default() -> WorkerSleepState` — [`WorkerSleepState`](#workersleepstate)
+
+##### `impl<T> From for WorkerSleepState`
+
+- <span id="workersleepstate-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WorkerSleepState`
+
+- <span id="workersleepstate-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for WorkerSleepState`
 
@@ -179,13 +345,25 @@ The "sleep state" for an individual worker.
 
 - <span id="workersleepstate-pointable-type-init"></span>`type Init = T`
 
-- <span id="workersleepstate-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="workersleepstate-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="workersleepstate-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="workersleepstate-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="workersleepstate-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="workersleepstate-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="workersleepstate-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="workersleepstate-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for WorkerSleepState`
+
+- <span id="workersleepstate-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="workersleepstate-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WorkerSleepState`
+
+- <span id="workersleepstate-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="workersleepstate-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Constants
 

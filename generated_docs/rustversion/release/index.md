@@ -27,31 +27,85 @@ struct Release {
 
 #### Trait Implementations
 
+##### `impl Any for Release`
+
+- <span id="release-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Release`
+
+- <span id="release-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Release`
+
+- <span id="release-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Release`
 
 - <span id="release-clone"></span>`fn clone(&self) -> Release` — [`Release`](#release)
+
+##### `impl CloneToUninit for Release`
+
+- <span id="release-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Release`
 
 ##### `impl Debug for Release`
 
-- <span id="release-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="release-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Release`
 
+##### `impl<T> From for Release`
+
+- <span id="release-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Release`
+
+- <span id="release-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Release`
 
-- <span id="release-cmp"></span>`fn cmp(&self, other: &Release) -> cmp::Ordering` — [`Release`](#release)
+- <span id="release-ord-cmp"></span>`fn cmp(&self, other: &Release) -> cmp::Ordering` — [`Release`](#release)
 
 ##### `impl PartialEq for Release`
 
-- <span id="release-eq"></span>`fn eq(&self, other: &Release) -> bool` — [`Release`](#release)
+- <span id="release-partialeq-eq"></span>`fn eq(&self, other: &Release) -> bool` — [`Release`](#release)
 
 ##### `impl PartialOrd for Release`
 
-- <span id="release-partial-cmp"></span>`fn partial_cmp(&self, other: &Release) -> option::Option<cmp::Ordering>` — [`Release`](#release)
+- <span id="release-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Release) -> option::Option<cmp::Ordering>` — [`Release`](#release)
 
 ##### `impl StructuralPartialEq for Release`
+
+##### `impl ToOwned for Release`
+
+- <span id="release-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="release-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="release-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Release`
+
+- <span id="release-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="release-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Release`
+
+- <span id="release-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="release-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

@@ -79,17 +79,59 @@ return `Maybe` when a full decomposition and recomposition is necessary.
 
 #### Trait Implementations
 
+##### `impl Any for IsNormalized`
+
+- <span id="isnormalized-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IsNormalized`
+
+- <span id="isnormalized-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IsNormalized`
+
+- <span id="isnormalized-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for IsNormalized`
 
-- <span id="isnormalized-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="isnormalized-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for IsNormalized`
 
+##### `impl<T> From for IsNormalized`
+
+- <span id="isnormalized-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for IsNormalized`
+
+- <span id="isnormalized-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for IsNormalized`
 
-- <span id="isnormalized-eq"></span>`fn eq(&self, other: &IsNormalized) -> bool` — [`IsNormalized`](#isnormalized)
+- <span id="isnormalized-partialeq-eq"></span>`fn eq(&self, other: &IsNormalized) -> bool` — [`IsNormalized`](#isnormalized)
 
 ##### `impl StructuralPartialEq for IsNormalized`
+
+##### `impl<U> TryFrom for IsNormalized`
+
+- <span id="isnormalized-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="isnormalized-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IsNormalized`
+
+- <span id="isnormalized-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="isnormalized-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

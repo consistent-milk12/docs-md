@@ -59,15 +59,69 @@ possible stream sources
 
 #### Trait Implementations
 
+##### `impl Any for Stream`
+
+- <span id="stream-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Stream`
+
+- <span id="stream-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Stream`
+
+- <span id="stream-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Stream`
 
 - <span id="stream-clone"></span>`fn clone(&self) -> Stream` — [`Stream`](#stream)
+
+##### `impl CloneToUninit for Stream`
+
+- <span id="stream-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Stream`
 
 ##### `impl Debug for Stream`
 
-- <span id="stream-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stream-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Stream`
+
+- <span id="stream-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Stream`
+
+- <span id="stream-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Stream`
+
+- <span id="stream-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="stream-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="stream-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Stream`
+
+- <span id="stream-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="stream-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Stream`
+
+- <span id="stream-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="stream-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

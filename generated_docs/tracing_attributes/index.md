@@ -93,17 +93,71 @@ which's block is just a `TokenStream` (it may contain invalid code).
 
 #### Trait Implementations
 
+##### `impl Any for MaybeItemFn`
+
+- <span id="maybeitemfn-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MaybeItemFn`
+
+- <span id="maybeitemfn-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MaybeItemFn`
+
+- <span id="maybeitemfn-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for MaybeItemFn`
 
 - <span id="maybeitemfn-clone"></span>`fn clone(&self) -> MaybeItemFn` — [`MaybeItemFn`](#maybeitemfn)
 
+##### `impl CloneToUninit for MaybeItemFn`
+
+- <span id="maybeitemfn-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for MaybeItemFn`
 
-- <span id="maybeitemfn-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="maybeitemfn-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MaybeItemFn`
+
+- <span id="maybeitemfn-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MaybeItemFn`
+
+- <span id="maybeitemfn-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for MaybeItemFn`
 
 - <span id="maybeitemfn-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+
+##### `impl ToOwned for MaybeItemFn`
+
+- <span id="maybeitemfn-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="maybeitemfn-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="maybeitemfn-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MaybeItemFn`
+
+- <span id="maybeitemfn-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="maybeitemfn-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MaybeItemFn`
+
+- <span id="maybeitemfn-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="maybeitemfn-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MaybeItemFnRef<'a, B: ToTokens>`
 
@@ -125,13 +179,67 @@ that takes a generic block type `B` that implements `ToTokens` (eg. `TokenStream
 
 #### Trait Implementations
 
+##### `impl Any for MaybeItemFnRef<'a, B>`
+
+- <span id="maybeitemfnref-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MaybeItemFnRef<'a, B>`
+
+- <span id="maybeitemfnref-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MaybeItemFnRef<'a, B>`
+
+- <span id="maybeitemfnref-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<B: clone::Clone + ToTokens> Clone for MaybeItemFnRef<'a, B>`
 
 - <span id="maybeitemfnref-clone"></span>`fn clone(&self) -> MaybeItemFnRef<'a, B>` — [`MaybeItemFnRef`](#maybeitemfnref)
 
+##### `impl CloneToUninit for MaybeItemFnRef<'a, B>`
+
+- <span id="maybeitemfnref-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<B: fmt::Debug + ToTokens> Debug for MaybeItemFnRef<'a, B>`
 
-- <span id="maybeitemfnref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="maybeitemfnref-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MaybeItemFnRef<'a, B>`
+
+- <span id="maybeitemfnref-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MaybeItemFnRef<'a, B>`
+
+- <span id="maybeitemfnref-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for MaybeItemFnRef<'a, B>`
+
+- <span id="maybeitemfnref-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="maybeitemfnref-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="maybeitemfnref-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MaybeItemFnRef<'a, B>`
+
+- <span id="maybeitemfnref-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="maybeitemfnref-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MaybeItemFnRef<'a, B>`
+
+- <span id="maybeitemfnref-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="maybeitemfnref-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

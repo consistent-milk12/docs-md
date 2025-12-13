@@ -73,31 +73,89 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 
 - <span id="pefile-parse"></span>`fn parse(data: R) -> Result<Self>` — [`Result`](../../../index.md#result)
 
+  Parse the raw PE file data.
+
 - <span id="pefile-data"></span>`fn data(&self) -> R`
+
+  Returns this binary data.
 
 - <span id="pefile-dos-header"></span>`fn dos_header(&self) -> &'data pe::ImageDosHeader` — [`ImageDosHeader`](../../../pe/index.md#imagedosheader)
 
+  Return the DOS header of this file.
+
 - <span id="pefile-nt-headers"></span>`fn nt_headers(&self) -> &'data Pe`
+
+  Return the NT Headers of this file.
 
 - <span id="pefile-rich-header-info"></span>`fn rich_header_info(&self) -> Option<RichHeaderInfo<'_>>` — [`RichHeaderInfo`](../index.md#richheaderinfo)
 
+  Returns information about the rich header of this file (if any).
+
 - <span id="pefile-section-table"></span>`fn section_table(&self) -> SectionTable<'data>` — [`SectionTable`](../../coff/index.md#sectiontable)
+
+  Returns the section table of this binary.
 
 - <span id="pefile-data-directories"></span>`fn data_directories(&self) -> DataDirectories<'data>` — [`DataDirectories`](../index.md#datadirectories)
 
+  Returns the data directories of this file.
+
 - <span id="pefile-data-directory"></span>`fn data_directory(&self, id: usize) -> Option<&'data pe::ImageDataDirectory>` — [`ImageDataDirectory`](../../../pe/index.md#imagedatadirectory)
+
+  Returns the data directory at the given index.
 
 - <span id="pefile-export-table"></span>`fn export_table(&self) -> Result<Option<ExportTable<'data>>>` — [`Result`](../../../index.md#result), [`ExportTable`](../index.md#exporttable)
 
+  Returns the export table of this file.
+
+  
+
+  The export table is located using the data directory.
+
 - <span id="pefile-import-table"></span>`fn import_table(&self) -> Result<Option<ImportTable<'data>>>` — [`Result`](../../../index.md#result), [`ImportTable`](../index.md#importtable)
+
+  Returns the import table of this file.
+
+  
+
+  The import table is located using the data directory.
 
 - <span id="pefile-section-alignment"></span>`fn section_alignment(&self) -> u64`
 
 #### Trait Implementations
 
+##### `impl Any for PeFile<'data, Pe, R>`
+
+- <span id="pefile-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PeFile<'data, Pe, R>`
+
+- <span id="pefile-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PeFile<'data, Pe, R>`
+
+- <span id="pefile-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Pe, R> Debug for PeFile<'data, Pe, R>`
 
-- <span id="pefile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pefile-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for PeFile<'data, Pe, R>`
+
+- <span id="pefile-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PeFile<'data, Pe, R>`
+
+- <span id="pefile-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Pe, R> Object for PeFile<'data, Pe, R>`
 
@@ -121,53 +179,65 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 
 - <span id="pefile-object-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
-- <span id="pefile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md#architecture)
+- <span id="pefile-object-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md#architecture)
 
-- <span id="pefile-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../../index.md#subarchitecture)
+- <span id="pefile-object-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../../index.md#subarchitecture)
 
-- <span id="pefile-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
+- <span id="pefile-object-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
 
-- <span id="pefile-is-64"></span>`fn is_64(&self) -> bool`
+- <span id="pefile-object-is-64"></span>`fn is_64(&self) -> bool`
 
-- <span id="pefile-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../../index.md#objectkind)
+- <span id="pefile-object-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../../index.md#objectkind)
 
-- <span id="pefile-segments"></span>`fn segments(&self) -> PeSegmentIterator<'data, '_, Pe, R>` — [`PeSegmentIterator`](../index.md#pesegmentiterator)
+- <span id="pefile-object-segments"></span>`fn segments(&self) -> PeSegmentIterator<'data, '_, Pe, R>` — [`PeSegmentIterator`](../index.md#pesegmentiterator)
 
-- <span id="pefile-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<PeSection<'data, 'file, Pe, R>>` — [`PeSection`](../index.md#pesection)
+- <span id="pefile-object-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<PeSection<'data, 'file, Pe, R>>` — [`PeSection`](../index.md#pesection)
 
-- <span id="pefile-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<PeSection<'data, '_, Pe, R>>` — [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result), [`PeSection`](../index.md#pesection)
+- <span id="pefile-object-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<PeSection<'data, '_, Pe, R>>` — [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result), [`PeSection`](../index.md#pesection)
 
-- <span id="pefile-sections"></span>`fn sections(&self) -> PeSectionIterator<'data, '_, Pe, R>` — [`PeSectionIterator`](../index.md#pesectioniterator)
+- <span id="pefile-object-sections"></span>`fn sections(&self) -> PeSectionIterator<'data, '_, Pe, R>` — [`PeSectionIterator`](../index.md#pesectioniterator)
 
-- <span id="pefile-comdats"></span>`fn comdats(&self) -> PeComdatIterator<'data, '_, Pe, R>` — [`PeComdatIterator`](../index.md#pecomdatiterator)
+- <span id="pefile-object-comdats"></span>`fn comdats(&self) -> PeComdatIterator<'data, '_, Pe, R>` — [`PeComdatIterator`](../index.md#pecomdatiterator)
 
-- <span id="pefile-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<CoffSymbol<'data, '_, R>>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`CoffSymbol`](../../coff/index.md#coffsymbol)
+- <span id="pefile-object-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<CoffSymbol<'data, '_, R>>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`CoffSymbol`](../../coff/index.md#coffsymbol)
 
-- <span id="pefile-symbols"></span>`fn symbols(&self) -> CoffSymbolIterator<'data, '_, R>` — [`CoffSymbolIterator`](../../coff/index.md#coffsymboliterator)
+- <span id="pefile-object-symbols"></span>`fn symbols(&self) -> CoffSymbolIterator<'data, '_, R>` — [`CoffSymbolIterator`](../../coff/index.md#coffsymboliterator)
 
-- <span id="pefile-symbol-table"></span>`fn symbol_table(&self) -> Option<CoffSymbolTable<'data, '_, R>>` — [`CoffSymbolTable`](../../coff/index.md#coffsymboltable)
+- <span id="pefile-object-symbol-table"></span>`fn symbol_table(&self) -> Option<CoffSymbolTable<'data, '_, R>>` — [`CoffSymbolTable`](../../coff/index.md#coffsymboltable)
 
-- <span id="pefile-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> CoffSymbolIterator<'data, '_, R>` — [`CoffSymbolIterator`](../../coff/index.md#coffsymboliterator)
+- <span id="pefile-object-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> CoffSymbolIterator<'data, '_, R>` — [`CoffSymbolIterator`](../../coff/index.md#coffsymboliterator)
 
-- <span id="pefile-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<CoffSymbolTable<'data, '_, R>>` — [`CoffSymbolTable`](../../coff/index.md#coffsymboltable)
+- <span id="pefile-object-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<CoffSymbolTable<'data, '_, R>>` — [`CoffSymbolTable`](../../coff/index.md#coffsymboltable)
 
-- <span id="pefile-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<NoDynamicRelocationIterator>` — [`NoDynamicRelocationIterator`](../../index.md#nodynamicrelocationiterator)
+- <span id="pefile-object-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<NoDynamicRelocationIterator>` — [`NoDynamicRelocationIterator`](../../index.md#nodynamicrelocationiterator)
 
-- <span id="pefile-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../../../index.md#result), [`Import`](../../../index.md#import)
+- <span id="pefile-object-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../../../index.md#result), [`Import`](../../../index.md#import)
 
-- <span id="pefile-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../../index.md#result), [`Export`](../../../index.md#export)
+- <span id="pefile-object-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../../index.md#result), [`Export`](../../../index.md#export)
 
-- <span id="pefile-pdb-info"></span>`fn pdb_info(&self) -> Result<Option<CodeView<'_>>>` — [`Result`](../../../index.md#result), [`CodeView`](../../../index.md#codeview)
+- <span id="pefile-object-pdb-info"></span>`fn pdb_info(&self) -> Result<Option<CodeView<'_>>>` — [`Result`](../../../index.md#result), [`CodeView`](../../../index.md#codeview)
 
-- <span id="pefile-has-debug-symbols"></span>`fn has_debug_symbols(&self) -> bool`
+- <span id="pefile-object-has-debug-symbols"></span>`fn has_debug_symbols(&self) -> bool`
 
-- <span id="pefile-relative-address-base"></span>`fn relative_address_base(&self) -> u64`
+- <span id="pefile-object-relative-address-base"></span>`fn relative_address_base(&self) -> u64`
 
-- <span id="pefile-entry"></span>`fn entry(&self) -> u64`
+- <span id="pefile-object-entry"></span>`fn entry(&self) -> u64`
 
-- <span id="pefile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../../index.md#fileflags)
+- <span id="pefile-object-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../../index.md#fileflags)
 
 ##### `impl<Pe, R> Sealed for PeFile<'data, Pe, R>`
+
+##### `impl<U> TryFrom for PeFile<'data, Pe, R>`
+
+- <span id="pefile-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pefile-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PeFile<'data, Pe, R>`
+
+- <span id="pefile-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pefile-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PeComdatIterator<'data, 'file, Pe, R>`
 
@@ -188,9 +258,39 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
+##### `impl Any for PeComdatIterator<'data, 'file, Pe, R>`
+
+- <span id="pecomdatiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PeComdatIterator<'data, 'file, Pe, R>`
+
+- <span id="pecomdatiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PeComdatIterator<'data, 'file, Pe, R>`
+
+- <span id="pecomdatiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Pe, R> Debug for PeComdatIterator<'data, 'file, Pe, R>`
 
-- <span id="pecomdatiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pecomdatiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for PeComdatIterator<'data, 'file, Pe, R>`
+
+- <span id="pecomdatiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PeComdatIterator<'data, 'file, Pe, R>`
+
+- <span id="pecomdatiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for PeComdatIterator<'data, 'file, Pe, R>`
 
@@ -198,13 +298,25 @@ This is a stub that doesn't implement any functionality.
 
 - <span id="pecomdatiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="pecomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="pecomdatiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Pe, R> Iterator for PeComdatIterator<'data, 'file, Pe, R>`
 
 - <span id="pecomdatiterator-iterator-type-item"></span>`type Item = PeComdat<'data, 'file, Pe, R>`
 
-- <span id="pecomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="pecomdatiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for PeComdatIterator<'data, 'file, Pe, R>`
+
+- <span id="pecomdatiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pecomdatiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PeComdatIterator<'data, 'file, Pe, R>`
+
+- <span id="pecomdatiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pecomdatiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PeComdat<'data, 'file, Pe, R>`
 
@@ -225,25 +337,67 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
+##### `impl Any for PeComdat<'data, 'file, Pe, R>`
+
+- <span id="pecomdat-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PeComdat<'data, 'file, Pe, R>`
+
+- <span id="pecomdat-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PeComdat<'data, 'file, Pe, R>`
+
+- <span id="pecomdat-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Pe, R> Debug for PeComdat<'data, 'file, Pe, R>`
 
-- <span id="pecomdat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pecomdat-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for PeComdat<'data, 'file, Pe, R>`
+
+- <span id="pecomdat-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PeComdat<'data, 'file, Pe, R>`
+
+- <span id="pecomdat-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Pe, R> ObjectComdat for PeComdat<'data, 'file, Pe, R>`
 
 - <span id="pecomdat-objectcomdat-type-sectioniterator"></span>`type SectionIterator = PeComdatSectionIterator<'data, 'file, Pe, R>`
 
-- <span id="pecomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../../index.md#comdatkind)
+- <span id="pecomdat-objectcomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../../index.md#comdatkind)
 
-- <span id="pecomdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md#symbolindex)
+- <span id="pecomdat-objectcomdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md#symbolindex)
 
-- <span id="pecomdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
+- <span id="pecomdat-objectcomdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
-- <span id="pecomdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../../index.md#result)
+- <span id="pecomdat-objectcomdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../../index.md#result)
 
-- <span id="pecomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../../index.md#objectcomdat)
+- <span id="pecomdat-objectcomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../../index.md#objectcomdat)
 
 ##### `impl<Pe, R> Sealed for PeComdat<'data, 'file, Pe, R>`
+
+##### `impl<U> TryFrom for PeComdat<'data, 'file, Pe, R>`
+
+- <span id="pecomdat-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pecomdat-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PeComdat<'data, 'file, Pe, R>`
+
+- <span id="pecomdat-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pecomdat-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PeComdatSectionIterator<'data, 'file, Pe, R>`
 
@@ -264,9 +418,39 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
+##### `impl Any for PeComdatSectionIterator<'data, 'file, Pe, R>`
+
+- <span id="pecomdatsectioniterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PeComdatSectionIterator<'data, 'file, Pe, R>`
+
+- <span id="pecomdatsectioniterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PeComdatSectionIterator<'data, 'file, Pe, R>`
+
+- <span id="pecomdatsectioniterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Pe, R> Debug for PeComdatSectionIterator<'data, 'file, Pe, R>`
 
-- <span id="pecomdatsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pecomdatsectioniterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for PeComdatSectionIterator<'data, 'file, Pe, R>`
+
+- <span id="pecomdatsectioniterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PeComdatSectionIterator<'data, 'file, Pe, R>`
+
+- <span id="pecomdatsectioniterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for PeComdatSectionIterator<'data, 'file, Pe, R>`
 
@@ -274,13 +458,25 @@ This is a stub that doesn't implement any functionality.
 
 - <span id="pecomdatsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="pecomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="pecomdatsectioniterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Pe, R> Iterator for PeComdatSectionIterator<'data, 'file, Pe, R>`
 
 - <span id="pecomdatsectioniterator-iterator-type-item"></span>`type Item = SectionIndex`
 
-- <span id="pecomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="pecomdatsectioniterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for PeComdatSectionIterator<'data, 'file, Pe, R>`
+
+- <span id="pecomdatsectioniterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pecomdatsectioniterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PeComdatSectionIterator<'data, 'file, Pe, R>`
+
+- <span id="pecomdatsectioniterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pecomdatsectioniterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

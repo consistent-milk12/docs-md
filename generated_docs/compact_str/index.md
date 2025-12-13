@@ -327,91 +327,1561 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 - <span id="compactstring-new"></span>`fn new<T: AsRef<str>>(text: T) -> Self`
 
+  Creates a new [`CompactString`](#compactstring) from any type that implements `AsRef<str>`.
+
+  If the string is short enough, then it will be inlined on the stack!
+
+  
+
+  In a `static` or `const` context you can use the method `CompactString::const_new()`.
+
+  
+
+  # Examples
+
+  
+
+  ### Inlined
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  // We can inline strings up to 12 characters long on 32-bit architectures...
+
+  #[cfg(target_pointer_width = "32")]
+
+  let s = "i'm 12 chars";
+
+  // ...and up to 24 characters on 64-bit architectures!
+
+  #[cfg(target_pointer_width = "64")]
+
+  let s = "i am 24 characters long!";
+
+  
+
+  let compact = CompactString::new(&s);
+
+  
+
+  assert_eq!(compact, s);
+
+  // we are not allocated on the heap!
+
+  assert!(!compact.is_heap_allocated());
+
+  ```
+
+  
+
+  ### Heap
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  // For longer strings though, we get allocated on the heap
+
+  let long = "I am a longer string that will be allocated on the heap";
+
+  let compact = CompactString::new(long);
+
+  
+
+  assert_eq!(compact, long);
+
+  // we are allocated on the heap!
+
+  assert!(compact.is_heap_allocated());
+
+  ```
+
+  
+
+  ### Creation
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  
+
+  // Using a `&'static str`
+
+  let s = "hello world!";
+
+  let hello = CompactString::new(&s);
+
+  
+
+  // Using a `String`
+
+  let u = String::from("🦄🌈");
+
+  let unicorn = CompactString::new(u);
+
+  
+
+  // Using a `Box<str>`
+
+  let b: Box<str> = String::from("📦📦📦").into_boxed_str();
+
+  let boxed = CompactString::new(&b);
+
+  ```
+
 - <span id="compactstring-try-new"></span>`fn try_new<T: AsRef<str>>(text: T) -> Result<Self, ReserveError>` — [`ReserveError`](#reserveerror)
+
+  Fallible version of `CompactString::new()`
+
+  
+
+  This method won't panic if the system is out-of-memory, but return an [`ReserveError`](#reserveerror).
+
+  Otherwise it behaves the same as `CompactString::new()`.
 
 - <span id="compactstring-const-new"></span>`const fn const_new(text: &'static str) -> Self`
 
+  Creates a new inline [`CompactString`](#compactstring) from `&'static str` at compile time.
+
+  Complexity: O(1). As an optimization, short strings get inlined.
+
+  
+
+  In a dynamic context you can use the method `CompactString::new()`.
+
+  
+
+  # Examples
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  
+
+  const DEFAULT_NAME: CompactString = CompactString::const_new("untitled");
+
+  ```
+
 - <span id="compactstring-as-static-str"></span>`const fn as_static_str(&self) -> Option<&'static str>`
+
+  Get back the `&'static str` constructed by `CompactString::const_new`.
+
+  
+
+  If the string was short enough that it could be inlined, then it was inline, and
+
+  this method will return `None`.
+
+  
+
+  # Examples
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  
+
+  const DEFAULT_NAME: CompactString =
+
+      CompactString::const_new("That is not dead which can eternal lie.");
+
+  assert_eq!(
+
+      DEFAULT_NAME.as_static_str().unwrap(),
+
+      "That is not dead which can eternal lie.",
+
+  );
+
+  ```
 
 - <span id="compactstring-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
+  Creates a new empty [`CompactString`](#compactstring) with the capacity to fit at least `capacity` bytes.
+
+  
+
+  A `CompactString` will inline strings on the stack, if they're small enough. Specifically,
+
+  if the string has a length less than or equal to `std::mem::size_of::<String>` bytes
+
+  then it will be inlined. This also means that `CompactString`s have a minimum capacity
+
+  of `std::mem::size_of::<String>`.
+
+  
+
+  # Panics
+
+  
+
+  This method panics if the system is out-of-memory.
+
+  Use `CompactString::try_with_capacity()` if you want to handle such a problem manually.
+
+  
+
+  # Examples
+
+  
+
+  ### "zero" Capacity
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  // Creating a CompactString with a capacity of 0 will create
+
+  // one with capacity of std::mem::size_of::<String>();
+
+  let empty = CompactString::with_capacity(0);
+
+  let min_size = std::mem::size_of::<String>();
+
+  
+
+  assert_eq!(empty.capacity(), min_size);
+
+  assert_ne!(0, min_size);
+
+  assert!(!empty.is_heap_allocated());
+
+  ```
+
+  
+
+  ### Max Inline Size
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  // Creating a CompactString with a capacity of std::mem::size_of::<String>()
+
+  // will not heap allocate.
+
+  let str_size = std::mem::size_of::<String>();
+
+  let empty = CompactString::with_capacity(str_size);
+
+  
+
+  assert_eq!(empty.capacity(), str_size);
+
+  assert!(!empty.is_heap_allocated());
+
+  ```
+
+  
+
+  ### Heap Allocating
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  // If you create a `CompactString` with a capacity greater than
+
+  // `std::mem::size_of::<String>`, it will heap allocated. For heap
+
+  // allocated strings we have a minimum capacity
+
+  
+
+  const MIN_HEAP_CAPACITY: usize = std::mem::size_of::<usize>() * 4;
+
+  
+
+  let heap_size = std::mem::size_of::<String>() + 1;
+
+  let empty = CompactString::with_capacity(heap_size);
+
+  
+
+  assert_eq!(empty.capacity(), MIN_HEAP_CAPACITY);
+
+  assert!(empty.is_heap_allocated());
+
+  ```
+
 - <span id="compactstring-try-with-capacity"></span>`fn try_with_capacity(capacity: usize) -> Result<Self, ReserveError>` — [`ReserveError`](#reserveerror)
+
+  Fallible version of `CompactString::with_capacity()`
+
+  
+
+  This method won't panic if the system is out-of-memory, but return an [`ReserveError`](#reserveerror).
+
+  Otherwise it behaves the same as `CompactString::with_capacity()`.
 
 - <span id="compactstring-from-utf8"></span>`fn from_utf8<B: AsRef<[u8]>>(buf: B) -> Result<Self, Utf8Error>`
 
+  Convert a slice of bytes into a [`CompactString`](#compactstring).
+
+  
+
+  A [`CompactString`](#compactstring) is a contiguous collection of bytes (`u8`s) that is valid [`UTF-8`](https://en.wikipedia.org/wiki/UTF-8).
+
+  This method converts from an arbitrary contiguous collection of bytes into a
+
+  [`CompactString`](#compactstring), failing if the provided bytes are not `UTF-8`.
+
+  
+
+  Note: If you want to create a [`CompactString`](#compactstring) from a non-contiguous collection of bytes,
+
+  enable the `bytes` feature of this crate, and see `CompactString::from_utf8_buf`
+
+  
+
+  # Examples
+
+  ### Valid UTF-8
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let bytes = vec![240, 159, 166, 128, 240, 159, 146, 175];
+
+  let compact = CompactString::from_utf8(bytes).expect("valid UTF-8");
+
+  
+
+  assert_eq!(compact, "🦀💯");
+
+  ```
+
+  
+
+  ### Invalid UTF-8
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let bytes = vec![255, 255, 255];
+
+  let result = CompactString::from_utf8(bytes);
+
+  
+
+  assert!(result.is_err());
+
+  ```
+
 - <span id="compactstring-from-utf8-unchecked"></span>`unsafe fn from_utf8_unchecked<B: AsRef<[u8]>>(buf: B) -> Self`
+
+  Converts a vector of bytes to a [`CompactString`](#compactstring) without checking that the string contains
+
+  valid UTF-8.
+
+  
+
+  See the safe version, `CompactString::from_utf8`, for more details.
+
+  
+
+  # Safety
+
+  
+
+  * The contents pased to this method must be valid UTF-8.
+
+  
+
+  It's very important that this constraint is upheld because the internals of a
+
+  [`CompactString`](#compactstring) (e.g. determing an inline string versus a heap allocated string) rely on
+
+  the [`CompactString`](#compactstring) containing valid UTF-8. If this constraint is violated any further
+
+  use of the returned [`CompactString`](#compactstring) (including dropping it) can cause undefined behavior.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  // some bytes, in a vector
+
+  let sparkle_heart = vec![240, 159, 146, 150];
+
+  
+
+  let sparkle_heart = unsafe {
+
+      CompactString::from_utf8_unchecked(sparkle_heart)
+
+  };
+
+  
+
+  assert_eq!("💖", sparkle_heart);
+
+  ```
 
 - <span id="compactstring-from-utf16"></span>`fn from_utf16<B: AsRef<[u16]>>(buf: B) -> Result<Self, Utf16Error>` — [`Utf16Error`](#utf16error)
 
+  Decode a [`UTF-16`](https://en.wikipedia.org/wiki/UTF-16) slice of bytes into a
+
+  [`CompactString`](#compactstring), returning an `Err` if the slice contains any invalid data.
+
+  
+
+  # Examples
+
+  ### Valid UTF-16
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let buf: &[u16] = &[0xD834, 0xDD1E, 0x006d, 0x0075, 0x0073, 0x0069, 0x0063];
+
+  let compact = CompactString::from_utf16(buf).unwrap();
+
+  
+
+  assert_eq!(compact, "𝄞music");
+
+  ```
+
+  
+
+  ### Invalid UTF-16
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let buf: &[u16] = &[0xD834, 0xDD1E, 0x006d, 0x0075, 0xD800, 0x0069, 0x0063];
+
+  let res = CompactString::from_utf16(buf);
+
+  
+
+  assert!(res.is_err());
+
+  ```
+
 - <span id="compactstring-from-utf16-lossy"></span>`fn from_utf16_lossy<B: AsRef<[u16]>>(buf: B) -> Self`
+
+  Decode a UTF-16–encoded slice `v` into a `CompactString`, replacing invalid data with
+
+  the replacement character (`U+FFFD`), �.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  // 𝄞mus<invalid>ic<invalid>
+
+  let v = &[0xD834, 0xDD1E, 0x006d, 0x0075,
+
+            0x0073, 0xDD1E, 0x0069, 0x0063,
+
+            0xD834];
+
+  
+
+  assert_eq!(CompactString::from("𝄞mus\u{FFFD}ic\u{FFFD}"),
+
+             CompactString::from_utf16_lossy(v));
+
+  ```
 
 - <span id="compactstring-len"></span>`fn len(&self) -> usize`
 
+  Returns the length of the [`CompactString`](#compactstring) in `bytes`, not [`char`](../unicode_normalization/char/index.md)s or graphemes.
+
+  
+
+  When using `UTF-8` encoding (which all strings in Rust do) a single character will be 1 to 4
+
+  bytes long, therefore the return value of this method might not be what a human considers
+
+  the length of the string.
+
+  
+
+  # Examples
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let ascii = CompactString::new("hello world");
+
+  assert_eq!(ascii.len(), 11);
+
+  
+
+  let emoji = CompactString::new("👱");
+
+  assert_eq!(emoji.len(), 4);
+
+  ```
+
 - <span id="compactstring-is-empty"></span>`fn is_empty(&self) -> bool`
+
+  Returns `true` if the [`CompactString`](#compactstring) has a length of 0, `false` otherwise
+
+  
+
+  # Examples
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let mut msg = CompactString::new("");
+
+  assert!(msg.is_empty());
+
+  
+
+  // add some characters
+
+  msg.push_str("hello reader!");
+
+  assert!(!msg.is_empty());
+
+  ```
 
 - <span id="compactstring-capacity"></span>`fn capacity(&self) -> usize`
 
+  Returns the capacity of the [`CompactString`](#compactstring), in bytes.
+
+  
+
+  # Note
+
+  * A `CompactString` will always have a capacity of at least `std::mem::size_of::<String>()`
+
+  
+
+  # Examples
+
+  ### Minimum Size
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let min_size = std::mem::size_of::<String>();
+
+  let compact = CompactString::new("");
+
+  
+
+  assert!(compact.capacity() >= min_size);
+
+  ```
+
+  
+
+  ### Heap Allocated
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let compact = CompactString::with_capacity(128);
+
+  assert_eq!(compact.capacity(), 128);
+
+  ```
+
 - <span id="compactstring-reserve"></span>`fn reserve(&mut self, additional: usize)`
+
+  Ensures that this [`CompactString`](#compactstring)'s capacity is at least `additional` bytes longer than
+
+  its length. The capacity may be increased by more than `additional` bytes if it chooses,
+
+  to prevent frequent reallocations.
+
+  
+
+  # Note
+
+  * A `CompactString` will always have at least a capacity of `std::mem::size_of::<String>()`
+
+  * Reserving additional bytes may cause the `CompactString` to become heap allocated
+
+  
+
+  # Panics
+
+  This method panics if the new capacity overflows `usize` or if the system is out-of-memory.
+
+  Use `CompactString::try_reserve()` if you want to handle such a problem manually.
+
+  
+
+  # Examples
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  
+
+  const WORD: usize = std::mem::size_of::<usize>();
+
+  let mut compact = CompactString::default();
+
+  assert!(compact.capacity() >= (WORD * 3) - 1);
+
+  
+
+  compact.reserve(200);
+
+  assert!(compact.is_heap_allocated());
+
+  assert!(compact.capacity() >= 200);
+
+  ```
 
 - <span id="compactstring-try-reserve"></span>`fn try_reserve(&mut self, additional: usize) -> Result<(), ReserveError>` — [`ReserveError`](#reserveerror)
 
+  Fallible version of `CompactString::reserve()`
+
+  
+
+  This method won't panic if the system is out-of-memory, but return an [`ReserveError`](#reserveerror)
+
+  Otherwise it behaves the same as `CompactString::reserve()`.
+
 - <span id="compactstring-as-str"></span>`fn as_str(&self) -> &str`
 
+  Returns a string slice containing the entire [`CompactString`](#compactstring).
+
+  
+
+  # Examples
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let s = CompactString::new("hello");
+
+  
+
+  assert_eq!(s.as_str(), "hello");
+
+  ```
+
 - <span id="compactstring-as-mut-str"></span>`fn as_mut_str(&mut self) -> &mut str`
+
+  Returns a mutable string slice containing the entire [`CompactString`](#compactstring).
+
+  
+
+  # Examples
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let mut s = CompactString::new("hello");
+
+  s.as_mut_str().make_ascii_uppercase();
+
+  
+
+  assert_eq!(s.as_str(), "HELLO");
+
+  ```
 
 - <span id="compactstring-spare-capacity-mut"></span>`unsafe fn spare_capacity_mut(&mut self) -> &mut [mem::MaybeUninit<u8>]`
 
 - <span id="compactstring-as-bytes"></span>`fn as_bytes(&self) -> &[u8]`
 
+  Returns a byte slice of the [`CompactString`](#compactstring)'s contents.
+
+  
+
+  # Examples
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let s = CompactString::new("hello");
+
+  
+
+  assert_eq!(&[104, 101, 108, 108, 111], s.as_bytes());
+
+  ```
+
 - <span id="compactstring-as-mut-bytes"></span>`unsafe fn as_mut_bytes(&mut self) -> &mut [u8]`
+
+  Provides a mutable reference to the underlying buffer of bytes.
+
+  
+
+  # Safety
+
+  * All Rust strings, including `CompactString`, must be valid UTF-8. The caller must
+
+    guarantee that any modifications made to the underlying buffer are valid UTF-8.
+
+  
+
+  # Examples
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let mut s = CompactString::new("hello");
+
+  
+
+  let slice = unsafe { s.as_mut_bytes() };
+
+  // copy bytes into our string
+
+  slice[5..11].copy_from_slice(" world".as_bytes());
+
+  // set the len of the string
+
+  unsafe { s.set_len(11) };
+
+  
+
+  assert_eq!(s, "hello world");
+
+  ```
 
 - <span id="compactstring-push"></span>`fn push(&mut self, ch: char)`
 
+  Appends the given [`char`](../unicode_normalization/char/index.md) to the end of this [`CompactString`](#compactstring).
+
+  
+
+  # Examples
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let mut s = CompactString::new("foo");
+
+  
+
+  s.push('b');
+
+  s.push('a');
+
+  s.push('r');
+
+  
+
+  assert_eq!("foobar", s);
+
+  ```
+
 - <span id="compactstring-pop"></span>`fn pop(&mut self) -> Option<char>`
+
+  Removes the last character from the [`CompactString`](#compactstring) and returns it.
+
+  Returns `None` if this [`CompactString`](#compactstring) is empty.
+
+  
+
+  # Examples
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let mut s = CompactString::new("abc");
+
+  
+
+  assert_eq!(s.pop(), Some('c'));
+
+  assert_eq!(s.pop(), Some('b'));
+
+  assert_eq!(s.pop(), Some('a'));
+
+  
+
+  assert_eq!(s.pop(), None);
+
+  ```
 
 - <span id="compactstring-push-str"></span>`fn push_str(&mut self, s: &str)`
 
+  Appends a given string slice onto the end of this [`CompactString`](#compactstring)
+
+  
+
+  # Examples
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let mut s = CompactString::new("abc");
+
+  
+
+  s.push_str("123");
+
+  
+
+  assert_eq!("abc123", s);
+
+  ```
+
 - <span id="compactstring-remove"></span>`fn remove(&mut self, idx: usize) -> char`
+
+  Removes a [`char`](../unicode_normalization/char/index.md) from this [`CompactString`](#compactstring) at a byte position and returns it.
+
+  
+
+  This is an *O*(*n*) operation, as it requires copying every element in the
+
+  buffer.
+
+  
+
+  # Panics
+
+  
+
+  Panics if `idx` is larger than or equal to the [`CompactString`](#compactstring)'s length,
+
+  or if it does not lie on a [`char`](../unicode_normalization/char/index.md) boundary.
+
+  
+
+  # Examples
+
+  
+
+  ### Basic usage:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let mut c = CompactString::from("hello world");
+
+  
+
+  assert_eq!(c.remove(0), 'h');
+
+  assert_eq!(c, "ello world");
+
+  
+
+  assert_eq!(c.remove(5), 'w');
+
+  assert_eq!(c, "ello orld");
+
+  ```
+
+  
+
+  ### Past total length:
+
+  
+
+  ```should_panic
+
+  use compact_str::CompactString;
+
+  let mut c = CompactString::from("hello there!");
+
+  c.remove(100);
+
+  ```
+
+  
+
+  ### Not on char boundary:
+
+  
+
+  ```should_panic
+
+  use compact_str::CompactString;
+
+  let mut c = CompactString::from("🦄");
+
+  c.remove(1);
+
+  ```
 
 - <span id="compactstring-set-len"></span>`unsafe fn set_len(&mut self, new_len: usize)`
 
+  Forces the length of the [`CompactString`](#compactstring) to `new_len`.
+
+  
+
+  This is a low-level operation that maintains none of the normal invariants for
+
+  `CompactString`. If you want to modify the `CompactString` you should use methods like
+
+  `push`, `push_str` or `pop`.
+
+  
+
+  # Safety
+
+  * `new_len` must be less than or equal to `capacity()`
+
+  * The elements at `old_len..new_len` must be initialized
+
 - <span id="compactstring-is-heap-allocated"></span>`fn is_heap_allocated(&self) -> bool`
+
+  Returns whether or not the [`CompactString`](#compactstring) is heap allocated.
+
+  
+
+  # Examples
+
+  ### Inlined
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let hello = CompactString::new("hello world");
+
+  
+
+  assert!(!hello.is_heap_allocated());
+
+  ```
+
+  
+
+  ### Heap Allocated
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let msg = CompactString::new("this message will self destruct in 5, 4, 3, 2, 1 💥");
+
+  
+
+  assert!(msg.is_heap_allocated());
+
+  ```
 
 - <span id="compactstring-ensure-range"></span>`fn ensure_range(&self, range: impl RangeBounds<usize>) -> (usize, usize)`
 
+  Ensure that the given range is inside the set data, and that no codepoints are split.
+
+  
+
+  Returns the range `start..end` as a tuple.
+
 - <span id="compactstring-replace-range"></span>`fn replace_range(&mut self, range: impl RangeBounds<usize>, replace_with: &str)`
+
+  Removes the specified range in the [`CompactString`](#compactstring),
+
+  and replaces it with the given string.
+
+  The given string doesn't need to be the same length as the range.
+
+  
+
+  # Panics
+
+  
+
+  Panics if the starting point or end point do not lie on a [`char`](../unicode_normalization/char/index.md)
+
+  boundary, or if they're out of bounds.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let mut s = CompactString::new("Hello, world!");
+
+  
+
+  s.replace_range(7..12, "WORLD");
+
+  assert_eq!(s, "Hello, WORLD!");
+
+  
+
+  s.replace_range(7..=11, "you");
+
+  assert_eq!(s, "Hello, you!");
+
+  
+
+  s.replace_range(5.., "! Is it me you're looking for?");
+
+  assert_eq!(s, "Hello! Is it me you're looking for?");
+
+  ```
 
 - <span id="compactstring-replace-range-same-size"></span>`unsafe fn replace_range_same_size(&mut self, start: usize, end: usize, replace_with: &str)`
 
+  Replace into the same size.
+
 - <span id="compactstring-replace-range-shrink"></span>`unsafe fn replace_range_shrink(&mut self, start: usize, end: usize, replace_with: &str)`
+
+  Replace, so self.len() gets smaller.
 
 - <span id="compactstring-replace-range-grow"></span>`unsafe fn replace_range_grow(&mut self, start: usize, end: usize, replace_with: &str)`
 
+  Replace, so self.len() gets bigger.
+
 - <span id="compactstring-repeat"></span>`fn repeat(&self, n: usize) -> Self`
+
+  Creates a new [`CompactString`](#compactstring) by repeating a string `n` times.
+
+  
+
+  # Panics
+
+  
+
+  This function will panic if the capacity would overflow.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  assert_eq!(CompactString::new("abc").repeat(4), CompactString::new("abcabcabcabc"));
+
+  ```
+
+  
+
+  A panic upon overflow:
+
+  
+
+  ```should_panic
+
+  use compact_str::CompactString;
+
+  
+
+  // this will panic at runtime
+
+  let huge = CompactString::new("0123456789abcdef").repeat(usize::MAX);
+
+  ```
 
 - <span id="compactstring-truncate"></span>`fn truncate(&mut self, new_len: usize)`
 
+  Truncate the [`CompactString`](#compactstring) to a shorter length.
+
+  
+
+  If the length of the [`CompactString`](#compactstring) is less or equal to `new_len`, the call is a no-op.
+
+  
+
+  Calling this function does not change the capacity of the [`CompactString`](#compactstring).
+
+  
+
+  # Panics
+
+  
+
+  Panics if the new end of the string does not lie on a [`char`](../unicode_normalization/char/index.md) boundary.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let mut s = CompactString::new("Hello, world!");
+
+  s.truncate(5);
+
+  assert_eq!(s, "Hello");
+
+  ```
+
 - <span id="compactstring-as-ptr"></span>`fn as_ptr(&self) -> *const u8`
+
+  Converts a [`CompactString`](#compactstring) to a raw pointer.
 
 - <span id="compactstring-as-mut-ptr"></span>`fn as_mut_ptr(&mut self) -> *mut u8`
 
+  Converts a mutable [`CompactString`](#compactstring) to a raw pointer.
+
 - <span id="compactstring-insert-str"></span>`fn insert_str(&mut self, idx: usize, string: &str)`
+
+  Insert string character at an index.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let mut s = CompactString::new("Hello!");
+
+  s.insert_str(5, ", world");
+
+  assert_eq!(s, "Hello, world!");
+
+  ```
 
 - <span id="compactstring-insert"></span>`fn insert(&mut self, idx: usize, ch: char)`
 
+  Insert a character at an index.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let mut s = CompactString::new("Hello world!");
+
+  s.insert(5, ',');
+
+  assert_eq!(s, "Hello, world!");
+
+  ```
+
 - <span id="compactstring-clear"></span>`fn clear(&mut self)`
+
+  Reduces the length of the [`CompactString`](#compactstring) to zero.
+
+  
+
+  Calling this function does not change the capacity of the [`CompactString`](#compactstring).
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let mut s = CompactString::new("Rust is the most loved language on Stackoverflow!");
+
+  assert_eq!(s.capacity(), 49);
+
+  
+
+  s.clear();
+
+  
+
+  assert_eq!(s, "");
+
+  assert_eq!(s.capacity(), 49);
+
+  ```
 
 - <span id="compactstring-split-off"></span>`fn split_off(&mut self, at: usize) -> Self`
 
+  Split the [`CompactString`](#compactstring) into at the given byte index.
+
+  
+
+  Calling this function does not change the capacity of the [`CompactString`](#compactstring), unless the
+
+  [`CompactString`](#compactstring) is backed by a `&'static str`.
+
+  
+
+  # Panics
+
+  
+
+  Panics if `at` does not lie on a [`char`](../unicode_normalization/char/index.md) boundary.
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let mut s = CompactString::const_new("Hello, world!");
+
+  let w = s.split_off(5);
+
+  
+
+  assert_eq!(w, ", world!");
+
+  assert_eq!(s, "Hello");
+
+  ```
+
 - <span id="compactstring-drain"></span>`fn drain(&mut self, range: impl RangeBounds<usize>) -> Drain<'_>` — [`Drain`](#drain)
+
+  Remove a range from the [`CompactString`](#compactstring), and return it as an iterator.
+
+  
+
+  Calling this function does not change the capacity of the [`CompactString`](#compactstring).
+
+  
+
+  # Panics
+
+  
+
+  Panics if the start or end of the range does not lie on a [`char`](../unicode_normalization/char/index.md) boundary.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let mut s = CompactString::new("Hello, world!");
+
+  
+
+  let mut d = s.drain(5..12);
+
+  assert_eq!(d.next(), Some(','));   // iterate over the extracted data
+
+  assert_eq!(d.as_str(), " world"); // or get the whole data as &str
+
+  
+
+  // The iterator keeps a reference to `s`, so you have to drop() the iterator,
+
+  // before you can access `s` again.
+
+  drop(d);
+
+  assert_eq!(s, "Hello!");
+
+  ```
 
 - <span id="compactstring-shrink-to"></span>`fn shrink_to(&mut self, min_capacity: usize)`
 
+  Shrinks the capacity of this [`CompactString`](#compactstring) with a lower bound.
+
+  
+
+  The resulting capactity is never less than the size of 3×`usize`,
+
+  i.e. the capacity than can be inlined.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let mut s = CompactString::with_capacity(100);
+
+  assert_eq!(s.capacity(), 100);
+
+  
+
+  // if the capacity was already bigger than the argument, the call is a no-op
+
+  s.shrink_to(100);
+
+  assert_eq!(s.capacity(), 100);
+
+  
+
+  s.shrink_to(50);
+
+  assert_eq!(s.capacity(), 50);
+
+  
+
+  // if the string can be inlined, it is
+
+  s.shrink_to(10);
+
+  assert_eq!(s.capacity(), 3 * std::mem::size_of::<usize>());
+
+  ```
+
 - <span id="compactstring-shrink-to-fit"></span>`fn shrink_to_fit(&mut self)`
+
+  Shrinks the capacity of this [`CompactString`](#compactstring) to match its length.
+
+  
+
+  The resulting capactity is never less than the size of 3×`usize`,
+
+  i.e. the capacity than can be inlined.
+
+  
+
+  This method is effectively the same as calling `string.shrink_to(0)`.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let mut s = CompactString::from("This is a string with more than 24 characters.");
+
+  
+
+  s.reserve(100);
+
+  assert!(s.capacity() >= 100);
+
+  
+
+   s.shrink_to_fit();
+
+  assert_eq!(s.len(), s.capacity());
+
+  ```
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let mut s = CompactString::from("short string");
+
+  
+
+  s.reserve(100);
+
+  assert!(s.capacity() >= 100);
+
+  
+
+  s.shrink_to_fit();
+
+  assert_eq!(s.capacity(), 3 * std::mem::size_of::<usize>());
+
+  ```
 
 - <span id="compactstring-retain"></span>`fn retain(&mut self, predicate: impl FnMut(char) -> bool)`
 
+  Retains only the characters specified by the predicate.
+
+  
+
+  The method iterates over the characters in the string and calls the `predicate`.
+
+  
+
+  If the `predicate` returns `false`, then the character gets removed.
+
+  If the `predicate` returns `true`, then the character is kept.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let mut s = CompactString::from("äb𝄞d€");
+
+  
+
+  let keep = [false, true, true, false, true];
+
+  let mut iter = keep.iter();
+
+  s.retain(|_| *iter.next().unwrap());
+
+  
+
+  assert_eq!(s, "b𝄞€");
+
+  ```
+
 - <span id="compactstring-from-utf8-lossy"></span>`fn from_utf8_lossy(v: &[u8]) -> Self`
+
+  Decode a bytes slice as UTF-8 string, replacing any illegal codepoints
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let chess_knight = b"\xf0\x9f\xa8\x84";
+
+  
+
+  assert_eq!(
+
+      "🨄",
+
+      CompactString::from_utf8_lossy(chess_knight),
+
+  );
+
+  
+
+  // For valid UTF-8 slices, this is the same as:
+
+  assert_eq!(
+
+      "🨄",
+
+      CompactString::new(std::str::from_utf8(chess_knight).unwrap()),
+
+  );
+
+  ```
+
+  
+
+  Incorrect bytes:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let broken = b"\xf0\x9f\xc8\x84";
+
+  
+
+  assert_eq!(
+
+      "�Ȅ",
+
+      CompactString::from_utf8_lossy(broken),
+
+  );
+
+  
+
+  // For invalid UTF-8 slices, this is an optimized implemented for:
+
+  assert_eq!(
+
+      "�Ȅ",
+
+      CompactString::from(String::from_utf8_lossy(broken)),
+
+  );
+
+  ```
 
 - <span id="compactstring-from-utf16x"></span>`fn from_utf16x(v: &[u8], from_int: impl Fn(u16) -> u16, from_bytes: impl Fn([u8; 2]) -> u16) -> Result<Self, Utf16Error>` — [`Utf16Error`](#utf16error)
 
@@ -419,27 +1889,683 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 - <span id="compactstring-from-utf16le"></span>`fn from_utf16le(v: impl AsRef<[u8]>) -> Result<Self, Utf16Error>` — [`Utf16Error`](#utf16error)
 
+  Decode a slice of bytes as UTF-16 encoded string, in little endian.
+
+  
+
+  # Errors
+
+  
+
+  If the slice has an odd number of bytes, or if it did not contain valid UTF-16 characters,
+
+  a [`Utf16Error`](#utf16error) is returned.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  const DANCING_MEN: &[u8] = b"\x3d\xd8\x6f\xdc\x0d\x20\x42\x26\x0f\xfe";
+
+  let dancing_men = CompactString::from_utf16le(DANCING_MEN).unwrap();
+
+  assert_eq!(dancing_men, "👯‍♂️");
+
+  ```
+
 - <span id="compactstring-from-utf16be"></span>`fn from_utf16be(v: impl AsRef<[u8]>) -> Result<Self, Utf16Error>` — [`Utf16Error`](#utf16error)
+
+  Decode a slice of bytes as UTF-16 encoded string, in big endian.
+
+  
+
+  # Errors
+
+  
+
+  If the slice has an odd number of bytes, or if it did not contain valid UTF-16 characters,
+
+  a [`Utf16Error`](#utf16error) is returned.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  const DANCING_WOMEN: &[u8] = b"\xd8\x3d\xdc\x6f\x20\x0d\x26\x40\xfe\x0f";
+
+  let dancing_women = CompactString::from_utf16be(DANCING_WOMEN).unwrap();
+
+  assert_eq!(dancing_women, "👯‍♀️");
+
+  ```
 
 - <span id="compactstring-from-utf16le-lossy"></span>`fn from_utf16le_lossy(v: impl AsRef<[u8]>) -> Self`
 
+  Lossy decode a slice of bytes as UTF-16 encoded string, in little endian.
+
+  
+
+  In this context "lossy" means that any broken characters in the input are replaced by the
+
+  \<REPLACEMENT CHARACTER\> `'�'`. Please notice that, unlike UTF-8, UTF-16 is not self
+
+  synchronizing. I.e. if a byte in the input is dropped, all following data is broken.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  // A "random" bit was flipped in the 4th byte:
+
+  const DANCING_MEN: &[u8] = b"\x3d\xd8\x6f\xfc\x0d\x20\x42\x26\x0f\xfe";
+
+  let dancing_men = CompactString::from_utf16le_lossy(DANCING_MEN);
+
+  assert_eq!(dancing_men, "�\u{fc6f}\u{200d}♂️");
+
+  ```
+
 - <span id="compactstring-from-utf16be-lossy"></span>`fn from_utf16be_lossy(v: impl AsRef<[u8]>) -> Self`
+
+  Lossy decode a slice of bytes as UTF-16 encoded string, in big endian.
+
+  
+
+  In this context "lossy" means that any broken characters in the input are replaced by the
+
+  \<REPLACEMENT CHARACTER\> `'�'`. Please notice that, unlike UTF-8, UTF-16 is not self
+
+  synchronizing. I.e. if a byte in the input is dropped, all following data is broken.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  // A "random" bit was flipped in the 9th byte:
+
+  const DANCING_WOMEN: &[u8] = b"\xd8\x3d\xdc\x6f\x20\x0d\x26\x40\xde\x0f";
+
+  let dancing_women = CompactString::from_utf16be_lossy(DANCING_WOMEN);
+
+  assert_eq!(dancing_women, "👯\u{200d}♀�");
+
+  ```
 
 - <span id="compactstring-into-string"></span>`fn into_string(self) -> String`
 
+  Convert the [`CompactString`](#compactstring) into a [`String`](../cargo_platform/index.md).
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let s = CompactString::new("Hello world");
+
+  let s = s.into_string();
+
+  assert_eq!(s, "Hello world");
+
+  ```
+
 - <span id="compactstring-from-string-buffer"></span>`fn from_string_buffer(s: String) -> Self`
+
+  Convert a [`String`](../cargo_platform/index.md) into a [`CompactString`](#compactstring) _without inlining_.
+
+  
+
+  Note: You probably don't need to use this method, instead you should use `From<String>`
+
+  which is implemented for [`CompactString`](#compactstring).
+
+  
+
+  This method exists incase your code is very sensitive to memory allocations. Normally when
+
+  converting a [`String`](../cargo_platform/index.md) to a [`CompactString`](#compactstring) we'll inline short strings onto the stack.
+
+  But this results in [`Drop`](../gimli/index.md)-ing the original [`String`](../cargo_platform/index.md), which causes memory it owned on
+
+  the heap to be deallocated. Instead when using this method, we always reuse the buffer that
+
+  was previously owned by the [`String`](../cargo_platform/index.md), so no trips to the allocator are needed.
+
+  
+
+  # Examples
+
+  
+
+  ### Short Strings
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  
+
+  let short = "hello world".to_string();
+
+  let c_heap = CompactString::from_string_buffer(short);
+
+  
+
+  // using CompactString::from_string_buffer, we'll re-use the String's underlying buffer
+
+  assert!(c_heap.is_heap_allocated());
+
+  
+
+  // note: when Clone-ing a short heap allocated string, we'll eagerly inline at that point
+
+  let c_inline = c_heap.clone();
+
+  assert!(!c_inline.is_heap_allocated());
+
+  
+
+  assert_eq!(c_heap, c_inline);
+
+  ```
+
+  
+
+  ### Longer Strings
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  
+
+  let x = "longer string that will be on the heap".to_string();
+
+  let c1 = CompactString::from(x);
+
+  
+
+  let y = "longer string that will be on the heap".to_string();
+
+  let c2 = CompactString::from_string_buffer(y);
+
+  
+
+  // for longer strings, we re-use the underlying String's buffer in both cases
+
+  assert!(c1.is_heap_allocated());
+
+  assert!(c2.is_heap_allocated());
+
+  ```
+
+  
+
+  ### Buffer Re-use
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  
+
+  let og = "hello world".to_string();
+
+  let og_addr = og.as_ptr();
+
+  
+
+  let mut c = CompactString::from_string_buffer(og);
+
+  let ex_addr = c.as_ptr();
+
+  
+
+  // When converting to/from String and CompactString with from_string_buffer we always re-use
+
+  // the same underlying allocated memory/buffer
+
+  assert_eq!(og_addr, ex_addr);
+
+  
+
+  let long = "this is a long string that will be on the heap".to_string();
+
+  let long_addr = long.as_ptr();
+
+  
+
+  let mut long_c = CompactString::from(long);
+
+  let long_ex_addr = long_c.as_ptr();
+
+  
+
+  // When converting to/from String and CompactString with From<String>, we'll also re-use the
+
+  // underlying buffer, if the string is long, otherwise when converting to CompactString we
+
+  // eagerly inline
+
+  assert_eq!(long_addr, long_ex_addr);
+
+  ```
 
 - <span id="compactstring-to-ascii-lowercase"></span>`fn to_ascii_lowercase(&self) -> Self`
 
+  Returns a copy of this string where each character is mapped to its
+
+  ASCII lower case equivalent.
+
+  
+
+  ASCII letters 'A' to 'Z' are mapped to 'a' to 'z',
+
+  but non-ASCII letters are unchanged.
+
+  
+
+  To lowercase the value in-place, use `str::make_ascii_lowercase`.
+
+  
+
+  To lowercase ASCII characters in addition to non-ASCII characters, use
+
+  `CompactString::to_lowercase`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let s = CompactString::new("Grüße, Jürgen ❤");
+
+  
+
+  assert_eq!("grüße, jürgen ❤", s.to_ascii_lowercase());
+
+  ```
+
 - <span id="compactstring-to-ascii-uppercase"></span>`fn to_ascii_uppercase(&self) -> Self`
+
+  Returns a copy of this string where each character is mapped to its
+
+  ASCII upper case equivalent.
+
+  
+
+  ASCII letters 'a' to 'z' are mapped to 'A' to 'Z',
+
+  but non-ASCII letters are unchanged.
+
+  
+
+  To uppercase the value in-place, use `str::make_ascii_uppercase`.
+
+  
+
+  To uppercase ASCII characters in addition to non-ASCII characters, use
+
+  `CompactString::to_uppercase`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let s = CompactString::new("Grüße, Jürgen ❤");
+
+  
+
+  assert_eq!("GRüßE, JüRGEN ❤", s.to_ascii_uppercase());
+
+  ```
 
 - <span id="compactstring-to-lowercase"></span>`fn to_lowercase(&self) -> Self`
 
+  Returns the lowercase equivalent of this string slice, as a new [`CompactString`](#compactstring).
+
+  
+
+  'Lowercase' is defined according to the terms of the Unicode Derived Core Property
+
+  `Lowercase`.
+
+  
+
+  Since some characters can expand into multiple characters when changing
+
+  the case, this function returns a [`CompactString`](#compactstring) instead of modifying the
+
+  parameter in-place.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let s = CompactString::new("HELLO");
+
+  
+
+  assert_eq!("hello", s.to_lowercase());
+
+  ```
+
+  
+
+  A tricky example, with sigma:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let sigma = CompactString::new("Σ");
+
+  
+
+  assert_eq!("σ", sigma.to_lowercase());
+
+  
+
+  // but at the end of a word, it's ς, not σ:
+
+  let odysseus = CompactString::new("ὈΔΥΣΣΕΎΣ");
+
+  
+
+  assert_eq!("ὀδυσσεύς", odysseus.to_lowercase());
+
+  ```
+
+  
+
+  Languages without case are not changed:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let new_year = CompactString::new("农历新年");
+
+  
+
+  assert_eq!(new_year, new_year.to_lowercase());
+
+  ```
+
 - <span id="compactstring-from-str-to-lowercase"></span>`fn from_str_to_lowercase(input: &str) -> Self`
+
+  Returns the lowercase equivalent of this string slice, as a new [`CompactString`](#compactstring).
+
+  
+
+  'Lowercase' is defined according to the terms of the Unicode Derived Core Property
+
+  `Lowercase`.
+
+  
+
+  Since some characters can expand into multiple characters when changing
+
+  the case, this function returns a [`CompactString`](#compactstring) instead of modifying the
+
+  parameter in-place.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  
+
+  assert_eq!("hello", CompactString::from_str_to_lowercase("HELLO"));
+
+  ```
+
+  
+
+  A tricky example, with sigma:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  
+
+  assert_eq!("σ", CompactString::from_str_to_lowercase("Σ"));
+
+  
+
+  // but at the end of a word, it's ς, not σ:
+
+  assert_eq!("ὀδυσσεύς", CompactString::from_str_to_lowercase("ὈΔΥΣΣΕΎΣ"));
+
+  ```
+
+  
+
+  Languages without case are not changed:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  
+
+  let new_year = "农历新年";
+
+  assert_eq!(new_year, CompactString::from_str_to_lowercase(new_year));
+
+  ```
 
 - <span id="compactstring-to-uppercase"></span>`fn to_uppercase(&self) -> Self`
 
+  Returns the uppercase equivalent of this string slice, as a new [`CompactString`](#compactstring).
+
+  
+
+  'Uppercase' is defined according to the terms of the Unicode Derived Core Property
+
+  `Uppercase`.
+
+  
+
+  Since some characters can expand into multiple characters when changing
+
+  the case, this function returns a [`CompactString`](#compactstring) instead of modifying the
+
+  parameter in-place.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let s = CompactString::new("hello");
+
+  
+
+  assert_eq!("HELLO", s.to_uppercase());
+
+  ```
+
+  
+
+  Scripts without case are not changed:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let new_year = CompactString::new("农历新年");
+
+  
+
+  assert_eq!(new_year, new_year.to_uppercase());
+
+  ```
+
+  
+
+  One character can become multiple:
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  let s = CompactString::new("tschüß");
+
+  
+
+  assert_eq!("TSCHÜSS", s.to_uppercase());
+
+  ```
+
 - <span id="compactstring-from-str-to-uppercase"></span>`fn from_str_to_uppercase(input: &str) -> Self`
+
+  Returns the uppercase equivalent of this string slice, as a new [`CompactString`](#compactstring).
+
+  
+
+  'Uppercase' is defined according to the terms of the Unicode Derived Core Property
+
+  `Uppercase`.
+
+  
+
+  Since some characters can expand into multiple characters when changing
+
+  the case, this function returns a [`CompactString`](#compactstring) instead of modifying the
+
+  parameter in-place.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  
+
+  assert_eq!("HELLO", CompactString::from_str_to_uppercase("hello"));
+
+  ```
+
+  
+
+  Scripts without case are not changed:
+
+  
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  
+
+  let new_year = "农历新年";
+
+  assert_eq!(new_year, CompactString::from_str_to_uppercase(new_year));
+
+  ```
+
+  
+
+  One character can become multiple:
+
+  ```rust
+
+  use compact_str::CompactString;
+
+  
+
+  assert_eq!("TSCHÜSS", CompactString::from_str_to_uppercase("tschüß"));
+
+  ```
 
 #### Trait Implementations
 
@@ -451,21 +2577,37 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl AddAssign for CompactString`
 
-- <span id="compactstring-add-assign"></span>`fn add_assign(&mut self, rhs: &str)`
+- <span id="compactstring-addassign-add-assign"></span>`fn add_assign(&mut self, rhs: &str)`
+
+##### `impl Any for CompactString`
+
+- <span id="compactstring-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl AsRef for CompactString`
 
-- <span id="compactstring-as-ref"></span>`fn as_ref(&self) -> &str`
+- <span id="compactstring-asref-as-ref"></span>`fn as_ref(&self) -> &str`
+
+##### `impl<T> Borrow for CompactString`
+
+- <span id="compactstring-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CompactString`
+
+- <span id="compactstring-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for CompactString`
 
 - <span id="compactstring-clone"></span>`fn clone(&self) -> Self`
 
-- <span id="compactstring-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
+- <span id="compactstring-clone-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
+
+##### `impl CloneToUninit for CompactString`
+
+- <span id="compactstring-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Debug for CompactString`
 
-- <span id="compactstring-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="compactstring-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for CompactString`
 
@@ -479,11 +2621,11 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl DerefMut for CompactString`
 
-- <span id="compactstring-deref-mut"></span>`fn deref_mut(&mut self) -> &mut str`
+- <span id="compactstring-derefmut-deref-mut"></span>`fn deref_mut(&mut self) -> &mut str`
 
 ##### `impl Display for CompactString`
 
-- <span id="compactstring-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="compactstring-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for CompactString`
 
@@ -491,33 +2633,51 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 - <span id="compactstring-extend"></span>`fn extend<T: IntoIterator<Item = char>>(&mut self, iter: T)`
 
+##### `impl<T> From for CompactString`
+
+- <span id="compactstring-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl FromIterator for super::Repr`
 
-- <span id="superrepr-from-iter"></span>`fn from_iter<T: IntoIterator<Item = CompactString>>(iter: T) -> Self`
+- <span id="superrepr-fromiterator-from-iter"></span>`fn from_iter<T: IntoIterator<Item = CompactString>>(iter: T) -> Self`
 
 ##### `impl FromStr for CompactString`
 
 - <span id="compactstring-fromstr-type-err"></span>`type Err = Infallible`
 
-- <span id="compactstring-from-str"></span>`fn from_str(s: &str) -> Result<CompactString, <Self as >::Err>` — [`CompactString`](#compactstring)
+- <span id="compactstring-fromstr-from-str"></span>`fn from_str(s: &str) -> Result<CompactString, <Self as >::Err>` — [`CompactString`](#compactstring)
 
 ##### `impl Hash for CompactString`
 
 - <span id="compactstring-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
+##### `impl<U> Into for CompactString`
+
+- <span id="compactstring-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl LifetimeFree for crate::CompactString`
 
 ##### `impl Ord for CompactString`
 
-- <span id="compactstring-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
+- <span id="compactstring-ord-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
 
 ##### `impl<T: AsRef<str> + ?Sized> PartialEq for CompactString`
 
-- <span id="compactstring-eq"></span>`fn eq(&self, other: &T) -> bool`
+- <span id="compactstring-partialeq-eq"></span>`fn eq(&self, other: &T) -> bool`
 
 ##### `impl PartialOrd for CompactString`
 
-- <span id="compactstring-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
+- <span id="compactstring-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
 
 ##### `impl Receiver for CompactString`
 
@@ -525,17 +2685,37 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl ToCompactString for CompactString`
 
-- <span id="compactstring-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
+- <span id="compactstring-tocompactstring-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
+
+##### `impl ToOwned for CompactString`
+
+- <span id="compactstring-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="compactstring-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="compactstring-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for CompactString`
 
-- <span id="compactstring-to-string"></span>`fn to_string(&self) -> String`
+- <span id="compactstring-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for CompactString`
+
+- <span id="compactstring-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="compactstring-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CompactString`
+
+- <span id="compactstring-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="compactstring-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Write for CompactString`
 
-- <span id="compactstring-write-str"></span>`fn write_str(&mut self, s: &str) -> fmt::Result`
+- <span id="compactstring-write-write-str"></span>`fn write_str(&mut self, s: &str) -> fmt::Result`
 
-- <span id="compactstring-write-fmt"></span>`fn write_fmt(&mut self, args: fmt::Arguments<'_>) -> fmt::Result`
+- <span id="compactstring-write-write-fmt"></span>`fn write_fmt(&mut self, args: fmt::Arguments<'_>) -> fmt::Result`
 
 ### `Utf16Error`
 
@@ -564,27 +2744,81 @@ assert!(CompactString::from_utf16(v).is_err());
 
 #### Trait Implementations
 
+##### `impl Any for Utf16Error`
+
+- <span id="utf16error-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Utf16Error`
+
+- <span id="utf16error-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Utf16Error`
+
+- <span id="utf16error-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Utf16Error`
 
 - <span id="utf16error-clone"></span>`fn clone(&self) -> Utf16Error` — [`Utf16Error`](#utf16error)
+
+##### `impl CloneToUninit for Utf16Error`
+
+- <span id="utf16error-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Utf16Error`
 
 ##### `impl Debug for Utf16Error`
 
-- <span id="utf16error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="utf16error-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Utf16Error`
 
-- <span id="utf16error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="utf16error-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Utf16Error`
+
+- <span id="utf16error-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Utf16Error`
+
+- <span id="utf16error-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToCompactString for Utf16Error`
 
-- <span id="utf16error-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
+- <span id="utf16error-tocompactstring-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
+
+##### `impl ToOwned for Utf16Error`
+
+- <span id="utf16error-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="utf16error-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="utf16error-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for Utf16Error`
 
-- <span id="utf16error-to-string"></span>`fn to_string(&self) -> String`
+- <span id="utf16error-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Utf16Error`
+
+- <span id="utf16error-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="utf16error-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Utf16Error`
+
+- <span id="utf16error-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="utf16error-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Drain<'a>`
 
@@ -605,11 +2839,25 @@ An iterator over the exacted data by `CompactString::drain()`.
 
 - <span id="drain-as-str"></span>`fn as_str(&self) -> &str`
 
+  The remaining, unconsumed characters of the extracted substring.
+
 #### Trait Implementations
+
+##### `impl Any for Drain<'a>`
+
+- <span id="drain-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Drain<'a>`
+
+- <span id="drain-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Drain<'a>`
+
+- <span id="drain-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for Drain<'_>`
 
-- <span id="drain-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="drain-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deref for Drain<'_>`
 
@@ -619,17 +2867,35 @@ An iterator over the exacted data by `CompactString::drain()`.
 
 ##### `impl Display for Drain<'_>`
 
-- <span id="drain-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="drain-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DoubleEndedIterator for Drain<'_>`
 
-- <span id="drain-next-back"></span>`fn next_back(&mut self) -> Option<char>`
+- <span id="drain-doubleendediterator-next-back"></span>`fn next_back(&mut self) -> Option<char>`
 
 ##### `impl Drop for Drain<'_>`
 
 - <span id="drain-drop"></span>`fn drop(&mut self)`
 
+##### `impl<T> From for Drain<'a>`
+
+- <span id="drain-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl FusedIterator for Drain<'_>`
+
+##### `impl<U> Into for Drain<'a>`
+
+- <span id="drain-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Drain<'a>`
 
@@ -637,19 +2903,19 @@ An iterator over the exacted data by `CompactString::drain()`.
 
 - <span id="drain-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="drain-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Drain<'_>`
 
 - <span id="drain-iterator-type-item"></span>`type Item = char`
 
-- <span id="drain-next"></span>`fn next(&mut self) -> Option<char>`
+- <span id="drain-iterator-next"></span>`fn next(&mut self) -> Option<char>`
 
-- <span id="drain-count"></span>`fn count(self) -> usize`
+- <span id="drain-iterator-count"></span>`fn count(self) -> usize`
 
-- <span id="drain-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="drain-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- <span id="drain-last"></span>`fn last(self) -> Option<char>`
+- <span id="drain-iterator-last"></span>`fn last(self) -> Option<char>`
 
 ##### `impl Receiver for Drain<'a>`
 
@@ -661,11 +2927,23 @@ An iterator over the exacted data by `CompactString::drain()`.
 
 ##### `impl ToCompactString for Drain<'a>`
 
-- <span id="drain-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
+- <span id="drain-tocompactstring-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
 
 ##### `impl ToString for Drain<'a>`
 
-- <span id="drain-to-string"></span>`fn to_string(&self) -> String`
+- <span id="drain-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Drain<'a>`
+
+- <span id="drain-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="drain-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Drain<'a>`
+
+- <span id="drain-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="drain-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ReserveError`
 
@@ -679,35 +2957,89 @@ A possible error value if allocating or resizing a [`CompactString`](#compactstr
 
 #### Trait Implementations
 
+##### `impl Any for ReserveError`
+
+- <span id="reserveerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ReserveError`
+
+- <span id="reserveerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ReserveError`
+
+- <span id="reserveerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ReserveError`
 
 - <span id="reserveerror-clone"></span>`fn clone(&self) -> ReserveError` — [`ReserveError`](#reserveerror)
+
+##### `impl CloneToUninit for ReserveError`
+
+- <span id="reserveerror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ReserveError`
 
 ##### `impl Debug for ReserveError`
 
-- <span id="reserveerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reserveerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ReserveError`
 
-- <span id="reserveerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reserveerror-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for ReserveError`
 
+##### `impl<T> From for ReserveError`
+
+- <span id="reserveerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ReserveError`
+
+- <span id="reserveerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ReserveError`
 
-- <span id="reserveerror-eq"></span>`fn eq(&self, other: &ReserveError) -> bool` — [`ReserveError`](#reserveerror)
+- <span id="reserveerror-partialeq-eq"></span>`fn eq(&self, other: &ReserveError) -> bool` — [`ReserveError`](#reserveerror)
 
 ##### `impl StructuralPartialEq for ReserveError`
 
 ##### `impl ToCompactString for ReserveError`
 
-- <span id="reserveerror-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
+- <span id="reserveerror-tocompactstring-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
+
+##### `impl ToOwned for ReserveError`
+
+- <span id="reserveerror-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="reserveerror-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="reserveerror-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for ReserveError`
 
-- <span id="reserveerror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="reserveerror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for ReserveError`
+
+- <span id="reserveerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="reserveerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ReserveError`
+
+- <span id="reserveerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="reserveerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -736,37 +3068,91 @@ A possible error value if `ToCompactString::try_to_compact_string()` failed.
 
 #### Trait Implementations
 
+##### `impl Any for ToCompactStringError`
+
+- <span id="tocompactstringerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ToCompactStringError`
+
+- <span id="tocompactstringerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ToCompactStringError`
+
+- <span id="tocompactstringerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ToCompactStringError`
 
 - <span id="tocompactstringerror-clone"></span>`fn clone(&self) -> ToCompactStringError` — [`ToCompactStringError`](#tocompactstringerror)
+
+##### `impl CloneToUninit for ToCompactStringError`
+
+- <span id="tocompactstringerror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ToCompactStringError`
 
 ##### `impl Debug for ToCompactStringError`
 
-- <span id="tocompactstringerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tocompactstringerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ToCompactStringError`
 
-- <span id="tocompactstringerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tocompactstringerror-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for ToCompactStringError`
 
-- <span id="tocompactstringerror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
+- <span id="tocompactstringerror-error-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
+
+##### `impl<T> From for ToCompactStringError`
+
+- <span id="tocompactstringerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ToCompactStringError`
+
+- <span id="tocompactstringerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ToCompactStringError`
 
-- <span id="tocompactstringerror-eq"></span>`fn eq(&self, other: &ToCompactStringError) -> bool` — [`ToCompactStringError`](#tocompactstringerror)
+- <span id="tocompactstringerror-partialeq-eq"></span>`fn eq(&self, other: &ToCompactStringError) -> bool` — [`ToCompactStringError`](#tocompactstringerror)
 
 ##### `impl StructuralPartialEq for ToCompactStringError`
 
 ##### `impl ToCompactString for ToCompactStringError`
 
-- <span id="tocompactstringerror-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
+- <span id="tocompactstringerror-tocompactstring-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
+
+##### `impl ToOwned for ToCompactStringError`
+
+- <span id="tocompactstringerror-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="tocompactstringerror-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="tocompactstringerror-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for ToCompactStringError`
 
-- <span id="tocompactstringerror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="tocompactstringerror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for ToCompactStringError`
+
+- <span id="tocompactstringerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tocompactstringerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ToCompactStringError`
+
+- <span id="tocompactstringerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tocompactstringerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 
@@ -825,8 +3211,8 @@ trait ToCompactString { ... }
 A trait for converting a value to a `CompactString`.
 
 This trait is automatically implemented for any type which implements the
-[`fmt::Display`](../miette_derive/fmt/index.md) trait. As such, [`ToCompactString`](traits/index.md) shouldn't be implemented directly:
-[`fmt::Display`](../miette_derive/fmt/index.md) should be implemented instead, and you get the [`ToCompactString`](traits/index.md)
+[`fmt::Display`](../miette_derive/index.md) trait. As such, [`ToCompactString`](traits/index.md) shouldn't be implemented directly:
+[`fmt::Display`](../miette_derive/index.md) should be implemented instead, and you get the [`ToCompactString`](traits/index.md)
 implementation for free.
 
 #### Required Methods
@@ -912,7 +3298,7 @@ depending on the intended destination of the string.
 
 To convert a single value to a string, use the
 `ToCompactString::to_compact_string` method, which uses
-the [`std::fmt::Display`](../miette_derive/fmt/index.md) formatting trait.
+the [`std::fmt::Display`](../miette_derive/index.md) formatting trait.
 
 # Panics
 

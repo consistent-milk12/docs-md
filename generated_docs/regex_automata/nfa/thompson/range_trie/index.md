@@ -112,35 +112,159 @@ that it is acyclic.
 
 - <span id="rangetrie-new"></span>`fn new() -> RangeTrie` — [`RangeTrie`](#rangetrie)
 
+  Create a new empty range trie.
+
 - <span id="rangetrie-clear"></span>`fn clear(&mut self)`
+
+  Clear this range trie such that it is empty. Clearing a range trie
+
+  and reusing it can beneficial because this may reuse allocations.
 
 - <span id="rangetrie-iter"></span>`fn iter<E, F: FnMut(&[Utf8Range]) -> Result<(), E>>(&self, f: F) -> Result<(), E>`
 
+  Iterate over all of the sequences of byte ranges in this trie, and
+
+  call the provided function for each sequence. Iteration occurs in
+
+  lexicographic order.
+
 - <span id="rangetrie-insert"></span>`fn insert(&mut self, ranges: &[Utf8Range])`
+
+  Inserts a new sequence of ranges into this trie.
+
+  
+
+  The sequence given must be non-empty and must not have a length
+
+  exceeding 4.
 
 - <span id="rangetrie-add-empty"></span>`fn add_empty(&mut self) -> StateID` — [`StateID`](../../../util/primitives/index.md#stateid)
 
 - <span id="rangetrie-duplicate"></span>`fn duplicate(&mut self, old_id: StateID) -> StateID` — [`StateID`](../../../util/primitives/index.md#stateid)
 
+  Performs a deep clone of the given state and returns the duplicate's
+
+  state ID.
+
+  
+
+  A "deep clone" in this context means that the state given along with
+
+  recursively all states that it points to are copied. Once complete,
+
+  the given state ID and the returned state ID share nothing.
+
+  
+
+  This is useful during range trie insertion when a new range overlaps
+
+  with an existing range that is bigger than the new one. The part
+
+  of the existing range that does *not* overlap with the new one is
+
+  duplicated so that adding the new range to the overlap doesn't disturb
+
+  the non-overlapping portion.
+
+  
+
+  There's one exception: if old_id is the final state, then it is not
+
+  duplicated and the same final state is returned. This is because all
+
+  final states in this trie are equivalent.
+
 - <span id="rangetrie-add-transition"></span>`fn add_transition(&mut self, from_id: StateID, range: Utf8Range, next_id: StateID)` — [`StateID`](../../../util/primitives/index.md#stateid)
+
+  Adds the given transition to the given state.
+
+  
+
+  Callers must ensure that all previous transitions in this state
+
+  are lexicographically smaller than the given range.
 
 - <span id="rangetrie-add-transition-at"></span>`fn add_transition_at(&mut self, i: usize, from_id: StateID, range: Utf8Range, next_id: StateID)` — [`StateID`](../../../util/primitives/index.md#stateid)
 
+  Like `add_transition`, except this inserts the transition just before
+
+  the ith transition.
+
 - <span id="rangetrie-set-transition-at"></span>`fn set_transition_at(&mut self, i: usize, from_id: StateID, range: Utf8Range, next_id: StateID)` — [`StateID`](../../../util/primitives/index.md#stateid)
+
+  Overwrites the transition at position i with the given transition.
 
 - <span id="rangetrie-state"></span>`fn state(&self, id: StateID) -> &State` — [`StateID`](../../../util/primitives/index.md#stateid), [`State`](#state)
 
+  Return an immutable borrow for the state with the given ID.
+
 - <span id="rangetrie-state-mut"></span>`fn state_mut(&mut self, id: StateID) -> &mut State` — [`StateID`](../../../util/primitives/index.md#stateid), [`State`](#state)
 
+  Return a mutable borrow for the state with the given ID.
+
 #### Trait Implementations
+
+##### `impl Any for RangeTrie`
+
+- <span id="rangetrie-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RangeTrie`
+
+- <span id="rangetrie-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RangeTrie`
+
+- <span id="rangetrie-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for RangeTrie`
 
 - <span id="rangetrie-clone"></span>`fn clone(&self) -> RangeTrie` — [`RangeTrie`](#rangetrie)
 
+##### `impl CloneToUninit for RangeTrie`
+
+- <span id="rangetrie-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for RangeTrie`
 
-- <span id="rangetrie-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rangetrie-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RangeTrie`
+
+- <span id="rangetrie-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RangeTrie`
+
+- <span id="rangetrie-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for RangeTrie`
+
+- <span id="rangetrie-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rangetrie-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rangetrie-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RangeTrie`
+
+- <span id="rangetrie-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rangetrie-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RangeTrie`
+
+- <span id="rangetrie-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rangetrie-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `State`
 
@@ -165,17 +289,103 @@ A single state in this trie.
 
 - <span id="state-find"></span>`fn find(&self, range: Utf8Range) -> usize`
 
+  Find the position at which the given range should be inserted in this
+
+  state.
+
+  
+
+  The position returned is always in the inclusive range
+
+  [0, transitions.len()]. If 'transitions.len()' is returned, then the
+
+  given range overlaps with no other range in this state *and* is greater
+
+  than all of them.
+
+  
+
+  For all other possible positions, the given range either overlaps
+
+  with the transition at that position or is otherwise less than it
+
+  with no overlap (and is greater than the previous transition). In the
+
+  former case, careful attention must be paid to inserting this range
+
+  as a new transition. In the latter case, the range can be inserted as
+
+  a new transition at the given position without disrupting any other
+
+  transitions.
+
 - <span id="state-clear"></span>`fn clear(&mut self)`
 
+  Clear this state such that it has zero transitions.
+
 #### Trait Implementations
+
+##### `impl Any for State`
+
+- <span id="state-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for State`
+
+- <span id="state-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for State`
+
+- <span id="state-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for State`
 
 - <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](#state)
 
+##### `impl CloneToUninit for State`
+
+- <span id="state-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for State`
 
-- <span id="state-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="state-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for State`
+
+- <span id="state-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for State`
+
+- <span id="state-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for State`
+
+- <span id="state-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="state-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="state-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for State`
+
+- <span id="state-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="state-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for State`
+
+- <span id="state-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="state-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Transition`
 
@@ -204,13 +414,67 @@ to by `next_id`.
 
 #### Trait Implementations
 
+##### `impl Any for Transition`
+
+- <span id="transition-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Transition`
+
+- <span id="transition-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Transition`
+
+- <span id="transition-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Transition`
 
 - <span id="transition-clone"></span>`fn clone(&self) -> Transition` — [`Transition`](#transition)
 
+##### `impl CloneToUninit for Transition`
+
+- <span id="transition-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Transition`
 
-- <span id="transition-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="transition-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Transition`
+
+- <span id="transition-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Transition`
+
+- <span id="transition-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Transition`
+
+- <span id="transition-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="transition-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="transition-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Transition`
+
+- <span id="transition-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="transition-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Transition`
+
+- <span id="transition-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="transition-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `NextDupe`
 
@@ -237,13 +501,67 @@ The next state to process during duplication.
 
 #### Trait Implementations
 
+##### `impl Any for NextDupe`
+
+- <span id="nextdupe-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for NextDupe`
+
+- <span id="nextdupe-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for NextDupe`
+
+- <span id="nextdupe-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for NextDupe`
 
 - <span id="nextdupe-clone"></span>`fn clone(&self) -> NextDupe` — [`NextDupe`](#nextdupe)
 
+##### `impl CloneToUninit for NextDupe`
+
+- <span id="nextdupe-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for NextDupe`
 
-- <span id="nextdupe-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="nextdupe-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for NextDupe`
+
+- <span id="nextdupe-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for NextDupe`
+
+- <span id="nextdupe-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for NextDupe`
+
+- <span id="nextdupe-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="nextdupe-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="nextdupe-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for NextDupe`
+
+- <span id="nextdupe-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="nextdupe-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for NextDupe`
+
+- <span id="nextdupe-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="nextdupe-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `NextIter`
 
@@ -261,13 +579,67 @@ during iteration in lexicographic order.
 
 #### Trait Implementations
 
+##### `impl Any for NextIter`
+
+- <span id="nextiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for NextIter`
+
+- <span id="nextiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for NextIter`
+
+- <span id="nextiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for NextIter`
 
 - <span id="nextiter-clone"></span>`fn clone(&self) -> NextIter` — [`NextIter`](#nextiter)
 
+##### `impl CloneToUninit for NextIter`
+
+- <span id="nextiter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for NextIter`
 
-- <span id="nextiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="nextiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for NextIter`
+
+- <span id="nextiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for NextIter`
+
+- <span id="nextiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for NextIter`
+
+- <span id="nextiter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="nextiter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="nextiter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for NextIter`
+
+- <span id="nextiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="nextiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for NextIter`
+
+- <span id="nextiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="nextiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `NextInsert`
 
@@ -305,21 +677,95 @@ is always the root state along with all ranges given.
 
 - <span id="nextinsert-new"></span>`fn new(state_id: StateID, ranges: &[Utf8Range]) -> NextInsert` — [`StateID`](../../../util/primitives/index.md#stateid), [`NextInsert`](#nextinsert)
 
+  Create the next item to visit. The given state ID should correspond
+
+  to the state at which the first range in the given slice should be
+
+  inserted. The slice given must not be empty and it must be no longer
+
+  than 4.
+
 - <span id="nextinsert-push"></span>`fn push(trie: &mut RangeTrie, stack: &mut Vec<NextInsert>, ranges: &[Utf8Range]) -> StateID` — [`RangeTrie`](#rangetrie), [`NextInsert`](#nextinsert), [`StateID`](../../../util/primitives/index.md#stateid)
+
+  Push a new empty state to visit along with any remaining ranges that
+
+  still need to be inserted. The ID of the new empty state is returned.
+
+  
+
+  If ranges is empty, then no new state is created and FINAL is returned.
 
 - <span id="nextinsert-state-id"></span>`fn state_id(&self) -> StateID` — [`StateID`](../../../util/primitives/index.md#stateid)
 
+  Return the ID of the state to visit.
+
 - <span id="nextinsert-ranges"></span>`fn ranges(&self) -> &[Utf8Range]`
 
+  Return the remaining ranges to insert.
+
 #### Trait Implementations
+
+##### `impl Any for NextInsert`
+
+- <span id="nextinsert-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for NextInsert`
+
+- <span id="nextinsert-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for NextInsert`
+
+- <span id="nextinsert-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for NextInsert`
 
 - <span id="nextinsert-clone"></span>`fn clone(&self) -> NextInsert` — [`NextInsert`](#nextinsert)
 
+##### `impl CloneToUninit for NextInsert`
+
+- <span id="nextinsert-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for NextInsert`
 
-- <span id="nextinsert-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="nextinsert-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for NextInsert`
+
+- <span id="nextinsert-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for NextInsert`
+
+- <span id="nextinsert-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for NextInsert`
+
+- <span id="nextinsert-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="nextinsert-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="nextinsert-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for NextInsert`
+
+- <span id="nextinsert-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="nextinsert-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for NextInsert`
+
+- <span id="nextinsert-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="nextinsert-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Split`
 
@@ -424,31 +870,101 @@ of [a,b] or [x,y] exclusively.
 
 - <span id="split-new"></span>`fn new(o: Utf8Range, n: Utf8Range) -> Option<Split>` — [`Split`](#split)
 
+  Create a partitioning of the given ranges.
+
+  
+
+  If the given ranges have an empty intersection, then None is returned.
+
 - <span id="split-parts1"></span>`fn parts1(r1: SplitRange) -> Split` — [`SplitRange`](#splitrange), [`Split`](#split)
+
+  Create a new split with a single partition. This only occurs when two
+
+  ranges are equivalent.
 
 - <span id="split-parts2"></span>`fn parts2(r1: SplitRange, r2: SplitRange) -> Split` — [`SplitRange`](#splitrange), [`Split`](#split)
 
+  Create a new split with two partitions.
+
 - <span id="split-parts3"></span>`fn parts3(r1: SplitRange, r2: SplitRange, r3: SplitRange) -> Split` — [`SplitRange`](#splitrange), [`Split`](#split)
+
+  Create a new split with three partitions.
 
 - <span id="split-as-slice"></span>`fn as_slice(&self) -> &[SplitRange]` — [`SplitRange`](#splitrange)
 
+  Return the partitions in this split as a slice.
+
 #### Trait Implementations
+
+##### `impl Any for Split`
+
+- <span id="split-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Split`
+
+- <span id="split-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Split`
+
+- <span id="split-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Split`
 
 - <span id="split-clone"></span>`fn clone(&self) -> Split` — [`Split`](#split)
 
+##### `impl CloneToUninit for Split`
+
+- <span id="split-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Split`
 
-- <span id="split-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="split-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Split`
 
+##### `impl<T> From for Split`
+
+- <span id="split-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Split`
+
+- <span id="split-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Split`
 
-- <span id="split-eq"></span>`fn eq(&self, other: &Split) -> bool` — [`Split`](#split)
+- <span id="split-partialeq-eq"></span>`fn eq(&self, other: &Split) -> bool` — [`Split`](#split)
 
 ##### `impl StructuralPartialEq for Split`
+
+##### `impl ToOwned for Split`
+
+- <span id="split-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="split-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="split-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Split`
+
+- <span id="split-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="split-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Split`
+
+- <span id="split-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="split-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -468,23 +984,77 @@ A tagged range indicating how it was derived from a pair of ranges.
 
 #### Trait Implementations
 
+##### `impl Any for SplitRange`
+
+- <span id="splitrange-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SplitRange`
+
+- <span id="splitrange-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SplitRange`
+
+- <span id="splitrange-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SplitRange`
 
 - <span id="splitrange-clone"></span>`fn clone(&self) -> SplitRange` — [`SplitRange`](#splitrange)
+
+##### `impl CloneToUninit for SplitRange`
+
+- <span id="splitrange-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for SplitRange`
 
 ##### `impl Debug for SplitRange`
 
-- <span id="splitrange-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="splitrange-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SplitRange`
 
+##### `impl<T> From for SplitRange`
+
+- <span id="splitrange-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SplitRange`
+
+- <span id="splitrange-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for SplitRange`
 
-- <span id="splitrange-eq"></span>`fn eq(&self, other: &SplitRange) -> bool` — [`SplitRange`](#splitrange)
+- <span id="splitrange-partialeq-eq"></span>`fn eq(&self, other: &SplitRange) -> bool` — [`SplitRange`](#splitrange)
 
 ##### `impl StructuralPartialEq for SplitRange`
+
+##### `impl ToOwned for SplitRange`
+
+- <span id="splitrange-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="splitrange-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="splitrange-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SplitRange`
+
+- <span id="splitrange-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="splitrange-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SplitRange`
+
+- <span id="splitrange-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="splitrange-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

@@ -66,49 +66,149 @@ Returned by `SectionTable::symbols`.
 
 - <span id="symboltable-parse"></span>`fn parse(endian: <Elf as >::Endian, data: R, sections: &SectionTable<'data, Elf, R>, section_index: SectionIndex, section: &<Elf as >::SectionHeader) -> read::Result<SymbolTable<'data, Elf, R>>` — [`FileHeader`](../index.md#fileheader), [`SectionTable`](../index.md#sectiontable), [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result), [`SymbolTable`](../index.md#symboltable)
 
+  Parse the given symbol table section.
+
 - <span id="symboltable-section"></span>`fn section(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md#sectionindex)
+
+  Return the section index of this symbol table.
 
 - <span id="symboltable-shndx-section"></span>`fn shndx_section(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md#sectionindex)
 
+  Return the section index of the shndx table.
+
 - <span id="symboltable-string-section"></span>`fn string_section(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md#sectionindex)
+
+  Return the section index of the linked string table.
 
 - <span id="symboltable-strings"></span>`fn strings(&self) -> StringTable<'data, R>` — [`StringTable`](../../index.md#stringtable)
 
+  Return the string table used for the symbol names.
+
 - <span id="symboltable-symbols"></span>`fn symbols(&self) -> &'data [<Elf as >::Sym]` — [`FileHeader`](../index.md#fileheader)
+
+  Return the symbol table.
 
 - <span id="symboltable-iter"></span>`fn iter(&self) -> slice::Iter<'data, <Elf as >::Sym>` — [`FileHeader`](../index.md#fileheader)
 
+  Iterate over the symbols.
+
+  
+
+  This includes the null symbol at index 0, which you will usually need to skip.
+
 - <span id="symboltable-enumerate"></span>`fn enumerate(&self) -> impl Iterator<Item = (SymbolIndex, &'data <Elf as >::Sym)>` — [`SymbolIndex`](../../../index.md#symbolindex), [`FileHeader`](../index.md#fileheader)
+
+  Iterate over the symbols and their indices.
+
+  
+
+  This includes the null symbol at index 0, which you will usually need to skip.
 
 - <span id="symboltable-is-empty"></span>`fn is_empty(&self) -> bool`
 
+  Return true if the symbol table is empty.
+
 - <span id="symboltable-len"></span>`fn len(&self) -> usize`
+
+  The number of symbols.
 
 - <span id="symboltable-symbol"></span>`fn symbol(&self, index: SymbolIndex) -> read::Result<&'data <Elf as >::Sym>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`FileHeader`](../index.md#fileheader)
 
+  Get the symbol at the given index.
+
+  
+
+  Returns an error for null entry at index 0.
+
 - <span id="symboltable-shndx"></span>`fn shndx(&self, endian: <Elf as >::Endian, index: SymbolIndex) -> Option<u32>` — [`FileHeader`](../index.md#fileheader), [`SymbolIndex`](../../../index.md#symbolindex)
+
+  Return the extended section index for the given symbol if present.
 
 - <span id="symboltable-symbol-section"></span>`fn symbol_section(&self, endian: <Elf as >::Endian, symbol: &<Elf as >::Sym, index: SymbolIndex) -> read::Result<Option<SectionIndex>>` — [`FileHeader`](../index.md#fileheader), [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`SectionIndex`](../../../index.md#sectionindex)
 
+  Return the section index for the given symbol.
+
+  
+
+  This uses the extended section index if present.
+
 - <span id="symboltable-symbol-name"></span>`fn symbol_name(&self, endian: <Elf as >::Endian, symbol: &<Elf as >::Sym) -> read::Result<&'data [u8]>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result)
+
+  Return the symbol name for the given symbol.
 
 - <span id="symboltable-map"></span>`fn map<Entry: SymbolMapEntry, F: Fn(&'data <Elf as >::Sym) -> Option<Entry>>(&self, endian: <Elf as >::Endian, f: F) -> SymbolMap<Entry>` — [`FileHeader`](../index.md#fileheader), [`SymbolMap`](../../../index.md#symbolmap)
 
+  Construct a map from addresses to a user-defined map entry.
+
 #### Trait Implementations
+
+##### `impl Any for SymbolTable<'data, Elf, R>`
+
+- <span id="symboltable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SymbolTable<'data, Elf, R>`
+
+- <span id="symboltable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SymbolTable<'data, Elf, R>`
+
+- <span id="symboltable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<Elf: clone::Clone + FileHeader, R> Clone for SymbolTable<'data, Elf, R>`
 
 - <span id="symboltable-clone"></span>`fn clone(&self) -> SymbolTable<'data, Elf, R>` — [`SymbolTable`](../index.md#symboltable)
 
+##### `impl CloneToUninit for SymbolTable<'data, Elf, R>`
+
+- <span id="symboltable-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<Elf: marker::Copy + FileHeader, R> Copy for SymbolTable<'data, Elf, R>`
 
 ##### `impl<Elf: fmt::Debug + FileHeader, R> Debug for SymbolTable<'data, Elf, R>`
 
-- <span id="symboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symboltable-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Elf: FileHeader, R: ReadRef<'data>> Default for SymbolTable<'data, Elf, R>`
 
 - <span id="symboltable-default"></span>`fn default() -> Self`
+
+##### `impl<T> From for SymbolTable<'data, Elf, R>`
+
+- <span id="symboltable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SymbolTable<'data, Elf, R>`
+
+- <span id="symboltable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for SymbolTable<'data, Elf, R>`
+
+- <span id="symboltable-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="symboltable-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="symboltable-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SymbolTable<'data, Elf, R>`
+
+- <span id="symboltable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symboltable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SymbolTable<'data, Elf, R>`
+
+- <span id="symboltable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symboltable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ElfSymbolTable<'data, 'file, Elf, R>`
 
@@ -128,15 +228,49 @@ A symbol table in an [`ElfFile`](super::ElfFile).
 
 #### Trait Implementations
 
+##### `impl Any for ElfSymbolTable<'data, 'file, Elf, R>`
+
+- <span id="elfsymboltable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ElfSymbolTable<'data, 'file, Elf, R>`
+
+- <span id="elfsymboltable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ElfSymbolTable<'data, 'file, Elf, R>`
+
+- <span id="elfsymboltable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Elf, R> Clone for ElfSymbolTable<'data, 'file, Elf, R>`
 
 - <span id="elfsymboltable-clone"></span>`fn clone(&self) -> ElfSymbolTable<'data, 'file, Elf, R>` — [`ElfSymbolTable`](../index.md#elfsymboltable)
+
+##### `impl CloneToUninit for ElfSymbolTable<'data, 'file, Elf, R>`
+
+- <span id="elfsymboltable-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<Elf, R> Copy for ElfSymbolTable<'data, 'file, Elf, R>`
 
 ##### `impl<Elf, R> Debug for ElfSymbolTable<'data, 'file, Elf, R>`
 
-- <span id="elfsymboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="elfsymboltable-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ElfSymbolTable<'data, 'file, Elf, R>`
+
+- <span id="elfsymboltable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ElfSymbolTable<'data, 'file, Elf, R>`
+
+- <span id="elfsymboltable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Elf: FileHeader, R: ReadRef<'data>> ObjectSymbolTable for ElfSymbolTable<'data, 'file, Elf, R>`
 
@@ -144,11 +278,31 @@ A symbol table in an [`ElfFile`](super::ElfFile).
 
 - <span id="elfsymboltable-objectsymboltable-type-symboliterator"></span>`type SymbolIterator = ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../../index.md#objectsymboltable)
+- <span id="elfsymboltable-objectsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../../index.md#objectsymboltable)
 
-- <span id="elfsymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> read::Result<<Self as >::Symbol>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`ObjectSymbolTable`](../../index.md#objectsymboltable)
+- <span id="elfsymboltable-objectsymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> read::Result<<Self as >::Symbol>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`ObjectSymbolTable`](../../index.md#objectsymboltable)
 
 ##### `impl<Elf: FileHeader, R: ReadRef<'data>> Sealed for ElfSymbolTable<'data, 'file, Elf, R>`
+
+##### `impl ToOwned for ElfSymbolTable<'data, 'file, Elf, R>`
+
+- <span id="elfsymboltable-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="elfsymboltable-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="elfsymboltable-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ElfSymbolTable<'data, 'file, Elf, R>`
+
+- <span id="elfsymboltable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elfsymboltable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ElfSymbolTable<'data, 'file, Elf, R>`
+
+- <span id="elfsymboltable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elfsymboltable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ElfSymbolIterator<'data, 'file, Elf, R>`
 
@@ -173,9 +327,39 @@ An iterator for the symbols in an [`ElfFile`](super::ElfFile).
 
 #### Trait Implementations
 
+##### `impl Any for ElfSymbolIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsymboliterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ElfSymbolIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsymboliterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ElfSymbolIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsymboliterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Elf: FileHeader, R: ReadRef<'data>> Debug for ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsymboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="elfsymboliterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ElfSymbolIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsymboliterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ElfSymbolIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsymboliterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ElfSymbolIterator<'data, 'file, Elf, R>`
 
@@ -183,13 +367,25 @@ An iterator for the symbols in an [`ElfFile`](super::ElfFile).
 
 - <span id="elfsymboliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="elfsymboliterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="elfsymboliterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Elf: FileHeader, R: ReadRef<'data>> Iterator for ElfSymbolIterator<'data, 'file, Elf, R>`
 
 - <span id="elfsymboliterator-iterator-type-item"></span>`type Item = ElfSymbol<'data, 'file, Elf, R>`
 
-- <span id="elfsymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="elfsymboliterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for ElfSymbolIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsymboliterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elfsymboliterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ElfSymbolIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsymboliterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elfsymboliterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ElfSymbol<'data, 'file, Elf, R>`
 
@@ -215,55 +411,115 @@ Most functionality is provided by the [`ObjectSymbol`](../../index.md) trait imp
 
 - <span id="elfsymbol-endian"></span>`fn endian(&self) -> <Elf as >::Endian` — [`FileHeader`](../index.md#fileheader)
 
+  Get the endianness of the ELF file.
+
 - <span id="elfsymbol-raw-symbol"></span>`fn raw_symbol(&self) -> &'data <Elf as >::Sym` — [`FileHeader`](../index.md#fileheader)
+
+  Return a reference to the raw symbol structure.
 
 - <span id="elfsymbol-elf-symbol"></span>`fn elf_symbol(&self) -> &'data <Elf as >::Sym` — [`FileHeader`](../index.md#fileheader)
 
+  Get the raw ELF symbol structure.
+
 #### Trait Implementations
+
+##### `impl Any for ElfSymbol<'data, 'file, Elf, R>`
+
+- <span id="elfsymbol-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ElfSymbol<'data, 'file, Elf, R>`
+
+- <span id="elfsymbol-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ElfSymbol<'data, 'file, Elf, R>`
+
+- <span id="elfsymbol-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<Elf, R> Clone for ElfSymbol<'data, 'file, Elf, R>`
 
 - <span id="elfsymbol-clone"></span>`fn clone(&self) -> ElfSymbol<'data, 'file, Elf, R>` — [`ElfSymbol`](../index.md#elfsymbol)
 
+##### `impl CloneToUninit for ElfSymbol<'data, 'file, Elf, R>`
+
+- <span id="elfsymbol-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<Elf, R> Copy for ElfSymbol<'data, 'file, Elf, R>`
 
 ##### `impl<Elf, R> Debug for ElfSymbol<'data, 'file, Elf, R>`
 
-- <span id="elfsymbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="elfsymbol-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ElfSymbol<'data, 'file, Elf, R>`
+
+- <span id="elfsymbol-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ElfSymbol<'data, 'file, Elf, R>`
+
+- <span id="elfsymbol-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Elf: FileHeader, R: ReadRef<'data>> ObjectSymbol for ElfSymbol<'data, 'file, Elf, R>`
 
-- <span id="elfsymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md#symbolindex)
+- <span id="elfsymbol-objectsymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md#symbolindex)
 
-- <span id="elfsymbol-name-bytes"></span>`fn name_bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md#result)
+- <span id="elfsymbol-objectsymbol-name-bytes"></span>`fn name_bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
-- <span id="elfsymbol-name"></span>`fn name(&self) -> read::Result<&'data str>` — [`Result`](../../../index.md#result)
+- <span id="elfsymbol-objectsymbol-name"></span>`fn name(&self) -> read::Result<&'data str>` — [`Result`](../../../index.md#result)
 
-- <span id="elfsymbol-address"></span>`fn address(&self) -> u64`
+- <span id="elfsymbol-objectsymbol-address"></span>`fn address(&self) -> u64`
 
-- <span id="elfsymbol-size"></span>`fn size(&self) -> u64`
+- <span id="elfsymbol-objectsymbol-size"></span>`fn size(&self) -> u64`
 
-- <span id="elfsymbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../../index.md#symbolkind)
+- <span id="elfsymbol-objectsymbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../../index.md#symbolkind)
 
-- <span id="elfsymbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../../index.md#symbolsection)
+- <span id="elfsymbol-objectsymbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../../index.md#symbolsection)
 
-- <span id="elfsymbol-is-undefined"></span>`fn is_undefined(&self) -> bool`
+- <span id="elfsymbol-objectsymbol-is-undefined"></span>`fn is_undefined(&self) -> bool`
 
-- <span id="elfsymbol-is-definition"></span>`fn is_definition(&self) -> bool`
+- <span id="elfsymbol-objectsymbol-is-definition"></span>`fn is_definition(&self) -> bool`
 
-- <span id="elfsymbol-is-common"></span>`fn is_common(&self) -> bool`
+- <span id="elfsymbol-objectsymbol-is-common"></span>`fn is_common(&self) -> bool`
 
-- <span id="elfsymbol-is-weak"></span>`fn is_weak(&self) -> bool`
+- <span id="elfsymbol-objectsymbol-is-weak"></span>`fn is_weak(&self) -> bool`
 
-- <span id="elfsymbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../../index.md#symbolscope)
+- <span id="elfsymbol-objectsymbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../../index.md#symbolscope)
 
-- <span id="elfsymbol-is-global"></span>`fn is_global(&self) -> bool`
+- <span id="elfsymbol-objectsymbol-is-global"></span>`fn is_global(&self) -> bool`
 
-- <span id="elfsymbol-is-local"></span>`fn is_local(&self) -> bool`
+- <span id="elfsymbol-objectsymbol-is-local"></span>`fn is_local(&self) -> bool`
 
-- <span id="elfsymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../../index.md#symbolflags), [`SectionIndex`](../../../index.md#sectionindex), [`SymbolIndex`](../../../index.md#symbolindex)
+- <span id="elfsymbol-objectsymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../../index.md#symbolflags), [`SectionIndex`](../../../index.md#sectionindex), [`SymbolIndex`](../../../index.md#symbolindex)
 
 ##### `impl<Elf: FileHeader, R: ReadRef<'data>> Sealed for ElfSymbol<'data, 'file, Elf, R>`
+
+##### `impl ToOwned for ElfSymbol<'data, 'file, Elf, R>`
+
+- <span id="elfsymbol-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="elfsymbol-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="elfsymbol-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ElfSymbol<'data, 'file, Elf, R>`
+
+- <span id="elfsymbol-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elfsymbol-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ElfSymbol<'data, 'file, Elf, R>`
+
+- <span id="elfsymbol-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elfsymbol-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

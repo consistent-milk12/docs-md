@@ -69,17 +69,73 @@ A mapping from section index to associated relocation sections.
 
 - <span id="relocationsections-parse"></span>`fn parse<'data, Elf: FileHeader, R: ReadRef<'data>>(endian: <Elf as >::Endian, sections: &SectionTable<'data, Elf, R>, symbol_section: SectionIndex) -> read::Result<Self>` — [`FileHeader`](../index.md#fileheader), [`SectionTable`](../index.md#sectiontable), [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result)
 
+  Create a new mapping using the section table.
+
+  
+
+  Skips relocation sections that do not use the given symbol table section.
+
 - <span id="relocationsections-get"></span>`fn get(&self, index: SectionIndex) -> Option<SectionIndex>` — [`SectionIndex`](../../../index.md#sectionindex)
+
+  Given a section index, return the section index of the associated relocation section.
+
+  
+
+  This may also be called with a relocation section index, and it will return the
+
+  next associated relocation section.
 
 #### Trait Implementations
 
+##### `impl Any for RelocationSections`
+
+- <span id="relocationsections-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RelocationSections`
+
+- <span id="relocationsections-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RelocationSections`
+
+- <span id="relocationsections-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for RelocationSections`
 
-- <span id="relocationsections-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="relocationsections-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for RelocationSections`
 
 - <span id="relocationsections-default"></span>`fn default() -> RelocationSections` — [`RelocationSections`](../index.md#relocationsections)
+
+##### `impl<T> From for RelocationSections`
+
+- <span id="relocationsections-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RelocationSections`
+
+- <span id="relocationsections-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for RelocationSections`
+
+- <span id="relocationsections-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="relocationsections-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RelocationSections`
+
+- <span id="relocationsections-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="relocationsections-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
@@ -106,9 +162,39 @@ An iterator for the dynamic relocations in an [`ElfFile`](../index.md).
 
 #### Trait Implementations
 
+##### `impl Any for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
+
+- <span id="elfdynamicrelocationiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
+
+- <span id="elfdynamicrelocationiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
+
+- <span id="elfdynamicrelocationiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Elf, R> Debug for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
-- <span id="elfdynamicrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="elfdynamicrelocationiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
+
+- <span id="elfdynamicrelocationiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
+
+- <span id="elfdynamicrelocationiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
@@ -116,13 +202,25 @@ An iterator for the dynamic relocations in an [`ElfFile`](../index.md).
 
 - <span id="elfdynamicrelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="elfdynamicrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="elfdynamicrelocationiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Elf, R> Iterator for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
 - <span id="elfdynamicrelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
-- <span id="elfdynamicrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="elfdynamicrelocationiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
+
+- <span id="elfdynamicrelocationiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elfdynamicrelocationiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
+
+- <span id="elfdynamicrelocationiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elfdynamicrelocationiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
@@ -149,9 +247,39 @@ An iterator for the relocations for an [`ElfSection`](super::ElfSection).
 
 #### Trait Implementations
 
+##### `impl Any for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsectionrelocationiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsectionrelocationiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsectionrelocationiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Elf, R> Debug for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsectionrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="elfsectionrelocationiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsectionrelocationiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsectionrelocationiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
@@ -159,13 +287,25 @@ An iterator for the relocations for an [`ElfSection`](super::ElfSection).
 
 - <span id="elfsectionrelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="elfsectionrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="elfsectionrelocationiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Elf, R> Iterator for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
 - <span id="elfsectionrelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
-- <span id="elfsectionrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="elfsectionrelocationiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsectionrelocationiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elfsectionrelocationiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsectionrelocationiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elfsectionrelocationiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RelrIterator<'data, Elf: FileHeader>`
 
@@ -189,11 +329,43 @@ Returned by [`SectionHeader::relr`](super::SectionHeader::relr).
 
 - <span id="relriterator-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [<Elf as >::Relr]) -> Self` — [`FileHeader`](../index.md#fileheader)
 
+  Create a new iterator given the `SHT_RELR` section data.
+
 #### Trait Implementations
+
+##### `impl Any for RelrIterator<'data, Elf>`
+
+- <span id="relriterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RelrIterator<'data, Elf>`
+
+- <span id="relriterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RelrIterator<'data, Elf>`
+
+- <span id="relriterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<Elf: fmt::Debug + FileHeader> Debug for RelrIterator<'data, Elf>`
 
-- <span id="relriterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="relriterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RelrIterator<'data, Elf>`
+
+- <span id="relriterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RelrIterator<'data, Elf>`
+
+- <span id="relriterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for RelrIterator<'data, Elf>`
 
@@ -201,13 +373,25 @@ Returned by [`SectionHeader::relr`](super::SectionHeader::relr).
 
 - <span id="relriterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="relriterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="relriterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Elf: FileHeader> Iterator for RelrIterator<'data, Elf>`
 
 - <span id="relriterator-iterator-type-item"></span>`type Item = <Elf as FileHeader>::Word`
 
-- <span id="relriterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="relriterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for RelrIterator<'data, Elf>`
+
+- <span id="relriterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="relriterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RelrIterator<'data, Elf>`
+
+- <span id="relriterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="relriterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Crel`
 
@@ -250,21 +434,85 @@ The specification has been submited here: <https://groups.google.com/g/generic-a
 
 - <span id="crel-symbol"></span>`fn symbol(&self) -> Option<SymbolIndex>` — [`SymbolIndex`](../../../index.md#symbolindex)
 
+  Get the symbol index referenced by the relocation.
+
+  
+
+  Returns `None` for the null symbol index.
+
 - <span id="crel-from-rel"></span>`fn from_rel<R: Rel>(r: &R, endian: <R as >::Endian) -> Crel` — [`Rel`](../index.md#rel), [`Crel`](../index.md#crel)
+
+  Build Crel type from Rel.
 
 - <span id="crel-from-rela"></span>`fn from_rela<R: Rela>(r: &R, endian: <R as >::Endian, is_mips64el: bool) -> Crel` — [`Rela`](../index.md#rela), [`Crel`](../index.md#crel)
 
+  Build Crel type from Rela.
+
 #### Trait Implementations
+
+##### `impl Any for Crel`
+
+- <span id="crel-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Crel`
+
+- <span id="crel-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Crel`
+
+- <span id="crel-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Crel`
 
 - <span id="crel-clone"></span>`fn clone(&self) -> Crel` — [`Crel`](../index.md#crel)
 
+##### `impl CloneToUninit for Crel`
+
+- <span id="crel-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Crel`
 
 ##### `impl Debug for Crel`
 
-- <span id="crel-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crel-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Crel`
+
+- <span id="crel-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Crel`
+
+- <span id="crel-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Crel`
+
+- <span id="crel-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="crel-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="crel-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Crel`
+
+- <span id="crel-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="crel-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Crel`
+
+- <span id="crel-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="crel-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CrelIteratorHeader`
 
@@ -299,13 +547,67 @@ struct CrelIteratorHeader {
 
 #### Trait Implementations
 
+##### `impl Any for CrelIteratorHeader`
+
+- <span id="creliteratorheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CrelIteratorHeader`
+
+- <span id="creliteratorheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CrelIteratorHeader`
+
+- <span id="creliteratorheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for CrelIteratorHeader`
 
 - <span id="creliteratorheader-clone"></span>`fn clone(&self) -> CrelIteratorHeader` — [`CrelIteratorHeader`](#creliteratorheader)
 
+##### `impl CloneToUninit for CrelIteratorHeader`
+
+- <span id="creliteratorheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for CrelIteratorHeader`
 
-- <span id="creliteratorheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="creliteratorheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CrelIteratorHeader`
+
+- <span id="creliteratorheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CrelIteratorHeader`
+
+- <span id="creliteratorheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for CrelIteratorHeader`
+
+- <span id="creliteratorheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="creliteratorheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="creliteratorheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CrelIteratorHeader`
+
+- <span id="creliteratorheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="creliteratorheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CrelIteratorHeader`
+
+- <span id="creliteratorheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="creliteratorheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CrelIteratorState`
 
@@ -345,17 +647,71 @@ struct CrelIteratorState {
 
 #### Trait Implementations
 
+##### `impl Any for CrelIteratorState`
+
+- <span id="creliteratorstate-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CrelIteratorState`
+
+- <span id="creliteratorstate-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CrelIteratorState`
+
+- <span id="creliteratorstate-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for CrelIteratorState`
 
 - <span id="creliteratorstate-clone"></span>`fn clone(&self) -> CrelIteratorState` — [`CrelIteratorState`](#creliteratorstate)
 
+##### `impl CloneToUninit for CrelIteratorState`
+
+- <span id="creliteratorstate-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for CrelIteratorState`
 
-- <span id="creliteratorstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="creliteratorstate-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for CrelIteratorState`
 
 - <span id="creliteratorstate-default"></span>`fn default() -> CrelIteratorState` — [`CrelIteratorState`](#creliteratorstate)
+
+##### `impl<T> From for CrelIteratorState`
+
+- <span id="creliteratorstate-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CrelIteratorState`
+
+- <span id="creliteratorstate-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for CrelIteratorState`
+
+- <span id="creliteratorstate-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="creliteratorstate-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="creliteratorstate-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CrelIteratorState`
+
+- <span id="creliteratorstate-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="creliteratorstate-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CrelIteratorState`
+
+- <span id="creliteratorstate-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="creliteratorstate-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CrelIterator<'data>`
 
@@ -389,23 +745,65 @@ Compact relocation iterator.
 
 - <span id="creliterator-new"></span>`fn new(data: &'data [u8]) -> Result<Self, Error>` — [`Error`](../../../index.md#error)
 
+  Create a new CREL relocation iterator.
+
 - <span id="creliterator-is-rela"></span>`fn is_rela(&self) -> bool`
+
+  True if the encoded relocations have addend.
 
 - <span id="creliterator-len"></span>`fn len(&self) -> usize`
 
+  Return the number of encoded relocations.
+
 - <span id="creliterator-is-empty"></span>`fn is_empty(&self) -> bool`
+
+  Return true if there are no more relocations to parse.
 
 - <span id="creliterator-parse"></span>`fn parse(&mut self) -> read::Result<Crel>` — [`Result`](../../../index.md#result), [`Crel`](../index.md#crel)
 
 #### Trait Implementations
 
+##### `impl Any for CrelIterator<'data>`
+
+- <span id="creliterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CrelIterator<'data>`
+
+- <span id="creliterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CrelIterator<'data>`
+
+- <span id="creliterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for CrelIterator<'data>`
 
 - <span id="creliterator-clone"></span>`fn clone(&self) -> CrelIterator<'data>` — [`CrelIterator`](../index.md#creliterator)
 
+##### `impl CloneToUninit for CrelIterator<'data>`
+
+- <span id="creliterator-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for CrelIterator<'data>`
 
-- <span id="creliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="creliterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CrelIterator<'data>`
+
+- <span id="creliterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CrelIterator<'data>`
+
+- <span id="creliterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for CrelIterator<'data>`
 
@@ -413,15 +811,35 @@ Compact relocation iterator.
 
 - <span id="creliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="creliterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="creliterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for CrelIterator<'data>`
 
 - <span id="creliterator-iterator-type-item"></span>`type Item = Result<Crel, Error>`
 
-- <span id="creliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="creliterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- <span id="creliterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="creliterator-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+
+##### `impl ToOwned for CrelIterator<'data>`
+
+- <span id="creliterator-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="creliterator-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="creliterator-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CrelIterator<'data>`
+
+- <span id="creliterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="creliterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CrelIterator<'data>`
+
+- <span id="creliterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="creliterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -443,19 +861,61 @@ enum ElfRelocationIterator<'data, Elf: FileHeader> {
 
 #### Trait Implementations
 
+##### `impl Any for ElfRelocationIterator<'data, Elf>`
+
+- <span id="elfrelocationiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ElfRelocationIterator<'data, Elf>`
+
+- <span id="elfrelocationiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ElfRelocationIterator<'data, Elf>`
+
+- <span id="elfrelocationiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for ElfRelocationIterator<'data, Elf>`
+
+- <span id="elfrelocationiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ElfRelocationIterator<'data, Elf>`
+
+- <span id="elfrelocationiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoIterator for ElfRelocationIterator<'data, Elf>`
 
 - <span id="elfrelocationiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="elfrelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="elfrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="elfrelocationiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Elf: FileHeader> Iterator for ElfRelocationIterator<'data, Elf>`
 
 - <span id="elfrelocationiterator-iterator-type-item"></span>`type Item = Crel`
 
-- <span id="elfrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="elfrelocationiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for ElfRelocationIterator<'data, Elf>`
+
+- <span id="elfrelocationiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elfrelocationiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ElfRelocationIterator<'data, Elf>`
+
+- <span id="elfrelocationiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elfrelocationiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

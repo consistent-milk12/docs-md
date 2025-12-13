@@ -106,9 +106,13 @@ struct Item {
 
 - <span id="item-initial-top-level-methods"></span>`fn initial_top_level_methods(&self) -> TokenStream`
 
+  generate methods from attributes on top of struct or enum
+
 - <span id="item-final-top-level-methods"></span>`fn final_top_level_methods(&self) -> TokenStream`
 
 - <span id="item-field-methods"></span>`fn field_methods(&self) -> TokenStream`
+
+  generate methods on top of a field
 
 - <span id="item-group-id"></span>`fn group_id(&self) -> &Name` — [`Name`](#name)
 
@@ -144,9 +148,63 @@ struct Item {
 
 #### Trait Implementations
 
+##### `impl Any for Item`
+
+- <span id="item-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Item`
+
+- <span id="item-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Item`
+
+- <span id="item-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Item`
 
 - <span id="item-clone"></span>`fn clone(&self) -> Item` — [`Item`](#item)
+
+##### `impl CloneToUninit for Item`
+
+- <span id="item-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
+##### `impl<T> From for Item`
+
+- <span id="item-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Item`
+
+- <span id="item-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Item`
+
+- <span id="item-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="item-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="item-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Item`
+
+- <span id="item-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="item-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Item`
+
+- <span id="item-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="item-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Method`
 
@@ -169,17 +227,71 @@ struct Method {
 
 #### Trait Implementations
 
+##### `impl Any for Method`
+
+- <span id="method-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Method`
+
+- <span id="method-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Method`
+
+- <span id="method-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Method`
 
 - <span id="method-clone"></span>`fn clone(&self) -> Method` — [`Method`](#method)
 
+##### `impl CloneToUninit for Method`
+
+- <span id="method-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
+##### `impl<T> From for Method`
+
+- <span id="method-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Method`
+
+- <span id="method-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Spanned for Method`
 
-- <span id="method-span"></span>`fn span(&self) -> Span`
+- <span id="method-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for Method`
+
+- <span id="method-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="method-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="method-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for Method`
 
-- <span id="method-to-tokens"></span>`fn to_tokens(&self, ts: &mut TokenStream)`
+- <span id="method-totokens-to-tokens"></span>`fn to_tokens(&self, ts: &mut TokenStream)`
+
+##### `impl<U> TryFrom for Method`
+
+- <span id="method-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="method-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Method`
+
+- <span id="method-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="method-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Deprecation`
 
@@ -200,17 +312,71 @@ struct Deprecation {
 
 #### Trait Implementations
 
+##### `impl Any for Deprecation`
+
+- <span id="deprecation-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Deprecation`
+
+- <span id="deprecation-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Deprecation`
+
+- <span id="deprecation-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Deprecation`
 
 - <span id="deprecation-clone"></span>`fn clone(&self) -> Deprecation` — [`Deprecation`](#deprecation)
 
+##### `impl CloneToUninit for Deprecation`
+
+- <span id="deprecation-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
+##### `impl<T> From for Deprecation`
+
+- <span id="deprecation-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Deprecation`
+
+- <span id="deprecation-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Spanned for Deprecation`
 
-- <span id="deprecation-span"></span>`fn span(&self) -> Span`
+- <span id="deprecation-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for Deprecation`
+
+- <span id="deprecation-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="deprecation-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="deprecation-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for Deprecation`
 
-- <span id="deprecation-to-tokens"></span>`fn to_tokens(&self, ts: &mut TokenStream)`
+- <span id="deprecation-totokens-to-tokens"></span>`fn to_tokens(&self, ts: &mut TokenStream)`
+
+##### `impl<U> TryFrom for Deprecation`
+
+- <span id="deprecation-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="deprecation-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Deprecation`
+
+- <span id="deprecation-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="deprecation-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -233,9 +399,63 @@ enum ValueParser {
 
 #### Trait Implementations
 
+##### `impl Any for ValueParser`
+
+- <span id="valueparser-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ValueParser`
+
+- <span id="valueparser-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ValueParser`
+
+- <span id="valueparser-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ValueParser`
 
 - <span id="valueparser-clone"></span>`fn clone(&self) -> ValueParser` — [`ValueParser`](#valueparser)
+
+##### `impl CloneToUninit for ValueParser`
+
+- <span id="valueparser-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
+##### `impl<T> From for ValueParser`
+
+- <span id="valueparser-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ValueParser`
+
+- <span id="valueparser-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for ValueParser`
+
+- <span id="valueparser-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="valueparser-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="valueparser-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ValueParser`
+
+- <span id="valueparser-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="valueparser-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ValueParser`
+
+- <span id="valueparser-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="valueparser-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Action`
 
@@ -256,9 +476,63 @@ enum Action {
 
 #### Trait Implementations
 
+##### `impl Any for Action`
+
+- <span id="action-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Action`
+
+- <span id="action-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Action`
+
+- <span id="action-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Action`
 
 - <span id="action-clone"></span>`fn clone(&self) -> Action` — [`Action`](#action)
+
+##### `impl CloneToUninit for Action`
+
+- <span id="action-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
+##### `impl<T> From for Action`
+
+- <span id="action-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Action`
+
+- <span id="action-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Action`
+
+- <span id="action-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="action-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="action-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Action`
+
+- <span id="action-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="action-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Action`
+
+- <span id="action-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="action-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Kind`
 
@@ -287,9 +561,63 @@ enum Kind {
 
 #### Trait Implementations
 
+##### `impl Any for Kind`
+
+- <span id="kind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Kind`
+
+- <span id="kind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Kind`
+
+- <span id="kind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Kind`
 
 - <span id="kind-clone"></span>`fn clone(&self) -> Kind` — [`Kind`](#kind)
+
+##### `impl CloneToUninit for Kind`
+
+- <span id="kind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
+##### `impl<T> From for Kind`
+
+- <span id="kind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Kind`
+
+- <span id="kind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Kind`
+
+- <span id="kind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="kind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="kind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Kind`
+
+- <span id="kind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="kind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Kind`
+
+- <span id="kind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="kind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CasingStyle`
 
@@ -350,23 +678,77 @@ Defines the casing for the attributes long representation.
 
 #### Trait Implementations
 
+##### `impl Any for CasingStyle`
+
+- <span id="casingstyle-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CasingStyle`
+
+- <span id="casingstyle-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CasingStyle`
+
+- <span id="casingstyle-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for CasingStyle`
 
 - <span id="casingstyle-clone"></span>`fn clone(&self) -> CasingStyle` — [`CasingStyle`](#casingstyle)
+
+##### `impl CloneToUninit for CasingStyle`
+
+- <span id="casingstyle-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for CasingStyle`
 
 ##### `impl Debug for CasingStyle`
 
-- <span id="casingstyle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="casingstyle-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for CasingStyle`
 
+##### `impl<T> From for CasingStyle`
+
+- <span id="casingstyle-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CasingStyle`
+
+- <span id="casingstyle-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for CasingStyle`
 
-- <span id="casingstyle-eq"></span>`fn eq(&self, other: &CasingStyle) -> bool` — [`CasingStyle`](#casingstyle)
+- <span id="casingstyle-partialeq-eq"></span>`fn eq(&self, other: &CasingStyle) -> bool` — [`CasingStyle`](#casingstyle)
 
 ##### `impl StructuralPartialEq for CasingStyle`
+
+##### `impl ToOwned for CasingStyle`
+
+- <span id="casingstyle-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="casingstyle-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="casingstyle-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CasingStyle`
+
+- <span id="casingstyle-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="casingstyle-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CasingStyle`
+
+- <span id="casingstyle-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="casingstyle-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Name`
 
@@ -387,17 +769,71 @@ enum Name {
 
 #### Trait Implementations
 
+##### `impl Any for Name`
+
+- <span id="name-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Name`
+
+- <span id="name-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Name`
+
+- <span id="name-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Name`
 
 - <span id="name-clone"></span>`fn clone(&self) -> Name` — [`Name`](#name)
 
+##### `impl CloneToUninit for Name`
+
+- <span id="name-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
+##### `impl<T> From for Name`
+
+- <span id="name-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Name`
+
+- <span id="name-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Spanned for Name`
 
-- <span id="name-span"></span>`fn span(&self) -> Span`
+- <span id="name-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for Name`
+
+- <span id="name-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="name-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="name-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for Name`
 
-- <span id="name-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="name-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for Name`
+
+- <span id="name-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="name-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Name`
+
+- <span id="name-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="name-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

@@ -70,29 +70,85 @@ Most of the functionality of this type is provided by the [`Object`](../../index
 
 - <span id="machofile-parse"></span>`fn parse(data: R) -> Result<Self>` — [`Result`](../../../index.md#result)
 
+  Parse the raw Mach-O file data.
+
 - <span id="machofile-parse-dyld-cache-image"></span>`fn parse_dyld_cache_image<'cache, E: Endian>(image: &DyldCacheImage<'data, 'cache, E, R>) -> Result<Self>` — [`DyldCacheImage`](../index.md#dyldcacheimage), [`Result`](../../../index.md#result)
+
+  Parse the Mach-O file for the given image from the dyld shared cache.
+
+  This will read different sections from different subcaches, if necessary.
 
 - <span id="machofile-section-internal"></span>`fn section_internal(&self, index: SectionIndex) -> Result<&MachOSectionInternal<'data, Mach, R>>` — [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result), [`MachOSectionInternal`](../section/index.md#machosectioninternal)
 
+  Return the section at the given index.
+
 - <span id="machofile-endian"></span>`fn endian(&self) -> <Mach as >::Endian` — [`MachHeader`](../index.md#machheader)
+
+  Returns the endianness.
 
 - <span id="machofile-data"></span>`fn data(&self) -> R`
 
+  Returns the raw data.
+
 - <span id="machofile-raw-header"></span>`fn raw_header(&self) -> &'data Mach`
+
+  Returns the raw Mach-O file header.
 
 - <span id="machofile-macho-header"></span>`fn macho_header(&self) -> &'data Mach`
 
+  Get the raw Mach-O file header.
+
 - <span id="machofile-macho-load-commands"></span>`fn macho_load_commands(&self) -> Result<LoadCommandIterator<'data, <Mach as >::Endian>>` — [`Result`](../../../index.md#result), [`LoadCommandIterator`](../index.md#loadcommanditerator), [`MachHeader`](../index.md#machheader)
+
+  Get the Mach-O load commands.
 
 - <span id="machofile-macho-symbol-table"></span>`fn macho_symbol_table(&self) -> &SymbolTable<'data, Mach, R>` — [`SymbolTable`](../index.md#symboltable)
 
+  Get the Mach-O symbol table.
+
+  
+
+  Returns an empty symbol table if the file has no symbol table.
+
 - <span id="machofile-build-version"></span>`fn build_version(&self) -> Result<Option<&'data macho::BuildVersionCommand<<Mach as >::Endian>>>` — [`Result`](../../../index.md#result), [`BuildVersionCommand`](../../../macho/index.md#buildversioncommand), [`MachHeader`](../index.md#machheader)
+
+  Return the `LC_BUILD_VERSION` load command if present.
 
 #### Trait Implementations
 
+##### `impl Any for MachOFile<'data, Mach, R>`
+
+- <span id="machofile-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOFile<'data, Mach, R>`
+
+- <span id="machofile-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOFile<'data, Mach, R>`
+
+- <span id="machofile-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach, R> Debug for MachOFile<'data, Mach, R>`
 
-- <span id="machofile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machofile-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOFile<'data, Mach, R>`
+
+- <span id="machofile-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOFile<'data, Mach, R>`
+
+- <span id="machofile-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> Object for MachOFile<'data, Mach, R>`
 
@@ -116,55 +172,67 @@ Most of the functionality of this type is provided by the [`Object`](../../index
 
 - <span id="machofile-object-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
-- <span id="machofile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md#architecture)
+- <span id="machofile-object-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md#architecture)
 
-- <span id="machofile-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../../index.md#subarchitecture)
+- <span id="machofile-object-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../../index.md#subarchitecture)
 
-- <span id="machofile-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
+- <span id="machofile-object-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
 
-- <span id="machofile-is-64"></span>`fn is_64(&self) -> bool`
+- <span id="machofile-object-is-64"></span>`fn is_64(&self) -> bool`
 
-- <span id="machofile-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../../index.md#objectkind)
+- <span id="machofile-object-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../../index.md#objectkind)
 
-- <span id="machofile-segments"></span>`fn segments(&self) -> MachOSegmentIterator<'data, '_, Mach, R>` — [`MachOSegmentIterator`](../index.md#machosegmentiterator)
+- <span id="machofile-object-segments"></span>`fn segments(&self) -> MachOSegmentIterator<'data, '_, Mach, R>` — [`MachOSegmentIterator`](../index.md#machosegmentiterator)
 
-- <span id="machofile-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<MachOSection<'data, 'file, Mach, R>>` — [`MachOSection`](../index.md#machosection)
+- <span id="machofile-object-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<MachOSection<'data, 'file, Mach, R>>` — [`MachOSection`](../index.md#machosection)
 
-- <span id="machofile-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<MachOSection<'data, '_, Mach, R>>` — [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result), [`MachOSection`](../index.md#machosection)
+- <span id="machofile-object-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<MachOSection<'data, '_, Mach, R>>` — [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result), [`MachOSection`](../index.md#machosection)
 
-- <span id="machofile-sections"></span>`fn sections(&self) -> MachOSectionIterator<'data, '_, Mach, R>` — [`MachOSectionIterator`](../index.md#machosectioniterator)
+- <span id="machofile-object-sections"></span>`fn sections(&self) -> MachOSectionIterator<'data, '_, Mach, R>` — [`MachOSectionIterator`](../index.md#machosectioniterator)
 
-- <span id="machofile-comdats"></span>`fn comdats(&self) -> MachOComdatIterator<'data, '_, Mach, R>` — [`MachOComdatIterator`](../index.md#machocomdatiterator)
+- <span id="machofile-object-comdats"></span>`fn comdats(&self) -> MachOComdatIterator<'data, '_, Mach, R>` — [`MachOComdatIterator`](../index.md#machocomdatiterator)
 
-- <span id="machofile-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<MachOSymbol<'data, '_, Mach, R>>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`MachOSymbol`](../index.md#machosymbol)
+- <span id="machofile-object-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<MachOSymbol<'data, '_, Mach, R>>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`MachOSymbol`](../index.md#machosymbol)
 
-- <span id="machofile-symbols"></span>`fn symbols(&self) -> MachOSymbolIterator<'data, '_, Mach, R>` — [`MachOSymbolIterator`](../index.md#machosymboliterator)
+- <span id="machofile-object-symbols"></span>`fn symbols(&self) -> MachOSymbolIterator<'data, '_, Mach, R>` — [`MachOSymbolIterator`](../index.md#machosymboliterator)
 
-- <span id="machofile-symbol-table"></span>`fn symbol_table(&self) -> Option<MachOSymbolTable<'data, '_, Mach, R>>` — [`MachOSymbolTable`](../index.md#machosymboltable)
+- <span id="machofile-object-symbol-table"></span>`fn symbol_table(&self) -> Option<MachOSymbolTable<'data, '_, Mach, R>>` — [`MachOSymbolTable`](../index.md#machosymboltable)
 
-- <span id="machofile-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> MachOSymbolIterator<'data, '_, Mach, R>` — [`MachOSymbolIterator`](../index.md#machosymboliterator)
+- <span id="machofile-object-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> MachOSymbolIterator<'data, '_, Mach, R>` — [`MachOSymbolIterator`](../index.md#machosymboliterator)
 
-- <span id="machofile-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<MachOSymbolTable<'data, '_, Mach, R>>` — [`MachOSymbolTable`](../index.md#machosymboltable)
+- <span id="machofile-object-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<MachOSymbolTable<'data, '_, Mach, R>>` — [`MachOSymbolTable`](../index.md#machosymboltable)
 
-- <span id="machofile-object-map"></span>`fn object_map(&self) -> ObjectMap<'data>` — [`ObjectMap`](../../../index.md#objectmap)
+- <span id="machofile-object-object-map"></span>`fn object_map(&self) -> ObjectMap<'data>` — [`ObjectMap`](../../../index.md#objectmap)
 
-- <span id="machofile-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../../../index.md#result), [`Import`](../../../index.md#import)
+- <span id="machofile-object-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../../../index.md#result), [`Import`](../../../index.md#import)
 
-- <span id="machofile-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../../index.md#result), [`Export`](../../../index.md#export)
+- <span id="machofile-object-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../../index.md#result), [`Export`](../../../index.md#export)
 
-- <span id="machofile-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<NoDynamicRelocationIterator>` — [`NoDynamicRelocationIterator`](../../index.md#nodynamicrelocationiterator)
+- <span id="machofile-object-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<NoDynamicRelocationIterator>` — [`NoDynamicRelocationIterator`](../../index.md#nodynamicrelocationiterator)
 
-- <span id="machofile-has-debug-symbols"></span>`fn has_debug_symbols(&self) -> bool`
+- <span id="machofile-object-has-debug-symbols"></span>`fn has_debug_symbols(&self) -> bool`
 
-- <span id="machofile-mach-uuid"></span>`fn mach_uuid(&self) -> Result<Option<[u8; 16]>>` — [`Result`](../../../index.md#result)
+- <span id="machofile-object-mach-uuid"></span>`fn mach_uuid(&self) -> Result<Option<[u8; 16]>>` — [`Result`](../../../index.md#result)
 
-- <span id="machofile-relative-address-base"></span>`fn relative_address_base(&self) -> u64`
+- <span id="machofile-object-relative-address-base"></span>`fn relative_address_base(&self) -> u64`
 
-- <span id="machofile-entry"></span>`fn entry(&self) -> u64`
+- <span id="machofile-object-entry"></span>`fn entry(&self) -> u64`
 
-- <span id="machofile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../../index.md#fileflags)
+- <span id="machofile-object-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../../index.md#fileflags)
 
 ##### `impl<Mach, R> Sealed for MachOFile<'data, Mach, R>`
+
+##### `impl<U> TryFrom for MachOFile<'data, Mach, R>`
+
+- <span id="machofile-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machofile-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOFile<'data, Mach, R>`
+
+- <span id="machofile-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machofile-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOComdatIterator<'data, 'file, Mach, R>`
 
@@ -185,9 +253,39 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
+##### `impl Any for MachOComdatIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOComdatIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOComdatIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach, R> Debug for MachOComdatIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdatiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machocomdatiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOComdatIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOComdatIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachOComdatIterator<'data, 'file, Mach, R>`
 
@@ -195,13 +293,25 @@ This is a stub that doesn't implement any functionality.
 
 - <span id="machocomdatiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="machocomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="machocomdatiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Mach, R> Iterator for MachOComdatIterator<'data, 'file, Mach, R>`
 
 - <span id="machocomdatiterator-iterator-type-item"></span>`type Item = MachOComdat<'data, 'file, Mach, R>`
 
-- <span id="machocomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="machocomdatiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for MachOComdatIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machocomdatiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOComdatIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machocomdatiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOComdat<'data, 'file, Mach, R>`
 
@@ -222,25 +332,67 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
+##### `impl Any for MachOComdat<'data, 'file, Mach, R>`
+
+- <span id="machocomdat-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOComdat<'data, 'file, Mach, R>`
+
+- <span id="machocomdat-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOComdat<'data, 'file, Mach, R>`
+
+- <span id="machocomdat-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach, R> Debug for MachOComdat<'data, 'file, Mach, R>`
 
-- <span id="machocomdat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machocomdat-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOComdat<'data, 'file, Mach, R>`
+
+- <span id="machocomdat-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOComdat<'data, 'file, Mach, R>`
+
+- <span id="machocomdat-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> ObjectComdat for MachOComdat<'data, 'file, Mach, R>`
 
 - <span id="machocomdat-objectcomdat-type-sectioniterator"></span>`type SectionIterator = MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../../index.md#comdatkind)
+- <span id="machocomdat-objectcomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../../index.md#comdatkind)
 
-- <span id="machocomdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md#symbolindex)
+- <span id="machocomdat-objectcomdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md#symbolindex)
 
-- <span id="machocomdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
+- <span id="machocomdat-objectcomdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
-- <span id="machocomdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../../index.md#result)
+- <span id="machocomdat-objectcomdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../../index.md#result)
 
-- <span id="machocomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../../index.md#objectcomdat)
+- <span id="machocomdat-objectcomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../../index.md#objectcomdat)
 
 ##### `impl<Mach, R> Sealed for MachOComdat<'data, 'file, Mach, R>`
+
+##### `impl<U> TryFrom for MachOComdat<'data, 'file, Mach, R>`
+
+- <span id="machocomdat-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machocomdat-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOComdat<'data, 'file, Mach, R>`
+
+- <span id="machocomdat-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machocomdat-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
@@ -261,9 +413,39 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
+##### `impl Any for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatsectioniterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatsectioniterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatsectioniterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach, R> Debug for MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdatsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machocomdatsectioniterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatsectioniterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatsectioniterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
@@ -271,13 +453,25 @@ This is a stub that doesn't implement any functionality.
 
 - <span id="machocomdatsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="machocomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="machocomdatsectioniterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Mach, R> Iterator for MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
 - <span id="machocomdatsectioniterator-iterator-type-item"></span>`type Item = SectionIndex`
 
-- <span id="machocomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="machocomdatsectioniterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatsectioniterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machocomdatsectioniterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatsectioniterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machocomdatsectioniterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

@@ -49,9 +49,21 @@ struct Handle {
 
 #### Trait Implementations
 
+##### `impl Any for Handle`
+
+- <span id="handle-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Handle`
+
+- <span id="handle-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Handle`
+
+- <span id="handle-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Handle`
 
-- <span id="handle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="handle-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for Handle`
 
@@ -59,11 +71,41 @@ struct Handle {
 
 ##### `impl Eq for Handle`
 
+##### `impl<T> From for Handle`
+
+- <span id="handle-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Handle`
 
 - <span id="handle-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
+##### `impl<U> Into for Handle`
+
+- <span id="handle-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Handle`
 
-- <span id="handle-eq"></span>`fn eq(&self, other: &Handle) -> bool` — [`Handle`](#handle)
+- <span id="handle-partialeq-eq"></span>`fn eq(&self, other: &Handle) -> bool` — [`Handle`](#handle)
+
+##### `impl<U> TryFrom for Handle`
+
+- <span id="handle-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="handle-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Handle`
+
+- <span id="handle-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="handle-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

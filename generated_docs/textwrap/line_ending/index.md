@@ -31,15 +31,49 @@ This struct is used internally by the library.
 
 #### Trait Implementations
 
+##### `impl Any for NonEmptyLines<'a>`
+
+- <span id="nonemptylines-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for NonEmptyLines<'a>`
+
+- <span id="nonemptylines-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for NonEmptyLines<'a>`
+
+- <span id="nonemptylines-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for NonEmptyLines<'a>`
 
 - <span id="nonemptylines-clone"></span>`fn clone(&self) -> NonEmptyLines<'a>` — [`NonEmptyLines`](#nonemptylines)
+
+##### `impl CloneToUninit for NonEmptyLines<'a>`
+
+- <span id="nonemptylines-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for NonEmptyLines<'a>`
 
 ##### `impl Debug for NonEmptyLines<'a>`
 
-- <span id="nonemptylines-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="nonemptylines-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for NonEmptyLines<'a>`
+
+- <span id="nonemptylines-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for NonEmptyLines<'a>`
+
+- <span id="nonemptylines-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for NonEmptyLines<'a>`
 
@@ -47,13 +81,33 @@ This struct is used internally by the library.
 
 - <span id="nonemptylines-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="nonemptylines-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="nonemptylines-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for NonEmptyLines<'a>`
 
 - <span id="nonemptylines-iterator-type-item"></span>`type Item = (&'a str, Option<LineEnding>)`
 
-- <span id="nonemptylines-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="nonemptylines-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl ToOwned for NonEmptyLines<'a>`
+
+- <span id="nonemptylines-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="nonemptylines-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="nonemptylines-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for NonEmptyLines<'a>`
+
+- <span id="nonemptylines-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="nonemptylines-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for NonEmptyLines<'a>`
+
+- <span id="nonemptylines-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="nonemptylines-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -88,23 +142,79 @@ endings are supported: `\r\n` and `\n`
 
 - <span id="lineending-as-str"></span>`const fn as_str(&self) -> &'static str`
 
+  Turns this [`LineEnding`](#lineending) value into its ASCII representation.
+
 #### Trait Implementations
+
+##### `impl Any for LineEnding`
+
+- <span id="lineending-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LineEnding`
+
+- <span id="lineending-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LineEnding`
+
+- <span id="lineending-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for LineEnding`
 
 - <span id="lineending-clone"></span>`fn clone(&self) -> LineEnding` — [`LineEnding`](#lineending)
 
+##### `impl CloneToUninit for LineEnding`
+
+- <span id="lineending-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for LineEnding`
 
 ##### `impl Debug for LineEnding`
 
-- <span id="lineending-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lineending-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LineEnding`
 
+##### `impl<T> From for LineEnding`
+
+- <span id="lineending-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LineEnding`
+
+- <span id="lineending-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for LineEnding`
 
-- <span id="lineending-eq"></span>`fn eq(&self, other: &LineEnding) -> bool` — [`LineEnding`](#lineending)
+- <span id="lineending-partialeq-eq"></span>`fn eq(&self, other: &LineEnding) -> bool` — [`LineEnding`](#lineending)
 
 ##### `impl StructuralPartialEq for LineEnding`
+
+##### `impl ToOwned for LineEnding`
+
+- <span id="lineending-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="lineending-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="lineending-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LineEnding`
+
+- <span id="lineending-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lineending-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LineEnding`
+
+- <span id="lineending-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lineending-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

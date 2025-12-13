@@ -63,6 +63,36 @@ An `UnzipOp` that splits a tuple directly into the two consumers.
 
 #### Trait Implementations
 
+##### `impl Any for Unzip`
+
+- <span id="unzip-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Unzip`
+
+- <span id="unzip-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Unzip`
+
+- <span id="unzip-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Unzip`
+
+- <span id="unzip-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Unzip`
+
+- <span id="unzip-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for Unzip`
 
 ##### `impl Pointable for Unzip`
@@ -71,13 +101,25 @@ An `UnzipOp` that splits a tuple directly into the two consumers.
 
 - <span id="unzip-pointable-type-init"></span>`type Init = T`
 
-- <span id="unzip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="unzip-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="unzip-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="unzip-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="unzip-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="unzip-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="unzip-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="unzip-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for Unzip`
+
+- <span id="unzip-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unzip-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Unzip`
+
+- <span id="unzip-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unzip-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<A: Send, B: Send> UnzipOp for Unzip`
 
@@ -85,9 +127,9 @@ An `UnzipOp` that splits a tuple directly into the two consumers.
 
 - <span id="unzip-unzipop-type-right"></span>`type Right = B`
 
-- <span id="unzip-consume"></span>`fn consume<FA, FB>(&self, item: (A, B), left: FA, right: FB) -> (FA, FB)`
+- <span id="unzip-unzipop-consume"></span>`fn consume<FA, FB>(&self, item: (A, B), left: FA, right: FB) -> (FA, FB)`
 
-- <span id="unzip-indexable"></span>`fn indexable() -> bool`
+- <span id="unzip-unzipop-indexable"></span>`fn indexable() -> bool`
 
 ### `Partition<P>`
 
@@ -103,6 +145,36 @@ An `UnzipOp` that routes items depending on a predicate function.
 
 #### Trait Implementations
 
+##### `impl Any for Partition<P>`
+
+- <span id="partition-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Partition<P>`
+
+- <span id="partition-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Partition<P>`
+
+- <span id="partition-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Partition<P>`
+
+- <span id="partition-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Partition<P>`
+
+- <span id="partition-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for Partition<P>`
 
 ##### `impl Pointable for Partition<P>`
@@ -111,13 +183,25 @@ An `UnzipOp` that routes items depending on a predicate function.
 
 - <span id="partition-pointable-type-init"></span>`type Init = T`
 
-- <span id="partition-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="partition-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="partition-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="partition-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="partition-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="partition-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="partition-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="partition-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for Partition<P>`
+
+- <span id="partition-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="partition-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Partition<P>`
+
+- <span id="partition-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="partition-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<P, T> UnzipOp for Partition<P>`
 
@@ -125,7 +209,7 @@ An `UnzipOp` that routes items depending on a predicate function.
 
 - <span id="partition-unzipop-type-right"></span>`type Right = T`
 
-- <span id="partition-consume"></span>`fn consume<FA, FB>(&self, item: T, left: FA, right: FB) -> (FA, FB)`
+- <span id="partition-unzipop-consume"></span>`fn consume<FA, FB>(&self, item: T, left: FA, right: FB) -> (FA, FB)`
 
 ### `PartitionMap<P>`
 
@@ -141,6 +225,36 @@ An `UnzipOp` that routes items depending on how they are mapped `Either`.
 
 #### Trait Implementations
 
+##### `impl Any for PartitionMap<P>`
+
+- <span id="partitionmap-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PartitionMap<P>`
+
+- <span id="partitionmap-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PartitionMap<P>`
+
+- <span id="partitionmap-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for PartitionMap<P>`
+
+- <span id="partitionmap-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PartitionMap<P>`
+
+- <span id="partitionmap-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for PartitionMap<P>`
 
 ##### `impl Pointable for PartitionMap<P>`
@@ -149,13 +263,25 @@ An `UnzipOp` that routes items depending on how they are mapped `Either`.
 
 - <span id="partitionmap-pointable-type-init"></span>`type Init = T`
 
-- <span id="partitionmap-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="partitionmap-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="partitionmap-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="partitionmap-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="partitionmap-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="partitionmap-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="partitionmap-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="partitionmap-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for PartitionMap<P>`
+
+- <span id="partitionmap-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="partitionmap-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PartitionMap<P>`
+
+- <span id="partitionmap-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="partitionmap-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<P, T> UnzipOp for PartitionMap<P>`
 
@@ -163,7 +289,7 @@ An `UnzipOp` that routes items depending on how they are mapped `Either`.
 
 - <span id="partitionmap-unzipop-type-right"></span>`type Right = R`
 
-- <span id="partitionmap-consume"></span>`fn consume<FA, FB>(&self, item: T, left: FA, right: FB) -> (FA, FB)`
+- <span id="partitionmap-unzipop-consume"></span>`fn consume<FA, FB>(&self, item: T, left: FA, right: FB) -> (FA, FB)`
 
 ### `UnzipA<'b, I, OP, FromB>`
 
@@ -181,6 +307,36 @@ A fake iterator to intercept the `Consumer` for type `A`.
 
 #### Trait Implementations
 
+##### `impl Any for UnzipA<'b, I, OP, FromB>`
+
+- <span id="unzipa-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnzipA<'b, I, OP, FromB>`
+
+- <span id="unzipa-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnzipA<'b, I, OP, FromB>`
+
+- <span id="unzipa-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for UnzipA<'b, I, OP, FromB>`
+
+- <span id="unzipa-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for UnzipA<'b, I, OP, FromB>`
+
+- <span id="unzipa-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for UnzipA<'b, I, OP, FromB>`
 
 ##### `impl IntoParallelIterator for UnzipA<'b, I, OP, FromB>`
@@ -189,15 +345,15 @@ A fake iterator to intercept the `Consumer` for type `A`.
 
 - <span id="unzipa-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="unzipa-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="unzipa-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, OP, FromB> ParallelIterator for UnzipA<'b, I, OP, FromB>`
 
 - <span id="unzipa-paralleliterator-type-item"></span>`type Item = <OP as UnzipOp>::Left`
 
-- <span id="unzipa-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="unzipa-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="unzipa-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="unzipa-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for UnzipA<'b, I, OP, FromB>`
 
@@ -205,13 +361,25 @@ A fake iterator to intercept the `Consumer` for type `A`.
 
 - <span id="unzipa-pointable-type-init"></span>`type Init = T`
 
-- <span id="unzipa-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="unzipa-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="unzipa-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="unzipa-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="unzipa-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="unzipa-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="unzipa-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="unzipa-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for UnzipA<'b, I, OP, FromB>`
+
+- <span id="unzipa-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unzipa-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UnzipA<'b, I, OP, FromB>`
+
+- <span id="unzipa-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unzipa-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UnzipB<'r, I, OP, CA>`
 
@@ -234,6 +402,36 @@ A fake iterator to intercept the `Consumer` for type `B`.
 
 #### Trait Implementations
 
+##### `impl Any for UnzipB<'r, I, OP, CA>`
+
+- <span id="unzipb-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnzipB<'r, I, OP, CA>`
+
+- <span id="unzipb-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnzipB<'r, I, OP, CA>`
+
+- <span id="unzipb-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for UnzipB<'r, I, OP, CA>`
+
+- <span id="unzipb-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for UnzipB<'r, I, OP, CA>`
+
+- <span id="unzipb-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for UnzipB<'r, I, OP, CA>`
 
 ##### `impl IntoParallelIterator for UnzipB<'r, I, OP, CA>`
@@ -242,15 +440,15 @@ A fake iterator to intercept the `Consumer` for type `B`.
 
 - <span id="unzipb-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="unzipb-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="unzipb-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, OP, CA> ParallelIterator for UnzipB<'r, I, OP, CA>`
 
 - <span id="unzipb-paralleliterator-type-item"></span>`type Item = <OP as UnzipOp>::Right`
 
-- <span id="unzipb-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="unzipb-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="unzipb-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="unzipb-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl Pointable for UnzipB<'r, I, OP, CA>`
 
@@ -258,13 +456,25 @@ A fake iterator to intercept the `Consumer` for type `B`.
 
 - <span id="unzipb-pointable-type-init"></span>`type Init = T`
 
-- <span id="unzipb-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="unzipb-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="unzipb-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="unzipb-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="unzipb-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="unzipb-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="unzipb-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="unzipb-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for UnzipB<'r, I, OP, CA>`
+
+- <span id="unzipb-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unzipb-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UnzipB<'r, I, OP, CA>`
+
+- <span id="unzipb-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unzipb-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UnzipConsumer<'a, OP, CA, CB>`
 
@@ -282,6 +492,18 @@ struct UnzipConsumer<'a, OP, CA, CB> {
 
 #### Trait Implementations
 
+##### `impl Any for UnzipConsumer<'a, OP, CA, CB>`
+
+- <span id="unzipconsumer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnzipConsumer<'a, OP, CA, CB>`
+
+- <span id="unzipconsumer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnzipConsumer<'a, OP, CA, CB>`
+
+- <span id="unzipconsumer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T, OP, CA, CB> Consumer for UnzipConsumer<'a, OP, CA, CB>`
 
 - <span id="unzipconsumer-consumer-type-folder"></span>`type Folder = UnzipFolder<'a, OP, <CA as Consumer>::Folder, <CB as Consumer>::Folder>`
@@ -290,11 +512,29 @@ struct UnzipConsumer<'a, OP, CA, CB> {
 
 - <span id="unzipconsumer-consumer-type-result"></span>`type Result = (<CA as Consumer>::Result, <CB as Consumer>::Result)`
 
-- <span id="unzipconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="unzipconsumer-consumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="unzipconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="unzipconsumer-consumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="unzipconsumer-full"></span>`fn full(&self) -> bool`
+- <span id="unzipconsumer-consumer-full"></span>`fn full(&self) -> bool`
+
+##### `impl<T> From for UnzipConsumer<'a, OP, CA, CB>`
+
+- <span id="unzipconsumer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for UnzipConsumer<'a, OP, CA, CB>`
+
+- <span id="unzipconsumer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for UnzipConsumer<'a, OP, CA, CB>`
 
@@ -304,19 +544,31 @@ struct UnzipConsumer<'a, OP, CA, CB> {
 
 - <span id="unzipconsumer-pointable-type-init"></span>`type Init = T`
 
-- <span id="unzipconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="unzipconsumer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="unzipconsumer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="unzipconsumer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="unzipconsumer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="unzipconsumer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="unzipconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="unzipconsumer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for UnzipConsumer<'a, OP, CA, CB>`
+
+- <span id="unzipconsumer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unzipconsumer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UnzipConsumer<'a, OP, CA, CB>`
+
+- <span id="unzipconsumer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unzipconsumer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T, OP, CA, CB> UnindexedConsumer for UnzipConsumer<'a, OP, CA, CB>`
 
-- <span id="unzipconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
+- <span id="unzipconsumer-unindexedconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="unzipconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="unzipconsumer-unindexedconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `UnzipFolder<'a, OP, FA, FB>`
 
@@ -334,15 +586,45 @@ struct UnzipFolder<'a, OP, FA, FB> {
 
 #### Trait Implementations
 
+##### `impl Any for UnzipFolder<'a, OP, FA, FB>`
+
+- <span id="unzipfolder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnzipFolder<'a, OP, FA, FB>`
+
+- <span id="unzipfolder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnzipFolder<'a, OP, FA, FB>`
+
+- <span id="unzipfolder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T, OP, FA, FB> Folder for UnzipFolder<'a, OP, FA, FB>`
 
 - <span id="unzipfolder-folder-type-result"></span>`type Result = (<FA as Folder>::Result, <FB as Folder>::Result)`
 
-- <span id="unzipfolder-consume"></span>`fn consume(self, item: T) -> Self`
+- <span id="unzipfolder-folder-consume"></span>`fn consume(self, item: T) -> Self`
 
-- <span id="unzipfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md#folder)
+- <span id="unzipfolder-folder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
-- <span id="unzipfolder-full"></span>`fn full(&self) -> bool`
+- <span id="unzipfolder-folder-full"></span>`fn full(&self) -> bool`
+
+##### `impl<T> From for UnzipFolder<'a, OP, FA, FB>`
+
+- <span id="unzipfolder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for UnzipFolder<'a, OP, FA, FB>`
+
+- <span id="unzipfolder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for UnzipFolder<'a, OP, FA, FB>`
 
@@ -352,13 +634,25 @@ struct UnzipFolder<'a, OP, FA, FB> {
 
 - <span id="unzipfolder-pointable-type-init"></span>`type Init = T`
 
-- <span id="unzipfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="unzipfolder-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="unzipfolder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="unzipfolder-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="unzipfolder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="unzipfolder-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="unzipfolder-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="unzipfolder-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for UnzipFolder<'a, OP, FA, FB>`
+
+- <span id="unzipfolder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unzipfolder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UnzipFolder<'a, OP, FA, FB>`
+
+- <span id="unzipfolder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unzipfolder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UnzipReducer<RA, RB>`
 
@@ -375,6 +669,36 @@ struct UnzipReducer<RA, RB> {
 
 #### Trait Implementations
 
+##### `impl Any for UnzipReducer<RA, RB>`
+
+- <span id="unzipreducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnzipReducer<RA, RB>`
+
+- <span id="unzipreducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnzipReducer<RA, RB>`
+
+- <span id="unzipreducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for UnzipReducer<RA, RB>`
+
+- <span id="unzipreducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for UnzipReducer<RA, RB>`
+
+- <span id="unzipreducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for UnzipReducer<RA, RB>`
 
 ##### `impl Pointable for UnzipReducer<RA, RB>`
@@ -383,17 +707,29 @@ struct UnzipReducer<RA, RB> {
 
 - <span id="unzipreducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="unzipreducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="unzipreducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="unzipreducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="unzipreducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="unzipreducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="unzipreducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="unzipreducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="unzipreducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<A, B, RA, RB> Reducer for UnzipReducer<RA, RB>`
 
-- <span id="unzipreducer-reduce"></span>`fn reduce(self, left: (A, B), right: (A, B)) -> (A, B)`
+- <span id="unzipreducer-reducer-reduce"></span>`fn reduce(self, left: (A, B), right: (A, B)) -> (A, B)`
+
+##### `impl<U> TryFrom for UnzipReducer<RA, RB>`
+
+- <span id="unzipreducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unzipreducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UnzipReducer<RA, RB>`
+
+- <span id="unzipreducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unzipreducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UnEither`
 
@@ -407,6 +743,36 @@ An `UnzipOp` that routes items depending on their `Either` variant.
 
 #### Trait Implementations
 
+##### `impl Any for UnEither`
+
+- <span id="uneither-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnEither`
+
+- <span id="uneither-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnEither`
+
+- <span id="uneither-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for UnEither`
+
+- <span id="uneither-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for UnEither`
+
+- <span id="uneither-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for UnEither`
 
 ##### `impl Pointable for UnEither`
@@ -415,13 +781,25 @@ An `UnzipOp` that routes items depending on their `Either` variant.
 
 - <span id="uneither-pointable-type-init"></span>`type Init = T`
 
-- <span id="uneither-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="uneither-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="uneither-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="uneither-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="uneither-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="uneither-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="uneither-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="uneither-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for UnEither`
+
+- <span id="uneither-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="uneither-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UnEither`
+
+- <span id="uneither-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="uneither-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<L, R> UnzipOp for UnEither`
 
@@ -429,7 +807,7 @@ An `UnzipOp` that routes items depending on their `Either` variant.
 
 - <span id="uneither-unzipop-type-right"></span>`type Right = R`
 
-- <span id="uneither-consume"></span>`fn consume<FL, FR>(&self, item: Either<L, R>, left: FL, right: FR) -> (FL, FR)` — [`Either`](../index.md#either)
+- <span id="uneither-unzipop-consume"></span>`fn consume<FL, FR>(&self, item: Either<L, R>, left: FL, right: FR) -> (FL, FR)` — [`Either`](../index.md#either)
 
 ### `Collector<FromT>`
 
@@ -445,15 +823,45 @@ Shim to implement a one-time `ParallelExtend` using `FromParallelIterator`.
 
 #### Trait Implementations
 
+##### `impl Any for Collector<FromT>`
+
+- <span id="collector-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Collector<FromT>`
+
+- <span id="collector-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Collector<FromT>`
+
+- <span id="collector-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<FromT> Default for Collector<FromT>`
 
 - <span id="collector-default"></span>`fn default() -> Self`
+
+##### `impl<T> From for Collector<FromT>`
+
+- <span id="collector-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Collector<FromT>`
+
+- <span id="collector-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Collector<FromT>`
 
 ##### `impl<T, FromT> ParallelExtend for Collector<FromT>`
 
-- <span id="collector-par-extend"></span>`fn par_extend<I>(&mut self, pi: I)`
+- <span id="collector-parallelextend-par-extend"></span>`fn par_extend<I>(&mut self, pi: I)`
 
 ##### `impl Pointable for Collector<FromT>`
 
@@ -461,13 +869,25 @@ Shim to implement a one-time `ParallelExtend` using `FromParallelIterator`.
 
 - <span id="collector-pointable-type-init"></span>`type Init = T`
 
-- <span id="collector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="collector-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="collector-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="collector-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="collector-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="collector-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="collector-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="collector-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for Collector<FromT>`
+
+- <span id="collector-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="collector-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Collector<FromT>`
+
+- <span id="collector-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="collector-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

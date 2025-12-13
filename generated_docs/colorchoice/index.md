@@ -33,13 +33,55 @@ struct AtomicChoice(core::sync::atomic::AtomicUsize);
 
 #### Trait Implementations
 
+##### `impl Any for AtomicChoice`
+
+- <span id="atomicchoice-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AtomicChoice`
+
+- <span id="atomicchoice-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AtomicChoice`
+
+- <span id="atomicchoice-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for AtomicChoice`
 
-- <span id="atomicchoice-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomicchoice-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AtomicChoice`
 
 - <span id="atomicchoice-default"></span>`fn default() -> Self`
+
+##### `impl<T> From for AtomicChoice`
+
+- <span id="atomicchoice-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AtomicChoice`
+
+- <span id="atomicchoice-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for AtomicChoice`
+
+- <span id="atomicchoice-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="atomicchoice-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AtomicChoice`
+
+- <span id="atomicchoice-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="atomicchoice-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -83,19 +125,39 @@ Selection for overriding color output
 
 - <span id="colorchoice-global"></span>`fn global() -> Self`
 
+  Get the current [`ColorChoice`](#colorchoice) state
+
 - <span id="colorchoice-write-global"></span>`fn write_global(self)`
 
+  Override the detected [`ColorChoice`](#colorchoice)
+
 #### Trait Implementations
+
+##### `impl Any for ColorChoice`
+
+- <span id="colorchoice-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ColorChoice`
+
+- <span id="colorchoice-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ColorChoice`
+
+- <span id="colorchoice-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ColorChoice`
 
 - <span id="colorchoice-clone"></span>`fn clone(&self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
 
+##### `impl CloneToUninit for ColorChoice`
+
+- <span id="colorchoice-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for ColorChoice`
 
 ##### `impl Debug for ColorChoice`
 
-- <span id="colorchoice-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="colorchoice-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ColorChoice`
 
@@ -103,9 +165,39 @@ Selection for overriding color output
 
 ##### `impl Eq for ColorChoice`
 
+##### `impl<T> From for ColorChoice`
+
+- <span id="colorchoice-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ColorChoice`
+
+- <span id="colorchoice-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ColorChoice`
 
-- <span id="colorchoice-eq"></span>`fn eq(&self, other: &ColorChoice) -> bool` — [`ColorChoice`](#colorchoice)
+- <span id="colorchoice-partialeq-eq"></span>`fn eq(&self, other: &ColorChoice) -> bool` — [`ColorChoice`](#colorchoice)
 
 ##### `impl StructuralPartialEq for ColorChoice`
+
+##### `impl<U> TryFrom for ColorChoice`
+
+- <span id="colorchoice-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="colorchoice-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ColorChoice`
+
+- <span id="colorchoice-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="colorchoice-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

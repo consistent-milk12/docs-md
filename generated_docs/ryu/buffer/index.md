@@ -41,21 +41,119 @@ assert_eq!(printed, "1.234");
 
 - <span id="buffer-new"></span>`fn new() -> Self`
 
+  This is a cheap operation; you don't need to worry about reusing buffers
+
+  for efficiency.
+
 - <span id="buffer-format"></span>`fn format<F: Float>(&mut self, f: F) -> &str`
+
+  Print a floating point number into this buffer and return a reference to
+
+  its string representation within the buffer.
+
+  
+
+  # Special cases
+
+  
+
+  This function formats NaN as the string "NaN", positive infinity as
+
+  "inf", and negative infinity as "-inf" to match std::fmt.
+
+  
+
+  If your input is known to be finite, you may get better performance by
+
+  calling the `format_finite` method instead of `format` to avoid the
+
+  checks for special cases.
 
 - <span id="buffer-format-finite"></span>`fn format_finite<F: Float>(&mut self, f: F) -> &str`
 
+  Print a floating point number into this buffer and return a reference to
+
+  its string representation within the buffer.
+
+  
+
+  # Special cases
+
+  
+
+  This function **does not** check for NaN or infinity. If the input
+
+  number is not a finite float, the printed representation will be some
+
+  correctly formatted but unspecified numerical value.
+
+  
+
+  Please check `is_finite` yourself before calling this function, or
+
+  check `is_nan` and `is_infinite` and handle those cases yourself.
+
+  
+
+  
+
 #### Trait Implementations
+
+##### `impl Any for Buffer`
+
+- <span id="buffer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Buffer`
+
+- <span id="buffer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Buffer`
+
+- <span id="buffer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Buffer`
 
 - <span id="buffer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for Buffer`
+
+- <span id="buffer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Buffer`
 
 ##### `impl Default for Buffer`
 
 - <span id="buffer-default"></span>`fn default() -> Self`
+
+##### `impl<T> From for Buffer`
+
+- <span id="buffer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Buffer`
+
+- <span id="buffer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Buffer`
+
+- <span id="buffer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="buffer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Buffer`
+
+- <span id="buffer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="buffer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

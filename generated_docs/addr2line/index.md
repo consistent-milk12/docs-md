@@ -122,6 +122,50 @@ A function frame.
 
   The source location corresponding to this frame.
 
+#### Trait Implementations
+
+##### `impl Any for Frame<'ctx, R>`
+
+- <span id="frame-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Frame<'ctx, R>`
+
+- <span id="frame-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Frame<'ctx, R>`
+
+- <span id="frame-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Frame<'ctx, R>`
+
+- <span id="frame-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Frame<'ctx, R>`
+
+- <span id="frame-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Frame<'ctx, R>`
+
+- <span id="frame-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="frame-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Frame<'ctx, R>`
+
+- <span id="frame-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="frame-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `FrameIter<'ctx, R>`
 
 ```rust
@@ -143,6 +187,52 @@ An iterator over function frames.
 - <span id="frameiter-new-frames"></span>`fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`ResUnit`](unit/index.md#resunit), [`Function`](function/index.md#function), [`InlinedFunction`](function/index.md#inlinedfunction), [`Location`](frame/index.md#location)
 
 - <span id="frameiter-next"></span>`fn next(&mut self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`Frame`](frame/index.md#frame)
+
+  Advances the iterator and returns the next frame.
+
+#### Trait Implementations
+
+##### `impl Any for FrameIter<'ctx, R>`
+
+- <span id="frameiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FrameIter<'ctx, R>`
+
+- <span id="frameiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FrameIter<'ctx, R>`
+
+- <span id="frameiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for FrameIter<'ctx, R>`
+
+- <span id="frameiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FrameIter<'ctx, R>`
+
+- <span id="frameiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for FrameIter<'ctx, R>`
+
+- <span id="frameiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="frameiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FrameIter<'ctx, R>`
+
+- <span id="frameiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="frameiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FunctionName<R: gimli::Reader>`
 
@@ -171,7 +261,55 @@ A function name.
 
 - <span id="functionname-raw-name"></span>`fn raw_name(&self) -> Result<Cow<'_, str>, gimli::Error>`
 
+  The raw name of this function before demangling.
+
 - <span id="functionname-demangle"></span>`fn demangle(&self) -> Result<Cow<'_, str>, gimli::Error>`
+
+  The name of this function after demangling (if applicable).
+
+#### Trait Implementations
+
+##### `impl Any for FunctionName<R>`
+
+- <span id="functionname-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FunctionName<R>`
+
+- <span id="functionname-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FunctionName<R>`
+
+- <span id="functionname-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for FunctionName<R>`
+
+- <span id="functionname-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FunctionName<R>`
+
+- <span id="functionname-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for FunctionName<R>`
+
+- <span id="functionname-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="functionname-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FunctionName<R>`
+
+- <span id="functionname-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="functionname-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Location<'a>`
 
@@ -202,6 +340,50 @@ A source location.
   The column number.
   
   A value of `Some(0)` indicates the left edge.
+
+#### Trait Implementations
+
+##### `impl Any for Location<'a>`
+
+- <span id="location-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Location<'a>`
+
+- <span id="location-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Location<'a>`
+
+- <span id="location-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Location<'a>`
+
+- <span id="location-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Location<'a>`
+
+- <span id="location-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Location<'a>`
+
+- <span id="location-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="location-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Location<'a>`
+
+- <span id="location-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="location-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SplitDwarfLoad<R>`
 
@@ -240,6 +422,50 @@ and to produce a `gimli::Dwarf<R>` for it.
   to call [make_dwo(parent)](gimli::read::Dwarf::make_dwo) before
   returning the data.
 
+#### Trait Implementations
+
+##### `impl Any for SplitDwarfLoad<R>`
+
+- <span id="splitdwarfload-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SplitDwarfLoad<R>`
+
+- <span id="splitdwarfload-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SplitDwarfLoad<R>`
+
+- <span id="splitdwarfload-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for SplitDwarfLoad<R>`
+
+- <span id="splitdwarfload-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SplitDwarfLoad<R>`
+
+- <span id="splitdwarfload-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for SplitDwarfLoad<R>`
+
+- <span id="splitdwarfload-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="splitdwarfload-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SplitDwarfLoad<R>`
+
+- <span id="splitdwarfload-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="splitdwarfload-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `LocationRangeIter<'ctx, R: gimli::Reader>`
 
 ```rust
@@ -262,19 +488,61 @@ Iterator over `Location`s in a range of addresses, returned by `Context::find_lo
 
 #### Trait Implementations
 
+##### `impl Any for LocationRangeIter<'ctx, R>`
+
+- <span id="locationrangeiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LocationRangeIter<'ctx, R>`
+
+- <span id="locationrangeiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LocationRangeIter<'ctx, R>`
+
+- <span id="locationrangeiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for LocationRangeIter<'ctx, R>`
+
+- <span id="locationrangeiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LocationRangeIter<'ctx, R>`
+
+- <span id="locationrangeiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoIterator for LocationRangeIter<'ctx, R>`
 
 - <span id="locationrangeiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="locationrangeiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="locationrangeiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="locationrangeiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<R> Iterator for LocationRangeIter<'ctx, R>`
 
 - <span id="locationrangeiter-iterator-type-item"></span>`type Item = (u64, u64, Location<'ctx>)`
 
-- <span id="locationrangeiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="locationrangeiter-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for LocationRangeIter<'ctx, R>`
+
+- <span id="locationrangeiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="locationrangeiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LocationRangeIter<'ctx, R>`
+
+- <span id="locationrangeiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="locationrangeiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Context<R: gimli::Reader>`
 
@@ -297,9 +565,63 @@ when performing lookups for many addresses in the same executable.
 
 - <span id="context-from-sections"></span>`fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>`
 
+  Construct a new `Context` from DWARF sections.
+
+  
+
+  This method does not support using a supplementary object file.
+
 - <span id="context-from-dwarf"></span>`fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>` — [`Context`](#context)
 
+  Construct a new `Context` from an existing [`gimli::Dwarf`](../gimli/read/index.md) object.
+
 - <span id="context-from-arc-dwarf"></span>`fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>` — [`Context`](#context)
+
+  Construct a new `Context` from an existing [`gimli::Dwarf`](../gimli/read/index.md) object.
+
+#### Trait Implementations
+
+##### `impl Any for Context<R>`
+
+- <span id="context-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Context<R>`
+
+- <span id="context-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Context<R>`
+
+- <span id="context-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Context<R>`
+
+- <span id="context-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Context<R>`
+
+- <span id="context-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Context<R>`
+
+- <span id="context-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="context-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Context<R>`
+
+- <span id="context-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="context-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RangeAttributes<R: gimli::Reader>`
 
@@ -320,9 +642,51 @@ struct RangeAttributes<R: gimli::Reader> {
 
 #### Trait Implementations
 
+##### `impl Any for RangeAttributes<R>`
+
+- <span id="rangeattributes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RangeAttributes<R>`
+
+- <span id="rangeattributes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RangeAttributes<R>`
+
+- <span id="rangeattributes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: gimli::Reader> Default for RangeAttributes<R>`
 
 - <span id="rangeattributes-default"></span>`fn default() -> Self`
+
+##### `impl<T> From for RangeAttributes<R>`
+
+- <span id="rangeattributes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RangeAttributes<R>`
+
+- <span id="rangeattributes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for RangeAttributes<R>`
+
+- <span id="rangeattributes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rangeattributes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RangeAttributes<R>`
+
+- <span id="rangeattributes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rangeattributes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -379,9 +743,63 @@ This enum is intended to be used in a loop like so:
 
 - <span id="lookupresult-skip-all-loads"></span>`fn skip_all_loads(self) -> <L as >::Output` — [`LookupContinuation`](lookup/index.md#lookupcontinuation)
 
+  Callers that do not handle split DWARF can call `skip_all_loads`
+
+  to fast-forward to the end result. This result is produced with
+
+  the data that is available and may be less accurate than the
+
+  the results that would be produced if the caller did properly
+
+  support split DWARF.
+
 - <span id="lookupresult-map"></span>`fn map<T, F: FnOnce(<L as >::Output) -> T>(self, f: F) -> LookupResult<MappedLookup<T, L, F>>` — [`LookupResult`](lookup/index.md#lookupresult), [`MappedLookup`](lookup/index.md#mappedlookup)
 
 - <span id="lookupresult-unwrap"></span>`fn unwrap(self) -> <L as >::Output` — [`LookupContinuation`](lookup/index.md#lookupcontinuation)
+
+#### Trait Implementations
+
+##### `impl Any for LookupResult<L>`
+
+- <span id="lookupresult-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LookupResult<L>`
+
+- <span id="lookupresult-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LookupResult<L>`
+
+- <span id="lookupresult-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for LookupResult<L>`
+
+- <span id="lookupresult-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LookupResult<L>`
+
+- <span id="lookupresult-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for LookupResult<L>`
+
+- <span id="lookupresult-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lookupresult-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LookupResult<L>`
+
+- <span id="lookupresult-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lookupresult-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugFile`
 
@@ -397,23 +815,77 @@ enum DebugFile {
 
 #### Trait Implementations
 
+##### `impl Any for DebugFile`
+
+- <span id="debugfile-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugFile`
+
+- <span id="debugfile-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugFile`
+
+- <span id="debugfile-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DebugFile`
 
 - <span id="debugfile-clone"></span>`fn clone(&self) -> DebugFile` — [`DebugFile`](#debugfile)
+
+##### `impl CloneToUninit for DebugFile`
+
+- <span id="debugfile-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DebugFile`
 
 ##### `impl Debug for DebugFile`
 
-- <span id="debugfile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugfile-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for DebugFile`
 
+##### `impl<T> From for DebugFile`
+
+- <span id="debugfile-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DebugFile`
+
+- <span id="debugfile-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for DebugFile`
 
-- <span id="debugfile-eq"></span>`fn eq(&self, other: &DebugFile) -> bool` — [`DebugFile`](#debugfile)
+- <span id="debugfile-partialeq-eq"></span>`fn eq(&self, other: &DebugFile) -> bool` — [`DebugFile`](#debugfile)
 
 ##### `impl StructuralPartialEq for DebugFile`
+
+##### `impl ToOwned for DebugFile`
+
+- <span id="debugfile-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugfile-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugfile-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DebugFile`
+
+- <span id="debugfile-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugfile-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DebugFile`
+
+- <span id="debugfile-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugfile-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

@@ -26,13 +26,55 @@ enum Bound {
 
 #### Trait Implementations
 
+##### `impl Any for Bound`
+
+- <span id="bound-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Bound`
+
+- <span id="bound-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Bound`
+
+- <span id="bound-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Bound`
+
+- <span id="bound-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Bound`
+
+- <span id="bound-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for crate::version::Version`
 
-- <span id="crateversionversion-eq"></span>`fn eq(&self, rhs: &Bound) -> bool` — [`Bound`](#bound)
+- <span id="crateversionversion-partialeq-eq"></span>`fn eq(&self, rhs: &Bound) -> bool` — [`Bound`](#bound)
 
 ##### `impl PartialOrd for crate::version::Version`
 
-- <span id="crateversionversion-partial-cmp"></span>`fn partial_cmp(&self, rhs: &Bound) -> Option<Ordering>` — [`Bound`](#bound)
+- <span id="crateversionversion-partialord-partial-cmp"></span>`fn partial_cmp(&self, rhs: &Bound) -> Option<Ordering>` — [`Bound`](#bound)
+
+##### `impl<U> TryFrom for Bound`
+
+- <span id="bound-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="bound-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Bound`
+
+- <span id="bound-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="bound-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

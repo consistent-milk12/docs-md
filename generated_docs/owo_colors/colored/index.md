@@ -60,35 +60,81 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 #### Trait Implementations
 
+##### `impl Any for AnsiColors`
+
+- <span id="ansicolors-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AnsiColors`
+
+- <span id="ansicolors-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AnsiColors`
+
+- <span id="ansicolors-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for AnsiColors`
 
 - <span id="ansicolors-clone"></span>`fn clone(&self) -> AnsiColors` — [`AnsiColors`](../colors/ansi_colors/index.md#ansicolors)
+
+##### `impl CloneToUninit for AnsiColors`
+
+- <span id="ansicolors-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for AnsiColors`
 
 ##### `impl Debug for AnsiColors`
 
-- <span id="ansicolors-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ansicolors-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DynColor for AnsiColors`
 
-- <span id="ansicolors-fmt-ansi-fg"></span>`fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ansicolors-dyncolor-fmt-ansi-fg"></span>`fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="ansicolors-fmt-ansi-bg"></span>`fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ansicolors-dyncolor-fmt-ansi-bg"></span>`fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="ansicolors-fmt-raw-ansi-fg"></span>`fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ansicolors-dyncolor-fmt-raw-ansi-fg"></span>`fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="ansicolors-fmt-raw-ansi-bg"></span>`fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ansicolors-dyncolor-fmt-raw-ansi-bg"></span>`fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for AnsiColors`
+
+##### `impl<T> From for AnsiColors`
+
+- <span id="ansicolors-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AnsiColors`
+
+- <span id="ansicolors-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for AnsiColors`
 
 ##### `impl PartialEq for AnsiColors`
 
-- <span id="ansicolors-eq"></span>`fn eq(&self, other: &AnsiColors) -> bool` — [`AnsiColors`](../colors/ansi_colors/index.md#ansicolors)
+- <span id="ansicolors-partialeq-eq"></span>`fn eq(&self, other: &AnsiColors) -> bool` — [`AnsiColors`](../colors/ansi_colors/index.md#ansicolors)
 
 ##### `impl StructuralPartialEq for AnsiColors`
+
+##### `impl<U> TryFrom for AnsiColors`
+
+- <span id="ansicolors-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ansicolors-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AnsiColors`
+
+- <span id="ansicolors-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ansicolors-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

@@ -65,27 +65,99 @@ struct OnceCell<T> {
 
 - <span id="oncecell-is-initialized"></span>`fn is_initialized(&self) -> bool`
 
+  Safety: synchronizes with store to value via Release/(Acquire|SeqCst).
+
 - <span id="oncecell-initialize"></span>`fn initialize<F, E>(&self, f: F) -> Result<(), E>`
+
+  Safety: synchronizes with store to value via SeqCst read from state,
+
+  writes value only once because we never get to INCOMPLETE state after a
+
+  successful write.
 
 - <span id="oncecell-wait"></span>`fn wait(&self)`
 
 - <span id="oncecell-get-unchecked"></span>`unsafe fn get_unchecked(&self) -> &T`
 
+  Get the reference to the underlying value, without checking if the cell
+
+  is initialized.
+
+  
+
+  # Safety
+
+  
+
+  Caller must ensure that the cell is in initialized state, and that
+
+  the contents are acquired by (synchronized to) this thread.
+
 - <span id="oncecell-get-mut"></span>`fn get_mut(&mut self) -> Option<&mut T>`
+
+  Gets the mutable reference to the underlying value.
+
+  Returns `None` if the cell is empty.
 
 - <span id="oncecell-into-inner"></span>`fn into_inner(self) -> Option<T>`
 
+  Consumes this `OnceCell`, returning the wrapped value.
+
+  Returns `None` if the cell was empty.
+
 #### Trait Implementations
+
+##### `impl<T> Any for OnceCell<T>`
+
+- <span id="oncecell-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for OnceCell<T>`
+
+- <span id="oncecell-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for OnceCell<T>`
+
+- <span id="oncecell-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: fmt::Debug> Debug for OnceCell<T>`
 
-- <span id="oncecell-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="oncecell-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for OnceCell<T>`
+
+- <span id="oncecell-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for OnceCell<T>`
+
+- <span id="oncecell-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: RefUnwindSafe + UnwindSafe> RefUnwindSafe for OnceCell<T>`
 
 ##### `impl<T: Send> Send for OnceCell<T>`
 
 ##### `impl<T: Sync + Send> Sync for OnceCell<T>`
+
+##### `impl<T, U> TryFrom for OnceCell<T>`
+
+- <span id="oncecell-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="oncecell-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for OnceCell<T>`
+
+- <span id="oncecell-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="oncecell-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T: UnwindSafe> UnwindSafe for OnceCell<T>`
 
@@ -104,6 +176,50 @@ struct Waiter {
 Representation of a node in the linked list of waiters in the RUNNING state.
 A waiters is stored on the stack of the waiting threads.
 
+#### Trait Implementations
+
+##### `impl Any for Waiter`
+
+- <span id="waiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Waiter`
+
+- <span id="waiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Waiter`
+
+- <span id="waiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Waiter`
+
+- <span id="waiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Waiter`
+
+- <span id="waiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Waiter`
+
+- <span id="waiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="waiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Waiter`
+
+- <span id="waiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="waiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `Guard<'a>`
 
 ```rust
@@ -119,9 +235,51 @@ Drains and notifies the queue of waiters on drop.
 
 #### Trait Implementations
 
+##### `impl Any for Guard<'a>`
+
+- <span id="guard-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Guard<'a>`
+
+- <span id="guard-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Guard<'a>`
+
+- <span id="guard-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Drop for Guard<'_>`
 
 - <span id="guard-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for Guard<'a>`
+
+- <span id="guard-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Guard<'a>`
+
+- <span id="guard-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Guard<'a>`
+
+- <span id="guard-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="guard-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Guard<'a>`
+
+- <span id="guard-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="guard-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

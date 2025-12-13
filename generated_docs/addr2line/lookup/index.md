@@ -54,6 +54,50 @@ and to produce a `gimli::Dwarf<R>` for it.
   to call [make_dwo(parent)](gimli::read::Dwarf::make_dwo) before
   returning the data.
 
+#### Trait Implementations
+
+##### `impl Any for SplitDwarfLoad<R>`
+
+- <span id="splitdwarfload-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SplitDwarfLoad<R>`
+
+- <span id="splitdwarfload-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SplitDwarfLoad<R>`
+
+- <span id="splitdwarfload-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for SplitDwarfLoad<R>`
+
+- <span id="splitdwarfload-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SplitDwarfLoad<R>`
+
+- <span id="splitdwarfload-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for SplitDwarfLoad<R>`
+
+- <span id="splitdwarfload-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="splitdwarfload-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SplitDwarfLoad<R>`
+
+- <span id="splitdwarfload-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="splitdwarfload-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `SimpleLookup<T, R, F>`
 
 ```rust
@@ -76,13 +120,55 @@ where
 
 #### Trait Implementations
 
+##### `impl<T> Any for SimpleLookup<T, R, F>`
+
+- <span id="simplelookup-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SimpleLookup<T, R, F>`
+
+- <span id="simplelookup-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SimpleLookup<T, R, F>`
+
+- <span id="simplelookup-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for SimpleLookup<T, R, F>`
+
+- <span id="simplelookup-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for SimpleLookup<T, R, F>`
+
+- <span id="simplelookup-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T, R, F> LookupContinuation for SimpleLookup<T, R, F>`
 
 - <span id="simplelookup-lookupcontinuation-type-output"></span>`type Output = T`
 
 - <span id="simplelookup-lookupcontinuation-type-buf"></span>`type Buf = R`
 
-- <span id="simplelookup-resume"></span>`fn resume(self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](#lookupcontinuation), [`LookupResult`](#lookupresult)
+- <span id="simplelookup-lookupcontinuation-resume"></span>`fn resume(self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](#lookupcontinuation), [`LookupResult`](#lookupresult)
+
+##### `impl<T, U> TryFrom for SimpleLookup<T, R, F>`
+
+- <span id="simplelookup-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="simplelookup-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for SimpleLookup<T, R, F>`
+
+- <span id="simplelookup-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="simplelookup-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MappedLookup<T, L, F>`
 
@@ -100,13 +186,55 @@ where
 
 #### Trait Implementations
 
+##### `impl<T> Any for MappedLookup<T, L, F>`
+
+- <span id="mappedlookup-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MappedLookup<T, L, F>`
+
+- <span id="mappedlookup-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MappedLookup<T, L, F>`
+
+- <span id="mappedlookup-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for MappedLookup<T, L, F>`
+
+- <span id="mappedlookup-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for MappedLookup<T, L, F>`
+
+- <span id="mappedlookup-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T, L, F> LookupContinuation for MappedLookup<T, L, F>`
 
 - <span id="mappedlookup-lookupcontinuation-type-output"></span>`type Output = T`
 
 - <span id="mappedlookup-lookupcontinuation-type-buf"></span>`type Buf = <L as LookupContinuation>::Buf`
 
-- <span id="mappedlookup-resume"></span>`fn resume(self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](#lookupcontinuation), [`LookupResult`](#lookupresult)
+- <span id="mappedlookup-lookupcontinuation-resume"></span>`fn resume(self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](#lookupcontinuation), [`LookupResult`](#lookupresult)
+
+##### `impl<T, U> TryFrom for MappedLookup<T, L, F>`
+
+- <span id="mappedlookup-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="mappedlookup-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for MappedLookup<T, L, F>`
+
+- <span id="mappedlookup-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="mappedlookup-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LoopingLookup<T, L, F>`
 
@@ -143,13 +271,55 @@ computation is resumed.
 
 #### Trait Implementations
 
+##### `impl<T> Any for LoopingLookup<T, L, F>`
+
+- <span id="loopinglookup-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LoopingLookup<T, L, F>`
+
+- <span id="loopinglookup-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LoopingLookup<T, L, F>`
+
+- <span id="loopinglookup-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for LoopingLookup<T, L, F>`
+
+- <span id="loopinglookup-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for LoopingLookup<T, L, F>`
+
+- <span id="loopinglookup-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T, L, F> LookupContinuation for LoopingLookup<T, L, F>`
 
 - <span id="loopinglookup-lookupcontinuation-type-output"></span>`type Output = T`
 
 - <span id="loopinglookup-lookupcontinuation-type-buf"></span>`type Buf = <L as LookupContinuation>::Buf`
 
-- <span id="loopinglookup-resume"></span>`fn resume(self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](#lookupcontinuation), [`LookupResult`](#lookupresult)
+- <span id="loopinglookup-lookupcontinuation-resume"></span>`fn resume(self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](#lookupcontinuation), [`LookupResult`](#lookupresult)
+
+##### `impl<T, U> TryFrom for LoopingLookup<T, L, F>`
+
+- <span id="loopinglookup-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="loopinglookup-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for LoopingLookup<T, L, F>`
+
+- <span id="loopinglookup-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="loopinglookup-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -206,9 +376,63 @@ This enum is intended to be used in a loop like so:
 
 - <span id="lookupresult-skip-all-loads"></span>`fn skip_all_loads(self) -> <L as >::Output` — [`LookupContinuation`](#lookupcontinuation)
 
+  Callers that do not handle split DWARF can call `skip_all_loads`
+
+  to fast-forward to the end result. This result is produced with
+
+  the data that is available and may be less accurate than the
+
+  the results that would be produced if the caller did properly
+
+  support split DWARF.
+
 - <span id="lookupresult-map"></span>`fn map<T, F: FnOnce(<L as >::Output) -> T>(self, f: F) -> LookupResult<MappedLookup<T, L, F>>` — [`LookupResult`](#lookupresult), [`MappedLookup`](#mappedlookup)
 
 - <span id="lookupresult-unwrap"></span>`fn unwrap(self) -> <L as >::Output` — [`LookupContinuation`](#lookupcontinuation)
+
+#### Trait Implementations
+
+##### `impl Any for LookupResult<L>`
+
+- <span id="lookupresult-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LookupResult<L>`
+
+- <span id="lookupresult-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LookupResult<L>`
+
+- <span id="lookupresult-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for LookupResult<L>`
+
+- <span id="lookupresult-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LookupResult<L>`
+
+- <span id="lookupresult-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for LookupResult<L>`
+
+- <span id="lookupresult-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lookupresult-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LookupResult<L>`
+
+- <span id="lookupresult-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lookupresult-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

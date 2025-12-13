@@ -161,10 +161,11 @@ bench: check-cargo
     cargo bench
 
 # Regenerate generated_docs/ quickly (no cargo clean, uses debug build)
+# Uses maximum detail flags: blanket impls, source locations, full method docs
 regen: build
     @echo "{{yellow}}Regenerating generated_docs/...{{reset}}"
     rm -rf generated_docs/
-    ./target/debug/cargo-docs-md docs-md --dir target/doc/ -o generated_docs/ --mdbook --search-index --primary-crate cargo_docs_md
+    ./target/debug/cargo-docs-md docs-md --dir target/doc/ -o generated_docs/ --mdbook --search-index --primary-crate cargo_docs_md --include-blanket-impls --source-locations --full-method-docs
     @echo "{{green}}Documentation regenerated in generated_docs/{{reset}}"
 
 # Generate only walkdir docs (useful for testing trait rendering)

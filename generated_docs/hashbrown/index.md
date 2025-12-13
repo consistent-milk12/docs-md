@@ -99,23 +99,77 @@ must be used to have a fully functional `HashMap` or `HashSet`.
 
 #### Trait Implementations
 
+##### `impl Any for DefaultHashBuilder`
+
+- <span id="defaulthashbuilder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DefaultHashBuilder`
+
+- <span id="defaulthashbuilder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DefaultHashBuilder`
+
+- <span id="defaulthashbuilder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl BuildHasher for DefaultHashBuilder`
 
 - <span id="defaulthashbuilder-buildhasher-type-hasher"></span>`type Hasher = DefaultHasher`
 
-- <span id="defaulthashbuilder-build-hasher"></span>`fn build_hasher(&self) -> <Self as >::Hasher`
+- <span id="defaulthashbuilder-buildhasher-build-hasher"></span>`fn build_hasher(&self) -> <Self as >::Hasher`
 
 ##### `impl Clone for DefaultHashBuilder`
 
 - <span id="defaulthashbuilder-clone"></span>`fn clone(&self) -> DefaultHashBuilder` — [`DefaultHashBuilder`](hasher/index.md#defaulthashbuilder)
 
+##### `impl CloneToUninit for DefaultHashBuilder`
+
+- <span id="defaulthashbuilder-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for DefaultHashBuilder`
 
-- <span id="defaulthashbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="defaulthashbuilder-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for DefaultHashBuilder`
 
 - <span id="defaulthashbuilder-default"></span>`fn default() -> DefaultHashBuilder` — [`DefaultHashBuilder`](hasher/index.md#defaulthashbuilder)
+
+##### `impl<T> From for DefaultHashBuilder`
+
+- <span id="defaulthashbuilder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DefaultHashBuilder`
+
+- <span id="defaulthashbuilder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for DefaultHashBuilder`
+
+- <span id="defaulthashbuilder-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="defaulthashbuilder-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="defaulthashbuilder-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DefaultHashBuilder`
+
+- <span id="defaulthashbuilder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="defaulthashbuilder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DefaultHashBuilder`
+
+- <span id="defaulthashbuilder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="defaulthashbuilder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DefaultHasher`
 
@@ -131,39 +185,93 @@ Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 
 #### Trait Implementations
 
+##### `impl Any for DefaultHasher`
+
+- <span id="defaulthasher-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DefaultHasher`
+
+- <span id="defaulthasher-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DefaultHasher`
+
+- <span id="defaulthasher-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DefaultHasher`
 
 - <span id="defaulthasher-clone"></span>`fn clone(&self) -> DefaultHasher` — [`DefaultHasher`](hasher/index.md#defaulthasher)
 
+##### `impl CloneToUninit for DefaultHasher`
+
+- <span id="defaulthasher-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
+##### `impl<T> From for DefaultHasher`
+
+- <span id="defaulthasher-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hasher for DefaultHasher`
 
-- <span id="defaulthasher-write"></span>`fn write(&mut self, arg: &[u8])`
+- <span id="defaulthasher-hasher-write"></span>`fn write(&mut self, arg: &[u8])`
 
-- <span id="defaulthasher-write-u8"></span>`fn write_u8(&mut self, arg: u8)`
+- <span id="defaulthasher-hasher-write-u8"></span>`fn write_u8(&mut self, arg: u8)`
 
-- <span id="defaulthasher-write-u16"></span>`fn write_u16(&mut self, arg: u16)`
+- <span id="defaulthasher-hasher-write-u16"></span>`fn write_u16(&mut self, arg: u16)`
 
-- <span id="defaulthasher-write-u32"></span>`fn write_u32(&mut self, arg: u32)`
+- <span id="defaulthasher-hasher-write-u32"></span>`fn write_u32(&mut self, arg: u32)`
 
-- <span id="defaulthasher-write-u64"></span>`fn write_u64(&mut self, arg: u64)`
+- <span id="defaulthasher-hasher-write-u64"></span>`fn write_u64(&mut self, arg: u64)`
 
-- <span id="defaulthasher-write-u128"></span>`fn write_u128(&mut self, arg: u128)`
+- <span id="defaulthasher-hasher-write-u128"></span>`fn write_u128(&mut self, arg: u128)`
 
-- <span id="defaulthasher-write-usize"></span>`fn write_usize(&mut self, arg: usize)`
+- <span id="defaulthasher-hasher-write-usize"></span>`fn write_usize(&mut self, arg: usize)`
 
-- <span id="defaulthasher-write-i8"></span>`fn write_i8(&mut self, arg: i8)`
+- <span id="defaulthasher-hasher-write-i8"></span>`fn write_i8(&mut self, arg: i8)`
 
-- <span id="defaulthasher-write-i16"></span>`fn write_i16(&mut self, arg: i16)`
+- <span id="defaulthasher-hasher-write-i16"></span>`fn write_i16(&mut self, arg: i16)`
 
-- <span id="defaulthasher-write-i32"></span>`fn write_i32(&mut self, arg: i32)`
+- <span id="defaulthasher-hasher-write-i32"></span>`fn write_i32(&mut self, arg: i32)`
 
-- <span id="defaulthasher-write-i64"></span>`fn write_i64(&mut self, arg: i64)`
+- <span id="defaulthasher-hasher-write-i64"></span>`fn write_i64(&mut self, arg: i64)`
 
-- <span id="defaulthasher-write-i128"></span>`fn write_i128(&mut self, arg: i128)`
+- <span id="defaulthasher-hasher-write-i128"></span>`fn write_i128(&mut self, arg: i128)`
 
-- <span id="defaulthasher-write-isize"></span>`fn write_isize(&mut self, arg: isize)`
+- <span id="defaulthasher-hasher-write-isize"></span>`fn write_isize(&mut self, arg: isize)`
 
-- <span id="defaulthasher-finish"></span>`fn finish(&self) -> u64`
+- <span id="defaulthasher-hasher-finish"></span>`fn finish(&self) -> u64`
+
+##### `impl<U> Into for DefaultHasher`
+
+- <span id="defaulthasher-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for DefaultHasher`
+
+- <span id="defaulthasher-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="defaulthasher-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="defaulthasher-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DefaultHasher`
+
+- <span id="defaulthasher-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="defaulthasher-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DefaultHasher`
+
+- <span id="defaulthasher-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="defaulthasher-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `HashMap<K, V, S, A: Allocator>`
 
@@ -348,23 +456,161 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 - <span id="hashmap-new"></span>`fn new() -> Self`
 
+  Creates an empty `HashMap`.
+
+  
+
+  The hash map is initially created with a capacity of 0, so it will not allocate until it
+
+  is first inserted into.
+
+  
+
+  # HashDoS resistance
+
+  
+
+  The `hash_builder` normally use a fixed key by default and that does
+
+  not allow the `HashMap` to be protected against attacks such as `HashDoS`.
+
+  Users who require HashDoS resistance should explicitly use
+
+  `std::collections::hash_map::RandomState`
+
+  as the hasher when creating a [`HashMap`](hash_map/index.md), for example with
+
+  [`with_hasher`](HashMap::with_hasher) method.
+
+  
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  let mut map: HashMap<&str, i32> = HashMap::new();
+
+  assert_eq!(map.len(), 0);
+
+  assert_eq!(map.capacity(), 0);
+
+  ```
+
 - <span id="hashmap-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
+  Creates an empty `HashMap` with the specified capacity.
+
+  
+
+  The hash map will be able to hold at least `capacity` elements without
+
+  reallocating. If `capacity` is 0, the hash map will not allocate.
+
+  
+
+  # HashDoS resistance
+
+  
+
+  The `hash_builder` normally use a fixed key by default and that does
+
+  not allow the `HashMap` to be protected against attacks such as `HashDoS`.
+
+  Users who require HashDoS resistance should explicitly use
+
+  `std::collections::hash_map::RandomState`
+
+  as the hasher when creating a [`HashMap`](hash_map/index.md), for example with
+
+  [`with_capacity_and_hasher`](HashMap::with_capacity_and_hasher) method.
+
+  
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  let mut map: HashMap<&str, i32> = HashMap::with_capacity(10);
+
+  assert_eq!(map.len(), 0);
+
+  assert!(map.capacity() >= 10);
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for HashMap<K, V, S, A>`
+
+- <span id="hashmap-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HashMap<K, V, S, A>`
+
+- <span id="hashmap-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HashMap<K, V, S, A>`
+
+- <span id="hashmap-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<K: Clone, V: Clone, S: Clone, A: Allocator + Clone> Clone for HashMap<K, V, S, A>`
 
 - <span id="hashmap-clone"></span>`fn clone(&self) -> Self`
 
-- <span id="hashmap-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
+- <span id="hashmap-clone-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
+
+##### `impl CloneToUninit for HashMap<K, V, S, A>`
+
+- <span id="hashmap-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<K, V, S, A> Debug for HashMap<K, V, S, A>`
 
-- <span id="hashmap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hashmap-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V, S, A> Default for HashMap<K, V, S, A>`
 
 - <span id="hashmap-default"></span>`fn default() -> Self`
+
+  Creates an empty `HashMap<K, V, S, A>`, with the `Default` value for the hasher and allocator.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  use std::collections::hash_map::RandomState;
+
+  
+
+  // You can specify all types of HashMap, including hasher and allocator.
+
+  // Created map is empty and don't allocate memory
+
+  let map: HashMap<u32, String> = Default::default();
+
+  assert_eq!(map.capacity(), 0);
+
+  let map: HashMap<u32, String, RandomState> = HashMap::default();
+
+  assert_eq!(map.capacity(), 0);
+
+  ```
 
 ##### `impl<K, V, S, A> Eq for HashMap<K, V, S, A>`
 
@@ -376,9 +622,85 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 - <span id="hashmap-extend"></span>`fn extend<T: IntoIterator<Item = (K, V)>>(&mut self, iter: T)`
 
+  Inserts all new key-values from the iterator to existing `HashMap<K, V, S, A>`.
+
+  Replace values with existing keys with new values returned from the iterator.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::hash_map::HashMap;
+
+  
+
+  let mut map = HashMap::new();
+
+  map.insert(1, 100);
+
+  
+
+  let some_iter = [(1, 1), (2, 2)].into_iter();
+
+  map.extend(some_iter);
+
+  // Replace values with existing keys with new values returned from the iterator.
+
+  // So that the map.get(&1) doesn't return Some(&100).
+
+  assert_eq!(map.get(&1), Some(&1));
+
+  
+
+  let some_vec: Vec<_> = vec![(3, 3), (4, 4)];
+
+  map.extend(some_vec);
+
+  
+
+  let some_arr = [(5, 5), (6, 6)];
+
+  map.extend(some_arr);
+
+  let old_map_len = map.len();
+
+  
+
+  // You can also extend from another HashMap
+
+  let mut new_map = HashMap::new();
+
+  new_map.extend(map);
+
+  assert_eq!(new_map.len(), old_map_len);
+
+  
+
+  let mut vec: Vec<_> = new_map.into_iter().collect();
+
+  // The `IntoIter` iterator produces items in arbitrary order, so the
+
+  // items must be sorted to test them against a sorted array.
+
+  vec.sort_unstable();
+
+  assert_eq!(vec, [(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6)]);
+
+  ```
+
+##### `impl<T> From for HashMap<K, V, S, A>`
+
+- <span id="hashmap-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<K, V, S, A> FromIterator for HashMap<K, V, S, A>`
 
-- <span id="hashmap-from-iter"></span>`fn from_iter<T: IntoIterator<Item = (K, V)>>(iter: T) -> Self`
+- <span id="hashmap-fromiterator-from-iter"></span>`fn from_iter<T: IntoIterator<Item = (K, V)>>(iter: T) -> Self`
 
 ##### `impl<K, Q, V, S, A> Index for HashMap<K, V, S, A>`
 
@@ -386,17 +708,121 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 - <span id="hashmap-index"></span>`fn index(&self, key: &Q) -> &V`
 
+  Returns a reference to the value corresponding to the supplied key.
+
+  
+
+  # Panics
+
+  
+
+  Panics if the key is not present in the `HashMap`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  
+
+  let map: HashMap<_, _> = [("a", "One"), ("b", "Two")].into();
+
+  
+
+  assert_eq!(map[&"a"], "One");
+
+  assert_eq!(map[&"b"], "Two");
+
+  ```
+
+##### `impl<U> Into for HashMap<K, V, S, A>`
+
+- <span id="hashmap-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<K, V, S, A: Allocator> IntoIterator for &'a HashMap<K, V, S, A>`
 
 - <span id="a-hashmap-intoiterator-type-item"></span>`type Item = (&'a K, &'a V)`
 
 - <span id="a-hashmap-intoiterator-type-intoiter"></span>`type IntoIter = Iter<'a, K, V>`
 
-- <span id="a-hashmap-into-iter"></span>`fn into_iter(self) -> Iter<'a, K, V>` — [`Iter`](hash_map/index.md#iter)
+- <span id="a-hashmap-intoiterator-into-iter"></span>`fn into_iter(self) -> Iter<'a, K, V>` — [`Iter`](hash_map/index.md#iter)
+
+  Creates an iterator over the entries of a `HashMap` in arbitrary order.
+
+  The iterator element type is `(&'a K, &'a V)`.
+
+  
+
+  Return the same `Iter` struct as by the [`iter`](#iter) method on [`HashMap`](hash_map/index.md).
+
+  
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  let map_one: HashMap<_, _> = [(1, "a"), (2, "b"), (3, "c")].into();
+
+  let mut map_two = HashMap::new();
+
+  
+
+  for (key, value) in &map_one {
+
+      println!("Key: {}, Value: {}", key, value);
+
+      map_two.insert(*key, *value);
+
+  }
+
+  
+
+  assert_eq!(map_one, map_two);
+
+  ```
 
 ##### `impl<K, V, S, A> PartialEq for HashMap<K, V, S, A>`
 
-- <span id="hashmap-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="hashmap-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
+
+##### `impl ToOwned for HashMap<K, V, S, A>`
+
+- <span id="hashmap-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="hashmap-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="hashmap-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for HashMap<K, V, S, A>`
+
+- <span id="hashmap-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="hashmap-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HashMap<K, V, S, A>`
+
+- <span id="hashmap-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="hashmap-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `HashSet<T, S, A: Allocator>`
 
@@ -507,9 +933,99 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-new"></span>`fn new() -> Self`
 
+  Creates an empty `HashSet`.
+
+  
+
+  The hash set is initially created with a capacity of 0, so it will not allocate until it
+
+  is first inserted into.
+
+  
+
+  # HashDoS resistance
+
+  
+
+  The `hash_builder` normally use a fixed key by default and that does
+
+  not allow the `HashSet` to be protected against attacks such as `HashDoS`.
+
+  Users who require HashDoS resistance should explicitly use
+
+  `std::collections::hash_map::RandomState`
+
+  as the hasher when creating a [`HashSet`](hash_set/index.md), for example with
+
+  [`with_hasher`](HashSet::with_hasher) method.
+
+  
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  let set: HashSet<i32> = HashSet::new();
+
+  ```
+
 - <span id="hashset-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
+  Creates an empty `HashSet` with the specified capacity.
+
+  
+
+  The hash set will be able to hold at least `capacity` elements without
+
+  reallocating. If `capacity` is 0, the hash set will not allocate.
+
+  
+
+  # HashDoS resistance
+
+  
+
+  The `hash_builder` normally use a fixed key by default and that does
+
+  not allow the `HashSet` to be protected against attacks such as `HashDoS`.
+
+  Users who require HashDoS resistance should explicitly use
+
+  `std::collections::hash_map::RandomState`
+
+  as the hasher when creating a [`HashSet`](hash_set/index.md), for example with
+
+  [`with_capacity_and_hasher`](HashSet::with_capacity_and_hasher) method.
+
+  
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  let set: HashSet<i32> = HashSet::with_capacity(10);
+
+  assert!(set.capacity() >= 10);
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for HashSet<T, S, A>`
+
+- <span id="hashset-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl<T, S, A> BitAnd for &HashSet<T, S, A>`
 
@@ -517,9 +1033,89 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-bitand"></span>`fn bitand(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md#hashset)
 
+  Returns the intersection of `self` and `rhs` as a new `HashSet<T, S>`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
+
+  let b: HashSet<_> = vec![2, 3, 4].into_iter().collect();
+
+  
+
+  let set = &a & &b;
+
+  
+
+  let mut i = 0;
+
+  let expected = [2, 3];
+
+  for x in &set {
+
+      assert!(expected.contains(x));
+
+      i += 1;
+
+  }
+
+  assert_eq!(i, expected.len());
+
+  ```
+
 ##### `impl<T, S, A> BitAndAssign for HashSet<T, S, A>`
 
-- <span id="hashset-bitand-assign"></span>`fn bitand_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md#hashset)
+- <span id="hashset-bitandassign-bitand-assign"></span>`fn bitand_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md#hashset)
+
+  Modifies this set to contain the intersection of `self` and `rhs`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let mut a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
+
+  let b: HashSet<_> = vec![2, 3, 4].into_iter().collect();
+
+  
+
+  a &= &b;
+
+  
+
+  let mut i = 0;
+
+  let expected = [2, 3];
+
+  for x in &a {
+
+      assert!(expected.contains(x));
+
+      i += 1;
+
+  }
+
+  assert_eq!(i, expected.len());
+
+  ```
 
 ##### `impl<T, S, A> BitOr for &HashSet<T, S, A>`
 
@@ -527,9 +1123,89 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-bitor"></span>`fn bitor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md#hashset)
 
+  Returns the union of `self` and `rhs` as a new `HashSet<T, S>`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
+
+  let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
+
+  
+
+  let set = &a | &b;
+
+  
+
+  let mut i = 0;
+
+  let expected = [1, 2, 3, 4, 5];
+
+  for x in &set {
+
+      assert!(expected.contains(x));
+
+      i += 1;
+
+  }
+
+  assert_eq!(i, expected.len());
+
+  ```
+
 ##### `impl<T, S, A> BitOrAssign for HashSet<T, S, A>`
 
-- <span id="hashset-bitor-assign"></span>`fn bitor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md#hashset)
+- <span id="hashset-bitorassign-bitor-assign"></span>`fn bitor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md#hashset)
+
+  Modifies this set to contain the union of `self` and `rhs`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let mut a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
+
+  let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
+
+  
+
+  a |= &b;
+
+  
+
+  let mut i = 0;
+
+  let expected = [1, 2, 3, 4, 5];
+
+  for x in &a {
+
+      assert!(expected.contains(x));
+
+      i += 1;
+
+  }
+
+  assert_eq!(i, expected.len());
+
+  ```
 
 ##### `impl<T, S, A> BitXor for &HashSet<T, S, A>`
 
@@ -537,23 +1213,117 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-bitxor"></span>`fn bitxor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md#hashset)
 
+  Returns the symmetric difference of `self` and `rhs` as a new `HashSet<T, S>`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
+
+  let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
+
+  
+
+  let set = &a ^ &b;
+
+  
+
+  let mut i = 0;
+
+  let expected = [1, 2, 4, 5];
+
+  for x in &set {
+
+      assert!(expected.contains(x));
+
+      i += 1;
+
+  }
+
+  assert_eq!(i, expected.len());
+
+  ```
+
 ##### `impl<T, S, A> BitXorAssign for HashSet<T, S, A>`
 
-- <span id="hashset-bitxor-assign"></span>`fn bitxor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md#hashset)
+- <span id="hashset-bitxorassign-bitxor-assign"></span>`fn bitxor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md#hashset)
+
+  Modifies this set to contain the symmetric difference of `self` and `rhs`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let mut a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
+
+  let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
+
+  
+
+  a ^= &b;
+
+  
+
+  let mut i = 0;
+
+  let expected = [1, 2, 4, 5];
+
+  for x in &a {
+
+      assert!(expected.contains(x));
+
+      i += 1;
+
+  }
+
+  assert_eq!(i, expected.len());
+
+  ```
+
+##### `impl<T> Borrow for HashSet<T, S, A>`
+
+- <span id="hashset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HashSet<T, S, A>`
+
+- <span id="hashset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: Clone, S: Clone, A: Allocator + Clone> Clone for HashSet<T, S, A>`
 
 - <span id="hashset-clone"></span>`fn clone(&self) -> Self`
 
-- <span id="hashset-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
+- <span id="hashset-clone-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
+
+##### `impl<T> CloneToUninit for HashSet<T, S, A>`
+
+- <span id="hashset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T, S, A> Debug for HashSet<T, S, A>`
 
-- <span id="hashset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hashset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, S, A> Default for HashSet<T, S, A>`
 
 - <span id="hashset-default"></span>`fn default() -> Self`
+
+  Creates an empty `HashSet<T, S>` with the `Default` value for the hasher.
 
 ##### `impl<T, S, A> Eq for HashSet<T, S, A>`
 
@@ -565,9 +1335,27 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-extend"></span>`fn extend<I: IntoIterator<Item = T>>(&mut self, iter: I)`
 
+##### `impl<T> From for HashSet<T, S, A>`
+
+- <span id="hashset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<T, S, A> FromIterator for HashSet<T, S, A>`
 
-- <span id="hashset-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
+- <span id="hashset-fromiterator-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
+
+##### `impl<T, U> Into for HashSet<T, S, A>`
+
+- <span id="hashset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, S, A: Allocator> IntoIterator for &'a HashSet<T, S, A>`
 
@@ -575,11 +1363,11 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="a-hashset-intoiterator-type-intoiter"></span>`type IntoIter = Iter<'a, T>`
 
-- <span id="a-hashset-into-iter"></span>`fn into_iter(self) -> Iter<'a, T>` — [`Iter`](hash_set/index.md#iter)
+- <span id="a-hashset-intoiterator-into-iter"></span>`fn into_iter(self) -> Iter<'a, T>` — [`Iter`](hash_set/index.md#iter)
 
 ##### `impl<T, S, A> PartialEq for HashSet<T, S, A>`
 
-- <span id="hashset-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="hashset-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T, S, A> Sub for &HashSet<T, S, A>`
 
@@ -587,9 +1375,109 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-sub"></span>`fn sub(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md#hashset)
 
+  Returns the difference of `self` and `rhs` as a new `HashSet<T, S>`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
+
+  let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
+
+  
+
+  let set = &a - &b;
+
+  
+
+  let mut i = 0;
+
+  let expected = [1, 2];
+
+  for x in &set {
+
+      assert!(expected.contains(x));
+
+      i += 1;
+
+  }
+
+  assert_eq!(i, expected.len());
+
+  ```
+
 ##### `impl<T, S, A> SubAssign for HashSet<T, S, A>`
 
-- <span id="hashset-sub-assign"></span>`fn sub_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md#hashset)
+- <span id="hashset-subassign-sub-assign"></span>`fn sub_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md#hashset)
+
+  Modifies this set to contain the difference of `self` and `rhs`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashSet;
+
+  
+
+  let mut a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
+
+  let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
+
+  
+
+  a -= &b;
+
+  
+
+  let mut i = 0;
+
+  let expected = [1, 2];
+
+  for x in &a {
+
+      assert!(expected.contains(x));
+
+      i += 1;
+
+  }
+
+  assert_eq!(i, expected.len());
+
+  ```
+
+##### `impl<T> ToOwned for HashSet<T, S, A>`
+
+- <span id="hashset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="hashset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="hashset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for HashSet<T, S, A>`
+
+- <span id="hashset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="hashset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for HashSet<T, S, A>`
+
+- <span id="hashset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="hashset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `HashTable<T, A>`
 
@@ -643,21 +1531,107 @@ doing this because it changes the runtime of hash table operations from
 
 - <span id="hashtable-new"></span>`const fn new() -> Self`
 
+  Creates an empty `HashTable`.
+
+  
+
+  The hash table is initially created with a capacity of 0, so it will not allocate until it
+
+  is first inserted into.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashTable;
+
+  let mut table: HashTable<&str> = HashTable::new();
+
+  assert_eq!(table.len(), 0);
+
+  assert_eq!(table.capacity(), 0);
+
+  ```
+
 - <span id="hashtable-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
+  Creates an empty `HashTable` with the specified capacity.
+
+  
+
+  The hash table will be able to hold at least `capacity` elements without
+
+  reallocating. If `capacity` is 0, the hash table will not allocate.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashTable;
+
+  let mut table: HashTable<&str> = HashTable::with_capacity(10);
+
+  assert_eq!(table.len(), 0);
+
+  assert!(table.capacity() >= 10);
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for HashTable<T, A>`
+
+- <span id="hashtable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HashTable<T, A>`
+
+- <span id="hashtable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HashTable<T, A>`
+
+- <span id="hashtable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T, A> Clone for HashTable<T, A>`
 
 - <span id="hashtable-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for HashTable<T, A>`
+
+- <span id="hashtable-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T, A> Debug for HashTable<T, A>`
 
-- <span id="hashtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hashtable-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, A> Default for HashTable<T, A>`
 
 - <span id="hashtable-default"></span>`fn default() -> Self`
+
+##### `impl<T> From for HashTable<T, A>`
+
+- <span id="hashtable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for HashTable<T, A>`
+
+- <span id="hashtable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, A> IntoIterator for HashTable<T, A>`
 
@@ -665,7 +1639,27 @@ doing this because it changes the runtime of hash table operations from
 
 - <span id="hashtable-intoiterator-type-intoiter"></span>`type IntoIter = IntoIter<T, A>`
 
-- <span id="hashtable-into-iter"></span>`fn into_iter(self) -> IntoIter<T, A>` — [`IntoIter`](hash_table/index.md#intoiter)
+- <span id="hashtable-intoiterator-into-iter"></span>`fn into_iter(self) -> IntoIter<T, A>` — [`IntoIter`](hash_table/index.md#intoiter)
+
+##### `impl<T> ToOwned for HashTable<T, A>`
+
+- <span id="hashtable-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="hashtable-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="hashtable-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for HashTable<T, A>`
+
+- <span id="hashtable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="hashtable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for HashTable<T, A>`
+
+- <span id="hashtable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="hashtable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -697,13 +1691,29 @@ The error type for `try_reserve` methods.
 
 #### Trait Implementations
 
+##### `impl Any for TryReserveError`
+
+- <span id="tryreserveerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TryReserveError`
+
+- <span id="tryreserveerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TryReserveError`
+
+- <span id="tryreserveerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for TryReserveError`
 
 - <span id="tryreserveerror-clone"></span>`fn clone(&self) -> TryReserveError` — [`TryReserveError`](#tryreserveerror)
 
+##### `impl CloneToUninit for TryReserveError`
+
+- <span id="tryreserveerror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for TryReserveError`
 
-- <span id="tryreserveerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tryreserveerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for TryReserveError`
 
@@ -711,9 +1721,47 @@ The error type for `try_reserve` methods.
 
 - <span id="tryreserveerror-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
+##### `impl<T> From for TryReserveError`
+
+- <span id="tryreserveerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TryReserveError`
+
+- <span id="tryreserveerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for TryReserveError`
 
-- <span id="tryreserveerror-eq"></span>`fn eq(&self, other: &TryReserveError) -> bool` — [`TryReserveError`](#tryreserveerror)
+- <span id="tryreserveerror-partialeq-eq"></span>`fn eq(&self, other: &TryReserveError) -> bool` — [`TryReserveError`](#tryreserveerror)
 
 ##### `impl StructuralPartialEq for TryReserveError`
+
+##### `impl ToOwned for TryReserveError`
+
+- <span id="tryreserveerror-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="tryreserveerror-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="tryreserveerror-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TryReserveError`
+
+- <span id="tryreserveerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tryreserveerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TryReserveError`
+
+- <span id="tryreserveerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tryreserveerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

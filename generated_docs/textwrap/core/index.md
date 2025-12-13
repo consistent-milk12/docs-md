@@ -106,19 +106,69 @@ trailing whitespace, and potentially a penalty item.
 
 - <span id="word-from"></span>`fn from(word: &str) -> Word<'_>` — [`Word`](#word)
 
+  Construct a `Word` from a string.
+
+  
+
+  A trailing stretch of `' '` is automatically taken to be the
+
+  whitespace part of the word.
+
 - <span id="word-break-apart"></span>`fn break_apart<'b>(self: &'b Self, line_width: usize) -> impl Iterator<Item = Word<'a>> + 'b` — [`Word`](#word)
 
+  Break this word into smaller words with a width of at most
+
+  `line_width`. The whitespace and penalty from this `Word` is
+
+  added to the last piece.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use textwrap::core::Word;
+
+  assert_eq!(
+
+      Word::from("Hello!  ").break_apart(3).collect::<Vec<_>>(),
+
+      vec![Word::from("Hel"), Word::from("lo!  ")]
+
+  );
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for Word<'a>`
+
+- <span id="word-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Word<'a>`
+
+- <span id="word-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Word<'a>`
+
+- <span id="word-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Word<'a>`
 
 - <span id="word-clone"></span>`fn clone(&self) -> Word<'a>` — [`Word`](#word)
 
+##### `impl CloneToUninit for Word<'a>`
+
+- <span id="word-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Word<'a>`
 
 ##### `impl Debug for Word<'a>`
 
-- <span id="word-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="word-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deref for Word<'_>`
 
@@ -130,21 +180,59 @@ trailing whitespace, and potentially a penalty item.
 
 ##### `impl Fragment for Word<'_>`
 
-- <span id="word-width"></span>`fn width(&self) -> f64`
+- <span id="word-fragment-width"></span>`fn width(&self) -> f64`
 
-- <span id="word-whitespace-width"></span>`fn whitespace_width(&self) -> f64`
+- <span id="word-fragment-whitespace-width"></span>`fn whitespace_width(&self) -> f64`
 
-- <span id="word-penalty-width"></span>`fn penalty_width(&self) -> f64`
+- <span id="word-fragment-penalty-width"></span>`fn penalty_width(&self) -> f64`
+
+##### `impl<T> From for Word<'a>`
+
+- <span id="word-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Word<'a>`
+
+- <span id="word-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Word<'a>`
 
-- <span id="word-eq"></span>`fn eq(&self, other: &Word<'a>) -> bool` — [`Word`](#word)
+- <span id="word-partialeq-eq"></span>`fn eq(&self, other: &Word<'a>) -> bool` — [`Word`](#word)
 
 ##### `impl Receiver for Word<'a>`
 
 - <span id="word-receiver-type-target"></span>`type Target = T`
 
 ##### `impl StructuralPartialEq for Word<'a>`
+
+##### `impl ToOwned for Word<'a>`
+
+- <span id="word-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="word-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="word-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Word<'a>`
+
+- <span id="word-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="word-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Word<'a>`
+
+- <span id="word-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="word-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

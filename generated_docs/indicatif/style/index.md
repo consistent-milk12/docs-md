@@ -69,31 +69,85 @@ struct ProgressStyle {
 
 - <span id="progressstyle-default-bar"></span>`fn default_bar() -> Self`
 
+  Returns the default progress bar style for bars
+
 - <span id="progressstyle-default-spinner"></span>`fn default_spinner() -> Self`
 
+  Returns the default progress bar style for spinners
+
 - <span id="progressstyle-with-template"></span>`fn with_template(template: &str) -> Result<Self, TemplateError>` — [`TemplateError`](#templateerror)
+
+  Sets the template string for the progress bar
+
+  
+
+  Review the [list of template keys](../index.html#templates) for more information.
 
 - <span id="progressstyle-set-tab-width"></span>`fn set_tab_width(&mut self, new_tab_width: usize)`
 
 - <span id="progressstyle-set-for-stderr"></span>`fn set_for_stderr(&mut self)`
 
+  Specifies that the progress bar is intended to be printed to stderr
+
+  
+
+  The progress bar will determine whether to enable/disable colors based on stderr
+
+  instead of stdout. Under the hood, this uses [`console::colors_enabled_stderr`](../../console/utils/index.md).
+
 - <span id="progressstyle-new"></span>`fn new(template: Template) -> Self` — [`Template`](#template)
 
 - <span id="progressstyle-tick-chars"></span>`fn tick_chars(self, s: &str) -> Self`
 
+  Sets the tick character sequence for spinners
+
+  
+
+  Note that the last character is used as the [final tick string][Self::get_final_tick_str()].
+
+  At least two characters are required to provide a non-final and final state.
+
 - <span id="progressstyle-tick-strings"></span>`fn tick_strings(self, s: &[&str]) -> Self`
+
+  Sets the tick string sequence for spinners
+
+  
+
+  Note that the last string is used as the [final tick string][Self::get_final_tick_str()].
+
+  At least two strings are required to provide a non-final and final state.
 
 - <span id="progressstyle-progress-chars"></span>`fn progress_chars(self, s: &str) -> Self`
 
+  Sets the progress characters `(filled, current, to do)`
+
+  
+
+  You can pass more than three for a more detailed display.
+
+  All passed grapheme clusters need to be of equal width.
+
 - <span id="progressstyle-with-key"></span>`fn with_key<S: ProgressTracker + 'static>(self, key: &'static str, f: S) -> Self`
 
+  Adds a custom key that owns a [`ProgressTracker`](#progresstracker) to the template
+
 - <span id="progressstyle-template"></span>`fn template(self, s: &str) -> Result<Self, TemplateError>` — [`TemplateError`](#templateerror)
+
+  Sets the template string for the progress bar
+
+  
+
+  Review the [list of template keys](../index.html#templates) for more information.
 
 - <span id="progressstyle-current-tick-str"></span>`fn current_tick_str(&self, state: &ProgressState) -> &str` — [`ProgressState`](../state/index.md#progressstate)
 
 - <span id="progressstyle-get-tick-str"></span>`fn get_tick_str(&self, idx: u64) -> &str`
 
+  Returns the tick string for a given number
+
 - <span id="progressstyle-get-final-tick-str"></span>`fn get_final_tick_str(&self) -> &str`
+
+  Returns the tick string for the finished state
 
 - <span id="progressstyle-format-bar"></span>`fn format_bar(&self, fract: f32, width: usize, alt_style: Option<&Style>) -> BarDisplay<'_>` — [`BarDisplay`](#bardisplay)
 
@@ -101,11 +155,67 @@ struct ProgressStyle {
 
 - <span id="progressstyle-push-line"></span>`fn push_line(&self, lines: &mut Vec<LineType>, cur: &mut String, state: &ProgressState, buf: &mut String, target_width: u16, wide: &Option<WideElement<'_>>)` — [`LineType`](../draw_target/index.md#linetype), [`ProgressState`](../state/index.md#progressstate), [`WideElement`](#wideelement)
 
+  This is used exclusively to add the bars built above to the lines to print
+
 #### Trait Implementations
+
+##### `impl Any for ProgressStyle`
+
+- <span id="progressstyle-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ProgressStyle`
+
+- <span id="progressstyle-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ProgressStyle`
+
+- <span id="progressstyle-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ProgressStyle`
 
 - <span id="progressstyle-clone"></span>`fn clone(&self) -> ProgressStyle` — [`ProgressStyle`](#progressstyle)
+
+##### `impl CloneToUninit for ProgressStyle`
+
+- <span id="progressstyle-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
+##### `impl<T> From for ProgressStyle`
+
+- <span id="progressstyle-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ProgressStyle`
+
+- <span id="progressstyle-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for ProgressStyle`
+
+- <span id="progressstyle-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="progressstyle-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="progressstyle-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ProgressStyle`
+
+- <span id="progressstyle-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="progressstyle-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ProgressStyle`
+
+- <span id="progressstyle-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="progressstyle-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TabRewriter<'a>`
 
@@ -117,9 +227,51 @@ struct TabRewriter<'a>(&'a mut dyn fmt::Write, usize);
 
 #### Trait Implementations
 
+##### `impl Any for TabRewriter<'a>`
+
+- <span id="tabrewriter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TabRewriter<'a>`
+
+- <span id="tabrewriter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TabRewriter<'a>`
+
+- <span id="tabrewriter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for TabRewriter<'a>`
+
+- <span id="tabrewriter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TabRewriter<'a>`
+
+- <span id="tabrewriter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for TabRewriter<'a>`
+
+- <span id="tabrewriter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tabrewriter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TabRewriter<'a>`
+
+- <span id="tabrewriter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tabrewriter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ##### `impl Write for TabRewriter<'_>`
 
-- <span id="tabrewriter-write-str"></span>`fn write_str(&mut self, s: &str) -> fmt::Result`
+- <span id="tabrewriter-write-write-str"></span>`fn write_str(&mut self, s: &str) -> fmt::Result`
 
 ### `Template`
 
@@ -141,13 +293,67 @@ struct Template {
 
 #### Trait Implementations
 
+##### `impl Any for Template`
+
+- <span id="template-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Template`
+
+- <span id="template-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Template`
+
+- <span id="template-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Template`
 
 - <span id="template-clone"></span>`fn clone(&self) -> Template` — [`Template`](#template)
 
+##### `impl CloneToUninit for Template`
+
+- <span id="template-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Template`
 
-- <span id="template-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="template-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Template`
+
+- <span id="template-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Template`
+
+- <span id="template-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Template`
+
+- <span id="template-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="template-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="template-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Template`
+
+- <span id="template-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="template-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Template`
+
+- <span id="template-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="template-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TemplateError`
 
@@ -162,19 +368,61 @@ struct TemplateError {
 
 #### Trait Implementations
 
+##### `impl Any for TemplateError`
+
+- <span id="templateerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TemplateError`
+
+- <span id="templateerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TemplateError`
+
+- <span id="templateerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for TemplateError`
 
-- <span id="templateerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="templateerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for TemplateError`
 
-- <span id="templateerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="templateerror-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for TemplateError`
 
+##### `impl<T> From for TemplateError`
+
+- <span id="templateerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TemplateError`
+
+- <span id="templateerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl ToString for TemplateError`
 
-- <span id="templateerror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="templateerror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for TemplateError`
+
+- <span id="templateerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="templateerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TemplateError`
+
+- <span id="templateerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="templateerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BarDisplay<'a>`
 
@@ -191,13 +439,55 @@ struct BarDisplay<'a> {
 
 #### Trait Implementations
 
+##### `impl Any for BarDisplay<'a>`
+
+- <span id="bardisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BarDisplay<'a>`
+
+- <span id="bardisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BarDisplay<'a>`
+
+- <span id="bardisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Display for BarDisplay<'_>`
 
-- <span id="bardisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bardisplay-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BarDisplay<'a>`
+
+- <span id="bardisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BarDisplay<'a>`
+
+- <span id="bardisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for BarDisplay<'a>`
 
-- <span id="bardisplay-to-string"></span>`fn to_string(&self) -> String`
+- <span id="bardisplay-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for BarDisplay<'a>`
+
+- <span id="bardisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="bardisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BarDisplay<'a>`
+
+- <span id="bardisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="bardisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RepeatedStringDisplay<'a>`
 
@@ -212,13 +502,55 @@ struct RepeatedStringDisplay<'a> {
 
 #### Trait Implementations
 
+##### `impl Any for RepeatedStringDisplay<'a>`
+
+- <span id="repeatedstringdisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RepeatedStringDisplay<'a>`
+
+- <span id="repeatedstringdisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RepeatedStringDisplay<'a>`
+
+- <span id="repeatedstringdisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Display for RepeatedStringDisplay<'_>`
 
-- <span id="repeatedstringdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="repeatedstringdisplay-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RepeatedStringDisplay<'a>`
+
+- <span id="repeatedstringdisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RepeatedStringDisplay<'a>`
+
+- <span id="repeatedstringdisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for RepeatedStringDisplay<'a>`
 
-- <span id="repeatedstringdisplay-to-string"></span>`fn to_string(&self) -> String`
+- <span id="repeatedstringdisplay-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for RepeatedStringDisplay<'a>`
+
+- <span id="repeatedstringdisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="repeatedstringdisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RepeatedStringDisplay<'a>`
+
+- <span id="repeatedstringdisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="repeatedstringdisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PaddedStringDisplay<'a>`
 
@@ -235,13 +567,55 @@ struct PaddedStringDisplay<'a> {
 
 #### Trait Implementations
 
+##### `impl Any for PaddedStringDisplay<'a>`
+
+- <span id="paddedstringdisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PaddedStringDisplay<'a>`
+
+- <span id="paddedstringdisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PaddedStringDisplay<'a>`
+
+- <span id="paddedstringdisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Display for PaddedStringDisplay<'_>`
 
-- <span id="paddedstringdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="paddedstringdisplay-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for PaddedStringDisplay<'a>`
+
+- <span id="paddedstringdisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PaddedStringDisplay<'a>`
+
+- <span id="paddedstringdisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for PaddedStringDisplay<'a>`
 
-- <span id="paddedstringdisplay-to-string"></span>`fn to_string(&self) -> String`
+- <span id="paddedstringdisplay-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for PaddedStringDisplay<'a>`
+
+- <span id="paddedstringdisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="paddedstringdisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PaddedStringDisplay<'a>`
+
+- <span id="paddedstringdisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="paddedstringdisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -266,11 +640,65 @@ enum WideElement<'a> {
 
 #### Trait Implementations
 
+##### `impl Any for WideElement<'a>`
+
+- <span id="wideelement-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WideElement<'a>`
+
+- <span id="wideelement-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WideElement<'a>`
+
+- <span id="wideelement-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for WideElement<'a>`
 
 - <span id="wideelement-clone"></span>`fn clone(&self) -> WideElement<'a>` — [`WideElement`](#wideelement)
 
+##### `impl CloneToUninit for WideElement<'a>`
+
+- <span id="wideelement-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for WideElement<'a>`
+
+##### `impl<T> From for WideElement<'a>`
+
+- <span id="wideelement-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WideElement<'a>`
+
+- <span id="wideelement-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for WideElement<'a>`
+
+- <span id="wideelement-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="wideelement-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="wideelement-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for WideElement<'a>`
+
+- <span id="wideelement-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="wideelement-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WideElement<'a>`
+
+- <span id="wideelement-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="wideelement-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TemplatePart`
 
@@ -293,21 +721,75 @@ enum TemplatePart {
 
 #### Trait Implementations
 
+##### `impl Any for TemplatePart`
+
+- <span id="templatepart-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TemplatePart`
+
+- <span id="templatepart-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TemplatePart`
+
+- <span id="templatepart-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for TemplatePart`
 
 - <span id="templatepart-clone"></span>`fn clone(&self) -> TemplatePart` — [`TemplatePart`](#templatepart)
 
+##### `impl CloneToUninit for TemplatePart`
+
+- <span id="templatepart-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for TemplatePart`
 
-- <span id="templatepart-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="templatepart-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for TemplatePart`
 
+##### `impl<T> From for TemplatePart`
+
+- <span id="templatepart-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TemplatePart`
+
+- <span id="templatepart-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for TemplatePart`
 
-- <span id="templatepart-eq"></span>`fn eq(&self, other: &TemplatePart) -> bool` — [`TemplatePart`](#templatepart)
+- <span id="templatepart-partialeq-eq"></span>`fn eq(&self, other: &TemplatePart) -> bool` — [`TemplatePart`](#templatepart)
 
 ##### `impl StructuralPartialEq for TemplatePart`
+
+##### `impl ToOwned for TemplatePart`
+
+- <span id="templatepart-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="templatepart-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="templatepart-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TemplatePart`
+
+- <span id="templatepart-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="templatepart-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TemplatePart`
+
+- <span id="templatepart-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="templatepart-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `State`
 
@@ -328,23 +810,77 @@ enum State {
 
 #### Trait Implementations
 
+##### `impl Any for State`
+
+- <span id="state-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for State`
+
+- <span id="state-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for State`
+
+- <span id="state-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for State`
 
 - <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](#state)
+
+##### `impl CloneToUninit for State`
+
+- <span id="state-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for State`
 
 ##### `impl Debug for State`
 
-- <span id="state-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="state-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for State`
 
+##### `impl<T> From for State`
+
+- <span id="state-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for State`
+
+- <span id="state-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for State`
 
-- <span id="state-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](#state)
+- <span id="state-partialeq-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](#state)
 
 ##### `impl StructuralPartialEq for State`
+
+##### `impl ToOwned for State`
+
+- <span id="state-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="state-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="state-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for State`
+
+- <span id="state-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="state-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for State`
+
+- <span id="state-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="state-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Alignment`
 
@@ -360,23 +896,77 @@ enum Alignment {
 
 #### Trait Implementations
 
+##### `impl Any for Alignment`
+
+- <span id="alignment-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Alignment`
+
+- <span id="alignment-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Alignment`
+
+- <span id="alignment-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Alignment`
 
 - <span id="alignment-clone"></span>`fn clone(&self) -> Alignment` — [`Alignment`](#alignment)
+
+##### `impl CloneToUninit for Alignment`
+
+- <span id="alignment-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Alignment`
 
 ##### `impl Debug for Alignment`
 
-- <span id="alignment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="alignment-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Alignment`
 
+##### `impl<T> From for Alignment`
+
+- <span id="alignment-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Alignment`
+
+- <span id="alignment-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Alignment`
 
-- <span id="alignment-eq"></span>`fn eq(&self, other: &Alignment) -> bool` — [`Alignment`](#alignment)
+- <span id="alignment-partialeq-eq"></span>`fn eq(&self, other: &Alignment) -> bool` — [`Alignment`](#alignment)
 
 ##### `impl StructuralPartialEq for Alignment`
+
+##### `impl ToOwned for Alignment`
+
+- <span id="alignment-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="alignment-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="alignment-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Alignment`
+
+- <span id="alignment-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="alignment-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Alignment`
+
+- <span id="alignment-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="alignment-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

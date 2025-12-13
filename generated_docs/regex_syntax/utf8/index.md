@@ -139,33 +139,89 @@ A single inclusive range of UTF-8 bytes.
 
 - <span id="utf8range-matches"></span>`fn matches(&self, b: u8) -> bool`
 
+  Returns true if and only if the given byte is in this range.
+
 #### Trait Implementations
+
+##### `impl Any for Utf8Range`
+
+- <span id="utf8range-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Utf8Range`
+
+- <span id="utf8range-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Utf8Range`
+
+- <span id="utf8range-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Utf8Range`
 
 - <span id="utf8range-clone"></span>`fn clone(&self) -> Utf8Range` — [`Utf8Range`](#utf8range)
 
+##### `impl CloneToUninit for Utf8Range`
+
+- <span id="utf8range-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Utf8Range`
 
 ##### `impl Debug for Utf8Range`
 
-- <span id="utf8range-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="utf8range-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Utf8Range`
 
+##### `impl<T> From for Utf8Range`
+
+- <span id="utf8range-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Utf8Range`
+
+- <span id="utf8range-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Utf8Range`
 
-- <span id="utf8range-cmp"></span>`fn cmp(&self, other: &Utf8Range) -> cmp::Ordering` — [`Utf8Range`](#utf8range)
+- <span id="utf8range-ord-cmp"></span>`fn cmp(&self, other: &Utf8Range) -> cmp::Ordering` — [`Utf8Range`](#utf8range)
 
 ##### `impl PartialEq for Utf8Range`
 
-- <span id="utf8range-eq"></span>`fn eq(&self, other: &Utf8Range) -> bool` — [`Utf8Range`](#utf8range)
+- <span id="utf8range-partialeq-eq"></span>`fn eq(&self, other: &Utf8Range) -> bool` — [`Utf8Range`](#utf8range)
 
 ##### `impl PartialOrd for Utf8Range`
 
-- <span id="utf8range-partial-cmp"></span>`fn partial_cmp(&self, other: &Utf8Range) -> option::Option<cmp::Ordering>` — [`Utf8Range`](#utf8range)
+- <span id="utf8range-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Utf8Range) -> option::Option<cmp::Ordering>` — [`Utf8Range`](#utf8range)
 
 ##### `impl StructuralPartialEq for Utf8Range`
+
+##### `impl ToOwned for Utf8Range`
+
+- <span id="utf8range-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="utf8range-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="utf8range-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Utf8Range`
+
+- <span id="utf8range-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="utf8range-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Utf8Range`
+
+- <span id="utf8range-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="utf8range-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Utf8Sequences`
 
@@ -232,15 +288,49 @@ always possible (for example, in a byte based automaton).
 
 - <span id="utf8sequences-new"></span>`fn new(start: char, end: char) -> Self`
 
+  Create a new iterator over UTF-8 byte ranges for the scalar value range
+
+  given.
+
 - <span id="utf8sequences-push"></span>`fn push(&mut self, start: u32, end: u32)`
 
 #### Trait Implementations
 
+##### `impl Any for Utf8Sequences`
+
+- <span id="utf8sequences-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Utf8Sequences`
+
+- <span id="utf8sequences-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Utf8Sequences`
+
+- <span id="utf8sequences-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Utf8Sequences`
 
-- <span id="utf8sequences-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="utf8sequences-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Utf8Sequences`
+
+- <span id="utf8sequences-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FusedIterator for Utf8Sequences`
+
+##### `impl<U> Into for Utf8Sequences`
+
+- <span id="utf8sequences-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Utf8Sequences`
 
@@ -248,13 +338,25 @@ always possible (for example, in a byte based automaton).
 
 - <span id="utf8sequences-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="utf8sequences-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="utf8sequences-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Utf8Sequences`
 
 - <span id="utf8sequences-iterator-type-item"></span>`type Item = Utf8Sequence`
 
-- <span id="utf8sequences-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="utf8sequences-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for Utf8Sequences`
+
+- <span id="utf8sequences-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="utf8sequences-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Utf8Sequences`
+
+- <span id="utf8sequences-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="utf8sequences-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ScalarRange`
 
@@ -271,19 +373,87 @@ struct ScalarRange {
 
 - <span id="scalarrange-split"></span>`fn split(&self) -> Option<(ScalarRange, ScalarRange)>` — [`ScalarRange`](#scalarrange)
 
+  split splits this range if it overlaps with a surrogate codepoint.
+
+  
+
+  Either or both ranges may be invalid.
+
 - <span id="scalarrange-is-valid"></span>`fn is_valid(&self) -> bool`
+
+  is_valid returns true if and only if start <= end.
 
 - <span id="scalarrange-as-ascii"></span>`fn as_ascii(&self) -> Option<Utf8Range>` — [`Utf8Range`](#utf8range)
 
+  as_ascii returns this range as a Utf8Range if and only if all scalar
+
+  values in this range can be encoded as a single byte.
+
 - <span id="scalarrange-is-ascii"></span>`fn is_ascii(&self) -> bool`
+
+  is_ascii returns true if the range is ASCII only (i.e., takes a single
+
+  byte to encode any scalar value).
 
 - <span id="scalarrange-encode"></span>`fn encode(&self, start: &mut [u8], end: &mut [u8]) -> usize`
 
+  encode writes the UTF-8 encoding of the start and end of this range
+
+  to the corresponding destination slices, and returns the number of
+
+  bytes written.
+
+  
+
+  The slices should have room for at least `MAX_UTF8_BYTES`.
+
 #### Trait Implementations
+
+##### `impl Any for ScalarRange`
+
+- <span id="scalarrange-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ScalarRange`
+
+- <span id="scalarrange-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ScalarRange`
+
+- <span id="scalarrange-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for ScalarRange`
 
-- <span id="scalarrange-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scalarrange-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ScalarRange`
+
+- <span id="scalarrange-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ScalarRange`
+
+- <span id="scalarrange-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ScalarRange`
+
+- <span id="scalarrange-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="scalarrange-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ScalarRange`
+
+- <span id="scalarrange-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="scalarrange-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -330,27 +500,113 @@ sequence `\xDD\x61` would not match because `0x61 < 0x80`.
 
 - <span id="utf8sequence-from-encoded-range"></span>`fn from_encoded_range(start: &[u8], end: &[u8]) -> Self`
 
+  Creates a new UTF-8 sequence from the encoded bytes of a scalar value
+
+  range.
+
+  
+
+  This assumes that `start` and `end` have the same length.
+
 - <span id="utf8sequence-as-slice"></span>`fn as_slice(&self) -> &[Utf8Range]` — [`Utf8Range`](#utf8range)
+
+  Returns the underlying sequence of byte ranges as a slice.
 
 - <span id="utf8sequence-len"></span>`fn len(&self) -> usize`
 
+  Returns the number of byte ranges in this sequence.
+
+  
+
+  The length is guaranteed to be in the closed interval `[1, 4]`.
+
 - <span id="utf8sequence-reverse"></span>`fn reverse(&mut self)`
+
+  Reverses the ranges in this sequence.
+
+  
+
+  For example, if this corresponds to the following sequence:
+
+  
+
+  ```text
+
+  [D0-D3][80-BF]
+
+  ```
+
+  
+
+  Then after reversal, it will be
+
+  
+
+  ```text
+
+  [80-BF][D0-D3]
+
+  ```
+
+  
+
+  This is useful when one is constructing a UTF-8 automaton to match
+
+  character classes in reverse.
 
 - <span id="utf8sequence-matches"></span>`fn matches(&self, bytes: &[u8]) -> bool`
 
+  Returns true if and only if a prefix of `bytes` matches this sequence
+
+  of byte ranges.
+
 #### Trait Implementations
+
+##### `impl Any for Utf8Sequence`
+
+- <span id="utf8sequence-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Utf8Sequence`
+
+- <span id="utf8sequence-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Utf8Sequence`
+
+- <span id="utf8sequence-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Utf8Sequence`
 
 - <span id="utf8sequence-clone"></span>`fn clone(&self) -> Utf8Sequence` — [`Utf8Sequence`](#utf8sequence)
 
+##### `impl CloneToUninit for Utf8Sequence`
+
+- <span id="utf8sequence-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Utf8Sequence`
 
 ##### `impl Debug for Utf8Sequence`
 
-- <span id="utf8sequence-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="utf8sequence-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Utf8Sequence`
+
+##### `impl<T> From for Utf8Sequence`
+
+- <span id="utf8sequence-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Utf8Sequence`
+
+- <span id="utf8sequence-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for &'a Utf8Sequence`
 
@@ -358,21 +614,41 @@ sequence `\xDD\x61` would not match because `0x61 < 0x80`.
 
 - <span id="a-utf8sequence-intoiterator-type-item"></span>`type Item = &'a Utf8Range`
 
-- <span id="a-utf8sequence-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+- <span id="a-utf8sequence-intoiterator-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl Ord for Utf8Sequence`
 
-- <span id="utf8sequence-cmp"></span>`fn cmp(&self, other: &Utf8Sequence) -> cmp::Ordering` — [`Utf8Sequence`](#utf8sequence)
+- <span id="utf8sequence-ord-cmp"></span>`fn cmp(&self, other: &Utf8Sequence) -> cmp::Ordering` — [`Utf8Sequence`](#utf8sequence)
 
 ##### `impl PartialEq for Utf8Sequence`
 
-- <span id="utf8sequence-eq"></span>`fn eq(&self, other: &Utf8Sequence) -> bool` — [`Utf8Sequence`](#utf8sequence)
+- <span id="utf8sequence-partialeq-eq"></span>`fn eq(&self, other: &Utf8Sequence) -> bool` — [`Utf8Sequence`](#utf8sequence)
 
 ##### `impl PartialOrd for Utf8Sequence`
 
-- <span id="utf8sequence-partial-cmp"></span>`fn partial_cmp(&self, other: &Utf8Sequence) -> option::Option<cmp::Ordering>` — [`Utf8Sequence`](#utf8sequence)
+- <span id="utf8sequence-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Utf8Sequence) -> option::Option<cmp::Ordering>` — [`Utf8Sequence`](#utf8sequence)
 
 ##### `impl StructuralPartialEq for Utf8Sequence`
+
+##### `impl ToOwned for Utf8Sequence`
+
+- <span id="utf8sequence-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="utf8sequence-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="utf8sequence-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Utf8Sequence`
+
+- <span id="utf8sequence-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="utf8sequence-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Utf8Sequence`
+
+- <span id="utf8sequence-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="utf8sequence-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

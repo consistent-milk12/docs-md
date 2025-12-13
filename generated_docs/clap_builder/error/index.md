@@ -78,9 +78,51 @@ overhead for [`RichFormatter`](format/index.md).
 
 #### Trait Implementations
 
+##### `impl Any for KindFormatter`
+
+- <span id="kindformatter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for KindFormatter`
+
+- <span id="kindformatter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for KindFormatter`
+
+- <span id="kindformatter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl ErrorFormatter for KindFormatter`
 
-- <span id="kindformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](#error), [`StyledStr`](../builder/styled_str/index.md#styledstr)
+- <span id="kindformatter-errorformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](#error), [`StyledStr`](../builder/styled_str/index.md#styledstr)
+
+##### `impl<T> From for KindFormatter`
+
+- <span id="kindformatter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for KindFormatter`
+
+- <span id="kindformatter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for KindFormatter`
+
+- <span id="kindformatter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="kindformatter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for KindFormatter`
+
+- <span id="kindformatter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="kindformatter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RichFormatter`
 
@@ -96,9 +138,51 @@ This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lan
 
 #### Trait Implementations
 
+##### `impl Any for RichFormatter`
+
+- <span id="richformatter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RichFormatter`
+
+- <span id="richformatter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RichFormatter`
+
+- <span id="richformatter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl ErrorFormatter for RichFormatter`
 
-- <span id="richformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](#error), [`StyledStr`](../builder/styled_str/index.md#styledstr)
+- <span id="richformatter-errorformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](#error), [`StyledStr`](../builder/styled_str/index.md#styledstr)
+
+##### `impl<T> From for RichFormatter`
+
+- <span id="richformatter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RichFormatter`
+
+- <span id="richformatter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for RichFormatter`
+
+- <span id="richformatter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="richformatter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RichFormatter`
+
+- <span id="richformatter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="richformatter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DefaultFormatter`
 
@@ -114,9 +198,51 @@ This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lan
 
 #### Trait Implementations
 
+##### `impl Any for RichFormatter`
+
+- <span id="richformatter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RichFormatter`
+
+- <span id="richformatter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RichFormatter`
+
+- <span id="richformatter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl ErrorFormatter for RichFormatter`
 
-- <span id="richformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](#error), [`StyledStr`](../builder/styled_str/index.md#styledstr)
+- <span id="richformatter-errorformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](#error), [`StyledStr`](../builder/styled_str/index.md#styledstr)
+
+##### `impl<T> From for RichFormatter`
+
+- <span id="richformatter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RichFormatter`
+
+- <span id="richformatter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for RichFormatter`
+
+- <span id="richformatter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="richformatter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RichFormatter`
+
+- <span id="richformatter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="richformatter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Error<F: ErrorFormatter>`
 
@@ -138,35 +264,245 @@ See `Command::error` to create an error.
 
 - <span id="error-raw"></span>`fn raw(kind: ErrorKind, message: impl Display) -> Self` — [`ErrorKind`](kind/index.md#errorkind)
 
+  Create an unformatted error
+
+  
+
+  This is for you need to pass the error up to
+
+  a place that has access to the `Command` at which point you can call `Error::format`.
+
+  
+
+  Prefer `Command::error` for generating errors.
+
 - <span id="error-format"></span>`fn format(self, cmd: &mut Command) -> Self` — [`Command`](../builder/command/index.md#command)
+
+  Format the existing message with the Command's context
 
 - <span id="error-new"></span>`fn new(kind: ErrorKind) -> Self` — [`ErrorKind`](kind/index.md#errorkind)
 
+  Create an error with a pre-defined message
+
+  
+
+  See also
+
+  - `Error::insert`
+
+  - `Error::with_cmd`
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  #[cfg(feature = "error-context")] {
+
+  use clap_builder as clap;
+
+  use clap::error::ErrorKind;
+
+  use clap::error::ContextKind;
+
+  use clap::error::ContextValue;
+
+  
+
+  let cmd = clap::Command::new("prog");
+
+  
+
+  let mut err = clap::Error::new(ErrorKind::ValueValidation)
+
+      .with_cmd(&cmd);
+
+  err.insert(ContextKind::InvalidArg, ContextValue::String("--foo".to_owned()));
+
+  err.insert(ContextKind::InvalidValue, ContextValue::String("bar".to_owned()));
+
+  
+
+  err.print();
+
+  }
+
+  ```
+
 - <span id="error-with-cmd"></span>`fn with_cmd(self, cmd: &Command) -> Self` — [`Command`](../builder/command/index.md#command)
+
+  Apply [`Command`](../builder/command/index.md)'s formatting to the error
+
+  
+
+  Generally, this is used with `Error::new`
 
 - <span id="error-apply"></span>`fn apply<EF: ErrorFormatter>(self) -> Error<EF>` — [`Error`](#error)
 
+  Apply an alternative formatter to the error
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use clap_builder as clap;
+
+  use clap::Command;
+
+  use clap::Arg;
+
+  use clap::error::KindFormatter;
+
+  let cmd = Command::new("foo")
+
+      .arg(Arg::new("input").required(true));
+
+  let matches = cmd
+
+      .try_get_matches_from(["foo", "input.txt"])
+
+      .map_err(|e| e.apply::<KindFormatter>())
+
+      .unwrap_or_else(|e| e.exit());
+
+  ```
+
 - <span id="error-kind"></span>`fn kind(&self) -> ErrorKind` — [`ErrorKind`](kind/index.md#errorkind)
+
+  Type of error for programmatic processing
 
 - <span id="error-context"></span>`fn context(&self) -> impl Iterator<Item = (ContextKind, &ContextValue)>` — [`ContextKind`](context/index.md#contextkind), [`ContextValue`](context/index.md#contextvalue)
 
+  Additional information to further qualify the error
+
 - <span id="error-get"></span>`fn get(&self, kind: ContextKind) -> Option<&ContextValue>` — [`ContextKind`](context/index.md#contextkind), [`ContextValue`](context/index.md#contextvalue)
+
+  Lookup a piece of context
 
 - <span id="error-insert"></span>`fn insert(&mut self, kind: ContextKind, value: ContextValue) -> Option<ContextValue>` — [`ContextKind`](context/index.md#contextkind), [`ContextValue`](context/index.md#contextvalue)
 
+  Insert a piece of context
+
+  
+
+  If this `ContextKind` is already present, its value is replaced and the old value is returned.
+
 - <span id="error-remove"></span>`fn remove(&mut self, kind: ContextKind) -> Option<ContextValue>` — [`ContextKind`](context/index.md#contextkind), [`ContextValue`](context/index.md#contextvalue)
 
+  Remove a piece of context, return the old value if any
+
+  
+
+  The context is currently implemented in a vector, so `remove` takes
+
+  linear time.
+
 - <span id="error-use-stderr"></span>`fn use_stderr(&self) -> bool`
+
+  Should the message be written to `stdout` or not?
 
 - <span id="error-stream"></span>`fn stream(&self) -> Stream` — [`Stream`](../output/fmt/index.md#stream)
 
 - <span id="error-exit-code"></span>`fn exit_code(&self) -> i32`
 
+  Returns the exit code that `.exit` will exit the process with.
+
+  
+
+  When the error's kind would print to `stderr` this returns `2`,
+
+  else it returns `0`.
+
 - <span id="error-exit"></span>`fn exit(&self) -> never`
+
+  Prints the error and exits.
+
+  
+
+  Depending on the error kind, this either prints to `stderr` and exits with a status of `2`
+
+  or prints to `stdout` and exits with a status of `0`.
 
 - <span id="error-print"></span>`fn print(&self) -> io::Result<()>`
 
+  Prints formatted and colored error to `stdout` or `stderr` according to its error kind
+
+  
+
+  # Example
+
+  ```no_run
+
+  use clap_builder as clap;
+
+  use clap::Command;
+
+  
+
+  match Command::new("Command").try_get_matches() {
+
+      Ok(matches) => {
+
+          // do_something
+
+      },
+
+      Err(err) => {
+
+          err.print().expect("Error writing Error");
+
+          // do_something
+
+      },
+
+  };
+
+  ```
+
 - <span id="error-render"></span>`fn render(&self) -> StyledStr` — [`StyledStr`](../builder/styled_str/index.md#styledstr)
+
+  Render the error message to a [`StyledStr`](../builder/styled_str/index.md).
+
+  
+
+  # Example
+
+  ```no_run
+
+  use clap_builder as clap;
+
+  use clap::Command;
+
+  
+
+  match Command::new("Command").try_get_matches() {
+
+      Ok(matches) => {
+
+          // do_something
+
+      },
+
+      Err(err) => {
+
+          let err = err.render();
+
+          println!("{err}");
+
+          // do_something
+
+      },
+
+  };
+
+  ```
 
 - <span id="error-for-app"></span>`fn for_app(kind: ErrorKind, cmd: &Command, styled: StyledStr) -> Self` — [`ErrorKind`](kind/index.md#errorkind), [`Command`](../builder/command/index.md#command), [`StyledStr`](../builder/styled_str/index.md#styledstr)
 
@@ -184,7 +520,11 @@ See `Command::error` to create an error.
 
 - <span id="error-insert-context-unchecked"></span>`fn insert_context_unchecked(self, kind: ContextKind, value: ContextValue) -> Self` — [`ContextKind`](context/index.md#contextkind), [`ContextValue`](context/index.md#contextvalue)
 
+  Does not verify if `ContextKind` is already present
+
 - <span id="error-extend-context-unchecked"></span>`fn extend_context_unchecked<const N: usize>(self, context: [(ContextKind, ContextValue); N]) -> Self` — [`ContextKind`](context/index.md#contextkind), [`ContextValue`](context/index.md#contextvalue)
+
+  Does not verify if `ContextKind` is already present
 
 - <span id="error-display-help"></span>`fn display_help(cmd: &Command, styled: StyledStr) -> Self` — [`Command`](../builder/command/index.md#command), [`StyledStr`](../builder/styled_str/index.md#styledstr)
 
@@ -228,21 +568,63 @@ See `Command::error` to create an error.
 
 #### Trait Implementations
 
+##### `impl Any for Error<F>`
+
+- <span id="error-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Error<F>`
+
+- <span id="error-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Error<F>`
+
+- <span id="error-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<F: ErrorFormatter> Debug for Error<F>`
 
-- <span id="error-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> Result<(), fmt::Error>` — [`Result`](#result)
+- <span id="error-debug-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> Result<(), fmt::Error>` — [`Result`](#result)
 
 ##### `impl<F: ErrorFormatter> Display for Error<F>`
 
-- <span id="error-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result`
+- <span id="error-display-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result`
 
 ##### `impl<F: ErrorFormatter> Error for Error<F>`
 
-- <span id="error-source"></span>`fn source(&self) -> Option<&dyn error::Error>`
+- <span id="error-error-source"></span>`fn source(&self) -> Option<&dyn error::Error>`
+
+##### `impl<T> From for Error<F>`
+
+- <span id="error-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Error<F>`
+
+- <span id="error-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for Error<F>`
 
-- <span id="error-to-string"></span>`fn to_string(&self) -> String`
+- <span id="error-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Error<F>`
+
+- <span id="error-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="error-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Error<F>`
+
+- <span id="error-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="error-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ErrorInner`
 
@@ -264,9 +646,51 @@ struct ErrorInner {
 
 #### Trait Implementations
 
+##### `impl Any for ErrorInner`
+
+- <span id="errorinner-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ErrorInner`
+
+- <span id="errorinner-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ErrorInner`
+
+- <span id="errorinner-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ErrorInner`
 
-- <span id="errorinner-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errorinner-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ErrorInner`
+
+- <span id="errorinner-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ErrorInner`
+
+- <span id="errorinner-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ErrorInner`
+
+- <span id="errorinner-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="errorinner-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ErrorInner`
+
+- <span id="errorinner-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="errorinner-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Backtrace`
 
@@ -282,17 +706,59 @@ struct Backtrace;
 
 #### Trait Implementations
 
+##### `impl Any for Backtrace`
+
+- <span id="backtrace-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Backtrace`
+
+- <span id="backtrace-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Backtrace`
+
+- <span id="backtrace-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Backtrace`
 
-- <span id="backtrace-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="backtrace-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Backtrace`
 
-- <span id="backtrace-fmt"></span>`fn fmt(&self, _: &mut Formatter<'_>) -> fmt::Result`
+- <span id="backtrace-display-fmt"></span>`fn fmt(&self, _: &mut Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Backtrace`
+
+- <span id="backtrace-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Backtrace`
+
+- <span id="backtrace-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for Backtrace`
 
-- <span id="backtrace-to-string"></span>`fn to_string(&self) -> String`
+- <span id="backtrace-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Backtrace`
+
+- <span id="backtrace-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="backtrace-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Backtrace`
+
+- <span id="backtrace-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="backtrace-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -666,37 +1132,93 @@ Command line argument parser kind of error
 
 - <span id="errorkind-as-str"></span>`fn as_str(self) -> Option<&'static str>`
 
+  End-user description of the error case, where relevant
+
 #### Trait Implementations
+
+##### `impl Any for ErrorKind`
+
+- <span id="errorkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ErrorKind`
+
+- <span id="errorkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ErrorKind`
+
+- <span id="errorkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ErrorKind`
 
 - <span id="errorkind-clone"></span>`fn clone(&self) -> ErrorKind` — [`ErrorKind`](kind/index.md#errorkind)
 
+##### `impl CloneToUninit for ErrorKind`
+
+- <span id="errorkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for ErrorKind`
 
 ##### `impl Debug for ErrorKind`
 
-- <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errorkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ErrorKind`
 
-- <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="errorkind-display-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for ErrorKind`
+
+##### `impl<T> From for ErrorKind`
+
+- <span id="errorkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for ErrorKind`
 
 - <span id="errorkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for ErrorKind`
+
+- <span id="errorkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ErrorKind`
 
-- <span id="errorkind-eq"></span>`fn eq(&self, other: &ErrorKind) -> bool` — [`ErrorKind`](kind/index.md#errorkind)
+- <span id="errorkind-partialeq-eq"></span>`fn eq(&self, other: &ErrorKind) -> bool` — [`ErrorKind`](kind/index.md#errorkind)
 
 ##### `impl StructuralPartialEq for ErrorKind`
 
+##### `impl ToOwned for ErrorKind`
+
+- <span id="errorkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="errorkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="errorkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for ErrorKind`
 
-- <span id="errorkind-to-string"></span>`fn to_string(&self) -> String`
+- <span id="errorkind-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for ErrorKind`
+
+- <span id="errorkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="errorkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ErrorKind`
+
+- <span id="errorkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="errorkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ContextKind`
 
@@ -800,37 +1322,93 @@ Semantics for a piece of error information
 
 - <span id="contextkind-as-str"></span>`fn as_str(self) -> Option<&'static str>`
 
+  End-user description of the error case, where relevant
+
 #### Trait Implementations
+
+##### `impl Any for ContextKind`
+
+- <span id="contextkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ContextKind`
+
+- <span id="contextkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ContextKind`
+
+- <span id="contextkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ContextKind`
 
 - <span id="contextkind-clone"></span>`fn clone(&self) -> ContextKind` — [`ContextKind`](context/index.md#contextkind)
 
+##### `impl CloneToUninit for ContextKind`
+
+- <span id="contextkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for ContextKind`
 
 ##### `impl Debug for ContextKind`
 
-- <span id="contextkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="contextkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ContextKind`
 
-- <span id="contextkind-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="contextkind-display-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for ContextKind`
+
+##### `impl<T> From for ContextKind`
+
+- <span id="contextkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for ContextKind`
 
 - <span id="contextkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for ContextKind`
+
+- <span id="contextkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ContextKind`
 
-- <span id="contextkind-eq"></span>`fn eq(&self, other: &ContextKind) -> bool` — [`ContextKind`](context/index.md#contextkind)
+- <span id="contextkind-partialeq-eq"></span>`fn eq(&self, other: &ContextKind) -> bool` — [`ContextKind`](context/index.md#contextkind)
 
 ##### `impl StructuralPartialEq for ContextKind`
 
+##### `impl ToOwned for ContextKind`
+
+- <span id="contextkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="contextkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="contextkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for ContextKind`
 
-- <span id="contextkind-to-string"></span>`fn to_string(&self) -> String`
+- <span id="contextkind-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for ContextKind`
+
+- <span id="contextkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="contextkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ContextKind`
+
+- <span id="contextkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="contextkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ContextValue`
 
@@ -882,29 +1460,83 @@ A piece of error information
 
 #### Trait Implementations
 
+##### `impl Any for ContextValue`
+
+- <span id="contextvalue-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ContextValue`
+
+- <span id="contextvalue-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ContextValue`
+
+- <span id="contextvalue-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ContextValue`
 
 - <span id="contextvalue-clone"></span>`fn clone(&self) -> ContextValue` — [`ContextValue`](context/index.md#contextvalue)
 
+##### `impl CloneToUninit for ContextValue`
+
+- <span id="contextvalue-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for ContextValue`
 
-- <span id="contextvalue-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="contextvalue-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ContextValue`
 
-- <span id="contextvalue-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="contextvalue-display-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for ContextValue`
 
+##### `impl<T> From for ContextValue`
+
+- <span id="contextvalue-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ContextValue`
+
+- <span id="contextvalue-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ContextValue`
 
-- <span id="contextvalue-eq"></span>`fn eq(&self, other: &ContextValue) -> bool` — [`ContextValue`](context/index.md#contextvalue)
+- <span id="contextvalue-partialeq-eq"></span>`fn eq(&self, other: &ContextValue) -> bool` — [`ContextValue`](context/index.md#contextvalue)
 
 ##### `impl StructuralPartialEq for ContextValue`
 
+##### `impl ToOwned for ContextValue`
+
+- <span id="contextvalue-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="contextvalue-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="contextvalue-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for ContextValue`
 
-- <span id="contextvalue-to-string"></span>`fn to_string(&self) -> String`
+- <span id="contextvalue-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for ContextValue`
+
+- <span id="contextvalue-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="contextvalue-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ContextValue`
+
+- <span id="contextvalue-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="contextvalue-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Message`
 
@@ -925,13 +1557,67 @@ enum Message {
 
 #### Trait Implementations
 
+##### `impl Any for Message`
+
+- <span id="message-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Message`
+
+- <span id="message-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Message`
+
+- <span id="message-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Message`
 
 - <span id="message-clone"></span>`fn clone(&self) -> Message` — [`Message`](#message)
 
+##### `impl CloneToUninit for Message`
+
+- <span id="message-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Message`
 
-- <span id="message-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="message-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Message`
+
+- <span id="message-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Message`
+
+- <span id="message-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Message`
+
+- <span id="message-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="message-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="message-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Message`
+
+- <span id="message-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="message-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Message`
+
+- <span id="message-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="message-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

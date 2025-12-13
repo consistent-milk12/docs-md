@@ -76,11 +76,57 @@ struct Pair<T: Copy> {
 
 #### Trait Implementations
 
+##### `impl<T> Any for Pair<T>`
+
+- <span id="pair-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Pair<T>`
+
+- <span id="pair-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Pair<T>`
+
+- <span id="pair-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone + Copy> Clone for Pair<T>`
 
 - <span id="pair-clone"></span>`fn clone(&self) -> Pair<T>` — [`Pair`](#pair)
 
+##### `impl<T> CloneToUninit for Pair<T>`
+
+- <span id="pair-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: marker::Copy + Copy> Copy for Pair<T>`
+
+##### `impl<T> From for Pair<T>`
+
+- <span id="pair-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Pair<T>`
+
+- <span id="pair-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<T, U> TryFrom for Pair<T>`
+
+- <span id="pair-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pair-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Pair<T>`
+
+- <span id="pair-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pair-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

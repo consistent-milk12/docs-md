@@ -50,11 +50,53 @@ assert!(styled_length < normal_length);
 
 #### Trait Implementations
 
+##### `impl<T> Any for StyledList<T, U>`
+
+- <span id="styledlist-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StyledList<T, U>`
+
+- <span id="styledlist-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StyledList<T, U>`
+
+- <span id="styledlist-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T, U> Display for StyledList<T, U>`
 
-- <span id="styledlist-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledlist-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for StyledList<T, U>`
+
+- <span id="styledlist-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for StyledList<T, U>`
+
+- <span id="styledlist-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for StyledList<T, U>`
+
+##### `impl<T, U> TryFrom for StyledList<T, U>`
+
+- <span id="styledlist-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="styledlist-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for StyledList<T, U>`
+
+- <span id="styledlist-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="styledlist-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -74,9 +116,51 @@ How the transition between two styles should be printed
 
 #### Trait Implementations
 
+##### `impl Any for Transition<'a>`
+
+- <span id="transition-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Transition<'a>`
+
+- <span id="transition-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Transition<'a>`
+
+- <span id="transition-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Display for Transition<'_>`
 
-- <span id="transition-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="transition-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Transition<'a>`
+
+- <span id="transition-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Transition<'a>`
+
+- <span id="transition-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Transition<'a>`
+
+##### `impl<U> TryFrom for Transition<'a>`
+
+- <span id="transition-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="transition-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Transition<'a>`
+
+- <span id="transition-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="transition-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

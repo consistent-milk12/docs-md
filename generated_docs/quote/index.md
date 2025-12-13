@@ -396,10 +396,10 @@ assert_eq!(upper_hex, "Id_A");
 The whole point.
 
 Performs variable interpolation against the input and produces it as
-[`proc_macro2::TokenStream`](../proc_macro2/imp/index.md).
+[`proc_macro2::TokenStream`](../proc_macro2/index.md).
 
 Note: for returning tokens to the compiler in a procedural macro, use
-`.into()` on the result to convert to [`proc_macro::TokenStream`](../proc_macro2/imp/index.md).
+`.into()` on the result to convert to [`proc_macro::TokenStream`](../proc_macro2/index.md).
 
 <br>
 

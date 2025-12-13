@@ -34,9 +34,51 @@ contention are greatly reduced.
 
 #### Trait Implementations
 
+##### `impl<T> Any for CacheLine<T>`
+
+- <span id="cacheline-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CacheLine<T>`
+
+- <span id="cacheline-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CacheLine<T>`
+
+- <span id="cacheline-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: fmt::Debug> Debug for CacheLine<T>`
 
-- <span id="cacheline-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cacheline-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CacheLine<T>`
+
+- <span id="cacheline-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for CacheLine<T>`
+
+- <span id="cacheline-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<T, U> TryFrom for CacheLine<T>`
+
+- <span id="cacheline-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cacheline-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for CacheLine<T>`
+
+- <span id="cacheline-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cacheline-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Pool<T, F>`
 
@@ -98,15 +140,61 @@ faster by avoiding mutex unlocking.
 
 - <span id="pool-new"></span>`fn new(create: F) -> Pool<T, F>` — [`Pool`](#pool)
 
+  Create a new pool. The given closure is used to create values in
+
+  the pool when necessary.
+
 #### Trait Implementations
+
+##### `impl<T> Any for Pool<T, F>`
+
+- <span id="pool-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Pool<T, F>`
+
+- <span id="pool-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Pool<T, F>`
+
+- <span id="pool-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: core::fmt::Debug, F> Debug for Pool<T, F>`
 
-- <span id="pool-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="pool-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for Pool<T, F>`
+
+- <span id="pool-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Pool<T, F>`
+
+- <span id="pool-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: UnwindSafe, F: UnwindSafe + RefUnwindSafe> RefUnwindSafe for Pool<T, F>`
 
 ##### `impl<T: Send, F: Send + Sync> Sync for Pool<T, F>`
+
+##### `impl<T, U> TryFrom for Pool<T, F>`
+
+- <span id="pool-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pool-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Pool<T, F>`
+
+- <span id="pool-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pool-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T: UnwindSafe, F: UnwindSafe + RefUnwindSafe> UnwindSafe for Pool<T, F>`
 
@@ -149,21 +237,73 @@ A guard that is returned when a caller requests a value from the pool.
 
 - <span id="poolguard-value"></span>`fn value(&self) -> &T`
 
+  Return the underlying value.
+
 - <span id="poolguard-value-mut"></span>`fn value_mut(&mut self) -> &mut T`
+
+  Return the underlying value as a mutable borrow.
 
 - <span id="poolguard-put"></span>`fn put(this: PoolGuard<'_, T, F>)` — [`PoolGuard`](#poolguard)
 
+  Consumes this guard and puts it back into the pool.
+
 - <span id="poolguard-put-imp"></span>`fn put_imp(&mut self)`
+
+  Puts this guard back into the pool by only borrowing the guard as
+
+  mutable. This should be called at most once.
 
 #### Trait Implementations
 
+##### `impl<T> Any for PoolGuard<'a, T, F>`
+
+- <span id="poolguard-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PoolGuard<'a, T, F>`
+
+- <span id="poolguard-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PoolGuard<'a, T, F>`
+
+- <span id="poolguard-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: Send + core::fmt::Debug, F: Fn() -> T> Debug for PoolGuard<'a, T, F>`
 
-- <span id="poolguard-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="poolguard-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<T: Send, F: Fn() -> T> Drop for PoolGuard<'a, T, F>`
 
 - <span id="poolguard-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for PoolGuard<'a, T, F>`
+
+- <span id="poolguard-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for PoolGuard<'a, T, F>`
+
+- <span id="poolguard-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<T, U> TryFrom for PoolGuard<'a, T, F>`
+
+- <span id="poolguard-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="poolguard-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for PoolGuard<'a, T, F>`
+
+- <span id="poolguard-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="poolguard-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Constants
 

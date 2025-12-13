@@ -16,6 +16,7 @@ use cargo_metadata::{MetadataCommand, CargoOpt};
 let _metadata = MetadataCommand::new().exec().unwrap();
 ```
 
+
 If you have a program that takes `--manifest-path` as an argument, you can forward that
 to [MetadataCommand]:
 
@@ -239,8 +240,9 @@ A dependency of the main crate
 - **`target`**: `Option<Platform>`
 
   The target this dependency is specific to.
-
-  Use the `Display` trait to access the contents.
+  
+  Use the [`Display`]() trait to access the contents.
+  
 
 - **`rename`**: `Option<String>`
 
@@ -250,24 +252,40 @@ A dependency of the main crate
 - **`registry`**: `Option<String>`
 
   The URL of the index of the registry where this dependency is from.
-
+  
   If None, the dependency is from crates.io.
 
 - **`path`**: `Option<camino::Utf8PathBuf>`
 
   The file system path for a local path dependency.
-
+  
   Only produced on cargo 1.51+
 
 #### Trait Implementations
+
+##### `impl Any for Dependency`
+
+- <span id="dependency-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Dependency`
+
+- <span id="dependency-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Dependency`
+
+- <span id="dependency-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Dependency`
 
 - <span id="dependency-clone"></span>`fn clone(&self) -> Dependency` — [`Dependency`](dependency/index.md#dependency)
 
+##### `impl CloneToUninit for Dependency`
+
+- <span id="dependency-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Dependency`
 
-- <span id="dependency-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dependency-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Dependency`
 
@@ -277,19 +295,57 @@ A dependency of the main crate
 
 ##### `impl Eq for Dependency`
 
+##### `impl<T> From for Dependency`
+
+- <span id="dependency-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Dependency`
 
 - <span id="dependency-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Dependency`
+
+- <span id="dependency-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Dependency`
 
-- <span id="dependency-eq"></span>`fn eq(&self, other: &Dependency) -> bool` — [`Dependency`](dependency/index.md#dependency)
+- <span id="dependency-partialeq-eq"></span>`fn eq(&self, other: &Dependency) -> bool` — [`Dependency`](dependency/index.md#dependency)
 
 ##### `impl Serialize for Dependency`
 
 - <span id="dependency-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Dependency`
+
+##### `impl ToOwned for Dependency`
+
+- <span id="dependency-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dependency-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dependency-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Dependency`
+
+- <span id="dependency-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dependency-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Dependency`
+
+- <span id="dependency-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dependency-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Artifact`
 
@@ -347,13 +403,29 @@ A compiler-generated file.
 
 #### Trait Implementations
 
+##### `impl Any for Artifact`
+
+- <span id="artifact-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Artifact`
+
+- <span id="artifact-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Artifact`
+
+- <span id="artifact-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Artifact`
 
 - <span id="artifact-clone"></span>`fn clone(&self) -> Artifact` — [`Artifact`](messages/index.md#artifact)
 
+##### `impl CloneToUninit for Artifact`
+
+- <span id="artifact-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Artifact`
 
-- <span id="artifact-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="artifact-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Artifact`
 
@@ -363,19 +435,57 @@ A compiler-generated file.
 
 ##### `impl Eq for Artifact`
 
+##### `impl<T> From for Artifact`
+
+- <span id="artifact-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Artifact`
 
 - <span id="artifact-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Artifact`
+
+- <span id="artifact-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Artifact`
 
-- <span id="artifact-eq"></span>`fn eq(&self, other: &Artifact) -> bool` — [`Artifact`](messages/index.md#artifact)
+- <span id="artifact-partialeq-eq"></span>`fn eq(&self, other: &Artifact) -> bool` — [`Artifact`](messages/index.md#artifact)
 
 ##### `impl Serialize for Artifact`
 
 - <span id="artifact-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Artifact`
+
+##### `impl ToOwned for Artifact`
+
+- <span id="artifact-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="artifact-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="artifact-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Artifact`
+
+- <span id="artifact-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="artifact-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Artifact`
+
+- <span id="artifact-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="artifact-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ArtifactProfile`
 
@@ -419,13 +529,29 @@ target.
 
 #### Trait Implementations
 
+##### `impl Any for ArtifactProfile`
+
+- <span id="artifactprofile-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ArtifactProfile`
+
+- <span id="artifactprofile-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ArtifactProfile`
+
+- <span id="artifactprofile-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ArtifactProfile`
 
 - <span id="artifactprofile-clone"></span>`fn clone(&self) -> ArtifactProfile` — [`ArtifactProfile`](messages/index.md#artifactprofile)
 
+##### `impl CloneToUninit for ArtifactProfile`
+
+- <span id="artifactprofile-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for ArtifactProfile`
 
-- <span id="artifactprofile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="artifactprofile-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for ArtifactProfile`
 
@@ -435,19 +561,57 @@ target.
 
 ##### `impl Eq for ArtifactProfile`
 
+##### `impl<T> From for ArtifactProfile`
+
+- <span id="artifactprofile-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for ArtifactProfile`
 
 - <span id="artifactprofile-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for ArtifactProfile`
+
+- <span id="artifactprofile-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ArtifactProfile`
 
-- <span id="artifactprofile-eq"></span>`fn eq(&self, other: &ArtifactProfile) -> bool` — [`ArtifactProfile`](messages/index.md#artifactprofile)
+- <span id="artifactprofile-partialeq-eq"></span>`fn eq(&self, other: &ArtifactProfile) -> bool` — [`ArtifactProfile`](messages/index.md#artifactprofile)
 
 ##### `impl Serialize for ArtifactProfile`
 
 - <span id="artifactprofile-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ArtifactProfile`
+
+##### `impl ToOwned for ArtifactProfile`
+
+- <span id="artifactprofile-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="artifactprofile-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="artifactprofile-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ArtifactProfile`
+
+- <span id="artifactprofile-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="artifactprofile-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ArtifactProfile`
+
+- <span id="artifactprofile-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="artifactprofile-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BuildFinished`
 
@@ -469,13 +633,29 @@ Final result of a build.
 
 #### Trait Implementations
 
+##### `impl Any for BuildFinished`
+
+- <span id="buildfinished-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BuildFinished`
+
+- <span id="buildfinished-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BuildFinished`
+
+- <span id="buildfinished-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BuildFinished`
 
 - <span id="buildfinished-clone"></span>`fn clone(&self) -> BuildFinished` — [`BuildFinished`](messages/index.md#buildfinished)
 
+##### `impl CloneToUninit for BuildFinished`
+
+- <span id="buildfinished-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for BuildFinished`
 
-- <span id="buildfinished-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="buildfinished-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for BuildFinished`
 
@@ -485,19 +665,57 @@ Final result of a build.
 
 ##### `impl Eq for BuildFinished`
 
+##### `impl<T> From for BuildFinished`
+
+- <span id="buildfinished-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for BuildFinished`
 
 - <span id="buildfinished-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for BuildFinished`
+
+- <span id="buildfinished-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for BuildFinished`
 
-- <span id="buildfinished-eq"></span>`fn eq(&self, other: &BuildFinished) -> bool` — [`BuildFinished`](messages/index.md#buildfinished)
+- <span id="buildfinished-partialeq-eq"></span>`fn eq(&self, other: &BuildFinished) -> bool` — [`BuildFinished`](messages/index.md#buildfinished)
 
 ##### `impl Serialize for BuildFinished`
 
 - <span id="buildfinished-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for BuildFinished`
+
+##### `impl ToOwned for BuildFinished`
+
+- <span id="buildfinished-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="buildfinished-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="buildfinished-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BuildFinished`
+
+- <span id="buildfinished-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="buildfinished-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BuildFinished`
+
+- <span id="buildfinished-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="buildfinished-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BuildScript`
 
@@ -541,18 +759,34 @@ Output of a build script execution.
 - **`out_dir`**: `camino::Utf8PathBuf`
 
   The `OUT_DIR` environment variable where this script places its output
-
+  
   Added in Rust 1.41.
 
 #### Trait Implementations
+
+##### `impl Any for BuildScript`
+
+- <span id="buildscript-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BuildScript`
+
+- <span id="buildscript-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BuildScript`
+
+- <span id="buildscript-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for BuildScript`
 
 - <span id="buildscript-clone"></span>`fn clone(&self) -> BuildScript` — [`BuildScript`](messages/index.md#buildscript)
 
+##### `impl CloneToUninit for BuildScript`
+
+- <span id="buildscript-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for BuildScript`
 
-- <span id="buildscript-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="buildscript-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for BuildScript`
 
@@ -562,19 +796,57 @@ Output of a build script execution.
 
 ##### `impl Eq for BuildScript`
 
+##### `impl<T> From for BuildScript`
+
+- <span id="buildscript-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for BuildScript`
 
 - <span id="buildscript-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for BuildScript`
+
+- <span id="buildscript-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for BuildScript`
 
-- <span id="buildscript-eq"></span>`fn eq(&self, other: &BuildScript) -> bool` — [`BuildScript`](messages/index.md#buildscript)
+- <span id="buildscript-partialeq-eq"></span>`fn eq(&self, other: &BuildScript) -> bool` — [`BuildScript`](messages/index.md#buildscript)
 
 ##### `impl Serialize for BuildScript`
 
 - <span id="buildscript-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for BuildScript`
+
+##### `impl ToOwned for BuildScript`
+
+- <span id="buildscript-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="buildscript-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="buildscript-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BuildScript`
+
+- <span id="buildscript-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="buildscript-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BuildScript`
+
+- <span id="buildscript-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="buildscript-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CompilerMessage`
 
@@ -606,13 +878,29 @@ Message left by the compiler
 
 #### Trait Implementations
 
+##### `impl Any for CompilerMessage`
+
+- <span id="compilermessage-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CompilerMessage`
+
+- <span id="compilermessage-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CompilerMessage`
+
+- <span id="compilermessage-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for CompilerMessage`
 
 - <span id="compilermessage-clone"></span>`fn clone(&self) -> CompilerMessage` — [`CompilerMessage`](messages/index.md#compilermessage)
 
+##### `impl CloneToUninit for CompilerMessage`
+
+- <span id="compilermessage-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for CompilerMessage`
 
-- <span id="compilermessage-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="compilermessage-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for CompilerMessage`
 
@@ -622,17 +910,35 @@ Message left by the compiler
 
 ##### `impl Display for CompilerMessage`
 
-- <span id="compilermessage-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="compilermessage-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for CompilerMessage`
+
+##### `impl<T> From for CompilerMessage`
+
+- <span id="compilermessage-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for CompilerMessage`
 
 - <span id="compilermessage-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for CompilerMessage`
+
+- <span id="compilermessage-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for CompilerMessage`
 
-- <span id="compilermessage-eq"></span>`fn eq(&self, other: &CompilerMessage) -> bool` — [`CompilerMessage`](messages/index.md#compilermessage)
+- <span id="compilermessage-partialeq-eq"></span>`fn eq(&self, other: &CompilerMessage) -> bool` — [`CompilerMessage`](messages/index.md#compilermessage)
 
 ##### `impl Serialize for CompilerMessage`
 
@@ -640,9 +946,29 @@ Message left by the compiler
 
 ##### `impl StructuralPartialEq for CompilerMessage`
 
+##### `impl ToOwned for CompilerMessage`
+
+- <span id="compilermessage-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="compilermessage-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="compilermessage-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for CompilerMessage`
 
-- <span id="compilermessage-to-string"></span>`fn to_string(&self) -> String`
+- <span id="compilermessage-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for CompilerMessage`
+
+- <span id="compilermessage-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="compilermessage-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CompilerMessage`
+
+- <span id="compilermessage-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="compilermessage-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MessageIter<R>`
 
@@ -658,19 +984,61 @@ An iterator of Messages.
 
 #### Trait Implementations
 
+##### `impl Any for MessageIter<R>`
+
+- <span id="messageiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MessageIter<R>`
+
+- <span id="messageiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MessageIter<R>`
+
+- <span id="messageiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for MessageIter<R>`
+
+- <span id="messageiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MessageIter<R>`
+
+- <span id="messageiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoIterator for MessageIter<R>`
 
 - <span id="messageiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="messageiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="messageiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="messageiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<R: BufRead> Iterator for MessageIter<R>`
 
 - <span id="messageiter-iterator-type-item"></span>`type Item = Result<Message, Error>`
 
-- <span id="messageiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="messageiter-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for MessageIter<R>`
+
+- <span id="messageiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="messageiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MessageIter<R>`
+
+- <span id="messageiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="messageiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FeatureName<T: AsRef<str>>`
 
@@ -687,23 +1055,42 @@ Based on [cargo-util-schema's string newtype] but with two crucial differences:
 - This newtype does not verify the wrapped string.
 - This newtype allows comparison with arbitrary types that implement `AsRef<str>`.
 
+
 #### Implementations
 
 - <span id="featurename-into-inner"></span>`fn into_inner(self) -> T`
 
+  Convert the wrapped string into its inner type `T`
+
 #### Trait Implementations
+
+##### `impl<T> Any for FeatureName<T>`
+
+- <span id="featurename-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl<T: AsRef<str>> AsRef for FeatureName<T>`
 
-- <span id="featurename-as-ref"></span>`fn as_ref(&self) -> &str`
+- <span id="featurename-asref-as-ref"></span>`fn as_ref(&self) -> &str`
+
+##### `impl<T> Borrow for FeatureName<T>`
+
+- <span id="featurename-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FeatureName<T>`
+
+- <span id="featurename-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: clone::Clone + AsRef<str>> Clone for FeatureName<T>`
 
 - <span id="featurename-clone"></span>`fn clone(&self) -> FeatureName<T>` — [`FeatureName`](#featurename)
 
+##### `impl<T> CloneToUninit for FeatureName<T>`
+
+- <span id="featurename-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug + AsRef<str>> Debug for FeatureName<T>`
 
-- <span id="featurename-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="featurename-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: AsRef<str>> Deref for FeatureName<T>`
 
@@ -719,31 +1106,49 @@ Based on [cargo-util-schema's string newtype] but with two crucial differences:
 
 ##### `impl<T: AsRef<str>> Display for FeatureName<T>`
 
-- <span id="featurename-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="featurename-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq + AsRef<str>> Eq for FeatureName<T>`
+
+##### `impl<T> From for FeatureName<T>`
+
+- <span id="featurename-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromStr for FeatureName<String>`
 
 - <span id="featurename-fromstr-type-err"></span>`type Err = Infallible`
 
-- <span id="featurename-from-str"></span>`fn from_str(value: &str) -> Result<Self, <Self as >::Err>` — [`Result`](errors/index.md#result)
+- <span id="featurename-fromstr-from-str"></span>`fn from_str(value: &str) -> Result<Self, <Self as >::Err>` — [`Result`](errors/index.md#result)
 
 ##### `impl<T: hash::Hash + AsRef<str>> Hash for FeatureName<T>`
 
 - <span id="featurename-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T, U> Into for FeatureName<T>`
+
+- <span id="featurename-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::Ord + AsRef<str>> Ord for FeatureName<T>`
 
-- <span id="featurename-cmp"></span>`fn cmp(&self, other: &FeatureName<T>) -> cmp::Ordering` — [`FeatureName`](#featurename)
+- <span id="featurename-ord-cmp"></span>`fn cmp(&self, other: &FeatureName<T>) -> cmp::Ordering` — [`FeatureName`](#featurename)
 
 ##### `impl<T: AsRef<str>, Rhs: AsRef<str>> PartialEq for FeatureName<T>`
 
-- <span id="featurename-eq"></span>`fn eq(&self, other: &Rhs) -> bool`
+- <span id="featurename-partialeq-eq"></span>`fn eq(&self, other: &Rhs) -> bool`
 
 ##### `impl<T: cmp::PartialOrd + AsRef<str>> PartialOrd for FeatureName<T>`
 
-- <span id="featurename-partial-cmp"></span>`fn partial_cmp(&self, other: &FeatureName<T>) -> option::Option<cmp::Ordering>` — [`FeatureName`](#featurename)
+- <span id="featurename-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &FeatureName<T>) -> option::Option<cmp::Ordering>` — [`FeatureName`](#featurename)
 
 ##### `impl<T> Receiver for FeatureName<T>`
 
@@ -753,9 +1158,29 @@ Based on [cargo-util-schema's string newtype] but with two crucial differences:
 
 - <span id="featurename-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
+##### `impl<T> ToOwned for FeatureName<T>`
+
+- <span id="featurename-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="featurename-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="featurename-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl<T> ToString for FeatureName<T>`
 
-- <span id="featurename-to-string"></span>`fn to_string(&self) -> String`
+- <span id="featurename-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for FeatureName<T>`
+
+- <span id="featurename-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="featurename-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for FeatureName<T>`
+
+- <span id="featurename-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="featurename-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PackageName<T: AsRef<str>>`
 
@@ -772,23 +1197,42 @@ Based on [cargo-util-schema's string newtype] but with two crucial differences:
 - This newtype does not verify the wrapped string.
 - This newtype allows comparison with arbitrary types that implement `AsRef<str>`.
 
+
 #### Implementations
 
 - <span id="packagename-into-inner"></span>`fn into_inner(self) -> T`
 
+  Convert the wrapped string into its inner type `T`
+
 #### Trait Implementations
+
+##### `impl<T> Any for PackageName<T>`
+
+- <span id="packagename-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl<T: AsRef<str>> AsRef for PackageName<T>`
 
-- <span id="packagename-as-ref"></span>`fn as_ref(&self) -> &str`
+- <span id="packagename-asref-as-ref"></span>`fn as_ref(&self) -> &str`
+
+##### `impl<T> Borrow for PackageName<T>`
+
+- <span id="packagename-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PackageName<T>`
+
+- <span id="packagename-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: clone::Clone + AsRef<str>> Clone for PackageName<T>`
 
 - <span id="packagename-clone"></span>`fn clone(&self) -> PackageName<T>` — [`PackageName`](#packagename)
 
+##### `impl<T> CloneToUninit for PackageName<T>`
+
+- <span id="packagename-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug + AsRef<str>> Debug for PackageName<T>`
 
-- <span id="packagename-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="packagename-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: AsRef<str>> Deref for PackageName<T>`
 
@@ -804,31 +1248,49 @@ Based on [cargo-util-schema's string newtype] but with two crucial differences:
 
 ##### `impl<T: AsRef<str>> Display for PackageName<T>`
 
-- <span id="packagename-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="packagename-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq + AsRef<str>> Eq for PackageName<T>`
+
+##### `impl<T> From for PackageName<T>`
+
+- <span id="packagename-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromStr for PackageName<String>`
 
 - <span id="packagename-fromstr-type-err"></span>`type Err = Infallible`
 
-- <span id="packagename-from-str"></span>`fn from_str(value: &str) -> Result<Self, <Self as >::Err>` — [`Result`](errors/index.md#result)
+- <span id="packagename-fromstr-from-str"></span>`fn from_str(value: &str) -> Result<Self, <Self as >::Err>` — [`Result`](errors/index.md#result)
 
 ##### `impl<T: hash::Hash + AsRef<str>> Hash for PackageName<T>`
 
 - <span id="packagename-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T, U> Into for PackageName<T>`
+
+- <span id="packagename-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::Ord + AsRef<str>> Ord for PackageName<T>`
 
-- <span id="packagename-cmp"></span>`fn cmp(&self, other: &PackageName<T>) -> cmp::Ordering` — [`PackageName`](#packagename)
+- <span id="packagename-ord-cmp"></span>`fn cmp(&self, other: &PackageName<T>) -> cmp::Ordering` — [`PackageName`](#packagename)
 
 ##### `impl<T: AsRef<str>, Rhs: AsRef<str>> PartialEq for PackageName<T>`
 
-- <span id="packagename-eq"></span>`fn eq(&self, other: &Rhs) -> bool`
+- <span id="packagename-partialeq-eq"></span>`fn eq(&self, other: &Rhs) -> bool`
 
 ##### `impl<T: cmp::PartialOrd + AsRef<str>> PartialOrd for PackageName<T>`
 
-- <span id="packagename-partial-cmp"></span>`fn partial_cmp(&self, other: &PackageName<T>) -> option::Option<cmp::Ordering>` — [`PackageName`](#packagename)
+- <span id="packagename-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &PackageName<T>) -> option::Option<cmp::Ordering>` — [`PackageName`](#packagename)
 
 ##### `impl<T> Receiver for PackageName<T>`
 
@@ -838,9 +1300,29 @@ Based on [cargo-util-schema's string newtype] but with two crucial differences:
 
 - <span id="packagename-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
+##### `impl<T> ToOwned for PackageName<T>`
+
+- <span id="packagename-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="packagename-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="packagename-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl<T> ToString for PackageName<T>`
 
-- <span id="packagename-to-string"></span>`fn to_string(&self) -> String`
+- <span id="packagename-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for PackageName<T>`
+
+- <span id="packagename-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="packagename-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for PackageName<T>`
+
+- <span id="packagename-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="packagename-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PackageId`
 
@@ -867,13 +1349,29 @@ precise format is an implementation detail and is subject to change.
 
 #### Trait Implementations
 
+##### `impl Any for PackageId`
+
+- <span id="packageid-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PackageId`
+
+- <span id="packageid-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PackageId`
+
+- <span id="packageid-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for PackageId`
 
 - <span id="packageid-clone"></span>`fn clone(&self) -> PackageId` — [`PackageId`](#packageid)
 
+##### `impl CloneToUninit for PackageId`
+
+- <span id="packageid-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for PackageId`
 
-- <span id="packageid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="packageid-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for PackageId`
 
@@ -883,9 +1381,15 @@ precise format is an implementation detail and is subject to change.
 
 ##### `impl Display for PackageId`
 
-- <span id="packageid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="packageid-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for PackageId`
+
+##### `impl<T> From for PackageId`
+
+- <span id="packageid-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for PackageId`
 
@@ -897,17 +1401,29 @@ precise format is an implementation detail and is subject to change.
 
 - <span id="metadata-index"></span>`fn index(&self, idx: &'a PackageId) -> &<Self as >::Output` — [`PackageId`](#packageid)
 
+##### `impl<U> Into for PackageId`
+
+- <span id="packageid-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for PackageId`
 
-- <span id="packageid-cmp"></span>`fn cmp(&self, other: &PackageId) -> cmp::Ordering` — [`PackageId`](#packageid)
+- <span id="packageid-ord-cmp"></span>`fn cmp(&self, other: &PackageId) -> cmp::Ordering` — [`PackageId`](#packageid)
 
 ##### `impl PartialEq for PackageId`
 
-- <span id="packageid-eq"></span>`fn eq(&self, other: &PackageId) -> bool` — [`PackageId`](#packageid)
+- <span id="packageid-partialeq-eq"></span>`fn eq(&self, other: &PackageId) -> bool` — [`PackageId`](#packageid)
 
 ##### `impl PartialOrd for PackageId`
 
-- <span id="packageid-partial-cmp"></span>`fn partial_cmp(&self, other: &PackageId) -> option::Option<cmp::Ordering>` — [`PackageId`](#packageid)
+- <span id="packageid-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &PackageId) -> option::Option<cmp::Ordering>` — [`PackageId`](#packageid)
 
 ##### `impl Serialize for PackageId`
 
@@ -915,9 +1431,29 @@ precise format is an implementation detail and is subject to change.
 
 ##### `impl StructuralPartialEq for PackageId`
 
+##### `impl ToOwned for PackageId`
+
+- <span id="packageid-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="packageid-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="packageid-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for PackageId`
 
-- <span id="packageid-to-string"></span>`fn to_string(&self) -> String`
+- <span id="packageid-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for PackageId`
+
+- <span id="packageid-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="packageid-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PackageId`
+
+- <span id="packageid-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="packageid-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Metadata`
 
@@ -952,9 +1488,9 @@ Starting point for metadata returned by `cargo metadata`
 - **`workspace_default_members`**: `WorkspaceDefaultMembers`
 
   The list of default workspace members
-
+  
   This is not available if running with a version of Cargo older than 1.71.
-
+  
   You can check whether it is available or missing using respectively
   `WorkspaceDefaultMembers::is_available` and `WorkspaceDefaultMembers::is_missing`.
 
@@ -986,19 +1522,49 @@ Starting point for metadata returned by `cargo metadata`
 
 - <span id="metadata-root-package"></span>`fn root_package(&self) -> Option<&Package>` — [`Package`](#package)
 
+  Get the workspace's root package of this metadata instance.
+
 - <span id="metadata-workspace-packages"></span>`fn workspace_packages(&self) -> Vec<&Package>` — [`Package`](#package)
+
+  Get the workspace packages.
 
 - <span id="metadata-workspace-default-packages"></span>`fn workspace_default_packages(&self) -> Vec<&Package>` — [`Package`](#package)
 
+  Get the workspace default packages.
+
+  
+
+  # Panics
+
+  
+
+  This will panic if running with a version of Cargo older than 1.71.
+
 #### Trait Implementations
+
+##### `impl Any for Metadata`
+
+- <span id="metadata-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Metadata`
+
+- <span id="metadata-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Metadata`
+
+- <span id="metadata-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Metadata`
 
 - <span id="metadata-clone"></span>`fn clone(&self) -> Metadata` — [`Metadata`](#metadata)
 
+##### `impl CloneToUninit for Metadata`
+
+- <span id="metadata-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Metadata`
 
-- <span id="metadata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="metadata-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Metadata`
 
@@ -1007,6 +1573,12 @@ Starting point for metadata returned by `cargo metadata`
 ##### `impl DeserializeOwned for Metadata`
 
 ##### `impl Eq for Metadata`
+
+##### `impl<T> From for Metadata`
+
+- <span id="metadata-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Metadata`
 
@@ -1018,15 +1590,47 @@ Starting point for metadata returned by `cargo metadata`
 
 - <span id="metadata-index"></span>`fn index(&self, idx: &'a PackageId) -> &<Self as >::Output` — [`PackageId`](#packageid)
 
+##### `impl<U> Into for Metadata`
+
+- <span id="metadata-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Metadata`
 
-- <span id="metadata-eq"></span>`fn eq(&self, other: &Metadata) -> bool` — [`Metadata`](#metadata)
+- <span id="metadata-partialeq-eq"></span>`fn eq(&self, other: &Metadata) -> bool` — [`Metadata`](#metadata)
 
 ##### `impl Serialize for Metadata`
 
 - <span id="metadata-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Metadata`
+
+##### `impl ToOwned for Metadata`
+
+- <span id="metadata-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="metadata-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="metadata-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Metadata`
+
+- <span id="metadata-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="metadata-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Metadata`
+
+- <span id="metadata-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="metadata-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `WorkspaceDefaultMembers`
 
@@ -1042,25 +1646,73 @@ See `Metadata::workspace_default_members`.
 
 It is only available if running a version of Cargo of 1.71 or newer.
 
-## Panics
+# Panics
 
 Dereferencing when running an older version of Cargo will panic.
 
-## Implementations
+#### Implementations
 
 - <span id="workspacedefaultmembers-is-available"></span>`fn is_available(&self) -> bool`
 
+  Return `true` if the list of workspace default members is supported by
+
+  the called cargo-metadata version and `false` otherwise.
+
+  
+
+  In particular useful when parsing the output of `cargo-metadata` for
+
+  versions of Cargo < 1.71, as dereferencing [`WorkspaceDefaultMembers`](#workspacedefaultmembers)
+
+  for these versions will panic.
+
+  
+
+  Opposite of `WorkspaceDefaultMembers::is_missing`.
+
 - <span id="workspacedefaultmembers-is-missing"></span>`fn is_missing(&self) -> bool`
 
-### Trait Implementations
+  Return `false` if the list of workspace default members is supported by
 
-#### `impl Clone for WorkspaceDefaultMembers`
+  the called cargo-metadata version and `true` otherwise.
+
+  
+
+  In particular useful when parsing the output of `cargo-metadata` for
+
+  versions of Cargo < 1.71, as dereferencing [`WorkspaceDefaultMembers`](#workspacedefaultmembers)
+
+  for these versions will panic.
+
+  
+
+  Opposite of `WorkspaceDefaultMembers::is_available`.
+
+#### Trait Implementations
+
+##### `impl Any for WorkspaceDefaultMembers`
+
+- <span id="workspacedefaultmembers-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WorkspaceDefaultMembers`
+
+- <span id="workspacedefaultmembers-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WorkspaceDefaultMembers`
+
+- <span id="workspacedefaultmembers-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl Clone for WorkspaceDefaultMembers`
 
 - <span id="workspacedefaultmembers-clone"></span>`fn clone(&self) -> WorkspaceDefaultMembers` — [`WorkspaceDefaultMembers`](#workspacedefaultmembers)
 
+##### `impl CloneToUninit for WorkspaceDefaultMembers`
+
+- <span id="workspacedefaultmembers-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for WorkspaceDefaultMembers`
 
-- <span id="workspacedefaultmembers-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="workspacedefaultmembers-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for WorkspaceDefaultMembers`
 
@@ -1080,13 +1732,31 @@ Dereferencing when running an older version of Cargo will panic.
 
 ##### `impl Eq for WorkspaceDefaultMembers`
 
+##### `impl<T> From for WorkspaceDefaultMembers`
+
+- <span id="workspacedefaultmembers-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for WorkspaceDefaultMembers`
 
 - <span id="workspacedefaultmembers-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for WorkspaceDefaultMembers`
+
+- <span id="workspacedefaultmembers-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for WorkspaceDefaultMembers`
 
-- <span id="workspacedefaultmembers-eq"></span>`fn eq(&self, other: &WorkspaceDefaultMembers) -> bool` — [`WorkspaceDefaultMembers`](#workspacedefaultmembers)
+- <span id="workspacedefaultmembers-partialeq-eq"></span>`fn eq(&self, other: &WorkspaceDefaultMembers) -> bool` — [`WorkspaceDefaultMembers`](#workspacedefaultmembers)
 
 ##### `impl Receiver for WorkspaceDefaultMembers`
 
@@ -1097,6 +1767,26 @@ Dereferencing when running an older version of Cargo will panic.
 - <span id="workspacedefaultmembers-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for WorkspaceDefaultMembers`
+
+##### `impl ToOwned for WorkspaceDefaultMembers`
+
+- <span id="workspacedefaultmembers-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="workspacedefaultmembers-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="workspacedefaultmembers-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for WorkspaceDefaultMembers`
+
+- <span id="workspacedefaultmembers-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="workspacedefaultmembers-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WorkspaceDefaultMembers`
+
+- <span id="workspacedefaultmembers-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="workspacedefaultmembers-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Resolve`
 
@@ -1123,13 +1813,29 @@ A dependency graph
 
 #### Trait Implementations
 
+##### `impl Any for Resolve`
+
+- <span id="resolve-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Resolve`
+
+- <span id="resolve-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Resolve`
+
+- <span id="resolve-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Resolve`
 
 - <span id="resolve-clone"></span>`fn clone(&self) -> Resolve` — [`Resolve`](#resolve)
 
+##### `impl CloneToUninit for Resolve`
+
+- <span id="resolve-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Resolve`
 
-- <span id="resolve-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="resolve-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Resolve`
 
@@ -1138,6 +1844,12 @@ A dependency graph
 ##### `impl DeserializeOwned for Resolve`
 
 ##### `impl Eq for Resolve`
+
+##### `impl<T> From for Resolve`
+
+- <span id="resolve-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Resolve`
 
@@ -1149,15 +1861,47 @@ A dependency graph
 
 - <span id="resolve-index"></span>`fn index(&self, idx: &'a PackageId) -> &<Self as >::Output` — [`PackageId`](#packageid)
 
+##### `impl<U> Into for Resolve`
+
+- <span id="resolve-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Resolve`
 
-- <span id="resolve-eq"></span>`fn eq(&self, other: &Resolve) -> bool` — [`Resolve`](#resolve)
+- <span id="resolve-partialeq-eq"></span>`fn eq(&self, other: &Resolve) -> bool` — [`Resolve`](#resolve)
 
 ##### `impl Serialize for Resolve`
 
 - <span id="resolve-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Resolve`
+
+##### `impl ToOwned for Resolve`
+
+- <span id="resolve-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="resolve-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="resolve-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Resolve`
+
+- <span id="resolve-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="resolve-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Resolve`
+
+- <span id="resolve-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="resolve-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Node`
 
@@ -1183,7 +1927,7 @@ A node in a dependencies graph
 - **`deps`**: `Vec<NodeDep>`
 
   Dependencies in a structured format.
-
+  
   `deps` handles renamed dependencies whereas `dependencies` does not.
 
 - **`dependencies`**: `Vec<PackageId>`
@@ -1197,13 +1941,29 @@ A node in a dependencies graph
 
 #### Trait Implementations
 
+##### `impl Any for Node`
+
+- <span id="node-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Node`
+
+- <span id="node-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Node`
+
+- <span id="node-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Node`
 
 - <span id="node-clone"></span>`fn clone(&self) -> Node` — [`Node`](#node)
 
+##### `impl CloneToUninit for Node`
+
+- <span id="node-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Node`
 
-- <span id="node-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="node-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Node`
 
@@ -1213,19 +1973,57 @@ A node in a dependencies graph
 
 ##### `impl Eq for Node`
 
+##### `impl<T> From for Node`
+
+- <span id="node-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Node`
 
 - <span id="node-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Node`
+
+- <span id="node-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Node`
 
-- <span id="node-eq"></span>`fn eq(&self, other: &Node) -> bool` — [`Node`](#node)
+- <span id="node-partialeq-eq"></span>`fn eq(&self, other: &Node) -> bool` — [`Node`](#node)
 
 ##### `impl Serialize for Node`
 
 - <span id="node-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Node`
+
+##### `impl ToOwned for Node`
+
+- <span id="node-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="node-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="node-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Node`
+
+- <span id="node-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="node-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Node`
+
+- <span id="node-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="node-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `NodeDep`
 
@@ -1247,10 +2045,10 @@ A dependency in a node
 
   The name of the dependency's library target.
   If the crate was renamed, it is the new name.
-
+  
   If -Zbindeps is enabled local references may result in an empty
   string.
-
+  
   After -Zbindeps gets stabilized, cargo has indicated this field
   will become deprecated.
 
@@ -1261,18 +2059,34 @@ A dependency in a node
 - **`dep_kinds`**: `Vec<DepKindInfo>`
 
   The kinds of dependencies.
-
+  
   This field was added in Rust 1.41.
 
 #### Trait Implementations
+
+##### `impl Any for NodeDep`
+
+- <span id="nodedep-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for NodeDep`
+
+- <span id="nodedep-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for NodeDep`
+
+- <span id="nodedep-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for NodeDep`
 
 - <span id="nodedep-clone"></span>`fn clone(&self) -> NodeDep` — [`NodeDep`](#nodedep)
 
+##### `impl CloneToUninit for NodeDep`
+
+- <span id="nodedep-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for NodeDep`
 
-- <span id="nodedep-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="nodedep-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for NodeDep`
 
@@ -1282,19 +2096,57 @@ A dependency in a node
 
 ##### `impl Eq for NodeDep`
 
+##### `impl<T> From for NodeDep`
+
+- <span id="nodedep-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for NodeDep`
 
 - <span id="nodedep-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for NodeDep`
+
+- <span id="nodedep-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for NodeDep`
 
-- <span id="nodedep-eq"></span>`fn eq(&self, other: &NodeDep) -> bool` — [`NodeDep`](#nodedep)
+- <span id="nodedep-partialeq-eq"></span>`fn eq(&self, other: &NodeDep) -> bool` — [`NodeDep`](#nodedep)
 
 ##### `impl Serialize for NodeDep`
 
 - <span id="nodedep-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for NodeDep`
+
+##### `impl ToOwned for NodeDep`
+
+- <span id="nodedep-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="nodedep-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="nodedep-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for NodeDep`
+
+- <span id="nodedep-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="nodedep-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for NodeDep`
+
+- <span id="nodedep-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="nodedep-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DepKindInfo`
 
@@ -1318,24 +2170,41 @@ Information about a dependency kind.
 - **`target`**: `Option<dependency::Platform>`
 
   The target platform for the dependency.
-
+  
   This is `None` if it is not a target dependency.
-
-  Use the `Display` trait to access the contents.
-
+  
+  Use the [`Display`]() trait to access the contents.
+  
   By default all platform dependencies are included in the resolve
   graph. Use Cargo's `--filter-platform` flag if you only want to
   include dependencies for a specific platform.
+  
 
 #### Trait Implementations
+
+##### `impl Any for DepKindInfo`
+
+- <span id="depkindinfo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DepKindInfo`
+
+- <span id="depkindinfo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DepKindInfo`
+
+- <span id="depkindinfo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for DepKindInfo`
 
 - <span id="depkindinfo-clone"></span>`fn clone(&self) -> DepKindInfo` — [`DepKindInfo`](#depkindinfo)
 
+##### `impl CloneToUninit for DepKindInfo`
+
+- <span id="depkindinfo-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for DepKindInfo`
 
-- <span id="depkindinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="depkindinfo-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for DepKindInfo`
 
@@ -1345,19 +2214,57 @@ Information about a dependency kind.
 
 ##### `impl Eq for DepKindInfo`
 
+##### `impl<T> From for DepKindInfo`
+
+- <span id="depkindinfo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for DepKindInfo`
 
 - <span id="depkindinfo-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DepKindInfo`
+
+- <span id="depkindinfo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for DepKindInfo`
 
-- <span id="depkindinfo-eq"></span>`fn eq(&self, other: &DepKindInfo) -> bool` — [`DepKindInfo`](#depkindinfo)
+- <span id="depkindinfo-partialeq-eq"></span>`fn eq(&self, other: &DepKindInfo) -> bool` — [`DepKindInfo`](#depkindinfo)
 
 ##### `impl Serialize for DepKindInfo`
 
 - <span id="depkindinfo-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for DepKindInfo`
+
+##### `impl ToOwned for DepKindInfo`
+
+- <span id="depkindinfo-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="depkindinfo-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="depkindinfo-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DepKindInfo`
+
+- <span id="depkindinfo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="depkindinfo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DepKindInfo`
+
+- <span id="depkindinfo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="depkindinfo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Package`
 
@@ -1469,45 +2376,45 @@ For more information, see <https://doc.rust-lang.org/book/ch07-01-packages-and-c
 - **`homepage`**: `Option<String>`
 
   The [`homepage` URL](https://doc.rust-lang.org/cargo/reference/manifest.html#the-homepage-field) as specified in the `Cargo.toml`.
-
+  
   On versions of cargo before 1.49, this will always be [`None`](#none).
 
 - **`documentation`**: `Option<String>`
 
   The [`documentation` URL](https://doc.rust-lang.org/cargo/reference/manifest.html#the-documentation-field) as specified in the `Cargo.toml`.
-
+  
   On versions of cargo before 1.49, this will always be [`None`](#none).
 
 - **`edition`**: `Edition`
 
   The default Rust edition for the package (either what's specified in the [`edition` field](https://doc.rust-lang.org/cargo/reference/manifest.html#the-edition-field)
   or defaulting to [`Edition::E2015`](#editione2015)).
-
+  
   Beware that individual targets may specify their own edition in
   `Target::edition`.
 
 - **`metadata`**: `serde_json::Value`
 
   Contents of the free form [`package.metadata` section](https://doc.rust-lang.org/cargo/reference/manifest.html#the-metadata-table).
-
+  
   This contents can be serialized to a struct using serde:
-
+  
   ```rust
   use serde::Deserialize;
   use serde_json::json;
-
+  
   #[derive(Debug, Deserialize)]
   struct SomePackageMetadata {
       some_value: i32,
   }
-
+  
   let value = json!({
       "some_value": 42,
   });
-
+  
   let package_metadata: SomePackageMetadata = serde_json::from_value(value).unwrap();
   assert_eq!(package_metadata.some_value, 42);
-
+  
   ```
 
 - **`links`**: `Option<String>`
@@ -1517,40 +2424,60 @@ For more information, see <https://doc.rust-lang.org/book/ch07-01-packages-and-c
 - **`publish`**: `Option<Vec<String>>`
 
   List of registries to which this package may be published (derived from the [`publish` field](https://doc.rust-lang.org/cargo/reference/manifest.html#the-publish-field)).
-
+  
   Publishing is unrestricted if `None`, and forbidden if the `Vec` is empty.
-
+  
   This is always `None` if running with a version of Cargo older than 1.39.
 
 - **`default_run`**: `Option<String>`
 
   The [`default-run` field](https://doc.rust-lang.org/cargo/reference/manifest.html#the-default-run-field) as given in the `Cargo.toml`
   The default binary to run by `cargo run`.
-
+  
   This is always `None` if running with a version of Cargo older than 1.55.
 
 - **`rust_version`**: `Option<semver::Version>`
 
   The [`rust-version` field](https://doc.rust-lang.org/cargo/reference/manifest.html#the-rust-version-field) as specified in the `Cargo.toml`.
   The minimum supported Rust version of this package.
-
+  
   This is always `None` if running with a version of Cargo older than 1.58.
 
 #### Implementations
 
 - <span id="package-license-file"></span>`fn license_file(&self) -> Option<Utf8PathBuf>`
 
+  Full path to the license file if one is present in the manifest
+
 - <span id="package-readme"></span>`fn readme(&self) -> Option<Utf8PathBuf>`
 
+  Full path to the readme file if one is present in the manifest
+
 #### Trait Implementations
+
+##### `impl Any for Package`
+
+- <span id="package-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Package`
+
+- <span id="package-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Package`
+
+- <span id="package-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Package`
 
 - <span id="package-clone"></span>`fn clone(&self) -> Package` — [`Package`](#package)
 
+##### `impl CloneToUninit for Package`
+
+- <span id="package-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Package`
 
-- <span id="package-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="package-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Package`
 
@@ -1560,19 +2487,57 @@ For more information, see <https://doc.rust-lang.org/book/ch07-01-packages-and-c
 
 ##### `impl Eq for Package`
 
+##### `impl<T> From for Package`
+
+- <span id="package-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Package`
 
 - <span id="package-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Package`
+
+- <span id="package-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Package`
 
-- <span id="package-eq"></span>`fn eq(&self, other: &Package) -> bool` — [`Package`](#package)
+- <span id="package-partialeq-eq"></span>`fn eq(&self, other: &Package) -> bool` — [`Package`](#package)
 
 ##### `impl Serialize for Package`
 
 - <span id="package-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Package`
+
+##### `impl ToOwned for Package`
+
+- <span id="package-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="package-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="package-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Package`
+
+- <span id="package-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="package-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Package`
+
+- <span id="package-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="package-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Source`
 
@@ -1599,15 +2564,33 @@ precise format is an implementation detail and is subject to change.
 
 - <span id="source-is-crates-io"></span>`fn is_crates_io(&self) -> bool`
 
+  Returns true if the source is crates.io.
+
 #### Trait Implementations
+
+##### `impl Any for Source`
+
+- <span id="source-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Source`
+
+- <span id="source-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Source`
+
+- <span id="source-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Source`
 
 - <span id="source-clone"></span>`fn clone(&self) -> Source` — [`Source`](#source)
 
+##### `impl CloneToUninit for Source`
+
+- <span id="source-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Source`
 
-- <span id="source-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="source-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Source`
 
@@ -1617,17 +2600,35 @@ precise format is an implementation detail and is subject to change.
 
 ##### `impl Display for Source`
 
-- <span id="source-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="source-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Source`
+
+##### `impl<T> From for Source`
+
+- <span id="source-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Source`
 
 - <span id="source-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Source`
+
+- <span id="source-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Source`
 
-- <span id="source-eq"></span>`fn eq(&self, other: &Source) -> bool` — [`Source`](#source)
+- <span id="source-partialeq-eq"></span>`fn eq(&self, other: &Source) -> bool` — [`Source`](#source)
 
 ##### `impl Serialize for Source`
 
@@ -1635,9 +2636,29 @@ precise format is an implementation detail and is subject to change.
 
 ##### `impl StructuralPartialEq for Source`
 
+##### `impl ToOwned for Source`
+
+- <span id="source-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="source-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="source-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Source`
 
-- <span id="source-to-string"></span>`fn to_string(&self) -> String`
+- <span id="source-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Source`
+
+- <span id="source-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="source-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Source`
+
+- <span id="source-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="source-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Target`
 
@@ -1668,11 +2689,11 @@ A single target (lib, bin, example, ...) provided by a crate
 - **`kind`**: `Vec<TargetKind>`
 
   Kind of target.
-
+  
   The possible values are `example`, `test`, `bench`, `custom-build` and
   [Cargo crate types](https://doc.rust-lang.org/cargo/reference/cargo-targets.html#the-crate-type-field):
   `bin`, `lib`, `rlib`, `dylib`, `cdylib`, `staticlib`, `proc-macro`.
-
+  
   Other possible values may be added in the future.
 
 - **`crate_types`**: `Vec<CrateType>`
@@ -1681,7 +2702,7 @@ A single target (lib, bin, example, ...) provided by a crate
   [Cargo crate types](https://doc.rust-lang.org/cargo/reference/cargo-targets.html#the-crate-type-field):
   `bin`, `lib`, `rlib`, `dylib`, `cdylib`, `staticlib`, `proc-macro`.
   Everything that's not a proc macro or a library of some kind is reported as "bin".
-
+  
   Other possible values may be added in the future.
 
 - **`required_features`**: `Vec<String>`
@@ -1701,56 +2722,96 @@ A single target (lib, bin, example, ...) provided by a crate
 
   Whether or not this target has doc tests enabled, and the target is
   compatible with doc testing.
-
+  
   This is always `true` if running with a version of Cargo older than 1.37.
 
 - **`test`**: `bool`
 
   Whether or not this target is tested by default by `cargo test`.
-
+  
   This is always `true` if running with a version of Cargo older than 1.47.
 
 - **`doc`**: `bool`
 
   Whether or not this target is documented by `cargo doc`.
-
+  
   This is always `true` if running with a version of Cargo older than 1.50.
 
 #### Implementations
 
 - <span id="target-is-kind"></span>`fn is_kind(&self, name: TargetKind) -> bool` — [`TargetKind`](#targetkind)
 
+  Return true if this target is of the given kind.
+
 - <span id="target-is-lib"></span>`fn is_lib(&self) -> bool`
+
+  Return true if this target is of kind `$kind`.
 
 - <span id="target-is-bin"></span>`fn is_bin(&self) -> bool`
 
+  Return true if this target is of kind `$kind`.
+
 - <span id="target-is-example"></span>`fn is_example(&self) -> bool`
+
+  Return true if this target is of kind `$kind`.
 
 - <span id="target-is-test"></span>`fn is_test(&self) -> bool`
 
+  Return true if this target is of kind `$kind`.
+
 - <span id="target-is-bench"></span>`fn is_bench(&self) -> bool`
+
+  Return true if this target is of kind `$kind`.
 
 - <span id="target-is-custom-build"></span>`fn is_custom_build(&self) -> bool`
 
+  Return true if this target is of kind `$kind`.
+
 - <span id="target-is-proc-macro"></span>`fn is_proc_macro(&self) -> bool`
+
+  Return true if this target is of kind `$kind`.
 
 - <span id="target-is-cdylib"></span>`fn is_cdylib(&self) -> bool`
 
+  Return true if this target is of kind `$kind`.
+
 - <span id="target-is-dylib"></span>`fn is_dylib(&self) -> bool`
+
+  Return true if this target is of kind `$kind`.
 
 - <span id="target-is-rlib"></span>`fn is_rlib(&self) -> bool`
 
+  Return true if this target is of kind `$kind`.
+
 - <span id="target-is-staticlib"></span>`fn is_staticlib(&self) -> bool`
 
+  Return true if this target is of kind `$kind`.
+
 #### Trait Implementations
+
+##### `impl Any for Target`
+
+- <span id="target-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Target`
+
+- <span id="target-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Target`
+
+- <span id="target-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Target`
 
 - <span id="target-clone"></span>`fn clone(&self) -> Target` — [`Target`](#target)
 
+##### `impl CloneToUninit for Target`
+
+- <span id="target-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Target`
 
-- <span id="target-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="target-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Target`
 
@@ -1760,19 +2821,57 @@ A single target (lib, bin, example, ...) provided by a crate
 
 ##### `impl Eq for Target`
 
+##### `impl<T> From for Target`
+
+- <span id="target-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Target`
 
 - <span id="target-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Target`
+
+- <span id="target-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Target`
 
-- <span id="target-eq"></span>`fn eq(&self, other: &Target) -> bool` — [`Target`](#target)
+- <span id="target-partialeq-eq"></span>`fn eq(&self, other: &Target) -> bool` — [`Target`](#target)
 
 ##### `impl Serialize for Target`
 
 - <span id="target-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Target`
+
+##### `impl ToOwned for Target`
+
+- <span id="target-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="target-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="target-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Target`
+
+- <span id="target-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="target-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Target`
+
+- <span id="target-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="target-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MetadataCommand`
 
@@ -1846,43 +2945,267 @@ A builder for configuring `cargo metadata` invocation.
 
 - <span id="metadatacommand-new"></span>`fn new() -> MetadataCommand` — [`MetadataCommand`](#metadatacommand)
 
+  Creates a default `cargo metadata` command, which will look for
+
+  `Cargo.toml` in the ancestors of the current directory.
+
 - <span id="metadatacommand-cargo-path"></span>`fn cargo_path(&mut self, path: impl Into<PathBuf>) -> &mut MetadataCommand` — [`MetadataCommand`](#metadatacommand)
+
+  Path to `cargo` executable.  If not set, this will use the
+
+  the `$CARGO` environment variable, and if that is not set, will
+
+  simply be `cargo`.
 
 - <span id="metadatacommand-manifest-path"></span>`fn manifest_path(&mut self, path: impl Into<PathBuf>) -> &mut MetadataCommand` — [`MetadataCommand`](#metadatacommand)
 
+  Path to `Cargo.toml`
+
 - <span id="metadatacommand-current-dir"></span>`fn current_dir(&mut self, path: impl Into<PathBuf>) -> &mut MetadataCommand` — [`MetadataCommand`](#metadatacommand)
+
+  Current directory of the `cargo metadata` process.
 
 - <span id="metadatacommand-no-deps"></span>`fn no_deps(&mut self) -> &mut MetadataCommand` — [`MetadataCommand`](#metadatacommand)
 
+  Output information only about workspace members and don't fetch dependencies.
+
 - <span id="metadatacommand-features"></span>`fn features(&mut self, features: CargoOpt) -> &mut MetadataCommand` — [`CargoOpt`](#cargoopt), [`MetadataCommand`](#metadatacommand)
+
+  Which features to include.
+
+  
+
+  Call this multiple times to specify advanced feature configurations:
+
+  
+
+  ```no_run
+
+  use cargo_metadata::{CargoOpt, MetadataCommand};
+
+  MetadataCommand::new()
+
+      .features(CargoOpt::NoDefaultFeatures)
+
+      .features(CargoOpt::SomeFeatures(vec!["feat1".into(), "feat2".into()]))
+
+      .features(CargoOpt::SomeFeatures(vec!["feat3".into()]))
+
+      // ...
+
+      ;
+
+  ```
+
+  
+
+  # Panics
+
+  
+
+  `cargo metadata` rejects multiple `--no-default-features` flags. Similarly, the `features()`
+
+  method panics when specifying multiple `CargoOpt::NoDefaultFeatures`:
+
+  
+
+  ```should_panic
+
+  use cargo_metadata::{CargoOpt, MetadataCommand};
+
+  MetadataCommand::new()
+
+      .features(CargoOpt::NoDefaultFeatures)
+
+      .features(CargoOpt::NoDefaultFeatures) // <-- panic!
+
+      // ...
+
+      ;
+
+  ```
+
+  
+
+  The method also panics for multiple `CargoOpt::AllFeatures` arguments:
+
+  
+
+  ```should_panic
+
+  use cargo_metadata::{CargoOpt, MetadataCommand};
+
+  MetadataCommand::new()
+
+      .features(CargoOpt::AllFeatures)
+
+      .features(CargoOpt::AllFeatures) // <-- panic!
+
+      // ...
+
+      ;
+
+  ```
 
 - <span id="metadatacommand-other-options"></span>`fn other_options(&mut self, options: impl Into<Vec<String>>) -> &mut MetadataCommand` — [`MetadataCommand`](#metadatacommand)
 
+  Arbitrary command line flags to pass to `cargo`.  These will be added
+
+  to the end of the command line invocation.
+
 - <span id="metadatacommand-env"></span>`fn env<K: Into<OsString>, V: Into<OsString>>(&mut self, key: K, val: V) -> &mut MetadataCommand` — [`MetadataCommand`](#metadatacommand)
+
+  Arbitrary environment variables to set when running `cargo`.  These will be merged into
+
+  the calling environment, overriding any which clash.
+
+  
+
+  Some examples of when you may want to use this:
+
+  1. Setting cargo config values without needing a .cargo/config.toml file, e.g. to set
+
+     `CARGO_NET_GIT_FETCH_WITH_CLI=true`
+
+  2. To specify a custom path to RUSTC if your rust toolchain components aren't laid out in
+
+     the way cargo expects by default.
+
+  
+
+  ```no_run
+
+  use cargo_metadata::{CargoOpt, MetadataCommand};
+
+  MetadataCommand::new()
+
+      .env("CARGO_NET_GIT_FETCH_WITH_CLI", "true")
+
+      .env("RUSTC", "/path/to/rustc")
+
+      // ...
+
+      ;
+
+  ```
 
 - <span id="metadatacommand-env-remove"></span>`fn env_remove<K: Into<OsString>>(&mut self, key: K) -> &mut MetadataCommand` — [`MetadataCommand`](#metadatacommand)
 
+  Arbitrary environment variables to remove when running `cargo`.  These will be merged into
+
+  the calling environment, overriding any which clash.
+
+  
+
+  Some examples of when you may want to use this:
+
+  - Removing inherited environment variables in build scripts that can cause an error
+
+    when calling `cargo metadata` (for example, when cross-compiling).
+
+  
+
+  ```no_run
+
+  use cargo_metadata::{CargoOpt, MetadataCommand};
+
+  MetadataCommand::new()
+
+      .env_remove("CARGO_ENCODED_RUSTFLAGS")
+
+      // ...
+
+      ;
+
+  ```
+
 - <span id="metadatacommand-verbose"></span>`fn verbose(&mut self, verbose: bool) -> &mut MetadataCommand` — [`MetadataCommand`](#metadatacommand)
+
+  Set whether to show stderr
 
 - <span id="metadatacommand-cargo-command"></span>`fn cargo_command(&self) -> Command`
 
+  Builds a command for `cargo metadata`.  This is the first
+
+  part of the work of `exec`.
+
 - <span id="metadatacommand-parse"></span>`fn parse<T: AsRef<str>>(data: T) -> Result<Metadata>` — [`Result`](errors/index.md#result), [`Metadata`](#metadata)
+
+  Parses `cargo metadata` output.  `data` must have been
+
+  produced by a command built with `cargo_command`.
 
 - <span id="metadatacommand-exec"></span>`fn exec(&self) -> Result<Metadata>` — [`Result`](errors/index.md#result), [`Metadata`](#metadata)
 
+  Runs configured `cargo metadata` and returns parsed `Metadata`.
+
 #### Trait Implementations
+
+##### `impl Any for MetadataCommand`
+
+- <span id="metadatacommand-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MetadataCommand`
+
+- <span id="metadatacommand-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MetadataCommand`
+
+- <span id="metadatacommand-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for MetadataCommand`
 
 - <span id="metadatacommand-clone"></span>`fn clone(&self) -> MetadataCommand` — [`MetadataCommand`](#metadatacommand)
 
+##### `impl CloneToUninit for MetadataCommand`
+
+- <span id="metadatacommand-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for MetadataCommand`
 
-- <span id="metadatacommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="metadatacommand-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MetadataCommand`
 
 - <span id="metadatacommand-default"></span>`fn default() -> MetadataCommand` — [`MetadataCommand`](#metadatacommand)
+
+##### `impl<T> From for MetadataCommand`
+
+- <span id="metadatacommand-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MetadataCommand`
+
+- <span id="metadatacommand-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for MetadataCommand`
+
+- <span id="metadatacommand-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="metadatacommand-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="metadatacommand-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MetadataCommand`
+
+- <span id="metadatacommand-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="metadatacommand-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MetadataCommand`
+
+- <span id="metadatacommand-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="metadatacommand-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -1916,15 +3239,31 @@ Dependencies can come in three kinds
 
 #### Trait Implementations
 
+##### `impl Any for DependencyKind`
+
+- <span id="dependencykind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DependencyKind`
+
+- <span id="dependencykind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DependencyKind`
+
+- <span id="dependencykind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DependencyKind`
 
 - <span id="dependencykind-clone"></span>`fn clone(&self) -> DependencyKind` — [`DependencyKind`](dependency/index.md#dependencykind)
+
+##### `impl CloneToUninit for DependencyKind`
+
+- <span id="dependencykind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DependencyKind`
 
 ##### `impl Debug for DependencyKind`
 
-- <span id="dependencykind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dependencykind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for DependencyKind`
 
@@ -1938,17 +3277,35 @@ Dependencies can come in three kinds
 
 ##### `impl Display for DependencyKind`
 
-- <span id="dependencykind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dependencykind-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for DependencyKind`
+
+##### `impl<T> From for DependencyKind`
+
+- <span id="dependencykind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DependencyKind`
 
 - <span id="dependencykind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DependencyKind`
+
+- <span id="dependencykind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for DependencyKind`
 
-- <span id="dependencykind-eq"></span>`fn eq(&self, other: &DependencyKind) -> bool` — [`DependencyKind`](dependency/index.md#dependencykind)
+- <span id="dependencykind-partialeq-eq"></span>`fn eq(&self, other: &DependencyKind) -> bool` — [`DependencyKind`](dependency/index.md#dependencykind)
 
 ##### `impl Serialize for DependencyKind`
 
@@ -1956,9 +3313,29 @@ Dependencies can come in three kinds
 
 ##### `impl StructuralPartialEq for DependencyKind`
 
+##### `impl ToOwned for DependencyKind`
+
+- <span id="dependencykind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dependencykind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dependencykind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DependencyKind`
 
-- <span id="dependencykind-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dependencykind-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DependencyKind`
+
+- <span id="dependencykind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dependencykind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DependencyKind`
+
+- <span id="dependencykind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dependencykind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Error`
 
@@ -1979,10 +3356,10 @@ enum Error {
 
 Error returned when executing/parsing `cargo metadata` fails.
 
-## Note about Backtraces
+# Note about Backtraces
 
 This error type does not contain backtraces, but each error variant
-comes from *one* specific place, so it's not really needed for the
+comes from _one_ specific place, so it's not really needed for the
 inside of this crate. If you need a backtrace down to, but not inside
 of, a failed call of `cargo_metadata` you can do one of multiple thinks:
 
@@ -1995,7 +3372,8 @@ of, a failed call of `cargo_metadata` you can do one of multiple thinks:
    really want to. (Either through foreign_links or by making it a field
    value of a `ErrorKind` variant).
 
-## Variants
+
+#### Variants
 
 - **`CargoMetadata`**
 
@@ -2021,23 +3399,65 @@ of, a failed call of `cargo_metadata` you can do one of multiple thinks:
 
   The output did not contain any json
 
-### Trait Implementations
+#### Trait Implementations
 
-#### `impl Debug for Error`
+##### `impl Any for Error`
 
-- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Error`
+
+- <span id="error-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Error`
+
+- <span id="error-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl Debug for Error`
+
+- <span id="error-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- <span id="error-fmt"></span>`fn fmt(&self, __formatter: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result`
+- <span id="error-display-fmt"></span>`fn fmt(&self, __formatter: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result`
 
 ##### `impl Error for Error`
 
-- <span id="error-source"></span>`fn source(&self) -> ::core::option::Option<&dyn ::thiserror::__private17::Error>`
+- <span id="error-error-source"></span>`fn source(&self) -> ::core::option::Option<&dyn ::thiserror::__private17::Error>`
+
+##### `impl<T> From for Error`
+
+- <span id="error-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Error`
+
+- <span id="error-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for Error`
 
-- <span id="error-to-string"></span>`fn to_string(&self) -> String`
+- <span id="error-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Error`
+
+- <span id="error-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="error-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Error`
+
+- <span id="error-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="error-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ArtifactDebuginfo`
 
@@ -2082,7 +3502,7 @@ The kind of debug information included in the artifact.
 - **`UnknownInt`**
 
   An unknown integer level.
-
+  
   This may be produced by a version of rustc in the future that has
   additional levels represented by an integer that are not known by this
   version of `cargo_metadata`.
@@ -2090,20 +3510,36 @@ The kind of debug information included in the artifact.
 - **`UnknownString`**
 
   An unknown string level.
-
+  
   This may be produced by a version of rustc in the future that has
   additional levels represented by a string that are not known by this
   version of `cargo_metadata`.
 
 #### Trait Implementations
 
+##### `impl Any for ArtifactDebuginfo`
+
+- <span id="artifactdebuginfo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ArtifactDebuginfo`
+
+- <span id="artifactdebuginfo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ArtifactDebuginfo`
+
+- <span id="artifactdebuginfo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ArtifactDebuginfo`
 
 - <span id="artifactdebuginfo-clone"></span>`fn clone(&self) -> ArtifactDebuginfo` — [`ArtifactDebuginfo`](messages/index.md#artifactdebuginfo)
 
+##### `impl CloneToUninit for ArtifactDebuginfo`
+
+- <span id="artifactdebuginfo-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for ArtifactDebuginfo`
 
-- <span id="artifactdebuginfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="artifactdebuginfo-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ArtifactDebuginfo`
 
@@ -2117,17 +3553,35 @@ The kind of debug information included in the artifact.
 
 ##### `impl Display for ArtifactDebuginfo`
 
-- <span id="artifactdebuginfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="artifactdebuginfo-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ArtifactDebuginfo`
+
+##### `impl<T> From for ArtifactDebuginfo`
+
+- <span id="artifactdebuginfo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for ArtifactDebuginfo`
 
 - <span id="artifactdebuginfo-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for ArtifactDebuginfo`
+
+- <span id="artifactdebuginfo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ArtifactDebuginfo`
 
-- <span id="artifactdebuginfo-eq"></span>`fn eq(&self, other: &ArtifactDebuginfo) -> bool` — [`ArtifactDebuginfo`](messages/index.md#artifactdebuginfo)
+- <span id="artifactdebuginfo-partialeq-eq"></span>`fn eq(&self, other: &ArtifactDebuginfo) -> bool` — [`ArtifactDebuginfo`](messages/index.md#artifactdebuginfo)
 
 ##### `impl Serialize for ArtifactDebuginfo`
 
@@ -2135,9 +3589,29 @@ The kind of debug information included in the artifact.
 
 ##### `impl StructuralPartialEq for ArtifactDebuginfo`
 
+##### `impl ToOwned for ArtifactDebuginfo`
+
+- <span id="artifactdebuginfo-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="artifactdebuginfo-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="artifactdebuginfo-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for ArtifactDebuginfo`
 
-- <span id="artifactdebuginfo-to-string"></span>`fn to_string(&self) -> String`
+- <span id="artifactdebuginfo-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for ArtifactDebuginfo`
+
+- <span id="artifactdebuginfo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="artifactdebuginfo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ArtifactDebuginfo`
+
+- <span id="artifactdebuginfo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="artifactdebuginfo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Message`
 
@@ -2172,7 +3646,7 @@ A cargo message
 - **`BuildFinished`**
 
   The build has finished.
-
+  
   This is emitted at the end of the build as the last message.
   Added in Rust 1.44.
 
@@ -2185,15 +3659,35 @@ A cargo message
 
 - <span id="message-parse-stream"></span>`fn parse_stream<R: Read>(input: R) -> MessageIter<R>` — [`MessageIter`](messages/index.md#messageiter)
 
+  Creates an iterator of Message from a Read outputting a stream of JSON
+
+  messages. For usage information, look at the top-level documentation.
+
 #### Trait Implementations
+
+##### `impl Any for Message`
+
+- <span id="message-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Message`
+
+- <span id="message-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Message`
+
+- <span id="message-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Message`
 
 - <span id="message-clone"></span>`fn clone(&self) -> Message` — [`Message`](messages/index.md#message)
 
+##### `impl CloneToUninit for Message`
+
+- <span id="message-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Message`
 
-- <span id="message-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="message-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Message`
 
@@ -2203,19 +3697,57 @@ A cargo message
 
 ##### `impl Eq for Message`
 
+##### `impl<T> From for Message`
+
+- <span id="message-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Message`
 
 - <span id="message-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Message`
+
+- <span id="message-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Message`
 
-- <span id="message-eq"></span>`fn eq(&self, other: &Message) -> bool` — [`Message`](messages/index.md#message)
+- <span id="message-partialeq-eq"></span>`fn eq(&self, other: &Message) -> bool` — [`Message`](messages/index.md#message)
 
 ##### `impl Serialize for Message`
 
 - <span id="message-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Message`
+
+##### `impl ToOwned for Message`
+
+- <span id="message-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="message-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="message-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Message`
+
+- <span id="message-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="message-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Message`
+
+- <span id="message-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="message-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TargetKind`
 
@@ -2298,13 +3830,29 @@ Other possible values may be added in the future.
 
 #### Trait Implementations
 
+##### `impl Any for TargetKind`
+
+- <span id="targetkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TargetKind`
+
+- <span id="targetkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TargetKind`
+
+- <span id="targetkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for TargetKind`
 
 - <span id="targetkind-clone"></span>`fn clone(&self) -> TargetKind` — [`TargetKind`](#targetkind)
 
+##### `impl CloneToUninit for TargetKind`
+
+- <span id="targetkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for TargetKind`
 
-- <span id="targetkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="targetkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for TargetKind`
 
@@ -2314,31 +3862,49 @@ Other possible values may be added in the future.
 
 ##### `impl Display for TargetKind`
 
-- <span id="targetkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="targetkind-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for TargetKind`
+
+##### `impl<T> From for TargetKind`
+
+- <span id="targetkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromStr for TargetKind`
 
 - <span id="targetkind-fromstr-type-err"></span>`type Err = Infallible`
 
-- <span id="targetkind-from-str"></span>`fn from_str(s: &str) -> std::result::Result<Self, <Self as >::Err>`
+- <span id="targetkind-fromstr-from-str"></span>`fn from_str(s: &str) -> std::result::Result<Self, <Self as >::Err>`
 
 ##### `impl Hash for TargetKind`
 
 - <span id="targetkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for TargetKind`
+
+- <span id="targetkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for TargetKind`
 
-- <span id="targetkind-cmp"></span>`fn cmp(&self, other: &TargetKind) -> cmp::Ordering` — [`TargetKind`](#targetkind)
+- <span id="targetkind-ord-cmp"></span>`fn cmp(&self, other: &TargetKind) -> cmp::Ordering` — [`TargetKind`](#targetkind)
 
 ##### `impl PartialEq for TargetKind`
 
-- <span id="targetkind-eq"></span>`fn eq(&self, other: &TargetKind) -> bool` — [`TargetKind`](#targetkind)
+- <span id="targetkind-partialeq-eq"></span>`fn eq(&self, other: &TargetKind) -> bool` — [`TargetKind`](#targetkind)
 
 ##### `impl PartialOrd for TargetKind`
 
-- <span id="targetkind-partial-cmp"></span>`fn partial_cmp(&self, other: &TargetKind) -> option::Option<cmp::Ordering>` — [`TargetKind`](#targetkind)
+- <span id="targetkind-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &TargetKind) -> option::Option<cmp::Ordering>` — [`TargetKind`](#targetkind)
 
 ##### `impl Serialize for TargetKind`
 
@@ -2346,9 +3912,29 @@ Other possible values may be added in the future.
 
 ##### `impl StructuralPartialEq for TargetKind`
 
+##### `impl ToOwned for TargetKind`
+
+- <span id="targetkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="targetkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="targetkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for TargetKind`
 
-- <span id="targetkind-to-string"></span>`fn to_string(&self) -> String`
+- <span id="targetkind-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for TargetKind`
+
+- <span id="targetkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="targetkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TargetKind`
+
+- <span id="targetkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="targetkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CrateType`
 
@@ -2411,13 +3997,29 @@ Other possible values may be added in the future.
 
 #### Trait Implementations
 
+##### `impl Any for CrateType`
+
+- <span id="cratetype-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CrateType`
+
+- <span id="cratetype-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CrateType`
+
+- <span id="cratetype-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for CrateType`
 
 - <span id="cratetype-clone"></span>`fn clone(&self) -> CrateType` — [`CrateType`](#cratetype)
 
+##### `impl CloneToUninit for CrateType`
+
+- <span id="cratetype-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for CrateType`
 
-- <span id="cratetype-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetype-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for CrateType`
 
@@ -2427,31 +4029,49 @@ Other possible values may be added in the future.
 
 ##### `impl Display for CrateType`
 
-- <span id="cratetype-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetype-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for CrateType`
+
+##### `impl<T> From for CrateType`
+
+- <span id="cratetype-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromStr for CrateType`
 
 - <span id="cratetype-fromstr-type-err"></span>`type Err = Infallible`
 
-- <span id="cratetype-from-str"></span>`fn from_str(s: &str) -> std::result::Result<Self, <Self as >::Err>`
+- <span id="cratetype-fromstr-from-str"></span>`fn from_str(s: &str) -> std::result::Result<Self, <Self as >::Err>`
 
 ##### `impl Hash for CrateType`
 
 - <span id="cratetype-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for CrateType`
+
+- <span id="cratetype-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for CrateType`
 
-- <span id="cratetype-cmp"></span>`fn cmp(&self, other: &CrateType) -> cmp::Ordering` — [`CrateType`](#cratetype)
+- <span id="cratetype-ord-cmp"></span>`fn cmp(&self, other: &CrateType) -> cmp::Ordering` — [`CrateType`](#cratetype)
 
 ##### `impl PartialEq for CrateType`
 
-- <span id="cratetype-eq"></span>`fn eq(&self, other: &CrateType) -> bool` — [`CrateType`](#cratetype)
+- <span id="cratetype-partialeq-eq"></span>`fn eq(&self, other: &CrateType) -> bool` — [`CrateType`](#cratetype)
 
 ##### `impl PartialOrd for CrateType`
 
-- <span id="cratetype-partial-cmp"></span>`fn partial_cmp(&self, other: &CrateType) -> option::Option<cmp::Ordering>` — [`CrateType`](#cratetype)
+- <span id="cratetype-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &CrateType) -> option::Option<cmp::Ordering>` — [`CrateType`](#cratetype)
 
 ##### `impl Serialize for CrateType`
 
@@ -2459,9 +4079,29 @@ Other possible values may be added in the future.
 
 ##### `impl StructuralPartialEq for CrateType`
 
+##### `impl ToOwned for CrateType`
+
+- <span id="cratetype-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="cratetype-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="cratetype-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for CrateType`
 
-- <span id="cratetype-to-string"></span>`fn to_string(&self) -> String`
+- <span id="cratetype-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for CrateType`
+
+- <span id="cratetype-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cratetype-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CrateType`
+
+- <span id="cratetype-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cratetype-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Edition`
 
@@ -2502,17 +4142,35 @@ As of writing this comment rust editions 2027 and 2030 are not actually a thing 
 
 - <span id="edition-as-str"></span>`fn as_str(&self) -> &'static str`
 
+  Return the string representation of the edition
+
 #### Trait Implementations
+
+##### `impl Any for Edition`
+
+- <span id="edition-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Edition`
+
+- <span id="edition-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Edition`
+
+- <span id="edition-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Edition`
 
 - <span id="edition-clone"></span>`fn clone(&self) -> Edition` — [`Edition`](#edition)
 
+##### `impl CloneToUninit for Edition`
+
+- <span id="edition-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Edition`
 
 ##### `impl Debug for Edition`
 
-- <span id="edition-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="edition-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Edition`
 
@@ -2526,25 +4184,43 @@ As of writing this comment rust editions 2027 and 2030 are not actually a thing 
 
 ##### `impl Display for Edition`
 
-- <span id="edition-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="edition-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Edition`
+
+##### `impl<T> From for Edition`
+
+- <span id="edition-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Edition`
 
 - <span id="edition-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Edition`
+
+- <span id="edition-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Edition`
 
-- <span id="edition-cmp"></span>`fn cmp(&self, other: &Edition) -> cmp::Ordering` — [`Edition`](#edition)
+- <span id="edition-ord-cmp"></span>`fn cmp(&self, other: &Edition) -> cmp::Ordering` — [`Edition`](#edition)
 
 ##### `impl PartialEq for Edition`
 
-- <span id="edition-eq"></span>`fn eq(&self, other: &Edition) -> bool` — [`Edition`](#edition)
+- <span id="edition-partialeq-eq"></span>`fn eq(&self, other: &Edition) -> bool` — [`Edition`](#edition)
 
 ##### `impl PartialOrd for Edition`
 
-- <span id="edition-partial-cmp"></span>`fn partial_cmp(&self, other: &Edition) -> option::Option<cmp::Ordering>` — [`Edition`](#edition)
+- <span id="edition-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Edition) -> option::Option<cmp::Ordering>` — [`Edition`](#edition)
 
 ##### `impl Serialize for Edition`
 
@@ -2552,9 +4228,29 @@ As of writing this comment rust editions 2027 and 2030 are not actually a thing 
 
 ##### `impl StructuralPartialEq for Edition`
 
+##### `impl ToOwned for Edition`
+
+- <span id="edition-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="edition-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="edition-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Edition`
 
-- <span id="edition-to-string"></span>`fn to_string(&self) -> String`
+- <span id="edition-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Edition`
+
+- <span id="edition-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="edition-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Edition`
+
+- <span id="edition-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="edition-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CargoOpt`
 
@@ -2586,13 +4282,67 @@ Cargo features flags
 
 #### Trait Implementations
 
+##### `impl Any for CargoOpt`
+
+- <span id="cargoopt-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CargoOpt`
+
+- <span id="cargoopt-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CargoOpt`
+
+- <span id="cargoopt-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for CargoOpt`
 
 - <span id="cargoopt-clone"></span>`fn clone(&self) -> CargoOpt` — [`CargoOpt`](#cargoopt)
 
+##### `impl CloneToUninit for CargoOpt`
+
+- <span id="cargoopt-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for CargoOpt`
 
-- <span id="cargoopt-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cargoopt-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CargoOpt`
+
+- <span id="cargoopt-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CargoOpt`
+
+- <span id="cargoopt-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for CargoOpt`
+
+- <span id="cargoopt-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="cargoopt-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="cargoopt-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CargoOpt`
+
+- <span id="cargoopt-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cargoopt-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CargoOpt`
+
+- <span id="cargoopt-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cargoopt-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 
@@ -2665,3 +4415,4 @@ Custom result type for `cargo_metadata::Error`
 ### `methods_target_is_kind!`
 
 *Defined in [`cargo_metadata-0.23.1/src/lib.rs:738-747`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L738-L747)*
+

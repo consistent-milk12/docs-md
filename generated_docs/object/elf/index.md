@@ -6031,15 +6031,31 @@ The header at the start of every 32-bit ELF file.
 
 #### Trait Implementations
 
+##### `impl Any for FileHeader32<E>`
+
+- <span id="fileheader32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FileHeader32<E>`
+
+- <span id="fileheader32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FileHeader32<E>`
+
+- <span id="fileheader32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for FileHeader32<E>`
 
 - <span id="fileheader32-clone"></span>`fn clone(&self) -> FileHeader32<E>` — [`FileHeader32`](#fileheader32)
+
+##### `impl CloneToUninit for FileHeader32<E>`
+
+- <span id="fileheader32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for FileHeader32<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for FileHeader32<E>`
 
-- <span id="fileheader32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fileheader32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Endian: endian::Endian> FileHeader for elf::FileHeader32<Endian>`
 
@@ -6067,39 +6083,77 @@ The header at the start of every 32-bit ELF file.
 
 - <span id="elffileheader32-fileheader-type-relr"></span>`type Relr = Relr32<Endian>`
 
-- <span id="elffileheader32-is-type-64"></span>`fn is_type_64(&self) -> bool`
+- <span id="elffileheader32-fileheader-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
-- <span id="elffileheader32-is-type-64-sized"></span>`fn is_type_64_sized() -> bool`
+- <span id="elffileheader32-fileheader-is-type-64-sized"></span>`fn is_type_64_sized() -> bool`
 
-- <span id="elffileheader32-e-ident"></span>`fn e_ident(&self) -> &elf::Ident` — [`Ident`](#ident)
+- <span id="elffileheader32-fileheader-e-ident"></span>`fn e_ident(&self) -> &elf::Ident` — [`Ident`](#ident)
 
-- <span id="elffileheader32-e-type"></span>`fn e_type(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader32-fileheader-e-type"></span>`fn e_type(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-machine"></span>`fn e_machine(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader32-fileheader-e-machine"></span>`fn e_machine(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-version"></span>`fn e_version(&self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader32-fileheader-e-version"></span>`fn e_version(&self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-entry"></span>`fn e_entry(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader32-fileheader-e-entry"></span>`fn e_entry(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-phoff"></span>`fn e_phoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader32-fileheader-e-phoff"></span>`fn e_phoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-shoff"></span>`fn e_shoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader32-fileheader-e-shoff"></span>`fn e_shoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-flags"></span>`fn e_flags(&self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader32-fileheader-e-flags"></span>`fn e_flags(&self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-ehsize"></span>`fn e_ehsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader32-fileheader-e-ehsize"></span>`fn e_ehsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-phentsize"></span>`fn e_phentsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader32-fileheader-e-phentsize"></span>`fn e_phentsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-phnum"></span>`fn e_phnum(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader32-fileheader-e-phnum"></span>`fn e_phnum(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-shentsize"></span>`fn e_shentsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader32-fileheader-e-shentsize"></span>`fn e_shentsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-shnum"></span>`fn e_shnum(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader32-fileheader-e-shnum"></span>`fn e_shnum(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-shstrndx"></span>`fn e_shstrndx(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader32-fileheader-e-shstrndx"></span>`fn e_shstrndx(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
+
+##### `impl<T> From for FileHeader32<E>`
+
+- <span id="fileheader32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FileHeader32<E>`
+
+- <span id="fileheader32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for FileHeader32<E>`
+
+##### `impl ToOwned for FileHeader32<E>`
+
+- <span id="fileheader32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="fileheader32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="fileheader32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FileHeader32<E>`
+
+- <span id="fileheader32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fileheader32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FileHeader32<E>`
+
+- <span id="fileheader32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fileheader32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FileHeader64<E: Endian>`
 
@@ -6198,15 +6252,31 @@ The header at the start of every 64-bit ELF file.
 
 #### Trait Implementations
 
+##### `impl Any for FileHeader64<E>`
+
+- <span id="fileheader64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FileHeader64<E>`
+
+- <span id="fileheader64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FileHeader64<E>`
+
+- <span id="fileheader64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for FileHeader64<E>`
 
 - <span id="fileheader64-clone"></span>`fn clone(&self) -> FileHeader64<E>` — [`FileHeader64`](#fileheader64)
+
+##### `impl CloneToUninit for FileHeader64<E>`
+
+- <span id="fileheader64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for FileHeader64<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for FileHeader64<E>`
 
-- <span id="fileheader64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fileheader64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Endian: endian::Endian> FileHeader for elf::FileHeader64<Endian>`
 
@@ -6234,39 +6304,77 @@ The header at the start of every 64-bit ELF file.
 
 - <span id="elffileheader64-fileheader-type-relr"></span>`type Relr = Relr64<Endian>`
 
-- <span id="elffileheader64-is-type-64"></span>`fn is_type_64(&self) -> bool`
+- <span id="elffileheader64-fileheader-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
-- <span id="elffileheader64-is-type-64-sized"></span>`fn is_type_64_sized() -> bool`
+- <span id="elffileheader64-fileheader-is-type-64-sized"></span>`fn is_type_64_sized() -> bool`
 
-- <span id="elffileheader64-e-ident"></span>`fn e_ident(&self) -> &elf::Ident` — [`Ident`](#ident)
+- <span id="elffileheader64-fileheader-e-ident"></span>`fn e_ident(&self) -> &elf::Ident` — [`Ident`](#ident)
 
-- <span id="elffileheader64-e-type"></span>`fn e_type(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader64-fileheader-e-type"></span>`fn e_type(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-machine"></span>`fn e_machine(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader64-fileheader-e-machine"></span>`fn e_machine(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-version"></span>`fn e_version(&self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader64-fileheader-e-version"></span>`fn e_version(&self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-entry"></span>`fn e_entry(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader64-fileheader-e-entry"></span>`fn e_entry(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-phoff"></span>`fn e_phoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader64-fileheader-e-phoff"></span>`fn e_phoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-shoff"></span>`fn e_shoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader64-fileheader-e-shoff"></span>`fn e_shoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-flags"></span>`fn e_flags(&self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader64-fileheader-e-flags"></span>`fn e_flags(&self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-ehsize"></span>`fn e_ehsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader64-fileheader-e-ehsize"></span>`fn e_ehsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-phentsize"></span>`fn e_phentsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader64-fileheader-e-phentsize"></span>`fn e_phentsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-phnum"></span>`fn e_phnum(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader64-fileheader-e-phnum"></span>`fn e_phnum(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-shentsize"></span>`fn e_shentsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader64-fileheader-e-shentsize"></span>`fn e_shentsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-shnum"></span>`fn e_shnum(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader64-fileheader-e-shnum"></span>`fn e_shnum(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-shstrndx"></span>`fn e_shstrndx(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
+- <span id="elffileheader64-fileheader-e-shstrndx"></span>`fn e_shstrndx(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
+
+##### `impl<T> From for FileHeader64<E>`
+
+- <span id="fileheader64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FileHeader64<E>`
+
+- <span id="fileheader64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for FileHeader64<E>`
+
+##### `impl ToOwned for FileHeader64<E>`
+
+- <span id="fileheader64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="fileheader64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="fileheader64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FileHeader64<E>`
+
+- <span id="fileheader64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fileheader64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FileHeader64<E>`
+
+- <span id="fileheader64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fileheader64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Ident`
 
@@ -6322,15 +6430,69 @@ Contained in the file header.
 
 #### Trait Implementations
 
+##### `impl Any for Ident`
+
+- <span id="ident-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Ident`
+
+- <span id="ident-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Ident`
+
+- <span id="ident-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Ident`
 
 - <span id="ident-clone"></span>`fn clone(&self) -> Ident` — [`Ident`](#ident)
+
+##### `impl CloneToUninit for Ident`
+
+- <span id="ident-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Ident`
 
 ##### `impl Debug for Ident`
 
-- <span id="ident-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ident-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Ident`
+
+- <span id="ident-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Ident`
+
+- <span id="ident-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Ident`
+
+- <span id="ident-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="ident-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="ident-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Ident`
+
+- <span id="ident-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ident-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Ident`
+
+- <span id="ident-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ident-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SectionHeader32<E: Endian>`
 
@@ -6403,15 +6565,49 @@ Section header.
 
 #### Trait Implementations
 
+##### `impl Any for SectionHeader32<E>`
+
+- <span id="sectionheader32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SectionHeader32<E>`
+
+- <span id="sectionheader32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SectionHeader32<E>`
+
+- <span id="sectionheader32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for SectionHeader32<E>`
 
 - <span id="sectionheader32-clone"></span>`fn clone(&self) -> SectionHeader32<E>` — [`SectionHeader32`](#sectionheader32)
+
+##### `impl CloneToUninit for SectionHeader32<E>`
+
+- <span id="sectionheader32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for SectionHeader32<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for SectionHeader32<E>`
 
-- <span id="sectionheader32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sectionheader32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SectionHeader32<E>`
+
+- <span id="sectionheader32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SectionHeader32<E>`
+
+- <span id="sectionheader32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for SectionHeader32<E>`
 
@@ -6423,25 +6619,45 @@ Section header.
 
 - <span id="elfsectionheader32-sectionheader-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfsectionheader32-sh-name"></span>`fn sh_name(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader32-sectionheader-sh-name"></span>`fn sh_name(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader32-sh-type"></span>`fn sh_type(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader32-sectionheader-sh-type"></span>`fn sh_type(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader32-sh-flags"></span>`fn sh_flags(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader32-sectionheader-sh-flags"></span>`fn sh_flags(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader32-sh-addr"></span>`fn sh_addr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader32-sectionheader-sh-addr"></span>`fn sh_addr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader32-sh-offset"></span>`fn sh_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader32-sectionheader-sh-offset"></span>`fn sh_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader32-sh-size"></span>`fn sh_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader32-sectionheader-sh-size"></span>`fn sh_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader32-sh-link"></span>`fn sh_link(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader32-sectionheader-sh-link"></span>`fn sh_link(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader32-sh-info"></span>`fn sh_info(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader32-sectionheader-sh-info"></span>`fn sh_info(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader32-sh-addralign"></span>`fn sh_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader32-sectionheader-sh-addralign"></span>`fn sh_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader32-sh-entsize"></span>`fn sh_entsize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader32-sectionheader-sh-entsize"></span>`fn sh_entsize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+
+##### `impl ToOwned for SectionHeader32<E>`
+
+- <span id="sectionheader32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sectionheader32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sectionheader32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SectionHeader32<E>`
+
+- <span id="sectionheader32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sectionheader32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SectionHeader32<E>`
+
+- <span id="sectionheader32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sectionheader32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SectionHeader64<E: Endian>`
 
@@ -6514,15 +6730,49 @@ Section header.
 
 #### Trait Implementations
 
+##### `impl Any for SectionHeader64<E>`
+
+- <span id="sectionheader64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SectionHeader64<E>`
+
+- <span id="sectionheader64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SectionHeader64<E>`
+
+- <span id="sectionheader64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for SectionHeader64<E>`
 
 - <span id="sectionheader64-clone"></span>`fn clone(&self) -> SectionHeader64<E>` — [`SectionHeader64`](#sectionheader64)
+
+##### `impl CloneToUninit for SectionHeader64<E>`
+
+- <span id="sectionheader64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for SectionHeader64<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for SectionHeader64<E>`
 
-- <span id="sectionheader64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sectionheader64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SectionHeader64<E>`
+
+- <span id="sectionheader64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SectionHeader64<E>`
+
+- <span id="sectionheader64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for SectionHeader64<E>`
 
@@ -6534,25 +6784,45 @@ Section header.
 
 - <span id="elfsectionheader64-sectionheader-type-elf"></span>`type Elf = FileHeader64<Endian>`
 
-- <span id="elfsectionheader64-sh-name"></span>`fn sh_name(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader64-sectionheader-sh-name"></span>`fn sh_name(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader64-sh-type"></span>`fn sh_type(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader64-sectionheader-sh-type"></span>`fn sh_type(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader64-sh-flags"></span>`fn sh_flags(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader64-sectionheader-sh-flags"></span>`fn sh_flags(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader64-sh-addr"></span>`fn sh_addr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader64-sectionheader-sh-addr"></span>`fn sh_addr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader64-sh-offset"></span>`fn sh_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader64-sectionheader-sh-offset"></span>`fn sh_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader64-sh-size"></span>`fn sh_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader64-sectionheader-sh-size"></span>`fn sh_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader64-sh-link"></span>`fn sh_link(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader64-sectionheader-sh-link"></span>`fn sh_link(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader64-sh-info"></span>`fn sh_info(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader64-sectionheader-sh-info"></span>`fn sh_info(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader64-sh-addralign"></span>`fn sh_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader64-sectionheader-sh-addralign"></span>`fn sh_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader64-sh-entsize"></span>`fn sh_entsize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+- <span id="elfsectionheader64-sectionheader-sh-entsize"></span>`fn sh_entsize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
+
+##### `impl ToOwned for SectionHeader64<E>`
+
+- <span id="sectionheader64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sectionheader64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sectionheader64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SectionHeader64<E>`
+
+- <span id="sectionheader64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sectionheader64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SectionHeader64<E>`
+
+- <span id="sectionheader64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sectionheader64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CompressionHeader32<E: Endian>`
 
@@ -6589,9 +6859,25 @@ changed in a future version.
 
 #### Trait Implementations
 
+##### `impl Any for CompressionHeader32<E>`
+
+- <span id="compressionheader32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CompressionHeader32<E>`
+
+- <span id="compressionheader32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CompressionHeader32<E>`
+
+- <span id="compressionheader32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for CompressionHeader32<E>`
 
 - <span id="compressionheader32-clone"></span>`fn clone(&self) -> CompressionHeader32<E>` — [`CompressionHeader32`](#compressionheader32)
+
+##### `impl CloneToUninit for CompressionHeader32<E>`
+
+- <span id="compressionheader32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<Endian: endian::Endian> CompressionHeader for elf::CompressionHeader32<Endian>`
 
@@ -6599,23 +6885,61 @@ changed in a future version.
 
 - <span id="elfcompressionheader32-compressionheader-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfcompressionheader32-ch-type"></span>`fn ch_type(&self, endian: <Self as >::Endian) -> u32` — [`CompressionHeader`](../read/elf/index.md#compressionheader)
+- <span id="elfcompressionheader32-compressionheader-ch-type"></span>`fn ch_type(&self, endian: <Self as >::Endian) -> u32` — [`CompressionHeader`](../read/elf/index.md#compressionheader)
 
-- <span id="elfcompressionheader32-ch-size"></span>`fn ch_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md#compressionheader)
+- <span id="elfcompressionheader32-compressionheader-ch-size"></span>`fn ch_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md#compressionheader)
 
-- <span id="elfcompressionheader32-ch-addralign"></span>`fn ch_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md#compressionheader)
+- <span id="elfcompressionheader32-compressionheader-ch-addralign"></span>`fn ch_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md#compressionheader)
 
 ##### `impl<E: marker::Copy + Endian> Copy for CompressionHeader32<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for CompressionHeader32<E>`
 
-- <span id="compressionheader32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="compressionheader32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: default::Default + Endian> Default for CompressionHeader32<E>`
 
 - <span id="compressionheader32-default"></span>`fn default() -> CompressionHeader32<E>` — [`CompressionHeader32`](#compressionheader32)
 
+##### `impl<T> From for CompressionHeader32<E>`
+
+- <span id="compressionheader32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CompressionHeader32<E>`
+
+- <span id="compressionheader32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<E: Endian> Pod for CompressionHeader32<E>`
+
+##### `impl ToOwned for CompressionHeader32<E>`
+
+- <span id="compressionheader32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="compressionheader32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="compressionheader32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CompressionHeader32<E>`
+
+- <span id="compressionheader32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="compressionheader32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CompressionHeader32<E>`
+
+- <span id="compressionheader32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="compressionheader32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CompressionHeader64<E: Endian>`
 
@@ -6657,9 +6981,25 @@ changed in a future version.
 
 #### Trait Implementations
 
+##### `impl Any for CompressionHeader64<E>`
+
+- <span id="compressionheader64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CompressionHeader64<E>`
+
+- <span id="compressionheader64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CompressionHeader64<E>`
+
+- <span id="compressionheader64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for CompressionHeader64<E>`
 
 - <span id="compressionheader64-clone"></span>`fn clone(&self) -> CompressionHeader64<E>` — [`CompressionHeader64`](#compressionheader64)
+
+##### `impl CloneToUninit for CompressionHeader64<E>`
+
+- <span id="compressionheader64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<Endian: endian::Endian> CompressionHeader for elf::CompressionHeader64<Endian>`
 
@@ -6667,23 +7007,61 @@ changed in a future version.
 
 - <span id="elfcompressionheader64-compressionheader-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfcompressionheader64-ch-type"></span>`fn ch_type(&self, endian: <Self as >::Endian) -> u32` — [`CompressionHeader`](../read/elf/index.md#compressionheader)
+- <span id="elfcompressionheader64-compressionheader-ch-type"></span>`fn ch_type(&self, endian: <Self as >::Endian) -> u32` — [`CompressionHeader`](../read/elf/index.md#compressionheader)
 
-- <span id="elfcompressionheader64-ch-size"></span>`fn ch_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md#compressionheader)
+- <span id="elfcompressionheader64-compressionheader-ch-size"></span>`fn ch_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md#compressionheader)
 
-- <span id="elfcompressionheader64-ch-addralign"></span>`fn ch_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md#compressionheader)
+- <span id="elfcompressionheader64-compressionheader-ch-addralign"></span>`fn ch_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md#compressionheader)
 
 ##### `impl<E: marker::Copy + Endian> Copy for CompressionHeader64<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for CompressionHeader64<E>`
 
-- <span id="compressionheader64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="compressionheader64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: default::Default + Endian> Default for CompressionHeader64<E>`
 
 - <span id="compressionheader64-default"></span>`fn default() -> CompressionHeader64<E>` — [`CompressionHeader64`](#compressionheader64)
 
+##### `impl<T> From for CompressionHeader64<E>`
+
+- <span id="compressionheader64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CompressionHeader64<E>`
+
+- <span id="compressionheader64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<E: Endian> Pod for CompressionHeader64<E>`
+
+##### `impl ToOwned for CompressionHeader64<E>`
+
+- <span id="compressionheader64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="compressionheader64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="compressionheader64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CompressionHeader64<E>`
+
+- <span id="compressionheader64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="compressionheader64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CompressionHeader64<E>`
+
+- <span id="compressionheader64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="compressionheader64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Sym32<E: Endian>`
 
@@ -6738,27 +7116,69 @@ Symbol table entry.
 
 - <span id="sym32-st-bind"></span>`fn st_bind(&self) -> u8`
 
+  Get the `st_bind` component of the `st_info` field.
+
 - <span id="sym32-st-type"></span>`fn st_type(&self) -> u8`
+
+  Get the `st_type` component of the `st_info` field.
 
 - <span id="sym32-set-st-info"></span>`fn set_st_info(&mut self, st_bind: u8, st_type: u8)`
 
+  Set the `st_info` field given the `st_bind` and `st_type` components.
+
 - <span id="sym32-st-visibility"></span>`fn st_visibility(&self) -> u8`
 
+  Get the `st_visibility` component of the `st_info` field.
+
 #### Trait Implementations
+
+##### `impl Any for Sym32<E>`
+
+- <span id="sym32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Sym32<E>`
+
+- <span id="sym32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Sym32<E>`
+
+- <span id="sym32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for Sym32<E>`
 
 - <span id="sym32-clone"></span>`fn clone(&self) -> Sym32<E>` — [`Sym32`](#sym32)
 
+##### `impl CloneToUninit for Sym32<E>`
+
+- <span id="sym32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for Sym32<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Sym32<E>`
 
-- <span id="sym32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sym32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: default::Default + Endian> Default for Sym32<E>`
 
 - <span id="sym32-default"></span>`fn default() -> Sym32<E>` — [`Sym32`](#sym32)
+
+##### `impl<T> From for Sym32<E>`
+
+- <span id="sym32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Sym32<E>`
+
+- <span id="sym32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Sym32<E>`
 
@@ -6768,23 +7188,43 @@ Symbol table entry.
 
 - <span id="elfsym32-sym-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfsym32-st-name"></span>`fn st_name(&self, endian: <Self as >::Endian) -> u32` — [`Sym`](../read/elf/index.md#sym)
+- <span id="elfsym32-sym-st-name"></span>`fn st_name(&self, endian: <Self as >::Endian) -> u32` — [`Sym`](../read/elf/index.md#sym)
 
-- <span id="elfsym32-st-info"></span>`fn st_info(&self) -> u8`
+- <span id="elfsym32-sym-st-info"></span>`fn st_info(&self) -> u8`
 
-- <span id="elfsym32-st-bind"></span>`fn st_bind(&self) -> u8`
+- <span id="elfsym32-sym-st-bind"></span>`fn st_bind(&self) -> u8`
 
-- <span id="elfsym32-st-type"></span>`fn st_type(&self) -> u8`
+- <span id="elfsym32-sym-st-type"></span>`fn st_type(&self) -> u8`
 
-- <span id="elfsym32-st-other"></span>`fn st_other(&self) -> u8`
+- <span id="elfsym32-sym-st-other"></span>`fn st_other(&self) -> u8`
 
-- <span id="elfsym32-st-visibility"></span>`fn st_visibility(&self) -> u8`
+- <span id="elfsym32-sym-st-visibility"></span>`fn st_visibility(&self) -> u8`
 
-- <span id="elfsym32-st-shndx"></span>`fn st_shndx(&self, endian: <Self as >::Endian) -> u16` — [`Sym`](../read/elf/index.md#sym)
+- <span id="elfsym32-sym-st-shndx"></span>`fn st_shndx(&self, endian: <Self as >::Endian) -> u16` — [`Sym`](../read/elf/index.md#sym)
 
-- <span id="elfsym32-st-value"></span>`fn st_value(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md#sym)
+- <span id="elfsym32-sym-st-value"></span>`fn st_value(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md#sym)
 
-- <span id="elfsym32-st-size"></span>`fn st_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md#sym)
+- <span id="elfsym32-sym-st-size"></span>`fn st_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md#sym)
+
+##### `impl ToOwned for Sym32<E>`
+
+- <span id="sym32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sym32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sym32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Sym32<E>`
+
+- <span id="sym32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sym32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Sym32<E>`
+
+- <span id="sym32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sym32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Sym64<E: Endian>`
 
@@ -6839,27 +7279,69 @@ Symbol table entry.
 
 - <span id="sym64-st-bind"></span>`fn st_bind(&self) -> u8`
 
+  Get the `st_bind` component of the `st_info` field.
+
 - <span id="sym64-st-type"></span>`fn st_type(&self) -> u8`
+
+  Get the `st_type` component of the `st_info` field.
 
 - <span id="sym64-set-st-info"></span>`fn set_st_info(&mut self, st_bind: u8, st_type: u8)`
 
+  Set the `st_info` field given the `st_bind` and `st_type` components.
+
 - <span id="sym64-st-visibility"></span>`fn st_visibility(&self) -> u8`
 
+  Get the `st_visibility` component of the `st_info` field.
+
 #### Trait Implementations
+
+##### `impl Any for Sym64<E>`
+
+- <span id="sym64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Sym64<E>`
+
+- <span id="sym64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Sym64<E>`
+
+- <span id="sym64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for Sym64<E>`
 
 - <span id="sym64-clone"></span>`fn clone(&self) -> Sym64<E>` — [`Sym64`](#sym64)
 
+##### `impl CloneToUninit for Sym64<E>`
+
+- <span id="sym64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for Sym64<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Sym64<E>`
 
-- <span id="sym64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sym64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: default::Default + Endian> Default for Sym64<E>`
 
 - <span id="sym64-default"></span>`fn default() -> Sym64<E>` — [`Sym64`](#sym64)
+
+##### `impl<T> From for Sym64<E>`
+
+- <span id="sym64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Sym64<E>`
+
+- <span id="sym64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Sym64<E>`
 
@@ -6869,23 +7351,43 @@ Symbol table entry.
 
 - <span id="elfsym64-sym-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfsym64-st-name"></span>`fn st_name(&self, endian: <Self as >::Endian) -> u32` — [`Sym`](../read/elf/index.md#sym)
+- <span id="elfsym64-sym-st-name"></span>`fn st_name(&self, endian: <Self as >::Endian) -> u32` — [`Sym`](../read/elf/index.md#sym)
 
-- <span id="elfsym64-st-info"></span>`fn st_info(&self) -> u8`
+- <span id="elfsym64-sym-st-info"></span>`fn st_info(&self) -> u8`
 
-- <span id="elfsym64-st-bind"></span>`fn st_bind(&self) -> u8`
+- <span id="elfsym64-sym-st-bind"></span>`fn st_bind(&self) -> u8`
 
-- <span id="elfsym64-st-type"></span>`fn st_type(&self) -> u8`
+- <span id="elfsym64-sym-st-type"></span>`fn st_type(&self) -> u8`
 
-- <span id="elfsym64-st-other"></span>`fn st_other(&self) -> u8`
+- <span id="elfsym64-sym-st-other"></span>`fn st_other(&self) -> u8`
 
-- <span id="elfsym64-st-visibility"></span>`fn st_visibility(&self) -> u8`
+- <span id="elfsym64-sym-st-visibility"></span>`fn st_visibility(&self) -> u8`
 
-- <span id="elfsym64-st-shndx"></span>`fn st_shndx(&self, endian: <Self as >::Endian) -> u16` — [`Sym`](../read/elf/index.md#sym)
+- <span id="elfsym64-sym-st-shndx"></span>`fn st_shndx(&self, endian: <Self as >::Endian) -> u16` — [`Sym`](../read/elf/index.md#sym)
 
-- <span id="elfsym64-st-value"></span>`fn st_value(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md#sym)
+- <span id="elfsym64-sym-st-value"></span>`fn st_value(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md#sym)
 
-- <span id="elfsym64-st-size"></span>`fn st_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md#sym)
+- <span id="elfsym64-sym-st-size"></span>`fn st_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md#sym)
+
+##### `impl ToOwned for Sym64<E>`
+
+- <span id="sym64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sym64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sym64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Sym64<E>`
+
+- <span id="sym64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sym64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Sym64<E>`
+
+- <span id="sym64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sym64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Syminfo32<E: Endian>`
 
@@ -6912,17 +7414,71 @@ Additional information about a `Sym32`.
 
 #### Trait Implementations
 
+##### `impl Any for Syminfo32<E>`
+
+- <span id="syminfo32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Syminfo32<E>`
+
+- <span id="syminfo32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Syminfo32<E>`
+
+- <span id="syminfo32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for Syminfo32<E>`
 
 - <span id="syminfo32-clone"></span>`fn clone(&self) -> Syminfo32<E>` — [`Syminfo32`](#syminfo32)
+
+##### `impl CloneToUninit for Syminfo32<E>`
+
+- <span id="syminfo32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for Syminfo32<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Syminfo32<E>`
 
-- <span id="syminfo32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="syminfo32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Syminfo32<E>`
+
+- <span id="syminfo32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Syminfo32<E>`
+
+- <span id="syminfo32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Syminfo32<E>`
+
+##### `impl ToOwned for Syminfo32<E>`
+
+- <span id="syminfo32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="syminfo32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="syminfo32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Syminfo32<E>`
+
+- <span id="syminfo32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="syminfo32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Syminfo32<E>`
+
+- <span id="syminfo32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="syminfo32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Syminfo64<E: Endian>`
 
@@ -6949,17 +7505,71 @@ Additional information about a `Sym64`.
 
 #### Trait Implementations
 
+##### `impl Any for Syminfo64<E>`
+
+- <span id="syminfo64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Syminfo64<E>`
+
+- <span id="syminfo64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Syminfo64<E>`
+
+- <span id="syminfo64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for Syminfo64<E>`
 
 - <span id="syminfo64-clone"></span>`fn clone(&self) -> Syminfo64<E>` — [`Syminfo64`](#syminfo64)
+
+##### `impl CloneToUninit for Syminfo64<E>`
+
+- <span id="syminfo64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for Syminfo64<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Syminfo64<E>`
 
-- <span id="syminfo64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="syminfo64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Syminfo64<E>`
+
+- <span id="syminfo64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Syminfo64<E>`
+
+- <span id="syminfo64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Syminfo64<E>`
+
+##### `impl ToOwned for Syminfo64<E>`
+
+- <span id="syminfo64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="syminfo64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="syminfo64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Syminfo64<E>`
+
+- <span id="syminfo64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="syminfo64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Syminfo64<E>`
+
+- <span id="syminfo64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="syminfo64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Rel32<E: Endian>`
 
@@ -6988,23 +7598,65 @@ Relocation table entry without explicit addend.
 
 - <span id="rel32-r-sym"></span>`fn r_sym(&self, endian: E) -> u32`
 
+  Get the `r_sym` component of the `r_info` field.
+
 - <span id="rel32-r-type"></span>`fn r_type(&self, endian: E) -> u32`
+
+  Get the `r_type` component of the `r_info` field.
 
 - <span id="rel32-r-info"></span>`fn r_info(endian: E, r_sym: u32, r_type: u8) -> U32<E>` — [`U32`](../index.md#u32)
 
+  Calculate the `r_info` field given the `r_sym` and `r_type` components.
+
 - <span id="rel32-set-r-info"></span>`fn set_r_info(&mut self, endian: E, r_sym: u32, r_type: u8)`
 
+  Set the `r_info` field given the `r_sym` and `r_type` components.
+
 #### Trait Implementations
+
+##### `impl Any for Rel32<E>`
+
+- <span id="rel32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Rel32<E>`
+
+- <span id="rel32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Rel32<E>`
+
+- <span id="rel32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for Rel32<E>`
 
 - <span id="rel32-clone"></span>`fn clone(&self) -> Rel32<E>` — [`Rel32`](#rel32)
 
+##### `impl CloneToUninit for Rel32<E>`
+
+- <span id="rel32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for Rel32<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Rel32<E>`
 
-- <span id="rel32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rel32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Rel32<E>`
+
+- <span id="rel32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Rel32<E>`
+
+- <span id="rel32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Rel32<E>`
 
@@ -7016,13 +7668,33 @@ Relocation table entry without explicit addend.
 
 - <span id="elfrel32-rel-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfrel32-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md#rel)
+- <span id="elfrel32-rel-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md#rel)
 
-- <span id="elfrel32-r-info"></span>`fn r_info(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md#rel)
+- <span id="elfrel32-rel-r-info"></span>`fn r_info(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md#rel)
 
-- <span id="elfrel32-r-sym"></span>`fn r_sym(&self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md#rel)
+- <span id="elfrel32-rel-r-sym"></span>`fn r_sym(&self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md#rel)
 
-- <span id="elfrel32-r-type"></span>`fn r_type(&self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md#rel)
+- <span id="elfrel32-rel-r-type"></span>`fn r_type(&self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md#rel)
+
+##### `impl ToOwned for Rel32<E>`
+
+- <span id="rel32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rel32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rel32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Rel32<E>`
+
+- <span id="rel32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rel32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Rel32<E>`
+
+- <span id="rel32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rel32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Rela32<E: Endian>`
 
@@ -7056,23 +7728,65 @@ Relocation table entry with explicit addend.
 
 - <span id="rela32-r-sym"></span>`fn r_sym(&self, endian: E) -> u32`
 
+  Get the `r_sym` component of the `r_info` field.
+
 - <span id="rela32-r-type"></span>`fn r_type(&self, endian: E) -> u32`
+
+  Get the `r_type` component of the `r_info` field.
 
 - <span id="rela32-r-info"></span>`fn r_info(endian: E, r_sym: u32, r_type: u8) -> U32<E>` — [`U32`](../index.md#u32)
 
+  Calculate the `r_info` field given the `r_sym` and `r_type` components.
+
 - <span id="rela32-set-r-info"></span>`fn set_r_info(&mut self, endian: E, r_sym: u32, r_type: u8)`
 
+  Set the `r_info` field given the `r_sym` and `r_type` components.
+
 #### Trait Implementations
+
+##### `impl Any for Rela32<E>`
+
+- <span id="rela32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Rela32<E>`
+
+- <span id="rela32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Rela32<E>`
+
+- <span id="rela32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for Rela32<E>`
 
 - <span id="rela32-clone"></span>`fn clone(&self) -> Rela32<E>` — [`Rela32`](#rela32)
 
+##### `impl CloneToUninit for Rela32<E>`
+
+- <span id="rela32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for Rela32<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Rela32<E>`
 
-- <span id="rela32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rela32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Rela32<E>`
+
+- <span id="rela32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Rela32<E>`
+
+- <span id="rela32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Rela32<E>`
 
@@ -7084,15 +7798,35 @@ Relocation table entry with explicit addend.
 
 - <span id="elfrela32-rela-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfrela32-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rela`](../read/elf/index.md#rela)
+- <span id="elfrela32-rela-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rela`](../read/elf/index.md#rela)
 
-- <span id="elfrela32-r-info"></span>`fn r_info(&self, endian: <Self as >::Endian, _is_mips64el: bool) -> <Self as >::Word` — [`Rela`](../read/elf/index.md#rela)
+- <span id="elfrela32-rela-r-info"></span>`fn r_info(&self, endian: <Self as >::Endian, _is_mips64el: bool) -> <Self as >::Word` — [`Rela`](../read/elf/index.md#rela)
 
-- <span id="elfrela32-r-addend"></span>`fn r_addend(&self, endian: <Self as >::Endian) -> <Self as >::Sword` — [`Rela`](../read/elf/index.md#rela)
+- <span id="elfrela32-rela-r-addend"></span>`fn r_addend(&self, endian: <Self as >::Endian) -> <Self as >::Sword` — [`Rela`](../read/elf/index.md#rela)
 
-- <span id="elfrela32-r-sym"></span>`fn r_sym(&self, endian: <Self as >::Endian, _is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md#rela)
+- <span id="elfrela32-rela-r-sym"></span>`fn r_sym(&self, endian: <Self as >::Endian, _is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md#rela)
 
-- <span id="elfrela32-r-type"></span>`fn r_type(&self, endian: <Self as >::Endian, _is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md#rela)
+- <span id="elfrela32-rela-r-type"></span>`fn r_type(&self, endian: <Self as >::Endian, _is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md#rela)
+
+##### `impl ToOwned for Rela32<E>`
+
+- <span id="rela32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rela32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rela32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Rela32<E>`
+
+- <span id="rela32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rela32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Rela32<E>`
+
+- <span id="rela32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rela32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Rel64<E: Endian>`
 
@@ -7121,23 +7855,65 @@ Relocation table entry without explicit addend.
 
 - <span id="rel64-r-sym"></span>`fn r_sym(&self, endian: E) -> u32`
 
+  Get the `r_sym` component of the `r_info` field.
+
 - <span id="rel64-r-type"></span>`fn r_type(&self, endian: E) -> u32`
+
+  Get the `r_type` component of the `r_info` field.
 
 - <span id="rel64-r-info"></span>`fn r_info(endian: E, r_sym: u32, r_type: u32) -> U64<E>` — [`U64`](../index.md#u64)
 
+  Calculate the `r_info` field given the `r_sym` and `r_type` components.
+
 - <span id="rel64-set-r-info"></span>`fn set_r_info(&mut self, endian: E, r_sym: u32, r_type: u32)`
 
+  Set the `r_info` field given the `r_sym` and `r_type` components.
+
 #### Trait Implementations
+
+##### `impl Any for Rel64<E>`
+
+- <span id="rel64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Rel64<E>`
+
+- <span id="rel64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Rel64<E>`
+
+- <span id="rel64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for Rel64<E>`
 
 - <span id="rel64-clone"></span>`fn clone(&self) -> Rel64<E>` — [`Rel64`](#rel64)
 
+##### `impl CloneToUninit for Rel64<E>`
+
+- <span id="rel64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for Rel64<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Rel64<E>`
 
-- <span id="rel64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rel64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Rel64<E>`
+
+- <span id="rel64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Rel64<E>`
+
+- <span id="rel64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Rel64<E>`
 
@@ -7149,13 +7925,33 @@ Relocation table entry without explicit addend.
 
 - <span id="elfrel64-rel-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfrel64-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md#rel)
+- <span id="elfrel64-rel-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md#rel)
 
-- <span id="elfrel64-r-info"></span>`fn r_info(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md#rel)
+- <span id="elfrel64-rel-r-info"></span>`fn r_info(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md#rel)
 
-- <span id="elfrel64-r-sym"></span>`fn r_sym(&self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md#rel)
+- <span id="elfrel64-rel-r-sym"></span>`fn r_sym(&self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md#rel)
 
-- <span id="elfrel64-r-type"></span>`fn r_type(&self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md#rel)
+- <span id="elfrel64-rel-r-type"></span>`fn r_type(&self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md#rel)
+
+##### `impl ToOwned for Rel64<E>`
+
+- <span id="rel64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rel64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rel64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Rel64<E>`
+
+- <span id="rel64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rel64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Rel64<E>`
+
+- <span id="rel64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rel64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Rela64<E: Endian>`
 
@@ -7191,23 +7987,65 @@ Relocation table entry with explicit addend.
 
 - <span id="rela64-r-sym"></span>`fn r_sym(&self, endian: E, is_mips64el: bool) -> u32`
 
+  Get the `r_sym` component of the `r_info` field.
+
 - <span id="rela64-r-type"></span>`fn r_type(&self, endian: E, is_mips64el: bool) -> u32`
+
+  Get the `r_type` component of the `r_info` field.
 
 - <span id="rela64-r-info"></span>`fn r_info(endian: E, is_mips64el: bool, r_sym: u32, r_type: u32) -> U64<E>` — [`U64`](../index.md#u64)
 
+  Calculate the `r_info` field given the `r_sym` and `r_type` components.
+
 - <span id="rela64-set-r-info"></span>`fn set_r_info(&mut self, endian: E, is_mips64el: bool, r_sym: u32, r_type: u32)`
 
+  Set the `r_info` field given the `r_sym` and `r_type` components.
+
 #### Trait Implementations
+
+##### `impl Any for Rela64<E>`
+
+- <span id="rela64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Rela64<E>`
+
+- <span id="rela64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Rela64<E>`
+
+- <span id="rela64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for Rela64<E>`
 
 - <span id="rela64-clone"></span>`fn clone(&self) -> Rela64<E>` — [`Rela64`](#rela64)
 
+##### `impl CloneToUninit for Rela64<E>`
+
+- <span id="rela64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for Rela64<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Rela64<E>`
 
-- <span id="rela64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rela64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Rela64<E>`
+
+- <span id="rela64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Rela64<E>`
+
+- <span id="rela64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Rela64<E>`
 
@@ -7219,15 +8057,35 @@ Relocation table entry with explicit addend.
 
 - <span id="elfrela64-rela-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfrela64-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rela`](../read/elf/index.md#rela)
+- <span id="elfrela64-rela-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rela`](../read/elf/index.md#rela)
 
-- <span id="elfrela64-r-info"></span>`fn r_info(&self, endian: <Self as >::Endian, is_mips64el: bool) -> <Self as >::Word` — [`Rela`](../read/elf/index.md#rela)
+- <span id="elfrela64-rela-r-info"></span>`fn r_info(&self, endian: <Self as >::Endian, is_mips64el: bool) -> <Self as >::Word` — [`Rela`](../read/elf/index.md#rela)
 
-- <span id="elfrela64-r-addend"></span>`fn r_addend(&self, endian: <Self as >::Endian) -> <Self as >::Sword` — [`Rela`](../read/elf/index.md#rela)
+- <span id="elfrela64-rela-r-addend"></span>`fn r_addend(&self, endian: <Self as >::Endian) -> <Self as >::Sword` — [`Rela`](../read/elf/index.md#rela)
 
-- <span id="elfrela64-r-sym"></span>`fn r_sym(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md#rela)
+- <span id="elfrela64-rela-r-sym"></span>`fn r_sym(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md#rela)
 
-- <span id="elfrela64-r-type"></span>`fn r_type(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md#rela)
+- <span id="elfrela64-rela-r-type"></span>`fn r_type(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md#rela)
+
+##### `impl ToOwned for Rela64<E>`
+
+- <span id="rela64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rela64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rela64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Rela64<E>`
+
+- <span id="rela64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rela64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Rela64<E>`
+
+- <span id="rela64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rela64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Relr32<E: Endian>`
 
@@ -7241,15 +8099,49 @@ struct Relr32<E: Endian>(crate::endian::U32<E>);
 
 #### Trait Implementations
 
+##### `impl Any for Relr32<E>`
+
+- <span id="relr32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Relr32<E>`
+
+- <span id="relr32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Relr32<E>`
+
+- <span id="relr32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for Relr32<E>`
 
 - <span id="relr32-clone"></span>`fn clone(&self) -> Relr32<E>` — [`Relr32`](#relr32)
+
+##### `impl CloneToUninit for Relr32<E>`
+
+- <span id="relr32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for Relr32<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Relr32<E>`
 
-- <span id="relr32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="relr32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Relr32<E>`
+
+- <span id="relr32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Relr32<E>`
+
+- <span id="relr32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Relr32<E>`
 
@@ -7261,9 +8153,29 @@ struct Relr32<E: Endian>(crate::endian::U32<E>);
 
 - <span id="elfrelr32-relr-const-count"></span>`const COUNT: u8`
 
-- <span id="elfrelr32-get"></span>`fn get(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Relr`](../read/elf/index.md#relr)
+- <span id="elfrelr32-relr-get"></span>`fn get(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Relr`](../read/elf/index.md#relr)
 
-- <span id="elfrelr32-next"></span>`fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>` — [`Relr`](../read/elf/index.md#relr)
+- <span id="elfrelr32-relr-next"></span>`fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>` — [`Relr`](../read/elf/index.md#relr)
+
+##### `impl ToOwned for Relr32<E>`
+
+- <span id="relr32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="relr32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="relr32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Relr32<E>`
+
+- <span id="relr32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="relr32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Relr32<E>`
+
+- <span id="relr32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="relr32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Relr64<E: Endian>`
 
@@ -7277,15 +8189,49 @@ struct Relr64<E: Endian>(crate::endian::U64<E>);
 
 #### Trait Implementations
 
+##### `impl Any for Relr64<E>`
+
+- <span id="relr64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Relr64<E>`
+
+- <span id="relr64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Relr64<E>`
+
+- <span id="relr64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for Relr64<E>`
 
 - <span id="relr64-clone"></span>`fn clone(&self) -> Relr64<E>` — [`Relr64`](#relr64)
+
+##### `impl CloneToUninit for Relr64<E>`
+
+- <span id="relr64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for Relr64<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Relr64<E>`
 
-- <span id="relr64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="relr64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Relr64<E>`
+
+- <span id="relr64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Relr64<E>`
+
+- <span id="relr64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Relr64<E>`
 
@@ -7297,9 +8243,29 @@ struct Relr64<E: Endian>(crate::endian::U64<E>);
 
 - <span id="elfrelr64-relr-const-count"></span>`const COUNT: u8`
 
-- <span id="elfrelr64-get"></span>`fn get(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Relr`](../read/elf/index.md#relr)
+- <span id="elfrelr64-relr-get"></span>`fn get(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Relr`](../read/elf/index.md#relr)
 
-- <span id="elfrelr64-next"></span>`fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>` — [`Relr`](../read/elf/index.md#relr)
+- <span id="elfrelr64-relr-next"></span>`fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>` — [`Relr`](../read/elf/index.md#relr)
+
+##### `impl ToOwned for Relr64<E>`
+
+- <span id="relr64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="relr64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="relr64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Relr64<E>`
+
+- <span id="relr64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="relr64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Relr64<E>`
+
+- <span id="relr64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="relr64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ProgramHeader32<E: Endian>`
 
@@ -7356,15 +8322,49 @@ Program segment header.
 
 #### Trait Implementations
 
+##### `impl Any for ProgramHeader32<E>`
+
+- <span id="programheader32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ProgramHeader32<E>`
+
+- <span id="programheader32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ProgramHeader32<E>`
+
+- <span id="programheader32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for ProgramHeader32<E>`
 
 - <span id="programheader32-clone"></span>`fn clone(&self) -> ProgramHeader32<E>` — [`ProgramHeader32`](#programheader32)
+
+##### `impl CloneToUninit for ProgramHeader32<E>`
+
+- <span id="programheader32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for ProgramHeader32<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for ProgramHeader32<E>`
 
-- <span id="programheader32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="programheader32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ProgramHeader32<E>`
+
+- <span id="programheader32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ProgramHeader32<E>`
+
+- <span id="programheader32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for ProgramHeader32<E>`
 
@@ -7376,21 +8376,41 @@ Program segment header.
 
 - <span id="elfprogramheader32-programheader-type-elf"></span>`type Elf = FileHeader32<Endian>`
 
-- <span id="elfprogramheader32-p-type"></span>`fn p_type(&self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md#programheader)
+- <span id="elfprogramheader32-programheader-p-type"></span>`fn p_type(&self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader32-p-flags"></span>`fn p_flags(&self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md#programheader)
+- <span id="elfprogramheader32-programheader-p-flags"></span>`fn p_flags(&self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader32-p-offset"></span>`fn p_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
+- <span id="elfprogramheader32-programheader-p-offset"></span>`fn p_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader32-p-vaddr"></span>`fn p_vaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
+- <span id="elfprogramheader32-programheader-p-vaddr"></span>`fn p_vaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader32-p-paddr"></span>`fn p_paddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
+- <span id="elfprogramheader32-programheader-p-paddr"></span>`fn p_paddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader32-p-filesz"></span>`fn p_filesz(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
+- <span id="elfprogramheader32-programheader-p-filesz"></span>`fn p_filesz(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader32-p-memsz"></span>`fn p_memsz(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
+- <span id="elfprogramheader32-programheader-p-memsz"></span>`fn p_memsz(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader32-p-align"></span>`fn p_align(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
+- <span id="elfprogramheader32-programheader-p-align"></span>`fn p_align(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
+
+##### `impl ToOwned for ProgramHeader32<E>`
+
+- <span id="programheader32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="programheader32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="programheader32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ProgramHeader32<E>`
+
+- <span id="programheader32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="programheader32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ProgramHeader32<E>`
+
+- <span id="programheader32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="programheader32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ProgramHeader64<E: Endian>`
 
@@ -7447,15 +8467,49 @@ Program segment header.
 
 #### Trait Implementations
 
+##### `impl Any for ProgramHeader64<E>`
+
+- <span id="programheader64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ProgramHeader64<E>`
+
+- <span id="programheader64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ProgramHeader64<E>`
+
+- <span id="programheader64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for ProgramHeader64<E>`
 
 - <span id="programheader64-clone"></span>`fn clone(&self) -> ProgramHeader64<E>` — [`ProgramHeader64`](#programheader64)
+
+##### `impl CloneToUninit for ProgramHeader64<E>`
+
+- <span id="programheader64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for ProgramHeader64<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for ProgramHeader64<E>`
 
-- <span id="programheader64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="programheader64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ProgramHeader64<E>`
+
+- <span id="programheader64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ProgramHeader64<E>`
+
+- <span id="programheader64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for ProgramHeader64<E>`
 
@@ -7467,21 +8521,41 @@ Program segment header.
 
 - <span id="elfprogramheader64-programheader-type-elf"></span>`type Elf = FileHeader64<Endian>`
 
-- <span id="elfprogramheader64-p-type"></span>`fn p_type(&self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md#programheader)
+- <span id="elfprogramheader64-programheader-p-type"></span>`fn p_type(&self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader64-p-flags"></span>`fn p_flags(&self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md#programheader)
+- <span id="elfprogramheader64-programheader-p-flags"></span>`fn p_flags(&self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader64-p-offset"></span>`fn p_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
+- <span id="elfprogramheader64-programheader-p-offset"></span>`fn p_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader64-p-vaddr"></span>`fn p_vaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
+- <span id="elfprogramheader64-programheader-p-vaddr"></span>`fn p_vaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader64-p-paddr"></span>`fn p_paddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
+- <span id="elfprogramheader64-programheader-p-paddr"></span>`fn p_paddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader64-p-filesz"></span>`fn p_filesz(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
+- <span id="elfprogramheader64-programheader-p-filesz"></span>`fn p_filesz(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader64-p-memsz"></span>`fn p_memsz(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
+- <span id="elfprogramheader64-programheader-p-memsz"></span>`fn p_memsz(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader64-p-align"></span>`fn p_align(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
+- <span id="elfprogramheader64-programheader-p-align"></span>`fn p_align(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
+
+##### `impl ToOwned for ProgramHeader64<E>`
+
+- <span id="programheader64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="programheader64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="programheader64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ProgramHeader64<E>`
+
+- <span id="programheader64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="programheader64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ProgramHeader64<E>`
+
+- <span id="programheader64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="programheader64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Dyn32<E: Endian>`
 
@@ -7508,15 +8582,31 @@ Dynamic section entry.
 
 #### Trait Implementations
 
+##### `impl Any for Dyn32<E>`
+
+- <span id="dyn32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Dyn32<E>`
+
+- <span id="dyn32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Dyn32<E>`
+
+- <span id="dyn32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for Dyn32<E>`
 
 - <span id="dyn32-clone"></span>`fn clone(&self) -> Dyn32<E>` — [`Dyn32`](#dyn32)
+
+##### `impl CloneToUninit for Dyn32<E>`
+
+- <span id="dyn32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for Dyn32<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Dyn32<E>`
 
-- <span id="dyn32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyn32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Endian: endian::Endian> Dyn for elf::Dyn32<Endian>`
 
@@ -7524,11 +8614,49 @@ Dynamic section entry.
 
 - <span id="elfdyn32-dyn-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfdyn32-d-tag"></span>`fn d_tag(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md#dyn)
+- <span id="elfdyn32-dyn-d-tag"></span>`fn d_tag(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md#dyn)
 
-- <span id="elfdyn32-d-val"></span>`fn d_val(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md#dyn)
+- <span id="elfdyn32-dyn-d-val"></span>`fn d_val(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md#dyn)
+
+##### `impl<T> From for Dyn32<E>`
+
+- <span id="dyn32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Dyn32<E>`
+
+- <span id="dyn32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Dyn32<E>`
+
+##### `impl ToOwned for Dyn32<E>`
+
+- <span id="dyn32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyn32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyn32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Dyn32<E>`
+
+- <span id="dyn32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyn32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Dyn32<E>`
+
+- <span id="dyn32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyn32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Dyn64<E: Endian>`
 
@@ -7555,15 +8683,31 @@ Dynamic section entry.
 
 #### Trait Implementations
 
+##### `impl Any for Dyn64<E>`
+
+- <span id="dyn64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Dyn64<E>`
+
+- <span id="dyn64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Dyn64<E>`
+
+- <span id="dyn64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for Dyn64<E>`
 
 - <span id="dyn64-clone"></span>`fn clone(&self) -> Dyn64<E>` — [`Dyn64`](#dyn64)
+
+##### `impl CloneToUninit for Dyn64<E>`
+
+- <span id="dyn64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for Dyn64<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Dyn64<E>`
 
-- <span id="dyn64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyn64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Endian: endian::Endian> Dyn for elf::Dyn64<Endian>`
 
@@ -7571,11 +8715,49 @@ Dynamic section entry.
 
 - <span id="elfdyn64-dyn-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfdyn64-d-tag"></span>`fn d_tag(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md#dyn)
+- <span id="elfdyn64-dyn-d-tag"></span>`fn d_tag(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md#dyn)
 
-- <span id="elfdyn64-d-val"></span>`fn d_val(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md#dyn)
+- <span id="elfdyn64-dyn-d-val"></span>`fn d_val(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md#dyn)
+
+##### `impl<T> From for Dyn64<E>`
+
+- <span id="dyn64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Dyn64<E>`
+
+- <span id="dyn64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Dyn64<E>`
+
+##### `impl ToOwned for Dyn64<E>`
+
+- <span id="dyn64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyn64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyn64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Dyn64<E>`
+
+- <span id="dyn64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyn64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Dyn64<E>`
+
+- <span id="dyn64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyn64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Versym<E: Endian>`
 
@@ -7589,17 +8771,71 @@ Version symbol information
 
 #### Trait Implementations
 
+##### `impl Any for Versym<E>`
+
+- <span id="versym-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Versym<E>`
+
+- <span id="versym-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Versym<E>`
+
+- <span id="versym-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for Versym<E>`
 
 - <span id="versym-clone"></span>`fn clone(&self) -> Versym<E>` — [`Versym`](#versym)
+
+##### `impl CloneToUninit for Versym<E>`
+
+- <span id="versym-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for Versym<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Versym<E>`
 
-- <span id="versym-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="versym-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Versym<E>`
+
+- <span id="versym-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Versym<E>`
+
+- <span id="versym-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Versym<E>`
+
+##### `impl ToOwned for Versym<E>`
+
+- <span id="versym-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="versym-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="versym-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Versym<E>`
+
+- <span id="versym-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="versym-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Versym<E>`
+
+- <span id="versym-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="versym-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Verdef<E: Endian>`
 
@@ -7651,17 +8887,71 @@ Version definition sections
 
 #### Trait Implementations
 
+##### `impl Any for Verdef<E>`
+
+- <span id="verdef-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Verdef<E>`
+
+- <span id="verdef-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Verdef<E>`
+
+- <span id="verdef-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for Verdef<E>`
 
 - <span id="verdef-clone"></span>`fn clone(&self) -> Verdef<E>` — [`Verdef`](#verdef)
+
+##### `impl CloneToUninit for Verdef<E>`
+
+- <span id="verdef-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for Verdef<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Verdef<E>`
 
-- <span id="verdef-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="verdef-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Verdef<E>`
+
+- <span id="verdef-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Verdef<E>`
+
+- <span id="verdef-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Verdef<E>`
+
+##### `impl ToOwned for Verdef<E>`
+
+- <span id="verdef-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="verdef-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="verdef-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Verdef<E>`
+
+- <span id="verdef-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="verdef-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Verdef<E>`
+
+- <span id="verdef-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="verdef-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Verdaux<E: Endian>`
 
@@ -7690,19 +8980,75 @@ Auxiliary version information.
 
 - <span id="elfverdaux-name"></span>`fn name<'data, R: ReadRef<'data>>(&self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md#stringtable), [`Result`](../index.md#result)
 
+  Parse the version name from the string table.
+
 #### Trait Implementations
+
+##### `impl Any for Verdaux<E>`
+
+- <span id="verdaux-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Verdaux<E>`
+
+- <span id="verdaux-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Verdaux<E>`
+
+- <span id="verdaux-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for Verdaux<E>`
 
 - <span id="verdaux-clone"></span>`fn clone(&self) -> Verdaux<E>` — [`Verdaux`](#verdaux)
 
+##### `impl CloneToUninit for Verdaux<E>`
+
+- <span id="verdaux-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for Verdaux<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Verdaux<E>`
 
-- <span id="verdaux-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="verdaux-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Verdaux<E>`
+
+- <span id="verdaux-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Verdaux<E>`
+
+- <span id="verdaux-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Verdaux<E>`
+
+##### `impl ToOwned for Verdaux<E>`
+
+- <span id="verdaux-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="verdaux-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="verdaux-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Verdaux<E>`
+
+- <span id="verdaux-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="verdaux-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Verdaux<E>`
+
+- <span id="verdaux-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="verdaux-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Verneed<E: Endian>`
 
@@ -7746,19 +9092,75 @@ Version dependency.
 
 - <span id="elfverneed-file"></span>`fn file<'data, R: ReadRef<'data>>(&self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md#stringtable), [`Result`](../index.md#result)
 
+  Parse the file from the string table.
+
 #### Trait Implementations
+
+##### `impl Any for Verneed<E>`
+
+- <span id="verneed-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Verneed<E>`
+
+- <span id="verneed-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Verneed<E>`
+
+- <span id="verneed-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for Verneed<E>`
 
 - <span id="verneed-clone"></span>`fn clone(&self) -> Verneed<E>` — [`Verneed`](#verneed)
 
+##### `impl CloneToUninit for Verneed<E>`
+
+- <span id="verneed-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for Verneed<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Verneed<E>`
 
-- <span id="verneed-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="verneed-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Verneed<E>`
+
+- <span id="verneed-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Verneed<E>`
+
+- <span id="verneed-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Verneed<E>`
+
+##### `impl ToOwned for Verneed<E>`
+
+- <span id="verneed-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="verneed-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="verneed-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Verneed<E>`
+
+- <span id="verneed-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="verneed-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Verneed<E>`
+
+- <span id="verneed-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="verneed-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Vernaux<E: Endian>`
 
@@ -7802,19 +9204,75 @@ Auxiliary needed version information.
 
 - <span id="elfvernaux-name"></span>`fn name<'data, R: ReadRef<'data>>(&self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md#stringtable), [`Result`](../index.md#result)
 
+  Parse the version name from the string table.
+
 #### Trait Implementations
+
+##### `impl Any for Vernaux<E>`
+
+- <span id="vernaux-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Vernaux<E>`
+
+- <span id="vernaux-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Vernaux<E>`
+
+- <span id="vernaux-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for Vernaux<E>`
 
 - <span id="vernaux-clone"></span>`fn clone(&self) -> Vernaux<E>` — [`Vernaux`](#vernaux)
 
+##### `impl CloneToUninit for Vernaux<E>`
+
+- <span id="vernaux-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for Vernaux<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for Vernaux<E>`
 
-- <span id="vernaux-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="vernaux-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Vernaux<E>`
+
+- <span id="vernaux-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Vernaux<E>`
+
+- <span id="vernaux-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for Vernaux<E>`
+
+##### `impl ToOwned for Vernaux<E>`
+
+- <span id="vernaux-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="vernaux-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="vernaux-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Vernaux<E>`
+
+- <span id="vernaux-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="vernaux-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Vernaux<E>`
+
+- <span id="vernaux-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="vernaux-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `NoteHeader32<E: Endian>`
 
@@ -7855,27 +9313,81 @@ A note consists of a header followed by a variable length name and descriptor.
 
 #### Trait Implementations
 
+##### `impl Any for NoteHeader32<E>`
+
+- <span id="noteheader32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for NoteHeader32<E>`
+
+- <span id="noteheader32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for NoteHeader32<E>`
+
+- <span id="noteheader32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for NoteHeader32<E>`
 
 - <span id="noteheader32-clone"></span>`fn clone(&self) -> NoteHeader32<E>` — [`NoteHeader32`](#noteheader32)
+
+##### `impl CloneToUninit for NoteHeader32<E>`
+
+- <span id="noteheader32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for NoteHeader32<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for NoteHeader32<E>`
 
-- <span id="noteheader32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="noteheader32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for NoteHeader32<E>`
+
+- <span id="noteheader32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for NoteHeader32<E>`
+
+- <span id="noteheader32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Endian: endian::Endian> NoteHeader for elf::NoteHeader32<Endian>`
 
 - <span id="elfnoteheader32-noteheader-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfnoteheader32-n-namesz"></span>`fn n_namesz(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md#noteheader)
+- <span id="elfnoteheader32-noteheader-n-namesz"></span>`fn n_namesz(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md#noteheader)
 
-- <span id="elfnoteheader32-n-descsz"></span>`fn n_descsz(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md#noteheader)
+- <span id="elfnoteheader32-noteheader-n-descsz"></span>`fn n_descsz(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md#noteheader)
 
-- <span id="elfnoteheader32-n-type"></span>`fn n_type(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md#noteheader)
+- <span id="elfnoteheader32-noteheader-n-type"></span>`fn n_type(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md#noteheader)
 
 ##### `impl<E: Endian> Pod for NoteHeader32<E>`
+
+##### `impl ToOwned for NoteHeader32<E>`
+
+- <span id="noteheader32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="noteheader32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="noteheader32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for NoteHeader32<E>`
+
+- <span id="noteheader32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="noteheader32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for NoteHeader32<E>`
+
+- <span id="noteheader32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="noteheader32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `NoteHeader64<E: Endian>`
 
@@ -7914,27 +9426,81 @@ Note section entry header.
 
 #### Trait Implementations
 
+##### `impl Any for NoteHeader64<E>`
+
+- <span id="noteheader64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for NoteHeader64<E>`
+
+- <span id="noteheader64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for NoteHeader64<E>`
+
+- <span id="noteheader64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for NoteHeader64<E>`
 
 - <span id="noteheader64-clone"></span>`fn clone(&self) -> NoteHeader64<E>` — [`NoteHeader64`](#noteheader64)
+
+##### `impl CloneToUninit for NoteHeader64<E>`
+
+- <span id="noteheader64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for NoteHeader64<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for NoteHeader64<E>`
 
-- <span id="noteheader64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="noteheader64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for NoteHeader64<E>`
+
+- <span id="noteheader64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for NoteHeader64<E>`
+
+- <span id="noteheader64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Endian: endian::Endian> NoteHeader for elf::NoteHeader64<Endian>`
 
 - <span id="elfnoteheader64-noteheader-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfnoteheader64-n-namesz"></span>`fn n_namesz(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md#noteheader)
+- <span id="elfnoteheader64-noteheader-n-namesz"></span>`fn n_namesz(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md#noteheader)
 
-- <span id="elfnoteheader64-n-descsz"></span>`fn n_descsz(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md#noteheader)
+- <span id="elfnoteheader64-noteheader-n-descsz"></span>`fn n_descsz(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md#noteheader)
 
-- <span id="elfnoteheader64-n-type"></span>`fn n_type(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md#noteheader)
+- <span id="elfnoteheader64-noteheader-n-type"></span>`fn n_type(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md#noteheader)
 
 ##### `impl<E: Endian> Pod for NoteHeader64<E>`
+
+##### `impl ToOwned for NoteHeader64<E>`
+
+- <span id="noteheader64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="noteheader64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="noteheader64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for NoteHeader64<E>`
+
+- <span id="noteheader64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="noteheader64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for NoteHeader64<E>`
+
+- <span id="noteheader64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="noteheader64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `HashHeader<E: Endian>`
 
@@ -7961,17 +9527,71 @@ Header of `SHT_HASH` section.
 
 #### Trait Implementations
 
+##### `impl Any for HashHeader<E>`
+
+- <span id="hashheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HashHeader<E>`
+
+- <span id="hashheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HashHeader<E>`
+
+- <span id="hashheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for HashHeader<E>`
 
 - <span id="hashheader-clone"></span>`fn clone(&self) -> HashHeader<E>` — [`HashHeader`](#hashheader)
+
+##### `impl CloneToUninit for HashHeader<E>`
+
+- <span id="hashheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for HashHeader<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for HashHeader<E>`
 
-- <span id="hashheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hashheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for HashHeader<E>`
+
+- <span id="hashheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for HashHeader<E>`
+
+- <span id="hashheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for HashHeader<E>`
+
+##### `impl ToOwned for HashHeader<E>`
+
+- <span id="hashheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="hashheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="hashheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for HashHeader<E>`
+
+- <span id="hashheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="hashheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HashHeader<E>`
+
+- <span id="hashheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="hashheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `GnuHashHeader<E: Endian>`
 
@@ -8010,17 +9630,71 @@ Header of `SHT_GNU_HASH` section.
 
 #### Trait Implementations
 
+##### `impl Any for GnuHashHeader<E>`
+
+- <span id="gnuhashheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for GnuHashHeader<E>`
+
+- <span id="gnuhashheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for GnuHashHeader<E>`
+
+- <span id="gnuhashheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for GnuHashHeader<E>`
 
 - <span id="gnuhashheader-clone"></span>`fn clone(&self) -> GnuHashHeader<E>` — [`GnuHashHeader`](#gnuhashheader)
+
+##### `impl CloneToUninit for GnuHashHeader<E>`
+
+- <span id="gnuhashheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for GnuHashHeader<E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for GnuHashHeader<E>`
 
-- <span id="gnuhashheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="gnuhashheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for GnuHashHeader<E>`
+
+- <span id="gnuhashheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for GnuHashHeader<E>`
+
+- <span id="gnuhashheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E: Endian> Pod for GnuHashHeader<E>`
+
+##### `impl ToOwned for GnuHashHeader<E>`
+
+- <span id="gnuhashheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="gnuhashheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="gnuhashheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for GnuHashHeader<E>`
+
+- <span id="gnuhashheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="gnuhashheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for GnuHashHeader<E>`
+
+- <span id="gnuhashheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="gnuhashheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

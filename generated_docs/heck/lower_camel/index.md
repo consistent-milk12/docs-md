@@ -21,7 +21,7 @@ struct AsLowerCamelCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/lower_camel.rs:44`](../../../.source_1765521767/heck-0.5.0/src/lower_camel.rs#L44)*
 
-This wrapper performs a lower camel case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
+This wrapper performs a lower camel case conversion in [`fmt::Display`](../../miette_derive/index.md).
 
 ## Example:
 
@@ -34,13 +34,55 @@ assert_eq!(format!("{}", AsLowerCamelCase(sentence)), "itIsWeWhoBuiltThesePalace
 
 #### Trait Implementations
 
+##### `impl<T> Any for AsLowerCamelCase<T>`
+
+- <span id="aslowercamelcase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AsLowerCamelCase<T>`
+
+- <span id="aslowercamelcase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AsLowerCamelCase<T>`
+
+- <span id="aslowercamelcase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: AsRef<str>> Display for AsLowerCamelCase<T>`
 
-- <span id="aslowercamelcase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="aslowercamelcase-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AsLowerCamelCase<T>`
+
+- <span id="aslowercamelcase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for AsLowerCamelCase<T>`
+
+- <span id="aslowercamelcase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for AsLowerCamelCase<T>`
 
-- <span id="aslowercamelcase-to-string"></span>`fn to_string(&self) -> String`
+- <span id="aslowercamelcase-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for AsLowerCamelCase<T>`
+
+- <span id="aslowercamelcase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="aslowercamelcase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for AsLowerCamelCase<T>`
+
+- <span id="aslowercamelcase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="aslowercamelcase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

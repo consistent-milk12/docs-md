@@ -31,7 +31,49 @@ struct Adhoc;
 
 #### Trait Implementations
 
+##### `impl Any for Adhoc`
+
+- <span id="adhoc-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Adhoc`
+
+- <span id="adhoc-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Adhoc`
+
+- <span id="adhoc-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Adhoc`
+
+- <span id="adhoc-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Adhoc`
+
+- <span id="adhoc-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for Adhoc`
+
+##### `impl<U> TryFrom for Adhoc`
+
+- <span id="adhoc-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="adhoc-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Adhoc`
+
+- <span id="adhoc-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="adhoc-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Trait`
 
@@ -47,7 +89,49 @@ struct Trait;
 
 #### Trait Implementations
 
+##### `impl Any for Trait`
+
+- <span id="trait-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Trait`
+
+- <span id="trait-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Trait`
+
+- <span id="trait-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Trait`
+
+- <span id="trait-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Trait`
+
+- <span id="trait-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for Trait`
+
+##### `impl<U> TryFrom for Trait`
+
+- <span id="trait-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="trait-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Trait`
+
+- <span id="trait-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="trait-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Boxed`
 
@@ -63,7 +147,49 @@ struct Boxed;
 
 #### Trait Implementations
 
+##### `impl Any for Boxed`
+
+- <span id="boxed-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Boxed`
+
+- <span id="boxed-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Boxed`
+
+- <span id="boxed-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Boxed`
+
+- <span id="boxed-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Boxed`
+
+- <span id="boxed-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for Boxed`
+
+##### `impl<U> TryFrom for Boxed`
+
+- <span id="boxed-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="boxed-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Boxed`
+
+- <span id="boxed-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="boxed-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

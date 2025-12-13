@@ -96,29 +96,89 @@ A CPU architecture.
 
 - <span id="architecture-address-size"></span>`fn address_size(self) -> Option<AddressSize>` — [`AddressSize`](../index.md#addresssize)
 
+  The size of an address value for this architecture.
+
+  
+
+  Returns `None` for unknown architectures.
+
 #### Trait Implementations
+
+##### `impl Any for Architecture`
+
+- <span id="architecture-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Architecture`
+
+- <span id="architecture-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Architecture`
+
+- <span id="architecture-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Architecture`
 
 - <span id="architecture-clone"></span>`fn clone(&self) -> Architecture` — [`Architecture`](../index.md#architecture)
 
+##### `impl CloneToUninit for Architecture`
+
+- <span id="architecture-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Architecture`
 
 ##### `impl Debug for Architecture`
 
-- <span id="architecture-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="architecture-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Architecture`
+
+##### `impl<T> From for Architecture`
+
+- <span id="architecture-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Architecture`
 
 - <span id="architecture-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Architecture`
+
+- <span id="architecture-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Architecture`
 
-- <span id="architecture-eq"></span>`fn eq(&self, other: &Architecture) -> bool` — [`Architecture`](../index.md#architecture)
+- <span id="architecture-partialeq-eq"></span>`fn eq(&self, other: &Architecture) -> bool` — [`Architecture`](../index.md#architecture)
 
 ##### `impl StructuralPartialEq for Architecture`
+
+##### `impl ToOwned for Architecture`
+
+- <span id="architecture-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="architecture-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="architecture-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Architecture`
+
+- <span id="architecture-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="architecture-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Architecture`
+
+- <span id="architecture-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="architecture-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SubArchitecture`
 
@@ -135,27 +195,81 @@ A CPU sub-architecture.
 
 #### Trait Implementations
 
+##### `impl Any for SubArchitecture`
+
+- <span id="subarchitecture-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SubArchitecture`
+
+- <span id="subarchitecture-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SubArchitecture`
+
+- <span id="subarchitecture-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SubArchitecture`
 
 - <span id="subarchitecture-clone"></span>`fn clone(&self) -> SubArchitecture` — [`SubArchitecture`](../index.md#subarchitecture)
+
+##### `impl CloneToUninit for SubArchitecture`
+
+- <span id="subarchitecture-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for SubArchitecture`
 
 ##### `impl Debug for SubArchitecture`
 
-- <span id="subarchitecture-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="subarchitecture-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SubArchitecture`
+
+##### `impl<T> From for SubArchitecture`
+
+- <span id="subarchitecture-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for SubArchitecture`
 
 - <span id="subarchitecture-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for SubArchitecture`
+
+- <span id="subarchitecture-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for SubArchitecture`
 
-- <span id="subarchitecture-eq"></span>`fn eq(&self, other: &SubArchitecture) -> bool` — [`SubArchitecture`](../index.md#subarchitecture)
+- <span id="subarchitecture-partialeq-eq"></span>`fn eq(&self, other: &SubArchitecture) -> bool` — [`SubArchitecture`](../index.md#subarchitecture)
 
 ##### `impl StructuralPartialEq for SubArchitecture`
+
+##### `impl ToOwned for SubArchitecture`
+
+- <span id="subarchitecture-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="subarchitecture-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="subarchitecture-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SubArchitecture`
+
+- <span id="subarchitecture-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="subarchitecture-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SubArchitecture`
+
+- <span id="subarchitecture-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="subarchitecture-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AddressSize`
 
@@ -178,29 +292,85 @@ This may differ from the address size supported by the file format (such as for 
 
 - <span id="addresssize-bytes"></span>`fn bytes(self) -> u8`
 
+  The size in bytes of an address value.
+
 #### Trait Implementations
+
+##### `impl Any for AddressSize`
+
+- <span id="addresssize-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AddressSize`
+
+- <span id="addresssize-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AddressSize`
+
+- <span id="addresssize-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for AddressSize`
 
 - <span id="addresssize-clone"></span>`fn clone(&self) -> AddressSize` — [`AddressSize`](../index.md#addresssize)
 
+##### `impl CloneToUninit for AddressSize`
+
+- <span id="addresssize-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for AddressSize`
 
 ##### `impl Debug for AddressSize`
 
-- <span id="addresssize-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="addresssize-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for AddressSize`
+
+##### `impl<T> From for AddressSize`
+
+- <span id="addresssize-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for AddressSize`
 
 - <span id="addresssize-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for AddressSize`
+
+- <span id="addresssize-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for AddressSize`
 
-- <span id="addresssize-eq"></span>`fn eq(&self, other: &AddressSize) -> bool` — [`AddressSize`](../index.md#addresssize)
+- <span id="addresssize-partialeq-eq"></span>`fn eq(&self, other: &AddressSize) -> bool` — [`AddressSize`](../index.md#addresssize)
 
 ##### `impl StructuralPartialEq for AddressSize`
+
+##### `impl ToOwned for AddressSize`
+
+- <span id="addresssize-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="addresssize-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="addresssize-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AddressSize`
+
+- <span id="addresssize-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="addresssize-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AddressSize`
+
+- <span id="addresssize-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="addresssize-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BinaryFormat`
 
@@ -223,29 +393,89 @@ A binary file format.
 
 - <span id="binaryformat-native-object"></span>`fn native_object() -> BinaryFormat` — [`BinaryFormat`](../index.md#binaryformat)
 
+  The target's native binary format for relocatable object files.
+
+  
+
+  Defaults to `Elf` for unknown platforms.
+
 #### Trait Implementations
+
+##### `impl Any for BinaryFormat`
+
+- <span id="binaryformat-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BinaryFormat`
+
+- <span id="binaryformat-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BinaryFormat`
+
+- <span id="binaryformat-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for BinaryFormat`
 
 - <span id="binaryformat-clone"></span>`fn clone(&self) -> BinaryFormat` — [`BinaryFormat`](../index.md#binaryformat)
 
+##### `impl CloneToUninit for BinaryFormat`
+
+- <span id="binaryformat-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for BinaryFormat`
 
 ##### `impl Debug for BinaryFormat`
 
-- <span id="binaryformat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="binaryformat-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for BinaryFormat`
+
+##### `impl<T> From for BinaryFormat`
+
+- <span id="binaryformat-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for BinaryFormat`
 
 - <span id="binaryformat-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for BinaryFormat`
+
+- <span id="binaryformat-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for BinaryFormat`
 
-- <span id="binaryformat-eq"></span>`fn eq(&self, other: &BinaryFormat) -> bool` — [`BinaryFormat`](../index.md#binaryformat)
+- <span id="binaryformat-partialeq-eq"></span>`fn eq(&self, other: &BinaryFormat) -> bool` — [`BinaryFormat`](../index.md#binaryformat)
 
 ##### `impl StructuralPartialEq for BinaryFormat`
+
+##### `impl ToOwned for BinaryFormat`
+
+- <span id="binaryformat-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="binaryformat-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="binaryformat-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BinaryFormat`
+
+- <span id="binaryformat-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="binaryformat-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BinaryFormat`
+
+- <span id="binaryformat-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="binaryformat-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SectionKind`
 
@@ -412,29 +642,85 @@ The kind of a section.
 
 - <span id="sectionkind-is-bss"></span>`fn is_bss(self) -> bool`
 
+  Return true if this section contains zerofill data.
+
 #### Trait Implementations
+
+##### `impl Any for SectionKind`
+
+- <span id="sectionkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SectionKind`
+
+- <span id="sectionkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SectionKind`
+
+- <span id="sectionkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for SectionKind`
 
 - <span id="sectionkind-clone"></span>`fn clone(&self) -> SectionKind` — [`SectionKind`](../index.md#sectionkind)
 
+##### `impl CloneToUninit for SectionKind`
+
+- <span id="sectionkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for SectionKind`
 
 ##### `impl Debug for SectionKind`
 
-- <span id="sectionkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sectionkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SectionKind`
+
+##### `impl<T> From for SectionKind`
+
+- <span id="sectionkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for SectionKind`
 
 - <span id="sectionkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for SectionKind`
+
+- <span id="sectionkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for SectionKind`
 
-- <span id="sectionkind-eq"></span>`fn eq(&self, other: &SectionKind) -> bool` — [`SectionKind`](../index.md#sectionkind)
+- <span id="sectionkind-partialeq-eq"></span>`fn eq(&self, other: &SectionKind) -> bool` — [`SectionKind`](../index.md#sectionkind)
 
 ##### `impl StructuralPartialEq for SectionKind`
+
+##### `impl ToOwned for SectionKind`
+
+- <span id="sectionkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sectionkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sectionkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SectionKind`
+
+- <span id="sectionkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sectionkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SectionKind`
+
+- <span id="sectionkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sectionkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ComdatKind`
 
@@ -501,27 +787,81 @@ sections.
 
 #### Trait Implementations
 
+##### `impl Any for ComdatKind`
+
+- <span id="comdatkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ComdatKind`
+
+- <span id="comdatkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ComdatKind`
+
+- <span id="comdatkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ComdatKind`
 
 - <span id="comdatkind-clone"></span>`fn clone(&self) -> ComdatKind` — [`ComdatKind`](../index.md#comdatkind)
+
+##### `impl CloneToUninit for ComdatKind`
+
+- <span id="comdatkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ComdatKind`
 
 ##### `impl Debug for ComdatKind`
 
-- <span id="comdatkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="comdatkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ComdatKind`
+
+##### `impl<T> From for ComdatKind`
+
+- <span id="comdatkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for ComdatKind`
 
 - <span id="comdatkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for ComdatKind`
+
+- <span id="comdatkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ComdatKind`
 
-- <span id="comdatkind-eq"></span>`fn eq(&self, other: &ComdatKind) -> bool` — [`ComdatKind`](../index.md#comdatkind)
+- <span id="comdatkind-partialeq-eq"></span>`fn eq(&self, other: &ComdatKind) -> bool` — [`ComdatKind`](../index.md#comdatkind)
 
 ##### `impl StructuralPartialEq for ComdatKind`
+
+##### `impl ToOwned for ComdatKind`
+
+- <span id="comdatkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="comdatkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="comdatkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ComdatKind`
+
+- <span id="comdatkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="comdatkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ComdatKind`
+
+- <span id="comdatkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="comdatkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SymbolKind`
 
@@ -573,27 +913,81 @@ The kind of a symbol.
 
 #### Trait Implementations
 
+##### `impl Any for SymbolKind`
+
+- <span id="symbolkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SymbolKind`
+
+- <span id="symbolkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SymbolKind`
+
+- <span id="symbolkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SymbolKind`
 
 - <span id="symbolkind-clone"></span>`fn clone(&self) -> SymbolKind` — [`SymbolKind`](../index.md#symbolkind)
+
+##### `impl CloneToUninit for SymbolKind`
+
+- <span id="symbolkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for SymbolKind`
 
 ##### `impl Debug for SymbolKind`
 
-- <span id="symbolkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbolkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SymbolKind`
+
+##### `impl<T> From for SymbolKind`
+
+- <span id="symbolkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for SymbolKind`
 
 - <span id="symbolkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for SymbolKind`
+
+- <span id="symbolkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for SymbolKind`
 
-- <span id="symbolkind-eq"></span>`fn eq(&self, other: &SymbolKind) -> bool` — [`SymbolKind`](../index.md#symbolkind)
+- <span id="symbolkind-partialeq-eq"></span>`fn eq(&self, other: &SymbolKind) -> bool` — [`SymbolKind`](../index.md#symbolkind)
 
 ##### `impl StructuralPartialEq for SymbolKind`
+
+##### `impl ToOwned for SymbolKind`
+
+- <span id="symbolkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="symbolkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="symbolkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SymbolKind`
+
+- <span id="symbolkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symbolkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SymbolKind`
+
+- <span id="symbolkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symbolkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SymbolScope`
 
@@ -630,27 +1024,81 @@ A symbol scope.
 
 #### Trait Implementations
 
+##### `impl Any for SymbolScope`
+
+- <span id="symbolscope-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SymbolScope`
+
+- <span id="symbolscope-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SymbolScope`
+
+- <span id="symbolscope-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SymbolScope`
 
 - <span id="symbolscope-clone"></span>`fn clone(&self) -> SymbolScope` — [`SymbolScope`](../index.md#symbolscope)
+
+##### `impl CloneToUninit for SymbolScope`
+
+- <span id="symbolscope-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for SymbolScope`
 
 ##### `impl Debug for SymbolScope`
 
-- <span id="symbolscope-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbolscope-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SymbolScope`
+
+##### `impl<T> From for SymbolScope`
+
+- <span id="symbolscope-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for SymbolScope`
 
 - <span id="symbolscope-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for SymbolScope`
+
+- <span id="symbolscope-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for SymbolScope`
 
-- <span id="symbolscope-eq"></span>`fn eq(&self, other: &SymbolScope) -> bool` — [`SymbolScope`](../index.md#symbolscope)
+- <span id="symbolscope-partialeq-eq"></span>`fn eq(&self, other: &SymbolScope) -> bool` — [`SymbolScope`](../index.md#symbolscope)
 
 ##### `impl StructuralPartialEq for SymbolScope`
+
+##### `impl ToOwned for SymbolScope`
+
+- <span id="symbolscope-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="symbolscope-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="symbolscope-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SymbolScope`
+
+- <span id="symbolscope-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symbolscope-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SymbolScope`
+
+- <span id="symbolscope-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symbolscope-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RelocationKind`
 
@@ -736,27 +1184,81 @@ these definitions probably don't match any ELF ABI.
 
 #### Trait Implementations
 
+##### `impl Any for RelocationKind`
+
+- <span id="relocationkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RelocationKind`
+
+- <span id="relocationkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RelocationKind`
+
+- <span id="relocationkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for RelocationKind`
 
 - <span id="relocationkind-clone"></span>`fn clone(&self) -> RelocationKind` — [`RelocationKind`](../index.md#relocationkind)
+
+##### `impl CloneToUninit for RelocationKind`
+
+- <span id="relocationkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for RelocationKind`
 
 ##### `impl Debug for RelocationKind`
 
-- <span id="relocationkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="relocationkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RelocationKind`
+
+##### `impl<T> From for RelocationKind`
+
+- <span id="relocationkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for RelocationKind`
 
 - <span id="relocationkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for RelocationKind`
+
+- <span id="relocationkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for RelocationKind`
 
-- <span id="relocationkind-eq"></span>`fn eq(&self, other: &RelocationKind) -> bool` — [`RelocationKind`](../index.md#relocationkind)
+- <span id="relocationkind-partialeq-eq"></span>`fn eq(&self, other: &RelocationKind) -> bool` — [`RelocationKind`](../index.md#relocationkind)
 
 ##### `impl StructuralPartialEq for RelocationKind`
+
+##### `impl ToOwned for RelocationKind`
+
+- <span id="relocationkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="relocationkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="relocationkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RelocationKind`
+
+- <span id="relocationkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="relocationkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RelocationKind`
+
+- <span id="relocationkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="relocationkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RelocationEncoding`
 
@@ -879,27 +1381,81 @@ a specific instruction.
 
 #### Trait Implementations
 
+##### `impl Any for RelocationEncoding`
+
+- <span id="relocationencoding-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RelocationEncoding`
+
+- <span id="relocationencoding-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RelocationEncoding`
+
+- <span id="relocationencoding-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for RelocationEncoding`
 
 - <span id="relocationencoding-clone"></span>`fn clone(&self) -> RelocationEncoding` — [`RelocationEncoding`](../index.md#relocationencoding)
+
+##### `impl CloneToUninit for RelocationEncoding`
+
+- <span id="relocationencoding-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for RelocationEncoding`
 
 ##### `impl Debug for RelocationEncoding`
 
-- <span id="relocationencoding-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="relocationencoding-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RelocationEncoding`
+
+##### `impl<T> From for RelocationEncoding`
+
+- <span id="relocationencoding-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for RelocationEncoding`
 
 - <span id="relocationencoding-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for RelocationEncoding`
+
+- <span id="relocationencoding-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for RelocationEncoding`
 
-- <span id="relocationencoding-eq"></span>`fn eq(&self, other: &RelocationEncoding) -> bool` — [`RelocationEncoding`](../index.md#relocationencoding)
+- <span id="relocationencoding-partialeq-eq"></span>`fn eq(&self, other: &RelocationEncoding) -> bool` — [`RelocationEncoding`](../index.md#relocationencoding)
 
 ##### `impl StructuralPartialEq for RelocationEncoding`
+
+##### `impl ToOwned for RelocationEncoding`
+
+- <span id="relocationencoding-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="relocationencoding-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="relocationencoding-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RelocationEncoding`
+
+- <span id="relocationencoding-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="relocationencoding-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RelocationEncoding`
+
+- <span id="relocationencoding-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="relocationencoding-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FileFlags`
 
@@ -951,27 +1507,81 @@ File flags that are specific to each file format.
 
 #### Trait Implementations
 
+##### `impl Any for FileFlags`
+
+- <span id="fileflags-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FileFlags`
+
+- <span id="fileflags-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FileFlags`
+
+- <span id="fileflags-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for FileFlags`
 
 - <span id="fileflags-clone"></span>`fn clone(&self) -> FileFlags` — [`FileFlags`](../index.md#fileflags)
+
+##### `impl CloneToUninit for FileFlags`
+
+- <span id="fileflags-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for FileFlags`
 
 ##### `impl Debug for FileFlags`
 
-- <span id="fileflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fileflags-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for FileFlags`
+
+##### `impl<T> From for FileFlags`
+
+- <span id="fileflags-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for FileFlags`
 
 - <span id="fileflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for FileFlags`
+
+- <span id="fileflags-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for FileFlags`
 
-- <span id="fileflags-eq"></span>`fn eq(&self, other: &FileFlags) -> bool` — [`FileFlags`](../index.md#fileflags)
+- <span id="fileflags-partialeq-eq"></span>`fn eq(&self, other: &FileFlags) -> bool` — [`FileFlags`](../index.md#fileflags)
 
 ##### `impl StructuralPartialEq for FileFlags`
+
+##### `impl ToOwned for FileFlags`
+
+- <span id="fileflags-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="fileflags-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="fileflags-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FileFlags`
+
+- <span id="fileflags-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fileflags-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FileFlags`
+
+- <span id="fileflags-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fileflags-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SegmentFlags`
 
@@ -1016,27 +1626,81 @@ Segment flags that are specific to each file format.
 
 #### Trait Implementations
 
+##### `impl Any for SegmentFlags`
+
+- <span id="segmentflags-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SegmentFlags`
+
+- <span id="segmentflags-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SegmentFlags`
+
+- <span id="segmentflags-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SegmentFlags`
 
 - <span id="segmentflags-clone"></span>`fn clone(&self) -> SegmentFlags` — [`SegmentFlags`](../index.md#segmentflags)
+
+##### `impl CloneToUninit for SegmentFlags`
+
+- <span id="segmentflags-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for SegmentFlags`
 
 ##### `impl Debug for SegmentFlags`
 
-- <span id="segmentflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="segmentflags-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SegmentFlags`
+
+##### `impl<T> From for SegmentFlags`
+
+- <span id="segmentflags-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for SegmentFlags`
 
 - <span id="segmentflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for SegmentFlags`
+
+- <span id="segmentflags-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for SegmentFlags`
 
-- <span id="segmentflags-eq"></span>`fn eq(&self, other: &SegmentFlags) -> bool` — [`SegmentFlags`](../index.md#segmentflags)
+- <span id="segmentflags-partialeq-eq"></span>`fn eq(&self, other: &SegmentFlags) -> bool` — [`SegmentFlags`](../index.md#segmentflags)
 
 ##### `impl StructuralPartialEq for SegmentFlags`
+
+##### `impl ToOwned for SegmentFlags`
+
+- <span id="segmentflags-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="segmentflags-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="segmentflags-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SegmentFlags`
+
+- <span id="segmentflags-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="segmentflags-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SegmentFlags`
+
+- <span id="segmentflags-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="segmentflags-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SectionFlags`
 
@@ -1086,27 +1750,81 @@ Section flags that are specific to each file format.
 
 #### Trait Implementations
 
+##### `impl Any for SectionFlags`
+
+- <span id="sectionflags-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SectionFlags`
+
+- <span id="sectionflags-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SectionFlags`
+
+- <span id="sectionflags-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SectionFlags`
 
 - <span id="sectionflags-clone"></span>`fn clone(&self) -> SectionFlags` — [`SectionFlags`](../index.md#sectionflags)
+
+##### `impl CloneToUninit for SectionFlags`
+
+- <span id="sectionflags-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for SectionFlags`
 
 ##### `impl Debug for SectionFlags`
 
-- <span id="sectionflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sectionflags-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SectionFlags`
+
+##### `impl<T> From for SectionFlags`
+
+- <span id="sectionflags-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for SectionFlags`
 
 - <span id="sectionflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for SectionFlags`
+
+- <span id="sectionflags-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for SectionFlags`
 
-- <span id="sectionflags-eq"></span>`fn eq(&self, other: &SectionFlags) -> bool` — [`SectionFlags`](../index.md#sectionflags)
+- <span id="sectionflags-partialeq-eq"></span>`fn eq(&self, other: &SectionFlags) -> bool` — [`SectionFlags`](../index.md#sectionflags)
 
 ##### `impl StructuralPartialEq for SectionFlags`
+
+##### `impl ToOwned for SectionFlags`
+
+- <span id="sectionflags-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sectionflags-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sectionflags-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SectionFlags`
+
+- <span id="sectionflags-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sectionflags-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SectionFlags`
+
+- <span id="sectionflags-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sectionflags-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SymbolFlags<Section, Symbol>`
 
@@ -1161,27 +1879,81 @@ Symbol flags that are specific to each file format.
 
 #### Trait Implementations
 
+##### `impl Any for SymbolFlags<Section, Symbol>`
+
+- <span id="symbolflags-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SymbolFlags<Section, Symbol>`
+
+- <span id="symbolflags-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SymbolFlags<Section, Symbol>`
+
+- <span id="symbolflags-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Section: clone::Clone, Symbol: clone::Clone> Clone for SymbolFlags<Section, Symbol>`
 
 - <span id="symbolflags-clone"></span>`fn clone(&self) -> SymbolFlags<Section, Symbol>` — [`SymbolFlags`](../index.md#symbolflags)
+
+##### `impl CloneToUninit for SymbolFlags<Section, Symbol>`
+
+- <span id="symbolflags-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<Section: marker::Copy, Symbol: marker::Copy> Copy for SymbolFlags<Section, Symbol>`
 
 ##### `impl<Section: fmt::Debug, Symbol: fmt::Debug> Debug for SymbolFlags<Section, Symbol>`
 
-- <span id="symbolflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbolflags-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Section: cmp::Eq, Symbol: cmp::Eq> Eq for SymbolFlags<Section, Symbol>`
+
+##### `impl<T> From for SymbolFlags<Section, Symbol>`
+
+- <span id="symbolflags-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<Section: hash::Hash, Symbol: hash::Hash> Hash for SymbolFlags<Section, Symbol>`
 
 - <span id="symbolflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for SymbolFlags<Section, Symbol>`
+
+- <span id="symbolflags-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<Section: cmp::PartialEq, Symbol: cmp::PartialEq> PartialEq for SymbolFlags<Section, Symbol>`
 
-- <span id="symbolflags-eq"></span>`fn eq(&self, other: &SymbolFlags<Section, Symbol>) -> bool` — [`SymbolFlags`](../index.md#symbolflags)
+- <span id="symbolflags-partialeq-eq"></span>`fn eq(&self, other: &SymbolFlags<Section, Symbol>) -> bool` — [`SymbolFlags`](../index.md#symbolflags)
 
 ##### `impl<Section, Symbol> StructuralPartialEq for SymbolFlags<Section, Symbol>`
+
+##### `impl ToOwned for SymbolFlags<Section, Symbol>`
+
+- <span id="symbolflags-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="symbolflags-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="symbolflags-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SymbolFlags<Section, Symbol>`
+
+- <span id="symbolflags-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symbolflags-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SymbolFlags<Section, Symbol>`
+
+- <span id="symbolflags-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symbolflags-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RelocationFlags`
 
@@ -1238,25 +2010,79 @@ Relocation fields that are specific to each file format and architecture.
 
 #### Trait Implementations
 
+##### `impl Any for RelocationFlags`
+
+- <span id="relocationflags-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RelocationFlags`
+
+- <span id="relocationflags-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RelocationFlags`
+
+- <span id="relocationflags-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for RelocationFlags`
 
 - <span id="relocationflags-clone"></span>`fn clone(&self) -> RelocationFlags` — [`RelocationFlags`](../index.md#relocationflags)
+
+##### `impl CloneToUninit for RelocationFlags`
+
+- <span id="relocationflags-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for RelocationFlags`
 
 ##### `impl Debug for RelocationFlags`
 
-- <span id="relocationflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="relocationflags-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RelocationFlags`
+
+##### `impl<T> From for RelocationFlags`
+
+- <span id="relocationflags-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for RelocationFlags`
 
 - <span id="relocationflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for RelocationFlags`
+
+- <span id="relocationflags-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for RelocationFlags`
 
-- <span id="relocationflags-eq"></span>`fn eq(&self, other: &RelocationFlags) -> bool` — [`RelocationFlags`](../index.md#relocationflags)
+- <span id="relocationflags-partialeq-eq"></span>`fn eq(&self, other: &RelocationFlags) -> bool` — [`RelocationFlags`](../index.md#relocationflags)
 
 ##### `impl StructuralPartialEq for RelocationFlags`
+
+##### `impl ToOwned for RelocationFlags`
+
+- <span id="relocationflags-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="relocationflags-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="relocationflags-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RelocationFlags`
+
+- <span id="relocationflags-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="relocationflags-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RelocationFlags`
+
+- <span id="relocationflags-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="relocationflags-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

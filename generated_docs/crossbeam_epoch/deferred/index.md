@@ -36,13 +36,47 @@ This is a handy way of keeping an unsized `FnOnce()` within a sized structure.
 
 - <span id="deferred-new"></span>`fn new<F: FnOnce()>(f: F) -> Self`
 
+  Constructs a new `Deferred` from a `FnOnce()`.
+
 - <span id="deferred-call"></span>`fn call(self)`
+
+  Calls the function.
 
 #### Trait Implementations
 
+##### `impl Any for Deferred`
+
+- <span id="deferred-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Deferred`
+
+- <span id="deferred-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Deferred`
+
+- <span id="deferred-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Deferred`
 
-- <span id="deferred-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="deferred-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+
+##### `impl<T> From for Deferred`
+
+- <span id="deferred-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Deferred`
+
+- <span id="deferred-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for Deferred`
 
@@ -50,13 +84,25 @@ This is a handy way of keeping an unsized `FnOnce()` within a sized structure.
 
 - <span id="deferred-pointable-type-init"></span>`type Init = T`
 
-- <span id="deferred-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md#pointable)
+- <span id="deferred-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md#pointable)
 
-- <span id="deferred-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="deferred-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="deferred-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="deferred-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="deferred-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="deferred-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for Deferred`
+
+- <span id="deferred-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="deferred-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Deferred`
+
+- <span id="deferred-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="deferred-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Type Aliases
 

@@ -193,57 +193,357 @@ struct Dispatch {
 
 - <span id="dispatch-none"></span>`fn none() -> Self`
 
+  Returns a new `Dispatch` that discards events and spans.
+
 - <span id="dispatch-new"></span>`fn new<S>(subscriber: S) -> Self`
+
+  Returns a `Dispatch` that forwards to the given [`Subscriber`](../subscriber/index.md).
 
 - <span id="dispatch-registrar"></span>`fn registrar(&self) -> Registrar` — [`Registrar`](#registrar)
 
 - <span id="dispatch-downgrade"></span>`fn downgrade(&self) -> WeakDispatch` — [`WeakDispatch`](#weakdispatch)
 
+  Creates a [`WeakDispatch`](#weakdispatch) from this `Dispatch`.
+
+  
+
+  A [`WeakDispatch`](#weakdispatch) is similar to a [`Dispatch`](#dispatch), but it does not prevent
+
+  the underlying [`Subscriber`](../subscriber/index.md) from being dropped. Instead, it only permits
+
+  access while other references to the `Subscriber` exist. This is equivalent
+
+  to the standard library's `Arc::downgrade` method, but for `Dispatch`
+
+  rather than `Arc`.
+
+  
+
+  The primary use for creating a [`WeakDispatch`](#weakdispatch) is to allow a `Subscriber`
+
+  to hold a cyclical reference to itself without creating a memory leak.
+
+  See [here] for details.
+
+  
+
 - <span id="dispatch-subscriber"></span>`fn subscriber(&self) -> &dyn Subscriber + Send + Sync` — [`Subscriber`](../subscriber/index.md#subscriber)
 
 - <span id="dispatch-register-callsite"></span>`fn register_callsite(&self, metadata: &'static Metadata<'static>) -> subscriber::Interest` — [`Metadata`](../metadata/index.md#metadata), [`Interest`](../subscriber/index.md#interest)
 
+  Registers a new callsite with this subscriber, returning whether or not
+
+  the subscriber is interested in being notified about the callsite.
+
+  
+
+  This calls the `register_callsite` function on the [`Subscriber`](../subscriber/index.md)
+
+  that this `Dispatch` forwards to.
+
+  
+
 - <span id="dispatch-max-level-hint"></span>`fn max_level_hint(&self) -> Option<LevelFilter>` — [`LevelFilter`](../metadata/index.md#levelfilter)
+
+  Returns the highest [verbosity level][`level`](../../tracing_attributes/attr/kw/index.md) that this [`Subscriber`](../subscriber/index.md) will
+
+  enable, or `None`, if the subscriber does not implement level-based
+
+  filtering or chooses not to implement this method.
+
+  
+
+  This calls the `max_level_hint` function on the [`Subscriber`](../subscriber/index.md)
+
+  that this `Dispatch` forwards to.
+
+  
+
+  
 
 - <span id="dispatch-new-span"></span>`fn new_span(&self, span: &span::Attributes<'_>) -> span::Id` — [`Attributes`](../span/index.md#attributes), [`Id`](../span/index.md#id)
 
+  Record the construction of a new span, returning a new [ID] for the
+
+  span being constructed.
+
+  
+
+  This calls the `new_span` function on the [`Subscriber`](../subscriber/index.md) that this
+
+  `Dispatch` forwards to.
+
+  
+
+  
+
 - <span id="dispatch-record"></span>`fn record(&self, span: &span::Id, values: &span::Record<'_>)` — [`Id`](../span/index.md#id), [`Record`](../span/index.md#record)
+
+  Record a set of values on a span.
+
+  
+
+  This calls the `record` function on the [`Subscriber`](../subscriber/index.md) that this
+
+  `Dispatch` forwards to.
+
+  
 
 - <span id="dispatch-record-follows-from"></span>`fn record_follows_from(&self, span: &span::Id, follows: &span::Id)` — [`Id`](../span/index.md#id)
 
+  Adds an indication that `span` follows from the span with the id
+
+  `follows`.
+
+  
+
+  This calls the `record_follows_from` function on the [`Subscriber`](../subscriber/index.md)
+
+  that this `Dispatch` forwards to.
+
+  
+
 - <span id="dispatch-enabled"></span>`fn enabled(&self, metadata: &Metadata<'_>) -> bool` — [`Metadata`](../metadata/index.md#metadata)
+
+  Returns true if a span with the specified [`metadata`](../metadata/index.md) would be
+
+  recorded.
+
+  
+
+  This calls the `enabled` function on the [`Subscriber`](../subscriber/index.md) that this
+
+  `Dispatch` forwards to.
+
+  
+
+  
 
 - <span id="dispatch-event"></span>`fn event(&self, event: &Event<'_>)` — [`Event`](../event/index.md#event)
 
+  Records that an [`Event`](../event/index.md) has occurred.
+
+  
+
+  This calls the [`event`](../event/index.md) function on the [`Subscriber`](../subscriber/index.md) that this
+
+  `Dispatch` forwards to.
+
+  
+
+  
+
 - <span id="dispatch-enter"></span>`fn enter(&self, span: &span::Id)` — [`Id`](../span/index.md#id)
+
+  Records that a span has been can_enter.
+
+  
+
+  This calls the `enter` function on the [`Subscriber`](../subscriber/index.md) that this
+
+  `Dispatch` forwards to.
+
+  
 
 - <span id="dispatch-exit"></span>`fn exit(&self, span: &span::Id)` — [`Id`](../span/index.md#id)
 
+  Records that a span has been exited.
+
+  
+
+  This calls the [`exit`](#exit) function on the [`Subscriber`](../subscriber/index.md) that this
+
+  `Dispatch` forwards to.
+
+  
+
 - <span id="dispatch-clone-span"></span>`fn clone_span(&self, id: &span::Id) -> span::Id` — [`Id`](../span/index.md#id)
+
+  Notifies the subscriber that a [span ID] has been cloned.
+
+  
+
+  This function must only be called with span IDs that were returned by
+
+  this `Dispatch`'s `new_span` function. The `tracing` crate upholds
+
+  this guarantee and any other libraries implementing instrumentation APIs
+
+  must as well.
+
+  
+
+  This calls the `clone_span` function on the `Subscriber` that this
+
+  `Dispatch` forwards to.
+
+  
+
+  
+
+  
 
 - <span id="dispatch-drop-span"></span>`fn drop_span(&self, id: span::Id)` — [`Id`](../span/index.md#id)
 
+  Notifies the subscriber that a [span ID] has been dropped.
+
+  
+
+  This function must only be called with span IDs that were returned by
+
+  this `Dispatch`'s `new_span` function. The `tracing` crate upholds
+
+  this guarantee and any other libraries implementing instrumentation APIs
+
+  must as well.
+
+  
+
+  This calls the `drop_span` function on the [`Subscriber`](../subscriber/index.md) that this
+
+  `Dispatch` forwards to.
+
+  
+
+  <pre class="compile_fail" style="white-space:normal;font:inherit;">
+
+      <strong>Deprecated</strong>: The <a href="#method.try_close"><code>
+
+      try_close</code></a> method is functionally identical, but returns
+
+      <code>true</code> if the span is now closed. It should be used
+
+      instead of this method.
+
+  </pre>
+
+  
+
+  
+
+  
+
+  
+
 - <span id="dispatch-try-close"></span>`fn try_close(&self, id: span::Id) -> bool` — [`Id`](../span/index.md#id)
+
+  Notifies the subscriber that a [span ID] has been dropped, and returns
+
+  `true` if there are now 0 IDs referring to that span.
+
+  
+
+  This function must only be called with span IDs that were returned by
+
+  this `Dispatch`'s `new_span` function. The `tracing` crate upholds
+
+  this guarantee and any other libraries implementing instrumentation APIs
+
+  must as well.
+
+  
+
+  This calls the `try_close` function on the [`Subscriber`](../subscriber/index.md) that this
+
+   `Dispatch` forwards to.
+
+  
+
+  
+
+  
 
 - <span id="dispatch-current-span"></span>`fn current_span(&self) -> span::Current` — [`Current`](../span/index.md#current)
 
+  Returns a type representing this subscriber's view of the current span.
+
+  
+
+  This calls the `current` function on the `Subscriber` that this
+
+  `Dispatch` forwards to.
+
 - <span id="dispatch-is"></span>`fn is<T: Any>(&self) -> bool`
+
+  Returns `true` if this `Dispatch` forwards to a `Subscriber` of type
+
+  `T`.
 
 - <span id="dispatch-downcast-ref"></span>`fn downcast_ref<T: Any>(&self) -> Option<&T>`
 
+  Returns some reference to the `Subscriber` this `Dispatch` forwards to
+
+  if it is of type `T`, or `None` if it isn't.
+
 #### Trait Implementations
+
+##### `impl Any for Dispatch`
+
+- <span id="dispatch-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Dispatch`
+
+- <span id="dispatch-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Dispatch`
+
+- <span id="dispatch-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Dispatch`
 
 - <span id="dispatch-clone"></span>`fn clone(&self) -> Dispatch` — [`Dispatch`](#dispatch)
 
+##### `impl CloneToUninit for Dispatch`
+
+- <span id="dispatch-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Dispatch`
 
-- <span id="dispatch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dispatch-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Dispatch`
 
 - <span id="dispatch-default"></span>`fn default() -> Self`
+
+  Returns the current default dispatcher
+
+##### `impl<T> From for Dispatch`
+
+- <span id="dispatch-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Dispatch`
+
+- <span id="dispatch-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Dispatch`
+
+- <span id="dispatch-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dispatch-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dispatch-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Dispatch`
+
+- <span id="dispatch-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dispatch-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Dispatch`
+
+- <span id="dispatch-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dispatch-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `WeakDispatch`
 
@@ -277,15 +577,105 @@ This type is analogous to the `std::sync::Weak` type, but for a
 
 - <span id="weakdispatch-upgrade"></span>`fn upgrade(&self) -> Option<Dispatch>` — [`Dispatch`](#dispatch)
 
+  Attempts to upgrade this `WeakDispatch` to a [`Dispatch`](#dispatch).
+
+  
+
+  Returns `None` if the referenced `Dispatch` has already been dropped.
+
+  
+
+  ## Examples
+
+  
+
+  ```rust
+
+  use tracing_core::subscriber::NoSubscriber;
+
+  use tracing_core::dispatcher::Dispatch;
+
+  let strong = Dispatch::new(NoSubscriber::default());
+
+  let weak = strong.downgrade();
+
+  
+
+  // The strong here keeps it alive, so we can still access the object.
+
+  assert!(weak.upgrade().is_some());
+
+  
+
+  drop(strong); // But not any more.
+
+  assert!(weak.upgrade().is_none());
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for WeakDispatch`
+
+- <span id="weakdispatch-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WeakDispatch`
+
+- <span id="weakdispatch-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WeakDispatch`
+
+- <span id="weakdispatch-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for WeakDispatch`
 
 - <span id="weakdispatch-clone"></span>`fn clone(&self) -> WeakDispatch` — [`WeakDispatch`](#weakdispatch)
 
+##### `impl CloneToUninit for WeakDispatch`
+
+- <span id="weakdispatch-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for WeakDispatch`
 
-- <span id="weakdispatch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="weakdispatch-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for WeakDispatch`
+
+- <span id="weakdispatch-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WeakDispatch`
+
+- <span id="weakdispatch-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for WeakDispatch`
+
+- <span id="weakdispatch-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="weakdispatch-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="weakdispatch-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for WeakDispatch`
+
+- <span id="weakdispatch-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="weakdispatch-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WeakDispatch`
+
+- <span id="weakdispatch-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="weakdispatch-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `State`
 
@@ -320,7 +710,61 @@ The dispatch state of a thread.
 
 - <span id="state-set-default"></span>`fn set_default(new_dispatch: Dispatch) -> DefaultGuard` — [`Dispatch`](#dispatch), [`DefaultGuard`](#defaultguard)
 
+  Replaces the current default dispatcher on this thread with the provided
+
+  dispatcher.Any
+
+  
+
+  Dropping the returned `ResetGuard` will reset the default dispatcher to
+
+  the previous value.
+
 - <span id="state-enter"></span>`fn enter(&self) -> Option<Entered<'_>>` — [`Entered`](#entered)
+
+#### Trait Implementations
+
+##### `impl Any for State`
+
+- <span id="state-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for State`
+
+- <span id="state-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for State`
+
+- <span id="state-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for State`
+
+- <span id="state-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for State`
+
+- <span id="state-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for State`
+
+- <span id="state-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="state-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for State`
+
+- <span id="state-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="state-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Entered<'a>`
 
@@ -340,9 +784,51 @@ Dropping the guard will allow the dispatch context to be re-entered.
 
 #### Trait Implementations
 
+##### `impl Any for Entered<'a>`
+
+- <span id="entered-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Entered<'a>`
+
+- <span id="entered-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Entered<'a>`
+
+- <span id="entered-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Drop for Entered<'_>`
 
 - <span id="entered-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for Entered<'a>`
+
+- <span id="entered-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Entered<'a>`
+
+- <span id="entered-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Entered<'a>`
+
+- <span id="entered-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="entered-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Entered<'a>`
+
+- <span id="entered-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="entered-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DefaultGuard`
 
@@ -357,13 +843,55 @@ default dispatcher when dropped.
 
 #### Trait Implementations
 
+##### `impl Any for DefaultGuard`
+
+- <span id="defaultguard-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DefaultGuard`
+
+- <span id="defaultguard-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DefaultGuard`
+
+- <span id="defaultguard-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for DefaultGuard`
 
-- <span id="defaultguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="defaultguard-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for DefaultGuard`
 
 - <span id="defaultguard-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for DefaultGuard`
+
+- <span id="defaultguard-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DefaultGuard`
+
+- <span id="defaultguard-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DefaultGuard`
+
+- <span id="defaultguard-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="defaultguard-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DefaultGuard`
+
+- <span id="defaultguard-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="defaultguard-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SetGlobalDefaultError`
 
@@ -383,19 +911,61 @@ Returned if setting the global dispatcher fails.
 
 #### Trait Implementations
 
+##### `impl Any for SetGlobalDefaultError`
+
+- <span id="setglobaldefaulterror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SetGlobalDefaultError`
+
+- <span id="setglobaldefaulterror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SetGlobalDefaultError`
+
+- <span id="setglobaldefaulterror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for SetGlobalDefaultError`
 
-- <span id="setglobaldefaulterror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="setglobaldefaulterror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for SetGlobalDefaultError`
 
-- <span id="setglobaldefaulterror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="setglobaldefaulterror-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for SetGlobalDefaultError`
 
+##### `impl<T> From for SetGlobalDefaultError`
+
+- <span id="setglobaldefaulterror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SetGlobalDefaultError`
+
+- <span id="setglobaldefaulterror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl ToString for SetGlobalDefaultError`
 
-- <span id="setglobaldefaulterror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="setglobaldefaulterror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for SetGlobalDefaultError`
+
+- <span id="setglobaldefaulterror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="setglobaldefaulterror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SetGlobalDefaultError`
+
+- <span id="setglobaldefaulterror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="setglobaldefaulterror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Registrar`
 
@@ -408,6 +978,50 @@ struct Registrar(Kind<alloc::sync::Weak<dyn Subscriber + Send + Sync>>);
 #### Implementations
 
 - <span id="registrar-upgrade"></span>`fn upgrade(&self) -> Option<Dispatch>` — [`Dispatch`](#dispatch)
+
+#### Trait Implementations
+
+##### `impl Any for Registrar`
+
+- <span id="registrar-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Registrar`
+
+- <span id="registrar-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Registrar`
+
+- <span id="registrar-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Registrar`
+
+- <span id="registrar-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Registrar`
+
+- <span id="registrar-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Registrar`
+
+- <span id="registrar-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="registrar-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Registrar`
+
+- <span id="registrar-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="registrar-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -428,9 +1042,63 @@ enum Kind<T> {
 
 #### Trait Implementations
 
+##### `impl<T> Any for Kind<T>`
+
+- <span id="kind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Kind<T>`
+
+- <span id="kind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Kind<T>`
+
+- <span id="kind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for Kind<T>`
 
 - <span id="kind-clone"></span>`fn clone(&self) -> Kind<T>` — [`Kind`](#kind)
+
+##### `impl<T> CloneToUninit for Kind<T>`
+
+- <span id="kind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
+##### `impl<T> From for Kind<T>`
+
+- <span id="kind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Kind<T>`
+
+- <span id="kind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<T> ToOwned for Kind<T>`
+
+- <span id="kind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="kind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="kind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for Kind<T>`
+
+- <span id="kind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="kind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Kind<T>`
+
+- <span id="kind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="kind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

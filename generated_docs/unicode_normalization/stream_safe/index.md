@@ -37,9 +37,47 @@ since the last starter in *NFKD* and will emit a Combining Grapheme Joiner
 
 - <span id="streamsafe-new"></span>`fn new(iter: I) -> Self`
 
+  Create a new stream safe iterator.
+
+  
+
+  Note that this iterator can also be obtained by directly calling [`.stream_safe()`](crate::UnicodeNormalization::stream_safe)
+
+  on the iterator.
+
 #### Trait Implementations
 
+##### `impl Any for StreamSafe<I>`
+
+- <span id="streamsafe-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StreamSafe<I>`
+
+- <span id="streamsafe-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StreamSafe<I>`
+
+- <span id="streamsafe-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for StreamSafe<I>`
+
+- <span id="streamsafe-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<I: Iterator<Item = char> + FusedIterator> FusedIterator for StreamSafe<I>`
+
+##### `impl<U> Into for StreamSafe<I>`
+
+- <span id="streamsafe-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<I> IntoIterator for StreamSafe<I>`
 
@@ -47,27 +85,39 @@ since the last starter in *NFKD* and will emit a Combining Grapheme Joiner
 
 - <span id="streamsafe-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="streamsafe-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="streamsafe-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for StreamSafe<I>`
 
 - <span id="streamsafe-iterator-type-item"></span>`type Item = char`
 
-- <span id="streamsafe-next"></span>`fn next(&mut self) -> Option<char>`
+- <span id="streamsafe-iterator-next"></span>`fn next(&mut self) -> Option<char>`
+
+##### `impl<U> TryFrom for StreamSafe<I>`
+
+- <span id="streamsafe-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="streamsafe-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StreamSafe<I>`
+
+- <span id="streamsafe-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="streamsafe-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<I> UnicodeNormalization for StreamSafe<I>`
 
-- <span id="streamsafe-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md#decompositions)
+- <span id="streamsafe-unicodenormalization-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md#decompositions)
 
-- <span id="streamsafe-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md#decompositions)
+- <span id="streamsafe-unicodenormalization-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md#decompositions)
 
-- <span id="streamsafe-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md#recompositions)
+- <span id="streamsafe-unicodenormalization-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md#recompositions)
 
-- <span id="streamsafe-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md#recompositions)
+- <span id="streamsafe-unicodenormalization-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md#recompositions)
 
-- <span id="streamsafe-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](../replace/index.md#replacements)
+- <span id="streamsafe-unicodenormalization-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](../replace/index.md#replacements)
 
-- <span id="streamsafe-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](#streamsafe)
+- <span id="streamsafe-unicodenormalization-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](#streamsafe)
 
 ### `Decomposition`
 
@@ -83,9 +133,51 @@ struct Decomposition {
 
 #### Trait Implementations
 
+##### `impl Any for Decomposition`
+
+- <span id="decomposition-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Decomposition`
+
+- <span id="decomposition-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Decomposition`
+
+- <span id="decomposition-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Decomposition`
 
-- <span id="decomposition-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="decomposition-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Decomposition`
+
+- <span id="decomposition-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Decomposition`
+
+- <span id="decomposition-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Decomposition`
+
+- <span id="decomposition-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="decomposition-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Decomposition`
+
+- <span id="decomposition-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="decomposition-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

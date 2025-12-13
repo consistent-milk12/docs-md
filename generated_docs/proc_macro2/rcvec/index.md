@@ -41,11 +41,65 @@ struct RcVec<T> {
 
 #### Trait Implementations
 
+##### `impl<T> Any for RcVec<T>`
+
+- <span id="rcvec-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RcVec<T>`
+
+- <span id="rcvec-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RcVec<T>`
+
+- <span id="rcvec-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T> Clone for RcVec<T>`
 
 - <span id="rcvec-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for RcVec<T>`
+
+- <span id="rcvec-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
+##### `impl<T> From for RcVec<T>`
+
+- <span id="rcvec-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for RcVec<T>`
+
+- <span id="rcvec-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T> RefUnwindSafe for RcVec<T>`
+
+##### `impl<T> ToOwned for RcVec<T>`
+
+- <span id="rcvec-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rcvec-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rcvec-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for RcVec<T>`
+
+- <span id="rcvec-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rcvec-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RcVec<T>`
+
+- <span id="rcvec-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rcvec-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RcVecBuilder<T>`
 
@@ -73,13 +127,55 @@ struct RcVecBuilder<T> {
 
 #### Trait Implementations
 
+##### `impl<T> Any for RcVecBuilder<T>`
+
+- <span id="rcvecbuilder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RcVecBuilder<T>`
+
+- <span id="rcvecbuilder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RcVecBuilder<T>`
+
+- <span id="rcvecbuilder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for RcVecBuilder<T>`
+
+- <span id="rcvecbuilder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for RcVecBuilder<T>`
+
+- <span id="rcvecbuilder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T> IntoIterator for RcVecBuilder<T>`
 
 - <span id="rcvecbuilder-intoiterator-type-item"></span>`type Item = T`
 
 - <span id="rcvecbuilder-intoiterator-type-intoiter"></span>`type IntoIter = RcVecIntoIter<T>`
 
-- <span id="rcvecbuilder-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+- <span id="rcvecbuilder-intoiterator-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+
+##### `impl<T, U> TryFrom for RcVecBuilder<T>`
+
+- <span id="rcvecbuilder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rcvecbuilder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RcVecBuilder<T>`
+
+- <span id="rcvecbuilder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rcvecbuilder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RcVecMut<'a, T>`
 
@@ -101,6 +197,50 @@ struct RcVecMut<'a, T> {
 
 - <span id="rcvecmut-take"></span>`fn take(self) -> RcVecBuilder<T>` — [`RcVecBuilder`](#rcvecbuilder)
 
+#### Trait Implementations
+
+##### `impl<T> Any for RcVecMut<'a, T>`
+
+- <span id="rcvecmut-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RcVecMut<'a, T>`
+
+- <span id="rcvecmut-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RcVecMut<'a, T>`
+
+- <span id="rcvecmut-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for RcVecMut<'a, T>`
+
+- <span id="rcvecmut-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for RcVecMut<'a, T>`
+
+- <span id="rcvecmut-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<T, U> TryFrom for RcVecMut<'a, T>`
+
+- <span id="rcvecmut-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rcvecmut-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RcVecMut<'a, T>`
+
+- <span id="rcvecmut-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rcvecmut-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `RcVecIntoIter<T>`
 
 ```rust
@@ -113,9 +253,43 @@ struct RcVecIntoIter<T> {
 
 #### Trait Implementations
 
+##### `impl<T> Any for RcVecIntoIter<T>`
+
+- <span id="rcvecintoiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RcVecIntoIter<T>`
+
+- <span id="rcvecintoiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RcVecIntoIter<T>`
+
+- <span id="rcvecintoiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for RcVecIntoIter<T>`
 
 - <span id="rcvecintoiter-clone"></span>`fn clone(&self) -> RcVecIntoIter<T>` — [`RcVecIntoIter`](#rcvecintoiter)
+
+##### `impl<T> CloneToUninit for RcVecIntoIter<T>`
+
+- <span id="rcvecintoiter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
+##### `impl<T> From for RcVecIntoIter<T>`
+
+- <span id="rcvecintoiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for RcVecIntoIter<T>`
+
+- <span id="rcvecintoiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for RcVecIntoIter<T>`
 
@@ -123,13 +297,33 @@ struct RcVecIntoIter<T> {
 
 - <span id="rcvecintoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="rcvecintoiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="rcvecintoiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for RcVecIntoIter<T>`
 
 - <span id="rcvecintoiter-iterator-type-item"></span>`type Item = T`
 
-- <span id="rcvecintoiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="rcvecintoiter-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- <span id="rcvecintoiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="rcvecintoiter-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+
+##### `impl<T> ToOwned for RcVecIntoIter<T>`
+
+- <span id="rcvecintoiter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rcvecintoiter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rcvecintoiter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for RcVecIntoIter<T>`
+
+- <span id="rcvecintoiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rcvecintoiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RcVecIntoIter<T>`
+
+- <span id="rcvecintoiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rcvecintoiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

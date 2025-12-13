@@ -89,6 +89,50 @@ struct FlexibleItemType {
 
 - <span id="flexibleitemtype-parse-optional-definition"></span>`fn parse_optional_definition(input: ParseStream<'_>) -> Result<Option<(token::Eq, Type)>>` — [`ParseStream`](../../parse/index.md#parsestream), [`Result`](../../error/index.md#result), [`Eq`](../../token/index.md#eq), [`Type`](../../ty/index.md#type)
 
+#### Trait Implementations
+
+##### `impl Any for FlexibleItemType`
+
+- <span id="flexibleitemtype-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FlexibleItemType`
+
+- <span id="flexibleitemtype-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FlexibleItemType`
+
+- <span id="flexibleitemtype-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for FlexibleItemType`
+
+- <span id="flexibleitemtype-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FlexibleItemType`
+
+- <span id="flexibleitemtype-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for FlexibleItemType`
+
+- <span id="flexibleitemtype-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="flexibleitemtype-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FlexibleItemType`
+
+- <span id="flexibleitemtype-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="flexibleitemtype-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ## Enums
 
 ### `TypeDefaultness`
@@ -102,6 +146,50 @@ enum TypeDefaultness {
 
 *Defined in [`syn-2.0.111/src/item.rs:1135-1138`](../../../../.source_1765521767/syn-2.0.111/src/item.rs#L1135-L1138)*
 
+#### Trait Implementations
+
+##### `impl Any for TypeDefaultness`
+
+- <span id="typedefaultness-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TypeDefaultness`
+
+- <span id="typedefaultness-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TypeDefaultness`
+
+- <span id="typedefaultness-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for TypeDefaultness`
+
+- <span id="typedefaultness-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TypeDefaultness`
+
+- <span id="typedefaultness-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for TypeDefaultness`
+
+- <span id="typedefaultness-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="typedefaultness-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TypeDefaultness`
+
+- <span id="typedefaultness-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="typedefaultness-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `WhereClauseLocation`
 
 ```rust
@@ -114,6 +202,50 @@ enum WhereClauseLocation {
 
 *Defined in [`syn-2.0.111/src/item.rs:1140-1147`](../../../../.source_1765521767/syn-2.0.111/src/item.rs#L1140-L1147)*
 
+#### Trait Implementations
+
+##### `impl Any for WhereClauseLocation`
+
+- <span id="whereclauselocation-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WhereClauseLocation`
+
+- <span id="whereclauselocation-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WhereClauseLocation`
+
+- <span id="whereclauselocation-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for WhereClauseLocation`
+
+- <span id="whereclauselocation-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WhereClauseLocation`
+
+- <span id="whereclauselocation-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for WhereClauseLocation`
+
+- <span id="whereclauselocation-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="whereclauselocation-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WhereClauseLocation`
+
+- <span id="whereclauselocation-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="whereclauselocation-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `FnArgOrVariadic`
 
 ```rust
@@ -124,6 +256,50 @@ enum FnArgOrVariadic {
 ```
 
 *Defined in [`syn-2.0.111/src/item.rs:1595-1598`](../../../../.source_1765521767/syn-2.0.111/src/item.rs#L1595-L1598)*
+
+#### Trait Implementations
+
+##### `impl Any for FnArgOrVariadic`
+
+- <span id="fnargorvariadic-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FnArgOrVariadic`
+
+- <span id="fnargorvariadic-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FnArgOrVariadic`
+
+- <span id="fnargorvariadic-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for FnArgOrVariadic`
+
+- <span id="fnargorvariadic-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FnArgOrVariadic`
+
+- <span id="fnargorvariadic-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for FnArgOrVariadic`
+
+- <span id="fnargorvariadic-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fnargorvariadic-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FnArgOrVariadic`
+
+- <span id="fnargorvariadic-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fnargorvariadic-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

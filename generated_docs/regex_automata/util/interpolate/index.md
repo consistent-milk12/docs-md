@@ -95,23 +95,77 @@ capture reference.
 
 #### Trait Implementations
 
+##### `impl Any for CaptureRef<'a>`
+
+- <span id="captureref-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CaptureRef<'a>`
+
+- <span id="captureref-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CaptureRef<'a>`
+
+- <span id="captureref-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for CaptureRef<'a>`
 
 - <span id="captureref-clone"></span>`fn clone(&self) -> CaptureRef<'a>` — [`CaptureRef`](#captureref)
+
+##### `impl CloneToUninit for CaptureRef<'a>`
+
+- <span id="captureref-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for CaptureRef<'a>`
 
 ##### `impl Debug for CaptureRef<'a>`
 
-- <span id="captureref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="captureref-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for CaptureRef<'a>`
 
+##### `impl<T> From for CaptureRef<'a>`
+
+- <span id="captureref-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CaptureRef<'a>`
+
+- <span id="captureref-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for CaptureRef<'a>`
 
-- <span id="captureref-eq"></span>`fn eq(&self, other: &CaptureRef<'a>) -> bool` — [`CaptureRef`](#captureref)
+- <span id="captureref-partialeq-eq"></span>`fn eq(&self, other: &CaptureRef<'a>) -> bool` — [`CaptureRef`](#captureref)
 
 ##### `impl StructuralPartialEq for CaptureRef<'a>`
+
+##### `impl ToOwned for CaptureRef<'a>`
+
+- <span id="captureref-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="captureref-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="captureref-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CaptureRef<'a>`
+
+- <span id="captureref-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="captureref-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CaptureRef<'a>`
+
+- <span id="captureref-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="captureref-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -132,23 +186,77 @@ e.g., `$2`, `$foo`, `${foo}`.
 
 #### Trait Implementations
 
+##### `impl Any for Ref<'a>`
+
+- <span id="ref-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Ref<'a>`
+
+- <span id="ref-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Ref<'a>`
+
+- <span id="ref-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Ref<'a>`
 
 - <span id="ref-clone"></span>`fn clone(&self) -> Ref<'a>` — [`Ref`](#ref)
+
+##### `impl CloneToUninit for Ref<'a>`
+
+- <span id="ref-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Ref<'a>`
 
 ##### `impl Debug for Ref<'a>`
 
-- <span id="ref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ref-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Ref<'a>`
 
+##### `impl<T> From for Ref<'a>`
+
+- <span id="ref-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Ref<'a>`
+
+- <span id="ref-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Ref<'a>`
 
-- <span id="ref-eq"></span>`fn eq(&self, other: &Ref<'a>) -> bool` — [`Ref`](#ref)
+- <span id="ref-partialeq-eq"></span>`fn eq(&self, other: &Ref<'a>) -> bool` — [`Ref`](#ref)
 
 ##### `impl StructuralPartialEq for Ref<'a>`
+
+##### `impl ToOwned for Ref<'a>`
+
+- <span id="ref-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="ref-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="ref-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Ref<'a>`
+
+- <span id="ref-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ref-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Ref<'a>`
+
+- <span id="ref-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ref-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

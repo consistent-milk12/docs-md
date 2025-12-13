@@ -181,15 +181,155 @@ A scope for spawning threads.
 
 - <span id="scope-spawn"></span>`fn spawn<'scope, F, T>(self: &'scope Self, f: F) -> ScopedJoinHandle<'scope, T>` — [`ScopedJoinHandle`](#scopedjoinhandle)
 
+  Spawns a scoped thread.
+
+  
+
+  This method is similar to the [`spawn`](#spawn) function in Rust's standard library. The difference
+
+  is that this thread is scoped, meaning it's guaranteed to terminate before the scope exits,
+
+  allowing it to reference variables outside the scope.
+
+  
+
+  The scoped thread is passed a reference to this scope as an argument, which can be used for
+
+  spawning nested threads.
+
+  
+
+  The returned [handle](ScopedJoinHandle) can be used to manually
+
+  [join](ScopedJoinHandle::join) the thread before the scope exits.
+
+  
+
+  This will create a thread using default parameters of [`ScopedThreadBuilder`](#scopedthreadbuilder), if you want to specify the
+
+  stack size or the name of the thread, use this API instead.
+
+  
+
+  # Panics
+
+  
+
+  Panics if the OS fails to create a thread; use `ScopedThreadBuilder::spawn`
+
+  to recover from such errors.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::thread;
+
+  
+
+  thread::scope(|s| {
+
+      let handle = s.spawn(|_| {
+
+          println!("A child thread is running");
+
+          42
+
+      });
+
+  
+
+      // Join the thread and retrieve its result.
+
+      let res = handle.join().unwrap();
+
+      assert_eq!(res, 42);
+
+  }).unwrap();
+
+  ```
+
 - <span id="scope-builder"></span>`fn builder<'scope>(self: &'scope Self) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
+
+  Creates a builder that can configure a thread before spawning.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::thread;
+
+  
+
+  thread::scope(|s| {
+
+      s.builder()
+
+          .spawn(|_| println!("A child thread is running"))
+
+          .unwrap();
+
+  }).unwrap();
+
+  ```
 
 #### Trait Implementations
 
+##### `impl Any for Scope<'env>`
+
+- <span id="scope-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Scope<'env>`
+
+- <span id="scope-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Scope<'env>`
+
+- <span id="scope-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Scope<'_>`
 
-- <span id="scope-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scope-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Scope<'env>`
+
+- <span id="scope-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Scope<'env>`
+
+- <span id="scope-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Sync for Scope<'_>`
+
+##### `impl<U> TryFrom for Scope<'env>`
+
+- <span id="scope-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="scope-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Scope<'env>`
+
+- <span id="scope-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="scope-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ScopedThreadBuilder<'scope, 'env>`
 
@@ -238,15 +378,201 @@ thread::scope(|s| {
 
 - <span id="scopedthreadbuilder-name"></span>`fn name(self, name: String) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
 
+  Sets the name for the new thread.
+
+  
+
+  The name must not contain null bytes (`\0`).
+
+  
+
+  For more information about named threads, see [here][naming-threads].
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::thread;
+
+  use std::thread::current;
+
+  
+
+  thread::scope(|s| {
+
+      s.builder()
+
+          .name("my thread".to_string())
+
+          .spawn(|_| assert_eq!(current().name(), Some("my thread")))
+
+          .unwrap();
+
+  }).unwrap();
+
+  ```
+
 - <span id="scopedthreadbuilder-stack-size"></span>`fn stack_size(self, size: usize) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
+
+  Sets the size of the stack for the new thread.
+
+  
+
+  The stack size is measured in bytes.
+
+  
+
+  For more information about the stack size for threads, see [here][stack-size].
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::thread;
+
+  
+
+  thread::scope(|s| {
+
+      s.builder()
+
+          .stack_size(32 * 1024)
+
+          .spawn(|_| println!("Running a child thread"))
+
+          .unwrap();
+
+  }).unwrap();
+
+  ```
 
 - <span id="scopedthreadbuilder-spawn"></span>`fn spawn<F, T>(self, f: F) -> io::Result<ScopedJoinHandle<'scope, T>>` — [`ScopedJoinHandle`](#scopedjoinhandle)
 
+  Spawns a scoped thread with this configuration.
+
+  
+
+  The scoped thread is passed a reference to this scope as an argument, which can be used for
+
+  spawning nested threads.
+
+  
+
+  The returned handle can be used to manually join the thread before the scope exits.
+
+  
+
+  # Errors
+
+  
+
+  Unlike the `Scope::spawn` method, this method yields an
+
+  `io::Result` to capture any failure to create the thread at
+
+  the OS level.
+
+  
+
+  # Panics
+
+  
+
+  Panics if a thread name was set and it contained null bytes.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::thread;
+
+  
+
+  thread::scope(|s| {
+
+      let handle = s.builder()
+
+          .spawn(|_| {
+
+              println!("A child thread is running");
+
+              42
+
+          })
+
+          .unwrap();
+
+  
+
+      // Join the thread and retrieve its result.
+
+      let res = handle.join().unwrap();
+
+      assert_eq!(res, 42);
+
+  }).unwrap();
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for ScopedThreadBuilder<'scope, 'env>`
+
+- <span id="scopedthreadbuilder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ScopedThreadBuilder<'scope, 'env>`
+
+- <span id="scopedthreadbuilder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ScopedThreadBuilder<'scope, 'env>`
+
+- <span id="scopedthreadbuilder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for ScopedThreadBuilder<'scope, 'env>`
 
-- <span id="scopedthreadbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scopedthreadbuilder-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ScopedThreadBuilder<'scope, 'env>`
+
+- <span id="scopedthreadbuilder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ScopedThreadBuilder<'scope, 'env>`
+
+- <span id="scopedthreadbuilder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ScopedThreadBuilder<'scope, 'env>`
+
+- <span id="scopedthreadbuilder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="scopedthreadbuilder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ScopedThreadBuilder<'scope, 'env>`
+
+- <span id="scopedthreadbuilder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="scopedthreadbuilder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ScopedJoinHandle<'scope, T>`
 
@@ -288,23 +614,145 @@ This struct is created by the `Scope::spawn` method and the
 
 - <span id="scopedjoinhandle-join"></span>`fn join(self) -> thread::Result<T>`
 
+  Waits for the thread to finish and returns its result.
+
+  
+
+  If the child thread panics, an error is returned. Note that if panics are implemented by
+
+  aborting the process, no error is returned; see the notes of [std::panic::catch_unwind].
+
+  
+
+  # Panics
+
+  
+
+  This function may panic on some platforms if a thread attempts to join itself or otherwise
+
+  may create a deadlock with joining threads.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::thread;
+
+  
+
+  thread::scope(|s| {
+
+      let handle1 = s.spawn(|_| println!("I'm a happy thread :)"));
+
+      let handle2 = s.spawn(|_| panic!("I'm a sad thread :("));
+
+  
+
+      // Join the first thread and verify that it succeeded.
+
+      let res = handle1.join();
+
+      assert!(res.is_ok());
+
+  
+
+      // Join the second thread and verify that it panicked.
+
+      let res = handle2.join();
+
+      assert!(res.is_err());
+
+  }).unwrap();
+
+  ```
+
 - <span id="scopedjoinhandle-thread"></span>`fn thread(&self) -> &thread::Thread`
+
+  Returns a handle to the underlying thread.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::thread;
+
+  
+
+  thread::scope(|s| {
+
+      let handle = s.spawn(|_| println!("A child thread is running"));
+
+      println!("The child thread ID: {:?}", handle.thread().id());
+
+  }).unwrap();
+
+  ```
 
 #### Trait Implementations
 
+##### `impl<T> Any for ScopedJoinHandle<'scope, T>`
+
+- <span id="scopedjoinhandle-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ScopedJoinHandle<'scope, T>`
+
+- <span id="scopedjoinhandle-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ScopedJoinHandle<'scope, T>`
+
+- <span id="scopedjoinhandle-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T> Debug for ScopedJoinHandle<'_, T>`
 
-- <span id="scopedjoinhandle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scopedjoinhandle-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ScopedJoinHandle<'scope, T>`
+
+- <span id="scopedjoinhandle-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for ScopedJoinHandle<'scope, T>`
+
+- <span id="scopedjoinhandle-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> JoinHandleExt for super::ScopedJoinHandle<'_, T>`
 
-- <span id="superscopedjoinhandle-as-pthread-t"></span>`fn as_pthread_t(&self) -> RawPthread`
+- <span id="superscopedjoinhandle-joinhandleext-as-pthread-t"></span>`fn as_pthread_t(&self) -> RawPthread`
 
-- <span id="superscopedjoinhandle-into-pthread-t"></span>`fn into_pthread_t(self) -> RawPthread`
+- <span id="superscopedjoinhandle-joinhandleext-into-pthread-t"></span>`fn into_pthread_t(self) -> RawPthread`
 
 ##### `impl<T> Send for ScopedJoinHandle<'_, T>`
 
 ##### `impl<T> Sync for ScopedJoinHandle<'_, T>`
+
+##### `impl<T, U> TryFrom for ScopedJoinHandle<'scope, T>`
+
+- <span id="scopedjoinhandle-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="scopedjoinhandle-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for ScopedJoinHandle<'scope, T>`
+
+- <span id="scopedjoinhandle-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="scopedjoinhandle-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

@@ -206,25 +206,169 @@ The variants are ordered by their typical importance/frequency of use:
 
 - <span id="implcategory-from-trait-path"></span>`fn from_trait_path(path: Option<&str>) -> Self`
 
+  Categorize a trait implementation by its trait path.
+
+  
+
+  This method examines the trait path and returns the appropriate category.
+
+  It handles both simple trait names (`"Clone"`) and fully-qualified paths
+
+  (`"std::clone::Clone"`).
+
+  
+
+  # Arguments
+
+  
+
+  * `path` - The trait path, or `None` for inherent implementations
+
+  
+
+  # Returns
+
+  
+
+  The [`ImplCategory`](#implcategory) that best matches the trait.
+
+  
+
+  # Examples
+
+  
+
+  ```rust,ignore
+
+  // Inherent impl (no trait)
+
+  assert_eq!(ImplCategory::from_trait_path(None), ImplCategory::Inherent);
+
+  
+
+  // Simple trait name
+
+  assert_eq!(ImplCategory::from_trait_path(Some("Clone")), ImplCategory::Derive);
+
+  
+
+  // Fully-qualified path
+
+  assert_eq!(
+
+      ImplCategory::from_trait_path(Some("std::clone::Clone")),
+
+      ImplCategory::Derive
+
+  );
+
+  
+
+  // Operator from std::ops
+
+  assert_eq!(
+
+      ImplCategory::from_trait_path(Some("std::ops::Add")),
+
+      ImplCategory::Operator
+
+  );
+
+  
+
+  // Unknown trait
+
+  assert_eq!(
+
+      ImplCategory::from_trait_path(Some("serde::Serialize")),
+
+      ImplCategory::Other
+
+  );
+
+  ```
+
 - <span id="implcategory-display-name"></span>`const fn display_name(&self) -> &'static str`
+
+  Get the human-readable display name for this category.
+
+  
+
+  This name is suitable for use as a section header in documentation.
+
+  
+
+  # Returns
+
+  
+
+  A static string with the display name.
+
+  
+
+  # Examples
+
+  
+
+  ```rust,ignore
+
+  assert_eq!(ImplCategory::Inherent.display_name(), "Implementations");
+
+  assert_eq!(ImplCategory::Derive.display_name(), "Derived Traits");
+
+  assert_eq!(ImplCategory::Conversion.display_name(), "Conversion");
+
+  ```
 
 - <span id="implcategory-sort-order"></span>`const fn sort_order(self) -> u8`
 
+  Get the sort order for this category.
+
+  
+
+  Lower numbers appear first in documentation. This ordering reflects
+
+  typical importance and frequency of use.
+
+  
+
+  # Returns
+
+  
+
+  A `u8` value representing the sort order (0-8).
+
 #### Trait Implementations
+
+##### `impl Any for ImplCategory`
+
+- <span id="implcategory-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImplCategory`
+
+- <span id="implcategory-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImplCategory`
+
+- <span id="implcategory-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ImplCategory`
 
 - <span id="implcategory-clone"></span>`fn clone(&self) -> ImplCategory` — [`ImplCategory`](#implcategory)
 
+##### `impl CloneToUninit for ImplCategory`
+
+- <span id="implcategory-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<K> Comparable for ImplCategory`
 
-- <span id="implcategory-compare"></span>`fn compare(&self, key: &K) -> Ordering`
+- <span id="implcategory-comparable-compare"></span>`fn compare(&self, key: &K) -> Ordering`
 
 ##### `impl Copy for ImplCategory`
 
 ##### `impl Debug for ImplCategory`
 
-- <span id="implcategory-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="implcategory-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ImplCategory`
 
@@ -232,27 +376,55 @@ The variants are ordered by their typical importance/frequency of use:
 
 - <span id="implcategory-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
+##### `impl<T> From for ImplCategory`
+
+- <span id="implcategory-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for ImplCategory`
 
 - <span id="implcategory-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Instrument for ImplCategory`
 
+##### `impl<U> Into for ImplCategory`
+
+- <span id="implcategory-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for ImplCategory`
 
 ##### `impl Ord for ImplCategory`
 
-- <span id="implcategory-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
+- <span id="implcategory-ord-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
+
+  Compare categories by their display order.
+
+  
+
+  Categories are ordered by typical importance/frequency:
+
+  `Inherent` < `Derive` < `Conversion` < `Access` < `Iterator`
+
+  < `Operator` < `Formatting` < `Io` < `Other`
 
 ##### `impl OwoColorize for ImplCategory`
 
 ##### `impl PartialEq for ImplCategory`
 
-- <span id="implcategory-eq"></span>`fn eq(&self, other: &ImplCategory) -> bool` — [`ImplCategory`](#implcategory)
+- <span id="implcategory-partialeq-eq"></span>`fn eq(&self, other: &ImplCategory) -> bool` — [`ImplCategory`](#implcategory)
 
 ##### `impl PartialOrd for ImplCategory`
 
-- <span id="implcategory-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
+- <span id="implcategory-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
 
 ##### `impl Pointable for ImplCategory`
 
@@ -260,15 +432,35 @@ The variants are ordered by their typical importance/frequency of use:
 
 - <span id="implcategory-pointable-type-init"></span>`type Init = T`
 
-- <span id="implcategory-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="implcategory-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="implcategory-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="implcategory-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="implcategory-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="implcategory-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="implcategory-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="implcategory-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl StructuralPartialEq for ImplCategory`
+
+##### `impl ToOwned for ImplCategory`
+
+- <span id="implcategory-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="implcategory-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="implcategory-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImplCategory`
+
+- <span id="implcategory-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="implcategory-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImplCategory`
+
+- <span id="implcategory-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="implcategory-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for ImplCategory`
 

@@ -67,11 +67,57 @@ struct CpuInfo(u32);
 
 #### Trait Implementations
 
+##### `impl Any for CpuInfo`
+
+- <span id="cpuinfo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CpuInfo`
+
+- <span id="cpuinfo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CpuInfo`
+
+- <span id="cpuinfo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for CpuInfo`
 
 - <span id="cpuinfo-clone"></span>`fn clone(&self) -> CpuInfo` — [`CpuInfo`](#cpuinfo)
 
+##### `impl CloneToUninit for CpuInfo`
+
+- <span id="cpuinfo-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for CpuInfo`
+
+##### `impl<T> From for CpuInfo`
+
+- <span id="cpuinfo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CpuInfo`
+
+- <span id="cpuinfo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for CpuInfo`
+
+- <span id="cpuinfo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cpuinfo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CpuInfo`
+
+- <span id="cpuinfo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cpuinfo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -89,11 +135,57 @@ enum CpuInfoFlag {
 
 #### Trait Implementations
 
+##### `impl Any for CpuInfoFlag`
+
+- <span id="cpuinfoflag-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CpuInfoFlag`
+
+- <span id="cpuinfoflag-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CpuInfoFlag`
+
+- <span id="cpuinfoflag-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for CpuInfoFlag`
 
 - <span id="cpuinfoflag-clone"></span>`fn clone(&self) -> CpuInfoFlag` — [`CpuInfoFlag`](#cpuinfoflag)
 
+##### `impl CloneToUninit for CpuInfoFlag`
+
+- <span id="cpuinfoflag-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for CpuInfoFlag`
+
+##### `impl<T> From for CpuInfoFlag`
+
+- <span id="cpuinfoflag-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CpuInfoFlag`
+
+- <span id="cpuinfoflag-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for CpuInfoFlag`
+
+- <span id="cpuinfoflag-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cpuinfoflag-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CpuInfoFlag`
+
+- <span id="cpuinfoflag-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cpuinfoflag-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

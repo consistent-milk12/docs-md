@@ -56,17 +56,59 @@ Wraps an std duration for human basic formatting.
 
 #### Trait Implementations
 
+##### `impl Any for FormattedDuration`
+
+- <span id="formattedduration-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FormattedDuration`
+
+- <span id="formattedduration-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FormattedDuration`
+
+- <span id="formattedduration-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for FormattedDuration`
 
-- <span id="formattedduration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="formattedduration-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for FormattedDuration`
 
-- <span id="formattedduration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="formattedduration-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FormattedDuration`
+
+- <span id="formattedduration-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FormattedDuration`
+
+- <span id="formattedduration-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for FormattedDuration`
 
-- <span id="formattedduration-to-string"></span>`fn to_string(&self) -> String`
+- <span id="formattedduration-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for FormattedDuration`
+
+- <span id="formattedduration-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="formattedduration-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FormattedDuration`
+
+- <span id="formattedduration-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="formattedduration-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `HumanDuration`
 
@@ -80,17 +122,59 @@ Wraps an std duration for human readable formatting.
 
 #### Trait Implementations
 
+##### `impl Any for HumanDuration`
+
+- <span id="humanduration-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HumanDuration`
+
+- <span id="humanduration-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HumanDuration`
+
+- <span id="humanduration-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for HumanDuration`
 
-- <span id="humanduration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="humanduration-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for HumanDuration`
 
-- <span id="humanduration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="humanduration-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for HumanDuration`
+
+- <span id="humanduration-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for HumanDuration`
+
+- <span id="humanduration-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for HumanDuration`
 
-- <span id="humanduration-to-string"></span>`fn to_string(&self) -> String`
+- <span id="humanduration-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for HumanDuration`
+
+- <span id="humanduration-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="humanduration-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HumanDuration`
+
+- <span id="humanduration-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="humanduration-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `HumanBytes`
 
@@ -115,17 +199,59 @@ assert_eq!("1.33 PiB", format!("{}", HumanBytes(1_500_000_000_000_000)));
 
 #### Trait Implementations
 
+##### `impl Any for HumanBytes`
+
+- <span id="humanbytes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HumanBytes`
+
+- <span id="humanbytes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HumanBytes`
+
+- <span id="humanbytes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for HumanBytes`
 
-- <span id="humanbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="humanbytes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for HumanBytes`
 
-- <span id="humanbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="humanbytes-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for HumanBytes`
+
+- <span id="humanbytes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for HumanBytes`
+
+- <span id="humanbytes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for HumanBytes`
 
-- <span id="humanbytes-to-string"></span>`fn to_string(&self) -> String`
+- <span id="humanbytes-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for HumanBytes`
+
+- <span id="humanbytes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="humanbytes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HumanBytes`
+
+- <span id="humanbytes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="humanbytes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DecimalBytes`
 
@@ -150,17 +276,59 @@ assert_eq!("1.50 PB", format!("{}", DecimalBytes(1_500_000_000_000_000)));
 
 #### Trait Implementations
 
+##### `impl Any for DecimalBytes`
+
+- <span id="decimalbytes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DecimalBytes`
+
+- <span id="decimalbytes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DecimalBytes`
+
+- <span id="decimalbytes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for DecimalBytes`
 
-- <span id="decimalbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="decimalbytes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DecimalBytes`
 
-- <span id="decimalbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="decimalbytes-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DecimalBytes`
+
+- <span id="decimalbytes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DecimalBytes`
+
+- <span id="decimalbytes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for DecimalBytes`
 
-- <span id="decimalbytes-to-string"></span>`fn to_string(&self) -> String`
+- <span id="decimalbytes-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DecimalBytes`
+
+- <span id="decimalbytes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="decimalbytes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DecimalBytes`
+
+- <span id="decimalbytes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="decimalbytes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BinaryBytes`
 
@@ -185,17 +353,59 @@ assert_eq!("1.33 PiB", format!("{}", BinaryBytes(1_500_000_000_000_000)));
 
 #### Trait Implementations
 
+##### `impl Any for BinaryBytes`
+
+- <span id="binarybytes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BinaryBytes`
+
+- <span id="binarybytes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BinaryBytes`
+
+- <span id="binarybytes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for BinaryBytes`
 
-- <span id="binarybytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="binarybytes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for BinaryBytes`
 
-- <span id="binarybytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="binarybytes-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BinaryBytes`
+
+- <span id="binarybytes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BinaryBytes`
+
+- <span id="binarybytes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for BinaryBytes`
 
-- <span id="binarybytes-to-string"></span>`fn to_string(&self) -> String`
+- <span id="binarybytes-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for BinaryBytes`
+
+- <span id="binarybytes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="binarybytes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BinaryBytes`
+
+- <span id="binarybytes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="binarybytes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `HumanCount`
 
@@ -209,17 +419,59 @@ Formats counts for human readability using commas
 
 #### Trait Implementations
 
+##### `impl Any for HumanCount`
+
+- <span id="humancount-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HumanCount`
+
+- <span id="humancount-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HumanCount`
+
+- <span id="humancount-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for HumanCount`
 
-- <span id="humancount-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="humancount-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for HumanCount`
 
-- <span id="humancount-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="humancount-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for HumanCount`
+
+- <span id="humancount-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for HumanCount`
+
+- <span id="humancount-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for HumanCount`
 
-- <span id="humancount-to-string"></span>`fn to_string(&self) -> String`
+- <span id="humancount-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for HumanCount`
+
+- <span id="humancount-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="humancount-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HumanCount`
+
+- <span id="humancount-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="humancount-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `HumanFloatCount`
 
@@ -233,17 +485,59 @@ Formats counts for human readability using commas for floats
 
 #### Trait Implementations
 
+##### `impl Any for HumanFloatCount`
+
+- <span id="humanfloatcount-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HumanFloatCount`
+
+- <span id="humanfloatcount-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HumanFloatCount`
+
+- <span id="humanfloatcount-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for HumanFloatCount`
 
-- <span id="humanfloatcount-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="humanfloatcount-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for HumanFloatCount`
 
-- <span id="humanfloatcount-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="humanfloatcount-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for HumanFloatCount`
+
+- <span id="humanfloatcount-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for HumanFloatCount`
+
+- <span id="humanfloatcount-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for HumanFloatCount`
 
-- <span id="humanfloatcount-to-string"></span>`fn to_string(&self) -> String`
+- <span id="humanfloatcount-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for HumanFloatCount`
+
+- <span id="humanfloatcount-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="humanfloatcount-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HumanFloatCount`
+
+- <span id="humanfloatcount-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="humanfloatcount-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Constants
 

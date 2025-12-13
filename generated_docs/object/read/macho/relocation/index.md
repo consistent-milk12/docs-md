@@ -32,9 +32,39 @@ An iterator for the relocations in a [`MachOSection`](super::MachOSection).
 
 #### Trait Implementations
 
+##### `impl Any for MachORelocationIterator<'data, 'file, Mach, R>`
+
+- <span id="machorelocationiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachORelocationIterator<'data, 'file, Mach, R>`
+
+- <span id="machorelocationiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachORelocationIterator<'data, 'file, Mach, R>`
+
+- <span id="machorelocationiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach, R> Debug for MachORelocationIterator<'data, 'file, Mach, R>`
 
-- <span id="machorelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machorelocationiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachORelocationIterator<'data, 'file, Mach, R>`
+
+- <span id="machorelocationiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachORelocationIterator<'data, 'file, Mach, R>`
+
+- <span id="machorelocationiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachORelocationIterator<'data, 'file, Mach, R>`
 
@@ -42,13 +72,25 @@ An iterator for the relocations in a [`MachOSection`](super::MachOSection).
 
 - <span id="machorelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="machorelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="machorelocationiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Mach, R> Iterator for MachORelocationIterator<'data, 'file, Mach, R>`
 
 - <span id="machorelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
-- <span id="machorelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="machorelocationiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for MachORelocationIterator<'data, 'file, Mach, R>`
+
+- <span id="machorelocationiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machorelocationiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachORelocationIterator<'data, 'file, Mach, R>`
+
+- <span id="machorelocationiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machorelocationiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Type Aliases
 

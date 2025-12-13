@@ -159,49 +159,119 @@ struct WidthInfo(u16);
 
 - <span id="widthinfo-is-ligature-transparent"></span>`fn is_ligature_transparent(self) -> bool`
 
+  Whether this width mode is ligature_transparent
+
+  (has 5th MSB set.)
+
 - <span id="widthinfo-set-zwj-bit"></span>`fn set_zwj_bit(self) -> Self`
 
+  Sets 6th MSB.
+
 - <span id="widthinfo-is-emoji-presentation"></span>`fn is_emoji_presentation(self) -> bool`
+
+  Has top bit set
 
 - <span id="widthinfo-is-zwj-emoji-presentation"></span>`fn is_zwj_emoji_presentation(self) -> bool`
 
 - <span id="widthinfo-set-emoji-presentation"></span>`fn set_emoji_presentation(self) -> Self`
 
+  Set top bit
+
 - <span id="widthinfo-unset-emoji-presentation"></span>`fn unset_emoji_presentation(self) -> Self`
+
+  Clear top bit
 
 - <span id="widthinfo-is-text-presentation"></span>`fn is_text_presentation(self) -> bool`
 
+  Has 2nd bit set
+
 - <span id="widthinfo-set-text-presentation"></span>`fn set_text_presentation(self) -> Self`
+
+  Set 2nd bit
 
 - <span id="widthinfo-unset-text-presentation"></span>`fn unset_text_presentation(self) -> Self`
 
+  Clear 2nd bit
+
 - <span id="widthinfo-is-vs1-2-3"></span>`fn is_vs1_2_3(self) -> bool`
+
+  Has 7th bit set
 
 - <span id="widthinfo-set-vs1-2-3"></span>`fn set_vs1_2_3(self) -> Self`
 
+  Set 7th bit
+
 - <span id="widthinfo-unset-vs1-2-3"></span>`fn unset_vs1_2_3(self) -> Self`
 
+  Clear 7th bit
+
 #### Trait Implementations
+
+##### `impl Any for WidthInfo`
+
+- <span id="widthinfo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WidthInfo`
+
+- <span id="widthinfo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WidthInfo`
+
+- <span id="widthinfo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for WidthInfo`
 
 - <span id="widthinfo-clone"></span>`fn clone(&self) -> WidthInfo` — [`WidthInfo`](#widthinfo)
 
+##### `impl CloneToUninit for WidthInfo`
+
+- <span id="widthinfo-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for WidthInfo`
 
 ##### `impl Debug for WidthInfo`
 
-- <span id="widthinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="widthinfo-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for WidthInfo`
 
+##### `impl<T> From for WidthInfo`
+
+- <span id="widthinfo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WidthInfo`
+
+- <span id="widthinfo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for WidthInfo`
 
-- <span id="widthinfo-eq"></span>`fn eq(&self, other: &WidthInfo) -> bool` — [`WidthInfo`](#widthinfo)
+- <span id="widthinfo-partialeq-eq"></span>`fn eq(&self, other: &WidthInfo) -> bool` — [`WidthInfo`](#widthinfo)
 
 ##### `impl Sealed for WidthInfo`
 
 ##### `impl StructuralPartialEq for WidthInfo`
+
+##### `impl<U> TryFrom for WidthInfo`
+
+- <span id="widthinfo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="widthinfo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WidthInfo`
+
+- <span id="widthinfo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="widthinfo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Align32<T>`
 
@@ -213,7 +283,49 @@ struct Align32<T>(T);
 
 #### Trait Implementations
 
+##### `impl<T> Any for Align32<T>`
+
+- <span id="align32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Align32<T>`
+
+- <span id="align32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Align32<T>`
+
+- <span id="align32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Align32<T>`
+
+- <span id="align32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Align32<T>`
+
+- <span id="align32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T> Sealed for Align32<T>`
+
+##### `impl<T, U> TryFrom for Align32<T>`
+
+- <span id="align32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="align32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Align32<T>`
+
+- <span id="align32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="align32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Align64<T>`
 
@@ -225,7 +337,49 @@ struct Align64<T>(T);
 
 #### Trait Implementations
 
+##### `impl<T> Any for Align64<T>`
+
+- <span id="align64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Align64<T>`
+
+- <span id="align64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Align64<T>`
+
+- <span id="align64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Align64<T>`
+
+- <span id="align64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Align64<T>`
+
+- <span id="align64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T> Sealed for Align64<T>`
+
+##### `impl<T, U> TryFrom for Align64<T>`
+
+- <span id="align64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="align64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Align64<T>`
+
+- <span id="align64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="align64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Align128<T>`
 
@@ -237,7 +391,49 @@ struct Align128<T>(T);
 
 #### Trait Implementations
 
+##### `impl<T> Any for Align128<T>`
+
+- <span id="align128-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Align128<T>`
+
+- <span id="align128-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Align128<T>`
+
+- <span id="align128-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Align128<T>`
+
+- <span id="align128-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Align128<T>`
+
+- <span id="align128-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T> Sealed for Align128<T>`
+
+##### `impl<T, U> TryFrom for Align128<T>`
+
+- <span id="align128-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="align128-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Align128<T>`
+
+- <span id="align128-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="align128-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

@@ -246,23 +246,161 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 - <span id="hashmap-new"></span>`fn new() -> Self`
 
+  Creates an empty `HashMap`.
+
+  
+
+  The hash map is initially created with a capacity of 0, so it will not allocate until it
+
+  is first inserted into.
+
+  
+
+  # HashDoS resistance
+
+  
+
+  The `hash_builder` normally use a fixed key by default and that does
+
+  not allow the `HashMap` to be protected against attacks such as `HashDoS`.
+
+  Users who require HashDoS resistance should explicitly use
+
+  `std::collections::hash_map::RandomState`
+
+  as the hasher when creating a [`HashMap`](#hashmap), for example with
+
+  [`with_hasher`](HashMap::with_hasher) method.
+
+  
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  let mut map: HashMap<&str, i32> = HashMap::new();
+
+  assert_eq!(map.len(), 0);
+
+  assert_eq!(map.capacity(), 0);
+
+  ```
+
 - <span id="hashmap-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
+  Creates an empty `HashMap` with the specified capacity.
+
+  
+
+  The hash map will be able to hold at least `capacity` elements without
+
+  reallocating. If `capacity` is 0, the hash map will not allocate.
+
+  
+
+  # HashDoS resistance
+
+  
+
+  The `hash_builder` normally use a fixed key by default and that does
+
+  not allow the `HashMap` to be protected against attacks such as `HashDoS`.
+
+  Users who require HashDoS resistance should explicitly use
+
+  `std::collections::hash_map::RandomState`
+
+  as the hasher when creating a [`HashMap`](#hashmap), for example with
+
+  [`with_capacity_and_hasher`](HashMap::with_capacity_and_hasher) method.
+
+  
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  let mut map: HashMap<&str, i32> = HashMap::with_capacity(10);
+
+  assert_eq!(map.len(), 0);
+
+  assert!(map.capacity() >= 10);
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for HashMap<K, V, S, A>`
+
+- <span id="hashmap-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HashMap<K, V, S, A>`
+
+- <span id="hashmap-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HashMap<K, V, S, A>`
+
+- <span id="hashmap-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<K: Clone, V: Clone, S: Clone, A: Allocator + Clone> Clone for HashMap<K, V, S, A>`
 
 - <span id="hashmap-clone"></span>`fn clone(&self) -> Self`
 
-- <span id="hashmap-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
+- <span id="hashmap-clone-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
+
+##### `impl CloneToUninit for HashMap<K, V, S, A>`
+
+- <span id="hashmap-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<K, V, S, A> Debug for HashMap<K, V, S, A>`
 
-- <span id="hashmap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hashmap-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V, S, A> Default for HashMap<K, V, S, A>`
 
 - <span id="hashmap-default"></span>`fn default() -> Self`
+
+  Creates an empty `HashMap<K, V, S, A>`, with the `Default` value for the hasher and allocator.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  use std::collections::hash_map::RandomState;
+
+  
+
+  // You can specify all types of HashMap, including hasher and allocator.
+
+  // Created map is empty and don't allocate memory
+
+  let map: HashMap<u32, String> = Default::default();
+
+  assert_eq!(map.capacity(), 0);
+
+  let map: HashMap<u32, String, RandomState> = HashMap::default();
+
+  assert_eq!(map.capacity(), 0);
+
+  ```
 
 ##### `impl<K, V, S, A> Eq for HashMap<K, V, S, A>`
 
@@ -274,9 +412,85 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 - <span id="hashmap-extend"></span>`fn extend<T: IntoIterator<Item = (K, V)>>(&mut self, iter: T)`
 
+  Inserts all new key-values from the iterator to existing `HashMap<K, V, S, A>`.
+
+  Replace values with existing keys with new values returned from the iterator.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::hash_map::HashMap;
+
+  
+
+  let mut map = HashMap::new();
+
+  map.insert(1, 100);
+
+  
+
+  let some_iter = [(1, 1), (2, 2)].into_iter();
+
+  map.extend(some_iter);
+
+  // Replace values with existing keys with new values returned from the iterator.
+
+  // So that the map.get(&1) doesn't return Some(&100).
+
+  assert_eq!(map.get(&1), Some(&1));
+
+  
+
+  let some_vec: Vec<_> = vec![(3, 3), (4, 4)];
+
+  map.extend(some_vec);
+
+  
+
+  let some_arr = [(5, 5), (6, 6)];
+
+  map.extend(some_arr);
+
+  let old_map_len = map.len();
+
+  
+
+  // You can also extend from another HashMap
+
+  let mut new_map = HashMap::new();
+
+  new_map.extend(map);
+
+  assert_eq!(new_map.len(), old_map_len);
+
+  
+
+  let mut vec: Vec<_> = new_map.into_iter().collect();
+
+  // The `IntoIter` iterator produces items in arbitrary order, so the
+
+  // items must be sorted to test them against a sorted array.
+
+  vec.sort_unstable();
+
+  assert_eq!(vec, [(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6)]);
+
+  ```
+
+##### `impl<T> From for HashMap<K, V, S, A>`
+
+- <span id="hashmap-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<K, V, S, A> FromIterator for HashMap<K, V, S, A>`
 
-- <span id="hashmap-from-iter"></span>`fn from_iter<T: IntoIterator<Item = (K, V)>>(iter: T) -> Self`
+- <span id="hashmap-fromiterator-from-iter"></span>`fn from_iter<T: IntoIterator<Item = (K, V)>>(iter: T) -> Self`
 
 ##### `impl<K, Q, V, S, A> Index for HashMap<K, V, S, A>`
 
@@ -284,17 +498,121 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 - <span id="hashmap-index"></span>`fn index(&self, key: &Q) -> &V`
 
+  Returns a reference to the value corresponding to the supplied key.
+
+  
+
+  # Panics
+
+  
+
+  Panics if the key is not present in the `HashMap`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  
+
+  let map: HashMap<_, _> = [("a", "One"), ("b", "Two")].into();
+
+  
+
+  assert_eq!(map[&"a"], "One");
+
+  assert_eq!(map[&"b"], "Two");
+
+  ```
+
+##### `impl<U> Into for HashMap<K, V, S, A>`
+
+- <span id="hashmap-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<K, V, S, A: Allocator> IntoIterator for &'a HashMap<K, V, S, A>`
 
 - <span id="a-hashmap-intoiterator-type-item"></span>`type Item = (&'a K, &'a V)`
 
 - <span id="a-hashmap-intoiterator-type-intoiter"></span>`type IntoIter = Iter<'a, K, V>`
 
-- <span id="a-hashmap-into-iter"></span>`fn into_iter(self) -> Iter<'a, K, V>` — [`Iter`](#iter)
+- <span id="a-hashmap-intoiterator-into-iter"></span>`fn into_iter(self) -> Iter<'a, K, V>` — [`Iter`](#iter)
+
+  Creates an iterator over the entries of a `HashMap` in arbitrary order.
+
+  The iterator element type is `(&'a K, &'a V)`.
+
+  
+
+  Return the same `Iter` struct as by the [`iter`](#iter) method on [`HashMap`](#hashmap).
+
+  
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  let map_one: HashMap<_, _> = [(1, "a"), (2, "b"), (3, "c")].into();
+
+  let mut map_two = HashMap::new();
+
+  
+
+  for (key, value) in &map_one {
+
+      println!("Key: {}, Value: {}", key, value);
+
+      map_two.insert(*key, *value);
+
+  }
+
+  
+
+  assert_eq!(map_one, map_two);
+
+  ```
 
 ##### `impl<K, V, S, A> PartialEq for HashMap<K, V, S, A>`
 
-- <span id="hashmap-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="hashmap-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
+
+##### `impl ToOwned for HashMap<K, V, S, A>`
+
+- <span id="hashmap-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="hashmap-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="hashmap-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for HashMap<K, V, S, A>`
+
+- <span id="hashmap-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="hashmap-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HashMap<K, V, S, A>`
+
+- <span id="hashmap-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="hashmap-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Iter<'a, K, V>`
 
@@ -336,13 +654,29 @@ assert_eq!(iter.next(), None);
 
 #### Trait Implementations
 
+##### `impl Any for Iter<'a, K, V>`
+
+- <span id="iter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Iter<'a, K, V>`
+
+- <span id="iter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Iter<'a, K, V>`
+
+- <span id="iter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<K, V> Clone for Iter<'_, K, V>`
 
 - <span id="iter-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for Iter<'a, K, V>`
+
+- <span id="iter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<K: Debug, V: Debug> Debug for Iter<'_, K, V>`
 
-- <span id="iter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="iter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V> Default for Iter<'_, K, V>`
 
@@ -350,9 +684,27 @@ assert_eq!(iter.next(), None);
 
 ##### `impl<K, V> ExactSizeIterator for Iter<'_, K, V>`
 
-- <span id="iter-len"></span>`fn len(&self) -> usize`
+- <span id="iter-exactsizeiterator-len"></span>`fn len(&self) -> usize`
+
+##### `impl<T> From for Iter<'a, K, V>`
+
+- <span id="iter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<K, V> FusedIterator for Iter<'_, K, V>`
+
+##### `impl<U> Into for Iter<'a, K, V>`
+
+- <span id="iter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Iter<'a, K, V>`
 
@@ -360,17 +712,37 @@ assert_eq!(iter.next(), None);
 
 - <span id="iter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="iter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V> Iterator for Iter<'a, K, V>`
 
 - <span id="iter-iterator-type-item"></span>`type Item = (&'a K, &'a V)`
 
-- <span id="iter-next"></span>`fn next(&mut self) -> Option<(&'a K, &'a V)>`
+- <span id="iter-iterator-next"></span>`fn next(&mut self) -> Option<(&'a K, &'a V)>`
 
-- <span id="iter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="iter-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- <span id="iter-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+- <span id="iter-iterator-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+
+##### `impl ToOwned for Iter<'a, K, V>`
+
+- <span id="iter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="iter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="iter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Iter<'a, K, V>`
+
+- <span id="iter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="iter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Iter<'a, K, V>`
+
+- <span id="iter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="iter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IterMut<'a, K, V>`
 
@@ -413,11 +785,25 @@ assert_eq!(map.get(&2).unwrap(), &"Two Mississippi".to_owned());
 
 - <span id="itermut-iter"></span>`fn iter(&self) -> Iter<'_, K, V>` — [`Iter`](#iter)
 
+  Returns a iterator of references over the remaining items.
+
 #### Trait Implementations
+
+##### `impl Any for IterMut<'a, K, V>`
+
+- <span id="itermut-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IterMut<'a, K, V>`
+
+- <span id="itermut-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IterMut<'a, K, V>`
+
+- <span id="itermut-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<K, V> Debug for IterMut<'_, K, V>`
 
-- <span id="itermut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="itermut-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V> Default for IterMut<'_, K, V>`
 
@@ -425,9 +811,27 @@ assert_eq!(map.get(&2).unwrap(), &"Two Mississippi".to_owned());
 
 ##### `impl<K, V> ExactSizeIterator for IterMut<'_, K, V>`
 
-- <span id="itermut-len"></span>`fn len(&self) -> usize`
+- <span id="itermut-exactsizeiterator-len"></span>`fn len(&self) -> usize`
+
+##### `impl<T> From for IterMut<'a, K, V>`
+
+- <span id="itermut-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<K, V> FusedIterator for IterMut<'_, K, V>`
+
+##### `impl<U> Into for IterMut<'a, K, V>`
+
+- <span id="itermut-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IterMut<'a, K, V>`
 
@@ -435,19 +839,31 @@ assert_eq!(map.get(&2).unwrap(), &"Two Mississippi".to_owned());
 
 - <span id="itermut-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="itermut-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="itermut-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V> Iterator for IterMut<'a, K, V>`
 
 - <span id="itermut-iterator-type-item"></span>`type Item = (&'a K, &'a mut V)`
 
-- <span id="itermut-next"></span>`fn next(&mut self) -> Option<(&'a K, &'a mut V)>`
+- <span id="itermut-iterator-next"></span>`fn next(&mut self) -> Option<(&'a K, &'a mut V)>`
 
-- <span id="itermut-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="itermut-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- <span id="itermut-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+- <span id="itermut-iterator-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ##### `impl<K: Send, V: Send> Send for IterMut<'_, K, V>`
+
+##### `impl<U> TryFrom for IterMut<'a, K, V>`
+
+- <span id="itermut-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itermut-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IterMut<'a, K, V>`
+
+- <span id="itermut-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itermut-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IntoIter<K, V, A: Allocator>`
 
@@ -492,11 +908,25 @@ assert_eq!(iter.next(), None);
 
 - <span id="intoiter-iter"></span>`fn iter(&self) -> Iter<'_, K, V>` — [`Iter`](#iter)
 
+  Returns a iterator of references over the remaining items.
+
 #### Trait Implementations
+
+##### `impl Any for IntoIter<K, V, A>`
+
+- <span id="intoiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IntoIter<K, V, A>`
+
+- <span id="intoiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IntoIter<K, V, A>`
+
+- <span id="intoiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<K: Debug, V: Debug, A: Allocator> Debug for IntoIter<K, V, A>`
 
-- <span id="intoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="intoiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V, A: Allocator> Default for IntoIter<K, V, A>`
 
@@ -504,9 +934,27 @@ assert_eq!(iter.next(), None);
 
 ##### `impl<K, V, A: Allocator> ExactSizeIterator for IntoIter<K, V, A>`
 
-- <span id="intoiter-len"></span>`fn len(&self) -> usize`
+- <span id="intoiter-exactsizeiterator-len"></span>`fn len(&self) -> usize`
+
+##### `impl<T> From for IntoIter<K, V, A>`
+
+- <span id="intoiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<K, V, A: Allocator> FusedIterator for IntoIter<K, V, A>`
+
+##### `impl<U> Into for IntoIter<K, V, A>`
+
+- <span id="intoiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IntoIter<K, V, A>`
 
@@ -514,17 +962,29 @@ assert_eq!(iter.next(), None);
 
 - <span id="intoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="intoiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, A: Allocator> Iterator for IntoIter<K, V, A>`
 
 - <span id="intoiter-iterator-type-item"></span>`type Item = (K, V)`
 
-- <span id="intoiter-next"></span>`fn next(&mut self) -> Option<(K, V)>`
+- <span id="intoiter-iterator-next"></span>`fn next(&mut self) -> Option<(K, V)>`
 
-- <span id="intoiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="intoiter-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- <span id="intoiter-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+- <span id="intoiter-iterator-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+
+##### `impl<U> TryFrom for IntoIter<K, V, A>`
+
+- <span id="intoiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="intoiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IntoIter<K, V, A>`
+
+- <span id="intoiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="intoiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IntoKeys<K, V, A: Allocator>`
 
@@ -566,9 +1026,21 @@ assert_eq!(keys.next(), None);
 
 #### Trait Implementations
 
+##### `impl Any for IntoKeys<K, V, A>`
+
+- <span id="intokeys-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IntoKeys<K, V, A>`
+
+- <span id="intokeys-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IntoKeys<K, V, A>`
+
+- <span id="intokeys-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<K: Debug, V: Debug, A: Allocator> Debug for IntoKeys<K, V, A>`
 
-- <span id="intokeys-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="intokeys-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V, A: Allocator> Default for IntoKeys<K, V, A>`
 
@@ -576,9 +1048,27 @@ assert_eq!(keys.next(), None);
 
 ##### `impl<K, V, A: Allocator> ExactSizeIterator for IntoKeys<K, V, A>`
 
-- <span id="intokeys-len"></span>`fn len(&self) -> usize`
+- <span id="intokeys-exactsizeiterator-len"></span>`fn len(&self) -> usize`
+
+##### `impl<T> From for IntoKeys<K, V, A>`
+
+- <span id="intokeys-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<K, V, A: Allocator> FusedIterator for IntoKeys<K, V, A>`
+
+##### `impl<U> Into for IntoKeys<K, V, A>`
+
+- <span id="intokeys-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IntoKeys<K, V, A>`
 
@@ -586,17 +1076,29 @@ assert_eq!(keys.next(), None);
 
 - <span id="intokeys-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="intokeys-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="intokeys-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, A: Allocator> Iterator for IntoKeys<K, V, A>`
 
 - <span id="intokeys-iterator-type-item"></span>`type Item = K`
 
-- <span id="intokeys-next"></span>`fn next(&mut self) -> Option<K>`
+- <span id="intokeys-iterator-next"></span>`fn next(&mut self) -> Option<K>`
 
-- <span id="intokeys-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="intokeys-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- <span id="intokeys-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+- <span id="intokeys-iterator-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+
+##### `impl<U> TryFrom for IntoKeys<K, V, A>`
+
+- <span id="intokeys-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="intokeys-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IntoKeys<K, V, A>`
+
+- <span id="intokeys-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="intokeys-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IntoValues<K, V, A: Allocator>`
 
@@ -637,9 +1139,21 @@ assert_eq!(values.next(), None);
 
 #### Trait Implementations
 
+##### `impl Any for IntoValues<K, V, A>`
+
+- <span id="intovalues-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IntoValues<K, V, A>`
+
+- <span id="intovalues-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IntoValues<K, V, A>`
+
+- <span id="intovalues-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<K, V: Debug, A: Allocator> Debug for IntoValues<K, V, A>`
 
-- <span id="intovalues-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="intovalues-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V, A: Allocator> Default for IntoValues<K, V, A>`
 
@@ -647,9 +1161,27 @@ assert_eq!(values.next(), None);
 
 ##### `impl<K, V, A: Allocator> ExactSizeIterator for IntoValues<K, V, A>`
 
-- <span id="intovalues-len"></span>`fn len(&self) -> usize`
+- <span id="intovalues-exactsizeiterator-len"></span>`fn len(&self) -> usize`
+
+##### `impl<T> From for IntoValues<K, V, A>`
+
+- <span id="intovalues-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<K, V, A: Allocator> FusedIterator for IntoValues<K, V, A>`
+
+##### `impl<U> Into for IntoValues<K, V, A>`
+
+- <span id="intovalues-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IntoValues<K, V, A>`
 
@@ -657,17 +1189,29 @@ assert_eq!(values.next(), None);
 
 - <span id="intovalues-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="intovalues-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="intovalues-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, A: Allocator> Iterator for IntoValues<K, V, A>`
 
 - <span id="intovalues-iterator-type-item"></span>`type Item = V`
 
-- <span id="intovalues-next"></span>`fn next(&mut self) -> Option<V>`
+- <span id="intovalues-iterator-next"></span>`fn next(&mut self) -> Option<V>`
 
-- <span id="intovalues-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="intovalues-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- <span id="intovalues-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+- <span id="intovalues-iterator-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+
+##### `impl<U> TryFrom for IntoValues<K, V, A>`
+
+- <span id="intovalues-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="intovalues-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IntoValues<K, V, A>`
+
+- <span id="intovalues-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="intovalues-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Keys<'a, K, V>`
 
@@ -708,13 +1252,29 @@ assert_eq!(keys.next(), None);
 
 #### Trait Implementations
 
+##### `impl Any for Keys<'a, K, V>`
+
+- <span id="keys-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Keys<'a, K, V>`
+
+- <span id="keys-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Keys<'a, K, V>`
+
+- <span id="keys-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<K, V> Clone for Keys<'_, K, V>`
 
 - <span id="keys-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for Keys<'a, K, V>`
+
+- <span id="keys-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<K: Debug, V> Debug for Keys<'_, K, V>`
 
-- <span id="keys-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="keys-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V> Default for Keys<'_, K, V>`
 
@@ -722,9 +1282,27 @@ assert_eq!(keys.next(), None);
 
 ##### `impl<K, V> ExactSizeIterator for Keys<'_, K, V>`
 
-- <span id="keys-len"></span>`fn len(&self) -> usize`
+- <span id="keys-exactsizeiterator-len"></span>`fn len(&self) -> usize`
+
+##### `impl<T> From for Keys<'a, K, V>`
+
+- <span id="keys-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<K, V> FusedIterator for Keys<'_, K, V>`
+
+##### `impl<U> Into for Keys<'a, K, V>`
+
+- <span id="keys-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Keys<'a, K, V>`
 
@@ -732,17 +1310,37 @@ assert_eq!(keys.next(), None);
 
 - <span id="keys-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="keys-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="keys-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V> Iterator for Keys<'a, K, V>`
 
 - <span id="keys-iterator-type-item"></span>`type Item = &'a K`
 
-- <span id="keys-next"></span>`fn next(&mut self) -> Option<&'a K>`
+- <span id="keys-iterator-next"></span>`fn next(&mut self) -> Option<&'a K>`
 
-- <span id="keys-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="keys-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- <span id="keys-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+- <span id="keys-iterator-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+
+##### `impl ToOwned for Keys<'a, K, V>`
+
+- <span id="keys-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="keys-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="keys-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Keys<'a, K, V>`
+
+- <span id="keys-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="keys-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Keys<'a, K, V>`
+
+- <span id="keys-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="keys-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Values<'a, K, V>`
 
@@ -783,13 +1381,29 @@ assert_eq!(values.next(), None);
 
 #### Trait Implementations
 
+##### `impl Any for Values<'a, K, V>`
+
+- <span id="values-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Values<'a, K, V>`
+
+- <span id="values-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Values<'a, K, V>`
+
+- <span id="values-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<K, V> Clone for Values<'_, K, V>`
 
 - <span id="values-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for Values<'a, K, V>`
+
+- <span id="values-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<K, V: Debug> Debug for Values<'_, K, V>`
 
-- <span id="values-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="values-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V> Default for Values<'_, K, V>`
 
@@ -797,9 +1411,27 @@ assert_eq!(values.next(), None);
 
 ##### `impl<K, V> ExactSizeIterator for Values<'_, K, V>`
 
-- <span id="values-len"></span>`fn len(&self) -> usize`
+- <span id="values-exactsizeiterator-len"></span>`fn len(&self) -> usize`
+
+##### `impl<T> From for Values<'a, K, V>`
+
+- <span id="values-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<K, V> FusedIterator for Values<'_, K, V>`
+
+##### `impl<U> Into for Values<'a, K, V>`
+
+- <span id="values-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Values<'a, K, V>`
 
@@ -807,17 +1439,37 @@ assert_eq!(values.next(), None);
 
 - <span id="values-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="values-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="values-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V> Iterator for Values<'a, K, V>`
 
 - <span id="values-iterator-type-item"></span>`type Item = &'a V`
 
-- <span id="values-next"></span>`fn next(&mut self) -> Option<&'a V>`
+- <span id="values-iterator-next"></span>`fn next(&mut self) -> Option<&'a V>`
 
-- <span id="values-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="values-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- <span id="values-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+- <span id="values-iterator-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+
+##### `impl ToOwned for Values<'a, K, V>`
+
+- <span id="values-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="values-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="values-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Values<'a, K, V>`
+
+- <span id="values-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="values-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Values<'a, K, V>`
+
+- <span id="values-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="values-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Drain<'a, K, V, A: Allocator>`
 
@@ -860,17 +1512,49 @@ assert_eq!(drain_iter.next(), None);
 
 - <span id="drain-iter"></span>`fn iter(&self) -> Iter<'_, K, V>` — [`Iter`](#iter)
 
+  Returns a iterator of references over the remaining items.
+
 #### Trait Implementations
+
+##### `impl Any for Drain<'a, K, V, A>`
+
+- <span id="drain-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Drain<'a, K, V, A>`
+
+- <span id="drain-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Drain<'a, K, V, A>`
+
+- <span id="drain-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<K, V, A> Debug for Drain<'_, K, V, A>`
 
-- <span id="drain-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="drain-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V, A: Allocator> ExactSizeIterator for Drain<'_, K, V, A>`
 
-- <span id="drain-len"></span>`fn len(&self) -> usize`
+- <span id="drain-exactsizeiterator-len"></span>`fn len(&self) -> usize`
+
+##### `impl<T> From for Drain<'a, K, V, A>`
+
+- <span id="drain-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<K, V, A: Allocator> FusedIterator for Drain<'_, K, V, A>`
+
+##### `impl<U> Into for Drain<'a, K, V, A>`
+
+- <span id="drain-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Drain<'a, K, V, A>`
 
@@ -878,17 +1562,29 @@ assert_eq!(drain_iter.next(), None);
 
 - <span id="drain-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="drain-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, A: Allocator> Iterator for Drain<'_, K, V, A>`
 
 - <span id="drain-iterator-type-item"></span>`type Item = (K, V)`
 
-- <span id="drain-next"></span>`fn next(&mut self) -> Option<(K, V)>`
+- <span id="drain-iterator-next"></span>`fn next(&mut self) -> Option<(K, V)>`
 
-- <span id="drain-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="drain-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- <span id="drain-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+- <span id="drain-iterator-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+
+##### `impl<U> TryFrom for Drain<'a, K, V, A>`
+
+- <span id="drain-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="drain-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Drain<'a, K, V, A>`
+
+- <span id="drain-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="drain-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ExtractIf<'a, K, V, F, A: Allocator>`
 
@@ -933,7 +1629,37 @@ assert_eq!(map.len(), 1);
 
 #### Trait Implementations
 
+##### `impl Any for ExtractIf<'a, K, V, F, A>`
+
+- <span id="extractif-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ExtractIf<'a, K, V, F, A>`
+
+- <span id="extractif-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ExtractIf<'a, K, V, F, A>`
+
+- <span id="extractif-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for ExtractIf<'a, K, V, F, A>`
+
+- <span id="extractif-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<K, V, F> FusedIterator for ExtractIf<'_, K, V, F>`
+
+##### `impl<U> Into for ExtractIf<'a, K, V, F, A>`
+
+- <span id="extractif-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ExtractIf<'a, K, V, F, A>`
 
@@ -941,15 +1667,27 @@ assert_eq!(map.len(), 1);
 
 - <span id="extractif-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="extractif-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="extractif-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, F, A> Iterator for ExtractIf<'_, K, V, F, A>`
 
 - <span id="extractif-iterator-type-item"></span>`type Item = (K, V)`
 
-- <span id="extractif-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="extractif-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- <span id="extractif-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="extractif-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+
+##### `impl<U> TryFrom for ExtractIf<'a, K, V, F, A>`
+
+- <span id="extractif-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="extractif-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ExtractIf<'a, K, V, F, A>`
+
+- <span id="extractif-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="extractif-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ValuesMut<'a, K, V>`
 
@@ -989,9 +1727,21 @@ assert_eq!(map.get(&2).unwrap(), &"Two Mississippi".to_owned());
 
 #### Trait Implementations
 
+##### `impl Any for ValuesMut<'a, K, V>`
+
+- <span id="valuesmut-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ValuesMut<'a, K, V>`
+
+- <span id="valuesmut-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ValuesMut<'a, K, V>`
+
+- <span id="valuesmut-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<K, V: Debug> Debug for ValuesMut<'_, K, V>`
 
-- <span id="valuesmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="valuesmut-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V> Default for ValuesMut<'_, K, V>`
 
@@ -999,9 +1749,27 @@ assert_eq!(map.get(&2).unwrap(), &"Two Mississippi".to_owned());
 
 ##### `impl<K, V> ExactSizeIterator for ValuesMut<'_, K, V>`
 
-- <span id="valuesmut-len"></span>`fn len(&self) -> usize`
+- <span id="valuesmut-exactsizeiterator-len"></span>`fn len(&self) -> usize`
+
+##### `impl<T> From for ValuesMut<'a, K, V>`
+
+- <span id="valuesmut-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<K, V> FusedIterator for ValuesMut<'_, K, V>`
+
+##### `impl<U> Into for ValuesMut<'a, K, V>`
+
+- <span id="valuesmut-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ValuesMut<'a, K, V>`
 
@@ -1009,17 +1777,29 @@ assert_eq!(map.get(&2).unwrap(), &"Two Mississippi".to_owned());
 
 - <span id="valuesmut-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="valuesmut-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="valuesmut-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V> Iterator for ValuesMut<'a, K, V>`
 
 - <span id="valuesmut-iterator-type-item"></span>`type Item = &'a mut V`
 
-- <span id="valuesmut-next"></span>`fn next(&mut self) -> Option<&'a mut V>`
+- <span id="valuesmut-iterator-next"></span>`fn next(&mut self) -> Option<&'a mut V>`
 
-- <span id="valuesmut-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="valuesmut-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- <span id="valuesmut-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+- <span id="valuesmut-iterator-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
+
+##### `impl<U> TryFrom for ValuesMut<'a, K, V>`
+
+- <span id="valuesmut-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="valuesmut-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ValuesMut<'a, K, V>`
+
+- <span id="valuesmut-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="valuesmut-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `OccupiedEntry<'a, K, V, S, A: Allocator>`
 
@@ -1076,29 +1856,455 @@ assert_eq!(map.len(), 2);
 
 - <span id="occupiedentry-key"></span>`fn key(&self) -> &K`
 
+  Gets a reference to the key in the entry.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::hash_map::{Entry, HashMap};
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  map.entry("poneyland").or_insert(12);
+
+  
+
+  match map.entry("poneyland") {
+
+      Entry::Vacant(_) => panic!(),
+
+      Entry::Occupied(entry) => assert_eq!(entry.key(), &"poneyland"),
+
+  }
+
+  ```
+
 - <span id="occupiedentry-remove-entry"></span>`fn remove_entry(self) -> (K, V)`
+
+  Take the ownership of the key and value from the map.
+
+  Keeps the allocated memory for reuse.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  use hashbrown::hash_map::Entry;
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  // The map is empty
+
+  assert!(map.is_empty() && map.capacity() == 0);
+
+  
+
+  map.entry("poneyland").or_insert(12);
+
+  
+
+  if let Entry::Occupied(o) = map.entry("poneyland") {
+
+      // We delete the entry from the map.
+
+      assert_eq!(o.remove_entry(), ("poneyland", 12));
+
+  }
+
+  
+
+  assert_eq!(map.contains_key("poneyland"), false);
+
+  // Now map hold none elements
+
+  assert!(map.is_empty());
+
+  ```
 
 - <span id="occupiedentry-get"></span>`fn get(&self) -> &V`
 
+  Gets a reference to the value in the entry.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  use hashbrown::hash_map::Entry;
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  map.entry("poneyland").or_insert(12);
+
+  
+
+  match map.entry("poneyland") {
+
+      Entry::Vacant(_) => panic!(),
+
+      Entry::Occupied(entry) => assert_eq!(entry.get(), &12),
+
+  }
+
+  ```
+
 - <span id="occupiedentry-get-mut"></span>`fn get_mut(&mut self) -> &mut V`
+
+  Gets a mutable reference to the value in the entry.
+
+  
+
+  If you need a reference to the `OccupiedEntry` which may outlive the
+
+  destruction of the `Entry` value, see `into_mut`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  use hashbrown::hash_map::Entry;
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  map.entry("poneyland").or_insert(12);
+
+  
+
+  assert_eq!(map["poneyland"], 12);
+
+  if let Entry::Occupied(mut o) = map.entry("poneyland") {
+
+      *o.get_mut() += 10;
+
+      assert_eq!(*o.get(), 22);
+
+  
+
+      // We can use the same Entry multiple times.
+
+      *o.get_mut() += 2;
+
+  }
+
+  
+
+  assert_eq!(map["poneyland"], 24);
+
+  ```
 
 - <span id="occupiedentry-into-mut"></span>`fn into_mut(self) -> &'a mut V`
 
+  Converts the `OccupiedEntry` into a mutable reference to the value in the entry
+
+  with a lifetime bound to the map itself.
+
+  
+
+  If you need multiple references to the `OccupiedEntry`, see `get_mut`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::hash_map::{Entry, HashMap};
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  map.entry("poneyland").or_insert(12);
+
+  
+
+  assert_eq!(map["poneyland"], 12);
+
+  
+
+  let value: &mut u32;
+
+  match map.entry("poneyland") {
+
+      Entry::Occupied(entry) => value = entry.into_mut(),
+
+      Entry::Vacant(_) => panic!(),
+
+  }
+
+  *value += 10;
+
+  
+
+  assert_eq!(map["poneyland"], 22);
+
+  ```
+
 - <span id="occupiedentry-insert"></span>`fn insert(&mut self, value: V) -> V`
+
+  Sets the value of the entry, and returns the entry's old value.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  use hashbrown::hash_map::Entry;
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  map.entry("poneyland").or_insert(12);
+
+  
+
+  if let Entry::Occupied(mut o) = map.entry("poneyland") {
+
+      assert_eq!(o.insert(15), 12);
+
+  }
+
+  
+
+  assert_eq!(map["poneyland"], 15);
+
+  ```
 
 - <span id="occupiedentry-remove"></span>`fn remove(self) -> V`
 
+  Takes the value out of the entry, and returns it.
+
+  Keeps the allocated memory for reuse.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  use hashbrown::hash_map::Entry;
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  // The map is empty
+
+  assert!(map.is_empty() && map.capacity() == 0);
+
+  
+
+  map.entry("poneyland").or_insert(12);
+
+  
+
+  if let Entry::Occupied(o) = map.entry("poneyland") {
+
+      assert_eq!(o.remove(), 12);
+
+  }
+
+  
+
+  assert_eq!(map.contains_key("poneyland"), false);
+
+  // Now map hold none elements
+
+  assert!(map.is_empty());
+
+  ```
+
 - <span id="occupiedentry-replace-entry-with"></span>`fn replace_entry_with<F>(self, f: F) -> Entry<'a, K, V, S, A>` — [`Entry`](#entry)
+
+  Provides shared access to the key and owned access to the value of
+
+  the entry and allows to replace or remove it based on the
+
+  value of the returned option.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  use hashbrown::hash_map::Entry;
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  map.insert("poneyland", 42);
+
+  
+
+  let entry = match map.entry("poneyland") {
+
+      Entry::Occupied(e) => {
+
+          e.replace_entry_with(|k, v| {
+
+              assert_eq!(k, &"poneyland");
+
+              assert_eq!(v, 42);
+
+              Some(v + 1)
+
+          })
+
+      }
+
+      Entry::Vacant(_) => panic!(),
+
+  };
+
+  
+
+  match entry {
+
+      Entry::Occupied(e) => {
+
+          assert_eq!(e.key(), &"poneyland");
+
+          assert_eq!(e.get(), &43);
+
+      }
+
+      Entry::Vacant(_) => panic!(),
+
+  }
+
+  
+
+  assert_eq!(map["poneyland"], 43);
+
+  
+
+  let entry = match map.entry("poneyland") {
+
+      Entry::Occupied(e) => e.replace_entry_with(|_k, _v| None),
+
+      Entry::Vacant(_) => panic!(),
+
+  };
+
+  
+
+  match entry {
+
+      Entry::Vacant(e) => {
+
+          assert_eq!(e.key(), &"poneyland");
+
+      }
+
+      Entry::Occupied(_) => panic!(),
+
+  }
+
+  
+
+  assert!(!map.contains_key("poneyland"));
+
+  ```
 
 #### Trait Implementations
 
+##### `impl Any for OccupiedEntry<'a, K, V, S, A>`
+
+- <span id="occupiedentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for OccupiedEntry<'a, K, V, S, A>`
+
+- <span id="occupiedentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for OccupiedEntry<'a, K, V, S, A>`
+
+- <span id="occupiedentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<K: Debug, V: Debug, S, A: Allocator> Debug for OccupiedEntry<'_, K, V, S, A>`
 
-- <span id="occupiedentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="occupiedentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for OccupiedEntry<'a, K, V, S, A>`
+
+- <span id="occupiedentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for OccupiedEntry<'a, K, V, S, A>`
+
+- <span id="occupiedentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<K, V, S, A> Send for OccupiedEntry<'_, K, V, S, A>`
 
 ##### `impl<K, V, S, A> Sync for OccupiedEntry<'_, K, V, S, A>`
+
+##### `impl<U> TryFrom for OccupiedEntry<'a, K, V, S, A>`
+
+- <span id="occupiedentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="occupiedentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for OccupiedEntry<'a, K, V, S, A>`
+
+- <span id="occupiedentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="occupiedentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `VacantEntry<'a, K, V, S, A: Allocator>`
 
@@ -1113,7 +2319,7 @@ struct VacantEntry<'a, K, V, S, A: Allocator> {
 *Defined in [`hashbrown-0.16.1/src/map.rs:2893-2897`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L2893-L2897)*
 
 A view into a vacant entry in a `HashMap`.
-It is part of the [`Entry`](#entry) enum.
+It is part of the [`Entry`](../hash_set/index.md) enum.
 
 # Examples
 
@@ -1145,17 +2351,173 @@ assert!(map[&"b"] == 20 && map.len() == 2);
 
 - <span id="vacantentry-key"></span>`fn key(&self) -> &K`
 
+  Gets a reference to the key that would be used when inserting a value
+
+  through the `VacantEntry`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  assert_eq!(map.entry("poneyland").key(), &"poneyland");
+
+  ```
+
 - <span id="vacantentry-into-key"></span>`fn into_key(self) -> K`
+
+  Take ownership of the key.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::hash_map::{Entry, HashMap};
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  
+
+  match map.entry("poneyland") {
+
+      Entry::Occupied(_) => panic!(),
+
+      Entry::Vacant(v) => assert_eq!(v.into_key(), "poneyland"),
+
+  }
+
+  ```
 
 - <span id="vacantentry-insert"></span>`fn insert(self, value: V) -> &'a mut V`
 
+  Sets the value of the entry with the [`VacantEntry`](#vacantentry)'s key,
+
+  and returns a mutable reference to it.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  use hashbrown::hash_map::Entry;
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  
+
+  if let Entry::Vacant(o) = map.entry("poneyland") {
+
+      o.insert(37);
+
+  }
+
+  assert_eq!(map["poneyland"], 37);
+
+  ```
+
 - <span id="vacantentry-insert-entry"></span>`fn insert_entry(self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
+
+  Sets the value of the entry with the [`VacantEntry`](#vacantentry)'s key,
+
+  and returns an [`OccupiedEntry`](#occupiedentry).
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  use hashbrown::hash_map::Entry;
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  
+
+  if let Entry::Vacant(v) = map.entry("poneyland") {
+
+      let o = v.insert_entry(37);
+
+      assert_eq!(o.get(), &37);
+
+  }
+
+  ```
 
 #### Trait Implementations
 
+##### `impl Any for VacantEntry<'a, K, V, S, A>`
+
+- <span id="vacantentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for VacantEntry<'a, K, V, S, A>`
+
+- <span id="vacantentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for VacantEntry<'a, K, V, S, A>`
+
+- <span id="vacantentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<K: Debug, V, S, A: Allocator> Debug for VacantEntry<'_, K, V, S, A>`
 
-- <span id="vacantentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="vacantentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for VacantEntry<'a, K, V, S, A>`
+
+- <span id="vacantentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for VacantEntry<'a, K, V, S, A>`
+
+- <span id="vacantentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for VacantEntry<'a, K, V, S, A>`
+
+- <span id="vacantentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="vacantentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for VacantEntry<'a, K, V, S, A>`
+
+- <span id="vacantentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="vacantentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `VacantEntryRef<'map, 'key, K, Q: ?Sized, V, S, A: Allocator>`
 
@@ -1202,17 +2564,207 @@ assert!(map["b"] == 20 && map.len() == 2);
 
 - <span id="vacantentryref-key"></span>`fn key(&self) -> &'key Q`
 
+  Gets a reference to the key that would be used when inserting a value
+
+  through the `VacantEntryRef`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  
+
+  let mut map: HashMap<String, u32> = HashMap::new();
+
+  let key: &str = "poneyland";
+
+  assert_eq!(map.entry_ref(key).key(), "poneyland");
+
+  ```
+
 - <span id="vacantentryref-insert"></span>`fn insert(self, value: V) -> &'map mut V`
+
+  Sets the value of the entry with the `VacantEntryRef`'s key,
+
+  and returns a mutable reference to it.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  use hashbrown::hash_map::EntryRef;
+
+  
+
+  let mut map: HashMap<String, u32> = HashMap::new();
+
+  let key: &str = "poneyland";
+
+  
+
+  if let EntryRef::Vacant(o) = map.entry_ref(key) {
+
+      o.insert(37);
+
+  }
+
+  assert_eq!(map["poneyland"], 37);
+
+  ```
 
 - <span id="vacantentryref-insert-with-key"></span>`fn insert_with_key(self, key: K, value: V) -> &'map mut V`
 
+  Sets the key and value of the entry and returns a mutable reference to
+
+  the inserted value.
+
+  
+
+  Unlike `VacantEntryRef::insert`, this method allows the key to be
+
+  explicitly specified, which is useful for key types that don't implement
+
+  `K: From<&Q>`.
+
+  
+
+  # Panics
+
+  
+
+  This method panics if `key` is not equivalent to the key used to create
+
+  the `VacantEntryRef`.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use hashbrown::hash_map::EntryRef;
+
+  use hashbrown::HashMap;
+
+  
+
+  let mut map = HashMap::<(String, String), char>::new();
+
+  let k = ("c".to_string(), "C".to_string());
+
+  let v =  match map.entry_ref(&k) {
+
+    // Insert cannot be used here because tuples do not implement From.
+
+    // However this works because we can manually clone instead.
+
+    EntryRef::Vacant(r) => r.insert_with_key(k.clone(), 'c'),
+
+    // In this branch we avoid the clone.
+
+    EntryRef::Occupied(r) => r.into_mut(),
+
+  };
+
+  assert_eq!(*v, 'c');
+
+  ```
+
 - <span id="vacantentryref-insert-entry"></span>`fn insert_entry(self, value: V) -> OccupiedEntry<'map, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
+
+  Sets the value of the entry with the [`VacantEntryRef`](#vacantentryref)'s key,
+
+  and returns an [`OccupiedEntry`](#occupiedentry).
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  use hashbrown::hash_map::EntryRef;
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  
+
+  if let EntryRef::Vacant(v) = map.entry_ref("poneyland") {
+
+      let o = v.insert_entry(37);
+
+      assert_eq!(o.get(), &37);
+
+  }
+
+  ```
 
 #### Trait Implementations
 
+##### `impl Any for VacantEntryRef<'map, 'key, K, Q, V, S, A>`
+
+- <span id="vacantentryref-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for VacantEntryRef<'map, 'key, K, Q, V, S, A>`
+
+- <span id="vacantentryref-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for VacantEntryRef<'map, 'key, K, Q, V, S, A>`
+
+- <span id="vacantentryref-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<K, Q, V, S, A> Debug for VacantEntryRef<'_, '_, K, Q, V, S, A>`
 
-- <span id="vacantentryref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="vacantentryref-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for VacantEntryRef<'map, 'key, K, Q, V, S, A>`
+
+- <span id="vacantentryref-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for VacantEntryRef<'map, 'key, K, Q, V, S, A>`
+
+- <span id="vacantentryref-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for VacantEntryRef<'map, 'key, K, Q, V, S, A>`
+
+- <span id="vacantentryref-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="vacantentryref-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for VacantEntryRef<'map, 'key, K, Q, V, S, A>`
+
+- <span id="vacantentryref-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="vacantentryref-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `OccupiedError<'a, K, V, S, A: Allocator>`
 
@@ -1262,17 +2814,59 @@ assert_eq!(map[&"a"], 100);
 
 #### Trait Implementations
 
+##### `impl Any for OccupiedError<'a, K, V, S, A>`
+
+- <span id="occupiederror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for OccupiedError<'a, K, V, S, A>`
+
+- <span id="occupiederror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for OccupiedError<'a, K, V, S, A>`
+
+- <span id="occupiederror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<K: Debug, V: Debug, S, A: Allocator> Debug for OccupiedError<'_, K, V, S, A>`
 
-- <span id="occupiederror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="occupiederror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K: Debug, V: Debug, S, A: Allocator> Display for OccupiedError<'_, K, V, S, A>`
 
-- <span id="occupiederror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="occupiederror-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for OccupiedError<'a, K, V, S, A>`
+
+- <span id="occupiederror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for OccupiedError<'a, K, V, S, A>`
+
+- <span id="occupiederror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for OccupiedError<'a, K, V, S, A>`
 
-- <span id="occupiederror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="occupiederror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for OccupiedError<'a, K, V, S, A>`
+
+- <span id="occupiederror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="occupiederror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for OccupiedError<'a, K, V, S, A>`
+
+- <span id="occupiederror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="occupiederror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -1369,25 +2963,423 @@ assert_eq!(vec, [("a", 1), ("b", 2), ("c", 3), ("d", 4), ("e", 5), ("f", 6)]);
 
 - <span id="entry-insert"></span>`fn insert(self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
 
+  Sets the value of the entry, and returns an `OccupiedEntry`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  let entry = map.entry("horseyland").insert(37);
+
+  
+
+  assert_eq!(entry.key(), &"horseyland");
+
+  ```
+
 - <span id="entry-or-insert"></span>`fn or_insert(self, default: V) -> &'a mut V`
+
+  Ensures a value is in the entry by inserting the default if empty, and returns
+
+  a mutable reference to the value in the entry.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  
+
+  // nonexistent key
+
+  map.entry("poneyland").or_insert(3);
+
+  assert_eq!(map["poneyland"], 3);
+
+  
+
+  // existing key
+
+  *map.entry("poneyland").or_insert(10) *= 2;
+
+  assert_eq!(map["poneyland"], 6);
+
+  ```
 
 - <span id="entry-or-insert-entry"></span>`fn or_insert_entry(self, default: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
 
+  Ensures a value is in the entry by inserting the default if empty,
+
+  and returns an [`OccupiedEntry`](#occupiedentry).
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  
+
+  // nonexistent key
+
+  let entry = map.entry("poneyland").or_insert_entry(3);
+
+  assert_eq!(entry.key(), &"poneyland");
+
+  assert_eq!(entry.get(), &3);
+
+  
+
+  // existing key
+
+  let mut entry = map.entry("poneyland").or_insert_entry(10);
+
+  assert_eq!(entry.key(), &"poneyland");
+
+  assert_eq!(entry.get(), &3);
+
+  ```
+
 - <span id="entry-or-insert-with"></span>`fn or_insert_with<F: FnOnce() -> V>(self, default: F) -> &'a mut V`
+
+  Ensures a value is in the entry by inserting the result of the default function if empty,
+
+  and returns a mutable reference to the value in the entry.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  
+
+  // nonexistent key
+
+  map.entry("poneyland").or_insert_with(|| 3);
+
+  assert_eq!(map["poneyland"], 3);
+
+  
+
+  // existing key
+
+  *map.entry("poneyland").or_insert_with(|| 10) *= 2;
+
+  assert_eq!(map["poneyland"], 6);
+
+  ```
 
 - <span id="entry-or-insert-with-key"></span>`fn or_insert_with_key<F: FnOnce(&K) -> V>(self, default: F) -> &'a mut V`
 
+  Ensures a value is in the entry by inserting, if empty, the result of the default function.
+
+  This method allows for generating key-derived values for insertion by providing the default
+
+  function a reference to the key that was moved during the `.entry(key)` method call.
+
+  
+
+  The reference to the moved key is provided so that cloning or copying the key is
+
+  unnecessary, unlike with `.or_insert_with(|| ... )`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  
+
+  let mut map: HashMap<&str, usize> = HashMap::new();
+
+  
+
+  // nonexistent key
+
+  map.entry("poneyland").or_insert_with_key(|key| key.chars().count());
+
+  assert_eq!(map["poneyland"], 9);
+
+  
+
+  // existing key
+
+  *map.entry("poneyland").or_insert_with_key(|key| key.chars().count() * 10) *= 2;
+
+  assert_eq!(map["poneyland"], 18);
+
+  ```
+
 - <span id="entry-key"></span>`fn key(&self) -> &K`
+
+  Returns a reference to this entry's key.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  map.entry("poneyland").or_insert(3);
+
+  // existing key
+
+  assert_eq!(map.entry("poneyland").key(), &"poneyland");
+
+  // nonexistent key
+
+  assert_eq!(map.entry("horseland").key(), &"horseland");
+
+  ```
 
 - <span id="entry-and-modify"></span>`fn and_modify<F>(self, f: F) -> Self`
 
+  Provides in-place mutable access to an occupied entry before any
+
+  potential inserts into the map.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  
+
+  map.entry("poneyland")
+
+     .and_modify(|e| { *e += 1 })
+
+     .or_insert(42);
+
+  assert_eq!(map["poneyland"], 42);
+
+  
+
+  map.entry("poneyland")
+
+     .and_modify(|e| { *e += 1 })
+
+     .or_insert(42);
+
+  assert_eq!(map["poneyland"], 43);
+
+  ```
+
 - <span id="entry-and-replace-entry-with"></span>`fn and_replace_entry_with<F>(self, f: F) -> Self`
+
+  Provides shared access to the key and owned access to the value of
+
+  an occupied entry and allows to replace or remove it based on the
+
+  value of the returned option.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  use hashbrown::hash_map::Entry;
+
+  
+
+  let mut map: HashMap<&str, u32> = HashMap::new();
+
+  
+
+  let entry = map
+
+      .entry("poneyland")
+
+      .and_replace_entry_with(|_k, _v| panic!());
+
+  
+
+  match entry {
+
+      Entry::Vacant(e) => {
+
+          assert_eq!(e.key(), &"poneyland");
+
+      }
+
+      Entry::Occupied(_) => panic!(),
+
+  }
+
+  
+
+  map.insert("poneyland", 42);
+
+  
+
+  let entry = map
+
+      .entry("poneyland")
+
+      .and_replace_entry_with(|k, v| {
+
+          assert_eq!(k, &"poneyland");
+
+          assert_eq!(v, 42);
+
+          Some(v + 1)
+
+      });
+
+  
+
+  match entry {
+
+      Entry::Occupied(e) => {
+
+          assert_eq!(e.key(), &"poneyland");
+
+          assert_eq!(e.get(), &43);
+
+      }
+
+      Entry::Vacant(_) => panic!(),
+
+  }
+
+  
+
+  assert_eq!(map["poneyland"], 43);
+
+  
+
+  let entry = map
+
+      .entry("poneyland")
+
+      .and_replace_entry_with(|_k, _v| None);
+
+  
+
+  match entry {
+
+      Entry::Vacant(e) => assert_eq!(e.key(), &"poneyland"),
+
+      Entry::Occupied(_) => panic!(),
+
+  }
+
+  
+
+  assert!(!map.contains_key("poneyland"));
+
+  ```
 
 #### Trait Implementations
 
+##### `impl Any for Entry<'a, K, V, S, A>`
+
+- <span id="entry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Entry<'a, K, V, S, A>`
+
+- <span id="entry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Entry<'a, K, V, S, A>`
+
+- <span id="entry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<K: Debug, V: Debug, S, A: Allocator> Debug for Entry<'_, K, V, S, A>`
 
-- <span id="entry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="entry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Entry<'a, K, V, S, A>`
+
+- <span id="entry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Entry<'a, K, V, S, A>`
+
+- <span id="entry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Entry<'a, K, V, S, A>`
+
+- <span id="entry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="entry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Entry<'a, K, V, S, A>`
+
+- <span id="entry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="entry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `EntryRef<'a, 'b, K, Q: ?Sized, V, S, A>`
 
@@ -1491,21 +3483,265 @@ assert_eq!(map.len(), 6);
 
 - <span id="entryref-insert"></span>`fn insert(self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
 
+  Sets the value of the entry, and returns an `OccupiedEntry`.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  
+
+  let mut map: HashMap<String, u32> = HashMap::new();
+
+  let entry = map.entry_ref("horseyland").insert(37);
+
+  
+
+  assert_eq!(entry.key(), "horseyland");
+
+  ```
+
 - <span id="entryref-or-insert"></span>`fn or_insert(self, default: V) -> &'a mut V`
+
+  Ensures a value is in the entry by inserting the default if empty, and returns
+
+  a mutable reference to the value in the entry.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  
+
+  let mut map: HashMap<String, u32> = HashMap::new();
+
+  
+
+  // nonexistent key
+
+  map.entry_ref("poneyland").or_insert(3);
+
+  assert_eq!(map["poneyland"], 3);
+
+  
+
+  // existing key
+
+  *map.entry_ref("poneyland").or_insert(10) *= 2;
+
+  assert_eq!(map["poneyland"], 6);
+
+  ```
 
 - <span id="entryref-or-insert-with"></span>`fn or_insert_with<F: FnOnce() -> V>(self, default: F) -> &'a mut V`
 
+  Ensures a value is in the entry by inserting the result of the default function if empty,
+
+  and returns a mutable reference to the value in the entry.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  
+
+  let mut map: HashMap<String, u32> = HashMap::new();
+
+  
+
+  // nonexistent key
+
+  map.entry_ref("poneyland").or_insert_with(|| 3);
+
+  assert_eq!(map["poneyland"], 3);
+
+  
+
+  // existing key
+
+  *map.entry_ref("poneyland").or_insert_with(|| 10) *= 2;
+
+  assert_eq!(map["poneyland"], 6);
+
+  ```
+
 - <span id="entryref-or-insert-with-key"></span>`fn or_insert_with_key<F: FnOnce(&Q) -> V>(self, default: F) -> &'a mut V`
+
+  Ensures a value is in the entry by inserting, if empty, the result of the default function.
+
+  This method allows for generating key-derived values for insertion by providing the default
+
+  function an access to the borrower form of the key.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  
+
+  let mut map: HashMap<String, usize> = HashMap::new();
+
+  
+
+  // nonexistent key
+
+  map.entry_ref("poneyland").or_insert_with_key(|key| key.chars().count());
+
+  assert_eq!(map["poneyland"], 9);
+
+  
+
+  // existing key
+
+  *map.entry_ref("poneyland").or_insert_with_key(|key| key.chars().count() * 10) *= 2;
+
+  assert_eq!(map["poneyland"], 18);
+
+  ```
 
 - <span id="entryref-key"></span>`fn key(&self) -> &Q`
 
+  Returns a reference to this entry's key.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  
+
+  let mut map: HashMap<String, u32> = HashMap::new();
+
+  map.entry_ref("poneyland").or_insert(3);
+
+  // existing key
+
+  assert_eq!(map.entry_ref("poneyland").key(), "poneyland");
+
+  // nonexistent key
+
+  assert_eq!(map.entry_ref("horseland").key(), "horseland");
+
+  ```
+
 - <span id="entryref-and-modify"></span>`fn and_modify<F>(self, f: F) -> Self`
+
+  Provides in-place mutable access to an occupied entry before any
+
+  potential inserts into the map.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use hashbrown::HashMap;
+
+  
+
+  let mut map: HashMap<String, u32> = HashMap::new();
+
+  
+
+  map.entry_ref("poneyland")
+
+     .and_modify(|e| { *e += 1 })
+
+     .or_insert(42);
+
+  assert_eq!(map["poneyland"], 42);
+
+  
+
+  map.entry_ref("poneyland")
+
+     .and_modify(|e| { *e += 1 })
+
+     .or_insert(42);
+
+  assert_eq!(map["poneyland"], 43);
+
+  ```
 
 #### Trait Implementations
 
+##### `impl Any for EntryRef<'a, 'b, K, Q, V, S, A>`
+
+- <span id="entryref-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for EntryRef<'a, 'b, K, Q, V, S, A>`
+
+- <span id="entryref-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for EntryRef<'a, 'b, K, Q, V, S, A>`
+
+- <span id="entryref-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<K, Q, V, S, A> Debug for EntryRef<'_, '_, K, Q, V, S, A>`
 
-- <span id="entryref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="entryref-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for EntryRef<'a, 'b, K, Q, V, S, A>`
+
+- <span id="entryref-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for EntryRef<'a, 'b, K, Q, V, S, A>`
+
+- <span id="entryref-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for EntryRef<'a, 'b, K, Q, V, S, A>`
+
+- <span id="entryref-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="entryref-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for EntryRef<'a, 'b, K, Q, V, S, A>`
+
+- <span id="entryref-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="entryref-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

@@ -125,15 +125,31 @@ Overview of which hints are supported by which shell:
 
 #### Trait Implementations
 
+##### `impl Any for ValueHint`
+
+- <span id="valuehint-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ValueHint`
+
+- <span id="valuehint-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ValueHint`
+
+- <span id="valuehint-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ValueHint`
 
 - <span id="valuehint-clone"></span>`fn clone(&self) -> ValueHint` — [`ValueHint`](#valuehint)
+
+##### `impl CloneToUninit for ValueHint`
+
+- <span id="valuehint-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ValueHint`
 
 ##### `impl Debug for ValueHint`
 
-- <span id="valuehint-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="valuehint-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ValueHint`
 
@@ -141,23 +157,61 @@ Overview of which hints are supported by which shell:
 
 ##### `impl Eq for ValueHint`
 
+##### `impl<T> From for ValueHint`
+
+- <span id="valuehint-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl FromStr for ValueHint`
 
 - <span id="valuehint-fromstr-type-err"></span>`type Err = String`
 
-- <span id="valuehint-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as FromStr>::Err>`
+- <span id="valuehint-fromstr-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as FromStr>::Err>`
 
 ##### `impl Hash for ValueHint`
 
 - <span id="valuehint-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for ValueHint`
+
+- <span id="valuehint-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoResettable for Option<crate::builder::ValueHint>`
 
-- <span id="option-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueHint>` — [`Resettable`](../resettable/index.md#resettable), [`ValueHint`](#valuehint)
+- <span id="option-intoresettable-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueHint>` — [`Resettable`](../resettable/index.md#resettable), [`ValueHint`](#valuehint)
 
 ##### `impl PartialEq for ValueHint`
 
-- <span id="valuehint-eq"></span>`fn eq(&self, other: &ValueHint) -> bool` — [`ValueHint`](#valuehint)
+- <span id="valuehint-partialeq-eq"></span>`fn eq(&self, other: &ValueHint) -> bool` — [`ValueHint`](#valuehint)
 
 ##### `impl StructuralPartialEq for ValueHint`
+
+##### `impl ToOwned for ValueHint`
+
+- <span id="valuehint-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="valuehint-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="valuehint-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ValueHint`
+
+- <span id="valuehint-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="valuehint-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ValueHint`
+
+- <span id="valuehint-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="valuehint-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

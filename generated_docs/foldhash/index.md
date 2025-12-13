@@ -196,19 +196,83 @@ and [`SeedableRandomState::with_seed`](crate::fast::SeedableRandomState::with_se
 
 - <span id="sharedseed-global-random"></span>`fn global_random() -> &'static SharedSeed` — [`SharedSeed`](seed/index.md#sharedseed)
 
+  Returns the globally shared randomly initialized [`SharedSeed`](seed/index.md) as used
+
+  by [`RandomState`](crate::fast::RandomState).
+
 - <span id="sharedseed-global-fixed"></span>`const fn global_fixed() -> &'static SharedSeed` — [`SharedSeed`](seed/index.md#sharedseed)
+
+  Returns the globally shared fixed [`SharedSeed`](seed/index.md) as used
+
+  by [`FixedState`](crate::fast::FixedState).
 
 - <span id="sharedseed-from-u64"></span>`const fn from_u64(seed: u64) -> Self`
 
+  Generates a new [`SharedSeed`](seed/index.md) from a single 64-bit seed.
+
+  
+
+  Note that this is somewhat expensive so it is suggested to re-use the
+
+  [`SharedSeed`](seed/index.md) as much as possible, using the per-hasher seed to
+
+  differentiate between hash instances.
+
 #### Trait Implementations
+
+##### `impl Any for SharedSeed`
+
+- <span id="sharedseed-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SharedSeed`
+
+- <span id="sharedseed-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SharedSeed`
+
+- <span id="sharedseed-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for SharedSeed`
 
 - <span id="sharedseed-clone"></span>`fn clone(&self) -> SharedSeed` — [`SharedSeed`](seed/index.md#sharedseed)
 
+##### `impl CloneToUninit for SharedSeed`
+
+- <span id="sharedseed-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for SharedSeed`
 
-- <span id="sharedseed-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sharedseed-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SharedSeed`
+
+- <span id="sharedseed-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SharedSeed`
+
+- <span id="sharedseed-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for SharedSeed`
+
+- <span id="sharedseed-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sharedseed-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SharedSeed`
+
+- <span id="sharedseed-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sharedseed-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

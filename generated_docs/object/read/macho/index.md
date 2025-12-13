@@ -271,27 +271,101 @@ A parsed representation of the dyld shared cache.
 
 - <span id="dyldcache-subcache-suffixes"></span>`fn subcache_suffixes(data: R) -> Result<Vec<String>>` — [`Result`](../../index.md#result)
 
+  Return the suffixes of the subcache files given the data of the main cache file.
+
+  
+
+  Each of these should be appended to the path of the main cache file.
+
 - <span id="dyldcache-parse"></span>`fn parse(data: R, subcache_data: &[R]) -> Result<Self>` — [`Result`](../../index.md#result)
+
+  Parse the raw dyld shared cache data.
+
+  
+
+  For shared caches from macOS 12 / iOS 15 and above, the subcache files need to be
+
+  supplied as well, in the correct order. Use `Self::subcache_suffixes` to obtain
+
+  the suffixes for the path of the files.
 
 - <span id="dyldcache-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md#architecture)
 
+  Get the architecture type of the file.
+
 - <span id="dyldcache-endianness"></span>`fn endianness(&self) -> Endianness` — [`Endianness`](../../index.md#endianness)
+
+  Get the endianness of the file.
 
 - <span id="dyldcache-data"></span>`fn data(&self) -> R`
 
+  Get the data of the main cache file.
+
 - <span id="dyldcache-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
+
+  Return true if the file is little endian, false if it is big endian.
 
 - <span id="dyldcache-images"></span>`fn images<'cache>(self: &'cache Self) -> DyldCacheImageIterator<'data, 'cache, E, R>` — [`DyldCacheImageIterator`](#dyldcacheimageiterator)
 
+  Iterate over the images in this cache.
+
 - <span id="dyldcache-mappings"></span>`fn mappings<'cache>(self: &'cache Self) -> impl Iterator<Item = DyldCacheMapping<'data, E, R>> + 'cache` — [`DyldCacheMapping`](#dyldcachemapping)
+
+  Return all the mappings in this cache.
 
 - <span id="dyldcache-data-and-offset-for-address"></span>`fn data_and_offset_for_address(&self, address: u64) -> Option<(R, u64)>`
 
+  Find the address in a mapping and return the cache or subcache data it was found in,
+
+  together with the translated file offset.
+
 #### Trait Implementations
+
+##### `impl Any for DyldCache<'data, E, R>`
+
+- <span id="dyldcache-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCache<'data, E, R>`
+
+- <span id="dyldcache-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCache<'data, E, R>`
+
+- <span id="dyldcache-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E, R> Debug for DyldCache<'data, E, R>`
 
-- <span id="dyldcache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcache-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCache<'data, E, R>`
+
+- <span id="dyldcache-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCache<'data, E, R>`
+
+- <span id="dyldcache-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DyldCache<'data, E, R>`
+
+- <span id="dyldcache-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcache-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCache<'data, E, R>`
+
+- <span id="dyldcache-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcache-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldFile<'data, E, R>`
 
@@ -313,13 +387,59 @@ The data for one file in the cache.
 
 - <span id="dyldfile-mappings"></span>`fn mappings(&self, endian: E) -> DyldCacheMappingIterator<'data, E, R>` — [`DyldCacheMappingIterator`](#dyldcachemappingiterator)
 
+  Return an iterator for the mappings.
+
 - <span id="dyldfile-address-to-file-offset"></span>`fn address_to_file_offset(&self, endian: E, address: u64) -> Option<u64>`
+
+  Find the file offset an address in the mappings.
 
 #### Trait Implementations
 
+##### `impl Any for DyldFile<'data, E, R>`
+
+- <span id="dyldfile-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldFile<'data, E, R>`
+
+- <span id="dyldfile-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldFile<'data, E, R>`
+
+- <span id="dyldfile-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E, R> Debug for DyldFile<'data, E, R>`
 
-- <span id="dyldfile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldfile-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldFile<'data, E, R>`
+
+- <span id="dyldfile-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldFile<'data, E, R>`
+
+- <span id="dyldfile-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DyldFile<'data, E, R>`
+
+- <span id="dyldfile-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldfile-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldFile<'data, E, R>`
+
+- <span id="dyldfile-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldfile-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheImageIterator<'data, 'cache, E, R>`
 
@@ -339,9 +459,39 @@ An iterator over all the images (dylibs) in the dyld shared cache.
 
 #### Trait Implementations
 
+##### `impl Any for DyldCacheImageIterator<'data, 'cache, E, R>`
+
+- <span id="dyldcacheimageiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheImageIterator<'data, 'cache, E, R>`
+
+- <span id="dyldcacheimageiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheImageIterator<'data, 'cache, E, R>`
+
+- <span id="dyldcacheimageiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E, R> Debug for DyldCacheImageIterator<'data, 'cache, E, R>`
 
-- <span id="dyldcacheimageiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcacheimageiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheImageIterator<'data, 'cache, E, R>`
+
+- <span id="dyldcacheimageiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheImageIterator<'data, 'cache, E, R>`
+
+- <span id="dyldcacheimageiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for DyldCacheImageIterator<'data, 'cache, E, R>`
 
@@ -349,13 +499,25 @@ An iterator over all the images (dylibs) in the dyld shared cache.
 
 - <span id="dyldcacheimageiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="dyldcacheimageiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="dyldcacheimageiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<E, R> Iterator for DyldCacheImageIterator<'data, 'cache, E, R>`
 
 - <span id="dyldcacheimageiterator-iterator-type-item"></span>`type Item = DyldCacheImage<'data, 'cache, E, R>`
 
-- <span id="dyldcacheimageiterator-next"></span>`fn next(&mut self) -> Option<DyldCacheImage<'data, 'cache, E, R>>` — [`DyldCacheImage`](#dyldcacheimage)
+- <span id="dyldcacheimageiterator-iterator-next"></span>`fn next(&mut self) -> Option<DyldCacheImage<'data, 'cache, E, R>>` — [`DyldCacheImage`](#dyldcacheimage)
+
+##### `impl<U> TryFrom for DyldCacheImageIterator<'data, 'cache, E, R>`
+
+- <span id="dyldcacheimageiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcacheimageiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheImageIterator<'data, 'cache, E, R>`
+
+- <span id="dyldcacheimageiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcacheimageiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheImage<'data, 'cache, E, R>`
 
@@ -377,17 +539,69 @@ One image (dylib) from inside the dyld shared cache.
 
 - <span id="dyldcacheimage-info"></span>`fn info(&self) -> &'data macho::DyldCacheImageInfo<E>` — [`DyldCacheImageInfo`](../../macho/index.md#dyldcacheimageinfo)
 
+  Return the raw data structure for this image.
+
 - <span id="dyldcacheimage-path"></span>`fn path(&self) -> Result<&'data str>` — [`Result`](../../index.md#result)
+
+  The file system path of this image.
 
 - <span id="dyldcacheimage-image-data-and-offset"></span>`fn image_data_and_offset(&self) -> Result<(R, u64)>` — [`Result`](../../index.md#result)
 
+  The subcache data which contains the Mach-O header for this image,
+
+  together with the file offset at which this image starts.
+
 - <span id="dyldcacheimage-parse-object"></span>`fn parse_object(&self) -> Result<File<'data, R>>` — [`Result`](../../index.md#result), [`File`](../index.md#file)
+
+  Parse this image into an Object.
 
 #### Trait Implementations
 
+##### `impl Any for DyldCacheImage<'data, 'cache, E, R>`
+
+- <span id="dyldcacheimage-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheImage<'data, 'cache, E, R>`
+
+- <span id="dyldcacheimage-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheImage<'data, 'cache, E, R>`
+
+- <span id="dyldcacheimage-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E, R> Debug for DyldCacheImage<'data, 'cache, E, R>`
 
-- <span id="dyldcacheimage-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcacheimage-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheImage<'data, 'cache, E, R>`
+
+- <span id="dyldcacheimage-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheImage<'data, 'cache, E, R>`
+
+- <span id="dyldcacheimage-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DyldCacheImage<'data, 'cache, E, R>`
+
+- <span id="dyldcacheimage-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcacheimage-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheImage<'data, 'cache, E, R>`
+
+- <span id="dyldcacheimage-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcacheimage-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheMappingIterator<'data, E, R>`
 
@@ -408,9 +622,39 @@ An iterator over all the mappings for one subcache in a dyld shared cache.
 
 #### Trait Implementations
 
+##### `impl Any for DyldCacheMappingIterator<'data, E, R>`
+
+- <span id="dyldcachemappingiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheMappingIterator<'data, E, R>`
+
+- <span id="dyldcachemappingiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheMappingIterator<'data, E, R>`
+
+- <span id="dyldcachemappingiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E, R> Debug for DyldCacheMappingIterator<'data, E, R>`
 
-- <span id="dyldcachemappingiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcachemappingiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheMappingIterator<'data, E, R>`
+
+- <span id="dyldcachemappingiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheMappingIterator<'data, E, R>`
+
+- <span id="dyldcachemappingiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for DyldCacheMappingIterator<'data, E, R>`
 
@@ -418,13 +662,25 @@ An iterator over all the mappings for one subcache in a dyld shared cache.
 
 - <span id="dyldcachemappingiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="dyldcachemappingiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="dyldcachemappingiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<E, R> Iterator for DyldCacheMappingIterator<'data, E, R>`
 
 - <span id="dyldcachemappingiterator-iterator-type-item"></span>`type Item = DyldCacheMapping<'data, E, R>`
 
-- <span id="dyldcachemappingiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="dyldcachemappingiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for DyldCacheMappingIterator<'data, E, R>`
+
+- <span id="dyldcachemappingiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcachemappingiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheMappingIterator<'data, E, R>`
+
+- <span id="dyldcachemappingiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcachemappingiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheMapping<'data, E, R>`
 
@@ -447,29 +703,97 @@ Information about a mapping.
 
 - <span id="dyldcachemapping-address"></span>`fn address(&self) -> u64`
 
+  The mapping address
+
 - <span id="dyldcachemapping-size"></span>`fn size(&self) -> u64`
+
+  The mapping size
 
 - <span id="dyldcachemapping-file-offset"></span>`fn file_offset(&self) -> u64`
 
+  The mapping file offset
+
 - <span id="dyldcachemapping-max-prot"></span>`fn max_prot(&self) -> u32`
+
+  The mapping maximum protection
 
 - <span id="dyldcachemapping-init-prot"></span>`fn init_prot(&self) -> u32`
 
+  The mapping initial protection
+
 - <span id="dyldcachemapping-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
+
+  The mapping data
 
 - <span id="dyldcachemapping-relocations"></span>`fn relocations(&self) -> Result<DyldCacheRelocationIterator<'data, E, R>>` — [`Result`](../../index.md#result), [`DyldCacheRelocationIterator`](#dyldcacherelocationiterator)
 
+  Relocations for the mapping
+
 #### Trait Implementations
+
+##### `impl Any for DyldCacheMapping<'data, E, R>`
+
+- <span id="dyldcachemapping-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheMapping<'data, E, R>`
+
+- <span id="dyldcachemapping-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheMapping<'data, E, R>`
+
+- <span id="dyldcachemapping-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E, R> Clone for DyldCacheMapping<'data, E, R>`
 
 - <span id="dyldcachemapping-clone"></span>`fn clone(&self) -> DyldCacheMapping<'data, E, R>` — [`DyldCacheMapping`](#dyldcachemapping)
 
+##### `impl CloneToUninit for DyldCacheMapping<'data, E, R>`
+
+- <span id="dyldcachemapping-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E, R> Copy for DyldCacheMapping<'data, E, R>`
 
 ##### `impl<E, R> Debug for DyldCacheMapping<'data, E, R>`
 
-- <span id="dyldcachemapping-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcachemapping-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheMapping<'data, E, R>`
+
+- <span id="dyldcachemapping-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheMapping<'data, E, R>`
+
+- <span id="dyldcachemapping-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for DyldCacheMapping<'data, E, R>`
+
+- <span id="dyldcachemapping-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyldcachemapping-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyldcachemapping-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DyldCacheMapping<'data, E, R>`
+
+- <span id="dyldcachemapping-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcachemapping-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheMapping<'data, E, R>`
+
+- <span id="dyldcachemapping-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcachemapping-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheRelocationIterator<'data, E, R>`
 
@@ -488,9 +812,39 @@ An iterator over relocations in a mapping
 
 #### Trait Implementations
 
+##### `impl Any for DyldCacheRelocationIterator<'data, E, R>`
+
+- <span id="dyldcacherelocationiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheRelocationIterator<'data, E, R>`
+
+- <span id="dyldcacherelocationiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheRelocationIterator<'data, E, R>`
+
+- <span id="dyldcacherelocationiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E, R> Debug for DyldCacheRelocationIterator<'data, E, R>`
 
-- <span id="dyldcacherelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcacherelocationiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheRelocationIterator<'data, E, R>`
+
+- <span id="dyldcacherelocationiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheRelocationIterator<'data, E, R>`
+
+- <span id="dyldcacherelocationiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for DyldCacheRelocationIterator<'data, E, R>`
 
@@ -498,13 +852,25 @@ An iterator over relocations in a mapping
 
 - <span id="dyldcacherelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="dyldcacherelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="dyldcacherelocationiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<E, R> Iterator for DyldCacheRelocationIterator<'data, E, R>`
 
 - <span id="dyldcacherelocationiterator-iterator-type-item"></span>`type Item = Result<DyldRelocation, Error>`
 
-- <span id="dyldcacherelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="dyldcacherelocationiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for DyldCacheRelocationIterator<'data, E, R>`
+
+- <span id="dyldcacherelocationiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcacherelocationiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheRelocationIterator<'data, E, R>`
+
+- <span id="dyldcacherelocationiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcacherelocationiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheRelocationIteratorV2<'data, E, R>`
 
@@ -556,9 +922,51 @@ where
 
 #### Trait Implementations
 
+##### `impl Any for DyldCacheRelocationIteratorV2<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv2-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheRelocationIteratorV2<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv2-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheRelocationIteratorV2<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv2-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E, R> Debug for DyldCacheRelocationIteratorV2<'data, E, R>`
 
-- <span id="dyldcacherelocationiteratorv2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcacherelocationiteratorv2-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheRelocationIteratorV2<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv2-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheRelocationIteratorV2<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv2-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DyldCacheRelocationIteratorV2<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv2-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcacherelocationiteratorv2-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheRelocationIteratorV2<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv2-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcacherelocationiteratorv2-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheRelocationIteratorV3<'data, E, R>`
 
@@ -597,9 +1005,51 @@ where
 
 #### Trait Implementations
 
+##### `impl Any for DyldCacheRelocationIteratorV3<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv3-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheRelocationIteratorV3<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv3-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheRelocationIteratorV3<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv3-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E, R> Debug for DyldCacheRelocationIteratorV3<'data, E, R>`
 
-- <span id="dyldcacherelocationiteratorv3-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcacherelocationiteratorv3-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheRelocationIteratorV3<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv3-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheRelocationIteratorV3<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv3-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DyldCacheRelocationIteratorV3<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv3-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcacherelocationiteratorv3-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheRelocationIteratorV3<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv3-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcacherelocationiteratorv3-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheRelocationIteratorV5<'data, E, R>`
 
@@ -638,9 +1088,51 @@ where
 
 #### Trait Implementations
 
+##### `impl Any for DyldCacheRelocationIteratorV5<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv5-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheRelocationIteratorV5<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv5-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheRelocationIteratorV5<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv5-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E, R> Debug for DyldCacheRelocationIteratorV5<'data, E, R>`
 
-- <span id="dyldcacherelocationiteratorv5-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcacherelocationiteratorv5-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheRelocationIteratorV5<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv5-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheRelocationIteratorV5<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv5-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DyldCacheRelocationIteratorV5<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv5-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcacherelocationiteratorv5-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheRelocationIteratorV5<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorv5-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcacherelocationiteratorv5-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldRelocation`
 
@@ -675,9 +1167,51 @@ A cache mapping relocation.
 
 #### Trait Implementations
 
+##### `impl Any for DyldRelocation`
+
+- <span id="dyldrelocation-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldRelocation`
+
+- <span id="dyldrelocation-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldRelocation`
+
+- <span id="dyldrelocation-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for DyldRelocation`
 
-- <span id="dyldrelocation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldrelocation-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldRelocation`
+
+- <span id="dyldrelocation-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldRelocation`
+
+- <span id="dyldrelocation-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DyldRelocation`
+
+- <span id="dyldrelocation-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldrelocation-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldRelocation`
+
+- <span id="dyldrelocation-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldrelocation-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldRelocationAuth`
 
@@ -711,9 +1245,51 @@ This is used for signing pointers for the arm64e ABI.
 
 #### Trait Implementations
 
+##### `impl Any for DyldRelocationAuth`
+
+- <span id="dyldrelocationauth-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldRelocationAuth`
+
+- <span id="dyldrelocationauth-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldRelocationAuth`
+
+- <span id="dyldrelocationauth-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for DyldRelocationAuth`
 
-- <span id="dyldrelocationauth-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldrelocationauth-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldRelocationAuth`
+
+- <span id="dyldrelocationauth-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldRelocationAuth`
+
+- <span id="dyldrelocationauth-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DyldRelocationAuth`
+
+- <span id="dyldrelocationauth-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldrelocationauth-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldRelocationAuth`
+
+- <span id="dyldrelocationauth-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldrelocationauth-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOFatFile<'data, Fat: FatArch>`
 
@@ -735,19 +1311,79 @@ to [`crate::FileKind::MachOFat32`](../../index.md) or [`crate::FileKind::MachOFa
 
 - <span id="machofatfile-parse"></span>`fn parse<R: ReadRef<'data>>(data: R) -> Result<Self>` — [`Result`](../../index.md#result)
 
+  Attempt to parse the fat header and fat arches.
+
 - <span id="machofatfile-header"></span>`fn header(&self) -> &'data macho::FatHeader` — [`FatHeader`](../../macho/index.md#fatheader)
+
+  Return the fat header
 
 - <span id="machofatfile-arches"></span>`fn arches(&self) -> &'data [Fat]`
 
+  Return the array of fat arches.
+
 #### Trait Implementations
+
+##### `impl Any for MachOFatFile<'data, Fat>`
+
+- <span id="machofatfile-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOFatFile<'data, Fat>`
+
+- <span id="machofatfile-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOFatFile<'data, Fat>`
+
+- <span id="machofatfile-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<Fat: clone::Clone + FatArch> Clone for MachOFatFile<'data, Fat>`
 
 - <span id="machofatfile-clone"></span>`fn clone(&self) -> MachOFatFile<'data, Fat>` — [`MachOFatFile`](#machofatfile)
 
+##### `impl CloneToUninit for MachOFatFile<'data, Fat>`
+
+- <span id="machofatfile-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<Fat: fmt::Debug + FatArch> Debug for MachOFatFile<'data, Fat>`
 
-- <span id="machofatfile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machofatfile-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOFatFile<'data, Fat>`
+
+- <span id="machofatfile-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOFatFile<'data, Fat>`
+
+- <span id="machofatfile-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for MachOFatFile<'data, Fat>`
+
+- <span id="machofatfile-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="machofatfile-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="machofatfile-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MachOFatFile<'data, Fat>`
+
+- <span id="machofatfile-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machofatfile-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOFatFile<'data, Fat>`
+
+- <span id="machofatfile-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machofatfile-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOFile<'data, Mach, R>`
 
@@ -776,29 +1412,85 @@ Most of the functionality of this type is provided by the [`Object`](../index.md
 
 - <span id="machofile-parse"></span>`fn parse(data: R) -> Result<Self>` — [`Result`](../../index.md#result)
 
+  Parse the raw Mach-O file data.
+
 - <span id="machofile-parse-dyld-cache-image"></span>`fn parse_dyld_cache_image<'cache, E: Endian>(image: &DyldCacheImage<'data, 'cache, E, R>) -> Result<Self>` — [`DyldCacheImage`](#dyldcacheimage), [`Result`](../../index.md#result)
+
+  Parse the Mach-O file for the given image from the dyld shared cache.
+
+  This will read different sections from different subcaches, if necessary.
 
 - <span id="machofile-section-internal"></span>`fn section_internal(&self, index: SectionIndex) -> Result<&MachOSectionInternal<'data, Mach, R>>` — [`SectionIndex`](../../index.md#sectionindex), [`Result`](../../index.md#result), [`MachOSectionInternal`](section/index.md#machosectioninternal)
 
+  Return the section at the given index.
+
 - <span id="machofile-endian"></span>`fn endian(&self) -> <Mach as >::Endian` — [`MachHeader`](#machheader)
+
+  Returns the endianness.
 
 - <span id="machofile-data"></span>`fn data(&self) -> R`
 
+  Returns the raw data.
+
 - <span id="machofile-raw-header"></span>`fn raw_header(&self) -> &'data Mach`
+
+  Returns the raw Mach-O file header.
 
 - <span id="machofile-macho-header"></span>`fn macho_header(&self) -> &'data Mach`
 
+  Get the raw Mach-O file header.
+
 - <span id="machofile-macho-load-commands"></span>`fn macho_load_commands(&self) -> Result<LoadCommandIterator<'data, <Mach as >::Endian>>` — [`Result`](../../index.md#result), [`LoadCommandIterator`](#loadcommanditerator), [`MachHeader`](#machheader)
+
+  Get the Mach-O load commands.
 
 - <span id="machofile-macho-symbol-table"></span>`fn macho_symbol_table(&self) -> &SymbolTable<'data, Mach, R>` — [`SymbolTable`](#symboltable)
 
+  Get the Mach-O symbol table.
+
+  
+
+  Returns an empty symbol table if the file has no symbol table.
+
 - <span id="machofile-build-version"></span>`fn build_version(&self) -> Result<Option<&'data macho::BuildVersionCommand<<Mach as >::Endian>>>` — [`Result`](../../index.md#result), [`BuildVersionCommand`](../../macho/index.md#buildversioncommand), [`MachHeader`](#machheader)
+
+  Return the `LC_BUILD_VERSION` load command if present.
 
 #### Trait Implementations
 
+##### `impl Any for MachOFile<'data, Mach, R>`
+
+- <span id="machofile-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOFile<'data, Mach, R>`
+
+- <span id="machofile-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOFile<'data, Mach, R>`
+
+- <span id="machofile-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach, R> Debug for MachOFile<'data, Mach, R>`
 
-- <span id="machofile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machofile-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOFile<'data, Mach, R>`
+
+- <span id="machofile-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOFile<'data, Mach, R>`
+
+- <span id="machofile-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> Object for MachOFile<'data, Mach, R>`
 
@@ -822,55 +1514,67 @@ Most of the functionality of this type is provided by the [`Object`](../index.md
 
 - <span id="machofile-object-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
-- <span id="machofile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md#architecture)
+- <span id="machofile-object-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md#architecture)
 
-- <span id="machofile-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../index.md#subarchitecture)
+- <span id="machofile-object-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../index.md#subarchitecture)
 
-- <span id="machofile-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
+- <span id="machofile-object-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
 
-- <span id="machofile-is-64"></span>`fn is_64(&self) -> bool`
+- <span id="machofile-object-is-64"></span>`fn is_64(&self) -> bool`
 
-- <span id="machofile-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../index.md#objectkind)
+- <span id="machofile-object-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../index.md#objectkind)
 
-- <span id="machofile-segments"></span>`fn segments(&self) -> MachOSegmentIterator<'data, '_, Mach, R>` — [`MachOSegmentIterator`](#machosegmentiterator)
+- <span id="machofile-object-segments"></span>`fn segments(&self) -> MachOSegmentIterator<'data, '_, Mach, R>` — [`MachOSegmentIterator`](#machosegmentiterator)
 
-- <span id="machofile-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<MachOSection<'data, 'file, Mach, R>>` — [`MachOSection`](#machosection)
+- <span id="machofile-object-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<MachOSection<'data, 'file, Mach, R>>` — [`MachOSection`](#machosection)
 
-- <span id="machofile-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<MachOSection<'data, '_, Mach, R>>` — [`SectionIndex`](../../index.md#sectionindex), [`Result`](../../index.md#result), [`MachOSection`](#machosection)
+- <span id="machofile-object-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<MachOSection<'data, '_, Mach, R>>` — [`SectionIndex`](../../index.md#sectionindex), [`Result`](../../index.md#result), [`MachOSection`](#machosection)
 
-- <span id="machofile-sections"></span>`fn sections(&self) -> MachOSectionIterator<'data, '_, Mach, R>` — [`MachOSectionIterator`](#machosectioniterator)
+- <span id="machofile-object-sections"></span>`fn sections(&self) -> MachOSectionIterator<'data, '_, Mach, R>` — [`MachOSectionIterator`](#machosectioniterator)
 
-- <span id="machofile-comdats"></span>`fn comdats(&self) -> MachOComdatIterator<'data, '_, Mach, R>` — [`MachOComdatIterator`](#machocomdatiterator)
+- <span id="machofile-object-comdats"></span>`fn comdats(&self) -> MachOComdatIterator<'data, '_, Mach, R>` — [`MachOComdatIterator`](#machocomdatiterator)
 
-- <span id="machofile-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<MachOSymbol<'data, '_, Mach, R>>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`MachOSymbol`](#machosymbol)
+- <span id="machofile-object-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<MachOSymbol<'data, '_, Mach, R>>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`MachOSymbol`](#machosymbol)
 
-- <span id="machofile-symbols"></span>`fn symbols(&self) -> MachOSymbolIterator<'data, '_, Mach, R>` — [`MachOSymbolIterator`](#machosymboliterator)
+- <span id="machofile-object-symbols"></span>`fn symbols(&self) -> MachOSymbolIterator<'data, '_, Mach, R>` — [`MachOSymbolIterator`](#machosymboliterator)
 
-- <span id="machofile-symbol-table"></span>`fn symbol_table(&self) -> Option<MachOSymbolTable<'data, '_, Mach, R>>` — [`MachOSymbolTable`](#machosymboltable)
+- <span id="machofile-object-symbol-table"></span>`fn symbol_table(&self) -> Option<MachOSymbolTable<'data, '_, Mach, R>>` — [`MachOSymbolTable`](#machosymboltable)
 
-- <span id="machofile-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> MachOSymbolIterator<'data, '_, Mach, R>` — [`MachOSymbolIterator`](#machosymboliterator)
+- <span id="machofile-object-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> MachOSymbolIterator<'data, '_, Mach, R>` — [`MachOSymbolIterator`](#machosymboliterator)
 
-- <span id="machofile-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<MachOSymbolTable<'data, '_, Mach, R>>` — [`MachOSymbolTable`](#machosymboltable)
+- <span id="machofile-object-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<MachOSymbolTable<'data, '_, Mach, R>>` — [`MachOSymbolTable`](#machosymboltable)
 
-- <span id="machofile-object-map"></span>`fn object_map(&self) -> ObjectMap<'data>` — [`ObjectMap`](../../index.md#objectmap)
+- <span id="machofile-object-object-map"></span>`fn object_map(&self) -> ObjectMap<'data>` — [`ObjectMap`](../../index.md#objectmap)
 
-- <span id="machofile-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../../index.md#result), [`Import`](../../index.md#import)
+- <span id="machofile-object-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../../index.md#result), [`Import`](../../index.md#import)
 
-- <span id="machofile-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../index.md#result), [`Export`](../../index.md#export)
+- <span id="machofile-object-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../index.md#result), [`Export`](../../index.md#export)
 
-- <span id="machofile-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<NoDynamicRelocationIterator>` — [`NoDynamicRelocationIterator`](../index.md#nodynamicrelocationiterator)
+- <span id="machofile-object-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<NoDynamicRelocationIterator>` — [`NoDynamicRelocationIterator`](../index.md#nodynamicrelocationiterator)
 
-- <span id="machofile-has-debug-symbols"></span>`fn has_debug_symbols(&self) -> bool`
+- <span id="machofile-object-has-debug-symbols"></span>`fn has_debug_symbols(&self) -> bool`
 
-- <span id="machofile-mach-uuid"></span>`fn mach_uuid(&self) -> Result<Option<[u8; 16]>>` — [`Result`](../../index.md#result)
+- <span id="machofile-object-mach-uuid"></span>`fn mach_uuid(&self) -> Result<Option<[u8; 16]>>` — [`Result`](../../index.md#result)
 
-- <span id="machofile-relative-address-base"></span>`fn relative_address_base(&self) -> u64`
+- <span id="machofile-object-relative-address-base"></span>`fn relative_address_base(&self) -> u64`
 
-- <span id="machofile-entry"></span>`fn entry(&self) -> u64`
+- <span id="machofile-object-entry"></span>`fn entry(&self) -> u64`
 
-- <span id="machofile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../index.md#fileflags)
+- <span id="machofile-object-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../index.md#fileflags)
 
 ##### `impl<Mach, R> Sealed for MachOFile<'data, Mach, R>`
+
+##### `impl<U> TryFrom for MachOFile<'data, Mach, R>`
+
+- <span id="machofile-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machofile-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOFile<'data, Mach, R>`
+
+- <span id="machofile-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machofile-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOComdatIterator<'data, 'file, Mach, R>`
 
@@ -891,9 +1595,39 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
+##### `impl Any for MachOComdatIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOComdatIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOComdatIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach, R> Debug for MachOComdatIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdatiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machocomdatiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOComdatIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOComdatIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachOComdatIterator<'data, 'file, Mach, R>`
 
@@ -901,13 +1635,25 @@ This is a stub that doesn't implement any functionality.
 
 - <span id="machocomdatiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="machocomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="machocomdatiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Mach, R> Iterator for MachOComdatIterator<'data, 'file, Mach, R>`
 
 - <span id="machocomdatiterator-iterator-type-item"></span>`type Item = MachOComdat<'data, 'file, Mach, R>`
 
-- <span id="machocomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="machocomdatiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for MachOComdatIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machocomdatiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOComdatIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machocomdatiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOComdat<'data, 'file, Mach, R>`
 
@@ -928,25 +1674,67 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
+##### `impl Any for MachOComdat<'data, 'file, Mach, R>`
+
+- <span id="machocomdat-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOComdat<'data, 'file, Mach, R>`
+
+- <span id="machocomdat-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOComdat<'data, 'file, Mach, R>`
+
+- <span id="machocomdat-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach, R> Debug for MachOComdat<'data, 'file, Mach, R>`
 
-- <span id="machocomdat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machocomdat-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOComdat<'data, 'file, Mach, R>`
+
+- <span id="machocomdat-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOComdat<'data, 'file, Mach, R>`
+
+- <span id="machocomdat-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> ObjectComdat for MachOComdat<'data, 'file, Mach, R>`
 
 - <span id="machocomdat-objectcomdat-type-sectioniterator"></span>`type SectionIterator = MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md#comdatkind)
+- <span id="machocomdat-objectcomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md#comdatkind)
 
-- <span id="machocomdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md#symbolindex)
+- <span id="machocomdat-objectcomdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md#symbolindex)
 
-- <span id="machocomdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
+- <span id="machocomdat-objectcomdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="machocomdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md#result)
+- <span id="machocomdat-objectcomdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md#result)
 
-- <span id="machocomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../index.md#objectcomdat)
+- <span id="machocomdat-objectcomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../index.md#objectcomdat)
 
 ##### `impl<Mach, R> Sealed for MachOComdat<'data, 'file, Mach, R>`
+
+##### `impl<U> TryFrom for MachOComdat<'data, 'file, Mach, R>`
+
+- <span id="machocomdat-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machocomdat-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOComdat<'data, 'file, Mach, R>`
+
+- <span id="machocomdat-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machocomdat-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
@@ -967,9 +1755,39 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
+##### `impl Any for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatsectioniterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatsectioniterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatsectioniterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach, R> Debug for MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdatsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machocomdatsectioniterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatsectioniterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatsectioniterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
@@ -977,13 +1795,25 @@ This is a stub that doesn't implement any functionality.
 
 - <span id="machocomdatsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="machocomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="machocomdatsectioniterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Mach, R> Iterator for MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
 - <span id="machocomdatsectioniterator-iterator-type-item"></span>`type Item = SectionIndex`
 
-- <span id="machocomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="machocomdatsectioniterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatsectioniterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machocomdatsectioniterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machocomdatsectioniterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machocomdatsectioniterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LoadCommandIterator<'data, E: Endian>`
 
@@ -1005,23 +1835,59 @@ An iterator for the load commands from a [`MachHeader`](#machheader).
 
 - <span id="loadcommanditerator-next"></span>`fn next(&mut self) -> Result<Option<LoadCommandData<'data, E>>>` — [`Result`](../../index.md#result), [`LoadCommandData`](#loadcommanddata)
 
+  Return the next load command.
+
 - <span id="loadcommanditerator-parse"></span>`fn parse(&mut self) -> Result<LoadCommandData<'data, E>>` — [`Result`](../../index.md#result), [`LoadCommandData`](#loadcommanddata)
 
 #### Trait Implementations
+
+##### `impl Any for LoadCommandIterator<'data, E>`
+
+- <span id="loadcommanditerator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LoadCommandIterator<'data, E>`
+
+- <span id="loadcommanditerator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LoadCommandIterator<'data, E>`
+
+- <span id="loadcommanditerator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for LoadCommandIterator<'data, E>`
 
 - <span id="loadcommanditerator-clone"></span>`fn clone(&self) -> LoadCommandIterator<'data, E>` — [`LoadCommandIterator`](#loadcommanditerator)
 
+##### `impl CloneToUninit for LoadCommandIterator<'data, E>`
+
+- <span id="loadcommanditerator-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for LoadCommandIterator<'data, E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for LoadCommandIterator<'data, E>`
 
-- <span id="loadcommanditerator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="loadcommanditerator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: default::Default + Endian> Default for LoadCommandIterator<'data, E>`
 
 - <span id="loadcommanditerator-default"></span>`fn default() -> LoadCommandIterator<'data, E>` — [`LoadCommandIterator`](#loadcommanditerator)
+
+##### `impl<T> From for LoadCommandIterator<'data, E>`
+
+- <span id="loadcommanditerator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LoadCommandIterator<'data, E>`
+
+- <span id="loadcommanditerator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for LoadCommandIterator<'data, E>`
 
@@ -1029,13 +1895,33 @@ An iterator for the load commands from a [`MachHeader`](#machheader).
 
 - <span id="loadcommanditerator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="loadcommanditerator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="loadcommanditerator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<E: Endian> Iterator for LoadCommandIterator<'data, E>`
 
 - <span id="loadcommanditerator-iterator-type-item"></span>`type Item = Result<LoadCommandData<'data, E>, Error>`
 
-- <span id="loadcommanditerator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="loadcommanditerator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl ToOwned for LoadCommandIterator<'data, E>`
+
+- <span id="loadcommanditerator-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="loadcommanditerator-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="loadcommanditerator-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LoadCommandIterator<'data, E>`
+
+- <span id="loadcommanditerator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="loadcommanditerator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LoadCommandIterator<'data, E>`
+
+- <span id="loadcommanditerator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="loadcommanditerator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LoadCommandData<'data, E: Endian>`
 
@@ -1055,45 +1941,143 @@ The data for a [`macho::LoadCommand`](../../macho/index.md).
 
 - <span id="loadcommanddata-cmd"></span>`fn cmd(&self) -> u32`
 
+  Return the `cmd` field of the [`macho::LoadCommand`](../../macho/index.md).
+
+  
+
+  This is one of the `LC_` constants.
+
 - <span id="loadcommanddata-cmdsize"></span>`fn cmdsize(&self) -> u32`
+
+  Return the `cmdsize` field of the [`macho::LoadCommand`](../../macho/index.md).
 
 - <span id="loadcommanddata-data"></span>`fn data<T: Pod>(&self) -> Result<&'data T>` — [`Result`](../../index.md#result)
 
+  Parse the data as the given type.
+
 - <span id="loadcommanddata-raw-data"></span>`fn raw_data(&self) -> &'data [u8]`
+
+  Raw bytes of this [`macho::LoadCommand`](../../macho/index.md) structure.
 
 - <span id="loadcommanddata-string"></span>`fn string(&self, endian: E, s: macho::LcStr<E>) -> Result<&'data [u8]>` — [`LcStr`](../../macho/index.md#lcstr), [`Result`](../../index.md#result)
 
+  Parse a load command string value.
+
+  
+
+  Strings used by load commands are specified by offsets that are
+
+  relative to the load command header.
+
 - <span id="loadcommanddata-variant"></span>`fn variant(&self) -> Result<LoadCommandVariant<'data, E>>` — [`Result`](../../index.md#result), [`LoadCommandVariant`](#loadcommandvariant)
+
+  Parse the command data according to the `cmd` field.
 
 - <span id="loadcommanddata-segment-32"></span>`fn segment_32(self) -> Result<Option<(&'data macho::SegmentCommand32<E>, &'data [u8])>>` — [`Result`](../../index.md#result), [`SegmentCommand32`](../../macho/index.md#segmentcommand32)
 
+  Try to parse this command as a [`macho::SegmentCommand32`](../../macho/index.md).
+
+  
+
+  Returns the segment command and the data containing the sections.
+
 - <span id="loadcommanddata-symtab"></span>`fn symtab(self) -> Result<Option<&'data macho::SymtabCommand<E>>>` — [`Result`](../../index.md#result), [`SymtabCommand`](../../macho/index.md#symtabcommand)
+
+  Try to parse this command as a [`macho::SymtabCommand`](../../macho/index.md).
 
 - <span id="loadcommanddata-dysymtab"></span>`fn dysymtab(self) -> Result<Option<&'data macho::DysymtabCommand<E>>>` — [`Result`](../../index.md#result), [`DysymtabCommand`](../../macho/index.md#dysymtabcommand)
 
+  Try to parse this command as a [`macho::DysymtabCommand`](../../macho/index.md).
+
 - <span id="loadcommanddata-dylib"></span>`fn dylib(self) -> Result<Option<&'data macho::DylibCommand<E>>>` — [`Result`](../../index.md#result), [`DylibCommand`](../../macho/index.md#dylibcommand)
+
+  Try to parse this command as a [`macho::DylibCommand`](../../macho/index.md).
 
 - <span id="loadcommanddata-uuid"></span>`fn uuid(self) -> Result<Option<&'data macho::UuidCommand<E>>>` — [`Result`](../../index.md#result), [`UuidCommand`](../../macho/index.md#uuidcommand)
 
+  Try to parse this command as a [`macho::UuidCommand`](../../macho/index.md).
+
 - <span id="loadcommanddata-segment-64"></span>`fn segment_64(self) -> Result<Option<(&'data macho::SegmentCommand64<E>, &'data [u8])>>` — [`Result`](../../index.md#result), [`SegmentCommand64`](../../macho/index.md#segmentcommand64)
+
+  Try to parse this command as a [`macho::SegmentCommand64`](../../macho/index.md).
 
 - <span id="loadcommanddata-dyld-info"></span>`fn dyld_info(self) -> Result<Option<&'data macho::DyldInfoCommand<E>>>` — [`Result`](../../index.md#result), [`DyldInfoCommand`](../../macho/index.md#dyldinfocommand)
 
+  Try to parse this command as a [`macho::DyldInfoCommand`](../../macho/index.md).
+
 - <span id="loadcommanddata-entry-point"></span>`fn entry_point(self) -> Result<Option<&'data macho::EntryPointCommand<E>>>` — [`Result`](../../index.md#result), [`EntryPointCommand`](../../macho/index.md#entrypointcommand)
+
+  Try to parse this command as an [`macho::EntryPointCommand`](../../macho/index.md).
 
 - <span id="loadcommanddata-build-version"></span>`fn build_version(self) -> Result<Option<&'data macho::BuildVersionCommand<E>>>` — [`Result`](../../index.md#result), [`BuildVersionCommand`](../../macho/index.md#buildversioncommand)
 
+  Try to parse this command as a [`macho::BuildVersionCommand`](../../macho/index.md).
+
 #### Trait Implementations
+
+##### `impl Any for LoadCommandData<'data, E>`
+
+- <span id="loadcommanddata-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LoadCommandData<'data, E>`
+
+- <span id="loadcommanddata-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LoadCommandData<'data, E>`
+
+- <span id="loadcommanddata-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for LoadCommandData<'data, E>`
 
 - <span id="loadcommanddata-clone"></span>`fn clone(&self) -> LoadCommandData<'data, E>` — [`LoadCommandData`](#loadcommanddata)
 
+##### `impl CloneToUninit for LoadCommandData<'data, E>`
+
+- <span id="loadcommanddata-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for LoadCommandData<'data, E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for LoadCommandData<'data, E>`
 
-- <span id="loadcommanddata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="loadcommanddata-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for LoadCommandData<'data, E>`
+
+- <span id="loadcommanddata-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LoadCommandData<'data, E>`
+
+- <span id="loadcommanddata-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for LoadCommandData<'data, E>`
+
+- <span id="loadcommanddata-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="loadcommanddata-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="loadcommanddata-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LoadCommandData<'data, E>`
+
+- <span id="loadcommanddata-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="loadcommanddata-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LoadCommandData<'data, E>`
+
+- <span id="loadcommanddata-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="loadcommanddata-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOSegmentIterator<'data, 'file, Mach, R>`
 
@@ -1113,9 +2097,39 @@ An iterator for the segments in a [`MachOFile`](#machofile).
 
 #### Trait Implementations
 
+##### `impl Any for MachOSegmentIterator<'data, 'file, Mach, R>`
+
+- <span id="machosegmentiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOSegmentIterator<'data, 'file, Mach, R>`
+
+- <span id="machosegmentiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOSegmentIterator<'data, 'file, Mach, R>`
+
+- <span id="machosegmentiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach, R> Debug for MachOSegmentIterator<'data, 'file, Mach, R>`
 
-- <span id="machosegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machosegmentiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOSegmentIterator<'data, 'file, Mach, R>`
+
+- <span id="machosegmentiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOSegmentIterator<'data, 'file, Mach, R>`
+
+- <span id="machosegmentiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachOSegmentIterator<'data, 'file, Mach, R>`
 
@@ -1123,13 +2137,25 @@ An iterator for the segments in a [`MachOFile`](#machofile).
 
 - <span id="machosegmentiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="machosegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="machosegmentiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Mach, R> Iterator for MachOSegmentIterator<'data, 'file, Mach, R>`
 
 - <span id="machosegmentiterator-iterator-type-item"></span>`type Item = MachOSegment<'data, 'file, Mach, R>`
 
-- <span id="machosegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="machosegmentiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for MachOSegmentIterator<'data, 'file, Mach, R>`
+
+- <span id="machosegmentiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machosegmentiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOSegmentIterator<'data, 'file, Mach, R>`
+
+- <span id="machosegmentiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machosegmentiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOSegment<'data, 'file, Mach, R>`
 
@@ -1153,37 +2179,83 @@ Most functionality is provided by the [`ObjectSegment`](../index.md) trait imple
 
 - <span id="machosegment-macho-file"></span>`fn macho_file(&self) -> &'file MachOFile<'data, Mach, R>` — [`MachOFile`](#machofile)
 
+  Get the Mach-O file containing this segment.
+
 - <span id="machosegment-macho-segment"></span>`fn macho_segment(&self) -> &'data <Mach as >::Segment` — [`MachHeader`](#machheader)
+
+  Get the raw Mach-O segment structure.
 
 - <span id="machosegment-bytes"></span>`fn bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
 #### Trait Implementations
 
+##### `impl Any for MachOSegment<'data, 'file, Mach, R>`
+
+- <span id="machosegment-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOSegment<'data, 'file, Mach, R>`
+
+- <span id="machosegment-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOSegment<'data, 'file, Mach, R>`
+
+- <span id="machosegment-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach, R> Debug for MachOSegment<'data, 'file, Mach, R>`
 
-- <span id="machosegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machosegment-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOSegment<'data, 'file, Mach, R>`
+
+- <span id="machosegment-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOSegment<'data, 'file, Mach, R>`
+
+- <span id="machosegment-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> ObjectSegment for MachOSegment<'data, 'file, Mach, R>`
 
-- <span id="machosegment-address"></span>`fn address(&self) -> u64`
+- <span id="machosegment-objectsegment-address"></span>`fn address(&self) -> u64`
 
-- <span id="machosegment-size"></span>`fn size(&self) -> u64`
+- <span id="machosegment-objectsegment-size"></span>`fn size(&self) -> u64`
 
-- <span id="machosegment-align"></span>`fn align(&self) -> u64`
+- <span id="machosegment-objectsegment-align"></span>`fn align(&self) -> u64`
 
-- <span id="machosegment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
+- <span id="machosegment-objectsegment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
 
-- <span id="machosegment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
+- <span id="machosegment-objectsegment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="machosegment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md#result)
+- <span id="machosegment-objectsegment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md#result)
 
-- <span id="machosegment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md#result)
+- <span id="machosegment-objectsegment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md#result)
 
-- <span id="machosegment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md#result)
+- <span id="machosegment-objectsegment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md#result)
 
-- <span id="machosegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../index.md#segmentflags)
+- <span id="machosegment-objectsegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../index.md#segmentflags)
 
 ##### `impl<Mach, R> Sealed for MachOSegment<'data, 'file, Mach, R>`
+
+##### `impl<U> TryFrom for MachOSegment<'data, 'file, Mach, R>`
+
+- <span id="machosegment-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machosegment-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOSegment<'data, 'file, Mach, R>`
+
+- <span id="machosegment-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machosegment-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>>`
 
@@ -1207,15 +2279,69 @@ struct MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
+##### `impl Any for MachOSegmentInternal<'data, Mach, R>`
+
+- <span id="machosegmentinternal-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOSegmentInternal<'data, Mach, R>`
+
+- <span id="machosegmentinternal-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOSegmentInternal<'data, Mach, R>`
+
+- <span id="machosegmentinternal-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach: clone::Clone + MachHeader, R: clone::Clone + ReadRef<'data>> Clone for MachOSegmentInternal<'data, Mach, R>`
 
 - <span id="machosegmentinternal-clone"></span>`fn clone(&self) -> MachOSegmentInternal<'data, Mach, R>` — [`MachOSegmentInternal`](segment/index.md#machosegmentinternal)
+
+##### `impl CloneToUninit for MachOSegmentInternal<'data, Mach, R>`
+
+- <span id="machosegmentinternal-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<Mach: marker::Copy + MachHeader, R: marker::Copy + ReadRef<'data>> Copy for MachOSegmentInternal<'data, Mach, R>`
 
 ##### `impl<Mach: fmt::Debug + MachHeader, R: fmt::Debug + ReadRef<'data>> Debug for MachOSegmentInternal<'data, Mach, R>`
 
-- <span id="machosegmentinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machosegmentinternal-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOSegmentInternal<'data, Mach, R>`
+
+- <span id="machosegmentinternal-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOSegmentInternal<'data, Mach, R>`
+
+- <span id="machosegmentinternal-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for MachOSegmentInternal<'data, Mach, R>`
+
+- <span id="machosegmentinternal-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="machosegmentinternal-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="machosegmentinternal-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MachOSegmentInternal<'data, Mach, R>`
+
+- <span id="machosegmentinternal-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machosegmentinternal-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOSegmentInternal<'data, Mach, R>`
+
+- <span id="machosegmentinternal-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machosegmentinternal-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOSectionIterator<'data, 'file, Mach, R>`
 
@@ -1235,9 +2361,39 @@ An iterator for the sections in a [`MachOFile`](#machofile).
 
 #### Trait Implementations
 
+##### `impl Any for MachOSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machosectioniterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machosectioniterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machosectioniterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach, R> Debug for MachOSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machosectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machosectioniterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machosectioniterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machosectioniterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachOSectionIterator<'data, 'file, Mach, R>`
 
@@ -1245,13 +2401,25 @@ An iterator for the sections in a [`MachOFile`](#machofile).
 
 - <span id="machosectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="machosectioniterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="machosectioniterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Mach, R> Iterator for MachOSectionIterator<'data, 'file, Mach, R>`
 
 - <span id="machosectioniterator-iterator-type-item"></span>`type Item = MachOSection<'data, 'file, Mach, R>`
 
-- <span id="machosectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="machosectioniterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for MachOSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machosectioniterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machosectioniterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOSectionIterator<'data, 'file, Mach, R>`
+
+- <span id="machosectioniterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machosectioniterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOSection<'data, 'file, Mach, R>`
 
@@ -1275,9 +2443,15 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 - <span id="machosection-macho-file"></span>`fn macho_file(&self) -> &'file MachOFile<'data, Mach, R>` — [`MachOFile`](#machofile)
 
+  Get the Mach-O file containing this section.
+
 - <span id="machosection-macho-section"></span>`fn macho_section(&self) -> &'data <Mach as >::Section` — [`MachHeader`](#machheader)
 
+  Get the raw Mach-O section structure.
+
 - <span id="machosection-macho-relocations"></span>`fn macho_relocations(&self) -> Result<&'data [macho::Relocation<<Mach as >::Endian>]>` — [`Result`](../../index.md#result), [`Relocation`](../../macho/index.md#relocation), [`MachHeader`](#machheader)
+
+  Get the raw Mach-O relocation entries.
 
 - <span id="machosection-bytes"></span>`fn bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
@@ -1285,49 +2459,91 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 #### Trait Implementations
 
+##### `impl Any for MachOSection<'data, 'file, Mach, R>`
+
+- <span id="machosection-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOSection<'data, 'file, Mach, R>`
+
+- <span id="machosection-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOSection<'data, 'file, Mach, R>`
+
+- <span id="machosection-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach, R> Debug for MachOSection<'data, 'file, Mach, R>`
 
-- <span id="machosection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machosection-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOSection<'data, 'file, Mach, R>`
+
+- <span id="machosection-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOSection<'data, 'file, Mach, R>`
+
+- <span id="machosection-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> ObjectSection for MachOSection<'data, 'file, Mach, R>`
 
 - <span id="machosection-objectsection-type-relocationiterator"></span>`type RelocationIterator = MachORelocationIterator<'data, 'file, Mach, R>`
 
-- <span id="machosection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md#sectionindex)
+- <span id="machosection-objectsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md#sectionindex)
 
-- <span id="machosection-address"></span>`fn address(&self) -> u64`
+- <span id="machosection-objectsection-address"></span>`fn address(&self) -> u64`
 
-- <span id="machosection-size"></span>`fn size(&self) -> u64`
+- <span id="machosection-objectsection-size"></span>`fn size(&self) -> u64`
 
-- <span id="machosection-align"></span>`fn align(&self) -> u64`
+- <span id="machosection-objectsection-align"></span>`fn align(&self) -> u64`
 
-- <span id="machosection-file-range"></span>`fn file_range(&self) -> Option<(u64, u64)>`
+- <span id="machosection-objectsection-file-range"></span>`fn file_range(&self) -> Option<(u64, u64)>`
 
-- <span id="machosection-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
+- <span id="machosection-objectsection-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="machosection-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md#result)
+- <span id="machosection-objectsection-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md#result)
 
-- <span id="machosection-compressed-file-range"></span>`fn compressed_file_range(&self) -> Result<CompressedFileRange>` — [`Result`](../../index.md#result), [`CompressedFileRange`](../../index.md#compressedfilerange)
+- <span id="machosection-objectsection-compressed-file-range"></span>`fn compressed_file_range(&self) -> Result<CompressedFileRange>` — [`Result`](../../index.md#result), [`CompressedFileRange`](../../index.md#compressedfilerange)
 
-- <span id="machosection-compressed-data"></span>`fn compressed_data(&self) -> read::Result<CompressedData<'data>>` — [`Result`](../../index.md#result), [`CompressedData`](../../index.md#compresseddata)
+- <span id="machosection-objectsection-compressed-data"></span>`fn compressed_data(&self) -> read::Result<CompressedData<'data>>` — [`Result`](../../index.md#result), [`CompressedData`](../../index.md#compresseddata)
 
-- <span id="machosection-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
+- <span id="machosection-objectsection-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="machosection-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md#result)
+- <span id="machosection-objectsection-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md#result)
 
-- <span id="machosection-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md#result)
+- <span id="machosection-objectsection-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md#result)
 
-- <span id="machosection-segment-name"></span>`fn segment_name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md#result)
+- <span id="machosection-objectsection-segment-name"></span>`fn segment_name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md#result)
 
-- <span id="machosection-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../index.md#sectionkind)
+- <span id="machosection-objectsection-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../index.md#sectionkind)
 
-- <span id="machosection-relocations"></span>`fn relocations(&self) -> MachORelocationIterator<'data, 'file, Mach, R>` — [`MachORelocationIterator`](#machorelocationiterator)
+- <span id="machosection-objectsection-relocations"></span>`fn relocations(&self) -> MachORelocationIterator<'data, 'file, Mach, R>` — [`MachORelocationIterator`](#machorelocationiterator)
 
-- <span id="machosection-relocation-map"></span>`fn relocation_map(&self) -> read::Result<RelocationMap>` — [`Result`](../../index.md#result), [`RelocationMap`](../../index.md#relocationmap)
+- <span id="machosection-objectsection-relocation-map"></span>`fn relocation_map(&self) -> read::Result<RelocationMap>` — [`Result`](../../index.md#result), [`RelocationMap`](../../index.md#relocationmap)
 
-- <span id="machosection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../index.md#sectionflags)
+- <span id="machosection-objectsection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../index.md#sectionflags)
 
 ##### `impl<Mach, R> Sealed for MachOSection<'data, 'file, Mach, R>`
+
+##### `impl<U> TryFrom for MachOSection<'data, 'file, Mach, R>`
+
+- <span id="machosection-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machosection-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOSection<'data, 'file, Mach, R>`
+
+- <span id="machosection-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machosection-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOSectionInternal<'data, Mach: MachHeader, R: ReadRef<'data>>`
 
@@ -1357,15 +2573,69 @@ struct MachOSectionInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
+##### `impl Any for MachOSectionInternal<'data, Mach, R>`
+
+- <span id="machosectioninternal-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOSectionInternal<'data, Mach, R>`
+
+- <span id="machosectioninternal-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOSectionInternal<'data, Mach, R>`
+
+- <span id="machosectioninternal-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach: clone::Clone + MachHeader, R: clone::Clone + ReadRef<'data>> Clone for MachOSectionInternal<'data, Mach, R>`
 
 - <span id="machosectioninternal-clone"></span>`fn clone(&self) -> MachOSectionInternal<'data, Mach, R>` — [`MachOSectionInternal`](section/index.md#machosectioninternal)
+
+##### `impl CloneToUninit for MachOSectionInternal<'data, Mach, R>`
+
+- <span id="machosectioninternal-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<Mach: marker::Copy + MachHeader, R: marker::Copy + ReadRef<'data>> Copy for MachOSectionInternal<'data, Mach, R>`
 
 ##### `impl<Mach: fmt::Debug + MachHeader, R: fmt::Debug + ReadRef<'data>> Debug for MachOSectionInternal<'data, Mach, R>`
 
-- <span id="machosectioninternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machosectioninternal-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOSectionInternal<'data, Mach, R>`
+
+- <span id="machosectioninternal-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOSectionInternal<'data, Mach, R>`
+
+- <span id="machosectioninternal-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for MachOSectionInternal<'data, Mach, R>`
+
+- <span id="machosectioninternal-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="machosectioninternal-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="machosectioninternal-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MachOSectionInternal<'data, Mach, R>`
+
+- <span id="machosectioninternal-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machosectioninternal-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOSectionInternal<'data, Mach, R>`
+
+- <span id="machosectioninternal-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machosectioninternal-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SymbolTable<'data, Mach: MachHeader, R>`
 
@@ -1392,33 +2662,101 @@ Returned by `macho::SymtabCommand::symbols`.
 
 - <span id="symboltable-strings"></span>`fn strings(&self) -> StringTable<'data, R>` — [`StringTable`](../index.md#stringtable)
 
+  Return the string table used for the symbol names.
+
 - <span id="symboltable-iter"></span>`fn iter(&self) -> slice::Iter<'data, <Mach as >::Nlist>` — [`MachHeader`](#machheader)
+
+  Iterate over the symbols.
 
 - <span id="symboltable-is-empty"></span>`fn is_empty(&self) -> bool`
 
+  Return true if the symbol table is empty.
+
 - <span id="symboltable-len"></span>`fn len(&self) -> usize`
+
+  The number of symbols.
 
 - <span id="symboltable-symbol"></span>`fn symbol(&self, index: SymbolIndex) -> Result<&'data <Mach as >::Nlist>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`MachHeader`](#machheader)
 
+  Return the symbol at the given index.
+
 - <span id="symboltable-map"></span>`fn map<Entry: SymbolMapEntry, F: Fn(&'data <Mach as >::Nlist) -> Option<Entry>>(&self, f: F) -> SymbolMap<Entry>` — [`SymbolMap`](../../index.md#symbolmap)
+
+  Construct a map from addresses to a user-defined map entry.
 
 - <span id="symboltable-object-map"></span>`fn object_map(&self, endian: <Mach as >::Endian) -> ObjectMap<'data>` — [`MachHeader`](#machheader), [`ObjectMap`](../../index.md#objectmap)
 
+  Construct a map from addresses to symbol names and object file names.
+
 #### Trait Implementations
+
+##### `impl Any for SymbolTable<'data, Mach, R>`
+
+- <span id="symboltable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SymbolTable<'data, Mach, R>`
+
+- <span id="symboltable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SymbolTable<'data, Mach, R>`
+
+- <span id="symboltable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<Mach: clone::Clone + MachHeader, R> Clone for SymbolTable<'data, Mach, R>`
 
 - <span id="symboltable-clone"></span>`fn clone(&self) -> SymbolTable<'data, Mach, R>` — [`SymbolTable`](#symboltable)
 
+##### `impl CloneToUninit for SymbolTable<'data, Mach, R>`
+
+- <span id="symboltable-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<Mach: marker::Copy + MachHeader, R> Copy for SymbolTable<'data, Mach, R>`
 
 ##### `impl<Mach: fmt::Debug + MachHeader, R> Debug for SymbolTable<'data, Mach, R>`
 
-- <span id="symboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symboltable-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Mach: MachHeader, R: ReadRef<'data>> Default for SymbolTable<'data, Mach, R>`
 
 - <span id="symboltable-default"></span>`fn default() -> Self`
+
+##### `impl<T> From for SymbolTable<'data, Mach, R>`
+
+- <span id="symboltable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SymbolTable<'data, Mach, R>`
+
+- <span id="symboltable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for SymbolTable<'data, Mach, R>`
+
+- <span id="symboltable-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="symboltable-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="symboltable-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SymbolTable<'data, Mach, R>`
+
+- <span id="symboltable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symboltable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SymbolTable<'data, Mach, R>`
+
+- <span id="symboltable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symboltable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOSymbolTable<'data, 'file, Mach, R>`
 
@@ -1437,15 +2775,49 @@ A symbol table in a [`MachOFile`](#machofile).
 
 #### Trait Implementations
 
+##### `impl Any for MachOSymbolTable<'data, 'file, Mach, R>`
+
+- <span id="machosymboltable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOSymbolTable<'data, 'file, Mach, R>`
+
+- <span id="machosymboltable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOSymbolTable<'data, 'file, Mach, R>`
+
+- <span id="machosymboltable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach, R> Clone for MachOSymbolTable<'data, 'file, Mach, R>`
 
 - <span id="machosymboltable-clone"></span>`fn clone(&self) -> MachOSymbolTable<'data, 'file, Mach, R>` — [`MachOSymbolTable`](#machosymboltable)
+
+##### `impl CloneToUninit for MachOSymbolTable<'data, 'file, Mach, R>`
+
+- <span id="machosymboltable-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<Mach, R> Copy for MachOSymbolTable<'data, 'file, Mach, R>`
 
 ##### `impl<Mach, R> Debug for MachOSymbolTable<'data, 'file, Mach, R>`
 
-- <span id="machosymboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machosymboltable-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOSymbolTable<'data, 'file, Mach, R>`
+
+- <span id="machosymboltable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOSymbolTable<'data, 'file, Mach, R>`
+
+- <span id="machosymboltable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> ObjectSymbolTable for MachOSymbolTable<'data, 'file, Mach, R>`
 
@@ -1453,11 +2825,31 @@ A symbol table in a [`MachOFile`](#machofile).
 
 - <span id="machosymboltable-objectsymboltable-type-symboliterator"></span>`type SymbolIterator = MachOSymbolIterator<'data, 'file, Mach, R>`
 
-- <span id="machosymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md#objectsymboltable)
+- <span id="machosymboltable-objectsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md#objectsymboltable)
 
-- <span id="machosymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`ObjectSymbolTable`](../index.md#objectsymboltable)
+- <span id="machosymboltable-objectsymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`ObjectSymbolTable`](../index.md#objectsymboltable)
 
 ##### `impl<Mach, R> Sealed for MachOSymbolTable<'data, 'file, Mach, R>`
+
+##### `impl ToOwned for MachOSymbolTable<'data, 'file, Mach, R>`
+
+- <span id="machosymboltable-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="machosymboltable-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="machosymboltable-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MachOSymbolTable<'data, 'file, Mach, R>`
+
+- <span id="machosymboltable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machosymboltable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOSymbolTable<'data, 'file, Mach, R>`
+
+- <span id="machosymboltable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machosymboltable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOSymbolIterator<'data, 'file, Mach, R>`
 
@@ -1483,9 +2875,39 @@ An iterator for the symbols in a [`MachOFile`](#machofile).
 
 #### Trait Implementations
 
+##### `impl Any for MachOSymbolIterator<'data, 'file, Mach, R>`
+
+- <span id="machosymboliterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOSymbolIterator<'data, 'file, Mach, R>`
+
+- <span id="machosymboliterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOSymbolIterator<'data, 'file, Mach, R>`
+
+- <span id="machosymboliterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach, R> Debug for MachOSymbolIterator<'data, 'file, Mach, R>`
 
-- <span id="machosymboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machosymboliterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOSymbolIterator<'data, 'file, Mach, R>`
+
+- <span id="machosymboliterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOSymbolIterator<'data, 'file, Mach, R>`
+
+- <span id="machosymboliterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachOSymbolIterator<'data, 'file, Mach, R>`
 
@@ -1493,13 +2915,25 @@ An iterator for the symbols in a [`MachOFile`](#machofile).
 
 - <span id="machosymboliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="machosymboliterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="machosymboliterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Mach, R> Iterator for MachOSymbolIterator<'data, 'file, Mach, R>`
 
 - <span id="machosymboliterator-iterator-type-item"></span>`type Item = MachOSymbol<'data, 'file, Mach, R>`
 
-- <span id="machosymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="machosymboliterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for MachOSymbolIterator<'data, 'file, Mach, R>`
+
+- <span id="machosymboliterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machosymboliterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOSymbolIterator<'data, 'file, Mach, R>`
+
+- <span id="machosymboliterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machosymboliterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOSymbol<'data, 'file, Mach, R>`
 
@@ -1526,53 +2960,111 @@ Most functionality is provided by the [`ObjectSymbol`](../index.md) trait implem
 
 - <span id="machosymbol-macho-file"></span>`fn macho_file(&self) -> &'file MachOFile<'data, Mach, R>` — [`MachOFile`](#machofile)
 
+  Get the Mach-O file containing this symbol.
+
 - <span id="machosymbol-macho-symbol"></span>`fn macho_symbol(&self) -> &'data <Mach as >::Nlist` — [`MachHeader`](#machheader)
 
+  Get the raw Mach-O symbol structure.
+
 #### Trait Implementations
+
+##### `impl Any for MachOSymbol<'data, 'file, Mach, R>`
+
+- <span id="machosymbol-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOSymbol<'data, 'file, Mach, R>`
+
+- <span id="machosymbol-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOSymbol<'data, 'file, Mach, R>`
+
+- <span id="machosymbol-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<Mach, R> Clone for MachOSymbol<'data, 'file, Mach, R>`
 
 - <span id="machosymbol-clone"></span>`fn clone(&self) -> MachOSymbol<'data, 'file, Mach, R>` — [`MachOSymbol`](#machosymbol)
 
+##### `impl CloneToUninit for MachOSymbol<'data, 'file, Mach, R>`
+
+- <span id="machosymbol-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<Mach, R> Copy for MachOSymbol<'data, 'file, Mach, R>`
 
 ##### `impl<Mach, R> Debug for MachOSymbol<'data, 'file, Mach, R>`
 
-- <span id="machosymbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machosymbol-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOSymbol<'data, 'file, Mach, R>`
+
+- <span id="machosymbol-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOSymbol<'data, 'file, Mach, R>`
+
+- <span id="machosymbol-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> ObjectSymbol for MachOSymbol<'data, 'file, Mach, R>`
 
-- <span id="machosymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md#symbolindex)
+- <span id="machosymbol-objectsymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md#symbolindex)
 
-- <span id="machosymbol-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
+- <span id="machosymbol-objectsymbol-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="machosymbol-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md#result)
+- <span id="machosymbol-objectsymbol-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md#result)
 
-- <span id="machosymbol-address"></span>`fn address(&self) -> u64`
+- <span id="machosymbol-objectsymbol-address"></span>`fn address(&self) -> u64`
 
-- <span id="machosymbol-size"></span>`fn size(&self) -> u64`
+- <span id="machosymbol-objectsymbol-size"></span>`fn size(&self) -> u64`
 
-- <span id="machosymbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../index.md#symbolkind)
+- <span id="machosymbol-objectsymbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../index.md#symbolkind)
 
-- <span id="machosymbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../index.md#symbolsection)
+- <span id="machosymbol-objectsymbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../index.md#symbolsection)
 
-- <span id="machosymbol-is-undefined"></span>`fn is_undefined(&self) -> bool`
+- <span id="machosymbol-objectsymbol-is-undefined"></span>`fn is_undefined(&self) -> bool`
 
-- <span id="machosymbol-is-definition"></span>`fn is_definition(&self) -> bool`
+- <span id="machosymbol-objectsymbol-is-definition"></span>`fn is_definition(&self) -> bool`
 
-- <span id="machosymbol-is-common"></span>`fn is_common(&self) -> bool`
+- <span id="machosymbol-objectsymbol-is-common"></span>`fn is_common(&self) -> bool`
 
-- <span id="machosymbol-is-weak"></span>`fn is_weak(&self) -> bool`
+- <span id="machosymbol-objectsymbol-is-weak"></span>`fn is_weak(&self) -> bool`
 
-- <span id="machosymbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../index.md#symbolscope)
+- <span id="machosymbol-objectsymbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../index.md#symbolscope)
 
-- <span id="machosymbol-is-global"></span>`fn is_global(&self) -> bool`
+- <span id="machosymbol-objectsymbol-is-global"></span>`fn is_global(&self) -> bool`
 
-- <span id="machosymbol-is-local"></span>`fn is_local(&self) -> bool`
+- <span id="machosymbol-objectsymbol-is-local"></span>`fn is_local(&self) -> bool`
 
-- <span id="machosymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../index.md#symbolflags), [`SectionIndex`](../../index.md#sectionindex), [`SymbolIndex`](../../index.md#symbolindex)
+- <span id="machosymbol-objectsymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../index.md#symbolflags), [`SectionIndex`](../../index.md#sectionindex), [`SymbolIndex`](../../index.md#symbolindex)
 
 ##### `impl<Mach, R> Sealed for MachOSymbol<'data, 'file, Mach, R>`
+
+##### `impl ToOwned for MachOSymbol<'data, 'file, Mach, R>`
+
+- <span id="machosymbol-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="machosymbol-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="machosymbol-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MachOSymbol<'data, 'file, Mach, R>`
+
+- <span id="machosymbol-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machosymbol-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOSymbol<'data, 'file, Mach, R>`
+
+- <span id="machosymbol-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machosymbol-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachORelocationIterator<'data, 'file, Mach, R>`
 
@@ -1592,9 +3084,39 @@ An iterator for the relocations in a [`MachOSection`](super::MachOSection).
 
 #### Trait Implementations
 
+##### `impl Any for MachORelocationIterator<'data, 'file, Mach, R>`
+
+- <span id="machorelocationiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachORelocationIterator<'data, 'file, Mach, R>`
+
+- <span id="machorelocationiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachORelocationIterator<'data, 'file, Mach, R>`
+
+- <span id="machorelocationiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach, R> Debug for MachORelocationIterator<'data, 'file, Mach, R>`
 
-- <span id="machorelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machorelocationiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachORelocationIterator<'data, 'file, Mach, R>`
+
+- <span id="machorelocationiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachORelocationIterator<'data, 'file, Mach, R>`
+
+- <span id="machorelocationiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachORelocationIterator<'data, 'file, Mach, R>`
 
@@ -1602,13 +3124,25 @@ An iterator for the relocations in a [`MachOSection`](super::MachOSection).
 
 - <span id="machorelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="machorelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="machorelocationiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Mach, R> Iterator for MachORelocationIterator<'data, 'file, Mach, R>`
 
 - <span id="machorelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
-- <span id="machorelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="machorelocationiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for MachORelocationIterator<'data, 'file, Mach, R>`
+
+- <span id="machorelocationiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machorelocationiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachORelocationIterator<'data, 'file, Mach, R>`
+
+- <span id="machorelocationiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machorelocationiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -1640,15 +3174,69 @@ so this is an enum of the two possible slice types.
 
 #### Trait Implementations
 
+##### `impl Any for DyldSubCacheSlice<'data, E>`
+
+- <span id="dyldsubcacheslice-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldSubCacheSlice<'data, E>`
+
+- <span id="dyldsubcacheslice-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldSubCacheSlice<'data, E>`
+
+- <span id="dyldsubcacheslice-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for DyldSubCacheSlice<'data, E>`
 
 - <span id="dyldsubcacheslice-clone"></span>`fn clone(&self) -> DyldSubCacheSlice<'data, E>` — [`DyldSubCacheSlice`](#dyldsubcacheslice)
+
+##### `impl CloneToUninit for DyldSubCacheSlice<'data, E>`
+
+- <span id="dyldsubcacheslice-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for DyldSubCacheSlice<'data, E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DyldSubCacheSlice<'data, E>`
 
-- <span id="dyldsubcacheslice-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldsubcacheslice-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldSubCacheSlice<'data, E>`
+
+- <span id="dyldsubcacheslice-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldSubCacheSlice<'data, E>`
+
+- <span id="dyldsubcacheslice-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for DyldSubCacheSlice<'data, E>`
+
+- <span id="dyldsubcacheslice-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyldsubcacheslice-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyldsubcacheslice-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DyldSubCacheSlice<'data, E>`
+
+- <span id="dyldsubcacheslice-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldsubcacheslice-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldSubCacheSlice<'data, E>`
+
+- <span id="dyldsubcacheslice-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldsubcacheslice-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheMappingSlice<'data, E: Endian>`
 
@@ -1678,15 +3266,69 @@ so this is an enum of the two possible slice types.
 
 #### Trait Implementations
 
+##### `impl Any for DyldCacheMappingSlice<'data, E>`
+
+- <span id="dyldcachemappingslice-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheMappingSlice<'data, E>`
+
+- <span id="dyldcachemappingslice-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheMappingSlice<'data, E>`
+
+- <span id="dyldcachemappingslice-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for DyldCacheMappingSlice<'data, E>`
 
 - <span id="dyldcachemappingslice-clone"></span>`fn clone(&self) -> DyldCacheMappingSlice<'data, E>` — [`DyldCacheMappingSlice`](#dyldcachemappingslice)
+
+##### `impl CloneToUninit for DyldCacheMappingSlice<'data, E>`
+
+- <span id="dyldcachemappingslice-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for DyldCacheMappingSlice<'data, E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheMappingSlice<'data, E>`
 
-- <span id="dyldcachemappingslice-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcachemappingslice-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheMappingSlice<'data, E>`
+
+- <span id="dyldcachemappingslice-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheMappingSlice<'data, E>`
+
+- <span id="dyldcachemappingslice-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for DyldCacheMappingSlice<'data, E>`
+
+- <span id="dyldcachemappingslice-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyldcachemappingslice-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyldcachemappingslice-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DyldCacheMappingSlice<'data, E>`
+
+- <span id="dyldcachemappingslice-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcachemappingslice-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheMappingSlice<'data, E>`
+
+- <span id="dyldcachemappingslice-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcachemappingslice-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheMappingVersionIterator<'data, E>`
 
@@ -1703,9 +3345,51 @@ where
 
 #### Trait Implementations
 
+##### `impl Any for DyldCacheMappingVersionIterator<'data, E>`
+
+- <span id="dyldcachemappingversioniterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheMappingVersionIterator<'data, E>`
+
+- <span id="dyldcachemappingversioniterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheMappingVersionIterator<'data, E>`
+
+- <span id="dyldcachemappingversioniterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Debug for DyldCacheMappingVersionIterator<'data, E>`
 
-- <span id="dyldcachemappingversioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcachemappingversioniterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheMappingVersionIterator<'data, E>`
+
+- <span id="dyldcachemappingversioniterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheMappingVersionIterator<'data, E>`
+
+- <span id="dyldcachemappingversioniterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DyldCacheMappingVersionIterator<'data, E>`
+
+- <span id="dyldcachemappingversioniterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcachemappingversioniterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheMappingVersionIterator<'data, E>`
+
+- <span id="dyldcachemappingversioniterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcachemappingversioniterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheMappingVersion<'data, E>`
 
@@ -1722,11 +3406,65 @@ where
 
 #### Trait Implementations
 
+##### `impl Any for DyldCacheMappingVersion<'data, E>`
+
+- <span id="dyldcachemappingversion-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheMappingVersion<'data, E>`
+
+- <span id="dyldcachemappingversion-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheMappingVersion<'data, E>`
+
+- <span id="dyldcachemappingversion-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for DyldCacheMappingVersion<'data, E>`
 
 - <span id="dyldcachemappingversion-clone"></span>`fn clone(&self) -> DyldCacheMappingVersion<'data, E>` — [`DyldCacheMappingVersion`](dyld_cache/index.md#dyldcachemappingversion)
 
+##### `impl CloneToUninit for DyldCacheMappingVersion<'data, E>`
+
+- <span id="dyldcachemappingversion-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E> Copy for DyldCacheMappingVersion<'data, E>`
+
+##### `impl<T> From for DyldCacheMappingVersion<'data, E>`
+
+- <span id="dyldcachemappingversion-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheMappingVersion<'data, E>`
+
+- <span id="dyldcachemappingversion-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for DyldCacheMappingVersion<'data, E>`
+
+- <span id="dyldcachemappingversion-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyldcachemappingversion-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyldcachemappingversion-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DyldCacheMappingVersion<'data, E>`
+
+- <span id="dyldcachemappingversion-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcachemappingversion-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheMappingVersion<'data, E>`
+
+- <span id="dyldcachemappingversion-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcachemappingversion-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheSlideInfo<'data, E: Endian>`
 
@@ -1755,15 +3493,69 @@ The slide info for a dyld cache mapping, including variable length arrays.
 
 #### Trait Implementations
 
+##### `impl Any for DyldCacheSlideInfo<'data, E>`
+
+- <span id="dyldcacheslideinfo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheSlideInfo<'data, E>`
+
+- <span id="dyldcacheslideinfo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheSlideInfo<'data, E>`
+
+- <span id="dyldcacheslideinfo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for DyldCacheSlideInfo<'data, E>`
 
 - <span id="dyldcacheslideinfo-clone"></span>`fn clone(&self) -> DyldCacheSlideInfo<'data, E>` — [`DyldCacheSlideInfo`](#dyldcacheslideinfo)
+
+##### `impl CloneToUninit for DyldCacheSlideInfo<'data, E>`
+
+- <span id="dyldcacheslideinfo-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for DyldCacheSlideInfo<'data, E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheSlideInfo<'data, E>`
 
-- <span id="dyldcacheslideinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcacheslideinfo-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheSlideInfo<'data, E>`
+
+- <span id="dyldcacheslideinfo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheSlideInfo<'data, E>`
+
+- <span id="dyldcacheslideinfo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for DyldCacheSlideInfo<'data, E>`
+
+- <span id="dyldcacheslideinfo-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyldcacheslideinfo-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyldcacheslideinfo-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DyldCacheSlideInfo<'data, E>`
+
+- <span id="dyldcacheslideinfo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcacheslideinfo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheSlideInfo<'data, E>`
+
+- <span id="dyldcacheslideinfo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcacheslideinfo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DyldCacheRelocationIteratorVersion<'data, E, R>`
 
@@ -1783,9 +3575,51 @@ where
 
 #### Trait Implementations
 
+##### `impl Any for DyldCacheRelocationIteratorVersion<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorversion-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DyldCacheRelocationIteratorVersion<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorversion-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DyldCacheRelocationIteratorVersion<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorversion-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E, R> Debug for DyldCacheRelocationIteratorVersion<'data, E, R>`
 
-- <span id="dyldcacherelocationiteratorversion-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyldcacherelocationiteratorversion-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DyldCacheRelocationIteratorVersion<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorversion-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DyldCacheRelocationIteratorVersion<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorversion-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DyldCacheRelocationIteratorVersion<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorversion-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyldcacherelocationiteratorversion-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DyldCacheRelocationIteratorVersion<'data, E, R>`
+
+- <span id="dyldcacherelocationiteratorversion-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyldcacherelocationiteratorversion-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RelocationStateV2`
 
@@ -1802,23 +3636,77 @@ enum RelocationStateV2 {
 
 #### Trait Implementations
 
+##### `impl Any for RelocationStateV2`
+
+- <span id="relocationstatev2-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RelocationStateV2`
+
+- <span id="relocationstatev2-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RelocationStateV2`
+
+- <span id="relocationstatev2-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for RelocationStateV2`
 
 - <span id="relocationstatev2-clone"></span>`fn clone(&self) -> RelocationStateV2` — [`RelocationStateV2`](dyld_cache/index.md#relocationstatev2)
+
+##### `impl CloneToUninit for RelocationStateV2`
+
+- <span id="relocationstatev2-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for RelocationStateV2`
 
 ##### `impl Debug for RelocationStateV2`
 
-- <span id="relocationstatev2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="relocationstatev2-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RelocationStateV2`
 
+##### `impl<T> From for RelocationStateV2`
+
+- <span id="relocationstatev2-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RelocationStateV2`
+
+- <span id="relocationstatev2-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for RelocationStateV2`
 
-- <span id="relocationstatev2-eq"></span>`fn eq(&self, other: &RelocationStateV2) -> bool` — [`RelocationStateV2`](dyld_cache/index.md#relocationstatev2)
+- <span id="relocationstatev2-partialeq-eq"></span>`fn eq(&self, other: &RelocationStateV2) -> bool` — [`RelocationStateV2`](dyld_cache/index.md#relocationstatev2)
 
 ##### `impl StructuralPartialEq for RelocationStateV2`
+
+##### `impl ToOwned for RelocationStateV2`
+
+- <span id="relocationstatev2-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="relocationstatev2-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="relocationstatev2-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RelocationStateV2`
+
+- <span id="relocationstatev2-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="relocationstatev2-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RelocationStateV2`
+
+- <span id="relocationstatev2-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="relocationstatev2-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RelocationStateV3`
 
@@ -1833,23 +3721,77 @@ enum RelocationStateV3 {
 
 #### Trait Implementations
 
+##### `impl Any for RelocationStateV3`
+
+- <span id="relocationstatev3-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RelocationStateV3`
+
+- <span id="relocationstatev3-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RelocationStateV3`
+
+- <span id="relocationstatev3-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for RelocationStateV3`
 
 - <span id="relocationstatev3-clone"></span>`fn clone(&self) -> RelocationStateV3` — [`RelocationStateV3`](dyld_cache/index.md#relocationstatev3)
+
+##### `impl CloneToUninit for RelocationStateV3`
+
+- <span id="relocationstatev3-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for RelocationStateV3`
 
 ##### `impl Debug for RelocationStateV3`
 
-- <span id="relocationstatev3-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="relocationstatev3-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RelocationStateV3`
 
+##### `impl<T> From for RelocationStateV3`
+
+- <span id="relocationstatev3-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RelocationStateV3`
+
+- <span id="relocationstatev3-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for RelocationStateV3`
 
-- <span id="relocationstatev3-eq"></span>`fn eq(&self, other: &RelocationStateV3) -> bool` — [`RelocationStateV3`](dyld_cache/index.md#relocationstatev3)
+- <span id="relocationstatev3-partialeq-eq"></span>`fn eq(&self, other: &RelocationStateV3) -> bool` — [`RelocationStateV3`](dyld_cache/index.md#relocationstatev3)
 
 ##### `impl StructuralPartialEq for RelocationStateV3`
+
+##### `impl ToOwned for RelocationStateV3`
+
+- <span id="relocationstatev3-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="relocationstatev3-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="relocationstatev3-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RelocationStateV3`
+
+- <span id="relocationstatev3-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="relocationstatev3-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RelocationStateV3`
+
+- <span id="relocationstatev3-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="relocationstatev3-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RelocationStateV5`
 
@@ -1864,23 +3806,77 @@ enum RelocationStateV5 {
 
 #### Trait Implementations
 
+##### `impl Any for RelocationStateV5`
+
+- <span id="relocationstatev5-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RelocationStateV5`
+
+- <span id="relocationstatev5-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RelocationStateV5`
+
+- <span id="relocationstatev5-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for RelocationStateV5`
 
 - <span id="relocationstatev5-clone"></span>`fn clone(&self) -> RelocationStateV5` — [`RelocationStateV5`](dyld_cache/index.md#relocationstatev5)
+
+##### `impl CloneToUninit for RelocationStateV5`
+
+- <span id="relocationstatev5-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for RelocationStateV5`
 
 ##### `impl Debug for RelocationStateV5`
 
-- <span id="relocationstatev5-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="relocationstatev5-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RelocationStateV5`
 
+##### `impl<T> From for RelocationStateV5`
+
+- <span id="relocationstatev5-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RelocationStateV5`
+
+- <span id="relocationstatev5-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for RelocationStateV5`
 
-- <span id="relocationstatev5-eq"></span>`fn eq(&self, other: &RelocationStateV5) -> bool` — [`RelocationStateV5`](dyld_cache/index.md#relocationstatev5)
+- <span id="relocationstatev5-partialeq-eq"></span>`fn eq(&self, other: &RelocationStateV5) -> bool` — [`RelocationStateV5`](dyld_cache/index.md#relocationstatev5)
 
 ##### `impl StructuralPartialEq for RelocationStateV5`
+
+##### `impl ToOwned for RelocationStateV5`
+
+- <span id="relocationstatev5-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="relocationstatev5-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="relocationstatev5-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RelocationStateV5`
+
+- <span id="relocationstatev5-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="relocationstatev5-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RelocationStateV5`
+
+- <span id="relocationstatev5-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="relocationstatev5-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LoadCommandVariant<'data, E: Endian>`
 
@@ -2066,15 +4062,69 @@ A [`macho::LoadCommand`](../../macho/index.md) that has been interpreted accordi
 
 #### Trait Implementations
 
+##### `impl Any for LoadCommandVariant<'data, E>`
+
+- <span id="loadcommandvariant-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LoadCommandVariant<'data, E>`
+
+- <span id="loadcommandvariant-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LoadCommandVariant<'data, E>`
+
+- <span id="loadcommandvariant-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for LoadCommandVariant<'data, E>`
 
 - <span id="loadcommandvariant-clone"></span>`fn clone(&self) -> LoadCommandVariant<'data, E>` — [`LoadCommandVariant`](#loadcommandvariant)
+
+##### `impl CloneToUninit for LoadCommandVariant<'data, E>`
+
+- <span id="loadcommandvariant-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for LoadCommandVariant<'data, E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for LoadCommandVariant<'data, E>`
 
-- <span id="loadcommandvariant-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="loadcommandvariant-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for LoadCommandVariant<'data, E>`
+
+- <span id="loadcommandvariant-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LoadCommandVariant<'data, E>`
+
+- <span id="loadcommandvariant-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for LoadCommandVariant<'data, E>`
+
+- <span id="loadcommandvariant-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="loadcommandvariant-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="loadcommandvariant-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LoadCommandVariant<'data, E>`
+
+- <span id="loadcommandvariant-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="loadcommandvariant-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LoadCommandVariant<'data, E>`
+
+- <span id="loadcommandvariant-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="loadcommandvariant-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

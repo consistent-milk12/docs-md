@@ -27,9 +27,51 @@ escapes the byte.
 
 #### Trait Implementations
 
+##### `impl Any for Byte`
+
+- <span id="byte-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Byte`
+
+- <span id="byte-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Byte`
+
+- <span id="byte-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Byte`
 
-- <span id="byte-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="byte-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for Byte`
+
+- <span id="byte-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Byte`
+
+- <span id="byte-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Byte`
+
+- <span id="byte-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="byte-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Byte`
+
+- <span id="byte-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="byte-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Bytes<'a>`
 
@@ -48,9 +90,51 @@ N.B. This is copied nearly verbatim from regex-automata. Sigh.
 
 #### Trait Implementations
 
+##### `impl Any for Bytes<'a>`
+
+- <span id="bytes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Bytes<'a>`
+
+- <span id="bytes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Bytes<'a>`
+
+- <span id="bytes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Bytes<'a>`
 
-- <span id="bytes-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="bytes-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for Bytes<'a>`
+
+- <span id="bytes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Bytes<'a>`
+
+- <span id="bytes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Bytes<'a>`
+
+- <span id="bytes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="bytes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Bytes<'a>`
+
+- <span id="bytes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="bytes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

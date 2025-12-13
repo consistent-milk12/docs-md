@@ -54,45 +54,135 @@ with the addition of boldening it. Recommended to be constructed using
 
 - <span id="bolddisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
+  Convert self to a generic [`Styled`](../index.md).
+
+  
+
+  This method erases color-related type parameters, and can be
+
+  used to unify types across branches.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use owo_colors::OwoColorize;
+
+  
+
+  fn is_bold() -> bool {
+
+      // ...
+
+      true
+
+  }
+
+  
+
+  let styled_str = if is_bold() {
+
+      "hello".bold().into_styled()
+
+  } else {
+
+      "hello".dimmed().into_styled()
+
+  };
+
+  
+
+  println!("{}", styled_str);
+
+  assert_eq!(styled_str.to_string(), "\x1b[1mhello\x1b[0m");
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for BoldDisplay<'a, T>`
+
+- <span id="bolddisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl<T: ?Sized + fmt::Binary> Binary for BoldDisplay<'a, T>`
 
-- <span id="bolddisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bolddisplay-binary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> Borrow for BoldDisplay<'a, T>`
+
+- <span id="bolddisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BoldDisplay<'a, T>`
+
+- <span id="bolddisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + fmt::Debug> Debug for BoldDisplay<'a, T>`
 
-- <span id="bolddisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bolddisplay-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::Display> Display for BoldDisplay<'a, T>`
 
-- <span id="bolddisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bolddisplay-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BoldDisplay<'a, T>`
+
+- <span id="bolddisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for BoldDisplay<'a, T>`
+
+- <span id="bolddisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + fmt::LowerExp> LowerExp for BoldDisplay<'a, T>`
 
-- <span id="bolddisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bolddisplay-lowerexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::LowerHex> LowerHex for BoldDisplay<'a, T>`
 
-- <span id="bolddisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bolddisplay-lowerhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::Octal> Octal for BoldDisplay<'a, T>`
 
-- <span id="bolddisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bolddisplay-octal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl OwoColorize for BoldDisplay<'a, T>`
 
 ##### `impl<T: ?Sized + fmt::Pointer> Pointer for BoldDisplay<'a, T>`
 
-- <span id="bolddisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bolddisplay-pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T, U> TryFrom for BoldDisplay<'a, T>`
+
+- <span id="bolddisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="bolddisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for BoldDisplay<'a, T>`
+
+- <span id="bolddisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="bolddisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T: ?Sized + fmt::UpperExp> UpperExp for BoldDisplay<'a, T>`
 
-- <span id="bolddisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bolddisplay-upperexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::UpperHex> UpperHex for BoldDisplay<'a, T>`
 
-- <span id="bolddisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bolddisplay-upperhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DimDisplay<'a, T: ?Sized>`
 
@@ -110,45 +200,135 @@ with the addition of dimming it. Recommended to be constructed using
 
 - <span id="dimdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
+  Convert self to a generic [`Styled`](../index.md).
+
+  
+
+  This method erases color-related type parameters, and can be
+
+  used to unify types across branches.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use owo_colors::OwoColorize;
+
+  
+
+  fn is_dimmed() -> bool {
+
+      // ...
+
+      true
+
+  }
+
+  
+
+  let styled_str = if is_dimmed() {
+
+      "hello".dimmed().into_styled()
+
+  } else {
+
+      "hello".bold().into_styled()
+
+  };
+
+  
+
+  println!("{}", styled_str);
+
+  assert_eq!(styled_str.to_string(), "\x1b[2mhello\x1b[0m");
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for DimDisplay<'a, T>`
+
+- <span id="dimdisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl<T: ?Sized + fmt::Binary> Binary for DimDisplay<'a, T>`
 
-- <span id="dimdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dimdisplay-binary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> Borrow for DimDisplay<'a, T>`
+
+- <span id="dimdisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DimDisplay<'a, T>`
+
+- <span id="dimdisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + fmt::Debug> Debug for DimDisplay<'a, T>`
 
-- <span id="dimdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dimdisplay-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::Display> Display for DimDisplay<'a, T>`
 
-- <span id="dimdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dimdisplay-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DimDisplay<'a, T>`
+
+- <span id="dimdisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for DimDisplay<'a, T>`
+
+- <span id="dimdisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + fmt::LowerExp> LowerExp for DimDisplay<'a, T>`
 
-- <span id="dimdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dimdisplay-lowerexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::LowerHex> LowerHex for DimDisplay<'a, T>`
 
-- <span id="dimdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dimdisplay-lowerhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::Octal> Octal for DimDisplay<'a, T>`
 
-- <span id="dimdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dimdisplay-octal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl OwoColorize for DimDisplay<'a, T>`
 
 ##### `impl<T: ?Sized + fmt::Pointer> Pointer for DimDisplay<'a, T>`
 
-- <span id="dimdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dimdisplay-pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T, U> TryFrom for DimDisplay<'a, T>`
+
+- <span id="dimdisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dimdisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DimDisplay<'a, T>`
+
+- <span id="dimdisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dimdisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T: ?Sized + fmt::UpperExp> UpperExp for DimDisplay<'a, T>`
 
-- <span id="dimdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dimdisplay-upperexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::UpperHex> UpperHex for DimDisplay<'a, T>`
 
-- <span id="dimdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dimdisplay-upperhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ItalicDisplay<'a, T: ?Sized>`
 
@@ -166,45 +346,135 @@ with the addition of italics. Recommended to be constructed using
 
 - <span id="italicdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
+  Convert self to a generic [`Styled`](../index.md).
+
+  
+
+  This method erases color-related type parameters, and can be
+
+  used to unify types across branches.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use owo_colors::OwoColorize;
+
+  
+
+  fn is_italic() -> bool {
+
+      // ...
+
+      true
+
+  }
+
+  
+
+  let styled_str = if is_italic() {
+
+      "hello".italic().into_styled()
+
+  } else {
+
+      "hello".underline().into_styled()
+
+  };
+
+  
+
+  println!("{}", styled_str);
+
+  assert_eq!(styled_str.to_string(), "\x1b[3mhello\x1b[0m");
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for ItalicDisplay<'a, T>`
+
+- <span id="italicdisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl<T: ?Sized + fmt::Binary> Binary for ItalicDisplay<'a, T>`
 
-- <span id="italicdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="italicdisplay-binary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> Borrow for ItalicDisplay<'a, T>`
+
+- <span id="italicdisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItalicDisplay<'a, T>`
+
+- <span id="italicdisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + fmt::Debug> Debug for ItalicDisplay<'a, T>`
 
-- <span id="italicdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="italicdisplay-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::Display> Display for ItalicDisplay<'a, T>`
 
-- <span id="italicdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="italicdisplay-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ItalicDisplay<'a, T>`
+
+- <span id="italicdisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for ItalicDisplay<'a, T>`
+
+- <span id="italicdisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + fmt::LowerExp> LowerExp for ItalicDisplay<'a, T>`
 
-- <span id="italicdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="italicdisplay-lowerexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::LowerHex> LowerHex for ItalicDisplay<'a, T>`
 
-- <span id="italicdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="italicdisplay-lowerhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::Octal> Octal for ItalicDisplay<'a, T>`
 
-- <span id="italicdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="italicdisplay-octal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl OwoColorize for ItalicDisplay<'a, T>`
 
 ##### `impl<T: ?Sized + fmt::Pointer> Pointer for ItalicDisplay<'a, T>`
 
-- <span id="italicdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="italicdisplay-pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T, U> TryFrom for ItalicDisplay<'a, T>`
+
+- <span id="italicdisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="italicdisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for ItalicDisplay<'a, T>`
+
+- <span id="italicdisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="italicdisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T: ?Sized + fmt::UpperExp> UpperExp for ItalicDisplay<'a, T>`
 
-- <span id="italicdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="italicdisplay-upperexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::UpperHex> UpperHex for ItalicDisplay<'a, T>`
 
-- <span id="italicdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="italicdisplay-upperhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `UnderlineDisplay<'a, T: ?Sized>`
 
@@ -222,45 +492,135 @@ while underlining it. Recommended to be constructed using
 
 - <span id="underlinedisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
+  Convert self to a generic [`Styled`](../index.md).
+
+  
+
+  This method erases color-related type parameters, and can be
+
+  used to unify types across branches.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use owo_colors::OwoColorize;
+
+  
+
+  fn is_underline() -> bool {
+
+      // ...
+
+      true
+
+  }
+
+  
+
+  let styled_str = if is_underline() {
+
+      "hello".underline().into_styled()
+
+  } else {
+
+      "hello".italic().into_styled()
+
+  };
+
+  
+
+  println!("{}", styled_str);
+
+  assert_eq!(styled_str.to_string(), "\x1b[4mhello\x1b[0m");
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for UnderlineDisplay<'a, T>`
+
+- <span id="underlinedisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl<T: ?Sized + fmt::Binary> Binary for UnderlineDisplay<'a, T>`
 
-- <span id="underlinedisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="underlinedisplay-binary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> Borrow for UnderlineDisplay<'a, T>`
+
+- <span id="underlinedisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnderlineDisplay<'a, T>`
+
+- <span id="underlinedisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + fmt::Debug> Debug for UnderlineDisplay<'a, T>`
 
-- <span id="underlinedisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="underlinedisplay-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::Display> Display for UnderlineDisplay<'a, T>`
 
-- <span id="underlinedisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="underlinedisplay-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for UnderlineDisplay<'a, T>`
+
+- <span id="underlinedisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for UnderlineDisplay<'a, T>`
+
+- <span id="underlinedisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + fmt::LowerExp> LowerExp for UnderlineDisplay<'a, T>`
 
-- <span id="underlinedisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="underlinedisplay-lowerexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::LowerHex> LowerHex for UnderlineDisplay<'a, T>`
 
-- <span id="underlinedisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="underlinedisplay-lowerhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::Octal> Octal for UnderlineDisplay<'a, T>`
 
-- <span id="underlinedisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="underlinedisplay-octal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl OwoColorize for UnderlineDisplay<'a, T>`
 
 ##### `impl<T: ?Sized + fmt::Pointer> Pointer for UnderlineDisplay<'a, T>`
 
-- <span id="underlinedisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="underlinedisplay-pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T, U> TryFrom for UnderlineDisplay<'a, T>`
+
+- <span id="underlinedisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="underlinedisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for UnderlineDisplay<'a, T>`
+
+- <span id="underlinedisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="underlinedisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T: ?Sized + fmt::UpperExp> UpperExp for UnderlineDisplay<'a, T>`
 
-- <span id="underlinedisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="underlinedisplay-upperexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::UpperHex> UpperHex for UnderlineDisplay<'a, T>`
 
-- <span id="underlinedisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="underlinedisplay-upperhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `BlinkDisplay<'a, T: ?Sized>`
 
@@ -278,45 +638,135 @@ while blinking. Recommended to be constructed using
 
 - <span id="blinkdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
+  Convert self to a generic [`Styled`](../index.md).
+
+  
+
+  This method erases color-related type parameters, and can be
+
+  used to unify types across branches.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use owo_colors::OwoColorize;
+
+  
+
+  fn is_blink() -> bool {
+
+      // ...
+
+      true
+
+  }
+
+  
+
+  let styled_str = if is_blink() {
+
+      "hello".blink().into_styled()
+
+  } else {
+
+      "hello".hidden().into_styled()
+
+  };
+
+  
+
+  println!("{}", styled_str);
+
+  assert_eq!(styled_str.to_string(), "\x1b[5mhello\x1b[0m");
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for BlinkDisplay<'a, T>`
+
+- <span id="blinkdisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl<T: ?Sized + fmt::Binary> Binary for BlinkDisplay<'a, T>`
 
-- <span id="blinkdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blinkdisplay-binary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> Borrow for BlinkDisplay<'a, T>`
+
+- <span id="blinkdisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BlinkDisplay<'a, T>`
+
+- <span id="blinkdisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + fmt::Debug> Debug for BlinkDisplay<'a, T>`
 
-- <span id="blinkdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blinkdisplay-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::Display> Display for BlinkDisplay<'a, T>`
 
-- <span id="blinkdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blinkdisplay-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BlinkDisplay<'a, T>`
+
+- <span id="blinkdisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for BlinkDisplay<'a, T>`
+
+- <span id="blinkdisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + fmt::LowerExp> LowerExp for BlinkDisplay<'a, T>`
 
-- <span id="blinkdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blinkdisplay-lowerexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::LowerHex> LowerHex for BlinkDisplay<'a, T>`
 
-- <span id="blinkdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blinkdisplay-lowerhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::Octal> Octal for BlinkDisplay<'a, T>`
 
-- <span id="blinkdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blinkdisplay-octal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl OwoColorize for BlinkDisplay<'a, T>`
 
 ##### `impl<T: ?Sized + fmt::Pointer> Pointer for BlinkDisplay<'a, T>`
 
-- <span id="blinkdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blinkdisplay-pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T, U> TryFrom for BlinkDisplay<'a, T>`
+
+- <span id="blinkdisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="blinkdisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for BlinkDisplay<'a, T>`
+
+- <span id="blinkdisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="blinkdisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T: ?Sized + fmt::UpperExp> UpperExp for BlinkDisplay<'a, T>`
 
-- <span id="blinkdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blinkdisplay-upperexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::UpperHex> UpperHex for BlinkDisplay<'a, T>`
 
-- <span id="blinkdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blinkdisplay-upperhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `BlinkFastDisplay<'a, T: ?Sized>`
 
@@ -333,45 +783,135 @@ with the addition of making it blink fast. Use [`OwoColorize`](OwoColorize::blin
 
 - <span id="blinkfastdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
+  Convert self to a generic [`Styled`](../index.md).
+
+  
+
+  This method erases color-related type parameters, and can be
+
+  used to unify types across branches.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use owo_colors::OwoColorize;
+
+  
+
+  fn is_blink_fast() -> bool {
+
+      // ...
+
+      true
+
+  }
+
+  
+
+  let styled_str = if is_blink_fast() {
+
+      "hello".blink_fast().into_styled()
+
+  } else {
+
+      "hello".reversed().into_styled()
+
+  };
+
+  
+
+  println!("{}", styled_str);
+
+  assert_eq!(styled_str.to_string(), "\x1b[6mhello\x1b[0m");
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for BlinkFastDisplay<'a, T>`
+
+- <span id="blinkfastdisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl<T: ?Sized + fmt::Binary> Binary for BlinkFastDisplay<'a, T>`
 
-- <span id="blinkfastdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blinkfastdisplay-binary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> Borrow for BlinkFastDisplay<'a, T>`
+
+- <span id="blinkfastdisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BlinkFastDisplay<'a, T>`
+
+- <span id="blinkfastdisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + fmt::Debug> Debug for BlinkFastDisplay<'a, T>`
 
-- <span id="blinkfastdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blinkfastdisplay-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::Display> Display for BlinkFastDisplay<'a, T>`
 
-- <span id="blinkfastdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blinkfastdisplay-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BlinkFastDisplay<'a, T>`
+
+- <span id="blinkfastdisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for BlinkFastDisplay<'a, T>`
+
+- <span id="blinkfastdisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + fmt::LowerExp> LowerExp for BlinkFastDisplay<'a, T>`
 
-- <span id="blinkfastdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blinkfastdisplay-lowerexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::LowerHex> LowerHex for BlinkFastDisplay<'a, T>`
 
-- <span id="blinkfastdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blinkfastdisplay-lowerhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::Octal> Octal for BlinkFastDisplay<'a, T>`
 
-- <span id="blinkfastdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blinkfastdisplay-octal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl OwoColorize for BlinkFastDisplay<'a, T>`
 
 ##### `impl<T: ?Sized + fmt::Pointer> Pointer for BlinkFastDisplay<'a, T>`
 
-- <span id="blinkfastdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blinkfastdisplay-pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T, U> TryFrom for BlinkFastDisplay<'a, T>`
+
+- <span id="blinkfastdisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="blinkfastdisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for BlinkFastDisplay<'a, T>`
+
+- <span id="blinkfastdisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="blinkfastdisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T: ?Sized + fmt::UpperExp> UpperExp for BlinkFastDisplay<'a, T>`
 
-- <span id="blinkfastdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blinkfastdisplay-upperexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::UpperHex> UpperHex for BlinkFastDisplay<'a, T>`
 
-- <span id="blinkfastdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blinkfastdisplay-upperhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ReversedDisplay<'a, T: ?Sized>`
 
@@ -388,45 +928,135 @@ with the addition of swapping fg and bg colors. Use [`OwoColorize`](OwoColorize:
 
 - <span id="reverseddisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
+  Convert self to a generic [`Styled`](../index.md).
+
+  
+
+  This method erases color-related type parameters, and can be
+
+  used to unify types across branches.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use owo_colors::OwoColorize;
+
+  
+
+  fn is_reversed() -> bool {
+
+      // ...
+
+      true
+
+  }
+
+  
+
+  let styled_str = if is_reversed() {
+
+      "hello".reversed().into_styled()
+
+  } else {
+
+      "hello".blink_fast().into_styled()
+
+  };
+
+  
+
+  println!("{}", styled_str);
+
+  assert_eq!(styled_str.to_string(), "\x1b[7mhello\x1b[0m");
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for ReversedDisplay<'a, T>`
+
+- <span id="reverseddisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl<T: ?Sized + fmt::Binary> Binary for ReversedDisplay<'a, T>`
 
-- <span id="reverseddisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reverseddisplay-binary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> Borrow for ReversedDisplay<'a, T>`
+
+- <span id="reverseddisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ReversedDisplay<'a, T>`
+
+- <span id="reverseddisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + fmt::Debug> Debug for ReversedDisplay<'a, T>`
 
-- <span id="reverseddisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reverseddisplay-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::Display> Display for ReversedDisplay<'a, T>`
 
-- <span id="reverseddisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reverseddisplay-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ReversedDisplay<'a, T>`
+
+- <span id="reverseddisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for ReversedDisplay<'a, T>`
+
+- <span id="reverseddisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + fmt::LowerExp> LowerExp for ReversedDisplay<'a, T>`
 
-- <span id="reverseddisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reverseddisplay-lowerexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::LowerHex> LowerHex for ReversedDisplay<'a, T>`
 
-- <span id="reverseddisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reverseddisplay-lowerhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::Octal> Octal for ReversedDisplay<'a, T>`
 
-- <span id="reverseddisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reverseddisplay-octal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl OwoColorize for ReversedDisplay<'a, T>`
 
 ##### `impl<T: ?Sized + fmt::Pointer> Pointer for ReversedDisplay<'a, T>`
 
-- <span id="reverseddisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reverseddisplay-pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T, U> TryFrom for ReversedDisplay<'a, T>`
+
+- <span id="reverseddisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="reverseddisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for ReversedDisplay<'a, T>`
+
+- <span id="reverseddisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="reverseddisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T: ?Sized + fmt::UpperExp> UpperExp for ReversedDisplay<'a, T>`
 
-- <span id="reverseddisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reverseddisplay-upperexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::UpperHex> UpperHex for ReversedDisplay<'a, T>`
 
-- <span id="reverseddisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reverseddisplay-upperhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `HiddenDisplay<'a, T: ?Sized>`
 
@@ -443,45 +1073,135 @@ with the addition of hiding the text. Use [`OwoColorize`](OwoColorize::hidden).
 
 - <span id="hiddendisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
+  Convert self to a generic [`Styled`](../index.md).
+
+  
+
+  This method erases color-related type parameters, and can be
+
+  used to unify types across branches.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use owo_colors::OwoColorize;
+
+  
+
+  fn is_hidden() -> bool {
+
+      // ...
+
+      true
+
+  }
+
+  
+
+  let styled_str = if is_hidden() {
+
+      "hello".hidden().into_styled()
+
+  } else {
+
+      "hello".blink().into_styled()
+
+  };
+
+  
+
+  println!("{}", styled_str);
+
+  assert_eq!(styled_str.to_string(), "\x1b[8mhello\x1b[0m");
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for HiddenDisplay<'a, T>`
+
+- <span id="hiddendisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl<T: ?Sized + fmt::Binary> Binary for HiddenDisplay<'a, T>`
 
-- <span id="hiddendisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hiddendisplay-binary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> Borrow for HiddenDisplay<'a, T>`
+
+- <span id="hiddendisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HiddenDisplay<'a, T>`
+
+- <span id="hiddendisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + fmt::Debug> Debug for HiddenDisplay<'a, T>`
 
-- <span id="hiddendisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hiddendisplay-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::Display> Display for HiddenDisplay<'a, T>`
 
-- <span id="hiddendisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hiddendisplay-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for HiddenDisplay<'a, T>`
+
+- <span id="hiddendisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for HiddenDisplay<'a, T>`
+
+- <span id="hiddendisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + fmt::LowerExp> LowerExp for HiddenDisplay<'a, T>`
 
-- <span id="hiddendisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hiddendisplay-lowerexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::LowerHex> LowerHex for HiddenDisplay<'a, T>`
 
-- <span id="hiddendisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hiddendisplay-lowerhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::Octal> Octal for HiddenDisplay<'a, T>`
 
-- <span id="hiddendisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hiddendisplay-octal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl OwoColorize for HiddenDisplay<'a, T>`
 
 ##### `impl<T: ?Sized + fmt::Pointer> Pointer for HiddenDisplay<'a, T>`
 
-- <span id="hiddendisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hiddendisplay-pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T, U> TryFrom for HiddenDisplay<'a, T>`
+
+- <span id="hiddendisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="hiddendisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for HiddenDisplay<'a, T>`
+
+- <span id="hiddendisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="hiddendisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T: ?Sized + fmt::UpperExp> UpperExp for HiddenDisplay<'a, T>`
 
-- <span id="hiddendisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hiddendisplay-upperexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::UpperHex> UpperHex for HiddenDisplay<'a, T>`
 
-- <span id="hiddendisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hiddendisplay-upperhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `StrikeThroughDisplay<'a, T: ?Sized>`
 
@@ -499,45 +1219,135 @@ crossed out. Recommended to be constructed using
 
 - <span id="strikethroughdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
+  Convert self to a generic [`Styled`](../index.md).
+
+  
+
+  This method erases color-related type parameters, and can be
+
+  used to unify types across branches.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use owo_colors::OwoColorize;
+
+  
+
+  fn is_strike_through() -> bool {
+
+      // ...
+
+      true
+
+  }
+
+  
+
+  let styled_str = if is_strike_through() {
+
+      "hello".strikethrough().into_styled()
+
+  } else {
+
+      "hello".hidden().into_styled()
+
+  };
+
+  
+
+  println!("{}", styled_str);
+
+  assert_eq!(styled_str.to_string(), "\x1b[9mhello\x1b[0m");
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for StrikeThroughDisplay<'a, T>`
+
+- <span id="strikethroughdisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl<T: ?Sized + fmt::Binary> Binary for StrikeThroughDisplay<'a, T>`
 
-- <span id="strikethroughdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="strikethroughdisplay-binary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> Borrow for StrikeThroughDisplay<'a, T>`
+
+- <span id="strikethroughdisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StrikeThroughDisplay<'a, T>`
+
+- <span id="strikethroughdisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + fmt::Debug> Debug for StrikeThroughDisplay<'a, T>`
 
-- <span id="strikethroughdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="strikethroughdisplay-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::Display> Display for StrikeThroughDisplay<'a, T>`
 
-- <span id="strikethroughdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="strikethroughdisplay-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for StrikeThroughDisplay<'a, T>`
+
+- <span id="strikethroughdisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for StrikeThroughDisplay<'a, T>`
+
+- <span id="strikethroughdisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + fmt::LowerExp> LowerExp for StrikeThroughDisplay<'a, T>`
 
-- <span id="strikethroughdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="strikethroughdisplay-lowerexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::LowerHex> LowerHex for StrikeThroughDisplay<'a, T>`
 
-- <span id="strikethroughdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="strikethroughdisplay-lowerhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::Octal> Octal for StrikeThroughDisplay<'a, T>`
 
-- <span id="strikethroughdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="strikethroughdisplay-octal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl OwoColorize for StrikeThroughDisplay<'a, T>`
 
 ##### `impl<T: ?Sized + fmt::Pointer> Pointer for StrikeThroughDisplay<'a, T>`
 
-- <span id="strikethroughdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="strikethroughdisplay-pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T, U> TryFrom for StrikeThroughDisplay<'a, T>`
+
+- <span id="strikethroughdisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="strikethroughdisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for StrikeThroughDisplay<'a, T>`
+
+- <span id="strikethroughdisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="strikethroughdisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T: ?Sized + fmt::UpperExp> UpperExp for StrikeThroughDisplay<'a, T>`
 
-- <span id="strikethroughdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="strikethroughdisplay-upperexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + fmt::UpperHex> UpperHex for StrikeThroughDisplay<'a, T>`
 
-- <span id="strikethroughdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="strikethroughdisplay-upperhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Macros
 

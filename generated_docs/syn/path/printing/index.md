@@ -46,11 +46,65 @@ enum PathStyle {
 
 #### Trait Implementations
 
+##### `impl Any for PathStyle`
+
+- <span id="pathstyle-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PathStyle`
+
+- <span id="pathstyle-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PathStyle`
+
+- <span id="pathstyle-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for PathStyle`
 
 - <span id="pathstyle-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for PathStyle`
+
+- <span id="pathstyle-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for PathStyle`
+
+##### `impl<T> From for PathStyle`
+
+- <span id="pathstyle-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PathStyle`
+
+- <span id="pathstyle-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for PathStyle`
+
+- <span id="pathstyle-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="pathstyle-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="pathstyle-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PathStyle`
+
+- <span id="pathstyle-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pathstyle-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PathStyle`
+
+- <span id="pathstyle-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pathstyle-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

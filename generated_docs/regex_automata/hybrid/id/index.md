@@ -205,11 +205,43 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="lazystateid-new"></span>`fn new(id: usize) -> Result<LazyStateID, LazyStateIDError>` — [`LazyStateID`](#lazystateid), [`LazyStateIDError`](#lazystateiderror)
 
+  Create a new lazy state ID.
+
+  
+
+  If the given identifier exceeds `LazyStateID::MAX`, then this returns
+
+  an error.
+
 - <span id="lazystateid-new-unchecked"></span>`const fn new_unchecked(id: usize) -> LazyStateID` — [`LazyStateID`](#lazystateid)
+
+  Create a new lazy state ID without checking whether the given value
+
+  exceeds `LazyStateID::MAX`.
+
+  
+
+  While this is unchecked, providing an incorrect value must never
+
+  sacrifice memory safety.
 
 - <span id="lazystateid-as-usize-untagged"></span>`fn as_usize_untagged(&self) -> usize`
 
+  Return this lazy state ID as an untagged `usize`.
+
+  
+
+  If this lazy state ID is tagged, then the usize returned is the state
+
+  ID without the tag. If the ID was not tagged, then the usize returned
+
+  is equivalent to the state ID.
+
 - <span id="lazystateid-as-usize-unchecked"></span>`const fn as_usize_unchecked(&self) -> usize`
+
+  Return this lazy state ID as its raw internal `usize` value, which may
+
+  be tagged (and thus greater than LazyStateID::MAX).
 
 - <span id="lazystateid-to-unknown"></span>`const fn to_unknown(&self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
@@ -219,31 +251,109 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="lazystateid-to-start"></span>`const fn to_start(&self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
+  Return this lazy state ID as a state ID that is tagged as a start
+
+  state.
+
 - <span id="lazystateid-to-match"></span>`const fn to_match(&self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
+
+  Return this lazy state ID as a lazy state ID that is tagged as a match
+
+  state.
 
 - <span id="lazystateid-is-tagged"></span>`const fn is_tagged(&self) -> bool`
 
+  Return true if and only if this lazy state ID is tagged.
+
+  
+
+  When a lazy state ID is tagged, then one can conclude that it is one
+
+  of a match, start, dead, quit or unknown state.
+
 - <span id="lazystateid-is-unknown"></span>`const fn is_unknown(&self) -> bool`
+
+  Return true if and only if this represents a lazy state ID that is
+
+  "unknown." That is, the state has not yet been created. When a caller
+
+  sees this state ID, it generally means that a state has to be computed
+
+  in order to proceed.
 
 - <span id="lazystateid-is-dead"></span>`const fn is_dead(&self) -> bool`
 
+  Return true if and only if this represents a dead state. A dead state
+
+  is a state that can never transition to any other state except the
+
+  dead state. When a dead state is seen, it generally indicates that a
+
+  search should stop.
+
 - <span id="lazystateid-is-quit"></span>`const fn is_quit(&self) -> bool`
+
+  Return true if and only if this represents a quit state. A quit state
+
+  is a state that is representationally equivalent to a dead state,
+
+  except it indicates the automaton has reached a point at which it can
+
+  no longer determine whether a match exists or not. In general, this
+
+  indicates an error during search and the caller must either pass this
+
+  error up or use a different search technique.
 
 - <span id="lazystateid-is-start"></span>`const fn is_start(&self) -> bool`
 
+  Return true if and only if this lazy state ID has been tagged as a
+
+  start state.
+
+  
+
+  Note that if
+
+  [`Config::specialize_start_states`](crate::hybrid::dfa::Config) is
+
+  disabled (which is the default), then this will always return false
+
+  since start states won't be tagged.
+
 - <span id="lazystateid-is-match"></span>`const fn is_match(&self) -> bool`
 
+  Return true if and only if this lazy state ID has been tagged as a
+
+  match state.
+
 #### Trait Implementations
+
+##### `impl Any for LazyStateID`
+
+- <span id="lazystateid-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LazyStateID`
+
+- <span id="lazystateid-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LazyStateID`
+
+- <span id="lazystateid-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for LazyStateID`
 
 - <span id="lazystateid-clone"></span>`fn clone(&self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
+##### `impl CloneToUninit for LazyStateID`
+
+- <span id="lazystateid-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for LazyStateID`
 
 ##### `impl Debug for LazyStateID`
 
-- <span id="lazystateid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lazystateid-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for LazyStateID`
 
@@ -251,23 +361,61 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Eq for LazyStateID`
 
+##### `impl<T> From for LazyStateID`
+
+- <span id="lazystateid-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for LazyStateID`
 
 - <span id="lazystateid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for LazyStateID`
+
+- <span id="lazystateid-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for LazyStateID`
 
-- <span id="lazystateid-cmp"></span>`fn cmp(&self, other: &LazyStateID) -> cmp::Ordering` — [`LazyStateID`](#lazystateid)
+- <span id="lazystateid-ord-cmp"></span>`fn cmp(&self, other: &LazyStateID) -> cmp::Ordering` — [`LazyStateID`](#lazystateid)
 
 ##### `impl PartialEq for LazyStateID`
 
-- <span id="lazystateid-eq"></span>`fn eq(&self, other: &LazyStateID) -> bool` — [`LazyStateID`](#lazystateid)
+- <span id="lazystateid-partialeq-eq"></span>`fn eq(&self, other: &LazyStateID) -> bool` — [`LazyStateID`](#lazystateid)
 
 ##### `impl PartialOrd for LazyStateID`
 
-- <span id="lazystateid-partial-cmp"></span>`fn partial_cmp(&self, other: &LazyStateID) -> option::Option<cmp::Ordering>` — [`LazyStateID`](#lazystateid)
+- <span id="lazystateid-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &LazyStateID) -> option::Option<cmp::Ordering>` — [`LazyStateID`](#lazystateid)
 
 ##### `impl StructuralPartialEq for LazyStateID`
+
+##### `impl ToOwned for LazyStateID`
+
+- <span id="lazystateid-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="lazystateid-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="lazystateid-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LazyStateID`
+
+- <span id="lazystateid-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lazystateid-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LazyStateID`
+
+- <span id="lazystateid-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lazystateid-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LazyStateIDError`
 
@@ -290,31 +438,87 @@ When the `std` feature is enabled, this implements the `Error` trait.
 
 - <span id="lazystateiderror-attempted"></span>`fn attempted(&self) -> u64`
 
+  Returns the value that failed to constructed a lazy state ID.
+
 #### Trait Implementations
+
+##### `impl Any for LazyStateIDError`
+
+- <span id="lazystateiderror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LazyStateIDError`
+
+- <span id="lazystateiderror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LazyStateIDError`
+
+- <span id="lazystateiderror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for LazyStateIDError`
 
 - <span id="lazystateiderror-clone"></span>`fn clone(&self) -> LazyStateIDError` — [`LazyStateIDError`](#lazystateiderror)
 
+##### `impl CloneToUninit for LazyStateIDError`
+
+- <span id="lazystateiderror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for LazyStateIDError`
 
-- <span id="lazystateiderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lazystateiderror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for LazyStateIDError`
 
-- <span id="lazystateiderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="lazystateiderror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for LazyStateIDError`
 
 ##### `impl Error for LazyStateIDError`
 
+##### `impl<T> From for LazyStateIDError`
+
+- <span id="lazystateiderror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LazyStateIDError`
+
+- <span id="lazystateiderror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for LazyStateIDError`
 
-- <span id="lazystateiderror-eq"></span>`fn eq(&self, other: &LazyStateIDError) -> bool` — [`LazyStateIDError`](#lazystateiderror)
+- <span id="lazystateiderror-partialeq-eq"></span>`fn eq(&self, other: &LazyStateIDError) -> bool` — [`LazyStateIDError`](#lazystateiderror)
 
 ##### `impl StructuralPartialEq for LazyStateIDError`
 
+##### `impl ToOwned for LazyStateIDError`
+
+- <span id="lazystateiderror-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="lazystateiderror-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="lazystateiderror-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for LazyStateIDError`
 
-- <span id="lazystateiderror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="lazystateiderror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for LazyStateIDError`
+
+- <span id="lazystateiderror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lazystateiderror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LazyStateIDError`
+
+- <span id="lazystateiderror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lazystateiderror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

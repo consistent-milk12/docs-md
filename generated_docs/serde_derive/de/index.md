@@ -165,7 +165,61 @@ struct Parameters {
 
 - <span id="parameters-type-name"></span>`fn type_name(&self) -> String`
 
+  Type name to use in error messages and `&'static str` arguments to
+
+  various Deserializer methods.
+
 - <span id="parameters-generics-with-de-lifetime"></span>`fn generics_with_de_lifetime(&self) -> (DeImplGenerics<'_>, DeTypeGenerics<'_>, syn::TypeGenerics<'_>, Option<&syn::WhereClause>)` — [`DeImplGenerics`](#deimplgenerics), [`DeTypeGenerics`](#detypegenerics)
+
+  Split the data structure's generics into the pieces to use for its
+
+  `Deserialize` impl, augmented with an additional `'de` lifetime for use
+
+  as the `Deserialize` trait's lifetime.
+
+#### Trait Implementations
+
+##### `impl Any for Parameters`
+
+- <span id="parameters-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Parameters`
+
+- <span id="parameters-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Parameters`
+
+- <span id="parameters-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Parameters`
+
+- <span id="parameters-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Parameters`
+
+- <span id="parameters-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Parameters`
+
+- <span id="parameters-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="parameters-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Parameters`
+
+- <span id="parameters-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="parameters-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FieldWithAliases<'a>`
 
@@ -178,6 +232,50 @@ struct FieldWithAliases<'a> {
 
 *Defined in [`serde_derive-1.0.228/src/de.rs:650-653`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L650-L653)*
 
+#### Trait Implementations
+
+##### `impl Any for FieldWithAliases<'a>`
+
+- <span id="fieldwithaliases-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FieldWithAliases<'a>`
+
+- <span id="fieldwithaliases-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FieldWithAliases<'a>`
+
+- <span id="fieldwithaliases-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for FieldWithAliases<'a>`
+
+- <span id="fieldwithaliases-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FieldWithAliases<'a>`
+
+- <span id="fieldwithaliases-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for FieldWithAliases<'a>`
+
+- <span id="fieldwithaliases-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fieldwithaliases-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FieldWithAliases<'a>`
+
+- <span id="fieldwithaliases-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fieldwithaliases-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `DeImplGenerics<'a>`
 
 ```rust
@@ -188,13 +286,55 @@ struct DeImplGenerics<'a>(&'a Parameters);
 
 #### Trait Implementations
 
+##### `impl Any for DeImplGenerics<'a>`
+
+- <span id="deimplgenerics-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DeImplGenerics<'a>`
+
+- <span id="deimplgenerics-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DeImplGenerics<'a>`
+
+- <span id="deimplgenerics-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for DeImplGenerics<'a>`
+
+- <span id="deimplgenerics-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DeImplGenerics<'a>`
+
+- <span id="deimplgenerics-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Spanned for DeImplGenerics<'a>`
 
-- <span id="deimplgenerics-span"></span>`fn span(&self) -> Span`
+- <span id="deimplgenerics-spanned-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for DeImplGenerics<'a>`
 
-- <span id="deimplgenerics-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="deimplgenerics-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for DeImplGenerics<'a>`
+
+- <span id="deimplgenerics-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="deimplgenerics-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DeImplGenerics<'a>`
+
+- <span id="deimplgenerics-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="deimplgenerics-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DeTypeGenerics<'a>`
 
@@ -206,13 +346,55 @@ struct DeTypeGenerics<'a>(&'a Parameters);
 
 #### Trait Implementations
 
+##### `impl Any for DeTypeGenerics<'a>`
+
+- <span id="detypegenerics-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DeTypeGenerics<'a>`
+
+- <span id="detypegenerics-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DeTypeGenerics<'a>`
+
+- <span id="detypegenerics-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for DeTypeGenerics<'a>`
+
+- <span id="detypegenerics-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DeTypeGenerics<'a>`
+
+- <span id="detypegenerics-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Spanned for DeTypeGenerics<'a>`
 
-- <span id="detypegenerics-span"></span>`fn span(&self) -> Span`
+- <span id="detypegenerics-spanned-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for DeTypeGenerics<'a>`
 
-- <span id="detypegenerics-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="detypegenerics-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for DeTypeGenerics<'a>`
+
+- <span id="detypegenerics-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="detypegenerics-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DeTypeGenerics<'a>`
+
+- <span id="detypegenerics-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="detypegenerics-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -232,6 +414,50 @@ enum BorrowedLifetimes {
 - <span id="borrowedlifetimes-de-lifetime"></span>`fn de_lifetime(&self) -> syn::Lifetime`
 
 - <span id="borrowedlifetimes-de-lifetime-param"></span>`fn de_lifetime_param(&self) -> Option<syn::LifetimeParam>`
+
+#### Trait Implementations
+
+##### `impl Any for BorrowedLifetimes`
+
+- <span id="borrowedlifetimes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BorrowedLifetimes`
+
+- <span id="borrowedlifetimes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BorrowedLifetimes`
+
+- <span id="borrowedlifetimes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for BorrowedLifetimes`
+
+- <span id="borrowedlifetimes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BorrowedLifetimes`
+
+- <span id="borrowedlifetimes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for BorrowedLifetimes`
+
+- <span id="borrowedlifetimes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="borrowedlifetimes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BorrowedLifetimes`
+
+- <span id="borrowedlifetimes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="borrowedlifetimes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TupleForm<'a>`
 
@@ -254,6 +480,50 @@ enum TupleForm<'a> {
 - **`Untagged`**
 
   Contains a variant name
+
+#### Trait Implementations
+
+##### `impl Any for TupleForm<'a>`
+
+- <span id="tupleform-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TupleForm<'a>`
+
+- <span id="tupleform-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TupleForm<'a>`
+
+- <span id="tupleform-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for TupleForm<'a>`
+
+- <span id="tupleform-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TupleForm<'a>`
+
+- <span id="tupleform-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for TupleForm<'a>`
+
+- <span id="tupleform-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tupleform-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TupleForm<'a>`
+
+- <span id="tupleform-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tupleform-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StructForm<'a>`
 
@@ -281,6 +551,50 @@ enum StructForm<'a> {
 - **`Untagged`**
 
   Contains a variant name
+
+#### Trait Implementations
+
+##### `impl Any for StructForm<'a>`
+
+- <span id="structform-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StructForm<'a>`
+
+- <span id="structform-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StructForm<'a>`
+
+- <span id="structform-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for StructForm<'a>`
+
+- <span id="structform-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StructForm<'a>`
+
+- <span id="structform-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for StructForm<'a>`
+
+- <span id="structform-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="structform-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StructForm<'a>`
+
+- <span id="structform-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="structform-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

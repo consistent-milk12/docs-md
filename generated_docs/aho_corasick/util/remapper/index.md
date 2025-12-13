@@ -62,15 +62,83 @@ will almost certainly result in a corrupt machine.
 
 - <span id="remapper-new"></span>`fn new(r: &impl Remappable, stride2: usize) -> Remapper` — [`Remappable`](#remappable), [`Remapper`](#remapper)
 
+  Create a new remapper from the given remappable implementation. The
+
+  remapper can then be used to swap states. The remappable value given
+
+  here must the same one given to `swap` and `remap`.
+
+  
+
+  The given stride should be the stride of the transition table expressed
+
+  as a power of 2. This stride is used to map between state IDs and state
+
+  indices. If state IDs and state indices are equivalent, then provide
+
+  a `stride2` of `0`, which acts as an identity.
+
 - <span id="remapper-swap"></span>`fn swap(&mut self, r: &mut impl Remappable, id1: StateID, id2: StateID)` — [`Remappable`](#remappable), [`StateID`](../primitives/index.md#stateid)
+
+  Swap two states. Once this is called, callers must follow through to
+
+  call `remap`, or else it's possible for the underlying remappable
+
+  value to be in a corrupt state.
 
 - <span id="remapper-remap"></span>`fn remap(self, r: &mut impl Remappable)` — [`Remappable`](#remappable)
 
+  Complete the remapping process by rewriting all state IDs in the
+
+  remappable value according to the swaps performed.
+
 #### Trait Implementations
+
+##### `impl Any for Remapper`
+
+- <span id="remapper-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Remapper`
+
+- <span id="remapper-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Remapper`
+
+- <span id="remapper-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for Remapper`
 
-- <span id="remapper-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="remapper-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Remapper`
+
+- <span id="remapper-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Remapper`
+
+- <span id="remapper-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Remapper`
+
+- <span id="remapper-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="remapper-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Remapper`
+
+- <span id="remapper-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="remapper-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IndexMapper`
 
@@ -114,13 +182,59 @@ identity.
 
 - <span id="indexmapper-to-index"></span>`fn to_index(&self, id: StateID) -> usize` — [`StateID`](../primitives/index.md#stateid)
 
+  Convert a state ID to a state index.
+
 - <span id="indexmapper-to-state-id"></span>`fn to_state_id(&self, index: usize) -> StateID` — [`StateID`](../primitives/index.md#stateid)
+
+  Convert a state index to a state ID.
 
 #### Trait Implementations
 
+##### `impl Any for IndexMapper`
+
+- <span id="indexmapper-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IndexMapper`
+
+- <span id="indexmapper-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IndexMapper`
+
+- <span id="indexmapper-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for IndexMapper`
 
-- <span id="indexmapper-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="indexmapper-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for IndexMapper`
+
+- <span id="indexmapper-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for IndexMapper`
+
+- <span id="indexmapper-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for IndexMapper`
+
+- <span id="indexmapper-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="indexmapper-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IndexMapper`
+
+- <span id="indexmapper-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="indexmapper-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

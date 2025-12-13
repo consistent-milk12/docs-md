@@ -63,13 +63,73 @@ its ID.
 
 - <span id="special-zero"></span>`fn zero() -> Special` — [`Special`](#special)
 
+  Create a new set of "special" state IDs with all IDs initialized to
+
+  zero. The general idea here is that they will be updated and set to
+
+  correct values later.
+
 #### Trait Implementations
+
+##### `impl Any for Special`
+
+- <span id="special-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Special`
+
+- <span id="special-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Special`
+
+- <span id="special-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Special`
 
 - <span id="special-clone"></span>`fn clone(&self) -> Special` — [`Special`](#special)
 
+##### `impl CloneToUninit for Special`
+
+- <span id="special-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Special`
 
-- <span id="special-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="special-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Special`
+
+- <span id="special-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Special`
+
+- <span id="special-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Special`
+
+- <span id="special-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="special-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="special-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Special`
+
+- <span id="special-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="special-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Special`
+
+- <span id="special-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="special-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

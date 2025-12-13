@@ -28,21 +28,55 @@ Iterator adaptor for [the `once()` function].
 
 #### Trait Implementations
 
+##### `impl<T> Any for Once<T>`
+
+- <span id="once-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Once<T>`
+
+- <span id="once-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Once<T>`
+
+- <span id="once-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for Once<T>`
 
 - <span id="once-clone"></span>`fn clone(&self) -> Once<T>` — [`Once`](#once)
 
+##### `impl<T> CloneToUninit for Once<T>`
+
+- <span id="once-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug> Debug for Once<T>`
 
-- <span id="once-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="once-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Once<T>`
+
+- <span id="once-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: Send> IndexedParallelIterator for Once<T>`
 
-- <span id="once-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="once-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="once-len"></span>`fn len(&self) -> usize`
+- <span id="once-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="once-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
+- <span id="once-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for Once<T>`
+
+- <span id="once-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Once<T>`
 
@@ -52,15 +86,15 @@ Iterator adaptor for [the `once()` function].
 
 - <span id="once-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="once-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="once-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for Once<T>`
 
 - <span id="once-paralleliterator-type-item"></span>`type Item = T`
 
-- <span id="once-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="once-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="once-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="once-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for Once<T>`
 
@@ -68,13 +102,33 @@ Iterator adaptor for [the `once()` function].
 
 - <span id="once-pointable-type-init"></span>`type Init = T`
 
-- <span id="once-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="once-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="once-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="once-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="once-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="once-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="once-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="once-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for Once<T>`
+
+- <span id="once-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="once-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="once-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for Once<T>`
+
+- <span id="once-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="once-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Once<T>`
+
+- <span id="once-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="once-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

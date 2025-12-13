@@ -32,19 +32,61 @@ struct Split<'s, 'n> {
 
 #### Trait Implementations
 
+##### `impl Any for Split<'s, 'n>`
+
+- <span id="split-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Split<'s, 'n>`
+
+- <span id="split-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Split<'s, 'n>`
+
+- <span id="split-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Split<'s, 'n>`
+
+- <span id="split-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Split<'s, 'n>`
+
+- <span id="split-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoIterator for Split<'s, 'n>`
 
 - <span id="split-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="split-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="split-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="split-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Split<'s, '_>`
 
 - <span id="split-iterator-type-item"></span>`type Item = &'s OsStr`
 
-- <span id="split-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="split-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for Split<'s, 'n>`
+
+- <span id="split-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="split-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Split<'s, 'n>`
+
+- <span id="split-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="split-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

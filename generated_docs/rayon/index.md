@@ -188,11 +188,45 @@ not unsound on its own, although it does partly lift the unconditional
 
 #### Trait Implementations
 
+##### `impl<T> Any for SendPtr<T>`
+
+- <span id="sendptr-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SendPtr<T>`
+
+- <span id="sendptr-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SendPtr<T>`
+
+- <span id="sendptr-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T> Clone for SendPtr<T>`
 
 - <span id="sendptr-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for SendPtr<T>`
+
+- <span id="sendptr-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T> Copy for SendPtr<T>`
+
+##### `impl<T> From for SendPtr<T>`
+
+- <span id="sendptr-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for SendPtr<T>`
+
+- <span id="sendptr-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for SendPtr<T>`
 
@@ -202,17 +236,37 @@ not unsound on its own, although it does partly lift the unconditional
 
 - <span id="sendptr-pointable-type-init"></span>`type Init = T`
 
-- <span id="sendptr-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="sendptr-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="sendptr-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="sendptr-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="sendptr-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="sendptr-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="sendptr-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="sendptr-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: Send> Send for SendPtr<T>`
 
 ##### `impl<T: Send> Sync for SendPtr<T>`
+
+##### `impl<T> ToOwned for SendPtr<T>`
+
+- <span id="sendptr-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sendptr-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sendptr-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for SendPtr<T>`
+
+- <span id="sendptr-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sendptr-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for SendPtr<T>`
+
+- <span id="sendptr-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sendptr-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

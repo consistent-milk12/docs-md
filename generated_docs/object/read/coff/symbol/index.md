@@ -60,37 +60,123 @@ Returned by `CoffHeader::symbols` and
 
 - <span id="symboltable-parse"></span>`fn parse(header: &Coff, data: R) -> Result<Self>` — [`Result`](../../../index.md#result)
 
+  Read the symbol table.
+
 - <span id="symboltable-strings"></span>`fn strings(&self) -> StringTable<'data, R>` — [`StringTable`](../../index.md#stringtable)
+
+  Return the string table used for the symbol names.
 
 - <span id="symboltable-is-empty"></span>`fn is_empty(&self) -> bool`
 
+  Return true if the symbol table is empty.
+
 - <span id="symboltable-len"></span>`fn len(&self) -> usize`
+
+  The number of symbol table entries.
+
+  
+
+  This includes auxiliary symbol table entries.
 
 - <span id="symboltable-iter"></span>`fn iter<'table>(self: &'table Self) -> SymbolIterator<'data, 'table, R, Coff>` — [`SymbolIterator`](../index.md#symboliterator)
 
+  Iterate over the symbols.
+
 - <span id="symboltable-symbol"></span>`fn symbol(&self, index: SymbolIndex) -> Result<&'data <Coff as >::ImageSymbol>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`CoffHeader`](../index.md#coffheader)
+
+  Return the symbol table entry at the given index.
 
 - <span id="symboltable-aux-function"></span>`fn aux_function(&self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolFunction>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`ImageAuxSymbolFunction`](../../../pe/index.md#imageauxsymbolfunction)
 
+  Return the auxiliary function symbol for the symbol table entry at the given index.
+
+  
+
+  Note that the index is of the symbol, not the first auxiliary record.
+
 - <span id="symboltable-aux-section"></span>`fn aux_section(&self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolSection>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`ImageAuxSymbolSection`](../../../pe/index.md#imageauxsymbolsection)
+
+  Return the auxiliary section symbol for the symbol table entry at the given index.
+
+  
+
+  Note that the index is of the symbol, not the first auxiliary record.
 
 - <span id="symboltable-aux-weak-external"></span>`fn aux_weak_external(&self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolWeak>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`ImageAuxSymbolWeak`](../../../pe/index.md#imageauxsymbolweak)
 
+  Return the auxiliary weak external symbol for the symbol table entry at the given index.
+
+  
+
+  Note that the index is of the symbol, not the first auxiliary record.
+
 - <span id="symboltable-aux-file-name"></span>`fn aux_file_name(&self, index: SymbolIndex, aux_count: u8) -> Result<&'data [u8]>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result)
+
+  Return the auxiliary file name for the symbol table entry at the given index.
+
+  
+
+  Note that the index is of the symbol, not the first auxiliary record.
 
 - <span id="symboltable-get"></span>`fn get<T: Pod>(&self, index: SymbolIndex, offset: usize) -> Result<&'data T>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result)
 
+  Return the symbol table entry or auxiliary record at the given index and offset.
+
 - <span id="symboltable-map"></span>`fn map<Entry: SymbolMapEntry, F: Fn(&'data <Coff as >::ImageSymbol) -> Option<Entry>>(&self, f: F) -> SymbolMap<Entry>` — [`SymbolMap`](../../../index.md#symbolmap)
+
+  Construct a map from addresses to a user-defined map entry.
 
 #### Trait Implementations
 
+##### `impl Any for SymbolTable<'data, R, Coff>`
+
+- <span id="symboltable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SymbolTable<'data, R, Coff>`
+
+- <span id="symboltable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SymbolTable<'data, R, Coff>`
+
+- <span id="symboltable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R, Coff> Debug for SymbolTable<'data, R, Coff>`
 
-- <span id="symboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symboltable-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Default for SymbolTable<'data, R, Coff>`
 
 - <span id="symboltable-default"></span>`fn default() -> Self`
+
+##### `impl<T> From for SymbolTable<'data, R, Coff>`
+
+- <span id="symboltable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SymbolTable<'data, R, Coff>`
+
+- <span id="symboltable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for SymbolTable<'data, R, Coff>`
+
+- <span id="symboltable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symboltable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SymbolTable<'data, R, Coff>`
+
+- <span id="symboltable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symboltable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SymbolIterator<'data, 'table, R, Coff>`
 
@@ -112,9 +198,39 @@ Yields the index and symbol structure for each symbol.
 
 #### Trait Implementations
 
+##### `impl Any for SymbolIterator<'data, 'table, R, Coff>`
+
+- <span id="symboliterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SymbolIterator<'data, 'table, R, Coff>`
+
+- <span id="symboliterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SymbolIterator<'data, 'table, R, Coff>`
+
+- <span id="symboliterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R, Coff> Debug for SymbolIterator<'data, 'table, R, Coff>`
 
-- <span id="symboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symboliterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SymbolIterator<'data, 'table, R, Coff>`
+
+- <span id="symboliterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SymbolIterator<'data, 'table, R, Coff>`
+
+- <span id="symboliterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SymbolIterator<'data, 'table, R, Coff>`
 
@@ -122,13 +238,25 @@ Yields the index and symbol structure for each symbol.
 
 - <span id="symboliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="symboliterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="symboliterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Iterator for SymbolIterator<'data, 'table, R, Coff>`
 
 - <span id="symboliterator-iterator-type-item"></span>`type Item = (SymbolIndex, &'data <Coff as CoffHeader>::ImageSymbol)`
 
-- <span id="symboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="symboliterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for SymbolIterator<'data, 'table, R, Coff>`
+
+- <span id="symboliterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symboliterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SymbolIterator<'data, 'table, R, Coff>`
+
+- <span id="symboliterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symboliterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CoffSymbolTable<'data, 'file, R, Coff>`
 
@@ -148,15 +276,49 @@ or [`PeFile`](crate::read::pe::PeFile).
 
 #### Trait Implementations
 
+##### `impl Any for CoffSymbolTable<'data, 'file, R, Coff>`
+
+- <span id="coffsymboltable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CoffSymbolTable<'data, 'file, R, Coff>`
+
+- <span id="coffsymboltable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CoffSymbolTable<'data, 'file, R, Coff>`
+
+- <span id="coffsymboltable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R, Coff> Clone for CoffSymbolTable<'data, 'file, R, Coff>`
 
 - <span id="coffsymboltable-clone"></span>`fn clone(&self) -> CoffSymbolTable<'data, 'file, R, Coff>` — [`CoffSymbolTable`](../index.md#coffsymboltable)
+
+##### `impl CloneToUninit for CoffSymbolTable<'data, 'file, R, Coff>`
+
+- <span id="coffsymboltable-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<R, Coff> Copy for CoffSymbolTable<'data, 'file, R, Coff>`
 
 ##### `impl<R, Coff> Debug for CoffSymbolTable<'data, 'file, R, Coff>`
 
-- <span id="coffsymboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="coffsymboltable-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CoffSymbolTable<'data, 'file, R, Coff>`
+
+- <span id="coffsymboltable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CoffSymbolTable<'data, 'file, R, Coff>`
+
+- <span id="coffsymboltable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> ObjectSymbolTable for CoffSymbolTable<'data, 'file, R, Coff>`
 
@@ -164,11 +326,31 @@ or [`PeFile`](crate::read::pe::PeFile).
 
 - <span id="coffsymboltable-objectsymboltable-type-symboliterator"></span>`type SymbolIterator = CoffSymbolIterator<'data, 'file, R, Coff>`
 
-- <span id="coffsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../../index.md#objectsymboltable)
+- <span id="coffsymboltable-objectsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../../index.md#objectsymboltable)
 
-- <span id="coffsymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`ObjectSymbolTable`](../../index.md#objectsymboltable)
+- <span id="coffsymboltable-objectsymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`ObjectSymbolTable`](../../index.md#objectsymboltable)
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Sealed for CoffSymbolTable<'data, 'file, R, Coff>`
+
+##### `impl ToOwned for CoffSymbolTable<'data, 'file, R, Coff>`
+
+- <span id="coffsymboltable-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="coffsymboltable-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="coffsymboltable-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CoffSymbolTable<'data, 'file, R, Coff>`
+
+- <span id="coffsymboltable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="coffsymboltable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CoffSymbolTable<'data, 'file, R, Coff>`
+
+- <span id="coffsymboltable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="coffsymboltable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CoffSymbolIterator<'data, 'file, R, Coff>`
 
@@ -195,9 +377,39 @@ or [`PeFile`](crate::read::pe::PeFile).
 
 #### Trait Implementations
 
+##### `impl Any for CoffSymbolIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsymboliterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CoffSymbolIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsymboliterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CoffSymbolIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsymboliterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Debug for CoffSymbolIterator<'data, 'file, R, Coff>`
 
-- <span id="coffsymboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="coffsymboliterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CoffSymbolIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsymboliterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CoffSymbolIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsymboliterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for CoffSymbolIterator<'data, 'file, R, Coff>`
 
@@ -205,13 +417,25 @@ or [`PeFile`](crate::read::pe::PeFile).
 
 - <span id="coffsymboliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="coffsymboliterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="coffsymboliterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffSymbolIterator<'data, 'file, R, Coff>`
 
 - <span id="coffsymboliterator-iterator-type-item"></span>`type Item = CoffSymbol<'data, 'file, R, Coff>`
 
-- <span id="coffsymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="coffsymboliterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for CoffSymbolIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsymboliterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="coffsymboliterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CoffSymbolIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsymboliterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="coffsymboliterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CoffSymbol<'data, 'file, R, Coff>`
 
@@ -236,53 +460,111 @@ Most functionality is provided by the [`ObjectSymbol`](../../index.md) trait imp
 
 - <span id="coffsymbol-raw-symbol"></span>`fn raw_symbol(&self) -> &'data <Coff as >::ImageSymbol` — [`CoffHeader`](../index.md#coffheader)
 
+  Get the raw `ImageSymbol` struct.
+
 - <span id="coffsymbol-coff-symbol"></span>`fn coff_symbol(&self) -> &'data <Coff as >::ImageSymbol` — [`CoffHeader`](../index.md#coffheader)
 
+  Get the raw `ImageSymbol` struct.
+
 #### Trait Implementations
+
+##### `impl Any for CoffSymbol<'data, 'file, R, Coff>`
+
+- <span id="coffsymbol-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CoffSymbol<'data, 'file, R, Coff>`
+
+- <span id="coffsymbol-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CoffSymbol<'data, 'file, R, Coff>`
+
+- <span id="coffsymbol-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R, Coff> Clone for CoffSymbol<'data, 'file, R, Coff>`
 
 - <span id="coffsymbol-clone"></span>`fn clone(&self) -> CoffSymbol<'data, 'file, R, Coff>` — [`CoffSymbol`](../index.md#coffsymbol)
 
+##### `impl CloneToUninit for CoffSymbol<'data, 'file, R, Coff>`
+
+- <span id="coffsymbol-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R, Coff> Copy for CoffSymbol<'data, 'file, R, Coff>`
 
 ##### `impl<R, Coff> Debug for CoffSymbol<'data, 'file, R, Coff>`
 
-- <span id="coffsymbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="coffsymbol-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CoffSymbol<'data, 'file, R, Coff>`
+
+- <span id="coffsymbol-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CoffSymbol<'data, 'file, R, Coff>`
+
+- <span id="coffsymbol-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> ObjectSymbol for CoffSymbol<'data, 'file, R, Coff>`
 
-- <span id="coffsymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md#symbolindex)
+- <span id="coffsymbol-objectsymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md#symbolindex)
 
-- <span id="coffsymbol-name-bytes"></span>`fn name_bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md#result)
+- <span id="coffsymbol-objectsymbol-name-bytes"></span>`fn name_bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
-- <span id="coffsymbol-name"></span>`fn name(&self) -> read::Result<&'data str>` — [`Result`](../../../index.md#result)
+- <span id="coffsymbol-objectsymbol-name"></span>`fn name(&self) -> read::Result<&'data str>` — [`Result`](../../../index.md#result)
 
-- <span id="coffsymbol-address"></span>`fn address(&self) -> u64`
+- <span id="coffsymbol-objectsymbol-address"></span>`fn address(&self) -> u64`
 
-- <span id="coffsymbol-size"></span>`fn size(&self) -> u64`
+- <span id="coffsymbol-objectsymbol-size"></span>`fn size(&self) -> u64`
 
-- <span id="coffsymbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../../index.md#symbolkind)
+- <span id="coffsymbol-objectsymbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../../index.md#symbolkind)
 
-- <span id="coffsymbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../../index.md#symbolsection)
+- <span id="coffsymbol-objectsymbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../../index.md#symbolsection)
 
-- <span id="coffsymbol-is-undefined"></span>`fn is_undefined(&self) -> bool`
+- <span id="coffsymbol-objectsymbol-is-undefined"></span>`fn is_undefined(&self) -> bool`
 
-- <span id="coffsymbol-is-definition"></span>`fn is_definition(&self) -> bool`
+- <span id="coffsymbol-objectsymbol-is-definition"></span>`fn is_definition(&self) -> bool`
 
-- <span id="coffsymbol-is-common"></span>`fn is_common(&self) -> bool`
+- <span id="coffsymbol-objectsymbol-is-common"></span>`fn is_common(&self) -> bool`
 
-- <span id="coffsymbol-is-weak"></span>`fn is_weak(&self) -> bool`
+- <span id="coffsymbol-objectsymbol-is-weak"></span>`fn is_weak(&self) -> bool`
 
-- <span id="coffsymbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../../index.md#symbolscope)
+- <span id="coffsymbol-objectsymbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../../index.md#symbolscope)
 
-- <span id="coffsymbol-is-global"></span>`fn is_global(&self) -> bool`
+- <span id="coffsymbol-objectsymbol-is-global"></span>`fn is_global(&self) -> bool`
 
-- <span id="coffsymbol-is-local"></span>`fn is_local(&self) -> bool`
+- <span id="coffsymbol-objectsymbol-is-local"></span>`fn is_local(&self) -> bool`
 
-- <span id="coffsymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../../index.md#symbolflags), [`SectionIndex`](../../../index.md#sectionindex), [`SymbolIndex`](../../../index.md#symbolindex)
+- <span id="coffsymbol-objectsymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../../index.md#symbolflags), [`SectionIndex`](../../../index.md#sectionindex), [`SymbolIndex`](../../../index.md#symbolindex)
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Sealed for CoffSymbol<'data, 'file, R, Coff>`
+
+##### `impl ToOwned for CoffSymbol<'data, 'file, R, Coff>`
+
+- <span id="coffsymbol-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="coffsymbol-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="coffsymbol-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CoffSymbol<'data, 'file, R, Coff>`
+
+- <span id="coffsymbol-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="coffsymbol-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CoffSymbol<'data, 'file, R, Coff>`
+
+- <span id="coffsymbol-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="coffsymbol-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

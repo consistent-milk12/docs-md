@@ -116,23 +116,105 @@ more general composition of finite state machines.
 
 - <span id="literaltrie-forward"></span>`fn forward() -> LiteralTrie` — [`LiteralTrie`](#literaltrie)
 
+  Create a new literal trie that adds literals in the forward direction.
+
 - <span id="literaltrie-reverse"></span>`fn reverse() -> LiteralTrie` — [`LiteralTrie`](#literaltrie)
+
+  Create a new literal trie that adds literals in reverse.
 
 - <span id="literaltrie-add"></span>`fn add(&mut self, bytes: &[u8]) -> Result<(), BuildError>` — [`BuildError`](../error/index.md#builderror)
 
+  Add the given literal to this trie.
+
+  
+
+  If the literal could not be added because the `StateID` space was
+
+  exhausted, then an error is returned. If an error returns, the trie
+
+  is in an unspecified state.
+
 - <span id="literaltrie-get-or-add-state"></span>`fn get_or_add_state(&mut self, from: StateID, byte: u8) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md#stateid), [`BuildError`](../error/index.md#builderror)
+
+  If the given transition is defined, then return the next state ID.
+
+  Otherwise, add the transition to `from` and point it to a new state.
+
+  
+
+  If a new state ID could not be allocated, then an error is returned.
 
 - <span id="literaltrie-compile"></span>`fn compile(&self, builder: &mut Builder) -> Result<ThompsonRef, BuildError>` — [`Builder`](../builder/index.md#builder), [`ThompsonRef`](../compiler/index.md#thompsonref), [`BuildError`](../error/index.md#builderror)
 
+  Compile this literal trie to the NFA builder given.
+
+  
+
+  This forwards any errors that may occur while using the given builder.
+
 #### Trait Implementations
+
+##### `impl Any for LiteralTrie`
+
+- <span id="literaltrie-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LiteralTrie`
+
+- <span id="literaltrie-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LiteralTrie`
+
+- <span id="literaltrie-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for LiteralTrie`
 
 - <span id="literaltrie-clone"></span>`fn clone(&self) -> LiteralTrie` — [`LiteralTrie`](#literaltrie)
 
+##### `impl CloneToUninit for LiteralTrie`
+
+- <span id="literaltrie-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for LiteralTrie`
 
-- <span id="literaltrie-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="literaltrie-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for LiteralTrie`
+
+- <span id="literaltrie-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LiteralTrie`
+
+- <span id="literaltrie-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for LiteralTrie`
+
+- <span id="literaltrie-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="literaltrie-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="literaltrie-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LiteralTrie`
+
+- <span id="literaltrie-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="literaltrie-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LiteralTrie`
+
+- <span id="literaltrie-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="literaltrie-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Frame<'a>`
 
@@ -191,11 +273,59 @@ subsequent chunks in the trie state, if any exist.
 
 - <span id="frame-new"></span>`fn new(state: &'a State) -> Frame<'a>` — [`State`](#state), [`Frame`](#frame)
 
+  Create a new stack frame for trie traversal. This initializes the
+
+  'transitions' iterator to the transitions for the first chunk, with the
+
+  'chunks' iterator being every chunk after the first one.
+
 #### Trait Implementations
+
+##### `impl Any for Frame<'a>`
+
+- <span id="frame-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Frame<'a>`
+
+- <span id="frame-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Frame<'a>`
+
+- <span id="frame-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for Frame<'a>`
 
-- <span id="frame-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="frame-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Frame<'a>`
+
+- <span id="frame-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Frame<'a>`
+
+- <span id="frame-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Frame<'a>`
+
+- <span id="frame-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="frame-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Frame<'a>`
+
+- <span id="frame-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="frame-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `State`
 
@@ -240,27 +370,101 @@ only broken within 'add'. Once 'add' returns, the invariant is upheld.)
 
 - <span id="state-add-match"></span>`fn add_match(&mut self)`
 
+  Mark this state as a match state and freeze the active chunk such that
+
+  it can not be further mutated.
+
 - <span id="state-is-leaf"></span>`fn is_leaf(&self) -> bool`
+
+  Returns true if and only if this state is a leaf state. That is, a
+
+  state that has no outgoing transitions.
 
 - <span id="state-chunks"></span>`fn chunks(&self) -> StateChunksIter<'_>` — [`StateChunksIter`](#statechunksiter)
 
+  Returns an iterator over all of the chunks (including the currently
+
+  active chunk) in this state. Since the active chunk is included, the
+
+  iterator is guaranteed to always yield at least one chunk (although the
+
+  chunk may be empty).
+
 - <span id="state-active-chunk"></span>`fn active_chunk(&self) -> &[Transition]` — [`Transition`](#transition)
+
+  Returns the active chunk as a slice of transitions.
 
 - <span id="state-active-chunk-start"></span>`fn active_chunk_start(&self) -> usize`
 
+  Returns the index into 'transitions' where the active chunk starts.
+
 #### Trait Implementations
+
+##### `impl Any for State`
+
+- <span id="state-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for State`
+
+- <span id="state-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for State`
+
+- <span id="state-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for State`
 
 - <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](#state)
 
+##### `impl CloneToUninit for State`
+
+- <span id="state-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for State`
 
-- <span id="state-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="state-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for State`
 
 - <span id="state-default"></span>`fn default() -> State` — [`State`](#state)
+
+##### `impl<T> From for State`
+
+- <span id="state-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for State`
+
+- <span id="state-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for State`
+
+- <span id="state-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="state-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="state-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for State`
+
+- <span id="state-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="state-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for State`
+
+- <span id="state-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="state-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StateChunksIter<'a>`
 
@@ -281,9 +485,39 @@ we can include it in the `Frame` type for non-recursive trie traversal.
 
 #### Trait Implementations
 
+##### `impl Any for StateChunksIter<'a>`
+
+- <span id="statechunksiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StateChunksIter<'a>`
+
+- <span id="statechunksiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StateChunksIter<'a>`
+
+- <span id="statechunksiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for StateChunksIter<'a>`
 
-- <span id="statechunksiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="statechunksiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for StateChunksIter<'a>`
+
+- <span id="statechunksiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StateChunksIter<'a>`
+
+- <span id="statechunksiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for StateChunksIter<'a>`
 
@@ -291,13 +525,25 @@ we can include it in the `Frame` type for non-recursive trie traversal.
 
 - <span id="statechunksiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="statechunksiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="statechunksiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for StateChunksIter<'a>`
 
 - <span id="statechunksiter-iterator-type-item"></span>`type Item = &'a [Transition]`
 
-- <span id="statechunksiter-next"></span>`fn next(&mut self) -> Option<&'a [Transition]>` — [`Transition`](#transition)
+- <span id="statechunksiter-iterator-next"></span>`fn next(&mut self) -> Option<&'a [Transition]>` — [`Transition`](#transition)
+
+##### `impl<U> TryFrom for StateChunksIter<'a>`
+
+- <span id="statechunksiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="statechunksiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StateChunksIter<'a>`
+
+- <span id="statechunksiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="statechunksiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Transition`
 
@@ -314,13 +560,67 @@ A single transition in a trie to another state.
 
 #### Trait Implementations
 
+##### `impl Any for Transition`
+
+- <span id="transition-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Transition`
+
+- <span id="transition-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Transition`
+
+- <span id="transition-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Transition`
 
 - <span id="transition-clone"></span>`fn clone(&self) -> Transition` — [`Transition`](#transition)
+
+##### `impl CloneToUninit for Transition`
+
+- <span id="transition-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Transition`
 
 ##### `impl Debug for Transition`
 
-- <span id="transition-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="transition-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for Transition`
+
+- <span id="transition-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Transition`
+
+- <span id="transition-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Transition`
+
+- <span id="transition-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="transition-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="transition-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Transition`
+
+- <span id="transition-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="transition-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Transition`
+
+- <span id="transition-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="transition-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

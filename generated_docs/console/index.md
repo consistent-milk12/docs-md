@@ -186,69 +186,221 @@ clones which means it largely acts as a handle.
 
 - <span id="term-stdout"></span>`fn stdout() -> Term` — [`Term`](term/index.md#term)
 
+  Return a new unbuffered terminal.
+
 - <span id="term-stderr"></span>`fn stderr() -> Term` — [`Term`](term/index.md#term)
+
+  Return a new unbuffered terminal to stderr.
 
 - <span id="term-buffered-stdout"></span>`fn buffered_stdout() -> Term` — [`Term`](term/index.md#term)
 
+  Return a new buffered terminal.
+
 - <span id="term-buffered-stderr"></span>`fn buffered_stderr() -> Term` — [`Term`](term/index.md#term)
+
+  Return a new buffered terminal to stderr.
 
 - <span id="term-read-write-pair"></span>`fn read_write_pair<R, W>(read: R, write: W) -> Term` — [`Term`](term/index.md#term)
 
+  Return a terminal for the given Read/Write pair styled like stderr.
+
 - <span id="term-read-write-pair-with-style"></span>`fn read_write_pair_with_style<R, W>(read: R, write: W, style: Style) -> Term` — [`Style`](utils/index.md#style), [`Term`](term/index.md#term)
+
+  Return a terminal for the given Read/Write pair.
 
 - <span id="term-style"></span>`fn style(&self) -> Style` — [`Style`](utils/index.md#style)
 
+  Return the style for this terminal.
+
 - <span id="term-target"></span>`fn target(&self) -> TermTarget` — [`TermTarget`](term/index.md#termtarget)
+
+  Return the target of this terminal.
 
 - <span id="term-write-line"></span>`fn write_line(&self, s: &str) -> io::Result<()>`
 
+  Write a string to the terminal and add a newline.
+
 - <span id="term-read-char"></span>`fn read_char(&self) -> io::Result<char>`
 
+  Read a single character from the terminal.
+
+  
+
+  This does not echo the character and blocks until a single character
+
+  or complete key chord is entered.  If the terminal is not user attended
+
+  the return value will be an error.
+
 - <span id="term-read-key"></span>`fn read_key(&self) -> io::Result<Key>` — [`Key`](kb/index.md#key)
+
+  Read a single key from the terminal.
+
+  
+
+  This does not echo anything.  If the terminal is not user attended
+
+  the return value will always be the unknown key.
 
 - <span id="term-read-key-raw"></span>`fn read_key_raw(&self) -> io::Result<Key>` — [`Key`](kb/index.md#key)
 
 - <span id="term-read-line"></span>`fn read_line(&self) -> io::Result<String>`
 
+  Read one line of input.
+
+  
+
+  This does not include the trailing newline.  If the terminal is not
+
+  user attended the return value will always be an empty string.
+
 - <span id="term-read-line-initial-text"></span>`fn read_line_initial_text(&self, initial: &str) -> io::Result<String>`
+
+  Read one line of input with initial text.
+
+  
+
+  This method blocks until no other thread is waiting for this read_line
+
+  before reading a line from the terminal.
+
+  This does not include the trailing newline.  If the terminal is not
+
+  user attended the return value will always be an empty string.
 
 - <span id="term-read-secure-line"></span>`fn read_secure_line(&self) -> io::Result<String>`
 
+  Read a line of input securely.
+
+  
+
+  This is similar to `read_line` but will not echo the output.  This
+
+  also switches the terminal into a different mode where not all
+
+  characters might be accepted.
+
 - <span id="term-flush"></span>`fn flush(&self) -> io::Result<()>`
+
+  Flush internal buffers.
+
+  
+
+  This forces the contents of the internal buffer to be written to
+
+  the terminal.  This is unnecessary for unbuffered terminals which
+
+  will automatically flush.
 
 - <span id="term-is-term"></span>`fn is_term(&self) -> bool`
 
+  Check if the terminal is indeed a terminal.
+
 - <span id="term-features"></span>`fn features(&self) -> TermFeatures<'_>` — [`TermFeatures`](term/index.md#termfeatures)
+
+  Check for common terminal features.
 
 - <span id="term-size"></span>`fn size(&self) -> (u16, u16)`
 
+  Return the terminal size in rows and columns or gets sensible defaults.
+
 - <span id="term-size-checked"></span>`fn size_checked(&self) -> Option<(u16, u16)>`
+
+  Return the terminal size in rows and columns.
+
+  
+
+  If the size cannot be reliably determined `None` is returned.
 
 - <span id="term-move-cursor-to"></span>`fn move_cursor_to(&self, x: usize, y: usize) -> io::Result<()>`
 
+  Move the cursor to row `x` and column `y`. Values are 0-based.
+
 - <span id="term-move-cursor-up"></span>`fn move_cursor_up(&self, n: usize) -> io::Result<()>`
+
+  Move the cursor up by `n` lines, if possible.
+
+  
+
+  If there are less than `n` lines above the current cursor position,
+
+  the cursor is moved to the top line of the terminal (i.e., as far up as possible).
 
 - <span id="term-move-cursor-down"></span>`fn move_cursor_down(&self, n: usize) -> io::Result<()>`
 
+  Move the cursor down by `n` lines, if possible.
+
+  
+
+  If there are less than `n` lines below the current cursor position,
+
+  the cursor is moved to the bottom line of the terminal (i.e., as far down as possible).
+
 - <span id="term-move-cursor-left"></span>`fn move_cursor_left(&self, n: usize) -> io::Result<()>`
+
+  Move the cursor `n` characters to the left, if possible.
+
+  
+
+  If there are fewer than `n` characters to the left of the current cursor position,
+
+  the cursor is moved to the beginning of the line (i.e., as far to the left as possible).
 
 - <span id="term-move-cursor-right"></span>`fn move_cursor_right(&self, n: usize) -> io::Result<()>`
 
+  Move the cursor `n` characters to the right.
+
+  
+
+  If there are fewer than `n` characters to the right of the current cursor position,
+
+  the cursor is moved to the end of the current line (i.e., as far to the right as possible).
+
 - <span id="term-clear-line"></span>`fn clear_line(&self) -> io::Result<()>`
+
+  Clear the current line.
+
+  
+
+  Position the cursor at the beginning of the current line.
 
 - <span id="term-clear-last-lines"></span>`fn clear_last_lines(&self, n: usize) -> io::Result<()>`
 
+  Clear the last `n` lines before the current line.
+
+  
+
+  Position the cursor at the beginning of the first line that was cleared.
+
 - <span id="term-clear-screen"></span>`fn clear_screen(&self) -> io::Result<()>`
+
+  Clear the entire screen.
+
+  
+
+  Move the cursor to the upper left corner of the screen.
 
 - <span id="term-clear-to-end-of-screen"></span>`fn clear_to_end_of_screen(&self) -> io::Result<()>`
 
+  Clear everything from the current cursor position to the end of the screen.
+
+  The cursor stays in its position.
+
 - <span id="term-clear-chars"></span>`fn clear_chars(&self, n: usize) -> io::Result<()>`
+
+  Clear the last `n` characters of the current line.
 
 - <span id="term-set-title"></span>`fn set_title<T: Display>(&self, title: T)`
 
+  Set the terminal title.
+
 - <span id="term-show-cursor"></span>`fn show_cursor(&self) -> io::Result<()>`
 
+  Make the cursor visible again.
+
 - <span id="term-hide-cursor"></span>`fn hide_cursor(&self) -> io::Result<()>`
+
+  Hide the cursor.
 
 - <span id="term-write-through"></span>`fn write_through(&self, bytes: &[u8]) -> io::Result<()>`
 
@@ -256,17 +408,51 @@ clones which means it largely acts as a handle.
 
 #### Trait Implementations
 
+##### `impl Any for Term`
+
+- <span id="term-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl AsRawFd for Term`
 
-- <span id="term-as-raw-fd"></span>`fn as_raw_fd(&self) -> RawFd`
+- <span id="term-asrawfd-as-raw-fd"></span>`fn as_raw_fd(&self) -> RawFd`
+
+##### `impl<T> Borrow for Term`
+
+- <span id="term-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Term`
+
+- <span id="term-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Term`
 
 - <span id="term-clone"></span>`fn clone(&self) -> Term` — [`Term`](term/index.md#term)
 
+##### `impl CloneToUninit for Term`
+
+- <span id="term-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Term`
 
-- <span id="term-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="term-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Term`
+
+- <span id="term-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Term`
+
+- <span id="term-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Read for Term`
 
@@ -274,11 +460,31 @@ clones which means it largely acts as a handle.
 
 ##### `impl TermLike for console::Term`
 
+##### `impl ToOwned for Term`
+
+- <span id="term-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="term-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="term-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Term`
+
+- <span id="term-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="term-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Term`
+
+- <span id="term-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="term-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ##### `impl Write for Term`
 
 - <span id="term-write"></span>`fn write(&mut self, buf: &[u8]) -> io::Result<usize>`
 
-- <span id="term-flush"></span>`fn flush(&mut self) -> io::Result<()>`
+- <span id="term-write-flush"></span>`fn flush(&mut self) -> io::Result<()>`
 
 ### `TermFeatures<'a>`
 
@@ -294,23 +500,99 @@ Gives access to the terminal features.
 
 - <span id="termfeatures-is-attended"></span>`fn is_attended(&self) -> bool`
 
+  Check if this is a real user attended terminal (`isatty`)
+
 - <span id="termfeatures-colors-supported"></span>`fn colors_supported(&self) -> bool`
+
+  Check if colors are supported by this terminal.
+
+  
+
+  This does not check if colors are enabled.  Currently all terminals
+
+  are considered to support colors
 
 - <span id="termfeatures-is-msys-tty"></span>`fn is_msys_tty(&self) -> bool`
 
+  Check if this terminal is an msys terminal.
+
+  
+
+  This is sometimes useful to disable features that are known to not
+
+  work on msys terminals or require special handling.
+
 - <span id="termfeatures-wants-emoji"></span>`fn wants_emoji(&self) -> bool`
+
+  Check if this terminal wants emojis.
 
 - <span id="termfeatures-family"></span>`fn family(&self) -> TermFamily` — [`TermFamily`](term/index.md#termfamily)
 
+  Return the family of the terminal.
+
 #### Trait Implementations
+
+##### `impl Any for TermFeatures<'a>`
+
+- <span id="termfeatures-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TermFeatures<'a>`
+
+- <span id="termfeatures-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TermFeatures<'a>`
+
+- <span id="termfeatures-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for TermFeatures<'a>`
 
 - <span id="termfeatures-clone"></span>`fn clone(&self) -> TermFeatures<'a>` — [`TermFeatures`](term/index.md#termfeatures)
 
+##### `impl CloneToUninit for TermFeatures<'a>`
+
+- <span id="termfeatures-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for TermFeatures<'a>`
 
-- <span id="termfeatures-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="termfeatures-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for TermFeatures<'a>`
+
+- <span id="termfeatures-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TermFeatures<'a>`
+
+- <span id="termfeatures-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for TermFeatures<'a>`
+
+- <span id="termfeatures-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="termfeatures-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="termfeatures-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TermFeatures<'a>`
+
+- <span id="termfeatures-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="termfeatures-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TermFeatures<'a>`
+
+- <span id="termfeatures-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="termfeatures-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Emoji<'a, 'b>`
 
@@ -339,19 +621,73 @@ println!("[4/4] {} Done!", Emoji("✨", ":-)"));
 
 #### Trait Implementations
 
+##### `impl Any for Emoji<'a, 'b>`
+
+- <span id="emoji-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Emoji<'a, 'b>`
+
+- <span id="emoji-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Emoji<'a, 'b>`
+
+- <span id="emoji-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Emoji<'a, 'b>`
 
 - <span id="emoji-clone"></span>`fn clone(&self) -> Emoji<'a, 'b>` — [`Emoji`](utils/index.md#emoji)
+
+##### `impl CloneToUninit for Emoji<'a, 'b>`
+
+- <span id="emoji-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Emoji<'a, 'b>`
 
 ##### `impl Display for Emoji<'_, '_>`
 
-- <span id="emoji-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="emoji-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Emoji<'a, 'b>`
+
+- <span id="emoji-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Emoji<'a, 'b>`
+
+- <span id="emoji-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Emoji<'a, 'b>`
+
+- <span id="emoji-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="emoji-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="emoji-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for Emoji<'a, 'b>`
 
-- <span id="emoji-to-string"></span>`fn to_string(&self) -> String`
+- <span id="emoji-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Emoji<'a, 'b>`
+
+- <span id="emoji-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="emoji-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Emoji<'a, 'b>`
+
+- <span id="emoji-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="emoji-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Style`
 
@@ -375,21 +711,59 @@ A stored style that can be applied.
 
 - <span id="style-new"></span>`const fn new() -> Self`
 
+  Returns an empty default style.
+
 - <span id="style-from-dotted-str"></span>`fn from_dotted_str(s: &str) -> Self`
+
+  Creates a style from a dotted string.
+
+  
+
+  Effectively the string is split at each dot and then the
+
+  terms in between are applied.  For instance `red.on_blue` will
+
+  create a string that is red on blue background. `9.on_12` is
+
+  the same, but using 256 color numbers. Unknown terms are
+
+  ignored.
 
 - <span id="style-apply-to"></span>`fn apply_to<D>(&self, val: D) -> StyledObject<D>` — [`StyledObject`](utils/index.md#styledobject)
 
+  Apply the style to something that can be displayed.
+
 - <span id="style-force-styling"></span>`const fn force_styling(self, value: bool) -> Self`
+
+  Forces styling on or off.
+
+  
+
+  This overrides the automatic detection.
 
 - <span id="style-for-stderr"></span>`const fn for_stderr(self) -> Self`
 
+  Specifies that style is applying to something being written on stderr.
+
 - <span id="style-for-stdout"></span>`const fn for_stdout(self) -> Self`
+
+  Specifies that style is applying to something being written on stdout.
+
+  
+
+  This is the default behaviour.
 
 - <span id="style-fg"></span>`const fn fg(self, color: Color) -> Self` — [`Color`](utils/index.md#color)
 
+  Sets a foreground color.
+
 - <span id="style-bg"></span>`const fn bg(self, color: Color) -> Self` — [`Color`](utils/index.md#color)
 
+  Sets a background color.
+
 - <span id="style-attr"></span>`const fn attr(self, attr: Attribute) -> Self` — [`Attribute`](utils/index.md#attribute)
+
+  Adds a attr.
 
 - <span id="style-black"></span>`const fn black(self) -> Self`
 
@@ -451,13 +825,29 @@ A stored style that can be applied.
 
 #### Trait Implementations
 
+##### `impl Any for Style`
+
+- <span id="style-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Style`
+
+- <span id="style-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Style`
+
+- <span id="style-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Style`
 
 - <span id="style-clone"></span>`fn clone(&self) -> Style` — [`Style`](utils/index.md#style)
 
+##### `impl CloneToUninit for Style`
+
+- <span id="style-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Style`
 
-- <span id="style-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="style-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Style`
 
@@ -465,11 +855,49 @@ A stored style that can be applied.
 
 ##### `impl Eq for Style`
 
+##### `impl<T> From for Style`
+
+- <span id="style-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Style`
+
+- <span id="style-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Style`
 
-- <span id="style-eq"></span>`fn eq(&self, other: &Style) -> bool` — [`Style`](utils/index.md#style)
+- <span id="style-partialeq-eq"></span>`fn eq(&self, other: &Style) -> bool` — [`Style`](utils/index.md#style)
 
 ##### `impl StructuralPartialEq for Style`
+
+##### `impl ToOwned for Style`
+
+- <span id="style-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="style-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="style-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Style`
+
+- <span id="style-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="style-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Style`
+
+- <span id="style-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="style-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StyledObject<D>`
 
@@ -488,15 +916,35 @@ A formatting wrapper that can be styled for a terminal.
 
 - <span id="styledobject-force-styling"></span>`fn force_styling(self, value: bool) -> StyledObject<D>` — [`StyledObject`](utils/index.md#styledobject)
 
+  Forces styling on or off.
+
+  
+
+  This overrides the automatic detection.
+
 - <span id="styledobject-for-stderr"></span>`fn for_stderr(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md#styledobject)
+
+  Specifies that style is applying to something being written on stderr
 
 - <span id="styledobject-for-stdout"></span>`const fn for_stdout(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md#styledobject)
 
+  Specifies that style is applying to something being written on stdout
+
+  
+
+  This is the default
+
 - <span id="styledobject-fg"></span>`const fn fg(self, color: Color) -> StyledObject<D>` — [`Color`](utils/index.md#color), [`StyledObject`](utils/index.md#styledobject)
+
+  Sets a foreground color.
 
 - <span id="styledobject-bg"></span>`const fn bg(self, color: Color) -> StyledObject<D>` — [`Color`](utils/index.md#color), [`StyledObject`](utils/index.md#styledobject)
 
+  Sets a background color.
+
 - <span id="styledobject-attr"></span>`const fn attr(self, attr: Attribute) -> StyledObject<D>` — [`Attribute`](utils/index.md#attribute), [`StyledObject`](utils/index.md#styledobject)
+
+  Adds a attr.
 
 - <span id="styledobject-black"></span>`const fn black(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md#styledobject)
 
@@ -558,49 +1006,103 @@ A formatting wrapper that can be styled for a terminal.
 
 #### Trait Implementations
 
+##### `impl Any for StyledObject<D>`
+
+- <span id="styledobject-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl<D: fmt::Binary> Binary for StyledObject<D>`
 
-- <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledobject-binary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> Borrow for StyledObject<D>`
+
+- <span id="styledobject-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StyledObject<D>`
+
+- <span id="styledobject-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<D: clone::Clone> Clone for StyledObject<D>`
 
 - <span id="styledobject-clone"></span>`fn clone(&self) -> StyledObject<D>` — [`StyledObject`](utils/index.md#styledobject)
 
+##### `impl CloneToUninit for StyledObject<D>`
+
+- <span id="styledobject-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<D: fmt::Debug> Debug for StyledObject<D>`
 
-- <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledobject-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D: fmt::Display> Display for StyledObject<D>`
 
-- <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledobject-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for StyledObject<D>`
+
+- <span id="styledobject-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StyledObject<D>`
+
+- <span id="styledobject-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<D: fmt::LowerExp> LowerExp for StyledObject<D>`
 
-- <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledobject-lowerexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D: fmt::LowerHex> LowerHex for StyledObject<D>`
 
-- <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledobject-lowerhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D: fmt::Octal> Octal for StyledObject<D>`
 
-- <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledobject-octal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D: fmt::Pointer> Pointer for StyledObject<D>`
 
-- <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledobject-pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl ToOwned for StyledObject<D>`
+
+- <span id="styledobject-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="styledobject-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="styledobject-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for StyledObject<D>`
 
-- <span id="styledobject-to-string"></span>`fn to_string(&self) -> String`
+- <span id="styledobject-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for StyledObject<D>`
+
+- <span id="styledobject-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="styledobject-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StyledObject<D>`
+
+- <span id="styledobject-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="styledobject-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<D: fmt::UpperExp> UpperExp for StyledObject<D>`
 
-- <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledobject-upperexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D: fmt::UpperHex> UpperHex for StyledObject<D>`
 
-- <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledobject-upperhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `AnsiCodeIterator<'a>`
 
@@ -627,13 +1129,49 @@ ansi codes or string values.
 
 - <span id="ansicodeiterator-new"></span>`fn new(s: &'a str) -> AnsiCodeIterator<'a>` — [`AnsiCodeIterator`](ansi/index.md#ansicodeiterator)
 
+  Creates a new ansi code iterator.
+
 - <span id="ansicodeiterator-current-slice"></span>`fn current_slice(&self) -> &str`
+
+  Returns the string slice up to the current match.
 
 - <span id="ansicodeiterator-rest-slice"></span>`fn rest_slice(&self) -> &str`
 
+  Returns the string slice from the current match to the end.
+
 #### Trait Implementations
 
+##### `impl Any for AnsiCodeIterator<'a>`
+
+- <span id="ansicodeiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AnsiCodeIterator<'a>`
+
+- <span id="ansicodeiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AnsiCodeIterator<'a>`
+
+- <span id="ansicodeiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for AnsiCodeIterator<'a>`
+
+- <span id="ansicodeiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl FusedIterator for AnsiCodeIterator<'_>`
+
+##### `impl<U> Into for AnsiCodeIterator<'a>`
+
+- <span id="ansicodeiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for AnsiCodeIterator<'a>`
 
@@ -641,13 +1179,25 @@ ansi codes or string values.
 
 - <span id="ansicodeiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="ansicodeiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="ansicodeiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for AnsiCodeIterator<'a>`
 
 - <span id="ansicodeiterator-iterator-type-item"></span>`type Item = (&'a str, bool)`
 
-- <span id="ansicodeiterator-next"></span>`fn next(&mut self) -> Option<(&'a str, bool)>`
+- <span id="ansicodeiterator-iterator-next"></span>`fn next(&mut self) -> Option<(&'a str, bool)>`
+
+##### `impl<U> TryFrom for AnsiCodeIterator<'a>`
+
+- <span id="ansicodeiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ansicodeiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AnsiCodeIterator<'a>`
+
+- <span id="ansicodeiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ansicodeiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `WithoutAnsi<'a>`
 
@@ -659,7 +1209,7 @@ struct WithoutAnsi<'a> {
 
 *Defined in [`console-0.16.1/src/ansi.rs:206-208`](../../.source_1765521767/console-0.16.1/src/ansi.rs#L206-L208)*
 
-A wrapper struct that implements [`core::fmt::Display`](../miette_derive/fmt/index.md), only displaying non-ansi parts.
+A wrapper struct that implements [`core::fmt::Display`](../miette_derive/index.md), only displaying non-ansi parts.
 
 #### Implementations
 
@@ -667,13 +1217,55 @@ A wrapper struct that implements [`core::fmt::Display`](../miette_derive/fmt/ind
 
 #### Trait Implementations
 
+##### `impl Any for WithoutAnsi<'a>`
+
+- <span id="withoutansi-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WithoutAnsi<'a>`
+
+- <span id="withoutansi-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WithoutAnsi<'a>`
+
+- <span id="withoutansi-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Display for WithoutAnsi<'_>`
 
-- <span id="withoutansi-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="withoutansi-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for WithoutAnsi<'a>`
+
+- <span id="withoutansi-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WithoutAnsi<'a>`
+
+- <span id="withoutansi-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for WithoutAnsi<'a>`
 
-- <span id="withoutansi-to-string"></span>`fn to_string(&self) -> String`
+- <span id="withoutansi-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for WithoutAnsi<'a>`
+
+- <span id="withoutansi-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="withoutansi-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WithoutAnsi<'a>`
+
+- <span id="withoutansi-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="withoutansi-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -720,25 +1312,79 @@ from the keyboard.
 
 #### Trait Implementations
 
+##### `impl Any for Key`
+
+- <span id="key-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Key`
+
+- <span id="key-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Key`
+
+- <span id="key-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Key`
 
 - <span id="key-clone"></span>`fn clone(&self) -> Key` — [`Key`](kb/index.md#key)
 
+##### `impl CloneToUninit for Key`
+
+- <span id="key-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Key`
 
-- <span id="key-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="key-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Key`
+
+##### `impl<T> From for Key`
+
+- <span id="key-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Key`
 
 - <span id="key-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Key`
+
+- <span id="key-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Key`
 
-- <span id="key-eq"></span>`fn eq(&self, other: &Key) -> bool` — [`Key`](kb/index.md#key)
+- <span id="key-partialeq-eq"></span>`fn eq(&self, other: &Key) -> bool` — [`Key`](kb/index.md#key)
 
 ##### `impl StructuralPartialEq for Key`
+
+##### `impl ToOwned for Key`
+
+- <span id="key-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="key-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="key-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Key`
+
+- <span id="key-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="key-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Key`
+
+- <span id="key-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="key-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TermFamily`
 
@@ -775,23 +1421,77 @@ The family of the terminal.
 
 #### Trait Implementations
 
+##### `impl Any for TermFamily`
+
+- <span id="termfamily-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TermFamily`
+
+- <span id="termfamily-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TermFamily`
+
+- <span id="termfamily-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for TermFamily`
 
 - <span id="termfamily-clone"></span>`fn clone(&self) -> TermFamily` — [`TermFamily`](term/index.md#termfamily)
+
+##### `impl CloneToUninit for TermFamily`
+
+- <span id="termfamily-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for TermFamily`
 
 ##### `impl Debug for TermFamily`
 
-- <span id="termfamily-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="termfamily-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for TermFamily`
 
+##### `impl<T> From for TermFamily`
+
+- <span id="termfamily-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TermFamily`
+
+- <span id="termfamily-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for TermFamily`
 
-- <span id="termfamily-eq"></span>`fn eq(&self, other: &TermFamily) -> bool` — [`TermFamily`](term/index.md#termfamily)
+- <span id="termfamily-partialeq-eq"></span>`fn eq(&self, other: &TermFamily) -> bool` — [`TermFamily`](term/index.md#termfamily)
 
 ##### `impl StructuralPartialEq for TermFamily`
+
+##### `impl ToOwned for TermFamily`
+
+- <span id="termfamily-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="termfamily-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="termfamily-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TermFamily`
+
+- <span id="termfamily-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="termfamily-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TermFamily`
+
+- <span id="termfamily-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="termfamily-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TermTarget`
 
@@ -809,13 +1509,67 @@ Where the term is writing.
 
 #### Trait Implementations
 
+##### `impl Any for TermTarget`
+
+- <span id="termtarget-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TermTarget`
+
+- <span id="termtarget-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TermTarget`
+
+- <span id="termtarget-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for TermTarget`
 
 - <span id="termtarget-clone"></span>`fn clone(&self) -> TermTarget` — [`TermTarget`](term/index.md#termtarget)
 
+##### `impl CloneToUninit for TermTarget`
+
+- <span id="termtarget-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for TermTarget`
 
-- <span id="termtarget-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="termtarget-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for TermTarget`
+
+- <span id="termtarget-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TermTarget`
+
+- <span id="termtarget-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for TermTarget`
+
+- <span id="termtarget-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="termtarget-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="termtarget-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TermTarget`
+
+- <span id="termtarget-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="termtarget-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TermTarget`
+
+- <span id="termtarget-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="termtarget-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Alignment`
 
@@ -833,23 +1587,77 @@ Defines the alignment for padding operations.
 
 #### Trait Implementations
 
+##### `impl Any for Alignment`
+
+- <span id="alignment-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Alignment`
+
+- <span id="alignment-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Alignment`
+
+- <span id="alignment-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Alignment`
 
 - <span id="alignment-clone"></span>`fn clone(&self) -> Alignment` — [`Alignment`](utils/index.md#alignment)
+
+##### `impl CloneToUninit for Alignment`
+
+- <span id="alignment-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Alignment`
 
 ##### `impl Debug for Alignment`
 
-- <span id="alignment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="alignment-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Alignment`
 
+##### `impl<T> From for Alignment`
+
+- <span id="alignment-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Alignment`
+
+- <span id="alignment-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Alignment`
 
-- <span id="alignment-eq"></span>`fn eq(&self, other: &Alignment) -> bool` — [`Alignment`](utils/index.md#alignment)
+- <span id="alignment-partialeq-eq"></span>`fn eq(&self, other: &Alignment) -> bool` — [`Alignment`](utils/index.md#alignment)
 
 ##### `impl StructuralPartialEq for Alignment`
+
+##### `impl ToOwned for Alignment`
+
+- <span id="alignment-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="alignment-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="alignment-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Alignment`
+
+- <span id="alignment-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="alignment-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Alignment`
+
+- <span id="alignment-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="alignment-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Attribute`
 
@@ -877,31 +1685,85 @@ A terminal style attribute.
 
 #### Trait Implementations
 
+##### `impl Any for Attribute`
+
+- <span id="attribute-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Attribute`
+
+- <span id="attribute-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Attribute`
+
+- <span id="attribute-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Attribute`
 
 - <span id="attribute-clone"></span>`fn clone(&self) -> Attribute` — [`Attribute`](utils/index.md#attribute)
+
+##### `impl CloneToUninit for Attribute`
+
+- <span id="attribute-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Attribute`
 
 ##### `impl Debug for Attribute`
 
-- <span id="attribute-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="attribute-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Attribute`
 
+##### `impl<T> From for Attribute`
+
+- <span id="attribute-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Attribute`
+
+- <span id="attribute-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Attribute`
 
-- <span id="attribute-cmp"></span>`fn cmp(&self, other: &Attribute) -> cmp::Ordering` — [`Attribute`](utils/index.md#attribute)
+- <span id="attribute-ord-cmp"></span>`fn cmp(&self, other: &Attribute) -> cmp::Ordering` — [`Attribute`](utils/index.md#attribute)
 
 ##### `impl PartialEq for Attribute`
 
-- <span id="attribute-eq"></span>`fn eq(&self, other: &Attribute) -> bool` — [`Attribute`](utils/index.md#attribute)
+- <span id="attribute-partialeq-eq"></span>`fn eq(&self, other: &Attribute) -> bool` — [`Attribute`](utils/index.md#attribute)
 
 ##### `impl PartialOrd for Attribute`
 
-- <span id="attribute-partial-cmp"></span>`fn partial_cmp(&self, other: &Attribute) -> option::Option<cmp::Ordering>` — [`Attribute`](utils/index.md#attribute)
+- <span id="attribute-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Attribute) -> option::Option<cmp::Ordering>` — [`Attribute`](utils/index.md#attribute)
 
 ##### `impl StructuralPartialEq for Attribute`
+
+##### `impl ToOwned for Attribute`
+
+- <span id="attribute-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="attribute-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="attribute-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Attribute`
+
+- <span id="attribute-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="attribute-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Attribute`
+
+- <span id="attribute-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="attribute-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Color`
 
@@ -931,23 +1793,77 @@ A terminal color.
 
 #### Trait Implementations
 
+##### `impl Any for Color`
+
+- <span id="color-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Color`
+
+- <span id="color-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Color`
+
+- <span id="color-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Color`
 
 - <span id="color-clone"></span>`fn clone(&self) -> Color` — [`Color`](utils/index.md#color)
+
+##### `impl CloneToUninit for Color`
+
+- <span id="color-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Color`
 
 ##### `impl Debug for Color`
 
-- <span id="color-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="color-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Color`
 
+##### `impl<T> From for Color`
+
+- <span id="color-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Color`
+
+- <span id="color-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Color`
 
-- <span id="color-eq"></span>`fn eq(&self, other: &Color) -> bool` — [`Color`](utils/index.md#color)
+- <span id="color-partialeq-eq"></span>`fn eq(&self, other: &Color) -> bool` — [`Color`](utils/index.md#color)
 
 ##### `impl StructuralPartialEq for Color`
+
+##### `impl ToOwned for Color`
+
+- <span id="color-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="color-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="color-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Color`
+
+- <span id="color-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="color-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Color`
+
+- <span id="color-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="color-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

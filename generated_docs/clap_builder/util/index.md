@@ -76,21 +76,39 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 - <span id="id-as-str"></span>`fn as_str(&self) -> &str`
 
+  Get the raw string of the `Id`
+
 - <span id="id-as-internal-str"></span>`fn as_internal_str(&self) -> &Str` — [`Str`](../builder/str/index.md#str)
 
 #### Trait Implementations
 
+##### `impl Any for Id`
+
+- <span id="id-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl AsRef for Id`
 
-- <span id="id-as-ref"></span>`fn as_ref(&self) -> &str`
+- <span id="id-asref-as-ref"></span>`fn as_ref(&self) -> &str`
+
+##### `impl<T> Borrow for Id`
+
+- <span id="id-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Id`
+
+- <span id="id-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Id`
 
 - <span id="id-clone"></span>`fn clone(&self) -> Id` — [`Id`](id/index.md#id)
 
+##### `impl CloneToUninit for Id`
+
+- <span id="id-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Id`
 
-- <span id="id-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="id-debug-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Default for Id`
 
@@ -98,9 +116,15 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl Display for Id`
 
-- <span id="id-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="id-display-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for Id`
+
+##### `impl<T> From for Id`
+
+- <span id="id-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Id`
 
@@ -112,27 +136,59 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 - <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](id/index.md#id)
 
+##### `impl<U> Into for Id`
+
+- <span id="id-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoResettable for Str`
 
-- <span id="str-into-resettable"></span>`fn into_resettable(self) -> Resettable<Id>` — [`Resettable`](../builder/resettable/index.md#resettable), [`Id`](id/index.md#id)
+- <span id="str-intoresettable-into-resettable"></span>`fn into_resettable(self) -> Resettable<Id>` — [`Resettable`](../builder/resettable/index.md#resettable), [`Id`](id/index.md#id)
 
 ##### `impl Ord for Id`
 
-- <span id="id-cmp"></span>`fn cmp(&self, other: &Id) -> cmp::Ordering` — [`Id`](id/index.md#id)
+- <span id="id-ord-cmp"></span>`fn cmp(&self, other: &Id) -> cmp::Ordering` — [`Id`](id/index.md#id)
 
 ##### `impl PartialEq for Id`
 
-- <span id="id-eq"></span>`fn eq(&self, other: &Id) -> bool` — [`Id`](id/index.md#id)
+- <span id="id-partialeq-eq"></span>`fn eq(&self, other: &Id) -> bool` — [`Id`](id/index.md#id)
 
 ##### `impl PartialOrd for Id`
 
-- <span id="id-partial-cmp"></span>`fn partial_cmp(&self, other: &Id) -> option::Option<cmp::Ordering>` — [`Id`](id/index.md#id)
+- <span id="id-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Id) -> option::Option<cmp::Ordering>` — [`Id`](id/index.md#id)
 
 ##### `impl StructuralPartialEq for Id`
 
+##### `impl ToOwned for Id`
+
+- <span id="id-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="id-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="id-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Id`
 
-- <span id="id-to-string"></span>`fn to_string(&self) -> String`
+- <span id="id-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Id`
+
+- <span id="id-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="id-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Id`
+
+- <span id="id-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="id-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

@@ -45,13 +45,29 @@ The error code associated to this diagnostic.
 
 #### Trait Implementations
 
+##### `impl Any for DiagnosticCode`
+
+- <span id="diagnosticcode-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DiagnosticCode`
+
+- <span id="diagnosticcode-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DiagnosticCode`
+
+- <span id="diagnosticcode-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DiagnosticCode`
 
 - <span id="diagnosticcode-clone"></span>`fn clone(&self) -> DiagnosticCode` — [`DiagnosticCode`](#diagnosticcode)
 
+##### `impl CloneToUninit for DiagnosticCode`
+
+- <span id="diagnosticcode-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for DiagnosticCode`
 
-- <span id="diagnosticcode-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="diagnosticcode-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for DiagnosticCode`
 
@@ -61,19 +77,57 @@ The error code associated to this diagnostic.
 
 ##### `impl Eq for DiagnosticCode`
 
+##### `impl<T> From for DiagnosticCode`
+
+- <span id="diagnosticcode-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for DiagnosticCode`
 
 - <span id="diagnosticcode-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DiagnosticCode`
+
+- <span id="diagnosticcode-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for DiagnosticCode`
 
-- <span id="diagnosticcode-eq"></span>`fn eq(&self, other: &DiagnosticCode) -> bool` — [`DiagnosticCode`](#diagnosticcode)
+- <span id="diagnosticcode-partialeq-eq"></span>`fn eq(&self, other: &DiagnosticCode) -> bool` — [`DiagnosticCode`](#diagnosticcode)
 
 ##### `impl Serialize for DiagnosticCode`
 
 - <span id="diagnosticcode-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for DiagnosticCode`
+
+##### `impl ToOwned for DiagnosticCode`
+
+- <span id="diagnosticcode-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="diagnosticcode-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="diagnosticcode-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DiagnosticCode`
+
+- <span id="diagnosticcode-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="diagnosticcode-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DiagnosticCode`
+
+- <span id="diagnosticcode-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="diagnosticcode-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DiagnosticSpanLine`
 
@@ -105,13 +159,29 @@ A line of code associated with the Diagnostic
 
 #### Trait Implementations
 
+##### `impl Any for DiagnosticSpanLine`
+
+- <span id="diagnosticspanline-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DiagnosticSpanLine`
+
+- <span id="diagnosticspanline-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DiagnosticSpanLine`
+
+- <span id="diagnosticspanline-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DiagnosticSpanLine`
 
 - <span id="diagnosticspanline-clone"></span>`fn clone(&self) -> DiagnosticSpanLine` — [`DiagnosticSpanLine`](#diagnosticspanline)
 
+##### `impl CloneToUninit for DiagnosticSpanLine`
+
+- <span id="diagnosticspanline-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for DiagnosticSpanLine`
 
-- <span id="diagnosticspanline-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="diagnosticspanline-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for DiagnosticSpanLine`
 
@@ -121,19 +191,57 @@ A line of code associated with the Diagnostic
 
 ##### `impl Eq for DiagnosticSpanLine`
 
+##### `impl<T> From for DiagnosticSpanLine`
+
+- <span id="diagnosticspanline-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for DiagnosticSpanLine`
 
 - <span id="diagnosticspanline-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DiagnosticSpanLine`
+
+- <span id="diagnosticspanline-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for DiagnosticSpanLine`
 
-- <span id="diagnosticspanline-eq"></span>`fn eq(&self, other: &DiagnosticSpanLine) -> bool` — [`DiagnosticSpanLine`](#diagnosticspanline)
+- <span id="diagnosticspanline-partialeq-eq"></span>`fn eq(&self, other: &DiagnosticSpanLine) -> bool` — [`DiagnosticSpanLine`](#diagnosticspanline)
 
 ##### `impl Serialize for DiagnosticSpanLine`
 
 - <span id="diagnosticspanline-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for DiagnosticSpanLine`
+
+##### `impl ToOwned for DiagnosticSpanLine`
+
+- <span id="diagnosticspanline-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="diagnosticspanline-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="diagnosticspanline-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DiagnosticSpanLine`
+
+- <span id="diagnosticspanline-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="diagnosticspanline-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DiagnosticSpanLine`
+
+- <span id="diagnosticspanline-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="diagnosticspanline-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DiagnosticSpanMacroExpansion`
 
@@ -167,13 +275,29 @@ Macro expansion information associated with a diagnostic.
 
 #### Trait Implementations
 
+##### `impl Any for DiagnosticSpanMacroExpansion`
+
+- <span id="diagnosticspanmacroexpansion-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DiagnosticSpanMacroExpansion`
+
+- <span id="diagnosticspanmacroexpansion-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DiagnosticSpanMacroExpansion`
+
+- <span id="diagnosticspanmacroexpansion-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DiagnosticSpanMacroExpansion`
 
 - <span id="diagnosticspanmacroexpansion-clone"></span>`fn clone(&self) -> DiagnosticSpanMacroExpansion` — [`DiagnosticSpanMacroExpansion`](#diagnosticspanmacroexpansion)
 
+##### `impl CloneToUninit for DiagnosticSpanMacroExpansion`
+
+- <span id="diagnosticspanmacroexpansion-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for DiagnosticSpanMacroExpansion`
 
-- <span id="diagnosticspanmacroexpansion-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="diagnosticspanmacroexpansion-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for DiagnosticSpanMacroExpansion`
 
@@ -183,19 +307,57 @@ Macro expansion information associated with a diagnostic.
 
 ##### `impl Eq for DiagnosticSpanMacroExpansion`
 
+##### `impl<T> From for DiagnosticSpanMacroExpansion`
+
+- <span id="diagnosticspanmacroexpansion-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for DiagnosticSpanMacroExpansion`
 
 - <span id="diagnosticspanmacroexpansion-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DiagnosticSpanMacroExpansion`
+
+- <span id="diagnosticspanmacroexpansion-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for DiagnosticSpanMacroExpansion`
 
-- <span id="diagnosticspanmacroexpansion-eq"></span>`fn eq(&self, other: &DiagnosticSpanMacroExpansion) -> bool` — [`DiagnosticSpanMacroExpansion`](#diagnosticspanmacroexpansion)
+- <span id="diagnosticspanmacroexpansion-partialeq-eq"></span>`fn eq(&self, other: &DiagnosticSpanMacroExpansion) -> bool` — [`DiagnosticSpanMacroExpansion`](#diagnosticspanmacroexpansion)
 
 ##### `impl Serialize for DiagnosticSpanMacroExpansion`
 
 - <span id="diagnosticspanmacroexpansion-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for DiagnosticSpanMacroExpansion`
+
+##### `impl ToOwned for DiagnosticSpanMacroExpansion`
+
+- <span id="diagnosticspanmacroexpansion-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="diagnosticspanmacroexpansion-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="diagnosticspanmacroexpansion-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DiagnosticSpanMacroExpansion`
+
+- <span id="diagnosticspanmacroexpansion-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="diagnosticspanmacroexpansion-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DiagnosticSpanMacroExpansion`
+
+- <span id="diagnosticspanmacroexpansion-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="diagnosticspanmacroexpansion-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DiagnosticSpan`
 
@@ -285,13 +447,29 @@ A section of the source code associated with a Diagnostic
 
 #### Trait Implementations
 
+##### `impl Any for DiagnosticSpan`
+
+- <span id="diagnosticspan-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DiagnosticSpan`
+
+- <span id="diagnosticspan-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DiagnosticSpan`
+
+- <span id="diagnosticspan-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DiagnosticSpan`
 
 - <span id="diagnosticspan-clone"></span>`fn clone(&self) -> DiagnosticSpan` — [`DiagnosticSpan`](#diagnosticspan)
 
+##### `impl CloneToUninit for DiagnosticSpan`
+
+- <span id="diagnosticspan-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for DiagnosticSpan`
 
-- <span id="diagnosticspan-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="diagnosticspan-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for DiagnosticSpan`
 
@@ -301,19 +479,57 @@ A section of the source code associated with a Diagnostic
 
 ##### `impl Eq for DiagnosticSpan`
 
+##### `impl<T> From for DiagnosticSpan`
+
+- <span id="diagnosticspan-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for DiagnosticSpan`
 
 - <span id="diagnosticspan-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DiagnosticSpan`
+
+- <span id="diagnosticspan-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for DiagnosticSpan`
 
-- <span id="diagnosticspan-eq"></span>`fn eq(&self, other: &DiagnosticSpan) -> bool` — [`DiagnosticSpan`](#diagnosticspan)
+- <span id="diagnosticspan-partialeq-eq"></span>`fn eq(&self, other: &DiagnosticSpan) -> bool` — [`DiagnosticSpan`](#diagnosticspan)
 
 ##### `impl Serialize for DiagnosticSpan`
 
 - <span id="diagnosticspan-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for DiagnosticSpan`
+
+##### `impl ToOwned for DiagnosticSpan`
+
+- <span id="diagnosticspan-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="diagnosticspan-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="diagnosticspan-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DiagnosticSpan`
+
+- <span id="diagnosticspan-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="diagnosticspan-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DiagnosticSpan`
+
+- <span id="diagnosticspan-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="diagnosticspan-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Diagnostic`
 
@@ -360,13 +576,29 @@ A diagnostic message generated by rustc
 
 #### Trait Implementations
 
+##### `impl Any for Diagnostic`
+
+- <span id="diagnostic-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Diagnostic`
+
+- <span id="diagnostic-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Diagnostic`
+
+- <span id="diagnostic-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Diagnostic`
 
 - <span id="diagnostic-clone"></span>`fn clone(&self) -> Diagnostic` — [`Diagnostic`](#diagnostic)
 
+##### `impl CloneToUninit for Diagnostic`
+
+- <span id="diagnostic-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Diagnostic`
 
-- <span id="diagnostic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="diagnostic-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Diagnostic`
 
@@ -376,17 +608,35 @@ A diagnostic message generated by rustc
 
 ##### `impl Display for Diagnostic`
 
-- <span id="diagnostic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="diagnostic-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Diagnostic`
+
+##### `impl<T> From for Diagnostic`
+
+- <span id="diagnostic-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Diagnostic`
 
 - <span id="diagnostic-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Diagnostic`
+
+- <span id="diagnostic-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Diagnostic`
 
-- <span id="diagnostic-eq"></span>`fn eq(&self, other: &Diagnostic) -> bool` — [`Diagnostic`](#diagnostic)
+- <span id="diagnostic-partialeq-eq"></span>`fn eq(&self, other: &Diagnostic) -> bool` — [`Diagnostic`](#diagnostic)
 
 ##### `impl Serialize for Diagnostic`
 
@@ -394,9 +644,29 @@ A diagnostic message generated by rustc
 
 ##### `impl StructuralPartialEq for Diagnostic`
 
+##### `impl ToOwned for Diagnostic`
+
+- <span id="diagnostic-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="diagnostic-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="diagnostic-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Diagnostic`
 
-- <span id="diagnostic-to-string"></span>`fn to_string(&self) -> String`
+- <span id="diagnostic-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Diagnostic`
+
+- <span id="diagnostic-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="diagnostic-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Diagnostic`
+
+- <span id="diagnostic-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="diagnostic-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -437,13 +707,29 @@ Whether a suggestion can be safely applied.
 
 #### Trait Implementations
 
+##### `impl Any for Applicability`
+
+- <span id="applicability-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Applicability`
+
+- <span id="applicability-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Applicability`
+
+- <span id="applicability-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Applicability`
 
 - <span id="applicability-clone"></span>`fn clone(&self) -> Applicability` — [`Applicability`](#applicability)
 
+##### `impl CloneToUninit for Applicability`
+
+- <span id="applicability-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Applicability`
 
-- <span id="applicability-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="applicability-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Applicability`
 
@@ -453,19 +739,57 @@ Whether a suggestion can be safely applied.
 
 ##### `impl Eq for Applicability`
 
+##### `impl<T> From for Applicability`
+
+- <span id="applicability-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Applicability`
 
 - <span id="applicability-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Applicability`
+
+- <span id="applicability-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Applicability`
 
-- <span id="applicability-eq"></span>`fn eq(&self, other: &Applicability) -> bool` — [`Applicability`](#applicability)
+- <span id="applicability-partialeq-eq"></span>`fn eq(&self, other: &Applicability) -> bool` — [`Applicability`](#applicability)
 
 ##### `impl Serialize for Applicability`
 
 - <span id="applicability-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Applicability`
+
+##### `impl ToOwned for Applicability`
+
+- <span id="applicability-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="applicability-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="applicability-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Applicability`
+
+- <span id="applicability-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="applicability-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Applicability`
+
+- <span id="applicability-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="applicability-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DiagnosticLevel`
 
@@ -512,15 +836,31 @@ The diagnostic level
 
 #### Trait Implementations
 
+##### `impl Any for DiagnosticLevel`
+
+- <span id="diagnosticlevel-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DiagnosticLevel`
+
+- <span id="diagnosticlevel-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DiagnosticLevel`
+
+- <span id="diagnosticlevel-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DiagnosticLevel`
 
 - <span id="diagnosticlevel-clone"></span>`fn clone(&self) -> DiagnosticLevel` — [`DiagnosticLevel`](#diagnosticlevel)
+
+##### `impl CloneToUninit for DiagnosticLevel`
+
+- <span id="diagnosticlevel-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DiagnosticLevel`
 
 ##### `impl Debug for DiagnosticLevel`
 
-- <span id="diagnosticlevel-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="diagnosticlevel-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for DiagnosticLevel`
 
@@ -530,17 +870,55 @@ The diagnostic level
 
 ##### `impl Eq for DiagnosticLevel`
 
+##### `impl<T> From for DiagnosticLevel`
+
+- <span id="diagnosticlevel-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for DiagnosticLevel`
 
 - <span id="diagnosticlevel-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DiagnosticLevel`
+
+- <span id="diagnosticlevel-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for DiagnosticLevel`
 
-- <span id="diagnosticlevel-eq"></span>`fn eq(&self, other: &DiagnosticLevel) -> bool` — [`DiagnosticLevel`](#diagnosticlevel)
+- <span id="diagnosticlevel-partialeq-eq"></span>`fn eq(&self, other: &DiagnosticLevel) -> bool` — [`DiagnosticLevel`](#diagnosticlevel)
 
 ##### `impl Serialize for DiagnosticLevel`
 
 - <span id="diagnosticlevel-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for DiagnosticLevel`
+
+##### `impl ToOwned for DiagnosticLevel`
+
+- <span id="diagnosticlevel-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="diagnosticlevel-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="diagnosticlevel-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DiagnosticLevel`
+
+- <span id="diagnosticlevel-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="diagnosticlevel-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DiagnosticLevel`
+
+- <span id="diagnosticlevel-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="diagnosticlevel-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

@@ -72,7 +72,7 @@ A dependency of the main crate
 
   The target this dependency is specific to.
   
-  Use the `Display` trait to access the contents.
+  Use the [`Display`]() trait to access the contents.
   
 
 - **`rename`**: `Option<String>`
@@ -94,13 +94,29 @@ A dependency of the main crate
 
 #### Trait Implementations
 
+##### `impl Any for Dependency`
+
+- <span id="dependency-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Dependency`
+
+- <span id="dependency-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Dependency`
+
+- <span id="dependency-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Dependency`
 
 - <span id="dependency-clone"></span>`fn clone(&self) -> Dependency` — [`Dependency`](#dependency)
 
+##### `impl CloneToUninit for Dependency`
+
+- <span id="dependency-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Dependency`
 
-- <span id="dependency-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dependency-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Dependency`
 
@@ -110,19 +126,57 @@ A dependency of the main crate
 
 ##### `impl Eq for Dependency`
 
+##### `impl<T> From for Dependency`
+
+- <span id="dependency-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Dependency`
 
 - <span id="dependency-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Dependency`
+
+- <span id="dependency-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Dependency`
 
-- <span id="dependency-eq"></span>`fn eq(&self, other: &Dependency) -> bool` — [`Dependency`](#dependency)
+- <span id="dependency-partialeq-eq"></span>`fn eq(&self, other: &Dependency) -> bool` — [`Dependency`](#dependency)
 
 ##### `impl Serialize for Dependency`
 
 - <span id="dependency-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Dependency`
+
+##### `impl ToOwned for Dependency`
+
+- <span id="dependency-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dependency-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dependency-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Dependency`
+
+- <span id="dependency-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dependency-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Dependency`
+
+- <span id="dependency-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dependency-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -156,15 +210,31 @@ Dependencies can come in three kinds
 
 #### Trait Implementations
 
+##### `impl Any for DependencyKind`
+
+- <span id="dependencykind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DependencyKind`
+
+- <span id="dependencykind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DependencyKind`
+
+- <span id="dependencykind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DependencyKind`
 
 - <span id="dependencykind-clone"></span>`fn clone(&self) -> DependencyKind` — [`DependencyKind`](#dependencykind)
+
+##### `impl CloneToUninit for DependencyKind`
+
+- <span id="dependencykind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DependencyKind`
 
 ##### `impl Debug for DependencyKind`
 
-- <span id="dependencykind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dependencykind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for DependencyKind`
 
@@ -178,17 +248,35 @@ Dependencies can come in three kinds
 
 ##### `impl Display for DependencyKind`
 
-- <span id="dependencykind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dependencykind-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for DependencyKind`
+
+##### `impl<T> From for DependencyKind`
+
+- <span id="dependencykind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DependencyKind`
 
 - <span id="dependencykind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DependencyKind`
+
+- <span id="dependencykind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for DependencyKind`
 
-- <span id="dependencykind-eq"></span>`fn eq(&self, other: &DependencyKind) -> bool` — [`DependencyKind`](#dependencykind)
+- <span id="dependencykind-partialeq-eq"></span>`fn eq(&self, other: &DependencyKind) -> bool` — [`DependencyKind`](#dependencykind)
 
 ##### `impl Serialize for DependencyKind`
 
@@ -196,9 +284,29 @@ Dependencies can come in three kinds
 
 ##### `impl StructuralPartialEq for DependencyKind`
 
+##### `impl ToOwned for DependencyKind`
+
+- <span id="dependencykind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dependencykind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dependencykind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DependencyKind`
 
-- <span id="dependencykind-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dependencykind-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DependencyKind`
+
+- <span id="dependencykind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dependencykind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DependencyKind`
+
+- <span id="dependencykind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dependencykind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

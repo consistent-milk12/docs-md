@@ -26,6 +26,50 @@ struct CallbackData {
 
 *Defined in [`backtrace-0.3.76/src/symbolize/gimli/libs_dl_iterate_phdr.rs:14-17`](../../../../../.source_1765521767/backtrace-0.3.76/src/symbolize/gimli/libs_dl_iterate_phdr.rs#L14-L17)*
 
+#### Trait Implementations
+
+##### `impl Any for CallbackData`
+
+- <span id="callbackdata-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CallbackData`
+
+- <span id="callbackdata-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CallbackData`
+
+- <span id="callbackdata-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for CallbackData`
+
+- <span id="callbackdata-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CallbackData`
+
+- <span id="callbackdata-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for CallbackData`
+
+- <span id="callbackdata-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="callbackdata-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CallbackData`
+
+- <span id="callbackdata-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="callbackdata-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ## Functions
 
 ### `native_libraries`

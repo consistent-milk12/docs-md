@@ -58,7 +58,7 @@ diagnostic error code: ruget::api::bad_json
 ## Features
 
 - Generic [`Diagnostic`](#diagnostic) protocol, compatible (and dependent on)
-  [`std::error::Error`](../addr2line/index.md).
+  [`std::error::Error`](../cargo_docs_md/error/index.md).
 - Unique error codes on every [`Diagnostic`](#diagnostic).
 - Custom links to get more details on error codes.
 - Super handy derive macro for defining diagnostic metadata.
@@ -182,7 +182,7 @@ diagnostic help: try doing it better next time?">
 
 `miette` is _fully compatible_ with library usage. Consumers who don't know
 about, or don't want, `miette` features can safely use its error types as
-regular [`std::error::Error`](../addr2line/index.md).
+regular [`std::error::Error`](../cargo_docs_md/error/index.md).
 
 We highly recommend using something like [`thiserror`](https://docs.rs/thiserror)
 to define unique error types and error wrappers for your library.
@@ -991,9 +991,111 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 - <span id="superreport-new"></span>`fn new<E>(error: E) -> Self`
 
+  Create a new error object from any error type.
+
+  
+
+  The error type must be thread safe and `'static`, so that the `Report`
+
+  will be as well.
+
+  
+
+  If the error type does not provide a backtrace, a backtrace will be
+
+  created here to ensure that a backtrace exists.
+
 - <span id="superreport-msg"></span>`fn msg<M>(message: M) -> Self`
 
+  Create a new error object from a printable error message.
+
+  
+
+  If the argument implements [`std::error::Error`](../cargo_docs_md/error/index.md), prefer `Report::new`
+
+  instead which preserves the underlying error's cause chain and
+
+  backtrace. If the argument may or may not implement [`std::error::Error`](../cargo_docs_md/error/index.md)
+
+  now or in the future, use `miette!(err)` which handles either way
+
+  correctly.
+
+  
+
+  `Report::msg("...")` is equivalent to `miette!("...")` but occasionally
+
+  convenient in places where a function is preferable over a macro, such
+
+  as iterator or stream combinators:
+
+  
+
+  ```rust
+
+  mod ffi {
+
+      pub struct Input;
+
+      pub struct Output;
+
+      pub async fn do_some_work(_: Input) -> Result<Output, &'static str> {
+
+          unimplemented!()
+
+      }
+
+  }
+
+  
+
+  use ffi::{Input, Output};
+
+  
+
+  use futures::stream::{Stream, StreamExt, TryStreamExt};
+
+  use miette::{Report, Result};
+
+  
+
+  async fn demo<S>(stream: S) -> Result<Vec<Output>>
+
+  where
+
+      S: Stream<Item = Input>,
+
+  {
+
+      stream
+
+          .then(ffi::do_some_work) // returns Result<Output, &str>
+
+          .map_err(Report::msg)
+
+          .try_collect()
+
+          .await
+
+  }
+
+  ```
+
 - <span id="superreport-new-boxed"></span>`fn new_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](#diagnostic)
+
+  Create a new error object from a boxed [`Diagnostic`](#diagnostic).
+
+  
+
+  The boxed type must be thread safe and 'static, so that the `Report`
+
+  will be as well.
+
+  
+
+  Boxed `Diagnostic`s don't implement `Diagnostic` themselves due to trait coherence issues.
+
+  This method allows you to create a `Report` from a boxed `Diagnostic`.
 
 - <span id="superreport-from-std"></span>`fn from_std<E>(error: E) -> Self`
 
@@ -1007,37 +1109,217 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 - <span id="superreport-wrap-err"></span>`fn wrap_err<D>(self, msg: D) -> Self`
 
+  Create a new error from an error message to wrap the existing error.
+
+  
+
+  For attaching a higher level error message to a `Result` as it is
+
+  propagated, the [`WrapErr`](crate::WrapErr) extension trait may be more
+
+  convenient than this function.
+
+  
+
+  The primary reason to use `error.wrap_err(...)` instead of
+
+  `result.wrap_err(...)` via the `WrapErr` trait would be if the
+
+  message needs to depend on some data held by the underlying error:
+
 - <span id="superreport-context"></span>`fn context<D>(self, msg: D) -> Self`
+
+  Compatibility re-export of `wrap_err` for interop with `anyhow`
 
 - <span id="superreport-chain"></span>`fn chain(&self) -> Chain<'_>` — [`Chain`](chain/index.md#chain)
 
+  An iterator of the chain of source errors contained by this Report.
+
+  
+
+  This iterator will visit every error in the cause chain of this error
+
+  object, beginning with the error that this error object was created
+
+  from.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use miette::Report;
+
+  use std::io;
+
+  
+
+  pub fn underlying_io_error_kind(error: &Report) -> Option<io::ErrorKind> {
+
+      for cause in error.chain() {
+
+          if let Some(io_error) = cause.downcast_ref::<io::Error>() {
+
+              return Some(io_error.kind());
+
+          }
+
+      }
+
+      None
+
+  }
+
+  ```
+
 - <span id="superreport-root-cause"></span>`fn root_cause(&self) -> &dyn StdError`
+
+  The lowest level cause of this error &mdash; this error's cause's
+
+  cause's cause etc.
+
+  
+
+  The root cause is the last error in the iterator produced by
+
+  [`chain()`](Report::chain).
 
 - <span id="superreport-is"></span>`fn is<E>(&self) -> bool`
 
+  Returns true if `E` is the type held by this error object.
+
+  
+
+  For errors constructed from messages, this method returns true if `E`
+
+  matches the type of the message `D` **or** the type of the error on
+
+  which the message has been attached. For details about the
+
+  interaction between message and downcasting, [see here].
+
 - <span id="superreport-downcast"></span>`fn downcast<E>(self) -> Result<E, Self>`
+
+  Attempt to downcast the error object to a concrete type.
 
 - <span id="superreport-downcast-ref"></span>`fn downcast_ref<E>(&self) -> Option<&E>`
 
+  Downcast this error object by reference.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use miette::{Report, miette};
+
+  use std::fmt::{self, Display};
+
+  use std::task::Poll;
+
+  
+
+  #[derive(Debug)]
+
+  enum DataStoreError {
+
+      Censored(()),
+
+  }
+
+  
+
+  impl Display for DataStoreError {
+
+      fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+
+          unimplemented!()
+
+      }
+
+  }
+
+  
+
+  impl std::error::Error for DataStoreError {}
+
+  
+
+  const REDACTED_CONTENT: () = ();
+
+  
+
+  let error: Report = miette!("...");
+
+  let root_cause = &error;
+
+  
+
+  let ret =
+
+  // If the error was caused by redaction, then return a tombstone instead
+
+  // of the content.
+
+  match root_cause.downcast_ref::<DataStoreError>() {
+
+      Some(DataStoreError::Censored(_)) => Ok(Poll::Ready(REDACTED_CONTENT)),
+
+      None => Err(error),
+
+  }
+
+  ;
+
+  ```
+
 - <span id="superreport-downcast-mut"></span>`fn downcast_mut<E>(&mut self) -> Option<&mut E>`
+
+  Downcast this error object by mutable reference.
 
 - <span id="superreport-handler"></span>`fn handler(&self) -> &dyn ReportHandler` — [`ReportHandler`](#reporthandler)
 
+  Get a reference to the Handler for this Report.
+
 - <span id="superreport-handler-mut"></span>`fn handler_mut(&mut self) -> &mut dyn ReportHandler` — [`ReportHandler`](#reporthandler)
+
+  Get a mutable reference to the Handler for this Report.
 
 - <span id="superreport-with-source-code"></span>`fn with_source_code(self, source_code: impl SourceCode + 'static) -> Report` — [`SourceCode`](#sourcecode), [`Report`](#report)
 
+  Provide source code for this error
+
 - <span id="superreport-from-err"></span>`fn from_err<E>(err: E) -> Self`
+
+  Construct a [`Report`](#report) directly from an error-like type
 
 #### Trait Implementations
 
+##### `impl Any for Report`
+
+- <span id="report-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl AsRef for super::Report`
 
-- <span id="superreport-as-ref"></span>`fn as_ref(&self) -> &dyn Diagnostic + Send + Sync` — [`Diagnostic`](#diagnostic)
+- <span id="superreport-asref-as-ref"></span>`fn as_ref(&self) -> &dyn Diagnostic + Send + Sync` — [`Diagnostic`](#diagnostic)
+
+##### `impl<T> Borrow for Report`
+
+- <span id="report-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Report`
+
+- <span id="report-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for super::Report`
 
-- <span id="superreport-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="superreport-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deref for super::Report`
 
@@ -1047,19 +1329,37 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl DerefMut for super::Report`
 
-- <span id="superreport-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
+- <span id="superreport-derefmut-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Diag for super::Report`
 
-- <span id="superreport-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
+- <span id="superreport-diag-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
 
 ##### `impl Display for super::Report`
 
-- <span id="superreport-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="superreport-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for super::Report`
 
 - <span id="superreport-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for Report`
+
+- <span id="report-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Report`
+
+- <span id="report-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Report`
 
@@ -1073,9 +1373,21 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl ToString for Report`
 
-- <span id="report-to-string"></span>`fn to_string(&self) -> String`
+- <span id="report-tostring-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl TraitKind for Report`
+
+##### `impl<U> TryFrom for Report`
+
+- <span id="report-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="report-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Report`
+
+- <span id="report-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="report-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `InstallError`
 
@@ -1090,29 +1402,71 @@ Error indicating that [`set_hook()`](#set-hook) was unable to install the provid
 
 #### Trait Implementations
 
+##### `impl Any for InstallError`
+
+- <span id="installerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for InstallError`
+
+- <span id="installerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for InstallError`
+
+- <span id="installerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for InstallError`
 
-- <span id="installerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="installerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Diag for InstallError`
 
-- <span id="installerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
+- <span id="installerror-diag-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
 
 ##### `impl Diagnostic for InstallError`
 
 ##### `impl Display for InstallError`
 
-- <span id="installerror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="installerror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for InstallError`
+
+##### `impl<T> From for InstallError`
+
+- <span id="installerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for InstallError`
+
+- <span id="installerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for InstallError`
 
 ##### `impl ToString for InstallError`
 
-- <span id="installerror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="installerror-tostring-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl TraitKind for InstallError`
+
+##### `impl<U> TryFrom for InstallError`
+
+- <span id="installerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="installerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for InstallError`
+
+- <span id="installerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="installerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MietteHandlerOpts`
 
@@ -1160,49 +1514,209 @@ miette::set_hook(Box::new(|_| {
 
 - <span id="miettehandleropts-new"></span>`fn new() -> Self`
 
+  Create a new `MietteHandlerOpts`.
+
 - <span id="miettehandleropts-terminal-links"></span>`fn terminal_links(self, linkify: bool) -> Self`
+
+  If true, specify whether the graphical handler will make codes be
+
+  clickable links in supported terminals. Defaults to auto-detection
+
+  based on known supported terminals.
 
 - <span id="miettehandleropts-graphical-theme"></span>`fn graphical_theme(self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](handlers/index.md#graphicaltheme)
 
+  Set a graphical theme for the handler when rendering in graphical mode.
+
+  Use [`force_graphical()`](`MietteHandlerOpts::force_graphical) to force
+
+  graphical mode. This option overrides
+
+  [`color()`](`MietteHandlerOpts::color).
+
 - <span id="miettehandleropts-with-syntax-highlighting"></span>`fn with_syntax_highlighting(self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](highlighters/index.md#highlighter)
+
+  Set a syntax highlighter when rendering in graphical mode.
+
+  Use [`force_graphical()`](MietteHandlerOpts::force_graphical()) to
+
+  force graphical mode.
+
+  
+
+  Syntax highlighting is disabled by default unless the
+
+  `syntect-highlighter` feature is enabled. Call this method
+
+  to override the default and use a custom highlighter
+
+  implementation instead.
+
+  
+
+  Use
+
+  [`without_syntax_highlighting()`](MietteHandlerOpts::without_syntax_highlighting())
+
+  To disable highlighting completely.
+
+  
+
+  Setting this option will not force color output. In all cases, the
+
+  current color configuration via
+
+  [`color()`](MietteHandlerOpts::color()) takes precedence over
+
+  highlighter configuration. However, this option does take precedence over
+
+  [`rgb_colors()`](MietteHandlerOpts::rgb_colors()) (meaning syntax highlighting will be
+
+  enabled regardless of the value of `MietteHandlerOpts::rgb_colors`).
 
 - <span id="miettehandleropts-without-syntax-highlighting"></span>`fn without_syntax_highlighting(self) -> Self`
 
+  Disables syntax highlighting when rendering in graphical mode.
+
+  Use [`force_graphical()`](MietteHandlerOpts::force_graphical()) to
+
+  force graphical mode.
+
+  
+
+  Syntax highlighting is disabled by default unless the
+
+  `syntect-highlighter` feature is enabled. Call this method if you want
+
+  to disable highlighting when building with this feature.
+
 - <span id="miettehandleropts-width"></span>`fn width(self, width: usize) -> Self`
+
+  Sets the width to wrap the report at. Defaults to 80.
 
 - <span id="miettehandleropts-wrap-lines"></span>`fn wrap_lines(self, wrap_lines: bool) -> Self`
 
+  If true, long lines can be wrapped.
+
+  
+
+  If false, long lines will not be broken when they exceed the width.
+
+  
+
+  Defaults to true.
+
 - <span id="miettehandleropts-break-words"></span>`fn break_words(self, break_words: bool) -> Self`
+
+  If true, long words can be broken when wrapping.
+
+  
+
+  If false, long words will not be broken when they exceed the width.
+
+  
+
+  Defaults to true.
 
 - <span id="miettehandleropts-word-separator"></span>`fn word_separator(self, word_separator: textwrap::WordSeparator) -> Self`
 
+  Sets the `textwrap::WordSeparator` to use when determining wrap points.
+
 - <span id="miettehandleropts-word-splitter"></span>`fn word_splitter(self, word_splitter: textwrap::WordSplitter) -> Self`
+
+  Sets the `textwrap::WordSplitter` to use when determining wrap points.
 
 - <span id="miettehandleropts-with-cause-chain"></span>`fn with_cause_chain(self) -> Self`
 
+  Include the cause chain of the top-level error in the report.
+
 - <span id="miettehandleropts-without-cause-chain"></span>`fn without_cause_chain(self) -> Self`
+
+  Do not include the cause chain of the top-level error in the report.
 
 - <span id="miettehandleropts-show-related-errors-as-siblings"></span>`fn show_related_errors_as_siblings(self) -> Self`
 
+  Show related errors as siblings.
+
 - <span id="miettehandleropts-show-related-errors-as-nested"></span>`fn show_related_errors_as_nested(self) -> Self`
+
+  Show related errors as nested errors.
 
 - <span id="miettehandleropts-color"></span>`fn color(self, color: bool) -> Self`
 
+  If true, colors will be used during graphical rendering, regardless
+
+  of whether or not the terminal supports them.
+
+  
+
+  If false, colors will never be used.
+
+  
+
+  If unspecified, colors will be used only if the terminal supports them.
+
+  
+
+  The actual format depends on the value of
+
+  `MietteHandlerOpts::rgb_colors`.
+
 - <span id="miettehandleropts-rgb-colors"></span>`fn rgb_colors(self, color: RgbColors) -> Self` — [`RgbColors`](#rgbcolors)
+
+  Controls which color format to use if colors are used in graphical
+
+  rendering.
+
+  
+
+  The default is `Never`.
+
+  
+
+  This value does not control whether or not colors are being used in the
+
+  first place. That is handled by the `MietteHandlerOpts::color`
+
+  setting. If colors are not being used, the value of `rgb_colors` has
+
+  no effect.
+
+  
+
+  It also does not control colors when a syntax highlighter is in use.
 
 - <span id="miettehandleropts-unicode"></span>`fn unicode(self, unicode: bool) -> Self`
 
+  If true, forces unicode display for graphical output. If set to false,
+
+  forces ASCII art display.
+
 - <span id="miettehandleropts-force-graphical"></span>`fn force_graphical(self, force: bool) -> Self`
+
+  If true, graphical rendering will be used regardless of terminal
+
+  detection.
 
 - <span id="miettehandleropts-force-narrated"></span>`fn force_narrated(self, force: bool) -> Self`
 
+  If true, forces use of the narrated renderer.
+
 - <span id="miettehandleropts-footer"></span>`fn footer(self, footer: String) -> Self`
+
+  Set a footer to be displayed at the bottom of the report.
 
 - <span id="miettehandleropts-context-lines"></span>`fn context_lines(self, context_lines: usize) -> Self`
 
+  Sets the number of context lines before and after a span to display.
+
 - <span id="miettehandleropts-tab-width"></span>`fn tab_width(self, width: usize) -> Self`
 
+  Set the displayed tab width in spaces.
+
 - <span id="miettehandleropts-build"></span>`fn build(self) -> MietteHandler` — [`MietteHandler`](#miettehandler)
+
+  Builds a [`MietteHandler`](#miettehandler) from this builder.
 
 - <span id="miettehandleropts-is-graphical"></span>`fn is_graphical(&self) -> bool`
 
@@ -1212,19 +1726,73 @@ miette::set_hook(Box::new(|_| {
 
 #### Trait Implementations
 
+##### `impl Any for MietteHandlerOpts`
+
+- <span id="miettehandleropts-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MietteHandlerOpts`
+
+- <span id="miettehandleropts-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MietteHandlerOpts`
+
+- <span id="miettehandleropts-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for MietteHandlerOpts`
 
 - <span id="miettehandleropts-clone"></span>`fn clone(&self) -> MietteHandlerOpts` — [`MietteHandlerOpts`](#miettehandleropts)
 
+##### `impl CloneToUninit for MietteHandlerOpts`
+
+- <span id="miettehandleropts-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for MietteHandlerOpts`
 
-- <span id="miettehandleropts-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="miettehandleropts-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MietteHandlerOpts`
 
 - <span id="miettehandleropts-default"></span>`fn default() -> MietteHandlerOpts` — [`MietteHandlerOpts`](#miettehandleropts)
 
+##### `impl<T> From for MietteHandlerOpts`
+
+- <span id="miettehandleropts-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MietteHandlerOpts`
+
+- <span id="miettehandleropts-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for MietteHandlerOpts`
+
+##### `impl ToOwned for MietteHandlerOpts`
+
+- <span id="miettehandleropts-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="miettehandleropts-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="miettehandleropts-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MietteHandlerOpts`
+
+- <span id="miettehandleropts-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="miettehandleropts-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MietteHandlerOpts`
+
+- <span id="miettehandleropts-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="miettehandleropts-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MietteHandler`
 
@@ -1253,17 +1821,61 @@ printer.
 
 - <span id="miettehandler-new"></span>`fn new() -> Self`
 
+  Creates a new [`MietteHandler`](#miettehandler) with default settings.
+
 #### Trait Implementations
+
+##### `impl Any for MietteHandler`
+
+- <span id="miettehandler-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MietteHandler`
+
+- <span id="miettehandler-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MietteHandler`
+
+- <span id="miettehandler-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Default for MietteHandler`
 
 - <span id="miettehandler-default"></span>`fn default() -> Self`
 
+##### `impl<T> From for MietteHandler`
+
+- <span id="miettehandler-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MietteHandler`
+
+- <span id="miettehandler-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for MietteHandler`
 
 ##### `impl ReportHandler for MietteHandler`
 
-- <span id="miettehandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](#diagnostic)
+- <span id="miettehandler-reporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](#diagnostic)
+
+##### `impl<U> TryFrom for MietteHandler`
+
+- <span id="miettehandler-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="miettehandler-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MietteHandler`
+
+- <span id="miettehandler-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="miettehandler-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MietteDiagnostic`
 
@@ -1319,69 +1931,363 @@ Diagnostic that can be created at runtime.
 
 - <span id="miettediagnostic-new"></span>`fn new(message: impl Into<String>) -> Self`
 
+  Create a new dynamic diagnostic with the given message.
+
+  
+
+  # Examples
+
+  ```rust
+
+  use miette::{Diagnostic, MietteDiagnostic, Severity};
+
+  
+
+  let diag = MietteDiagnostic::new("Oops, something went wrong!");
+
+  assert_eq!(diag.to_string(), "Oops, something went wrong!");
+
+  assert_eq!(diag.message, "Oops, something went wrong!");
+
+  ```
+
 - <span id="miettediagnostic-with-code"></span>`fn with_code(self, code: impl Into<String>) -> Self`
+
+  Return new diagnostic with the given code.
+
+  
+
+  # Examples
+
+  ```rust
+
+  use miette::{Diagnostic, MietteDiagnostic};
+
+  
+
+  let diag = MietteDiagnostic::new("Oops, something went wrong!").with_code("foo::bar::baz");
+
+  assert_eq!(diag.message, "Oops, something went wrong!");
+
+  assert_eq!(diag.code, Some("foo::bar::baz".to_string()));
+
+  ```
 
 - <span id="miettediagnostic-with-severity"></span>`fn with_severity(self, severity: Severity) -> Self` — [`Severity`](#severity)
 
+  Return new diagnostic with the given severity.
+
+  
+
+  # Examples
+
+  ```rust
+
+  use miette::{Diagnostic, MietteDiagnostic, Severity};
+
+  
+
+  let diag = MietteDiagnostic::new("I warn you to stop!").with_severity(Severity::Warning);
+
+  assert_eq!(diag.message, "I warn you to stop!");
+
+  assert_eq!(diag.severity, Some(Severity::Warning));
+
+  ```
+
 - <span id="miettediagnostic-with-help"></span>`fn with_help(self, help: impl Into<String>) -> Self`
+
+  Return new diagnostic with the given help message.
+
+  
+
+  # Examples
+
+  ```rust
+
+  use miette::{Diagnostic, MietteDiagnostic};
+
+  
+
+  let diag = MietteDiagnostic::new("PC is not working").with_help("Try to reboot it again");
+
+  assert_eq!(diag.message, "PC is not working");
+
+  assert_eq!(diag.help, Some("Try to reboot it again".to_string()));
+
+  ```
 
 - <span id="miettediagnostic-with-url"></span>`fn with_url(self, url: impl Into<String>) -> Self`
 
+  Return new diagnostic with the given URL.
+
+  
+
+  # Examples
+
+  ```rust
+
+  use miette::{Diagnostic, MietteDiagnostic};
+
+  
+
+  let diag = MietteDiagnostic::new("PC is not working")
+
+      .with_url("https://letmegooglethat.com/?q=Why+my+pc+doesn%27t+work");
+
+  assert_eq!(diag.message, "PC is not working");
+
+  assert_eq!(
+
+      diag.url,
+
+      Some("https://letmegooglethat.com/?q=Why+my+pc+doesn%27t+work".to_string())
+
+  );
+
+  ```
+
 - <span id="miettediagnostic-with-label"></span>`fn with_label(self, label: impl Into<LabeledSpan>) -> Self` — [`LabeledSpan`](#labeledspan)
+
+  Return new diagnostic with the given label.
+
+  
+
+  Discards previous labels
+
+  
+
+  # Examples
+
+  ```rust
+
+  use miette::{Diagnostic, LabeledSpan, MietteDiagnostic};
+
+  
+
+  let source = "cpp is the best language";
+
+  
+
+  let label = LabeledSpan::at(0..3, "This should be Rust");
+
+  let diag = MietteDiagnostic::new("Wrong best language").with_label(label.clone());
+
+  assert_eq!(diag.message, "Wrong best language");
+
+  assert_eq!(diag.labels, Some(vec![label]));
+
+  ```
 
 - <span id="miettediagnostic-with-labels"></span>`fn with_labels(self, labels: impl IntoIterator<Item = LabeledSpan>) -> Self` — [`LabeledSpan`](#labeledspan)
 
+  Return new diagnostic with the given labels.
+
+  
+
+  Discards previous labels
+
+  
+
+  # Examples
+
+  ```rust
+
+  use miette::{Diagnostic, LabeledSpan, MietteDiagnostic};
+
+  
+
+  let source = "helo wrld";
+
+  
+
+  let labels = vec![
+
+      LabeledSpan::at_offset(3, "add 'l'"),
+
+      LabeledSpan::at_offset(6, "add 'r'"),
+
+  ];
+
+  let diag = MietteDiagnostic::new("Typos in 'hello world'").with_labels(labels.clone());
+
+  assert_eq!(diag.message, "Typos in 'hello world'");
+
+  assert_eq!(diag.labels, Some(labels));
+
+  ```
+
 - <span id="miettediagnostic-and-label"></span>`fn and_label(self, label: impl Into<LabeledSpan>) -> Self` — [`LabeledSpan`](#labeledspan)
+
+  Return new diagnostic with new label added to the existing ones.
+
+  
+
+  # Examples
+
+  ```rust
+
+  use miette::{Diagnostic, LabeledSpan, MietteDiagnostic};
+
+  
+
+  let source = "helo wrld";
+
+  
+
+  let label1 = LabeledSpan::at_offset(3, "add 'l'");
+
+  let label2 = LabeledSpan::at_offset(6, "add 'r'");
+
+  let diag = MietteDiagnostic::new("Typos in 'hello world'")
+
+      .and_label(label1.clone())
+
+      .and_label(label2.clone());
+
+  assert_eq!(diag.message, "Typos in 'hello world'");
+
+  assert_eq!(diag.labels, Some(vec![label1, label2]));
+
+  ```
 
 - <span id="miettediagnostic-and-labels"></span>`fn and_labels(self, labels: impl IntoIterator<Item = LabeledSpan>) -> Self` — [`LabeledSpan`](#labeledspan)
 
+  Return new diagnostic with new labels added to the existing ones.
+
+  
+
+  # Examples
+
+  ```rust
+
+  use miette::{Diagnostic, LabeledSpan, MietteDiagnostic};
+
+  
+
+  let source = "helo wrld";
+
+  
+
+  let label1 = LabeledSpan::at_offset(3, "add 'l'");
+
+  let label2 = LabeledSpan::at_offset(6, "add 'r'");
+
+  let label3 = LabeledSpan::at_offset(9, "add '!'");
+
+  let diag = MietteDiagnostic::new("Typos in 'hello world!'")
+
+      .and_label(label1.clone())
+
+      .and_labels([label2.clone(), label3.clone()]);
+
+  assert_eq!(diag.message, "Typos in 'hello world!'");
+
+  assert_eq!(diag.labels, Some(vec![label1, label2, label3]));
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for MietteDiagnostic`
+
+- <span id="miettediagnostic-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MietteDiagnostic`
+
+- <span id="miettediagnostic-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MietteDiagnostic`
+
+- <span id="miettediagnostic-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for MietteDiagnostic`
 
 - <span id="miettediagnostic-clone"></span>`fn clone(&self) -> MietteDiagnostic` — [`MietteDiagnostic`](#miettediagnostic)
 
+##### `impl CloneToUninit for MietteDiagnostic`
+
+- <span id="miettediagnostic-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for MietteDiagnostic`
 
-- <span id="miettediagnostic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="miettediagnostic-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Diag for MietteDiagnostic`
 
-- <span id="miettediagnostic-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
+- <span id="miettediagnostic-diag-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
 
 ##### `impl Diagnostic for MietteDiagnostic`
 
-- <span id="miettediagnostic-code"></span>`fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="miettediagnostic-diagnostic-code"></span>`fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- <span id="miettediagnostic-severity"></span>`fn severity(&self) -> Option<Severity>` — [`Severity`](#severity)
+- <span id="miettediagnostic-diagnostic-severity"></span>`fn severity(&self) -> Option<Severity>` — [`Severity`](#severity)
 
-- <span id="miettediagnostic-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="miettediagnostic-diagnostic-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- <span id="miettediagnostic-url"></span>`fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="miettediagnostic-diagnostic-url"></span>`fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- <span id="miettediagnostic-labels"></span>`fn labels(&self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](#labeledspan)
+- <span id="miettediagnostic-diagnostic-labels"></span>`fn labels(&self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](#labeledspan)
 
 ##### `impl Display for MietteDiagnostic`
 
-- <span id="miettediagnostic-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="miettediagnostic-display-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for MietteDiagnostic`
 
 ##### `impl Error for MietteDiagnostic`
 
+##### `impl<T> From for MietteDiagnostic`
+
+- <span id="miettediagnostic-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MietteDiagnostic`
+
+- <span id="miettediagnostic-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for MietteDiagnostic`
 
 ##### `impl PartialEq for MietteDiagnostic`
 
-- <span id="miettediagnostic-eq"></span>`fn eq(&self, other: &MietteDiagnostic) -> bool` — [`MietteDiagnostic`](#miettediagnostic)
+- <span id="miettediagnostic-partialeq-eq"></span>`fn eq(&self, other: &MietteDiagnostic) -> bool` — [`MietteDiagnostic`](#miettediagnostic)
 
 ##### `impl StructuralPartialEq for MietteDiagnostic`
 
+##### `impl ToOwned for MietteDiagnostic`
+
+- <span id="miettediagnostic-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="miettediagnostic-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="miettediagnostic-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for MietteDiagnostic`
 
-- <span id="miettediagnostic-to-string"></span>`fn to_string(&self) -> String`
+- <span id="miettediagnostic-tostring-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl TraitKind for MietteDiagnostic`
+
+##### `impl<U> TryFrom for MietteDiagnostic`
+
+- <span id="miettediagnostic-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="miettediagnostic-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MietteDiagnostic`
+
+- <span id="miettediagnostic-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="miettediagnostic-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `NamedSource<S: SourceCode + 'static>`
 
@@ -1403,47 +2309,113 @@ implement `name`. For example [`String`](../cargo_platform/index.md). Or if you 
 
 - <span id="namedsource-new"></span>`fn new(name: impl AsRef<str>, source: S) -> Self`
 
+  Create a new `NamedSource` using a regular [`SourceCode`](#sourcecode) and giving
+
+  its returned [`SpanContents`](#spancontents) a name.
+
 - <span id="namedsource-name"></span>`fn name(&self) -> &str`
+
+  Gets the name of this `NamedSource`.
 
 - <span id="namedsource-inner"></span>`fn inner(&self) -> &S`
 
+  Returns a reference the inner [`SourceCode`](#sourcecode) type for this
+
+  `NamedSource`.
+
 - <span id="namedsource-with-language"></span>`fn with_language(self, language: impl Into<String>) -> Self`
 
+  Sets the [`language`](SpanContents::language) for this source code.
+
 #### Trait Implementations
+
+##### `impl Any for NamedSource<S>`
+
+- <span id="namedsource-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for NamedSource<S>`
+
+- <span id="namedsource-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for NamedSource<S>`
+
+- <span id="namedsource-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<S: clone::Clone + SourceCode + 'static> Clone for NamedSource<S>`
 
 - <span id="namedsource-clone"></span>`fn clone(&self) -> NamedSource<S>` — [`NamedSource`](#namedsource)
 
+##### `impl CloneToUninit for NamedSource<S>`
+
+- <span id="namedsource-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<S: SourceCode> Debug for NamedSource<S>`
 
-- <span id="namedsource-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="namedsource-debug-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl<S: cmp::Eq + SourceCode + 'static> Eq for NamedSource<S>`
+
+##### `impl<T> From for NamedSource<S>`
+
+- <span id="namedsource-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<S: hash::Hash + SourceCode + 'static> Hash for NamedSource<S>`
 
 - <span id="namedsource-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for NamedSource<S>`
+
+- <span id="namedsource-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<S: cmp::Ord + SourceCode + 'static> Ord for NamedSource<S>`
 
-- <span id="namedsource-cmp"></span>`fn cmp(&self, other: &NamedSource<S>) -> cmp::Ordering` — [`NamedSource`](#namedsource)
+- <span id="namedsource-ord-cmp"></span>`fn cmp(&self, other: &NamedSource<S>) -> cmp::Ordering` — [`NamedSource`](#namedsource)
 
 ##### `impl OwoColorize for NamedSource<S>`
 
 ##### `impl<S: cmp::PartialEq + SourceCode + 'static> PartialEq for NamedSource<S>`
 
-- <span id="namedsource-eq"></span>`fn eq(&self, other: &NamedSource<S>) -> bool` — [`NamedSource`](#namedsource)
+- <span id="namedsource-partialeq-eq"></span>`fn eq(&self, other: &NamedSource<S>) -> bool` — [`NamedSource`](#namedsource)
 
 ##### `impl<S: cmp::PartialOrd + SourceCode + 'static> PartialOrd for NamedSource<S>`
 
-- <span id="namedsource-partial-cmp"></span>`fn partial_cmp(&self, other: &NamedSource<S>) -> option::Option<cmp::Ordering>` — [`NamedSource`](#namedsource)
+- <span id="namedsource-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &NamedSource<S>) -> option::Option<cmp::Ordering>` — [`NamedSource`](#namedsource)
 
 ##### `impl<S: SourceCode + 'static> SourceCode for NamedSource<S>`
 
-- <span id="namedsource-read-span"></span>`fn read_span<'a>(self: &'a Self, span: &crate::SourceSpan, context_lines_before: usize, context_lines_after: usize) -> Result<Box<dyn SpanContents<'a>>, MietteError>` — [`SourceSpan`](#sourcespan), [`SpanContents`](#spancontents), [`MietteError`](#mietteerror)
+- <span id="namedsource-sourcecode-read-span"></span>`fn read_span<'a>(self: &'a Self, span: &crate::SourceSpan, context_lines_before: usize, context_lines_after: usize) -> Result<Box<dyn SpanContents<'a>>, MietteError>` — [`SourceSpan`](#sourcespan), [`SpanContents`](#spancontents), [`MietteError`](#mietteerror)
 
 ##### `impl<S: SourceCode + 'static> StructuralPartialEq for NamedSource<S>`
+
+##### `impl ToOwned for NamedSource<S>`
+
+- <span id="namedsource-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="namedsource-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="namedsource-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for NamedSource<S>`
+
+- <span id="namedsource-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="namedsource-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for NamedSource<S>`
+
+- <span id="namedsource-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="namedsource-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Panic`
 
@@ -1459,31 +2431,73 @@ struct Panic(String);
 
 #### Trait Implementations
 
+##### `impl Any for Panic`
+
+- <span id="panic-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Panic`
+
+- <span id="panic-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Panic`
+
+- <span id="panic-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Panic`
 
-- <span id="panic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="panic-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Diag for Panic`
 
-- <span id="panic-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
+- <span id="panic-diag-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
 
 ##### `impl Diagnostic for Panic`
 
-- <span id="panic-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="panic-diagnostic-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
 ##### `impl Display for Panic`
 
-- <span id="panic-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="panic-display-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Error for Panic`
+
+##### `impl<T> From for Panic`
+
+- <span id="panic-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Panic`
+
+- <span id="panic-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Panic`
 
 ##### `impl ToString for Panic`
 
-- <span id="panic-to-string"></span>`fn to_string(&self) -> String`
+- <span id="panic-tostring-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl TraitKind for Panic`
+
+##### `impl<U> TryFrom for Panic`
+
+- <span id="panic-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="panic-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Panic`
+
+- <span id="panic-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="panic-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LabeledSpan`
 
@@ -1503,49 +2517,195 @@ A labeled [`SourceSpan`](#sourcespan).
 
 - <span id="labeledspan-new"></span>`const fn new(label: Option<String>, offset: ByteOffset, len: usize) -> Self` — [`ByteOffset`](#byteoffset)
 
+  Makes a new labeled span.
+
 - <span id="labeledspan-new-with-span"></span>`fn new_with_span(label: Option<String>, span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](#sourcespan)
+
+  Makes a new labeled span using an existing span.
 
 - <span id="labeledspan-new-primary-with-span"></span>`fn new_primary_with_span(label: Option<String>, span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](#sourcespan)
 
+  Makes a new labeled primary span using an existing span.
+
 - <span id="labeledspan-set-label"></span>`fn set_label(&mut self, label: Option<String>)`
+
+  Change the text of the label
 
 - <span id="labeledspan-at"></span>`fn at(span: impl Into<SourceSpan>, label: impl Into<String>) -> Self` — [`SourceSpan`](#sourcespan)
 
+  Makes a new label at specified span
+
+  
+
+  # Examples
+
+  ```rust
+
+  use miette::LabeledSpan;
+
+  
+
+  let source = "Cpp is the best";
+
+  let label = LabeledSpan::at(0..3, "should be Rust");
+
+  assert_eq!(
+
+      label,
+
+      LabeledSpan::new(Some("should be Rust".to_string()), 0, 3)
+
+  )
+
+  ```
+
 - <span id="labeledspan-at-offset"></span>`fn at_offset(offset: ByteOffset, label: impl Into<String>) -> Self` — [`ByteOffset`](#byteoffset)
+
+  Makes a new label that points at a specific offset.
+
+  
+
+  # Examples
+
+  ```rust
+
+  use miette::LabeledSpan;
+
+  
+
+  let source = "(2 + 2";
+
+  let label = LabeledSpan::at_offset(4, "expected a closing parenthesis");
+
+  assert_eq!(
+
+      label,
+
+      LabeledSpan::new(Some("expected a closing parenthesis".to_string()), 4, 0)
+
+  )
+
+  ```
 
 - <span id="labeledspan-underline"></span>`fn underline(span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](#sourcespan)
 
+  Makes a new label without text, that underlines a specific span.
+
+  
+
+  # Examples
+
+  ```rust
+
+  use miette::LabeledSpan;
+
+  
+
+  let source = "You have an eror here";
+
+  let label = LabeledSpan::underline(12..16);
+
+  assert_eq!(label, LabeledSpan::new(None, 12, 4))
+
+  ```
+
 - <span id="labeledspan-label"></span>`fn label(&self) -> Option<&str>`
+
+  Gets the (optional) label string for this `LabeledSpan`.
 
 - <span id="labeledspan-inner"></span>`const fn inner(&self) -> &SourceSpan` — [`SourceSpan`](#sourcespan)
 
+  Returns a reference to the inner [`SourceSpan`](#sourcespan).
+
 - <span id="labeledspan-offset"></span>`const fn offset(&self) -> usize`
+
+  Returns the 0-based starting byte offset.
 
 - <span id="labeledspan-len"></span>`const fn len(&self) -> usize`
 
+  Returns the number of bytes this `LabeledSpan` spans.
+
 - <span id="labeledspan-is-empty"></span>`const fn is_empty(&self) -> bool`
+
+  True if this `LabeledSpan` is empty.
 
 - <span id="labeledspan-primary"></span>`const fn primary(&self) -> bool`
 
+  True if this `LabeledSpan` is a primary span.
+
 #### Trait Implementations
+
+##### `impl Any for LabeledSpan`
+
+- <span id="labeledspan-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LabeledSpan`
+
+- <span id="labeledspan-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LabeledSpan`
+
+- <span id="labeledspan-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for LabeledSpan`
 
 - <span id="labeledspan-clone"></span>`fn clone(&self) -> LabeledSpan` — [`LabeledSpan`](#labeledspan)
 
+##### `impl CloneToUninit for LabeledSpan`
+
+- <span id="labeledspan-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for LabeledSpan`
 
-- <span id="labeledspan-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="labeledspan-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LabeledSpan`
+
+##### `impl<T> From for LabeledSpan`
+
+- <span id="labeledspan-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LabeledSpan`
+
+- <span id="labeledspan-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LabeledSpan`
 
 ##### `impl PartialEq for LabeledSpan`
 
-- <span id="labeledspan-eq"></span>`fn eq(&self, other: &LabeledSpan) -> bool` — [`LabeledSpan`](#labeledspan)
+- <span id="labeledspan-partialeq-eq"></span>`fn eq(&self, other: &LabeledSpan) -> bool` — [`LabeledSpan`](#labeledspan)
 
 ##### `impl StructuralPartialEq for LabeledSpan`
+
+##### `impl ToOwned for LabeledSpan`
+
+- <span id="labeledspan-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="labeledspan-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="labeledspan-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LabeledSpan`
+
+- <span id="labeledspan-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="labeledspan-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LabeledSpan`
+
+- <span id="labeledspan-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="labeledspan-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MietteSpanContents<'a>`
 
@@ -1569,37 +2729,97 @@ Basic implementation of the [`SpanContents`](#spancontents) trait, for convenien
 
 - <span id="miettespancontents-new"></span>`const fn new(data: &'a [u8], span: SourceSpan, line: usize, column: usize, line_count: usize) -> MietteSpanContents<'a>` — [`SourceSpan`](#sourcespan), [`MietteSpanContents`](#miettespancontents)
 
+  Make a new [`MietteSpanContents`](#miettespancontents) object.
+
 - <span id="miettespancontents-new-named"></span>`const fn new_named(name: String, data: &'a [u8], span: SourceSpan, line: usize, column: usize, line_count: usize) -> MietteSpanContents<'a>` — [`SourceSpan`](#sourcespan), [`MietteSpanContents`](#miettespancontents)
+
+  Make a new [`MietteSpanContents`](#miettespancontents) object, with a name for its 'file'.
 
 - <span id="miettespancontents-with-language"></span>`fn with_language(self, language: impl Into<String>) -> Self`
 
+  Sets the [`language`](SpanContents::language) for syntax highlighting.
+
 #### Trait Implementations
+
+##### `impl Any for MietteSpanContents<'a>`
+
+- <span id="miettespancontents-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MietteSpanContents<'a>`
+
+- <span id="miettespancontents-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MietteSpanContents<'a>`
+
+- <span id="miettespancontents-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for MietteSpanContents<'a>`
 
 - <span id="miettespancontents-clone"></span>`fn clone(&self) -> MietteSpanContents<'a>` — [`MietteSpanContents`](#miettespancontents)
 
+##### `impl CloneToUninit for MietteSpanContents<'a>`
+
+- <span id="miettespancontents-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for MietteSpanContents<'a>`
 
-- <span id="miettespancontents-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="miettespancontents-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MietteSpanContents<'a>`
+
+- <span id="miettespancontents-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MietteSpanContents<'a>`
+
+- <span id="miettespancontents-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MietteSpanContents<'a>`
 
 ##### `impl SpanContents for MietteSpanContents<'a>`
 
-- <span id="miettespancontents-data"></span>`fn data(&self) -> &'a [u8]`
+- <span id="miettespancontents-spancontents-data"></span>`fn data(&self) -> &'a [u8]`
 
-- <span id="miettespancontents-span"></span>`fn span(&self) -> &SourceSpan` — [`SourceSpan`](#sourcespan)
+- <span id="miettespancontents-spancontents-span"></span>`fn span(&self) -> &SourceSpan` — [`SourceSpan`](#sourcespan)
 
-- <span id="miettespancontents-line"></span>`fn line(&self) -> usize`
+- <span id="miettespancontents-spancontents-line"></span>`fn line(&self) -> usize`
 
-- <span id="miettespancontents-column"></span>`fn column(&self) -> usize`
+- <span id="miettespancontents-spancontents-column"></span>`fn column(&self) -> usize`
 
-- <span id="miettespancontents-line-count"></span>`fn line_count(&self) -> usize`
+- <span id="miettespancontents-spancontents-line-count"></span>`fn line_count(&self) -> usize`
 
-- <span id="miettespancontents-name"></span>`fn name(&self) -> Option<&str>`
+- <span id="miettespancontents-spancontents-name"></span>`fn name(&self) -> Option<&str>`
 
-- <span id="miettespancontents-language"></span>`fn language(&self) -> Option<&str>`
+- <span id="miettespancontents-spancontents-language"></span>`fn language(&self) -> Option<&str>`
+
+##### `impl ToOwned for MietteSpanContents<'a>`
+
+- <span id="miettespancontents-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="miettespancontents-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="miettespancontents-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MietteSpanContents<'a>`
+
+- <span id="miettespancontents-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="miettespancontents-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MietteSpanContents<'a>`
+
+- <span id="miettespancontents-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="miettespancontents-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SourceSpan`
 
@@ -1628,45 +2848,109 @@ Span within a [`SourceCode`](#sourcecode)
 
 - <span id="sourcespan-new"></span>`const fn new(start: SourceOffset, length: usize) -> Self` — [`SourceOffset`](#sourceoffset)
 
+  Create a new [`SourceSpan`](#sourcespan).
+
 - <span id="sourcespan-offset"></span>`const fn offset(&self) -> usize`
+
+  The absolute offset, in bytes, from the beginning of a [`SourceCode`](#sourcecode).
 
 - <span id="sourcespan-len"></span>`const fn len(&self) -> usize`
 
+  Total length of the [`SourceSpan`](#sourcespan), in bytes.
+
 - <span id="sourcespan-is-empty"></span>`const fn is_empty(&self) -> bool`
 
+  Whether this [`SourceSpan`](#sourcespan) has a length of zero. It may still be useful
+
+  to point to a specific point.
+
 #### Trait Implementations
+
+##### `impl Any for SourceSpan`
+
+- <span id="sourcespan-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SourceSpan`
+
+- <span id="sourcespan-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SourceSpan`
+
+- <span id="sourcespan-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for SourceSpan`
 
 - <span id="sourcespan-clone"></span>`fn clone(&self) -> SourceSpan` — [`SourceSpan`](#sourcespan)
 
+##### `impl CloneToUninit for SourceSpan`
+
+- <span id="sourcespan-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for SourceSpan`
 
 ##### `impl Debug for SourceSpan`
 
-- <span id="sourcespan-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sourcespan-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SourceSpan`
+
+##### `impl<T> From for SourceSpan`
+
+- <span id="sourcespan-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for SourceSpan`
 
 - <span id="sourcespan-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for SourceSpan`
+
+- <span id="sourcespan-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for SourceSpan`
 
-- <span id="sourcespan-cmp"></span>`fn cmp(&self, other: &SourceSpan) -> cmp::Ordering` — [`SourceSpan`](#sourcespan)
+- <span id="sourcespan-ord-cmp"></span>`fn cmp(&self, other: &SourceSpan) -> cmp::Ordering` — [`SourceSpan`](#sourcespan)
 
 ##### `impl OwoColorize for SourceSpan`
 
 ##### `impl PartialEq for SourceSpan`
 
-- <span id="sourcespan-eq"></span>`fn eq(&self, other: &SourceSpan) -> bool` — [`SourceSpan`](#sourcespan)
+- <span id="sourcespan-partialeq-eq"></span>`fn eq(&self, other: &SourceSpan) -> bool` — [`SourceSpan`](#sourcespan)
 
 ##### `impl PartialOrd for SourceSpan`
 
-- <span id="sourcespan-partial-cmp"></span>`fn partial_cmp(&self, other: &SourceSpan) -> option::Option<cmp::Ordering>` — [`SourceSpan`](#sourcespan)
+- <span id="sourcespan-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &SourceSpan) -> option::Option<cmp::Ordering>` — [`SourceSpan`](#sourcespan)
 
 ##### `impl StructuralPartialEq for SourceSpan`
+
+##### `impl ToOwned for SourceSpan`
+
+- <span id="sourcespan-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sourcespan-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sourcespan-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SourceSpan`
+
+- <span id="sourcespan-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sourcespan-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SourceSpan`
+
+- <span id="sourcespan-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sourcespan-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SourceOffset`
 
@@ -1682,43 +2966,131 @@ Newtype that represents the [`ByteOffset`](#byteoffset) from the beginning of a 
 
 - <span id="sourceoffset-offset"></span>`const fn offset(&self) -> ByteOffset` — [`ByteOffset`](#byteoffset)
 
+  Actual byte offset.
+
 - <span id="sourceoffset-from-location"></span>`fn from_location(source: impl AsRef<str>, loc_line: usize, loc_col: usize) -> Self`
+
+  Little utility to help convert 1-based line/column locations into
+
+  miette-compatible Spans
+
+  
+
+  This function is infallible: Giving an out-of-range line/column pair
+
+  will return the offset of the last byte in the source.
 
 - <span id="sourceoffset-from-current-location"></span>`fn from_current_location() -> Result<(String, Self), MietteError>` — [`MietteError`](#mietteerror)
 
+  Returns an offset for the _file_ location of wherever this function is
+
+  called. If you want to get _that_ caller's location, mark this
+
+  function's caller with `#[track_caller]` (and so on and so forth).
+
+  
+
+  Returns both the filename that was given and the offset of the caller
+
+  as a [`SourceOffset`](#sourceoffset).
+
+  
+
+  Keep in mind that this fill only work if the file your Rust source
+
+  file was compiled from is actually available at that location. If
+
+  you're shipping binaries for your application, you'll want to ignore
+
+  the Err case or otherwise report it.
+
 #### Trait Implementations
+
+##### `impl Any for SourceOffset`
+
+- <span id="sourceoffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SourceOffset`
+
+- <span id="sourceoffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SourceOffset`
+
+- <span id="sourceoffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for SourceOffset`
 
 - <span id="sourceoffset-clone"></span>`fn clone(&self) -> SourceOffset` — [`SourceOffset`](#sourceoffset)
 
+##### `impl CloneToUninit for SourceOffset`
+
+- <span id="sourceoffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for SourceOffset`
 
 ##### `impl Debug for SourceOffset`
 
-- <span id="sourceoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sourceoffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SourceOffset`
+
+##### `impl<T> From for SourceOffset`
+
+- <span id="sourceoffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for SourceOffset`
 
 - <span id="sourceoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for SourceOffset`
+
+- <span id="sourceoffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for SourceOffset`
 
-- <span id="sourceoffset-cmp"></span>`fn cmp(&self, other: &SourceOffset) -> cmp::Ordering` — [`SourceOffset`](#sourceoffset)
+- <span id="sourceoffset-ord-cmp"></span>`fn cmp(&self, other: &SourceOffset) -> cmp::Ordering` — [`SourceOffset`](#sourceoffset)
 
 ##### `impl OwoColorize for SourceOffset`
 
 ##### `impl PartialEq for SourceOffset`
 
-- <span id="sourceoffset-eq"></span>`fn eq(&self, other: &SourceOffset) -> bool` — [`SourceOffset`](#sourceoffset)
+- <span id="sourceoffset-partialeq-eq"></span>`fn eq(&self, other: &SourceOffset) -> bool` — [`SourceOffset`](#sourceoffset)
 
 ##### `impl PartialOrd for SourceOffset`
 
-- <span id="sourceoffset-partial-cmp"></span>`fn partial_cmp(&self, other: &SourceOffset) -> option::Option<cmp::Ordering>` — [`SourceOffset`](#sourceoffset)
+- <span id="sourceoffset-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &SourceOffset) -> option::Option<cmp::Ordering>` — [`SourceOffset`](#sourceoffset)
 
 ##### `impl StructuralPartialEq for SourceOffset`
+
+##### `impl ToOwned for SourceOffset`
+
+- <span id="sourceoffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sourceoffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sourceoffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SourceOffset`
+
+- <span id="sourceoffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sourceoffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SourceOffset`
+
+- <span id="sourceoffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sourceoffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -1739,7 +3111,7 @@ Error enum for miette. Used by certain operations in the protocol.
 
 - **`IoError`**
 
-  Wrapper around [`std::io::Error`](../addr2line/index.md). This is returned when something went
+  Wrapper around [`std::io::Error`](../cargo_docs_md/error/index.md). This is returned when something went
   wrong while reading a [`SourceCode`](crate::SourceCode).
 
 - **`OutOfBounds`**
@@ -1749,37 +3121,79 @@ Error enum for miette. Used by certain operations in the protocol.
 
 #### Trait Implementations
 
+##### `impl Any for MietteError`
+
+- <span id="mietteerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MietteError`
+
+- <span id="mietteerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MietteError`
+
+- <span id="mietteerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for MietteError`
 
-- <span id="mietteerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mietteerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Diag for MietteError`
 
-- <span id="mietteerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
+- <span id="mietteerror-diag-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
 
 ##### `impl Diagnostic for MietteError`
 
-- <span id="mietteerror-code"></span>`fn code<'a>(self: &'a Self) -> Option<Box<dyn fmt::Display>>`
+- <span id="mietteerror-diagnostic-code"></span>`fn code<'a>(self: &'a Self) -> Option<Box<dyn fmt::Display>>`
 
-- <span id="mietteerror-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn fmt::Display>>`
+- <span id="mietteerror-diagnostic-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn fmt::Display>>`
 
-- <span id="mietteerror-url"></span>`fn url<'a>(self: &'a Self) -> Option<Box<dyn fmt::Display>>`
+- <span id="mietteerror-diagnostic-url"></span>`fn url<'a>(self: &'a Self) -> Option<Box<dyn fmt::Display>>`
 
 ##### `impl Display for MietteError`
 
-- <span id="mietteerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mietteerror-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for MietteError`
 
-- <span id="mietteerror-source"></span>`fn source(&self) -> Option<&dyn Error>`
+- <span id="mietteerror-error-source"></span>`fn source(&self) -> Option<&dyn Error>`
+
+##### `impl<T> From for MietteError`
+
+- <span id="mietteerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MietteError`
+
+- <span id="mietteerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MietteError`
 
 ##### `impl ToString for MietteError`
 
-- <span id="mietteerror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="mietteerror-tostring-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl TraitKind for MietteError`
+
+##### `impl<U> TryFrom for MietteError`
+
+- <span id="mietteerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="mietteerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MietteError`
+
+- <span id="mietteerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="mietteerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RgbColors`
 
@@ -1811,15 +3225,31 @@ Settings to control the color format used for graphical rendering.
 
 #### Trait Implementations
 
+##### `impl Any for RgbColors`
+
+- <span id="rgbcolors-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RgbColors`
+
+- <span id="rgbcolors-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RgbColors`
+
+- <span id="rgbcolors-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for RgbColors`
 
 - <span id="rgbcolors-clone"></span>`fn clone(&self) -> RgbColors` — [`RgbColors`](#rgbcolors)
+
+##### `impl CloneToUninit for RgbColors`
+
+- <span id="rgbcolors-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for RgbColors`
 
 ##### `impl Debug for RgbColors`
 
-- <span id="rgbcolors-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rgbcolors-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for RgbColors`
 
@@ -1827,13 +3257,51 @@ Settings to control the color format used for graphical rendering.
 
 ##### `impl Eq for RgbColors`
 
+##### `impl<T> From for RgbColors`
+
+- <span id="rgbcolors-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RgbColors`
+
+- <span id="rgbcolors-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for RgbColors`
 
 ##### `impl PartialEq for RgbColors`
 
-- <span id="rgbcolors-eq"></span>`fn eq(&self, other: &RgbColors) -> bool` — [`RgbColors`](#rgbcolors)
+- <span id="rgbcolors-partialeq-eq"></span>`fn eq(&self, other: &RgbColors) -> bool` — [`RgbColors`](#rgbcolors)
 
 ##### `impl StructuralPartialEq for RgbColors`
+
+##### `impl ToOwned for RgbColors`
+
+- <span id="rgbcolors-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rgbcolors-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rgbcolors-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RgbColors`
+
+- <span id="rgbcolors-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rgbcolors-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RgbColors`
+
+- <span id="rgbcolors-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rgbcolors-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `HighlighterOption`
 
@@ -1852,11 +3320,53 @@ enum HighlighterOption {
 
 #### Trait Implementations
 
+##### `impl Any for HighlighterOption`
+
+- <span id="highlighteroption-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HighlighterOption`
+
+- <span id="highlighteroption-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HighlighterOption`
+
+- <span id="highlighteroption-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Default for HighlighterOption`
 
 - <span id="highlighteroption-default"></span>`fn default() -> Self`
 
+##### `impl<T> From for HighlighterOption`
+
+- <span id="highlighteroption-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for HighlighterOption`
+
+- <span id="highlighteroption-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for HighlighterOption`
+
+##### `impl<U> TryFrom for HighlighterOption`
+
+- <span id="highlighteroption-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="highlighteroption-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HighlighterOption`
+
+- <span id="highlighteroption-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="highlighteroption-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Severity`
 
@@ -1891,15 +3401,31 @@ enum Severity {
 
 #### Trait Implementations
 
+##### `impl Any for Severity`
+
+- <span id="severity-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Severity`
+
+- <span id="severity-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Severity`
+
+- <span id="severity-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Severity`
 
 - <span id="severity-clone"></span>`fn clone(&self) -> Severity` — [`Severity`](#severity)
+
+##### `impl CloneToUninit for Severity`
+
+- <span id="severity-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Severity`
 
 ##### `impl Debug for Severity`
 
-- <span id="severity-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="severity-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Severity`
 
@@ -1907,21 +3433,59 @@ enum Severity {
 
 ##### `impl Eq for Severity`
 
+##### `impl<T> From for Severity`
+
+- <span id="severity-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Severity`
+
+- <span id="severity-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Severity`
 
-- <span id="severity-cmp"></span>`fn cmp(&self, other: &Severity) -> cmp::Ordering` — [`Severity`](#severity)
+- <span id="severity-ord-cmp"></span>`fn cmp(&self, other: &Severity) -> cmp::Ordering` — [`Severity`](#severity)
 
 ##### `impl OwoColorize for Severity`
 
 ##### `impl PartialEq for Severity`
 
-- <span id="severity-eq"></span>`fn eq(&self, other: &Severity) -> bool` — [`Severity`](#severity)
+- <span id="severity-partialeq-eq"></span>`fn eq(&self, other: &Severity) -> bool` — [`Severity`](#severity)
 
 ##### `impl PartialOrd for Severity`
 
-- <span id="severity-partial-cmp"></span>`fn partial_cmp(&self, other: &Severity) -> option::Option<cmp::Ordering>` — [`Severity`](#severity)
+- <span id="severity-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Severity) -> option::Option<cmp::Ordering>` — [`Severity`](#severity)
 
 ##### `impl StructuralPartialEq for Severity`
+
+##### `impl ToOwned for Severity`
+
+- <span id="severity-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="severity-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="severity-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Severity`
+
+- <span id="severity-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="severity-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Severity`
+
+- <span id="severity-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="severity-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

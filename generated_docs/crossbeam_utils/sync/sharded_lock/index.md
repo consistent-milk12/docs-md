@@ -63,6 +63,50 @@ A shard containing a single reader-writer lock.
   Write operations will lock each shard and store the guard here. These guards get dropped at
   the same time the big guard is dropped.
 
+#### Trait Implementations
+
+##### `impl Any for Shard`
+
+- <span id="shard-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Shard`
+
+- <span id="shard-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Shard`
+
+- <span id="shard-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Shard`
+
+- <span id="shard-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Shard`
+
+- <span id="shard-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Shard`
+
+- <span id="shard-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="shard-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Shard`
+
+- <span id="shard-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="shard-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `ShardedLock<T: ?Sized>`
 
 ```rust
@@ -134,23 +178,121 @@ let lock = ShardedLock::new(5);
 
 - <span id="shardedlock-new"></span>`fn new(value: T) -> ShardedLock<T>` — [`ShardedLock`](#shardedlock)
 
+  Creates a new sharded reader-writer lock.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::sync::ShardedLock;
+
+  
+
+  let lock = ShardedLock::new(5);
+
+  ```
+
 - <span id="shardedlock-into-inner"></span>`fn into_inner(self) -> LockResult<T>`
+
+  Consumes this lock, returning the underlying data.
+
+  
+
+  # Errors
+
+  
+
+  This method will return an error if the lock is poisoned. A lock gets poisoned when a write
+
+  operation panics.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::sync::ShardedLock;
+
+  
+
+  let lock = ShardedLock::new(String::new());
+
+  {
+
+      let mut s = lock.write().unwrap();
+
+      *s = "modified".to_owned();
+
+  }
+
+  assert_eq!(lock.into_inner().unwrap(), "modified");
+
+  ```
 
 #### Trait Implementations
 
+##### `impl<T> Any for ShardedLock<T>`
+
+- <span id="shardedlock-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ShardedLock<T>`
+
+- <span id="shardedlock-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ShardedLock<T>`
+
+- <span id="shardedlock-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: ?Sized + fmt::Debug> Debug for ShardedLock<T>`
 
-- <span id="shardedlock-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlock-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Default> Default for ShardedLock<T>`
 
 - <span id="shardedlock-default"></span>`fn default() -> ShardedLock<T>` — [`ShardedLock`](#shardedlock)
+
+##### `impl<T> From for ShardedLock<T>`
+
+- <span id="shardedlock-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for ShardedLock<T>`
+
+- <span id="shardedlock-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized> RefUnwindSafe for ShardedLock<T>`
 
 ##### `impl<T: ?Sized + Send> Send for ShardedLock<T>`
 
 ##### `impl<T: ?Sized + Send + Sync> Sync for ShardedLock<T>`
+
+##### `impl<T, U> TryFrom for ShardedLock<T>`
+
+- <span id="shardedlock-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="shardedlock-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for ShardedLock<T>`
+
+- <span id="shardedlock-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="shardedlock-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T: ?Sized> UnwindSafe for ShardedLock<T>`
 
@@ -170,9 +312,21 @@ A guard used to release the shared read access of a [`ShardedLock`](#shardedlock
 
 #### Trait Implementations
 
+##### `impl<T> Any for ShardedLockReadGuard<'a, T>`
+
+- <span id="shardedlockreadguard-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ShardedLockReadGuard<'a, T>`
+
+- <span id="shardedlockreadguard-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ShardedLockReadGuard<'a, T>`
+
+- <span id="shardedlockreadguard-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: fmt::Debug> Debug for ShardedLockReadGuard<'_, T>`
 
-- <span id="shardedlockreadguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockreadguard-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized> Deref for ShardedLockReadGuard<'_, T>`
 
@@ -182,7 +336,25 @@ A guard used to release the shared read access of a [`ShardedLock`](#shardedlock
 
 ##### `impl<T: ?Sized + fmt::Display> Display for ShardedLockReadGuard<'_, T>`
 
-- <span id="shardedlockreadguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockreadguard-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ShardedLockReadGuard<'a, T>`
+
+- <span id="shardedlockreadguard-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for ShardedLockReadGuard<'a, T>`
+
+- <span id="shardedlockreadguard-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Receiver for ShardedLockReadGuard<'a, T>`
 
@@ -192,7 +364,19 @@ A guard used to release the shared read access of a [`ShardedLock`](#shardedlock
 
 ##### `impl<T> ToString for ShardedLockReadGuard<'a, T>`
 
-- <span id="shardedlockreadguard-to-string"></span>`fn to_string(&self) -> String`
+- <span id="shardedlockreadguard-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for ShardedLockReadGuard<'a, T>`
+
+- <span id="shardedlockreadguard-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="shardedlockreadguard-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for ShardedLockReadGuard<'a, T>`
+
+- <span id="shardedlockreadguard-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="shardedlockreadguard-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ShardedLockWriteGuard<'a, T: ?Sized>`
 
@@ -209,9 +393,21 @@ A guard used to release the exclusive write access of a [`ShardedLock`](#sharded
 
 #### Trait Implementations
 
+##### `impl<T> Any for ShardedLockWriteGuard<'a, T>`
+
+- <span id="shardedlockwriteguard-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ShardedLockWriteGuard<'a, T>`
+
+- <span id="shardedlockwriteguard-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ShardedLockWriteGuard<'a, T>`
+
+- <span id="shardedlockwriteguard-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: fmt::Debug> Debug for ShardedLockWriteGuard<'_, T>`
 
-- <span id="shardedlockwriteguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockwriteguard-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized> Deref for ShardedLockWriteGuard<'_, T>`
 
@@ -221,15 +417,33 @@ A guard used to release the exclusive write access of a [`ShardedLock`](#sharded
 
 ##### `impl<T: ?Sized> DerefMut for ShardedLockWriteGuard<'_, T>`
 
-- <span id="shardedlockwriteguard-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
+- <span id="shardedlockwriteguard-derefmut-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + fmt::Display> Display for ShardedLockWriteGuard<'_, T>`
 
-- <span id="shardedlockwriteguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockwriteguard-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized> Drop for ShardedLockWriteGuard<'_, T>`
 
 - <span id="shardedlockwriteguard-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for ShardedLockWriteGuard<'a, T>`
+
+- <span id="shardedlockwriteguard-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for ShardedLockWriteGuard<'a, T>`
+
+- <span id="shardedlockwriteguard-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Receiver for ShardedLockWriteGuard<'a, T>`
 
@@ -239,7 +453,19 @@ A guard used to release the exclusive write access of a [`ShardedLock`](#sharded
 
 ##### `impl<T> ToString for ShardedLockWriteGuard<'a, T>`
 
-- <span id="shardedlockwriteguard-to-string"></span>`fn to_string(&self) -> String`
+- <span id="shardedlockwriteguard-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for ShardedLockWriteGuard<'a, T>`
+
+- <span id="shardedlockwriteguard-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="shardedlockwriteguard-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for ShardedLockWriteGuard<'a, T>`
+
+- <span id="shardedlockwriteguard-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="shardedlockwriteguard-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ThreadIndices`
 
@@ -269,6 +495,50 @@ The global registry keeping track of registered threads and indices.
 
   The next index to allocate if the free list is empty.
 
+#### Trait Implementations
+
+##### `impl Any for ThreadIndices`
+
+- <span id="threadindices-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ThreadIndices`
+
+- <span id="threadindices-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ThreadIndices`
+
+- <span id="threadindices-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for ThreadIndices`
+
+- <span id="threadindices-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ThreadIndices`
+
+- <span id="threadindices-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ThreadIndices`
+
+- <span id="threadindices-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="threadindices-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ThreadIndices`
+
+- <span id="threadindices-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="threadindices-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `Registration`
 
 ```rust
@@ -286,9 +556,51 @@ When dropped, unregisters the thread and frees the reserved index.
 
 #### Trait Implementations
 
+##### `impl Any for Registration`
+
+- <span id="registration-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Registration`
+
+- <span id="registration-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Registration`
+
+- <span id="registration-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Drop for Registration`
 
 - <span id="registration-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for Registration`
+
+- <span id="registration-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Registration`
+
+- <span id="registration-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Registration`
+
+- <span id="registration-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="registration-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Registration`
+
+- <span id="registration-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="registration-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

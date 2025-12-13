@@ -28,9 +28,39 @@ struct AbortIfPanic;
 
 #### Trait Implementations
 
+##### `impl Any for AbortIfPanic`
+
+- <span id="abortifpanic-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AbortIfPanic`
+
+- <span id="abortifpanic-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AbortIfPanic`
+
+- <span id="abortifpanic-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Drop for AbortIfPanic`
 
 - <span id="abortifpanic-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for AbortIfPanic`
+
+- <span id="abortifpanic-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AbortIfPanic`
+
+- <span id="abortifpanic-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for AbortIfPanic`
 
@@ -38,13 +68,25 @@ struct AbortIfPanic;
 
 - <span id="abortifpanic-pointable-type-init"></span>`type Init = T`
 
-- <span id="abortifpanic-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="abortifpanic-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="abortifpanic-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="abortifpanic-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="abortifpanic-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="abortifpanic-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="abortifpanic-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="abortifpanic-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for AbortIfPanic`
+
+- <span id="abortifpanic-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="abortifpanic-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AbortIfPanic`
+
+- <span id="abortifpanic-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="abortifpanic-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

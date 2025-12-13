@@ -27,11 +27,12 @@ struct RenderConfig {
     pub group_impls: bool,
     pub hide_trivial_derives: bool,
     pub method_anchors: bool,
+    pub full_method_docs: bool,
     pub include_source: SourceConfig,
 }
 ```
 
-*Defined in `src/generator/config.rs:14-32`*
+*Defined in `src/generator/config.rs:14-39`*
 
 Configuration options for markdown rendering.
 
@@ -57,25 +58,67 @@ Configuration options for markdown rendering.
 
   Generate method-level anchors for deep linking.
 
+- **`full_method_docs`**: `bool`
+
+  Include full method documentation instead of first-paragraph summaries.
+  
+  When `false` (default), method docs in impl blocks show only the first
+  paragraph (up to the first blank line). When `true`, the complete
+  documentation is included.
+
 - **`include_source`**: `SourceConfig`
 
   Source code integration options.
 
 #### Trait Implementations
 
+##### `impl Any for RenderConfig`
+
+- <span id="renderconfig-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RenderConfig`
+
+- <span id="renderconfig-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RenderConfig`
+
+- <span id="renderconfig-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for RenderConfig`
 
 - <span id="renderconfig-clone"></span>`fn clone(&self) -> RenderConfig` — [`RenderConfig`](#renderconfig)
 
+##### `impl CloneToUninit for RenderConfig`
+
+- <span id="renderconfig-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for RenderConfig`
 
-- <span id="renderconfig-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="renderconfig-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for RenderConfig`
 
 - <span id="renderconfig-default"></span>`fn default() -> Self`
 
+##### `impl<T> From for RenderConfig`
+
+- <span id="renderconfig-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for RenderConfig`
+
+##### `impl<U> Into for RenderConfig`
+
+- <span id="renderconfig-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for RenderConfig`
 
@@ -87,13 +130,33 @@ Configuration options for markdown rendering.
 
 - <span id="renderconfig-pointable-type-init"></span>`type Init = T`
 
-- <span id="renderconfig-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="renderconfig-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="renderconfig-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="renderconfig-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="renderconfig-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="renderconfig-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="renderconfig-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="renderconfig-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for RenderConfig`
+
+- <span id="renderconfig-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="renderconfig-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="renderconfig-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RenderConfig`
+
+- <span id="renderconfig-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="renderconfig-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RenderConfig`
+
+- <span id="renderconfig-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="renderconfig-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for RenderConfig`
 
@@ -109,7 +172,7 @@ struct SourceConfig {
 }
 ```
 
-*Defined in `src/generator/config.rs:42-61`*
+*Defined in `src/generator/config.rs:49-68`*
 
 Configuration for source code integration.
 
@@ -143,19 +206,53 @@ Requires the `source-parsing` feature to have any effect.
 
 #### Trait Implementations
 
+##### `impl Any for SourceConfig`
+
+- <span id="sourceconfig-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SourceConfig`
+
+- <span id="sourceconfig-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SourceConfig`
+
+- <span id="sourceconfig-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SourceConfig`
 
 - <span id="sourceconfig-clone"></span>`fn clone(&self) -> SourceConfig` — [`SourceConfig`](#sourceconfig)
 
+##### `impl CloneToUninit for SourceConfig`
+
+- <span id="sourceconfig-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for SourceConfig`
 
-- <span id="sourceconfig-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sourceconfig-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for SourceConfig`
 
 - <span id="sourceconfig-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](#sourceconfig)
 
+##### `impl<T> From for SourceConfig`
+
+- <span id="sourceconfig-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for SourceConfig`
+
+##### `impl<U> Into for SourceConfig`
+
+- <span id="sourceconfig-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SourceConfig`
 
@@ -167,13 +264,33 @@ Requires the `source-parsing` feature to have any effect.
 
 - <span id="sourceconfig-pointable-type-init"></span>`type Init = T`
 
-- <span id="sourceconfig-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="sourceconfig-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="sourceconfig-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="sourceconfig-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="sourceconfig-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="sourceconfig-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="sourceconfig-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="sourceconfig-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for SourceConfig`
+
+- <span id="sourceconfig-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sourceconfig-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sourceconfig-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SourceConfig`
+
+- <span id="sourceconfig-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sourceconfig-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SourceConfig`
+
+- <span id="sourceconfig-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sourceconfig-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for SourceConfig`
 

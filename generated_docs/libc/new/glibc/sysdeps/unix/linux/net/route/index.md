@@ -43,13 +43,59 @@ struct rtentry {
 
 #### Trait Implementations
 
+##### `impl Any for rtentry`
+
+- <span id="rtentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for rtentry`
+
+- <span id="rtentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for rtentry`
+
+- <span id="rtentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for rtentry`
 
 - <span id="rtentry-clone"></span>`fn clone(&self) -> rtentry` — [`rtentry`](../../../../../../index.md#rtentry)
+
+##### `impl CloneToUninit for rtentry`
+
+- <span id="rtentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for rtentry`
 
 ##### `impl Debug for rtentry`
 
-- <span id="rtentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rtentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for rtentry`
+
+- <span id="rtentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for rtentry`
+
+- <span id="rtentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for rtentry`
+
+- <span id="rtentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rtentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for rtentry`
+
+- <span id="rtentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rtentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

@@ -2097,27 +2097,81 @@ This is intended to be small enough to pass by value.
 
 #### Trait Implementations
 
+##### `impl Any for Encoding`
+
+- <span id="encoding-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Encoding`
+
+- <span id="encoding-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Encoding`
+
+- <span id="encoding-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Encoding`
 
 - <span id="encoding-clone"></span>`fn clone(&self) -> Encoding` — [`Encoding`](#encoding)
+
+##### `impl CloneToUninit for Encoding`
+
+- <span id="encoding-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Encoding`
 
 ##### `impl Debug for Encoding`
 
-- <span id="encoding-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="encoding-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Encoding`
+
+##### `impl<T> From for Encoding`
+
+- <span id="encoding-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Encoding`
 
 - <span id="encoding-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Encoding`
+
+- <span id="encoding-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Encoding`
 
-- <span id="encoding-eq"></span>`fn eq(&self, other: &Encoding) -> bool` — [`Encoding`](#encoding)
+- <span id="encoding-partialeq-eq"></span>`fn eq(&self, other: &Encoding) -> bool` — [`Encoding`](#encoding)
 
 ##### `impl StructuralPartialEq for Encoding`
+
+##### `impl ToOwned for Encoding`
+
+- <span id="encoding-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="encoding-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="encoding-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Encoding`
+
+- <span id="encoding-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="encoding-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Encoding`
+
+- <span id="encoding-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="encoding-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LineEncoding`
 
@@ -2160,15 +2214,31 @@ Encoding parameters for a line number program.
 
 #### Trait Implementations
 
+##### `impl Any for LineEncoding`
+
+- <span id="lineencoding-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LineEncoding`
+
+- <span id="lineencoding-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LineEncoding`
+
+- <span id="lineencoding-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for LineEncoding`
 
 - <span id="lineencoding-clone"></span>`fn clone(&self) -> LineEncoding` — [`LineEncoding`](#lineencoding)
+
+##### `impl CloneToUninit for LineEncoding`
+
+- <span id="lineencoding-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for LineEncoding`
 
 ##### `impl Debug for LineEncoding`
 
-- <span id="lineencoding-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lineencoding-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for LineEncoding`
 
@@ -2176,15 +2246,53 @@ Encoding parameters for a line number program.
 
 ##### `impl Eq for LineEncoding`
 
+##### `impl<T> From for LineEncoding`
+
+- <span id="lineencoding-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for LineEncoding`
 
 - <span id="lineencoding-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for LineEncoding`
+
+- <span id="lineencoding-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for LineEncoding`
 
-- <span id="lineencoding-eq"></span>`fn eq(&self, other: &LineEncoding) -> bool` — [`LineEncoding`](#lineencoding)
+- <span id="lineencoding-partialeq-eq"></span>`fn eq(&self, other: &LineEncoding) -> bool` — [`LineEncoding`](#lineencoding)
 
 ##### `impl StructuralPartialEq for LineEncoding`
+
+##### `impl ToOwned for LineEncoding`
+
+- <span id="lineencoding-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="lineencoding-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="lineencoding-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LineEncoding`
+
+- <span id="lineencoding-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lineencoding-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LineEncoding`
+
+- <span id="lineencoding-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lineencoding-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Register`
 
@@ -2205,35 +2313,89 @@ a ULEB128, but supported architectures need 16 bits at most.
 
 #### Trait Implementations
 
+##### `impl Any for Register`
+
+- <span id="register-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Register`
+
+- <span id="register-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Register`
+
+- <span id="register-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Register`
 
 - <span id="register-clone"></span>`fn clone(&self) -> Register` — [`Register`](#register)
+
+##### `impl CloneToUninit for Register`
+
+- <span id="register-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Register`
 
 ##### `impl Debug for Register`
 
-- <span id="register-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="register-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Register`
+
+##### `impl<T> From for Register`
+
+- <span id="register-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Register`
 
 - <span id="register-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Register`
+
+- <span id="register-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Register`
 
-- <span id="register-cmp"></span>`fn cmp(&self, other: &Register) -> cmp::Ordering` — [`Register`](#register)
+- <span id="register-ord-cmp"></span>`fn cmp(&self, other: &Register) -> cmp::Ordering` — [`Register`](#register)
 
 ##### `impl PartialEq for Register`
 
-- <span id="register-eq"></span>`fn eq(&self, other: &Register) -> bool` — [`Register`](#register)
+- <span id="register-partialeq-eq"></span>`fn eq(&self, other: &Register) -> bool` — [`Register`](#register)
 
 ##### `impl PartialOrd for Register`
 
-- <span id="register-partial-cmp"></span>`fn partial_cmp(&self, other: &Register) -> option::Option<cmp::Ordering>` — [`Register`](#register)
+- <span id="register-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Register) -> option::Option<cmp::Ordering>` — [`Register`](#register)
 
 ##### `impl StructuralPartialEq for Register`
+
+##### `impl ToOwned for Register`
+
+- <span id="register-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="register-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="register-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Register`
+
+- <span id="register-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="register-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Register`
+
+- <span id="register-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="register-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugAbbrevOffset<T>`
 
@@ -2247,27 +2409,81 @@ An offset into the `.debug_abbrev` section.
 
 #### Trait Implementations
 
+##### `impl<T> Any for DebugAbbrevOffset<T>`
+
+- <span id="debugabbrevoffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugAbbrevOffset<T>`
+
+- <span id="debugabbrevoffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugAbbrevOffset<T>`
+
+- <span id="debugabbrevoffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for DebugAbbrevOffset<T>`
 
 - <span id="debugabbrevoffset-clone"></span>`fn clone(&self) -> DebugAbbrevOffset<T>` — [`DebugAbbrevOffset`](#debugabbrevoffset)
+
+##### `impl<T> CloneToUninit for DebugAbbrevOffset<T>`
+
+- <span id="debugabbrevoffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for DebugAbbrevOffset<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugAbbrevOffset<T>`
 
-- <span id="debugabbrevoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugabbrevoffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugAbbrevOffset<T>`
+
+##### `impl<T> From for DebugAbbrevOffset<T>`
+
+- <span id="debugabbrevoffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: hash::Hash> Hash for DebugAbbrevOffset<T>`
 
 - <span id="debugabbrevoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T, U> Into for DebugAbbrevOffset<T>`
+
+- <span id="debugabbrevoffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugAbbrevOffset<T>`
 
-- <span id="debugabbrevoffset-eq"></span>`fn eq(&self, other: &DebugAbbrevOffset<T>) -> bool` — [`DebugAbbrevOffset`](#debugabbrevoffset)
+- <span id="debugabbrevoffset-partialeq-eq"></span>`fn eq(&self, other: &DebugAbbrevOffset<T>) -> bool` — [`DebugAbbrevOffset`](#debugabbrevoffset)
 
 ##### `impl<T> StructuralPartialEq for DebugAbbrevOffset<T>`
+
+##### `impl<T> ToOwned for DebugAbbrevOffset<T>`
+
+- <span id="debugabbrevoffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugabbrevoffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugabbrevoffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugAbbrevOffset<T>`
+
+- <span id="debugabbrevoffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugabbrevoffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugAbbrevOffset<T>`
+
+- <span id="debugabbrevoffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugabbrevoffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugAddrOffset<T>`
 
@@ -2281,23 +2497,77 @@ An offset into the `.debug_addr` section.
 
 #### Trait Implementations
 
+##### `impl<T> Any for DebugAddrOffset<T>`
+
+- <span id="debugaddroffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugAddrOffset<T>`
+
+- <span id="debugaddroffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugAddrOffset<T>`
+
+- <span id="debugaddroffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for DebugAddrOffset<T>`
 
 - <span id="debugaddroffset-clone"></span>`fn clone(&self) -> DebugAddrOffset<T>` — [`DebugAddrOffset`](#debugaddroffset)
+
+##### `impl<T> CloneToUninit for DebugAddrOffset<T>`
+
+- <span id="debugaddroffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for DebugAddrOffset<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugAddrOffset<T>`
 
-- <span id="debugaddroffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugaddroffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugAddrOffset<T>`
 
+##### `impl<T> From for DebugAddrOffset<T>`
+
+- <span id="debugaddroffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for DebugAddrOffset<T>`
+
+- <span id="debugaddroffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugAddrOffset<T>`
 
-- <span id="debugaddroffset-eq"></span>`fn eq(&self, other: &DebugAddrOffset<T>) -> bool` — [`DebugAddrOffset`](#debugaddroffset)
+- <span id="debugaddroffset-partialeq-eq"></span>`fn eq(&self, other: &DebugAddrOffset<T>) -> bool` — [`DebugAddrOffset`](#debugaddroffset)
 
 ##### `impl<T> StructuralPartialEq for DebugAddrOffset<T>`
+
+##### `impl<T> ToOwned for DebugAddrOffset<T>`
+
+- <span id="debugaddroffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugaddroffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugaddroffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugAddrOffset<T>`
+
+- <span id="debugaddroffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugaddroffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugAddrOffset<T>`
+
+- <span id="debugaddroffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugaddroffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugAddrBase<T>`
 
@@ -2311,23 +2581,77 @@ An offset to a set of entries in the `.debug_addr` section.
 
 #### Trait Implementations
 
+##### `impl<T> Any for DebugAddrBase<T>`
+
+- <span id="debugaddrbase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugAddrBase<T>`
+
+- <span id="debugaddrbase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugAddrBase<T>`
+
+- <span id="debugaddrbase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for DebugAddrBase<T>`
 
 - <span id="debugaddrbase-clone"></span>`fn clone(&self) -> DebugAddrBase<T>` — [`DebugAddrBase`](#debugaddrbase)
+
+##### `impl<T> CloneToUninit for DebugAddrBase<T>`
+
+- <span id="debugaddrbase-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for DebugAddrBase<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugAddrBase<T>`
 
-- <span id="debugaddrbase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugaddrbase-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugAddrBase<T>`
 
+##### `impl<T> From for DebugAddrBase<T>`
+
+- <span id="debugaddrbase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for DebugAddrBase<T>`
+
+- <span id="debugaddrbase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugAddrBase<T>`
 
-- <span id="debugaddrbase-eq"></span>`fn eq(&self, other: &DebugAddrBase<T>) -> bool` — [`DebugAddrBase`](#debugaddrbase)
+- <span id="debugaddrbase-partialeq-eq"></span>`fn eq(&self, other: &DebugAddrBase<T>) -> bool` — [`DebugAddrBase`](#debugaddrbase)
 
 ##### `impl<T> StructuralPartialEq for DebugAddrBase<T>`
+
+##### `impl<T> ToOwned for DebugAddrBase<T>`
+
+- <span id="debugaddrbase-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugaddrbase-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugaddrbase-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugAddrBase<T>`
+
+- <span id="debugaddrbase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugaddrbase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugAddrBase<T>`
+
+- <span id="debugaddrbase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugaddrbase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugAddrIndex<T>`
 
@@ -2341,23 +2665,77 @@ An index into a set of addresses in the `.debug_addr` section.
 
 #### Trait Implementations
 
+##### `impl<T> Any for DebugAddrIndex<T>`
+
+- <span id="debugaddrindex-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugAddrIndex<T>`
+
+- <span id="debugaddrindex-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugAddrIndex<T>`
+
+- <span id="debugaddrindex-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for DebugAddrIndex<T>`
 
 - <span id="debugaddrindex-clone"></span>`fn clone(&self) -> DebugAddrIndex<T>` — [`DebugAddrIndex`](#debugaddrindex)
+
+##### `impl<T> CloneToUninit for DebugAddrIndex<T>`
+
+- <span id="debugaddrindex-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for DebugAddrIndex<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugAddrIndex<T>`
 
-- <span id="debugaddrindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugaddrindex-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugAddrIndex<T>`
 
+##### `impl<T> From for DebugAddrIndex<T>`
+
+- <span id="debugaddrindex-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for DebugAddrIndex<T>`
+
+- <span id="debugaddrindex-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugAddrIndex<T>`
 
-- <span id="debugaddrindex-eq"></span>`fn eq(&self, other: &DebugAddrIndex<T>) -> bool` — [`DebugAddrIndex`](#debugaddrindex)
+- <span id="debugaddrindex-partialeq-eq"></span>`fn eq(&self, other: &DebugAddrIndex<T>) -> bool` — [`DebugAddrIndex`](#debugaddrindex)
 
 ##### `impl<T> StructuralPartialEq for DebugAddrIndex<T>`
+
+##### `impl<T> ToOwned for DebugAddrIndex<T>`
+
+- <span id="debugaddrindex-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugaddrindex-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugaddrindex-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugAddrIndex<T>`
+
+- <span id="debugaddrindex-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugaddrindex-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugAddrIndex<T>`
+
+- <span id="debugaddrindex-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugaddrindex-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugArangesOffset<T>`
 
@@ -2371,23 +2749,77 @@ An offset into the `.debug_aranges` section.
 
 #### Trait Implementations
 
+##### `impl<T> Any for DebugArangesOffset<T>`
+
+- <span id="debugarangesoffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugArangesOffset<T>`
+
+- <span id="debugarangesoffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugArangesOffset<T>`
+
+- <span id="debugarangesoffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for DebugArangesOffset<T>`
 
 - <span id="debugarangesoffset-clone"></span>`fn clone(&self) -> DebugArangesOffset<T>` — [`DebugArangesOffset`](#debugarangesoffset)
+
+##### `impl<T> CloneToUninit for DebugArangesOffset<T>`
+
+- <span id="debugarangesoffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for DebugArangesOffset<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugArangesOffset<T>`
 
-- <span id="debugarangesoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugarangesoffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugArangesOffset<T>`
 
+##### `impl<T> From for DebugArangesOffset<T>`
+
+- <span id="debugarangesoffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for DebugArangesOffset<T>`
+
+- <span id="debugarangesoffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugArangesOffset<T>`
 
-- <span id="debugarangesoffset-eq"></span>`fn eq(&self, other: &DebugArangesOffset<T>) -> bool` — [`DebugArangesOffset`](#debugarangesoffset)
+- <span id="debugarangesoffset-partialeq-eq"></span>`fn eq(&self, other: &DebugArangesOffset<T>) -> bool` — [`DebugArangesOffset`](#debugarangesoffset)
 
 ##### `impl<T> StructuralPartialEq for DebugArangesOffset<T>`
+
+##### `impl<T> ToOwned for DebugArangesOffset<T>`
+
+- <span id="debugarangesoffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugarangesoffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugarangesoffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugArangesOffset<T>`
+
+- <span id="debugarangesoffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugarangesoffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugArangesOffset<T>`
+
+- <span id="debugarangesoffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugarangesoffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugInfoOffset<T>`
 
@@ -2403,37 +2835,97 @@ An offset into the `.debug_info` section.
 
 - <span id="cratecommondebuginfooffset-to-unit-offset"></span>`fn to_unit_offset<R>(&self, unit: &UnitHeader<R>) -> Option<UnitOffset<T>>` — [`UnitHeader`](read/index.md#unitheader), [`UnitOffset`](#unitoffset)
 
+  Convert an offset to be relative to the start of the given unit,
+
+  instead of relative to the start of the .debug_info section.
+
+  Returns `None` if the offset is not within this unit entries.
+
 #### Trait Implementations
+
+##### `impl<T> Any for DebugInfoOffset<T>`
+
+- <span id="debuginfooffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugInfoOffset<T>`
+
+- <span id="debuginfooffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugInfoOffset<T>`
+
+- <span id="debuginfooffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: clone::Clone> Clone for DebugInfoOffset<T>`
 
 - <span id="debuginfooffset-clone"></span>`fn clone(&self) -> DebugInfoOffset<T>` — [`DebugInfoOffset`](#debuginfooffset)
 
+##### `impl<T> CloneToUninit for DebugInfoOffset<T>`
+
+- <span id="debuginfooffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: marker::Copy> Copy for DebugInfoOffset<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugInfoOffset<T>`
 
-- <span id="debuginfooffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debuginfooffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugInfoOffset<T>`
+
+##### `impl<T> From for DebugInfoOffset<T>`
+
+- <span id="debuginfooffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: hash::Hash> Hash for DebugInfoOffset<T>`
 
 - <span id="debuginfooffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T, U> Into for DebugInfoOffset<T>`
+
+- <span id="debuginfooffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::Ord> Ord for DebugInfoOffset<T>`
 
-- <span id="debuginfooffset-cmp"></span>`fn cmp(&self, other: &DebugInfoOffset<T>) -> cmp::Ordering` — [`DebugInfoOffset`](#debuginfooffset)
+- <span id="debuginfooffset-ord-cmp"></span>`fn cmp(&self, other: &DebugInfoOffset<T>) -> cmp::Ordering` — [`DebugInfoOffset`](#debuginfooffset)
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugInfoOffset<T>`
 
-- <span id="debuginfooffset-eq"></span>`fn eq(&self, other: &DebugInfoOffset<T>) -> bool` — [`DebugInfoOffset`](#debuginfooffset)
+- <span id="debuginfooffset-partialeq-eq"></span>`fn eq(&self, other: &DebugInfoOffset<T>) -> bool` — [`DebugInfoOffset`](#debuginfooffset)
 
 ##### `impl<T: cmp::PartialOrd> PartialOrd for DebugInfoOffset<T>`
 
-- <span id="debuginfooffset-partial-cmp"></span>`fn partial_cmp(&self, other: &DebugInfoOffset<T>) -> option::Option<cmp::Ordering>` — [`DebugInfoOffset`](#debuginfooffset)
+- <span id="debuginfooffset-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DebugInfoOffset<T>) -> option::Option<cmp::Ordering>` — [`DebugInfoOffset`](#debuginfooffset)
 
 ##### `impl<T> StructuralPartialEq for DebugInfoOffset<T>`
+
+##### `impl<T> ToOwned for DebugInfoOffset<T>`
+
+- <span id="debuginfooffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debuginfooffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debuginfooffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugInfoOffset<T>`
+
+- <span id="debuginfooffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debuginfooffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugInfoOffset<T>`
+
+- <span id="debuginfooffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debuginfooffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugLineOffset<T>`
 
@@ -2447,23 +2939,77 @@ An offset into the `.debug_line` section.
 
 #### Trait Implementations
 
+##### `impl<T> Any for DebugLineOffset<T>`
+
+- <span id="debuglineoffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugLineOffset<T>`
+
+- <span id="debuglineoffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugLineOffset<T>`
+
+- <span id="debuglineoffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for DebugLineOffset<T>`
 
 - <span id="debuglineoffset-clone"></span>`fn clone(&self) -> DebugLineOffset<T>` — [`DebugLineOffset`](#debuglineoffset)
+
+##### `impl<T> CloneToUninit for DebugLineOffset<T>`
+
+- <span id="debuglineoffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for DebugLineOffset<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugLineOffset<T>`
 
-- <span id="debuglineoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debuglineoffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugLineOffset<T>`
 
+##### `impl<T> From for DebugLineOffset<T>`
+
+- <span id="debuglineoffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for DebugLineOffset<T>`
+
+- <span id="debuglineoffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugLineOffset<T>`
 
-- <span id="debuglineoffset-eq"></span>`fn eq(&self, other: &DebugLineOffset<T>) -> bool` — [`DebugLineOffset`](#debuglineoffset)
+- <span id="debuglineoffset-partialeq-eq"></span>`fn eq(&self, other: &DebugLineOffset<T>) -> bool` — [`DebugLineOffset`](#debuglineoffset)
 
 ##### `impl<T> StructuralPartialEq for DebugLineOffset<T>`
+
+##### `impl<T> ToOwned for DebugLineOffset<T>`
+
+- <span id="debuglineoffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debuglineoffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debuglineoffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugLineOffset<T>`
+
+- <span id="debuglineoffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debuglineoffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugLineOffset<T>`
+
+- <span id="debuglineoffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debuglineoffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugLineStrOffset<T>`
 
@@ -2477,23 +3023,77 @@ An offset into the `.debug_line_str` section.
 
 #### Trait Implementations
 
+##### `impl<T> Any for DebugLineStrOffset<T>`
+
+- <span id="debuglinestroffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugLineStrOffset<T>`
+
+- <span id="debuglinestroffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugLineStrOffset<T>`
+
+- <span id="debuglinestroffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for DebugLineStrOffset<T>`
 
 - <span id="debuglinestroffset-clone"></span>`fn clone(&self) -> DebugLineStrOffset<T>` — [`DebugLineStrOffset`](#debuglinestroffset)
+
+##### `impl<T> CloneToUninit for DebugLineStrOffset<T>`
+
+- <span id="debuglinestroffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for DebugLineStrOffset<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugLineStrOffset<T>`
 
-- <span id="debuglinestroffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debuglinestroffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugLineStrOffset<T>`
 
+##### `impl<T> From for DebugLineStrOffset<T>`
+
+- <span id="debuglinestroffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for DebugLineStrOffset<T>`
+
+- <span id="debuglinestroffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugLineStrOffset<T>`
 
-- <span id="debuglinestroffset-eq"></span>`fn eq(&self, other: &DebugLineStrOffset<T>) -> bool` — [`DebugLineStrOffset`](#debuglinestroffset)
+- <span id="debuglinestroffset-partialeq-eq"></span>`fn eq(&self, other: &DebugLineStrOffset<T>) -> bool` — [`DebugLineStrOffset`](#debuglinestroffset)
 
 ##### `impl<T> StructuralPartialEq for DebugLineStrOffset<T>`
+
+##### `impl<T> ToOwned for DebugLineStrOffset<T>`
+
+- <span id="debuglinestroffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debuglinestroffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debuglinestroffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugLineStrOffset<T>`
+
+- <span id="debuglinestroffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debuglinestroffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugLineStrOffset<T>`
+
+- <span id="debuglinestroffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debuglinestroffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LocationListsOffset<T>`
 
@@ -2508,27 +3108,81 @@ depending on the version of the unit the offset was contained in.
 
 #### Trait Implementations
 
+##### `impl<T> Any for LocationListsOffset<T>`
+
+- <span id="locationlistsoffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LocationListsOffset<T>`
+
+- <span id="locationlistsoffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LocationListsOffset<T>`
+
+- <span id="locationlistsoffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for LocationListsOffset<T>`
 
 - <span id="locationlistsoffset-clone"></span>`fn clone(&self) -> LocationListsOffset<T>` — [`LocationListsOffset`](#locationlistsoffset)
+
+##### `impl<T> CloneToUninit for LocationListsOffset<T>`
+
+- <span id="locationlistsoffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for LocationListsOffset<T>`
 
 ##### `impl<T: fmt::Debug> Debug for LocationListsOffset<T>`
 
-- <span id="locationlistsoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="locationlistsoffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for LocationListsOffset<T>`
+
+##### `impl<T> From for LocationListsOffset<T>`
+
+- <span id="locationlistsoffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: hash::Hash> Hash for LocationListsOffset<T>`
 
 - <span id="locationlistsoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T, U> Into for LocationListsOffset<T>`
+
+- <span id="locationlistsoffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for LocationListsOffset<T>`
 
-- <span id="locationlistsoffset-eq"></span>`fn eq(&self, other: &LocationListsOffset<T>) -> bool` — [`LocationListsOffset`](#locationlistsoffset)
+- <span id="locationlistsoffset-partialeq-eq"></span>`fn eq(&self, other: &LocationListsOffset<T>) -> bool` — [`LocationListsOffset`](#locationlistsoffset)
 
 ##### `impl<T> StructuralPartialEq for LocationListsOffset<T>`
+
+##### `impl<T> ToOwned for LocationListsOffset<T>`
+
+- <span id="locationlistsoffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="locationlistsoffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="locationlistsoffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for LocationListsOffset<T>`
+
+- <span id="locationlistsoffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="locationlistsoffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for LocationListsOffset<T>`
+
+- <span id="locationlistsoffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="locationlistsoffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugLocListsBase<T>`
 
@@ -2544,25 +3198,83 @@ An offset to a set of location list offsets in the `.debug_loclists` section.
 
 - <span id="cratecommondebugloclistsbase-default-for-encoding-and-file"></span>`fn default_for_encoding_and_file(encoding: Encoding, file_type: DwarfFileType) -> DebugLocListsBase<Offset>` — [`Encoding`](#encoding), [`DwarfFileType`](#dwarffiletype), [`DebugLocListsBase`](#debugloclistsbase)
 
+  Returns a `DebugLocListsBase` with the default value of DW_AT_loclists_base
+
+  for the given `Encoding` and `DwarfFileType`.
+
 #### Trait Implementations
+
+##### `impl<T> Any for DebugLocListsBase<T>`
+
+- <span id="debugloclistsbase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugLocListsBase<T>`
+
+- <span id="debugloclistsbase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugLocListsBase<T>`
+
+- <span id="debugloclistsbase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: clone::Clone> Clone for DebugLocListsBase<T>`
 
 - <span id="debugloclistsbase-clone"></span>`fn clone(&self) -> DebugLocListsBase<T>` — [`DebugLocListsBase`](#debugloclistsbase)
 
+##### `impl<T> CloneToUninit for DebugLocListsBase<T>`
+
+- <span id="debugloclistsbase-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: marker::Copy> Copy for DebugLocListsBase<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugLocListsBase<T>`
 
-- <span id="debugloclistsbase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugloclistsbase-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugLocListsBase<T>`
 
+##### `impl<T> From for DebugLocListsBase<T>`
+
+- <span id="debugloclistsbase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for DebugLocListsBase<T>`
+
+- <span id="debugloclistsbase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugLocListsBase<T>`
 
-- <span id="debugloclistsbase-eq"></span>`fn eq(&self, other: &DebugLocListsBase<T>) -> bool` — [`DebugLocListsBase`](#debugloclistsbase)
+- <span id="debugloclistsbase-partialeq-eq"></span>`fn eq(&self, other: &DebugLocListsBase<T>) -> bool` — [`DebugLocListsBase`](#debugloclistsbase)
 
 ##### `impl<T> StructuralPartialEq for DebugLocListsBase<T>`
+
+##### `impl<T> ToOwned for DebugLocListsBase<T>`
+
+- <span id="debugloclistsbase-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugloclistsbase-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugloclistsbase-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugLocListsBase<T>`
+
+- <span id="debugloclistsbase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugloclistsbase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugLocListsBase<T>`
+
+- <span id="debugloclistsbase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugloclistsbase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugLocListsIndex<T>`
 
@@ -2576,23 +3288,77 @@ An index into a set of location list offsets in the `.debug_loclists` section.
 
 #### Trait Implementations
 
+##### `impl<T> Any for DebugLocListsIndex<T>`
+
+- <span id="debugloclistsindex-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugLocListsIndex<T>`
+
+- <span id="debugloclistsindex-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugLocListsIndex<T>`
+
+- <span id="debugloclistsindex-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for DebugLocListsIndex<T>`
 
 - <span id="debugloclistsindex-clone"></span>`fn clone(&self) -> DebugLocListsIndex<T>` — [`DebugLocListsIndex`](#debugloclistsindex)
+
+##### `impl<T> CloneToUninit for DebugLocListsIndex<T>`
+
+- <span id="debugloclistsindex-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for DebugLocListsIndex<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugLocListsIndex<T>`
 
-- <span id="debugloclistsindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugloclistsindex-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugLocListsIndex<T>`
 
+##### `impl<T> From for DebugLocListsIndex<T>`
+
+- <span id="debugloclistsindex-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for DebugLocListsIndex<T>`
+
+- <span id="debugloclistsindex-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugLocListsIndex<T>`
 
-- <span id="debugloclistsindex-eq"></span>`fn eq(&self, other: &DebugLocListsIndex<T>) -> bool` — [`DebugLocListsIndex`](#debugloclistsindex)
+- <span id="debugloclistsindex-partialeq-eq"></span>`fn eq(&self, other: &DebugLocListsIndex<T>) -> bool` — [`DebugLocListsIndex`](#debugloclistsindex)
 
 ##### `impl<T> StructuralPartialEq for DebugLocListsIndex<T>`
+
+##### `impl<T> ToOwned for DebugLocListsIndex<T>`
+
+- <span id="debugloclistsindex-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugloclistsindex-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugloclistsindex-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugLocListsIndex<T>`
+
+- <span id="debugloclistsindex-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugloclistsindex-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugLocListsIndex<T>`
+
+- <span id="debugloclistsindex-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugloclistsindex-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugMacinfoOffset<T>`
 
@@ -2606,27 +3372,81 @@ An offset into the `.debug_macinfo` section.
 
 #### Trait Implementations
 
+##### `impl<T> Any for DebugMacinfoOffset<T>`
+
+- <span id="debugmacinfooffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugMacinfoOffset<T>`
+
+- <span id="debugmacinfooffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugMacinfoOffset<T>`
+
+- <span id="debugmacinfooffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for DebugMacinfoOffset<T>`
 
 - <span id="debugmacinfooffset-clone"></span>`fn clone(&self) -> DebugMacinfoOffset<T>` — [`DebugMacinfoOffset`](#debugmacinfooffset)
+
+##### `impl<T> CloneToUninit for DebugMacinfoOffset<T>`
+
+- <span id="debugmacinfooffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for DebugMacinfoOffset<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugMacinfoOffset<T>`
 
-- <span id="debugmacinfooffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugmacinfooffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugMacinfoOffset<T>`
+
+##### `impl<T> From for DebugMacinfoOffset<T>`
+
+- <span id="debugmacinfooffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: hash::Hash> Hash for DebugMacinfoOffset<T>`
 
 - <span id="debugmacinfooffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T, U> Into for DebugMacinfoOffset<T>`
+
+- <span id="debugmacinfooffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugMacinfoOffset<T>`
 
-- <span id="debugmacinfooffset-eq"></span>`fn eq(&self, other: &DebugMacinfoOffset<T>) -> bool` — [`DebugMacinfoOffset`](#debugmacinfooffset)
+- <span id="debugmacinfooffset-partialeq-eq"></span>`fn eq(&self, other: &DebugMacinfoOffset<T>) -> bool` — [`DebugMacinfoOffset`](#debugmacinfooffset)
 
 ##### `impl<T> StructuralPartialEq for DebugMacinfoOffset<T>`
+
+##### `impl<T> ToOwned for DebugMacinfoOffset<T>`
+
+- <span id="debugmacinfooffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugmacinfooffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugmacinfooffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugMacinfoOffset<T>`
+
+- <span id="debugmacinfooffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugmacinfooffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugMacinfoOffset<T>`
+
+- <span id="debugmacinfooffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugmacinfooffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugMacroOffset<T>`
 
@@ -2640,27 +3460,81 @@ An offset into the `.debug_macro` section.
 
 #### Trait Implementations
 
+##### `impl<T> Any for DebugMacroOffset<T>`
+
+- <span id="debugmacrooffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugMacroOffset<T>`
+
+- <span id="debugmacrooffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugMacroOffset<T>`
+
+- <span id="debugmacrooffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for DebugMacroOffset<T>`
 
 - <span id="debugmacrooffset-clone"></span>`fn clone(&self) -> DebugMacroOffset<T>` — [`DebugMacroOffset`](#debugmacrooffset)
+
+##### `impl<T> CloneToUninit for DebugMacroOffset<T>`
+
+- <span id="debugmacrooffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for DebugMacroOffset<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugMacroOffset<T>`
 
-- <span id="debugmacrooffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugmacrooffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugMacroOffset<T>`
+
+##### `impl<T> From for DebugMacroOffset<T>`
+
+- <span id="debugmacrooffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: hash::Hash> Hash for DebugMacroOffset<T>`
 
 - <span id="debugmacrooffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T, U> Into for DebugMacroOffset<T>`
+
+- <span id="debugmacrooffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugMacroOffset<T>`
 
-- <span id="debugmacrooffset-eq"></span>`fn eq(&self, other: &DebugMacroOffset<T>) -> bool` — [`DebugMacroOffset`](#debugmacrooffset)
+- <span id="debugmacrooffset-partialeq-eq"></span>`fn eq(&self, other: &DebugMacroOffset<T>) -> bool` — [`DebugMacroOffset`](#debugmacrooffset)
 
 ##### `impl<T> StructuralPartialEq for DebugMacroOffset<T>`
+
+##### `impl<T> ToOwned for DebugMacroOffset<T>`
+
+- <span id="debugmacrooffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugmacrooffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugmacrooffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugMacroOffset<T>`
+
+- <span id="debugmacrooffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugmacrooffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugMacroOffset<T>`
+
+- <span id="debugmacrooffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugmacrooffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RawRangeListsOffset<T>`
 
@@ -2678,27 +3552,81 @@ value of `DW_AT_GNU_ranges_base`. You can use `Dwarf::ranges_offset_from_raw` to
 
 #### Trait Implementations
 
+##### `impl<T> Any for RawRangeListsOffset<T>`
+
+- <span id="rawrangelistsoffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RawRangeListsOffset<T>`
+
+- <span id="rawrangelistsoffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RawRangeListsOffset<T>`
+
+- <span id="rawrangelistsoffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for RawRangeListsOffset<T>`
 
 - <span id="rawrangelistsoffset-clone"></span>`fn clone(&self) -> RawRangeListsOffset<T>` — [`RawRangeListsOffset`](#rawrangelistsoffset)
+
+##### `impl<T> CloneToUninit for RawRangeListsOffset<T>`
+
+- <span id="rawrangelistsoffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for RawRangeListsOffset<T>`
 
 ##### `impl<T: fmt::Debug> Debug for RawRangeListsOffset<T>`
 
-- <span id="rawrangelistsoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rawrangelistsoffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for RawRangeListsOffset<T>`
+
+##### `impl<T> From for RawRangeListsOffset<T>`
+
+- <span id="rawrangelistsoffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: hash::Hash> Hash for RawRangeListsOffset<T>`
 
 - <span id="rawrangelistsoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T, U> Into for RawRangeListsOffset<T>`
+
+- <span id="rawrangelistsoffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for RawRangeListsOffset<T>`
 
-- <span id="rawrangelistsoffset-eq"></span>`fn eq(&self, other: &RawRangeListsOffset<T>) -> bool` — [`RawRangeListsOffset`](#rawrangelistsoffset)
+- <span id="rawrangelistsoffset-partialeq-eq"></span>`fn eq(&self, other: &RawRangeListsOffset<T>) -> bool` — [`RawRangeListsOffset`](#rawrangelistsoffset)
 
 ##### `impl<T> StructuralPartialEq for RawRangeListsOffset<T>`
+
+##### `impl<T> ToOwned for RawRangeListsOffset<T>`
+
+- <span id="rawrangelistsoffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rawrangelistsoffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rawrangelistsoffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for RawRangeListsOffset<T>`
+
+- <span id="rawrangelistsoffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rawrangelistsoffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RawRangeListsOffset<T>`
+
+- <span id="rawrangelistsoffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rawrangelistsoffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RangeListsOffset<T>`
 
@@ -2713,27 +3641,81 @@ depending on the version of the unit the offset was contained in.
 
 #### Trait Implementations
 
+##### `impl<T> Any for RangeListsOffset<T>`
+
+- <span id="rangelistsoffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RangeListsOffset<T>`
+
+- <span id="rangelistsoffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RangeListsOffset<T>`
+
+- <span id="rangelistsoffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for RangeListsOffset<T>`
 
 - <span id="rangelistsoffset-clone"></span>`fn clone(&self) -> RangeListsOffset<T>` — [`RangeListsOffset`](#rangelistsoffset)
+
+##### `impl<T> CloneToUninit for RangeListsOffset<T>`
+
+- <span id="rangelistsoffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for RangeListsOffset<T>`
 
 ##### `impl<T: fmt::Debug> Debug for RangeListsOffset<T>`
 
-- <span id="rangelistsoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rangelistsoffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for RangeListsOffset<T>`
+
+##### `impl<T> From for RangeListsOffset<T>`
+
+- <span id="rangelistsoffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: hash::Hash> Hash for RangeListsOffset<T>`
 
 - <span id="rangelistsoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T, U> Into for RangeListsOffset<T>`
+
+- <span id="rangelistsoffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for RangeListsOffset<T>`
 
-- <span id="rangelistsoffset-eq"></span>`fn eq(&self, other: &RangeListsOffset<T>) -> bool` — [`RangeListsOffset`](#rangelistsoffset)
+- <span id="rangelistsoffset-partialeq-eq"></span>`fn eq(&self, other: &RangeListsOffset<T>) -> bool` — [`RangeListsOffset`](#rangelistsoffset)
 
 ##### `impl<T> StructuralPartialEq for RangeListsOffset<T>`
+
+##### `impl<T> ToOwned for RangeListsOffset<T>`
+
+- <span id="rangelistsoffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rangelistsoffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rangelistsoffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for RangeListsOffset<T>`
+
+- <span id="rangelistsoffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rangelistsoffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RangeListsOffset<T>`
+
+- <span id="rangelistsoffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rangelistsoffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugRngListsBase<T>`
 
@@ -2749,25 +3731,83 @@ An offset to a set of range list offsets in the `.debug_rnglists` section.
 
 - <span id="cratecommondebugrnglistsbase-default-for-encoding-and-file"></span>`fn default_for_encoding_and_file(encoding: Encoding, file_type: DwarfFileType) -> DebugRngListsBase<Offset>` — [`Encoding`](#encoding), [`DwarfFileType`](#dwarffiletype), [`DebugRngListsBase`](#debugrnglistsbase)
 
+  Returns a `DebugRngListsBase` with the default value of DW_AT_rnglists_base
+
+  for the given `Encoding` and `DwarfFileType`.
+
 #### Trait Implementations
+
+##### `impl<T> Any for DebugRngListsBase<T>`
+
+- <span id="debugrnglistsbase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugRngListsBase<T>`
+
+- <span id="debugrnglistsbase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugRngListsBase<T>`
+
+- <span id="debugrnglistsbase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: clone::Clone> Clone for DebugRngListsBase<T>`
 
 - <span id="debugrnglistsbase-clone"></span>`fn clone(&self) -> DebugRngListsBase<T>` — [`DebugRngListsBase`](#debugrnglistsbase)
 
+##### `impl<T> CloneToUninit for DebugRngListsBase<T>`
+
+- <span id="debugrnglistsbase-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: marker::Copy> Copy for DebugRngListsBase<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugRngListsBase<T>`
 
-- <span id="debugrnglistsbase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugrnglistsbase-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugRngListsBase<T>`
 
+##### `impl<T> From for DebugRngListsBase<T>`
+
+- <span id="debugrnglistsbase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for DebugRngListsBase<T>`
+
+- <span id="debugrnglistsbase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugRngListsBase<T>`
 
-- <span id="debugrnglistsbase-eq"></span>`fn eq(&self, other: &DebugRngListsBase<T>) -> bool` — [`DebugRngListsBase`](#debugrnglistsbase)
+- <span id="debugrnglistsbase-partialeq-eq"></span>`fn eq(&self, other: &DebugRngListsBase<T>) -> bool` — [`DebugRngListsBase`](#debugrnglistsbase)
 
 ##### `impl<T> StructuralPartialEq for DebugRngListsBase<T>`
+
+##### `impl<T> ToOwned for DebugRngListsBase<T>`
+
+- <span id="debugrnglistsbase-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugrnglistsbase-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugrnglistsbase-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugRngListsBase<T>`
+
+- <span id="debugrnglistsbase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugrnglistsbase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugRngListsBase<T>`
+
+- <span id="debugrnglistsbase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugrnglistsbase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugRngListsIndex<T>`
 
@@ -2781,23 +3821,77 @@ An index into a set of range list offsets in the `.debug_rnglists` section.
 
 #### Trait Implementations
 
+##### `impl<T> Any for DebugRngListsIndex<T>`
+
+- <span id="debugrnglistsindex-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugRngListsIndex<T>`
+
+- <span id="debugrnglistsindex-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugRngListsIndex<T>`
+
+- <span id="debugrnglistsindex-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for DebugRngListsIndex<T>`
 
 - <span id="debugrnglistsindex-clone"></span>`fn clone(&self) -> DebugRngListsIndex<T>` — [`DebugRngListsIndex`](#debugrnglistsindex)
+
+##### `impl<T> CloneToUninit for DebugRngListsIndex<T>`
+
+- <span id="debugrnglistsindex-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for DebugRngListsIndex<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugRngListsIndex<T>`
 
-- <span id="debugrnglistsindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugrnglistsindex-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugRngListsIndex<T>`
 
+##### `impl<T> From for DebugRngListsIndex<T>`
+
+- <span id="debugrnglistsindex-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for DebugRngListsIndex<T>`
+
+- <span id="debugrnglistsindex-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugRngListsIndex<T>`
 
-- <span id="debugrnglistsindex-eq"></span>`fn eq(&self, other: &DebugRngListsIndex<T>) -> bool` — [`DebugRngListsIndex`](#debugrnglistsindex)
+- <span id="debugrnglistsindex-partialeq-eq"></span>`fn eq(&self, other: &DebugRngListsIndex<T>) -> bool` — [`DebugRngListsIndex`](#debugrnglistsindex)
 
 ##### `impl<T> StructuralPartialEq for DebugRngListsIndex<T>`
+
+##### `impl<T> ToOwned for DebugRngListsIndex<T>`
+
+- <span id="debugrnglistsindex-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugrnglistsindex-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugrnglistsindex-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugRngListsIndex<T>`
+
+- <span id="debugrnglistsindex-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugrnglistsindex-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugRngListsIndex<T>`
+
+- <span id="debugrnglistsindex-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugrnglistsindex-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugStrOffset<T>`
 
@@ -2811,23 +3905,77 @@ An offset into the `.debug_str` section.
 
 #### Trait Implementations
 
+##### `impl<T> Any for DebugStrOffset<T>`
+
+- <span id="debugstroffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugStrOffset<T>`
+
+- <span id="debugstroffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugStrOffset<T>`
+
+- <span id="debugstroffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for DebugStrOffset<T>`
 
 - <span id="debugstroffset-clone"></span>`fn clone(&self) -> DebugStrOffset<T>` — [`DebugStrOffset`](#debugstroffset)
+
+##### `impl<T> CloneToUninit for DebugStrOffset<T>`
+
+- <span id="debugstroffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for DebugStrOffset<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugStrOffset<T>`
 
-- <span id="debugstroffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugstroffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugStrOffset<T>`
 
+##### `impl<T> From for DebugStrOffset<T>`
+
+- <span id="debugstroffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for DebugStrOffset<T>`
+
+- <span id="debugstroffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugStrOffset<T>`
 
-- <span id="debugstroffset-eq"></span>`fn eq(&self, other: &DebugStrOffset<T>) -> bool` — [`DebugStrOffset`](#debugstroffset)
+- <span id="debugstroffset-partialeq-eq"></span>`fn eq(&self, other: &DebugStrOffset<T>) -> bool` — [`DebugStrOffset`](#debugstroffset)
 
 ##### `impl<T> StructuralPartialEq for DebugStrOffset<T>`
+
+##### `impl<T> ToOwned for DebugStrOffset<T>`
+
+- <span id="debugstroffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugstroffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugstroffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugStrOffset<T>`
+
+- <span id="debugstroffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugstroffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugStrOffset<T>`
+
+- <span id="debugstroffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugstroffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugStrOffsetsBase<T>`
 
@@ -2843,25 +3991,83 @@ An offset to a set of entries in the `.debug_str_offsets` section.
 
 - <span id="cratecommondebugstroffsetsbase-default-for-encoding-and-file"></span>`fn default_for_encoding_and_file(encoding: Encoding, file_type: DwarfFileType) -> DebugStrOffsetsBase<Offset>` — [`Encoding`](#encoding), [`DwarfFileType`](#dwarffiletype), [`DebugStrOffsetsBase`](#debugstroffsetsbase)
 
+  Returns a `DebugStrOffsetsBase` with the default value of DW_AT_str_offsets_base
+
+  for the given `Encoding` and `DwarfFileType`.
+
 #### Trait Implementations
+
+##### `impl<T> Any for DebugStrOffsetsBase<T>`
+
+- <span id="debugstroffsetsbase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugStrOffsetsBase<T>`
+
+- <span id="debugstroffsetsbase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugStrOffsetsBase<T>`
+
+- <span id="debugstroffsetsbase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: clone::Clone> Clone for DebugStrOffsetsBase<T>`
 
 - <span id="debugstroffsetsbase-clone"></span>`fn clone(&self) -> DebugStrOffsetsBase<T>` — [`DebugStrOffsetsBase`](#debugstroffsetsbase)
 
+##### `impl<T> CloneToUninit for DebugStrOffsetsBase<T>`
+
+- <span id="debugstroffsetsbase-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: marker::Copy> Copy for DebugStrOffsetsBase<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugStrOffsetsBase<T>`
 
-- <span id="debugstroffsetsbase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugstroffsetsbase-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugStrOffsetsBase<T>`
 
+##### `impl<T> From for DebugStrOffsetsBase<T>`
+
+- <span id="debugstroffsetsbase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for DebugStrOffsetsBase<T>`
+
+- <span id="debugstroffsetsbase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugStrOffsetsBase<T>`
 
-- <span id="debugstroffsetsbase-eq"></span>`fn eq(&self, other: &DebugStrOffsetsBase<T>) -> bool` — [`DebugStrOffsetsBase`](#debugstroffsetsbase)
+- <span id="debugstroffsetsbase-partialeq-eq"></span>`fn eq(&self, other: &DebugStrOffsetsBase<T>) -> bool` — [`DebugStrOffsetsBase`](#debugstroffsetsbase)
 
 ##### `impl<T> StructuralPartialEq for DebugStrOffsetsBase<T>`
+
+##### `impl<T> ToOwned for DebugStrOffsetsBase<T>`
+
+- <span id="debugstroffsetsbase-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugstroffsetsbase-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugstroffsetsbase-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugStrOffsetsBase<T>`
+
+- <span id="debugstroffsetsbase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugstroffsetsbase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugStrOffsetsBase<T>`
+
+- <span id="debugstroffsetsbase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugstroffsetsbase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugStrOffsetsIndex<T>`
 
@@ -2875,23 +4081,77 @@ An index into a set of entries in the `.debug_str_offsets` section.
 
 #### Trait Implementations
 
+##### `impl<T> Any for DebugStrOffsetsIndex<T>`
+
+- <span id="debugstroffsetsindex-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugStrOffsetsIndex<T>`
+
+- <span id="debugstroffsetsindex-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugStrOffsetsIndex<T>`
+
+- <span id="debugstroffsetsindex-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for DebugStrOffsetsIndex<T>`
 
 - <span id="debugstroffsetsindex-clone"></span>`fn clone(&self) -> DebugStrOffsetsIndex<T>` — [`DebugStrOffsetsIndex`](#debugstroffsetsindex)
+
+##### `impl<T> CloneToUninit for DebugStrOffsetsIndex<T>`
+
+- <span id="debugstroffsetsindex-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for DebugStrOffsetsIndex<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugStrOffsetsIndex<T>`
 
-- <span id="debugstroffsetsindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugstroffsetsindex-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugStrOffsetsIndex<T>`
 
+##### `impl<T> From for DebugStrOffsetsIndex<T>`
+
+- <span id="debugstroffsetsindex-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for DebugStrOffsetsIndex<T>`
+
+- <span id="debugstroffsetsindex-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugStrOffsetsIndex<T>`
 
-- <span id="debugstroffsetsindex-eq"></span>`fn eq(&self, other: &DebugStrOffsetsIndex<T>) -> bool` — [`DebugStrOffsetsIndex`](#debugstroffsetsindex)
+- <span id="debugstroffsetsindex-partialeq-eq"></span>`fn eq(&self, other: &DebugStrOffsetsIndex<T>) -> bool` — [`DebugStrOffsetsIndex`](#debugstroffsetsindex)
 
 ##### `impl<T> StructuralPartialEq for DebugStrOffsetsIndex<T>`
+
+##### `impl<T> ToOwned for DebugStrOffsetsIndex<T>`
+
+- <span id="debugstroffsetsindex-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugstroffsetsindex-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugstroffsetsindex-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugStrOffsetsIndex<T>`
+
+- <span id="debugstroffsetsindex-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugstroffsetsindex-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugStrOffsetsIndex<T>`
+
+- <span id="debugstroffsetsindex-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugstroffsetsindex-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugTypesOffset<T>`
 
@@ -2907,37 +4167,97 @@ An offset into the `.debug_types` section.
 
 - <span id="cratecommondebugtypesoffset-to-unit-offset"></span>`fn to_unit_offset<R>(&self, unit: &UnitHeader<R>) -> Option<UnitOffset<T>>` — [`UnitHeader`](read/index.md#unitheader), [`UnitOffset`](#unitoffset)
 
+  Convert an offset to be relative to the start of the given unit,
+
+  instead of relative to the start of the .debug_types section.
+
+  Returns `None` if the offset is not within the unit entries.
+
 #### Trait Implementations
+
+##### `impl<T> Any for DebugTypesOffset<T>`
+
+- <span id="debugtypesoffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugTypesOffset<T>`
+
+- <span id="debugtypesoffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugTypesOffset<T>`
+
+- <span id="debugtypesoffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: clone::Clone> Clone for DebugTypesOffset<T>`
 
 - <span id="debugtypesoffset-clone"></span>`fn clone(&self) -> DebugTypesOffset<T>` — [`DebugTypesOffset`](#debugtypesoffset)
 
+##### `impl<T> CloneToUninit for DebugTypesOffset<T>`
+
+- <span id="debugtypesoffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: marker::Copy> Copy for DebugTypesOffset<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugTypesOffset<T>`
 
-- <span id="debugtypesoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugtypesoffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugTypesOffset<T>`
+
+##### `impl<T> From for DebugTypesOffset<T>`
+
+- <span id="debugtypesoffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: hash::Hash> Hash for DebugTypesOffset<T>`
 
 - <span id="debugtypesoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T, U> Into for DebugTypesOffset<T>`
+
+- <span id="debugtypesoffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::Ord> Ord for DebugTypesOffset<T>`
 
-- <span id="debugtypesoffset-cmp"></span>`fn cmp(&self, other: &DebugTypesOffset<T>) -> cmp::Ordering` — [`DebugTypesOffset`](#debugtypesoffset)
+- <span id="debugtypesoffset-ord-cmp"></span>`fn cmp(&self, other: &DebugTypesOffset<T>) -> cmp::Ordering` — [`DebugTypesOffset`](#debugtypesoffset)
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugTypesOffset<T>`
 
-- <span id="debugtypesoffset-eq"></span>`fn eq(&self, other: &DebugTypesOffset<T>) -> bool` — [`DebugTypesOffset`](#debugtypesoffset)
+- <span id="debugtypesoffset-partialeq-eq"></span>`fn eq(&self, other: &DebugTypesOffset<T>) -> bool` — [`DebugTypesOffset`](#debugtypesoffset)
 
 ##### `impl<T: cmp::PartialOrd> PartialOrd for DebugTypesOffset<T>`
 
-- <span id="debugtypesoffset-partial-cmp"></span>`fn partial_cmp(&self, other: &DebugTypesOffset<T>) -> option::Option<cmp::Ordering>` — [`DebugTypesOffset`](#debugtypesoffset)
+- <span id="debugtypesoffset-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DebugTypesOffset<T>) -> option::Option<cmp::Ordering>` — [`DebugTypesOffset`](#debugtypesoffset)
 
 ##### `impl<T> StructuralPartialEq for DebugTypesOffset<T>`
+
+##### `impl<T> ToOwned for DebugTypesOffset<T>`
+
+- <span id="debugtypesoffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugtypesoffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugtypesoffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugTypesOffset<T>`
+
+- <span id="debugtypesoffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugtypesoffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugTypesOffset<T>`
+
+- <span id="debugtypesoffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugtypesoffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugTypeSignature`
 
@@ -2951,27 +4271,81 @@ A type signature as used in the `.debug_types` section.
 
 #### Trait Implementations
 
+##### `impl Any for DebugTypeSignature`
+
+- <span id="debugtypesignature-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugTypeSignature`
+
+- <span id="debugtypesignature-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugTypeSignature`
+
+- <span id="debugtypesignature-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DebugTypeSignature`
 
 - <span id="debugtypesignature-clone"></span>`fn clone(&self) -> DebugTypeSignature` — [`DebugTypeSignature`](#debugtypesignature)
+
+##### `impl CloneToUninit for DebugTypeSignature`
+
+- <span id="debugtypesignature-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DebugTypeSignature`
 
 ##### `impl Debug for DebugTypeSignature`
 
-- <span id="debugtypesignature-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugtypesignature-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for DebugTypeSignature`
+
+##### `impl<T> From for DebugTypeSignature`
+
+- <span id="debugtypesignature-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DebugTypeSignature`
 
 - <span id="debugtypesignature-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DebugTypeSignature`
+
+- <span id="debugtypesignature-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for DebugTypeSignature`
 
-- <span id="debugtypesignature-eq"></span>`fn eq(&self, other: &DebugTypeSignature) -> bool` — [`DebugTypeSignature`](#debugtypesignature)
+- <span id="debugtypesignature-partialeq-eq"></span>`fn eq(&self, other: &DebugTypeSignature) -> bool` — [`DebugTypeSignature`](#debugtypesignature)
 
 ##### `impl StructuralPartialEq for DebugTypeSignature`
+
+##### `impl ToOwned for DebugTypeSignature`
+
+- <span id="debugtypesignature-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugtypesignature-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugtypesignature-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DebugTypeSignature`
+
+- <span id="debugtypesignature-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugtypesignature-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DebugTypeSignature`
+
+- <span id="debugtypesignature-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugtypesignature-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DebugFrameOffset<T>`
 
@@ -2985,31 +4359,85 @@ An offset into the `.debug_frame` section.
 
 #### Trait Implementations
 
+##### `impl<T> Any for DebugFrameOffset<T>`
+
+- <span id="debugframeoffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugFrameOffset<T>`
+
+- <span id="debugframeoffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugFrameOffset<T>`
+
+- <span id="debugframeoffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for DebugFrameOffset<T>`
 
 - <span id="debugframeoffset-clone"></span>`fn clone(&self) -> DebugFrameOffset<T>` — [`DebugFrameOffset`](#debugframeoffset)
+
+##### `impl<T> CloneToUninit for DebugFrameOffset<T>`
+
+- <span id="debugframeoffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for DebugFrameOffset<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DebugFrameOffset<T>`
 
-- <span id="debugframeoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugframeoffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DebugFrameOffset<T>`
+
+##### `impl<T> From for DebugFrameOffset<T>`
+
+- <span id="debugframeoffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: hash::Hash> Hash for DebugFrameOffset<T>`
 
 - <span id="debugframeoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T, U> Into for DebugFrameOffset<T>`
+
+- <span id="debugframeoffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugFrameOffset<T>`
 
-- <span id="debugframeoffset-eq"></span>`fn eq(&self, other: &DebugFrameOffset<T>) -> bool` — [`DebugFrameOffset`](#debugframeoffset)
+- <span id="debugframeoffset-partialeq-eq"></span>`fn eq(&self, other: &DebugFrameOffset<T>) -> bool` — [`DebugFrameOffset`](#debugframeoffset)
 
 ##### `impl<T> StructuralPartialEq for DebugFrameOffset<T>`
 
+##### `impl<T> ToOwned for DebugFrameOffset<T>`
+
+- <span id="debugframeoffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugframeoffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugframeoffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugFrameOffset<T>`
+
+- <span id="debugframeoffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugframeoffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugFrameOffset<T>`
+
+- <span id="debugframeoffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugframeoffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ##### `impl<T> UnwindOffset for crate::common::DebugFrameOffset<T>`
 
-- <span id="cratecommondebugframeoffset-into"></span>`fn into(self) -> T`
+- <span id="cratecommondebugframeoffset-unwindoffset-into"></span>`fn into(self) -> T`
 
 ### `EhFrameOffset<T>`
 
@@ -3023,31 +4451,85 @@ An offset into the `.eh_frame` section.
 
 #### Trait Implementations
 
+##### `impl<T> Any for EhFrameOffset<T>`
+
+- <span id="ehframeoffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for EhFrameOffset<T>`
+
+- <span id="ehframeoffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for EhFrameOffset<T>`
+
+- <span id="ehframeoffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for EhFrameOffset<T>`
 
 - <span id="ehframeoffset-clone"></span>`fn clone(&self) -> EhFrameOffset<T>` — [`EhFrameOffset`](#ehframeoffset)
+
+##### `impl<T> CloneToUninit for EhFrameOffset<T>`
+
+- <span id="ehframeoffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for EhFrameOffset<T>`
 
 ##### `impl<T: fmt::Debug> Debug for EhFrameOffset<T>`
 
-- <span id="ehframeoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ehframeoffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for EhFrameOffset<T>`
+
+##### `impl<T> From for EhFrameOffset<T>`
+
+- <span id="ehframeoffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: hash::Hash> Hash for EhFrameOffset<T>`
 
 - <span id="ehframeoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T, U> Into for EhFrameOffset<T>`
+
+- <span id="ehframeoffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for EhFrameOffset<T>`
 
-- <span id="ehframeoffset-eq"></span>`fn eq(&self, other: &EhFrameOffset<T>) -> bool` — [`EhFrameOffset`](#ehframeoffset)
+- <span id="ehframeoffset-partialeq-eq"></span>`fn eq(&self, other: &EhFrameOffset<T>) -> bool` — [`EhFrameOffset`](#ehframeoffset)
 
 ##### `impl<T> StructuralPartialEq for EhFrameOffset<T>`
 
+##### `impl<T> ToOwned for EhFrameOffset<T>`
+
+- <span id="ehframeoffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="ehframeoffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="ehframeoffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for EhFrameOffset<T>`
+
+- <span id="ehframeoffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ehframeoffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for EhFrameOffset<T>`
+
+- <span id="ehframeoffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ehframeoffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ##### `impl<T> UnwindOffset for crate::common::EhFrameOffset<T>`
 
-- <span id="cratecommonehframeoffset-into"></span>`fn into(self) -> T`
+- <span id="cratecommonehframeoffset-unwindoffset-into"></span>`fn into(self) -> T`
 
 ### `DwoId`
 
@@ -3062,27 +4544,81 @@ split DWARF and linking a split compilation unit back together.
 
 #### Trait Implementations
 
+##### `impl Any for DwoId`
+
+- <span id="dwoid-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwoId`
+
+- <span id="dwoid-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwoId`
+
+- <span id="dwoid-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwoId`
 
 - <span id="dwoid-clone"></span>`fn clone(&self) -> DwoId` — [`DwoId`](#dwoid)
+
+##### `impl CloneToUninit for DwoId`
+
+- <span id="dwoid-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwoId`
 
 ##### `impl Debug for DwoId`
 
-- <span id="dwoid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwoid-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for DwoId`
+
+##### `impl<T> From for DwoId`
+
+- <span id="dwoid-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwoId`
 
 - <span id="dwoid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwoId`
+
+- <span id="dwoid-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for DwoId`
 
-- <span id="dwoid-eq"></span>`fn eq(&self, other: &DwoId) -> bool` — [`DwoId`](#dwoid)
+- <span id="dwoid-partialeq-eq"></span>`fn eq(&self, other: &DwoId) -> bool` — [`DwoId`](#dwoid)
 
 ##### `impl StructuralPartialEq for DwoId`
+
+##### `impl ToOwned for DwoId`
+
+- <span id="dwoid-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwoid-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwoid-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DwoId`
+
+- <span id="dwoid-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwoid-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwoId`
+
+- <span id="dwoid-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwoid-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Arm`
 
@@ -3413,15 +4949,69 @@ https://github.com/ARM-software/abi-aa/blob/main/aadwarf32/aadwarf32.rst).
 
 #### Trait Implementations
 
+##### `impl Any for Arm`
+
+- <span id="arm-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Arm`
+
+- <span id="arm-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Arm`
+
+- <span id="arm-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Arm`
 
 - <span id="arm-clone"></span>`fn clone(&self) -> Arm` — [`Arm`](#arm)
+
+##### `impl CloneToUninit for Arm`
+
+- <span id="arm-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Arm`
 
 ##### `impl Debug for Arm`
 
-- <span id="arm-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="arm-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Arm`
+
+- <span id="arm-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Arm`
+
+- <span id="arm-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Arm`
+
+- <span id="arm-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="arm-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="arm-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Arm`
+
+- <span id="arm-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="arm-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Arm`
+
+- <span id="arm-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="arm-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AArch64`
 
@@ -3684,15 +5274,69 @@ https://github.com/ARM-software/abi-aa/blob/main/aadwarf64/aadwarf64.rst).
 
 #### Trait Implementations
 
+##### `impl Any for AArch64`
+
+- <span id="aarch64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AArch64`
+
+- <span id="aarch64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AArch64`
+
+- <span id="aarch64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for AArch64`
 
 - <span id="aarch64-clone"></span>`fn clone(&self) -> AArch64` — [`AArch64`](#aarch64)
+
+##### `impl CloneToUninit for AArch64`
+
+- <span id="aarch64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for AArch64`
 
 ##### `impl Debug for AArch64`
 
-- <span id="aarch64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="aarch64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AArch64`
+
+- <span id="aarch64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AArch64`
+
+- <span id="aarch64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for AArch64`
+
+- <span id="aarch64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="aarch64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="aarch64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AArch64`
+
+- <span id="aarch64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="aarch64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AArch64`
+
+- <span id="aarch64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="aarch64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LoongArch`
 
@@ -3980,15 +5624,69 @@ See [LoongArch ELF psABI specification](https://loongson.github.io/LoongArch-Doc
 
 #### Trait Implementations
 
+##### `impl Any for LoongArch`
+
+- <span id="loongarch-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LoongArch`
+
+- <span id="loongarch-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LoongArch`
+
+- <span id="loongarch-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for LoongArch`
 
 - <span id="loongarch-clone"></span>`fn clone(&self) -> LoongArch` — [`LoongArch`](#loongarch)
+
+##### `impl CloneToUninit for LoongArch`
+
+- <span id="loongarch-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for LoongArch`
 
 ##### `impl Debug for LoongArch`
 
-- <span id="loongarch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="loongarch-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for LoongArch`
+
+- <span id="loongarch-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LoongArch`
+
+- <span id="loongarch-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for LoongArch`
+
+- <span id="loongarch-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="loongarch-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="loongarch-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LoongArch`
+
+- <span id="loongarch-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="loongarch-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LoongArch`
+
+- <span id="loongarch-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="loongarch-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MIPS`
 
@@ -4204,15 +5902,69 @@ See [MIPS Details](https://en.wikibooks.org/wiki/MIPS_Assembly/MIPS_Details).
 
 #### Trait Implementations
 
+##### `impl Any for MIPS`
+
+- <span id="mips-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MIPS`
+
+- <span id="mips-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MIPS`
+
+- <span id="mips-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for MIPS`
 
 - <span id="mips-clone"></span>`fn clone(&self) -> MIPS` — [`MIPS`](#mips)
+
+##### `impl CloneToUninit for MIPS`
+
+- <span id="mips-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for MIPS`
 
 ##### `impl Debug for MIPS`
 
-- <span id="mips-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mips-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MIPS`
+
+- <span id="mips-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MIPS`
+
+- <span id="mips-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for MIPS`
+
+- <span id="mips-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="mips-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="mips-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MIPS`
+
+- <span id="mips-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="mips-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MIPS`
+
+- <span id="mips-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="mips-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RiscV`
 
@@ -4486,15 +6238,69 @@ See [RISC-V ELF psABI specification](https://github.com/riscv/riscv-elf-psabi-do
 
 #### Trait Implementations
 
+##### `impl Any for RiscV`
+
+- <span id="riscv-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RiscV`
+
+- <span id="riscv-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RiscV`
+
+- <span id="riscv-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for RiscV`
 
 - <span id="riscv-clone"></span>`fn clone(&self) -> RiscV` — [`RiscV`](#riscv)
+
+##### `impl CloneToUninit for RiscV`
+
+- <span id="riscv-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for RiscV`
 
 ##### `impl Debug for RiscV`
 
-- <span id="riscv-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="riscv-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RiscV`
+
+- <span id="riscv-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RiscV`
+
+- <span id="riscv-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for RiscV`
+
+- <span id="riscv-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="riscv-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="riscv-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RiscV`
+
+- <span id="riscv-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="riscv-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RiscV`
+
+- <span id="riscv-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="riscv-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `X86`
 
@@ -4600,15 +6406,69 @@ See section 2.4.2 of the [i386 psABI](https://gitlab.com/x86-psABIs/i386-ABI).
 
 #### Trait Implementations
 
+##### `impl Any for X86`
+
+- <span id="x86-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for X86`
+
+- <span id="x86-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for X86`
+
+- <span id="x86-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for X86`
 
 - <span id="x86-clone"></span>`fn clone(&self) -> X86` — [`X86`](#x86)
+
+##### `impl CloneToUninit for X86`
+
+- <span id="x86-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for X86`
 
 ##### `impl Debug for X86`
 
-- <span id="x86-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="x86-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for X86`
+
+- <span id="x86-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for X86`
+
+- <span id="x86-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for X86`
+
+- <span id="x86-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="x86-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="x86-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for X86`
+
+- <span id="x86-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="x86-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for X86`
+
+- <span id="x86-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="x86-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `X86_64`
 
@@ -4850,15 +6710,69 @@ See section 3.6.2 of the [x86-64 psABI](https://gitlab.com/x86-psABIs/x86-64-ABI
 
 #### Trait Implementations
 
+##### `impl Any for X86_64`
+
+- <span id="x86-64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for X86_64`
+
+- <span id="x86-64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for X86_64`
+
+- <span id="x86-64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for X86_64`
 
 - <span id="x86-64-clone"></span>`fn clone(&self) -> X86_64` — [`X86_64`](#x86-64)
+
+##### `impl CloneToUninit for X86_64`
+
+- <span id="x86-64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for X86_64`
 
 ##### `impl Debug for X86_64`
 
-- <span id="x86-64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="x86-64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for X86_64`
+
+- <span id="x86-64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for X86_64`
+
+- <span id="x86-64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for X86_64`
+
+- <span id="x86-64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="x86-64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="x86-64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for X86_64`
+
+- <span id="x86-64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="x86-64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for X86_64`
+
+- <span id="x86-64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="x86-64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PowerPc64`
 
@@ -5098,15 +7012,69 @@ See [64-bit ELF ABI Specification for OpenPOWER Architecture](https://openpowerf
 
 #### Trait Implementations
 
+##### `impl Any for PowerPc64`
+
+- <span id="powerpc64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PowerPc64`
+
+- <span id="powerpc64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PowerPc64`
+
+- <span id="powerpc64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for PowerPc64`
 
 - <span id="powerpc64-clone"></span>`fn clone(&self) -> PowerPc64` — [`PowerPc64`](#powerpc64)
+
+##### `impl CloneToUninit for PowerPc64`
+
+- <span id="powerpc64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for PowerPc64`
 
 ##### `impl Debug for PowerPc64`
 
-- <span id="powerpc64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="powerpc64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for PowerPc64`
+
+- <span id="powerpc64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PowerPc64`
+
+- <span id="powerpc64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for PowerPc64`
+
+- <span id="powerpc64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="powerpc64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="powerpc64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PowerPc64`
+
+- <span id="powerpc64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="powerpc64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PowerPc64`
+
+- <span id="powerpc64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="powerpc64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwSect`
 
@@ -5128,43 +7096,97 @@ See Section 7.3.5.
 
 #### Trait Implementations
 
+##### `impl Any for DwSect`
+
+- <span id="dwsect-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwSect`
+
+- <span id="dwsect-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwSect`
+
+- <span id="dwsect-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwSect`
 
 - <span id="dwsect-clone"></span>`fn clone(&self) -> DwSect` — [`DwSect`](#dwsect)
+
+##### `impl CloneToUninit for DwSect`
+
+- <span id="dwsect-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwSect`
 
 ##### `impl Debug for DwSect`
 
-- <span id="dwsect-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwsect-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwSect`
 
-- <span id="dwsect-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwsect-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwSect`
+
+##### `impl<T> From for DwSect`
+
+- <span id="dwsect-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwSect`
 
 - <span id="dwsect-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwSect`
+
+- <span id="dwsect-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwSect`
 
-- <span id="dwsect-cmp"></span>`fn cmp(&self, other: &DwSect) -> cmp::Ordering` — [`DwSect`](#dwsect)
+- <span id="dwsect-ord-cmp"></span>`fn cmp(&self, other: &DwSect) -> cmp::Ordering` — [`DwSect`](#dwsect)
 
 ##### `impl PartialEq for DwSect`
 
-- <span id="dwsect-eq"></span>`fn eq(&self, other: &DwSect) -> bool` — [`DwSect`](#dwsect)
+- <span id="dwsect-partialeq-eq"></span>`fn eq(&self, other: &DwSect) -> bool` — [`DwSect`](#dwsect)
 
 ##### `impl PartialOrd for DwSect`
 
-- <span id="dwsect-partial-cmp"></span>`fn partial_cmp(&self, other: &DwSect) -> option::Option<cmp::Ordering>` — [`DwSect`](#dwsect)
+- <span id="dwsect-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwSect) -> option::Option<cmp::Ordering>` — [`DwSect`](#dwsect)
 
 ##### `impl StructuralPartialEq for DwSect`
 
+##### `impl ToOwned for DwSect`
+
+- <span id="dwsect-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwsect-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwsect-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwSect`
 
-- <span id="dwsect-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwsect-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwSect`
+
+- <span id="dwsect-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwsect-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwSect`
+
+- <span id="dwsect-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwsect-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwSectV2`
 
@@ -5182,43 +7204,97 @@ The section type field in a `.dwp` unit index with version 2.
 
 #### Trait Implementations
 
+##### `impl Any for DwSectV2`
+
+- <span id="dwsectv2-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwSectV2`
+
+- <span id="dwsectv2-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwSectV2`
+
+- <span id="dwsectv2-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwSectV2`
 
 - <span id="dwsectv2-clone"></span>`fn clone(&self) -> DwSectV2` — [`DwSectV2`](#dwsectv2)
+
+##### `impl CloneToUninit for DwSectV2`
+
+- <span id="dwsectv2-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwSectV2`
 
 ##### `impl Debug for DwSectV2`
 
-- <span id="dwsectv2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwsectv2-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwSectV2`
 
-- <span id="dwsectv2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwsectv2-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwSectV2`
+
+##### `impl<T> From for DwSectV2`
+
+- <span id="dwsectv2-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwSectV2`
 
 - <span id="dwsectv2-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwSectV2`
+
+- <span id="dwsectv2-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwSectV2`
 
-- <span id="dwsectv2-cmp"></span>`fn cmp(&self, other: &DwSectV2) -> cmp::Ordering` — [`DwSectV2`](#dwsectv2)
+- <span id="dwsectv2-ord-cmp"></span>`fn cmp(&self, other: &DwSectV2) -> cmp::Ordering` — [`DwSectV2`](#dwsectv2)
 
 ##### `impl PartialEq for DwSectV2`
 
-- <span id="dwsectv2-eq"></span>`fn eq(&self, other: &DwSectV2) -> bool` — [`DwSectV2`](#dwsectv2)
+- <span id="dwsectv2-partialeq-eq"></span>`fn eq(&self, other: &DwSectV2) -> bool` — [`DwSectV2`](#dwsectv2)
 
 ##### `impl PartialOrd for DwSectV2`
 
-- <span id="dwsectv2-partial-cmp"></span>`fn partial_cmp(&self, other: &DwSectV2) -> option::Option<cmp::Ordering>` — [`DwSectV2`](#dwsectv2)
+- <span id="dwsectv2-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwSectV2) -> option::Option<cmp::Ordering>` — [`DwSectV2`](#dwsectv2)
 
 ##### `impl StructuralPartialEq for DwSectV2`
 
+##### `impl ToOwned for DwSectV2`
+
+- <span id="dwsectv2-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwsectv2-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwsectv2-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwSectV2`
 
-- <span id="dwsectv2-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwsectv2-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwSectV2`
+
+- <span id="dwsectv2-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwsectv2-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwSectV2`
+
+- <span id="dwsectv2-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwsectv2-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwUt`
 
@@ -5238,43 +7314,97 @@ See Section 7.5.1, Table 7.2.
 
 #### Trait Implementations
 
+##### `impl Any for DwUt`
+
+- <span id="dwut-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwUt`
+
+- <span id="dwut-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwUt`
+
+- <span id="dwut-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwUt`
 
 - <span id="dwut-clone"></span>`fn clone(&self) -> DwUt` — [`DwUt`](#dwut)
+
+##### `impl CloneToUninit for DwUt`
+
+- <span id="dwut-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwUt`
 
 ##### `impl Debug for DwUt`
 
-- <span id="dwut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwut-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwUt`
 
-- <span id="dwut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwut-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwUt`
+
+##### `impl<T> From for DwUt`
+
+- <span id="dwut-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwUt`
 
 - <span id="dwut-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwUt`
+
+- <span id="dwut-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwUt`
 
-- <span id="dwut-cmp"></span>`fn cmp(&self, other: &DwUt) -> cmp::Ordering` — [`DwUt`](#dwut)
+- <span id="dwut-ord-cmp"></span>`fn cmp(&self, other: &DwUt) -> cmp::Ordering` — [`DwUt`](#dwut)
 
 ##### `impl PartialEq for DwUt`
 
-- <span id="dwut-eq"></span>`fn eq(&self, other: &DwUt) -> bool` — [`DwUt`](#dwut)
+- <span id="dwut-partialeq-eq"></span>`fn eq(&self, other: &DwUt) -> bool` — [`DwUt`](#dwut)
 
 ##### `impl PartialOrd for DwUt`
 
-- <span id="dwut-partial-cmp"></span>`fn partial_cmp(&self, other: &DwUt) -> option::Option<cmp::Ordering>` — [`DwUt`](#dwut)
+- <span id="dwut-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwUt) -> option::Option<cmp::Ordering>` — [`DwUt`](#dwut)
 
 ##### `impl StructuralPartialEq for DwUt`
 
+##### `impl ToOwned for DwUt`
+
+- <span id="dwut-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwut-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwut-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwUt`
 
-- <span id="dwut-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwut-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwUt`
+
+- <span id="dwut-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwut-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwUt`
+
+- <span id="dwut-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwut-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwCfa`
 
@@ -5298,43 +7428,97 @@ Section 7.24:
 
 #### Trait Implementations
 
+##### `impl Any for DwCfa`
+
+- <span id="dwcfa-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwCfa`
+
+- <span id="dwcfa-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwCfa`
+
+- <span id="dwcfa-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwCfa`
 
 - <span id="dwcfa-clone"></span>`fn clone(&self) -> DwCfa` — [`DwCfa`](#dwcfa)
+
+##### `impl CloneToUninit for DwCfa`
+
+- <span id="dwcfa-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwCfa`
 
 ##### `impl Debug for DwCfa`
 
-- <span id="dwcfa-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwcfa-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwCfa`
 
-- <span id="dwcfa-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwcfa-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwCfa`
+
+##### `impl<T> From for DwCfa`
+
+- <span id="dwcfa-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwCfa`
 
 - <span id="dwcfa-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwCfa`
+
+- <span id="dwcfa-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwCfa`
 
-- <span id="dwcfa-cmp"></span>`fn cmp(&self, other: &DwCfa) -> cmp::Ordering` — [`DwCfa`](#dwcfa)
+- <span id="dwcfa-ord-cmp"></span>`fn cmp(&self, other: &DwCfa) -> cmp::Ordering` — [`DwCfa`](#dwcfa)
 
 ##### `impl PartialEq for DwCfa`
 
-- <span id="dwcfa-eq"></span>`fn eq(&self, other: &DwCfa) -> bool` — [`DwCfa`](#dwcfa)
+- <span id="dwcfa-partialeq-eq"></span>`fn eq(&self, other: &DwCfa) -> bool` — [`DwCfa`](#dwcfa)
 
 ##### `impl PartialOrd for DwCfa`
 
-- <span id="dwcfa-partial-cmp"></span>`fn partial_cmp(&self, other: &DwCfa) -> option::Option<cmp::Ordering>` — [`DwCfa`](#dwcfa)
+- <span id="dwcfa-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwCfa) -> option::Option<cmp::Ordering>` — [`DwCfa`](#dwcfa)
 
 ##### `impl StructuralPartialEq for DwCfa`
 
+##### `impl ToOwned for DwCfa`
+
+- <span id="dwcfa-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwcfa-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwcfa-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwCfa`
 
-- <span id="dwcfa-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwcfa-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwCfa`
+
+- <span id="dwcfa-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwcfa-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwCfa`
+
+- <span id="dwcfa-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwcfa-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwChildren`
 
@@ -5354,43 +7538,97 @@ See Section 7.5.3, Table 7.4.
 
 #### Trait Implementations
 
+##### `impl Any for DwChildren`
+
+- <span id="dwchildren-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwChildren`
+
+- <span id="dwchildren-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwChildren`
+
+- <span id="dwchildren-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwChildren`
 
 - <span id="dwchildren-clone"></span>`fn clone(&self) -> DwChildren` — [`DwChildren`](#dwchildren)
+
+##### `impl CloneToUninit for DwChildren`
+
+- <span id="dwchildren-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwChildren`
 
 ##### `impl Debug for DwChildren`
 
-- <span id="dwchildren-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwchildren-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwChildren`
 
-- <span id="dwchildren-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwchildren-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwChildren`
+
+##### `impl<T> From for DwChildren`
+
+- <span id="dwchildren-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwChildren`
 
 - <span id="dwchildren-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwChildren`
+
+- <span id="dwchildren-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwChildren`
 
-- <span id="dwchildren-cmp"></span>`fn cmp(&self, other: &DwChildren) -> cmp::Ordering` — [`DwChildren`](#dwchildren)
+- <span id="dwchildren-ord-cmp"></span>`fn cmp(&self, other: &DwChildren) -> cmp::Ordering` — [`DwChildren`](#dwchildren)
 
 ##### `impl PartialEq for DwChildren`
 
-- <span id="dwchildren-eq"></span>`fn eq(&self, other: &DwChildren) -> bool` — [`DwChildren`](#dwchildren)
+- <span id="dwchildren-partialeq-eq"></span>`fn eq(&self, other: &DwChildren) -> bool` — [`DwChildren`](#dwchildren)
 
 ##### `impl PartialOrd for DwChildren`
 
-- <span id="dwchildren-partial-cmp"></span>`fn partial_cmp(&self, other: &DwChildren) -> option::Option<cmp::Ordering>` — [`DwChildren`](#dwchildren)
+- <span id="dwchildren-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwChildren) -> option::Option<cmp::Ordering>` — [`DwChildren`](#dwchildren)
 
 ##### `impl StructuralPartialEq for DwChildren`
 
+##### `impl ToOwned for DwChildren`
+
+- <span id="dwchildren-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwchildren-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwchildren-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwChildren`
 
-- <span id="dwchildren-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwchildren-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwChildren`
+
+- <span id="dwchildren-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwchildren-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwChildren`
+
+- <span id="dwchildren-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwchildren-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwTag`
 
@@ -5410,43 +7648,97 @@ See Section 7.5.3, Table 7.3.
 
 #### Trait Implementations
 
+##### `impl Any for DwTag`
+
+- <span id="dwtag-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwTag`
+
+- <span id="dwtag-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwTag`
+
+- <span id="dwtag-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwTag`
 
 - <span id="dwtag-clone"></span>`fn clone(&self) -> DwTag` — [`DwTag`](#dwtag)
+
+##### `impl CloneToUninit for DwTag`
+
+- <span id="dwtag-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwTag`
 
 ##### `impl Debug for DwTag`
 
-- <span id="dwtag-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwtag-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwTag`
 
-- <span id="dwtag-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwtag-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwTag`
+
+##### `impl<T> From for DwTag`
+
+- <span id="dwtag-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwTag`
 
 - <span id="dwtag-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwTag`
+
+- <span id="dwtag-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwTag`
 
-- <span id="dwtag-cmp"></span>`fn cmp(&self, other: &DwTag) -> cmp::Ordering` — [`DwTag`](#dwtag)
+- <span id="dwtag-ord-cmp"></span>`fn cmp(&self, other: &DwTag) -> cmp::Ordering` — [`DwTag`](#dwtag)
 
 ##### `impl PartialEq for DwTag`
 
-- <span id="dwtag-eq"></span>`fn eq(&self, other: &DwTag) -> bool` — [`DwTag`](#dwtag)
+- <span id="dwtag-partialeq-eq"></span>`fn eq(&self, other: &DwTag) -> bool` — [`DwTag`](#dwtag)
 
 ##### `impl PartialOrd for DwTag`
 
-- <span id="dwtag-partial-cmp"></span>`fn partial_cmp(&self, other: &DwTag) -> option::Option<cmp::Ordering>` — [`DwTag`](#dwtag)
+- <span id="dwtag-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwTag) -> option::Option<cmp::Ordering>` — [`DwTag`](#dwtag)
 
 ##### `impl StructuralPartialEq for DwTag`
 
+##### `impl ToOwned for DwTag`
+
+- <span id="dwtag-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwtag-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwtag-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwTag`
 
-- <span id="dwtag-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwtag-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwTag`
+
+- <span id="dwtag-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwtag-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwTag`
+
+- <span id="dwtag-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwtag-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwAt`
 
@@ -5466,43 +7758,97 @@ See Section 7.5.4, Table 7.5.
 
 #### Trait Implementations
 
+##### `impl Any for DwAt`
+
+- <span id="dwat-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwAt`
+
+- <span id="dwat-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwAt`
+
+- <span id="dwat-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwAt`
 
 - <span id="dwat-clone"></span>`fn clone(&self) -> DwAt` — [`DwAt`](#dwat)
+
+##### `impl CloneToUninit for DwAt`
+
+- <span id="dwat-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwAt`
 
 ##### `impl Debug for DwAt`
 
-- <span id="dwat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwat-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwAt`
 
-- <span id="dwat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwat-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwAt`
+
+##### `impl<T> From for DwAt`
+
+- <span id="dwat-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwAt`
 
 - <span id="dwat-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwAt`
+
+- <span id="dwat-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwAt`
 
-- <span id="dwat-cmp"></span>`fn cmp(&self, other: &DwAt) -> cmp::Ordering` — [`DwAt`](#dwat)
+- <span id="dwat-ord-cmp"></span>`fn cmp(&self, other: &DwAt) -> cmp::Ordering` — [`DwAt`](#dwat)
 
 ##### `impl PartialEq for DwAt`
 
-- <span id="dwat-eq"></span>`fn eq(&self, other: &DwAt) -> bool` — [`DwAt`](#dwat)
+- <span id="dwat-partialeq-eq"></span>`fn eq(&self, other: &DwAt) -> bool` — [`DwAt`](#dwat)
 
 ##### `impl PartialOrd for DwAt`
 
-- <span id="dwat-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAt) -> option::Option<cmp::Ordering>` — [`DwAt`](#dwat)
+- <span id="dwat-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAt) -> option::Option<cmp::Ordering>` — [`DwAt`](#dwat)
 
 ##### `impl StructuralPartialEq for DwAt`
 
+##### `impl ToOwned for DwAt`
+
+- <span id="dwat-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwat-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwat-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwAt`
 
-- <span id="dwat-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwat-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwAt`
+
+- <span id="dwat-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwat-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwAt`
+
+- <span id="dwat-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwat-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwForm`
 
@@ -5522,43 +7868,97 @@ See Section 7.5.6, Table 7.6.
 
 #### Trait Implementations
 
+##### `impl Any for DwForm`
+
+- <span id="dwform-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwForm`
+
+- <span id="dwform-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwForm`
+
+- <span id="dwform-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwForm`
 
 - <span id="dwform-clone"></span>`fn clone(&self) -> DwForm` — [`DwForm`](#dwform)
+
+##### `impl CloneToUninit for DwForm`
+
+- <span id="dwform-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwForm`
 
 ##### `impl Debug for DwForm`
 
-- <span id="dwform-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwform-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwForm`
 
-- <span id="dwform-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwform-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwForm`
+
+##### `impl<T> From for DwForm`
+
+- <span id="dwform-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwForm`
 
 - <span id="dwform-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwForm`
+
+- <span id="dwform-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwForm`
 
-- <span id="dwform-cmp"></span>`fn cmp(&self, other: &DwForm) -> cmp::Ordering` — [`DwForm`](#dwform)
+- <span id="dwform-ord-cmp"></span>`fn cmp(&self, other: &DwForm) -> cmp::Ordering` — [`DwForm`](#dwform)
 
 ##### `impl PartialEq for DwForm`
 
-- <span id="dwform-eq"></span>`fn eq(&self, other: &DwForm) -> bool` — [`DwForm`](#dwform)
+- <span id="dwform-partialeq-eq"></span>`fn eq(&self, other: &DwForm) -> bool` — [`DwForm`](#dwform)
 
 ##### `impl PartialOrd for DwForm`
 
-- <span id="dwform-partial-cmp"></span>`fn partial_cmp(&self, other: &DwForm) -> option::Option<cmp::Ordering>` — [`DwForm`](#dwform)
+- <span id="dwform-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwForm) -> option::Option<cmp::Ordering>` — [`DwForm`](#dwform)
 
 ##### `impl StructuralPartialEq for DwForm`
 
+##### `impl ToOwned for DwForm`
+
+- <span id="dwform-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwform-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwform-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwForm`
 
-- <span id="dwform-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwform-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwForm`
+
+- <span id="dwform-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwform-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwForm`
+
+- <span id="dwform-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwform-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwAte`
 
@@ -5578,43 +7978,97 @@ See Section 7.8, Table 7.11.
 
 #### Trait Implementations
 
+##### `impl Any for DwAte`
+
+- <span id="dwate-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwAte`
+
+- <span id="dwate-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwAte`
+
+- <span id="dwate-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwAte`
 
 - <span id="dwate-clone"></span>`fn clone(&self) -> DwAte` — [`DwAte`](#dwate)
+
+##### `impl CloneToUninit for DwAte`
+
+- <span id="dwate-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwAte`
 
 ##### `impl Debug for DwAte`
 
-- <span id="dwate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwate-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwAte`
 
-- <span id="dwate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwate-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwAte`
+
+##### `impl<T> From for DwAte`
+
+- <span id="dwate-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwAte`
 
 - <span id="dwate-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwAte`
+
+- <span id="dwate-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwAte`
 
-- <span id="dwate-cmp"></span>`fn cmp(&self, other: &DwAte) -> cmp::Ordering` — [`DwAte`](#dwate)
+- <span id="dwate-ord-cmp"></span>`fn cmp(&self, other: &DwAte) -> cmp::Ordering` — [`DwAte`](#dwate)
 
 ##### `impl PartialEq for DwAte`
 
-- <span id="dwate-eq"></span>`fn eq(&self, other: &DwAte) -> bool` — [`DwAte`](#dwate)
+- <span id="dwate-partialeq-eq"></span>`fn eq(&self, other: &DwAte) -> bool` — [`DwAte`](#dwate)
 
 ##### `impl PartialOrd for DwAte`
 
-- <span id="dwate-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAte) -> option::Option<cmp::Ordering>` — [`DwAte`](#dwate)
+- <span id="dwate-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAte) -> option::Option<cmp::Ordering>` — [`DwAte`](#dwate)
 
 ##### `impl StructuralPartialEq for DwAte`
 
+##### `impl ToOwned for DwAte`
+
+- <span id="dwate-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwate-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwate-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwAte`
 
-- <span id="dwate-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwate-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwAte`
+
+- <span id="dwate-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwate-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwAte`
+
+- <span id="dwate-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwate-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwLle`
 
@@ -5634,43 +8088,97 @@ See Section 7.7.3, Table 7.10.
 
 #### Trait Implementations
 
+##### `impl Any for DwLle`
+
+- <span id="dwlle-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwLle`
+
+- <span id="dwlle-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwLle`
+
+- <span id="dwlle-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwLle`
 
 - <span id="dwlle-clone"></span>`fn clone(&self) -> DwLle` — [`DwLle`](#dwlle)
+
+##### `impl CloneToUninit for DwLle`
+
+- <span id="dwlle-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwLle`
 
 ##### `impl Debug for DwLle`
 
-- <span id="dwlle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwlle-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwLle`
 
-- <span id="dwlle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwlle-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwLle`
+
+##### `impl<T> From for DwLle`
+
+- <span id="dwlle-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwLle`
 
 - <span id="dwlle-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwLle`
+
+- <span id="dwlle-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwLle`
 
-- <span id="dwlle-cmp"></span>`fn cmp(&self, other: &DwLle) -> cmp::Ordering` — [`DwLle`](#dwlle)
+- <span id="dwlle-ord-cmp"></span>`fn cmp(&self, other: &DwLle) -> cmp::Ordering` — [`DwLle`](#dwlle)
 
 ##### `impl PartialEq for DwLle`
 
-- <span id="dwlle-eq"></span>`fn eq(&self, other: &DwLle) -> bool` — [`DwLle`](#dwlle)
+- <span id="dwlle-partialeq-eq"></span>`fn eq(&self, other: &DwLle) -> bool` — [`DwLle`](#dwlle)
 
 ##### `impl PartialOrd for DwLle`
 
-- <span id="dwlle-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLle) -> option::Option<cmp::Ordering>` — [`DwLle`](#dwlle)
+- <span id="dwlle-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLle) -> option::Option<cmp::Ordering>` — [`DwLle`](#dwlle)
 
 ##### `impl StructuralPartialEq for DwLle`
 
+##### `impl ToOwned for DwLle`
+
+- <span id="dwlle-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwlle-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwlle-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwLle`
 
-- <span id="dwlle-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwlle-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwLle`
+
+- <span id="dwlle-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwlle-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwLle`
+
+- <span id="dwlle-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwlle-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwDs`
 
@@ -5690,43 +8198,97 @@ See Section 7.8, Table 7.12.
 
 #### Trait Implementations
 
+##### `impl Any for DwDs`
+
+- <span id="dwds-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwDs`
+
+- <span id="dwds-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwDs`
+
+- <span id="dwds-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwDs`
 
 - <span id="dwds-clone"></span>`fn clone(&self) -> DwDs` — [`DwDs`](#dwds)
+
+##### `impl CloneToUninit for DwDs`
+
+- <span id="dwds-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwDs`
 
 ##### `impl Debug for DwDs`
 
-- <span id="dwds-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwds-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwDs`
 
-- <span id="dwds-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwds-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwDs`
+
+##### `impl<T> From for DwDs`
+
+- <span id="dwds-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwDs`
 
 - <span id="dwds-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwDs`
+
+- <span id="dwds-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwDs`
 
-- <span id="dwds-cmp"></span>`fn cmp(&self, other: &DwDs) -> cmp::Ordering` — [`DwDs`](#dwds)
+- <span id="dwds-ord-cmp"></span>`fn cmp(&self, other: &DwDs) -> cmp::Ordering` — [`DwDs`](#dwds)
 
 ##### `impl PartialEq for DwDs`
 
-- <span id="dwds-eq"></span>`fn eq(&self, other: &DwDs) -> bool` — [`DwDs`](#dwds)
+- <span id="dwds-partialeq-eq"></span>`fn eq(&self, other: &DwDs) -> bool` — [`DwDs`](#dwds)
 
 ##### `impl PartialOrd for DwDs`
 
-- <span id="dwds-partial-cmp"></span>`fn partial_cmp(&self, other: &DwDs) -> option::Option<cmp::Ordering>` — [`DwDs`](#dwds)
+- <span id="dwds-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwDs) -> option::Option<cmp::Ordering>` — [`DwDs`](#dwds)
 
 ##### `impl StructuralPartialEq for DwDs`
 
+##### `impl ToOwned for DwDs`
+
+- <span id="dwds-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwds-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwds-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwDs`
 
-- <span id="dwds-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwds-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwDs`
+
+- <span id="dwds-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwds-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwDs`
+
+- <span id="dwds-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwds-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwEnd`
 
@@ -5746,43 +8308,97 @@ See Section 7.8, Table 7.13.
 
 #### Trait Implementations
 
+##### `impl Any for DwEnd`
+
+- <span id="dwend-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwEnd`
+
+- <span id="dwend-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwEnd`
+
+- <span id="dwend-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwEnd`
 
 - <span id="dwend-clone"></span>`fn clone(&self) -> DwEnd` — [`DwEnd`](#dwend)
+
+##### `impl CloneToUninit for DwEnd`
+
+- <span id="dwend-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwEnd`
 
 ##### `impl Debug for DwEnd`
 
-- <span id="dwend-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwend-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwEnd`
 
-- <span id="dwend-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwend-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwEnd`
+
+##### `impl<T> From for DwEnd`
+
+- <span id="dwend-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwEnd`
 
 - <span id="dwend-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwEnd`
+
+- <span id="dwend-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwEnd`
 
-- <span id="dwend-cmp"></span>`fn cmp(&self, other: &DwEnd) -> cmp::Ordering` — [`DwEnd`](#dwend)
+- <span id="dwend-ord-cmp"></span>`fn cmp(&self, other: &DwEnd) -> cmp::Ordering` — [`DwEnd`](#dwend)
 
 ##### `impl PartialEq for DwEnd`
 
-- <span id="dwend-eq"></span>`fn eq(&self, other: &DwEnd) -> bool` — [`DwEnd`](#dwend)
+- <span id="dwend-partialeq-eq"></span>`fn eq(&self, other: &DwEnd) -> bool` — [`DwEnd`](#dwend)
 
 ##### `impl PartialOrd for DwEnd`
 
-- <span id="dwend-partial-cmp"></span>`fn partial_cmp(&self, other: &DwEnd) -> option::Option<cmp::Ordering>` — [`DwEnd`](#dwend)
+- <span id="dwend-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwEnd) -> option::Option<cmp::Ordering>` — [`DwEnd`](#dwend)
 
 ##### `impl StructuralPartialEq for DwEnd`
 
+##### `impl ToOwned for DwEnd`
+
+- <span id="dwend-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwend-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwend-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwEnd`
 
-- <span id="dwend-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwend-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwEnd`
+
+- <span id="dwend-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwend-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwEnd`
+
+- <span id="dwend-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwend-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwAccess`
 
@@ -5802,43 +8418,97 @@ See Section 7.9, Table 7.14.
 
 #### Trait Implementations
 
+##### `impl Any for DwAccess`
+
+- <span id="dwaccess-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwAccess`
+
+- <span id="dwaccess-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwAccess`
+
+- <span id="dwaccess-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwAccess`
 
 - <span id="dwaccess-clone"></span>`fn clone(&self) -> DwAccess` — [`DwAccess`](#dwaccess)
+
+##### `impl CloneToUninit for DwAccess`
+
+- <span id="dwaccess-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwAccess`
 
 ##### `impl Debug for DwAccess`
 
-- <span id="dwaccess-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwaccess-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwAccess`
 
-- <span id="dwaccess-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwaccess-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwAccess`
+
+##### `impl<T> From for DwAccess`
+
+- <span id="dwaccess-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwAccess`
 
 - <span id="dwaccess-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwAccess`
+
+- <span id="dwaccess-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwAccess`
 
-- <span id="dwaccess-cmp"></span>`fn cmp(&self, other: &DwAccess) -> cmp::Ordering` — [`DwAccess`](#dwaccess)
+- <span id="dwaccess-ord-cmp"></span>`fn cmp(&self, other: &DwAccess) -> cmp::Ordering` — [`DwAccess`](#dwaccess)
 
 ##### `impl PartialEq for DwAccess`
 
-- <span id="dwaccess-eq"></span>`fn eq(&self, other: &DwAccess) -> bool` — [`DwAccess`](#dwaccess)
+- <span id="dwaccess-partialeq-eq"></span>`fn eq(&self, other: &DwAccess) -> bool` — [`DwAccess`](#dwaccess)
 
 ##### `impl PartialOrd for DwAccess`
 
-- <span id="dwaccess-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAccess) -> option::Option<cmp::Ordering>` — [`DwAccess`](#dwaccess)
+- <span id="dwaccess-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAccess) -> option::Option<cmp::Ordering>` — [`DwAccess`](#dwaccess)
 
 ##### `impl StructuralPartialEq for DwAccess`
 
+##### `impl ToOwned for DwAccess`
+
+- <span id="dwaccess-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwaccess-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwaccess-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwAccess`
 
-- <span id="dwaccess-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwaccess-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwAccess`
+
+- <span id="dwaccess-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwaccess-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwAccess`
+
+- <span id="dwaccess-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwaccess-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwVis`
 
@@ -5858,43 +8528,97 @@ See Section 7.10, Table 7.15.
 
 #### Trait Implementations
 
+##### `impl Any for DwVis`
+
+- <span id="dwvis-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwVis`
+
+- <span id="dwvis-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwVis`
+
+- <span id="dwvis-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwVis`
 
 - <span id="dwvis-clone"></span>`fn clone(&self) -> DwVis` — [`DwVis`](#dwvis)
+
+##### `impl CloneToUninit for DwVis`
+
+- <span id="dwvis-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwVis`
 
 ##### `impl Debug for DwVis`
 
-- <span id="dwvis-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwvis-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwVis`
 
-- <span id="dwvis-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwvis-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwVis`
+
+##### `impl<T> From for DwVis`
+
+- <span id="dwvis-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwVis`
 
 - <span id="dwvis-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwVis`
+
+- <span id="dwvis-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwVis`
 
-- <span id="dwvis-cmp"></span>`fn cmp(&self, other: &DwVis) -> cmp::Ordering` — [`DwVis`](#dwvis)
+- <span id="dwvis-ord-cmp"></span>`fn cmp(&self, other: &DwVis) -> cmp::Ordering` — [`DwVis`](#dwvis)
 
 ##### `impl PartialEq for DwVis`
 
-- <span id="dwvis-eq"></span>`fn eq(&self, other: &DwVis) -> bool` — [`DwVis`](#dwvis)
+- <span id="dwvis-partialeq-eq"></span>`fn eq(&self, other: &DwVis) -> bool` — [`DwVis`](#dwvis)
 
 ##### `impl PartialOrd for DwVis`
 
-- <span id="dwvis-partial-cmp"></span>`fn partial_cmp(&self, other: &DwVis) -> option::Option<cmp::Ordering>` — [`DwVis`](#dwvis)
+- <span id="dwvis-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwVis) -> option::Option<cmp::Ordering>` — [`DwVis`](#dwvis)
 
 ##### `impl StructuralPartialEq for DwVis`
 
+##### `impl ToOwned for DwVis`
+
+- <span id="dwvis-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwvis-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwvis-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwVis`
 
-- <span id="dwvis-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwvis-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwVis`
+
+- <span id="dwvis-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwvis-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwVis`
+
+- <span id="dwvis-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwvis-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwVirtuality`
 
@@ -5914,43 +8638,97 @@ See Section 7.11, Table 7.16.
 
 #### Trait Implementations
 
+##### `impl Any for DwVirtuality`
+
+- <span id="dwvirtuality-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwVirtuality`
+
+- <span id="dwvirtuality-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwVirtuality`
+
+- <span id="dwvirtuality-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwVirtuality`
 
 - <span id="dwvirtuality-clone"></span>`fn clone(&self) -> DwVirtuality` — [`DwVirtuality`](#dwvirtuality)
+
+##### `impl CloneToUninit for DwVirtuality`
+
+- <span id="dwvirtuality-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwVirtuality`
 
 ##### `impl Debug for DwVirtuality`
 
-- <span id="dwvirtuality-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwvirtuality-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwVirtuality`
 
-- <span id="dwvirtuality-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwvirtuality-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwVirtuality`
+
+##### `impl<T> From for DwVirtuality`
+
+- <span id="dwvirtuality-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwVirtuality`
 
 - <span id="dwvirtuality-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwVirtuality`
+
+- <span id="dwvirtuality-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwVirtuality`
 
-- <span id="dwvirtuality-cmp"></span>`fn cmp(&self, other: &DwVirtuality) -> cmp::Ordering` — [`DwVirtuality`](#dwvirtuality)
+- <span id="dwvirtuality-ord-cmp"></span>`fn cmp(&self, other: &DwVirtuality) -> cmp::Ordering` — [`DwVirtuality`](#dwvirtuality)
 
 ##### `impl PartialEq for DwVirtuality`
 
-- <span id="dwvirtuality-eq"></span>`fn eq(&self, other: &DwVirtuality) -> bool` — [`DwVirtuality`](#dwvirtuality)
+- <span id="dwvirtuality-partialeq-eq"></span>`fn eq(&self, other: &DwVirtuality) -> bool` — [`DwVirtuality`](#dwvirtuality)
 
 ##### `impl PartialOrd for DwVirtuality`
 
-- <span id="dwvirtuality-partial-cmp"></span>`fn partial_cmp(&self, other: &DwVirtuality) -> option::Option<cmp::Ordering>` — [`DwVirtuality`](#dwvirtuality)
+- <span id="dwvirtuality-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwVirtuality) -> option::Option<cmp::Ordering>` — [`DwVirtuality`](#dwvirtuality)
 
 ##### `impl StructuralPartialEq for DwVirtuality`
 
+##### `impl ToOwned for DwVirtuality`
+
+- <span id="dwvirtuality-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwvirtuality-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwvirtuality-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwVirtuality`
 
-- <span id="dwvirtuality-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwvirtuality-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwVirtuality`
+
+- <span id="dwvirtuality-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwvirtuality-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwVirtuality`
+
+- <span id="dwvirtuality-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwvirtuality-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwLang`
 
@@ -5970,43 +8748,97 @@ See Section 7.12, Table 7.17.
 
 #### Trait Implementations
 
+##### `impl Any for DwLang`
+
+- <span id="dwlang-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwLang`
+
+- <span id="dwlang-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwLang`
+
+- <span id="dwlang-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwLang`
 
 - <span id="dwlang-clone"></span>`fn clone(&self) -> DwLang` — [`DwLang`](#dwlang)
+
+##### `impl CloneToUninit for DwLang`
+
+- <span id="dwlang-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwLang`
 
 ##### `impl Debug for DwLang`
 
-- <span id="dwlang-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwlang-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwLang`
 
-- <span id="dwlang-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwlang-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwLang`
+
+##### `impl<T> From for DwLang`
+
+- <span id="dwlang-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwLang`
 
 - <span id="dwlang-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwLang`
+
+- <span id="dwlang-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwLang`
 
-- <span id="dwlang-cmp"></span>`fn cmp(&self, other: &DwLang) -> cmp::Ordering` — [`DwLang`](#dwlang)
+- <span id="dwlang-ord-cmp"></span>`fn cmp(&self, other: &DwLang) -> cmp::Ordering` — [`DwLang`](#dwlang)
 
 ##### `impl PartialEq for DwLang`
 
-- <span id="dwlang-eq"></span>`fn eq(&self, other: &DwLang) -> bool` — [`DwLang`](#dwlang)
+- <span id="dwlang-partialeq-eq"></span>`fn eq(&self, other: &DwLang) -> bool` — [`DwLang`](#dwlang)
 
 ##### `impl PartialOrd for DwLang`
 
-- <span id="dwlang-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLang) -> option::Option<cmp::Ordering>` — [`DwLang`](#dwlang)
+- <span id="dwlang-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLang) -> option::Option<cmp::Ordering>` — [`DwLang`](#dwlang)
 
 ##### `impl StructuralPartialEq for DwLang`
 
+##### `impl ToOwned for DwLang`
+
+- <span id="dwlang-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwlang-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwlang-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwLang`
 
-- <span id="dwlang-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwlang-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwLang`
+
+- <span id="dwlang-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwlang-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwLang`
+
+- <span id="dwlang-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwlang-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwAddr`
 
@@ -6027,43 +8859,97 @@ See Section 7.13.
 
 #### Trait Implementations
 
+##### `impl Any for DwAddr`
+
+- <span id="dwaddr-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwAddr`
+
+- <span id="dwaddr-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwAddr`
+
+- <span id="dwaddr-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwAddr`
 
 - <span id="dwaddr-clone"></span>`fn clone(&self) -> DwAddr` — [`DwAddr`](#dwaddr)
+
+##### `impl CloneToUninit for DwAddr`
+
+- <span id="dwaddr-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwAddr`
 
 ##### `impl Debug for DwAddr`
 
-- <span id="dwaddr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwaddr-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwAddr`
 
-- <span id="dwaddr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwaddr-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwAddr`
+
+##### `impl<T> From for DwAddr`
+
+- <span id="dwaddr-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwAddr`
 
 - <span id="dwaddr-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwAddr`
+
+- <span id="dwaddr-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwAddr`
 
-- <span id="dwaddr-cmp"></span>`fn cmp(&self, other: &DwAddr) -> cmp::Ordering` — [`DwAddr`](#dwaddr)
+- <span id="dwaddr-ord-cmp"></span>`fn cmp(&self, other: &DwAddr) -> cmp::Ordering` — [`DwAddr`](#dwaddr)
 
 ##### `impl PartialEq for DwAddr`
 
-- <span id="dwaddr-eq"></span>`fn eq(&self, other: &DwAddr) -> bool` — [`DwAddr`](#dwaddr)
+- <span id="dwaddr-partialeq-eq"></span>`fn eq(&self, other: &DwAddr) -> bool` — [`DwAddr`](#dwaddr)
 
 ##### `impl PartialOrd for DwAddr`
 
-- <span id="dwaddr-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAddr) -> option::Option<cmp::Ordering>` — [`DwAddr`](#dwaddr)
+- <span id="dwaddr-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAddr) -> option::Option<cmp::Ordering>` — [`DwAddr`](#dwaddr)
 
 ##### `impl StructuralPartialEq for DwAddr`
 
+##### `impl ToOwned for DwAddr`
+
+- <span id="dwaddr-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwaddr-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwaddr-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwAddr`
 
-- <span id="dwaddr-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwaddr-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwAddr`
+
+- <span id="dwaddr-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwaddr-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwAddr`
+
+- <span id="dwaddr-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwaddr-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwId`
 
@@ -6083,43 +8969,97 @@ See Section 7.14, Table 7.18.
 
 #### Trait Implementations
 
+##### `impl Any for DwId`
+
+- <span id="dwid-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwId`
+
+- <span id="dwid-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwId`
+
+- <span id="dwid-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwId`
 
 - <span id="dwid-clone"></span>`fn clone(&self) -> DwId` — [`DwId`](#dwid)
+
+##### `impl CloneToUninit for DwId`
+
+- <span id="dwid-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwId`
 
 ##### `impl Debug for DwId`
 
-- <span id="dwid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwid-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwId`
 
-- <span id="dwid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwid-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwId`
+
+##### `impl<T> From for DwId`
+
+- <span id="dwid-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwId`
 
 - <span id="dwid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwId`
+
+- <span id="dwid-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwId`
 
-- <span id="dwid-cmp"></span>`fn cmp(&self, other: &DwId) -> cmp::Ordering` — [`DwId`](#dwid)
+- <span id="dwid-ord-cmp"></span>`fn cmp(&self, other: &DwId) -> cmp::Ordering` — [`DwId`](#dwid)
 
 ##### `impl PartialEq for DwId`
 
-- <span id="dwid-eq"></span>`fn eq(&self, other: &DwId) -> bool` — [`DwId`](#dwid)
+- <span id="dwid-partialeq-eq"></span>`fn eq(&self, other: &DwId) -> bool` — [`DwId`](#dwid)
 
 ##### `impl PartialOrd for DwId`
 
-- <span id="dwid-partial-cmp"></span>`fn partial_cmp(&self, other: &DwId) -> option::Option<cmp::Ordering>` — [`DwId`](#dwid)
+- <span id="dwid-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwId) -> option::Option<cmp::Ordering>` — [`DwId`](#dwid)
 
 ##### `impl StructuralPartialEq for DwId`
 
+##### `impl ToOwned for DwId`
+
+- <span id="dwid-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwid-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwid-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwId`
 
-- <span id="dwid-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwid-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwId`
+
+- <span id="dwid-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwid-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwId`
+
+- <span id="dwid-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwid-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwCc`
 
@@ -6139,43 +9079,97 @@ See Section 7.15, Table 7.19.
 
 #### Trait Implementations
 
+##### `impl Any for DwCc`
+
+- <span id="dwcc-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwCc`
+
+- <span id="dwcc-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwCc`
+
+- <span id="dwcc-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwCc`
 
 - <span id="dwcc-clone"></span>`fn clone(&self) -> DwCc` — [`DwCc`](#dwcc)
+
+##### `impl CloneToUninit for DwCc`
+
+- <span id="dwcc-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwCc`
 
 ##### `impl Debug for DwCc`
 
-- <span id="dwcc-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwcc-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwCc`
 
-- <span id="dwcc-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwcc-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwCc`
+
+##### `impl<T> From for DwCc`
+
+- <span id="dwcc-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwCc`
 
 - <span id="dwcc-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwCc`
+
+- <span id="dwcc-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwCc`
 
-- <span id="dwcc-cmp"></span>`fn cmp(&self, other: &DwCc) -> cmp::Ordering` — [`DwCc`](#dwcc)
+- <span id="dwcc-ord-cmp"></span>`fn cmp(&self, other: &DwCc) -> cmp::Ordering` — [`DwCc`](#dwcc)
 
 ##### `impl PartialEq for DwCc`
 
-- <span id="dwcc-eq"></span>`fn eq(&self, other: &DwCc) -> bool` — [`DwCc`](#dwcc)
+- <span id="dwcc-partialeq-eq"></span>`fn eq(&self, other: &DwCc) -> bool` — [`DwCc`](#dwcc)
 
 ##### `impl PartialOrd for DwCc`
 
-- <span id="dwcc-partial-cmp"></span>`fn partial_cmp(&self, other: &DwCc) -> option::Option<cmp::Ordering>` — [`DwCc`](#dwcc)
+- <span id="dwcc-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwCc) -> option::Option<cmp::Ordering>` — [`DwCc`](#dwcc)
 
 ##### `impl StructuralPartialEq for DwCc`
 
+##### `impl ToOwned for DwCc`
+
+- <span id="dwcc-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwcc-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwcc-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwCc`
 
-- <span id="dwcc-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwcc-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwCc`
+
+- <span id="dwcc-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwcc-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwCc`
+
+- <span id="dwcc-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwcc-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwInl`
 
@@ -6195,43 +9189,97 @@ See Section 7.16, Table 7.20.
 
 #### Trait Implementations
 
+##### `impl Any for DwInl`
+
+- <span id="dwinl-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwInl`
+
+- <span id="dwinl-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwInl`
+
+- <span id="dwinl-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwInl`
 
 - <span id="dwinl-clone"></span>`fn clone(&self) -> DwInl` — [`DwInl`](#dwinl)
+
+##### `impl CloneToUninit for DwInl`
+
+- <span id="dwinl-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwInl`
 
 ##### `impl Debug for DwInl`
 
-- <span id="dwinl-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwinl-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwInl`
 
-- <span id="dwinl-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwinl-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwInl`
+
+##### `impl<T> From for DwInl`
+
+- <span id="dwinl-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwInl`
 
 - <span id="dwinl-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwInl`
+
+- <span id="dwinl-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwInl`
 
-- <span id="dwinl-cmp"></span>`fn cmp(&self, other: &DwInl) -> cmp::Ordering` — [`DwInl`](#dwinl)
+- <span id="dwinl-ord-cmp"></span>`fn cmp(&self, other: &DwInl) -> cmp::Ordering` — [`DwInl`](#dwinl)
 
 ##### `impl PartialEq for DwInl`
 
-- <span id="dwinl-eq"></span>`fn eq(&self, other: &DwInl) -> bool` — [`DwInl`](#dwinl)
+- <span id="dwinl-partialeq-eq"></span>`fn eq(&self, other: &DwInl) -> bool` — [`DwInl`](#dwinl)
 
 ##### `impl PartialOrd for DwInl`
 
-- <span id="dwinl-partial-cmp"></span>`fn partial_cmp(&self, other: &DwInl) -> option::Option<cmp::Ordering>` — [`DwInl`](#dwinl)
+- <span id="dwinl-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwInl) -> option::Option<cmp::Ordering>` — [`DwInl`](#dwinl)
 
 ##### `impl StructuralPartialEq for DwInl`
 
+##### `impl ToOwned for DwInl`
+
+- <span id="dwinl-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwinl-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwinl-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwInl`
 
-- <span id="dwinl-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwinl-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwInl`
+
+- <span id="dwinl-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwinl-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwInl`
+
+- <span id="dwinl-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwinl-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwOrd`
 
@@ -6251,43 +9299,97 @@ See Section 7.17, Table 7.17.
 
 #### Trait Implementations
 
+##### `impl Any for DwOrd`
+
+- <span id="dword-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwOrd`
+
+- <span id="dword-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwOrd`
+
+- <span id="dword-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwOrd`
 
 - <span id="dword-clone"></span>`fn clone(&self) -> DwOrd` — [`DwOrd`](#dword)
+
+##### `impl CloneToUninit for DwOrd`
+
+- <span id="dword-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwOrd`
 
 ##### `impl Debug for DwOrd`
 
-- <span id="dword-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dword-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwOrd`
 
-- <span id="dword-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dword-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwOrd`
+
+##### `impl<T> From for DwOrd`
+
+- <span id="dword-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwOrd`
 
 - <span id="dword-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwOrd`
+
+- <span id="dword-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwOrd`
 
-- <span id="dword-cmp"></span>`fn cmp(&self, other: &DwOrd) -> cmp::Ordering` — [`DwOrd`](#dword)
+- <span id="dword-ord-cmp"></span>`fn cmp(&self, other: &DwOrd) -> cmp::Ordering` — [`DwOrd`](#dword)
 
 ##### `impl PartialEq for DwOrd`
 
-- <span id="dword-eq"></span>`fn eq(&self, other: &DwOrd) -> bool` — [`DwOrd`](#dword)
+- <span id="dword-partialeq-eq"></span>`fn eq(&self, other: &DwOrd) -> bool` — [`DwOrd`](#dword)
 
 ##### `impl PartialOrd for DwOrd`
 
-- <span id="dword-partial-cmp"></span>`fn partial_cmp(&self, other: &DwOrd) -> option::Option<cmp::Ordering>` — [`DwOrd`](#dword)
+- <span id="dword-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwOrd) -> option::Option<cmp::Ordering>` — [`DwOrd`](#dword)
 
 ##### `impl StructuralPartialEq for DwOrd`
 
+##### `impl ToOwned for DwOrd`
+
+- <span id="dword-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dword-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dword-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwOrd`
 
-- <span id="dword-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dword-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwOrd`
+
+- <span id="dword-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dword-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwOrd`
+
+- <span id="dword-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dword-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwDsc`
 
@@ -6307,43 +9409,97 @@ See Section 7.18, Table 7.22.
 
 #### Trait Implementations
 
+##### `impl Any for DwDsc`
+
+- <span id="dwdsc-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwDsc`
+
+- <span id="dwdsc-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwDsc`
+
+- <span id="dwdsc-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwDsc`
 
 - <span id="dwdsc-clone"></span>`fn clone(&self) -> DwDsc` — [`DwDsc`](#dwdsc)
+
+##### `impl CloneToUninit for DwDsc`
+
+- <span id="dwdsc-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwDsc`
 
 ##### `impl Debug for DwDsc`
 
-- <span id="dwdsc-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwdsc-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwDsc`
 
-- <span id="dwdsc-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwdsc-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwDsc`
+
+##### `impl<T> From for DwDsc`
+
+- <span id="dwdsc-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwDsc`
 
 - <span id="dwdsc-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwDsc`
+
+- <span id="dwdsc-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwDsc`
 
-- <span id="dwdsc-cmp"></span>`fn cmp(&self, other: &DwDsc) -> cmp::Ordering` — [`DwDsc`](#dwdsc)
+- <span id="dwdsc-ord-cmp"></span>`fn cmp(&self, other: &DwDsc) -> cmp::Ordering` — [`DwDsc`](#dwdsc)
 
 ##### `impl PartialEq for DwDsc`
 
-- <span id="dwdsc-eq"></span>`fn eq(&self, other: &DwDsc) -> bool` — [`DwDsc`](#dwdsc)
+- <span id="dwdsc-partialeq-eq"></span>`fn eq(&self, other: &DwDsc) -> bool` — [`DwDsc`](#dwdsc)
 
 ##### `impl PartialOrd for DwDsc`
 
-- <span id="dwdsc-partial-cmp"></span>`fn partial_cmp(&self, other: &DwDsc) -> option::Option<cmp::Ordering>` — [`DwDsc`](#dwdsc)
+- <span id="dwdsc-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwDsc) -> option::Option<cmp::Ordering>` — [`DwDsc`](#dwdsc)
 
 ##### `impl StructuralPartialEq for DwDsc`
 
+##### `impl ToOwned for DwDsc`
+
+- <span id="dwdsc-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwdsc-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwdsc-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwDsc`
 
-- <span id="dwdsc-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwdsc-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwDsc`
+
+- <span id="dwdsc-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwdsc-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwDsc`
+
+- <span id="dwdsc-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwdsc-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwIdx`
 
@@ -6363,43 +9519,97 @@ See Section 7.19, Table 7.23.
 
 #### Trait Implementations
 
+##### `impl Any for DwIdx`
+
+- <span id="dwidx-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwIdx`
+
+- <span id="dwidx-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwIdx`
+
+- <span id="dwidx-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwIdx`
 
 - <span id="dwidx-clone"></span>`fn clone(&self) -> DwIdx` — [`DwIdx`](#dwidx)
+
+##### `impl CloneToUninit for DwIdx`
+
+- <span id="dwidx-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwIdx`
 
 ##### `impl Debug for DwIdx`
 
-- <span id="dwidx-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwidx-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwIdx`
 
-- <span id="dwidx-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwidx-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwIdx`
+
+##### `impl<T> From for DwIdx`
+
+- <span id="dwidx-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwIdx`
 
 - <span id="dwidx-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwIdx`
+
+- <span id="dwidx-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwIdx`
 
-- <span id="dwidx-cmp"></span>`fn cmp(&self, other: &DwIdx) -> cmp::Ordering` — [`DwIdx`](#dwidx)
+- <span id="dwidx-ord-cmp"></span>`fn cmp(&self, other: &DwIdx) -> cmp::Ordering` — [`DwIdx`](#dwidx)
 
 ##### `impl PartialEq for DwIdx`
 
-- <span id="dwidx-eq"></span>`fn eq(&self, other: &DwIdx) -> bool` — [`DwIdx`](#dwidx)
+- <span id="dwidx-partialeq-eq"></span>`fn eq(&self, other: &DwIdx) -> bool` — [`DwIdx`](#dwidx)
 
 ##### `impl PartialOrd for DwIdx`
 
-- <span id="dwidx-partial-cmp"></span>`fn partial_cmp(&self, other: &DwIdx) -> option::Option<cmp::Ordering>` — [`DwIdx`](#dwidx)
+- <span id="dwidx-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwIdx) -> option::Option<cmp::Ordering>` — [`DwIdx`](#dwidx)
 
 ##### `impl StructuralPartialEq for DwIdx`
 
+##### `impl ToOwned for DwIdx`
+
+- <span id="dwidx-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwidx-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwidx-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwIdx`
 
-- <span id="dwidx-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwidx-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwIdx`
+
+- <span id="dwidx-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwidx-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwIdx`
+
+- <span id="dwidx-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwidx-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwDefaulted`
 
@@ -6419,43 +9629,97 @@ See Section 7.20, Table 7.24.
 
 #### Trait Implementations
 
+##### `impl Any for DwDefaulted`
+
+- <span id="dwdefaulted-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwDefaulted`
+
+- <span id="dwdefaulted-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwDefaulted`
+
+- <span id="dwdefaulted-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwDefaulted`
 
 - <span id="dwdefaulted-clone"></span>`fn clone(&self) -> DwDefaulted` — [`DwDefaulted`](#dwdefaulted)
+
+##### `impl CloneToUninit for DwDefaulted`
+
+- <span id="dwdefaulted-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwDefaulted`
 
 ##### `impl Debug for DwDefaulted`
 
-- <span id="dwdefaulted-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwdefaulted-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwDefaulted`
 
-- <span id="dwdefaulted-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwdefaulted-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwDefaulted`
+
+##### `impl<T> From for DwDefaulted`
+
+- <span id="dwdefaulted-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwDefaulted`
 
 - <span id="dwdefaulted-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwDefaulted`
+
+- <span id="dwdefaulted-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwDefaulted`
 
-- <span id="dwdefaulted-cmp"></span>`fn cmp(&self, other: &DwDefaulted) -> cmp::Ordering` — [`DwDefaulted`](#dwdefaulted)
+- <span id="dwdefaulted-ord-cmp"></span>`fn cmp(&self, other: &DwDefaulted) -> cmp::Ordering` — [`DwDefaulted`](#dwdefaulted)
 
 ##### `impl PartialEq for DwDefaulted`
 
-- <span id="dwdefaulted-eq"></span>`fn eq(&self, other: &DwDefaulted) -> bool` — [`DwDefaulted`](#dwdefaulted)
+- <span id="dwdefaulted-partialeq-eq"></span>`fn eq(&self, other: &DwDefaulted) -> bool` — [`DwDefaulted`](#dwdefaulted)
 
 ##### `impl PartialOrd for DwDefaulted`
 
-- <span id="dwdefaulted-partial-cmp"></span>`fn partial_cmp(&self, other: &DwDefaulted) -> option::Option<cmp::Ordering>` — [`DwDefaulted`](#dwdefaulted)
+- <span id="dwdefaulted-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwDefaulted) -> option::Option<cmp::Ordering>` — [`DwDefaulted`](#dwdefaulted)
 
 ##### `impl StructuralPartialEq for DwDefaulted`
 
+##### `impl ToOwned for DwDefaulted`
+
+- <span id="dwdefaulted-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwdefaulted-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwdefaulted-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwDefaulted`
 
-- <span id="dwdefaulted-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwdefaulted-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwDefaulted`
+
+- <span id="dwdefaulted-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwdefaulted-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwDefaulted`
+
+- <span id="dwdefaulted-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwdefaulted-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwLns`
 
@@ -6475,43 +9739,97 @@ See Section 7.22, Table 7.25.
 
 #### Trait Implementations
 
+##### `impl Any for DwLns`
+
+- <span id="dwlns-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwLns`
+
+- <span id="dwlns-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwLns`
+
+- <span id="dwlns-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwLns`
 
 - <span id="dwlns-clone"></span>`fn clone(&self) -> DwLns` — [`DwLns`](#dwlns)
+
+##### `impl CloneToUninit for DwLns`
+
+- <span id="dwlns-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwLns`
 
 ##### `impl Debug for DwLns`
 
-- <span id="dwlns-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwlns-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwLns`
 
-- <span id="dwlns-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwlns-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwLns`
+
+##### `impl<T> From for DwLns`
+
+- <span id="dwlns-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwLns`
 
 - <span id="dwlns-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwLns`
+
+- <span id="dwlns-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwLns`
 
-- <span id="dwlns-cmp"></span>`fn cmp(&self, other: &DwLns) -> cmp::Ordering` — [`DwLns`](#dwlns)
+- <span id="dwlns-ord-cmp"></span>`fn cmp(&self, other: &DwLns) -> cmp::Ordering` — [`DwLns`](#dwlns)
 
 ##### `impl PartialEq for DwLns`
 
-- <span id="dwlns-eq"></span>`fn eq(&self, other: &DwLns) -> bool` — [`DwLns`](#dwlns)
+- <span id="dwlns-partialeq-eq"></span>`fn eq(&self, other: &DwLns) -> bool` — [`DwLns`](#dwlns)
 
 ##### `impl PartialOrd for DwLns`
 
-- <span id="dwlns-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLns) -> option::Option<cmp::Ordering>` — [`DwLns`](#dwlns)
+- <span id="dwlns-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLns) -> option::Option<cmp::Ordering>` — [`DwLns`](#dwlns)
 
 ##### `impl StructuralPartialEq for DwLns`
 
+##### `impl ToOwned for DwLns`
+
+- <span id="dwlns-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwlns-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwlns-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwLns`
 
-- <span id="dwlns-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwlns-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwLns`
+
+- <span id="dwlns-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwlns-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwLns`
+
+- <span id="dwlns-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwlns-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwLne`
 
@@ -6531,43 +9849,97 @@ See Section 7.22, Table 7.26.
 
 #### Trait Implementations
 
+##### `impl Any for DwLne`
+
+- <span id="dwlne-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwLne`
+
+- <span id="dwlne-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwLne`
+
+- <span id="dwlne-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwLne`
 
 - <span id="dwlne-clone"></span>`fn clone(&self) -> DwLne` — [`DwLne`](#dwlne)
+
+##### `impl CloneToUninit for DwLne`
+
+- <span id="dwlne-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwLne`
 
 ##### `impl Debug for DwLne`
 
-- <span id="dwlne-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwlne-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwLne`
 
-- <span id="dwlne-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwlne-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwLne`
+
+##### `impl<T> From for DwLne`
+
+- <span id="dwlne-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwLne`
 
 - <span id="dwlne-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwLne`
+
+- <span id="dwlne-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwLne`
 
-- <span id="dwlne-cmp"></span>`fn cmp(&self, other: &DwLne) -> cmp::Ordering` — [`DwLne`](#dwlne)
+- <span id="dwlne-ord-cmp"></span>`fn cmp(&self, other: &DwLne) -> cmp::Ordering` — [`DwLne`](#dwlne)
 
 ##### `impl PartialEq for DwLne`
 
-- <span id="dwlne-eq"></span>`fn eq(&self, other: &DwLne) -> bool` — [`DwLne`](#dwlne)
+- <span id="dwlne-partialeq-eq"></span>`fn eq(&self, other: &DwLne) -> bool` — [`DwLne`](#dwlne)
 
 ##### `impl PartialOrd for DwLne`
 
-- <span id="dwlne-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLne) -> option::Option<cmp::Ordering>` — [`DwLne`](#dwlne)
+- <span id="dwlne-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLne) -> option::Option<cmp::Ordering>` — [`DwLne`](#dwlne)
 
 ##### `impl StructuralPartialEq for DwLne`
 
+##### `impl ToOwned for DwLne`
+
+- <span id="dwlne-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwlne-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwlne-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwLne`
 
-- <span id="dwlne-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwlne-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwLne`
+
+- <span id="dwlne-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwlne-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwLne`
+
+- <span id="dwlne-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwlne-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwLnct`
 
@@ -6587,43 +9959,97 @@ See Section 7.22, Table 7.27.
 
 #### Trait Implementations
 
+##### `impl Any for DwLnct`
+
+- <span id="dwlnct-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwLnct`
+
+- <span id="dwlnct-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwLnct`
+
+- <span id="dwlnct-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwLnct`
 
 - <span id="dwlnct-clone"></span>`fn clone(&self) -> DwLnct` — [`DwLnct`](#dwlnct)
+
+##### `impl CloneToUninit for DwLnct`
+
+- <span id="dwlnct-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwLnct`
 
 ##### `impl Debug for DwLnct`
 
-- <span id="dwlnct-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwlnct-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwLnct`
 
-- <span id="dwlnct-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwlnct-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwLnct`
+
+##### `impl<T> From for DwLnct`
+
+- <span id="dwlnct-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwLnct`
 
 - <span id="dwlnct-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwLnct`
+
+- <span id="dwlnct-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwLnct`
 
-- <span id="dwlnct-cmp"></span>`fn cmp(&self, other: &DwLnct) -> cmp::Ordering` — [`DwLnct`](#dwlnct)
+- <span id="dwlnct-ord-cmp"></span>`fn cmp(&self, other: &DwLnct) -> cmp::Ordering` — [`DwLnct`](#dwlnct)
 
 ##### `impl PartialEq for DwLnct`
 
-- <span id="dwlnct-eq"></span>`fn eq(&self, other: &DwLnct) -> bool` — [`DwLnct`](#dwlnct)
+- <span id="dwlnct-partialeq-eq"></span>`fn eq(&self, other: &DwLnct) -> bool` — [`DwLnct`](#dwlnct)
 
 ##### `impl PartialOrd for DwLnct`
 
-- <span id="dwlnct-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLnct) -> option::Option<cmp::Ordering>` — [`DwLnct`](#dwlnct)
+- <span id="dwlnct-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLnct) -> option::Option<cmp::Ordering>` — [`DwLnct`](#dwlnct)
 
 ##### `impl StructuralPartialEq for DwLnct`
 
+##### `impl ToOwned for DwLnct`
+
+- <span id="dwlnct-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwlnct-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwlnct-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwLnct`
 
-- <span id="dwlnct-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwlnct-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwLnct`
+
+- <span id="dwlnct-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwlnct-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwLnct`
+
+- <span id="dwlnct-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwlnct-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwMacinfo`
 
@@ -6643,43 +10069,97 @@ See Section 7.22, Figure 39 for DWARF 4.
 
 #### Trait Implementations
 
+##### `impl Any for DwMacinfo`
+
+- <span id="dwmacinfo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwMacinfo`
+
+- <span id="dwmacinfo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwMacinfo`
+
+- <span id="dwmacinfo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwMacinfo`
 
 - <span id="dwmacinfo-clone"></span>`fn clone(&self) -> DwMacinfo` — [`DwMacinfo`](#dwmacinfo)
+
+##### `impl CloneToUninit for DwMacinfo`
+
+- <span id="dwmacinfo-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwMacinfo`
 
 ##### `impl Debug for DwMacinfo`
 
-- <span id="dwmacinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwmacinfo-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwMacinfo`
 
-- <span id="dwmacinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwmacinfo-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwMacinfo`
+
+##### `impl<T> From for DwMacinfo`
+
+- <span id="dwmacinfo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwMacinfo`
 
 - <span id="dwmacinfo-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwMacinfo`
+
+- <span id="dwmacinfo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwMacinfo`
 
-- <span id="dwmacinfo-cmp"></span>`fn cmp(&self, other: &DwMacinfo) -> cmp::Ordering` — [`DwMacinfo`](#dwmacinfo)
+- <span id="dwmacinfo-ord-cmp"></span>`fn cmp(&self, other: &DwMacinfo) -> cmp::Ordering` — [`DwMacinfo`](#dwmacinfo)
 
 ##### `impl PartialEq for DwMacinfo`
 
-- <span id="dwmacinfo-eq"></span>`fn eq(&self, other: &DwMacinfo) -> bool` — [`DwMacinfo`](#dwmacinfo)
+- <span id="dwmacinfo-partialeq-eq"></span>`fn eq(&self, other: &DwMacinfo) -> bool` — [`DwMacinfo`](#dwmacinfo)
 
 ##### `impl PartialOrd for DwMacinfo`
 
-- <span id="dwmacinfo-partial-cmp"></span>`fn partial_cmp(&self, other: &DwMacinfo) -> option::Option<cmp::Ordering>` — [`DwMacinfo`](#dwmacinfo)
+- <span id="dwmacinfo-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwMacinfo) -> option::Option<cmp::Ordering>` — [`DwMacinfo`](#dwmacinfo)
 
 ##### `impl StructuralPartialEq for DwMacinfo`
 
+##### `impl ToOwned for DwMacinfo`
+
+- <span id="dwmacinfo-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwmacinfo-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwmacinfo-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwMacinfo`
 
-- <span id="dwmacinfo-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwmacinfo-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwMacinfo`
+
+- <span id="dwmacinfo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwmacinfo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwMacinfo`
+
+- <span id="dwmacinfo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwmacinfo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwMacro`
 
@@ -6699,43 +10179,97 @@ See Section 7.23, Table 7.28 for DWARF 5.
 
 #### Trait Implementations
 
+##### `impl Any for DwMacro`
+
+- <span id="dwmacro-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwMacro`
+
+- <span id="dwmacro-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwMacro`
+
+- <span id="dwmacro-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwMacro`
 
 - <span id="dwmacro-clone"></span>`fn clone(&self) -> DwMacro` — [`DwMacro`](#dwmacro)
+
+##### `impl CloneToUninit for DwMacro`
+
+- <span id="dwmacro-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwMacro`
 
 ##### `impl Debug for DwMacro`
 
-- <span id="dwmacro-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwmacro-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwMacro`
 
-- <span id="dwmacro-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwmacro-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwMacro`
+
+##### `impl<T> From for DwMacro`
+
+- <span id="dwmacro-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwMacro`
 
 - <span id="dwmacro-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwMacro`
+
+- <span id="dwmacro-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwMacro`
 
-- <span id="dwmacro-cmp"></span>`fn cmp(&self, other: &DwMacro) -> cmp::Ordering` — [`DwMacro`](#dwmacro)
+- <span id="dwmacro-ord-cmp"></span>`fn cmp(&self, other: &DwMacro) -> cmp::Ordering` — [`DwMacro`](#dwmacro)
 
 ##### `impl PartialEq for DwMacro`
 
-- <span id="dwmacro-eq"></span>`fn eq(&self, other: &DwMacro) -> bool` — [`DwMacro`](#dwmacro)
+- <span id="dwmacro-partialeq-eq"></span>`fn eq(&self, other: &DwMacro) -> bool` — [`DwMacro`](#dwmacro)
 
 ##### `impl PartialOrd for DwMacro`
 
-- <span id="dwmacro-partial-cmp"></span>`fn partial_cmp(&self, other: &DwMacro) -> option::Option<cmp::Ordering>` — [`DwMacro`](#dwmacro)
+- <span id="dwmacro-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwMacro) -> option::Option<cmp::Ordering>` — [`DwMacro`](#dwmacro)
 
 ##### `impl StructuralPartialEq for DwMacro`
 
+##### `impl ToOwned for DwMacro`
+
+- <span id="dwmacro-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwmacro-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwmacro-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwMacro`
 
-- <span id="dwmacro-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwmacro-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwMacro`
+
+- <span id="dwmacro-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwmacro-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwMacro`
+
+- <span id="dwmacro-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwmacro-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwRle`
 
@@ -6755,43 +10289,97 @@ See Section 7.25, Table 7.30.
 
 #### Trait Implementations
 
+##### `impl Any for DwRle`
+
+- <span id="dwrle-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwRle`
+
+- <span id="dwrle-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwRle`
+
+- <span id="dwrle-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwRle`
 
 - <span id="dwrle-clone"></span>`fn clone(&self) -> DwRle` — [`DwRle`](#dwrle)
+
+##### `impl CloneToUninit for DwRle`
+
+- <span id="dwrle-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwRle`
 
 ##### `impl Debug for DwRle`
 
-- <span id="dwrle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwrle-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwRle`
 
-- <span id="dwrle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwrle-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwRle`
+
+##### `impl<T> From for DwRle`
+
+- <span id="dwrle-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwRle`
 
 - <span id="dwrle-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwRle`
+
+- <span id="dwrle-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwRle`
 
-- <span id="dwrle-cmp"></span>`fn cmp(&self, other: &DwRle) -> cmp::Ordering` — [`DwRle`](#dwrle)
+- <span id="dwrle-ord-cmp"></span>`fn cmp(&self, other: &DwRle) -> cmp::Ordering` — [`DwRle`](#dwrle)
 
 ##### `impl PartialEq for DwRle`
 
-- <span id="dwrle-eq"></span>`fn eq(&self, other: &DwRle) -> bool` — [`DwRle`](#dwrle)
+- <span id="dwrle-partialeq-eq"></span>`fn eq(&self, other: &DwRle) -> bool` — [`DwRle`](#dwrle)
 
 ##### `impl PartialOrd for DwRle`
 
-- <span id="dwrle-partial-cmp"></span>`fn partial_cmp(&self, other: &DwRle) -> option::Option<cmp::Ordering>` — [`DwRle`](#dwrle)
+- <span id="dwrle-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwRle) -> option::Option<cmp::Ordering>` — [`DwRle`](#dwrle)
 
 ##### `impl StructuralPartialEq for DwRle`
 
+##### `impl ToOwned for DwRle`
+
+- <span id="dwrle-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwrle-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwrle-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwRle`
 
-- <span id="dwrle-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwrle-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwRle`
+
+- <span id="dwrle-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwrle-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwRle`
+
+- <span id="dwrle-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwrle-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwOp`
 
@@ -6811,43 +10399,97 @@ See Section 7.7.1, Table 7.9.
 
 #### Trait Implementations
 
+##### `impl Any for DwOp`
+
+- <span id="dwop-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwOp`
+
+- <span id="dwop-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwOp`
+
+- <span id="dwop-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwOp`
 
 - <span id="dwop-clone"></span>`fn clone(&self) -> DwOp` — [`DwOp`](#dwop)
+
+##### `impl CloneToUninit for DwOp`
+
+- <span id="dwop-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwOp`
 
 ##### `impl Debug for DwOp`
 
-- <span id="dwop-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwop-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwOp`
 
-- <span id="dwop-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwop-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwOp`
+
+##### `impl<T> From for DwOp`
+
+- <span id="dwop-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwOp`
 
 - <span id="dwop-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwOp`
+
+- <span id="dwop-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwOp`
 
-- <span id="dwop-cmp"></span>`fn cmp(&self, other: &DwOp) -> cmp::Ordering` — [`DwOp`](#dwop)
+- <span id="dwop-ord-cmp"></span>`fn cmp(&self, other: &DwOp) -> cmp::Ordering` — [`DwOp`](#dwop)
 
 ##### `impl PartialEq for DwOp`
 
-- <span id="dwop-eq"></span>`fn eq(&self, other: &DwOp) -> bool` — [`DwOp`](#dwop)
+- <span id="dwop-partialeq-eq"></span>`fn eq(&self, other: &DwOp) -> bool` — [`DwOp`](#dwop)
 
 ##### `impl PartialOrd for DwOp`
 
-- <span id="dwop-partial-cmp"></span>`fn partial_cmp(&self, other: &DwOp) -> option::Option<cmp::Ordering>` — [`DwOp`](#dwop)
+- <span id="dwop-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwOp) -> option::Option<cmp::Ordering>` — [`DwOp`](#dwop)
 
 ##### `impl StructuralPartialEq for DwOp`
 
+##### `impl ToOwned for DwOp`
+
+- <span id="dwop-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwop-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwop-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwOp`
 
-- <span id="dwop-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwop-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwOp`
+
+- <span id="dwop-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwop-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwOp`
+
+- <span id="dwop-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwop-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwEhPe`
 
@@ -6871,49 +10513,103 @@ Defined in `<https://refspecs.linuxfoundation.org/LSB_4.0.0/LSB-Core-generic/LSB
 
 #### Trait Implementations
 
+##### `impl Any for DwEhPe`
+
+- <span id="dwehpe-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl BitOr for DwEhPe`
 
 - <span id="dwehpe-bitor-type-output"></span>`type Output = DwEhPe`
 
 - <span id="dwehpe-bitor"></span>`fn bitor(self, rhs: DwEhPe) -> DwEhPe` — [`DwEhPe`](#dwehpe)
 
+##### `impl<T> Borrow for DwEhPe`
+
+- <span id="dwehpe-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwEhPe`
+
+- <span id="dwehpe-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwEhPe`
 
 - <span id="dwehpe-clone"></span>`fn clone(&self) -> DwEhPe` — [`DwEhPe`](#dwehpe)
+
+##### `impl CloneToUninit for DwEhPe`
+
+- <span id="dwehpe-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwEhPe`
 
 ##### `impl Debug for DwEhPe`
 
-- <span id="dwehpe-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwehpe-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwEhPe`
 
-- <span id="dwehpe-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwehpe-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwEhPe`
+
+##### `impl<T> From for DwEhPe`
+
+- <span id="dwehpe-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for DwEhPe`
 
 - <span id="dwehpe-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DwEhPe`
+
+- <span id="dwehpe-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for DwEhPe`
 
-- <span id="dwehpe-cmp"></span>`fn cmp(&self, other: &DwEhPe) -> cmp::Ordering` — [`DwEhPe`](#dwehpe)
+- <span id="dwehpe-ord-cmp"></span>`fn cmp(&self, other: &DwEhPe) -> cmp::Ordering` — [`DwEhPe`](#dwehpe)
 
 ##### `impl PartialEq for DwEhPe`
 
-- <span id="dwehpe-eq"></span>`fn eq(&self, other: &DwEhPe) -> bool` — [`DwEhPe`](#dwehpe)
+- <span id="dwehpe-partialeq-eq"></span>`fn eq(&self, other: &DwEhPe) -> bool` — [`DwEhPe`](#dwehpe)
 
 ##### `impl PartialOrd for DwEhPe`
 
-- <span id="dwehpe-partial-cmp"></span>`fn partial_cmp(&self, other: &DwEhPe) -> option::Option<cmp::Ordering>` — [`DwEhPe`](#dwehpe)
+- <span id="dwehpe-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &DwEhPe) -> option::Option<cmp::Ordering>` — [`DwEhPe`](#dwehpe)
 
 ##### `impl StructuralPartialEq for DwEhPe`
 
+##### `impl ToOwned for DwEhPe`
+
+- <span id="dwehpe-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwehpe-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwehpe-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for DwEhPe`
 
-- <span id="dwehpe-to-string"></span>`fn to_string(&self) -> String`
+- <span id="dwehpe-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DwEhPe`
+
+- <span id="dwehpe-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwehpe-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwEhPe`
+
+- <span id="dwehpe-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwehpe-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LittleEndian`
 
@@ -6927,15 +10623,31 @@ Little endian byte order.
 
 #### Trait Implementations
 
+##### `impl Any for LittleEndian`
+
+- <span id="littleendian-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LittleEndian`
+
+- <span id="littleendian-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LittleEndian`
+
+- <span id="littleendian-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for LittleEndian`
 
 - <span id="littleendian-clone"></span>`fn clone(&self) -> LittleEndian` — [`LittleEndian`](#littleendian)
+
+##### `impl CloneToUninit for LittleEndian`
+
+- <span id="littleendian-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for LittleEndian`
 
 ##### `impl Debug for LittleEndian`
 
-- <span id="littleendian-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="littleendian-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for LittleEndian`
 
@@ -6943,19 +10655,57 @@ Little endian byte order.
 
 ##### `impl Endianity for LittleEndian`
 
-- <span id="littleendian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
+- <span id="littleendian-endianity-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for LittleEndian`
+
+##### `impl<T> From for LittleEndian`
+
+- <span id="littleendian-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for LittleEndian`
 
 - <span id="littleendian-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for LittleEndian`
+
+- <span id="littleendian-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for LittleEndian`
 
-- <span id="littleendian-eq"></span>`fn eq(&self, other: &LittleEndian) -> bool` — [`LittleEndian`](#littleendian)
+- <span id="littleendian-partialeq-eq"></span>`fn eq(&self, other: &LittleEndian) -> bool` — [`LittleEndian`](#littleendian)
 
 ##### `impl StructuralPartialEq for LittleEndian`
+
+##### `impl ToOwned for LittleEndian`
+
+- <span id="littleendian-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="littleendian-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="littleendian-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LittleEndian`
+
+- <span id="littleendian-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="littleendian-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LittleEndian`
+
+- <span id="littleendian-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="littleendian-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BigEndian`
 
@@ -6969,15 +10719,31 @@ Big endian byte order.
 
 #### Trait Implementations
 
+##### `impl Any for BigEndian`
+
+- <span id="bigendian-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BigEndian`
+
+- <span id="bigendian-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BigEndian`
+
+- <span id="bigendian-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BigEndian`
 
 - <span id="bigendian-clone"></span>`fn clone(&self) -> BigEndian` — [`BigEndian`](#bigendian)
+
+##### `impl CloneToUninit for BigEndian`
+
+- <span id="bigendian-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for BigEndian`
 
 ##### `impl Debug for BigEndian`
 
-- <span id="bigendian-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bigendian-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for BigEndian`
 
@@ -6985,19 +10751,57 @@ Big endian byte order.
 
 ##### `impl Endianity for BigEndian`
 
-- <span id="bigendian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
+- <span id="bigendian-endianity-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for BigEndian`
+
+##### `impl<T> From for BigEndian`
+
+- <span id="bigendian-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for BigEndian`
 
 - <span id="bigendian-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for BigEndian`
+
+- <span id="bigendian-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for BigEndian`
 
-- <span id="bigendian-eq"></span>`fn eq(&self, other: &BigEndian) -> bool` — [`BigEndian`](#bigendian)
+- <span id="bigendian-partialeq-eq"></span>`fn eq(&self, other: &BigEndian) -> bool` — [`BigEndian`](#bigendian)
 
 ##### `impl StructuralPartialEq for BigEndian`
+
+##### `impl ToOwned for BigEndian`
+
+- <span id="bigendian-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="bigendian-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="bigendian-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BigEndian`
+
+- <span id="bigendian-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="bigendian-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BigEndian`
+
+- <span id="bigendian-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="bigendian-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UnitOffset<T>`
 
@@ -7013,37 +10817,99 @@ An offset into the current compilation or type unit.
 
 - <span id="cratereadunitoffset-to-unit-section-offset"></span>`fn to_unit_section_offset<R>(&self, unit: &Unit<R>) -> UnitSectionOffset<T>` — [`Unit`](read/index.md#unit), [`UnitSectionOffset`](#unitsectionoffset)
 
+  Convert an offset to be relative to the start of the .debug_info section,
+
+  instead of relative to the start of the given compilation unit.
+
+  
+
+  Does not check that the offset is valid.
+
 #### Trait Implementations
+
+##### `impl<T> Any for UnitOffset<T>`
+
+- <span id="unitoffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnitOffset<T>`
+
+- <span id="unitoffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnitOffset<T>`
+
+- <span id="unitoffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: clone::Clone> Clone for UnitOffset<T>`
 
 - <span id="unitoffset-clone"></span>`fn clone(&self) -> UnitOffset<T>` — [`UnitOffset`](#unitoffset)
 
+##### `impl<T> CloneToUninit for UnitOffset<T>`
+
+- <span id="unitoffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: marker::Copy> Copy for UnitOffset<T>`
 
 ##### `impl<T: fmt::Debug> Debug for UnitOffset<T>`
 
-- <span id="unitoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unitoffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for UnitOffset<T>`
+
+##### `impl<T> From for UnitOffset<T>`
+
+- <span id="unitoffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: hash::Hash> Hash for UnitOffset<T>`
 
 - <span id="unitoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T, U> Into for UnitOffset<T>`
+
+- <span id="unitoffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::Ord> Ord for UnitOffset<T>`
 
-- <span id="unitoffset-cmp"></span>`fn cmp(&self, other: &UnitOffset<T>) -> cmp::Ordering` — [`UnitOffset`](#unitoffset)
+- <span id="unitoffset-ord-cmp"></span>`fn cmp(&self, other: &UnitOffset<T>) -> cmp::Ordering` — [`UnitOffset`](#unitoffset)
 
 ##### `impl<T: cmp::PartialEq> PartialEq for UnitOffset<T>`
 
-- <span id="unitoffset-eq"></span>`fn eq(&self, other: &UnitOffset<T>) -> bool` — [`UnitOffset`](#unitoffset)
+- <span id="unitoffset-partialeq-eq"></span>`fn eq(&self, other: &UnitOffset<T>) -> bool` — [`UnitOffset`](#unitoffset)
 
 ##### `impl<T: cmp::PartialOrd> PartialOrd for UnitOffset<T>`
 
-- <span id="unitoffset-partial-cmp"></span>`fn partial_cmp(&self, other: &UnitOffset<T>) -> option::Option<cmp::Ordering>` — [`UnitOffset`](#unitoffset)
+- <span id="unitoffset-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &UnitOffset<T>) -> option::Option<cmp::Ordering>` — [`UnitOffset`](#unitoffset)
 
 ##### `impl<T> StructuralPartialEq for UnitOffset<T>`
+
+##### `impl<T> ToOwned for UnitOffset<T>`
+
+- <span id="unitoffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="unitoffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="unitoffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for UnitOffset<T>`
+
+- <span id="unitoffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unitoffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for UnitOffset<T>`
+
+- <span id="unitoffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unitoffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StoreOnHeap`
 
@@ -7057,15 +10923,31 @@ Indicates that storage should be allocated on heap.
 
 #### Trait Implementations
 
+##### `impl Any for StoreOnHeap`
+
+- <span id="storeonheap-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StoreOnHeap`
+
+- <span id="storeonheap-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StoreOnHeap`
+
+- <span id="storeonheap-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for StoreOnHeap`
 
 - <span id="storeonheap-clone"></span>`fn clone(&self) -> StoreOnHeap` — [`StoreOnHeap`](#storeonheap)
+
+##### `impl CloneToUninit for StoreOnHeap`
+
+- <span id="storeonheap-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for StoreOnHeap`
 
 ##### `impl Debug for StoreOnHeap`
 
-- <span id="storeonheap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="storeonheap-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for StoreOnHeap`
 
@@ -7077,11 +10959,49 @@ Indicates that storage should be allocated on heap.
 
 - <span id="cratereadstoreonheap-evaluationstorage-type-result"></span>`type Result = Vec<Piece<R>>`
 
+##### `impl<T> From for StoreOnHeap`
+
+- <span id="storeonheap-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StoreOnHeap`
+
+- <span id="storeonheap-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for StoreOnHeap`
 
-- <span id="storeonheap-eq"></span>`fn eq(&self, other: &StoreOnHeap) -> bool` — [`StoreOnHeap`](#storeonheap)
+- <span id="storeonheap-partialeq-eq"></span>`fn eq(&self, other: &StoreOnHeap) -> bool` — [`StoreOnHeap`](#storeonheap)
 
 ##### `impl StructuralPartialEq for StoreOnHeap`
+
+##### `impl ToOwned for StoreOnHeap`
+
+- <span id="storeonheap-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="storeonheap-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="storeonheap-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for StoreOnHeap`
+
+- <span id="storeonheap-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="storeonheap-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StoreOnHeap`
+
+- <span id="storeonheap-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="storeonheap-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T: ReaderOffset> UnwindContextStorage for crate::read::StoreOnHeap`
 
@@ -7118,31 +11038,89 @@ Whether the format of a compilation unit is 32- or 64-bit.
 
 - <span id="format-initial-length-size"></span>`fn initial_length_size(self) -> u8`
 
+  Return the serialized size of an initial length field for the format.
+
 - <span id="format-word-size"></span>`fn word_size(self) -> u8`
 
+  Return the natural word size for the format
+
 #### Trait Implementations
+
+##### `impl Any for Format`
+
+- <span id="format-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Format`
+
+- <span id="format-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Format`
+
+- <span id="format-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Format`
 
 - <span id="format-clone"></span>`fn clone(&self) -> Format` — [`Format`](#format)
 
+##### `impl CloneToUninit for Format`
+
+- <span id="format-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Format`
 
 ##### `impl Debug for Format`
 
-- <span id="format-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="format-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Format`
+
+##### `impl<T> From for Format`
+
+- <span id="format-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Format`
 
 - <span id="format-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Format`
+
+- <span id="format-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Format`
 
-- <span id="format-eq"></span>`fn eq(&self, other: &Format) -> bool` — [`Format`](#format)
+- <span id="format-partialeq-eq"></span>`fn eq(&self, other: &Format) -> bool` — [`Format`](#format)
 
 ##### `impl StructuralPartialEq for Format`
+
+##### `impl ToOwned for Format`
+
+- <span id="format-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="format-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="format-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Format`
+
+- <span id="format-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="format-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Format`
+
+- <span id="format-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="format-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Vendor`
 
@@ -7169,23 +11147,77 @@ Which vendor extensions to support.
 
 #### Trait Implementations
 
+##### `impl Any for Vendor`
+
+- <span id="vendor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Vendor`
+
+- <span id="vendor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Vendor`
+
+- <span id="vendor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Vendor`
 
 - <span id="vendor-clone"></span>`fn clone(&self) -> Vendor` — [`Vendor`](#vendor)
+
+##### `impl CloneToUninit for Vendor`
+
+- <span id="vendor-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Vendor`
 
 ##### `impl Debug for Vendor`
 
-- <span id="vendor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="vendor-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Vendor`
 
+##### `impl<T> From for Vendor`
+
+- <span id="vendor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Vendor`
+
+- <span id="vendor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Vendor`
 
-- <span id="vendor-eq"></span>`fn eq(&self, other: &Vendor) -> bool` — [`Vendor`](#vendor)
+- <span id="vendor-partialeq-eq"></span>`fn eq(&self, other: &Vendor) -> bool` — [`Vendor`](#vendor)
 
 ##### `impl StructuralPartialEq for Vendor`
+
+##### `impl ToOwned for Vendor`
+
+- <span id="vendor-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="vendor-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="vendor-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Vendor`
+
+- <span id="vendor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="vendor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Vendor`
+
+- <span id="vendor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="vendor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UnitSectionOffset<T>`
 
@@ -7214,39 +11246,97 @@ An offset into the `.debug_info` or `.debug_types` sections.
 
 - <span id="unitsectionoffset-as-debug-info-offset"></span>`fn as_debug_info_offset(&self) -> Option<DebugInfoOffset<T>>` — [`DebugInfoOffset`](#debuginfooffset)
 
+  Returns the `DebugInfoOffset` inside, or `None` otherwise.
+
 - <span id="unitsectionoffset-as-debug-types-offset"></span>`fn as_debug_types_offset(&self) -> Option<DebugTypesOffset<T>>` — [`DebugTypesOffset`](#debugtypesoffset)
 
+  Returns the `DebugTypesOffset` inside, or `None` otherwise.
+
 #### Trait Implementations
+
+##### `impl<T> Any for UnitSectionOffset<T>`
+
+- <span id="unitsectionoffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnitSectionOffset<T>`
+
+- <span id="unitsectionoffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnitSectionOffset<T>`
+
+- <span id="unitsectionoffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: clone::Clone> Clone for UnitSectionOffset<T>`
 
 - <span id="unitsectionoffset-clone"></span>`fn clone(&self) -> UnitSectionOffset<T>` — [`UnitSectionOffset`](#unitsectionoffset)
 
+##### `impl<T> CloneToUninit for UnitSectionOffset<T>`
+
+- <span id="unitsectionoffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: marker::Copy> Copy for UnitSectionOffset<T>`
 
 ##### `impl<T: fmt::Debug> Debug for UnitSectionOffset<T>`
 
-- <span id="unitsectionoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unitsectionoffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for UnitSectionOffset<T>`
+
+##### `impl<T> From for UnitSectionOffset<T>`
+
+- <span id="unitsectionoffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: hash::Hash> Hash for UnitSectionOffset<T>`
 
 - <span id="unitsectionoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T, U> Into for UnitSectionOffset<T>`
+
+- <span id="unitsectionoffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::Ord> Ord for UnitSectionOffset<T>`
 
-- <span id="unitsectionoffset-cmp"></span>`fn cmp(&self, other: &UnitSectionOffset<T>) -> cmp::Ordering` — [`UnitSectionOffset`](#unitsectionoffset)
+- <span id="unitsectionoffset-ord-cmp"></span>`fn cmp(&self, other: &UnitSectionOffset<T>) -> cmp::Ordering` — [`UnitSectionOffset`](#unitsectionoffset)
 
 ##### `impl<T: cmp::PartialEq> PartialEq for UnitSectionOffset<T>`
 
-- <span id="unitsectionoffset-eq"></span>`fn eq(&self, other: &UnitSectionOffset<T>) -> bool` — [`UnitSectionOffset`](#unitsectionoffset)
+- <span id="unitsectionoffset-partialeq-eq"></span>`fn eq(&self, other: &UnitSectionOffset<T>) -> bool` — [`UnitSectionOffset`](#unitsectionoffset)
 
 ##### `impl<T: cmp::PartialOrd> PartialOrd for UnitSectionOffset<T>`
 
-- <span id="unitsectionoffset-partial-cmp"></span>`fn partial_cmp(&self, other: &UnitSectionOffset<T>) -> option::Option<cmp::Ordering>` — [`UnitSectionOffset`](#unitsectionoffset)
+- <span id="unitsectionoffset-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &UnitSectionOffset<T>) -> option::Option<cmp::Ordering>` — [`UnitSectionOffset`](#unitsectionoffset)
 
 ##### `impl<T> StructuralPartialEq for UnitSectionOffset<T>`
+
+##### `impl<T> ToOwned for UnitSectionOffset<T>`
+
+- <span id="unitsectionoffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="unitsectionoffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="unitsectionoffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for UnitSectionOffset<T>`
+
+- <span id="unitsectionoffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unitsectionoffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for UnitSectionOffset<T>`
+
+- <span id="unitsectionoffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unitsectionoffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SectionId`
 
@@ -7375,43 +11465,109 @@ An identifier for a DWARF section.
 
 - <span id="sectionid-name"></span>`fn name(self) -> &'static str`
 
+  Returns the ELF section name for this kind.
+
 - <span id="sectionid-dwo-name"></span>`fn dwo_name(self) -> Option<&'static str>`
+
+  Returns the ELF section name for this kind, when found in a .dwo or .dwp file.
 
 - <span id="sectionid-xcoff-name"></span>`fn xcoff_name(self) -> Option<&'static str>`
 
+  Returns the XCOFF section name for this kind.
+
 - <span id="sectionid-is-string"></span>`fn is_string(self) -> bool`
 
+  Returns true if this is a mergeable string section.
+
+  
+
+  This is useful for determining the correct section flags.
+
 #### Trait Implementations
+
+##### `impl Any for SectionId`
+
+- <span id="sectionid-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SectionId`
+
+- <span id="sectionid-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SectionId`
+
+- <span id="sectionid-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for SectionId`
 
 - <span id="sectionid-clone"></span>`fn clone(&self) -> SectionId` — [`SectionId`](#sectionid)
 
+##### `impl CloneToUninit for SectionId`
+
+- <span id="sectionid-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for SectionId`
 
 ##### `impl Debug for SectionId`
 
-- <span id="sectionid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sectionid-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SectionId`
+
+##### `impl<T> From for SectionId`
+
+- <span id="sectionid-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for SectionId`
 
 - <span id="sectionid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for SectionId`
+
+- <span id="sectionid-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for SectionId`
 
-- <span id="sectionid-cmp"></span>`fn cmp(&self, other: &SectionId) -> cmp::Ordering` — [`SectionId`](#sectionid)
+- <span id="sectionid-ord-cmp"></span>`fn cmp(&self, other: &SectionId) -> cmp::Ordering` — [`SectionId`](#sectionid)
 
 ##### `impl PartialEq for SectionId`
 
-- <span id="sectionid-eq"></span>`fn eq(&self, other: &SectionId) -> bool` — [`SectionId`](#sectionid)
+- <span id="sectionid-partialeq-eq"></span>`fn eq(&self, other: &SectionId) -> bool` — [`SectionId`](#sectionid)
 
 ##### `impl PartialOrd for SectionId`
 
-- <span id="sectionid-partial-cmp"></span>`fn partial_cmp(&self, other: &SectionId) -> option::Option<cmp::Ordering>` — [`SectionId`](#sectionid)
+- <span id="sectionid-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &SectionId) -> option::Option<cmp::Ordering>` — [`SectionId`](#sectionid)
 
 ##### `impl StructuralPartialEq for SectionId`
+
+##### `impl ToOwned for SectionId`
+
+- <span id="sectionid-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sectionid-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sectionid-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SectionId`
+
+- <span id="sectionid-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sectionid-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SectionId`
+
+- <span id="sectionid-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sectionid-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwarfFileType`
 
@@ -7439,15 +11595,31 @@ which files DWARF sections should be loaded from.
 
 #### Trait Implementations
 
+##### `impl Any for DwarfFileType`
+
+- <span id="dwarffiletype-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwarfFileType`
+
+- <span id="dwarffiletype-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwarfFileType`
+
+- <span id="dwarffiletype-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwarfFileType`
 
 - <span id="dwarffiletype-clone"></span>`fn clone(&self) -> DwarfFileType` — [`DwarfFileType`](#dwarffiletype)
+
+##### `impl CloneToUninit for DwarfFileType`
+
+- <span id="dwarffiletype-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwarfFileType`
 
 ##### `impl Debug for DwarfFileType`
 
-- <span id="dwarffiletype-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwarffiletype-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for DwarfFileType`
 
@@ -7455,11 +11627,49 @@ which files DWARF sections should be loaded from.
 
 ##### `impl Eq for DwarfFileType`
 
+##### `impl<T> From for DwarfFileType`
+
+- <span id="dwarffiletype-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DwarfFileType`
+
+- <span id="dwarffiletype-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for DwarfFileType`
 
-- <span id="dwarffiletype-eq"></span>`fn eq(&self, other: &DwarfFileType) -> bool` — [`DwarfFileType`](#dwarffiletype)
+- <span id="dwarffiletype-partialeq-eq"></span>`fn eq(&self, other: &DwarfFileType) -> bool` — [`DwarfFileType`](#dwarffiletype)
 
 ##### `impl StructuralPartialEq for DwarfFileType`
+
+##### `impl ToOwned for DwarfFileType`
+
+- <span id="dwarffiletype-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwarffiletype-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwarffiletype-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DwarfFileType`
+
+- <span id="dwarffiletype-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwarffiletype-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwarfFileType`
+
+- <span id="dwarffiletype-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwarffiletype-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RunTimeEndian`
 
@@ -7486,15 +11696,31 @@ Byte order that is selectable at runtime.
 
 #### Trait Implementations
 
+##### `impl Any for RunTimeEndian`
+
+- <span id="runtimeendian-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RunTimeEndian`
+
+- <span id="runtimeendian-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RunTimeEndian`
+
+- <span id="runtimeendian-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for RunTimeEndian`
 
 - <span id="runtimeendian-clone"></span>`fn clone(&self) -> RunTimeEndian` — [`RunTimeEndian`](#runtimeendian)
+
+##### `impl CloneToUninit for RunTimeEndian`
+
+- <span id="runtimeendian-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for RunTimeEndian`
 
 ##### `impl Debug for RunTimeEndian`
 
-- <span id="runtimeendian-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="runtimeendian-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for RunTimeEndian`
 
@@ -7502,19 +11728,57 @@ Byte order that is selectable at runtime.
 
 ##### `impl Endianity for RunTimeEndian`
 
-- <span id="runtimeendian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
+- <span id="runtimeendian-endianity-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for RunTimeEndian`
+
+##### `impl<T> From for RunTimeEndian`
+
+- <span id="runtimeendian-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for RunTimeEndian`
 
 - <span id="runtimeendian-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for RunTimeEndian`
+
+- <span id="runtimeendian-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for RunTimeEndian`
 
-- <span id="runtimeendian-eq"></span>`fn eq(&self, other: &RunTimeEndian) -> bool` — [`RunTimeEndian`](#runtimeendian)
+- <span id="runtimeendian-partialeq-eq"></span>`fn eq(&self, other: &RunTimeEndian) -> bool` — [`RunTimeEndian`](#runtimeendian)
 
 ##### `impl StructuralPartialEq for RunTimeEndian`
+
+##### `impl ToOwned for RunTimeEndian`
+
+- <span id="runtimeendian-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="runtimeendian-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="runtimeendian-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RunTimeEndian`
+
+- <span id="runtimeendian-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="runtimeendian-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RunTimeEndian`
+
+- <span id="runtimeendian-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="runtimeendian-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Error`
 
@@ -7958,33 +12222,89 @@ An error that occurred when parsing.
 
 - <span id="error-description"></span>`fn description(&self) -> &str`
 
+  A short description of the error.
+
 #### Trait Implementations
+
+##### `impl Any for Error`
+
+- <span id="error-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Error`
+
+- <span id="error-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Error`
+
+- <span id="error-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Error`
 
 - <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](#error)
 
+##### `impl CloneToUninit for Error`
+
+- <span id="error-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Error`
 
 ##### `impl Debug for Error`
 
-- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> ::core::result::Result<(), fmt::Error>`
+- <span id="error-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> ::core::result::Result<(), fmt::Error>`
 
 ##### `impl Eq for Error`
 
+##### `impl<T> From for Error`
+
+- <span id="error-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Error`
+
+- <span id="error-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Error`
 
-- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](#error)
+- <span id="error-partialeq-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](#error)
 
 ##### `impl StructuralPartialEq for Error`
 
+##### `impl ToOwned for Error`
+
+- <span id="error-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="error-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="error-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Error`
 
-- <span id="error-to-string"></span>`fn to_string(&self) -> String`
+- <span id="error-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Error`
+
+- <span id="error-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="error-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Error`
+
+- <span id="error-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="error-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

@@ -43,25 +43,77 @@ the file size.
 
 - <span id="readcache-new"></span>`fn new(read: R) -> Self`
 
+  Create an empty `ReadCache` for the given stream.
+
 - <span id="readcache-range"></span>`fn range(&self, offset: u64, size: u64) -> ReadCacheRange<'_, R>` — [`ReadCacheRange`](../index.md#readcacherange)
+
+  Return an implementation of `ReadRef` that restricts reads
+
+  to the given range of the stream.
 
 - <span id="readcache-clear"></span>`fn clear(&mut self)`
 
+  Free buffers used by the cache.
+
 - <span id="readcache-into-inner"></span>`fn into_inner(self) -> R`
+
+  Unwrap this `ReadCache<R>`, returning the underlying reader.
 
 #### Trait Implementations
 
+##### `impl Any for ReadCache<R>`
+
+- <span id="readcache-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ReadCache<R>`
+
+- <span id="readcache-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ReadCache<R>`
+
+- <span id="readcache-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug + ReadCacheOps> Debug for ReadCache<R>`
 
-- <span id="readcache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="readcache-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ReadCache<R>`
+
+- <span id="readcache-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ReadCache<R>`
+
+- <span id="readcache-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadCacheOps> ReadRef for &'a ReadCache<R>`
 
-- <span id="a-readcache-len"></span>`fn len(self) -> Result<u64, ()>`
+- <span id="a-readcache-readref-len"></span>`fn len(self) -> Result<u64, ()>`
 
-- <span id="a-readcache-read-bytes-at"></span>`fn read_bytes_at(self, offset: u64, size: u64) -> Result<&'a [u8], ()>`
+- <span id="a-readcache-readref-read-bytes-at"></span>`fn read_bytes_at(self, offset: u64, size: u64) -> Result<&'a [u8], ()>`
 
-- <span id="a-readcache-read-bytes-at-until"></span>`fn read_bytes_at_until(self, range: Range<u64>, delimiter: u8) -> Result<&'a [u8], ()>`
+- <span id="a-readcache-readref-read-bytes-at-until"></span>`fn read_bytes_at_until(self, range: Range<u64>, delimiter: u8) -> Result<&'a [u8], ()>`
+
+##### `impl<U> TryFrom for ReadCache<R>`
+
+- <span id="readcache-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="readcache-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ReadCache<R>`
+
+- <span id="readcache-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="readcache-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ReadCacheInternal<R: ReadCacheOps>`
 
@@ -80,13 +132,59 @@ struct ReadCacheInternal<R: ReadCacheOps> {
 
 - <span id="readcacheinternal-range-in-bounds"></span>`fn range_in_bounds(&mut self, range: &Range<u64>) -> Result<(), ()>`
 
+  Ensures this range is contained in the len of the file
+
 - <span id="readcacheinternal-len"></span>`fn len(&mut self) -> Result<u64, ()>`
+
+  The length of the underlying read, memoized
 
 #### Trait Implementations
 
+##### `impl Any for ReadCacheInternal<R>`
+
+- <span id="readcacheinternal-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ReadCacheInternal<R>`
+
+- <span id="readcacheinternal-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ReadCacheInternal<R>`
+
+- <span id="readcacheinternal-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug + ReadCacheOps> Debug for ReadCacheInternal<R>`
 
-- <span id="readcacheinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="readcacheinternal-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ReadCacheInternal<R>`
+
+- <span id="readcacheinternal-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ReadCacheInternal<R>`
+
+- <span id="readcacheinternal-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ReadCacheInternal<R>`
+
+- <span id="readcacheinternal-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="readcacheinternal-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ReadCacheInternal<R>`
+
+- <span id="readcacheinternal-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="readcacheinternal-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ReadCacheRange<'a, R: ReadCacheOps>`
 
@@ -107,23 +205,77 @@ Shares an underlying [`ReadCache`](../index.md) with a lifetime of `'a`.
 
 #### Trait Implementations
 
+##### `impl Any for ReadCacheRange<'a, R>`
+
+- <span id="readcacherange-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ReadCacheRange<'a, R>`
+
+- <span id="readcacherange-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ReadCacheRange<'a, R>`
+
+- <span id="readcacherange-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: ReadCacheOps> Clone for ReadCacheRange<'a, R>`
 
 - <span id="readcacherange-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for ReadCacheRange<'a, R>`
+
+- <span id="readcacherange-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<R: ReadCacheOps> Copy for ReadCacheRange<'a, R>`
 
 ##### `impl<R: fmt::Debug + ReadCacheOps> Debug for ReadCacheRange<'a, R>`
 
-- <span id="readcacherange-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="readcacherange-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ReadCacheRange<'a, R>`
+
+- <span id="readcacherange-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ReadCacheRange<'a, R>`
+
+- <span id="readcacherange-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadCacheOps> ReadRef for ReadCacheRange<'a, R>`
 
-- <span id="readcacherange-len"></span>`fn len(self) -> Result<u64, ()>`
+- <span id="readcacherange-readref-len"></span>`fn len(self) -> Result<u64, ()>`
 
-- <span id="readcacherange-read-bytes-at"></span>`fn read_bytes_at(self, offset: u64, size: u64) -> Result<&'a [u8], ()>`
+- <span id="readcacherange-readref-read-bytes-at"></span>`fn read_bytes_at(self, offset: u64, size: u64) -> Result<&'a [u8], ()>`
 
-- <span id="readcacherange-read-bytes-at-until"></span>`fn read_bytes_at_until(self, range: Range<u64>, delimiter: u8) -> Result<&'a [u8], ()>`
+- <span id="readcacherange-readref-read-bytes-at-until"></span>`fn read_bytes_at_until(self, range: Range<u64>, delimiter: u8) -> Result<&'a [u8], ()>`
+
+##### `impl ToOwned for ReadCacheRange<'a, R>`
+
+- <span id="readcacherange-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="readcacherange-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="readcacherange-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ReadCacheRange<'a, R>`
+
+- <span id="readcacherange-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="readcacherange-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ReadCacheRange<'a, R>`
+
+- <span id="readcacherange-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="readcacherange-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

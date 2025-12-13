@@ -56,61 +56,265 @@ Returned by `FileHeader::sections`.
 
 - <span id="sectiontable-new"></span>`fn new(sections: &'data [<Elf as >::SectionHeader], strings: StringTable<'data, R>) -> Self` — [`FileHeader`](../index.md#fileheader), [`StringTable`](../../index.md#stringtable)
 
+  Create a new section table.
+
 - <span id="sectiontable-iter"></span>`fn iter(&self) -> slice::Iter<'data, <Elf as >::SectionHeader>` — [`FileHeader`](../index.md#fileheader)
+
+  Iterate over the section headers.
+
+  
+
+  This includes the null section at index 0, which you will usually need to skip.
 
 - <span id="sectiontable-enumerate"></span>`fn enumerate(&self) -> impl Iterator<Item = (SectionIndex, &'data <Elf as >::SectionHeader)>` — [`SectionIndex`](../../../index.md#sectionindex), [`FileHeader`](../index.md#fileheader)
 
+  Iterate over the section headers and their indices.
+
+  
+
+  This includes the null section at index 0, which you will usually need to skip.
+
 - <span id="sectiontable-is-empty"></span>`fn is_empty(&self) -> bool`
+
+  Return true if the section table is empty.
 
 - <span id="sectiontable-len"></span>`fn len(&self) -> usize`
 
+  The number of section headers.
+
 - <span id="sectiontable-section"></span>`fn section(&self, index: SectionIndex) -> read::Result<&'data <Elf as >::SectionHeader>` — [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result), [`FileHeader`](../index.md#fileheader)
+
+  Get the section header at the given index.
+
+  
+
+  Returns an error for the null section at index 0.
 
 - <span id="sectiontable-section-by-name"></span>`fn section_by_name(&self, endian: <Elf as >::Endian, name: &[u8]) -> Option<(SectionIndex, &'data <Elf as >::SectionHeader)>` — [`FileHeader`](../index.md#fileheader), [`SectionIndex`](../../../index.md#sectionindex)
 
+  Return the section header with the given name.
+
+  
+
+  Ignores sections with invalid names.
+
 - <span id="sectiontable-section-name"></span>`fn section_name(&self, endian: <Elf as >::Endian, section: &<Elf as >::SectionHeader) -> read::Result<&'data [u8]>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result)
+
+  Return the section name for the given section header.
 
 - <span id="sectiontable-strings"></span>`fn strings(&self, endian: <Elf as >::Endian, data: R, index: SectionIndex) -> read::Result<StringTable<'data, R>>` — [`FileHeader`](../index.md#fileheader), [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result), [`StringTable`](../../index.md#stringtable)
 
+  Return the string table at the given section index.
+
+  
+
+  Returns an empty string table if the index is 0.
+
+  Returns an error if the section is not a string table.
+
 - <span id="sectiontable-symbols"></span>`fn symbols(&self, endian: <Elf as >::Endian, data: R, sh_type: u32) -> read::Result<SymbolTable<'data, Elf, R>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`SymbolTable`](../index.md#symboltable)
+
+  Return the symbol table of the given section type.
+
+  
+
+  Returns an empty symbol table if the symbol table does not exist.
 
 - <span id="sectiontable-symbol-table-by-index"></span>`fn symbol_table_by_index(&self, endian: <Elf as >::Endian, data: R, index: SectionIndex) -> read::Result<SymbolTable<'data, Elf, R>>` — [`FileHeader`](../index.md#fileheader), [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result), [`SymbolTable`](../index.md#symboltable)
 
+  Return the symbol table at the given section index.
+
+  
+
+  Returns an error if the section is not a symbol table.
+
 - <span id="sectiontable-relocation-sections"></span>`fn relocation_sections(&self, endian: <Elf as >::Endian, symbol_section: SectionIndex) -> read::Result<RelocationSections>` — [`FileHeader`](../index.md#fileheader), [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result), [`RelocationSections`](../index.md#relocationsections)
+
+  Create a mapping from section index to associated relocation sections.
 
 - <span id="sectiontable-dynamic"></span>`fn dynamic(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(&'data [<Elf as >::Dyn], SectionIndex)>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`SectionIndex`](../../../index.md#sectionindex)
 
+  Return the contents of a dynamic section.
+
+  
+
+  Also returns the linked string table index.
+
+  
+
+  Returns `Ok(None)` if there is no `SHT_DYNAMIC` section.
+
+  Returns `Err` for invalid values.
+
 - <span id="sectiontable-hash-header"></span>`fn hash_header(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<&'data elf::HashHeader<<Elf as >::Endian>>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`HashHeader`](../../../elf/index.md#hashheader)
+
+  Return the header of a SysV hash section.
+
+  
+
+  Returns `Ok(None)` if there is no SysV GNU hash section.
+
+  Returns `Err` for invalid values.
 
 - <span id="sectiontable-hash"></span>`fn hash(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(HashTable<'data, Elf>, SectionIndex)>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`HashTable`](../index.md#hashtable), [`SectionIndex`](../../../index.md#sectionindex)
 
+  Return the contents of a SysV hash section.
+
+  
+
+  Also returns the linked symbol table index.
+
+  
+
+  Returns `Ok(None)` if there is no SysV hash section.
+
+  Returns `Err` for invalid values.
+
 - <span id="sectiontable-gnu-hash-header"></span>`fn gnu_hash_header(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<&'data elf::GnuHashHeader<<Elf as >::Endian>>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`GnuHashHeader`](../../../elf/index.md#gnuhashheader)
+
+  Return the header of a GNU hash section.
+
+  
+
+  Returns `Ok(None)` if there is no GNU hash section.
+
+  Returns `Err` for invalid values.
 
 - <span id="sectiontable-gnu-hash"></span>`fn gnu_hash(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(GnuHashTable<'data, Elf>, SectionIndex)>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`GnuHashTable`](../index.md#gnuhashtable), [`SectionIndex`](../../../index.md#sectionindex)
 
+  Return the contents of a GNU hash section.
+
+  
+
+  Also returns the linked symbol table index.
+
+  
+
+  Returns `Ok(None)` if there is no GNU hash section.
+
+  Returns `Err` for invalid values.
+
 - <span id="sectiontable-gnu-versym"></span>`fn gnu_versym(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(&'data [elf::Versym<<Elf as >::Endian>], SectionIndex)>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`Versym`](../../../elf/index.md#versym), [`SectionIndex`](../../../index.md#sectionindex)
+
+  Return the contents of a `SHT_GNU_VERSYM` section.
+
+  
+
+  Also returns the linked symbol table index.
+
+  
+
+  Returns `Ok(None)` if there is no `SHT_GNU_VERSYM` section.
+
+  Returns `Err` for invalid values.
 
 - <span id="sectiontable-gnu-verdef"></span>`fn gnu_verdef(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(VerdefIterator<'data, Elf>, SectionIndex)>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`VerdefIterator`](../index.md#verdefiterator), [`SectionIndex`](../../../index.md#sectionindex)
 
+  Return the contents of a `SHT_GNU_VERDEF` section.
+
+  
+
+  Also returns the linked string table index.
+
+  
+
+  Returns `Ok(None)` if there is no `SHT_GNU_VERDEF` section.
+
+  Returns `Err` for invalid values.
+
 - <span id="sectiontable-gnu-verneed"></span>`fn gnu_verneed(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(VerneedIterator<'data, Elf>, SectionIndex)>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`VerneedIterator`](../index.md#verneediterator), [`SectionIndex`](../../../index.md#sectionindex)
+
+  Return the contents of a `SHT_GNU_VERNEED` section.
+
+  
+
+  Also returns the linked string table index.
+
+  
+
+  Returns `Ok(None)` if there is no `SHT_GNU_VERNEED` section.
+
+  Returns `Err` for invalid values.
 
 - <span id="sectiontable-versions"></span>`fn versions(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<VersionTable<'data, Elf>>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`VersionTable`](../index.md#versiontable)
 
+  Returns the symbol version table.
+
+  
+
+  Returns `Ok(None)` if there is no `SHT_GNU_VERSYM` section.
+
+  Returns `Err` for invalid values.
+
 #### Trait Implementations
+
+##### `impl Any for SectionTable<'data, Elf, R>`
+
+- <span id="sectiontable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SectionTable<'data, Elf, R>`
+
+- <span id="sectiontable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SectionTable<'data, Elf, R>`
+
+- <span id="sectiontable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<Elf: clone::Clone + FileHeader, R> Clone for SectionTable<'data, Elf, R>`
 
 - <span id="sectiontable-clone"></span>`fn clone(&self) -> SectionTable<'data, Elf, R>` — [`SectionTable`](../index.md#sectiontable)
 
+##### `impl CloneToUninit for SectionTable<'data, Elf, R>`
+
+- <span id="sectiontable-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<Elf: marker::Copy + FileHeader, R> Copy for SectionTable<'data, Elf, R>`
 
 ##### `impl<Elf: fmt::Debug + FileHeader, R> Debug for SectionTable<'data, Elf, R>`
 
-- <span id="sectiontable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sectiontable-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Elf: FileHeader, R: ReadRef<'data>> Default for SectionTable<'data, Elf, R>`
 
 - <span id="sectiontable-default"></span>`fn default() -> Self`
+
+##### `impl<T> From for SectionTable<'data, Elf, R>`
+
+- <span id="sectiontable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SectionTable<'data, Elf, R>`
+
+- <span id="sectiontable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for SectionTable<'data, Elf, R>`
+
+- <span id="sectiontable-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sectiontable-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sectiontable-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SectionTable<'data, Elf, R>`
+
+- <span id="sectiontable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sectiontable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SectionTable<'data, Elf, R>`
+
+- <span id="sectiontable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sectiontable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ElfSectionIterator<'data, 'file, Elf, R>`
 
@@ -134,9 +338,39 @@ An iterator for the sections in an [`ElfFile`](../index.md).
 
 #### Trait Implementations
 
+##### `impl Any for ElfSectionIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsectioniterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ElfSectionIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsectioniterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ElfSectionIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsectioniterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Elf, R> Debug for ElfSectionIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="elfsectioniterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ElfSectionIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsectioniterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ElfSectionIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsectioniterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ElfSectionIterator<'data, 'file, Elf, R>`
 
@@ -144,13 +378,25 @@ An iterator for the sections in an [`ElfFile`](../index.md).
 
 - <span id="elfsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="elfsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="elfsectioniterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Elf, R> Iterator for ElfSectionIterator<'data, 'file, Elf, R>`
 
 - <span id="elfsectioniterator-iterator-type-item"></span>`type Item = ElfSection<'data, 'file, Elf, R>`
 
-- <span id="elfsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="elfsectioniterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for ElfSectionIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsectioniterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elfsectioniterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ElfSectionIterator<'data, 'file, Elf, R>`
+
+- <span id="elfsectioniterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elfsectioniterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ElfSection<'data, 'file, Elf, R>`
 
@@ -175,15 +421,51 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 
 - <span id="elfsection-elf-file"></span>`fn elf_file(&self) -> &'file ElfFile<'data, Elf, R>` — [`ElfFile`](../index.md#elffile)
 
+  Get the ELF file containing this section.
+
 - <span id="elfsection-elf-section-header"></span>`fn elf_section_header(&self) -> &'data <Elf as >::SectionHeader` — [`FileHeader`](../index.md#fileheader)
+
+  Get the raw ELF section header.
 
 - <span id="elfsection-elf-relocation-section-index"></span>`fn elf_relocation_section_index(&self) -> read::Result<Option<SectionIndex>>` — [`Result`](../../../index.md#result), [`SectionIndex`](../../../index.md#sectionindex)
 
+  Get the index of the relocation section that references this section.
+
+  
+
+  Returns `None` if there are no relocations.
+
+  Returns an error if there are multiple relocation sections that reference this section.
+
 - <span id="elfsection-elf-relocation-section"></span>`fn elf_relocation_section(&self) -> read::Result<Option<&'data <Elf as >::SectionHeader>>` — [`Result`](../../../index.md#result), [`FileHeader`](../index.md#fileheader)
+
+  Get the relocation section that references this section.
+
+  
+
+  Returns `None` if there are no relocations.
+
+  Returns an error if there are multiple relocation sections that reference this section.
 
 - <span id="elfsection-elf-linked-rel"></span>`fn elf_linked_rel(&self) -> read::Result<&'data [<Elf as >::Rel]>` — [`Result`](../../../index.md#result), [`FileHeader`](../index.md#fileheader)
 
+  Get the `Elf::Rel` entries that apply to this section.
+
+  
+
+  Returns an empty slice if there are no relocations.
+
+  Returns an error if there are multiple relocation sections that reference this section.
+
 - <span id="elfsection-elf-linked-rela"></span>`fn elf_linked_rela(&self) -> read::Result<&'data [<Elf as >::Rela]>` — [`Result`](../../../index.md#result), [`FileHeader`](../index.md#fileheader)
+
+  Get the `Elf::Rela` entries that apply to this section.
+
+  
+
+  Returns an empty slice if there are no relocations.
+
+  Returns an error if there are multiple relocation sections that reference this section.
 
 - <span id="elfsection-bytes"></span>`fn bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
@@ -193,49 +475,91 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 
 #### Trait Implementations
 
+##### `impl Any for ElfSection<'data, 'file, Elf, R>`
+
+- <span id="elfsection-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ElfSection<'data, 'file, Elf, R>`
+
+- <span id="elfsection-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ElfSection<'data, 'file, Elf, R>`
+
+- <span id="elfsection-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Elf, R> Debug for ElfSection<'data, 'file, Elf, R>`
 
-- <span id="elfsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="elfsection-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ElfSection<'data, 'file, Elf, R>`
+
+- <span id="elfsection-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ElfSection<'data, 'file, Elf, R>`
+
+- <span id="elfsection-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Elf, R> ObjectSection for ElfSection<'data, 'file, Elf, R>`
 
 - <span id="elfsection-objectsection-type-relocationiterator"></span>`type RelocationIterator = ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md#sectionindex)
+- <span id="elfsection-objectsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md#sectionindex)
 
-- <span id="elfsection-address"></span>`fn address(&self) -> u64`
+- <span id="elfsection-objectsection-address"></span>`fn address(&self) -> u64`
 
-- <span id="elfsection-size"></span>`fn size(&self) -> u64`
+- <span id="elfsection-objectsection-size"></span>`fn size(&self) -> u64`
 
-- <span id="elfsection-align"></span>`fn align(&self) -> u64`
+- <span id="elfsection-objectsection-align"></span>`fn align(&self) -> u64`
 
-- <span id="elfsection-file-range"></span>`fn file_range(&self) -> Option<(u64, u64)>`
+- <span id="elfsection-objectsection-file-range"></span>`fn file_range(&self) -> Option<(u64, u64)>`
 
-- <span id="elfsection-data"></span>`fn data(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md#result)
+- <span id="elfsection-objectsection-data"></span>`fn data(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
-- <span id="elfsection-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> read::Result<Option<&'data [u8]>>` — [`Result`](../../../index.md#result)
+- <span id="elfsection-objectsection-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> read::Result<Option<&'data [u8]>>` — [`Result`](../../../index.md#result)
 
-- <span id="elfsection-compressed-file-range"></span>`fn compressed_file_range(&self) -> read::Result<CompressedFileRange>` — [`Result`](../../../index.md#result), [`CompressedFileRange`](../../../index.md#compressedfilerange)
+- <span id="elfsection-objectsection-compressed-file-range"></span>`fn compressed_file_range(&self) -> read::Result<CompressedFileRange>` — [`Result`](../../../index.md#result), [`CompressedFileRange`](../../../index.md#compressedfilerange)
 
-- <span id="elfsection-compressed-data"></span>`fn compressed_data(&self) -> read::Result<CompressedData<'data>>` — [`Result`](../../../index.md#result), [`CompressedData`](../../../index.md#compresseddata)
+- <span id="elfsection-objectsection-compressed-data"></span>`fn compressed_data(&self) -> read::Result<CompressedData<'data>>` — [`Result`](../../../index.md#result), [`CompressedData`](../../../index.md#compresseddata)
 
-- <span id="elfsection-name-bytes"></span>`fn name_bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md#result)
+- <span id="elfsection-objectsection-name-bytes"></span>`fn name_bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
-- <span id="elfsection-name"></span>`fn name(&self) -> read::Result<&'data str>` — [`Result`](../../../index.md#result)
+- <span id="elfsection-objectsection-name"></span>`fn name(&self) -> read::Result<&'data str>` — [`Result`](../../../index.md#result)
 
-- <span id="elfsection-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> read::Result<Option<&[u8]>>` — [`Result`](../../../index.md#result)
+- <span id="elfsection-objectsection-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> read::Result<Option<&[u8]>>` — [`Result`](../../../index.md#result)
 
-- <span id="elfsection-segment-name"></span>`fn segment_name(&self) -> read::Result<Option<&str>>` — [`Result`](../../../index.md#result)
+- <span id="elfsection-objectsection-segment-name"></span>`fn segment_name(&self) -> read::Result<Option<&str>>` — [`Result`](../../../index.md#result)
 
-- <span id="elfsection-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../../index.md#sectionkind)
+- <span id="elfsection-objectsection-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../../index.md#sectionkind)
 
-- <span id="elfsection-relocations"></span>`fn relocations(&self) -> ElfSectionRelocationIterator<'data, 'file, Elf, R>` — [`ElfSectionRelocationIterator`](../index.md#elfsectionrelocationiterator)
+- <span id="elfsection-objectsection-relocations"></span>`fn relocations(&self) -> ElfSectionRelocationIterator<'data, 'file, Elf, R>` — [`ElfSectionRelocationIterator`](../index.md#elfsectionrelocationiterator)
 
-- <span id="elfsection-relocation-map"></span>`fn relocation_map(&self) -> read::Result<RelocationMap>` — [`Result`](../../../index.md#result), [`RelocationMap`](../../../index.md#relocationmap)
+- <span id="elfsection-objectsection-relocation-map"></span>`fn relocation_map(&self) -> read::Result<RelocationMap>` — [`Result`](../../../index.md#result), [`RelocationMap`](../../../index.md#relocationmap)
 
-- <span id="elfsection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../../index.md#sectionflags)
+- <span id="elfsection-objectsection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../../index.md#sectionflags)
 
 ##### `impl<Elf, R> Sealed for ElfSection<'data, 'file, Elf, R>`
+
+##### `impl<U> TryFrom for ElfSection<'data, 'file, Elf, R>`
+
+- <span id="elfsection-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="elfsection-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ElfSection<'data, 'file, Elf, R>`
+
+- <span id="elfsection-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="elfsection-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

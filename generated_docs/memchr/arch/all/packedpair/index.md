@@ -63,23 +63,107 @@ architecture independent routines are unavailable.
 
 - <span id="finder-new"></span>`fn new(needle: &[u8]) -> Option<Finder>` — [`Finder`](#finder)
 
+  Create a new prefilter that reports possible locations where the given
+
+  needle matches.
+
 - <span id="finder-with-pair"></span>`fn with_pair(needle: &[u8], pair: Pair) -> Option<Finder>` — [`Pair`](#pair), [`Finder`](#finder)
+
+  Create a new prefilter using the pair given.
+
+  
+
+  If the prefilter could not be constructed, then `None` is returned.
+
+  
+
+  This constructor permits callers to control precisely which pair of
+
+  bytes is used as a predicate.
 
 - <span id="finder-find-prefilter"></span>`fn find_prefilter(&self, haystack: &[u8]) -> Option<usize>`
 
+  Run this finder on the given haystack as a prefilter.
+
+  
+
+  If a candidate match is found, then an offset where the needle *could*
+
+  begin in the haystack is returned.
+
 - <span id="finder-pair"></span>`fn pair(&self) -> &Pair` — [`Pair`](#pair)
 
+  Returns the pair of offsets (into the needle) used to check as a
+
+  predicate before confirming whether a needle exists at a particular
+
+  position.
+
 #### Trait Implementations
+
+##### `impl Any for Finder`
+
+- <span id="finder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Finder`
+
+- <span id="finder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Finder`
+
+- <span id="finder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Finder`
 
 - <span id="finder-clone"></span>`fn clone(&self) -> Finder` — [`Finder`](#finder)
 
+##### `impl CloneToUninit for Finder`
+
+- <span id="finder-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Finder`
 
 ##### `impl Debug for Finder`
 
-- <span id="finder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="finder-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Finder`
+
+- <span id="finder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Finder`
+
+- <span id="finder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Finder`
+
+- <span id="finder-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="finder-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="finder-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Finder`
+
+- <span id="finder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="finder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Finder`
+
+- <span id="finder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="finder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Pair`
 
@@ -119,25 +203,143 @@ needles with length at least 2.
 
 - <span id="pair-new"></span>`fn new(needle: &[u8]) -> Option<Pair>` — [`Pair`](#pair)
 
+  Create a new pair of offsets from the given needle.
+
+  
+
+  If a pair could not be created (for example, if the needle is too
+
+  short), then `None` is returned.
+
+  
+
+  This chooses the pair in the needle that is believed to be as
+
+  predictive of an overall match of the needle as possible.
+
 - <span id="pair-with-ranker"></span>`fn with_ranker<R: HeuristicFrequencyRank>(needle: &[u8], ranker: R) -> Option<Pair>` — [`Pair`](#pair)
+
+  Create a new pair of offsets from the given needle and ranker.
+
+  
+
+  This permits the caller to choose a background frequency distribution
+
+  with which bytes are selected. The idea is to select a pair of bytes
+
+  that is believed to strongly predict a match in the haystack. This
+
+  usually means selecting bytes that occur rarely in a haystack.
+
+  
+
+  If a pair could not be created (for example, if the needle is too
+
+  short), then `None` is returned.
 
 - <span id="pair-with-indices"></span>`fn with_indices(needle: &[u8], index1: u8, index2: u8) -> Option<Pair>` — [`Pair`](#pair)
 
+  Create a new pair using the offsets given for the needle given.
+
+  
+
+  This bypasses any sort of heuristic process for choosing the offsets
+
+  and permits the caller to choose the offsets themselves.
+
+  
+
+  Indices are limited to valid `u8` values so that a `Pair` uses less
+
+  memory. It is not possible to create a `Pair` with offsets bigger than
+
+  `u8::MAX`. It's likely that such a thing is not needed, but if it is,
+
+  it's suggested to build your own bespoke algorithm because you're
+
+  likely working on a very niche case. (File an issue if this suggestion
+
+  does not make sense to you.)
+
+  
+
+  If a pair could not be created (for example, if the needle is too
+
+  short), then `None` is returned.
+
 - <span id="pair-index1"></span>`fn index1(&self) -> u8`
+
+  Returns the first offset of the pair.
 
 - <span id="pair-index2"></span>`fn index2(&self) -> u8`
 
+  Returns the second offset of the pair.
+
 #### Trait Implementations
+
+##### `impl Any for Pair`
+
+- <span id="pair-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Pair`
+
+- <span id="pair-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Pair`
+
+- <span id="pair-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Pair`
 
 - <span id="pair-clone"></span>`fn clone(&self) -> Pair` — [`Pair`](#pair)
 
+##### `impl CloneToUninit for Pair`
+
+- <span id="pair-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Pair`
 
 ##### `impl Debug for Pair`
 
-- <span id="pair-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pair-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Pair`
+
+- <span id="pair-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Pair`
+
+- <span id="pair-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Pair`
+
+- <span id="pair-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="pair-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="pair-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Pair`
+
+- <span id="pair-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pair-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Pair`
+
+- <span id="pair-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pair-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DefaultFrequencyRank`
 
@@ -151,9 +353,51 @@ The default byte frequency heuristic that is good for most haystacks.
 
 #### Trait Implementations
 
+##### `impl Any for DefaultFrequencyRank`
+
+- <span id="defaultfrequencyrank-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DefaultFrequencyRank`
+
+- <span id="defaultfrequencyrank-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DefaultFrequencyRank`
+
+- <span id="defaultfrequencyrank-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for DefaultFrequencyRank`
+
+- <span id="defaultfrequencyrank-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl HeuristicFrequencyRank for DefaultFrequencyRank`
 
-- <span id="defaultfrequencyrank-rank"></span>`fn rank(&self, byte: u8) -> u8`
+- <span id="defaultfrequencyrank-heuristicfrequencyrank-rank"></span>`fn rank(&self, byte: u8) -> u8`
+
+##### `impl<U> Into for DefaultFrequencyRank`
+
+- <span id="defaultfrequencyrank-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DefaultFrequencyRank`
+
+- <span id="defaultfrequencyrank-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="defaultfrequencyrank-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DefaultFrequencyRank`
+
+- <span id="defaultfrequencyrank-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="defaultfrequencyrank-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

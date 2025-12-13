@@ -121,27 +121,73 @@ Return status codes.
 
 #### Trait Implementations
 
+##### `impl Any for TINFLStatus`
+
+- <span id="tinflstatus-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TINFLStatus`
+
+- <span id="tinflstatus-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TINFLStatus`
+
+- <span id="tinflstatus-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for TINFLStatus`
 
 - <span id="tinflstatus-clone"></span>`fn clone(&self) -> TINFLStatus` — [`TINFLStatus`](#tinflstatus)
+
+##### `impl CloneToUninit for TINFLStatus`
+
+- <span id="tinflstatus-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for TINFLStatus`
 
 ##### `impl Debug for TINFLStatus`
 
-- <span id="tinflstatus-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tinflstatus-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for TINFLStatus`
+
+##### `impl<T> From for TINFLStatus`
+
+- <span id="tinflstatus-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for TINFLStatus`
 
 - <span id="tinflstatus-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for TINFLStatus`
+
+- <span id="tinflstatus-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for TINFLStatus`
 
-- <span id="tinflstatus-eq"></span>`fn eq(&self, other: &TINFLStatus) -> bool` — [`TINFLStatus`](#tinflstatus)
+- <span id="tinflstatus-partialeq-eq"></span>`fn eq(&self, other: &TINFLStatus) -> bool` — [`TINFLStatus`](#tinflstatus)
 
 ##### `impl StructuralPartialEq for TINFLStatus`
+
+##### `impl<U> TryFrom for TINFLStatus`
+
+- <span id="tinflstatus-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tinflstatus-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TINFLStatus`
+
+- <span id="tinflstatus-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tinflstatus-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

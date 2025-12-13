@@ -304,27 +304,73 @@ Unicode line breaking class.
 
 #### Trait Implementations
 
+##### `impl Any for BreakClass`
+
+- <span id="breakclass-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BreakClass`
+
+- <span id="breakclass-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BreakClass`
+
+- <span id="breakclass-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BreakClass`
 
 - <span id="breakclass-clone"></span>`fn clone(&self) -> BreakClass` — [`BreakClass`](#breakclass)
+
+##### `impl CloneToUninit for BreakClass`
+
+- <span id="breakclass-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for BreakClass`
 
 ##### `impl Debug for BreakClass`
 
-- <span id="breakclass-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="breakclass-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for BreakClass`
+
+##### `impl<T> From for BreakClass`
+
+- <span id="breakclass-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for BreakClass`
 
 - <span id="breakclass-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for BreakClass`
+
+- <span id="breakclass-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for BreakClass`
 
-- <span id="breakclass-eq"></span>`fn eq(&self, other: &BreakClass) -> bool` — [`BreakClass`](#breakclass)
+- <span id="breakclass-partialeq-eq"></span>`fn eq(&self, other: &BreakClass) -> bool` — [`BreakClass`](#breakclass)
 
 ##### `impl StructuralPartialEq for BreakClass`
+
+##### `impl<U> TryFrom for BreakClass`
+
+- <span id="breakclass-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="breakclass-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BreakClass`
+
+- <span id="breakclass-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="breakclass-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BreakOpportunity`
 
@@ -351,23 +397,69 @@ Break opportunity type.
 
 #### Trait Implementations
 
+##### `impl Any for BreakOpportunity`
+
+- <span id="breakopportunity-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BreakOpportunity`
+
+- <span id="breakopportunity-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BreakOpportunity`
+
+- <span id="breakopportunity-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BreakOpportunity`
 
 - <span id="breakopportunity-clone"></span>`fn clone(&self) -> BreakOpportunity` — [`BreakOpportunity`](#breakopportunity)
+
+##### `impl CloneToUninit for BreakOpportunity`
+
+- <span id="breakopportunity-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for BreakOpportunity`
 
 ##### `impl Debug for BreakOpportunity`
 
-- <span id="breakopportunity-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="breakopportunity-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for BreakOpportunity`
 
+##### `impl<T> From for BreakOpportunity`
+
+- <span id="breakopportunity-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BreakOpportunity`
+
+- <span id="breakopportunity-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for BreakOpportunity`
 
-- <span id="breakopportunity-eq"></span>`fn eq(&self, other: &BreakOpportunity) -> bool` — [`BreakOpportunity`](#breakopportunity)
+- <span id="breakopportunity-partialeq-eq"></span>`fn eq(&self, other: &BreakOpportunity) -> bool` — [`BreakOpportunity`](#breakopportunity)
 
 ##### `impl StructuralPartialEq for BreakOpportunity`
+
+##### `impl<U> TryFrom for BreakOpportunity`
+
+- <span id="breakopportunity-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="breakopportunity-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BreakOpportunity`
+
+- <span id="breakopportunity-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="breakopportunity-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

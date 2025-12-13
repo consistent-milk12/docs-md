@@ -59,7 +59,49 @@ struct AtomicI128 {
 
 #### Trait Implementations
 
+##### `impl Any for AtomicI128`
+
+- <span id="atomici128-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AtomicI128`
+
+- <span id="atomici128-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AtomicI128`
+
+- <span id="atomici128-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for AtomicI128`
+
+- <span id="atomici128-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AtomicI128`
+
+- <span id="atomici128-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Sync for AtomicI128`
+
+##### `impl<U> TryFrom for AtomicI128`
+
+- <span id="atomici128-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="atomici128-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AtomicI128`
+
+- <span id="atomici128-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="atomici128-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AtomicU128`
 
@@ -85,7 +127,49 @@ struct AtomicU128 {
 
 #### Trait Implementations
 
+##### `impl Any for AtomicU128`
+
+- <span id="atomicu128-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AtomicU128`
+
+- <span id="atomicu128-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AtomicU128`
+
+- <span id="atomicu128-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for AtomicU128`
+
+- <span id="atomicu128-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AtomicU128`
+
+- <span id="atomicu128-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Sync for AtomicU128`
+
+##### `impl<U> TryFrom for AtomicU128`
+
+- <span id="atomicu128-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="atomicu128-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AtomicU128`
+
+- <span id="atomicu128-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="atomicu128-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

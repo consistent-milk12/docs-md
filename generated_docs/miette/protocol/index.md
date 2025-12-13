@@ -63,49 +63,195 @@ A labeled [`SourceSpan`](../index.md).
 
 - <span id="labeledspan-new"></span>`const fn new(label: Option<String>, offset: ByteOffset, len: usize) -> Self` — [`ByteOffset`](../index.md#byteoffset)
 
+  Makes a new labeled span.
+
 - <span id="labeledspan-new-with-span"></span>`fn new_with_span(label: Option<String>, span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](../index.md#sourcespan)
+
+  Makes a new labeled span using an existing span.
 
 - <span id="labeledspan-new-primary-with-span"></span>`fn new_primary_with_span(label: Option<String>, span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](../index.md#sourcespan)
 
+  Makes a new labeled primary span using an existing span.
+
 - <span id="labeledspan-set-label"></span>`fn set_label(&mut self, label: Option<String>)`
+
+  Change the text of the label
 
 - <span id="labeledspan-at"></span>`fn at(span: impl Into<SourceSpan>, label: impl Into<String>) -> Self` — [`SourceSpan`](../index.md#sourcespan)
 
+  Makes a new label at specified span
+
+  
+
+  # Examples
+
+  ```rust
+
+  use miette::LabeledSpan;
+
+  
+
+  let source = "Cpp is the best";
+
+  let label = LabeledSpan::at(0..3, "should be Rust");
+
+  assert_eq!(
+
+      label,
+
+      LabeledSpan::new(Some("should be Rust".to_string()), 0, 3)
+
+  )
+
+  ```
+
 - <span id="labeledspan-at-offset"></span>`fn at_offset(offset: ByteOffset, label: impl Into<String>) -> Self` — [`ByteOffset`](../index.md#byteoffset)
+
+  Makes a new label that points at a specific offset.
+
+  
+
+  # Examples
+
+  ```rust
+
+  use miette::LabeledSpan;
+
+  
+
+  let source = "(2 + 2";
+
+  let label = LabeledSpan::at_offset(4, "expected a closing parenthesis");
+
+  assert_eq!(
+
+      label,
+
+      LabeledSpan::new(Some("expected a closing parenthesis".to_string()), 4, 0)
+
+  )
+
+  ```
 
 - <span id="labeledspan-underline"></span>`fn underline(span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](../index.md#sourcespan)
 
+  Makes a new label without text, that underlines a specific span.
+
+  
+
+  # Examples
+
+  ```rust
+
+  use miette::LabeledSpan;
+
+  
+
+  let source = "You have an eror here";
+
+  let label = LabeledSpan::underline(12..16);
+
+  assert_eq!(label, LabeledSpan::new(None, 12, 4))
+
+  ```
+
 - <span id="labeledspan-label"></span>`fn label(&self) -> Option<&str>`
+
+  Gets the (optional) label string for this `LabeledSpan`.
 
 - <span id="labeledspan-inner"></span>`const fn inner(&self) -> &SourceSpan` — [`SourceSpan`](../index.md#sourcespan)
 
+  Returns a reference to the inner [`SourceSpan`](../index.md).
+
 - <span id="labeledspan-offset"></span>`const fn offset(&self) -> usize`
+
+  Returns the 0-based starting byte offset.
 
 - <span id="labeledspan-len"></span>`const fn len(&self) -> usize`
 
+  Returns the number of bytes this `LabeledSpan` spans.
+
 - <span id="labeledspan-is-empty"></span>`const fn is_empty(&self) -> bool`
+
+  True if this `LabeledSpan` is empty.
 
 - <span id="labeledspan-primary"></span>`const fn primary(&self) -> bool`
 
+  True if this `LabeledSpan` is a primary span.
+
 #### Trait Implementations
+
+##### `impl Any for LabeledSpan`
+
+- <span id="labeledspan-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LabeledSpan`
+
+- <span id="labeledspan-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LabeledSpan`
+
+- <span id="labeledspan-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for LabeledSpan`
 
 - <span id="labeledspan-clone"></span>`fn clone(&self) -> LabeledSpan` — [`LabeledSpan`](../index.md#labeledspan)
 
+##### `impl CloneToUninit for LabeledSpan`
+
+- <span id="labeledspan-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for LabeledSpan`
 
-- <span id="labeledspan-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="labeledspan-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LabeledSpan`
+
+##### `impl<T> From for LabeledSpan`
+
+- <span id="labeledspan-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LabeledSpan`
+
+- <span id="labeledspan-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LabeledSpan`
 
 ##### `impl PartialEq for LabeledSpan`
 
-- <span id="labeledspan-eq"></span>`fn eq(&self, other: &LabeledSpan) -> bool` — [`LabeledSpan`](../index.md#labeledspan)
+- <span id="labeledspan-partialeq-eq"></span>`fn eq(&self, other: &LabeledSpan) -> bool` — [`LabeledSpan`](../index.md#labeledspan)
 
 ##### `impl StructuralPartialEq for LabeledSpan`
+
+##### `impl ToOwned for LabeledSpan`
+
+- <span id="labeledspan-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="labeledspan-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="labeledspan-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LabeledSpan`
+
+- <span id="labeledspan-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="labeledspan-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LabeledSpan`
+
+- <span id="labeledspan-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="labeledspan-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MietteSpanContents<'a>`
 
@@ -129,37 +275,97 @@ Basic implementation of the [`SpanContents`](../index.md) trait, for convenience
 
 - <span id="miettespancontents-new"></span>`const fn new(data: &'a [u8], span: SourceSpan, line: usize, column: usize, line_count: usize) -> MietteSpanContents<'a>` — [`SourceSpan`](../index.md#sourcespan), [`MietteSpanContents`](../index.md#miettespancontents)
 
+  Make a new [`MietteSpanContents`](../index.md) object.
+
 - <span id="miettespancontents-new-named"></span>`const fn new_named(name: String, data: &'a [u8], span: SourceSpan, line: usize, column: usize, line_count: usize) -> MietteSpanContents<'a>` — [`SourceSpan`](../index.md#sourcespan), [`MietteSpanContents`](../index.md#miettespancontents)
+
+  Make a new [`MietteSpanContents`](../index.md) object, with a name for its 'file'.
 
 - <span id="miettespancontents-with-language"></span>`fn with_language(self, language: impl Into<String>) -> Self`
 
+  Sets the [`language`](SpanContents::language) for syntax highlighting.
+
 #### Trait Implementations
+
+##### `impl Any for MietteSpanContents<'a>`
+
+- <span id="miettespancontents-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MietteSpanContents<'a>`
+
+- <span id="miettespancontents-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MietteSpanContents<'a>`
+
+- <span id="miettespancontents-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for MietteSpanContents<'a>`
 
 - <span id="miettespancontents-clone"></span>`fn clone(&self) -> MietteSpanContents<'a>` — [`MietteSpanContents`](../index.md#miettespancontents)
 
+##### `impl CloneToUninit for MietteSpanContents<'a>`
+
+- <span id="miettespancontents-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for MietteSpanContents<'a>`
 
-- <span id="miettespancontents-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="miettespancontents-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MietteSpanContents<'a>`
+
+- <span id="miettespancontents-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MietteSpanContents<'a>`
+
+- <span id="miettespancontents-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MietteSpanContents<'a>`
 
 ##### `impl SpanContents for MietteSpanContents<'a>`
 
-- <span id="miettespancontents-data"></span>`fn data(&self) -> &'a [u8]`
+- <span id="miettespancontents-spancontents-data"></span>`fn data(&self) -> &'a [u8]`
 
-- <span id="miettespancontents-span"></span>`fn span(&self) -> &SourceSpan` — [`SourceSpan`](../index.md#sourcespan)
+- <span id="miettespancontents-spancontents-span"></span>`fn span(&self) -> &SourceSpan` — [`SourceSpan`](../index.md#sourcespan)
 
-- <span id="miettespancontents-line"></span>`fn line(&self) -> usize`
+- <span id="miettespancontents-spancontents-line"></span>`fn line(&self) -> usize`
 
-- <span id="miettespancontents-column"></span>`fn column(&self) -> usize`
+- <span id="miettespancontents-spancontents-column"></span>`fn column(&self) -> usize`
 
-- <span id="miettespancontents-line-count"></span>`fn line_count(&self) -> usize`
+- <span id="miettespancontents-spancontents-line-count"></span>`fn line_count(&self) -> usize`
 
-- <span id="miettespancontents-name"></span>`fn name(&self) -> Option<&str>`
+- <span id="miettespancontents-spancontents-name"></span>`fn name(&self) -> Option<&str>`
 
-- <span id="miettespancontents-language"></span>`fn language(&self) -> Option<&str>`
+- <span id="miettespancontents-spancontents-language"></span>`fn language(&self) -> Option<&str>`
+
+##### `impl ToOwned for MietteSpanContents<'a>`
+
+- <span id="miettespancontents-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="miettespancontents-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="miettespancontents-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MietteSpanContents<'a>`
+
+- <span id="miettespancontents-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="miettespancontents-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MietteSpanContents<'a>`
+
+- <span id="miettespancontents-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="miettespancontents-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SourceSpan`
 
@@ -188,45 +394,109 @@ Span within a [`SourceCode`](../index.md)
 
 - <span id="sourcespan-new"></span>`const fn new(start: SourceOffset, length: usize) -> Self` — [`SourceOffset`](../index.md#sourceoffset)
 
+  Create a new [`SourceSpan`](../index.md).
+
 - <span id="sourcespan-offset"></span>`const fn offset(&self) -> usize`
+
+  The absolute offset, in bytes, from the beginning of a [`SourceCode`](../index.md).
 
 - <span id="sourcespan-len"></span>`const fn len(&self) -> usize`
 
+  Total length of the [`SourceSpan`](../index.md), in bytes.
+
 - <span id="sourcespan-is-empty"></span>`const fn is_empty(&self) -> bool`
 
+  Whether this [`SourceSpan`](../index.md) has a length of zero. It may still be useful
+
+  to point to a specific point.
+
 #### Trait Implementations
+
+##### `impl Any for SourceSpan`
+
+- <span id="sourcespan-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SourceSpan`
+
+- <span id="sourcespan-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SourceSpan`
+
+- <span id="sourcespan-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for SourceSpan`
 
 - <span id="sourcespan-clone"></span>`fn clone(&self) -> SourceSpan` — [`SourceSpan`](../index.md#sourcespan)
 
+##### `impl CloneToUninit for SourceSpan`
+
+- <span id="sourcespan-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for SourceSpan`
 
 ##### `impl Debug for SourceSpan`
 
-- <span id="sourcespan-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sourcespan-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SourceSpan`
+
+##### `impl<T> From for SourceSpan`
+
+- <span id="sourcespan-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for SourceSpan`
 
 - <span id="sourcespan-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for SourceSpan`
+
+- <span id="sourcespan-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for SourceSpan`
 
-- <span id="sourcespan-cmp"></span>`fn cmp(&self, other: &SourceSpan) -> cmp::Ordering` — [`SourceSpan`](../index.md#sourcespan)
+- <span id="sourcespan-ord-cmp"></span>`fn cmp(&self, other: &SourceSpan) -> cmp::Ordering` — [`SourceSpan`](../index.md#sourcespan)
 
 ##### `impl OwoColorize for SourceSpan`
 
 ##### `impl PartialEq for SourceSpan`
 
-- <span id="sourcespan-eq"></span>`fn eq(&self, other: &SourceSpan) -> bool` — [`SourceSpan`](../index.md#sourcespan)
+- <span id="sourcespan-partialeq-eq"></span>`fn eq(&self, other: &SourceSpan) -> bool` — [`SourceSpan`](../index.md#sourcespan)
 
 ##### `impl PartialOrd for SourceSpan`
 
-- <span id="sourcespan-partial-cmp"></span>`fn partial_cmp(&self, other: &SourceSpan) -> option::Option<cmp::Ordering>` — [`SourceSpan`](../index.md#sourcespan)
+- <span id="sourcespan-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &SourceSpan) -> option::Option<cmp::Ordering>` — [`SourceSpan`](../index.md#sourcespan)
 
 ##### `impl StructuralPartialEq for SourceSpan`
+
+##### `impl ToOwned for SourceSpan`
+
+- <span id="sourcespan-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sourcespan-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sourcespan-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SourceSpan`
+
+- <span id="sourcespan-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sourcespan-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SourceSpan`
+
+- <span id="sourcespan-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sourcespan-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SourceOffset`
 
@@ -242,43 +512,131 @@ Newtype that represents the [`ByteOffset`](../index.md) from the beginning of a 
 
 - <span id="sourceoffset-offset"></span>`const fn offset(&self) -> ByteOffset` — [`ByteOffset`](../index.md#byteoffset)
 
+  Actual byte offset.
+
 - <span id="sourceoffset-from-location"></span>`fn from_location(source: impl AsRef<str>, loc_line: usize, loc_col: usize) -> Self`
+
+  Little utility to help convert 1-based line/column locations into
+
+  miette-compatible Spans
+
+  
+
+  This function is infallible: Giving an out-of-range line/column pair
+
+  will return the offset of the last byte in the source.
 
 - <span id="sourceoffset-from-current-location"></span>`fn from_current_location() -> Result<(String, Self), MietteError>` — [`MietteError`](../index.md#mietteerror)
 
+  Returns an offset for the _file_ location of wherever this function is
+
+  called. If you want to get _that_ caller's location, mark this
+
+  function's caller with `#[track_caller]` (and so on and so forth).
+
+  
+
+  Returns both the filename that was given and the offset of the caller
+
+  as a [`SourceOffset`](../index.md).
+
+  
+
+  Keep in mind that this fill only work if the file your Rust source
+
+  file was compiled from is actually available at that location. If
+
+  you're shipping binaries for your application, you'll want to ignore
+
+  the Err case or otherwise report it.
+
 #### Trait Implementations
+
+##### `impl Any for SourceOffset`
+
+- <span id="sourceoffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SourceOffset`
+
+- <span id="sourceoffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SourceOffset`
+
+- <span id="sourceoffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for SourceOffset`
 
 - <span id="sourceoffset-clone"></span>`fn clone(&self) -> SourceOffset` — [`SourceOffset`](../index.md#sourceoffset)
 
+##### `impl CloneToUninit for SourceOffset`
+
+- <span id="sourceoffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for SourceOffset`
 
 ##### `impl Debug for SourceOffset`
 
-- <span id="sourceoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sourceoffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SourceOffset`
+
+##### `impl<T> From for SourceOffset`
+
+- <span id="sourceoffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for SourceOffset`
 
 - <span id="sourceoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for SourceOffset`
+
+- <span id="sourceoffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for SourceOffset`
 
-- <span id="sourceoffset-cmp"></span>`fn cmp(&self, other: &SourceOffset) -> cmp::Ordering` — [`SourceOffset`](../index.md#sourceoffset)
+- <span id="sourceoffset-ord-cmp"></span>`fn cmp(&self, other: &SourceOffset) -> cmp::Ordering` — [`SourceOffset`](../index.md#sourceoffset)
 
 ##### `impl OwoColorize for SourceOffset`
 
 ##### `impl PartialEq for SourceOffset`
 
-- <span id="sourceoffset-eq"></span>`fn eq(&self, other: &SourceOffset) -> bool` — [`SourceOffset`](../index.md#sourceoffset)
+- <span id="sourceoffset-partialeq-eq"></span>`fn eq(&self, other: &SourceOffset) -> bool` — [`SourceOffset`](../index.md#sourceoffset)
 
 ##### `impl PartialOrd for SourceOffset`
 
-- <span id="sourceoffset-partial-cmp"></span>`fn partial_cmp(&self, other: &SourceOffset) -> option::Option<cmp::Ordering>` — [`SourceOffset`](../index.md#sourceoffset)
+- <span id="sourceoffset-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &SourceOffset) -> option::Option<cmp::Ordering>` — [`SourceOffset`](../index.md#sourceoffset)
 
 ##### `impl StructuralPartialEq for SourceOffset`
+
+##### `impl ToOwned for SourceOffset`
+
+- <span id="sourceoffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sourceoffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sourceoffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SourceOffset`
+
+- <span id="sourceoffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sourceoffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SourceOffset`
+
+- <span id="sourceoffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sourceoffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -315,15 +673,31 @@ enum Severity {
 
 #### Trait Implementations
 
+##### `impl Any for Severity`
+
+- <span id="severity-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Severity`
+
+- <span id="severity-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Severity`
+
+- <span id="severity-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Severity`
 
 - <span id="severity-clone"></span>`fn clone(&self) -> Severity` — [`Severity`](../index.md#severity)
+
+##### `impl CloneToUninit for Severity`
+
+- <span id="severity-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Severity`
 
 ##### `impl Debug for Severity`
 
-- <span id="severity-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="severity-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Severity`
 
@@ -331,21 +705,59 @@ enum Severity {
 
 ##### `impl Eq for Severity`
 
+##### `impl<T> From for Severity`
+
+- <span id="severity-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Severity`
+
+- <span id="severity-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Severity`
 
-- <span id="severity-cmp"></span>`fn cmp(&self, other: &Severity) -> cmp::Ordering` — [`Severity`](../index.md#severity)
+- <span id="severity-ord-cmp"></span>`fn cmp(&self, other: &Severity) -> cmp::Ordering` — [`Severity`](../index.md#severity)
 
 ##### `impl OwoColorize for Severity`
 
 ##### `impl PartialEq for Severity`
 
-- <span id="severity-eq"></span>`fn eq(&self, other: &Severity) -> bool` — [`Severity`](../index.md#severity)
+- <span id="severity-partialeq-eq"></span>`fn eq(&self, other: &Severity) -> bool` — [`Severity`](../index.md#severity)
 
 ##### `impl PartialOrd for Severity`
 
-- <span id="severity-partial-cmp"></span>`fn partial_cmp(&self, other: &Severity) -> option::Option<cmp::Ordering>` — [`Severity`](../index.md#severity)
+- <span id="severity-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Severity) -> option::Option<cmp::Ordering>` — [`Severity`](../index.md#severity)
 
 ##### `impl StructuralPartialEq for Severity`
+
+##### `impl ToOwned for Severity`
+
+- <span id="severity-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="severity-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="severity-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Severity`
+
+- <span id="severity-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="severity-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Severity`
+
+- <span id="severity-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="severity-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

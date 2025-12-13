@@ -89,11 +89,65 @@ struct AllowStruct(bool);
 
 #### Trait Implementations
 
+##### `impl Any for AllowStruct`
+
+- <span id="allowstruct-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AllowStruct`
+
+- <span id="allowstruct-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AllowStruct`
+
+- <span id="allowstruct-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for AllowStruct`
 
 - <span id="allowstruct-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for AllowStruct`
+
+- <span id="allowstruct-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for AllowStruct`
+
+##### `impl<T> From for AllowStruct`
+
+- <span id="allowstruct-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AllowStruct`
+
+- <span id="allowstruct-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for AllowStruct`
+
+- <span id="allowstruct-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="allowstruct-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="allowstruct-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AllowStruct`
+
+- <span id="allowstruct-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="allowstruct-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AllowStruct`
+
+- <span id="allowstruct-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="allowstruct-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

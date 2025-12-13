@@ -21,7 +21,7 @@ struct AsKebabCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/kebab.rs:40`](../../../.source_1765521767/heck-0.5.0/src/kebab.rs#L40)*
 
-This wrapper performs a kebab case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
+This wrapper performs a kebab case conversion in [`fmt::Display`](../../miette_derive/index.md).
 
 ## Example:
 
@@ -34,13 +34,55 @@ assert_eq!(format!("{}", AsKebabCase(sentence)), "we-are-going-to-inherit-the-ea
 
 #### Trait Implementations
 
+##### `impl<T> Any for AsKebabCase<T>`
+
+- <span id="askebabcase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AsKebabCase<T>`
+
+- <span id="askebabcase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AsKebabCase<T>`
+
+- <span id="askebabcase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: AsRef<str>> Display for AsKebabCase<T>`
 
-- <span id="askebabcase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="askebabcase-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AsKebabCase<T>`
+
+- <span id="askebabcase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for AsKebabCase<T>`
+
+- <span id="askebabcase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for AsKebabCase<T>`
 
-- <span id="askebabcase-to-string"></span>`fn to_string(&self) -> String`
+- <span id="askebabcase-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for AsKebabCase<T>`
+
+- <span id="askebabcase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="askebabcase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for AsKebabCase<T>`
+
+- <span id="askebabcase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="askebabcase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

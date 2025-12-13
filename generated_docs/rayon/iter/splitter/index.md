@@ -30,13 +30,47 @@ This struct is created by the [`split()`](#split) function.
 
 #### Trait Implementations
 
+##### `impl Any for Split<D, S>`
+
+- <span id="split-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Split<D, S>`
+
+- <span id="split-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Split<D, S>`
+
+- <span id="split-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<D: clone::Clone, S: clone::Clone> Clone for Split<D, S>`
 
 - <span id="split-clone"></span>`fn clone(&self) -> Split<D, S>` — [`Split`](#split)
 
+##### `impl CloneToUninit for Split<D, S>`
+
+- <span id="split-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<D: Debug, S> Debug for Split<D, S>`
 
-- <span id="split-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="split-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Split<D, S>`
+
+- <span id="split-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Split<D, S>`
+
+- <span id="split-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Split<D, S>`
 
@@ -46,13 +80,13 @@ This struct is created by the [`split()`](#split) function.
 
 - <span id="split-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="split-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="split-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<D, S> ParallelIterator for Split<D, S>`
 
 - <span id="split-paralleliterator-type-item"></span>`type Item = D`
 
-- <span id="split-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="split-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl Pointable for Split<D, S>`
 
@@ -60,13 +94,33 @@ This struct is created by the [`split()`](#split) function.
 
 - <span id="split-pointable-type-init"></span>`type Init = T`
 
-- <span id="split-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="split-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="split-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="split-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="split-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="split-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="split-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="split-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Split<D, S>`
+
+- <span id="split-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="split-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="split-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Split<D, S>`
+
+- <span id="split-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="split-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Split<D, S>`
+
+- <span id="split-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="split-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SplitProducer<'a, D, S>`
 
@@ -81,6 +135,36 @@ struct SplitProducer<'a, D, S> {
 
 #### Trait Implementations
 
+##### `impl Any for SplitProducer<'a, D, S>`
+
+- <span id="splitproducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SplitProducer<'a, D, S>`
+
+- <span id="splitproducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SplitProducer<'a, D, S>`
+
+- <span id="splitproducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for SplitProducer<'a, D, S>`
+
+- <span id="splitproducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SplitProducer<'a, D, S>`
+
+- <span id="splitproducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for SplitProducer<'a, D, S>`
 
 ##### `impl Pointable for SplitProducer<'a, D, S>`
@@ -89,21 +173,33 @@ struct SplitProducer<'a, D, S> {
 
 - <span id="splitproducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="splitproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitproducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="splitproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitproducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="splitproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitproducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="splitproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="splitproducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for SplitProducer<'a, D, S>`
+
+- <span id="splitproducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="splitproducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SplitProducer<'a, D, S>`
+
+- <span id="splitproducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="splitproducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<D, S> UnindexedProducer for SplitProducer<'a, D, S>`
 
 - <span id="splitproducer-unindexedproducer-type-item"></span>`type Item = D`
 
-- <span id="splitproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
+- <span id="splitproducer-unindexedproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- <span id="splitproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
+- <span id="splitproducer-unindexedproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ## Functions
 

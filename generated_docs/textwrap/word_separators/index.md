@@ -154,23 +154,135 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
 
 - <span id="wordseparator-new"></span>`const fn new() -> Self`
 
+  Create a new word separator.
+
+  
+
+  The best available algorithm is used by default, i.e.,
+
+  [`WordSeparator::UnicodeBreakProperties`](../index.md) if available,
+
+  otherwise [`WordSeparator::AsciiSpace`](../index.md).
+
 - <span id="wordseparator-find-words"></span>`fn find_words<'a>(&self, line: &'a str) -> Box<dyn Iterator<Item = Word<'a>>>` — [`Word`](../core/index.md#word)
 
+  Find all words in `line`.
+
 #### Trait Implementations
+
+##### `impl Any for WordSeparator`
+
+- <span id="wordseparator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WordSeparator`
+
+- <span id="wordseparator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WordSeparator`
+
+- <span id="wordseparator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for WordSeparator`
 
 - <span id="wordseparator-clone"></span>`fn clone(&self) -> WordSeparator` — [`WordSeparator`](#wordseparator)
 
+##### `impl CloneToUninit for WordSeparator`
+
+- <span id="wordseparator-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for WordSeparator`
 
 ##### `impl Debug for WordSeparator`
 
-- <span id="wordseparator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="wordseparator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for WordSeparator`
+
+- <span id="wordseparator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WordSeparator`
+
+- <span id="wordseparator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for WordSeparator`
 
-- <span id="wordseparator-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="wordseparator-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
+
+  Compare two word separators.
+
+  
+
+  ```rust
+
+  use textwrap::WordSeparator;
+
+  
+
+  assert_eq!(WordSeparator::AsciiSpace, WordSeparator::AsciiSpace);
+
+  #[cfg(feature = "unicode-linebreak")] {
+
+      assert_eq!(WordSeparator::UnicodeBreakProperties,
+
+                 WordSeparator::UnicodeBreakProperties);
+
+  }
+
+  ```
+
+  
+
+  Note that `WordSeparator::Custom` values never compare equal:
+
+  
+
+  ```rust
+
+  use textwrap::WordSeparator;
+
+  use textwrap::core::Word;
+
+  fn word_separator(line: &str) -> Box<dyn Iterator<Item = Word<'_>> + '_> {
+
+      Box::new(line.split_inclusive(' ').map(Word::from))
+
+  }
+
+  assert_ne!(WordSeparator::Custom(word_separator),
+
+             WordSeparator::Custom(word_separator));
+
+  ```
+
+##### `impl ToOwned for WordSeparator`
+
+- <span id="wordseparator-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="wordseparator-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="wordseparator-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for WordSeparator`
+
+- <span id="wordseparator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="wordseparator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WordSeparator`
+
+- <span id="wordseparator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="wordseparator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

@@ -139,19 +139,53 @@ A constant item: `const MAX: u16 = 65535`.
 
 #### Trait Implementations
 
+##### `impl Any for ItemConst`
+
+- <span id="itemconst-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ItemConst`
+
+- <span id="itemconst-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItemConst`
+
+- <span id="itemconst-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ItemConst`
 
 - <span id="crateitemconst-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ItemConst`
+
+- <span id="itemconst-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ItemConst`
 
-- <span id="crateitemconst-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemconst-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemConst`
+
+##### `impl<T> From for ItemConst`
+
+- <span id="itemconst-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ItemConst`
 
 - <span id="crateitemconst-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ItemConst`
+
+- <span id="itemconst-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemConst`
 
@@ -159,17 +193,37 @@ A constant item: `const MAX: u16 = 65535`.
 
 ##### `impl PartialEq for crate::ItemConst`
 
-- <span id="crateitemconst-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateitemconst-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ItemConst`
 
 ##### `impl Spanned for ItemConst`
 
-- <span id="itemconst-span"></span>`fn span(&self) -> Span`
+- <span id="itemconst-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ItemConst`
+
+- <span id="itemconst-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itemconst-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itemconst-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ItemConst`
 
-- <span id="crateitemitemconst-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemitemconst-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ItemConst`
+
+- <span id="itemconst-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itemconst-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ItemConst`
+
+- <span id="itemconst-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itemconst-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ItemEnum`
 
@@ -195,19 +249,53 @@ An enum definition: `enum Foo<A, B> { A(A), B(B) }`.
 
 #### Trait Implementations
 
+##### `impl Any for ItemEnum`
+
+- <span id="itemenum-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ItemEnum`
+
+- <span id="itemenum-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItemEnum`
+
+- <span id="itemenum-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ItemEnum`
 
 - <span id="crateitemenum-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ItemEnum`
+
+- <span id="itemenum-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ItemEnum`
 
-- <span id="crateitemenum-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemenum-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemEnum`
+
+##### `impl<T> From for ItemEnum`
+
+- <span id="itemenum-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ItemEnum`
 
 - <span id="crateitemenum-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ItemEnum`
+
+- <span id="itemenum-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemEnum`
 
@@ -215,17 +303,37 @@ An enum definition: `enum Foo<A, B> { A(A), B(B) }`.
 
 ##### `impl PartialEq for crate::ItemEnum`
 
-- <span id="crateitemenum-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateitemenum-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ItemEnum`
 
 ##### `impl Spanned for ItemEnum`
 
-- <span id="itemenum-span"></span>`fn span(&self) -> Span`
+- <span id="itemenum-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ItemEnum`
+
+- <span id="itemenum-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itemenum-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itemenum-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ItemEnum`
 
-- <span id="crateitemitemenum-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemitemenum-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ItemEnum`
+
+- <span id="itemenum-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itemenum-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ItemEnum`
+
+- <span id="itemenum-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itemenum-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ItemExternCrate`
 
@@ -251,19 +359,53 @@ An `extern crate` item: `extern crate serde`.
 
 #### Trait Implementations
 
+##### `impl Any for ItemExternCrate`
+
+- <span id="itemexterncrate-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ItemExternCrate`
+
+- <span id="itemexterncrate-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItemExternCrate`
+
+- <span id="itemexterncrate-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ItemExternCrate`
 
 - <span id="crateitemexterncrate-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ItemExternCrate`
+
+- <span id="itemexterncrate-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ItemExternCrate`
 
-- <span id="crateitemexterncrate-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemexterncrate-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemExternCrate`
+
+##### `impl<T> From for ItemExternCrate`
+
+- <span id="itemexterncrate-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ItemExternCrate`
 
 - <span id="crateitemexterncrate-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ItemExternCrate`
+
+- <span id="itemexterncrate-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemExternCrate`
 
@@ -271,17 +413,37 @@ An `extern crate` item: `extern crate serde`.
 
 ##### `impl PartialEq for crate::ItemExternCrate`
 
-- <span id="crateitemexterncrate-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateitemexterncrate-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ItemExternCrate`
 
 ##### `impl Spanned for ItemExternCrate`
 
-- <span id="itemexterncrate-span"></span>`fn span(&self) -> Span`
+- <span id="itemexterncrate-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ItemExternCrate`
+
+- <span id="itemexterncrate-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itemexterncrate-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itemexterncrate-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ItemExternCrate`
 
-- <span id="crateitemitemexterncrate-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemitemexterncrate-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ItemExternCrate`
+
+- <span id="itemexterncrate-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itemexterncrate-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ItemExternCrate`
+
+- <span id="itemexterncrate-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itemexterncrate-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ItemFn`
 
@@ -304,19 +466,53 @@ A free-standing function: `fn process(n: usize) -> Result<()> { ... }`.
 
 #### Trait Implementations
 
+##### `impl Any for ItemFn`
+
+- <span id="itemfn-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ItemFn`
+
+- <span id="itemfn-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItemFn`
+
+- <span id="itemfn-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ItemFn`
 
 - <span id="crateitemfn-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ItemFn`
+
+- <span id="itemfn-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ItemFn`
 
-- <span id="crateitemfn-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemfn-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemFn`
+
+##### `impl<T> From for ItemFn`
+
+- <span id="itemfn-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ItemFn`
 
 - <span id="crateitemfn-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ItemFn`
+
+- <span id="itemfn-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemFn`
 
@@ -324,17 +520,37 @@ A free-standing function: `fn process(n: usize) -> Result<()> { ... }`.
 
 ##### `impl PartialEq for crate::ItemFn`
 
-- <span id="crateitemfn-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateitemfn-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ItemFn`
 
 ##### `impl Spanned for ItemFn`
 
-- <span id="itemfn-span"></span>`fn span(&self) -> Span`
+- <span id="itemfn-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ItemFn`
+
+- <span id="itemfn-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itemfn-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itemfn-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ItemFn`
 
-- <span id="crateitemitemfn-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemitemfn-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ItemFn`
+
+- <span id="itemfn-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itemfn-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ItemFn`
+
+- <span id="itemfn-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itemfn-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ItemForeignMod`
 
@@ -358,19 +574,53 @@ A block of foreign items: `extern "C" { ... }`.
 
 #### Trait Implementations
 
+##### `impl Any for ItemForeignMod`
+
+- <span id="itemforeignmod-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ItemForeignMod`
+
+- <span id="itemforeignmod-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItemForeignMod`
+
+- <span id="itemforeignmod-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ItemForeignMod`
 
 - <span id="crateitemforeignmod-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ItemForeignMod`
+
+- <span id="itemforeignmod-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ItemForeignMod`
 
-- <span id="crateitemforeignmod-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemforeignmod-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemForeignMod`
+
+##### `impl<T> From for ItemForeignMod`
+
+- <span id="itemforeignmod-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ItemForeignMod`
 
 - <span id="crateitemforeignmod-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ItemForeignMod`
+
+- <span id="itemforeignmod-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemForeignMod`
 
@@ -378,17 +628,37 @@ A block of foreign items: `extern "C" { ... }`.
 
 ##### `impl PartialEq for crate::ItemForeignMod`
 
-- <span id="crateitemforeignmod-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateitemforeignmod-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ItemForeignMod`
 
 ##### `impl Spanned for ItemForeignMod`
 
-- <span id="itemforeignmod-span"></span>`fn span(&self) -> Span`
+- <span id="itemforeignmod-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ItemForeignMod`
+
+- <span id="itemforeignmod-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itemforeignmod-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itemforeignmod-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ItemForeignMod`
 
-- <span id="crateitemitemforeignmod-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemitemforeignmod-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ItemForeignMod`
+
+- <span id="itemforeignmod-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itemforeignmod-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ItemForeignMod`
+
+- <span id="itemforeignmod-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itemforeignmod-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ItemImpl`
 
@@ -427,19 +697,53 @@ for Data<A> { ... }`.
 
 #### Trait Implementations
 
+##### `impl Any for ItemImpl`
+
+- <span id="itemimpl-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ItemImpl`
+
+- <span id="itemimpl-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItemImpl`
+
+- <span id="itemimpl-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ItemImpl`
 
 - <span id="crateitemimpl-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ItemImpl`
+
+- <span id="itemimpl-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ItemImpl`
 
-- <span id="crateitemimpl-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemimpl-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemImpl`
+
+##### `impl<T> From for ItemImpl`
+
+- <span id="itemimpl-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ItemImpl`
 
 - <span id="crateitemimpl-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ItemImpl`
+
+- <span id="itemimpl-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemImpl`
 
@@ -447,17 +751,37 @@ for Data<A> { ... }`.
 
 ##### `impl PartialEq for crate::ItemImpl`
 
-- <span id="crateitemimpl-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateitemimpl-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ItemImpl`
 
 ##### `impl Spanned for ItemImpl`
 
-- <span id="itemimpl-span"></span>`fn span(&self) -> Span`
+- <span id="itemimpl-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ItemImpl`
+
+- <span id="itemimpl-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itemimpl-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itemimpl-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ItemImpl`
 
-- <span id="crateitemitemimpl-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemitemimpl-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ItemImpl`
+
+- <span id="itemimpl-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itemimpl-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ItemImpl`
+
+- <span id="itemimpl-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itemimpl-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ItemMacro`
 
@@ -486,19 +810,53 @@ A macro invocation, which includes `macro_rules!` definitions.
 
 #### Trait Implementations
 
+##### `impl Any for ItemMacro`
+
+- <span id="itemmacro-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ItemMacro`
+
+- <span id="itemmacro-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItemMacro`
+
+- <span id="itemmacro-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ItemMacro`
 
 - <span id="crateitemmacro-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ItemMacro`
+
+- <span id="itemmacro-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ItemMacro`
 
-- <span id="crateitemmacro-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemmacro-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemMacro`
+
+##### `impl<T> From for ItemMacro`
+
+- <span id="itemmacro-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ItemMacro`
 
 - <span id="crateitemmacro-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ItemMacro`
+
+- <span id="itemmacro-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemMacro`
 
@@ -506,17 +864,37 @@ A macro invocation, which includes `macro_rules!` definitions.
 
 ##### `impl PartialEq for crate::ItemMacro`
 
-- <span id="crateitemmacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateitemmacro-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ItemMacro`
 
 ##### `impl Spanned for ItemMacro`
 
-- <span id="itemmacro-span"></span>`fn span(&self) -> Span`
+- <span id="itemmacro-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ItemMacro`
+
+- <span id="itemmacro-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itemmacro-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itemmacro-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ItemMacro`
 
-- <span id="crateitemitemmacro-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemitemmacro-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ItemMacro`
+
+- <span id="itemmacro-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itemmacro-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ItemMacro`
+
+- <span id="itemmacro-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itemmacro-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ItemMod`
 
@@ -542,19 +920,53 @@ A module or module declaration: `mod m` or `mod m { ... }`.
 
 #### Trait Implementations
 
+##### `impl Any for ItemMod`
+
+- <span id="itemmod-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ItemMod`
+
+- <span id="itemmod-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItemMod`
+
+- <span id="itemmod-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ItemMod`
 
 - <span id="crateitemmod-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ItemMod`
+
+- <span id="itemmod-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ItemMod`
 
-- <span id="crateitemmod-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemmod-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemMod`
+
+##### `impl<T> From for ItemMod`
+
+- <span id="itemmod-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ItemMod`
 
 - <span id="crateitemmod-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ItemMod`
+
+- <span id="itemmod-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemMod`
 
@@ -562,17 +974,37 @@ A module or module declaration: `mod m` or `mod m { ... }`.
 
 ##### `impl PartialEq for crate::ItemMod`
 
-- <span id="crateitemmod-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateitemmod-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ItemMod`
 
 ##### `impl Spanned for ItemMod`
 
-- <span id="itemmod-span"></span>`fn span(&self) -> Span`
+- <span id="itemmod-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ItemMod`
+
+- <span id="itemmod-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itemmod-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itemmod-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ItemMod`
 
-- <span id="crateitemitemmod-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemitemmod-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ItemMod`
+
+- <span id="itemmod-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itemmod-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ItemMod`
+
+- <span id="itemmod-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itemmod-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ItemStatic`
 
@@ -601,19 +1033,53 @@ A static item: `static BIKE: Shed = Shed(42)`.
 
 #### Trait Implementations
 
+##### `impl Any for ItemStatic`
+
+- <span id="itemstatic-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ItemStatic`
+
+- <span id="itemstatic-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItemStatic`
+
+- <span id="itemstatic-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ItemStatic`
 
 - <span id="crateitemstatic-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ItemStatic`
+
+- <span id="itemstatic-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ItemStatic`
 
-- <span id="crateitemstatic-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemstatic-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemStatic`
+
+##### `impl<T> From for ItemStatic`
+
+- <span id="itemstatic-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ItemStatic`
 
 - <span id="crateitemstatic-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ItemStatic`
+
+- <span id="itemstatic-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemStatic`
 
@@ -621,17 +1087,37 @@ A static item: `static BIKE: Shed = Shed(42)`.
 
 ##### `impl PartialEq for crate::ItemStatic`
 
-- <span id="crateitemstatic-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateitemstatic-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ItemStatic`
 
 ##### `impl Spanned for ItemStatic`
 
-- <span id="itemstatic-span"></span>`fn span(&self) -> Span`
+- <span id="itemstatic-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ItemStatic`
+
+- <span id="itemstatic-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itemstatic-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itemstatic-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ItemStatic`
 
-- <span id="crateitemitemstatic-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemitemstatic-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ItemStatic`
+
+- <span id="itemstatic-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itemstatic-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ItemStatic`
+
+- <span id="itemstatic-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itemstatic-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ItemStruct`
 
@@ -657,19 +1143,53 @@ A struct definition: `struct Foo<A> { x: A }`.
 
 #### Trait Implementations
 
+##### `impl Any for ItemStruct`
+
+- <span id="itemstruct-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ItemStruct`
+
+- <span id="itemstruct-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItemStruct`
+
+- <span id="itemstruct-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ItemStruct`
 
 - <span id="crateitemstruct-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ItemStruct`
+
+- <span id="itemstruct-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ItemStruct`
 
-- <span id="crateitemstruct-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemstruct-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemStruct`
+
+##### `impl<T> From for ItemStruct`
+
+- <span id="itemstruct-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ItemStruct`
 
 - <span id="crateitemstruct-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ItemStruct`
+
+- <span id="itemstruct-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemStruct`
 
@@ -677,17 +1197,37 @@ A struct definition: `struct Foo<A> { x: A }`.
 
 ##### `impl PartialEq for crate::ItemStruct`
 
-- <span id="crateitemstruct-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateitemstruct-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ItemStruct`
 
 ##### `impl Spanned for ItemStruct`
 
-- <span id="itemstruct-span"></span>`fn span(&self) -> Span`
+- <span id="itemstruct-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ItemStruct`
+
+- <span id="itemstruct-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itemstruct-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itemstruct-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ItemStruct`
 
-- <span id="crateitemitemstruct-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemitemstruct-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ItemStruct`
+
+- <span id="itemstruct-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itemstruct-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ItemStruct`
+
+- <span id="itemstruct-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itemstruct-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ItemTrait`
 
@@ -718,19 +1258,53 @@ A trait definition: `pub trait Iterator { ... }`.
 
 #### Trait Implementations
 
+##### `impl Any for ItemTrait`
+
+- <span id="itemtrait-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ItemTrait`
+
+- <span id="itemtrait-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItemTrait`
+
+- <span id="itemtrait-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ItemTrait`
 
 - <span id="crateitemtrait-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ItemTrait`
+
+- <span id="itemtrait-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ItemTrait`
 
-- <span id="crateitemtrait-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemtrait-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemTrait`
+
+##### `impl<T> From for ItemTrait`
+
+- <span id="itemtrait-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ItemTrait`
 
 - <span id="crateitemtrait-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ItemTrait`
+
+- <span id="itemtrait-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemTrait`
 
@@ -738,17 +1312,37 @@ A trait definition: `pub trait Iterator { ... }`.
 
 ##### `impl PartialEq for crate::ItemTrait`
 
-- <span id="crateitemtrait-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateitemtrait-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ItemTrait`
 
 ##### `impl Spanned for ItemTrait`
 
-- <span id="itemtrait-span"></span>`fn span(&self) -> Span`
+- <span id="itemtrait-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ItemTrait`
+
+- <span id="itemtrait-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itemtrait-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itemtrait-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ItemTrait`
 
-- <span id="crateitemitemtrait-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemitemtrait-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ItemTrait`
+
+- <span id="itemtrait-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itemtrait-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ItemTrait`
+
+- <span id="itemtrait-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itemtrait-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ItemTraitAlias`
 
@@ -775,19 +1369,53 @@ A trait alias: `pub trait SharableIterator = Iterator + Sync`.
 
 #### Trait Implementations
 
+##### `impl Any for ItemTraitAlias`
+
+- <span id="itemtraitalias-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ItemTraitAlias`
+
+- <span id="itemtraitalias-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItemTraitAlias`
+
+- <span id="itemtraitalias-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ItemTraitAlias`
 
 - <span id="crateitemtraitalias-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ItemTraitAlias`
+
+- <span id="itemtraitalias-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ItemTraitAlias`
 
-- <span id="crateitemtraitalias-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemtraitalias-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemTraitAlias`
+
+##### `impl<T> From for ItemTraitAlias`
+
+- <span id="itemtraitalias-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ItemTraitAlias`
 
 - <span id="crateitemtraitalias-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ItemTraitAlias`
+
+- <span id="itemtraitalias-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemTraitAlias`
 
@@ -795,17 +1423,37 @@ A trait alias: `pub trait SharableIterator = Iterator + Sync`.
 
 ##### `impl PartialEq for crate::ItemTraitAlias`
 
-- <span id="crateitemtraitalias-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateitemtraitalias-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ItemTraitAlias`
 
 ##### `impl Spanned for ItemTraitAlias`
 
-- <span id="itemtraitalias-span"></span>`fn span(&self) -> Span`
+- <span id="itemtraitalias-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ItemTraitAlias`
+
+- <span id="itemtraitalias-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itemtraitalias-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itemtraitalias-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ItemTraitAlias`
 
-- <span id="crateitemitemtraitalias-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemitemtraitalias-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ItemTraitAlias`
+
+- <span id="itemtraitalias-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itemtraitalias-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ItemTraitAlias`
+
+- <span id="itemtraitalias-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itemtraitalias-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ItemType`
 
@@ -832,19 +1480,53 @@ A type alias: `type Result<T> = std::result::Result<T, MyError>`.
 
 #### Trait Implementations
 
+##### `impl Any for ItemType`
+
+- <span id="itemtype-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ItemType`
+
+- <span id="itemtype-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItemType`
+
+- <span id="itemtype-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ItemType`
 
 - <span id="crateitemtype-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ItemType`
+
+- <span id="itemtype-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ItemType`
 
-- <span id="crateitemtype-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemtype-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemType`
+
+##### `impl<T> From for ItemType`
+
+- <span id="itemtype-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ItemType`
 
 - <span id="crateitemtype-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ItemType`
+
+- <span id="itemtype-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemType`
 
@@ -852,17 +1534,37 @@ A type alias: `type Result<T> = std::result::Result<T, MyError>`.
 
 ##### `impl PartialEq for crate::ItemType`
 
-- <span id="crateitemtype-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateitemtype-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ItemType`
 
 ##### `impl Spanned for ItemType`
 
-- <span id="itemtype-span"></span>`fn span(&self) -> Span`
+- <span id="itemtype-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ItemType`
+
+- <span id="itemtype-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itemtype-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itemtype-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ItemType`
 
-- <span id="crateitemitemtype-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemitemtype-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ItemType`
+
+- <span id="itemtype-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itemtype-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ItemType`
+
+- <span id="itemtype-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itemtype-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ItemUnion`
 
@@ -887,19 +1589,53 @@ A union definition: `union Foo<A, B> { x: A, y: B }`.
 
 #### Trait Implementations
 
+##### `impl Any for ItemUnion`
+
+- <span id="itemunion-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ItemUnion`
+
+- <span id="itemunion-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItemUnion`
+
+- <span id="itemunion-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ItemUnion`
 
 - <span id="crateitemunion-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ItemUnion`
+
+- <span id="itemunion-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ItemUnion`
 
-- <span id="crateitemunion-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemunion-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemUnion`
+
+##### `impl<T> From for ItemUnion`
+
+- <span id="itemunion-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ItemUnion`
 
 - <span id="crateitemunion-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ItemUnion`
+
+- <span id="itemunion-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemUnion`
 
@@ -907,17 +1643,37 @@ A union definition: `union Foo<A, B> { x: A, y: B }`.
 
 ##### `impl PartialEq for crate::ItemUnion`
 
-- <span id="crateitemunion-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateitemunion-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ItemUnion`
 
 ##### `impl Spanned for ItemUnion`
 
-- <span id="itemunion-span"></span>`fn span(&self) -> Span`
+- <span id="itemunion-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ItemUnion`
+
+- <span id="itemunion-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itemunion-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itemunion-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ItemUnion`
 
-- <span id="crateitemitemunion-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemitemunion-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ItemUnion`
+
+- <span id="itemunion-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itemunion-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ItemUnion`
+
+- <span id="itemunion-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itemunion-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ItemUse`
 
@@ -942,19 +1698,53 @@ A use declaration: `use std::collections::HashMap`.
 
 #### Trait Implementations
 
+##### `impl Any for ItemUse`
+
+- <span id="itemuse-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ItemUse`
+
+- <span id="itemuse-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItemUse`
+
+- <span id="itemuse-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ItemUse`
 
 - <span id="crateitemuse-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ItemUse`
+
+- <span id="itemuse-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ItemUse`
 
-- <span id="crateitemuse-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemuse-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemUse`
+
+##### `impl<T> From for ItemUse`
+
+- <span id="itemuse-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ItemUse`
 
 - <span id="crateitemuse-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ItemUse`
+
+- <span id="itemuse-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemUse`
 
@@ -962,17 +1752,37 @@ A use declaration: `use std::collections::HashMap`.
 
 ##### `impl PartialEq for crate::ItemUse`
 
-- <span id="crateitemuse-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateitemuse-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ItemUse`
 
 ##### `impl Spanned for ItemUse`
 
-- <span id="itemuse-span"></span>`fn span(&self) -> Span`
+- <span id="itemuse-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ItemUse`
+
+- <span id="itemuse-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itemuse-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itemuse-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ItemUse`
 
-- <span id="crateitemitemuse-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemitemuse-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ItemUse`
+
+- <span id="itemuse-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itemuse-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ItemUse`
+
+- <span id="itemuse-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itemuse-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UsePath`
 
@@ -990,33 +1800,87 @@ A path prefix of imports in a `use` item: `std::...`.
 
 #### Trait Implementations
 
+##### `impl Any for UsePath`
+
+- <span id="usepath-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UsePath`
+
+- <span id="usepath-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UsePath`
+
+- <span id="usepath-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::UsePath`
 
 - <span id="crateusepath-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for UsePath`
+
+- <span id="usepath-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::UsePath`
 
-- <span id="crateusepath-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateusepath-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::UsePath`
+
+##### `impl<T> From for UsePath`
+
+- <span id="usepath-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::UsePath`
 
 - <span id="crateusepath-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
+##### `impl<U> Into for UsePath`
+
+- <span id="usepath-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for crate::UsePath`
 
-- <span id="crateusepath-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateusepath-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for UsePath`
 
 ##### `impl Spanned for UsePath`
 
-- <span id="usepath-span"></span>`fn span(&self) -> Span`
+- <span id="usepath-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for UsePath`
+
+- <span id="usepath-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="usepath-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="usepath-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::UsePath`
 
-- <span id="crateitemusepath-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemusepath-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for UsePath`
+
+- <span id="usepath-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="usepath-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UsePath`
+
+- <span id="usepath-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="usepath-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UseName`
 
@@ -1032,33 +1896,87 @@ An identifier imported by a `use` item: `HashMap`.
 
 #### Trait Implementations
 
+##### `impl Any for UseName`
+
+- <span id="usename-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UseName`
+
+- <span id="usename-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UseName`
+
+- <span id="usename-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::UseName`
 
 - <span id="crateusename-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for UseName`
+
+- <span id="usename-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::UseName`
 
-- <span id="crateusename-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateusename-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::UseName`
+
+##### `impl<T> From for UseName`
+
+- <span id="usename-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::UseName`
 
 - <span id="crateusename-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
+##### `impl<U> Into for UseName`
+
+- <span id="usename-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for crate::UseName`
 
-- <span id="crateusename-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateusename-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for UseName`
 
 ##### `impl Spanned for UseName`
 
-- <span id="usename-span"></span>`fn span(&self) -> Span`
+- <span id="usename-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for UseName`
+
+- <span id="usename-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="usename-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="usename-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::UseName`
 
-- <span id="crateitemusename-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemusename-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for UseName`
+
+- <span id="usename-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="usename-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UseName`
+
+- <span id="usename-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="usename-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UseRename`
 
@@ -1076,33 +1994,87 @@ An renamed identifier imported by a `use` item: `HashMap as Map`.
 
 #### Trait Implementations
 
+##### `impl Any for UseRename`
+
+- <span id="userename-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UseRename`
+
+- <span id="userename-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UseRename`
+
+- <span id="userename-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::UseRename`
 
 - <span id="crateuserename-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for UseRename`
+
+- <span id="userename-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::UseRename`
 
-- <span id="crateuserename-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateuserename-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::UseRename`
+
+##### `impl<T> From for UseRename`
+
+- <span id="userename-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::UseRename`
 
 - <span id="crateuserename-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
+##### `impl<U> Into for UseRename`
+
+- <span id="userename-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for crate::UseRename`
 
-- <span id="crateuserename-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateuserename-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for UseRename`
 
 ##### `impl Spanned for UseRename`
 
-- <span id="userename-span"></span>`fn span(&self) -> Span`
+- <span id="userename-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for UseRename`
+
+- <span id="userename-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="userename-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="userename-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::UseRename`
 
-- <span id="crateitemuserename-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemuserename-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for UseRename`
+
+- <span id="userename-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="userename-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UseRename`
+
+- <span id="userename-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="userename-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UseGlob`
 
@@ -1118,33 +2090,87 @@ A glob import in a `use` item: `*`.
 
 #### Trait Implementations
 
+##### `impl Any for UseGlob`
+
+- <span id="useglob-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UseGlob`
+
+- <span id="useglob-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UseGlob`
+
+- <span id="useglob-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::UseGlob`
 
 - <span id="crateuseglob-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for UseGlob`
+
+- <span id="useglob-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::UseGlob`
 
-- <span id="crateuseglob-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateuseglob-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::UseGlob`
+
+##### `impl<T> From for UseGlob`
+
+- <span id="useglob-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::UseGlob`
 
 - <span id="crateuseglob-hash"></span>`fn hash<H>(&self, _state: &mut H)`
 
+##### `impl<U> Into for UseGlob`
+
+- <span id="useglob-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for crate::UseGlob`
 
-- <span id="crateuseglob-eq"></span>`fn eq(&self, _other: &Self) -> bool`
+- <span id="crateuseglob-partialeq-eq"></span>`fn eq(&self, _other: &Self) -> bool`
 
 ##### `impl Sealed for UseGlob`
 
 ##### `impl Spanned for UseGlob`
 
-- <span id="useglob-span"></span>`fn span(&self) -> Span`
+- <span id="useglob-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for UseGlob`
+
+- <span id="useglob-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="useglob-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="useglob-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::UseGlob`
 
-- <span id="crateitemuseglob-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemuseglob-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for UseGlob`
+
+- <span id="useglob-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="useglob-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UseGlob`
+
+- <span id="useglob-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="useglob-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UseGroup`
 
@@ -1161,33 +2187,87 @@ A braced group of imports in a `use` item: `{A, B, C}`.
 
 #### Trait Implementations
 
+##### `impl Any for UseGroup`
+
+- <span id="usegroup-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UseGroup`
+
+- <span id="usegroup-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UseGroup`
+
+- <span id="usegroup-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::UseGroup`
 
 - <span id="crateusegroup-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for UseGroup`
+
+- <span id="usegroup-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::UseGroup`
 
-- <span id="crateusegroup-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateusegroup-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::UseGroup`
+
+##### `impl<T> From for UseGroup`
+
+- <span id="usegroup-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::UseGroup`
 
 - <span id="crateusegroup-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
+##### `impl<U> Into for UseGroup`
+
+- <span id="usegroup-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for crate::UseGroup`
 
-- <span id="crateusegroup-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateusegroup-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for UseGroup`
 
 ##### `impl Spanned for UseGroup`
 
-- <span id="usegroup-span"></span>`fn span(&self) -> Span`
+- <span id="usegroup-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for UseGroup`
+
+- <span id="usegroup-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="usegroup-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="usegroup-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::UseGroup`
 
-- <span id="crateitemusegroup-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemusegroup-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for UseGroup`
+
+- <span id="usegroup-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="usegroup-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UseGroup`
+
+- <span id="usegroup-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="usegroup-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ForeignItemFn`
 
@@ -1210,19 +2290,53 @@ A foreign function in an `extern` block.
 
 #### Trait Implementations
 
+##### `impl Any for ForeignItemFn`
+
+- <span id="foreignitemfn-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ForeignItemFn`
+
+- <span id="foreignitemfn-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ForeignItemFn`
+
+- <span id="foreignitemfn-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ForeignItemFn`
 
 - <span id="crateforeignitemfn-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ForeignItemFn`
+
+- <span id="foreignitemfn-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ForeignItemFn`
 
-- <span id="crateforeignitemfn-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateforeignitemfn-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ForeignItemFn`
+
+##### `impl<T> From for ForeignItemFn`
+
+- <span id="foreignitemfn-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ForeignItemFn`
 
 - <span id="crateforeignitemfn-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ForeignItemFn`
+
+- <span id="foreignitemfn-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ForeignItemFn`
 
@@ -1230,17 +2344,37 @@ A foreign function in an `extern` block.
 
 ##### `impl PartialEq for crate::ForeignItemFn`
 
-- <span id="crateforeignitemfn-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateforeignitemfn-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ForeignItemFn`
 
 ##### `impl Spanned for ForeignItemFn`
 
-- <span id="foreignitemfn-span"></span>`fn span(&self) -> Span`
+- <span id="foreignitemfn-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ForeignItemFn`
+
+- <span id="foreignitemfn-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="foreignitemfn-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="foreignitemfn-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ForeignItemFn`
 
-- <span id="crateitemforeignitemfn-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemforeignitemfn-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ForeignItemFn`
+
+- <span id="foreignitemfn-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="foreignitemfn-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ForeignItemFn`
+
+- <span id="foreignitemfn-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="foreignitemfn-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ForeignItemStatic`
 
@@ -1267,19 +2401,53 @@ A foreign static item in an `extern` block: `static ext: u8`.
 
 #### Trait Implementations
 
+##### `impl Any for ForeignItemStatic`
+
+- <span id="foreignitemstatic-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ForeignItemStatic`
+
+- <span id="foreignitemstatic-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ForeignItemStatic`
+
+- <span id="foreignitemstatic-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ForeignItemStatic`
 
 - <span id="crateforeignitemstatic-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ForeignItemStatic`
+
+- <span id="foreignitemstatic-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ForeignItemStatic`
 
-- <span id="crateforeignitemstatic-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateforeignitemstatic-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ForeignItemStatic`
+
+##### `impl<T> From for ForeignItemStatic`
+
+- <span id="foreignitemstatic-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ForeignItemStatic`
 
 - <span id="crateforeignitemstatic-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ForeignItemStatic`
+
+- <span id="foreignitemstatic-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ForeignItemStatic`
 
@@ -1287,17 +2455,37 @@ A foreign static item in an `extern` block: `static ext: u8`.
 
 ##### `impl PartialEq for crate::ForeignItemStatic`
 
-- <span id="crateforeignitemstatic-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateforeignitemstatic-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ForeignItemStatic`
 
 ##### `impl Spanned for ForeignItemStatic`
 
-- <span id="foreignitemstatic-span"></span>`fn span(&self) -> Span`
+- <span id="foreignitemstatic-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ForeignItemStatic`
+
+- <span id="foreignitemstatic-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="foreignitemstatic-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="foreignitemstatic-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ForeignItemStatic`
 
-- <span id="crateitemforeignitemstatic-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemforeignitemstatic-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ForeignItemStatic`
+
+- <span id="foreignitemstatic-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="foreignitemstatic-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ForeignItemStatic`
+
+- <span id="foreignitemstatic-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="foreignitemstatic-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ForeignItemType`
 
@@ -1322,19 +2510,53 @@ A foreign type in an `extern` block: `type void`.
 
 #### Trait Implementations
 
+##### `impl Any for ForeignItemType`
+
+- <span id="foreignitemtype-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ForeignItemType`
+
+- <span id="foreignitemtype-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ForeignItemType`
+
+- <span id="foreignitemtype-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ForeignItemType`
 
 - <span id="crateforeignitemtype-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ForeignItemType`
+
+- <span id="foreignitemtype-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ForeignItemType`
 
-- <span id="crateforeignitemtype-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateforeignitemtype-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ForeignItemType`
+
+##### `impl<T> From for ForeignItemType`
+
+- <span id="foreignitemtype-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ForeignItemType`
 
 - <span id="crateforeignitemtype-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ForeignItemType`
+
+- <span id="foreignitemtype-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ForeignItemType`
 
@@ -1342,17 +2564,37 @@ A foreign type in an `extern` block: `type void`.
 
 ##### `impl PartialEq for crate::ForeignItemType`
 
-- <span id="crateforeignitemtype-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateforeignitemtype-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ForeignItemType`
 
 ##### `impl Spanned for ForeignItemType`
 
-- <span id="foreignitemtype-span"></span>`fn span(&self) -> Span`
+- <span id="foreignitemtype-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ForeignItemType`
+
+- <span id="foreignitemtype-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="foreignitemtype-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="foreignitemtype-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ForeignItemType`
 
-- <span id="crateitemforeignitemtype-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemforeignitemtype-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ForeignItemType`
+
+- <span id="foreignitemtype-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="foreignitemtype-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ForeignItemType`
+
+- <span id="foreignitemtype-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="foreignitemtype-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ForeignItemMacro`
 
@@ -1374,19 +2616,53 @@ A macro invocation within an extern block.
 
 #### Trait Implementations
 
+##### `impl Any for ForeignItemMacro`
+
+- <span id="foreignitemmacro-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ForeignItemMacro`
+
+- <span id="foreignitemmacro-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ForeignItemMacro`
+
+- <span id="foreignitemmacro-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ForeignItemMacro`
 
 - <span id="crateforeignitemmacro-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ForeignItemMacro`
+
+- <span id="foreignitemmacro-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ForeignItemMacro`
 
-- <span id="crateforeignitemmacro-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateforeignitemmacro-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ForeignItemMacro`
+
+##### `impl<T> From for ForeignItemMacro`
+
+- <span id="foreignitemmacro-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ForeignItemMacro`
 
 - <span id="crateforeignitemmacro-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ForeignItemMacro`
+
+- <span id="foreignitemmacro-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ForeignItemMacro`
 
@@ -1394,17 +2670,37 @@ A macro invocation within an extern block.
 
 ##### `impl PartialEq for crate::ForeignItemMacro`
 
-- <span id="crateforeignitemmacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateforeignitemmacro-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ForeignItemMacro`
 
 ##### `impl Spanned for ForeignItemMacro`
 
-- <span id="foreignitemmacro-span"></span>`fn span(&self) -> Span`
+- <span id="foreignitemmacro-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ForeignItemMacro`
+
+- <span id="foreignitemmacro-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="foreignitemmacro-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="foreignitemmacro-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ForeignItemMacro`
 
-- <span id="crateitemforeignitemmacro-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemforeignitemmacro-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ForeignItemMacro`
+
+- <span id="foreignitemmacro-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="foreignitemmacro-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ForeignItemMacro`
+
+- <span id="foreignitemmacro-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="foreignitemmacro-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TraitItemConst`
 
@@ -1431,19 +2727,53 @@ An associated constant within the definition of a trait.
 
 #### Trait Implementations
 
+##### `impl Any for TraitItemConst`
+
+- <span id="traititemconst-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TraitItemConst`
+
+- <span id="traititemconst-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TraitItemConst`
+
+- <span id="traititemconst-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::TraitItemConst`
 
 - <span id="cratetraititemconst-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for TraitItemConst`
+
+- <span id="traititemconst-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::TraitItemConst`
 
-- <span id="cratetraititemconst-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetraititemconst-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TraitItemConst`
+
+##### `impl<T> From for TraitItemConst`
+
+- <span id="traititemconst-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::TraitItemConst`
 
 - <span id="cratetraititemconst-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for TraitItemConst`
+
+- <span id="traititemconst-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::TraitItemConst`
 
@@ -1451,17 +2781,37 @@ An associated constant within the definition of a trait.
 
 ##### `impl PartialEq for crate::TraitItemConst`
 
-- <span id="cratetraititemconst-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="cratetraititemconst-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for TraitItemConst`
 
 ##### `impl Spanned for TraitItemConst`
 
-- <span id="traititemconst-span"></span>`fn span(&self) -> Span`
+- <span id="traititemconst-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for TraitItemConst`
+
+- <span id="traititemconst-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="traititemconst-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="traititemconst-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::TraitItemConst`
 
-- <span id="crateitemtraititemconst-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemtraititemconst-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for TraitItemConst`
+
+- <span id="traititemconst-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="traititemconst-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TraitItemConst`
+
+- <span id="traititemconst-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="traititemconst-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TraitItemFn`
 
@@ -1484,19 +2834,53 @@ An associated function within the definition of a trait.
 
 #### Trait Implementations
 
+##### `impl Any for TraitItemFn`
+
+- <span id="traititemfn-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TraitItemFn`
+
+- <span id="traititemfn-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TraitItemFn`
+
+- <span id="traititemfn-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::TraitItemFn`
 
 - <span id="cratetraititemfn-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for TraitItemFn`
+
+- <span id="traititemfn-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::TraitItemFn`
 
-- <span id="cratetraititemfn-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetraititemfn-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TraitItemFn`
+
+##### `impl<T> From for TraitItemFn`
+
+- <span id="traititemfn-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::TraitItemFn`
 
 - <span id="cratetraititemfn-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for TraitItemFn`
+
+- <span id="traititemfn-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::TraitItemFn`
 
@@ -1504,17 +2888,37 @@ An associated function within the definition of a trait.
 
 ##### `impl PartialEq for crate::TraitItemFn`
 
-- <span id="cratetraititemfn-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="cratetraititemfn-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for TraitItemFn`
 
 ##### `impl Spanned for TraitItemFn`
 
-- <span id="traititemfn-span"></span>`fn span(&self) -> Span`
+- <span id="traititemfn-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for TraitItemFn`
+
+- <span id="traititemfn-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="traititemfn-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="traititemfn-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::TraitItemFn`
 
-- <span id="crateitemtraititemfn-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemtraititemfn-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for TraitItemFn`
+
+- <span id="traititemfn-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="traititemfn-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TraitItemFn`
+
+- <span id="traititemfn-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="traititemfn-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TraitItemType`
 
@@ -1541,19 +2945,53 @@ An associated type within the definition of a trait.
 
 #### Trait Implementations
 
+##### `impl Any for TraitItemType`
+
+- <span id="traititemtype-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TraitItemType`
+
+- <span id="traititemtype-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TraitItemType`
+
+- <span id="traititemtype-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::TraitItemType`
 
 - <span id="cratetraititemtype-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for TraitItemType`
+
+- <span id="traititemtype-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::TraitItemType`
 
-- <span id="cratetraititemtype-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetraititemtype-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TraitItemType`
+
+##### `impl<T> From for TraitItemType`
+
+- <span id="traititemtype-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::TraitItemType`
 
 - <span id="cratetraititemtype-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for TraitItemType`
+
+- <span id="traititemtype-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::TraitItemType`
 
@@ -1561,17 +2999,37 @@ An associated type within the definition of a trait.
 
 ##### `impl PartialEq for crate::TraitItemType`
 
-- <span id="cratetraititemtype-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="cratetraititemtype-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for TraitItemType`
 
 ##### `impl Spanned for TraitItemType`
 
-- <span id="traititemtype-span"></span>`fn span(&self) -> Span`
+- <span id="traititemtype-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for TraitItemType`
+
+- <span id="traititemtype-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="traititemtype-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="traititemtype-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::TraitItemType`
 
-- <span id="crateitemtraititemtype-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemtraititemtype-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for TraitItemType`
+
+- <span id="traititemtype-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="traititemtype-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TraitItemType`
+
+- <span id="traititemtype-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="traititemtype-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TraitItemMacro`
 
@@ -1593,19 +3051,53 @@ A macro invocation within the definition of a trait.
 
 #### Trait Implementations
 
+##### `impl Any for TraitItemMacro`
+
+- <span id="traititemmacro-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TraitItemMacro`
+
+- <span id="traititemmacro-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TraitItemMacro`
+
+- <span id="traititemmacro-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::TraitItemMacro`
 
 - <span id="cratetraititemmacro-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for TraitItemMacro`
+
+- <span id="traititemmacro-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::TraitItemMacro`
 
-- <span id="cratetraititemmacro-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetraititemmacro-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TraitItemMacro`
+
+##### `impl<T> From for TraitItemMacro`
+
+- <span id="traititemmacro-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::TraitItemMacro`
 
 - <span id="cratetraititemmacro-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for TraitItemMacro`
+
+- <span id="traititemmacro-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::TraitItemMacro`
 
@@ -1613,17 +3105,37 @@ A macro invocation within the definition of a trait.
 
 ##### `impl PartialEq for crate::TraitItemMacro`
 
-- <span id="cratetraititemmacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="cratetraititemmacro-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for TraitItemMacro`
 
 ##### `impl Spanned for TraitItemMacro`
 
-- <span id="traititemmacro-span"></span>`fn span(&self) -> Span`
+- <span id="traititemmacro-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for TraitItemMacro`
+
+- <span id="traititemmacro-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="traititemmacro-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="traititemmacro-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::TraitItemMacro`
 
-- <span id="crateitemtraititemmacro-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemtraititemmacro-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for TraitItemMacro`
+
+- <span id="traititemmacro-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="traititemmacro-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TraitItemMacro`
+
+- <span id="traititemmacro-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="traititemmacro-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImplItemConst`
 
@@ -1653,19 +3165,53 @@ An associated constant within an impl block.
 
 #### Trait Implementations
 
+##### `impl Any for ImplItemConst`
+
+- <span id="implitemconst-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImplItemConst`
+
+- <span id="implitemconst-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImplItemConst`
+
+- <span id="implitemconst-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ImplItemConst`
 
 - <span id="crateimplitemconst-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ImplItemConst`
+
+- <span id="implitemconst-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ImplItemConst`
 
-- <span id="crateimplitemconst-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateimplitemconst-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ImplItemConst`
+
+##### `impl<T> From for ImplItemConst`
+
+- <span id="implitemconst-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ImplItemConst`
 
 - <span id="crateimplitemconst-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ImplItemConst`
+
+- <span id="implitemconst-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ImplItemConst`
 
@@ -1673,17 +3219,37 @@ An associated constant within an impl block.
 
 ##### `impl PartialEq for crate::ImplItemConst`
 
-- <span id="crateimplitemconst-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateimplitemconst-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ImplItemConst`
 
 ##### `impl Spanned for ImplItemConst`
 
-- <span id="implitemconst-span"></span>`fn span(&self) -> Span`
+- <span id="implitemconst-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ImplItemConst`
+
+- <span id="implitemconst-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="implitemconst-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="implitemconst-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ImplItemConst`
 
-- <span id="crateitemimplitemconst-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemimplitemconst-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ImplItemConst`
+
+- <span id="implitemconst-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="implitemconst-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImplItemConst`
+
+- <span id="implitemconst-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="implitemconst-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImplItemFn`
 
@@ -1707,19 +3273,53 @@ An associated function within an impl block.
 
 #### Trait Implementations
 
+##### `impl Any for ImplItemFn`
+
+- <span id="implitemfn-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImplItemFn`
+
+- <span id="implitemfn-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImplItemFn`
+
+- <span id="implitemfn-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ImplItemFn`
 
 - <span id="crateimplitemfn-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ImplItemFn`
+
+- <span id="implitemfn-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ImplItemFn`
 
-- <span id="crateimplitemfn-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateimplitemfn-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ImplItemFn`
+
+##### `impl<T> From for ImplItemFn`
+
+- <span id="implitemfn-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ImplItemFn`
 
 - <span id="crateimplitemfn-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ImplItemFn`
+
+- <span id="implitemfn-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ImplItemFn`
 
@@ -1727,17 +3327,37 @@ An associated function within an impl block.
 
 ##### `impl PartialEq for crate::ImplItemFn`
 
-- <span id="crateimplitemfn-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateimplitemfn-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ImplItemFn`
 
 ##### `impl Spanned for ImplItemFn`
 
-- <span id="implitemfn-span"></span>`fn span(&self) -> Span`
+- <span id="implitemfn-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ImplItemFn`
+
+- <span id="implitemfn-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="implitemfn-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="implitemfn-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ImplItemFn`
 
-- <span id="crateitemimplitemfn-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemimplitemfn-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ImplItemFn`
+
+- <span id="implitemfn-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="implitemfn-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImplItemFn`
+
+- <span id="implitemfn-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="implitemfn-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImplItemType`
 
@@ -1765,19 +3385,53 @@ An associated type within an impl block.
 
 #### Trait Implementations
 
+##### `impl Any for ImplItemType`
+
+- <span id="implitemtype-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImplItemType`
+
+- <span id="implitemtype-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImplItemType`
+
+- <span id="implitemtype-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ImplItemType`
 
 - <span id="crateimplitemtype-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ImplItemType`
+
+- <span id="implitemtype-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ImplItemType`
 
-- <span id="crateimplitemtype-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateimplitemtype-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ImplItemType`
+
+##### `impl<T> From for ImplItemType`
+
+- <span id="implitemtype-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ImplItemType`
 
 - <span id="crateimplitemtype-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ImplItemType`
+
+- <span id="implitemtype-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ImplItemType`
 
@@ -1785,17 +3439,37 @@ An associated type within an impl block.
 
 ##### `impl PartialEq for crate::ImplItemType`
 
-- <span id="crateimplitemtype-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateimplitemtype-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ImplItemType`
 
 ##### `impl Spanned for ImplItemType`
 
-- <span id="implitemtype-span"></span>`fn span(&self) -> Span`
+- <span id="implitemtype-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ImplItemType`
+
+- <span id="implitemtype-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="implitemtype-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="implitemtype-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ImplItemType`
 
-- <span id="crateitemimplitemtype-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemimplitemtype-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ImplItemType`
+
+- <span id="implitemtype-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="implitemtype-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImplItemType`
+
+- <span id="implitemtype-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="implitemtype-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImplItemMacro`
 
@@ -1817,19 +3491,53 @@ A macro invocation within an impl block.
 
 #### Trait Implementations
 
+##### `impl Any for ImplItemMacro`
+
+- <span id="implitemmacro-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImplItemMacro`
+
+- <span id="implitemmacro-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImplItemMacro`
+
+- <span id="implitemmacro-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ImplItemMacro`
 
 - <span id="crateimplitemmacro-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ImplItemMacro`
+
+- <span id="implitemmacro-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ImplItemMacro`
 
-- <span id="crateimplitemmacro-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateimplitemmacro-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ImplItemMacro`
+
+##### `impl<T> From for ImplItemMacro`
+
+- <span id="implitemmacro-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ImplItemMacro`
 
 - <span id="crateimplitemmacro-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ImplItemMacro`
+
+- <span id="implitemmacro-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ImplItemMacro`
 
@@ -1837,17 +3545,37 @@ A macro invocation within an impl block.
 
 ##### `impl PartialEq for crate::ImplItemMacro`
 
-- <span id="crateimplitemmacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateimplitemmacro-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ImplItemMacro`
 
 ##### `impl Spanned for ImplItemMacro`
 
-- <span id="implitemmacro-span"></span>`fn span(&self) -> Span`
+- <span id="implitemmacro-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ImplItemMacro`
+
+- <span id="implitemmacro-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="implitemmacro-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="implitemmacro-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::ImplItemMacro`
 
-- <span id="crateitemimplitemmacro-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemimplitemmacro-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for ImplItemMacro`
+
+- <span id="implitemmacro-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="implitemmacro-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImplItemMacro`
+
+- <span id="implitemmacro-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="implitemmacro-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Signature`
 
@@ -1876,21 +3604,57 @@ initialize(&self)`.
 
 - <span id="signature-receiver"></span>`fn receiver(&self) -> Option<&Receiver>` — [`Receiver`](#receiver)
 
+  A method's `self` receiver, such as `&self` or `self: Box<Self>`.
+
 #### Trait Implementations
+
+##### `impl Any for Signature`
+
+- <span id="signature-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Signature`
+
+- <span id="signature-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Signature`
+
+- <span id="signature-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for crate::Signature`
 
 - <span id="cratesignature-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for Signature`
+
+- <span id="signature-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::Signature`
 
-- <span id="cratesignature-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratesignature-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Signature`
+
+##### `impl<T> From for Signature`
+
+- <span id="signature-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::Signature`
 
 - <span id="cratesignature-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for Signature`
+
+- <span id="signature-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::Signature`
 
@@ -1898,17 +3662,37 @@ initialize(&self)`.
 
 ##### `impl PartialEq for crate::Signature`
 
-- <span id="cratesignature-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="cratesignature-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for Signature`
 
 ##### `impl Spanned for Signature`
 
-- <span id="signature-span"></span>`fn span(&self) -> Span`
+- <span id="signature-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for Signature`
+
+- <span id="signature-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="signature-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="signature-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::Signature`
 
-- <span id="crateitemsignature-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemsignature-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for Signature`
+
+- <span id="signature-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="signature-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Signature`
+
+- <span id="signature-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="signature-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Receiver`
 
@@ -1939,19 +3723,53 @@ shorthand case, the type in `ty` is reconstructed as one of `Self`,
 
 #### Trait Implementations
 
+##### `impl Any for Receiver`
+
+- <span id="receiver-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Receiver`
+
+- <span id="receiver-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Receiver`
+
+- <span id="receiver-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::Receiver`
 
 - <span id="cratereceiver-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for Receiver`
+
+- <span id="receiver-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::Receiver`
 
-- <span id="cratereceiver-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratereceiver-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Receiver`
+
+##### `impl<T> From for Receiver`
+
+- <span id="receiver-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::Receiver`
 
 - <span id="cratereceiver-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for Receiver`
+
+- <span id="receiver-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::Receiver`
 
@@ -1959,17 +3777,37 @@ shorthand case, the type in `ty` is reconstructed as one of `Self`,
 
 ##### `impl PartialEq for crate::Receiver`
 
-- <span id="cratereceiver-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="cratereceiver-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for Receiver`
 
 ##### `impl Spanned for Receiver`
 
-- <span id="receiver-span"></span>`fn span(&self) -> Span`
+- <span id="receiver-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for Receiver`
+
+- <span id="receiver-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="receiver-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="receiver-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::Receiver`
 
-- <span id="crateitemreceiver-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemreceiver-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for Receiver`
+
+- <span id="receiver-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="receiver-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Receiver`
+
+- <span id="receiver-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="receiver-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Variadic`
 
@@ -1998,33 +3836,87 @@ extern "C" {
 
 #### Trait Implementations
 
+##### `impl Any for Variadic`
+
+- <span id="variadic-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Variadic`
+
+- <span id="variadic-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Variadic`
+
+- <span id="variadic-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::Variadic`
 
 - <span id="cratevariadic-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for Variadic`
+
+- <span id="variadic-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::Variadic`
 
-- <span id="cratevariadic-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratevariadic-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Variadic`
+
+##### `impl<T> From for Variadic`
+
+- <span id="variadic-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::Variadic`
 
 - <span id="cratevariadic-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
+##### `impl<U> Into for Variadic`
+
+- <span id="variadic-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for crate::Variadic`
 
-- <span id="cratevariadic-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="cratevariadic-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for Variadic`
 
 ##### `impl Spanned for Variadic`
 
-- <span id="variadic-span"></span>`fn span(&self) -> Span`
+- <span id="variadic-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for Variadic`
+
+- <span id="variadic-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="variadic-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="variadic-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::Variadic`
 
-- <span id="crateitemvariadic-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemvariadic-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for Variadic`
+
+- <span id="variadic-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="variadic-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Variadic`
+
+- <span id="variadic-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="variadic-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -2134,19 +4026,53 @@ This type is a [syntax tree enum].
 
 #### Trait Implementations
 
+##### `impl Any for Item`
+
+- <span id="item-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Item`
+
+- <span id="item-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Item`
+
+- <span id="item-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::Item`
 
 - <span id="crateitem-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for Item`
+
+- <span id="item-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::Item`
 
-- <span id="crateitem-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitem-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Item`
+
+##### `impl<T> From for Item`
+
+- <span id="item-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::Item`
 
 - <span id="crateitem-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for Item`
+
+- <span id="item-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::Item`
 
@@ -2154,17 +4080,37 @@ This type is a [syntax tree enum].
 
 ##### `impl PartialEq for crate::Item`
 
-- <span id="crateitem-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateitem-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for Item`
 
 ##### `impl Spanned for Item`
 
-- <span id="item-span"></span>`fn span(&self) -> Span`
+- <span id="item-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for Item`
+
+- <span id="item-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="item-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="item-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for Item`
 
-- <span id="item-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="item-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
+
+##### `impl<U> TryFrom for Item`
+
+- <span id="item-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="item-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Item`
+
+- <span id="item-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="item-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UseTree`
 
@@ -2211,19 +4157,53 @@ This type is a [syntax tree enum].
 
 #### Trait Implementations
 
+##### `impl Any for UseTree`
+
+- <span id="usetree-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UseTree`
+
+- <span id="usetree-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UseTree`
+
+- <span id="usetree-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::UseTree`
 
 - <span id="crateusetree-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for UseTree`
+
+- <span id="usetree-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::UseTree`
 
-- <span id="crateusetree-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateusetree-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::UseTree`
+
+##### `impl<T> From for UseTree`
+
+- <span id="usetree-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::UseTree`
 
 - <span id="crateusetree-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for UseTree`
+
+- <span id="usetree-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::UseTree`
 
@@ -2231,17 +4211,37 @@ This type is a [syntax tree enum].
 
 ##### `impl PartialEq for crate::UseTree`
 
-- <span id="crateusetree-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateusetree-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for UseTree`
 
 ##### `impl Spanned for UseTree`
 
-- <span id="usetree-span"></span>`fn span(&self) -> Span`
+- <span id="usetree-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for UseTree`
+
+- <span id="usetree-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="usetree-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="usetree-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for UseTree`
 
-- <span id="usetree-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="usetree-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
+
+##### `impl<U> TryFrom for UseTree`
+
+- <span id="usetree-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="usetree-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UseTree`
+
+- <span id="usetree-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="usetree-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ForeignItem`
 
@@ -2288,19 +4288,53 @@ This type is a [syntax tree enum].
 
 #### Trait Implementations
 
+##### `impl Any for ForeignItem`
+
+- <span id="foreignitem-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ForeignItem`
+
+- <span id="foreignitem-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ForeignItem`
+
+- <span id="foreignitem-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ForeignItem`
 
 - <span id="crateforeignitem-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ForeignItem`
+
+- <span id="foreignitem-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ForeignItem`
 
-- <span id="crateforeignitem-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateforeignitem-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ForeignItem`
+
+##### `impl<T> From for ForeignItem`
+
+- <span id="foreignitem-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ForeignItem`
 
 - <span id="crateforeignitem-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ForeignItem`
+
+- <span id="foreignitem-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ForeignItem`
 
@@ -2308,17 +4342,37 @@ This type is a [syntax tree enum].
 
 ##### `impl PartialEq for crate::ForeignItem`
 
-- <span id="crateforeignitem-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateforeignitem-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ForeignItem`
 
 ##### `impl Spanned for ForeignItem`
 
-- <span id="foreignitem-span"></span>`fn span(&self) -> Span`
+- <span id="foreignitem-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ForeignItem`
+
+- <span id="foreignitem-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="foreignitem-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="foreignitem-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for ForeignItem`
 
-- <span id="foreignitem-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="foreignitem-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
+
+##### `impl<U> TryFrom for ForeignItem`
+
+- <span id="foreignitem-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="foreignitem-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ForeignItem`
+
+- <span id="foreignitem-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="foreignitem-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TraitItem`
 
@@ -2365,19 +4419,53 @@ This type is a [syntax tree enum].
 
 #### Trait Implementations
 
+##### `impl Any for TraitItem`
+
+- <span id="traititem-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TraitItem`
+
+- <span id="traititem-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TraitItem`
+
+- <span id="traititem-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::TraitItem`
 
 - <span id="cratetraititem-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for TraitItem`
+
+- <span id="traititem-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::TraitItem`
 
-- <span id="cratetraititem-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetraititem-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TraitItem`
+
+##### `impl<T> From for TraitItem`
+
+- <span id="traititem-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::TraitItem`
 
 - <span id="cratetraititem-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for TraitItem`
+
+- <span id="traititem-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::TraitItem`
 
@@ -2385,17 +4473,37 @@ This type is a [syntax tree enum].
 
 ##### `impl PartialEq for crate::TraitItem`
 
-- <span id="cratetraititem-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="cratetraititem-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for TraitItem`
 
 ##### `impl Spanned for TraitItem`
 
-- <span id="traititem-span"></span>`fn span(&self) -> Span`
+- <span id="traititem-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for TraitItem`
+
+- <span id="traititem-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="traititem-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="traititem-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for TraitItem`
 
-- <span id="traititem-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="traititem-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
+
+##### `impl<U> TryFrom for TraitItem`
+
+- <span id="traititem-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="traititem-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TraitItem`
+
+- <span id="traititem-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="traititem-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImplItem`
 
@@ -2442,19 +4550,53 @@ This type is a [syntax tree enum].
 
 #### Trait Implementations
 
+##### `impl Any for ImplItem`
+
+- <span id="implitem-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImplItem`
+
+- <span id="implitem-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImplItem`
+
+- <span id="implitem-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ImplItem`
 
 - <span id="crateimplitem-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ImplItem`
+
+- <span id="implitem-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ImplItem`
 
-- <span id="crateimplitem-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateimplitem-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ImplItem`
+
+##### `impl<T> From for ImplItem`
+
+- <span id="implitem-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ImplItem`
 
 - <span id="crateimplitem-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for ImplItem`
+
+- <span id="implitem-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ImplItem`
 
@@ -2462,17 +4604,37 @@ This type is a [syntax tree enum].
 
 ##### `impl PartialEq for crate::ImplItem`
 
-- <span id="crateimplitem-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="crateimplitem-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for ImplItem`
 
 ##### `impl Spanned for ImplItem`
 
-- <span id="implitem-span"></span>`fn span(&self) -> Span`
+- <span id="implitem-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for ImplItem`
+
+- <span id="implitem-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="implitem-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="implitem-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for ImplItem`
 
-- <span id="implitem-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="implitem-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
+
+##### `impl<U> TryFrom for ImplItem`
+
+- <span id="implitem-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="implitem-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImplItem`
+
+- <span id="implitem-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="implitem-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FnArg`
 
@@ -2499,19 +4661,53 @@ An argument in a function signature: the `n: usize` in `fn f(n: usize)`.
 
 #### Trait Implementations
 
+##### `impl Any for FnArg`
+
+- <span id="fnarg-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FnArg`
+
+- <span id="fnarg-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FnArg`
+
+- <span id="fnarg-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::FnArg`
 
 - <span id="cratefnarg-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for FnArg`
+
+- <span id="fnarg-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::FnArg`
 
-- <span id="cratefnarg-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefnarg-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::FnArg`
+
+##### `impl<T> From for FnArg`
+
+- <span id="fnarg-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::FnArg`
 
 - <span id="cratefnarg-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for FnArg`
+
+- <span id="fnarg-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::FnArg`
 
@@ -2519,17 +4715,37 @@ An argument in a function signature: the `n: usize` in `fn f(n: usize)`.
 
 ##### `impl PartialEq for crate::FnArg`
 
-- <span id="cratefnarg-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="cratefnarg-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for FnArg`
 
 ##### `impl Spanned for FnArg`
 
-- <span id="fnarg-span"></span>`fn span(&self) -> Span`
+- <span id="fnarg-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for FnArg`
+
+- <span id="fnarg-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="fnarg-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="fnarg-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for FnArg`
 
-- <span id="fnarg-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="fnarg-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
+
+##### `impl<U> TryFrom for FnArg`
+
+- <span id="fnarg-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fnarg-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FnArg`
+
+- <span id="fnarg-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fnarg-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StaticMutability`
 
@@ -2546,19 +4762,53 @@ The mutability of an `Item::Static` or `ForeignItem::Static`.
 
 #### Trait Implementations
 
+##### `impl Any for StaticMutability`
+
+- <span id="staticmutability-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StaticMutability`
+
+- <span id="staticmutability-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StaticMutability`
+
+- <span id="staticmutability-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::StaticMutability`
 
 - <span id="cratestaticmutability-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for StaticMutability`
+
+- <span id="staticmutability-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::StaticMutability`
 
-- <span id="cratestaticmutability-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratestaticmutability-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::StaticMutability`
+
+##### `impl<T> From for StaticMutability`
+
+- <span id="staticmutability-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::StaticMutability`
 
 - <span id="cratestaticmutability-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for StaticMutability`
+
+- <span id="staticmutability-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::StaticMutability`
 
@@ -2566,17 +4816,37 @@ The mutability of an `Item::Static` or `ForeignItem::Static`.
 
 ##### `impl PartialEq for crate::StaticMutability`
 
-- <span id="cratestaticmutability-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="cratestaticmutability-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for StaticMutability`
 
 ##### `impl Spanned for StaticMutability`
 
-- <span id="staticmutability-span"></span>`fn span(&self) -> Span`
+- <span id="staticmutability-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for StaticMutability`
+
+- <span id="staticmutability-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="staticmutability-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="staticmutability-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::item::StaticMutability`
 
-- <span id="crateitemstaticmutability-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="crateitemstaticmutability-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for StaticMutability`
+
+- <span id="staticmutability-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="staticmutability-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StaticMutability`
+
+- <span id="staticmutability-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="staticmutability-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImplRestriction`
 
@@ -2591,21 +4861,75 @@ Unused, but reserved for RFC 3323 restrictions.
 
 #### Trait Implementations
 
+##### `impl Any for ImplRestriction`
+
+- <span id="implrestriction-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImplRestriction`
+
+- <span id="implrestriction-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImplRestriction`
+
+- <span id="implrestriction-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::ImplRestriction`
 
 - <span id="crateimplrestriction-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for ImplRestriction`
+
+- <span id="implrestriction-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::ImplRestriction`
 
-- <span id="crateimplrestriction-fmt"></span>`fn fmt(&self, _formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateimplrestriction-debug-fmt"></span>`fn fmt(&self, _formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ImplRestriction`
+
+##### `impl<T> From for ImplRestriction`
+
+- <span id="implrestriction-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::ImplRestriction`
 
 - <span id="crateimplrestriction-hash"></span>`fn hash<H>(&self, _state: &mut H)`
 
+##### `impl<U> Into for ImplRestriction`
+
+- <span id="implrestriction-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for crate::ImplRestriction`
 
-- <span id="crateimplrestriction-eq"></span>`fn eq(&self, _other: &Self) -> bool`
+- <span id="crateimplrestriction-partialeq-eq"></span>`fn eq(&self, _other: &Self) -> bool`
+
+##### `impl ToOwned for ImplRestriction`
+
+- <span id="implrestriction-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="implrestriction-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="implrestriction-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImplRestriction`
+
+- <span id="implrestriction-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="implrestriction-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImplRestriction`
+
+- <span id="implrestriction-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="implrestriction-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

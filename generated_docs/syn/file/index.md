@@ -105,19 +105,53 @@ File {
 
 #### Trait Implementations
 
+##### `impl Any for File`
+
+- <span id="file-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for File`
+
+- <span id="file-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for File`
+
+- <span id="file-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::File`
 
 - <span id="cratefile-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for File`
+
+- <span id="file-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::File`
 
-- <span id="cratefile-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefile-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::File`
+
+##### `impl<T> From for File`
+
+- <span id="file-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::File`
 
 - <span id="cratefile-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for File`
+
+- <span id="file-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::file::File`
 
@@ -125,15 +159,35 @@ File {
 
 ##### `impl PartialEq for crate::File`
 
-- <span id="cratefile-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="cratefile-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for File`
 
 ##### `impl Spanned for File`
 
-- <span id="file-span"></span>`fn span(&self) -> Span`
+- <span id="file-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for File`
+
+- <span id="file-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="file-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="file-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::file::File`
 
-- <span id="cratefilefile-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="cratefilefile-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for File`
+
+- <span id="file-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="file-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for File`
+
+- <span id="file-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="file-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

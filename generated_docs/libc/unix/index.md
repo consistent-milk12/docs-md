@@ -3269,15 +3269,61 @@ struct group {
 
 #### Trait Implementations
 
+##### `impl Any for group`
+
+- <span id="group-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for group`
+
+- <span id="group-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for group`
+
+- <span id="group-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for group`
 
 - <span id="group-clone"></span>`fn clone(&self) -> group` — [`group`](../index.md#group)
+
+##### `impl CloneToUninit for group`
+
+- <span id="group-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for group`
 
 ##### `impl Debug for group`
 
-- <span id="group-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="group-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for group`
+
+- <span id="group-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for group`
+
+- <span id="group-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for group`
+
+- <span id="group-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="group-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for group`
+
+- <span id="group-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="group-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `utimbuf`
 
@@ -3292,15 +3338,61 @@ struct utimbuf {
 
 #### Trait Implementations
 
+##### `impl Any for utimbuf`
+
+- <span id="utimbuf-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for utimbuf`
+
+- <span id="utimbuf-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for utimbuf`
+
+- <span id="utimbuf-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for utimbuf`
 
 - <span id="utimbuf-clone"></span>`fn clone(&self) -> utimbuf` — [`utimbuf`](../index.md#utimbuf)
+
+##### `impl CloneToUninit for utimbuf`
+
+- <span id="utimbuf-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for utimbuf`
 
 ##### `impl Debug for utimbuf`
 
-- <span id="utimbuf-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="utimbuf-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for utimbuf`
+
+- <span id="utimbuf-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for utimbuf`
+
+- <span id="utimbuf-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for utimbuf`
+
+- <span id="utimbuf-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="utimbuf-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for utimbuf`
+
+- <span id="utimbuf-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="utimbuf-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `timeval`
 
@@ -3315,15 +3407,61 @@ struct timeval {
 
 #### Trait Implementations
 
+##### `impl Any for timeval`
+
+- <span id="timeval-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for timeval`
+
+- <span id="timeval-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for timeval`
+
+- <span id="timeval-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for timeval`
 
 - <span id="timeval-clone"></span>`fn clone(&self) -> timeval` — [`timeval`](../index.md#timeval)
+
+##### `impl CloneToUninit for timeval`
+
+- <span id="timeval-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for timeval`
 
 ##### `impl Debug for timeval`
 
-- <span id="timeval-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="timeval-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for timeval`
+
+- <span id="timeval-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for timeval`
+
+- <span id="timeval-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for timeval`
+
+- <span id="timeval-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="timeval-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for timeval`
+
+- <span id="timeval-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="timeval-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `rlimit`
 
@@ -3338,15 +3476,61 @@ struct rlimit {
 
 #### Trait Implementations
 
+##### `impl Any for rlimit`
+
+- <span id="rlimit-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for rlimit`
+
+- <span id="rlimit-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for rlimit`
+
+- <span id="rlimit-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for rlimit`
 
 - <span id="rlimit-clone"></span>`fn clone(&self) -> rlimit` — [`rlimit`](../index.md#rlimit)
+
+##### `impl CloneToUninit for rlimit`
+
+- <span id="rlimit-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for rlimit`
 
 ##### `impl Debug for rlimit`
 
-- <span id="rlimit-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rlimit-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for rlimit`
+
+- <span id="rlimit-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for rlimit`
+
+- <span id="rlimit-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for rlimit`
+
+- <span id="rlimit-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rlimit-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for rlimit`
+
+- <span id="rlimit-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rlimit-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `rusage`
 
@@ -3375,15 +3559,61 @@ struct rusage {
 
 #### Trait Implementations
 
+##### `impl Any for rusage`
+
+- <span id="rusage-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for rusage`
+
+- <span id="rusage-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for rusage`
+
+- <span id="rusage-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for rusage`
 
 - <span id="rusage-clone"></span>`fn clone(&self) -> rusage` — [`rusage`](../index.md#rusage)
+
+##### `impl CloneToUninit for rusage`
+
+- <span id="rusage-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for rusage`
 
 ##### `impl Debug for rusage`
 
-- <span id="rusage-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rusage-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for rusage`
+
+- <span id="rusage-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for rusage`
+
+- <span id="rusage-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for rusage`
+
+- <span id="rusage-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rusage-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for rusage`
+
+- <span id="rusage-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rusage-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ipv6_mreq`
 
@@ -3398,15 +3628,61 @@ struct ipv6_mreq {
 
 #### Trait Implementations
 
+##### `impl Any for ipv6_mreq`
+
+- <span id="ipv6-mreq-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ipv6_mreq`
+
+- <span id="ipv6-mreq-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ipv6_mreq`
+
+- <span id="ipv6-mreq-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ipv6_mreq`
 
 - <span id="ipv6-mreq-clone"></span>`fn clone(&self) -> ipv6_mreq` — [`ipv6_mreq`](../index.md#ipv6-mreq)
+
+##### `impl CloneToUninit for ipv6_mreq`
+
+- <span id="ipv6-mreq-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ipv6_mreq`
 
 ##### `impl Debug for ipv6_mreq`
 
-- <span id="ipv6-mreq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ipv6-mreq-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ipv6_mreq`
+
+- <span id="ipv6-mreq-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ipv6_mreq`
+
+- <span id="ipv6-mreq-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ipv6_mreq`
+
+- <span id="ipv6-mreq-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ipv6-mreq-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ipv6_mreq`
+
+- <span id="ipv6-mreq-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ipv6-mreq-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `hostent`
 
@@ -3424,15 +3700,61 @@ struct hostent {
 
 #### Trait Implementations
 
+##### `impl Any for hostent`
+
+- <span id="hostent-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for hostent`
+
+- <span id="hostent-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for hostent`
+
+- <span id="hostent-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for hostent`
 
 - <span id="hostent-clone"></span>`fn clone(&self) -> hostent` — [`hostent`](../index.md#hostent)
+
+##### `impl CloneToUninit for hostent`
+
+- <span id="hostent-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for hostent`
 
 ##### `impl Debug for hostent`
 
-- <span id="hostent-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hostent-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for hostent`
+
+- <span id="hostent-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for hostent`
+
+- <span id="hostent-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for hostent`
+
+- <span id="hostent-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="hostent-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for hostent`
+
+- <span id="hostent-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="hostent-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `iovec`
 
@@ -3447,15 +3769,61 @@ struct iovec {
 
 #### Trait Implementations
 
+##### `impl Any for iovec`
+
+- <span id="iovec-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for iovec`
+
+- <span id="iovec-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for iovec`
+
+- <span id="iovec-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for iovec`
 
 - <span id="iovec-clone"></span>`fn clone(&self) -> iovec` — [`iovec`](../index.md#iovec)
+
+##### `impl CloneToUninit for iovec`
+
+- <span id="iovec-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for iovec`
 
 ##### `impl Debug for iovec`
 
-- <span id="iovec-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="iovec-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for iovec`
+
+- <span id="iovec-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for iovec`
+
+- <span id="iovec-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for iovec`
+
+- <span id="iovec-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="iovec-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for iovec`
+
+- <span id="iovec-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="iovec-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `pollfd`
 
@@ -3471,15 +3839,61 @@ struct pollfd {
 
 #### Trait Implementations
 
+##### `impl Any for pollfd`
+
+- <span id="pollfd-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for pollfd`
+
+- <span id="pollfd-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for pollfd`
+
+- <span id="pollfd-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for pollfd`
 
 - <span id="pollfd-clone"></span>`fn clone(&self) -> pollfd` — [`pollfd`](../index.md#pollfd)
+
+##### `impl CloneToUninit for pollfd`
+
+- <span id="pollfd-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for pollfd`
 
 ##### `impl Debug for pollfd`
 
-- <span id="pollfd-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pollfd-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for pollfd`
+
+- <span id="pollfd-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for pollfd`
+
+- <span id="pollfd-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for pollfd`
+
+- <span id="pollfd-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pollfd-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for pollfd`
+
+- <span id="pollfd-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pollfd-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `winsize`
 
@@ -3496,15 +3910,61 @@ struct winsize {
 
 #### Trait Implementations
 
+##### `impl Any for winsize`
+
+- <span id="winsize-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for winsize`
+
+- <span id="winsize-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for winsize`
+
+- <span id="winsize-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for winsize`
 
 - <span id="winsize-clone"></span>`fn clone(&self) -> winsize` — [`winsize`](../index.md#winsize)
+
+##### `impl CloneToUninit for winsize`
+
+- <span id="winsize-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for winsize`
 
 ##### `impl Debug for winsize`
 
-- <span id="winsize-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="winsize-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for winsize`
+
+- <span id="winsize-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for winsize`
+
+- <span id="winsize-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for winsize`
+
+- <span id="winsize-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="winsize-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for winsize`
+
+- <span id="winsize-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="winsize-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `linger`
 
@@ -3519,15 +3979,61 @@ struct linger {
 
 #### Trait Implementations
 
+##### `impl Any for linger`
+
+- <span id="linger-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for linger`
+
+- <span id="linger-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for linger`
+
+- <span id="linger-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for linger`
 
 - <span id="linger-clone"></span>`fn clone(&self) -> linger` — [`linger`](../index.md#linger)
+
+##### `impl CloneToUninit for linger`
+
+- <span id="linger-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for linger`
 
 ##### `impl Debug for linger`
 
-- <span id="linger-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="linger-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for linger`
+
+- <span id="linger-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for linger`
+
+- <span id="linger-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for linger`
+
+- <span id="linger-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="linger-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for linger`
+
+- <span id="linger-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="linger-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `sigval`
 
@@ -3541,15 +4047,61 @@ struct sigval {
 
 #### Trait Implementations
 
+##### `impl Any for sigval`
+
+- <span id="sigval-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for sigval`
+
+- <span id="sigval-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for sigval`
+
+- <span id="sigval-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for sigval`
 
 - <span id="sigval-clone"></span>`fn clone(&self) -> sigval` — [`sigval`](../index.md#sigval)
+
+##### `impl CloneToUninit for sigval`
+
+- <span id="sigval-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for sigval`
 
 ##### `impl Debug for sigval`
 
-- <span id="sigval-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sigval-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for sigval`
+
+- <span id="sigval-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for sigval`
+
+- <span id="sigval-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for sigval`
+
+- <span id="sigval-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sigval-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for sigval`
+
+- <span id="sigval-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sigval-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `itimerval`
 
@@ -3564,15 +4116,61 @@ struct itimerval {
 
 #### Trait Implementations
 
+##### `impl Any for itimerval`
+
+- <span id="itimerval-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for itimerval`
+
+- <span id="itimerval-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for itimerval`
+
+- <span id="itimerval-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for itimerval`
 
 - <span id="itimerval-clone"></span>`fn clone(&self) -> itimerval` — [`itimerval`](../index.md#itimerval)
+
+##### `impl CloneToUninit for itimerval`
+
+- <span id="itimerval-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for itimerval`
 
 ##### `impl Debug for itimerval`
 
-- <span id="itimerval-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="itimerval-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for itimerval`
+
+- <span id="itimerval-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for itimerval`
+
+- <span id="itimerval-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for itimerval`
+
+- <span id="itimerval-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itimerval-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for itimerval`
+
+- <span id="itimerval-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itimerval-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `tms`
 
@@ -3589,15 +4187,61 @@ struct tms {
 
 #### Trait Implementations
 
+##### `impl Any for tms`
+
+- <span id="tms-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for tms`
+
+- <span id="tms-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for tms`
+
+- <span id="tms-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for tms`
 
 - <span id="tms-clone"></span>`fn clone(&self) -> tms` — [`tms`](../index.md#tms)
+
+##### `impl CloneToUninit for tms`
+
+- <span id="tms-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for tms`
 
 ##### `impl Debug for tms`
 
-- <span id="tms-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tms-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for tms`
+
+- <span id="tms-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for tms`
+
+- <span id="tms-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for tms`
+
+- <span id="tms-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tms-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for tms`
+
+- <span id="tms-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tms-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `servent`
 
@@ -3614,15 +4258,61 @@ struct servent {
 
 #### Trait Implementations
 
+##### `impl Any for servent`
+
+- <span id="servent-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for servent`
+
+- <span id="servent-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for servent`
+
+- <span id="servent-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for servent`
 
 - <span id="servent-clone"></span>`fn clone(&self) -> servent` — [`servent`](../index.md#servent)
+
+##### `impl CloneToUninit for servent`
+
+- <span id="servent-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for servent`
 
 ##### `impl Debug for servent`
 
-- <span id="servent-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="servent-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for servent`
+
+- <span id="servent-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for servent`
+
+- <span id="servent-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for servent`
+
+- <span id="servent-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="servent-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for servent`
+
+- <span id="servent-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="servent-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `protoent`
 
@@ -3638,15 +4328,61 @@ struct protoent {
 
 #### Trait Implementations
 
+##### `impl Any for protoent`
+
+- <span id="protoent-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for protoent`
+
+- <span id="protoent-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for protoent`
+
+- <span id="protoent-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for protoent`
 
 - <span id="protoent-clone"></span>`fn clone(&self) -> protoent` — [`protoent`](../index.md#protoent)
+
+##### `impl CloneToUninit for protoent`
+
+- <span id="protoent-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for protoent`
 
 ##### `impl Debug for protoent`
 
-- <span id="protoent-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="protoent-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for protoent`
+
+- <span id="protoent-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for protoent`
+
+- <span id="protoent-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for protoent`
+
+- <span id="protoent-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="protoent-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for protoent`
+
+- <span id="protoent-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="protoent-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `in6_addr`
 
@@ -3660,15 +4396,61 @@ struct in6_addr {
 
 #### Trait Implementations
 
+##### `impl Any for in6_addr`
+
+- <span id="in6-addr-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for in6_addr`
+
+- <span id="in6-addr-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for in6_addr`
+
+- <span id="in6-addr-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for in6_addr`
 
 - <span id="in6-addr-clone"></span>`fn clone(&self) -> in6_addr` — [`in6_addr`](../index.md#in6-addr)
+
+##### `impl CloneToUninit for in6_addr`
+
+- <span id="in6-addr-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for in6_addr`
 
 ##### `impl Debug for in6_addr`
 
-- <span id="in6-addr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="in6-addr-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for in6_addr`
+
+- <span id="in6-addr-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for in6_addr`
+
+- <span id="in6-addr-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for in6_addr`
+
+- <span id="in6-addr-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="in6-addr-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for in6_addr`
+
+- <span id="in6-addr-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="in6-addr-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `in_addr`
 
@@ -3682,15 +4464,61 @@ struct in_addr {
 
 #### Trait Implementations
 
+##### `impl Any for in_addr`
+
+- <span id="in-addr-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for in_addr`
+
+- <span id="in-addr-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for in_addr`
+
+- <span id="in-addr-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for in_addr`
 
 - <span id="in-addr-clone"></span>`fn clone(&self) -> in_addr` — [`in_addr`](#in-addr)
+
+##### `impl CloneToUninit for in_addr`
+
+- <span id="in-addr-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for in_addr`
 
 ##### `impl Debug for in_addr`
 
-- <span id="in-addr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="in-addr-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for in_addr`
+
+- <span id="in-addr-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for in_addr`
+
+- <span id="in-addr-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for in_addr`
+
+- <span id="in-addr-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="in-addr-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for in_addr`
+
+- <span id="in-addr-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="in-addr-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ip_mreq`
 
@@ -3705,15 +4533,61 @@ struct ip_mreq {
 
 #### Trait Implementations
 
+##### `impl Any for ip_mreq`
+
+- <span id="ip-mreq-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ip_mreq`
+
+- <span id="ip-mreq-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ip_mreq`
+
+- <span id="ip-mreq-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ip_mreq`
 
 - <span id="ip-mreq-clone"></span>`fn clone(&self) -> ip_mreq` — [`ip_mreq`](#ip-mreq)
+
+##### `impl CloneToUninit for ip_mreq`
+
+- <span id="ip-mreq-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ip_mreq`
 
 ##### `impl Debug for ip_mreq`
 
-- <span id="ip-mreq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ip-mreq-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ip_mreq`
+
+- <span id="ip-mreq-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ip_mreq`
+
+- <span id="ip-mreq-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ip_mreq`
+
+- <span id="ip-mreq-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ip-mreq-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ip_mreq`
+
+- <span id="ip-mreq-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ip-mreq-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ip_mreqn`
 
@@ -3729,15 +4603,61 @@ struct ip_mreqn {
 
 #### Trait Implementations
 
+##### `impl Any for ip_mreqn`
+
+- <span id="ip-mreqn-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ip_mreqn`
+
+- <span id="ip-mreqn-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ip_mreqn`
+
+- <span id="ip-mreqn-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ip_mreqn`
 
 - <span id="ip-mreqn-clone"></span>`fn clone(&self) -> ip_mreqn` — [`ip_mreqn`](#ip-mreqn)
+
+##### `impl CloneToUninit for ip_mreqn`
+
+- <span id="ip-mreqn-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ip_mreqn`
 
 ##### `impl Debug for ip_mreqn`
 
-- <span id="ip-mreqn-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ip-mreqn-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ip_mreqn`
+
+- <span id="ip-mreqn-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ip_mreqn`
+
+- <span id="ip-mreqn-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ip_mreqn`
+
+- <span id="ip-mreqn-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ip-mreqn-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ip_mreqn`
+
+- <span id="ip-mreqn-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ip-mreqn-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ip_mreq_source`
 
@@ -3753,15 +4673,61 @@ struct ip_mreq_source {
 
 #### Trait Implementations
 
+##### `impl Any for ip_mreq_source`
+
+- <span id="ip-mreq-source-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ip_mreq_source`
+
+- <span id="ip-mreq-source-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ip_mreq_source`
+
+- <span id="ip-mreq-source-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ip_mreq_source`
 
 - <span id="ip-mreq-source-clone"></span>`fn clone(&self) -> ip_mreq_source` — [`ip_mreq_source`](#ip-mreq-source)
+
+##### `impl CloneToUninit for ip_mreq_source`
+
+- <span id="ip-mreq-source-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ip_mreq_source`
 
 ##### `impl Debug for ip_mreq_source`
 
-- <span id="ip-mreq-source-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ip-mreq-source-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ip_mreq_source`
+
+- <span id="ip-mreq-source-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ip_mreq_source`
+
+- <span id="ip-mreq-source-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ip_mreq_source`
+
+- <span id="ip-mreq-source-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ip-mreq-source-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ip_mreq_source`
+
+- <span id="ip-mreq-source-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ip-mreq-source-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `sockaddr`
 
@@ -3776,15 +4742,61 @@ struct sockaddr {
 
 #### Trait Implementations
 
+##### `impl Any for sockaddr`
+
+- <span id="sockaddr-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for sockaddr`
+
+- <span id="sockaddr-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for sockaddr`
+
+- <span id="sockaddr-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for sockaddr`
 
 - <span id="sockaddr-clone"></span>`fn clone(&self) -> sockaddr` — [`sockaddr`](#sockaddr)
+
+##### `impl CloneToUninit for sockaddr`
+
+- <span id="sockaddr-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for sockaddr`
 
 ##### `impl Debug for sockaddr`
 
-- <span id="sockaddr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sockaddr-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for sockaddr`
+
+- <span id="sockaddr-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for sockaddr`
+
+- <span id="sockaddr-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for sockaddr`
+
+- <span id="sockaddr-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sockaddr-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for sockaddr`
+
+- <span id="sockaddr-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sockaddr-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `sockaddr_in`
 
@@ -3801,15 +4813,61 @@ struct sockaddr_in {
 
 #### Trait Implementations
 
+##### `impl Any for sockaddr_in`
+
+- <span id="sockaddr-in-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for sockaddr_in`
+
+- <span id="sockaddr-in-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for sockaddr_in`
+
+- <span id="sockaddr-in-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for sockaddr_in`
 
 - <span id="sockaddr-in-clone"></span>`fn clone(&self) -> sockaddr_in` — [`sockaddr_in`](#sockaddr-in)
+
+##### `impl CloneToUninit for sockaddr_in`
+
+- <span id="sockaddr-in-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for sockaddr_in`
 
 ##### `impl Debug for sockaddr_in`
 
-- <span id="sockaddr-in-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sockaddr-in-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for sockaddr_in`
+
+- <span id="sockaddr-in-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for sockaddr_in`
+
+- <span id="sockaddr-in-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for sockaddr_in`
+
+- <span id="sockaddr-in-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sockaddr-in-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for sockaddr_in`
+
+- <span id="sockaddr-in-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sockaddr-in-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `sockaddr_in6`
 
@@ -3827,15 +4885,61 @@ struct sockaddr_in6 {
 
 #### Trait Implementations
 
+##### `impl Any for sockaddr_in6`
+
+- <span id="sockaddr-in6-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for sockaddr_in6`
+
+- <span id="sockaddr-in6-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for sockaddr_in6`
+
+- <span id="sockaddr-in6-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for sockaddr_in6`
 
 - <span id="sockaddr-in6-clone"></span>`fn clone(&self) -> sockaddr_in6` — [`sockaddr_in6`](#sockaddr-in6)
+
+##### `impl CloneToUninit for sockaddr_in6`
+
+- <span id="sockaddr-in6-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for sockaddr_in6`
 
 ##### `impl Debug for sockaddr_in6`
 
-- <span id="sockaddr-in6-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sockaddr-in6-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for sockaddr_in6`
+
+- <span id="sockaddr-in6-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for sockaddr_in6`
+
+- <span id="sockaddr-in6-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for sockaddr_in6`
+
+- <span id="sockaddr-in6-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sockaddr-in6-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for sockaddr_in6`
+
+- <span id="sockaddr-in6-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sockaddr-in6-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `addrinfo`
 
@@ -3856,15 +4960,61 @@ struct addrinfo {
 
 #### Trait Implementations
 
+##### `impl Any for addrinfo`
+
+- <span id="addrinfo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for addrinfo`
+
+- <span id="addrinfo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for addrinfo`
+
+- <span id="addrinfo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for addrinfo`
 
 - <span id="addrinfo-clone"></span>`fn clone(&self) -> addrinfo` — [`addrinfo`](#addrinfo)
+
+##### `impl CloneToUninit for addrinfo`
+
+- <span id="addrinfo-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for addrinfo`
 
 ##### `impl Debug for addrinfo`
 
-- <span id="addrinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="addrinfo-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for addrinfo`
+
+- <span id="addrinfo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for addrinfo`
+
+- <span id="addrinfo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for addrinfo`
+
+- <span id="addrinfo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="addrinfo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for addrinfo`
+
+- <span id="addrinfo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="addrinfo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `sockaddr_ll`
 
@@ -3884,15 +5034,61 @@ struct sockaddr_ll {
 
 #### Trait Implementations
 
+##### `impl Any for sockaddr_ll`
+
+- <span id="sockaddr-ll-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for sockaddr_ll`
+
+- <span id="sockaddr-ll-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for sockaddr_ll`
+
+- <span id="sockaddr-ll-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for sockaddr_ll`
 
 - <span id="sockaddr-ll-clone"></span>`fn clone(&self) -> sockaddr_ll` — [`sockaddr_ll`](#sockaddr-ll)
+
+##### `impl CloneToUninit for sockaddr_ll`
+
+- <span id="sockaddr-ll-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for sockaddr_ll`
 
 ##### `impl Debug for sockaddr_ll`
 
-- <span id="sockaddr-ll-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sockaddr-ll-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for sockaddr_ll`
+
+- <span id="sockaddr-ll-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for sockaddr_ll`
+
+- <span id="sockaddr-ll-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for sockaddr_ll`
+
+- <span id="sockaddr-ll-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sockaddr-ll-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for sockaddr_ll`
+
+- <span id="sockaddr-ll-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sockaddr-ll-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `fd_set`
 
@@ -3906,15 +5102,61 @@ struct fd_set {
 
 #### Trait Implementations
 
+##### `impl Any for fd_set`
+
+- <span id="fd-set-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for fd_set`
+
+- <span id="fd-set-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for fd_set`
+
+- <span id="fd-set-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for fd_set`
 
 - <span id="fd-set-clone"></span>`fn clone(&self) -> fd_set` — [`fd_set`](#fd-set)
+
+##### `impl CloneToUninit for fd_set`
+
+- <span id="fd-set-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for fd_set`
 
 ##### `impl Debug for fd_set`
 
-- <span id="fd-set-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fd-set-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for fd_set`
+
+- <span id="fd-set-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for fd_set`
+
+- <span id="fd-set-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for fd_set`
+
+- <span id="fd-set-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fd-set-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for fd_set`
+
+- <span id="fd-set-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fd-set-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `tm`
 
@@ -3938,15 +5180,61 @@ struct tm {
 
 #### Trait Implementations
 
+##### `impl Any for tm`
+
+- <span id="tm-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for tm`
+
+- <span id="tm-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for tm`
+
+- <span id="tm-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for tm`
 
 - <span id="tm-clone"></span>`fn clone(&self) -> tm` — [`tm`](#tm)
+
+##### `impl CloneToUninit for tm`
+
+- <span id="tm-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for tm`
 
 ##### `impl Debug for tm`
 
-- <span id="tm-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tm-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for tm`
+
+- <span id="tm-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for tm`
+
+- <span id="tm-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for tm`
+
+- <span id="tm-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tm-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for tm`
+
+- <span id="tm-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tm-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `sched_param`
 
@@ -3960,15 +5248,61 @@ struct sched_param {
 
 #### Trait Implementations
 
+##### `impl Any for sched_param`
+
+- <span id="sched-param-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for sched_param`
+
+- <span id="sched-param-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for sched_param`
+
+- <span id="sched-param-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for sched_param`
 
 - <span id="sched-param-clone"></span>`fn clone(&self) -> sched_param` — [`sched_param`](#sched-param)
+
+##### `impl CloneToUninit for sched_param`
+
+- <span id="sched-param-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for sched_param`
 
 ##### `impl Debug for sched_param`
 
-- <span id="sched-param-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sched-param-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for sched_param`
+
+- <span id="sched-param-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for sched_param`
+
+- <span id="sched-param-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for sched_param`
+
+- <span id="sched-param-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sched-param-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for sched_param`
+
+- <span id="sched-param-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sched-param-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Dl_info`
 
@@ -3985,15 +5319,61 @@ struct Dl_info {
 
 #### Trait Implementations
 
+##### `impl Any for Dl_info`
+
+- <span id="dl-info-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Dl_info`
+
+- <span id="dl-info-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Dl_info`
+
+- <span id="dl-info-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Dl_info`
 
 - <span id="dl-info-clone"></span>`fn clone(&self) -> Dl_info` — [`Dl_info`](#dl-info)
+
+##### `impl CloneToUninit for Dl_info`
+
+- <span id="dl-info-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Dl_info`
 
 ##### `impl Debug for Dl_info`
 
-- <span id="dl-info-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dl-info-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Dl_info`
+
+- <span id="dl-info-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Dl_info`
+
+- <span id="dl-info-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Dl_info`
+
+- <span id="dl-info-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dl-info-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Dl_info`
+
+- <span id="dl-info-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dl-info-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `lconv`
 
@@ -4030,15 +5410,61 @@ struct lconv {
 
 #### Trait Implementations
 
+##### `impl Any for lconv`
+
+- <span id="lconv-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for lconv`
+
+- <span id="lconv-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for lconv`
+
+- <span id="lconv-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for lconv`
 
 - <span id="lconv-clone"></span>`fn clone(&self) -> lconv` — [`lconv`](#lconv)
+
+##### `impl CloneToUninit for lconv`
+
+- <span id="lconv-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for lconv`
 
 ##### `impl Debug for lconv`
 
-- <span id="lconv-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lconv-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for lconv`
+
+- <span id="lconv-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for lconv`
+
+- <span id="lconv-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for lconv`
+
+- <span id="lconv-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lconv-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for lconv`
+
+- <span id="lconv-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lconv-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `in_pktinfo`
 
@@ -4054,15 +5480,61 @@ struct in_pktinfo {
 
 #### Trait Implementations
 
+##### `impl Any for in_pktinfo`
+
+- <span id="in-pktinfo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for in_pktinfo`
+
+- <span id="in-pktinfo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for in_pktinfo`
+
+- <span id="in-pktinfo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for in_pktinfo`
 
 - <span id="in-pktinfo-clone"></span>`fn clone(&self) -> in_pktinfo` — [`in_pktinfo`](#in-pktinfo)
+
+##### `impl CloneToUninit for in_pktinfo`
+
+- <span id="in-pktinfo-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for in_pktinfo`
 
 ##### `impl Debug for in_pktinfo`
 
-- <span id="in-pktinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="in-pktinfo-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for in_pktinfo`
+
+- <span id="in-pktinfo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for in_pktinfo`
+
+- <span id="in-pktinfo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for in_pktinfo`
+
+- <span id="in-pktinfo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="in-pktinfo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for in_pktinfo`
+
+- <span id="in-pktinfo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="in-pktinfo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ifaddrs`
 
@@ -4082,15 +5554,61 @@ struct ifaddrs {
 
 #### Trait Implementations
 
+##### `impl Any for ifaddrs`
+
+- <span id="ifaddrs-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ifaddrs`
+
+- <span id="ifaddrs-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ifaddrs`
+
+- <span id="ifaddrs-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ifaddrs`
 
 - <span id="ifaddrs-clone"></span>`fn clone(&self) -> ifaddrs` — [`ifaddrs`](#ifaddrs)
+
+##### `impl CloneToUninit for ifaddrs`
+
+- <span id="ifaddrs-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ifaddrs`
 
 ##### `impl Debug for ifaddrs`
 
-- <span id="ifaddrs-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ifaddrs-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ifaddrs`
+
+- <span id="ifaddrs-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ifaddrs`
+
+- <span id="ifaddrs-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ifaddrs`
+
+- <span id="ifaddrs-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ifaddrs-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ifaddrs`
+
+- <span id="ifaddrs-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ifaddrs-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `in6_rtmsg`
 
@@ -4113,15 +5631,61 @@ struct in6_rtmsg {
 
 #### Trait Implementations
 
+##### `impl Any for in6_rtmsg`
+
+- <span id="in6-rtmsg-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for in6_rtmsg`
+
+- <span id="in6-rtmsg-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for in6_rtmsg`
+
+- <span id="in6-rtmsg-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for in6_rtmsg`
 
 - <span id="in6-rtmsg-clone"></span>`fn clone(&self) -> in6_rtmsg` — [`in6_rtmsg`](#in6-rtmsg)
+
+##### `impl CloneToUninit for in6_rtmsg`
+
+- <span id="in6-rtmsg-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for in6_rtmsg`
 
 ##### `impl Debug for in6_rtmsg`
 
-- <span id="in6-rtmsg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="in6-rtmsg-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for in6_rtmsg`
+
+- <span id="in6-rtmsg-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for in6_rtmsg`
+
+- <span id="in6-rtmsg-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for in6_rtmsg`
+
+- <span id="in6-rtmsg-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="in6-rtmsg-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for in6_rtmsg`
+
+- <span id="in6-rtmsg-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="in6-rtmsg-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `arpreq`
 
@@ -4139,15 +5703,61 @@ struct arpreq {
 
 #### Trait Implementations
 
+##### `impl Any for arpreq`
+
+- <span id="arpreq-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for arpreq`
+
+- <span id="arpreq-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for arpreq`
+
+- <span id="arpreq-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for arpreq`
 
 - <span id="arpreq-clone"></span>`fn clone(&self) -> arpreq` — [`arpreq`](#arpreq)
+
+##### `impl CloneToUninit for arpreq`
+
+- <span id="arpreq-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for arpreq`
 
 ##### `impl Debug for arpreq`
 
-- <span id="arpreq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="arpreq-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for arpreq`
+
+- <span id="arpreq-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for arpreq`
+
+- <span id="arpreq-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for arpreq`
+
+- <span id="arpreq-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="arpreq-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for arpreq`
+
+- <span id="arpreq-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="arpreq-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `arpreq_old`
 
@@ -4164,15 +5774,61 @@ struct arpreq_old {
 
 #### Trait Implementations
 
+##### `impl Any for arpreq_old`
+
+- <span id="arpreq-old-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for arpreq_old`
+
+- <span id="arpreq-old-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for arpreq_old`
+
+- <span id="arpreq-old-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for arpreq_old`
 
 - <span id="arpreq-old-clone"></span>`fn clone(&self) -> arpreq_old` — [`arpreq_old`](#arpreq-old)
+
+##### `impl CloneToUninit for arpreq_old`
+
+- <span id="arpreq-old-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for arpreq_old`
 
 ##### `impl Debug for arpreq_old`
 
-- <span id="arpreq-old-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="arpreq-old-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for arpreq_old`
+
+- <span id="arpreq-old-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for arpreq_old`
+
+- <span id="arpreq-old-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for arpreq_old`
+
+- <span id="arpreq-old-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="arpreq-old-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for arpreq_old`
+
+- <span id="arpreq-old-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="arpreq-old-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `arphdr`
 
@@ -4190,15 +5846,61 @@ struct arphdr {
 
 #### Trait Implementations
 
+##### `impl Any for arphdr`
+
+- <span id="arphdr-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for arphdr`
+
+- <span id="arphdr-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for arphdr`
+
+- <span id="arphdr-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for arphdr`
 
 - <span id="arphdr-clone"></span>`fn clone(&self) -> arphdr` — [`arphdr`](#arphdr)
+
+##### `impl CloneToUninit for arphdr`
+
+- <span id="arphdr-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for arphdr`
 
 ##### `impl Debug for arphdr`
 
-- <span id="arphdr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="arphdr-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for arphdr`
+
+- <span id="arphdr-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for arphdr`
+
+- <span id="arphdr-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for arphdr`
+
+- <span id="arphdr-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="arphdr-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for arphdr`
+
+- <span id="arphdr-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="arphdr-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `mmsghdr`
 
@@ -4213,15 +5915,61 @@ struct mmsghdr {
 
 #### Trait Implementations
 
+##### `impl Any for mmsghdr`
+
+- <span id="mmsghdr-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for mmsghdr`
+
+- <span id="mmsghdr-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for mmsghdr`
+
+- <span id="mmsghdr-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for mmsghdr`
 
 - <span id="mmsghdr-clone"></span>`fn clone(&self) -> mmsghdr` — [`mmsghdr`](#mmsghdr)
+
+##### `impl CloneToUninit for mmsghdr`
+
+- <span id="mmsghdr-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for mmsghdr`
 
 ##### `impl Debug for mmsghdr`
 
-- <span id="mmsghdr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mmsghdr-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for mmsghdr`
+
+- <span id="mmsghdr-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for mmsghdr`
+
+- <span id="mmsghdr-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for mmsghdr`
+
+- <span id="mmsghdr-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="mmsghdr-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for mmsghdr`
+
+- <span id="mmsghdr-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="mmsghdr-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `sockaddr_un`
 
@@ -4236,15 +5984,61 @@ struct sockaddr_un {
 
 #### Trait Implementations
 
+##### `impl Any for sockaddr_un`
+
+- <span id="sockaddr-un-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for sockaddr_un`
+
+- <span id="sockaddr-un-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for sockaddr_un`
+
+- <span id="sockaddr-un-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for sockaddr_un`
 
 - <span id="sockaddr-un-clone"></span>`fn clone(&self) -> sockaddr_un` — [`sockaddr_un`](#sockaddr-un)
+
+##### `impl CloneToUninit for sockaddr_un`
+
+- <span id="sockaddr-un-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for sockaddr_un`
 
 ##### `impl Debug for sockaddr_un`
 
-- <span id="sockaddr-un-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sockaddr-un-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for sockaddr_un`
+
+- <span id="sockaddr-un-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for sockaddr_un`
+
+- <span id="sockaddr-un-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for sockaddr_un`
+
+- <span id="sockaddr-un-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sockaddr-un-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for sockaddr_un`
+
+- <span id="sockaddr-un-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sockaddr-un-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `sockaddr_storage`
 
@@ -4260,15 +6054,61 @@ struct sockaddr_storage {
 
 #### Trait Implementations
 
+##### `impl Any for sockaddr_storage`
+
+- <span id="sockaddr-storage-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for sockaddr_storage`
+
+- <span id="sockaddr-storage-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for sockaddr_storage`
+
+- <span id="sockaddr-storage-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for sockaddr_storage`
 
 - <span id="sockaddr-storage-clone"></span>`fn clone(&self) -> sockaddr_storage` — [`sockaddr_storage`](#sockaddr-storage)
+
+##### `impl CloneToUninit for sockaddr_storage`
+
+- <span id="sockaddr-storage-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for sockaddr_storage`
 
 ##### `impl Debug for sockaddr_storage`
 
-- <span id="sockaddr-storage-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sockaddr-storage-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for sockaddr_storage`
+
+- <span id="sockaddr-storage-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for sockaddr_storage`
+
+- <span id="sockaddr-storage-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for sockaddr_storage`
+
+- <span id="sockaddr-storage-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sockaddr-storage-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for sockaddr_storage`
+
+- <span id="sockaddr-storage-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sockaddr-storage-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `utsname`
 
@@ -4287,15 +6127,61 @@ struct utsname {
 
 #### Trait Implementations
 
+##### `impl Any for utsname`
+
+- <span id="utsname-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for utsname`
+
+- <span id="utsname-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for utsname`
+
+- <span id="utsname-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for utsname`
 
 - <span id="utsname-clone"></span>`fn clone(&self) -> utsname` — [`utsname`](#utsname)
+
+##### `impl CloneToUninit for utsname`
+
+- <span id="utsname-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for utsname`
 
 ##### `impl Debug for utsname`
 
-- <span id="utsname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="utsname-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for utsname`
+
+- <span id="utsname-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for utsname`
+
+- <span id="utsname-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for utsname`
+
+- <span id="utsname-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="utsname-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for utsname`
+
+- <span id="utsname-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="utsname-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `file_clone_range`
 
@@ -4312,15 +6198,61 @@ struct file_clone_range {
 
 #### Trait Implementations
 
+##### `impl Any for file_clone_range`
+
+- <span id="file-clone-range-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for file_clone_range`
+
+- <span id="file-clone-range-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for file_clone_range`
+
+- <span id="file-clone-range-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for file_clone_range`
 
 - <span id="file-clone-range-clone"></span>`fn clone(&self) -> file_clone_range` — [`file_clone_range`](#file-clone-range)
+
+##### `impl CloneToUninit for file_clone_range`
+
+- <span id="file-clone-range-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for file_clone_range`
 
 ##### `impl Debug for file_clone_range`
 
-- <span id="file-clone-range-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="file-clone-range-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for file_clone_range`
+
+- <span id="file-clone-range-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for file_clone_range`
+
+- <span id="file-clone-range-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for file_clone_range`
+
+- <span id="file-clone-range-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="file-clone-range-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for file_clone_range`
+
+- <span id="file-clone-range-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="file-clone-range-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `sock_filter`
 
@@ -4337,15 +6269,61 @@ struct sock_filter {
 
 #### Trait Implementations
 
+##### `impl Any for sock_filter`
+
+- <span id="sock-filter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for sock_filter`
+
+- <span id="sock-filter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for sock_filter`
+
+- <span id="sock-filter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for sock_filter`
 
 - <span id="sock-filter-clone"></span>`fn clone(&self) -> sock_filter` — [`sock_filter`](#sock-filter)
+
+##### `impl CloneToUninit for sock_filter`
+
+- <span id="sock-filter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for sock_filter`
 
 ##### `impl Debug for sock_filter`
 
-- <span id="sock-filter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sock-filter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for sock_filter`
+
+- <span id="sock-filter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for sock_filter`
+
+- <span id="sock-filter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for sock_filter`
+
+- <span id="sock-filter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sock-filter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for sock_filter`
+
+- <span id="sock-filter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sock-filter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `sock_fprog`
 
@@ -4360,15 +6338,61 @@ struct sock_fprog {
 
 #### Trait Implementations
 
+##### `impl Any for sock_fprog`
+
+- <span id="sock-fprog-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for sock_fprog`
+
+- <span id="sock-fprog-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for sock_fprog`
+
+- <span id="sock-fprog-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for sock_fprog`
 
 - <span id="sock-fprog-clone"></span>`fn clone(&self) -> sock_fprog` — [`sock_fprog`](#sock-fprog)
+
+##### `impl CloneToUninit for sock_fprog`
+
+- <span id="sock-fprog-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for sock_fprog`
 
 ##### `impl Debug for sock_fprog`
 
-- <span id="sock-fprog-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sock-fprog-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for sock_fprog`
+
+- <span id="sock-fprog-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for sock_fprog`
+
+- <span id="sock-fprog-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for sock_fprog`
+
+- <span id="sock-fprog-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sock-fprog-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for sock_fprog`
+
+- <span id="sock-fprog-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sock-fprog-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `statx`
 
@@ -4405,15 +6429,61 @@ struct statx {
 
 #### Trait Implementations
 
+##### `impl Any for statx`
+
+- <span id="statx-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for statx`
+
+- <span id="statx-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for statx`
+
+- <span id="statx-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for statx`
 
 - <span id="statx-clone"></span>`fn clone(&self) -> statx` — [`statx`](#statx)
+
+##### `impl CloneToUninit for statx`
+
+- <span id="statx-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for statx`
 
 ##### `impl Debug for statx`
 
-- <span id="statx-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="statx-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for statx`
+
+- <span id="statx-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for statx`
+
+- <span id="statx-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for statx`
+
+- <span id="statx-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="statx-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for statx`
+
+- <span id="statx-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="statx-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `statx_timestamp`
 
@@ -4429,15 +6499,61 @@ struct statx_timestamp {
 
 #### Trait Implementations
 
+##### `impl Any for statx_timestamp`
+
+- <span id="statx-timestamp-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for statx_timestamp`
+
+- <span id="statx-timestamp-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for statx_timestamp`
+
+- <span id="statx-timestamp-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for statx_timestamp`
 
 - <span id="statx-timestamp-clone"></span>`fn clone(&self) -> statx_timestamp` — [`statx_timestamp`](#statx-timestamp)
+
+##### `impl CloneToUninit for statx_timestamp`
+
+- <span id="statx-timestamp-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for statx_timestamp`
 
 ##### `impl Debug for statx_timestamp`
 
-- <span id="statx-timestamp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="statx-timestamp-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for statx_timestamp`
+
+- <span id="statx-timestamp-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for statx_timestamp`
+
+- <span id="statx-timestamp-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for statx_timestamp`
+
+- <span id="statx-timestamp-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="statx-timestamp-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for statx_timestamp`
+
+- <span id="statx-timestamp-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="statx-timestamp-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `epoll_event`
 
@@ -4452,15 +6568,61 @@ struct epoll_event {
 
 #### Trait Implementations
 
+##### `impl Any for epoll_event`
+
+- <span id="epoll-event-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for epoll_event`
+
+- <span id="epoll-event-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for epoll_event`
+
+- <span id="epoll-event-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for epoll_event`
 
 - <span id="epoll-event-clone"></span>`fn clone(&self) -> epoll_event` — [`epoll_event`](#epoll-event)
+
+##### `impl CloneToUninit for epoll_event`
+
+- <span id="epoll-event-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for epoll_event`
 
 ##### `impl Debug for epoll_event`
 
-- <span id="epoll-event-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="epoll-event-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for epoll_event`
+
+- <span id="epoll-event-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for epoll_event`
+
+- <span id="epoll-event-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for epoll_event`
+
+- <span id="epoll-event-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="epoll-event-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for epoll_event`
+
+- <span id="epoll-event-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="epoll-event-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `sigevent`
 
@@ -4478,15 +6640,61 @@ struct sigevent {
 
 #### Trait Implementations
 
+##### `impl Any for sigevent`
+
+- <span id="sigevent-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for sigevent`
+
+- <span id="sigevent-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for sigevent`
+
+- <span id="sigevent-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for sigevent`
 
 - <span id="sigevent-clone"></span>`fn clone(&self) -> sigevent` — [`sigevent`](#sigevent)
+
+##### `impl CloneToUninit for sigevent`
+
+- <span id="sigevent-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for sigevent`
 
 ##### `impl Debug for sigevent`
 
-- <span id="sigevent-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sigevent-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for sigevent`
+
+- <span id="sigevent-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for sigevent`
+
+- <span id="sigevent-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for sigevent`
+
+- <span id="sigevent-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sigevent-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for sigevent`
+
+- <span id="sigevent-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sigevent-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -4501,15 +6709,61 @@ enum DIR {
 
 #### Trait Implementations
 
+##### `impl Any for DIR`
+
+- <span id="dir-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DIR`
+
+- <span id="dir-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DIR`
+
+- <span id="dir-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DIR`
 
 - <span id="dir-clone"></span>`fn clone(&self) -> DIR` — [`DIR`](../index.md#dir)
+
+##### `impl CloneToUninit for DIR`
+
+- <span id="dir-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DIR`
 
 ##### `impl Debug for DIR`
 
-- <span id="dir-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dir-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DIR`
+
+- <span id="dir-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DIR`
+
+- <span id="dir-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DIR`
+
+- <span id="dir-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dir-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DIR`
+
+- <span id="dir-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dir-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FILE`
 
@@ -4522,15 +6776,61 @@ enum FILE {
 
 #### Trait Implementations
 
+##### `impl Any for FILE`
+
+- <span id="file-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FILE`
+
+- <span id="file-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FILE`
+
+- <span id="file-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for FILE`
 
 - <span id="file-clone"></span>`fn clone(&self) -> FILE` — [`FILE`](../index.md#file)
+
+##### `impl CloneToUninit for FILE`
+
+- <span id="file-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for FILE`
 
 ##### `impl Debug for FILE`
 
-- <span id="file-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="file-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FILE`
+
+- <span id="file-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FILE`
+
+- <span id="file-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for FILE`
+
+- <span id="file-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="file-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FILE`
+
+- <span id="file-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="file-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `timezone`
 
@@ -4543,15 +6843,61 @@ enum timezone {
 
 #### Trait Implementations
 
+##### `impl Any for timezone`
+
+- <span id="timezone-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for timezone`
+
+- <span id="timezone-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for timezone`
+
+- <span id="timezone-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for timezone`
 
 - <span id="timezone-clone"></span>`fn clone(&self) -> timezone` — [`timezone`](#timezone)
+
+##### `impl CloneToUninit for timezone`
+
+- <span id="timezone-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for timezone`
 
 ##### `impl Debug for timezone`
 
-- <span id="timezone-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="timezone-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for timezone`
+
+- <span id="timezone-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for timezone`
+
+- <span id="timezone-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for timezone`
+
+- <span id="timezone-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="timezone-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for timezone`
+
+- <span id="timezone-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="timezone-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

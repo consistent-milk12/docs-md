@@ -86,17 +86,35 @@ Represents the color preferences for program output
 
 - <span id="colorchoice-possible-values"></span>`fn possible_values() -> impl Iterator<Item = PossibleValue>` — [`PossibleValue`](../../builder/possible_value/index.md#possiblevalue)
 
+  Report all `possible_values`
+
 #### Trait Implementations
+
+##### `impl Any for ColorChoice`
+
+- <span id="colorchoice-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ColorChoice`
+
+- <span id="colorchoice-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ColorChoice`
+
+- <span id="colorchoice-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ColorChoice`
 
 - <span id="colorchoice-clone"></span>`fn clone(&self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
 
+##### `impl CloneToUninit for ColorChoice`
+
+- <span id="colorchoice-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for ColorChoice`
 
 ##### `impl Debug for ColorChoice`
 
-- <span id="colorchoice-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="colorchoice-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ColorChoice`
 
@@ -104,29 +122,67 @@ Represents the color preferences for program output
 
 ##### `impl Display for ColorChoice`
 
-- <span id="colorchoice-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="colorchoice-display-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for ColorChoice`
+
+##### `impl<T> From for ColorChoice`
+
+- <span id="colorchoice-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromStr for ColorChoice`
 
 - <span id="colorchoice-fromstr-type-err"></span>`type Err = String`
 
-- <span id="colorchoice-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
+- <span id="colorchoice-fromstr-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
+
+##### `impl<U> Into for ColorChoice`
+
+- <span id="colorchoice-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ColorChoice`
 
-- <span id="colorchoice-eq"></span>`fn eq(&self, other: &ColorChoice) -> bool` — [`ColorChoice`](#colorchoice)
+- <span id="colorchoice-partialeq-eq"></span>`fn eq(&self, other: &ColorChoice) -> bool` — [`ColorChoice`](#colorchoice)
 
 ##### `impl StructuralPartialEq for ColorChoice`
 
+##### `impl ToOwned for ColorChoice`
+
+- <span id="colorchoice-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="colorchoice-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="colorchoice-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for ColorChoice`
 
-- <span id="colorchoice-to-string"></span>`fn to_string(&self) -> String`
+- <span id="colorchoice-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for ColorChoice`
+
+- <span id="colorchoice-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="colorchoice-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ColorChoice`
+
+- <span id="colorchoice-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="colorchoice-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl ValueEnum for ColorChoice`
 
-- <span id="colorchoice-value-variants"></span>`fn value_variants<'a>() -> &'a [Self]`
+- <span id="colorchoice-valueenum-value-variants"></span>`fn value_variants<'a>() -> &'a [Self]`
 
-- <span id="colorchoice-to-possible-value"></span>`fn to_possible_value(&self) -> Option<PossibleValue>` — [`PossibleValue`](../../builder/possible_value/index.md#possiblevalue)
+- <span id="colorchoice-valueenum-to-possible-value"></span>`fn to_possible_value(&self) -> Option<PossibleValue>` — [`PossibleValue`](../../builder/possible_value/index.md#possiblevalue)
 

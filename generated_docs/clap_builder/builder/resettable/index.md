@@ -61,39 +61,93 @@ command.mut_arg("input", |arg| arg.short(None));
 
 #### Trait Implementations
 
+##### `impl<T> Any for Resettable<T>`
+
+- <span id="resettable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Resettable<T>`
+
+- <span id="resettable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Resettable<T>`
+
+- <span id="resettable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for Resettable<T>`
 
 - <span id="resettable-clone"></span>`fn clone(&self) -> Resettable<T>` — [`Resettable`](#resettable)
+
+##### `impl<T> CloneToUninit for Resettable<T>`
+
+- <span id="resettable-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for Resettable<T>`
 
 ##### `impl<T: fmt::Debug> Debug for Resettable<T>`
 
-- <span id="resettable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="resettable-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for Resettable<T>`
+
+##### `impl<T> From for Resettable<T>`
+
+- <span id="resettable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: hash::Hash> Hash for Resettable<T>`
 
 - <span id="resettable-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T, U> Into for Resettable<T>`
+
+- <span id="resettable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T> IntoResettable for Resettable<T>`
 
-- <span id="resettable-into-resettable"></span>`fn into_resettable(self) -> Resettable<T>` — [`Resettable`](#resettable)
+- <span id="resettable-intoresettable-into-resettable"></span>`fn into_resettable(self) -> Resettable<T>` — [`Resettable`](#resettable)
 
 ##### `impl<T: cmp::Ord> Ord for Resettable<T>`
 
-- <span id="resettable-cmp"></span>`fn cmp(&self, other: &Resettable<T>) -> cmp::Ordering` — [`Resettable`](#resettable)
+- <span id="resettable-ord-cmp"></span>`fn cmp(&self, other: &Resettable<T>) -> cmp::Ordering` — [`Resettable`](#resettable)
 
 ##### `impl<T: cmp::PartialEq> PartialEq for Resettable<T>`
 
-- <span id="resettable-eq"></span>`fn eq(&self, other: &Resettable<T>) -> bool` — [`Resettable`](#resettable)
+- <span id="resettable-partialeq-eq"></span>`fn eq(&self, other: &Resettable<T>) -> bool` — [`Resettable`](#resettable)
 
 ##### `impl<T: cmp::PartialOrd> PartialOrd for Resettable<T>`
 
-- <span id="resettable-partial-cmp"></span>`fn partial_cmp(&self, other: &Resettable<T>) -> option::Option<cmp::Ordering>` — [`Resettable`](#resettable)
+- <span id="resettable-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Resettable<T>) -> option::Option<cmp::Ordering>` — [`Resettable`](#resettable)
 
 ##### `impl<T> StructuralPartialEq for Resettable<T>`
+
+##### `impl<T> ToOwned for Resettable<T>`
+
+- <span id="resettable-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="resettable-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="resettable-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for Resettable<T>`
+
+- <span id="resettable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="resettable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Resettable<T>`
+
+- <span id="resettable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="resettable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

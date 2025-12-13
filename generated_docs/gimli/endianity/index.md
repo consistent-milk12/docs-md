@@ -30,15 +30,31 @@ Little endian byte order.
 
 #### Trait Implementations
 
+##### `impl Any for LittleEndian`
+
+- <span id="littleendian-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LittleEndian`
+
+- <span id="littleendian-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LittleEndian`
+
+- <span id="littleendian-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for LittleEndian`
 
 - <span id="littleendian-clone"></span>`fn clone(&self) -> LittleEndian` — [`LittleEndian`](../index.md#littleendian)
+
+##### `impl CloneToUninit for LittleEndian`
+
+- <span id="littleendian-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for LittleEndian`
 
 ##### `impl Debug for LittleEndian`
 
-- <span id="littleendian-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="littleendian-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for LittleEndian`
 
@@ -46,19 +62,57 @@ Little endian byte order.
 
 ##### `impl Endianity for LittleEndian`
 
-- <span id="littleendian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
+- <span id="littleendian-endianity-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for LittleEndian`
+
+##### `impl<T> From for LittleEndian`
+
+- <span id="littleendian-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for LittleEndian`
 
 - <span id="littleendian-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for LittleEndian`
+
+- <span id="littleendian-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for LittleEndian`
 
-- <span id="littleendian-eq"></span>`fn eq(&self, other: &LittleEndian) -> bool` — [`LittleEndian`](../index.md#littleendian)
+- <span id="littleendian-partialeq-eq"></span>`fn eq(&self, other: &LittleEndian) -> bool` — [`LittleEndian`](../index.md#littleendian)
 
 ##### `impl StructuralPartialEq for LittleEndian`
+
+##### `impl ToOwned for LittleEndian`
+
+- <span id="littleendian-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="littleendian-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="littleendian-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LittleEndian`
+
+- <span id="littleendian-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="littleendian-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LittleEndian`
+
+- <span id="littleendian-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="littleendian-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BigEndian`
 
@@ -72,15 +126,31 @@ Big endian byte order.
 
 #### Trait Implementations
 
+##### `impl Any for BigEndian`
+
+- <span id="bigendian-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BigEndian`
+
+- <span id="bigendian-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BigEndian`
+
+- <span id="bigendian-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BigEndian`
 
 - <span id="bigendian-clone"></span>`fn clone(&self) -> BigEndian` — [`BigEndian`](../index.md#bigendian)
+
+##### `impl CloneToUninit for BigEndian`
+
+- <span id="bigendian-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for BigEndian`
 
 ##### `impl Debug for BigEndian`
 
-- <span id="bigendian-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bigendian-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for BigEndian`
 
@@ -88,19 +158,57 @@ Big endian byte order.
 
 ##### `impl Endianity for BigEndian`
 
-- <span id="bigendian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
+- <span id="bigendian-endianity-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for BigEndian`
+
+##### `impl<T> From for BigEndian`
+
+- <span id="bigendian-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for BigEndian`
 
 - <span id="bigendian-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for BigEndian`
+
+- <span id="bigendian-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for BigEndian`
 
-- <span id="bigendian-eq"></span>`fn eq(&self, other: &BigEndian) -> bool` — [`BigEndian`](../index.md#bigendian)
+- <span id="bigendian-partialeq-eq"></span>`fn eq(&self, other: &BigEndian) -> bool` — [`BigEndian`](../index.md#bigendian)
 
 ##### `impl StructuralPartialEq for BigEndian`
+
+##### `impl ToOwned for BigEndian`
+
+- <span id="bigendian-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="bigendian-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="bigendian-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BigEndian`
+
+- <span id="bigendian-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="bigendian-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BigEndian`
+
+- <span id="bigendian-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="bigendian-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -129,15 +237,31 @@ Byte order that is selectable at runtime.
 
 #### Trait Implementations
 
+##### `impl Any for RunTimeEndian`
+
+- <span id="runtimeendian-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RunTimeEndian`
+
+- <span id="runtimeendian-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RunTimeEndian`
+
+- <span id="runtimeendian-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for RunTimeEndian`
 
 - <span id="runtimeendian-clone"></span>`fn clone(&self) -> RunTimeEndian` — [`RunTimeEndian`](../index.md#runtimeendian)
+
+##### `impl CloneToUninit for RunTimeEndian`
+
+- <span id="runtimeendian-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for RunTimeEndian`
 
 ##### `impl Debug for RunTimeEndian`
 
-- <span id="runtimeendian-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="runtimeendian-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for RunTimeEndian`
 
@@ -145,19 +269,57 @@ Byte order that is selectable at runtime.
 
 ##### `impl Endianity for RunTimeEndian`
 
-- <span id="runtimeendian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
+- <span id="runtimeendian-endianity-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for RunTimeEndian`
+
+##### `impl<T> From for RunTimeEndian`
+
+- <span id="runtimeendian-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for RunTimeEndian`
 
 - <span id="runtimeendian-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for RunTimeEndian`
+
+- <span id="runtimeendian-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for RunTimeEndian`
 
-- <span id="runtimeendian-eq"></span>`fn eq(&self, other: &RunTimeEndian) -> bool` — [`RunTimeEndian`](../index.md#runtimeendian)
+- <span id="runtimeendian-partialeq-eq"></span>`fn eq(&self, other: &RunTimeEndian) -> bool` — [`RunTimeEndian`](../index.md#runtimeendian)
 
 ##### `impl StructuralPartialEq for RunTimeEndian`
+
+##### `impl ToOwned for RunTimeEndian`
+
+- <span id="runtimeendian-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="runtimeendian-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="runtimeendian-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RunTimeEndian`
+
+- <span id="runtimeendian-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="runtimeendian-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RunTimeEndian`
+
+- <span id="runtimeendian-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="runtimeendian-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

@@ -25,7 +25,7 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 *Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:44-57`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L44-L57)*
 
-`O_*` constants for use with [`dup2`](../../backend/io/syscalls/index.md).
+`O_*` constants for use with [`dup2`](../index.md).
 
 
 #### Implementations
@@ -34,9 +34,13 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 #### Trait Implementations
 
+##### `impl Any for DupFlags`
+
+- <span id="dupflags-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl Binary for DupFlags`
 
-- <span id="dupflags-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="dupflags-binary-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl BitAnd for DupFlags`
 
@@ -44,9 +48,13 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 - <span id="dupflags-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
+  The bitwise and (`&`) of the bits in two flags values.
+
 ##### `impl BitAndAssign for DupFlags`
 
-- <span id="dupflags-bitand-assign"></span>`fn bitand_assign(&mut self, other: Self)`
+- <span id="dupflags-bitandassign-bitand-assign"></span>`fn bitand_assign(&mut self, other: Self)`
+
+  The bitwise and (`&`) of the bits in two flags values.
 
 ##### `impl BitOr for DupFlags`
 
@@ -54,9 +62,13 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 - <span id="dupflags-bitor"></span>`fn bitor(self, other: DupFlags) -> Self` — [`DupFlags`](../../backend/io/types/index.md#dupflags)
 
+  The bitwise or (`|`) of the bits in two flags values.
+
 ##### `impl BitOrAssign for DupFlags`
 
-- <span id="dupflags-bitor-assign"></span>`fn bitor_assign(&mut self, other: Self)`
+- <span id="dupflags-bitorassign-bitor-assign"></span>`fn bitor_assign(&mut self, other: Self)`
+
+  The bitwise or (`|`) of the bits in two flags values.
 
 ##### `impl BitXor for DupFlags`
 
@@ -64,19 +76,35 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 - <span id="dupflags-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
+  The bitwise exclusive-or (`^`) of the bits in two flags values.
+
 ##### `impl BitXorAssign for DupFlags`
 
-- <span id="dupflags-bitxor-assign"></span>`fn bitxor_assign(&mut self, other: Self)`
+- <span id="dupflags-bitxorassign-bitxor-assign"></span>`fn bitxor_assign(&mut self, other: Self)`
+
+  The bitwise exclusive-or (`^`) of the bits in two flags values.
+
+##### `impl<T> Borrow for DupFlags`
+
+- <span id="dupflags-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DupFlags`
+
+- <span id="dupflags-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for DupFlags`
 
 - <span id="dupflags-clone"></span>`fn clone(&self) -> DupFlags` — [`DupFlags`](../../backend/io/types/index.md#dupflags)
 
+##### `impl CloneToUninit for DupFlags`
+
+- <span id="dupflags-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for DupFlags`
 
 ##### `impl Debug for DupFlags`
 
-- <span id="dupflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dupflags-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for DupFlags`
 
@@ -84,23 +112,45 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 - <span id="dupflags-extend"></span>`fn extend<T: __private::core::iter::IntoIterator<Item = Self>>(&mut self, iterator: T)`
 
+  The bitwise or (`|`) of the bits in each flags value.
+
 ##### `impl Flags for DupFlags`
 
 - <span id="dupflags-flags-const-flags"></span>`const FLAGS: &'static [Flag<DupFlags>]`
 
 - <span id="dupflags-flags-type-bits"></span>`type Bits = u32`
 
-- <span id="dupflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md#c-uint)
+- <span id="dupflags-flags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md#c-uint)
 
-- <span id="dupflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> DupFlags` — [`c_uint`](../../ffi/index.md#c-uint), [`DupFlags`](../../backend/io/types/index.md#dupflags)
+- <span id="dupflags-flags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> DupFlags` — [`c_uint`](../../ffi/index.md#c-uint), [`DupFlags`](../../backend/io/types/index.md#dupflags)
+
+##### `impl<T> From for DupFlags`
+
+- <span id="dupflags-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromIterator for DupFlags`
 
-- <span id="dupflags-from-iter"></span>`fn from_iter<T: __private::core::iter::IntoIterator<Item = Self>>(iterator: T) -> Self`
+- <span id="dupflags-fromiterator-from-iter"></span>`fn from_iter<T: __private::core::iter::IntoIterator<Item = Self>>(iterator: T) -> Self`
+
+  The bitwise or (`|`) of the bits in each flags value.
 
 ##### `impl Hash for DupFlags`
 
 - <span id="dupflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
+
+##### `impl<U> Into for DupFlags`
+
+- <span id="dupflags-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for DupFlags`
 
@@ -108,11 +158,11 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 - <span id="dupflags-intoiterator-type-intoiter"></span>`type IntoIter = Iter<DupFlags>`
 
-- <span id="dupflags-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+- <span id="dupflags-intoiterator-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl LowerHex for DupFlags`
 
-- <span id="dupflags-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="dupflags-lowerhex-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl Not for DupFlags`
 
@@ -120,13 +170,15 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 - <span id="dupflags-not"></span>`fn not(self) -> Self`
 
+  The bitwise negation (`!`) of the bits in a flags value, truncating the result.
+
 ##### `impl Octal for DupFlags`
 
-- <span id="dupflags-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="dupflags-octal-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl PartialEq for DupFlags`
 
-- <span id="dupflags-eq"></span>`fn eq(&self, other: &DupFlags) -> bool` — [`DupFlags`](../../backend/io/types/index.md#dupflags)
+- <span id="dupflags-partialeq-eq"></span>`fn eq(&self, other: &DupFlags) -> bool` — [`DupFlags`](../../backend/io/types/index.md#dupflags)
 
 ##### `impl PublicFlags for DupFlags`
 
@@ -142,13 +194,49 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 - <span id="dupflags-sub"></span>`fn sub(self, other: Self) -> Self`
 
+  The intersection of a source flags value with the complement of a target flags value (`&!`).
+
+  
+
+  This method is not equivalent to `self & !other` when `other` has unknown bits set.
+
+  `difference` won't truncate `other`, but the `!` operator will.
+
 ##### `impl SubAssign for DupFlags`
 
-- <span id="dupflags-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
+- <span id="dupflags-subassign-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
+
+  The intersection of a source flags value with the complement of a target flags value (`&!`).
+
+  
+
+  This method is not equivalent to `self & !other` when `other` has unknown bits set.
+
+  `difference` won't truncate `other`, but the `!` operator will.
+
+##### `impl ToOwned for DupFlags`
+
+- <span id="dupflags-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dupflags-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dupflags-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DupFlags`
+
+- <span id="dupflags-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dupflags-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DupFlags`
+
+- <span id="dupflags-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dupflags-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl UpperHex for DupFlags`
 
-- <span id="dupflags-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
+- <span id="dupflags-upperhex-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ## Functions
 
@@ -164,7 +252,7 @@ fn dup<Fd: AsFd>(fd: Fd) -> io::Result<crate::fd::OwnedFd>
 underlying [file description] as `fd`.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup` that does
-set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](../index.md).
+set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](../../backend/io/syscalls/index.md).
 
 POSIX guarantees that `dup` will use the lowest unused file descriptor,
 however it is not safe in general to rely on this, as file descriptors may
@@ -209,7 +297,7 @@ be subsequently used.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup2` that does
 set `O_CLOEXEC`, use [`dup3`](../index.md) with `DupFlags::CLOEXEC` on platforms which
-support it, or [`fcntl_dupfd_cloexec`](../index.md).
+support it, or [`fcntl_dupfd_cloexec`](../../backend/io/syscalls/index.md).
 
 For `dup2` to stdin, stdout, and stderr, see `stdio::dup2_stdin`,
 `stdio::dup2_stdout`, and `stdio::dup2_stderr`.

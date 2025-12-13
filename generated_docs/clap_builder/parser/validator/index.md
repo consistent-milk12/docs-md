@@ -52,6 +52,50 @@ struct Validator<'cmd> {
 
 - <span id="validator-missing-required-error"></span>`fn missing_required_error(&self, matcher: &ArgMatcher, raw_req_args: Vec<Id>) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md#argmatcher), [`Id`](../../util/id/index.md#id), [`Result`](../../error/index.md#result)
 
+#### Trait Implementations
+
+##### `impl Any for Validator<'cmd>`
+
+- <span id="validator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Validator<'cmd>`
+
+- <span id="validator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Validator<'cmd>`
+
+- <span id="validator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Validator<'cmd>`
+
+- <span id="validator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Validator<'cmd>`
+
+- <span id="validator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Validator<'cmd>`
+
+- <span id="validator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="validator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Validator<'cmd>`
+
+- <span id="validator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="validator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `Conflicts`
 
 ```rust
@@ -72,17 +116,71 @@ struct Conflicts {
 
 #### Trait Implementations
 
+##### `impl Any for Conflicts`
+
+- <span id="conflicts-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Conflicts`
+
+- <span id="conflicts-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Conflicts`
+
+- <span id="conflicts-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Conflicts`
 
 - <span id="conflicts-clone"></span>`fn clone(&self) -> Conflicts` — [`Conflicts`](#conflicts)
 
+##### `impl CloneToUninit for Conflicts`
+
+- <span id="conflicts-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Conflicts`
 
-- <span id="conflicts-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="conflicts-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Conflicts`
 
 - <span id="conflicts-default"></span>`fn default() -> Conflicts` — [`Conflicts`](#conflicts)
+
+##### `impl<T> From for Conflicts`
+
+- <span id="conflicts-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Conflicts`
+
+- <span id="conflicts-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Conflicts`
+
+- <span id="conflicts-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="conflicts-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="conflicts-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Conflicts`
+
+- <span id="conflicts-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="conflicts-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Conflicts`
+
+- <span id="conflicts-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="conflicts-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

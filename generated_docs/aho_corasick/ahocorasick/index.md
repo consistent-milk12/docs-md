@@ -251,17 +251,153 @@ assert_eq!(result, "The slow grey sloth.");
 
 - <span id="ahocorasick-new"></span>`fn new<I, P>(patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](#ahocorasick), [`BuildError`](../util/error/index.md#builderror)
 
+  Create a new Aho-Corasick automaton using the default configuration.
+
+  
+
+  The default configuration optimizes for less space usage, but at the
+
+  expense of longer search times. To change the configuration, use
+
+  [`AhoCorasickBuilder`](#ahocorasickbuilder).
+
+  
+
+  This uses the default [`MatchKind::Standard`](../index.md) match semantics, which
+
+  reports a match as soon as it is found. This corresponds to the
+
+  standard match semantics supported by textbook descriptions of the
+
+  Aho-Corasick algorithm.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use aho_corasick::{AhoCorasick, PatternID};
+
+  
+
+  let ac = AhoCorasick::new(&["foo", "bar", "baz"]).unwrap();
+
+  assert_eq!(
+
+      Some(PatternID::must(1)),
+
+      ac.find("xxx bar xxx").map(|m| m.pattern()),
+
+  );
+
+  ```
+
 - <span id="ahocorasick-builder"></span>`fn builder() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
+  A convenience method for returning a new Aho-Corasick builder.
+
+  
+
+  This usually permits one to just import the `AhoCorasick` type.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use aho_corasick::{AhoCorasick, Match, MatchKind};
+
+  
+
+  let ac = AhoCorasick::builder()
+
+      .match_kind(MatchKind::LeftmostFirst)
+
+      .build(&["samwise", "sam"])
+
+      .unwrap();
+
+  assert_eq!(Some(Match::must(0, 0..7)), ac.find("samwise"));
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for AhoCorasick`
+
+- <span id="ahocorasick-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AhoCorasick`
+
+- <span id="ahocorasick-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AhoCorasick`
+
+- <span id="ahocorasick-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for AhoCorasick`
 
 - <span id="ahocorasick-clone"></span>`fn clone(&self) -> AhoCorasick` — [`AhoCorasick`](#ahocorasick)
 
+##### `impl CloneToUninit for AhoCorasick`
+
+- <span id="ahocorasick-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for AhoCorasick`
 
-- <span id="ahocorasick-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="ahocorasick-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for AhoCorasick`
+
+- <span id="ahocorasick-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AhoCorasick`
+
+- <span id="ahocorasick-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for AhoCorasick`
+
+- <span id="ahocorasick-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="ahocorasick-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="ahocorasick-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AhoCorasick`
+
+- <span id="ahocorasick-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ahocorasick-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AhoCorasick`
+
+- <span id="ahocorasick-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ahocorasick-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FindIter<'a, 'h>`
 
@@ -285,9 +421,39 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
+##### `impl Any for FindIter<'a, 'h>`
+
+- <span id="finditer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FindIter<'a, 'h>`
+
+- <span id="finditer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FindIter<'a, 'h>`
+
+- <span id="finditer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for FindIter<'a, 'h>`
 
-- <span id="finditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="finditer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FindIter<'a, 'h>`
+
+- <span id="finditer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FindIter<'a, 'h>`
+
+- <span id="finditer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for FindIter<'a, 'h>`
 
@@ -295,13 +461,25 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - <span id="finditer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="finditer-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="finditer-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for FindIter<'a, 'h>`
 
 - <span id="finditer-iterator-type-item"></span>`type Item = Match`
 
-- <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md#match)
+- <span id="finditer-iterator-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md#match)
+
+##### `impl<U> TryFrom for FindIter<'a, 'h>`
+
+- <span id="finditer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="finditer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FindIter<'a, 'h>`
+
+- <span id="finditer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="finditer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FindOverlappingIter<'a, 'h>`
 
@@ -325,9 +503,39 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
+##### `impl Any for FindOverlappingIter<'a, 'h>`
+
+- <span id="findoverlappingiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FindOverlappingIter<'a, 'h>`
+
+- <span id="findoverlappingiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FindOverlappingIter<'a, 'h>`
+
+- <span id="findoverlappingiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for FindOverlappingIter<'a, 'h>`
 
-- <span id="findoverlappingiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="findoverlappingiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FindOverlappingIter<'a, 'h>`
+
+- <span id="findoverlappingiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FindOverlappingIter<'a, 'h>`
+
+- <span id="findoverlappingiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for FindOverlappingIter<'a, 'h>`
 
@@ -335,13 +543,25 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - <span id="findoverlappingiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="findoverlappingiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="findoverlappingiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for FindOverlappingIter<'a, 'h>`
 
 - <span id="findoverlappingiter-iterator-type-item"></span>`type Item = Match`
 
-- <span id="findoverlappingiter-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md#match)
+- <span id="findoverlappingiter-iterator-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md#match)
+
+##### `impl<U> TryFrom for FindOverlappingIter<'a, 'h>`
+
+- <span id="findoverlappingiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="findoverlappingiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FindOverlappingIter<'a, 'h>`
+
+- <span id="findoverlappingiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="findoverlappingiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StreamFindIter<'a, R>`
 
@@ -369,9 +589,39 @@ The lifetime `'a` refers to the lifetime of the corresponding
 
 #### Trait Implementations
 
+##### `impl Any for StreamFindIter<'a, R>`
+
+- <span id="streamfinditer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StreamFindIter<'a, R>`
+
+- <span id="streamfinditer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StreamFindIter<'a, R>`
+
+- <span id="streamfinditer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug> Debug for StreamFindIter<'a, R>`
 
-- <span id="streamfinditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="streamfinditer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for StreamFindIter<'a, R>`
+
+- <span id="streamfinditer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StreamFindIter<'a, R>`
+
+- <span id="streamfinditer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for StreamFindIter<'a, R>`
 
@@ -379,13 +629,25 @@ The lifetime `'a` refers to the lifetime of the corresponding
 
 - <span id="streamfinditer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="streamfinditer-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="streamfinditer-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<R: std::io::Read> Iterator for StreamFindIter<'a, R>`
 
 - <span id="streamfinditer-iterator-type-item"></span>`type Item = Result<Match, Error>`
 
-- <span id="streamfinditer-next"></span>`fn next(&mut self) -> Option<Result<Match, std::io::Error>>` — [`Match`](../util/search/index.md#match)
+- <span id="streamfinditer-iterator-next"></span>`fn next(&mut self) -> Option<Result<Match, std::io::Error>>` — [`Match`](../util/search/index.md#match)
+
+##### `impl<U> TryFrom for StreamFindIter<'a, R>`
+
+- <span id="streamfinditer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="streamfinditer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StreamFindIter<'a, R>`
+
+- <span id="streamfinditer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="streamfinditer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AhoCorasickBuilder`
 
@@ -427,37 +689,755 @@ usage.
 
 - <span id="ahocorasickbuilder-new"></span>`fn new() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
+  Create a new builder for configuring an Aho-Corasick automaton.
+
+  
+
+  The builder provides a way to configure a number of things, including
+
+  ASCII case insensitivity and what kind of match semantics are used.
+
 - <span id="ahocorasickbuilder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](#ahocorasick), [`BuildError`](../util/error/index.md#builderror)
+
+  Build an Aho-Corasick automaton using the configuration set on this
+
+  builder.
+
+  
+
+  A builder may be reused to create more automatons.
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use aho_corasick::{AhoCorasickBuilder, PatternID};
+
+  
+
+  let patterns = &["foo", "bar", "baz"];
+
+  let ac = AhoCorasickBuilder::new().build(patterns).unwrap();
+
+  assert_eq!(
+
+      Some(PatternID::must(1)),
+
+      ac.find("xxx bar xxx").map(|m| m.pattern()),
+
+  );
+
+  ```
 
 - <span id="ahocorasickbuilder-build-auto"></span>`fn build_auto(&self, nfa: noncontiguous::NFA) -> (Arc<dyn AcAutomaton>, AhoCorasickKind)` — [`NFA`](../nfa/noncontiguous/index.md#nfa), [`AcAutomaton`](#acautomaton), [`AhoCorasickKind`](#ahocorasickkind)
 
+  Implements the automatic selection logic for the Aho-Corasick
+
+  implementation to use. Since all Aho-Corasick automatons are built
+
+  from a non-contiguous NFA, the caller is responsible for building
+
+  that first.
+
 - <span id="ahocorasickbuilder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut AhoCorasickBuilder` — [`MatchKind`](../util/search/index.md#matchkind), [`AhoCorasickBuilder`](#ahocorasickbuilder)
+
+  Set the desired match semantics.
+
+  
+
+  The default is [`MatchKind::Standard`](../index.md), which corresponds to the match
+
+  semantics supported by the standard textbook description of the
+
+  Aho-Corasick algorithm. Namely, matches are reported as soon as they
+
+  are found. Moreover, this is the only way to get overlapping matches
+
+  or do stream searching.
+
+  
+
+  The other kinds of match semantics that are supported are
+
+  [`MatchKind::LeftmostFirst`](../index.md) and [`MatchKind::LeftmostLongest`](../index.md). The
+
+  former corresponds to the match you would get if you were to try to
+
+  match each pattern at each position in the haystack in the same order
+
+  that you give to the automaton. That is, it returns the leftmost match
+
+  corresponding to the earliest pattern given to the automaton. The
+
+  latter corresponds to finding the longest possible match among all
+
+  leftmost matches.
+
+  
+
+  For more details on match semantics, see the [documentation for
+
+  `MatchKind`](MatchKind).
+
+  
+
+  Note that setting this to [`MatchKind::LeftmostFirst`](../index.md) or
+
+  [`MatchKind::LeftmostLongest`](../index.md) will cause some search routines on
+
+  [`AhoCorasick`](#ahocorasick) to return an error (or panic if you're using the
+
+  infallible API). Notably, this includes stream and overlapping
+
+  searches.
+
+  
+
+  # Examples
+
+  
+
+  In these examples, we demonstrate the differences between match
+
+  semantics for a particular set of patterns in a specific order:
+
+  `b`, `abc`, `abcd`.
+
+  
+
+  Standard semantics:
+
+  
+
+  ```rust
+
+  use aho_corasick::{AhoCorasick, MatchKind};
+
+  
+
+  let patterns = &["b", "abc", "abcd"];
+
+  let haystack = "abcd";
+
+  
+
+  let ac = AhoCorasick::builder()
+
+      .match_kind(MatchKind::Standard) // default, not necessary
+
+      .build(patterns)
+
+      .unwrap();
+
+  let mat = ac.find(haystack).expect("should have a match");
+
+  assert_eq!("b", &haystack[mat.start()..mat.end()]);
+
+  ```
+
+  
+
+  Leftmost-first semantics:
+
+  
+
+  ```rust
+
+  use aho_corasick::{AhoCorasick, MatchKind};
+
+  
+
+  let patterns = &["b", "abc", "abcd"];
+
+  let haystack = "abcd";
+
+  
+
+  let ac = AhoCorasick::builder()
+
+      .match_kind(MatchKind::LeftmostFirst)
+
+      .build(patterns)
+
+      .unwrap();
+
+  let mat = ac.find(haystack).expect("should have a match");
+
+  assert_eq!("abc", &haystack[mat.start()..mat.end()]);
+
+  ```
+
+  
+
+  Leftmost-longest semantics:
+
+  
+
+  ```rust
+
+  use aho_corasick::{AhoCorasick, MatchKind};
+
+  
+
+  let patterns = &["b", "abc", "abcd"];
+
+  let haystack = "abcd";
+
+  
+
+  let ac = AhoCorasick::builder()
+
+      .match_kind(MatchKind::LeftmostLongest)
+
+      .build(patterns)
+
+      .unwrap();
+
+  let mat = ac.find(haystack).expect("should have a match");
+
+  assert_eq!("abcd", &haystack[mat.start()..mat.end()]);
+
+  ```
 
 - <span id="ahocorasickbuilder-start-kind"></span>`fn start_kind(&mut self, kind: StartKind) -> &mut AhoCorasickBuilder` — [`StartKind`](../util/search/index.md#startkind), [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
+  Sets the starting state configuration for the automaton.
+
+  
+
+  Every Aho-Corasick automaton is capable of having two start states: one
+
+  that is used for unanchored searches and one that is used for anchored
+
+  searches. Some automatons, like the NFAs, support this with almost zero
+
+  additional cost. Other automatons, like the DFA, require two copies of
+
+  the underlying transition table to support both simultaneously.
+
+  
+
+  Because there may be an added non-trivial cost to supporting both, it
+
+  is possible to configure which starting state configuration is needed.
+
+  
+
+  Indeed, since anchored searches tend to be somewhat more rare,
+
+  _only_ unanchored searches are supported by default. Thus,
+
+  [`StartKind::Unanchored`](../index.md) is the default.
+
+  
+
+  Note that when this is set to [`StartKind::Unanchored`](../index.md), then
+
+  running an anchored search will result in an error (or a panic
+
+  if using the infallible APIs). Similarly, when this is set to
+
+  [`StartKind::Anchored`](../index.md), then running an unanchored search will
+
+  result in an error (or a panic if using the infallible APIs). When
+
+  [`StartKind::Both`](../index.md) is used, then both unanchored and anchored searches
+
+  are always supported.
+
+  
+
+  Also note that even if an `AhoCorasick` searcher is using an NFA
+
+  internally (which always supports both unanchored and anchored
+
+  searches), an error will still be reported for a search that isn't
+
+  supported by the configuration set via this method. This means,
+
+  for example, that an error is never dependent on which internal
+
+  implementation of Aho-Corasick is used.
+
+  
+
+  # Example: anchored search
+
+  
+
+  This shows how to build a searcher that only supports anchored
+
+  searches:
+
+  
+
+  ```rust
+
+  use aho_corasick::{
+
+      AhoCorasick, Anchored, Input, Match, MatchKind, StartKind,
+
+  };
+
+  
+
+  let ac = AhoCorasick::builder()
+
+      .match_kind(MatchKind::LeftmostFirst)
+
+      .start_kind(StartKind::Anchored)
+
+      .build(&["b", "abc", "abcd"])
+
+      .unwrap();
+
+  
+
+  // An unanchored search is not supported! An error here is guaranteed
+
+  // given the configuration above regardless of which kind of
+
+  // Aho-Corasick implementation ends up being used internally.
+
+  let input = Input::new("foo abcd").anchored(Anchored::No);
+
+  assert!(ac.try_find(input).is_err());
+
+  
+
+  let input = Input::new("foo abcd").anchored(Anchored::Yes);
+
+  assert_eq!(None, ac.try_find(input)?);
+
+  
+
+  let input = Input::new("abcd").anchored(Anchored::Yes);
+
+  assert_eq!(Some(Match::must(1, 0..3)), ac.try_find(input)?);
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
+
+  
+
+  # Example: unanchored and anchored searches
+
+  
+
+  This shows how to build a searcher that supports both unanchored and
+
+  anchored searches:
+
+  
+
+  ```rust
+
+  use aho_corasick::{
+
+      AhoCorasick, Anchored, Input, Match, MatchKind, StartKind,
+
+  };
+
+  
+
+  let ac = AhoCorasick::builder()
+
+      .match_kind(MatchKind::LeftmostFirst)
+
+      .start_kind(StartKind::Both)
+
+      .build(&["b", "abc", "abcd"])
+
+      .unwrap();
+
+  
+
+  let input = Input::new("foo abcd").anchored(Anchored::No);
+
+  assert_eq!(Some(Match::must(1, 4..7)), ac.try_find(input)?);
+
+  
+
+  let input = Input::new("foo abcd").anchored(Anchored::Yes);
+
+  assert_eq!(None, ac.try_find(input)?);
+
+  
+
+  let input = Input::new("abcd").anchored(Anchored::Yes);
+
+  assert_eq!(Some(Match::must(1, 0..3)), ac.try_find(input)?);
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
+
 - <span id="ahocorasickbuilder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(&mut self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
+
+  Enable ASCII-aware case insensitive matching.
+
+  
+
+  When this option is enabled, searching will be performed without
+
+  respect to case for ASCII letters (`a-z` and `A-Z`) only.
+
+  
+
+  Enabling this option does not change the search algorithm, but it may
+
+  increase the size of the automaton.
+
+  
+
+  **NOTE:** It is unlikely that support for Unicode case folding will
+
+  be added in the future. The ASCII case works via a simple hack to the
+
+  underlying automaton, but full Unicode handling requires a fair bit of
+
+  sophistication. If you do need Unicode handling, you might consider
+
+  using the [`regex` crate](https://docs.rs/regex) or the lower level
+
+  [`regex-automata` crate](https://docs.rs/regex-automata).
+
+  
+
+  # Examples
+
+  
+
+  Basic usage:
+
+  
+
+  ```rust
+
+  use aho_corasick::AhoCorasick;
+
+  
+
+  let patterns = &["FOO", "bAr", "BaZ"];
+
+  let haystack = "foo bar baz";
+
+  
+
+  let ac = AhoCorasick::builder()
+
+      .ascii_case_insensitive(true)
+
+      .build(patterns)
+
+      .unwrap();
+
+  assert_eq!(3, ac.find_iter(haystack).count());
+
+  ```
 
 - <span id="ahocorasickbuilder-kind"></span>`fn kind(&mut self, kind: Option<AhoCorasickKind>) -> &mut AhoCorasickBuilder` — [`AhoCorasickKind`](#ahocorasickkind), [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
+  Choose the type of underlying automaton to use.
+
+  
+
+  Currently, there are four choices:
+
+  
+
+  * [`AhoCorasickKind::NoncontiguousNFA`](../index.md) instructs the searcher to
+
+  use a [`noncontiguous::NFA`](../nfa/noncontiguous/index.md). A noncontiguous NFA is the fastest to
+
+  be built, has moderate memory usage and is typically the slowest to
+
+  execute a search.
+
+  * [`AhoCorasickKind::ContiguousNFA`](../index.md) instructs the searcher to use a
+
+  [`contiguous::NFA`](../nfa/contiguous/index.md). A contiguous NFA is a little slower to build than
+
+  a noncontiguous NFA, has excellent memory usage and is typically a
+
+  little slower than a DFA for a search.
+
+  * [`AhoCorasickKind::DFA`](../index.md) instructs the searcher to use a
+
+  [`dfa::DFA`](../dfa/index.md). A DFA is very slow to build, uses exorbitant amounts of
+
+  memory, but will typically execute searches the fastest.
+
+  * `None` (the default) instructs the searcher to choose the "best"
+
+  Aho-Corasick implementation. This choice is typically based primarily
+
+  on the number of patterns.
+
+  
+
+  Setting this configuration does not change the time complexity for
+
+  constructing the Aho-Corasick automaton (which is `O(p)` where `p`
+
+  is the total number of patterns being compiled). Setting this to
+
+  [`AhoCorasickKind::DFA`](../index.md) does however reduce the time complexity of
+
+  non-overlapping searches from `O(n + p)` to `O(n)`, where `n` is the
+
+  length of the haystack.
+
+  
+
+  In general, you should probably stick to the default unless you have
+
+  some kind of reason to use a specific Aho-Corasick implementation. For
+
+  example, you might choose `AhoCorasickKind::DFA` if you don't care
+
+  about memory usage and want the fastest possible search times.
+
+  
+
+  Setting this guarantees that the searcher returned uses the chosen
+
+  implementation. If that implementation could not be constructed, then
+
+  an error will be returned. In contrast, when `None` is used, it is
+
+  possible for it to attempt to construct, for example, a contiguous
+
+  NFA and have it fail. In which case, it will fall back to using a
+
+  noncontiguous NFA.
+
+  
+
+  If `None` is given, then one may use `AhoCorasick::kind` to determine
+
+  which Aho-Corasick implementation was chosen.
+
+  
+
+  Note that the heuristics used for choosing which `AhoCorasickKind`
+
+  may be changed in a semver compatible release.
+
 - <span id="ahocorasickbuilder-prefilter"></span>`fn prefilter(&mut self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
+
+  Enable heuristic prefilter optimizations.
+
+  
+
+  When enabled, searching will attempt to quickly skip to match
+
+  candidates using specialized literal search routines. A prefilter
+
+  cannot always be used, and is generally treated as a heuristic. It
+
+  can be useful to disable this if the prefilter is observed to be
+
+  sub-optimal for a particular workload.
+
+  
+
+  Currently, prefilters are typically only active when building searchers
+
+  with a small (less than 100) number of patterns.
+
+  
+
+  This is enabled by default.
 
 - <span id="ahocorasickbuilder-dense-depth"></span>`fn dense_depth(&mut self, depth: usize) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
+  Set the limit on how many states use a dense representation for their
+
+  transitions. Other states will generally use a sparse representation.
+
+  
+
+  A dense representation uses more memory but is generally faster, since
+
+  the next transition in a dense representation can be computed in a
+
+  constant number of instructions. A sparse representation uses less
+
+  memory but is generally slower, since the next transition in a sparse
+
+  representation requires executing a variable number of instructions.
+
+  
+
+  This setting is only used when an Aho-Corasick implementation is used
+
+  that supports the dense versus sparse representation trade off. Not all
+
+  do.
+
+  
+
+  This limit is expressed in terms of the depth of a state, i.e., the
+
+  number of transitions from the starting state of the automaton. The
+
+  idea is that most of the time searching will be spent near the starting
+
+  state of the automaton, so states near the start state should use a
+
+  dense representation. States further away from the start state would
+
+  then use a sparse representation.
+
+  
+
+  By default, this is set to a low but non-zero number. Setting this to
+
+  `0` is almost never what you want, since it is likely to make searches
+
+  very slow due to the start state itself being forced to use a sparse
+
+  representation. However, it is unlikely that increasing this number
+
+  will help things much, since the most active states have a small depth.
+
+  More to the point, the memory usage increases superlinearly as this
+
+  number increases.
+
 - <span id="ahocorasickbuilder-byte-classes"></span>`fn byte_classes(&mut self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
+  A debug settting for whether to attempt to shrink the size of the
+
+  automaton's alphabet or not.
+
+  
+
+  This option is enabled by default and should never be disabled unless
+
+  one is debugging the underlying automaton.
+
+  
+
+  When enabled, some (but not all) Aho-Corasick automatons will use a map
+
+  from all possible bytes to their corresponding equivalence class. Each
+
+  equivalence class represents a set of bytes that does not discriminate
+
+  between a match and a non-match in the automaton.
+
+  
+
+  The advantage of this map is that the size of the transition table can
+
+  be reduced drastically from `#states * 256 * sizeof(u32)` to
+
+  `#states * k * sizeof(u32)` where `k` is the number of equivalence
+
+  classes (rounded up to the nearest power of 2). As a result, total
+
+  space usage can decrease substantially. Moreover, since a smaller
+
+  alphabet is used, automaton compilation becomes faster as well.
+
+  
+
+  **WARNING:** This is only useful for debugging automatons. Disabling
+
+  this does not yield any speed advantages. Namely, even when this is
+
+  disabled, a byte class map is still used while searching. The only
+
+  difference is that every byte will be forced into its own distinct
+
+  equivalence class. This is useful for debugging the actual generated
+
+  transitions because it lets one see the transitions defined on actual
+
+  bytes instead of the equivalence classes.
+
 #### Trait Implementations
+
+##### `impl Any for AhoCorasickBuilder`
+
+- <span id="ahocorasickbuilder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AhoCorasickBuilder`
+
+- <span id="ahocorasickbuilder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AhoCorasickBuilder`
+
+- <span id="ahocorasickbuilder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for AhoCorasickBuilder`
 
 - <span id="ahocorasickbuilder-clone"></span>`fn clone(&self) -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
+##### `impl CloneToUninit for AhoCorasickBuilder`
+
+- <span id="ahocorasickbuilder-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for AhoCorasickBuilder`
 
-- <span id="ahocorasickbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ahocorasickbuilder-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AhoCorasickBuilder`
 
 - <span id="ahocorasickbuilder-default"></span>`fn default() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
+
+##### `impl<T> From for AhoCorasickBuilder`
+
+- <span id="ahocorasickbuilder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AhoCorasickBuilder`
+
+- <span id="ahocorasickbuilder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for AhoCorasickBuilder`
+
+- <span id="ahocorasickbuilder-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="ahocorasickbuilder-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="ahocorasickbuilder-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AhoCorasickBuilder`
+
+- <span id="ahocorasickbuilder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ahocorasickbuilder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AhoCorasickBuilder`
+
+- <span id="ahocorasickbuilder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ahocorasickbuilder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -496,23 +1476,77 @@ detail about each choice.
 
 #### Trait Implementations
 
+##### `impl Any for AhoCorasickKind`
+
+- <span id="ahocorasickkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AhoCorasickKind`
+
+- <span id="ahocorasickkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AhoCorasickKind`
+
+- <span id="ahocorasickkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for AhoCorasickKind`
 
 - <span id="ahocorasickkind-clone"></span>`fn clone(&self) -> AhoCorasickKind` — [`AhoCorasickKind`](#ahocorasickkind)
+
+##### `impl CloneToUninit for AhoCorasickKind`
+
+- <span id="ahocorasickkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for AhoCorasickKind`
 
 ##### `impl Debug for AhoCorasickKind`
 
-- <span id="ahocorasickkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ahocorasickkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for AhoCorasickKind`
 
+##### `impl<T> From for AhoCorasickKind`
+
+- <span id="ahocorasickkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AhoCorasickKind`
+
+- <span id="ahocorasickkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for AhoCorasickKind`
 
-- <span id="ahocorasickkind-eq"></span>`fn eq(&self, other: &AhoCorasickKind) -> bool` — [`AhoCorasickKind`](#ahocorasickkind)
+- <span id="ahocorasickkind-partialeq-eq"></span>`fn eq(&self, other: &AhoCorasickKind) -> bool` — [`AhoCorasickKind`](#ahocorasickkind)
 
 ##### `impl StructuralPartialEq for AhoCorasickKind`
+
+##### `impl ToOwned for AhoCorasickKind`
+
+- <span id="ahocorasickkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="ahocorasickkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="ahocorasickkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AhoCorasickKind`
+
+- <span id="ahocorasickkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ahocorasickkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AhoCorasickKind`
+
+- <span id="ahocorasickkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ahocorasickkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

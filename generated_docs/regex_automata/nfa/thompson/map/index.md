@@ -84,23 +84,125 @@ amount of extra time they cost.
 
 - <span id="utf8boundedmap-new"></span>`fn new(capacity: usize) -> Utf8BoundedMap` — [`Utf8BoundedMap`](#utf8boundedmap)
 
+  Create a new bounded map with the given capacity. The map will never
+
+  grow beyond the given size.
+
+  
+
+  Note that this does not allocate. Instead, callers must call `clear`
+
+  before using this map. `clear` will allocate space if necessary.
+
+  
+
+  This avoids the need to pay for the allocation of this map when
+
+  compiling regexes that lack large Unicode character classes.
+
 - <span id="utf8boundedmap-clear"></span>`fn clear(&mut self)`
+
+  Clear this map of all entries, but permit the reuse of allocation
+
+  if possible.
+
+  
+
+  This must be called before the map can be used.
 
 - <span id="utf8boundedmap-hash"></span>`fn hash(&self, key: &[Transition]) -> usize` — [`Transition`](../nfa/index.md#transition)
 
+  Return a hash of the given transitions.
+
 - <span id="utf8boundedmap-get"></span>`fn get(&mut self, key: &[Transition], hash: usize) -> Option<StateID>` — [`Transition`](../nfa/index.md#transition), [`StateID`](../../../util/primitives/index.md#stateid)
+
+  Retrieve the cached state ID corresponding to the given key. The hash
+
+  given must have been computed with `hash` using the same key value.
+
+  
+
+  If there is no cached state with the given transitions, then None is
+
+  returned.
 
 - <span id="utf8boundedmap-set"></span>`fn set(&mut self, key: Vec<Transition>, hash: usize, state_id: StateID)` — [`Transition`](../nfa/index.md#transition), [`StateID`](../../../util/primitives/index.md#stateid)
 
+  Add a cached state to this map with the given key. Callers should
+
+  ensure that `state_id` points to a state that contains precisely the
+
+  NFA transitions given.
+
+  
+
+  `hash` must have been computed using the `hash` method with the same
+
+  key.
+
 #### Trait Implementations
+
+##### `impl Any for Utf8BoundedMap`
+
+- <span id="utf8boundedmap-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Utf8BoundedMap`
+
+- <span id="utf8boundedmap-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Utf8BoundedMap`
+
+- <span id="utf8boundedmap-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Utf8BoundedMap`
 
 - <span id="utf8boundedmap-clone"></span>`fn clone(&self) -> Utf8BoundedMap` — [`Utf8BoundedMap`](#utf8boundedmap)
 
+##### `impl CloneToUninit for Utf8BoundedMap`
+
+- <span id="utf8boundedmap-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Utf8BoundedMap`
 
-- <span id="utf8boundedmap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="utf8boundedmap-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Utf8BoundedMap`
+
+- <span id="utf8boundedmap-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Utf8BoundedMap`
+
+- <span id="utf8boundedmap-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Utf8BoundedMap`
+
+- <span id="utf8boundedmap-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="utf8boundedmap-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="utf8boundedmap-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Utf8BoundedMap`
+
+- <span id="utf8boundedmap-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="utf8boundedmap-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Utf8BoundedMap`
+
+- <span id="utf8boundedmap-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="utf8boundedmap-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Utf8BoundedEntry`
 
@@ -135,17 +237,71 @@ An entry in this map.
 
 #### Trait Implementations
 
+##### `impl Any for Utf8BoundedEntry`
+
+- <span id="utf8boundedentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Utf8BoundedEntry`
+
+- <span id="utf8boundedentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Utf8BoundedEntry`
+
+- <span id="utf8boundedentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Utf8BoundedEntry`
 
 - <span id="utf8boundedentry-clone"></span>`fn clone(&self) -> Utf8BoundedEntry` — [`Utf8BoundedEntry`](#utf8boundedentry)
 
+##### `impl CloneToUninit for Utf8BoundedEntry`
+
+- <span id="utf8boundedentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Utf8BoundedEntry`
 
-- <span id="utf8boundedentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="utf8boundedentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Utf8BoundedEntry`
 
 - <span id="utf8boundedentry-default"></span>`fn default() -> Utf8BoundedEntry` — [`Utf8BoundedEntry`](#utf8boundedentry)
+
+##### `impl<T> From for Utf8BoundedEntry`
+
+- <span id="utf8boundedentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Utf8BoundedEntry`
+
+- <span id="utf8boundedentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Utf8BoundedEntry`
+
+- <span id="utf8boundedentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="utf8boundedentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="utf8boundedentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Utf8BoundedEntry`
+
+- <span id="utf8boundedentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="utf8boundedentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Utf8BoundedEntry`
+
+- <span id="utf8boundedentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="utf8boundedentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Utf8SuffixMap`
 
@@ -183,23 +339,123 @@ Unicode character classes.
 
 - <span id="utf8suffixmap-new"></span>`fn new(capacity: usize) -> Utf8SuffixMap` — [`Utf8SuffixMap`](#utf8suffixmap)
 
+  Create a new bounded map with the given capacity. The map will never
+
+  grow beyond the given size.
+
+  
+
+  Note that this does not allocate. Instead, callers must call `clear`
+
+  before using this map. `clear` will allocate space if necessary.
+
+  
+
+  This avoids the need to pay for the allocation of this map when
+
+  compiling regexes that lack large Unicode character classes.
+
 - <span id="utf8suffixmap-clear"></span>`fn clear(&mut self)`
+
+  Clear this map of all entries, but permit the reuse of allocation
+
+  if possible.
+
+  
+
+  This must be called before the map can be used.
 
 - <span id="utf8suffixmap-hash"></span>`fn hash(&self, key: &Utf8SuffixKey) -> usize` — [`Utf8SuffixKey`](#utf8suffixkey)
 
+  Return a hash of the given transition.
+
 - <span id="utf8suffixmap-get"></span>`fn get(&mut self, key: &Utf8SuffixKey, hash: usize) -> Option<StateID>` — [`Utf8SuffixKey`](#utf8suffixkey), [`StateID`](../../../util/primitives/index.md#stateid)
+
+  Retrieve the cached state ID corresponding to the given key. The hash
+
+  given must have been computed with `hash` using the same key value.
+
+  
+
+  If there is no cached state with the given key, then None is returned.
 
 - <span id="utf8suffixmap-set"></span>`fn set(&mut self, key: Utf8SuffixKey, hash: usize, state_id: StateID)` — [`Utf8SuffixKey`](#utf8suffixkey), [`StateID`](../../../util/primitives/index.md#stateid)
 
+  Add a cached state to this map with the given key. Callers should
+
+  ensure that `state_id` points to a state that contains precisely the
+
+  NFA transition given.
+
+  
+
+  `hash` must have been computed using the `hash` method with the same
+
+  key.
+
 #### Trait Implementations
+
+##### `impl Any for Utf8SuffixMap`
+
+- <span id="utf8suffixmap-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Utf8SuffixMap`
+
+- <span id="utf8suffixmap-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Utf8SuffixMap`
+
+- <span id="utf8suffixmap-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Utf8SuffixMap`
 
 - <span id="utf8suffixmap-clone"></span>`fn clone(&self) -> Utf8SuffixMap` — [`Utf8SuffixMap`](#utf8suffixmap)
 
+##### `impl CloneToUninit for Utf8SuffixMap`
+
+- <span id="utf8suffixmap-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Utf8SuffixMap`
 
-- <span id="utf8suffixmap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="utf8suffixmap-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Utf8SuffixMap`
+
+- <span id="utf8suffixmap-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Utf8SuffixMap`
+
+- <span id="utf8suffixmap-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Utf8SuffixMap`
+
+- <span id="utf8suffixmap-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="utf8suffixmap-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="utf8suffixmap-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Utf8SuffixMap`
+
+- <span id="utf8suffixmap-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="utf8suffixmap-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Utf8SuffixMap`
+
+- <span id="utf8suffixmap-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="utf8suffixmap-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Utf8SuffixKey`
 
@@ -218,13 +474,29 @@ a transition from one state for a particular byte range.
 
 #### Trait Implementations
 
+##### `impl Any for Utf8SuffixKey`
+
+- <span id="utf8suffixkey-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Utf8SuffixKey`
+
+- <span id="utf8suffixkey-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Utf8SuffixKey`
+
+- <span id="utf8suffixkey-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Utf8SuffixKey`
 
 - <span id="utf8suffixkey-clone"></span>`fn clone(&self) -> Utf8SuffixKey` — [`Utf8SuffixKey`](#utf8suffixkey)
 
+##### `impl CloneToUninit for Utf8SuffixKey`
+
+- <span id="utf8suffixkey-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Utf8SuffixKey`
 
-- <span id="utf8suffixkey-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="utf8suffixkey-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Utf8SuffixKey`
 
@@ -232,11 +504,49 @@ a transition from one state for a particular byte range.
 
 ##### `impl Eq for Utf8SuffixKey`
 
+##### `impl<T> From for Utf8SuffixKey`
+
+- <span id="utf8suffixkey-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Utf8SuffixKey`
+
+- <span id="utf8suffixkey-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Utf8SuffixKey`
 
-- <span id="utf8suffixkey-eq"></span>`fn eq(&self, other: &Utf8SuffixKey) -> bool` — [`Utf8SuffixKey`](#utf8suffixkey)
+- <span id="utf8suffixkey-partialeq-eq"></span>`fn eq(&self, other: &Utf8SuffixKey) -> bool` — [`Utf8SuffixKey`](#utf8suffixkey)
 
 ##### `impl StructuralPartialEq for Utf8SuffixKey`
+
+##### `impl ToOwned for Utf8SuffixKey`
+
+- <span id="utf8suffixkey-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="utf8suffixkey-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="utf8suffixkey-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Utf8SuffixKey`
+
+- <span id="utf8suffixkey-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="utf8suffixkey-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Utf8SuffixKey`
+
+- <span id="utf8suffixkey-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="utf8suffixkey-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Utf8SuffixEntry`
 
@@ -270,17 +580,71 @@ An entry in this map.
 
 #### Trait Implementations
 
+##### `impl Any for Utf8SuffixEntry`
+
+- <span id="utf8suffixentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Utf8SuffixEntry`
+
+- <span id="utf8suffixentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Utf8SuffixEntry`
+
+- <span id="utf8suffixentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Utf8SuffixEntry`
 
 - <span id="utf8suffixentry-clone"></span>`fn clone(&self) -> Utf8SuffixEntry` — [`Utf8SuffixEntry`](#utf8suffixentry)
 
+##### `impl CloneToUninit for Utf8SuffixEntry`
+
+- <span id="utf8suffixentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Utf8SuffixEntry`
 
-- <span id="utf8suffixentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="utf8suffixentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Utf8SuffixEntry`
 
 - <span id="utf8suffixentry-default"></span>`fn default() -> Utf8SuffixEntry` — [`Utf8SuffixEntry`](#utf8suffixentry)
+
+##### `impl<T> From for Utf8SuffixEntry`
+
+- <span id="utf8suffixentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Utf8SuffixEntry`
+
+- <span id="utf8suffixentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Utf8SuffixEntry`
+
+- <span id="utf8suffixentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="utf8suffixentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="utf8suffixentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Utf8SuffixEntry`
+
+- <span id="utf8suffixentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="utf8suffixentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Utf8SuffixEntry`
+
+- <span id="utf8suffixentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="utf8suffixentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Constants
 

@@ -85,19 +85,75 @@ struct Queue<T> {
 
 - <span id="cachepadded-new"></span>`const fn new(t: T) -> CachePadded<T>` — [`CachePadded`](#cachepadded)
 
+  Pads and aligns a value to the length of a cache line.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::CachePadded;
+
+  
+
+  let padded_value = CachePadded::new(1);
+
+  ```
+
 - <span id="cachepadded-into-inner"></span>`fn into_inner(self) -> T`
 
+  Returns the inner value.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_utils::CachePadded;
+
+  
+
+  let padded_value = CachePadded::new(7);
+
+  let value = padded_value.into_inner();
+
+  assert_eq!(value, 7);
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for CachePadded<T>`
+
+- <span id="cachepadded-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CachePadded<T>`
+
+- <span id="cachepadded-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CachePadded<T>`
+
+- <span id="cachepadded-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: clone::Clone> Clone for CachePadded<T>`
 
 - <span id="cachepadded-clone"></span>`fn clone(&self) -> CachePadded<T>` — [`CachePadded`](#cachepadded)
 
+##### `impl<T> CloneToUninit for CachePadded<T>`
+
+- <span id="cachepadded-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: marker::Copy> Copy for CachePadded<T>`
 
 ##### `impl<T: fmt::Debug> Debug for CachePadded<T>`
 
-- <span id="cachepadded-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cachepadded-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: default::Default> Default for CachePadded<T>`
 
@@ -111,21 +167,39 @@ struct Queue<T> {
 
 ##### `impl<T> DerefMut for CachePadded<T>`
 
-- <span id="cachepadded-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
+- <span id="cachepadded-derefmut-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
 
 ##### `impl<T: fmt::Display> Display for CachePadded<T>`
 
-- <span id="cachepadded-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cachepadded-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for CachePadded<T>`
+
+##### `impl<T> From for CachePadded<T>`
+
+- <span id="cachepadded-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: hash::Hash> Hash for CachePadded<T>`
 
 - <span id="cachepadded-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T, U> Into for CachePadded<T>`
+
+- <span id="cachepadded-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for CachePadded<T>`
 
-- <span id="cachepadded-eq"></span>`fn eq(&self, other: &CachePadded<T>) -> bool` — [`CachePadded`](#cachepadded)
+- <span id="cachepadded-partialeq-eq"></span>`fn eq(&self, other: &CachePadded<T>) -> bool` — [`CachePadded`](#cachepadded)
 
 ##### `impl<T> Receiver for CachePadded<T>`
 
@@ -137,7 +211,27 @@ struct Queue<T> {
 
 ##### `impl<T: Sync> Sync for CachePadded<T>`
 
+##### `impl<T> ToOwned for CachePadded<T>`
+
+- <span id="cachepadded-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="cachepadded-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="cachepadded-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl<T> ToString for CachePadded<T>`
 
-- <span id="cachepadded-to-string"></span>`fn to_string(&self) -> String`
+- <span id="cachepadded-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for CachePadded<T>`
+
+- <span id="cachepadded-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cachepadded-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for CachePadded<T>`
+
+- <span id="cachepadded-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cachepadded-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

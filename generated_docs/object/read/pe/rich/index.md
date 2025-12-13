@@ -55,19 +55,77 @@ Parsed information about a Rich Header.
 
 - <span id="richheaderinfo-parse"></span>`fn parse<R: ReadRef<'data>>(data: R, nt_header_offset: u64) -> Option<Self>`
 
+  Try to locate a rich header and its entries in the current PE file.
+
 - <span id="richheaderinfo-unmasked-entries"></span>`fn unmasked_entries(&self) -> impl Iterator<Item = RichHeaderEntry> + 'data` — [`RichHeaderEntry`](../index.md#richheaderentry)
 
+  Returns an iterator over the unmasked entries.
+
 #### Trait Implementations
+
+##### `impl Any for RichHeaderInfo<'data>`
+
+- <span id="richheaderinfo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RichHeaderInfo<'data>`
+
+- <span id="richheaderinfo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RichHeaderInfo<'data>`
+
+- <span id="richheaderinfo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for RichHeaderInfo<'data>`
 
 - <span id="richheaderinfo-clone"></span>`fn clone(&self) -> RichHeaderInfo<'data>` — [`RichHeaderInfo`](../index.md#richheaderinfo)
 
+##### `impl CloneToUninit for RichHeaderInfo<'data>`
+
+- <span id="richheaderinfo-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for RichHeaderInfo<'data>`
 
 ##### `impl Debug for RichHeaderInfo<'data>`
 
-- <span id="richheaderinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="richheaderinfo-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RichHeaderInfo<'data>`
+
+- <span id="richheaderinfo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RichHeaderInfo<'data>`
+
+- <span id="richheaderinfo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for RichHeaderInfo<'data>`
+
+- <span id="richheaderinfo-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="richheaderinfo-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="richheaderinfo-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RichHeaderInfo<'data>`
+
+- <span id="richheaderinfo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="richheaderinfo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RichHeaderInfo<'data>`
+
+- <span id="richheaderinfo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="richheaderinfo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RichHeaderEntry`
 
@@ -96,15 +154,69 @@ See [`pe::MaskedRichHeaderEntry`](../../../pe/index.md).
 
 #### Trait Implementations
 
+##### `impl Any for RichHeaderEntry`
+
+- <span id="richheaderentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RichHeaderEntry`
+
+- <span id="richheaderentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RichHeaderEntry`
+
+- <span id="richheaderentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for RichHeaderEntry`
 
 - <span id="richheaderentry-clone"></span>`fn clone(&self) -> RichHeaderEntry` — [`RichHeaderEntry`](../index.md#richheaderentry)
+
+##### `impl CloneToUninit for RichHeaderEntry`
+
+- <span id="richheaderentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for RichHeaderEntry`
 
 ##### `impl Debug for RichHeaderEntry`
 
-- <span id="richheaderentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="richheaderentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RichHeaderEntry`
+
+- <span id="richheaderentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for RichHeaderEntry`
+
+- <span id="richheaderentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for RichHeaderEntry`
+
+- <span id="richheaderentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="richheaderentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="richheaderentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RichHeaderEntry`
+
+- <span id="richheaderentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="richheaderentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RichHeaderEntry`
+
+- <span id="richheaderentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="richheaderentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

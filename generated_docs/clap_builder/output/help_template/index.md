@@ -58,7 +58,53 @@ struct AutoHelp<'cmd, 'writer> {
 
 - <span id="autohelp-new"></span>`fn new(writer: &'writer mut StyledStr, cmd: &'cmd Command, usage: &'cmd Usage<'cmd>, use_long: bool) -> Self` — [`StyledStr`](../../builder/styled_str/index.md#styledstr), [`Command`](../../builder/command/index.md#command), [`Usage`](../usage/index.md#usage)
 
+  Create a new `HelpTemplate` instance.
+
 - <span id="autohelp-write-help"></span>`fn write_help(&mut self)`
+
+#### Trait Implementations
+
+##### `impl Any for AutoHelp<'cmd, 'writer>`
+
+- <span id="autohelp-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AutoHelp<'cmd, 'writer>`
+
+- <span id="autohelp-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AutoHelp<'cmd, 'writer>`
+
+- <span id="autohelp-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for AutoHelp<'cmd, 'writer>`
+
+- <span id="autohelp-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AutoHelp<'cmd, 'writer>`
+
+- <span id="autohelp-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for AutoHelp<'cmd, 'writer>`
+
+- <span id="autohelp-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="autohelp-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AutoHelp<'cmd, 'writer>`
+
+- <span id="autohelp-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="autohelp-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `HelpTemplate<'cmd, 'writer>`
 
@@ -84,9 +130,61 @@ Wraps a writer stream providing different methods to generate help for `clap` ob
 
 - <span id="helptemplate-new"></span>`fn new(writer: &'writer mut StyledStr, cmd: &'cmd Command, usage: &'cmd Usage<'cmd>, use_long: bool) -> Self` — [`StyledStr`](../../builder/styled_str/index.md#styledstr), [`Command`](../../builder/command/index.md#command), [`Usage`](../usage/index.md#usage)
 
+  Create a new `HelpTemplate` instance.
+
 - <span id="helptemplate-term-w"></span>`fn term_w(cmd: &'cmd Command) -> usize` — [`Command`](../../builder/command/index.md#command)
 
 - <span id="helptemplate-write-templated-help"></span>`fn write_templated_help(&mut self, template: &str)`
+
+  Write help to stream for the parser in the format defined by the template.
+
+  
+
+  For details about the template language see `Command::help_template`.
+
+#### Trait Implementations
+
+##### `impl Any for HelpTemplate<'cmd, 'writer>`
+
+- <span id="helptemplate-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HelpTemplate<'cmd, 'writer>`
+
+- <span id="helptemplate-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HelpTemplate<'cmd, 'writer>`
+
+- <span id="helptemplate-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for HelpTemplate<'cmd, 'writer>`
+
+- <span id="helptemplate-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for HelpTemplate<'cmd, 'writer>`
+
+- <span id="helptemplate-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for HelpTemplate<'cmd, 'writer>`
+
+- <span id="helptemplate-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="helptemplate-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HelpTemplate<'cmd, 'writer>`
+
+- <span id="helptemplate-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="helptemplate-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

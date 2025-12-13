@@ -200,13 +200,29 @@ tools to find or link to them.
 
 #### Trait Implementations
 
+##### `impl Any for Crate`
+
+- <span id="crate-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Crate`
+
+- <span id="crate-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Crate`
+
+- <span id="crate-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Crate`
 
 - <span id="crate-clone"></span>`fn clone(&self) -> Crate` — [`Crate`](#crate)
 
+##### `impl CloneToUninit for Crate`
+
+- <span id="crate-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Crate`
 
-- <span id="crate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crate-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Crate`
 
@@ -216,15 +232,53 @@ tools to find or link to them.
 
 ##### `impl Eq for Crate`
 
+##### `impl<T> From for Crate`
+
+- <span id="crate-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Crate`
+
+- <span id="crate-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Crate`
 
-- <span id="crate-eq"></span>`fn eq(&self, other: &Crate) -> bool` — [`Crate`](#crate)
+- <span id="crate-partialeq-eq"></span>`fn eq(&self, other: &Crate) -> bool` — [`Crate`](#crate)
 
 ##### `impl Serialize for Crate`
 
 - <span id="crate-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Crate`
+
+##### `impl ToOwned for Crate`
+
+- <span id="crate-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="crate-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="crate-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Crate`
+
+- <span id="crate-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="crate-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Crate`
+
+- <span id="crate-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="crate-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Target`
 
@@ -252,13 +306,29 @@ Information about a target
 
 #### Trait Implementations
 
+##### `impl Any for Target`
+
+- <span id="target-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Target`
+
+- <span id="target-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Target`
+
+- <span id="target-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Target`
 
 - <span id="target-clone"></span>`fn clone(&self) -> Target` — [`Target`](#target)
 
+##### `impl CloneToUninit for Target`
+
+- <span id="target-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Target`
 
-- <span id="target-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="target-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Target`
 
@@ -268,15 +338,53 @@ Information about a target
 
 ##### `impl Eq for Target`
 
+##### `impl<T> From for Target`
+
+- <span id="target-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Target`
+
+- <span id="target-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Target`
 
-- <span id="target-eq"></span>`fn eq(&self, other: &Target) -> bool` — [`Target`](#target)
+- <span id="target-partialeq-eq"></span>`fn eq(&self, other: &Target) -> bool` — [`Target`](#target)
 
 ##### `impl Serialize for Target`
 
 - <span id="target-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Target`
+
+##### `impl ToOwned for Target`
+
+- <span id="target-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="target-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="target-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Target`
+
+- <span id="target-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="target-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Target`
+
+- <span id="target-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="target-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TargetFeature`
 
@@ -342,13 +450,29 @@ context.
 
 #### Trait Implementations
 
+##### `impl Any for TargetFeature`
+
+- <span id="targetfeature-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TargetFeature`
+
+- <span id="targetfeature-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TargetFeature`
+
+- <span id="targetfeature-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for TargetFeature`
 
 - <span id="targetfeature-clone"></span>`fn clone(&self) -> TargetFeature` — [`TargetFeature`](#targetfeature)
 
+##### `impl CloneToUninit for TargetFeature`
+
+- <span id="targetfeature-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for TargetFeature`
 
-- <span id="targetfeature-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="targetfeature-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for TargetFeature`
 
@@ -358,15 +482,53 @@ context.
 
 ##### `impl Eq for TargetFeature`
 
+##### `impl<T> From for TargetFeature`
+
+- <span id="targetfeature-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TargetFeature`
+
+- <span id="targetfeature-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for TargetFeature`
 
-- <span id="targetfeature-eq"></span>`fn eq(&self, other: &TargetFeature) -> bool` — [`TargetFeature`](#targetfeature)
+- <span id="targetfeature-partialeq-eq"></span>`fn eq(&self, other: &TargetFeature) -> bool` — [`TargetFeature`](#targetfeature)
 
 ##### `impl Serialize for TargetFeature`
 
 - <span id="targetfeature-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for TargetFeature`
+
+##### `impl ToOwned for TargetFeature`
+
+- <span id="targetfeature-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="targetfeature-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="targetfeature-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TargetFeature`
+
+- <span id="targetfeature-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="targetfeature-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TargetFeature`
+
+- <span id="targetfeature-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="targetfeature-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ExternalCrate`
 
@@ -407,13 +569,29 @@ Metadata of a crate, either the same crate on which `rustdoc` was invoked, or it
 
 #### Trait Implementations
 
+##### `impl Any for ExternalCrate`
+
+- <span id="externalcrate-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ExternalCrate`
+
+- <span id="externalcrate-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ExternalCrate`
+
+- <span id="externalcrate-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ExternalCrate`
 
 - <span id="externalcrate-clone"></span>`fn clone(&self) -> ExternalCrate` — [`ExternalCrate`](#externalcrate)
 
+##### `impl CloneToUninit for ExternalCrate`
+
+- <span id="externalcrate-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for ExternalCrate`
 
-- <span id="externalcrate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="externalcrate-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for ExternalCrate`
 
@@ -423,19 +601,57 @@ Metadata of a crate, either the same crate on which `rustdoc` was invoked, or it
 
 ##### `impl Eq for ExternalCrate`
 
+##### `impl<T> From for ExternalCrate`
+
+- <span id="externalcrate-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for ExternalCrate`
 
 - <span id="externalcrate-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for ExternalCrate`
+
+- <span id="externalcrate-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ExternalCrate`
 
-- <span id="externalcrate-eq"></span>`fn eq(&self, other: &ExternalCrate) -> bool` — [`ExternalCrate`](#externalcrate)
+- <span id="externalcrate-partialeq-eq"></span>`fn eq(&self, other: &ExternalCrate) -> bool` — [`ExternalCrate`](#externalcrate)
 
 ##### `impl Serialize for ExternalCrate`
 
 - <span id="externalcrate-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ExternalCrate`
+
+##### `impl ToOwned for ExternalCrate`
+
+- <span id="externalcrate-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="externalcrate-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="externalcrate-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ExternalCrate`
+
+- <span id="externalcrate-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="externalcrate-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ExternalCrate`
+
+- <span id="externalcrate-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="externalcrate-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ItemSummary`
 
@@ -479,13 +695,29 @@ the actual item definition with all the relevant info.
 
 #### Trait Implementations
 
+##### `impl Any for ItemSummary`
+
+- <span id="itemsummary-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ItemSummary`
+
+- <span id="itemsummary-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItemSummary`
+
+- <span id="itemsummary-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ItemSummary`
 
 - <span id="itemsummary-clone"></span>`fn clone(&self) -> ItemSummary` — [`ItemSummary`](#itemsummary)
 
+##### `impl CloneToUninit for ItemSummary`
+
+- <span id="itemsummary-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for ItemSummary`
 
-- <span id="itemsummary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="itemsummary-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for ItemSummary`
 
@@ -495,19 +727,57 @@ the actual item definition with all the relevant info.
 
 ##### `impl Eq for ItemSummary`
 
+##### `impl<T> From for ItemSummary`
+
+- <span id="itemsummary-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for ItemSummary`
 
 - <span id="itemsummary-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for ItemSummary`
+
+- <span id="itemsummary-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ItemSummary`
 
-- <span id="itemsummary-eq"></span>`fn eq(&self, other: &ItemSummary) -> bool` — [`ItemSummary`](#itemsummary)
+- <span id="itemsummary-partialeq-eq"></span>`fn eq(&self, other: &ItemSummary) -> bool` — [`ItemSummary`](#itemsummary)
 
 ##### `impl Serialize for ItemSummary`
 
 - <span id="itemsummary-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ItemSummary`
+
+##### `impl ToOwned for ItemSummary`
+
+- <span id="itemsummary-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itemsummary-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itemsummary-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ItemSummary`
+
+- <span id="itemsummary-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itemsummary-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ItemSummary`
+
+- <span id="itemsummary-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itemsummary-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Item`
 
@@ -591,13 +861,29 @@ and leaves kind-specific details (like function args or enum variants) to the `i
 
 #### Trait Implementations
 
+##### `impl Any for Item`
+
+- <span id="item-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Item`
+
+- <span id="item-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Item`
+
+- <span id="item-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Item`
 
 - <span id="item-clone"></span>`fn clone(&self) -> Item` — [`Item`](#item)
 
+##### `impl CloneToUninit for Item`
+
+- <span id="item-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Item`
 
-- <span id="item-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="item-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Item`
 
@@ -607,15 +893,53 @@ and leaves kind-specific details (like function args or enum variants) to the `i
 
 ##### `impl Eq for Item`
 
+##### `impl<T> From for Item`
+
+- <span id="item-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Item`
+
+- <span id="item-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Item`
 
-- <span id="item-eq"></span>`fn eq(&self, other: &Item) -> bool` — [`Item`](#item)
+- <span id="item-partialeq-eq"></span>`fn eq(&self, other: &Item) -> bool` — [`Item`](#item)
 
 ##### `impl Serialize for Item`
 
 - <span id="item-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Item`
+
+##### `impl ToOwned for Item`
+
+- <span id="item-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="item-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="item-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Item`
+
+- <span id="item-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="item-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Item`
+
+- <span id="item-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="item-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AttributeRepr`
 
@@ -656,13 +980,29 @@ Used in [`Attribute::Repr`](#attributerepr).
 
 #### Trait Implementations
 
+##### `impl Any for AttributeRepr`
+
+- <span id="attributerepr-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AttributeRepr`
+
+- <span id="attributerepr-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AttributeRepr`
+
+- <span id="attributerepr-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for AttributeRepr`
 
 - <span id="attributerepr-clone"></span>`fn clone(&self) -> AttributeRepr` — [`AttributeRepr`](#attributerepr)
 
+##### `impl CloneToUninit for AttributeRepr`
+
+- <span id="attributerepr-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for AttributeRepr`
 
-- <span id="attributerepr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="attributerepr-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for AttributeRepr`
 
@@ -672,15 +1012,53 @@ Used in [`Attribute::Repr`](#attributerepr).
 
 ##### `impl Eq for AttributeRepr`
 
+##### `impl<T> From for AttributeRepr`
+
+- <span id="attributerepr-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AttributeRepr`
+
+- <span id="attributerepr-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for AttributeRepr`
 
-- <span id="attributerepr-eq"></span>`fn eq(&self, other: &AttributeRepr) -> bool` — [`AttributeRepr`](#attributerepr)
+- <span id="attributerepr-partialeq-eq"></span>`fn eq(&self, other: &AttributeRepr) -> bool` — [`AttributeRepr`](#attributerepr)
 
 ##### `impl Serialize for AttributeRepr`
 
 - <span id="attributerepr-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for AttributeRepr`
+
+##### `impl ToOwned for AttributeRepr`
+
+- <span id="attributerepr-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="attributerepr-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="attributerepr-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AttributeRepr`
+
+- <span id="attributerepr-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="attributerepr-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AttributeRepr`
+
+- <span id="attributerepr-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="attributerepr-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Span`
 
@@ -712,13 +1090,29 @@ A range of source code.
 
 #### Trait Implementations
 
+##### `impl Any for Span`
+
+- <span id="span-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Span`
+
+- <span id="span-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Span`
+
+- <span id="span-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Span`
 
 - <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](#span)
 
+##### `impl CloneToUninit for Span`
+
+- <span id="span-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Span`
 
-- <span id="span-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="span-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Span`
 
@@ -728,19 +1122,57 @@ A range of source code.
 
 ##### `impl Eq for Span`
 
+##### `impl<T> From for Span`
+
+- <span id="span-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Span`
 
 - <span id="span-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Span`
+
+- <span id="span-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Span`
 
-- <span id="span-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](#span)
+- <span id="span-partialeq-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](#span)
 
 ##### `impl Serialize for Span`
 
 - <span id="span-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Span`
+
+##### `impl ToOwned for Span`
+
+- <span id="span-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="span-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="span-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Span`
+
+- <span id="span-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="span-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Span`
+
+- <span id="span-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="span-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Deprecation`
 
@@ -767,13 +1199,29 @@ Information about the deprecation of an [`Item`](#item).
 
 #### Trait Implementations
 
+##### `impl Any for Deprecation`
+
+- <span id="deprecation-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Deprecation`
+
+- <span id="deprecation-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Deprecation`
+
+- <span id="deprecation-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Deprecation`
 
 - <span id="deprecation-clone"></span>`fn clone(&self) -> Deprecation` — [`Deprecation`](#deprecation)
 
+##### `impl CloneToUninit for Deprecation`
+
+- <span id="deprecation-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Deprecation`
 
-- <span id="deprecation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="deprecation-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Deprecation`
 
@@ -783,19 +1231,57 @@ Information about the deprecation of an [`Item`](#item).
 
 ##### `impl Eq for Deprecation`
 
+##### `impl<T> From for Deprecation`
+
+- <span id="deprecation-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Deprecation`
 
 - <span id="deprecation-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Deprecation`
+
+- <span id="deprecation-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Deprecation`
 
-- <span id="deprecation-eq"></span>`fn eq(&self, other: &Deprecation) -> bool` — [`Deprecation`](#deprecation)
+- <span id="deprecation-partialeq-eq"></span>`fn eq(&self, other: &Deprecation) -> bool` — [`Deprecation`](#deprecation)
 
 ##### `impl Serialize for Deprecation`
 
 - <span id="deprecation-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Deprecation`
+
+##### `impl ToOwned for Deprecation`
+
+- <span id="deprecation-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="deprecation-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="deprecation-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Deprecation`
+
+- <span id="deprecation-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="deprecation-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Deprecation`
+
+- <span id="deprecation-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="deprecation-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DynTrait`
 
@@ -828,13 +1314,29 @@ Dynamic trait object type (`dyn Trait`).
 
 #### Trait Implementations
 
+##### `impl Any for DynTrait`
+
+- <span id="dyntrait-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DynTrait`
+
+- <span id="dyntrait-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DynTrait`
+
+- <span id="dyntrait-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DynTrait`
 
 - <span id="dyntrait-clone"></span>`fn clone(&self) -> DynTrait` — [`DynTrait`](#dyntrait)
 
+##### `impl CloneToUninit for DynTrait`
+
+- <span id="dyntrait-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for DynTrait`
 
-- <span id="dyntrait-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyntrait-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for DynTrait`
 
@@ -844,19 +1346,57 @@ Dynamic trait object type (`dyn Trait`).
 
 ##### `impl Eq for DynTrait`
 
+##### `impl<T> From for DynTrait`
+
+- <span id="dyntrait-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for DynTrait`
 
 - <span id="dyntrait-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for DynTrait`
+
+- <span id="dyntrait-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for DynTrait`
 
-- <span id="dyntrait-eq"></span>`fn eq(&self, other: &DynTrait) -> bool` — [`DynTrait`](#dyntrait)
+- <span id="dyntrait-partialeq-eq"></span>`fn eq(&self, other: &DynTrait) -> bool` — [`DynTrait`](#dyntrait)
 
 ##### `impl Serialize for DynTrait`
 
 - <span id="dyntrait-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for DynTrait`
+
+##### `impl ToOwned for DynTrait`
+
+- <span id="dyntrait-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dyntrait-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dyntrait-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DynTrait`
+
+- <span id="dyntrait-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyntrait-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DynTrait`
+
+- <span id="dyntrait-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyntrait-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PolyTrait`
 
@@ -887,13 +1427,29 @@ A trait and potential HRTBs
 
 #### Trait Implementations
 
+##### `impl Any for PolyTrait`
+
+- <span id="polytrait-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PolyTrait`
+
+- <span id="polytrait-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PolyTrait`
+
+- <span id="polytrait-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for PolyTrait`
 
 - <span id="polytrait-clone"></span>`fn clone(&self) -> PolyTrait` — [`PolyTrait`](#polytrait)
 
+##### `impl CloneToUninit for PolyTrait`
+
+- <span id="polytrait-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for PolyTrait`
 
-- <span id="polytrait-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="polytrait-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for PolyTrait`
 
@@ -903,19 +1459,57 @@ A trait and potential HRTBs
 
 ##### `impl Eq for PolyTrait`
 
+##### `impl<T> From for PolyTrait`
+
+- <span id="polytrait-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for PolyTrait`
 
 - <span id="polytrait-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for PolyTrait`
+
+- <span id="polytrait-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for PolyTrait`
 
-- <span id="polytrait-eq"></span>`fn eq(&self, other: &PolyTrait) -> bool` — [`PolyTrait`](#polytrait)
+- <span id="polytrait-partialeq-eq"></span>`fn eq(&self, other: &PolyTrait) -> bool` — [`PolyTrait`](#polytrait)
 
 ##### `impl Serialize for PolyTrait`
 
 - <span id="polytrait-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for PolyTrait`
+
+##### `impl ToOwned for PolyTrait`
+
+- <span id="polytrait-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="polytrait-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="polytrait-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PolyTrait`
+
+- <span id="polytrait-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="polytrait-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PolyTrait`
+
+- <span id="polytrait-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="polytrait-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Constant`
 
@@ -949,13 +1543,29 @@ A constant.
 
 #### Trait Implementations
 
+##### `impl Any for Constant`
+
+- <span id="constant-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Constant`
+
+- <span id="constant-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Constant`
+
+- <span id="constant-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Constant`
 
 - <span id="constant-clone"></span>`fn clone(&self) -> Constant` — [`Constant`](#constant)
 
+##### `impl CloneToUninit for Constant`
+
+- <span id="constant-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Constant`
 
-- <span id="constant-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="constant-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Constant`
 
@@ -965,19 +1575,57 @@ A constant.
 
 ##### `impl Eq for Constant`
 
+##### `impl<T> From for Constant`
+
+- <span id="constant-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Constant`
 
 - <span id="constant-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Constant`
+
+- <span id="constant-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Constant`
 
-- <span id="constant-eq"></span>`fn eq(&self, other: &Constant) -> bool` — [`Constant`](#constant)
+- <span id="constant-partialeq-eq"></span>`fn eq(&self, other: &Constant) -> bool` — [`Constant`](#constant)
 
 ##### `impl Serialize for Constant`
 
 - <span id="constant-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Constant`
+
+##### `impl ToOwned for Constant`
+
+- <span id="constant-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="constant-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="constant-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Constant`
+
+- <span id="constant-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="constant-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Constant`
+
+- <span id="constant-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="constant-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AssocItemConstraint`
 
@@ -1015,13 +1663,29 @@ IntoIterator<Item = u32, IntoIter: Clone>
 
 #### Trait Implementations
 
+##### `impl Any for AssocItemConstraint`
+
+- <span id="associtemconstraint-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AssocItemConstraint`
+
+- <span id="associtemconstraint-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AssocItemConstraint`
+
+- <span id="associtemconstraint-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for AssocItemConstraint`
 
 - <span id="associtemconstraint-clone"></span>`fn clone(&self) -> AssocItemConstraint` — [`AssocItemConstraint`](#associtemconstraint)
 
+##### `impl CloneToUninit for AssocItemConstraint`
+
+- <span id="associtemconstraint-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for AssocItemConstraint`
 
-- <span id="associtemconstraint-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="associtemconstraint-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for AssocItemConstraint`
 
@@ -1031,19 +1695,57 @@ IntoIterator<Item = u32, IntoIter: Clone>
 
 ##### `impl Eq for AssocItemConstraint`
 
+##### `impl<T> From for AssocItemConstraint`
+
+- <span id="associtemconstraint-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for AssocItemConstraint`
 
 - <span id="associtemconstraint-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for AssocItemConstraint`
+
+- <span id="associtemconstraint-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for AssocItemConstraint`
 
-- <span id="associtemconstraint-eq"></span>`fn eq(&self, other: &AssocItemConstraint) -> bool` — [`AssocItemConstraint`](#associtemconstraint)
+- <span id="associtemconstraint-partialeq-eq"></span>`fn eq(&self, other: &AssocItemConstraint) -> bool` — [`AssocItemConstraint`](#associtemconstraint)
 
 ##### `impl Serialize for AssocItemConstraint`
 
 - <span id="associtemconstraint-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for AssocItemConstraint`
+
+##### `impl ToOwned for AssocItemConstraint`
+
+- <span id="associtemconstraint-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="associtemconstraint-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="associtemconstraint-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AssocItemConstraint`
+
+- <span id="associtemconstraint-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="associtemconstraint-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AssocItemConstraint`
+
+- <span id="associtemconstraint-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="associtemconstraint-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Id`
 
@@ -1067,15 +1769,31 @@ to parse them, or otherwise depend on any implementation details.
 
 #### Trait Implementations
 
+##### `impl Any for Id`
+
+- <span id="id-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Id`
+
+- <span id="id-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Id`
+
+- <span id="id-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Id`
 
 - <span id="id-clone"></span>`fn clone(&self) -> Id` — [`Id`](#id)
+
+##### `impl CloneToUninit for Id`
+
+- <span id="id-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Id`
 
 ##### `impl Debug for Id`
 
-- <span id="id-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="id-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Id`
 
@@ -1085,27 +1803,65 @@ to parse them, or otherwise depend on any implementation details.
 
 ##### `impl Eq for Id`
 
+##### `impl<T> From for Id`
+
+- <span id="id-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Id`
 
 - <span id="id-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Id`
+
+- <span id="id-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Id`
 
-- <span id="id-cmp"></span>`fn cmp(&self, other: &Id) -> cmp::Ordering` — [`Id`](#id)
+- <span id="id-ord-cmp"></span>`fn cmp(&self, other: &Id) -> cmp::Ordering` — [`Id`](#id)
 
 ##### `impl PartialEq for Id`
 
-- <span id="id-eq"></span>`fn eq(&self, other: &Id) -> bool` — [`Id`](#id)
+- <span id="id-partialeq-eq"></span>`fn eq(&self, other: &Id) -> bool` — [`Id`](#id)
 
 ##### `impl PartialOrd for Id`
 
-- <span id="id-partial-cmp"></span>`fn partial_cmp(&self, other: &Id) -> option::Option<cmp::Ordering>` — [`Id`](#id)
+- <span id="id-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Id) -> option::Option<cmp::Ordering>` — [`Id`](#id)
 
 ##### `impl Serialize for Id`
 
 - <span id="id-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Id`
+
+##### `impl ToOwned for Id`
+
+- <span id="id-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="id-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="id-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Id`
+
+- <span id="id-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="id-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Id`
+
+- <span id="id-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="id-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Module`
 
@@ -1141,13 +1897,29 @@ A module declaration, e.g. `mod foo;` or `mod foo {}`.
 
 #### Trait Implementations
 
+##### `impl Any for Module`
+
+- <span id="module-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Module`
+
+- <span id="module-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Module`
+
+- <span id="module-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Module`
 
 - <span id="module-clone"></span>`fn clone(&self) -> Module` — [`Module`](#module)
 
+##### `impl CloneToUninit for Module`
+
+- <span id="module-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Module`
 
-- <span id="module-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="module-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Module`
 
@@ -1157,19 +1929,57 @@ A module declaration, e.g. `mod foo;` or `mod foo {}`.
 
 ##### `impl Eq for Module`
 
+##### `impl<T> From for Module`
+
+- <span id="module-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Module`
 
 - <span id="module-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Module`
+
+- <span id="module-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Module`
 
-- <span id="module-eq"></span>`fn eq(&self, other: &Module) -> bool` — [`Module`](#module)
+- <span id="module-partialeq-eq"></span>`fn eq(&self, other: &Module) -> bool` — [`Module`](#module)
 
 ##### `impl Serialize for Module`
 
 - <span id="module-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Module`
+
+##### `impl ToOwned for Module`
+
+- <span id="module-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="module-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="module-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Module`
+
+- <span id="module-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="module-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Module`
+
+- <span id="module-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="module-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Union`
 
@@ -1210,13 +2020,29 @@ A `union`.
 
 #### Trait Implementations
 
+##### `impl Any for Union`
+
+- <span id="union-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Union`
+
+- <span id="union-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Union`
+
+- <span id="union-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Union`
 
 - <span id="union-clone"></span>`fn clone(&self) -> Union` — [`Union`](#union)
 
+##### `impl CloneToUninit for Union`
+
+- <span id="union-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Union`
 
-- <span id="union-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="union-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Union`
 
@@ -1226,19 +2052,57 @@ A `union`.
 
 ##### `impl Eq for Union`
 
+##### `impl<T> From for Union`
+
+- <span id="union-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Union`
 
 - <span id="union-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Union`
+
+- <span id="union-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Union`
 
-- <span id="union-eq"></span>`fn eq(&self, other: &Union) -> bool` — [`Union`](#union)
+- <span id="union-partialeq-eq"></span>`fn eq(&self, other: &Union) -> bool` — [`Union`](#union)
 
 ##### `impl Serialize for Union`
 
 - <span id="union-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Union`
+
+##### `impl ToOwned for Union`
+
+- <span id="union-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="union-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="union-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Union`
+
+- <span id="union-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="union-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Union`
+
+- <span id="union-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="union-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Struct`
 
@@ -1272,13 +2136,29 @@ A `struct`.
 
 #### Trait Implementations
 
+##### `impl Any for Struct`
+
+- <span id="struct-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Struct`
+
+- <span id="struct-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Struct`
+
+- <span id="struct-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Struct`
 
 - <span id="struct-clone"></span>`fn clone(&self) -> Struct` — [`Struct`](#struct)
 
+##### `impl CloneToUninit for Struct`
+
+- <span id="struct-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Struct`
 
-- <span id="struct-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="struct-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Struct`
 
@@ -1288,19 +2168,57 @@ A `struct`.
 
 ##### `impl Eq for Struct`
 
+##### `impl<T> From for Struct`
+
+- <span id="struct-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Struct`
 
 - <span id="struct-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Struct`
+
+- <span id="struct-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Struct`
 
-- <span id="struct-eq"></span>`fn eq(&self, other: &Struct) -> bool` — [`Struct`](#struct)
+- <span id="struct-partialeq-eq"></span>`fn eq(&self, other: &Struct) -> bool` — [`Struct`](#struct)
 
 ##### `impl Serialize for Struct`
 
 - <span id="struct-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Struct`
+
+##### `impl ToOwned for Struct`
+
+- <span id="struct-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="struct-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="struct-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Struct`
+
+- <span id="struct-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="struct-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Struct`
+
+- <span id="struct-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="struct-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Enum`
 
@@ -1339,13 +2257,29 @@ An `enum`.
 
 #### Trait Implementations
 
+##### `impl Any for Enum`
+
+- <span id="enum-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Enum`
+
+- <span id="enum-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Enum`
+
+- <span id="enum-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Enum`
 
 - <span id="enum-clone"></span>`fn clone(&self) -> Enum` — [`Enum`](#enum)
 
+##### `impl CloneToUninit for Enum`
+
+- <span id="enum-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Enum`
 
-- <span id="enum-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="enum-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Enum`
 
@@ -1355,19 +2289,57 @@ An `enum`.
 
 ##### `impl Eq for Enum`
 
+##### `impl<T> From for Enum`
+
+- <span id="enum-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Enum`
 
 - <span id="enum-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Enum`
+
+- <span id="enum-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Enum`
 
-- <span id="enum-eq"></span>`fn eq(&self, other: &Enum) -> bool` — [`Enum`](#enum)
+- <span id="enum-partialeq-eq"></span>`fn eq(&self, other: &Enum) -> bool` — [`Enum`](#enum)
 
 ##### `impl Serialize for Enum`
 
 - <span id="enum-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Enum`
+
+##### `impl ToOwned for Enum`
+
+- <span id="enum-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="enum-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="enum-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Enum`
+
+- <span id="enum-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="enum-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Enum`
+
+- <span id="enum-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="enum-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Variant`
 
@@ -1394,13 +2366,29 @@ A variant of an enum.
 
 #### Trait Implementations
 
+##### `impl Any for Variant`
+
+- <span id="variant-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Variant`
+
+- <span id="variant-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Variant`
+
+- <span id="variant-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Variant`
 
 - <span id="variant-clone"></span>`fn clone(&self) -> Variant` — [`Variant`](#variant)
 
+##### `impl CloneToUninit for Variant`
+
+- <span id="variant-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Variant`
 
-- <span id="variant-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="variant-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Variant`
 
@@ -1410,19 +2398,57 @@ A variant of an enum.
 
 ##### `impl Eq for Variant`
 
+##### `impl<T> From for Variant`
+
+- <span id="variant-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Variant`
 
 - <span id="variant-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Variant`
+
+- <span id="variant-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Variant`
 
-- <span id="variant-eq"></span>`fn eq(&self, other: &Variant) -> bool` — [`Variant`](#variant)
+- <span id="variant-partialeq-eq"></span>`fn eq(&self, other: &Variant) -> bool` — [`Variant`](#variant)
 
 ##### `impl Serialize for Variant`
 
 - <span id="variant-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Variant`
+
+##### `impl ToOwned for Variant`
+
+- <span id="variant-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="variant-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="variant-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Variant`
+
+- <span id="variant-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="variant-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Variant`
+
+- <span id="variant-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="variant-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Discriminant`
 
@@ -1458,13 +2484,29 @@ The value that distinguishes a variant in an [`Enum`](#enum) from other variants
 
 #### Trait Implementations
 
+##### `impl Any for Discriminant`
+
+- <span id="discriminant-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Discriminant`
+
+- <span id="discriminant-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Discriminant`
+
+- <span id="discriminant-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Discriminant`
 
 - <span id="discriminant-clone"></span>`fn clone(&self) -> Discriminant` — [`Discriminant`](#discriminant)
 
+##### `impl CloneToUninit for Discriminant`
+
+- <span id="discriminant-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Discriminant`
 
-- <span id="discriminant-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="discriminant-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Discriminant`
 
@@ -1474,19 +2516,57 @@ The value that distinguishes a variant in an [`Enum`](#enum) from other variants
 
 ##### `impl Eq for Discriminant`
 
+##### `impl<T> From for Discriminant`
+
+- <span id="discriminant-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Discriminant`
 
 - <span id="discriminant-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Discriminant`
+
+- <span id="discriminant-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Discriminant`
 
-- <span id="discriminant-eq"></span>`fn eq(&self, other: &Discriminant) -> bool` — [`Discriminant`](#discriminant)
+- <span id="discriminant-partialeq-eq"></span>`fn eq(&self, other: &Discriminant) -> bool` — [`Discriminant`](#discriminant)
 
 ##### `impl Serialize for Discriminant`
 
 - <span id="discriminant-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Discriminant`
+
+##### `impl ToOwned for Discriminant`
+
+- <span id="discriminant-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="discriminant-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="discriminant-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Discriminant`
+
+- <span id="discriminant-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="discriminant-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Discriminant`
+
+- <span id="discriminant-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="discriminant-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FunctionHeader`
 
@@ -1523,13 +2603,29 @@ A set of fundamental properties of a function.
 
 #### Trait Implementations
 
+##### `impl Any for FunctionHeader`
+
+- <span id="functionheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FunctionHeader`
+
+- <span id="functionheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FunctionHeader`
+
+- <span id="functionheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for FunctionHeader`
 
 - <span id="functionheader-clone"></span>`fn clone(&self) -> FunctionHeader` — [`FunctionHeader`](#functionheader)
 
+##### `impl CloneToUninit for FunctionHeader`
+
+- <span id="functionheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for FunctionHeader`
 
-- <span id="functionheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="functionheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for FunctionHeader`
 
@@ -1539,19 +2635,57 @@ A set of fundamental properties of a function.
 
 ##### `impl Eq for FunctionHeader`
 
+##### `impl<T> From for FunctionHeader`
+
+- <span id="functionheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for FunctionHeader`
 
 - <span id="functionheader-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for FunctionHeader`
+
+- <span id="functionheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for FunctionHeader`
 
-- <span id="functionheader-eq"></span>`fn eq(&self, other: &FunctionHeader) -> bool` — [`FunctionHeader`](#functionheader)
+- <span id="functionheader-partialeq-eq"></span>`fn eq(&self, other: &FunctionHeader) -> bool` — [`FunctionHeader`](#functionheader)
 
 ##### `impl Serialize for FunctionHeader`
 
 - <span id="functionheader-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for FunctionHeader`
+
+##### `impl ToOwned for FunctionHeader`
+
+- <span id="functionheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="functionheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="functionheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FunctionHeader`
+
+- <span id="functionheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="functionheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FunctionHeader`
+
+- <span id="functionheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="functionheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Function`
 
@@ -1588,13 +2722,29 @@ A function declaration (including methods and other associated functions).
 
 #### Trait Implementations
 
+##### `impl Any for Function`
+
+- <span id="function-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Function`
+
+- <span id="function-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Function`
+
+- <span id="function-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Function`
 
 - <span id="function-clone"></span>`fn clone(&self) -> Function` — [`Function`](#function)
 
+##### `impl CloneToUninit for Function`
+
+- <span id="function-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Function`
 
-- <span id="function-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="function-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Function`
 
@@ -1604,19 +2754,57 @@ A function declaration (including methods and other associated functions).
 
 ##### `impl Eq for Function`
 
+##### `impl<T> From for Function`
+
+- <span id="function-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Function`
 
 - <span id="function-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Function`
+
+- <span id="function-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Function`
 
-- <span id="function-eq"></span>`fn eq(&self, other: &Function) -> bool` — [`Function`](#function)
+- <span id="function-partialeq-eq"></span>`fn eq(&self, other: &Function) -> bool` — [`Function`](#function)
 
 ##### `impl Serialize for Function`
 
 - <span id="function-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Function`
+
+##### `impl ToOwned for Function`
+
+- <span id="function-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="function-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="function-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Function`
+
+- <span id="function-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="function-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Function`
+
+- <span id="function-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="function-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Generics`
 
@@ -1643,13 +2831,29 @@ Generic parameters accepted by an item and `where` clauses imposed on it and the
 
 #### Trait Implementations
 
+##### `impl Any for Generics`
+
+- <span id="generics-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Generics`
+
+- <span id="generics-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Generics`
+
+- <span id="generics-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Generics`
 
 - <span id="generics-clone"></span>`fn clone(&self) -> Generics` — [`Generics`](#generics)
 
+##### `impl CloneToUninit for Generics`
+
+- <span id="generics-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Generics`
 
-- <span id="generics-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="generics-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Generics`
 
@@ -1659,19 +2863,57 @@ Generic parameters accepted by an item and `where` clauses imposed on it and the
 
 ##### `impl Eq for Generics`
 
+##### `impl<T> From for Generics`
+
+- <span id="generics-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Generics`
 
 - <span id="generics-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Generics`
+
+- <span id="generics-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Generics`
 
-- <span id="generics-eq"></span>`fn eq(&self, other: &Generics) -> bool` — [`Generics`](#generics)
+- <span id="generics-partialeq-eq"></span>`fn eq(&self, other: &Generics) -> bool` — [`Generics`](#generics)
 
 ##### `impl Serialize for Generics`
 
 - <span id="generics-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Generics`
+
+##### `impl ToOwned for Generics`
+
+- <span id="generics-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="generics-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="generics-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Generics`
+
+- <span id="generics-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="generics-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Generics`
+
+- <span id="generics-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="generics-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `GenericParamDef`
 
@@ -1703,13 +2945,29 @@ One generic parameter accepted by an item.
 
 #### Trait Implementations
 
+##### `impl Any for GenericParamDef`
+
+- <span id="genericparamdef-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for GenericParamDef`
+
+- <span id="genericparamdef-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for GenericParamDef`
+
+- <span id="genericparamdef-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for GenericParamDef`
 
 - <span id="genericparamdef-clone"></span>`fn clone(&self) -> GenericParamDef` — [`GenericParamDef`](#genericparamdef)
 
+##### `impl CloneToUninit for GenericParamDef`
+
+- <span id="genericparamdef-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for GenericParamDef`
 
-- <span id="genericparamdef-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="genericparamdef-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for GenericParamDef`
 
@@ -1719,19 +2977,57 @@ One generic parameter accepted by an item.
 
 ##### `impl Eq for GenericParamDef`
 
+##### `impl<T> From for GenericParamDef`
+
+- <span id="genericparamdef-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for GenericParamDef`
 
 - <span id="genericparamdef-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for GenericParamDef`
+
+- <span id="genericparamdef-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for GenericParamDef`
 
-- <span id="genericparamdef-eq"></span>`fn eq(&self, other: &GenericParamDef) -> bool` — [`GenericParamDef`](#genericparamdef)
+- <span id="genericparamdef-partialeq-eq"></span>`fn eq(&self, other: &GenericParamDef) -> bool` — [`GenericParamDef`](#genericparamdef)
 
 ##### `impl Serialize for GenericParamDef`
 
 - <span id="genericparamdef-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for GenericParamDef`
+
+##### `impl ToOwned for GenericParamDef`
+
+- <span id="genericparamdef-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="genericparamdef-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="genericparamdef-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for GenericParamDef`
+
+- <span id="genericparamdef-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="genericparamdef-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for GenericParamDef`
+
+- <span id="genericparamdef-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="genericparamdef-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Path`
 
@@ -1778,13 +3074,29 @@ A type that has a simple path to it. This is the kind of type of structs, unions
 
 #### Trait Implementations
 
+##### `impl Any for Path`
+
+- <span id="path-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Path`
+
+- <span id="path-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Path`
+
+- <span id="path-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Path`
 
 - <span id="path-clone"></span>`fn clone(&self) -> Path` — [`Path`](#path)
 
+##### `impl CloneToUninit for Path`
+
+- <span id="path-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Path`
 
-- <span id="path-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="path-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Path`
 
@@ -1794,19 +3106,57 @@ A type that has a simple path to it. This is the kind of type of structs, unions
 
 ##### `impl Eq for Path`
 
+##### `impl<T> From for Path`
+
+- <span id="path-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Path`
 
 - <span id="path-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Path`
+
+- <span id="path-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Path`
 
-- <span id="path-eq"></span>`fn eq(&self, other: &Path) -> bool` — [`Path`](#path)
+- <span id="path-partialeq-eq"></span>`fn eq(&self, other: &Path) -> bool` — [`Path`](#path)
 
 ##### `impl Serialize for Path`
 
 - <span id="path-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Path`
+
+##### `impl ToOwned for Path`
+
+- <span id="path-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="path-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="path-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Path`
+
+- <span id="path-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="path-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Path`
+
+- <span id="path-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="path-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FunctionPointer`
 
@@ -1843,13 +3193,29 @@ A type that is a function pointer.
 
 #### Trait Implementations
 
+##### `impl Any for FunctionPointer`
+
+- <span id="functionpointer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FunctionPointer`
+
+- <span id="functionpointer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FunctionPointer`
+
+- <span id="functionpointer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for FunctionPointer`
 
 - <span id="functionpointer-clone"></span>`fn clone(&self) -> FunctionPointer` — [`FunctionPointer`](#functionpointer)
 
+##### `impl CloneToUninit for FunctionPointer`
+
+- <span id="functionpointer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for FunctionPointer`
 
-- <span id="functionpointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="functionpointer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for FunctionPointer`
 
@@ -1859,19 +3225,57 @@ A type that is a function pointer.
 
 ##### `impl Eq for FunctionPointer`
 
+##### `impl<T> From for FunctionPointer`
+
+- <span id="functionpointer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for FunctionPointer`
 
 - <span id="functionpointer-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for FunctionPointer`
+
+- <span id="functionpointer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for FunctionPointer`
 
-- <span id="functionpointer-eq"></span>`fn eq(&self, other: &FunctionPointer) -> bool` — [`FunctionPointer`](#functionpointer)
+- <span id="functionpointer-partialeq-eq"></span>`fn eq(&self, other: &FunctionPointer) -> bool` — [`FunctionPointer`](#functionpointer)
 
 ##### `impl Serialize for FunctionPointer`
 
 - <span id="functionpointer-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for FunctionPointer`
+
+##### `impl ToOwned for FunctionPointer`
+
+- <span id="functionpointer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="functionpointer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="functionpointer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FunctionPointer`
+
+- <span id="functionpointer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="functionpointer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FunctionPointer`
+
+- <span id="functionpointer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="functionpointer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FunctionSignature`
 
@@ -1910,13 +3314,29 @@ The signature of a function.
 
 #### Trait Implementations
 
+##### `impl Any for FunctionSignature`
+
+- <span id="functionsignature-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FunctionSignature`
+
+- <span id="functionsignature-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FunctionSignature`
+
+- <span id="functionsignature-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for FunctionSignature`
 
 - <span id="functionsignature-clone"></span>`fn clone(&self) -> FunctionSignature` — [`FunctionSignature`](#functionsignature)
 
+##### `impl CloneToUninit for FunctionSignature`
+
+- <span id="functionsignature-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for FunctionSignature`
 
-- <span id="functionsignature-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="functionsignature-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for FunctionSignature`
 
@@ -1926,19 +3346,57 @@ The signature of a function.
 
 ##### `impl Eq for FunctionSignature`
 
+##### `impl<T> From for FunctionSignature`
+
+- <span id="functionsignature-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for FunctionSignature`
 
 - <span id="functionsignature-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for FunctionSignature`
+
+- <span id="functionsignature-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for FunctionSignature`
 
-- <span id="functionsignature-eq"></span>`fn eq(&self, other: &FunctionSignature) -> bool` — [`FunctionSignature`](#functionsignature)
+- <span id="functionsignature-partialeq-eq"></span>`fn eq(&self, other: &FunctionSignature) -> bool` — [`FunctionSignature`](#functionsignature)
 
 ##### `impl Serialize for FunctionSignature`
 
 - <span id="functionsignature-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for FunctionSignature`
+
+##### `impl ToOwned for FunctionSignature`
+
+- <span id="functionsignature-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="functionsignature-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="functionsignature-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FunctionSignature`
+
+- <span id="functionsignature-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="functionsignature-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FunctionSignature`
+
+- <span id="functionsignature-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="functionsignature-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Trait`
 
@@ -1993,13 +3451,29 @@ A `trait` declaration.
 
 #### Trait Implementations
 
+##### `impl Any for Trait`
+
+- <span id="trait-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Trait`
+
+- <span id="trait-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Trait`
+
+- <span id="trait-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Trait`
 
 - <span id="trait-clone"></span>`fn clone(&self) -> Trait` — [`Trait`](#trait)
 
+##### `impl CloneToUninit for Trait`
+
+- <span id="trait-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Trait`
 
-- <span id="trait-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="trait-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Trait`
 
@@ -2009,19 +3483,57 @@ A `trait` declaration.
 
 ##### `impl Eq for Trait`
 
+##### `impl<T> From for Trait`
+
+- <span id="trait-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Trait`
 
 - <span id="trait-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Trait`
+
+- <span id="trait-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Trait`
 
-- <span id="trait-eq"></span>`fn eq(&self, other: &Trait) -> bool` — [`Trait`](#trait)
+- <span id="trait-partialeq-eq"></span>`fn eq(&self, other: &Trait) -> bool` — [`Trait`](#trait)
 
 ##### `impl Serialize for Trait`
 
 - <span id="trait-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Trait`
+
+##### `impl ToOwned for Trait`
+
+- <span id="trait-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="trait-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="trait-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Trait`
+
+- <span id="trait-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="trait-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Trait`
+
+- <span id="trait-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="trait-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TraitAlias`
 
@@ -2050,13 +3562,29 @@ See [the tracking issue](https://github.com/rust-lang/rust/issues/41517)
 
 #### Trait Implementations
 
+##### `impl Any for TraitAlias`
+
+- <span id="traitalias-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TraitAlias`
+
+- <span id="traitalias-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TraitAlias`
+
+- <span id="traitalias-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for TraitAlias`
 
 - <span id="traitalias-clone"></span>`fn clone(&self) -> TraitAlias` — [`TraitAlias`](#traitalias)
 
+##### `impl CloneToUninit for TraitAlias`
+
+- <span id="traitalias-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for TraitAlias`
 
-- <span id="traitalias-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="traitalias-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for TraitAlias`
 
@@ -2066,19 +3594,57 @@ See [the tracking issue](https://github.com/rust-lang/rust/issues/41517)
 
 ##### `impl Eq for TraitAlias`
 
+##### `impl<T> From for TraitAlias`
+
+- <span id="traitalias-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for TraitAlias`
 
 - <span id="traitalias-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for TraitAlias`
+
+- <span id="traitalias-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for TraitAlias`
 
-- <span id="traitalias-eq"></span>`fn eq(&self, other: &TraitAlias) -> bool` — [`TraitAlias`](#traitalias)
+- <span id="traitalias-partialeq-eq"></span>`fn eq(&self, other: &TraitAlias) -> bool` — [`TraitAlias`](#traitalias)
 
 ##### `impl Serialize for TraitAlias`
 
 - <span id="traitalias-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for TraitAlias`
+
+##### `impl ToOwned for TraitAlias`
+
+- <span id="traitalias-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="traitalias-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="traitalias-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TraitAlias`
+
+- <span id="traitalias-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="traitalias-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TraitAlias`
+
+- <span id="traitalias-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="traitalias-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Impl`
 
@@ -2149,13 +3715,29 @@ An `impl` block.
 
 #### Trait Implementations
 
+##### `impl Any for Impl`
+
+- <span id="impl-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Impl`
+
+- <span id="impl-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Impl`
+
+- <span id="impl-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Impl`
 
 - <span id="impl-clone"></span>`fn clone(&self) -> Impl` — [`Impl`](#impl)
 
+##### `impl CloneToUninit for Impl`
+
+- <span id="impl-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Impl`
 
-- <span id="impl-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="impl-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Impl`
 
@@ -2165,19 +3747,57 @@ An `impl` block.
 
 ##### `impl Eq for Impl`
 
+##### `impl<T> From for Impl`
+
+- <span id="impl-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Impl`
 
 - <span id="impl-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Impl`
+
+- <span id="impl-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Impl`
 
-- <span id="impl-eq"></span>`fn eq(&self, other: &Impl) -> bool` — [`Impl`](#impl)
+- <span id="impl-partialeq-eq"></span>`fn eq(&self, other: &Impl) -> bool` — [`Impl`](#impl)
 
 ##### `impl Serialize for Impl`
 
 - <span id="impl-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Impl`
+
+##### `impl ToOwned for Impl`
+
+- <span id="impl-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="impl-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="impl-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Impl`
+
+- <span id="impl-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="impl-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Impl`
+
+- <span id="impl-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="impl-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Use`
 
@@ -2218,13 +3838,29 @@ A `use` statement.
 
 #### Trait Implementations
 
+##### `impl Any for Use`
+
+- <span id="use-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Use`
+
+- <span id="use-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Use`
+
+- <span id="use-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Use`
 
 - <span id="use-clone"></span>`fn clone(&self) -> Use` — [`Use`](#use)
 
+##### `impl CloneToUninit for Use`
+
+- <span id="use-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Use`
 
-- <span id="use-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="use-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Use`
 
@@ -2234,19 +3870,57 @@ A `use` statement.
 
 ##### `impl Eq for Use`
 
+##### `impl<T> From for Use`
+
+- <span id="use-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Use`
 
 - <span id="use-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Use`
+
+- <span id="use-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Use`
 
-- <span id="use-eq"></span>`fn eq(&self, other: &Use) -> bool` — [`Use`](#use)
+- <span id="use-partialeq-eq"></span>`fn eq(&self, other: &Use) -> bool` — [`Use`](#use)
 
 ##### `impl Serialize for Use`
 
 - <span id="use-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Use`
+
+##### `impl ToOwned for Use`
+
+- <span id="use-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="use-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="use-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Use`
+
+- <span id="use-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="use-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Use`
+
+- <span id="use-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="use-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ProcMacro`
 
@@ -2287,13 +3961,29 @@ A procedural macro.
 
 #### Trait Implementations
 
+##### `impl Any for ProcMacro`
+
+- <span id="procmacro-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ProcMacro`
+
+- <span id="procmacro-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ProcMacro`
+
+- <span id="procmacro-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ProcMacro`
 
 - <span id="procmacro-clone"></span>`fn clone(&self) -> ProcMacro` — [`ProcMacro`](#procmacro)
 
+##### `impl CloneToUninit for ProcMacro`
+
+- <span id="procmacro-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for ProcMacro`
 
-- <span id="procmacro-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="procmacro-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for ProcMacro`
 
@@ -2303,19 +3993,57 @@ A procedural macro.
 
 ##### `impl Eq for ProcMacro`
 
+##### `impl<T> From for ProcMacro`
+
+- <span id="procmacro-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for ProcMacro`
 
 - <span id="procmacro-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for ProcMacro`
+
+- <span id="procmacro-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ProcMacro`
 
-- <span id="procmacro-eq"></span>`fn eq(&self, other: &ProcMacro) -> bool` — [`ProcMacro`](#procmacro)
+- <span id="procmacro-partialeq-eq"></span>`fn eq(&self, other: &ProcMacro) -> bool` — [`ProcMacro`](#procmacro)
 
 ##### `impl Serialize for ProcMacro`
 
 - <span id="procmacro-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ProcMacro`
+
+##### `impl ToOwned for ProcMacro`
+
+- <span id="procmacro-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="procmacro-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="procmacro-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ProcMacro`
+
+- <span id="procmacro-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="procmacro-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ProcMacro`
+
+- <span id="procmacro-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="procmacro-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TypeAlias`
 
@@ -2342,13 +4070,29 @@ A type alias declaration, e.g. `type Pig = std::borrow::Cow<'static, str>;`
 
 #### Trait Implementations
 
+##### `impl Any for TypeAlias`
+
+- <span id="typealias-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TypeAlias`
+
+- <span id="typealias-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TypeAlias`
+
+- <span id="typealias-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for TypeAlias`
 
 - <span id="typealias-clone"></span>`fn clone(&self) -> TypeAlias` — [`TypeAlias`](#typealias)
 
+##### `impl CloneToUninit for TypeAlias`
+
+- <span id="typealias-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for TypeAlias`
 
-- <span id="typealias-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="typealias-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for TypeAlias`
 
@@ -2358,19 +4102,57 @@ A type alias declaration, e.g. `type Pig = std::borrow::Cow<'static, str>;`
 
 ##### `impl Eq for TypeAlias`
 
+##### `impl<T> From for TypeAlias`
+
+- <span id="typealias-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for TypeAlias`
 
 - <span id="typealias-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for TypeAlias`
+
+- <span id="typealias-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for TypeAlias`
 
-- <span id="typealias-eq"></span>`fn eq(&self, other: &TypeAlias) -> bool` — [`TypeAlias`](#typealias)
+- <span id="typealias-partialeq-eq"></span>`fn eq(&self, other: &TypeAlias) -> bool` — [`TypeAlias`](#typealias)
 
 ##### `impl Serialize for TypeAlias`
 
 - <span id="typealias-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for TypeAlias`
+
+##### `impl ToOwned for TypeAlias`
+
+- <span id="typealias-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="typealias-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="typealias-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TypeAlias`
+
+- <span id="typealias-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="typealias-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TypeAlias`
+
+- <span id="typealias-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="typealias-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Static`
 
@@ -2422,13 +4204,29 @@ A `static` declaration.
 
 #### Trait Implementations
 
+##### `impl Any for Static`
+
+- <span id="static-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Static`
+
+- <span id="static-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Static`
+
+- <span id="static-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Static`
 
 - <span id="static-clone"></span>`fn clone(&self) -> Static` — [`Static`](#static)
 
+##### `impl CloneToUninit for Static`
+
+- <span id="static-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Static`
 
-- <span id="static-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="static-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Static`
 
@@ -2438,19 +4236,57 @@ A `static` declaration.
 
 ##### `impl Eq for Static`
 
+##### `impl<T> From for Static`
+
+- <span id="static-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Static`
 
 - <span id="static-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Static`
+
+- <span id="static-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Static`
 
-- <span id="static-eq"></span>`fn eq(&self, other: &Static) -> bool` — [`Static`](#static)
+- <span id="static-partialeq-eq"></span>`fn eq(&self, other: &Static) -> bool` — [`Static`](#static)
 
 ##### `impl Serialize for Static`
 
 - <span id="static-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Static`
+
+##### `impl ToOwned for Static`
+
+- <span id="static-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="static-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="static-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Static`
+
+- <span id="static-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="static-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Static`
+
+- <span id="static-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="static-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Primitive`
 
@@ -2477,13 +4313,29 @@ A primitive type declaration. Declarations of this kind can only come from the c
 
 #### Trait Implementations
 
+##### `impl Any for Primitive`
+
+- <span id="primitive-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Primitive`
+
+- <span id="primitive-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Primitive`
+
+- <span id="primitive-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Primitive`
 
 - <span id="primitive-clone"></span>`fn clone(&self) -> Primitive` — [`Primitive`](#primitive)
 
+##### `impl CloneToUninit for Primitive`
+
+- <span id="primitive-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Primitive`
 
-- <span id="primitive-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="primitive-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Primitive`
 
@@ -2493,19 +4345,57 @@ A primitive type declaration. Declarations of this kind can only come from the c
 
 ##### `impl Eq for Primitive`
 
+##### `impl<T> From for Primitive`
+
+- <span id="primitive-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Primitive`
 
 - <span id="primitive-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Primitive`
+
+- <span id="primitive-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Primitive`
 
-- <span id="primitive-eq"></span>`fn eq(&self, other: &Primitive) -> bool` — [`Primitive`](#primitive)
+- <span id="primitive-partialeq-eq"></span>`fn eq(&self, other: &Primitive) -> bool` — [`Primitive`](#primitive)
 
 ##### `impl Serialize for Primitive`
 
 - <span id="primitive-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Primitive`
+
+##### `impl ToOwned for Primitive`
+
+- <span id="primitive-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="primitive-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="primitive-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Primitive`
+
+- <span id="primitive-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="primitive-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Primitive`
+
+- <span id="primitive-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="primitive-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -2590,13 +4480,29 @@ This doesn't include:
 
 #### Trait Implementations
 
+##### `impl Any for Attribute`
+
+- <span id="attribute-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Attribute`
+
+- <span id="attribute-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Attribute`
+
+- <span id="attribute-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Attribute`
 
 - <span id="attribute-clone"></span>`fn clone(&self) -> Attribute` — [`Attribute`](#attribute)
 
+##### `impl CloneToUninit for Attribute`
+
+- <span id="attribute-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Attribute`
 
-- <span id="attribute-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="attribute-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Attribute`
 
@@ -2606,15 +4512,53 @@ This doesn't include:
 
 ##### `impl Eq for Attribute`
 
+##### `impl<T> From for Attribute`
+
+- <span id="attribute-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Attribute`
+
+- <span id="attribute-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Attribute`
 
-- <span id="attribute-eq"></span>`fn eq(&self, other: &Attribute) -> bool` — [`Attribute`](#attribute)
+- <span id="attribute-partialeq-eq"></span>`fn eq(&self, other: &Attribute) -> bool` — [`Attribute`](#attribute)
 
 ##### `impl Serialize for Attribute`
 
 - <span id="attribute-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Attribute`
+
+##### `impl ToOwned for Attribute`
+
+- <span id="attribute-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="attribute-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="attribute-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Attribute`
+
+- <span id="attribute-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="attribute-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Attribute`
+
+- <span id="attribute-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="attribute-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ReprKind`
 
@@ -2655,13 +4599,29 @@ See [AttributeRepr::kind]`.
 
 #### Trait Implementations
 
+##### `impl Any for ReprKind`
+
+- <span id="reprkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ReprKind`
+
+- <span id="reprkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ReprKind`
+
+- <span id="reprkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ReprKind`
 
 - <span id="reprkind-clone"></span>`fn clone(&self) -> ReprKind` — [`ReprKind`](#reprkind)
 
+##### `impl CloneToUninit for ReprKind`
+
+- <span id="reprkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for ReprKind`
 
-- <span id="reprkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reprkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for ReprKind`
 
@@ -2671,15 +4631,53 @@ See [AttributeRepr::kind]`.
 
 ##### `impl Eq for ReprKind`
 
+##### `impl<T> From for ReprKind`
+
+- <span id="reprkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ReprKind`
+
+- <span id="reprkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ReprKind`
 
-- <span id="reprkind-eq"></span>`fn eq(&self, other: &ReprKind) -> bool` — [`ReprKind`](#reprkind)
+- <span id="reprkind-partialeq-eq"></span>`fn eq(&self, other: &ReprKind) -> bool` — [`ReprKind`](#reprkind)
 
 ##### `impl Serialize for ReprKind`
 
 - <span id="reprkind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ReprKind`
+
+##### `impl ToOwned for ReprKind`
+
+- <span id="reprkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="reprkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="reprkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ReprKind`
+
+- <span id="reprkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="reprkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ReprKind`
+
+- <span id="reprkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="reprkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Visibility`
 
@@ -2720,13 +4718,29 @@ Visibility of an [`Item`](#item).
 
 #### Trait Implementations
 
+##### `impl Any for Visibility`
+
+- <span id="visibility-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Visibility`
+
+- <span id="visibility-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Visibility`
+
+- <span id="visibility-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Visibility`
 
 - <span id="visibility-clone"></span>`fn clone(&self) -> Visibility` — [`Visibility`](#visibility)
 
+##### `impl CloneToUninit for Visibility`
+
+- <span id="visibility-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Visibility`
 
-- <span id="visibility-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="visibility-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Visibility`
 
@@ -2736,19 +4750,57 @@ Visibility of an [`Item`](#item).
 
 ##### `impl Eq for Visibility`
 
+##### `impl<T> From for Visibility`
+
+- <span id="visibility-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Visibility`
 
 - <span id="visibility-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Visibility`
+
+- <span id="visibility-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Visibility`
 
-- <span id="visibility-eq"></span>`fn eq(&self, other: &Visibility) -> bool` — [`Visibility`](#visibility)
+- <span id="visibility-partialeq-eq"></span>`fn eq(&self, other: &Visibility) -> bool` — [`Visibility`](#visibility)
 
 ##### `impl Serialize for Visibility`
 
 - <span id="visibility-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Visibility`
+
+##### `impl ToOwned for Visibility`
+
+- <span id="visibility-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="visibility-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="visibility-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Visibility`
+
+- <span id="visibility-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="visibility-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Visibility`
+
+- <span id="visibility-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="visibility-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `GenericArgs`
 
@@ -2791,13 +4843,29 @@ std::option::Option<u32>
 
 #### Trait Implementations
 
+##### `impl Any for GenericArgs`
+
+- <span id="genericargs-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for GenericArgs`
+
+- <span id="genericargs-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for GenericArgs`
+
+- <span id="genericargs-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for GenericArgs`
 
 - <span id="genericargs-clone"></span>`fn clone(&self) -> GenericArgs` — [`GenericArgs`](#genericargs)
 
+##### `impl CloneToUninit for GenericArgs`
+
+- <span id="genericargs-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for GenericArgs`
 
-- <span id="genericargs-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="genericargs-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for GenericArgs`
 
@@ -2807,19 +4875,57 @@ std::option::Option<u32>
 
 ##### `impl Eq for GenericArgs`
 
+##### `impl<T> From for GenericArgs`
+
+- <span id="genericargs-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for GenericArgs`
 
 - <span id="genericargs-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for GenericArgs`
+
+- <span id="genericargs-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for GenericArgs`
 
-- <span id="genericargs-eq"></span>`fn eq(&self, other: &GenericArgs) -> bool` — [`GenericArgs`](#genericargs)
+- <span id="genericargs-partialeq-eq"></span>`fn eq(&self, other: &GenericArgs) -> bool` — [`GenericArgs`](#genericargs)
 
 ##### `impl Serialize for GenericArgs`
 
 - <span id="genericargs-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for GenericArgs`
+
+##### `impl ToOwned for GenericArgs`
+
+- <span id="genericargs-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="genericargs-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="genericargs-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for GenericArgs`
+
+- <span id="genericargs-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="genericargs-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for GenericArgs`
+
+- <span id="genericargs-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="genericargs-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `GenericArg`
 
@@ -2874,13 +4980,29 @@ Part of [`GenericArgs`](#genericargs).
 
 #### Trait Implementations
 
+##### `impl Any for GenericArg`
+
+- <span id="genericarg-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for GenericArg`
+
+- <span id="genericarg-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for GenericArg`
+
+- <span id="genericarg-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for GenericArg`
 
 - <span id="genericarg-clone"></span>`fn clone(&self) -> GenericArg` — [`GenericArg`](#genericarg)
 
+##### `impl CloneToUninit for GenericArg`
+
+- <span id="genericarg-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for GenericArg`
 
-- <span id="genericarg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="genericarg-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for GenericArg`
 
@@ -2890,19 +5012,57 @@ Part of [`GenericArgs`](#genericargs).
 
 ##### `impl Eq for GenericArg`
 
+##### `impl<T> From for GenericArg`
+
+- <span id="genericarg-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for GenericArg`
 
 - <span id="genericarg-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for GenericArg`
+
+- <span id="genericarg-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for GenericArg`
 
-- <span id="genericarg-eq"></span>`fn eq(&self, other: &GenericArg) -> bool` — [`GenericArg`](#genericarg)
+- <span id="genericarg-partialeq-eq"></span>`fn eq(&self, other: &GenericArg) -> bool` — [`GenericArg`](#genericarg)
 
 ##### `impl Serialize for GenericArg`
 
 - <span id="genericarg-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for GenericArg`
+
+##### `impl ToOwned for GenericArg`
+
+- <span id="genericarg-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="genericarg-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="genericarg-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for GenericArg`
+
+- <span id="genericarg-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="genericarg-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for GenericArg`
+
+- <span id="genericarg-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="genericarg-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AssocItemConstraintKind`
 
@@ -2937,13 +5097,29 @@ The way in which an associate type/constant is bound.
 
 #### Trait Implementations
 
+##### `impl Any for AssocItemConstraintKind`
+
+- <span id="associtemconstraintkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AssocItemConstraintKind`
+
+- <span id="associtemconstraintkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AssocItemConstraintKind`
+
+- <span id="associtemconstraintkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for AssocItemConstraintKind`
 
 - <span id="associtemconstraintkind-clone"></span>`fn clone(&self) -> AssocItemConstraintKind` — [`AssocItemConstraintKind`](#associtemconstraintkind)
 
+##### `impl CloneToUninit for AssocItemConstraintKind`
+
+- <span id="associtemconstraintkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for AssocItemConstraintKind`
 
-- <span id="associtemconstraintkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="associtemconstraintkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for AssocItemConstraintKind`
 
@@ -2953,19 +5129,57 @@ The way in which an associate type/constant is bound.
 
 ##### `impl Eq for AssocItemConstraintKind`
 
+##### `impl<T> From for AssocItemConstraintKind`
+
+- <span id="associtemconstraintkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for AssocItemConstraintKind`
 
 - <span id="associtemconstraintkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for AssocItemConstraintKind`
+
+- <span id="associtemconstraintkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for AssocItemConstraintKind`
 
-- <span id="associtemconstraintkind-eq"></span>`fn eq(&self, other: &AssocItemConstraintKind) -> bool` — [`AssocItemConstraintKind`](#associtemconstraintkind)
+- <span id="associtemconstraintkind-partialeq-eq"></span>`fn eq(&self, other: &AssocItemConstraintKind) -> bool` — [`AssocItemConstraintKind`](#associtemconstraintkind)
 
 ##### `impl Serialize for AssocItemConstraintKind`
 
 - <span id="associtemconstraintkind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for AssocItemConstraintKind`
+
+##### `impl ToOwned for AssocItemConstraintKind`
+
+- <span id="associtemconstraintkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="associtemconstraintkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="associtemconstraintkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AssocItemConstraintKind`
+
+- <span id="associtemconstraintkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="associtemconstraintkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AssocItemConstraintKind`
+
+- <span id="associtemconstraintkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="associtemconstraintkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ItemKind`
 
@@ -3123,15 +5337,31 @@ Part of [`ItemSummary`](#itemsummary).
 
 #### Trait Implementations
 
+##### `impl Any for ItemKind`
+
+- <span id="itemkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ItemKind`
+
+- <span id="itemkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItemKind`
+
+- <span id="itemkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ItemKind`
 
 - <span id="itemkind-clone"></span>`fn clone(&self) -> ItemKind` — [`ItemKind`](#itemkind)
+
+##### `impl CloneToUninit for ItemKind`
+
+- <span id="itemkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ItemKind`
 
 ##### `impl Debug for ItemKind`
 
-- <span id="itemkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="itemkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for ItemKind`
 
@@ -3141,19 +5371,57 @@ Part of [`ItemSummary`](#itemsummary).
 
 ##### `impl Eq for ItemKind`
 
+##### `impl<T> From for ItemKind`
+
+- <span id="itemkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for ItemKind`
 
 - <span id="itemkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for ItemKind`
+
+- <span id="itemkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ItemKind`
 
-- <span id="itemkind-eq"></span>`fn eq(&self, other: &ItemKind) -> bool` — [`ItemKind`](#itemkind)
+- <span id="itemkind-partialeq-eq"></span>`fn eq(&self, other: &ItemKind) -> bool` — [`ItemKind`](#itemkind)
 
 ##### `impl Serialize for ItemKind`
 
 - <span id="itemkind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ItemKind`
+
+##### `impl ToOwned for ItemKind`
+
+- <span id="itemkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itemkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itemkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ItemKind`
+
+- <span id="itemkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itemkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ItemKind`
+
+- <span id="itemkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itemkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ItemEnum`
 
@@ -3297,13 +5565,29 @@ Part of [`Item`](#item).
 
 #### Trait Implementations
 
+##### `impl Any for ItemEnum`
+
+- <span id="itemenum-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ItemEnum`
+
+- <span id="itemenum-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ItemEnum`
+
+- <span id="itemenum-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ItemEnum`
 
 - <span id="itemenum-clone"></span>`fn clone(&self) -> ItemEnum` — [`ItemEnum`](#itemenum)
 
+##### `impl CloneToUninit for ItemEnum`
+
+- <span id="itemenum-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for ItemEnum`
 
-- <span id="itemenum-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="itemenum-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for ItemEnum`
 
@@ -3313,19 +5597,57 @@ Part of [`Item`](#item).
 
 ##### `impl Eq for ItemEnum`
 
+##### `impl<T> From for ItemEnum`
+
+- <span id="itemenum-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for ItemEnum`
 
 - <span id="itemenum-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for ItemEnum`
+
+- <span id="itemenum-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ItemEnum`
 
-- <span id="itemenum-eq"></span>`fn eq(&self, other: &ItemEnum) -> bool` — [`ItemEnum`](#itemenum)
+- <span id="itemenum-partialeq-eq"></span>`fn eq(&self, other: &ItemEnum) -> bool` — [`ItemEnum`](#itemenum)
 
 ##### `impl Serialize for ItemEnum`
 
 - <span id="itemenum-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ItemEnum`
+
+##### `impl ToOwned for ItemEnum`
+
+- <span id="itemenum-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itemenum-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itemenum-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ItemEnum`
+
+- <span id="itemenum-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itemenum-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ItemEnum`
+
+- <span id="itemenum-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itemenum-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StructKind`
 
@@ -3378,13 +5700,29 @@ The kind of a [`Struct`](#struct) and the data specific to it, i.e. fields.
 
 #### Trait Implementations
 
+##### `impl Any for StructKind`
+
+- <span id="structkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StructKind`
+
+- <span id="structkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StructKind`
+
+- <span id="structkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for StructKind`
 
 - <span id="structkind-clone"></span>`fn clone(&self) -> StructKind` — [`StructKind`](#structkind)
 
+##### `impl CloneToUninit for StructKind`
+
+- <span id="structkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for StructKind`
 
-- <span id="structkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="structkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for StructKind`
 
@@ -3394,19 +5732,57 @@ The kind of a [`Struct`](#struct) and the data specific to it, i.e. fields.
 
 ##### `impl Eq for StructKind`
 
+##### `impl<T> From for StructKind`
+
+- <span id="structkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for StructKind`
 
 - <span id="structkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for StructKind`
+
+- <span id="structkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for StructKind`
 
-- <span id="structkind-eq"></span>`fn eq(&self, other: &StructKind) -> bool` — [`StructKind`](#structkind)
+- <span id="structkind-partialeq-eq"></span>`fn eq(&self, other: &StructKind) -> bool` — [`StructKind`](#structkind)
 
 ##### `impl Serialize for StructKind`
 
 - <span id="structkind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for StructKind`
+
+##### `impl ToOwned for StructKind`
+
+- <span id="structkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="structkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="structkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for StructKind`
+
+- <span id="structkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="structkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StructKind`
+
+- <span id="structkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="structkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `VariantKind`
 
@@ -3466,13 +5842,29 @@ The kind of an [`Enum`](#enum) [`Variant`](#variant) and the data specific to it
 
 #### Trait Implementations
 
+##### `impl Any for VariantKind`
+
+- <span id="variantkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for VariantKind`
+
+- <span id="variantkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for VariantKind`
+
+- <span id="variantkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for VariantKind`
 
 - <span id="variantkind-clone"></span>`fn clone(&self) -> VariantKind` — [`VariantKind`](#variantkind)
 
+##### `impl CloneToUninit for VariantKind`
+
+- <span id="variantkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for VariantKind`
 
-- <span id="variantkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="variantkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for VariantKind`
 
@@ -3482,19 +5874,57 @@ The kind of an [`Enum`](#enum) [`Variant`](#variant) and the data specific to it
 
 ##### `impl Eq for VariantKind`
 
+##### `impl<T> From for VariantKind`
+
+- <span id="variantkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for VariantKind`
 
 - <span id="variantkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for VariantKind`
+
+- <span id="variantkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for VariantKind`
 
-- <span id="variantkind-eq"></span>`fn eq(&self, other: &VariantKind) -> bool` — [`VariantKind`](#variantkind)
+- <span id="variantkind-partialeq-eq"></span>`fn eq(&self, other: &VariantKind) -> bool` — [`VariantKind`](#variantkind)
 
 ##### `impl Serialize for VariantKind`
 
 - <span id="variantkind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for VariantKind`
+
+##### `impl ToOwned for VariantKind`
+
+- <span id="variantkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="variantkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="variantkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for VariantKind`
+
+- <span id="variantkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="variantkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for VariantKind`
+
+- <span id="variantkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="variantkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Abi`
 
@@ -3584,13 +6014,29 @@ on unwinding for more info.
 
 #### Trait Implementations
 
+##### `impl Any for Abi`
+
+- <span id="abi-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Abi`
+
+- <span id="abi-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Abi`
+
+- <span id="abi-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Abi`
 
 - <span id="abi-clone"></span>`fn clone(&self) -> Abi` — [`Abi`](#abi)
 
+##### `impl CloneToUninit for Abi`
+
+- <span id="abi-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Abi`
 
-- <span id="abi-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="abi-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Abi`
 
@@ -3600,19 +6046,57 @@ on unwinding for more info.
 
 ##### `impl Eq for Abi`
 
+##### `impl<T> From for Abi`
+
+- <span id="abi-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Abi`
 
 - <span id="abi-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Abi`
+
+- <span id="abi-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Abi`
 
-- <span id="abi-eq"></span>`fn eq(&self, other: &Abi) -> bool` — [`Abi`](#abi)
+- <span id="abi-partialeq-eq"></span>`fn eq(&self, other: &Abi) -> bool` — [`Abi`](#abi)
 
 ##### `impl Serialize for Abi`
 
 - <span id="abi-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Abi`
+
+##### `impl ToOwned for Abi`
+
+- <span id="abi-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="abi-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="abi-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Abi`
+
+- <span id="abi-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="abi-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Abi`
+
+- <span id="abi-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="abi-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `GenericParamDefKind`
 
@@ -3653,13 +6137,29 @@ The kind of a [`GenericParamDef`](#genericparamdef).
 
 #### Trait Implementations
 
+##### `impl Any for GenericParamDefKind`
+
+- <span id="genericparamdefkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for GenericParamDefKind`
+
+- <span id="genericparamdefkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for GenericParamDefKind`
+
+- <span id="genericparamdefkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for GenericParamDefKind`
 
 - <span id="genericparamdefkind-clone"></span>`fn clone(&self) -> GenericParamDefKind` — [`GenericParamDefKind`](#genericparamdefkind)
 
+##### `impl CloneToUninit for GenericParamDefKind`
+
+- <span id="genericparamdefkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for GenericParamDefKind`
 
-- <span id="genericparamdefkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="genericparamdefkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for GenericParamDefKind`
 
@@ -3669,19 +6169,57 @@ The kind of a [`GenericParamDef`](#genericparamdef).
 
 ##### `impl Eq for GenericParamDefKind`
 
+##### `impl<T> From for GenericParamDefKind`
+
+- <span id="genericparamdefkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for GenericParamDefKind`
 
 - <span id="genericparamdefkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for GenericParamDefKind`
+
+- <span id="genericparamdefkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for GenericParamDefKind`
 
-- <span id="genericparamdefkind-eq"></span>`fn eq(&self, other: &GenericParamDefKind) -> bool` — [`GenericParamDefKind`](#genericparamdefkind)
+- <span id="genericparamdefkind-partialeq-eq"></span>`fn eq(&self, other: &GenericParamDefKind) -> bool` — [`GenericParamDefKind`](#genericparamdefkind)
 
 ##### `impl Serialize for GenericParamDefKind`
 
 - <span id="genericparamdefkind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for GenericParamDefKind`
+
+##### `impl ToOwned for GenericParamDefKind`
+
+- <span id="genericparamdefkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="genericparamdefkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="genericparamdefkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for GenericParamDefKind`
+
+- <span id="genericparamdefkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="genericparamdefkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for GenericParamDefKind`
+
+- <span id="genericparamdefkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="genericparamdefkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `WherePredicate`
 
@@ -3727,13 +6265,29 @@ fn default<T>() -> T where T: Default { T::default() }
 
 #### Trait Implementations
 
+##### `impl Any for WherePredicate`
+
+- <span id="wherepredicate-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WherePredicate`
+
+- <span id="wherepredicate-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WherePredicate`
+
+- <span id="wherepredicate-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for WherePredicate`
 
 - <span id="wherepredicate-clone"></span>`fn clone(&self) -> WherePredicate` — [`WherePredicate`](#wherepredicate)
 
+##### `impl CloneToUninit for WherePredicate`
+
+- <span id="wherepredicate-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for WherePredicate`
 
-- <span id="wherepredicate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="wherepredicate-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for WherePredicate`
 
@@ -3743,19 +6297,57 @@ fn default<T>() -> T where T: Default { T::default() }
 
 ##### `impl Eq for WherePredicate`
 
+##### `impl<T> From for WherePredicate`
+
+- <span id="wherepredicate-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for WherePredicate`
 
 - <span id="wherepredicate-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for WherePredicate`
+
+- <span id="wherepredicate-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for WherePredicate`
 
-- <span id="wherepredicate-eq"></span>`fn eq(&self, other: &WherePredicate) -> bool` — [`WherePredicate`](#wherepredicate)
+- <span id="wherepredicate-partialeq-eq"></span>`fn eq(&self, other: &WherePredicate) -> bool` — [`WherePredicate`](#wherepredicate)
 
 ##### `impl Serialize for WherePredicate`
 
 - <span id="wherepredicate-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for WherePredicate`
+
+##### `impl ToOwned for WherePredicate`
+
+- <span id="wherepredicate-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="wherepredicate-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="wherepredicate-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for WherePredicate`
+
+- <span id="wherepredicate-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="wherepredicate-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WherePredicate`
+
+- <span id="wherepredicate-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="wherepredicate-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `GenericBound`
 
@@ -3795,13 +6387,29 @@ Either a trait bound or a lifetime bound.
 
 #### Trait Implementations
 
+##### `impl Any for GenericBound`
+
+- <span id="genericbound-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for GenericBound`
+
+- <span id="genericbound-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for GenericBound`
+
+- <span id="genericbound-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for GenericBound`
 
 - <span id="genericbound-clone"></span>`fn clone(&self) -> GenericBound` — [`GenericBound`](#genericbound)
 
+##### `impl CloneToUninit for GenericBound`
+
+- <span id="genericbound-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for GenericBound`
 
-- <span id="genericbound-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="genericbound-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for GenericBound`
 
@@ -3811,19 +6419,57 @@ Either a trait bound or a lifetime bound.
 
 ##### `impl Eq for GenericBound`
 
+##### `impl<T> From for GenericBound`
+
+- <span id="genericbound-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for GenericBound`
 
 - <span id="genericbound-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for GenericBound`
+
+- <span id="genericbound-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for GenericBound`
 
-- <span id="genericbound-eq"></span>`fn eq(&self, other: &GenericBound) -> bool` — [`GenericBound`](#genericbound)
+- <span id="genericbound-partialeq-eq"></span>`fn eq(&self, other: &GenericBound) -> bool` — [`GenericBound`](#genericbound)
 
 ##### `impl Serialize for GenericBound`
 
 - <span id="genericbound-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for GenericBound`
+
+##### `impl ToOwned for GenericBound`
+
+- <span id="genericbound-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="genericbound-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="genericbound-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for GenericBound`
+
+- <span id="genericbound-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="genericbound-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for GenericBound`
+
+- <span id="genericbound-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="genericbound-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TraitBoundModifier`
 
@@ -3858,15 +6504,31 @@ A set of modifiers applied to a trait.
 
 #### Trait Implementations
 
+##### `impl Any for TraitBoundModifier`
+
+- <span id="traitboundmodifier-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TraitBoundModifier`
+
+- <span id="traitboundmodifier-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TraitBoundModifier`
+
+- <span id="traitboundmodifier-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for TraitBoundModifier`
 
 - <span id="traitboundmodifier-clone"></span>`fn clone(&self) -> TraitBoundModifier` — [`TraitBoundModifier`](#traitboundmodifier)
+
+##### `impl CloneToUninit for TraitBoundModifier`
+
+- <span id="traitboundmodifier-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for TraitBoundModifier`
 
 ##### `impl Debug for TraitBoundModifier`
 
-- <span id="traitboundmodifier-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="traitboundmodifier-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for TraitBoundModifier`
 
@@ -3876,19 +6538,57 @@ A set of modifiers applied to a trait.
 
 ##### `impl Eq for TraitBoundModifier`
 
+##### `impl<T> From for TraitBoundModifier`
+
+- <span id="traitboundmodifier-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for TraitBoundModifier`
 
 - <span id="traitboundmodifier-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for TraitBoundModifier`
+
+- <span id="traitboundmodifier-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for TraitBoundModifier`
 
-- <span id="traitboundmodifier-eq"></span>`fn eq(&self, other: &TraitBoundModifier) -> bool` — [`TraitBoundModifier`](#traitboundmodifier)
+- <span id="traitboundmodifier-partialeq-eq"></span>`fn eq(&self, other: &TraitBoundModifier) -> bool` — [`TraitBoundModifier`](#traitboundmodifier)
 
 ##### `impl Serialize for TraitBoundModifier`
 
 - <span id="traitboundmodifier-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for TraitBoundModifier`
+
+##### `impl ToOwned for TraitBoundModifier`
+
+- <span id="traitboundmodifier-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="traitboundmodifier-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="traitboundmodifier-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TraitBoundModifier`
+
+- <span id="traitboundmodifier-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="traitboundmodifier-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TraitBoundModifier`
+
+- <span id="traitboundmodifier-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="traitboundmodifier-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PreciseCapturingArg`
 
@@ -3921,13 +6621,29 @@ One precise capturing argument. See [the rust reference](https://doc.rust-lang.o
 
 #### Trait Implementations
 
+##### `impl Any for PreciseCapturingArg`
+
+- <span id="precisecapturingarg-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PreciseCapturingArg`
+
+- <span id="precisecapturingarg-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PreciseCapturingArg`
+
+- <span id="precisecapturingarg-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for PreciseCapturingArg`
 
 - <span id="precisecapturingarg-clone"></span>`fn clone(&self) -> PreciseCapturingArg` — [`PreciseCapturingArg`](#precisecapturingarg)
 
+##### `impl CloneToUninit for PreciseCapturingArg`
+
+- <span id="precisecapturingarg-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for PreciseCapturingArg`
 
-- <span id="precisecapturingarg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="precisecapturingarg-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for PreciseCapturingArg`
 
@@ -3937,19 +6653,57 @@ One precise capturing argument. See [the rust reference](https://doc.rust-lang.o
 
 ##### `impl Eq for PreciseCapturingArg`
 
+##### `impl<T> From for PreciseCapturingArg`
+
+- <span id="precisecapturingarg-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for PreciseCapturingArg`
 
 - <span id="precisecapturingarg-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for PreciseCapturingArg`
+
+- <span id="precisecapturingarg-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for PreciseCapturingArg`
 
-- <span id="precisecapturingarg-eq"></span>`fn eq(&self, other: &PreciseCapturingArg) -> bool` — [`PreciseCapturingArg`](#precisecapturingarg)
+- <span id="precisecapturingarg-partialeq-eq"></span>`fn eq(&self, other: &PreciseCapturingArg) -> bool` — [`PreciseCapturingArg`](#precisecapturingarg)
 
 ##### `impl Serialize for PreciseCapturingArg`
 
 - <span id="precisecapturingarg-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for PreciseCapturingArg`
+
+##### `impl ToOwned for PreciseCapturingArg`
+
+- <span id="precisecapturingarg-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="precisecapturingarg-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="precisecapturingarg-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PreciseCapturingArg`
+
+- <span id="precisecapturingarg-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="precisecapturingarg-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PreciseCapturingArg`
+
+- <span id="precisecapturingarg-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="precisecapturingarg-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Term`
 
@@ -3991,13 +6745,29 @@ Either a type or a constant, usually stored as the right-hand side of an equatio
 
 #### Trait Implementations
 
+##### `impl Any for Term`
+
+- <span id="term-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Term`
+
+- <span id="term-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Term`
+
+- <span id="term-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Term`
 
 - <span id="term-clone"></span>`fn clone(&self) -> Term` — [`Term`](#term)
 
+##### `impl CloneToUninit for Term`
+
+- <span id="term-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Term`
 
-- <span id="term-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="term-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Term`
 
@@ -4007,19 +6777,57 @@ Either a type or a constant, usually stored as the right-hand side of an equatio
 
 ##### `impl Eq for Term`
 
+##### `impl<T> From for Term`
+
+- <span id="term-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Term`
 
 - <span id="term-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Term`
+
+- <span id="term-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Term`
 
-- <span id="term-eq"></span>`fn eq(&self, other: &Term) -> bool` — [`Term`](#term)
+- <span id="term-partialeq-eq"></span>`fn eq(&self, other: &Term) -> bool` — [`Term`](#term)
 
 ##### `impl Serialize for Term`
 
 - <span id="term-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Term`
+
+##### `impl ToOwned for Term`
+
+- <span id="term-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="term-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="term-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Term`
+
+- <span id="term-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="term-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Term`
+
+- <span id="term-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="term-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Type`
 
@@ -4126,13 +6934,29 @@ A type.
 
 #### Trait Implementations
 
+##### `impl Any for Type`
+
+- <span id="type-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Type`
+
+- <span id="type-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Type`
+
+- <span id="type-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Type`
 
 - <span id="type-clone"></span>`fn clone(&self) -> Type` — [`Type`](#type)
 
+##### `impl CloneToUninit for Type`
+
+- <span id="type-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Type`
 
-- <span id="type-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="type-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for Type`
 
@@ -4142,19 +6966,57 @@ A type.
 
 ##### `impl Eq for Type`
 
+##### `impl<T> From for Type`
+
+- <span id="type-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Type`
 
 - <span id="type-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Type`
+
+- <span id="type-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Type`
 
-- <span id="type-eq"></span>`fn eq(&self, other: &Type) -> bool` — [`Type`](#type)
+- <span id="type-partialeq-eq"></span>`fn eq(&self, other: &Type) -> bool` — [`Type`](#type)
 
 ##### `impl Serialize for Type`
 
 - <span id="type-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Type`
+
+##### `impl ToOwned for Type`
+
+- <span id="type-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="type-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="type-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Type`
+
+- <span id="type-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="type-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Type`
+
+- <span id="type-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="type-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MacroKind`
 
@@ -4186,15 +7048,31 @@ The way a [`ProcMacro`](#procmacro) is declared to be used.
 
 #### Trait Implementations
 
+##### `impl Any for MacroKind`
+
+- <span id="macrokind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MacroKind`
+
+- <span id="macrokind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MacroKind`
+
+- <span id="macrokind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for MacroKind`
 
 - <span id="macrokind-clone"></span>`fn clone(&self) -> MacroKind` — [`MacroKind`](#macrokind)
+
+##### `impl CloneToUninit for MacroKind`
+
+- <span id="macrokind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for MacroKind`
 
 ##### `impl Debug for MacroKind`
 
-- <span id="macrokind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="macrokind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deserialize for MacroKind`
 
@@ -4204,19 +7082,57 @@ The way a [`ProcMacro`](#procmacro) is declared to be used.
 
 ##### `impl Eq for MacroKind`
 
+##### `impl<T> From for MacroKind`
+
+- <span id="macrokind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for MacroKind`
 
 - <span id="macrokind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for MacroKind`
+
+- <span id="macrokind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for MacroKind`
 
-- <span id="macrokind-eq"></span>`fn eq(&self, other: &MacroKind) -> bool` — [`MacroKind`](#macrokind)
+- <span id="macrokind-partialeq-eq"></span>`fn eq(&self, other: &MacroKind) -> bool` — [`MacroKind`](#macrokind)
 
 ##### `impl Serialize for MacroKind`
 
 - <span id="macrokind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for MacroKind`
+
+##### `impl ToOwned for MacroKind`
+
+- <span id="macrokind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="macrokind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="macrokind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MacroKind`
+
+- <span id="macrokind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="macrokind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MacroKind`
+
+- <span id="macrokind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="macrokind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Constants
 

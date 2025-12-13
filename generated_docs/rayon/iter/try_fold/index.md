@@ -39,13 +39,47 @@ This struct is created by the `try_fold()` method on [`ParallelIterator`](../ind
 
 #### Trait Implementations
 
+##### `impl Any for TryFold<I, U, ID, F>`
+
+- <span id="tryfold-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TryFold<I, U, ID, F>`
+
+- <span id="tryfold-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TryFold<I, U, ID, F>`
+
+- <span id="tryfold-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<I: clone::Clone, U: clone::Clone, ID: clone::Clone, F: clone::Clone> Clone for TryFold<I, U, ID, F>`
 
 - <span id="tryfold-clone"></span>`fn clone(&self) -> TryFold<I, U, ID, F>` — [`TryFold`](#tryfold)
 
+##### `impl CloneToUninit for TryFold<I, U, ID, F>`
+
+- <span id="tryfold-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<U, I: ParallelIterator + Debug, ID, F> Debug for TryFold<I, U, ID, F>`
 
-- <span id="tryfold-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tryfold-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for TryFold<I, U, ID, F>`
+
+- <span id="tryfold-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TryFold<I, U, ID, F>`
+
+- <span id="tryfold-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TryFold<I, U, ID, F>`
 
@@ -55,13 +89,13 @@ This struct is created by the `try_fold()` method on [`ParallelIterator`](../ind
 
 - <span id="tryfold-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="tryfold-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="tryfold-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<U, I, ID, F> ParallelIterator for TryFold<I, U, ID, F>`
 
 - <span id="tryfold-paralleliterator-type-item"></span>`type Item = U`
 
-- <span id="tryfold-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="tryfold-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl Pointable for TryFold<I, U, ID, F>`
 
@@ -69,13 +103,33 @@ This struct is created by the `try_fold()` method on [`ParallelIterator`](../ind
 
 - <span id="tryfold-pointable-type-init"></span>`type Init = T`
 
-- <span id="tryfold-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="tryfold-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="tryfold-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="tryfold-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="tryfold-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="tryfold-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="tryfold-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="tryfold-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for TryFold<I, U, ID, F>`
+
+- <span id="tryfold-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="tryfold-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="tryfold-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TryFold<I, U, ID, F>`
+
+- <span id="tryfold-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tryfold-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TryFold<I, U, ID, F>`
+
+- <span id="tryfold-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tryfold-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TryFoldConsumer<'c, U, C, ID, F>`
 
@@ -92,6 +146,18 @@ struct TryFoldConsumer<'c, U, C, ID, F> {
 
 #### Trait Implementations
 
+##### `impl Any for TryFoldConsumer<'c, U, C, ID, F>`
+
+- <span id="tryfoldconsumer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TryFoldConsumer<'c, U, C, ID, F>`
+
+- <span id="tryfoldconsumer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TryFoldConsumer<'c, U, C, ID, F>`
+
+- <span id="tryfoldconsumer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<U, T, C, ID, F> Consumer for TryFoldConsumer<'r, U, C, ID, F>`
 
 - <span id="tryfoldconsumer-consumer-type-folder"></span>`type Folder = TryFoldFolder<'r, <C as Consumer>::Folder, U, F>`
@@ -100,11 +166,29 @@ struct TryFoldConsumer<'c, U, C, ID, F> {
 
 - <span id="tryfoldconsumer-consumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="tryfoldconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="tryfoldconsumer-consumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="tryfoldconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="tryfoldconsumer-consumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="tryfoldconsumer-full"></span>`fn full(&self) -> bool`
+- <span id="tryfoldconsumer-consumer-full"></span>`fn full(&self) -> bool`
+
+##### `impl<T> From for TryFoldConsumer<'c, U, C, ID, F>`
+
+- <span id="tryfoldconsumer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TryFoldConsumer<'c, U, C, ID, F>`
+
+- <span id="tryfoldconsumer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TryFoldConsumer<'c, U, C, ID, F>`
 
@@ -114,19 +198,31 @@ struct TryFoldConsumer<'c, U, C, ID, F> {
 
 - <span id="tryfoldconsumer-pointable-type-init"></span>`type Init = T`
 
-- <span id="tryfoldconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="tryfoldconsumer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="tryfoldconsumer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="tryfoldconsumer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="tryfoldconsumer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="tryfoldconsumer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="tryfoldconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="tryfoldconsumer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for TryFoldConsumer<'c, U, C, ID, F>`
+
+- <span id="tryfoldconsumer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tryfoldconsumer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TryFoldConsumer<'c, U, C, ID, F>`
+
+- <span id="tryfoldconsumer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tryfoldconsumer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<U, T, C, ID, F> UnindexedConsumer for TryFoldConsumer<'r, U, C, ID, F>`
 
-- <span id="tryfoldconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
+- <span id="tryfoldconsumer-unindexedconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="tryfoldconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="tryfoldconsumer-unindexedconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `TryFoldFolder<'r, C, U: Try, F>`
 
@@ -142,15 +238,45 @@ struct TryFoldFolder<'r, C, U: Try, F> {
 
 #### Trait Implementations
 
+##### `impl Any for TryFoldFolder<'r, C, U, F>`
+
+- <span id="tryfoldfolder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TryFoldFolder<'r, C, U, F>`
+
+- <span id="tryfoldfolder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TryFoldFolder<'r, C, U, F>`
+
+- <span id="tryfoldfolder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<C, U, F, T> Folder for TryFoldFolder<'r, C, U, F>`
 
 - <span id="tryfoldfolder-folder-type-result"></span>`type Result = <C as Folder>::Result`
 
-- <span id="tryfoldfolder-consume"></span>`fn consume(self, item: T) -> Self`
+- <span id="tryfoldfolder-folder-consume"></span>`fn consume(self, item: T) -> Self`
 
-- <span id="tryfoldfolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md#folder)
+- <span id="tryfoldfolder-folder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
-- <span id="tryfoldfolder-full"></span>`fn full(&self) -> bool`
+- <span id="tryfoldfolder-folder-full"></span>`fn full(&self) -> bool`
+
+##### `impl<T> From for TryFoldFolder<'r, C, U, F>`
+
+- <span id="tryfoldfolder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TryFoldFolder<'r, C, U, F>`
+
+- <span id="tryfoldfolder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TryFoldFolder<'r, C, U, F>`
 
@@ -160,13 +286,25 @@ struct TryFoldFolder<'r, C, U: Try, F> {
 
 - <span id="tryfoldfolder-pointable-type-init"></span>`type Init = T`
 
-- <span id="tryfoldfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="tryfoldfolder-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="tryfoldfolder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="tryfoldfolder-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="tryfoldfolder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="tryfoldfolder-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="tryfoldfolder-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="tryfoldfolder-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for TryFoldFolder<'r, C, U, F>`
+
+- <span id="tryfoldfolder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tryfoldfolder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TryFoldFolder<'r, C, U, F>`
+
+- <span id="tryfoldfolder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tryfoldfolder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TryFoldWith<I, U: Try, F>`
 
@@ -190,13 +328,47 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](.
 
 #### Trait Implementations
 
+##### `impl Any for TryFoldWith<I, U, F>`
+
+- <span id="tryfoldwith-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TryFoldWith<I, U, F>`
+
+- <span id="tryfoldwith-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TryFoldWith<I, U, F>`
+
+- <span id="tryfoldwith-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<I: clone::Clone, U: clone::Clone + Try, F: clone::Clone> Clone for TryFoldWith<I, U, F>`
 
 - <span id="tryfoldwith-clone"></span>`fn clone(&self) -> TryFoldWith<I, U, F>` — [`TryFoldWith`](#tryfoldwith)
 
+##### `impl CloneToUninit for TryFoldWith<I, U, F>`
+
+- <span id="tryfoldwith-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I, U, F> Debug for TryFoldWith<I, U, F>`
 
-- <span id="tryfoldwith-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tryfoldwith-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for TryFoldWith<I, U, F>`
+
+- <span id="tryfoldwith-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TryFoldWith<I, U, F>`
+
+- <span id="tryfoldwith-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TryFoldWith<I, U, F>`
 
@@ -206,13 +378,13 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](.
 
 - <span id="tryfoldwith-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="tryfoldwith-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="tryfoldwith-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<U, I, F> ParallelIterator for TryFoldWith<I, U, F>`
 
 - <span id="tryfoldwith-paralleliterator-type-item"></span>`type Item = U`
 
-- <span id="tryfoldwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="tryfoldwith-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl Pointable for TryFoldWith<I, U, F>`
 
@@ -220,13 +392,33 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](.
 
 - <span id="tryfoldwith-pointable-type-init"></span>`type Init = T`
 
-- <span id="tryfoldwith-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="tryfoldwith-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="tryfoldwith-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="tryfoldwith-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="tryfoldwith-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="tryfoldwith-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="tryfoldwith-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="tryfoldwith-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for TryFoldWith<I, U, F>`
+
+- <span id="tryfoldwith-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="tryfoldwith-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="tryfoldwith-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TryFoldWith<I, U, F>`
+
+- <span id="tryfoldwith-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tryfoldwith-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TryFoldWith<I, U, F>`
+
+- <span id="tryfoldwith-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tryfoldwith-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TryFoldWithConsumer<'c, C, U: Try, F>`
 
@@ -242,6 +434,18 @@ struct TryFoldWithConsumer<'c, C, U: Try, F> {
 
 #### Trait Implementations
 
+##### `impl Any for TryFoldWithConsumer<'c, C, U, F>`
+
+- <span id="tryfoldwithconsumer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TryFoldWithConsumer<'c, C, U, F>`
+
+- <span id="tryfoldwithconsumer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TryFoldWithConsumer<'c, C, U, F>`
+
+- <span id="tryfoldwithconsumer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<U, T, C, F> Consumer for TryFoldWithConsumer<'r, C, U, F>`
 
 - <span id="tryfoldwithconsumer-consumer-type-folder"></span>`type Folder = TryFoldFolder<'r, <C as Consumer>::Folder, U, F>`
@@ -250,11 +454,29 @@ struct TryFoldWithConsumer<'c, C, U: Try, F> {
 
 - <span id="tryfoldwithconsumer-consumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="tryfoldwithconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="tryfoldwithconsumer-consumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="tryfoldwithconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="tryfoldwithconsumer-consumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="tryfoldwithconsumer-full"></span>`fn full(&self) -> bool`
+- <span id="tryfoldwithconsumer-consumer-full"></span>`fn full(&self) -> bool`
+
+##### `impl<T> From for TryFoldWithConsumer<'c, C, U, F>`
+
+- <span id="tryfoldwithconsumer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TryFoldWithConsumer<'c, C, U, F>`
+
+- <span id="tryfoldwithconsumer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TryFoldWithConsumer<'c, C, U, F>`
 
@@ -264,17 +486,29 @@ struct TryFoldWithConsumer<'c, C, U: Try, F> {
 
 - <span id="tryfoldwithconsumer-pointable-type-init"></span>`type Init = T`
 
-- <span id="tryfoldwithconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="tryfoldwithconsumer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="tryfoldwithconsumer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="tryfoldwithconsumer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="tryfoldwithconsumer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="tryfoldwithconsumer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="tryfoldwithconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="tryfoldwithconsumer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for TryFoldWithConsumer<'c, C, U, F>`
+
+- <span id="tryfoldwithconsumer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tryfoldwithconsumer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TryFoldWithConsumer<'c, C, U, F>`
+
+- <span id="tryfoldwithconsumer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tryfoldwithconsumer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<U, T, C, F> UnindexedConsumer for TryFoldWithConsumer<'r, C, U, F>`
 
-- <span id="tryfoldwithconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
+- <span id="tryfoldwithconsumer-unindexedconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="tryfoldwithconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="tryfoldwithconsumer-unindexedconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 

@@ -26,9 +26,51 @@ A "Maybe" LockGuard
 
 #### Trait Implementations
 
+##### `impl Any for LockGuard`
+
+- <span id="lockguard-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LockGuard`
+
+- <span id="lockguard-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LockGuard`
+
+- <span id="lockguard-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Drop for LockGuard`
 
 - <span id="lockguard-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for LockGuard`
+
+- <span id="lockguard-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LockGuard`
+
+- <span id="lockguard-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for LockGuard`
+
+- <span id="lockguard-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lockguard-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LockGuard`
+
+- <span id="lockguard-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lockguard-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

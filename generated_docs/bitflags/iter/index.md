@@ -38,19 +38,61 @@ as a final flags value.
 
 #### Trait Implementations
 
+##### `impl Any for Iter<B>`
+
+- <span id="iter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Iter<B>`
+
+- <span id="iter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Iter<B>`
+
+- <span id="iter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Iter<B>`
+
+- <span id="iter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Iter<B>`
+
+- <span id="iter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoIterator for Iter<B>`
 
 - <span id="iter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="iter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="iter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<B: Flags> Iterator for Iter<B>`
 
 - <span id="iter-iterator-type-item"></span>`type Item = B`
 
-- <span id="iter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="iter-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for Iter<B>`
+
+- <span id="iter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="iter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Iter<B>`
+
+- <span id="iter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="iter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IterNames<B: 'static>`
 
@@ -76,19 +118,61 @@ won't be yielded, but can be found with the `IterNames::remaining` method.
 
 #### Trait Implementations
 
+##### `impl Any for IterNames<B>`
+
+- <span id="iternames-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IterNames<B>`
+
+- <span id="iternames-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IterNames<B>`
+
+- <span id="iternames-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for IterNames<B>`
+
+- <span id="iternames-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for IterNames<B>`
+
+- <span id="iternames-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoIterator for IterNames<B>`
 
 - <span id="iternames-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="iternames-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="iternames-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="iternames-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<B: Flags> Iterator for IterNames<B>`
 
 - <span id="iternames-iterator-type-item"></span>`type Item = (&'static str, B)`
 
-- <span id="iternames-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="iternames-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for IterNames<B>`
+
+- <span id="iternames-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="iternames-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IterNames<B>`
+
+- <span id="iternames-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="iternames-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IterDefinedNames<B: 'static>`
 
@@ -112,17 +196,59 @@ whether they are contained in a particular flags value.
 
 #### Trait Implementations
 
+##### `impl Any for IterDefinedNames<B>`
+
+- <span id="iterdefinednames-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IterDefinedNames<B>`
+
+- <span id="iterdefinednames-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IterDefinedNames<B>`
+
+- <span id="iterdefinednames-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for IterDefinedNames<B>`
+
+- <span id="iterdefinednames-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for IterDefinedNames<B>`
+
+- <span id="iterdefinednames-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoIterator for IterDefinedNames<B>`
 
 - <span id="iterdefinednames-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="iterdefinednames-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="iterdefinednames-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="iterdefinednames-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<B: Flags> Iterator for IterDefinedNames<B>`
 
 - <span id="iterdefinednames-iterator-type-item"></span>`type Item = (&'static str, B)`
 
-- <span id="iterdefinednames-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="iterdefinednames-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for IterDefinedNames<B>`
+
+- <span id="iterdefinednames-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="iterdefinednames-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IterDefinedNames<B>`
+
+- <span id="iterdefinednames-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="iterdefinednames-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

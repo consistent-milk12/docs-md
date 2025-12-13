@@ -103,11 +103,57 @@ assert_eq!(expected, RE.find(&mut CACHE.get(), b"zzzfoo12345barzzz"));
 
 - <span id="pool-new"></span>`fn new(create: F) -> Pool<T, F>` — [`Pool`](#pool)
 
+  Create a new pool. The given closure is used to create values in
+
+  the pool when necessary.
+
 #### Trait Implementations
+
+##### `impl<T> Any for Pool<T, F>`
+
+- <span id="pool-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Pool<T, F>`
+
+- <span id="pool-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Pool<T, F>`
+
+- <span id="pool-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: core::fmt::Debug, F> Debug for Pool<T, F>`
 
-- <span id="pool-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="pool-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for Pool<T, F>`
+
+- <span id="pool-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Pool<T, F>`
+
+- <span id="pool-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<T, U> TryFrom for Pool<T, F>`
+
+- <span id="pool-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pool-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Pool<T, F>`
+
+- <span id="pool-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pool-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PoolGuard<'a, T: Send, F: Fn() -> T>`
 
@@ -126,11 +172,33 @@ back in the pool once it's dropped.
 
 - <span id="poolguard-put"></span>`fn put(this: PoolGuard<'_, T, F>)` — [`PoolGuard`](#poolguard)
 
+  Consumes this guard and puts it back into the pool.
+
+  
+
+  This circumvents the guard's `Drop` implementation. This can be useful
+
+  in circumstances where the automatic `Drop` results in poorer codegen,
+
+  such as calling non-inlined functions.
+
 #### Trait Implementations
+
+##### `impl<T> Any for PoolGuard<'a, T, F>`
+
+- <span id="poolguard-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PoolGuard<'a, T, F>`
+
+- <span id="poolguard-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PoolGuard<'a, T, F>`
+
+- <span id="poolguard-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: Send + core::fmt::Debug, F: Fn() -> T> Debug for PoolGuard<'a, T, F>`
 
-- <span id="poolguard-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="poolguard-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<T: Send, F: Fn() -> T> Deref for PoolGuard<'a, T, F>`
 
@@ -140,9 +208,39 @@ back in the pool once it's dropped.
 
 ##### `impl<T: Send, F: Fn() -> T> DerefMut for PoolGuard<'a, T, F>`
 
-- <span id="poolguard-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
+- <span id="poolguard-derefmut-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for PoolGuard<'a, T, F>`
+
+- <span id="poolguard-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for PoolGuard<'a, T, F>`
+
+- <span id="poolguard-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Receiver for PoolGuard<'a, T, F>`
 
 - <span id="poolguard-receiver-type-target"></span>`type Target = T`
+
+##### `impl<T, U> TryFrom for PoolGuard<'a, T, F>`
+
+- <span id="poolguard-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="poolguard-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for PoolGuard<'a, T, F>`
+
+- <span id="poolguard-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="poolguard-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

@@ -34,23 +34,59 @@ An iterator for the load commands from a [`MachHeader`](../index.md).
 
 - <span id="loadcommanditerator-next"></span>`fn next(&mut self) -> Result<Option<LoadCommandData<'data, E>>>` — [`Result`](../../../index.md#result), [`LoadCommandData`](../index.md#loadcommanddata)
 
+  Return the next load command.
+
 - <span id="loadcommanditerator-parse"></span>`fn parse(&mut self) -> Result<LoadCommandData<'data, E>>` — [`Result`](../../../index.md#result), [`LoadCommandData`](../index.md#loadcommanddata)
 
 #### Trait Implementations
+
+##### `impl Any for LoadCommandIterator<'data, E>`
+
+- <span id="loadcommanditerator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LoadCommandIterator<'data, E>`
+
+- <span id="loadcommanditerator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LoadCommandIterator<'data, E>`
+
+- <span id="loadcommanditerator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for LoadCommandIterator<'data, E>`
 
 - <span id="loadcommanditerator-clone"></span>`fn clone(&self) -> LoadCommandIterator<'data, E>` — [`LoadCommandIterator`](../index.md#loadcommanditerator)
 
+##### `impl CloneToUninit for LoadCommandIterator<'data, E>`
+
+- <span id="loadcommanditerator-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for LoadCommandIterator<'data, E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for LoadCommandIterator<'data, E>`
 
-- <span id="loadcommanditerator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="loadcommanditerator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: default::Default + Endian> Default for LoadCommandIterator<'data, E>`
 
 - <span id="loadcommanditerator-default"></span>`fn default() -> LoadCommandIterator<'data, E>` — [`LoadCommandIterator`](../index.md#loadcommanditerator)
+
+##### `impl<T> From for LoadCommandIterator<'data, E>`
+
+- <span id="loadcommanditerator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LoadCommandIterator<'data, E>`
+
+- <span id="loadcommanditerator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for LoadCommandIterator<'data, E>`
 
@@ -58,13 +94,33 @@ An iterator for the load commands from a [`MachHeader`](../index.md).
 
 - <span id="loadcommanditerator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="loadcommanditerator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="loadcommanditerator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<E: Endian> Iterator for LoadCommandIterator<'data, E>`
 
 - <span id="loadcommanditerator-iterator-type-item"></span>`type Item = Result<LoadCommandData<'data, E>, Error>`
 
-- <span id="loadcommanditerator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="loadcommanditerator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl ToOwned for LoadCommandIterator<'data, E>`
+
+- <span id="loadcommanditerator-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="loadcommanditerator-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="loadcommanditerator-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LoadCommandIterator<'data, E>`
+
+- <span id="loadcommanditerator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="loadcommanditerator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LoadCommandIterator<'data, E>`
+
+- <span id="loadcommanditerator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="loadcommanditerator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LoadCommandData<'data, E: Endian>`
 
@@ -84,45 +140,143 @@ The data for a [`macho::LoadCommand`](../../../macho/index.md).
 
 - <span id="loadcommanddata-cmd"></span>`fn cmd(&self) -> u32`
 
+  Return the `cmd` field of the [`macho::LoadCommand`](../../../macho/index.md).
+
+  
+
+  This is one of the `LC_` constants.
+
 - <span id="loadcommanddata-cmdsize"></span>`fn cmdsize(&self) -> u32`
+
+  Return the `cmdsize` field of the [`macho::LoadCommand`](../../../macho/index.md).
 
 - <span id="loadcommanddata-data"></span>`fn data<T: Pod>(&self) -> Result<&'data T>` — [`Result`](../../../index.md#result)
 
+  Parse the data as the given type.
+
 - <span id="loadcommanddata-raw-data"></span>`fn raw_data(&self) -> &'data [u8]`
+
+  Raw bytes of this [`macho::LoadCommand`](../../../macho/index.md) structure.
 
 - <span id="loadcommanddata-string"></span>`fn string(&self, endian: E, s: macho::LcStr<E>) -> Result<&'data [u8]>` — [`LcStr`](../../../macho/index.md#lcstr), [`Result`](../../../index.md#result)
 
+  Parse a load command string value.
+
+  
+
+  Strings used by load commands are specified by offsets that are
+
+  relative to the load command header.
+
 - <span id="loadcommanddata-variant"></span>`fn variant(&self) -> Result<LoadCommandVariant<'data, E>>` — [`Result`](../../../index.md#result), [`LoadCommandVariant`](../index.md#loadcommandvariant)
+
+  Parse the command data according to the `cmd` field.
 
 - <span id="loadcommanddata-segment-32"></span>`fn segment_32(self) -> Result<Option<(&'data macho::SegmentCommand32<E>, &'data [u8])>>` — [`Result`](../../../index.md#result), [`SegmentCommand32`](../../../macho/index.md#segmentcommand32)
 
+  Try to parse this command as a [`macho::SegmentCommand32`](../../../macho/index.md).
+
+  
+
+  Returns the segment command and the data containing the sections.
+
 - <span id="loadcommanddata-symtab"></span>`fn symtab(self) -> Result<Option<&'data macho::SymtabCommand<E>>>` — [`Result`](../../../index.md#result), [`SymtabCommand`](../../../macho/index.md#symtabcommand)
+
+  Try to parse this command as a [`macho::SymtabCommand`](../../../macho/index.md).
 
 - <span id="loadcommanddata-dysymtab"></span>`fn dysymtab(self) -> Result<Option<&'data macho::DysymtabCommand<E>>>` — [`Result`](../../../index.md#result), [`DysymtabCommand`](../../../macho/index.md#dysymtabcommand)
 
+  Try to parse this command as a [`macho::DysymtabCommand`](../../../macho/index.md).
+
 - <span id="loadcommanddata-dylib"></span>`fn dylib(self) -> Result<Option<&'data macho::DylibCommand<E>>>` — [`Result`](../../../index.md#result), [`DylibCommand`](../../../macho/index.md#dylibcommand)
+
+  Try to parse this command as a [`macho::DylibCommand`](../../../macho/index.md).
 
 - <span id="loadcommanddata-uuid"></span>`fn uuid(self) -> Result<Option<&'data macho::UuidCommand<E>>>` — [`Result`](../../../index.md#result), [`UuidCommand`](../../../macho/index.md#uuidcommand)
 
+  Try to parse this command as a [`macho::UuidCommand`](../../../macho/index.md).
+
 - <span id="loadcommanddata-segment-64"></span>`fn segment_64(self) -> Result<Option<(&'data macho::SegmentCommand64<E>, &'data [u8])>>` — [`Result`](../../../index.md#result), [`SegmentCommand64`](../../../macho/index.md#segmentcommand64)
+
+  Try to parse this command as a [`macho::SegmentCommand64`](../../../macho/index.md).
 
 - <span id="loadcommanddata-dyld-info"></span>`fn dyld_info(self) -> Result<Option<&'data macho::DyldInfoCommand<E>>>` — [`Result`](../../../index.md#result), [`DyldInfoCommand`](../../../macho/index.md#dyldinfocommand)
 
+  Try to parse this command as a [`macho::DyldInfoCommand`](../../../macho/index.md).
+
 - <span id="loadcommanddata-entry-point"></span>`fn entry_point(self) -> Result<Option<&'data macho::EntryPointCommand<E>>>` — [`Result`](../../../index.md#result), [`EntryPointCommand`](../../../macho/index.md#entrypointcommand)
+
+  Try to parse this command as an [`macho::EntryPointCommand`](../../../macho/index.md).
 
 - <span id="loadcommanddata-build-version"></span>`fn build_version(self) -> Result<Option<&'data macho::BuildVersionCommand<E>>>` — [`Result`](../../../index.md#result), [`BuildVersionCommand`](../../../macho/index.md#buildversioncommand)
 
+  Try to parse this command as a [`macho::BuildVersionCommand`](../../../macho/index.md).
+
 #### Trait Implementations
+
+##### `impl Any for LoadCommandData<'data, E>`
+
+- <span id="loadcommanddata-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LoadCommandData<'data, E>`
+
+- <span id="loadcommanddata-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LoadCommandData<'data, E>`
+
+- <span id="loadcommanddata-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for LoadCommandData<'data, E>`
 
 - <span id="loadcommanddata-clone"></span>`fn clone(&self) -> LoadCommandData<'data, E>` — [`LoadCommandData`](../index.md#loadcommanddata)
 
+##### `impl CloneToUninit for LoadCommandData<'data, E>`
+
+- <span id="loadcommanddata-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for LoadCommandData<'data, E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for LoadCommandData<'data, E>`
 
-- <span id="loadcommanddata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="loadcommanddata-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for LoadCommandData<'data, E>`
+
+- <span id="loadcommanddata-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LoadCommandData<'data, E>`
+
+- <span id="loadcommanddata-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for LoadCommandData<'data, E>`
+
+- <span id="loadcommanddata-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="loadcommanddata-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="loadcommanddata-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LoadCommandData<'data, E>`
+
+- <span id="loadcommanddata-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="loadcommanddata-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LoadCommandData<'data, E>`
+
+- <span id="loadcommanddata-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="loadcommanddata-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -310,13 +464,67 @@ A [`macho::LoadCommand`](../../../macho/index.md) that has been interpreted acco
 
 #### Trait Implementations
 
+##### `impl Any for LoadCommandVariant<'data, E>`
+
+- <span id="loadcommandvariant-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LoadCommandVariant<'data, E>`
+
+- <span id="loadcommandvariant-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LoadCommandVariant<'data, E>`
+
+- <span id="loadcommandvariant-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E: clone::Clone + Endian> Clone for LoadCommandVariant<'data, E>`
 
 - <span id="loadcommandvariant-clone"></span>`fn clone(&self) -> LoadCommandVariant<'data, E>` — [`LoadCommandVariant`](../index.md#loadcommandvariant)
+
+##### `impl CloneToUninit for LoadCommandVariant<'data, E>`
+
+- <span id="loadcommandvariant-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E: marker::Copy + Endian> Copy for LoadCommandVariant<'data, E>`
 
 ##### `impl<E: fmt::Debug + Endian> Debug for LoadCommandVariant<'data, E>`
 
-- <span id="loadcommandvariant-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="loadcommandvariant-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for LoadCommandVariant<'data, E>`
+
+- <span id="loadcommandvariant-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LoadCommandVariant<'data, E>`
+
+- <span id="loadcommandvariant-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for LoadCommandVariant<'data, E>`
+
+- <span id="loadcommandvariant-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="loadcommandvariant-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="loadcommandvariant-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LoadCommandVariant<'data, E>`
+
+- <span id="loadcommandvariant-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="loadcommandvariant-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LoadCommandVariant<'data, E>`
+
+- <span id="loadcommandvariant-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="loadcommandvariant-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

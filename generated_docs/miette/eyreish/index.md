@@ -92,9 +92,111 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 - <span id="superreport-new"></span>`fn new<E>(error: E) -> Self`
 
+  Create a new error object from any error type.
+
+  
+
+  The error type must be thread safe and `'static`, so that the `Report`
+
+  will be as well.
+
+  
+
+  If the error type does not provide a backtrace, a backtrace will be
+
+  created here to ensure that a backtrace exists.
+
 - <span id="superreport-msg"></span>`fn msg<M>(message: M) -> Self`
 
+  Create a new error object from a printable error message.
+
+  
+
+  If the argument implements [`std::error::Error`](../../cargo_docs_md/error/index.md), prefer `Report::new`
+
+  instead which preserves the underlying error's cause chain and
+
+  backtrace. If the argument may or may not implement [`std::error::Error`](../../cargo_docs_md/error/index.md)
+
+  now or in the future, use `miette!(err)` which handles either way
+
+  correctly.
+
+  
+
+  `Report::msg("...")` is equivalent to `miette!("...")` but occasionally
+
+  convenient in places where a function is preferable over a macro, such
+
+  as iterator or stream combinators:
+
+  
+
+  ```rust
+
+  mod ffi {
+
+      pub struct Input;
+
+      pub struct Output;
+
+      pub async fn do_some_work(_: Input) -> Result<Output, &'static str> {
+
+          unimplemented!()
+
+      }
+
+  }
+
+  
+
+  use ffi::{Input, Output};
+
+  
+
+  use futures::stream::{Stream, StreamExt, TryStreamExt};
+
+  use miette::{Report, Result};
+
+  
+
+  async fn demo<S>(stream: S) -> Result<Vec<Output>>
+
+  where
+
+      S: Stream<Item = Input>,
+
+  {
+
+      stream
+
+          .then(ffi::do_some_work) // returns Result<Output, &str>
+
+          .map_err(Report::msg)
+
+          .try_collect()
+
+          .await
+
+  }
+
+  ```
+
 - <span id="superreport-new-boxed"></span>`fn new_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](../index.md#diagnostic)
+
+  Create a new error object from a boxed [`Diagnostic`](../index.md).
+
+  
+
+  The boxed type must be thread safe and 'static, so that the `Report`
+
+  will be as well.
+
+  
+
+  Boxed `Diagnostic`s don't implement `Diagnostic` themselves due to trait coherence issues.
+
+  This method allows you to create a `Report` from a boxed `Diagnostic`.
 
 - <span id="superreport-from-std"></span>`fn from_std<E>(error: E) -> Self`
 
@@ -108,37 +210,217 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 - <span id="superreport-wrap-err"></span>`fn wrap_err<D>(self, msg: D) -> Self`
 
+  Create a new error from an error message to wrap the existing error.
+
+  
+
+  For attaching a higher level error message to a `Result` as it is
+
+  propagated, the [`WrapErr`](crate::WrapErr) extension trait may be more
+
+  convenient than this function.
+
+  
+
+  The primary reason to use `error.wrap_err(...)` instead of
+
+  `result.wrap_err(...)` via the `WrapErr` trait would be if the
+
+  message needs to depend on some data held by the underlying error:
+
 - <span id="superreport-context"></span>`fn context<D>(self, msg: D) -> Self`
+
+  Compatibility re-export of `wrap_err` for interop with `anyhow`
 
 - <span id="superreport-chain"></span>`fn chain(&self) -> Chain<'_>` — [`Chain`](../chain/index.md#chain)
 
+  An iterator of the chain of source errors contained by this Report.
+
+  
+
+  This iterator will visit every error in the cause chain of this error
+
+  object, beginning with the error that this error object was created
+
+  from.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use miette::Report;
+
+  use std::io;
+
+  
+
+  pub fn underlying_io_error_kind(error: &Report) -> Option<io::ErrorKind> {
+
+      for cause in error.chain() {
+
+          if let Some(io_error) = cause.downcast_ref::<io::Error>() {
+
+              return Some(io_error.kind());
+
+          }
+
+      }
+
+      None
+
+  }
+
+  ```
+
 - <span id="superreport-root-cause"></span>`fn root_cause(&self) -> &dyn StdError`
+
+  The lowest level cause of this error &mdash; this error's cause's
+
+  cause's cause etc.
+
+  
+
+  The root cause is the last error in the iterator produced by
+
+  [`chain()`](Report::chain).
 
 - <span id="superreport-is"></span>`fn is<E>(&self) -> bool`
 
+  Returns true if `E` is the type held by this error object.
+
+  
+
+  For errors constructed from messages, this method returns true if `E`
+
+  matches the type of the message `D` **or** the type of the error on
+
+  which the message has been attached. For details about the
+
+  interaction between message and downcasting, [see here].
+
 - <span id="superreport-downcast"></span>`fn downcast<E>(self) -> Result<E, Self>`
+
+  Attempt to downcast the error object to a concrete type.
 
 - <span id="superreport-downcast-ref"></span>`fn downcast_ref<E>(&self) -> Option<&E>`
 
+  Downcast this error object by reference.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use miette::{Report, miette};
+
+  use std::fmt::{self, Display};
+
+  use std::task::Poll;
+
+  
+
+  #[derive(Debug)]
+
+  enum DataStoreError {
+
+      Censored(()),
+
+  }
+
+  
+
+  impl Display for DataStoreError {
+
+      fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+
+          unimplemented!()
+
+      }
+
+  }
+
+  
+
+  impl std::error::Error for DataStoreError {}
+
+  
+
+  const REDACTED_CONTENT: () = ();
+
+  
+
+  let error: Report = miette!("...");
+
+  let root_cause = &error;
+
+  
+
+  let ret =
+
+  // If the error was caused by redaction, then return a tombstone instead
+
+  // of the content.
+
+  match root_cause.downcast_ref::<DataStoreError>() {
+
+      Some(DataStoreError::Censored(_)) => Ok(Poll::Ready(REDACTED_CONTENT)),
+
+      None => Err(error),
+
+  }
+
+  ;
+
+  ```
+
 - <span id="superreport-downcast-mut"></span>`fn downcast_mut<E>(&mut self) -> Option<&mut E>`
+
+  Downcast this error object by mutable reference.
 
 - <span id="superreport-handler"></span>`fn handler(&self) -> &dyn ReportHandler` — [`ReportHandler`](../index.md#reporthandler)
 
+  Get a reference to the Handler for this Report.
+
 - <span id="superreport-handler-mut"></span>`fn handler_mut(&mut self) -> &mut dyn ReportHandler` — [`ReportHandler`](../index.md#reporthandler)
+
+  Get a mutable reference to the Handler for this Report.
 
 - <span id="superreport-with-source-code"></span>`fn with_source_code(self, source_code: impl SourceCode + 'static) -> Report` — [`SourceCode`](../index.md#sourcecode), [`Report`](../index.md#report)
 
+  Provide source code for this error
+
 - <span id="superreport-from-err"></span>`fn from_err<E>(err: E) -> Self`
+
+  Construct a [`Report`](../index.md) directly from an error-like type
 
 #### Trait Implementations
 
+##### `impl Any for Report`
+
+- <span id="report-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl AsRef for super::Report`
 
-- <span id="superreport-as-ref"></span>`fn as_ref(&self) -> &dyn Diagnostic + Send + Sync` — [`Diagnostic`](../index.md#diagnostic)
+- <span id="superreport-asref-as-ref"></span>`fn as_ref(&self) -> &dyn Diagnostic + Send + Sync` — [`Diagnostic`](../index.md#diagnostic)
+
+##### `impl<T> Borrow for Report`
+
+- <span id="report-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Report`
+
+- <span id="report-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for super::Report`
 
-- <span id="superreport-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="superreport-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deref for super::Report`
 
@@ -148,19 +430,37 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl DerefMut for super::Report`
 
-- <span id="superreport-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
+- <span id="superreport-derefmut-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Diag for super::Report`
 
-- <span id="superreport-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md#report)
+- <span id="superreport-diag-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md#report)
 
 ##### `impl Display for super::Report`
 
-- <span id="superreport-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="superreport-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for super::Report`
 
 - <span id="superreport-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for Report`
+
+- <span id="report-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Report`
+
+- <span id="report-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Report`
 
@@ -174,9 +474,21 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl ToString for Report`
 
-- <span id="report-to-string"></span>`fn to_string(&self) -> String`
+- <span id="report-tostring-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl TraitKind for Report`
+
+##### `impl<U> TryFrom for Report`
+
+- <span id="report-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="report-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Report`
+
+- <span id="report-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="report-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Report`
 
@@ -198,9 +510,111 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 - <span id="superreport-new"></span>`fn new<E>(error: E) -> Self`
 
+  Create a new error object from any error type.
+
+  
+
+  The error type must be thread safe and `'static`, so that the `Report`
+
+  will be as well.
+
+  
+
+  If the error type does not provide a backtrace, a backtrace will be
+
+  created here to ensure that a backtrace exists.
+
 - <span id="superreport-msg"></span>`fn msg<M>(message: M) -> Self`
 
+  Create a new error object from a printable error message.
+
+  
+
+  If the argument implements [`std::error::Error`](../../cargo_docs_md/error/index.md), prefer `Report::new`
+
+  instead which preserves the underlying error's cause chain and
+
+  backtrace. If the argument may or may not implement [`std::error::Error`](../../cargo_docs_md/error/index.md)
+
+  now or in the future, use `miette!(err)` which handles either way
+
+  correctly.
+
+  
+
+  `Report::msg("...")` is equivalent to `miette!("...")` but occasionally
+
+  convenient in places where a function is preferable over a macro, such
+
+  as iterator or stream combinators:
+
+  
+
+  ```rust
+
+  mod ffi {
+
+      pub struct Input;
+
+      pub struct Output;
+
+      pub async fn do_some_work(_: Input) -> Result<Output, &'static str> {
+
+          unimplemented!()
+
+      }
+
+  }
+
+  
+
+  use ffi::{Input, Output};
+
+  
+
+  use futures::stream::{Stream, StreamExt, TryStreamExt};
+
+  use miette::{Report, Result};
+
+  
+
+  async fn demo<S>(stream: S) -> Result<Vec<Output>>
+
+  where
+
+      S: Stream<Item = Input>,
+
+  {
+
+      stream
+
+          .then(ffi::do_some_work) // returns Result<Output, &str>
+
+          .map_err(Report::msg)
+
+          .try_collect()
+
+          .await
+
+  }
+
+  ```
+
 - <span id="superreport-new-boxed"></span>`fn new_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](../index.md#diagnostic)
+
+  Create a new error object from a boxed [`Diagnostic`](../index.md).
+
+  
+
+  The boxed type must be thread safe and 'static, so that the `Report`
+
+  will be as well.
+
+  
+
+  Boxed `Diagnostic`s don't implement `Diagnostic` themselves due to trait coherence issues.
+
+  This method allows you to create a `Report` from a boxed `Diagnostic`.
 
 - <span id="superreport-from-std"></span>`fn from_std<E>(error: E) -> Self`
 
@@ -214,37 +628,217 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 - <span id="superreport-wrap-err"></span>`fn wrap_err<D>(self, msg: D) -> Self`
 
+  Create a new error from an error message to wrap the existing error.
+
+  
+
+  For attaching a higher level error message to a `Result` as it is
+
+  propagated, the [`WrapErr`](crate::WrapErr) extension trait may be more
+
+  convenient than this function.
+
+  
+
+  The primary reason to use `error.wrap_err(...)` instead of
+
+  `result.wrap_err(...)` via the `WrapErr` trait would be if the
+
+  message needs to depend on some data held by the underlying error:
+
 - <span id="superreport-context"></span>`fn context<D>(self, msg: D) -> Self`
+
+  Compatibility re-export of `wrap_err` for interop with `anyhow`
 
 - <span id="superreport-chain"></span>`fn chain(&self) -> Chain<'_>` — [`Chain`](../chain/index.md#chain)
 
+  An iterator of the chain of source errors contained by this Report.
+
+  
+
+  This iterator will visit every error in the cause chain of this error
+
+  object, beginning with the error that this error object was created
+
+  from.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use miette::Report;
+
+  use std::io;
+
+  
+
+  pub fn underlying_io_error_kind(error: &Report) -> Option<io::ErrorKind> {
+
+      for cause in error.chain() {
+
+          if let Some(io_error) = cause.downcast_ref::<io::Error>() {
+
+              return Some(io_error.kind());
+
+          }
+
+      }
+
+      None
+
+  }
+
+  ```
+
 - <span id="superreport-root-cause"></span>`fn root_cause(&self) -> &dyn StdError`
+
+  The lowest level cause of this error &mdash; this error's cause's
+
+  cause's cause etc.
+
+  
+
+  The root cause is the last error in the iterator produced by
+
+  [`chain()`](Report::chain).
 
 - <span id="superreport-is"></span>`fn is<E>(&self) -> bool`
 
+  Returns true if `E` is the type held by this error object.
+
+  
+
+  For errors constructed from messages, this method returns true if `E`
+
+  matches the type of the message `D` **or** the type of the error on
+
+  which the message has been attached. For details about the
+
+  interaction between message and downcasting, [see here].
+
 - <span id="superreport-downcast"></span>`fn downcast<E>(self) -> Result<E, Self>`
+
+  Attempt to downcast the error object to a concrete type.
 
 - <span id="superreport-downcast-ref"></span>`fn downcast_ref<E>(&self) -> Option<&E>`
 
+  Downcast this error object by reference.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use miette::{Report, miette};
+
+  use std::fmt::{self, Display};
+
+  use std::task::Poll;
+
+  
+
+  #[derive(Debug)]
+
+  enum DataStoreError {
+
+      Censored(()),
+
+  }
+
+  
+
+  impl Display for DataStoreError {
+
+      fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+
+          unimplemented!()
+
+      }
+
+  }
+
+  
+
+  impl std::error::Error for DataStoreError {}
+
+  
+
+  const REDACTED_CONTENT: () = ();
+
+  
+
+  let error: Report = miette!("...");
+
+  let root_cause = &error;
+
+  
+
+  let ret =
+
+  // If the error was caused by redaction, then return a tombstone instead
+
+  // of the content.
+
+  match root_cause.downcast_ref::<DataStoreError>() {
+
+      Some(DataStoreError::Censored(_)) => Ok(Poll::Ready(REDACTED_CONTENT)),
+
+      None => Err(error),
+
+  }
+
+  ;
+
+  ```
+
 - <span id="superreport-downcast-mut"></span>`fn downcast_mut<E>(&mut self) -> Option<&mut E>`
+
+  Downcast this error object by mutable reference.
 
 - <span id="superreport-handler"></span>`fn handler(&self) -> &dyn ReportHandler` — [`ReportHandler`](../index.md#reporthandler)
 
+  Get a reference to the Handler for this Report.
+
 - <span id="superreport-handler-mut"></span>`fn handler_mut(&mut self) -> &mut dyn ReportHandler` — [`ReportHandler`](../index.md#reporthandler)
+
+  Get a mutable reference to the Handler for this Report.
 
 - <span id="superreport-with-source-code"></span>`fn with_source_code(self, source_code: impl SourceCode + 'static) -> Report` — [`SourceCode`](../index.md#sourcecode), [`Report`](../index.md#report)
 
+  Provide source code for this error
+
 - <span id="superreport-from-err"></span>`fn from_err<E>(err: E) -> Self`
+
+  Construct a [`Report`](../index.md) directly from an error-like type
 
 #### Trait Implementations
 
+##### `impl Any for Report`
+
+- <span id="report-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl AsRef for super::Report`
 
-- <span id="superreport-as-ref"></span>`fn as_ref(&self) -> &dyn Diagnostic + Send + Sync` — [`Diagnostic`](../index.md#diagnostic)
+- <span id="superreport-asref-as-ref"></span>`fn as_ref(&self) -> &dyn Diagnostic + Send + Sync` — [`Diagnostic`](../index.md#diagnostic)
+
+##### `impl<T> Borrow for Report`
+
+- <span id="report-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Report`
+
+- <span id="report-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for super::Report`
 
-- <span id="superreport-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="superreport-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deref for super::Report`
 
@@ -254,19 +848,37 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl DerefMut for super::Report`
 
-- <span id="superreport-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
+- <span id="superreport-derefmut-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Diag for super::Report`
 
-- <span id="superreport-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md#report)
+- <span id="superreport-diag-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md#report)
 
 ##### `impl Display for super::Report`
 
-- <span id="superreport-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="superreport-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for super::Report`
 
 - <span id="superreport-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for Report`
+
+- <span id="report-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Report`
+
+- <span id="report-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Report`
 
@@ -280,9 +892,21 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl ToString for Report`
 
-- <span id="report-to-string"></span>`fn to_string(&self) -> String`
+- <span id="report-tostring-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl TraitKind for Report`
+
+##### `impl<U> TryFrom for Report`
+
+- <span id="report-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="report-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Report`
+
+- <span id="report-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="report-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `InstallError`
 
@@ -297,29 +921,71 @@ Error indicating that [`set_hook()`](../index.md) was unable to install the prov
 
 #### Trait Implementations
 
+##### `impl Any for InstallError`
+
+- <span id="installerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for InstallError`
+
+- <span id="installerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for InstallError`
+
+- <span id="installerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for InstallError`
 
-- <span id="installerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="installerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Diag for InstallError`
 
-- <span id="installerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md#report)
+- <span id="installerror-diag-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md#report)
 
 ##### `impl Diagnostic for InstallError`
 
 ##### `impl Display for InstallError`
 
-- <span id="installerror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="installerror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for InstallError`
+
+##### `impl<T> From for InstallError`
+
+- <span id="installerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for InstallError`
+
+- <span id="installerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for InstallError`
 
 ##### `impl ToString for InstallError`
 
-- <span id="installerror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="installerror-tostring-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl TraitKind for InstallError`
+
+##### `impl<U> TryFrom for InstallError`
+
+- <span id="installerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="installerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for InstallError`
+
+- <span id="installerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="installerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DiagnosticError`
 
@@ -334,31 +1000,73 @@ Errors. This is intended to be paired with [`IntoDiagnostic`](#intodiagnostic).
 
 #### Trait Implementations
 
+##### `impl Any for DiagnosticError`
+
+- <span id="diagnosticerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DiagnosticError`
+
+- <span id="diagnosticerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DiagnosticError`
+
+- <span id="diagnosticerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for DiagnosticError`
 
-- <span id="diagnosticerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="diagnosticerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Diag for DiagnosticError`
 
-- <span id="diagnosticerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md#report)
+- <span id="diagnosticerror-diag-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md#report)
 
 ##### `impl Diagnostic for DiagnosticError`
 
 ##### `impl Display for DiagnosticError`
 
-- <span id="diagnosticerror-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="diagnosticerror-display-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Error for DiagnosticError`
 
-- <span id="diagnosticerror-source"></span>`fn source(&self) -> Option<&dyn Error>`
+- <span id="diagnosticerror-error-source"></span>`fn source(&self) -> Option<&dyn Error>`
+
+##### `impl<T> From for DiagnosticError`
+
+- <span id="diagnosticerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DiagnosticError`
+
+- <span id="diagnosticerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DiagnosticError`
 
 ##### `impl ToString for DiagnosticError`
 
-- <span id="diagnosticerror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="diagnosticerror-tostring-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl TraitKind for DiagnosticError`
+
+##### `impl<U> TryFrom for DiagnosticError`
+
+- <span id="diagnosticerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="diagnosticerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DiagnosticError`
+
+- <span id="diagnosticerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="diagnosticerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 
@@ -817,12 +1525,12 @@ trait IntoDiagnostic<T, E> { ... }
 *Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:35-39`](../../../.source_1765521767/miette-7.6.0/src/eyreish/into_diagnostic.rs#L35-L39)*
 
 Convenience trait that adds a [`.into_diagnostic()`](IntoDiagnostic::into_diagnostic) method that converts a type implementing
-[`std::error::Error`](../../addr2line/index.md) to a [`Result<T, Report>`](../../cargo_metadata/errors/index.md).
+[`std::error::Error`](../../cargo_docs_md/error/index.md) to a [`Result<T, Report>`](../../cargo_metadata/errors/index.md).
 
 ## Warning
 
 Calling this on a type implementing [`Diagnostic`](../index.md) will reduce it to the common denominator of
-[`std::error::Error`](../../addr2line/index.md). Meaning all extra information provided by [`Diagnostic`](../index.md) will be
+[`std::error::Error`](../../cargo_docs_md/error/index.md). Meaning all extra information provided by [`Diagnostic`](../index.md) will be
 inaccessible. If you have a type implementing [`Diagnostic`](../index.md) consider simply returning it or using
 `Into` or the [`Try`](std::ops::Try) operator (`?`).
 
@@ -830,7 +1538,7 @@ inaccessible. If you have a type implementing [`Diagnostic`](../index.md) consid
 
 - `fn into_diagnostic(self) -> Result<T, Report>`
 
-  Converts [`Result`](../../cargo_metadata/errors/index.md) types that return regular [`std::error::Error`](../../addr2line/index.md)s
+  Converts [`Result`](../../cargo_metadata/errors/index.md) types that return regular [`std::error::Error`](../../cargo_docs_md/error/index.md)s
 
 #### Implementors
 

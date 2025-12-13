@@ -104,13 +104,47 @@ This struct is created by the `par_chunk_by` method on `&[T]`.
 
 #### Trait Implementations
 
+##### `impl<T> Any for ChunkBy<'data, T, P>`
+
+- <span id="chunkby-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ChunkBy<'data, T, P>`
+
+- <span id="chunkby-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ChunkBy<'data, T, P>`
+
+- <span id="chunkby-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T, P: Clone> Clone for ChunkBy<'_, T, P>`
 
 - <span id="chunkby-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for ChunkBy<'data, T, P>`
+
+- <span id="chunkby-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug, P> Debug for ChunkBy<'_, T, P>`
 
-- <span id="chunkby-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="chunkby-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ChunkBy<'data, T, P>`
+
+- <span id="chunkby-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for ChunkBy<'data, T, P>`
+
+- <span id="chunkby-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for ChunkBy<'data, T, P>`
 
@@ -120,13 +154,13 @@ This struct is created by the `par_chunk_by` method on `&[T]`.
 
 - <span id="chunkby-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="chunkby-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="chunkby-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T, P> ParallelIterator for ChunkBy<'data, T, P>`
 
 - <span id="chunkby-paralleliterator-type-item"></span>`type Item = &'data [T]`
 
-- <span id="chunkby-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="chunkby-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for ChunkBy<'data, T, P>`
 
@@ -134,13 +168,33 @@ This struct is created by the `par_chunk_by` method on `&[T]`.
 
 - <span id="chunkby-pointable-type-init"></span>`type Init = T`
 
-- <span id="chunkby-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chunkby-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="chunkby-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chunkby-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="chunkby-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chunkby-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="chunkby-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="chunkby-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for ChunkBy<'data, T, P>`
+
+- <span id="chunkby-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="chunkby-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="chunkby-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for ChunkBy<'data, T, P>`
+
+- <span id="chunkby-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="chunkby-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for ChunkBy<'data, T, P>`
+
+- <span id="chunkby-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="chunkby-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ChunkByMut<'data, T, P>`
 
@@ -165,9 +219,39 @@ This struct is created by the `par_chunk_by_mut` method on `&mut [T]`.
 
 #### Trait Implementations
 
+##### `impl<T> Any for ChunkByMut<'data, T, P>`
+
+- <span id="chunkbymut-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ChunkByMut<'data, T, P>`
+
+- <span id="chunkbymut-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ChunkByMut<'data, T, P>`
+
+- <span id="chunkbymut-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: fmt::Debug, P> Debug for ChunkByMut<'_, T, P>`
 
-- <span id="chunkbymut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="chunkbymut-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ChunkByMut<'data, T, P>`
+
+- <span id="chunkbymut-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for ChunkByMut<'data, T, P>`
+
+- <span id="chunkbymut-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for ChunkByMut<'data, T, P>`
 
@@ -177,13 +261,13 @@ This struct is created by the `par_chunk_by_mut` method on `&mut [T]`.
 
 - <span id="chunkbymut-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="chunkbymut-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="chunkbymut-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T, P> ParallelIterator for ChunkByMut<'data, T, P>`
 
 - <span id="chunkbymut-paralleliterator-type-item"></span>`type Item = &'data mut [T]`
 
-- <span id="chunkbymut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="chunkbymut-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for ChunkByMut<'data, T, P>`
 
@@ -191,13 +275,25 @@ This struct is created by the `par_chunk_by_mut` method on `&mut [T]`.
 
 - <span id="chunkbymut-pointable-type-init"></span>`type Init = T`
 
-- <span id="chunkbymut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chunkbymut-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="chunkbymut-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chunkbymut-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="chunkbymut-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chunkbymut-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="chunkbymut-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="chunkbymut-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T, U> TryFrom for ChunkByMut<'data, T, P>`
+
+- <span id="chunkbymut-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="chunkbymut-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for ChunkByMut<'data, T, P>`
+
+- <span id="chunkbymut-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="chunkbymut-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Chunks<'data, T>`
 
@@ -218,21 +314,55 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 
 #### Trait Implementations
 
+##### `impl<T> Any for Chunks<'data, T>`
+
+- <span id="chunks-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Chunks<'data, T>`
+
+- <span id="chunks-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Chunks<'data, T>`
+
+- <span id="chunks-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T> Clone for Chunks<'_, T>`
 
 - <span id="chunks-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for Chunks<'data, T>`
+
+- <span id="chunks-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug> Debug for Chunks<'data, T>`
 
-- <span id="chunks-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="chunks-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Chunks<'data, T>`
+
+- <span id="chunks-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: Sync> IndexedParallelIterator for Chunks<'_, T>`
 
-- <span id="chunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="chunks-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="chunks-len"></span>`fn len(&self) -> usize`
+- <span id="chunks-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="chunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+- <span id="chunks-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for Chunks<'data, T>`
+
+- <span id="chunks-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Chunks<'data, T>`
 
@@ -242,15 +372,15 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 
 - <span id="chunks-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="chunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="chunks-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Sync> ParallelIterator for Chunks<'data, T>`
 
 - <span id="chunks-paralleliterator-type-item"></span>`type Item = &'data [T]`
 
-- <span id="chunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="chunks-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="chunks-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="chunks-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for Chunks<'data, T>`
 
@@ -258,13 +388,33 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 
 - <span id="chunks-pointable-type-init"></span>`type Init = T`
 
-- <span id="chunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chunks-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="chunks-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chunks-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="chunks-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chunks-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="chunks-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="chunks-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for Chunks<'data, T>`
+
+- <span id="chunks-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="chunks-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="chunks-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for Chunks<'data, T>`
+
+- <span id="chunks-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="chunks-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Chunks<'data, T>`
+
+- <span id="chunks-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="chunks-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ChunksExact<'data, T>`
 
@@ -286,23 +436,63 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 
 - <span id="chunksexact-remainder"></span>`fn remainder(&self) -> &'data [T]`
 
+  Return the remainder of the original slice that is not going to be
+
+  returned by the iterator. The returned slice has at most `chunk_size-1`
+
+  elements.
+
 #### Trait Implementations
+
+##### `impl<T> Any for ChunksExact<'data, T>`
+
+- <span id="chunksexact-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ChunksExact<'data, T>`
+
+- <span id="chunksexact-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ChunksExact<'data, T>`
+
+- <span id="chunksexact-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T> Clone for ChunksExact<'_, T>`
 
 - <span id="chunksexact-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for ChunksExact<'data, T>`
+
+- <span id="chunksexact-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug> Debug for ChunksExact<'data, T>`
 
-- <span id="chunksexact-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="chunksexact-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ChunksExact<'data, T>`
+
+- <span id="chunksexact-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: Sync> IndexedParallelIterator for ChunksExact<'_, T>`
 
-- <span id="chunksexact-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="chunksexact-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="chunksexact-len"></span>`fn len(&self) -> usize`
+- <span id="chunksexact-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="chunksexact-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+- <span id="chunksexact-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for ChunksExact<'data, T>`
+
+- <span id="chunksexact-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for ChunksExact<'data, T>`
 
@@ -312,15 +502,15 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 
 - <span id="chunksexact-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="chunksexact-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="chunksexact-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Sync> ParallelIterator for ChunksExact<'data, T>`
 
 - <span id="chunksexact-paralleliterator-type-item"></span>`type Item = &'data [T]`
 
-- <span id="chunksexact-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="chunksexact-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="chunksexact-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="chunksexact-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for ChunksExact<'data, T>`
 
@@ -328,13 +518,33 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 
 - <span id="chunksexact-pointable-type-init"></span>`type Init = T`
 
-- <span id="chunksexact-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chunksexact-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="chunksexact-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chunksexact-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="chunksexact-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chunksexact-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="chunksexact-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="chunksexact-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for ChunksExact<'data, T>`
+
+- <span id="chunksexact-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="chunksexact-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="chunksexact-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for ChunksExact<'data, T>`
+
+- <span id="chunksexact-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="chunksexact-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for ChunksExact<'data, T>`
+
+- <span id="chunksexact-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="chunksexact-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ChunksExactMut<'data, T>`
 
@@ -356,23 +566,89 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 
 - <span id="chunksexactmut-into-remainder"></span>`fn into_remainder(self) -> &'data mut [T]`
 
+  Return the remainder of the original slice that is not going to be
+
+  returned by the iterator. The returned slice has at most `chunk_size-1`
+
+  elements.
+
+  
+
+  Note that this has to consume `self` to return the original lifetime of
+
+  the data, which prevents this from actually being used as a parallel
+
+  iterator since that also consumes. This method is provided for parity
+
+  with `std::iter::ChunksExactMut`, but consider calling `remainder()` or
+
+  `take_remainder()` as alternatives.
+
 - <span id="chunksexactmut-remainder"></span>`fn remainder(&mut self) -> &mut [T]`
+
+  Return the remainder of the original slice that is not going to be
+
+  returned by the iterator. The returned slice has at most `chunk_size-1`
+
+  elements.
+
+  
+
+  Consider `take_remainder()` if you need access to the data with its
+
+  original lifetime, rather than borrowing through `&mut self` here.
 
 - <span id="chunksexactmut-take-remainder"></span>`fn take_remainder(&mut self) -> &'data mut [T]`
 
+  Return the remainder of the original slice that is not going to be
+
+  returned by the iterator. The returned slice has at most `chunk_size-1`
+
+  elements. Subsequent calls will return an empty slice.
+
 #### Trait Implementations
+
+##### `impl<T> Any for ChunksExactMut<'data, T>`
+
+- <span id="chunksexactmut-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ChunksExactMut<'data, T>`
+
+- <span id="chunksexactmut-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ChunksExactMut<'data, T>`
+
+- <span id="chunksexactmut-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: fmt::Debug> Debug for ChunksExactMut<'data, T>`
 
-- <span id="chunksexactmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="chunksexactmut-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ChunksExactMut<'data, T>`
+
+- <span id="chunksexactmut-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: Send> IndexedParallelIterator for ChunksExactMut<'_, T>`
 
-- <span id="chunksexactmut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="chunksexactmut-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="chunksexactmut-len"></span>`fn len(&self) -> usize`
+- <span id="chunksexactmut-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="chunksexactmut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+- <span id="chunksexactmut-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for ChunksExactMut<'data, T>`
+
+- <span id="chunksexactmut-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for ChunksExactMut<'data, T>`
 
@@ -382,15 +658,15 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 
 - <span id="chunksexactmut-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="chunksexactmut-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="chunksexactmut-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for ChunksExactMut<'data, T>`
 
 - <span id="chunksexactmut-paralleliterator-type-item"></span>`type Item = &'data mut [T]`
 
-- <span id="chunksexactmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="chunksexactmut-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="chunksexactmut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="chunksexactmut-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for ChunksExactMut<'data, T>`
 
@@ -398,13 +674,25 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 
 - <span id="chunksexactmut-pointable-type-init"></span>`type Init = T`
 
-- <span id="chunksexactmut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chunksexactmut-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="chunksexactmut-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chunksexactmut-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="chunksexactmut-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chunksexactmut-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="chunksexactmut-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="chunksexactmut-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T, U> TryFrom for ChunksExactMut<'data, T>`
+
+- <span id="chunksexactmut-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="chunksexactmut-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for ChunksExactMut<'data, T>`
+
+- <span id="chunksexactmut-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="chunksexactmut-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ChunksMut<'data, T>`
 
@@ -425,17 +713,47 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 
 #### Trait Implementations
 
+##### `impl<T> Any for ChunksMut<'data, T>`
+
+- <span id="chunksmut-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ChunksMut<'data, T>`
+
+- <span id="chunksmut-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ChunksMut<'data, T>`
+
+- <span id="chunksmut-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: fmt::Debug> Debug for ChunksMut<'data, T>`
 
-- <span id="chunksmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="chunksmut-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ChunksMut<'data, T>`
+
+- <span id="chunksmut-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: Send> IndexedParallelIterator for ChunksMut<'_, T>`
 
-- <span id="chunksmut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="chunksmut-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="chunksmut-len"></span>`fn len(&self) -> usize`
+- <span id="chunksmut-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="chunksmut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+- <span id="chunksmut-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for ChunksMut<'data, T>`
+
+- <span id="chunksmut-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for ChunksMut<'data, T>`
 
@@ -445,15 +763,15 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 
 - <span id="chunksmut-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="chunksmut-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="chunksmut-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for ChunksMut<'data, T>`
 
 - <span id="chunksmut-paralleliterator-type-item"></span>`type Item = &'data mut [T]`
 
-- <span id="chunksmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="chunksmut-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="chunksmut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="chunksmut-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for ChunksMut<'data, T>`
 
@@ -461,13 +779,25 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 
 - <span id="chunksmut-pointable-type-init"></span>`type Init = T`
 
-- <span id="chunksmut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chunksmut-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="chunksmut-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chunksmut-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="chunksmut-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chunksmut-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="chunksmut-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="chunksmut-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T, U> TryFrom for ChunksMut<'data, T>`
+
+- <span id="chunksmut-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="chunksmut-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for ChunksMut<'data, T>`
+
+- <span id="chunksmut-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="chunksmut-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RChunks<'data, T>`
 
@@ -488,21 +818,55 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 #### Trait Implementations
 
+##### `impl<T> Any for RChunks<'data, T>`
+
+- <span id="rchunks-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RChunks<'data, T>`
+
+- <span id="rchunks-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RChunks<'data, T>`
+
+- <span id="rchunks-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T> Clone for RChunks<'_, T>`
 
 - <span id="rchunks-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for RChunks<'data, T>`
+
+- <span id="rchunks-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug> Debug for RChunks<'data, T>`
 
-- <span id="rchunks-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rchunks-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RChunks<'data, T>`
+
+- <span id="rchunks-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: Sync> IndexedParallelIterator for RChunks<'_, T>`
 
-- <span id="rchunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="rchunks-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="rchunks-len"></span>`fn len(&self) -> usize`
+- <span id="rchunks-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="rchunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+- <span id="rchunks-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for RChunks<'data, T>`
+
+- <span id="rchunks-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for RChunks<'data, T>`
 
@@ -512,15 +876,15 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 - <span id="rchunks-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="rchunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="rchunks-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Sync> ParallelIterator for RChunks<'data, T>`
 
 - <span id="rchunks-paralleliterator-type-item"></span>`type Item = &'data [T]`
 
-- <span id="rchunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="rchunks-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="rchunks-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="rchunks-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for RChunks<'data, T>`
 
@@ -528,13 +892,33 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 - <span id="rchunks-pointable-type-init"></span>`type Init = T`
 
-- <span id="rchunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="rchunks-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="rchunks-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="rchunks-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="rchunks-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="rchunks-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="rchunks-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="rchunks-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for RChunks<'data, T>`
+
+- <span id="rchunks-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rchunks-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rchunks-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for RChunks<'data, T>`
+
+- <span id="rchunks-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rchunks-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RChunks<'data, T>`
+
+- <span id="rchunks-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rchunks-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RChunksExact<'data, T>`
 
@@ -556,23 +940,63 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 - <span id="rchunksexact-remainder"></span>`fn remainder(&self) -> &'data [T]`
 
+  Return the remainder of the original slice that is not going to be
+
+  returned by the iterator. The returned slice has at most `chunk_size-1`
+
+  elements.
+
 #### Trait Implementations
+
+##### `impl<T> Any for RChunksExact<'data, T>`
+
+- <span id="rchunksexact-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RChunksExact<'data, T>`
+
+- <span id="rchunksexact-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RChunksExact<'data, T>`
+
+- <span id="rchunksexact-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T> Clone for RChunksExact<'_, T>`
 
 - <span id="rchunksexact-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for RChunksExact<'data, T>`
+
+- <span id="rchunksexact-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug> Debug for RChunksExact<'data, T>`
 
-- <span id="rchunksexact-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rchunksexact-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RChunksExact<'data, T>`
+
+- <span id="rchunksexact-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: Sync> IndexedParallelIterator for RChunksExact<'_, T>`
 
-- <span id="rchunksexact-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="rchunksexact-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="rchunksexact-len"></span>`fn len(&self) -> usize`
+- <span id="rchunksexact-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="rchunksexact-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+- <span id="rchunksexact-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for RChunksExact<'data, T>`
+
+- <span id="rchunksexact-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for RChunksExact<'data, T>`
 
@@ -582,15 +1006,15 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 - <span id="rchunksexact-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="rchunksexact-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="rchunksexact-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Sync> ParallelIterator for RChunksExact<'data, T>`
 
 - <span id="rchunksexact-paralleliterator-type-item"></span>`type Item = &'data [T]`
 
-- <span id="rchunksexact-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="rchunksexact-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="rchunksexact-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="rchunksexact-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for RChunksExact<'data, T>`
 
@@ -598,13 +1022,33 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 - <span id="rchunksexact-pointable-type-init"></span>`type Init = T`
 
-- <span id="rchunksexact-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="rchunksexact-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="rchunksexact-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="rchunksexact-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="rchunksexact-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="rchunksexact-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="rchunksexact-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="rchunksexact-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for RChunksExact<'data, T>`
+
+- <span id="rchunksexact-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rchunksexact-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rchunksexact-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for RChunksExact<'data, T>`
+
+- <span id="rchunksexact-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rchunksexact-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RChunksExact<'data, T>`
+
+- <span id="rchunksexact-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rchunksexact-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RChunksExactMut<'data, T: Send>`
 
@@ -626,23 +1070,89 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 - <span id="rchunksexactmut-into-remainder"></span>`fn into_remainder(self) -> &'data mut [T]`
 
+  Return the remainder of the original slice that is not going to be
+
+  returned by the iterator. The returned slice has at most `chunk_size-1`
+
+  elements.
+
+  
+
+  Note that this has to consume `self` to return the original lifetime of
+
+  the data, which prevents this from actually being used as a parallel
+
+  iterator since that also consumes. This method is provided for parity
+
+  with `std::iter::RChunksExactMut`, but consider calling `remainder()` or
+
+  `take_remainder()` as alternatives.
+
 - <span id="rchunksexactmut-remainder"></span>`fn remainder(&mut self) -> &mut [T]`
+
+  Return the remainder of the original slice that is not going to be
+
+  returned by the iterator. The returned slice has at most `chunk_size-1`
+
+  elements.
+
+  
+
+  Consider `take_remainder()` if you need access to the data with its
+
+  original lifetime, rather than borrowing through `&mut self` here.
 
 - <span id="rchunksexactmut-take-remainder"></span>`fn take_remainder(&mut self) -> &'data mut [T]`
 
+  Return the remainder of the original slice that is not going to be
+
+  returned by the iterator. The returned slice has at most `chunk_size-1`
+
+  elements. Subsequent calls will return an empty slice.
+
 #### Trait Implementations
+
+##### `impl<T> Any for RChunksExactMut<'data, T>`
+
+- <span id="rchunksexactmut-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RChunksExactMut<'data, T>`
+
+- <span id="rchunksexactmut-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RChunksExactMut<'data, T>`
+
+- <span id="rchunksexactmut-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: fmt::Debug + Send> Debug for RChunksExactMut<'data, T>`
 
-- <span id="rchunksexactmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rchunksexactmut-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RChunksExactMut<'data, T>`
+
+- <span id="rchunksexactmut-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: Send + 'data> IndexedParallelIterator for RChunksExactMut<'data, T>`
 
-- <span id="rchunksexactmut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="rchunksexactmut-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="rchunksexactmut-len"></span>`fn len(&self) -> usize`
+- <span id="rchunksexactmut-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="rchunksexactmut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+- <span id="rchunksexactmut-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for RChunksExactMut<'data, T>`
+
+- <span id="rchunksexactmut-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for RChunksExactMut<'data, T>`
 
@@ -652,15 +1162,15 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 - <span id="rchunksexactmut-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="rchunksexactmut-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="rchunksexactmut-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send + 'data> ParallelIterator for RChunksExactMut<'data, T>`
 
 - <span id="rchunksexactmut-paralleliterator-type-item"></span>`type Item = &'data mut [T]`
 
-- <span id="rchunksexactmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="rchunksexactmut-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="rchunksexactmut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="rchunksexactmut-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for RChunksExactMut<'data, T>`
 
@@ -668,13 +1178,25 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 - <span id="rchunksexactmut-pointable-type-init"></span>`type Init = T`
 
-- <span id="rchunksexactmut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="rchunksexactmut-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="rchunksexactmut-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="rchunksexactmut-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="rchunksexactmut-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="rchunksexactmut-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="rchunksexactmut-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="rchunksexactmut-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T, U> TryFrom for RChunksExactMut<'data, T>`
+
+- <span id="rchunksexactmut-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rchunksexactmut-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RChunksExactMut<'data, T>`
+
+- <span id="rchunksexactmut-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rchunksexactmut-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RChunksMut<'data, T>`
 
@@ -695,17 +1217,47 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 #### Trait Implementations
 
+##### `impl<T> Any for RChunksMut<'data, T>`
+
+- <span id="rchunksmut-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RChunksMut<'data, T>`
+
+- <span id="rchunksmut-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RChunksMut<'data, T>`
+
+- <span id="rchunksmut-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: fmt::Debug> Debug for RChunksMut<'data, T>`
 
-- <span id="rchunksmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rchunksmut-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RChunksMut<'data, T>`
+
+- <span id="rchunksmut-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: Send> IndexedParallelIterator for RChunksMut<'_, T>`
 
-- <span id="rchunksmut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="rchunksmut-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="rchunksmut-len"></span>`fn len(&self) -> usize`
+- <span id="rchunksmut-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="rchunksmut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+- <span id="rchunksmut-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for RChunksMut<'data, T>`
+
+- <span id="rchunksmut-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for RChunksMut<'data, T>`
 
@@ -715,15 +1267,15 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 - <span id="rchunksmut-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="rchunksmut-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="rchunksmut-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for RChunksMut<'data, T>`
 
 - <span id="rchunksmut-paralleliterator-type-item"></span>`type Item = &'data mut [T]`
 
-- <span id="rchunksmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="rchunksmut-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="rchunksmut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="rchunksmut-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for RChunksMut<'data, T>`
 
@@ -731,13 +1283,25 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 - <span id="rchunksmut-pointable-type-init"></span>`type Init = T`
 
-- <span id="rchunksmut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="rchunksmut-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="rchunksmut-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="rchunksmut-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="rchunksmut-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="rchunksmut-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="rchunksmut-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="rchunksmut-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T, U> TryFrom for RChunksMut<'data, T>`
+
+- <span id="rchunksmut-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rchunksmut-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RChunksMut<'data, T>`
+
+- <span id="rchunksmut-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rchunksmut-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Iter<'data, T>`
 
@@ -753,21 +1317,55 @@ Parallel iterator over immutable items in a slice
 
 #### Trait Implementations
 
+##### `impl<T> Any for Iter<'data, T>`
+
+- <span id="iter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Iter<'data, T>`
+
+- <span id="iter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Iter<'data, T>`
+
+- <span id="iter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T> Clone for Iter<'_, T>`
 
 - <span id="iter-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for Iter<'data, T>`
+
+- <span id="iter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug> Debug for Iter<'data, T>`
 
-- <span id="iter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="iter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Iter<'data, T>`
+
+- <span id="iter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: Sync> IndexedParallelIterator for Iter<'_, T>`
 
-- <span id="iter-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="iter-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="iter-len"></span>`fn len(&self) -> usize`
+- <span id="iter-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="iter-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+- <span id="iter-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for Iter<'data, T>`
+
+- <span id="iter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Iter<'data, T>`
 
@@ -777,15 +1375,15 @@ Parallel iterator over immutable items in a slice
 
 - <span id="iter-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="iter-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="iter-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Sync> ParallelIterator for Iter<'data, T>`
 
 - <span id="iter-paralleliterator-type-item"></span>`type Item = &'data T`
 
-- <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="iter-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="iter-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="iter-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for Iter<'data, T>`
 
@@ -793,13 +1391,33 @@ Parallel iterator over immutable items in a slice
 
 - <span id="iter-pointable-type-init"></span>`type Init = T`
 
-- <span id="iter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="iter-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="iter-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="iter-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="iter-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="iter-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="iter-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="iter-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for Iter<'data, T>`
+
+- <span id="iter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="iter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="iter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for Iter<'data, T>`
+
+- <span id="iter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="iter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Iter<'data, T>`
+
+- <span id="iter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="iter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IterProducer<'data, T: Sync>`
 
@@ -813,6 +1431,36 @@ struct IterProducer<'data, T: Sync> {
 
 #### Trait Implementations
 
+##### `impl<T> Any for IterProducer<'data, T>`
+
+- <span id="iterproducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IterProducer<'data, T>`
+
+- <span id="iterproducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IterProducer<'data, T>`
+
+- <span id="iterproducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for IterProducer<'data, T>`
+
+- <span id="iterproducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for IterProducer<'data, T>`
+
+- <span id="iterproducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T> IntoEither for IterProducer<'data, T>`
 
 ##### `impl<T> Pointable for IterProducer<'data, T>`
@@ -821,13 +1469,13 @@ struct IterProducer<'data, T: Sync> {
 
 - <span id="iterproducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="iterproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="iterproducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="iterproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="iterproducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="iterproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="iterproducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="iterproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="iterproducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: 'data + Sync> Producer for IterProducer<'data, T>`
 
@@ -835,9 +1483,21 @@ struct IterProducer<'data, T: Sync> {
 
 - <span id="iterproducer-producer-type-intoiter"></span>`type IntoIter = Iter<'data, T>`
 
-- <span id="iterproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md#producer)
+- <span id="iterproducer-producer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md#producer)
 
-- <span id="iterproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
+- <span id="iterproducer-producer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
+
+##### `impl<T, U> TryFrom for IterProducer<'data, T>`
+
+- <span id="iterproducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="iterproducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for IterProducer<'data, T>`
+
+- <span id="iterproducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="iterproducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Windows<'data, T>`
 
@@ -854,21 +1514,55 @@ Parallel iterator over immutable overlapping windows of a slice
 
 #### Trait Implementations
 
+##### `impl<T> Any for Windows<'data, T>`
+
+- <span id="windows-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Windows<'data, T>`
+
+- <span id="windows-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Windows<'data, T>`
+
+- <span id="windows-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T> Clone for Windows<'_, T>`
 
 - <span id="windows-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for Windows<'data, T>`
+
+- <span id="windows-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug> Debug for Windows<'data, T>`
 
-- <span id="windows-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="windows-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Windows<'data, T>`
+
+- <span id="windows-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: Sync> IndexedParallelIterator for Windows<'_, T>`
 
-- <span id="windows-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="windows-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="windows-len"></span>`fn len(&self) -> usize`
+- <span id="windows-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="windows-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+- <span id="windows-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for Windows<'data, T>`
+
+- <span id="windows-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Windows<'data, T>`
 
@@ -878,15 +1572,15 @@ Parallel iterator over immutable overlapping windows of a slice
 
 - <span id="windows-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="windows-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="windows-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Sync> ParallelIterator for Windows<'data, T>`
 
 - <span id="windows-paralleliterator-type-item"></span>`type Item = &'data [T]`
 
-- <span id="windows-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="windows-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="windows-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="windows-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for Windows<'data, T>`
 
@@ -894,13 +1588,33 @@ Parallel iterator over immutable overlapping windows of a slice
 
 - <span id="windows-pointable-type-init"></span>`type Init = T`
 
-- <span id="windows-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="windows-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="windows-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="windows-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="windows-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="windows-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="windows-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="windows-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for Windows<'data, T>`
+
+- <span id="windows-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="windows-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="windows-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for Windows<'data, T>`
+
+- <span id="windows-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="windows-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Windows<'data, T>`
+
+- <span id="windows-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="windows-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `WindowsProducer<'data, T: Sync>`
 
@@ -915,6 +1629,36 @@ struct WindowsProducer<'data, T: Sync> {
 
 #### Trait Implementations
 
+##### `impl<T> Any for WindowsProducer<'data, T>`
+
+- <span id="windowsproducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WindowsProducer<'data, T>`
+
+- <span id="windowsproducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WindowsProducer<'data, T>`
+
+- <span id="windowsproducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for WindowsProducer<'data, T>`
+
+- <span id="windowsproducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for WindowsProducer<'data, T>`
+
+- <span id="windowsproducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T> IntoEither for WindowsProducer<'data, T>`
 
 ##### `impl<T> Pointable for WindowsProducer<'data, T>`
@@ -923,13 +1667,13 @@ struct WindowsProducer<'data, T: Sync> {
 
 - <span id="windowsproducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="windowsproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="windowsproducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="windowsproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="windowsproducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="windowsproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="windowsproducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="windowsproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="windowsproducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: 'data + Sync> Producer for WindowsProducer<'data, T>`
 
@@ -937,9 +1681,21 @@ struct WindowsProducer<'data, T: Sync> {
 
 - <span id="windowsproducer-producer-type-intoiter"></span>`type IntoIter = Windows<'data, T>`
 
-- <span id="windowsproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md#producer)
+- <span id="windowsproducer-producer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md#producer)
 
-- <span id="windowsproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
+- <span id="windowsproducer-producer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
+
+##### `impl<T, U> TryFrom for WindowsProducer<'data, T>`
+
+- <span id="windowsproducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="windowsproducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for WindowsProducer<'data, T>`
+
+- <span id="windowsproducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="windowsproducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IterMut<'data, T>`
 
@@ -955,17 +1711,47 @@ Parallel iterator over mutable items in a slice
 
 #### Trait Implementations
 
+##### `impl<T> Any for IterMut<'data, T>`
+
+- <span id="itermut-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IterMut<'data, T>`
+
+- <span id="itermut-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IterMut<'data, T>`
+
+- <span id="itermut-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: fmt::Debug> Debug for IterMut<'data, T>`
 
-- <span id="itermut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="itermut-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for IterMut<'data, T>`
+
+- <span id="itermut-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<T: Send> IndexedParallelIterator for IterMut<'_, T>`
 
-- <span id="itermut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="itermut-indexedparalleliterator-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="itermut-len"></span>`fn len(&self) -> usize`
+- <span id="itermut-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="itermut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+- <span id="itermut-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for IterMut<'data, T>`
+
+- <span id="itermut-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for IterMut<'data, T>`
 
@@ -975,15 +1761,15 @@ Parallel iterator over mutable items in a slice
 
 - <span id="itermut-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="itermut-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="itermut-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for IterMut<'data, T>`
 
 - <span id="itermut-paralleliterator-type-item"></span>`type Item = &'data mut T`
 
-- <span id="itermut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="itermut-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
-- <span id="itermut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="itermut-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for IterMut<'data, T>`
 
@@ -991,13 +1777,25 @@ Parallel iterator over mutable items in a slice
 
 - <span id="itermut-pointable-type-init"></span>`type Init = T`
 
-- <span id="itermut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="itermut-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="itermut-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="itermut-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="itermut-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="itermut-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="itermut-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="itermut-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T, U> TryFrom for IterMut<'data, T>`
+
+- <span id="itermut-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itermut-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for IterMut<'data, T>`
+
+- <span id="itermut-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itermut-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IterMutProducer<'data, T: Send>`
 
@@ -1011,6 +1809,36 @@ struct IterMutProducer<'data, T: Send> {
 
 #### Trait Implementations
 
+##### `impl<T> Any for IterMutProducer<'data, T>`
+
+- <span id="itermutproducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IterMutProducer<'data, T>`
+
+- <span id="itermutproducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IterMutProducer<'data, T>`
+
+- <span id="itermutproducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for IterMutProducer<'data, T>`
+
+- <span id="itermutproducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for IterMutProducer<'data, T>`
+
+- <span id="itermutproducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T> IntoEither for IterMutProducer<'data, T>`
 
 ##### `impl<T> Pointable for IterMutProducer<'data, T>`
@@ -1019,13 +1847,13 @@ struct IterMutProducer<'data, T: Send> {
 
 - <span id="itermutproducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="itermutproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="itermutproducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="itermutproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="itermutproducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="itermutproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="itermutproducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="itermutproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="itermutproducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: 'data + Send> Producer for IterMutProducer<'data, T>`
 
@@ -1033,9 +1861,21 @@ struct IterMutProducer<'data, T: Send> {
 
 - <span id="itermutproducer-producer-type-intoiter"></span>`type IntoIter = IterMut<'data, T>`
 
-- <span id="itermutproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md#producer)
+- <span id="itermutproducer-producer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md#producer)
 
-- <span id="itermutproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
+- <span id="itermutproducer-producer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
+
+##### `impl<T, U> TryFrom for IterMutProducer<'data, T>`
+
+- <span id="itermutproducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="itermutproducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for IterMutProducer<'data, T>`
+
+- <span id="itermutproducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="itermutproducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Split<'data, T, P>`
 
@@ -1052,13 +1892,47 @@ Parallel iterator over slices separated by a predicate
 
 #### Trait Implementations
 
+##### `impl<T> Any for Split<'data, T, P>`
+
+- <span id="split-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Split<'data, T, P>`
+
+- <span id="split-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Split<'data, T, P>`
+
+- <span id="split-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T, P: Clone> Clone for Split<'_, T, P>`
 
 - <span id="split-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for Split<'data, T, P>`
+
+- <span id="split-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: Debug, P> Debug for Split<'_, T, P>`
 
-- <span id="split-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="split-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Split<'data, T, P>`
+
+- <span id="split-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Split<'data, T, P>`
+
+- <span id="split-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Split<'data, T, P>`
 
@@ -1068,13 +1942,13 @@ Parallel iterator over slices separated by a predicate
 
 - <span id="split-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="split-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="split-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T, P> ParallelIterator for Split<'data, T, P>`
 
 - <span id="split-paralleliterator-type-item"></span>`type Item = &'data [T]`
 
-- <span id="split-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="split-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for Split<'data, T, P>`
 
@@ -1082,13 +1956,33 @@ Parallel iterator over slices separated by a predicate
 
 - <span id="split-pointable-type-init"></span>`type Init = T`
 
-- <span id="split-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="split-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="split-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="split-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="split-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="split-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="split-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="split-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for Split<'data, T, P>`
+
+- <span id="split-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="split-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="split-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for Split<'data, T, P>`
+
+- <span id="split-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="split-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Split<'data, T, P>`
+
+- <span id="split-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="split-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SplitInclusive<'data, T, P>`
 
@@ -1106,13 +2000,47 @@ including the matched part as a terminator.
 
 #### Trait Implementations
 
+##### `impl<T> Any for SplitInclusive<'data, T, P>`
+
+- <span id="splitinclusive-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SplitInclusive<'data, T, P>`
+
+- <span id="splitinclusive-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SplitInclusive<'data, T, P>`
+
+- <span id="splitinclusive-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T, P: Clone> Clone for SplitInclusive<'_, T, P>`
 
 - <span id="splitinclusive-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for SplitInclusive<'data, T, P>`
+
+- <span id="splitinclusive-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: Debug, P> Debug for SplitInclusive<'_, T, P>`
 
-- <span id="splitinclusive-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="splitinclusive-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SplitInclusive<'data, T, P>`
+
+- <span id="splitinclusive-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for SplitInclusive<'data, T, P>`
+
+- <span id="splitinclusive-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for SplitInclusive<'data, T, P>`
 
@@ -1122,13 +2050,13 @@ including the matched part as a terminator.
 
 - <span id="splitinclusive-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="splitinclusive-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="splitinclusive-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T, P> ParallelIterator for SplitInclusive<'data, T, P>`
 
 - <span id="splitinclusive-paralleliterator-type-item"></span>`type Item = &'data [T]`
 
-- <span id="splitinclusive-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="splitinclusive-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for SplitInclusive<'data, T, P>`
 
@@ -1136,13 +2064,33 @@ including the matched part as a terminator.
 
 - <span id="splitinclusive-pointable-type-init"></span>`type Init = T`
 
-- <span id="splitinclusive-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitinclusive-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="splitinclusive-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitinclusive-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="splitinclusive-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitinclusive-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="splitinclusive-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="splitinclusive-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for SplitInclusive<'data, T, P>`
+
+- <span id="splitinclusive-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="splitinclusive-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="splitinclusive-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for SplitInclusive<'data, T, P>`
+
+- <span id="splitinclusive-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="splitinclusive-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for SplitInclusive<'data, T, P>`
+
+- <span id="splitinclusive-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="splitinclusive-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SplitMut<'data, T, P>`
 
@@ -1159,9 +2107,39 @@ Parallel iterator over mutable slices separated by a predicate
 
 #### Trait Implementations
 
+##### `impl<T> Any for SplitMut<'data, T, P>`
+
+- <span id="splitmut-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SplitMut<'data, T, P>`
+
+- <span id="splitmut-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SplitMut<'data, T, P>`
+
+- <span id="splitmut-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: Debug, P> Debug for SplitMut<'_, T, P>`
 
-- <span id="splitmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="splitmut-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SplitMut<'data, T, P>`
+
+- <span id="splitmut-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for SplitMut<'data, T, P>`
+
+- <span id="splitmut-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for SplitMut<'data, T, P>`
 
@@ -1171,13 +2149,13 @@ Parallel iterator over mutable slices separated by a predicate
 
 - <span id="splitmut-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="splitmut-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="splitmut-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T, P> ParallelIterator for SplitMut<'data, T, P>`
 
 - <span id="splitmut-paralleliterator-type-item"></span>`type Item = &'data mut [T]`
 
-- <span id="splitmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="splitmut-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for SplitMut<'data, T, P>`
 
@@ -1185,13 +2163,25 @@ Parallel iterator over mutable slices separated by a predicate
 
 - <span id="splitmut-pointable-type-init"></span>`type Init = T`
 
-- <span id="splitmut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitmut-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="splitmut-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitmut-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="splitmut-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitmut-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="splitmut-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="splitmut-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T, U> TryFrom for SplitMut<'data, T, P>`
+
+- <span id="splitmut-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="splitmut-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for SplitMut<'data, T, P>`
+
+- <span id="splitmut-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="splitmut-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SplitInclusiveMut<'data, T, P>`
 
@@ -1209,9 +2199,39 @@ including the matched part as a terminator.
 
 #### Trait Implementations
 
+##### `impl<T> Any for SplitInclusiveMut<'data, T, P>`
+
+- <span id="splitinclusivemut-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SplitInclusiveMut<'data, T, P>`
+
+- <span id="splitinclusivemut-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SplitInclusiveMut<'data, T, P>`
+
+- <span id="splitinclusivemut-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: Debug, P> Debug for SplitInclusiveMut<'_, T, P>`
 
-- <span id="splitinclusivemut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="splitinclusivemut-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SplitInclusiveMut<'data, T, P>`
+
+- <span id="splitinclusivemut-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for SplitInclusiveMut<'data, T, P>`
+
+- <span id="splitinclusivemut-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for SplitInclusiveMut<'data, T, P>`
 
@@ -1221,13 +2241,13 @@ including the matched part as a terminator.
 
 - <span id="splitinclusivemut-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="splitinclusivemut-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="splitinclusivemut-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T, P> ParallelIterator for SplitInclusiveMut<'data, T, P>`
 
 - <span id="splitinclusivemut-paralleliterator-type-item"></span>`type Item = &'data mut [T]`
 
-- <span id="splitinclusivemut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
+- <span id="splitinclusivemut-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for SplitInclusiveMut<'data, T, P>`
 
@@ -1235,13 +2255,25 @@ including the matched part as a terminator.
 
 - <span id="splitinclusivemut-pointable-type-init"></span>`type Init = T`
 
-- <span id="splitinclusivemut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitinclusivemut-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="splitinclusivemut-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitinclusivemut-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="splitinclusivemut-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitinclusivemut-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="splitinclusivemut-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="splitinclusivemut-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T, U> TryFrom for SplitInclusiveMut<'data, T, P>`
+
+- <span id="splitinclusivemut-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="splitinclusivemut-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for SplitInclusiveMut<'data, T, P>`
+
+- <span id="splitinclusivemut-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="splitinclusivemut-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

@@ -87,21 +87,85 @@ This is just a pointer to the buffer and its length - dropping an instance of th
 
 - <span id="buffer-alloc"></span>`fn alloc(cap: usize) -> Buffer<T>` — [`Buffer`](#buffer)
 
+  Allocates a new buffer with the specified capacity.
+
 - <span id="buffer-dealloc"></span>`unsafe fn dealloc(self)`
+
+  Deallocates the buffer.
 
 - <span id="buffer-at"></span>`unsafe fn at(&self, index: isize) -> *mut T`
 
+  Returns a pointer to the task at the specified `index`.
+
 - <span id="buffer-write"></span>`unsafe fn write(&self, index: isize, task: MaybeUninit<T>)`
+
+  Writes `task` into the specified `index`.
+
+  
+
+  This method might be concurrently called with another `read` at the same index, which is
+
+  technically speaking a data race and therefore UB. We should use an atomic store here, but
+
+  that would be more expensive and difficult to implement generically for all types `T`.
+
+  Hence, as a hack, we use a volatile write instead.
 
 - <span id="buffer-read"></span>`unsafe fn read(&self, index: isize) -> MaybeUninit<T>`
 
+  Reads a task from the specified `index`.
+
+  
+
+  This method might be concurrently called with another `write` at the same index, which is
+
+  technically speaking a data race and therefore UB. We should use an atomic load here, but
+
+  that would be more expensive and difficult to implement generically for all types `T`.
+
+  Hence, as a hack, we use a volatile load instead.
+
 #### Trait Implementations
+
+##### `impl<T> Any for Buffer<T>`
+
+- <span id="buffer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Buffer<T>`
+
+- <span id="buffer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Buffer<T>`
+
+- <span id="buffer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T> Clone for Buffer<T>`
 
 - <span id="buffer-clone"></span>`fn clone(&self) -> Buffer<T>` — [`Buffer`](#buffer)
 
+##### `impl<T> CloneToUninit for Buffer<T>`
+
+- <span id="buffer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T> Copy for Buffer<T>`
+
+##### `impl<T> From for Buffer<T>`
+
+- <span id="buffer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Buffer<T>`
+
+- <span id="buffer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for Buffer<T>`
 
@@ -109,15 +173,35 @@ This is just a pointer to the buffer and its length - dropping an instance of th
 
 - <span id="buffer-pointable-type-init"></span>`type Init = T`
 
-- <span id="buffer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="buffer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="buffer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="buffer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="buffer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="buffer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="buffer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="buffer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> Send for Buffer<T>`
+
+##### `impl<T> ToOwned for Buffer<T>`
+
+- <span id="buffer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="buffer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="buffer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for Buffer<T>`
+
+- <span id="buffer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="buffer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Buffer<T>`
+
+- <span id="buffer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="buffer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Inner<T>`
 
@@ -160,9 +244,39 @@ The implementation is based on the following work:
 
 #### Trait Implementations
 
+##### `impl<T> Any for Inner<T>`
+
+- <span id="inner-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Inner<T>`
+
+- <span id="inner-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Inner<T>`
+
+- <span id="inner-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T> Drop for Inner<T>`
 
 - <span id="inner-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for Inner<T>`
+
+- <span id="inner-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Inner<T>`
+
+- <span id="inner-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for Inner<T>`
 
@@ -170,13 +284,25 @@ The implementation is based on the following work:
 
 - <span id="inner-pointable-type-init"></span>`type Init = T`
 
-- <span id="inner-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="inner-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="inner-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="inner-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="inner-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="inner-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="inner-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="inner-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T, U> TryFrom for Inner<T>`
+
+- <span id="inner-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="inner-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Inner<T>`
+
+- <span id="inner-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="inner-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Worker<T>`
 
@@ -254,27 +380,231 @@ assert_eq!(w.pop(), Some(2));
 
 - <span id="worker-new-fifo"></span>`fn new_fifo() -> Worker<T>` — [`Worker`](#worker)
 
+  Creates a FIFO worker queue.
+
+  
+
+  Tasks are pushed and popped from opposite ends.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Worker;
+
+  
+
+  let w = Worker::<i32>::new_fifo();
+
+  ```
+
 - <span id="worker-new-lifo"></span>`fn new_lifo() -> Worker<T>` — [`Worker`](#worker)
+
+  Creates a LIFO worker queue.
+
+  
+
+  Tasks are pushed and popped from the same end.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Worker;
+
+  
+
+  let w = Worker::<i32>::new_lifo();
+
+  ```
 
 - <span id="worker-stealer"></span>`fn stealer(&self) -> Stealer<T>` — [`Stealer`](#stealer)
 
+  Creates a stealer for this queue.
+
+  
+
+  The returned stealer can be shared among threads and cloned.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Worker;
+
+  
+
+  let w = Worker::<i32>::new_lifo();
+
+  let s = w.stealer();
+
+  ```
+
 - <span id="worker-resize"></span>`unsafe fn resize(&self, new_cap: usize)`
+
+  Resizes the internal buffer to the new capacity of `new_cap`.
 
 - <span id="worker-reserve"></span>`fn reserve(&self, reserve_cap: usize)`
 
+  Reserves enough capacity so that `reserve_cap` tasks can be pushed without growing the
+
+  buffer.
+
 - <span id="worker-is-empty"></span>`fn is_empty(&self) -> bool`
+
+  Returns `true` if the queue is empty.
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Worker;
+
+  
+
+  let w = Worker::new_lifo();
+
+  
+
+  assert!(w.is_empty());
+
+  w.push(1);
+
+  assert!(!w.is_empty());
+
+  ```
 
 - <span id="worker-len"></span>`fn len(&self) -> usize`
 
+  Returns the number of tasks in the deque.
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Worker;
+
+  
+
+  let w = Worker::new_lifo();
+
+  
+
+  assert_eq!(w.len(), 0);
+
+  w.push(1);
+
+  assert_eq!(w.len(), 1);
+
+  w.push(1);
+
+  assert_eq!(w.len(), 2);
+
+  ```
+
 - <span id="worker-push"></span>`fn push(&self, task: T)`
+
+  Pushes a task into the queue.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Worker;
+
+  
+
+  let w = Worker::new_lifo();
+
+  w.push(1);
+
+  w.push(2);
+
+  ```
 
 - <span id="worker-pop"></span>`fn pop(&self) -> Option<T>`
 
+  Pops a task from the queue.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Worker;
+
+  
+
+  let w = Worker::new_fifo();
+
+  w.push(1);
+
+  w.push(2);
+
+  
+
+  assert_eq!(w.pop(), Some(1));
+
+  assert_eq!(w.pop(), Some(2));
+
+  assert_eq!(w.pop(), None);
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for Worker<T>`
+
+- <span id="worker-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Worker<T>`
+
+- <span id="worker-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Worker<T>`
+
+- <span id="worker-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T> Debug for Worker<T>`
 
-- <span id="worker-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="worker-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Worker<T>`
+
+- <span id="worker-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Worker<T>`
+
+- <span id="worker-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for Worker<T>`
 
@@ -282,15 +612,27 @@ assert_eq!(w.pop(), Some(2));
 
 - <span id="worker-pointable-type-init"></span>`type Init = T`
 
-- <span id="worker-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="worker-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="worker-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="worker-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="worker-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="worker-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="worker-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="worker-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: Send> Send for Worker<T>`
+
+##### `impl<T, U> TryFrom for Worker<T>`
+
+- <span id="worker-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="worker-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Worker<T>`
+
+- <span id="worker-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="worker-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Stealer<T>`
 
@@ -338,27 +680,373 @@ assert_eq!(s.steal(), Steal::Empty);
 
 - <span id="stealer-is-empty"></span>`fn is_empty(&self) -> bool`
 
+  Returns `true` if the queue is empty.
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Worker;
+
+  
+
+  let w = Worker::new_lifo();
+
+  let s = w.stealer();
+
+  
+
+  assert!(s.is_empty());
+
+  w.push(1);
+
+  assert!(!s.is_empty());
+
+  ```
+
 - <span id="stealer-len"></span>`fn len(&self) -> usize`
+
+  Returns the number of tasks in the deque.
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Worker;
+
+  
+
+  let w = Worker::new_lifo();
+
+  let s = w.stealer();
+
+  
+
+  assert_eq!(s.len(), 0);
+
+  w.push(1);
+
+  assert_eq!(s.len(), 1);
+
+  w.push(2);
+
+  assert_eq!(s.len(), 2);
+
+  ```
 
 - <span id="stealer-steal"></span>`fn steal(&self) -> Steal<T>` — [`Steal`](#steal)
 
+  Steals a task from the queue.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::{Steal, Worker};
+
+  
+
+  let w = Worker::new_lifo();
+
+  w.push(1);
+
+  w.push(2);
+
+  
+
+  let s = w.stealer();
+
+  assert_eq!(s.steal(), Steal::Success(1));
+
+  assert_eq!(s.steal(), Steal::Success(2));
+
+  ```
+
 - <span id="stealer-steal-batch"></span>`fn steal_batch(&self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
+
+  Steals a batch of tasks and pushes them into another worker.
+
+  
+
+  How many tasks exactly will be stolen is not specified. That said, this method will try to
+
+  steal around half of the tasks in the queue, but also not more than some constant limit.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Worker;
+
+  
+
+  let w1 = Worker::new_fifo();
+
+  w1.push(1);
+
+  w1.push(2);
+
+  w1.push(3);
+
+  w1.push(4);
+
+  
+
+  let s = w1.stealer();
+
+  let w2 = Worker::new_fifo();
+
+  
+
+  let _ = s.steal_batch(&w2);
+
+  assert_eq!(w2.pop(), Some(1));
+
+  assert_eq!(w2.pop(), Some(2));
+
+  ```
 
 - <span id="stealer-steal-batch-with-limit"></span>`fn steal_batch_with_limit(&self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
 
+  Steals no more than `limit` of tasks and pushes them into another worker.
+
+  
+
+  How many tasks exactly will be stolen is not specified. That said, this method will try to
+
+  steal around half of the tasks in the queue, but also not more than the given limit.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Worker;
+
+  
+
+  let w1 = Worker::new_fifo();
+
+  w1.push(1);
+
+  w1.push(2);
+
+  w1.push(3);
+
+  w1.push(4);
+
+  w1.push(5);
+
+  w1.push(6);
+
+  
+
+  let s = w1.stealer();
+
+  let w2 = Worker::new_fifo();
+
+  
+
+  let _ = s.steal_batch_with_limit(&w2, 2);
+
+  assert_eq!(w2.pop(), Some(1));
+
+  assert_eq!(w2.pop(), Some(2));
+
+  assert_eq!(w2.pop(), None);
+
+  
+
+  w1.push(7);
+
+  w1.push(8);
+
+  // Setting a large limit does not guarantee that all elements will be popped. In this case,
+
+  // half of the elements are currently popped, but the number of popped elements is considered
+
+  // an implementation detail that may be changed in the future.
+
+  let _ = s.steal_batch_with_limit(&w2, std::usize::MAX);
+
+  assert_eq!(w2.len(), 3);
+
+  ```
+
 - <span id="stealer-steal-batch-and-pop"></span>`fn steal_batch_and_pop(&self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
+
+  Steals a batch of tasks, pushes them into another worker, and pops a task from that worker.
+
+  
+
+  How many tasks exactly will be stolen is not specified. That said, this method will try to
+
+  steal around half of the tasks in the queue, but also not more than some constant limit.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::{Steal, Worker};
+
+  
+
+  let w1 = Worker::new_fifo();
+
+  w1.push(1);
+
+  w1.push(2);
+
+  w1.push(3);
+
+  w1.push(4);
+
+  
+
+  let s = w1.stealer();
+
+  let w2 = Worker::new_fifo();
+
+  
+
+  assert_eq!(s.steal_batch_and_pop(&w2), Steal::Success(1));
+
+  assert_eq!(w2.pop(), Some(2));
+
+  ```
 
 - <span id="stealer-steal-batch-with-limit-and-pop"></span>`fn steal_batch_with_limit_and_pop(&self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
 
+  Steals no more than `limit` of tasks, pushes them into another worker, and pops a task from
+
+  that worker.
+
+  
+
+  How many tasks exactly will be stolen is not specified. That said, this method will try to
+
+  steal around half of the tasks in the queue, but also not more than the given limit.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::{Steal, Worker};
+
+  
+
+  let w1 = Worker::new_fifo();
+
+  w1.push(1);
+
+  w1.push(2);
+
+  w1.push(3);
+
+  w1.push(4);
+
+  w1.push(5);
+
+  w1.push(6);
+
+  
+
+  let s = w1.stealer();
+
+  let w2 = Worker::new_fifo();
+
+  
+
+  assert_eq!(s.steal_batch_with_limit_and_pop(&w2, 2), Steal::Success(1));
+
+  assert_eq!(w2.pop(), Some(2));
+
+  assert_eq!(w2.pop(), None);
+
+  
+
+  w1.push(7);
+
+  w1.push(8);
+
+  // Setting a large limit does not guarantee that all elements will be popped. In this case,
+
+  // half of the elements are currently popped, but the number of popped elements is considered
+
+  // an implementation detail that may be changed in the future.
+
+  assert_eq!(s.steal_batch_with_limit_and_pop(&w2, std::usize::MAX), Steal::Success(3));
+
+  assert_eq!(w2.pop(), Some(4));
+
+  assert_eq!(w2.pop(), Some(5));
+
+  assert_eq!(w2.pop(), None);
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for Stealer<T>`
+
+- <span id="stealer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Stealer<T>`
+
+- <span id="stealer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Stealer<T>`
+
+- <span id="stealer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T> Clone for Stealer<T>`
 
 - <span id="stealer-clone"></span>`fn clone(&self) -> Stealer<T>` — [`Stealer`](#stealer)
 
+##### `impl<T> CloneToUninit for Stealer<T>`
+
+- <span id="stealer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T> Debug for Stealer<T>`
 
-- <span id="stealer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stealer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Stealer<T>`
+
+- <span id="stealer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Stealer<T>`
+
+- <span id="stealer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for Stealer<T>`
 
@@ -366,17 +1054,37 @@ assert_eq!(s.steal(), Steal::Empty);
 
 - <span id="stealer-pointable-type-init"></span>`type Init = T`
 
-- <span id="stealer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="stealer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="stealer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="stealer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="stealer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="stealer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="stealer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="stealer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: Send> Send for Stealer<T>`
 
 ##### `impl<T: Send> Sync for Stealer<T>`
+
+##### `impl<T> ToOwned for Stealer<T>`
+
+- <span id="stealer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="stealer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="stealer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for Stealer<T>`
+
+- <span id="stealer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="stealer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Stealer<T>`
+
+- <span id="stealer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="stealer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Slot<T>`
 
@@ -405,7 +1113,39 @@ A slot in a block.
 
 - <span id="slot-wait-write"></span>`fn wait_write(&self)`
 
+  Waits until a task is written into the slot.
+
 #### Trait Implementations
+
+##### `impl<T> Any for Slot<T>`
+
+- <span id="slot-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Slot<T>`
+
+- <span id="slot-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Slot<T>`
+
+- <span id="slot-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Slot<T>`
+
+- <span id="slot-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Slot<T>`
+
+- <span id="slot-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for Slot<T>`
 
@@ -413,13 +1153,25 @@ A slot in a block.
 
 - <span id="slot-pointable-type-init"></span>`type Init = T`
 
-- <span id="slot-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="slot-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="slot-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="slot-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="slot-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="slot-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="slot-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="slot-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T, U> TryFrom for Slot<T>`
+
+- <span id="slot-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="slot-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Slot<T>`
+
+- <span id="slot-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="slot-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Block<T>`
 
@@ -452,11 +1204,47 @@ Each block in the list can hold up to `BLOCK_CAP` values.
 
 - <span id="block-new"></span>`fn new() -> Box<Self>`
 
+  Creates an empty block.
+
 - <span id="block-wait-next"></span>`fn wait_next(&self) -> *mut Block<T>` — [`Block`](#block)
+
+  Waits until the next pointer is set.
 
 - <span id="block-destroy"></span>`unsafe fn destroy(this: *mut Block<T>, count: usize)` — [`Block`](#block)
 
+  Sets the `DESTROY` bit in slots starting from `start` and destroys the block.
+
 #### Trait Implementations
+
+##### `impl<T> Any for Block<T>`
+
+- <span id="block-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Block<T>`
+
+- <span id="block-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Block<T>`
+
+- <span id="block-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Block<T>`
+
+- <span id="block-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Block<T>`
+
+- <span id="block-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for Block<T>`
 
@@ -464,13 +1252,25 @@ Each block in the list can hold up to `BLOCK_CAP` values.
 
 - <span id="block-pointable-type-init"></span>`type Init = T`
 
-- <span id="block-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="block-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="block-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="block-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="block-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="block-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="block-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="block-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T, U> TryFrom for Block<T>`
+
+- <span id="block-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="block-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Block<T>`
+
+- <span id="block-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="block-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Position<T>`
 
@@ -497,19 +1297,61 @@ A position in a queue.
 
 #### Trait Implementations
 
+##### `impl<T> Any for Position<T>`
+
+- <span id="position-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Position<T>`
+
+- <span id="position-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Position<T>`
+
+- <span id="position-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Position<T>`
+
+- <span id="position-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Position<T>`
+
+- <span id="position-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T> Pointable for Position<T>`
 
 - <span id="position-pointable-const-align"></span>`const ALIGN: usize`
 
 - <span id="position-pointable-type-init"></span>`type Init = T`
 
-- <span id="position-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="position-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="position-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="position-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="position-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="position-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="position-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="position-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T, U> TryFrom for Position<T>`
+
+- <span id="position-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="position-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Position<T>`
+
+- <span id="position-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="position-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Injector<T>`
 
@@ -560,27 +1402,375 @@ assert_eq!(q.steal(), Steal::Empty);
 
 - <span id="injector-new"></span>`fn new() -> Injector<T>` — [`Injector`](#injector)
 
+  Creates a new injector queue.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Injector;
+
+  
+
+  let q = Injector::<i32>::new();
+
+  ```
+
 - <span id="injector-push"></span>`fn push(&self, task: T)`
+
+  Pushes a task into the queue.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Injector;
+
+  
+
+  let w = Injector::new();
+
+  w.push(1);
+
+  w.push(2);
+
+  ```
 
 - <span id="injector-steal"></span>`fn steal(&self) -> Steal<T>` — [`Steal`](#steal)
 
+  Steals a task from the queue.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::{Injector, Steal};
+
+  
+
+  let q = Injector::new();
+
+  q.push(1);
+
+  q.push(2);
+
+  
+
+  assert_eq!(q.steal(), Steal::Success(1));
+
+  assert_eq!(q.steal(), Steal::Success(2));
+
+  assert_eq!(q.steal(), Steal::Empty);
+
+  ```
+
 - <span id="injector-steal-batch"></span>`fn steal_batch(&self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
+
+  Steals a batch of tasks and pushes them into a worker.
+
+  
+
+  How many tasks exactly will be stolen is not specified. That said, this method will try to
+
+  steal around half of the tasks in the queue, but also not more than some constant limit.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::{Injector, Worker};
+
+  
+
+  let q = Injector::new();
+
+  q.push(1);
+
+  q.push(2);
+
+  q.push(3);
+
+  q.push(4);
+
+  
+
+  let w = Worker::new_fifo();
+
+  let _ = q.steal_batch(&w);
+
+  assert_eq!(w.pop(), Some(1));
+
+  assert_eq!(w.pop(), Some(2));
+
+  ```
 
 - <span id="injector-steal-batch-with-limit"></span>`fn steal_batch_with_limit(&self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
 
+  Steals no more than of tasks and pushes them into a worker.
+
+  
+
+  How many tasks exactly will be stolen is not specified. That said, this method will try to
+
+  steal around half of the tasks in the queue, but also not more than some constant limit.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::{Injector, Worker};
+
+  
+
+  let q = Injector::new();
+
+  q.push(1);
+
+  q.push(2);
+
+  q.push(3);
+
+  q.push(4);
+
+  q.push(5);
+
+  q.push(6);
+
+  
+
+  let w = Worker::new_fifo();
+
+  let _ = q.steal_batch_with_limit(&w, 2);
+
+  assert_eq!(w.pop(), Some(1));
+
+  assert_eq!(w.pop(), Some(2));
+
+  assert_eq!(w.pop(), None);
+
+  
+
+  q.push(7);
+
+  q.push(8);
+
+  // Setting a large limit does not guarantee that all elements will be popped. In this case,
+
+  // half of the elements are currently popped, but the number of popped elements is considered
+
+  // an implementation detail that may be changed in the future.
+
+  let _ = q.steal_batch_with_limit(&w, std::usize::MAX);
+
+  assert_eq!(w.len(), 3);
+
+  ```
+
 - <span id="injector-steal-batch-and-pop"></span>`fn steal_batch_and_pop(&self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
+
+  Steals a batch of tasks, pushes them into a worker, and pops a task from that worker.
+
+  
+
+  How many tasks exactly will be stolen is not specified. That said, this method will try to
+
+  steal around half of the tasks in the queue, but also not more than some constant limit.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::{Injector, Steal, Worker};
+
+  
+
+  let q = Injector::new();
+
+  q.push(1);
+
+  q.push(2);
+
+  q.push(3);
+
+  q.push(4);
+
+  
+
+  let w = Worker::new_fifo();
+
+  assert_eq!(q.steal_batch_and_pop(&w), Steal::Success(1));
+
+  assert_eq!(w.pop(), Some(2));
+
+  ```
 
 - <span id="injector-steal-batch-with-limit-and-pop"></span>`fn steal_batch_with_limit_and_pop(&self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
 
+  Steals no more than `limit` of tasks, pushes them into a worker, and pops a task from that worker.
+
+  
+
+  How many tasks exactly will be stolen is not specified. That said, this method will try to
+
+  steal around half of the tasks in the queue, but also not more than the given limit.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::{Injector, Steal, Worker};
+
+  
+
+  let q = Injector::new();
+
+  q.push(1);
+
+  q.push(2);
+
+  q.push(3);
+
+  q.push(4);
+
+  q.push(5);
+
+  q.push(6);
+
+  
+
+  let w = Worker::new_fifo();
+
+  assert_eq!(q.steal_batch_with_limit_and_pop(&w, 2), Steal::Success(1));
+
+  assert_eq!(w.pop(), Some(2));
+
+  assert_eq!(w.pop(), None);
+
+  
+
+  q.push(7);
+
+  // Setting a large limit does not guarantee that all elements will be popped. In this case,
+
+  // half of the elements are currently popped, but the number of popped elements is considered
+
+  // an implementation detail that may be changed in the future.
+
+  assert_eq!(q.steal_batch_with_limit_and_pop(&w, std::usize::MAX), Steal::Success(3));
+
+  assert_eq!(w.pop(), Some(4));
+
+  assert_eq!(w.pop(), Some(5));
+
+  assert_eq!(w.pop(), None);
+
+  ```
+
 - <span id="injector-is-empty"></span>`fn is_empty(&self) -> bool`
+
+  Returns `true` if the queue is empty.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Injector;
+
+  
+
+  let q = Injector::new();
+
+  
+
+  assert!(q.is_empty());
+
+  q.push(1);
+
+  assert!(!q.is_empty());
+
+  ```
 
 - <span id="injector-len"></span>`fn len(&self) -> usize`
 
+  Returns the number of tasks in the queue.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Injector;
+
+  
+
+  let q = Injector::new();
+
+  
+
+  assert_eq!(q.len(), 0);
+
+  q.push(1);
+
+  assert_eq!(q.len(), 1);
+
+  q.push(1);
+
+  assert_eq!(q.len(), 2);
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for Injector<T>`
+
+- <span id="injector-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Injector<T>`
+
+- <span id="injector-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Injector<T>`
+
+- <span id="injector-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T> Debug for Injector<T>`
 
-- <span id="injector-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="injector-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Default for Injector<T>`
 
@@ -590,23 +1780,53 @@ assert_eq!(q.steal(), Steal::Empty);
 
 - <span id="injector-drop"></span>`fn drop(&mut self)`
 
+##### `impl<T> From for Injector<T>`
+
+- <span id="injector-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Injector<T>`
+
+- <span id="injector-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T> Pointable for Injector<T>`
 
 - <span id="injector-pointable-const-align"></span>`const ALIGN: usize`
 
 - <span id="injector-pointable-type-init"></span>`type Init = T`
 
-- <span id="injector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="injector-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="injector-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="injector-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="injector-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="injector-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="injector-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="injector-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: Send> Send for Injector<T>`
 
 ##### `impl<T: Send> Sync for Injector<T>`
+
+##### `impl<T, U> TryFrom for Injector<T>`
+
+- <span id="injector-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="injector-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Injector<T>`
+
+- <span id="injector-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="injector-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -635,21 +1855,55 @@ Worker queue flavor: FIFO or LIFO.
 
 #### Trait Implementations
 
+##### `impl Any for Flavor`
+
+- <span id="flavor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Flavor`
+
+- <span id="flavor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Flavor`
+
+- <span id="flavor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Flavor`
 
 - <span id="flavor-clone"></span>`fn clone(&self) -> Flavor` — [`Flavor`](#flavor)
+
+##### `impl CloneToUninit for Flavor`
+
+- <span id="flavor-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Flavor`
 
 ##### `impl Debug for Flavor`
 
-- <span id="flavor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="flavor-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Flavor`
 
+##### `impl<T> From for Flavor`
+
+- <span id="flavor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Flavor`
+
+- <span id="flavor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Flavor`
 
-- <span id="flavor-eq"></span>`fn eq(&self, other: &Flavor) -> bool` — [`Flavor`](#flavor)
+- <span id="flavor-partialeq-eq"></span>`fn eq(&self, other: &Flavor) -> bool` — [`Flavor`](#flavor)
 
 ##### `impl Pointable for Flavor`
 
@@ -657,15 +1911,35 @@ Worker queue flavor: FIFO or LIFO.
 
 - <span id="flavor-pointable-type-init"></span>`type Init = T`
 
-- <span id="flavor-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="flavor-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="flavor-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="flavor-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="flavor-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="flavor-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="flavor-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="flavor-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl StructuralPartialEq for Flavor`
+
+##### `impl ToOwned for Flavor`
+
+- <span id="flavor-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="flavor-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="flavor-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Flavor`
+
+- <span id="flavor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="flavor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Flavor`
+
+- <span id="flavor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="flavor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Steal<T>`
 
@@ -716,35 +1990,215 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
 - <span id="steal-is-empty"></span>`fn is_empty(&self) -> bool`
 
+  Returns `true` if the queue was empty at the time of stealing.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Steal::{Empty, Retry, Success};
+
+  
+
+  assert!(!Success(7).is_empty());
+
+  assert!(!Retry::<i32>.is_empty());
+
+  
+
+  assert!(Empty::<i32>.is_empty());
+
+  ```
+
 - <span id="steal-is-success"></span>`fn is_success(&self) -> bool`
+
+  Returns `true` if at least one task was stolen.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Steal::{Empty, Retry, Success};
+
+  
+
+  assert!(!Empty::<i32>.is_success());
+
+  assert!(!Retry::<i32>.is_success());
+
+  
+
+  assert!(Success(7).is_success());
+
+  ```
 
 - <span id="steal-is-retry"></span>`fn is_retry(&self) -> bool`
 
+  Returns `true` if the steal operation needs to be retried.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Steal::{Empty, Retry, Success};
+
+  
+
+  assert!(!Empty::<i32>.is_retry());
+
+  assert!(!Success(7).is_retry());
+
+  
+
+  assert!(Retry::<i32>.is_retry());
+
+  ```
+
 - <span id="steal-success"></span>`fn success(self) -> Option<T>`
+
+  Returns the result of the operation, if successful.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Steal::{Empty, Retry, Success};
+
+  
+
+  assert_eq!(Empty::<i32>.success(), None);
+
+  assert_eq!(Retry::<i32>.success(), None);
+
+  
+
+  assert_eq!(Success(7).success(), Some(7));
+
+  ```
 
 - <span id="steal-or-else"></span>`fn or_else<F>(self, f: F) -> Steal<T>` — [`Steal`](#steal)
 
+  If no task was stolen, attempts another steal operation.
+
+  
+
+  Returns this steal result if it is `Success`. Otherwise, closure `f` is invoked and then:
+
+  
+
+  * If the second steal resulted in `Success`, it is returned.
+
+  * If both steals were unsuccessful but any resulted in `Retry`, then `Retry` is returned.
+
+  * If both resulted in `None`, then `None` is returned.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use crossbeam_deque::Steal::{Empty, Retry, Success};
+
+  
+
+  assert_eq!(Success(1).or_else(|| Success(2)), Success(1));
+
+  assert_eq!(Retry.or_else(|| Success(2)), Success(2));
+
+  
+
+  assert_eq!(Retry.or_else(|| Empty), Retry::<i32>);
+
+  assert_eq!(Empty.or_else(|| Retry), Retry::<i32>);
+
+  
+
+  assert_eq!(Empty.or_else(|| Empty), Empty::<i32>);
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for Steal<T>`
+
+- <span id="steal-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Steal<T>`
+
+- <span id="steal-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Steal<T>`
+
+- <span id="steal-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: clone::Clone> Clone for Steal<T>`
 
 - <span id="steal-clone"></span>`fn clone(&self) -> Steal<T>` — [`Steal`](#steal)
 
+##### `impl<T> CloneToUninit for Steal<T>`
+
+- <span id="steal-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: marker::Copy> Copy for Steal<T>`
 
 ##### `impl<T> Debug for Steal<T>`
 
-- <span id="steal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="steal-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for Steal<T>`
 
+##### `impl<T> From for Steal<T>`
+
+- <span id="steal-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<T> FromIterator for Steal<T>`
 
-- <span id="steal-from-iter"></span>`fn from_iter<I>(iter: I) -> Steal<T>` — [`Steal`](#steal)
+- <span id="steal-fromiterator-from-iter"></span>`fn from_iter<I>(iter: I) -> Steal<T>` — [`Steal`](#steal)
+
+  Consumes items until a `Success` is found and returns it.
+
+  
+
+  If no `Success` was found, but there was at least one `Retry`, then returns `Retry`.
+
+  Otherwise, `Empty` is returned.
+
+##### `impl<T, U> Into for Steal<T>`
+
+- <span id="steal-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for Steal<T>`
 
-- <span id="steal-eq"></span>`fn eq(&self, other: &Steal<T>) -> bool` — [`Steal`](#steal)
+- <span id="steal-partialeq-eq"></span>`fn eq(&self, other: &Steal<T>) -> bool` — [`Steal`](#steal)
 
 ##### `impl<T> Pointable for Steal<T>`
 
@@ -752,15 +2206,35 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
 - <span id="steal-pointable-type-init"></span>`type Init = T`
 
-- <span id="steal-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="steal-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="steal-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="steal-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="steal-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="steal-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="steal-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="steal-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> StructuralPartialEq for Steal<T>`
+
+##### `impl<T> ToOwned for Steal<T>`
+
+- <span id="steal-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="steal-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="steal-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for Steal<T>`
+
+- <span id="steal-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="steal-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Steal<T>`
+
+- <span id="steal-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="steal-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Constants
 

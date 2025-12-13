@@ -66,6 +66,10 @@ struct BarState {
 
 - <span id="barstate-finish-using-style"></span>`fn finish_using_style(&mut self, now: Instant, finish: ProgressFinish)` — [`ProgressFinish`](#progressfinish)
 
+  Finishes the progress bar using the [`ProgressFinish`](#progressfinish) behavior stored
+
+  in the [`ProgressStyle`](../style/index.md).
+
 - <span id="barstate-reset"></span>`fn reset(&mut self, now: Instant, mode: Reset)` — [`Reset`](#reset)
 
 - <span id="barstate-update"></span>`fn update(&mut self, now: Instant, f: impl FnOnce(&mut ProgressState), tick: bool)` — [`ProgressState`](#progressstate)
@@ -94,9 +98,51 @@ struct BarState {
 
 #### Trait Implementations
 
+##### `impl Any for BarState`
+
+- <span id="barstate-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BarState`
+
+- <span id="barstate-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BarState`
+
+- <span id="barstate-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Drop for BarState`
 
 - <span id="barstate-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for BarState`
+
+- <span id="barstate-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BarState`
+
+- <span id="barstate-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for BarState`
+
+- <span id="barstate-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="barstate-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BarState`
+
+- <span id="barstate-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="barstate-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ProgressState`
 
@@ -123,13 +169,23 @@ The state of a progress bar at a moment in time.
 
 - <span id="progressstate-is-finished"></span>`fn is_finished(&self) -> bool`
 
+  Indicates that the progress bar finished.
+
 - <span id="progressstate-fraction"></span>`fn fraction(&self) -> f32`
+
+  Returns the completion as a floating-point number between 0 and 1
 
 - <span id="progressstate-eta"></span>`fn eta(&self) -> Duration`
 
+  The expected ETA
+
 - <span id="progressstate-duration"></span>`fn duration(&self) -> Duration`
 
+  The expected total duration (that is, elapsed time + expected ETA)
+
 - <span id="progressstate-per-sec"></span>`fn per_sec(&self) -> f64`
+
+  The number of steps per second
 
 - <span id="progressstate-elapsed"></span>`fn elapsed(&self) -> Duration`
 
@@ -140,6 +196,50 @@ The state of a progress bar at a moment in time.
 - <span id="progressstate-len"></span>`fn len(&self) -> Option<u64>`
 
 - <span id="progressstate-set-len"></span>`fn set_len(&mut self, len: u64)`
+
+#### Trait Implementations
+
+##### `impl Any for ProgressState`
+
+- <span id="progressstate-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ProgressState`
+
+- <span id="progressstate-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ProgressState`
+
+- <span id="progressstate-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for ProgressState`
+
+- <span id="progressstate-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ProgressState`
+
+- <span id="progressstate-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ProgressState`
+
+- <span id="progressstate-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="progressstate-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ProgressState`
+
+- <span id="progressstate-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="progressstate-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Estimator`
 
@@ -180,13 +280,61 @@ slow asymptotic approach to zero (until the next spike).
 
 - <span id="estimator-reset"></span>`fn reset(&mut self, now: Instant)`
 
+  Reset the state of the estimator. Once reset, estimates will not depend on any data prior
+
+  to `now`. This does not reset the stored position of the progress bar.
+
 - <span id="estimator-steps-per-second"></span>`fn steps_per_second(&self, now: Instant) -> f64`
+
+  Average time per step in seconds, using double exponential smoothing
 
 #### Trait Implementations
 
+##### `impl Any for Estimator`
+
+- <span id="estimator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Estimator`
+
+- <span id="estimator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Estimator`
+
+- <span id="estimator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Estimator`
 
-- <span id="estimator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="estimator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Estimator`
+
+- <span id="estimator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Estimator`
+
+- <span id="estimator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Estimator`
+
+- <span id="estimator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="estimator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Estimator`
+
+- <span id="estimator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="estimator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AtomicPosition`
 
@@ -215,6 +363,50 @@ struct AtomicPosition {
 
 - <span id="atomicposition-set"></span>`fn set(&self, pos: u64)`
 
+#### Trait Implementations
+
+##### `impl Any for AtomicPosition`
+
+- <span id="atomicposition-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AtomicPosition`
+
+- <span id="atomicposition-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AtomicPosition`
+
+- <span id="atomicposition-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for AtomicPosition`
+
+- <span id="atomicposition-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AtomicPosition`
+
+- <span id="atomicposition-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for AtomicPosition`
+
+- <span id="atomicposition-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="atomicposition-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AtomicPosition`
+
+- <span id="atomicposition-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="atomicposition-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ## Enums
 
 ### `Reset`
@@ -228,6 +420,50 @@ enum Reset {
 ```
 
 *Defined in [`indicatif-0.18.3/src/state.rs:234-238`](../../../.source_1765521767/indicatif-0.18.3/src/state.rs#L234-L238)*
+
+#### Trait Implementations
+
+##### `impl Any for Reset`
+
+- <span id="reset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Reset`
+
+- <span id="reset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Reset`
+
+- <span id="reset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Reset`
+
+- <span id="reset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Reset`
+
+- <span id="reset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Reset`
+
+- <span id="reset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="reset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Reset`
+
+- <span id="reset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="reset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TabExpandedString`
 
@@ -254,21 +490,75 @@ enum TabExpandedString {
 
 #### Trait Implementations
 
+##### `impl Any for TabExpandedString`
+
+- <span id="tabexpandedstring-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TabExpandedString`
+
+- <span id="tabexpandedstring-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TabExpandedString`
+
+- <span id="tabexpandedstring-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for TabExpandedString`
 
 - <span id="tabexpandedstring-clone"></span>`fn clone(&self) -> TabExpandedString` — [`TabExpandedString`](#tabexpandedstring)
 
+##### `impl CloneToUninit for TabExpandedString`
+
+- <span id="tabexpandedstring-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for TabExpandedString`
 
-- <span id="tabexpandedstring-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tabexpandedstring-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for TabExpandedString`
 
+##### `impl<T> From for TabExpandedString`
+
+- <span id="tabexpandedstring-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TabExpandedString`
+
+- <span id="tabexpandedstring-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for TabExpandedString`
 
-- <span id="tabexpandedstring-eq"></span>`fn eq(&self, other: &TabExpandedString) -> bool` — [`TabExpandedString`](#tabexpandedstring)
+- <span id="tabexpandedstring-partialeq-eq"></span>`fn eq(&self, other: &TabExpandedString) -> bool` — [`TabExpandedString`](#tabexpandedstring)
 
 ##### `impl StructuralPartialEq for TabExpandedString`
+
+##### `impl ToOwned for TabExpandedString`
+
+- <span id="tabexpandedstring-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="tabexpandedstring-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="tabexpandedstring-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TabExpandedString`
+
+- <span id="tabexpandedstring-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tabexpandedstring-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TabExpandedString`
+
+- <span id="tabexpandedstring-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tabexpandedstring-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ProgressFinish`
 
@@ -326,17 +616,71 @@ This is invoked when a [`ProgressBar`](../progress_bar/index.md) or [`ProgressBa
 
 #### Trait Implementations
 
+##### `impl Any for ProgressFinish`
+
+- <span id="progressfinish-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ProgressFinish`
+
+- <span id="progressfinish-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ProgressFinish`
+
+- <span id="progressfinish-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ProgressFinish`
 
 - <span id="progressfinish-clone"></span>`fn clone(&self) -> ProgressFinish` — [`ProgressFinish`](#progressfinish)
 
+##### `impl CloneToUninit for ProgressFinish`
+
+- <span id="progressfinish-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for ProgressFinish`
 
-- <span id="progressfinish-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="progressfinish-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ProgressFinish`
 
 - <span id="progressfinish-default"></span>`fn default() -> ProgressFinish` — [`ProgressFinish`](#progressfinish)
+
+##### `impl<T> From for ProgressFinish`
+
+- <span id="progressfinish-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ProgressFinish`
+
+- <span id="progressfinish-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for ProgressFinish`
+
+- <span id="progressfinish-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="progressfinish-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="progressfinish-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ProgressFinish`
+
+- <span id="progressfinish-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="progressfinish-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ProgressFinish`
+
+- <span id="progressfinish-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="progressfinish-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Status`
 
@@ -352,9 +696,51 @@ enum Status {
 
 #### Trait Implementations
 
+##### `impl Any for Status`
+
+- <span id="status-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Status`
+
+- <span id="status-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Status`
+
+- <span id="status-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Status`
 
-- <span id="status-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="status-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Status`
+
+- <span id="status-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Status`
+
+- <span id="status-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Status`
+
+- <span id="status-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="status-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Status`
+
+- <span id="status-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="status-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

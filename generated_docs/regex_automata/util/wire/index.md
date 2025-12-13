@@ -144,9 +144,51 @@ example of how to use this type.
 
 #### Trait Implementations
 
+##### `impl<T> Any for AlignAs<B, T>`
+
+- <span id="alignas-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AlignAs<B, T>`
+
+- <span id="alignas-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AlignAs<B, T>`
+
+- <span id="alignas-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<B: fmt::Debug + ?Sized, T: fmt::Debug> Debug for AlignAs<B, T>`
 
-- <span id="alignas-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="alignas-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AlignAs<B, T>`
+
+- <span id="alignas-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for AlignAs<B, T>`
+
+- <span id="alignas-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<T, U> TryFrom for AlignAs<B, T>`
+
+- <span id="alignas-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="alignas-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for AlignAs<B, T>`
+
+- <span id="alignas-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="alignas-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SerializeError`
 
@@ -199,19 +241,61 @@ configurations.
 
 #### Trait Implementations
 
+##### `impl Any for SerializeError`
+
+- <span id="serializeerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SerializeError`
+
+- <span id="serializeerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SerializeError`
+
+- <span id="serializeerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for SerializeError`
 
-- <span id="serializeerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="serializeerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for SerializeError`
 
-- <span id="serializeerror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="serializeerror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for SerializeError`
 
+##### `impl<T> From for SerializeError`
+
+- <span id="serializeerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SerializeError`
+
+- <span id="serializeerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl ToString for SerializeError`
 
-- <span id="serializeerror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="serializeerror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for SerializeError`
+
+- <span id="serializeerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="serializeerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SerializeError`
+
+- <span id="serializeerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="serializeerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DeserializeError`
 
@@ -261,19 +345,61 @@ configurations.
 
 #### Trait Implementations
 
+##### `impl Any for DeserializeError`
+
+- <span id="deserializeerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DeserializeError`
+
+- <span id="deserializeerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DeserializeError`
+
+- <span id="deserializeerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for DeserializeError`
 
-- <span id="deserializeerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="deserializeerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DeserializeError`
 
-- <span id="deserializeerror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="deserializeerror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for DeserializeError`
 
+##### `impl<T> From for DeserializeError`
+
+- <span id="deserializeerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DeserializeError`
+
+- <span id="deserializeerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl ToString for DeserializeError`
 
-- <span id="deserializeerror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="deserializeerror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DeserializeError`
+
+- <span id="deserializeerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="deserializeerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DeserializeError`
+
+- <span id="deserializeerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="deserializeerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -323,9 +449,51 @@ enum DeserializeErrorKind {
 
 #### Trait Implementations
 
+##### `impl Any for DeserializeErrorKind`
+
+- <span id="deserializeerrorkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DeserializeErrorKind`
+
+- <span id="deserializeerrorkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DeserializeErrorKind`
+
+- <span id="deserializeerrorkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for DeserializeErrorKind`
 
-- <span id="deserializeerrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="deserializeerrorkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DeserializeErrorKind`
+
+- <span id="deserializeerrorkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DeserializeErrorKind`
+
+- <span id="deserializeerrorkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DeserializeErrorKind`
+
+- <span id="deserializeerrorkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="deserializeerrorkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DeserializeErrorKind`
+
+- <span id="deserializeerrorkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="deserializeerrorkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LE`
 
@@ -340,13 +508,55 @@ Little endian writing.
 
 #### Trait Implementations
 
+##### `impl Any for LE`
+
+- <span id="le-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LE`
+
+- <span id="le-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LE`
+
+- <span id="le-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Endian for LE`
 
-- <span id="le-write-u16"></span>`fn write_u16(n: u16, dst: &mut [u8])`
+- <span id="le-endian-write-u16"></span>`fn write_u16(n: u16, dst: &mut [u8])`
 
-- <span id="le-write-u32"></span>`fn write_u32(n: u32, dst: &mut [u8])`
+- <span id="le-endian-write-u32"></span>`fn write_u32(n: u32, dst: &mut [u8])`
 
-- <span id="le-write-u128"></span>`fn write_u128(n: u128, dst: &mut [u8])`
+- <span id="le-endian-write-u128"></span>`fn write_u128(n: u128, dst: &mut [u8])`
+
+##### `impl<T> From for LE`
+
+- <span id="le-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LE`
+
+- <span id="le-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for LE`
+
+- <span id="le-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="le-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LE`
+
+- <span id="le-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="le-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BE`
 
@@ -361,13 +571,55 @@ Big endian writing.
 
 #### Trait Implementations
 
+##### `impl Any for BE`
+
+- <span id="be-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BE`
+
+- <span id="be-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BE`
+
+- <span id="be-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Endian for BE`
 
-- <span id="be-write-u16"></span>`fn write_u16(n: u16, dst: &mut [u8])`
+- <span id="be-endian-write-u16"></span>`fn write_u16(n: u16, dst: &mut [u8])`
 
-- <span id="be-write-u32"></span>`fn write_u32(n: u32, dst: &mut [u8])`
+- <span id="be-endian-write-u32"></span>`fn write_u32(n: u32, dst: &mut [u8])`
 
-- <span id="be-write-u128"></span>`fn write_u128(n: u128, dst: &mut [u8])`
+- <span id="be-endian-write-u128"></span>`fn write_u128(n: u128, dst: &mut [u8])`
+
+##### `impl<T> From for BE`
+
+- <span id="be-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BE`
+
+- <span id="be-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for BE`
+
+- <span id="be-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="be-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BE`
+
+- <span id="be-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="be-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

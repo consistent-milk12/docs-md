@@ -178,51 +178,117 @@ It is also possible to implement your own version of `try_find`. See the
 
 - <span id="dfa-new"></span>`fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../util/error/index.md#builderror)
 
+  Create a new Aho-Corasick DFA using the default configuration.
+
+  
+
+  Use a [`Builder`](#builder) if you want to change the configuration.
+
 - <span id="dfa-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
+
+  A convenience method for returning a new Aho-Corasick DFA builder.
+
+  
+
+  This usually permits one to just import the `DFA` type.
 
 #### Trait Implementations
 
+##### `impl Any for DFA`
+
+- <span id="dfa-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl Automaton for DFA`
 
-- <span id="dfa-start-state"></span>`fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../util/search/index.md#anchored), [`StateID`](../util/primitives/index.md#stateid), [`MatchError`](../util/error/index.md#matcherror)
+- <span id="dfa-automaton-start-state"></span>`fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../util/search/index.md#anchored), [`StateID`](../util/primitives/index.md#stateid), [`MatchError`](../util/error/index.md#matcherror)
 
-- <span id="dfa-next-state"></span>`fn next_state(&self, _anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../util/search/index.md#anchored), [`StateID`](../util/primitives/index.md#stateid)
+- <span id="dfa-automaton-next-state"></span>`fn next_state(&self, _anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../util/search/index.md#anchored), [`StateID`](../util/primitives/index.md#stateid)
 
-- <span id="dfa-is-special"></span>`fn is_special(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md#stateid)
+- <span id="dfa-automaton-is-special"></span>`fn is_special(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md#stateid)
 
-- <span id="dfa-is-dead"></span>`fn is_dead(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md#stateid)
+- <span id="dfa-automaton-is-dead"></span>`fn is_dead(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md#stateid)
 
-- <span id="dfa-is-match"></span>`fn is_match(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md#stateid)
+- <span id="dfa-automaton-is-match"></span>`fn is_match(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md#stateid)
 
-- <span id="dfa-is-start"></span>`fn is_start(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md#stateid)
+- <span id="dfa-automaton-is-start"></span>`fn is_start(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md#stateid)
 
-- <span id="dfa-match-kind"></span>`fn match_kind(&self) -> MatchKind` — [`MatchKind`](../util/search/index.md#matchkind)
+- <span id="dfa-automaton-match-kind"></span>`fn match_kind(&self) -> MatchKind` — [`MatchKind`](../util/search/index.md#matchkind)
 
-- <span id="dfa-patterns-len"></span>`fn patterns_len(&self) -> usize`
+- <span id="dfa-automaton-patterns-len"></span>`fn patterns_len(&self) -> usize`
 
-- <span id="dfa-pattern-len"></span>`fn pattern_len(&self, pid: PatternID) -> usize` — [`PatternID`](../util/primitives/index.md#patternid)
+- <span id="dfa-automaton-pattern-len"></span>`fn pattern_len(&self, pid: PatternID) -> usize` — [`PatternID`](../util/primitives/index.md#patternid)
 
-- <span id="dfa-min-pattern-len"></span>`fn min_pattern_len(&self) -> usize`
+- <span id="dfa-automaton-min-pattern-len"></span>`fn min_pattern_len(&self) -> usize`
 
-- <span id="dfa-max-pattern-len"></span>`fn max_pattern_len(&self) -> usize`
+- <span id="dfa-automaton-max-pattern-len"></span>`fn max_pattern_len(&self) -> usize`
 
-- <span id="dfa-match-len"></span>`fn match_len(&self, sid: StateID) -> usize` — [`StateID`](../util/primitives/index.md#stateid)
+- <span id="dfa-automaton-match-len"></span>`fn match_len(&self, sid: StateID) -> usize` — [`StateID`](../util/primitives/index.md#stateid)
 
-- <span id="dfa-match-pattern"></span>`fn match_pattern(&self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../util/primitives/index.md#stateid), [`PatternID`](../util/primitives/index.md#patternid)
+- <span id="dfa-automaton-match-pattern"></span>`fn match_pattern(&self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../util/primitives/index.md#stateid), [`PatternID`](../util/primitives/index.md#patternid)
 
-- <span id="dfa-memory-usage"></span>`fn memory_usage(&self) -> usize`
+- <span id="dfa-automaton-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="dfa-prefilter"></span>`fn prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../util/prefilter/index.md#prefilter)
+- <span id="dfa-automaton-prefilter"></span>`fn prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../util/prefilter/index.md#prefilter)
+
+##### `impl<T> Borrow for DFA`
+
+- <span id="dfa-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DFA`
+
+- <span id="dfa-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for DFA`
 
 - <span id="dfa-clone"></span>`fn clone(&self) -> DFA` — [`DFA`](#dfa)
 
+##### `impl CloneToUninit for DFA`
+
+- <span id="dfa-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for DFA`
 
-- <span id="dfa-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="dfa-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for DFA`
+
+- <span id="dfa-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DFA`
+
+- <span id="dfa-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Sealed for crate::dfa::DFA`
+
+##### `impl ToOwned for DFA`
+
+- <span id="dfa-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dfa-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dfa-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DFA`
+
+- <span id="dfa-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dfa-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DFA`
+
+- <span id="dfa-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dfa-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Builder`
 
@@ -246,37 +312,215 @@ their behavior is identical.
 
 - <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
+  Create a new builder for configuring an Aho-Corasick DFA.
+
 - <span id="builder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../util/error/index.md#builderror)
+
+  Build an Aho-Corasick DFA from the given iterator of patterns.
+
+  
+
+  A builder may be reused to create more DFAs.
 
 - <span id="builder-build-from-noncontiguous"></span>`fn build_from_noncontiguous(&self, nnfa: &noncontiguous::NFA) -> Result<DFA, BuildError>` — [`NFA`](../nfa/noncontiguous/index.md#nfa), [`DFA`](#dfa), [`BuildError`](../util/error/index.md#builderror)
 
+  Build an Aho-Corasick DFA from the given noncontiguous NFA.
+
+  
+
+  Note that when this method is used, only the `start_kind` and
+
+  `byte_classes` settings on this builder are respected. The other
+
+  settings only apply to the initial construction of the Aho-Corasick
+
+  automaton. Since using this method requires that initial construction
+
+  has already completed, all settings impacting only initial construction
+
+  are no longer relevant.
+
 - <span id="builder-finish-build-one-start"></span>`fn finish_build_one_start(&self, anchored: Anchored, nnfa: &noncontiguous::NFA, dfa: &mut DFA)` — [`Anchored`](../util/search/index.md#anchored), [`NFA`](../nfa/noncontiguous/index.md#nfa), [`DFA`](#dfa)
+
+  Finishes building a DFA for either unanchored or anchored searches,
+
+  but NOT both.
 
 - <span id="builder-finish-build-both-starts"></span>`fn finish_build_both_starts(&self, nnfa: &noncontiguous::NFA, dfa: &mut DFA)` — [`NFA`](../nfa/noncontiguous/index.md#nfa), [`DFA`](#dfa)
 
+  Finishes building a DFA that supports BOTH unanchored and anchored
+
+  searches. It works by inter-leaving unanchored states with anchored
+
+  states in the same transition table. This way, we avoid needing to
+
+  re-shuffle states afterward to ensure that our states still look like
+
+  DEAD, MATCH, ..., START-UNANCHORED, START-ANCHORED, NON-MATCH, ...
+
+  
+
+  Honestly this is pretty inscrutable... Simplifications are most
+
+  welcome.
+
 - <span id="builder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../util/search/index.md#matchkind), [`Builder`](#builder)
+
+  Set the desired match semantics.
+
+  
+
+  This only applies when using `Builder::build` and not
+
+  `Builder::build_from_noncontiguous`.
+
+  
+
+  See
+
+  [`AhoCorasickBuilder::match_kind`](crate::AhoCorasickBuilder::match_kind)
+
+  for more documentation and examples.
 
 - <span id="builder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
+  Enable ASCII-aware case insensitive matching.
+
+  
+
+  This only applies when using `Builder::build` and not
+
+  `Builder::build_from_noncontiguous`.
+
+  
+
+  See
+
+  [`AhoCorasickBuilder::ascii_case_insensitive`](crate::AhoCorasickBuilder::ascii_case_insensitive)
+
+  for more documentation and examples.
+
 - <span id="builder-prefilter"></span>`fn prefilter(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+
+  Enable heuristic prefilter optimizations.
+
+  
+
+  This only applies when using `Builder::build` and not
+
+  `Builder::build_from_noncontiguous`.
+
+  
+
+  See
+
+  [`AhoCorasickBuilder::prefilter`](crate::AhoCorasickBuilder::prefilter)
+
+  for more documentation and examples.
 
 - <span id="builder-start-kind"></span>`fn start_kind(&mut self, kind: StartKind) -> &mut Builder` — [`StartKind`](../util/search/index.md#startkind), [`Builder`](#builder)
 
+  Sets the starting state configuration for the automaton.
+
+  
+
+  See
+
+  [`AhoCorasickBuilder::start_kind`](crate::AhoCorasickBuilder::start_kind)
+
+  for more documentation and examples.
+
 - <span id="builder-byte-classes"></span>`fn byte_classes(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
+  A debug setting for whether to attempt to shrink the size of the
+
+  automaton's alphabet or not.
+
+  
+
+  This should never be enabled unless you're debugging an automaton.
+
+  Namely, disabling byte classes makes transitions easier to reason
+
+  about, since they use the actual bytes instead of equivalence classes.
+
+  Disabling this confers no performance benefit at search time.
+
+  
+
+  See
+
+  [`AhoCorasickBuilder::byte_classes`](crate::AhoCorasickBuilder::byte_classes)
+
+  for more documentation and examples.
+
 #### Trait Implementations
+
+##### `impl Any for Builder`
+
+- <span id="builder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Builder`
+
+- <span id="builder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Builder`
+
+- <span id="builder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Builder`
 
 - <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](#builder)
 
+##### `impl CloneToUninit for Builder`
+
+- <span id="builder-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Builder`
 
-- <span id="builder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="builder-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Builder`
 
 - <span id="builder-default"></span>`fn default() -> Builder` — [`Builder`](#builder)
+
+##### `impl<T> From for Builder`
+
+- <span id="builder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Builder`
+
+- <span id="builder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Builder`
+
+- <span id="builder-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="builder-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="builder-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Builder`
+
+- <span id="builder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="builder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Builder`
+
+- <span id="builder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="builder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

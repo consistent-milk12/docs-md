@@ -39,15 +39,57 @@ have some non-empty spare capacity.
 
 #### Trait Implementations
 
+##### `impl<T> Any for SpareCapacity<'a, T>`
+
+- <span id="sparecapacity-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SpareCapacity<'a, T>`
+
+- <span id="sparecapacity-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SpareCapacity<'a, T>`
+
+- <span id="sparecapacity-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T> Buffer for SpareCapacity<'a, T>`
+
+##### `impl<T> From for SpareCapacity<'a, T>`
+
+- <span id="sparecapacity-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for SpareCapacity<'a, T>`
+
+- <span id="sparecapacity-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Sealed for SpareCapacity<'a, T>`
 
 - <span id="sparecapacity-sealed-type-output"></span>`type Output = usize`
 
-- <span id="sparecapacity-parts-mut"></span>`fn parts_mut(&mut self) -> (*mut T, usize)`
+- <span id="sparecapacity-sealed-parts-mut"></span>`fn parts_mut(&mut self) -> (*mut T, usize)`
 
-- <span id="sparecapacity-assume-init"></span>`unsafe fn assume_init(self, len: usize) -> <Self as >::Output` — [`Sealed`](private/index.md#sealed)
+- <span id="sparecapacity-sealed-assume-init"></span>`unsafe fn assume_init(self, len: usize) -> <Self as >::Output` — [`Sealed`](private/index.md#sealed)
+
+##### `impl<T, U> TryFrom for SpareCapacity<'a, T>`
+
+- <span id="sparecapacity-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sparecapacity-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for SpareCapacity<'a, T>`
+
+- <span id="sparecapacity-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sparecapacity-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

@@ -40,9 +40,69 @@ A simple stamped lock.
 
 - <span id="seqlock-optimistic-read"></span>`fn optimistic_read(&self) -> Option<usize>`
 
+  If not locked, returns the current stamp.
+
+  
+
+  This method should be called before optimistic reads.
+
 - <span id="seqlock-validate-read"></span>`fn validate_read(&self, stamp: usize) -> bool`
 
+  Returns `true` if the current stamp is equal to `stamp`.
+
+  
+
+  This method should be called after optimistic reads to check whether they are valid. The
+
+  argument `stamp` should correspond to the one returned by method `optimistic_read`.
+
 - <span id="seqlock-write"></span>`fn write(self: &'static Self) -> SeqLockWriteGuard` — [`SeqLockWriteGuard`](#seqlockwriteguard)
+
+  Grabs the lock for writing.
+
+#### Trait Implementations
+
+##### `impl Any for SeqLock`
+
+- <span id="seqlock-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SeqLock`
+
+- <span id="seqlock-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SeqLock`
+
+- <span id="seqlock-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for SeqLock`
+
+- <span id="seqlock-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SeqLock`
+
+- <span id="seqlock-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for SeqLock`
+
+- <span id="seqlock-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="seqlock-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SeqLock`
+
+- <span id="seqlock-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="seqlock-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SeqLockWriteGuard`
 
@@ -71,9 +131,53 @@ An RAII guard that releases the lock and increments the stamp when dropped.
 
 - <span id="seqlockwriteguard-abort"></span>`fn abort(self)`
 
+  Releases the lock without incrementing the stamp.
+
 #### Trait Implementations
+
+##### `impl Any for SeqLockWriteGuard`
+
+- <span id="seqlockwriteguard-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SeqLockWriteGuard`
+
+- <span id="seqlockwriteguard-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SeqLockWriteGuard`
+
+- <span id="seqlockwriteguard-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Drop for SeqLockWriteGuard`
 
 - <span id="seqlockwriteguard-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for SeqLockWriteGuard`
+
+- <span id="seqlockwriteguard-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SeqLockWriteGuard`
+
+- <span id="seqlockwriteguard-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for SeqLockWriteGuard`
+
+- <span id="seqlockwriteguard-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="seqlockwriteguard-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SeqLockWriteGuard`
+
+- <span id="seqlockwriteguard-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="seqlockwriteguard-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

@@ -103,21 +103,55 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 #### Trait Implementations
 
+##### `impl<T> Any for MultiZip<T>`
+
+- <span id="multizip-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MultiZip<T>`
+
+- <span id="multizip-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MultiZip<T>`
+
+- <span id="multizip-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for MultiZip<T>`
 
 - <span id="multizip-clone"></span>`fn clone(&self) -> MultiZip<T>` — [`MultiZip`](#multizip)
 
+##### `impl<T> CloneToUninit for MultiZip<T>`
+
+- <span id="multizip-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug> Debug for MultiZip<T>`
 
-- <span id="multizip-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="multizip-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MultiZip<T>`
+
+- <span id="multizip-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<A> IndexedParallelIterator for MultiZip<(A)>`
 
-- <span id="multizip-drive"></span>`fn drive<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="multizip-indexedparalleliterator-drive"></span>`fn drive<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="multizip-len"></span>`fn len(&self) -> usize`
+- <span id="multizip-indexedparalleliterator-len"></span>`fn len(&self) -> usize`
 
-- <span id="multizip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
+- <span id="multizip-indexedparalleliterator-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
+
+##### `impl<T, U> Into for MultiZip<T>`
+
+- <span id="multizip-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for MultiZip<T>`
 
@@ -127,15 +161,15 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 - <span id="multizip-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="multizip-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="multizip-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A> ParallelIterator for MultiZip<(A)>`
 
 - <span id="multizip-paralleliterator-type-item"></span>`type Item = (<A as ParallelIterator>::Item)`
 
-- <span id="multizip-drive-unindexed"></span>`fn drive_unindexed<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="multizip-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="multizip-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
+- <span id="multizip-paralleliterator-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for MultiZip<T>`
 
@@ -143,13 +177,33 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 - <span id="multizip-pointable-type-init"></span>`type Init = T`
 
-- <span id="multizip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="multizip-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="multizip-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="multizip-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="multizip-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="multizip-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="multizip-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="multizip-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> ToOwned for MultiZip<T>`
+
+- <span id="multizip-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="multizip-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="multizip-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for MultiZip<T>`
+
+- <span id="multizip-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="multizip-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for MultiZip<T>`
+
+- <span id="multizip-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="multizip-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Macros
 

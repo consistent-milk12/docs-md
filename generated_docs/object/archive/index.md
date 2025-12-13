@@ -87,17 +87,71 @@ The header at the start of an archive member.
 
 #### Trait Implementations
 
+##### `impl Any for Header`
+
+- <span id="header-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Header`
+
+- <span id="header-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Header`
+
+- <span id="header-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Header`
 
 - <span id="header-clone"></span>`fn clone(&self) -> Header` — [`Header`](#header)
+
+##### `impl CloneToUninit for Header`
+
+- <span id="header-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Header`
 
 ##### `impl Debug for Header`
 
-- <span id="header-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="header-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Header`
+
+- <span id="header-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Header`
+
+- <span id="header-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for Header`
+
+##### `impl ToOwned for Header`
+
+- <span id="header-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="header-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="header-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Header`
+
+- <span id="header-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="header-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Header`
+
+- <span id="header-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="header-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AixHeader`
 
@@ -154,17 +208,71 @@ The header at the start of an AIX big archive member, without name.
 
 #### Trait Implementations
 
+##### `impl Any for AixHeader`
+
+- <span id="aixheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AixHeader`
+
+- <span id="aixheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AixHeader`
+
+- <span id="aixheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for AixHeader`
 
 - <span id="aixheader-clone"></span>`fn clone(&self) -> AixHeader` — [`AixHeader`](#aixheader)
+
+##### `impl CloneToUninit for AixHeader`
+
+- <span id="aixheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for AixHeader`
 
 ##### `impl Debug for AixHeader`
 
-- <span id="aixheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="aixheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AixHeader`
+
+- <span id="aixheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AixHeader`
+
+- <span id="aixheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for AixHeader`
+
+##### `impl ToOwned for AixHeader`
+
+- <span id="aixheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="aixheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="aixheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AixHeader`
+
+- <span id="aixheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="aixheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AixHeader`
+
+- <span id="aixheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="aixheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AixFileHeader`
 
@@ -216,17 +324,71 @@ The AIX big archive's fixed length header at file beginning.
 
 #### Trait Implementations
 
+##### `impl Any for AixFileHeader`
+
+- <span id="aixfileheader-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AixFileHeader`
+
+- <span id="aixfileheader-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AixFileHeader`
+
+- <span id="aixfileheader-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for AixFileHeader`
 
 - <span id="aixfileheader-clone"></span>`fn clone(&self) -> AixFileHeader` — [`AixFileHeader`](#aixfileheader)
+
+##### `impl CloneToUninit for AixFileHeader`
+
+- <span id="aixfileheader-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for AixFileHeader`
 
 ##### `impl Debug for AixFileHeader`
 
-- <span id="aixfileheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="aixfileheader-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AixFileHeader`
+
+- <span id="aixfileheader-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AixFileHeader`
+
+- <span id="aixfileheader-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for AixFileHeader`
+
+##### `impl ToOwned for AixFileHeader`
+
+- <span id="aixfileheader-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="aixfileheader-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="aixfileheader-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AixFileHeader`
+
+- <span id="aixfileheader-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="aixfileheader-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AixFileHeader`
+
+- <span id="aixfileheader-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="aixfileheader-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AixMemberOffset`
 
@@ -242,17 +404,71 @@ This is used in the member index.
 
 #### Trait Implementations
 
+##### `impl Any for AixMemberOffset`
+
+- <span id="aixmemberoffset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AixMemberOffset`
+
+- <span id="aixmemberoffset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AixMemberOffset`
+
+- <span id="aixmemberoffset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for AixMemberOffset`
 
 - <span id="aixmemberoffset-clone"></span>`fn clone(&self) -> AixMemberOffset` — [`AixMemberOffset`](#aixmemberoffset)
+
+##### `impl CloneToUninit for AixMemberOffset`
+
+- <span id="aixmemberoffset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for AixMemberOffset`
 
 ##### `impl Debug for AixMemberOffset`
 
-- <span id="aixmemberoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="aixmemberoffset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AixMemberOffset`
+
+- <span id="aixmemberoffset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AixMemberOffset`
+
+- <span id="aixmemberoffset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for AixMemberOffset`
+
+##### `impl ToOwned for AixMemberOffset`
+
+- <span id="aixmemberoffset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="aixmemberoffset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="aixmemberoffset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AixMemberOffset`
+
+- <span id="aixmemberoffset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="aixmemberoffset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AixMemberOffset`
+
+- <span id="aixmemberoffset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="aixmemberoffset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Constants
 

@@ -50,9 +50,39 @@ struct WalkTreePrefixProducer<'b, S, B> {
 
 #### Trait Implementations
 
+##### `impl Any for WalkTreePrefixProducer<'b, S, B>`
+
+- <span id="walktreeprefixproducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WalkTreePrefixProducer<'b, S, B>`
+
+- <span id="walktreeprefixproducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WalkTreePrefixProducer<'b, S, B>`
+
+- <span id="walktreeprefixproducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<S: fmt::Debug, B: fmt::Debug> Debug for WalkTreePrefixProducer<'b, S, B>`
 
-- <span id="walktreeprefixproducer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="walktreeprefixproducer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for WalkTreePrefixProducer<'b, S, B>`
+
+- <span id="walktreeprefixproducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WalkTreePrefixProducer<'b, S, B>`
+
+- <span id="walktreeprefixproducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for WalkTreePrefixProducer<'b, S, B>`
 
@@ -62,21 +92,33 @@ struct WalkTreePrefixProducer<'b, S, B> {
 
 - <span id="walktreeprefixproducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="walktreeprefixproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="walktreeprefixproducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="walktreeprefixproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="walktreeprefixproducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="walktreeprefixproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="walktreeprefixproducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="walktreeprefixproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="walktreeprefixproducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for WalkTreePrefixProducer<'b, S, B>`
+
+- <span id="walktreeprefixproducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="walktreeprefixproducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WalkTreePrefixProducer<'b, S, B>`
+
+- <span id="walktreeprefixproducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="walktreeprefixproducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<S, B> UnindexedProducer for WalkTreePrefixProducer<'_, S, B>`
 
 - <span id="walktreeprefixproducer-unindexedproducer-type-item"></span>`type Item = S`
 
-- <span id="walktreeprefixproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
+- <span id="walktreeprefixproducer-unindexedproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- <span id="walktreeprefixproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
+- <span id="walktreeprefixproducer-unindexedproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ### `WalkTreePrefix<S, B>`
 
@@ -94,9 +136,39 @@ Returned by the [`walk_tree_prefix()`](#walk-tree-prefix) function.
 
 #### Trait Implementations
 
+##### `impl Any for WalkTreePrefix<S, B>`
+
+- <span id="walktreeprefix-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WalkTreePrefix<S, B>`
+
+- <span id="walktreeprefix-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WalkTreePrefix<S, B>`
+
+- <span id="walktreeprefix-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<S: fmt::Debug, B: fmt::Debug> Debug for WalkTreePrefix<S, B>`
 
-- <span id="walktreeprefix-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="walktreeprefix-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for WalkTreePrefix<S, B>`
+
+- <span id="walktreeprefix-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WalkTreePrefix<S, B>`
+
+- <span id="walktreeprefix-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for WalkTreePrefix<S, B>`
 
@@ -106,13 +178,13 @@ Returned by the [`walk_tree_prefix()`](#walk-tree-prefix) function.
 
 - <span id="walktreeprefix-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="walktreeprefix-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="walktreeprefix-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<S, B> ParallelIterator for WalkTreePrefix<S, B>`
 
 - <span id="walktreeprefix-paralleliterator-type-item"></span>`type Item = S`
 
-- <span id="walktreeprefix-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="walktreeprefix-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl Pointable for WalkTreePrefix<S, B>`
 
@@ -120,13 +192,25 @@ Returned by the [`walk_tree_prefix()`](#walk-tree-prefix) function.
 
 - <span id="walktreeprefix-pointable-type-init"></span>`type Init = T`
 
-- <span id="walktreeprefix-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="walktreeprefix-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="walktreeprefix-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="walktreeprefix-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="walktreeprefix-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="walktreeprefix-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="walktreeprefix-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="walktreeprefix-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for WalkTreePrefix<S, B>`
+
+- <span id="walktreeprefix-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="walktreeprefix-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WalkTreePrefix<S, B>`
+
+- <span id="walktreeprefix-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="walktreeprefix-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `WalkTreePostfixProducer<'b, S, B>`
 
@@ -142,9 +226,39 @@ struct WalkTreePostfixProducer<'b, S, B> {
 
 #### Trait Implementations
 
+##### `impl Any for WalkTreePostfixProducer<'b, S, B>`
+
+- <span id="walktreepostfixproducer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WalkTreePostfixProducer<'b, S, B>`
+
+- <span id="walktreepostfixproducer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WalkTreePostfixProducer<'b, S, B>`
+
+- <span id="walktreepostfixproducer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<S: fmt::Debug, B: fmt::Debug> Debug for WalkTreePostfixProducer<'b, S, B>`
 
-- <span id="walktreepostfixproducer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="walktreepostfixproducer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for WalkTreePostfixProducer<'b, S, B>`
+
+- <span id="walktreepostfixproducer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WalkTreePostfixProducer<'b, S, B>`
+
+- <span id="walktreepostfixproducer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for WalkTreePostfixProducer<'b, S, B>`
 
@@ -154,21 +268,33 @@ struct WalkTreePostfixProducer<'b, S, B> {
 
 - <span id="walktreepostfixproducer-pointable-type-init"></span>`type Init = T`
 
-- <span id="walktreepostfixproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="walktreepostfixproducer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="walktreepostfixproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="walktreepostfixproducer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="walktreepostfixproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="walktreepostfixproducer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="walktreepostfixproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="walktreepostfixproducer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for WalkTreePostfixProducer<'b, S, B>`
+
+- <span id="walktreepostfixproducer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="walktreepostfixproducer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WalkTreePostfixProducer<'b, S, B>`
+
+- <span id="walktreepostfixproducer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="walktreepostfixproducer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<S, B> UnindexedProducer for WalkTreePostfixProducer<'_, S, B>`
 
 - <span id="walktreepostfixproducer-unindexedproducer-type-item"></span>`type Item = S`
 
-- <span id="walktreepostfixproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
+- <span id="walktreepostfixproducer-unindexedproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- <span id="walktreepostfixproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
+- <span id="walktreepostfixproducer-unindexedproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ### `WalkTreePostfix<S, B>`
 
@@ -186,9 +312,39 @@ Returned by the [`walk_tree_postfix()`](#walk-tree-postfix) function.
 
 #### Trait Implementations
 
+##### `impl Any for WalkTreePostfix<S, B>`
+
+- <span id="walktreepostfix-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WalkTreePostfix<S, B>`
+
+- <span id="walktreepostfix-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WalkTreePostfix<S, B>`
+
+- <span id="walktreepostfix-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<S: fmt::Debug, B: fmt::Debug> Debug for WalkTreePostfix<S, B>`
 
-- <span id="walktreepostfix-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="walktreepostfix-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for WalkTreePostfix<S, B>`
+
+- <span id="walktreepostfix-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WalkTreePostfix<S, B>`
+
+- <span id="walktreepostfix-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for WalkTreePostfix<S, B>`
 
@@ -198,13 +354,13 @@ Returned by the [`walk_tree_postfix()`](#walk-tree-postfix) function.
 
 - <span id="walktreepostfix-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="walktreepostfix-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="walktreepostfix-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<S, B> ParallelIterator for WalkTreePostfix<S, B>`
 
 - <span id="walktreepostfix-paralleliterator-type-item"></span>`type Item = S`
 
-- <span id="walktreepostfix-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="walktreepostfix-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl Pointable for WalkTreePostfix<S, B>`
 
@@ -212,13 +368,25 @@ Returned by the [`walk_tree_postfix()`](#walk-tree-postfix) function.
 
 - <span id="walktreepostfix-pointable-type-init"></span>`type Init = T`
 
-- <span id="walktreepostfix-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="walktreepostfix-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="walktreepostfix-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="walktreepostfix-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="walktreepostfix-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="walktreepostfix-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="walktreepostfix-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="walktreepostfix-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for WalkTreePostfix<S, B>`
+
+- <span id="walktreepostfix-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="walktreepostfix-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WalkTreePostfix<S, B>`
+
+- <span id="walktreepostfix-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="walktreepostfix-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `WalkTree<S, B>`
 
@@ -233,9 +401,39 @@ Returned by the [`walk_tree()`](#walk-tree) function.
 
 #### Trait Implementations
 
+##### `impl Any for WalkTree<S, B>`
+
+- <span id="walktree-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WalkTree<S, B>`
+
+- <span id="walktree-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WalkTree<S, B>`
+
+- <span id="walktree-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<S: fmt::Debug, B: fmt::Debug> Debug for WalkTree<S, B>`
 
-- <span id="walktree-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="walktree-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for WalkTree<S, B>`
+
+- <span id="walktree-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WalkTree<S, B>`
+
+- <span id="walktree-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for WalkTree<S, B>`
 
@@ -245,13 +443,13 @@ Returned by the [`walk_tree()`](#walk-tree) function.
 
 - <span id="walktree-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- <span id="walktree-into-par-iter"></span>`fn into_par_iter(self) -> T`
+- <span id="walktree-intoparalleliterator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<S, B> ParallelIterator for WalkTree<S, B>`
 
 - <span id="walktree-paralleliterator-type-item"></span>`type Item = S`
 
-- <span id="walktree-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
+- <span id="walktree-paralleliterator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl Pointable for WalkTree<S, B>`
 
@@ -259,13 +457,25 @@ Returned by the [`walk_tree()`](#walk-tree) function.
 
 - <span id="walktree-pointable-type-init"></span>`type Init = T`
 
-- <span id="walktree-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="walktree-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="walktree-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="walktree-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="walktree-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="walktree-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="walktree-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="walktree-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for WalkTree<S, B>`
+
+- <span id="walktree-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="walktree-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WalkTree<S, B>`
+
+- <span id="walktree-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="walktree-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

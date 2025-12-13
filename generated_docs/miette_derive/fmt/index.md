@@ -34,17 +34,71 @@ struct Display {
 
 #### Trait Implementations
 
+##### `impl Any for Display`
+
+- <span id="display-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Display`
+
+- <span id="display-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Display`
+
+- <span id="display-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Display`
 
 - <span id="display-clone"></span>`fn clone(&self) -> Display` — [`Display`](#display)
 
+##### `impl CloneToUninit for Display`
+
+- <span id="display-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
+##### `impl<T> From for Display`
+
+- <span id="display-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Display`
+
+- <span id="display-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Spanned for Display`
 
-- <span id="display-span"></span>`fn span(&self) -> Span`
+- <span id="display-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for Display`
+
+- <span id="display-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="display-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="display-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for Display`
 
-- <span id="display-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="display-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for Display`
+
+- <span id="display-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="display-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Display`
+
+- <span id="display-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="display-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

@@ -38,21 +38,81 @@ in a more compact representation than holding those 2 spans individually.
 
 - <span id="delimspan-join"></span>`fn join(&self) -> Span` — [`Span`](../index.md#span)
 
+  Returns a span covering the entire delimited group.
+
 - <span id="delimspan-open"></span>`fn open(&self) -> Span` — [`Span`](../index.md#span)
+
+  Returns a span for the opening punctuation of the group only.
 
 - <span id="delimspan-close"></span>`fn close(&self) -> Span` — [`Span`](../index.md#span)
 
+  Returns a span for the closing punctuation of the group only.
+
 #### Trait Implementations
+
+##### `impl Any for DelimSpan`
+
+- <span id="delimspan-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DelimSpan`
+
+- <span id="delimspan-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DelimSpan`
+
+- <span id="delimspan-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for DelimSpan`
 
 - <span id="delimspan-clone"></span>`fn clone(&self) -> DelimSpan` — [`DelimSpan`](#delimspan)
 
+##### `impl CloneToUninit for DelimSpan`
+
+- <span id="delimspan-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for DelimSpan`
 
 ##### `impl Debug for DelimSpan`
 
-- <span id="delimspan-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="delimspan-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DelimSpan`
+
+- <span id="delimspan-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DelimSpan`
+
+- <span id="delimspan-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for DelimSpan`
+
+- <span id="delimspan-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="delimspan-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="delimspan-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DelimSpan`
+
+- <span id="delimspan-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="delimspan-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DelimSpan`
+
+- <span id="delimspan-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="delimspan-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -73,11 +133,65 @@ enum DelimSpanEnum {
 
 #### Trait Implementations
 
+##### `impl Any for DelimSpanEnum`
+
+- <span id="delimspanenum-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DelimSpanEnum`
+
+- <span id="delimspanenum-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DelimSpanEnum`
+
+- <span id="delimspanenum-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DelimSpanEnum`
 
 - <span id="delimspanenum-clone"></span>`fn clone(&self) -> DelimSpanEnum` — [`DelimSpanEnum`](#delimspanenum)
 
+##### `impl CloneToUninit for DelimSpanEnum`
+
+- <span id="delimspanenum-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for DelimSpanEnum`
+
+##### `impl<T> From for DelimSpanEnum`
+
+- <span id="delimspanenum-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DelimSpanEnum`
+
+- <span id="delimspanenum-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for DelimSpanEnum`
+
+- <span id="delimspanenum-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="delimspanenum-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="delimspanenum-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DelimSpanEnum`
+
+- <span id="delimspanenum-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="delimspanenum-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DelimSpanEnum`
+
+- <span id="delimspanenum-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="delimspanenum-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

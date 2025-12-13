@@ -134,31 +134,85 @@ A minimal representation of all possible errors that can occur using the
 
 #### Trait Implementations
 
+##### `impl Any for Error`
+
+- <span id="error-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Error`
+
+- <span id="error-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Error`
+
+- <span id="error-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Error`
 
 - <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](#error)
 
+##### `impl CloneToUninit for Error`
+
+- <span id="error-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Error`
 
-- <span id="error-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- <span id="error-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for Error`
 
-- <span id="error-custom"></span>`fn custom<T>(msg: T) -> Self`
+- <span id="error-error-custom"></span>`fn custom<T>(msg: T) -> Self`
+
+##### `impl<T> From for Error`
+
+- <span id="error-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Error`
+
+- <span id="error-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Error`
 
-- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](#error)
+- <span id="error-partialeq-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](#error)
 
 ##### `impl StructuralPartialEq for Error`
 
+##### `impl ToOwned for Error`
+
+- <span id="error-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="error-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="error-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Error`
 
-- <span id="error-to-string"></span>`fn to_string(&self) -> String` — [`String`](../../lib/index.md#string)
+- <span id="error-tostring-to-string"></span>`fn to_string(&self) -> String` — [`String`](../../lib/index.md#string)
+
+##### `impl<U> TryFrom for Error`
+
+- <span id="error-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="error-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Error`
+
+- <span id="error-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="error-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UnitDeserializer<E>`
 
@@ -178,87 +232,141 @@ A deserializer holding a `()`.
 
 #### Trait Implementations
 
+##### `impl Any for UnitDeserializer<E>`
+
+- <span id="unitdeserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnitDeserializer<E>`
+
+- <span id="unitdeserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnitDeserializer<E>`
+
+- <span id="unitdeserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for UnitDeserializer<E>`
 
 - <span id="unitdeserializer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for UnitDeserializer<E>`
+
+- <span id="unitdeserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E> Copy for UnitDeserializer<E>`
 
 ##### `impl<E> Debug for UnitDeserializer<E>`
 
-- <span id="unitdeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unitdeserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for UnitDeserializer<E>`
 
 - <span id="unitdeserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="unitdeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="unitdeserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="unitdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="unitdeserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="unitdeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="unitdeserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+
+##### `impl<T> From for UnitDeserializer<E>`
+
+- <span id="unitdeserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for UnitDeserializer<E>`
+
+- <span id="unitdeserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for UnitDeserializer<E>`
 
 - <span id="unitdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = UnitDeserializer<E>`
 
-- <span id="unitdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="unitdeserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for UnitDeserializer<E>`
+
+- <span id="unitdeserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="unitdeserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="unitdeserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for UnitDeserializer<E>`
+
+- <span id="unitdeserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unitdeserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UnitDeserializer<E>`
+
+- <span id="unitdeserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unitdeserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BoolDeserializer<E>`
 
@@ -280,87 +388,141 @@ a `bool`.
 
 #### Trait Implementations
 
+##### `impl Any for BoolDeserializer<E>`
+
+- <span id="booldeserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BoolDeserializer<E>`
+
+- <span id="booldeserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BoolDeserializer<E>`
+
+- <span id="booldeserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for BoolDeserializer<E>`
 
 - <span id="booldeserializer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for BoolDeserializer<E>`
+
+- <span id="booldeserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E> Copy for BoolDeserializer<E>`
 
 ##### `impl<E> Debug for BoolDeserializer<E>`
 
-- <span id="booldeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="booldeserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for BoolDeserializer<E>`
 
 - <span id="booldeserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="booldeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="booldeserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="booldeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="booldeserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+
+##### `impl<T> From for BoolDeserializer<E>`
+
+- <span id="booldeserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BoolDeserializer<E>`
+
+- <span id="booldeserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for BoolDeserializer<E>`
 
 - <span id="booldeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = BoolDeserializer<E>`
 
-- <span id="booldeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="booldeserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for BoolDeserializer<E>`
+
+- <span id="booldeserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="booldeserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="booldeserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BoolDeserializer<E>`
+
+- <span id="booldeserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="booldeserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BoolDeserializer<E>`
+
+- <span id="booldeserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="booldeserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `I8Deserializer<E>`
 
@@ -382,87 +544,141 @@ an `i8`.
 
 #### Trait Implementations
 
+##### `impl Any for I8Deserializer<E>`
+
+- <span id="i8deserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for I8Deserializer<E>`
+
+- <span id="i8deserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for I8Deserializer<E>`
+
+- <span id="i8deserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for I8Deserializer<E>`
 
 - <span id="i8deserializer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for I8Deserializer<E>`
+
+- <span id="i8deserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E> Copy for I8Deserializer<E>`
 
 ##### `impl<E> Debug for I8Deserializer<E>`
 
-- <span id="i8deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="i8deserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for I8Deserializer<E>`
 
 - <span id="i8deserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="i8deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i8deserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i8deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="i8deserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+
+##### `impl<T> From for I8Deserializer<E>`
+
+- <span id="i8deserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for I8Deserializer<E>`
+
+- <span id="i8deserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for I8Deserializer<E>`
 
 - <span id="i8deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = I8Deserializer<E>`
 
-- <span id="i8deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="i8deserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for I8Deserializer<E>`
+
+- <span id="i8deserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="i8deserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="i8deserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for I8Deserializer<E>`
+
+- <span id="i8deserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="i8deserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for I8Deserializer<E>`
+
+- <span id="i8deserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="i8deserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `I16Deserializer<E>`
 
@@ -484,87 +700,141 @@ an `i16`.
 
 #### Trait Implementations
 
+##### `impl Any for I16Deserializer<E>`
+
+- <span id="i16deserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for I16Deserializer<E>`
+
+- <span id="i16deserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for I16Deserializer<E>`
+
+- <span id="i16deserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for I16Deserializer<E>`
 
 - <span id="i16deserializer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for I16Deserializer<E>`
+
+- <span id="i16deserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E> Copy for I16Deserializer<E>`
 
 ##### `impl<E> Debug for I16Deserializer<E>`
 
-- <span id="i16deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="i16deserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for I16Deserializer<E>`
 
 - <span id="i16deserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="i16deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i16deserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i16deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="i16deserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+
+##### `impl<T> From for I16Deserializer<E>`
+
+- <span id="i16deserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for I16Deserializer<E>`
+
+- <span id="i16deserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for I16Deserializer<E>`
 
 - <span id="i16deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = I16Deserializer<E>`
 
-- <span id="i16deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="i16deserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for I16Deserializer<E>`
+
+- <span id="i16deserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="i16deserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="i16deserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for I16Deserializer<E>`
+
+- <span id="i16deserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="i16deserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for I16Deserializer<E>`
+
+- <span id="i16deserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="i16deserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `I32Deserializer<E>`
 
@@ -586,87 +856,141 @@ an `i32`.
 
 #### Trait Implementations
 
+##### `impl Any for I32Deserializer<E>`
+
+- <span id="i32deserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for I32Deserializer<E>`
+
+- <span id="i32deserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for I32Deserializer<E>`
+
+- <span id="i32deserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for I32Deserializer<E>`
 
 - <span id="i32deserializer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for I32Deserializer<E>`
+
+- <span id="i32deserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E> Copy for I32Deserializer<E>`
 
 ##### `impl<E> Debug for I32Deserializer<E>`
 
-- <span id="i32deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="i32deserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for I32Deserializer<E>`
 
 - <span id="i32deserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="i32deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i32deserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i32deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="i32deserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+
+##### `impl<T> From for I32Deserializer<E>`
+
+- <span id="i32deserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for I32Deserializer<E>`
+
+- <span id="i32deserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for I32Deserializer<E>`
 
 - <span id="i32deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = I32Deserializer<E>`
 
-- <span id="i32deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="i32deserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for I32Deserializer<E>`
+
+- <span id="i32deserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="i32deserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="i32deserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for I32Deserializer<E>`
+
+- <span id="i32deserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="i32deserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for I32Deserializer<E>`
+
+- <span id="i32deserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="i32deserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `I64Deserializer<E>`
 
@@ -688,87 +1012,141 @@ an `i64`.
 
 #### Trait Implementations
 
+##### `impl Any for I64Deserializer<E>`
+
+- <span id="i64deserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for I64Deserializer<E>`
+
+- <span id="i64deserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for I64Deserializer<E>`
+
+- <span id="i64deserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for I64Deserializer<E>`
 
 - <span id="i64deserializer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for I64Deserializer<E>`
+
+- <span id="i64deserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E> Copy for I64Deserializer<E>`
 
 ##### `impl<E> Debug for I64Deserializer<E>`
 
-- <span id="i64deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="i64deserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for I64Deserializer<E>`
 
 - <span id="i64deserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="i64deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i64deserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i64deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="i64deserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+
+##### `impl<T> From for I64Deserializer<E>`
+
+- <span id="i64deserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for I64Deserializer<E>`
+
+- <span id="i64deserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for I64Deserializer<E>`
 
 - <span id="i64deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = I64Deserializer<E>`
 
-- <span id="i64deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="i64deserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for I64Deserializer<E>`
+
+- <span id="i64deserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="i64deserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="i64deserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for I64Deserializer<E>`
+
+- <span id="i64deserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="i64deserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for I64Deserializer<E>`
+
+- <span id="i64deserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="i64deserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `I128Deserializer<E>`
 
@@ -790,87 +1168,141 @@ an `i128`.
 
 #### Trait Implementations
 
+##### `impl Any for I128Deserializer<E>`
+
+- <span id="i128deserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for I128Deserializer<E>`
+
+- <span id="i128deserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for I128Deserializer<E>`
+
+- <span id="i128deserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for I128Deserializer<E>`
 
 - <span id="i128deserializer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for I128Deserializer<E>`
+
+- <span id="i128deserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E> Copy for I128Deserializer<E>`
 
 ##### `impl<E> Debug for I128Deserializer<E>`
 
-- <span id="i128deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="i128deserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for I128Deserializer<E>`
 
 - <span id="i128deserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="i128deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="i128deserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="i128deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="i128deserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+
+##### `impl<T> From for I128Deserializer<E>`
+
+- <span id="i128deserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for I128Deserializer<E>`
+
+- <span id="i128deserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for I128Deserializer<E>`
 
 - <span id="i128deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = I128Deserializer<E>`
 
-- <span id="i128deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="i128deserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for I128Deserializer<E>`
+
+- <span id="i128deserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="i128deserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="i128deserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for I128Deserializer<E>`
+
+- <span id="i128deserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="i128deserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for I128Deserializer<E>`
+
+- <span id="i128deserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="i128deserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IsizeDeserializer<E>`
 
@@ -892,87 +1324,141 @@ an `isize`.
 
 #### Trait Implementations
 
+##### `impl Any for IsizeDeserializer<E>`
+
+- <span id="isizedeserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IsizeDeserializer<E>`
+
+- <span id="isizedeserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IsizeDeserializer<E>`
+
+- <span id="isizedeserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for IsizeDeserializer<E>`
 
 - <span id="isizedeserializer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for IsizeDeserializer<E>`
+
+- <span id="isizedeserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E> Copy for IsizeDeserializer<E>`
 
 ##### `impl<E> Debug for IsizeDeserializer<E>`
 
-- <span id="isizedeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="isizedeserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for IsizeDeserializer<E>`
 
 - <span id="isizedeserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="isizedeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="isizedeserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="isizedeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="isizedeserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+
+##### `impl<T> From for IsizeDeserializer<E>`
+
+- <span id="isizedeserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for IsizeDeserializer<E>`
+
+- <span id="isizedeserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for IsizeDeserializer<E>`
 
 - <span id="isizedeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = IsizeDeserializer<E>`
 
-- <span id="isizedeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="isizedeserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for IsizeDeserializer<E>`
+
+- <span id="isizedeserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="isizedeserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="isizedeserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for IsizeDeserializer<E>`
+
+- <span id="isizedeserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="isizedeserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IsizeDeserializer<E>`
+
+- <span id="isizedeserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="isizedeserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `U8Deserializer<E>`
 
@@ -994,87 +1480,141 @@ a `u8`.
 
 #### Trait Implementations
 
+##### `impl Any for U8Deserializer<E>`
+
+- <span id="u8deserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for U8Deserializer<E>`
+
+- <span id="u8deserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for U8Deserializer<E>`
+
+- <span id="u8deserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for U8Deserializer<E>`
 
 - <span id="u8deserializer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for U8Deserializer<E>`
+
+- <span id="u8deserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E> Copy for U8Deserializer<E>`
 
 ##### `impl<E> Debug for U8Deserializer<E>`
 
-- <span id="u8deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="u8deserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for U8Deserializer<E>`
 
 - <span id="u8deserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="u8deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u8deserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u8deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="u8deserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+
+##### `impl<T> From for U8Deserializer<E>`
+
+- <span id="u8deserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for U8Deserializer<E>`
+
+- <span id="u8deserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for U8Deserializer<E>`
 
 - <span id="u8deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = U8Deserializer<E>`
 
-- <span id="u8deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="u8deserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for U8Deserializer<E>`
+
+- <span id="u8deserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="u8deserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="u8deserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for U8Deserializer<E>`
+
+- <span id="u8deserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="u8deserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for U8Deserializer<E>`
+
+- <span id="u8deserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="u8deserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `U16Deserializer<E>`
 
@@ -1096,87 +1636,141 @@ a `u16`.
 
 #### Trait Implementations
 
+##### `impl Any for U16Deserializer<E>`
+
+- <span id="u16deserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for U16Deserializer<E>`
+
+- <span id="u16deserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for U16Deserializer<E>`
+
+- <span id="u16deserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for U16Deserializer<E>`
 
 - <span id="u16deserializer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for U16Deserializer<E>`
+
+- <span id="u16deserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E> Copy for U16Deserializer<E>`
 
 ##### `impl<E> Debug for U16Deserializer<E>`
 
-- <span id="u16deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="u16deserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for U16Deserializer<E>`
 
 - <span id="u16deserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="u16deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u16deserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u16deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="u16deserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+
+##### `impl<T> From for U16Deserializer<E>`
+
+- <span id="u16deserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for U16Deserializer<E>`
+
+- <span id="u16deserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for U16Deserializer<E>`
 
 - <span id="u16deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = U16Deserializer<E>`
 
-- <span id="u16deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="u16deserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for U16Deserializer<E>`
+
+- <span id="u16deserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="u16deserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="u16deserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for U16Deserializer<E>`
+
+- <span id="u16deserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="u16deserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for U16Deserializer<E>`
+
+- <span id="u16deserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="u16deserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `U64Deserializer<E>`
 
@@ -1198,87 +1792,141 @@ a `u64`.
 
 #### Trait Implementations
 
+##### `impl Any for U64Deserializer<E>`
+
+- <span id="u64deserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for U64Deserializer<E>`
+
+- <span id="u64deserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for U64Deserializer<E>`
+
+- <span id="u64deserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for U64Deserializer<E>`
 
 - <span id="u64deserializer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for U64Deserializer<E>`
+
+- <span id="u64deserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E> Copy for U64Deserializer<E>`
 
 ##### `impl<E> Debug for U64Deserializer<E>`
 
-- <span id="u64deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="u64deserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for U64Deserializer<E>`
 
 - <span id="u64deserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="u64deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u64deserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u64deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="u64deserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+
+##### `impl<T> From for U64Deserializer<E>`
+
+- <span id="u64deserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for U64Deserializer<E>`
+
+- <span id="u64deserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for U64Deserializer<E>`
 
 - <span id="u64deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = U64Deserializer<E>`
 
-- <span id="u64deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="u64deserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for U64Deserializer<E>`
+
+- <span id="u64deserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="u64deserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="u64deserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for U64Deserializer<E>`
+
+- <span id="u64deserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="u64deserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for U64Deserializer<E>`
+
+- <span id="u64deserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="u64deserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `U128Deserializer<E>`
 
@@ -1300,87 +1948,141 @@ a `u128`.
 
 #### Trait Implementations
 
+##### `impl Any for U128Deserializer<E>`
+
+- <span id="u128deserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for U128Deserializer<E>`
+
+- <span id="u128deserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for U128Deserializer<E>`
+
+- <span id="u128deserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for U128Deserializer<E>`
 
 - <span id="u128deserializer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for U128Deserializer<E>`
+
+- <span id="u128deserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E> Copy for U128Deserializer<E>`
 
 ##### `impl<E> Debug for U128Deserializer<E>`
 
-- <span id="u128deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="u128deserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for U128Deserializer<E>`
 
 - <span id="u128deserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="u128deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u128deserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u128deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="u128deserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+
+##### `impl<T> From for U128Deserializer<E>`
+
+- <span id="u128deserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for U128Deserializer<E>`
+
+- <span id="u128deserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for U128Deserializer<E>`
 
 - <span id="u128deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = U128Deserializer<E>`
 
-- <span id="u128deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="u128deserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for U128Deserializer<E>`
+
+- <span id="u128deserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="u128deserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="u128deserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for U128Deserializer<E>`
+
+- <span id="u128deserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="u128deserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for U128Deserializer<E>`
+
+- <span id="u128deserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="u128deserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UsizeDeserializer<E>`
 
@@ -1402,87 +2104,141 @@ a `usize`.
 
 #### Trait Implementations
 
+##### `impl Any for UsizeDeserializer<E>`
+
+- <span id="usizedeserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UsizeDeserializer<E>`
+
+- <span id="usizedeserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UsizeDeserializer<E>`
+
+- <span id="usizedeserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for UsizeDeserializer<E>`
 
 - <span id="usizedeserializer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for UsizeDeserializer<E>`
+
+- <span id="usizedeserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E> Copy for UsizeDeserializer<E>`
 
 ##### `impl<E> Debug for UsizeDeserializer<E>`
 
-- <span id="usizedeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="usizedeserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for UsizeDeserializer<E>`
 
 - <span id="usizedeserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="usizedeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="usizedeserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="usizedeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="usizedeserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+
+##### `impl<T> From for UsizeDeserializer<E>`
+
+- <span id="usizedeserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for UsizeDeserializer<E>`
+
+- <span id="usizedeserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for UsizeDeserializer<E>`
 
 - <span id="usizedeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = UsizeDeserializer<E>`
 
-- <span id="usizedeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="usizedeserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for UsizeDeserializer<E>`
+
+- <span id="usizedeserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="usizedeserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="usizedeserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for UsizeDeserializer<E>`
+
+- <span id="usizedeserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="usizedeserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UsizeDeserializer<E>`
+
+- <span id="usizedeserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="usizedeserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `F32Deserializer<E>`
 
@@ -1504,87 +2260,141 @@ an `f32`.
 
 #### Trait Implementations
 
+##### `impl Any for F32Deserializer<E>`
+
+- <span id="f32deserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for F32Deserializer<E>`
+
+- <span id="f32deserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for F32Deserializer<E>`
+
+- <span id="f32deserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for F32Deserializer<E>`
 
 - <span id="f32deserializer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for F32Deserializer<E>`
+
+- <span id="f32deserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E> Copy for F32Deserializer<E>`
 
 ##### `impl<E> Debug for F32Deserializer<E>`
 
-- <span id="f32deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="f32deserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for F32Deserializer<E>`
 
 - <span id="f32deserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="f32deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f32deserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f32deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="f32deserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+
+##### `impl<T> From for F32Deserializer<E>`
+
+- <span id="f32deserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for F32Deserializer<E>`
+
+- <span id="f32deserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for F32Deserializer<E>`
 
 - <span id="f32deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = F32Deserializer<E>`
 
-- <span id="f32deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="f32deserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for F32Deserializer<E>`
+
+- <span id="f32deserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="f32deserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="f32deserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for F32Deserializer<E>`
+
+- <span id="f32deserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="f32deserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for F32Deserializer<E>`
+
+- <span id="f32deserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="f32deserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `F64Deserializer<E>`
 
@@ -1606,87 +2416,141 @@ an `f64`.
 
 #### Trait Implementations
 
+##### `impl Any for F64Deserializer<E>`
+
+- <span id="f64deserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for F64Deserializer<E>`
+
+- <span id="f64deserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for F64Deserializer<E>`
+
+- <span id="f64deserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for F64Deserializer<E>`
 
 - <span id="f64deserializer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for F64Deserializer<E>`
+
+- <span id="f64deserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E> Copy for F64Deserializer<E>`
 
 ##### `impl<E> Debug for F64Deserializer<E>`
 
-- <span id="f64deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="f64deserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for F64Deserializer<E>`
 
 - <span id="f64deserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="f64deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="f64deserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="f64deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="f64deserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+
+##### `impl<T> From for F64Deserializer<E>`
+
+- <span id="f64deserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for F64Deserializer<E>`
+
+- <span id="f64deserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for F64Deserializer<E>`
 
 - <span id="f64deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = F64Deserializer<E>`
 
-- <span id="f64deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="f64deserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for F64Deserializer<E>`
+
+- <span id="f64deserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="f64deserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="f64deserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for F64Deserializer<E>`
+
+- <span id="f64deserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="f64deserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for F64Deserializer<E>`
+
+- <span id="f64deserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="f64deserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CharDeserializer<E>`
 
@@ -1708,87 +2572,141 @@ a `char`.
 
 #### Trait Implementations
 
+##### `impl Any for CharDeserializer<E>`
+
+- <span id="chardeserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CharDeserializer<E>`
+
+- <span id="chardeserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CharDeserializer<E>`
+
+- <span id="chardeserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for CharDeserializer<E>`
 
 - <span id="chardeserializer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for CharDeserializer<E>`
+
+- <span id="chardeserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E> Copy for CharDeserializer<E>`
 
 ##### `impl<E> Debug for CharDeserializer<E>`
 
-- <span id="chardeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="chardeserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for CharDeserializer<E>`
 
 - <span id="chardeserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="chardeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="chardeserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="chardeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="chardeserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+
+##### `impl<T> From for CharDeserializer<E>`
+
+- <span id="chardeserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CharDeserializer<E>`
+
+- <span id="chardeserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for CharDeserializer<E>`
 
 - <span id="chardeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = CharDeserializer<E>`
 
-- <span id="chardeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="chardeserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for CharDeserializer<E>`
+
+- <span id="chardeserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="chardeserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="chardeserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CharDeserializer<E>`
+
+- <span id="chardeserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="chardeserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CharDeserializer<E>`
+
+- <span id="chardeserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="chardeserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `U32Deserializer<E>`
 
@@ -1809,81 +2727,97 @@ A deserializer holding a `u32`.
 
 #### Trait Implementations
 
+##### `impl Any for U32Deserializer<E>`
+
+- <span id="u32deserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for U32Deserializer<E>`
+
+- <span id="u32deserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for U32Deserializer<E>`
+
+- <span id="u32deserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for U32Deserializer<E>`
 
 - <span id="u32deserializer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for U32Deserializer<E>`
+
+- <span id="u32deserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E> Copy for U32Deserializer<E>`
 
 ##### `impl<E> Debug for U32Deserializer<E>`
 
-- <span id="u32deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="u32deserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for U32Deserializer<E>`
 
 - <span id="u32deserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="u32deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="u32deserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="u32deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="u32deserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="u32deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="u32deserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
 ##### `impl<E> EnumAccess for U32Deserializer<E>`
 
@@ -1891,13 +2825,51 @@ A deserializer holding a `u32`.
 
 - <span id="u32deserializer-enumaccess-type-variant"></span>`type Variant = UnitOnly<E>`
 
-- <span id="u32deserializer-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
+- <span id="u32deserializer-enumaccess-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
+
+##### `impl<T> From for U32Deserializer<E>`
+
+- <span id="u32deserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for U32Deserializer<E>`
+
+- <span id="u32deserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for U32Deserializer<E>`
 
 - <span id="u32deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = U32Deserializer<E>`
 
-- <span id="u32deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="u32deserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for U32Deserializer<E>`
+
+- <span id="u32deserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="u32deserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="u32deserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for U32Deserializer<E>`
+
+- <span id="u32deserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="u32deserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for U32Deserializer<E>`
+
+- <span id="u32deserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="u32deserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StrDeserializer<'a, E>`
 
@@ -1918,81 +2890,97 @@ A deserializer holding a `&str`.
 
 #### Trait Implementations
 
+##### `impl Any for StrDeserializer<'a, E>`
+
+- <span id="strdeserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StrDeserializer<'a, E>`
+
+- <span id="strdeserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StrDeserializer<'a, E>`
+
+- <span id="strdeserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for StrDeserializer<'de, E>`
 
 - <span id="strdeserializer-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for StrDeserializer<'a, E>`
+
+- <span id="strdeserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<E> Copy for StrDeserializer<'de, E>`
 
 ##### `impl<E> Debug for StrDeserializer<'a, E>`
 
-- <span id="strdeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="strdeserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for StrDeserializer<'a, E>`
 
 - <span id="strdeserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="strdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="strdeserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="strdeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="strdeserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="strdeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="strdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="strdeserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
 ##### `impl<E> EnumAccess for StrDeserializer<'a, E>`
 
@@ -2000,13 +2988,51 @@ A deserializer holding a `&str`.
 
 - <span id="strdeserializer-enumaccess-type-variant"></span>`type Variant = UnitOnly<E>`
 
-- <span id="strdeserializer-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
+- <span id="strdeserializer-enumaccess-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
+
+##### `impl<T> From for StrDeserializer<'a, E>`
+
+- <span id="strdeserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StrDeserializer<'a, E>`
+
+- <span id="strdeserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for StrDeserializer<'a, E>`
 
 - <span id="strdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = StrDeserializer<'a, E>`
 
-- <span id="strdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="strdeserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for StrDeserializer<'a, E>`
+
+- <span id="strdeserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="strdeserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="strdeserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for StrDeserializer<'a, E>`
+
+- <span id="strdeserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="strdeserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StrDeserializer<'a, E>`
+
+- <span id="strdeserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="strdeserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BorrowedStrDeserializer<'de, E>`
 
@@ -2026,83 +3052,101 @@ deserializer.
 
 - <span id="borrowedstrdeserializer-new"></span>`fn new(value: &'de str) -> BorrowedStrDeserializer<'de, E>` — [`BorrowedStrDeserializer`](#borrowedstrdeserializer)
 
+  Create a new borrowed deserializer from the given string.
+
 #### Trait Implementations
+
+##### `impl Any for BorrowedStrDeserializer<'de, E>`
+
+- <span id="borrowedstrdeserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BorrowedStrDeserializer<'de, E>`
+
+- <span id="borrowedstrdeserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BorrowedStrDeserializer<'de, E>`
+
+- <span id="borrowedstrdeserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E> Clone for BorrowedStrDeserializer<'de, E>`
 
 - <span id="borrowedstrdeserializer-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for BorrowedStrDeserializer<'de, E>`
+
+- <span id="borrowedstrdeserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E> Copy for BorrowedStrDeserializer<'de, E>`
 
 ##### `impl<E> Debug for BorrowedStrDeserializer<'de, E>`
 
-- <span id="borrowedstrdeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="borrowedstrdeserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for BorrowedStrDeserializer<'de, E>`
 
 - <span id="borrowedstrdeserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="borrowedstrdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="borrowedstrdeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="borrowedstrdeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedstrdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedstrdeserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
 ##### `impl<E> EnumAccess for BorrowedStrDeserializer<'de, E>`
 
@@ -2110,13 +3154,51 @@ deserializer.
 
 - <span id="borrowedstrdeserializer-enumaccess-type-variant"></span>`type Variant = UnitOnly<E>`
 
-- <span id="borrowedstrdeserializer-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
+- <span id="borrowedstrdeserializer-enumaccess-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
+
+##### `impl<T> From for BorrowedStrDeserializer<'de, E>`
+
+- <span id="borrowedstrdeserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BorrowedStrDeserializer<'de, E>`
+
+- <span id="borrowedstrdeserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for BorrowedStrDeserializer<'de, E>`
 
 - <span id="borrowedstrdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = BorrowedStrDeserializer<'de, E>`
 
-- <span id="borrowedstrdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="borrowedstrdeserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for BorrowedStrDeserializer<'de, E>`
+
+- <span id="borrowedstrdeserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="borrowedstrdeserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="borrowedstrdeserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BorrowedStrDeserializer<'de, E>`
+
+- <span id="borrowedstrdeserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="borrowedstrdeserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BorrowedStrDeserializer<'de, E>`
+
+- <span id="borrowedstrdeserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="borrowedstrdeserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StringDeserializer<E>`
 
@@ -2137,79 +3219,95 @@ A deserializer holding a `String`.
 
 #### Trait Implementations
 
+##### `impl Any for StringDeserializer<E>`
+
+- <span id="stringdeserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StringDeserializer<E>`
+
+- <span id="stringdeserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StringDeserializer<E>`
+
+- <span id="stringdeserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for StringDeserializer<E>`
 
 - <span id="stringdeserializer-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for StringDeserializer<E>`
+
+- <span id="stringdeserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E> Debug for StringDeserializer<E>`
 
-- <span id="stringdeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stringdeserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for StringDeserializer<E>`
 
 - <span id="stringdeserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="stringdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="stringdeserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="stringdeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="stringdeserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="stringdeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="stringdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="stringdeserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
 ##### `impl<E> EnumAccess for StringDeserializer<E>`
 
@@ -2217,13 +3315,51 @@ A deserializer holding a `String`.
 
 - <span id="stringdeserializer-enumaccess-type-variant"></span>`type Variant = UnitOnly<E>`
 
-- <span id="stringdeserializer-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
+- <span id="stringdeserializer-enumaccess-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
+
+##### `impl<T> From for StringDeserializer<E>`
+
+- <span id="stringdeserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StringDeserializer<E>`
+
+- <span id="stringdeserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for StringDeserializer<E>`
 
 - <span id="stringdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = StringDeserializer<E>`
 
-- <span id="stringdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="stringdeserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for StringDeserializer<E>`
+
+- <span id="stringdeserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="stringdeserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="stringdeserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for StringDeserializer<E>`
+
+- <span id="stringdeserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="stringdeserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StringDeserializer<E>`
+
+- <span id="stringdeserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="stringdeserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CowStrDeserializer<'a, E>`
 
@@ -2244,79 +3380,95 @@ A deserializer holding a `Cow<str>`.
 
 #### Trait Implementations
 
+##### `impl Any for CowStrDeserializer<'a, E>`
+
+- <span id="cowstrdeserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CowStrDeserializer<'a, E>`
+
+- <span id="cowstrdeserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CowStrDeserializer<'a, E>`
+
+- <span id="cowstrdeserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Clone for CowStrDeserializer<'a, E>`
 
 - <span id="cowstrdeserializer-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for CowStrDeserializer<'a, E>`
+
+- <span id="cowstrdeserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E> Debug for CowStrDeserializer<'a, E>`
 
-- <span id="cowstrdeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cowstrdeserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for CowStrDeserializer<'a, E>`
 
 - <span id="cowstrdeserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="cowstrdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="cowstrdeserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="cowstrdeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="cowstrdeserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="cowstrdeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="cowstrdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="cowstrdeserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
 ##### `impl<E> EnumAccess for CowStrDeserializer<'a, E>`
 
@@ -2324,13 +3476,51 @@ A deserializer holding a `Cow<str>`.
 
 - <span id="cowstrdeserializer-enumaccess-type-variant"></span>`type Variant = UnitOnly<E>`
 
-- <span id="cowstrdeserializer-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
+- <span id="cowstrdeserializer-enumaccess-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
+
+##### `impl<T> From for CowStrDeserializer<'a, E>`
+
+- <span id="cowstrdeserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CowStrDeserializer<'a, E>`
+
+- <span id="cowstrdeserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for CowStrDeserializer<'a, E>`
 
 - <span id="cowstrdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = CowStrDeserializer<'a, E>`
 
-- <span id="cowstrdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="cowstrdeserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for CowStrDeserializer<'a, E>`
+
+- <span id="cowstrdeserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="cowstrdeserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="cowstrdeserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CowStrDeserializer<'a, E>`
+
+- <span id="cowstrdeserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cowstrdeserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CowStrDeserializer<'a, E>`
+
+- <span id="cowstrdeserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cowstrdeserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BytesDeserializer<'a, E>`
 
@@ -2349,89 +3539,145 @@ A deserializer holding a `&[u8]`. Always calls `Visitor::visit_bytes`.
 
 - <span id="bytesdeserializer-new"></span>`fn new(value: &'a [u8]) -> Self`
 
+  Create a new deserializer from the given bytes.
+
 #### Trait Implementations
+
+##### `impl Any for BytesDeserializer<'a, E>`
+
+- <span id="bytesdeserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BytesDeserializer<'a, E>`
+
+- <span id="bytesdeserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BytesDeserializer<'a, E>`
+
+- <span id="bytesdeserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E> Clone for BytesDeserializer<'a, E>`
 
 - <span id="bytesdeserializer-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for BytesDeserializer<'a, E>`
+
+- <span id="bytesdeserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E> Copy for BytesDeserializer<'a, E>`
 
 ##### `impl<E> Debug for BytesDeserializer<'a, E>`
 
-- <span id="bytesdeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bytesdeserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for BytesDeserializer<'a, E>`
 
 - <span id="bytesdeserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="bytesdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="bytesdeserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="bytesdeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="bytesdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="bytesdeserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+
+##### `impl<T> From for BytesDeserializer<'a, E>`
+
+- <span id="bytesdeserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BytesDeserializer<'a, E>`
+
+- <span id="bytesdeserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for BytesDeserializer<'a, E>`
 
 - <span id="bytesdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = BytesDeserializer<'a, E>`
 
-- <span id="bytesdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="bytesdeserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for BytesDeserializer<'a, E>`
+
+- <span id="bytesdeserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="bytesdeserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="bytesdeserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BytesDeserializer<'a, E>`
+
+- <span id="bytesdeserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="bytesdeserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BytesDeserializer<'a, E>`
+
+- <span id="bytesdeserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="bytesdeserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BorrowedBytesDeserializer<'de, E>`
 
@@ -2451,89 +3697,145 @@ deserializer. Always calls `Visitor::visit_borrowed_bytes`.
 
 - <span id="borrowedbytesdeserializer-new"></span>`fn new(value: &'de [u8]) -> Self`
 
+  Create a new borrowed deserializer from the given borrowed bytes.
+
 #### Trait Implementations
+
+##### `impl Any for BorrowedBytesDeserializer<'de, E>`
+
+- <span id="borrowedbytesdeserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BorrowedBytesDeserializer<'de, E>`
+
+- <span id="borrowedbytesdeserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BorrowedBytesDeserializer<'de, E>`
+
+- <span id="borrowedbytesdeserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E> Clone for BorrowedBytesDeserializer<'de, E>`
 
 - <span id="borrowedbytesdeserializer-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for BorrowedBytesDeserializer<'de, E>`
+
+- <span id="borrowedbytesdeserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E> Copy for BorrowedBytesDeserializer<'de, E>`
 
 ##### `impl<E> Debug for BorrowedBytesDeserializer<'de, E>`
 
-- <span id="borrowedbytesdeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="borrowedbytesdeserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Deserializer for BorrowedBytesDeserializer<'de, E>`
 
 - <span id="borrowedbytesdeserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="borrowedbytesdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="borrowedbytesdeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="borrowedbytesdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="borrowedbytesdeserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+
+##### `impl<T> From for BorrowedBytesDeserializer<'de, E>`
+
+- <span id="borrowedbytesdeserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BorrowedBytesDeserializer<'de, E>`
+
+- <span id="borrowedbytesdeserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for BorrowedBytesDeserializer<'de, E>`
 
 - <span id="borrowedbytesdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = BorrowedBytesDeserializer<'de, E>`
 
-- <span id="borrowedbytesdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="borrowedbytesdeserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for BorrowedBytesDeserializer<'de, E>`
+
+- <span id="borrowedbytesdeserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="borrowedbytesdeserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="borrowedbytesdeserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BorrowedBytesDeserializer<'de, E>`
+
+- <span id="borrowedbytesdeserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="borrowedbytesdeserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BorrowedBytesDeserializer<'de, E>`
+
+- <span id="borrowedbytesdeserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="borrowedbytesdeserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SeqDeserializer<I, E>`
 
@@ -2553,95 +3855,151 @@ A deserializer that iterates over a sequence.
 
 - <span id="seqdeserializer-new"></span>`fn new(iter: I) -> Self`
 
+  Construct a new `SeqDeserializer<I, E>`.
+
 #### Trait Implementations
+
+##### `impl Any for SeqDeserializer<I, E>`
+
+- <span id="seqdeserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SeqDeserializer<I, E>`
+
+- <span id="seqdeserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SeqDeserializer<I, E>`
+
+- <span id="seqdeserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I: clone::Clone, E: clone::Clone> Clone for SeqDeserializer<I, E>`
 
 - <span id="seqdeserializer-clone"></span>`fn clone(&self) -> SeqDeserializer<I, E>` — [`SeqDeserializer`](#seqdeserializer)
 
+##### `impl CloneToUninit for SeqDeserializer<I, E>`
+
+- <span id="seqdeserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I, E> Debug for SeqDeserializer<I, E>`
 
-- <span id="seqdeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="seqdeserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I, E> Deserializer for SeqDeserializer<I, E>`
 
 - <span id="seqdeserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="seqdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="seqdeserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="seqdeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqdeserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+
+##### `impl<T> From for SeqDeserializer<I, E>`
+
+- <span id="seqdeserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SeqDeserializer<I, E>`
+
+- <span id="seqdeserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<I, E> IntoDeserializer for SeqDeserializer<I, E>`
 
 - <span id="seqdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = SeqDeserializer<I, E>`
 
-- <span id="seqdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="seqdeserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
 ##### `impl<I, E> SeqAccess for SeqDeserializer<I, E>`
 
 - <span id="seqdeserializer-seqaccess-type-error"></span>`type Error = E`
 
-- <span id="seqdeserializer-next-element-seed"></span>`fn next_element_seed<V>(&mut self, seed: V) -> Result<Option<<V as >::Value>, <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
+- <span id="seqdeserializer-seqaccess-next-element-seed"></span>`fn next_element_seed<V>(&mut self, seed: V) -> Result<Option<<V as >::Value>, <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
 
-- <span id="seqdeserializer-size-hint"></span>`fn size_hint(&self) -> Option<usize>`
+- <span id="seqdeserializer-seqaccess-size-hint"></span>`fn size_hint(&self) -> Option<usize>`
+
+##### `impl ToOwned for SeqDeserializer<I, E>`
+
+- <span id="seqdeserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="seqdeserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="seqdeserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SeqDeserializer<I, E>`
+
+- <span id="seqdeserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="seqdeserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SeqDeserializer<I, E>`
+
+- <span id="seqdeserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="seqdeserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ExpectedInSeq`
 
@@ -2653,9 +4011,51 @@ struct ExpectedInSeq(usize);
 
 #### Trait Implementations
 
+##### `impl Any for ExpectedInSeq`
+
+- <span id="expectedinseq-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ExpectedInSeq`
+
+- <span id="expectedinseq-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ExpectedInSeq`
+
+- <span id="expectedinseq-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Expected for ExpectedInSeq`
 
-- <span id="expectedinseq-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="expectedinseq-expected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ExpectedInSeq`
+
+- <span id="expectedinseq-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ExpectedInSeq`
+
+- <span id="expectedinseq-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ExpectedInSeq`
+
+- <span id="expectedinseq-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="expectedinseq-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ExpectedInSeq`
+
+- <span id="expectedinseq-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="expectedinseq-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SeqAccessDeserializer<A>`
 
@@ -2673,87 +4073,143 @@ A deserializer holding a `SeqAccess`.
 
 - <span id="seqaccessdeserializer-new"></span>`fn new(seq: A) -> Self`
 
+  Construct a new `SeqAccessDeserializer<A>`.
+
 #### Trait Implementations
+
+##### `impl Any for SeqAccessDeserializer<A>`
+
+- <span id="seqaccessdeserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SeqAccessDeserializer<A>`
+
+- <span id="seqaccessdeserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SeqAccessDeserializer<A>`
+
+- <span id="seqaccessdeserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<A: clone::Clone> Clone for SeqAccessDeserializer<A>`
 
 - <span id="seqaccessdeserializer-clone"></span>`fn clone(&self) -> SeqAccessDeserializer<A>` — [`SeqAccessDeserializer`](#seqaccessdeserializer)
 
+##### `impl CloneToUninit for SeqAccessDeserializer<A>`
+
+- <span id="seqaccessdeserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<A: fmt::Debug> Debug for SeqAccessDeserializer<A>`
 
-- <span id="seqaccessdeserializer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="seqaccessdeserializer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<A> Deserializer for SeqAccessDeserializer<A>`
 
 - <span id="seqaccessdeserializer-deserializer-type-error"></span>`type Error = <A as SeqAccess>::Error`
 
-- <span id="seqaccessdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="seqaccessdeserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="seqaccessdeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="seqaccessdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="seqaccessdeserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+
+##### `impl<T> From for SeqAccessDeserializer<A>`
+
+- <span id="seqaccessdeserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SeqAccessDeserializer<A>`
+
+- <span id="seqaccessdeserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<A> IntoDeserializer for SeqAccessDeserializer<A>`
 
 - <span id="seqaccessdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = SeqAccessDeserializer<A>`
 
-- <span id="seqaccessdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="seqaccessdeserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for SeqAccessDeserializer<A>`
+
+- <span id="seqaccessdeserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="seqaccessdeserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="seqaccessdeserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SeqAccessDeserializer<A>`
+
+- <span id="seqaccessdeserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="seqaccessdeserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SeqAccessDeserializer<A>`
+
+- <span id="seqaccessdeserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="seqaccessdeserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MapDeserializer<'de, I, E>`
 
@@ -2778,107 +4234,163 @@ A deserializer that iterates over a map.
 
 - <span id="mapdeserializer-new"></span>`fn new(iter: I) -> Self`
 
+  Construct a new `MapDeserializer<I, E>`.
+
 #### Trait Implementations
+
+##### `impl Any for MapDeserializer<'de, I, E>`
+
+- <span id="mapdeserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MapDeserializer<'de, I, E>`
+
+- <span id="mapdeserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MapDeserializer<'de, I, E>`
+
+- <span id="mapdeserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<I, E> Clone for MapDeserializer<'de, I, E>`
 
 - <span id="mapdeserializer-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for MapDeserializer<'de, I, E>`
+
+- <span id="mapdeserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<I, E> Debug for MapDeserializer<'de, I, E>`
 
-- <span id="mapdeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mapdeserializer-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I, E> Deserializer for MapDeserializer<'de, I, E>`
 
 - <span id="mapdeserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="mapdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="mapdeserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="mapdeserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="mapdeserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="mapdeserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="mapdeserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="mapdeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapdeserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+
+##### `impl<T> From for MapDeserializer<'de, I, E>`
+
+- <span id="mapdeserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MapDeserializer<'de, I, E>`
+
+- <span id="mapdeserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<I, E> IntoDeserializer for MapDeserializer<'de, I, E>`
 
 - <span id="mapdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = MapDeserializer<'de, I, E>`
 
-- <span id="mapdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="mapdeserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
 ##### `impl<I, E> MapAccess for MapDeserializer<'de, I, E>`
 
 - <span id="mapdeserializer-mapaccess-type-error"></span>`type Error = E`
 
-- <span id="mapdeserializer-next-key-seed"></span>`fn next_key_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
+- <span id="mapdeserializer-mapaccess-next-key-seed"></span>`fn next_key_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
 
-- <span id="mapdeserializer-next-value-seed"></span>`fn next_value_seed<T>(&mut self, seed: T) -> Result<<T as >::Value, <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
+- <span id="mapdeserializer-mapaccess-next-value-seed"></span>`fn next_value_seed<T>(&mut self, seed: T) -> Result<<T as >::Value, <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
 
-- <span id="mapdeserializer-next-entry-seed"></span>`fn next_entry_seed<TK, TV>(&mut self, kseed: TK, vseed: TV) -> Result<Option<(<TK as >::Value, <TV as >::Value)>, <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
+- <span id="mapdeserializer-mapaccess-next-entry-seed"></span>`fn next_entry_seed<TK, TV>(&mut self, kseed: TK, vseed: TV) -> Result<Option<(<TK as >::Value, <TV as >::Value)>, <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
 
-- <span id="mapdeserializer-size-hint"></span>`fn size_hint(&self) -> Option<usize>`
+- <span id="mapdeserializer-mapaccess-size-hint"></span>`fn size_hint(&self) -> Option<usize>`
 
 ##### `impl<I, E> SeqAccess for MapDeserializer<'de, I, E>`
 
 - <span id="mapdeserializer-seqaccess-type-error"></span>`type Error = E`
 
-- <span id="mapdeserializer-next-element-seed"></span>`fn next_element_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
+- <span id="mapdeserializer-seqaccess-next-element-seed"></span>`fn next_element_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
 
-- <span id="mapdeserializer-size-hint"></span>`fn size_hint(&self) -> Option<usize>`
+- <span id="mapdeserializer-seqaccess-size-hint"></span>`fn size_hint(&self) -> Option<usize>`
+
+##### `impl ToOwned for MapDeserializer<'de, I, E>`
+
+- <span id="mapdeserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="mapdeserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="mapdeserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MapDeserializer<'de, I, E>`
+
+- <span id="mapdeserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="mapdeserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MapDeserializer<'de, I, E>`
+
+- <span id="mapdeserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="mapdeserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PairDeserializer<A, B, E>`
 
@@ -2890,71 +4402,113 @@ struct PairDeserializer<A, B, E>(A, B, PhantomData<E>);
 
 #### Trait Implementations
 
+##### `impl Any for PairDeserializer<A, B, E>`
+
+- <span id="pairdeserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PairDeserializer<A, B, E>`
+
+- <span id="pairdeserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PairDeserializer<A, B, E>`
+
+- <span id="pairdeserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<A, B, E> Deserializer for PairDeserializer<A, B, E>`
 
 - <span id="pairdeserializer-deserializer-type-error"></span>`type Error = E`
 
-- <span id="pairdeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="pairdeserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="pairdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="pairdeserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="pairdeserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="pairdeserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="pairdeserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="pairdeserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+
+##### `impl<T> From for PairDeserializer<A, B, E>`
+
+- <span id="pairdeserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PairDeserializer<A, B, E>`
+
+- <span id="pairdeserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for PairDeserializer<A, B, E>`
+
+- <span id="pairdeserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pairdeserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PairDeserializer<A, B, E>`
+
+- <span id="pairdeserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pairdeserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PairVisitor<A, B, E>`
 
@@ -2966,13 +4520,55 @@ struct PairVisitor<A, B, E>(Option<A>, Option<B>, PhantomData<E>);
 
 #### Trait Implementations
 
+##### `impl Any for PairVisitor<A, B, E>`
+
+- <span id="pairvisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PairVisitor<A, B, E>`
+
+- <span id="pairvisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PairVisitor<A, B, E>`
+
+- <span id="pairvisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for PairVisitor<A, B, E>`
+
+- <span id="pairvisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PairVisitor<A, B, E>`
+
+- <span id="pairvisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<A, B, E> SeqAccess for PairVisitor<A, B, E>`
 
 - <span id="pairvisitor-seqaccess-type-error"></span>`type Error = E`
 
-- <span id="pairvisitor-next-element-seed"></span>`fn next_element_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
+- <span id="pairvisitor-seqaccess-next-element-seed"></span>`fn next_element_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
 
-- <span id="pairvisitor-size-hint"></span>`fn size_hint(&self) -> Option<usize>`
+- <span id="pairvisitor-seqaccess-size-hint"></span>`fn size_hint(&self) -> Option<usize>`
+
+##### `impl<U> TryFrom for PairVisitor<A, B, E>`
+
+- <span id="pairvisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pairvisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PairVisitor<A, B, E>`
+
+- <span id="pairvisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pairvisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ExpectedInMap`
 
@@ -2984,9 +4580,51 @@ struct ExpectedInMap(usize);
 
 #### Trait Implementations
 
+##### `impl Any for ExpectedInMap`
+
+- <span id="expectedinmap-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ExpectedInMap`
+
+- <span id="expectedinmap-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ExpectedInMap`
+
+- <span id="expectedinmap-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Expected for ExpectedInMap`
 
-- <span id="expectedinmap-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="expectedinmap-expected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ExpectedInMap`
+
+- <span id="expectedinmap-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ExpectedInMap`
+
+- <span id="expectedinmap-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ExpectedInMap`
+
+- <span id="expectedinmap-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="expectedinmap-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ExpectedInMap`
+
+- <span id="expectedinmap-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="expectedinmap-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MapAccessDeserializer<A>`
 
@@ -3004,81 +4642,99 @@ A deserializer holding a `MapAccess`.
 
 - <span id="mapaccessdeserializer-new"></span>`fn new(map: A) -> Self`
 
+  Construct a new `MapAccessDeserializer<A>`.
+
 #### Trait Implementations
+
+##### `impl Any for MapAccessDeserializer<A>`
+
+- <span id="mapaccessdeserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MapAccessDeserializer<A>`
+
+- <span id="mapaccessdeserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MapAccessDeserializer<A>`
+
+- <span id="mapaccessdeserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<A: clone::Clone> Clone for MapAccessDeserializer<A>`
 
 - <span id="mapaccessdeserializer-clone"></span>`fn clone(&self) -> MapAccessDeserializer<A>` — [`MapAccessDeserializer`](#mapaccessdeserializer)
 
+##### `impl CloneToUninit for MapAccessDeserializer<A>`
+
+- <span id="mapaccessdeserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<A: fmt::Debug> Debug for MapAccessDeserializer<A>`
 
-- <span id="mapaccessdeserializer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mapaccessdeserializer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<A> Deserializer for MapAccessDeserializer<A>`
 
 - <span id="mapaccessdeserializer-deserializer-type-error"></span>`type Error = <A as MapAccess>::Error`
 
-- <span id="mapaccessdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="mapaccessdeserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="mapaccessdeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, _name: &str, _variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="mapaccessdeserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, _name: &str, _variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="mapaccessdeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="mapaccessdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="mapaccessdeserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
 ##### `impl<A> EnumAccess for MapAccessDeserializer<A>`
 
@@ -3086,13 +4742,51 @@ A deserializer holding a `MapAccess`.
 
 - <span id="mapaccessdeserializer-enumaccess-type-variant"></span>`type Variant = MapAsEnum<A>`
 
-- <span id="mapaccessdeserializer-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
+- <span id="mapaccessdeserializer-enumaccess-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
+
+##### `impl<T> From for MapAccessDeserializer<A>`
+
+- <span id="mapaccessdeserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MapAccessDeserializer<A>`
+
+- <span id="mapaccessdeserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<A> IntoDeserializer for MapAccessDeserializer<A>`
 
 - <span id="mapaccessdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = MapAccessDeserializer<A>`
 
-- <span id="mapaccessdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="mapaccessdeserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for MapAccessDeserializer<A>`
+
+- <span id="mapaccessdeserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="mapaccessdeserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="mapaccessdeserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MapAccessDeserializer<A>`
+
+- <span id="mapaccessdeserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="mapaccessdeserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MapAccessDeserializer<A>`
+
+- <span id="mapaccessdeserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="mapaccessdeserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `EnumAccessDeserializer<A>`
 
@@ -3110,87 +4804,143 @@ A deserializer holding an `EnumAccess`.
 
 - <span id="enumaccessdeserializer-new"></span>`fn new(access: A) -> Self`
 
+  Construct a new `EnumAccessDeserializer<A>`.
+
 #### Trait Implementations
+
+##### `impl Any for EnumAccessDeserializer<A>`
+
+- <span id="enumaccessdeserializer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for EnumAccessDeserializer<A>`
+
+- <span id="enumaccessdeserializer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for EnumAccessDeserializer<A>`
+
+- <span id="enumaccessdeserializer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<A: clone::Clone> Clone for EnumAccessDeserializer<A>`
 
 - <span id="enumaccessdeserializer-clone"></span>`fn clone(&self) -> EnumAccessDeserializer<A>` — [`EnumAccessDeserializer`](#enumaccessdeserializer)
 
+##### `impl CloneToUninit for EnumAccessDeserializer<A>`
+
+- <span id="enumaccessdeserializer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<A: fmt::Debug> Debug for EnumAccessDeserializer<A>`
 
-- <span id="enumaccessdeserializer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="enumaccessdeserializer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<A> Deserializer for EnumAccessDeserializer<A>`
 
 - <span id="enumaccessdeserializer-deserializer-type-error"></span>`type Error = <A as EnumAccess>::Error`
 
-- <span id="enumaccessdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="enumaccessdeserializer-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="enumaccessdeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-- <span id="enumaccessdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+- <span id="enumaccessdeserializer-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
+
+##### `impl<T> From for EnumAccessDeserializer<A>`
+
+- <span id="enumaccessdeserializer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for EnumAccessDeserializer<A>`
+
+- <span id="enumaccessdeserializer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<A> IntoDeserializer for EnumAccessDeserializer<A>`
 
 - <span id="enumaccessdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = EnumAccessDeserializer<A>`
 
-- <span id="enumaccessdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+- <span id="enumaccessdeserializer-intodeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
+
+##### `impl ToOwned for EnumAccessDeserializer<A>`
+
+- <span id="enumaccessdeserializer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="enumaccessdeserializer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="enumaccessdeserializer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for EnumAccessDeserializer<A>`
+
+- <span id="enumaccessdeserializer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="enumaccessdeserializer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for EnumAccessDeserializer<A>`
+
+- <span id="enumaccessdeserializer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="enumaccessdeserializer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Type Aliases
 

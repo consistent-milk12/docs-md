@@ -30,9 +30,39 @@ An iterator for files that don't have dynamic relocations.
 
 #### Trait Implementations
 
+##### `impl Any for NoDynamicRelocationIterator`
+
+- <span id="nodynamicrelocationiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for NoDynamicRelocationIterator`
+
+- <span id="nodynamicrelocationiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for NoDynamicRelocationIterator`
+
+- <span id="nodynamicrelocationiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for NoDynamicRelocationIterator`
 
-- <span id="nodynamicrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="nodynamicrelocationiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for NoDynamicRelocationIterator`
+
+- <span id="nodynamicrelocationiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for NoDynamicRelocationIterator`
+
+- <span id="nodynamicrelocationiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for NoDynamicRelocationIterator`
 
@@ -40,13 +70,25 @@ An iterator for files that don't have dynamic relocations.
 
 - <span id="nodynamicrelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="nodynamicrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="nodynamicrelocationiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for NoDynamicRelocationIterator`
 
 - <span id="nodynamicrelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
-- <span id="nodynamicrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="nodynamicrelocationiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for NoDynamicRelocationIterator`
+
+- <span id="nodynamicrelocationiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="nodynamicrelocationiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for NoDynamicRelocationIterator`
+
+- <span id="nodynamicrelocationiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="nodynamicrelocationiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

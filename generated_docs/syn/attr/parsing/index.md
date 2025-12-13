@@ -44,13 +44,55 @@ struct DisplayAttrStyle<'a>(&'a crate::attr::AttrStyle);
 
 #### Trait Implementations
 
+##### `impl Any for DisplayAttrStyle<'a>`
+
+- <span id="displayattrstyle-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DisplayAttrStyle<'a>`
+
+- <span id="displayattrstyle-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DisplayAttrStyle<'a>`
+
+- <span id="displayattrstyle-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Display for DisplayAttrStyle<'a>`
 
-- <span id="displayattrstyle-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="displayattrstyle-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DisplayAttrStyle<'a>`
+
+- <span id="displayattrstyle-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DisplayAttrStyle<'a>`
+
+- <span id="displayattrstyle-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for DisplayAttrStyle<'a>`
 
-- <span id="displayattrstyle-to-string"></span>`fn to_string(&self) -> String`
+- <span id="displayattrstyle-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DisplayAttrStyle<'a>`
+
+- <span id="displayattrstyle-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="displayattrstyle-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DisplayAttrStyle<'a>`
+
+- <span id="displayattrstyle-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="displayattrstyle-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DisplayPath<'a>`
 
@@ -62,13 +104,55 @@ struct DisplayPath<'a>(&'a crate::path::Path);
 
 #### Trait Implementations
 
+##### `impl Any for DisplayPath<'a>`
+
+- <span id="displaypath-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DisplayPath<'a>`
+
+- <span id="displaypath-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DisplayPath<'a>`
+
+- <span id="displaypath-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Display for DisplayPath<'a>`
 
-- <span id="displaypath-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="displaypath-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DisplayPath<'a>`
+
+- <span id="displaypath-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DisplayPath<'a>`
+
+- <span id="displaypath-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for DisplayPath<'a>`
 
-- <span id="displaypath-to-string"></span>`fn to_string(&self) -> String`
+- <span id="displaypath-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for DisplayPath<'a>`
+
+- <span id="displaypath-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="displaypath-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DisplayPath<'a>`
+
+- <span id="displaypath-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="displaypath-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

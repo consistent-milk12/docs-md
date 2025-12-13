@@ -40,21 +40,117 @@ until runtime.
 
 - <span id="frame-ip"></span>`fn ip(&self) -> *mut c_void`
 
+  Returns the current instruction pointer of this frame.
+
+  
+
+  This is normally the next instruction to execute in the frame, but not
+
+  all implementations list this with 100% accuracy (but it's generally
+
+  pretty close).
+
+  
+
+  It is recommended to pass this value to `backtrace::resolve` to turn it
+
+  into a symbol name.
+
 - <span id="frame-sp"></span>`fn sp(&self) -> *mut c_void`
+
+  Returns the current stack pointer of this frame.
+
+  
+
+  In the case that a backend cannot recover the stack pointer for this
+
+  frame, a null pointer is returned.
 
 - <span id="frame-symbol-address"></span>`fn symbol_address(&self) -> *mut c_void`
 
+  Returns the starting symbol address of the frame of this function.
+
+  
+
+  This will attempt to rewind the instruction pointer returned by `ip` to
+
+  the start of the function, returning that value. In some cases, however,
+
+  backends will just return `ip` from this function.
+
+  
+
+  The returned value can sometimes be used if `backtrace::resolve` failed
+
+  on the `ip` given above.
+
 - <span id="frame-module-base-address"></span>`fn module_base_address(&self) -> Option<*mut c_void>`
 
+  Returns the base address of the module to which the frame belongs.
+
 #### Trait Implementations
+
+##### `impl Any for Frame`
+
+- <span id="frame-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Frame`
+
+- <span id="frame-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Frame`
+
+- <span id="frame-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Frame`
 
 - <span id="frame-clone"></span>`fn clone(&self) -> Frame` — [`Frame`](#frame)
 
+##### `impl CloneToUninit for Frame`
+
+- <span id="frame-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Frame`
 
-- <span id="frame-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="frame-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Frame`
+
+- <span id="frame-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Frame`
+
+- <span id="frame-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Frame`
+
+- <span id="frame-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="frame-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="frame-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Frame`
+
+- <span id="frame-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="frame-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Frame`
+
+- <span id="frame-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="frame-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

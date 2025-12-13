@@ -50,35 +50,89 @@ struct Pre<P> {
 
 #### Trait Implementations
 
+##### `impl Any for Pre<P>`
+
+- <span id="pre-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Pre<P>`
+
+- <span id="pre-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Pre<P>`
+
+- <span id="pre-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<P: clone::Clone> Clone for Pre<P>`
 
 - <span id="pre-clone"></span>`fn clone(&self) -> Pre<P>` — [`Pre`](#pre)
 
+##### `impl CloneToUninit for Pre<P>`
+
+- <span id="pre-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<P: fmt::Debug> Debug for Pre<P>`
 
-- <span id="pre-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pre-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Pre<P>`
+
+- <span id="pre-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Pre<P>`
+
+- <span id="pre-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<P: PrefilterI> Strategy for Pre<P>`
 
-- <span id="pre-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md#groupinfo)
+- <span id="pre-strategy-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md#groupinfo)
 
-- <span id="pre-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md#cache)
+- <span id="pre-strategy-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md#cache)
 
-- <span id="pre-reset-cache"></span>`fn reset_cache(&self, _cache: &mut Cache)` — [`Cache`](../regex/index.md#cache)
+- <span id="pre-strategy-reset-cache"></span>`fn reset_cache(&self, _cache: &mut Cache)` — [`Cache`](../regex/index.md#cache)
 
-- <span id="pre-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
+- <span id="pre-strategy-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
 
-- <span id="pre-memory-usage"></span>`fn memory_usage(&self) -> usize`
+- <span id="pre-strategy-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="pre-search"></span>`fn search(&self, _cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`Match`](../../index.md#match)
+- <span id="pre-strategy-search"></span>`fn search(&self, _cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`Match`](../../index.md#match)
 
-- <span id="pre-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch)
+- <span id="pre-strategy-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch)
 
-- <span id="pre-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input)
+- <span id="pre-strategy-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input)
 
-- <span id="pre-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize), [`PatternID`](../../util/primitives/index.md#patternid)
+- <span id="pre-strategy-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize), [`PatternID`](../../util/primitives/index.md#patternid)
 
-- <span id="pre-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`PatternSet`](../../index.md#patternset)
+- <span id="pre-strategy-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`PatternSet`](../../index.md#patternset)
+
+##### `impl ToOwned for Pre<P>`
+
+- <span id="pre-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="pre-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="pre-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Pre<P>`
+
+- <span id="pre-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pre-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Pre<P>`
+
+- <span id="pre-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pre-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Core`
 
@@ -116,31 +170,73 @@ struct Core {
 
 #### Trait Implementations
 
+##### `impl Any for Core`
+
+- <span id="core-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Core`
+
+- <span id="core-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Core`
+
+- <span id="core-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Core`
 
-- <span id="core-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="core-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Core`
+
+- <span id="core-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Core`
+
+- <span id="core-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Strategy for Core`
 
-- <span id="core-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md#groupinfo)
+- <span id="core-strategy-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md#groupinfo)
 
-- <span id="core-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md#cache)
+- <span id="core-strategy-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md#cache)
 
-- <span id="core-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md#cache)
+- <span id="core-strategy-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md#cache)
 
-- <span id="core-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
+- <span id="core-strategy-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
 
-- <span id="core-memory-usage"></span>`fn memory_usage(&self) -> usize`
+- <span id="core-strategy-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="core-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`Match`](../../index.md#match)
+- <span id="core-strategy-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`Match`](../../index.md#match)
 
-- <span id="core-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch)
+- <span id="core-strategy-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch)
 
-- <span id="core-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input)
+- <span id="core-strategy-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input)
 
-- <span id="core-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize), [`PatternID`](../../util/primitives/index.md#patternid)
+- <span id="core-strategy-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize), [`PatternID`](../../util/primitives/index.md#patternid)
 
-- <span id="core-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`PatternSet`](../../index.md#patternset)
+- <span id="core-strategy-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`PatternSet`](../../index.md#patternset)
+
+##### `impl<U> TryFrom for Core`
+
+- <span id="core-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="core-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Core`
+
+- <span id="core-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="core-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ReverseAnchored`
 
@@ -160,31 +256,73 @@ struct ReverseAnchored {
 
 #### Trait Implementations
 
+##### `impl Any for ReverseAnchored`
+
+- <span id="reverseanchored-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ReverseAnchored`
+
+- <span id="reverseanchored-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ReverseAnchored`
+
+- <span id="reverseanchored-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ReverseAnchored`
 
-- <span id="reverseanchored-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reverseanchored-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ReverseAnchored`
+
+- <span id="reverseanchored-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ReverseAnchored`
+
+- <span id="reverseanchored-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Strategy for ReverseAnchored`
 
-- <span id="reverseanchored-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md#groupinfo)
+- <span id="reverseanchored-strategy-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md#groupinfo)
 
-- <span id="reverseanchored-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md#cache)
+- <span id="reverseanchored-strategy-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md#cache)
 
-- <span id="reverseanchored-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md#cache)
+- <span id="reverseanchored-strategy-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md#cache)
 
-- <span id="reverseanchored-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
+- <span id="reverseanchored-strategy-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
 
-- <span id="reverseanchored-memory-usage"></span>`fn memory_usage(&self) -> usize`
+- <span id="reverseanchored-strategy-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="reverseanchored-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`Match`](../../index.md#match)
+- <span id="reverseanchored-strategy-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`Match`](../../index.md#match)
 
-- <span id="reverseanchored-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch)
+- <span id="reverseanchored-strategy-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch)
 
-- <span id="reverseanchored-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input)
+- <span id="reverseanchored-strategy-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input)
 
-- <span id="reverseanchored-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize), [`PatternID`](../../util/primitives/index.md#patternid)
+- <span id="reverseanchored-strategy-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize), [`PatternID`](../../util/primitives/index.md#patternid)
 
-- <span id="reverseanchored-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`PatternSet`](../../index.md#patternset)
+- <span id="reverseanchored-strategy-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`PatternSet`](../../index.md#patternset)
+
+##### `impl<U> TryFrom for ReverseAnchored`
+
+- <span id="reverseanchored-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="reverseanchored-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ReverseAnchored`
+
+- <span id="reverseanchored-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="reverseanchored-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ReverseSuffix`
 
@@ -209,31 +347,73 @@ struct ReverseSuffix {
 
 #### Trait Implementations
 
+##### `impl Any for ReverseSuffix`
+
+- <span id="reversesuffix-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ReverseSuffix`
+
+- <span id="reversesuffix-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ReverseSuffix`
+
+- <span id="reversesuffix-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ReverseSuffix`
 
-- <span id="reversesuffix-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reversesuffix-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ReverseSuffix`
+
+- <span id="reversesuffix-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ReverseSuffix`
+
+- <span id="reversesuffix-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Strategy for ReverseSuffix`
 
-- <span id="reversesuffix-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md#groupinfo)
+- <span id="reversesuffix-strategy-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md#groupinfo)
 
-- <span id="reversesuffix-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md#cache)
+- <span id="reversesuffix-strategy-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md#cache)
 
-- <span id="reversesuffix-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md#cache)
+- <span id="reversesuffix-strategy-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md#cache)
 
-- <span id="reversesuffix-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
+- <span id="reversesuffix-strategy-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
 
-- <span id="reversesuffix-memory-usage"></span>`fn memory_usage(&self) -> usize`
+- <span id="reversesuffix-strategy-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="reversesuffix-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`Match`](../../index.md#match)
+- <span id="reversesuffix-strategy-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`Match`](../../index.md#match)
 
-- <span id="reversesuffix-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch)
+- <span id="reversesuffix-strategy-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch)
 
-- <span id="reversesuffix-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input)
+- <span id="reversesuffix-strategy-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input)
 
-- <span id="reversesuffix-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize), [`PatternID`](../../util/primitives/index.md#patternid)
+- <span id="reversesuffix-strategy-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize), [`PatternID`](../../util/primitives/index.md#patternid)
 
-- <span id="reversesuffix-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`PatternSet`](../../index.md#patternset)
+- <span id="reversesuffix-strategy-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`PatternSet`](../../index.md#patternset)
+
+##### `impl<U> TryFrom for ReverseSuffix`
+
+- <span id="reversesuffix-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="reversesuffix-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ReverseSuffix`
+
+- <span id="reversesuffix-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="reversesuffix-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ReverseInner`
 
@@ -261,31 +441,73 @@ struct ReverseInner {
 
 #### Trait Implementations
 
+##### `impl Any for ReverseInner`
+
+- <span id="reverseinner-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ReverseInner`
+
+- <span id="reverseinner-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ReverseInner`
+
+- <span id="reverseinner-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ReverseInner`
 
-- <span id="reverseinner-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reverseinner-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ReverseInner`
+
+- <span id="reverseinner-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ReverseInner`
+
+- <span id="reverseinner-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Strategy for ReverseInner`
 
-- <span id="reverseinner-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md#groupinfo)
+- <span id="reverseinner-strategy-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md#groupinfo)
 
-- <span id="reverseinner-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md#cache)
+- <span id="reverseinner-strategy-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md#cache)
 
-- <span id="reverseinner-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md#cache)
+- <span id="reverseinner-strategy-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md#cache)
 
-- <span id="reverseinner-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
+- <span id="reverseinner-strategy-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
 
-- <span id="reverseinner-memory-usage"></span>`fn memory_usage(&self) -> usize`
+- <span id="reverseinner-strategy-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="reverseinner-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`Match`](../../index.md#match)
+- <span id="reverseinner-strategy-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`Match`](../../index.md#match)
 
-- <span id="reverseinner-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch)
+- <span id="reverseinner-strategy-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch)
 
-- <span id="reverseinner-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input)
+- <span id="reverseinner-strategy-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input)
 
-- <span id="reverseinner-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize), [`PatternID`](../../util/primitives/index.md#patternid)
+- <span id="reverseinner-strategy-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize), [`PatternID`](../../util/primitives/index.md#patternid)
 
-- <span id="reverseinner-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`PatternSet`](../../index.md#patternset)
+- <span id="reverseinner-strategy-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`PatternSet`](../../index.md#patternset)
+
+##### `impl<U> TryFrom for ReverseInner`
+
+- <span id="reverseinner-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="reverseinner-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ReverseInner`
+
+- <span id="reverseinner-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="reverseinner-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

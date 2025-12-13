@@ -206,127 +206,433 @@ with the addition of changing the foreground color. Recommended to be constructe
 
 - <span id="fgcolordisplay-new"></span>`const fn new(thing: &'a T) -> Self`
 
+  Create a new [`FgColorDisplay`](#fgcolordisplay), from a reference to a type which implements
+
+  [`Color`](#color).
+
+  
+
+  This is a const function: in non-const contexts, `OwoColorize::fg` or one of the
+
+  other methods on it may be more convenient.
+
+  
+
+  # Example
+
+  
+
+  Usage in const contexts:
+
+  
+
+  ```rust
+
+  use owo_colors::{colors::Green, FgColorDisplay};
+
+  
+
+  const GREEN_TEXT: FgColorDisplay<Green, str> = FgColorDisplay::new("green");
+
+  
+
+  println!("{}", GREEN_TEXT);
+
+  assert_eq!(format!("{}", GREEN_TEXT), "\x1b[32mgreen\x1b[39m");
+
+  ```
+
 - <span id="fgcolordisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](#styled)
+
+  Convert self to a generic [`Styled`](#styled).
+
+  
+
+  This method erases color-related type parameters, and can be
+
+  used to unify types across branches.
+
+  
+
+  # Example
+
+  
+
+  Typical use:
+
+  
+
+  ```rust
+
+  use owo_colors::OwoColorize;
+
+  
+
+  fn is_blue() -> bool {
+
+      // ...
+
+      true
+
+  }
+
+  
+
+  let styled_str = if is_blue() {
+
+      "hello".blue().into_styled()
+
+  } else {
+
+      "hello".green().into_styled()
+
+  };
+
+  
+
+  println!("{}", styled_str);
+
+  assert_eq!(format!("{}", styled_str), "\x1b[34mhello\x1b[0m");
+
+  ```
+
+  
+
+  Usage in const contexts:
+
+  
+
+  ```rust
+
+  use owo_colors::{colors::{Blue, Green}, FgColorDisplay, Styled};
+
+  
+
+  const fn is_blue() -> bool {
+
+      // ...
+
+      true
+
+  }
+
+  
+
+  const STYLED_STR: Styled<&str> = if is_blue() {
+
+      FgColorDisplay::<Blue, _>::new("Hello").into_styled()
+
+  } else {
+
+      FgColorDisplay::<Green, _>::new("Hello").into_styled()
+
+  };
+
+  
+
+  println!("{}", STYLED_STR);
+
+  assert_eq!(format!("{}", STYLED_STR), "\x1b[34mHello\x1b[0m");
+
+  ```
 
 - <span id="fgcolordisplay-color"></span>`const fn color<NewFg: DynColor>(self, fg: NewFg) -> FgDynColorDisplay<'a, NewFg, T>` — [`FgDynColorDisplay`](#fgdyncolordisplay)
 
+  Set the foreground color at runtime. Only use if you do not know which color will be used at
+
+  compile-time. If the color is constant, use either `OwoColorize::fg` or
+
+  a color-specific method, such as `OwoColorize::green`,
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, AnsiColors};
+
+  
+
+  println!("{}", "green".color(AnsiColors::Green));
+
+  ```
+
 - <span id="fgcolordisplay-on-color"></span>`const fn on_color<NewBg: DynColor>(self, bg: NewBg) -> ComboDynColorDisplay<'a, <Fg as >::DynEquivalent, NewBg, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay), [`Color`](#color)
+
+  Set the background color at runtime. Only use if you do not know what color to use at
+
+  compile-time. If the color is constant, use either `OwoColorize::bg` or
+
+  a color-specific method, such as `OwoColorize::on_yellow`,
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, AnsiColors};
+
+  
+
+  println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
+
+  ```
 
 - <span id="fgcolordisplay-fg"></span>`const fn fg<C: Color>(self) -> FgColorDisplay<'a, C, T>` — [`FgColorDisplay`](#fgcolordisplay)
 
+  Set the foreground color generically
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, colors::*};
+
+  
+
+  println!("{}", "red foreground".fg::<Red>());
+
+  ```
+
 - <span id="fgcolordisplay-bg"></span>`const fn bg<C: Color>(self) -> ComboColorDisplay<'a, Fg, C, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay)
+
+  Set the background color generically.
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, colors::*};
+
+  
+
+  println!("{}", "black background".bg::<Black>());
+
+  ```
 
 - <span id="fgcolordisplay-black"></span>`const fn black(self) -> FgColorDisplay<'a, colors::Black, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Black`](colors/index.md#black)
 
+  Change the foreground color to black
+
 - <span id="fgcolordisplay-on-black"></span>`const fn on_black(self) -> ComboColorDisplay<'a, Fg, colors::Black, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Black`](colors/index.md#black)
+
+  Change the background color to black
 
 - <span id="fgcolordisplay-red"></span>`const fn red(self) -> FgColorDisplay<'a, colors::Red, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Red`](colors/index.md#red)
 
+  Change the foreground color to red
+
 - <span id="fgcolordisplay-on-red"></span>`const fn on_red(self) -> ComboColorDisplay<'a, Fg, colors::Red, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Red`](colors/index.md#red)
+
+  Change the background color to red
 
 - <span id="fgcolordisplay-green"></span>`const fn green(self) -> FgColorDisplay<'a, colors::Green, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Green`](colors/index.md#green)
 
+  Change the foreground color to green
+
 - <span id="fgcolordisplay-on-green"></span>`const fn on_green(self) -> ComboColorDisplay<'a, Fg, colors::Green, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Green`](colors/index.md#green)
+
+  Change the background color to green
 
 - <span id="fgcolordisplay-yellow"></span>`const fn yellow(self) -> FgColorDisplay<'a, colors::Yellow, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Yellow`](colors/index.md#yellow)
 
+  Change the foreground color to yellow
+
 - <span id="fgcolordisplay-on-yellow"></span>`const fn on_yellow(self) -> ComboColorDisplay<'a, Fg, colors::Yellow, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Yellow`](colors/index.md#yellow)
+
+  Change the background color to yellow
 
 - <span id="fgcolordisplay-blue"></span>`const fn blue(self) -> FgColorDisplay<'a, colors::Blue, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Blue`](colors/index.md#blue)
 
+  Change the foreground color to blue
+
 - <span id="fgcolordisplay-on-blue"></span>`const fn on_blue(self) -> ComboColorDisplay<'a, Fg, colors::Blue, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Blue`](colors/index.md#blue)
+
+  Change the background color to blue
 
 - <span id="fgcolordisplay-magenta"></span>`const fn magenta(self) -> FgColorDisplay<'a, colors::Magenta, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Magenta`](colors/index.md#magenta)
 
+  Change the foreground color to magenta
+
 - <span id="fgcolordisplay-on-magenta"></span>`const fn on_magenta(self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Magenta`](colors/index.md#magenta)
+
+  Change the background color to magenta
 
 - <span id="fgcolordisplay-purple"></span>`const fn purple(self) -> FgColorDisplay<'a, colors::Magenta, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Magenta`](colors/index.md#magenta)
 
+  Change the foreground color to purple
+
 - <span id="fgcolordisplay-on-purple"></span>`const fn on_purple(self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Magenta`](colors/index.md#magenta)
+
+  Change the background color to purple
 
 - <span id="fgcolordisplay-cyan"></span>`const fn cyan(self) -> FgColorDisplay<'a, colors::Cyan, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Cyan`](colors/index.md#cyan)
 
+  Change the foreground color to cyan
+
 - <span id="fgcolordisplay-on-cyan"></span>`const fn on_cyan(self) -> ComboColorDisplay<'a, Fg, colors::Cyan, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Cyan`](colors/index.md#cyan)
+
+  Change the background color to cyan
 
 - <span id="fgcolordisplay-white"></span>`const fn white(self) -> FgColorDisplay<'a, colors::White, T>` — [`FgColorDisplay`](#fgcolordisplay), [`White`](colors/index.md#white)
 
+  Change the foreground color to white
+
 - <span id="fgcolordisplay-on-white"></span>`const fn on_white(self) -> ComboColorDisplay<'a, Fg, colors::White, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`White`](colors/index.md#white)
+
+  Change the background color to white
 
 - <span id="fgcolordisplay-bright-black"></span>`const fn bright_black(self) -> FgColorDisplay<'a, colors::BrightBlack, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightBlack`](colors/index.md#brightblack)
 
+  Change the foreground color to bright black
+
 - <span id="fgcolordisplay-on-bright-black"></span>`const fn on_bright_black(self) -> ComboColorDisplay<'a, Fg, colors::BrightBlack, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightBlack`](colors/index.md#brightblack)
+
+  Change the background color to bright black
 
 - <span id="fgcolordisplay-bright-red"></span>`const fn bright_red(self) -> FgColorDisplay<'a, colors::BrightRed, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightRed`](colors/index.md#brightred)
 
+  Change the foreground color to bright red
+
 - <span id="fgcolordisplay-on-bright-red"></span>`const fn on_bright_red(self) -> ComboColorDisplay<'a, Fg, colors::BrightRed, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightRed`](colors/index.md#brightred)
+
+  Change the background color to bright red
 
 - <span id="fgcolordisplay-bright-green"></span>`const fn bright_green(self) -> FgColorDisplay<'a, colors::BrightGreen, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightGreen`](colors/index.md#brightgreen)
 
+  Change the foreground color to bright green
+
 - <span id="fgcolordisplay-on-bright-green"></span>`const fn on_bright_green(self) -> ComboColorDisplay<'a, Fg, colors::BrightGreen, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightGreen`](colors/index.md#brightgreen)
+
+  Change the background color to bright green
 
 - <span id="fgcolordisplay-bright-yellow"></span>`const fn bright_yellow(self) -> FgColorDisplay<'a, colors::BrightYellow, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightYellow`](colors/index.md#brightyellow)
 
+  Change the foreground color to bright yellow
+
 - <span id="fgcolordisplay-on-bright-yellow"></span>`const fn on_bright_yellow(self) -> ComboColorDisplay<'a, Fg, colors::BrightYellow, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightYellow`](colors/index.md#brightyellow)
+
+  Change the background color to bright yellow
 
 - <span id="fgcolordisplay-bright-blue"></span>`const fn bright_blue(self) -> FgColorDisplay<'a, colors::BrightBlue, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightBlue`](colors/index.md#brightblue)
 
+  Change the foreground color to bright blue
+
 - <span id="fgcolordisplay-on-bright-blue"></span>`const fn on_bright_blue(self) -> ComboColorDisplay<'a, Fg, colors::BrightBlue, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightBlue`](colors/index.md#brightblue)
+
+  Change the background color to bright blue
 
 - <span id="fgcolordisplay-bright-magenta"></span>`const fn bright_magenta(self) -> FgColorDisplay<'a, colors::BrightMagenta, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
 
+  Change the foreground color to bright magenta
+
 - <span id="fgcolordisplay-on-bright-magenta"></span>`const fn on_bright_magenta(self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
+
+  Change the background color to bright magenta
 
 - <span id="fgcolordisplay-bright-purple"></span>`const fn bright_purple(self) -> FgColorDisplay<'a, colors::BrightMagenta, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
 
+  Change the foreground color to bright purple
+
 - <span id="fgcolordisplay-on-bright-purple"></span>`const fn on_bright_purple(self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
+
+  Change the background color to bright purple
 
 - <span id="fgcolordisplay-bright-cyan"></span>`const fn bright_cyan(self) -> FgColorDisplay<'a, colors::BrightCyan, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightCyan`](colors/index.md#brightcyan)
 
+  Change the foreground color to bright cyan
+
 - <span id="fgcolordisplay-on-bright-cyan"></span>`const fn on_bright_cyan(self) -> ComboColorDisplay<'a, Fg, colors::BrightCyan, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightCyan`](colors/index.md#brightcyan)
+
+  Change the background color to bright cyan
 
 - <span id="fgcolordisplay-bright-white"></span>`const fn bright_white(self) -> FgColorDisplay<'a, colors::BrightWhite, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightWhite`](colors/index.md#brightwhite)
 
+  Change the foreground color to bright white
+
 - <span id="fgcolordisplay-on-bright-white"></span>`const fn on_bright_white(self) -> ComboColorDisplay<'a, Fg, colors::BrightWhite, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightWhite`](colors/index.md#brightwhite)
+
+  Change the background color to bright white
 
 #### Trait Implementations
 
+##### `impl<T> Any for FgColorDisplay<'a, C, T>`
+
+- <span id="fgcolordisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::Binary> Binary for FgColorDisplay<'a, Color, T>`
 
-- <span id="fgcolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fgcolordisplay-binary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> Borrow for FgColorDisplay<'a, C, T>`
+
+- <span id="fgcolordisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FgColorDisplay<'a, C, T>`
+
+- <span id="fgcolordisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::Debug> Debug for FgColorDisplay<'a, Color, T>`
 
-- <span id="fgcolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fgcolordisplay-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::Display> Display for FgColorDisplay<'a, Color, T>`
 
-- <span id="fgcolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fgcolordisplay-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FgColorDisplay<'a, C, T>`
+
+- <span id="fgcolordisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for FgColorDisplay<'a, C, T>`
+
+- <span id="fgcolordisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::LowerExp> LowerExp for FgColorDisplay<'a, Color, T>`
 
-- <span id="fgcolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fgcolordisplay-lowerexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::LowerHex> LowerHex for FgColorDisplay<'a, Color, T>`
 
-- <span id="fgcolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fgcolordisplay-lowerhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::Octal> Octal for FgColorDisplay<'a, Color, T>`
 
-- <span id="fgcolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fgcolordisplay-octal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl OwoColorize for FgColorDisplay<'a, C, T>`
 
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::Pointer> Pointer for FgColorDisplay<'a, Color, T>`
 
-- <span id="fgcolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fgcolordisplay-pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T, U> TryFrom for FgColorDisplay<'a, C, T>`
+
+- <span id="fgcolordisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fgcolordisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for FgColorDisplay<'a, C, T>`
+
+- <span id="fgcolordisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fgcolordisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::UpperExp> UpperExp for FgColorDisplay<'a, Color, T>`
 
-- <span id="fgcolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fgcolordisplay-upperexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::UpperHex> UpperHex for FgColorDisplay<'a, Color, T>`
 
-- <span id="fgcolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fgcolordisplay-upperhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `BgColorDisplay<'a, C: Color, T: ?Sized>`
 
@@ -344,127 +650,433 @@ with the addition of changing the background color. Recommended to be constructe
 
 - <span id="bgcolordisplay-new"></span>`const fn new(thing: &'a T) -> Self`
 
+  Create a new [`BgColorDisplay`](#bgcolordisplay), from a reference to a type which implements
+
+  [`Color`](#color).
+
+  
+
+  This is a const function: in non-const contexts, `OwoColorize::bg` may be more
+
+  convenient.
+
+  
+
+  # Example
+
+  
+
+  Usage in const contexts:
+
+  
+
+  ```rust
+
+  use owo_colors::{colors::Red, BgColorDisplay};
+
+  
+
+  const RED_BG_TEXT: BgColorDisplay<Red, str> = BgColorDisplay::new("red background");
+
+  
+
+  println!("{}", RED_BG_TEXT);
+
+  assert_eq!(format!("{}", RED_BG_TEXT), "\x1b[41mred background\x1b[49m");
+
+  ```
+
 - <span id="bgcolordisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](#styled)
+
+  Convert self to a generic [`Styled`](#styled).
+
+  
+
+  This method erases color-related type parameters, and can be
+
+  used to unify types across branches.
+
+  
+
+  # Example
+
+  
+
+  Typical use:
+
+  
+
+  ```rust
+
+  use owo_colors::OwoColorize;
+
+  
+
+  fn is_red() -> bool {
+
+      // ...
+
+      true
+
+  }
+
+  
+
+  let styled_str = if is_red() {
+
+      "hello".on_red().into_styled()
+
+  } else {
+
+      "hello".on_yellow().into_styled()
+
+  };
+
+  
+
+  println!("{}", styled_str);
+
+  assert_eq!(format!("{}", styled_str), "\x1b[41mhello\x1b[0m");
+
+  ```
+
+  
+
+  Usage in const contexts:
+
+  
+
+  ```rust
+
+  use owo_colors::{colors::{Red, Yellow}, BgColorDisplay, Styled};
+
+  
+
+  const fn is_red() -> bool {
+
+      // ...
+
+      true
+
+  }
+
+  
+
+  const STYLED_STR: Styled<&str> = if is_red() {
+
+      BgColorDisplay::<Red, _>::new("Hello").into_styled()
+
+  } else {
+
+      BgColorDisplay::<Yellow, _>::new("Hello").into_styled()
+
+  };
+
+  
+
+  println!("{}", STYLED_STR);
+
+  assert_eq!(format!("{}", STYLED_STR), "\x1b[41mHello\x1b[0m");
+
+  ```
 
 - <span id="bgcolordisplay-color"></span>`const fn color<NewFg: DynColor>(self, fg: NewFg) -> ComboDynColorDisplay<'a, NewFg, <Bg as >::DynEquivalent, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay), [`Color`](#color)
 
+  Set the foreground color at runtime. Only use if you do not know which color will be used at
+
+  compile-time. If the color is constant, use either `OwoColorize::fg` or
+
+  a color-specific method, such as `OwoColorize::green`,
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, AnsiColors};
+
+  
+
+  println!("{}", "green".color(AnsiColors::Green));
+
+  ```
+
 - <span id="bgcolordisplay-on-color"></span>`const fn on_color<NewBg: DynColor>(self, bg: NewBg) -> BgDynColorDisplay<'a, NewBg, T>` — [`BgDynColorDisplay`](#bgdyncolordisplay)
+
+  Set the background color at runtime. Only use if you do not know what color to use at
+
+  compile-time. If the color is constant, use either `OwoColorize::bg` or
+
+  a color-specific method, such as `OwoColorize::on_yellow`,
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, AnsiColors};
+
+  
+
+  println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
+
+  ```
 
 - <span id="bgcolordisplay-fg"></span>`const fn fg<C: Color>(self) -> ComboColorDisplay<'a, C, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay)
 
+  Set the foreground color generically
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, colors::*};
+
+  
+
+  println!("{}", "red foreground".fg::<Red>());
+
+  ```
+
 - <span id="bgcolordisplay-bg"></span>`const fn bg<C: Color>(self) -> BgColorDisplay<'a, C, T>` — [`BgColorDisplay`](#bgcolordisplay)
+
+  Set the background color generically.
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, colors::*};
+
+  
+
+  println!("{}", "black background".bg::<Black>());
+
+  ```
 
 - <span id="bgcolordisplay-on-black"></span>`const fn on_black(self) -> BgColorDisplay<'a, colors::Black, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Black`](colors/index.md#black)
 
+  Change the background color to black
+
 - <span id="bgcolordisplay-black"></span>`const fn black(self) -> ComboColorDisplay<'a, colors::Black, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Black`](colors/index.md#black)
+
+  Change the foreground color to black
 
 - <span id="bgcolordisplay-on-red"></span>`const fn on_red(self) -> BgColorDisplay<'a, colors::Red, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Red`](colors/index.md#red)
 
+  Change the background color to red
+
 - <span id="bgcolordisplay-red"></span>`const fn red(self) -> ComboColorDisplay<'a, colors::Red, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Red`](colors/index.md#red)
+
+  Change the foreground color to red
 
 - <span id="bgcolordisplay-on-green"></span>`const fn on_green(self) -> BgColorDisplay<'a, colors::Green, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Green`](colors/index.md#green)
 
+  Change the background color to green
+
 - <span id="bgcolordisplay-green"></span>`const fn green(self) -> ComboColorDisplay<'a, colors::Green, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Green`](colors/index.md#green)
+
+  Change the foreground color to green
 
 - <span id="bgcolordisplay-on-yellow"></span>`const fn on_yellow(self) -> BgColorDisplay<'a, colors::Yellow, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Yellow`](colors/index.md#yellow)
 
+  Change the background color to yellow
+
 - <span id="bgcolordisplay-yellow"></span>`const fn yellow(self) -> ComboColorDisplay<'a, colors::Yellow, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Yellow`](colors/index.md#yellow)
+
+  Change the foreground color to yellow
 
 - <span id="bgcolordisplay-on-blue"></span>`const fn on_blue(self) -> BgColorDisplay<'a, colors::Blue, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Blue`](colors/index.md#blue)
 
+  Change the background color to blue
+
 - <span id="bgcolordisplay-blue"></span>`const fn blue(self) -> ComboColorDisplay<'a, colors::Blue, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Blue`](colors/index.md#blue)
+
+  Change the foreground color to blue
 
 - <span id="bgcolordisplay-on-magenta"></span>`const fn on_magenta(self) -> BgColorDisplay<'a, colors::Magenta, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Magenta`](colors/index.md#magenta)
 
+  Change the background color to magenta
+
 - <span id="bgcolordisplay-magenta"></span>`const fn magenta(self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Magenta`](colors/index.md#magenta)
+
+  Change the foreground color to magenta
 
 - <span id="bgcolordisplay-on-purple"></span>`const fn on_purple(self) -> BgColorDisplay<'a, colors::Magenta, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Magenta`](colors/index.md#magenta)
 
+  Change the background color to purple
+
 - <span id="bgcolordisplay-purple"></span>`const fn purple(self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Magenta`](colors/index.md#magenta)
+
+  Change the foreground color to purple
 
 - <span id="bgcolordisplay-on-cyan"></span>`const fn on_cyan(self) -> BgColorDisplay<'a, colors::Cyan, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Cyan`](colors/index.md#cyan)
 
+  Change the background color to cyan
+
 - <span id="bgcolordisplay-cyan"></span>`const fn cyan(self) -> ComboColorDisplay<'a, colors::Cyan, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Cyan`](colors/index.md#cyan)
+
+  Change the foreground color to cyan
 
 - <span id="bgcolordisplay-on-white"></span>`const fn on_white(self) -> BgColorDisplay<'a, colors::White, T>` — [`BgColorDisplay`](#bgcolordisplay), [`White`](colors/index.md#white)
 
+  Change the background color to white
+
 - <span id="bgcolordisplay-white"></span>`const fn white(self) -> ComboColorDisplay<'a, colors::White, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`White`](colors/index.md#white)
+
+  Change the foreground color to white
 
 - <span id="bgcolordisplay-on-bright-black"></span>`const fn on_bright_black(self) -> BgColorDisplay<'a, colors::BrightBlack, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightBlack`](colors/index.md#brightblack)
 
+  Change the background color to bright black
+
 - <span id="bgcolordisplay-bright-black"></span>`const fn bright_black(self) -> ComboColorDisplay<'a, colors::BrightBlack, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightBlack`](colors/index.md#brightblack)
+
+  Change the foreground color to bright black
 
 - <span id="bgcolordisplay-on-bright-red"></span>`const fn on_bright_red(self) -> BgColorDisplay<'a, colors::BrightRed, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightRed`](colors/index.md#brightred)
 
+  Change the background color to bright red
+
 - <span id="bgcolordisplay-bright-red"></span>`const fn bright_red(self) -> ComboColorDisplay<'a, colors::BrightRed, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightRed`](colors/index.md#brightred)
+
+  Change the foreground color to bright red
 
 - <span id="bgcolordisplay-on-bright-green"></span>`const fn on_bright_green(self) -> BgColorDisplay<'a, colors::BrightGreen, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightGreen`](colors/index.md#brightgreen)
 
+  Change the background color to bright green
+
 - <span id="bgcolordisplay-bright-green"></span>`const fn bright_green(self) -> ComboColorDisplay<'a, colors::BrightGreen, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightGreen`](colors/index.md#brightgreen)
+
+  Change the foreground color to bright green
 
 - <span id="bgcolordisplay-on-bright-yellow"></span>`const fn on_bright_yellow(self) -> BgColorDisplay<'a, colors::BrightYellow, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightYellow`](colors/index.md#brightyellow)
 
+  Change the background color to bright yellow
+
 - <span id="bgcolordisplay-bright-yellow"></span>`const fn bright_yellow(self) -> ComboColorDisplay<'a, colors::BrightYellow, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightYellow`](colors/index.md#brightyellow)
+
+  Change the foreground color to bright yellow
 
 - <span id="bgcolordisplay-on-bright-blue"></span>`const fn on_bright_blue(self) -> BgColorDisplay<'a, colors::BrightBlue, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightBlue`](colors/index.md#brightblue)
 
+  Change the background color to bright blue
+
 - <span id="bgcolordisplay-bright-blue"></span>`const fn bright_blue(self) -> ComboColorDisplay<'a, colors::BrightBlue, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightBlue`](colors/index.md#brightblue)
+
+  Change the foreground color to bright blue
 
 - <span id="bgcolordisplay-on-bright-magenta"></span>`const fn on_bright_magenta(self) -> BgColorDisplay<'a, colors::BrightMagenta, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
 
+  Change the background color to bright magenta
+
 - <span id="bgcolordisplay-bright-magenta"></span>`const fn bright_magenta(self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
+
+  Change the foreground color to bright magenta
 
 - <span id="bgcolordisplay-on-bright-purple"></span>`const fn on_bright_purple(self) -> BgColorDisplay<'a, colors::BrightMagenta, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
 
+  Change the background color to bright purple
+
 - <span id="bgcolordisplay-bright-purple"></span>`const fn bright_purple(self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
+
+  Change the foreground color to bright purple
 
 - <span id="bgcolordisplay-on-bright-cyan"></span>`const fn on_bright_cyan(self) -> BgColorDisplay<'a, colors::BrightCyan, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightCyan`](colors/index.md#brightcyan)
 
+  Change the background color to bright cyan
+
 - <span id="bgcolordisplay-bright-cyan"></span>`const fn bright_cyan(self) -> ComboColorDisplay<'a, colors::BrightCyan, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightCyan`](colors/index.md#brightcyan)
+
+  Change the foreground color to bright cyan
 
 - <span id="bgcolordisplay-on-bright-white"></span>`const fn on_bright_white(self) -> BgColorDisplay<'a, colors::BrightWhite, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightWhite`](colors/index.md#brightwhite)
 
+  Change the background color to bright white
+
 - <span id="bgcolordisplay-bright-white"></span>`const fn bright_white(self) -> ComboColorDisplay<'a, colors::BrightWhite, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightWhite`](colors/index.md#brightwhite)
+
+  Change the foreground color to bright white
 
 #### Trait Implementations
 
+##### `impl<T> Any for BgColorDisplay<'a, C, T>`
+
+- <span id="bgcolordisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::Binary> Binary for BgColorDisplay<'a, Color, T>`
 
-- <span id="bgcolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bgcolordisplay-binary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> Borrow for BgColorDisplay<'a, C, T>`
+
+- <span id="bgcolordisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BgColorDisplay<'a, C, T>`
+
+- <span id="bgcolordisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::Debug> Debug for BgColorDisplay<'a, Color, T>`
 
-- <span id="bgcolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bgcolordisplay-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::Display> Display for BgColorDisplay<'a, Color, T>`
 
-- <span id="bgcolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bgcolordisplay-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BgColorDisplay<'a, C, T>`
+
+- <span id="bgcolordisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for BgColorDisplay<'a, C, T>`
+
+- <span id="bgcolordisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::LowerExp> LowerExp for BgColorDisplay<'a, Color, T>`
 
-- <span id="bgcolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bgcolordisplay-lowerexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::LowerHex> LowerHex for BgColorDisplay<'a, Color, T>`
 
-- <span id="bgcolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bgcolordisplay-lowerhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::Octal> Octal for BgColorDisplay<'a, Color, T>`
 
-- <span id="bgcolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bgcolordisplay-octal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl OwoColorize for BgColorDisplay<'a, C, T>`
 
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::Pointer> Pointer for BgColorDisplay<'a, Color, T>`
 
-- <span id="bgcolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bgcolordisplay-pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T, U> TryFrom for BgColorDisplay<'a, C, T>`
+
+- <span id="bgcolordisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="bgcolordisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for BgColorDisplay<'a, C, T>`
+
+- <span id="bgcolordisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="bgcolordisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::UpperExp> UpperExp for BgColorDisplay<'a, Color, T>`
 
-- <span id="bgcolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bgcolordisplay-upperexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::UpperHex> UpperHex for BgColorDisplay<'a, Color, T>`
 
-- <span id="bgcolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bgcolordisplay-upperhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `FgDynColorDisplay<'a, Color: DynColor, T: ?Sized>`
 
@@ -482,51 +1094,215 @@ coloring is not an option.
 
 - <span id="cratefgdyncolordisplay-new"></span>`const fn new(thing: &'a T, color: Fg) -> Self`
 
+  Create a new [`FgDynColorDisplay`](#fgdyncolordisplay), from a reference to a type which implements
+
+  [`DynColor`](#dyncolor).
+
+  
+
+  This is a const function: in non-const contexts, `OwoColorize::color` may be more
+
+  convenient.
+
+  
+
+  # Example
+
+  
+
+  Usage in const contexts:
+
+  
+
+  ```rust
+
+  use owo_colors::{AnsiColors, FgDynColorDisplay};
+
+  
+
+  const DYN_RED_TEXT: FgDynColorDisplay<AnsiColors, str> =
+
+     FgDynColorDisplay::new("red text (dynamic)", AnsiColors::Red);
+
+  
+
+  println!("{}", DYN_RED_TEXT);
+
+  assert_eq!(format!("{}", DYN_RED_TEXT), "\x1b[31mred text (dynamic)\x1b[39m");
+
+  ```
+
 - <span id="cratefgdyncolordisplay-into-styled"></span>`fn into_styled(self) -> Styled<&'a T>` — [`Styled`](#styled)
+
+  Convert self to a generic [`Styled`](#styled).
+
+  
+
+  This method erases color-related type parameters, and can be
+
+  used to unify types across branches.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use owo_colors::{AnsiColors, CssColors, OwoColorize};
+
+  
+
+  fn is_blue() -> bool {
+
+      // ...
+
+      true
+
+  }
+
+  
+
+  let styled_str = if is_blue() {
+
+      "hello".color(AnsiColors::Blue).into_styled()
+
+  } else {
+
+      "hello".color(CssColors::DarkSeaGreen).into_styled()
+
+  };
+
+  
+
+  println!("{}", styled_str);
+
+  assert_eq!(format!("{}", styled_str), "\x1b[34mhello\x1b[0m");
+
+  ```
 
 - <span id="cratefgdyncolordisplay-on-color"></span>`const fn on_color<Bg: DynColor>(self, bg: Bg) -> ComboDynColorDisplay<'a, Fg, Bg, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay)
 
+  Set the background color at runtime. Only use if you do not know what color to use at
+
+  compile-time. If the color is constant, use either `OwoColorize::bg` or
+
+  a color-specific method, such as `OwoColorize::on_yellow`,
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, AnsiColors};
+
+  
+
+  println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
+
+  ```
+
 - <span id="cratefgdyncolordisplay-color"></span>`const fn color<NewFg: DynColor>(self, fg: NewFg) -> FgDynColorDisplay<'a, NewFg, T>` — [`FgDynColorDisplay`](#fgdyncolordisplay)
+
+  Set the foreground color at runtime. Only use if you do not know which color will be used at
+
+  compile-time. If the color is constant, use either `OwoColorize::fg` or
+
+  a color-specific method, such as `OwoColorize::green`,
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, AnsiColors};
+
+  
+
+  println!("{}", "green".color(AnsiColors::Green));
+
+  ```
 
 #### Trait Implementations
 
+##### `impl<T> Any for FgDynColorDisplay<'a, Color, T>`
+
+- <span id="fgdyncolordisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::Binary> Binary for FgDynColorDisplay<'a, Color, T>`
 
-- <span id="fgdyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fgdyncolordisplay-binary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> Borrow for FgDynColorDisplay<'a, Color, T>`
+
+- <span id="fgdyncolordisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FgDynColorDisplay<'a, Color, T>`
+
+- <span id="fgdyncolordisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::Debug> Debug for FgDynColorDisplay<'a, Color, T>`
 
-- <span id="fgdyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fgdyncolordisplay-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::Display> Display for FgDynColorDisplay<'a, Color, T>`
 
-- <span id="fgdyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fgdyncolordisplay-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FgDynColorDisplay<'a, Color, T>`
+
+- <span id="fgdyncolordisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for FgDynColorDisplay<'a, Color, T>`
+
+- <span id="fgdyncolordisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::LowerExp> LowerExp for FgDynColorDisplay<'a, Color, T>`
 
-- <span id="fgdyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fgdyncolordisplay-lowerexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::LowerHex> LowerHex for FgDynColorDisplay<'a, Color, T>`
 
-- <span id="fgdyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fgdyncolordisplay-lowerhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::Octal> Octal for FgDynColorDisplay<'a, Color, T>`
 
-- <span id="fgdyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fgdyncolordisplay-octal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl OwoColorize for FgDynColorDisplay<'a, Color, T>`
 
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::Pointer> Pointer for FgDynColorDisplay<'a, Color, T>`
 
-- <span id="fgdyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fgdyncolordisplay-pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T, U> TryFrom for FgDynColorDisplay<'a, Color, T>`
+
+- <span id="fgdyncolordisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fgdyncolordisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for FgDynColorDisplay<'a, Color, T>`
+
+- <span id="fgdyncolordisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fgdyncolordisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::UpperExp> UpperExp for FgDynColorDisplay<'a, Color, T>`
 
-- <span id="fgdyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fgdyncolordisplay-upperexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::UpperHex> UpperHex for FgDynColorDisplay<'a, Color, T>`
 
-- <span id="fgdyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fgdyncolordisplay-upperhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `BgDynColorDisplay<'a, Color: DynColor, T: ?Sized>`
 
@@ -544,51 +1320,215 @@ coloring is not an option.
 
 - <span id="cratebgdyncolordisplay-new"></span>`const fn new(thing: &'a T, color: Bg) -> Self`
 
+  Create a new [`BgDynColorDisplay`](#bgdyncolordisplay), from a reference to a type which implements
+
+  [`DynColor`](#dyncolor).
+
+  
+
+  This is a const function: in non-const contexts, `OwoColorize::on_color` may be more
+
+  convenient.
+
+  
+
+  # Example
+
+  
+
+  Usage in const contexts:
+
+  
+
+  ```rust
+
+  use owo_colors::{AnsiColors, BgDynColorDisplay};
+
+  
+
+  const DYN_GREEN_BG_TEXT: BgDynColorDisplay<AnsiColors, str> =
+
+     BgDynColorDisplay::new("green background (dynamic)", AnsiColors::Green);
+
+  
+
+  println!("{}", DYN_GREEN_BG_TEXT);
+
+  assert_eq!(format!("{}", DYN_GREEN_BG_TEXT), "\x1b[42mgreen background (dynamic)\x1b[49m");
+
+  ```
+
 - <span id="cratebgdyncolordisplay-into-styled"></span>`fn into_styled(self) -> Styled<&'a T>` — [`Styled`](#styled)
+
+  Convert self to a generic [`Styled`](#styled).
+
+  
+
+  This method erases color-related type parameters, and can be
+
+  used to unify types across branches.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use owo_colors::{AnsiColors, CssColors, OwoColorize};
+
+  
+
+  fn is_red() -> bool {
+
+      // ...
+
+      true
+
+  }
+
+  
+
+  let styled_str = if is_red() {
+
+      "hello".on_color(AnsiColors::Red).into_styled()
+
+  } else {
+
+      "hello".on_color(CssColors::LightGoldenRodYellow).into_styled()
+
+  };
+
+  
+
+  println!("{}", styled_str);
+
+  assert_eq!(format!("{}", styled_str), "\x1b[41mhello\x1b[0m");
+
+  ```
 
 - <span id="cratebgdyncolordisplay-on-color"></span>`const fn on_color<NewBg: DynColor>(self, bg: NewBg) -> BgDynColorDisplay<'a, NewBg, T>` — [`BgDynColorDisplay`](#bgdyncolordisplay)
 
+  Set the background color at runtime. Only use if you do not know what color to use at
+
+  compile-time. If the color is constant, use either `OwoColorize::bg` or
+
+  a color-specific method, such as `OwoColorize::on_yellow`,
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, AnsiColors};
+
+  
+
+  println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
+
+  ```
+
 - <span id="cratebgdyncolordisplay-color"></span>`const fn color<Fg: DynColor>(self, fg: Fg) -> ComboDynColorDisplay<'a, Fg, Bg, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay)
+
+  Set the foreground color at runtime. Only use if you do not know which color will be used at
+
+  compile-time. If the color is constant, use either `OwoColorize::fg` or
+
+  a color-specific method, such as `OwoColorize::green`,
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, AnsiColors};
+
+  
+
+  println!("{}", "green".color(AnsiColors::Green));
+
+  ```
 
 #### Trait Implementations
 
+##### `impl<T> Any for BgDynColorDisplay<'a, Color, T>`
+
+- <span id="bgdyncolordisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::Binary> Binary for BgDynColorDisplay<'a, Color, T>`
 
-- <span id="bgdyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bgdyncolordisplay-binary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> Borrow for BgDynColorDisplay<'a, Color, T>`
+
+- <span id="bgdyncolordisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BgDynColorDisplay<'a, Color, T>`
+
+- <span id="bgdyncolordisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::Debug> Debug for BgDynColorDisplay<'a, Color, T>`
 
-- <span id="bgdyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bgdyncolordisplay-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::Display> Display for BgDynColorDisplay<'a, Color, T>`
 
-- <span id="bgdyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bgdyncolordisplay-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BgDynColorDisplay<'a, Color, T>`
+
+- <span id="bgdyncolordisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for BgDynColorDisplay<'a, Color, T>`
+
+- <span id="bgdyncolordisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::LowerExp> LowerExp for BgDynColorDisplay<'a, Color, T>`
 
-- <span id="bgdyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bgdyncolordisplay-lowerexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::LowerHex> LowerHex for BgDynColorDisplay<'a, Color, T>`
 
-- <span id="bgdyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bgdyncolordisplay-lowerhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::Octal> Octal for BgDynColorDisplay<'a, Color, T>`
 
-- <span id="bgdyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bgdyncolordisplay-octal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl OwoColorize for BgDynColorDisplay<'a, Color, T>`
 
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::Pointer> Pointer for BgDynColorDisplay<'a, Color, T>`
 
-- <span id="bgdyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bgdyncolordisplay-pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T, U> TryFrom for BgDynColorDisplay<'a, Color, T>`
+
+- <span id="bgdyncolordisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="bgdyncolordisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for BgDynColorDisplay<'a, Color, T>`
+
+- <span id="bgdyncolordisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="bgdyncolordisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::UpperExp> UpperExp for BgDynColorDisplay<'a, Color, T>`
 
-- <span id="bgdyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bgdyncolordisplay-upperexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::UpperHex> UpperHex for BgDynColorDisplay<'a, Color, T>`
 
-- <span id="bgdyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bgdyncolordisplay-upperhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Rgb`
 
@@ -603,35 +1543,81 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 #### Trait Implementations
 
+##### `impl Any for Rgb`
+
+- <span id="rgb-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Rgb`
+
+- <span id="rgb-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Rgb`
+
+- <span id="rgb-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Rgb`
 
 - <span id="rgb-clone"></span>`fn clone(&self) -> Rgb` — [`Rgb`](colors/dynamic/index.md#rgb)
+
+##### `impl CloneToUninit for Rgb`
+
+- <span id="rgb-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Rgb`
 
 ##### `impl Debug for Rgb`
 
-- <span id="rgb-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rgb-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DynColor for Rgb`
 
-- <span id="rgb-fmt-ansi-fg"></span>`fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rgb-dyncolor-fmt-ansi-fg"></span>`fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="rgb-fmt-ansi-bg"></span>`fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rgb-dyncolor-fmt-ansi-bg"></span>`fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="rgb-fmt-raw-ansi-fg"></span>`fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rgb-dyncolor-fmt-raw-ansi-fg"></span>`fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="rgb-fmt-raw-ansi-bg"></span>`fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rgb-dyncolor-fmt-raw-ansi-bg"></span>`fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Rgb`
+
+##### `impl<T> From for Rgb`
+
+- <span id="rgb-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Rgb`
+
+- <span id="rgb-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Rgb`
 
 ##### `impl PartialEq for Rgb`
 
-- <span id="rgb-eq"></span>`fn eq(&self, other: &Rgb) -> bool` — [`Rgb`](colors/dynamic/index.md#rgb)
+- <span id="rgb-partialeq-eq"></span>`fn eq(&self, other: &Rgb) -> bool` — [`Rgb`](colors/dynamic/index.md#rgb)
 
 ##### `impl StructuralPartialEq for Rgb`
+
+##### `impl<U> TryFrom for Rgb`
+
+- <span id="rgb-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rgb-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Rgb`
+
+- <span id="rgb-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rgb-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ComboColorDisplay<'a, Fg: Color, Bg: Color, T: ?Sized>`
 
@@ -647,127 +1633,435 @@ A wrapper type which applies both a foreground and background color
 
 - <span id="combocolordisplay-new"></span>`const fn new(thing: &'a T) -> Self`
 
+  Create a new [`ComboColorDisplay`](combo/index.md), from a pair of foreground and background types
+
+  which implement [`Color`](#color).
+
+  
+
+  This is a const function: in non-const contexts, calling the [`OwoColorize`](#owocolorize)
+
+  functions may be more convenient.
+
+  
+
+  # Example
+
+  
+
+  Usage in const contexts:
+
+  
+
+  ```rust
+
+  use owo_colors::{colors::{Blue, White}, ComboColorDisplay};
+
+  
+
+  const COMBO_TEXT: ComboColorDisplay<Blue, White, str> =
+
+     ComboColorDisplay::new("blue text on white background");
+
+  
+
+  println!("{}", COMBO_TEXT);
+
+  assert_eq!(format!("{}", COMBO_TEXT), "\x1b[34;47mblue text on white background\x1b[0m");
+
+  ```
+
 - <span id="combocolordisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](#styled)
+
+  Convert self to a generic [`Styled`](#styled).
+
+  
+
+  This method erases color-related type parameters, and can be
+
+  used to unify types across branches.
+
+  
+
+  # Example
+
+  
+
+  Typical use:
+
+  
+
+  ```rust
+
+  use owo_colors::OwoColorize;
+
+  
+
+  fn is_black_on_white() -> bool {
+
+      // ...
+
+      true
+
+  }
+
+  
+
+  let styled_str = if is_black_on_white() {
+
+      "hello".black().on_white().into_styled()
+
+  } else {
+
+      "hello".white().on_black().into_styled()
+
+  };
+
+  
+
+  println!("{}", styled_str);
+
+  assert_eq!(format!("{}", styled_str), "\x1b[30;47mhello\x1b[0m");
+
+  ```
+
+  
+
+  Usage in const contexts:
+
+  
+
+  ```rust
+
+  use owo_colors::{colors::{Black, White}, ComboColorDisplay, Styled};
+
+  
+
+  const fn is_black_on_white() -> bool {
+
+      // ...
+
+      true
+
+  }
+
+  
+
+  const STYLED_STR: Styled<&str> = if is_black_on_white() {
+
+      ComboColorDisplay::<Black, White, _>::new("Hello").into_styled()
+
+  } else {
+
+      ComboColorDisplay::<White, Black, _>::new("Hello").into_styled()
+
+  };
+
+  
+
+  println!("{}", STYLED_STR);
+
+  assert_eq!(format!("{}", STYLED_STR), "\x1b[30;47mHello\x1b[0m");
+
+  ```
 
 - <span id="combocolordisplay-on-color"></span>`const fn on_color<NewBg: DynColor>(self, bg: NewBg) -> ComboDynColorDisplay<'a, <Fg as >::DynEquivalent, NewBg, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay), [`Color`](#color)
 
+  Set the background color at runtime. Only use if you do not know what color to use at
+
+  compile-time. If the color is constant, use either `OwoColorize::bg` or
+
+  a color-specific method, such as `OwoColorize::on_yellow`,
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, AnsiColors};
+
+  
+
+  println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
+
+  ```
+
 - <span id="combocolordisplay-color"></span>`const fn color<NewFg: DynColor>(self, fg: NewFg) -> ComboDynColorDisplay<'a, NewFg, <Bg as >::DynEquivalent, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay), [`Color`](#color)
+
+  Set the foreground color at runtime. Only use if you do not know which color will be used at
+
+  compile-time. If the color is constant, use either `OwoColorize::fg` or
+
+  a color-specific method, such as `OwoColorize::green`,
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, AnsiColors};
+
+  
+
+  println!("{}", "green".color(AnsiColors::Green));
+
+  ```
 
 - <span id="combocolordisplay-fg"></span>`const fn fg<C: Color>(self) -> ComboColorDisplay<'a, C, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay)
 
+  Set the foreground color generically
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, colors::*};
+
+  
+
+  println!("{}", "red foreground".fg::<Red>());
+
+  ```
+
 - <span id="combocolordisplay-bg"></span>`const fn bg<C: Color>(self) -> ComboColorDisplay<'a, Fg, C, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay)
+
+  Set the background color generically.
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, colors::*};
+
+  
+
+  println!("{}", "black background".bg::<Black>());
+
+  ```
 
 - <span id="combocolordisplay-on-black"></span>`const fn on_black(self) -> ComboColorDisplay<'a, Fg, colors::Black, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Black`](colors/index.md#black)
 
+  Change the background color to black
+
 - <span id="combocolordisplay-black"></span>`const fn black(self) -> ComboColorDisplay<'a, colors::Black, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Black`](colors/index.md#black)
+
+  Change the foreground color to black
 
 - <span id="combocolordisplay-on-red"></span>`const fn on_red(self) -> ComboColorDisplay<'a, Fg, colors::Red, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Red`](colors/index.md#red)
 
+  Change the background color to red
+
 - <span id="combocolordisplay-red"></span>`const fn red(self) -> ComboColorDisplay<'a, colors::Red, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Red`](colors/index.md#red)
+
+  Change the foreground color to red
 
 - <span id="combocolordisplay-on-green"></span>`const fn on_green(self) -> ComboColorDisplay<'a, Fg, colors::Green, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Green`](colors/index.md#green)
 
+  Change the background color to green
+
 - <span id="combocolordisplay-green"></span>`const fn green(self) -> ComboColorDisplay<'a, colors::Green, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Green`](colors/index.md#green)
+
+  Change the foreground color to green
 
 - <span id="combocolordisplay-on-yellow"></span>`const fn on_yellow(self) -> ComboColorDisplay<'a, Fg, colors::Yellow, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Yellow`](colors/index.md#yellow)
 
+  Change the background color to yellow
+
 - <span id="combocolordisplay-yellow"></span>`const fn yellow(self) -> ComboColorDisplay<'a, colors::Yellow, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Yellow`](colors/index.md#yellow)
+
+  Change the foreground color to yellow
 
 - <span id="combocolordisplay-on-blue"></span>`const fn on_blue(self) -> ComboColorDisplay<'a, Fg, colors::Blue, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Blue`](colors/index.md#blue)
 
+  Change the background color to blue
+
 - <span id="combocolordisplay-blue"></span>`const fn blue(self) -> ComboColorDisplay<'a, colors::Blue, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Blue`](colors/index.md#blue)
+
+  Change the foreground color to blue
 
 - <span id="combocolordisplay-on-magenta"></span>`const fn on_magenta(self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Magenta`](colors/index.md#magenta)
 
+  Change the background color to magenta
+
 - <span id="combocolordisplay-magenta"></span>`const fn magenta(self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Magenta`](colors/index.md#magenta)
+
+  Change the foreground color to magenta
 
 - <span id="combocolordisplay-on-purple"></span>`const fn on_purple(self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Magenta`](colors/index.md#magenta)
 
+  Change the background color to purple
+
 - <span id="combocolordisplay-purple"></span>`const fn purple(self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Magenta`](colors/index.md#magenta)
+
+  Change the foreground color to purple
 
 - <span id="combocolordisplay-on-cyan"></span>`const fn on_cyan(self) -> ComboColorDisplay<'a, Fg, colors::Cyan, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Cyan`](colors/index.md#cyan)
 
+  Change the background color to cyan
+
 - <span id="combocolordisplay-cyan"></span>`const fn cyan(self) -> ComboColorDisplay<'a, colors::Cyan, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Cyan`](colors/index.md#cyan)
+
+  Change the foreground color to cyan
 
 - <span id="combocolordisplay-on-white"></span>`const fn on_white(self) -> ComboColorDisplay<'a, Fg, colors::White, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`White`](colors/index.md#white)
 
+  Change the background color to white
+
 - <span id="combocolordisplay-white"></span>`const fn white(self) -> ComboColorDisplay<'a, colors::White, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`White`](colors/index.md#white)
+
+  Change the foreground color to white
 
 - <span id="combocolordisplay-on-bright-black"></span>`const fn on_bright_black(self) -> ComboColorDisplay<'a, Fg, colors::BrightBlack, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightBlack`](colors/index.md#brightblack)
 
+  Change the background color to bright black
+
 - <span id="combocolordisplay-bright-black"></span>`const fn bright_black(self) -> ComboColorDisplay<'a, colors::BrightBlack, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightBlack`](colors/index.md#brightblack)
+
+  Change the foreground color to bright black
 
 - <span id="combocolordisplay-on-bright-red"></span>`const fn on_bright_red(self) -> ComboColorDisplay<'a, Fg, colors::BrightRed, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightRed`](colors/index.md#brightred)
 
+  Change the background color to bright red
+
 - <span id="combocolordisplay-bright-red"></span>`const fn bright_red(self) -> ComboColorDisplay<'a, colors::BrightRed, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightRed`](colors/index.md#brightred)
+
+  Change the foreground color to bright red
 
 - <span id="combocolordisplay-on-bright-green"></span>`const fn on_bright_green(self) -> ComboColorDisplay<'a, Fg, colors::BrightGreen, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightGreen`](colors/index.md#brightgreen)
 
+  Change the background color to bright green
+
 - <span id="combocolordisplay-bright-green"></span>`const fn bright_green(self) -> ComboColorDisplay<'a, colors::BrightGreen, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightGreen`](colors/index.md#brightgreen)
+
+  Change the foreground color to bright green
 
 - <span id="combocolordisplay-on-bright-yellow"></span>`const fn on_bright_yellow(self) -> ComboColorDisplay<'a, Fg, colors::BrightYellow, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightYellow`](colors/index.md#brightyellow)
 
+  Change the background color to bright yellow
+
 - <span id="combocolordisplay-bright-yellow"></span>`const fn bright_yellow(self) -> ComboColorDisplay<'a, colors::BrightYellow, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightYellow`](colors/index.md#brightyellow)
+
+  Change the foreground color to bright yellow
 
 - <span id="combocolordisplay-on-bright-blue"></span>`const fn on_bright_blue(self) -> ComboColorDisplay<'a, Fg, colors::BrightBlue, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightBlue`](colors/index.md#brightblue)
 
+  Change the background color to bright blue
+
 - <span id="combocolordisplay-bright-blue"></span>`const fn bright_blue(self) -> ComboColorDisplay<'a, colors::BrightBlue, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightBlue`](colors/index.md#brightblue)
+
+  Change the foreground color to bright blue
 
 - <span id="combocolordisplay-on-bright-magenta"></span>`const fn on_bright_magenta(self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
 
+  Change the background color to bright magenta
+
 - <span id="combocolordisplay-bright-magenta"></span>`const fn bright_magenta(self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
+
+  Change the foreground color to bright magenta
 
 - <span id="combocolordisplay-on-bright-purple"></span>`const fn on_bright_purple(self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
 
+  Change the background color to bright purple
+
 - <span id="combocolordisplay-bright-purple"></span>`const fn bright_purple(self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
+
+  Change the foreground color to bright purple
 
 - <span id="combocolordisplay-on-bright-cyan"></span>`const fn on_bright_cyan(self) -> ComboColorDisplay<'a, Fg, colors::BrightCyan, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightCyan`](colors/index.md#brightcyan)
 
+  Change the background color to bright cyan
+
 - <span id="combocolordisplay-bright-cyan"></span>`const fn bright_cyan(self) -> ComboColorDisplay<'a, colors::BrightCyan, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightCyan`](colors/index.md#brightcyan)
+
+  Change the foreground color to bright cyan
 
 - <span id="combocolordisplay-on-bright-white"></span>`const fn on_bright_white(self) -> ComboColorDisplay<'a, Fg, colors::BrightWhite, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightWhite`](colors/index.md#brightwhite)
 
+  Change the background color to bright white
+
 - <span id="combocolordisplay-bright-white"></span>`const fn bright_white(self) -> ComboColorDisplay<'a, colors::BrightWhite, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightWhite`](colors/index.md#brightwhite)
+
+  Change the foreground color to bright white
 
 #### Trait Implementations
 
+##### `impl<T> Any for ComboColorDisplay<'a, Fg, Bg, T>`
+
+- <span id="combocolordisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl<Fg: Color, Bg: Color, T: ?Sized + fmt::Binary> Binary for ComboColorDisplay<'a, Fg, Bg, T>`
 
-- <span id="combocolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="combocolordisplay-binary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> Borrow for ComboColorDisplay<'a, Fg, Bg, T>`
+
+- <span id="combocolordisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ComboColorDisplay<'a, Fg, Bg, T>`
+
+- <span id="combocolordisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<Fg: Color, Bg: Color, T: ?Sized + fmt::Debug> Debug for ComboColorDisplay<'a, Fg, Bg, T>`
 
-- <span id="combocolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="combocolordisplay-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Fg: Color, Bg: Color, T: ?Sized + fmt::Display> Display for ComboColorDisplay<'a, Fg, Bg, T>`
 
-- <span id="combocolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="combocolordisplay-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ComboColorDisplay<'a, Fg, Bg, T>`
+
+- <span id="combocolordisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for ComboColorDisplay<'a, Fg, Bg, T>`
+
+- <span id="combocolordisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Fg: Color, Bg: Color, T: ?Sized + fmt::LowerExp> LowerExp for ComboColorDisplay<'a, Fg, Bg, T>`
 
-- <span id="combocolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="combocolordisplay-lowerexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Fg: Color, Bg: Color, T: ?Sized + fmt::LowerHex> LowerHex for ComboColorDisplay<'a, Fg, Bg, T>`
 
-- <span id="combocolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="combocolordisplay-lowerhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Fg: Color, Bg: Color, T: ?Sized + fmt::Octal> Octal for ComboColorDisplay<'a, Fg, Bg, T>`
 
-- <span id="combocolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="combocolordisplay-octal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl OwoColorize for ComboColorDisplay<'a, Fg, Bg, T>`
 
 ##### `impl<Fg: Color, Bg: Color, T: ?Sized + fmt::Pointer> Pointer for ComboColorDisplay<'a, Fg, Bg, T>`
 
-- <span id="combocolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="combocolordisplay-pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T, U> TryFrom for ComboColorDisplay<'a, Fg, Bg, T>`
+
+- <span id="combocolordisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="combocolordisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for ComboColorDisplay<'a, Fg, Bg, T>`
+
+- <span id="combocolordisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="combocolordisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<Fg: Color, Bg: Color, T: ?Sized + fmt::UpperExp> UpperExp for ComboColorDisplay<'a, Fg, Bg, T>`
 
-- <span id="combocolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="combocolordisplay-upperexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Fg: Color, Bg: Color, T: ?Sized + fmt::UpperHex> UpperHex for ComboColorDisplay<'a, Fg, Bg, T>`
 
-- <span id="combocolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="combocolordisplay-upperhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ComboDynColorDisplay<'a, Fg: DynColor, Bg: DynColor, T: ?Sized>`
 
@@ -786,51 +2080,225 @@ If compile-time coloring is an option, consider using [`ComboColorDisplay`](comb
 
 - <span id="combodyncolordisplay-new"></span>`const fn new(thing: &'a T, fg: Fg, bg: Bg) -> Self`
 
+  Create a new [`ComboDynColorDisplay`](combo/index.md), from a pair of types which implement
+
+  [`DynColor`](#dyncolor).
+
+  
+
+  This is a const function: in non-const contexts, other functions may be more convenient.
+
+  
+
+  # Example
+
+  
+
+  Usage in const contexts:
+
+  
+
+  ```rust
+
+  use owo_colors::{ComboDynColorDisplay, XtermColors};
+
+  
+
+  const COMBO_DYN_TEXT: ComboDynColorDisplay<XtermColors, XtermColors, str> =
+
+      ComboDynColorDisplay::new(
+
+          "blue text on lilac background (dynamic)",
+
+          XtermColors::BlueRibbon,
+
+          XtermColors::WistfulLilac,
+
+      );
+
+  
+
+  println!("{}", COMBO_DYN_TEXT);
+
+  assert_eq!(format!("{}", COMBO_DYN_TEXT), "\x1b[38;5;27;48;5;146mblue text on lilac background (dynamic)\x1b[0m");
+
+  ```
+
 - <span id="combodyncolordisplay-into-styled"></span>`fn into_styled(self) -> Styled<&'a T>` — [`Styled`](#styled)
+
+  Convert self to a generic [`Styled`](#styled).
+
+  
+
+  This method erases color-related type parameters, and can be
+
+  used to unify types across branches.
+
+  
+
+  # Example
+
+  
+
+  Typical use:
+
+  
+
+  ```rust
+
+  use owo_colors::{AnsiColors, CssColors, OwoColorize};
+
+  
+
+  fn is_black_on_white() -> bool {
+
+      // ...
+
+      true
+
+  }
+
+  
+
+  let styled_str = if is_black_on_white() {
+
+      "hello".color(AnsiColors::Black).on_color(AnsiColors::White).into_styled()
+
+  } else {
+
+      "hello".color(CssColors::White).on_color(CssColors::Black).into_styled()
+
+  };
+
+  
+
+  println!("{}", styled_str);
+
+  assert_eq!(format!("{}", styled_str), "\x1b[30;47mhello\x1b[0m");
+
+  ```
 
 - <span id="combodyncolordisplay-on-color"></span>`const fn on_color<NewBg: DynColor>(self, bg: NewBg) -> ComboDynColorDisplay<'a, Fg, NewBg, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay)
 
+  Set the background color at runtime. Only use if you do not know what color to use at
+
+  compile-time. If the color is constant, use either `OwoColorize::bg` or
+
+  a color-specific method, such as `OwoColorize::on_yellow`,
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, AnsiColors};
+
+  
+
+  println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
+
+  ```
+
 - <span id="combodyncolordisplay-color"></span>`const fn color<NewFg: DynColor>(self, fg: NewFg) -> ComboDynColorDisplay<'a, NewFg, Bg, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay)
+
+  Set the foreground color at runtime. Only use if you do not know which color will be used at
+
+  compile-time. If the color is constant, use either `OwoColorize::fg` or
+
+  a color-specific method, such as `OwoColorize::green`,
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, AnsiColors};
+
+  
+
+  println!("{}", "green".color(AnsiColors::Green));
+
+  ```
 
 #### Trait Implementations
 
+##### `impl<T> Any for ComboDynColorDisplay<'a, Fg, Bg, T>`
+
+- <span id="combodyncolordisplay-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl<Fg: DynColor, Bg: DynColor, T: ?Sized + fmt::Binary> Binary for ComboDynColorDisplay<'a, Fg, Bg, T>`
 
-- <span id="combodyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="combodyncolordisplay-binary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> Borrow for ComboDynColorDisplay<'a, Fg, Bg, T>`
+
+- <span id="combodyncolordisplay-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ComboDynColorDisplay<'a, Fg, Bg, T>`
+
+- <span id="combodyncolordisplay-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<Fg: DynColor, Bg: DynColor, T: ?Sized + fmt::Debug> Debug for ComboDynColorDisplay<'a, Fg, Bg, T>`
 
-- <span id="combodyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="combodyncolordisplay-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Fg: DynColor, Bg: DynColor, T: ?Sized + fmt::Display> Display for ComboDynColorDisplay<'a, Fg, Bg, T>`
 
-- <span id="combodyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="combodyncolordisplay-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ComboDynColorDisplay<'a, Fg, Bg, T>`
+
+- <span id="combodyncolordisplay-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for ComboDynColorDisplay<'a, Fg, Bg, T>`
+
+- <span id="combodyncolordisplay-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Fg: DynColor, Bg: DynColor, T: ?Sized + fmt::LowerExp> LowerExp for ComboDynColorDisplay<'a, Fg, Bg, T>`
 
-- <span id="combodyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="combodyncolordisplay-lowerexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Fg: DynColor, Bg: DynColor, T: ?Sized + fmt::LowerHex> LowerHex for ComboDynColorDisplay<'a, Fg, Bg, T>`
 
-- <span id="combodyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="combodyncolordisplay-lowerhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Fg: DynColor, Bg: DynColor, T: ?Sized + fmt::Octal> Octal for ComboDynColorDisplay<'a, Fg, Bg, T>`
 
-- <span id="combodyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="combodyncolordisplay-octal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl OwoColorize for ComboDynColorDisplay<'a, Fg, Bg, T>`
 
 ##### `impl<Fg: DynColor, Bg: DynColor, T: ?Sized + fmt::Pointer> Pointer for ComboDynColorDisplay<'a, Fg, Bg, T>`
 
-- <span id="combodyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="combodyncolordisplay-pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T, U> TryFrom for ComboDynColorDisplay<'a, Fg, Bg, T>`
+
+- <span id="combodyncolordisplay-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="combodyncolordisplay-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for ComboDynColorDisplay<'a, Fg, Bg, T>`
+
+- <span id="combodyncolordisplay-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="combodyncolordisplay-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<Fg: DynColor, Bg: DynColor, T: ?Sized + fmt::UpperExp> UpperExp for ComboDynColorDisplay<'a, Fg, Bg, T>`
 
-- <span id="combodyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="combodyncolordisplay-upperexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Fg: DynColor, Bg: DynColor, T: ?Sized + fmt::UpperHex> UpperHex for ComboDynColorDisplay<'a, Fg, Bg, T>`
 
-- <span id="combodyncolordisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="combodyncolordisplay-upperhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `StyledList<T, U>`
 
@@ -864,11 +2332,53 @@ assert!(styled_length < normal_length);
 
 #### Trait Implementations
 
+##### `impl<T> Any for StyledList<T, U>`
+
+- <span id="styledlist-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StyledList<T, U>`
+
+- <span id="styledlist-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StyledList<T, U>`
+
+- <span id="styledlist-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T, U> Display for StyledList<T, U>`
 
-- <span id="styledlist-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledlist-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for StyledList<T, U>`
+
+- <span id="styledlist-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for StyledList<T, U>`
+
+- <span id="styledlist-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for StyledList<T, U>`
+
+##### `impl<T, U> TryFrom for StyledList<T, U>`
+
+- <span id="styledlist-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="styledlist-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for StyledList<T, U>`
+
+- <span id="styledlist-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="styledlist-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ParseColorError`
 
@@ -882,11 +2392,53 @@ An error for when the color can not be parsed from a string at runtime
 
 #### Trait Implementations
 
+##### `impl Any for ParseColorError`
+
+- <span id="parsecolorerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ParseColorError`
+
+- <span id="parsecolorerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ParseColorError`
+
+- <span id="parsecolorerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ParseColorError`
 
-- <span id="parsecolorerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parsecolorerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ParseColorError`
+
+- <span id="parsecolorerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ParseColorError`
+
+- <span id="parsecolorerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ParseColorError`
+
+##### `impl<U> TryFrom for ParseColorError`
+
+- <span id="parsecolorerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="parsecolorerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ParseColorError`
+
+- <span id="parsecolorerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="parsecolorerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Styled<T>`
 
@@ -915,55 +2467,105 @@ A wrapper type which applies a [`Style`](#style) when displaying the inner type
 
 - <span id="styled-inner"></span>`const fn inner(&self) -> &T`
 
+  Returns a reference to the inner value to be styled
+
 - <span id="styled-inner-mut"></span>`const fn inner_mut(&mut self) -> &mut T`
+
+  Returns a mutable reference to the inner value to be styled.
+
+  
+
+  *This method is const on Rust 1.83+.*
 
 #### Trait Implementations
 
+##### `impl<T> Any for Styled<T>`
+
+- <span id="styled-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl<T: fmt::Binary> Binary for Styled<T>`
 
-- <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styled-binary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> Borrow for Styled<T>`
+
+- <span id="styled-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Styled<T>`
+
+- <span id="styled-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: fmt::Debug> Debug for Styled<T>`
 
-- <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styled-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: fmt::Display> Display for Styled<T>`
 
-- <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styled-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Styled<T>`
+
+- <span id="styled-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Styled<T>`
+
+- <span id="styled-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: Display> IsStyled for crate::Styled<T>`
 
 - <span id="cratestyled-isstyled-type-inner"></span>`type Inner = T`
 
-- <span id="cratestyled-style"></span>`fn style(&self) -> &Style` — [`Style`](#style)
+- <span id="cratestyled-isstyled-style"></span>`fn style(&self) -> &Style` — [`Style`](#style)
 
-- <span id="cratestyled-inner"></span>`fn inner(&self) -> &T`
+- <span id="cratestyled-isstyled-inner"></span>`fn inner(&self) -> &T`
 
 ##### `impl<T: fmt::LowerExp> LowerExp for Styled<T>`
 
-- <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styled-lowerexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: fmt::LowerHex> LowerHex for Styled<T>`
 
-- <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styled-lowerhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: fmt::Octal> Octal for Styled<T>`
 
-- <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styled-octal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl OwoColorize for Styled<T>`
 
 ##### `impl<T: fmt::Pointer> Pointer for Styled<T>`
 
-- <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styled-pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T, U> TryFrom for Styled<T>`
+
+- <span id="styled-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="styled-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Styled<T>`
+
+- <span id="styled-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="styled-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T: fmt::UpperExp> UpperExp for Styled<T>`
 
-- <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styled-upperexp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: fmt::UpperHex> UpperHex for Styled<T>`
 
-- <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styled-upperhex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Style`
 
@@ -998,109 +2600,281 @@ println!("{}", "red text, white background, struck through".style(my_style));
 
 - <span id="style-new"></span>`const fn new() -> Self`
 
+  Create a new style to be applied later
+
 - <span id="style-style"></span>`const fn style<T>(&self, target: T) -> Styled<T>` — [`Styled`](#styled)
+
+  Apply the style to a given struct to output.
+
+  
+
+  # Example
+
+  
+
+  Usage in const contexts:
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, Style, Styled};
+
+  
+
+  const STYLED_TEXT: Styled<&'static str> = Style::new().bold().italic().style("bold and italic text");
+
+  
+
+  println!("{}", STYLED_TEXT);
+
+  assert_eq!(format!("{}", STYLED_TEXT), "\u{1b}[1;3mbold and italic text\u{1b}[0m");
+
+  ```
 
 - <span id="style-fg"></span>`const fn fg<C: Color>(self) -> Self`
 
+  Set the foreground color generically
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, colors::*};
+
+  
+
+  println!("{}", "red foreground".fg::<Red>());
+
+  ```
+
 - <span id="style-bg"></span>`const fn bg<C: Color>(self) -> Self`
+
+  Set the background color generically.
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, colors::*};
+
+  
+
+  println!("{}", "black background".bg::<Black>());
+
+  ```
 
 - <span id="style-remove-fg"></span>`const fn remove_fg(self) -> Self`
 
+  Removes the foreground color from the style. Note that this does not apply
+
+  the default color, but rather represents not changing the current terminal color.
+
+  
+
+  If you wish to actively change the terminal color back to the default, see
+
+  `Style::default_color`.
+
 - <span id="style-remove-bg"></span>`const fn remove_bg(self) -> Self`
+
+  Removes the background color from the style. Note that this does not apply
+
+  the default color, but rather represents not changing the current terminal color.
+
+  
+
+  If you wish to actively change the terminal color back to the default, see
+
+  `Style::on_default_color`.
 
 - <span id="style-black"></span>`const fn black(self) -> Self`
 
+  Change the foreground color to black
+
 - <span id="style-on-black"></span>`const fn on_black(self) -> Self`
+
+  Change the foreground color to black
 
 - <span id="style-red"></span>`const fn red(self) -> Self`
 
+  Change the foreground color to red
+
 - <span id="style-on-red"></span>`const fn on_red(self) -> Self`
+
+  Change the foreground color to red
 
 - <span id="style-green"></span>`const fn green(self) -> Self`
 
+  Change the foreground color to green
+
 - <span id="style-on-green"></span>`const fn on_green(self) -> Self`
+
+  Change the foreground color to green
 
 - <span id="style-yellow"></span>`const fn yellow(self) -> Self`
 
+  Change the foreground color to yellow
+
 - <span id="style-on-yellow"></span>`const fn on_yellow(self) -> Self`
+
+  Change the foreground color to yellow
 
 - <span id="style-blue"></span>`const fn blue(self) -> Self`
 
+  Change the foreground color to blue
+
 - <span id="style-on-blue"></span>`const fn on_blue(self) -> Self`
+
+  Change the foreground color to blue
 
 - <span id="style-magenta"></span>`const fn magenta(self) -> Self`
 
+  Change the foreground color to magenta
+
 - <span id="style-on-magenta"></span>`const fn on_magenta(self) -> Self`
+
+  Change the foreground color to magenta
 
 - <span id="style-purple"></span>`const fn purple(self) -> Self`
 
+  Change the foreground color to purple
+
 - <span id="style-on-purple"></span>`const fn on_purple(self) -> Self`
+
+  Change the foreground color to purple
 
 - <span id="style-cyan"></span>`const fn cyan(self) -> Self`
 
+  Change the foreground color to cyan
+
 - <span id="style-on-cyan"></span>`const fn on_cyan(self) -> Self`
+
+  Change the foreground color to cyan
 
 - <span id="style-white"></span>`const fn white(self) -> Self`
 
+  Change the foreground color to white
+
 - <span id="style-on-white"></span>`const fn on_white(self) -> Self`
+
+  Change the foreground color to white
 
 - <span id="style-default-color"></span>`const fn default_color(self) -> Self`
 
+  Change the foreground color to the terminal default
+
 - <span id="style-on-default-color"></span>`const fn on_default_color(self) -> Self`
+
+  Change the foreground color to the terminal default
 
 - <span id="style-bright-black"></span>`const fn bright_black(self) -> Self`
 
+  Change the foreground color to bright black
+
 - <span id="style-on-bright-black"></span>`const fn on_bright_black(self) -> Self`
+
+  Change the foreground color to bright black
 
 - <span id="style-bright-red"></span>`const fn bright_red(self) -> Self`
 
+  Change the foreground color to bright red
+
 - <span id="style-on-bright-red"></span>`const fn on_bright_red(self) -> Self`
+
+  Change the foreground color to bright red
 
 - <span id="style-bright-green"></span>`const fn bright_green(self) -> Self`
 
+  Change the foreground color to bright green
+
 - <span id="style-on-bright-green"></span>`const fn on_bright_green(self) -> Self`
+
+  Change the foreground color to bright green
 
 - <span id="style-bright-yellow"></span>`const fn bright_yellow(self) -> Self`
 
+  Change the foreground color to bright yellow
+
 - <span id="style-on-bright-yellow"></span>`const fn on_bright_yellow(self) -> Self`
+
+  Change the foreground color to bright yellow
 
 - <span id="style-bright-blue"></span>`const fn bright_blue(self) -> Self`
 
+  Change the foreground color to bright blue
+
 - <span id="style-on-bright-blue"></span>`const fn on_bright_blue(self) -> Self`
+
+  Change the foreground color to bright blue
 
 - <span id="style-bright-magenta"></span>`const fn bright_magenta(self) -> Self`
 
+  Change the foreground color to bright magenta
+
 - <span id="style-on-bright-magenta"></span>`const fn on_bright_magenta(self) -> Self`
+
+  Change the foreground color to bright magenta
 
 - <span id="style-bright-purple"></span>`const fn bright_purple(self) -> Self`
 
+  Change the foreground color to bright purple
+
 - <span id="style-on-bright-purple"></span>`const fn on_bright_purple(self) -> Self`
+
+  Change the foreground color to bright purple
 
 - <span id="style-bright-cyan"></span>`const fn bright_cyan(self) -> Self`
 
+  Change the foreground color to bright cyan
+
 - <span id="style-on-bright-cyan"></span>`const fn on_bright_cyan(self) -> Self`
+
+  Change the foreground color to bright cyan
 
 - <span id="style-bright-white"></span>`const fn bright_white(self) -> Self`
 
+  Change the foreground color to bright white
+
 - <span id="style-on-bright-white"></span>`const fn on_bright_white(self) -> Self`
+
+  Change the foreground color to bright white
 
 - <span id="style-bold"></span>`const fn bold(self) -> Self`
 
+  Make the text bold
+
 - <span id="style-dimmed"></span>`const fn dimmed(self) -> Self`
+
+  Make the text dim
 
 - <span id="style-italic"></span>`const fn italic(self) -> Self`
 
+  Make the text italicized
+
 - <span id="style-underline"></span>`const fn underline(self) -> Self`
+
+  Make the text underlined
 
 - <span id="style-blink"></span>`const fn blink(self) -> Self`
 
+  Make the text blink
+
 - <span id="style-blink-fast"></span>`const fn blink_fast(self) -> Self`
+
+  Make the text blink (but fast!)
 
 - <span id="style-reversed"></span>`const fn reversed(self) -> Self`
 
+  Swap the foreground and background colors
+
 - <span id="style-hidden"></span>`const fn hidden(self) -> Self`
 
+  Hide the text
+
 - <span id="style-strikethrough"></span>`const fn strikethrough(self) -> Self`
+
+  Cross out the text
 
 - <span id="style-set-effect"></span>`const fn set_effect(self, effect: Effect, to: bool) -> Self` — [`Effect`](#effect)
 
@@ -1108,59 +2882,223 @@ println!("{}", "red text, white background, struck through".style(my_style));
 
 - <span id="style-effect"></span>`const fn effect(self, effect: Effect) -> Self` — [`Effect`](#effect)
 
+  Apply a given effect from the style
+
 - <span id="style-remove-effect"></span>`const fn remove_effect(self, effect: Effect) -> Self` — [`Effect`](#effect)
+
+  Remove a given effect from the style
 
 - <span id="style-effects"></span>`const fn effects(self, effects: &[Effect]) -> Self` — [`Effect`](#effect)
 
+  Apply a given set of effects to the style
+
 - <span id="style-remove-effects"></span>`const fn remove_effects(self, effects: &[Effect]) -> Self` — [`Effect`](#effect)
+
+  Remove a given set of effects from the style
 
 - <span id="style-remove-all-effects"></span>`const fn remove_all_effects(self) -> Self`
 
+  Disables all the given effects from the style
+
 - <span id="style-color"></span>`fn color<Color: DynColor>(self, color: Color) -> Self`
+
+  Set the foreground color at runtime. Only use if you do not know which color will be used at
+
+  compile-time. If the color is constant, use either [`OwoColorize::fg`](crate::OwoColorize::fg) or
+
+  a color-specific method, such as [`OwoColorize::green`](crate::OwoColorize::green),
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, AnsiColors};
+
+  
+
+  println!("{}", "green".color(AnsiColors::Green));
+
+  ```
 
 - <span id="style-on-color"></span>`fn on_color<Color: DynColor>(self, color: Color) -> Self`
 
+  Set the background color at runtime. Only use if you do not know what color to use at
+
+  compile-time. If the color is constant, use either [`OwoColorize::bg`](crate::OwoColorize::bg) or
+
+  a color-specific method, such as [`OwoColorize::on_yellow`](crate::OwoColorize::on_yellow),
+
+  
+
+  ```rust
+
+  use owo_colors::{OwoColorize, AnsiColors};
+
+  
+
+  println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
+
+  ```
+
 - <span id="style-fg-rgb"></span>`const fn fg_rgb<const R: u8, const G: u8, const B: u8>(self) -> Self`
+
+  Set the foreground color to a specific RGB value.
 
 - <span id="style-bg-rgb"></span>`const fn bg_rgb<const R: u8, const G: u8, const B: u8>(self) -> Self`
 
+  Set the background color to a specific RGB value.
+
 - <span id="style-truecolor"></span>`const fn truecolor(self, r: u8, g: u8, b: u8) -> Self`
+
+  Sets the foreground color to an RGB value.
 
 - <span id="style-on-truecolor"></span>`const fn on_truecolor(self, r: u8, g: u8, b: u8) -> Self`
 
+  Sets the background color to an RGB value.
+
 - <span id="style-is-plain"></span>`const fn is_plain(&self) -> bool`
+
+  Returns true if the style does not apply any formatting.
 
 - <span id="style-prefix-formatter"></span>`const fn prefix_formatter(&self) -> StylePrefixFormatter` — [`StylePrefixFormatter`](#styleprefixformatter)
 
+  Returns a formatter for the style's ANSI prefix.
+
+  
+
+  This can be used to separate out the prefix and suffix of a style.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use owo_colors::Style;
+
+  use std::fmt::Write;
+
+  
+
+  let style = Style::new().red().on_blue();
+
+  let prefix = style.prefix_formatter();
+
+  let suffix = style.suffix_formatter();
+
+  
+
+  // Write the prefix and suffix separately.
+
+  let mut output = String::new();
+
+  write!(output, "{}", prefix);
+
+  output.push_str("Hello");
+
+  write!(output, "{}", suffix);
+
+  
+
+  assert_eq!(output, "\x1b[31;44mHello\x1b[0m");
+
+  ```
+
 - <span id="style-suffix-formatter"></span>`const fn suffix_formatter(&self) -> StyleSuffixFormatter` — [`StyleSuffixFormatter`](#stylesuffixformatter)
+
+  Returns a formatter for the style's ANSI suffix.
+
+  
+
+  This can be used to separate out the prefix and suffix of a style.
+
+  
+
+  # Example
+
+  
+
+  See `Style::prefix_formatter`.
 
 - <span id="style-fmt-prefix"></span>`fn fmt_prefix(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
+  Applies the ANSI-prefix for this style to the given formatter
+
 - <span id="style-fmt-suffix"></span>`fn fmt_suffix(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
+  Applies the ANSI-suffix for this style to the given formatter
+
 #### Trait Implementations
+
+##### `impl Any for Style`
+
+- <span id="style-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Style`
+
+- <span id="style-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Style`
+
+- <span id="style-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Style`
 
 - <span id="style-clone"></span>`fn clone(&self) -> Style` — [`Style`](#style)
 
+##### `impl CloneToUninit for Style`
+
+- <span id="style-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Style`
 
 ##### `impl Debug for Style`
 
-- <span id="style-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="style-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Style`
 
 - <span id="style-default"></span>`fn default() -> Self`
 
+##### `impl<T> From for Style`
+
+- <span id="style-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Style`
+
+- <span id="style-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for Style`
 
 ##### `impl PartialEq for Style`
 
-- <span id="style-eq"></span>`fn eq(&self, other: &Style) -> bool` — [`Style`](#style)
+- <span id="style-partialeq-eq"></span>`fn eq(&self, other: &Style) -> bool` — [`Style`](#style)
 
 ##### `impl StructuralPartialEq for Style`
+
+##### `impl<U> TryFrom for Style`
+
+- <span id="style-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="style-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Style`
+
+- <span id="style-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="style-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StyleFlags`
 
@@ -1176,27 +3114,73 @@ struct StyleFlags(u8);
 
 #### Trait Implementations
 
+##### `impl Any for StyleFlags`
+
+- <span id="styleflags-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StyleFlags`
+
+- <span id="styleflags-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StyleFlags`
+
+- <span id="styleflags-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for StyleFlags`
 
 - <span id="styleflags-clone"></span>`fn clone(&self) -> StyleFlags` — [`StyleFlags`](dyn_styles/index.md#styleflags)
+
+##### `impl CloneToUninit for StyleFlags`
+
+- <span id="styleflags-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for StyleFlags`
 
 ##### `impl Debug for StyleFlags`
 
-- <span id="styleflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styleflags-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for StyleFlags`
 
 - <span id="styleflags-default"></span>`fn default() -> Self`
 
+##### `impl<T> From for StyleFlags`
+
+- <span id="styleflags-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StyleFlags`
+
+- <span id="styleflags-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for StyleFlags`
 
 ##### `impl PartialEq for StyleFlags`
 
-- <span id="styleflags-eq"></span>`fn eq(&self, other: &StyleFlags) -> bool` — [`StyleFlags`](dyn_styles/index.md#styleflags)
+- <span id="styleflags-partialeq-eq"></span>`fn eq(&self, other: &StyleFlags) -> bool` — [`StyleFlags`](dyn_styles/index.md#styleflags)
 
 ##### `impl StructuralPartialEq for StyleFlags`
+
+##### `impl<U> TryFrom for StyleFlags`
+
+- <span id="styleflags-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="styleflags-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StyleFlags`
+
+- <span id="styleflags-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="styleflags-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StylePrefixFormatter`
 
@@ -1213,27 +3197,73 @@ the suffix, which is useful for formatting the prefix separately.
 
 #### Trait Implementations
 
+##### `impl Any for StylePrefixFormatter`
+
+- <span id="styleprefixformatter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StylePrefixFormatter`
+
+- <span id="styleprefixformatter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StylePrefixFormatter`
+
+- <span id="styleprefixformatter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for StylePrefixFormatter`
 
 - <span id="styleprefixformatter-clone"></span>`fn clone(&self) -> StylePrefixFormatter` — [`StylePrefixFormatter`](#styleprefixformatter)
+
+##### `impl CloneToUninit for StylePrefixFormatter`
+
+- <span id="styleprefixformatter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for StylePrefixFormatter`
 
 ##### `impl Debug for StylePrefixFormatter`
 
-- <span id="styleprefixformatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styleprefixformatter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for StylePrefixFormatter`
 
-- <span id="styleprefixformatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styleprefixformatter-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for StylePrefixFormatter`
+
+- <span id="styleprefixformatter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StylePrefixFormatter`
+
+- <span id="styleprefixformatter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for StylePrefixFormatter`
 
 ##### `impl PartialEq for StylePrefixFormatter`
 
-- <span id="styleprefixformatter-eq"></span>`fn eq(&self, other: &StylePrefixFormatter) -> bool` — [`StylePrefixFormatter`](#styleprefixformatter)
+- <span id="styleprefixformatter-partialeq-eq"></span>`fn eq(&self, other: &StylePrefixFormatter) -> bool` — [`StylePrefixFormatter`](#styleprefixformatter)
 
 ##### `impl StructuralPartialEq for StylePrefixFormatter`
+
+##### `impl<U> TryFrom for StylePrefixFormatter`
+
+- <span id="styleprefixformatter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="styleprefixformatter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StylePrefixFormatter`
+
+- <span id="styleprefixformatter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="styleprefixformatter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StyleSuffixFormatter`
 
@@ -1250,27 +3280,73 @@ the prefix, which is useful for formatting the suffix separately.
 
 #### Trait Implementations
 
+##### `impl Any for StyleSuffixFormatter`
+
+- <span id="stylesuffixformatter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StyleSuffixFormatter`
+
+- <span id="stylesuffixformatter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StyleSuffixFormatter`
+
+- <span id="stylesuffixformatter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for StyleSuffixFormatter`
 
 - <span id="stylesuffixformatter-clone"></span>`fn clone(&self) -> StyleSuffixFormatter` — [`StyleSuffixFormatter`](#stylesuffixformatter)
+
+##### `impl CloneToUninit for StyleSuffixFormatter`
+
+- <span id="stylesuffixformatter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for StyleSuffixFormatter`
 
 ##### `impl Debug for StyleSuffixFormatter`
 
-- <span id="stylesuffixformatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stylesuffixformatter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for StyleSuffixFormatter`
 
-- <span id="stylesuffixformatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stylesuffixformatter-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for StyleSuffixFormatter`
+
+- <span id="stylesuffixformatter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StyleSuffixFormatter`
+
+- <span id="stylesuffixformatter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for StyleSuffixFormatter`
 
 ##### `impl PartialEq for StyleSuffixFormatter`
 
-- <span id="stylesuffixformatter-eq"></span>`fn eq(&self, other: &StyleSuffixFormatter) -> bool` — [`StyleSuffixFormatter`](#stylesuffixformatter)
+- <span id="stylesuffixformatter-partialeq-eq"></span>`fn eq(&self, other: &StyleSuffixFormatter) -> bool` — [`StyleSuffixFormatter`](#stylesuffixformatter)
 
 ##### `impl StructuralPartialEq for StyleSuffixFormatter`
+
+##### `impl<U> TryFrom for StyleSuffixFormatter`
+
+- <span id="stylesuffixformatter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="stylesuffixformatter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StyleSuffixFormatter`
+
+- <span id="stylesuffixformatter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="stylesuffixformatter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -1305,35 +3381,81 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 #### Trait Implementations
 
+##### `impl Any for AnsiColors`
+
+- <span id="ansicolors-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AnsiColors`
+
+- <span id="ansicolors-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AnsiColors`
+
+- <span id="ansicolors-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for AnsiColors`
 
 - <span id="ansicolors-clone"></span>`fn clone(&self) -> AnsiColors` — [`AnsiColors`](colors/ansi_colors/index.md#ansicolors)
+
+##### `impl CloneToUninit for AnsiColors`
+
+- <span id="ansicolors-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for AnsiColors`
 
 ##### `impl Debug for AnsiColors`
 
-- <span id="ansicolors-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ansicolors-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DynColor for AnsiColors`
 
-- <span id="ansicolors-fmt-ansi-fg"></span>`fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ansicolors-dyncolor-fmt-ansi-fg"></span>`fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="ansicolors-fmt-ansi-bg"></span>`fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ansicolors-dyncolor-fmt-ansi-bg"></span>`fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="ansicolors-fmt-raw-ansi-fg"></span>`fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ansicolors-dyncolor-fmt-raw-ansi-fg"></span>`fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="ansicolors-fmt-raw-ansi-bg"></span>`fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ansicolors-dyncolor-fmt-raw-ansi-bg"></span>`fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for AnsiColors`
+
+##### `impl<T> From for AnsiColors`
+
+- <span id="ansicolors-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AnsiColors`
+
+- <span id="ansicolors-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for AnsiColors`
 
 ##### `impl PartialEq for AnsiColors`
 
-- <span id="ansicolors-eq"></span>`fn eq(&self, other: &AnsiColors) -> bool` — [`AnsiColors`](colors/ansi_colors/index.md#ansicolors)
+- <span id="ansicolors-partialeq-eq"></span>`fn eq(&self, other: &AnsiColors) -> bool` — [`AnsiColors`](colors/ansi_colors/index.md#ansicolors)
 
 ##### `impl StructuralPartialEq for AnsiColors`
+
+##### `impl<U> TryFrom for AnsiColors`
+
+- <span id="ansicolors-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ansicolors-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AnsiColors`
+
+- <span id="ansicolors-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ansicolors-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CssColors`
 
@@ -1496,35 +3618,81 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 #### Trait Implementations
 
+##### `impl Any for CssColors`
+
+- <span id="csscolors-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CssColors`
+
+- <span id="csscolors-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CssColors`
+
+- <span id="csscolors-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for CssColors`
 
 - <span id="csscolors-clone"></span>`fn clone(&self) -> CssColors` — [`CssColors`](colors/css/dynamic/index.md#csscolors)
+
+##### `impl CloneToUninit for CssColors`
+
+- <span id="csscolors-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for CssColors`
 
 ##### `impl Debug for CssColors`
 
-- <span id="csscolors-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="csscolors-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DynColor for CssColors`
 
-- <span id="csscolors-fmt-ansi-fg"></span>`fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="csscolors-dyncolor-fmt-ansi-fg"></span>`fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="csscolors-fmt-ansi-bg"></span>`fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="csscolors-dyncolor-fmt-ansi-bg"></span>`fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="csscolors-fmt-raw-ansi-fg"></span>`fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="csscolors-dyncolor-fmt-raw-ansi-fg"></span>`fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="csscolors-fmt-raw-ansi-bg"></span>`fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="csscolors-dyncolor-fmt-raw-ansi-bg"></span>`fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for CssColors`
+
+##### `impl<T> From for CssColors`
+
+- <span id="csscolors-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CssColors`
+
+- <span id="csscolors-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for CssColors`
 
 ##### `impl PartialEq for CssColors`
 
-- <span id="csscolors-eq"></span>`fn eq(&self, other: &CssColors) -> bool` — [`CssColors`](colors/css/dynamic/index.md#csscolors)
+- <span id="csscolors-partialeq-eq"></span>`fn eq(&self, other: &CssColors) -> bool` — [`CssColors`](colors/css/dynamic/index.md#csscolors)
 
 ##### `impl StructuralPartialEq for CssColors`
+
+##### `impl<U> TryFrom for CssColors`
+
+- <span id="csscolors-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="csscolors-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CssColors`
+
+- <span id="csscolors-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="csscolors-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `XtermColors`
 
@@ -1796,35 +3964,81 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 #### Trait Implementations
 
+##### `impl Any for XtermColors`
+
+- <span id="xtermcolors-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for XtermColors`
+
+- <span id="xtermcolors-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for XtermColors`
+
+- <span id="xtermcolors-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for XtermColors`
 
 - <span id="xtermcolors-clone"></span>`fn clone(&self) -> XtermColors` — [`XtermColors`](colors/xterm/dynamic/index.md#xtermcolors)
+
+##### `impl CloneToUninit for XtermColors`
+
+- <span id="xtermcolors-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for XtermColors`
 
 ##### `impl Debug for XtermColors`
 
-- <span id="xtermcolors-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xtermcolors-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DynColor for XtermColors`
 
-- <span id="xtermcolors-fmt-ansi-fg"></span>`fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xtermcolors-dyncolor-fmt-ansi-fg"></span>`fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="xtermcolors-fmt-ansi-bg"></span>`fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xtermcolors-dyncolor-fmt-ansi-bg"></span>`fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="xtermcolors-fmt-raw-ansi-fg"></span>`fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xtermcolors-dyncolor-fmt-raw-ansi-fg"></span>`fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="xtermcolors-fmt-raw-ansi-bg"></span>`fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xtermcolors-dyncolor-fmt-raw-ansi-bg"></span>`fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for XtermColors`
+
+##### `impl<T> From for XtermColors`
+
+- <span id="xtermcolors-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for XtermColors`
+
+- <span id="xtermcolors-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for XtermColors`
 
 ##### `impl PartialEq for XtermColors`
 
-- <span id="xtermcolors-eq"></span>`fn eq(&self, other: &XtermColors) -> bool` — [`XtermColors`](colors/xterm/dynamic/index.md#xtermcolors)
+- <span id="xtermcolors-partialeq-eq"></span>`fn eq(&self, other: &XtermColors) -> bool` — [`XtermColors`](colors/xterm/dynamic/index.md#xtermcolors)
 
 ##### `impl StructuralPartialEq for XtermColors`
+
+##### `impl<U> TryFrom for XtermColors`
+
+- <span id="xtermcolors-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="xtermcolors-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for XtermColors`
+
+- <span id="xtermcolors-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="xtermcolors-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DynColors`
 
@@ -1846,41 +4060,87 @@ allowing for multiple types of colors to be used at runtime.
 
 #### Trait Implementations
 
+##### `impl Any for DynColors`
+
+- <span id="dyncolors-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DynColors`
+
+- <span id="dyncolors-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DynColors`
+
+- <span id="dyncolors-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DynColors`
 
 - <span id="dyncolors-clone"></span>`fn clone(&self) -> DynColors` — [`DynColors`](#dyncolors)
+
+##### `impl CloneToUninit for DynColors`
+
+- <span id="dyncolors-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DynColors`
 
 ##### `impl Debug for DynColors`
 
-- <span id="dyncolors-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyncolors-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DynColor for DynColors`
 
-- <span id="dyncolors-fmt-ansi-fg"></span>`fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyncolors-dyncolor-fmt-ansi-fg"></span>`fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="dyncolors-fmt-ansi-bg"></span>`fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyncolors-dyncolor-fmt-ansi-bg"></span>`fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="dyncolors-fmt-raw-ansi-fg"></span>`fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyncolors-dyncolor-fmt-raw-ansi-fg"></span>`fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="dyncolors-fmt-raw-ansi-bg"></span>`fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyncolors-dyncolor-fmt-raw-ansi-bg"></span>`fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for DynColors`
+
+##### `impl<T> From for DynColors`
+
+- <span id="dyncolors-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromStr for DynColors`
 
 - <span id="dyncolors-fromstr-type-err"></span>`type Err = ParseColorError`
 
-- <span id="dyncolors-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
+- <span id="dyncolors-fromstr-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
+
+##### `impl<U> Into for DynColors`
+
+- <span id="dyncolors-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DynColors`
 
 ##### `impl PartialEq for DynColors`
 
-- <span id="dyncolors-eq"></span>`fn eq(&self, other: &DynColors) -> bool` — [`DynColors`](#dyncolors)
+- <span id="dyncolors-partialeq-eq"></span>`fn eq(&self, other: &DynColors) -> bool` — [`DynColors`](#dyncolors)
 
 ##### `impl StructuralPartialEq for DynColors`
+
+##### `impl<U> TryFrom for DynColors`
+
+- <span id="dyncolors-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dyncolors-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DynColors`
+
+- <span id="dyncolors-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dyncolors-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Effect`
 
@@ -1904,17 +4164,63 @@ A runtime-configurable text effect for use with [`Style`](#style)
 
 #### Trait Implementations
 
+##### `impl Any for Effect`
+
+- <span id="effect-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Effect`
+
+- <span id="effect-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Effect`
+
+- <span id="effect-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Effect`
 
 - <span id="effect-clone"></span>`fn clone(&self) -> Effect` — [`Effect`](#effect)
+
+##### `impl CloneToUninit for Effect`
+
+- <span id="effect-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Effect`
 
 ##### `impl Debug for Effect`
 
-- <span id="effect-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="effect-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Effect`
+
+- <span id="effect-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Effect`
+
+- <span id="effect-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Effect`
+
+##### `impl<U> TryFrom for Effect`
+
+- <span id="effect-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="effect-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Effect`
+
+- <span id="effect-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="effect-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

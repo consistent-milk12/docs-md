@@ -86,7 +86,55 @@ struct Mapping {
 
 - <span id="supermapping-new-debug"></span>`fn new_debug(original_path: &Path, path: PathBuf, crc: Option<u32>) -> Option<Mapping>` — [`Mapping`](#mapping)
 
+  Load debuginfo from an external debug file.
+
 - <span id="supermapping-load-dwarf-package"></span>`fn load_dwarf_package<'data>(path: &Path, stash: &'data Stash) -> Option<Object<'data>>` — [`Stash`](stash/index.md#stash), [`Object`](elf/index.md#object)
+
+  Try to locate a DWARF package file.
+
+#### Trait Implementations
+
+##### `impl Any for Mapping`
+
+- <span id="mapping-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Mapping`
+
+- <span id="mapping-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Mapping`
+
+- <span id="mapping-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Mapping`
+
+- <span id="mapping-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Mapping`
+
+- <span id="mapping-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Mapping`
+
+- <span id="mapping-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="mapping-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Mapping`
+
+- <span id="mapping-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="mapping-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Context<'a>`
 
@@ -105,6 +153,50 @@ struct Context<'a> {
 - <span id="context-new"></span>`fn new(stash: &'data Stash, object: Object<'data>, sup: Option<Object<'data>>, dwp: Option<Object<'data>>) -> Option<Context<'data>>` — [`Stash`](stash/index.md#stash), [`Object`](elf/index.md#object), [`Context`](#context)
 
 - <span id="context-find-frames"></span>`fn find_frames(&self, stash: &'data Stash, probe: u64) -> gimli::Result<addr2line::FrameIter<'_, EndianSlice<'data, Endian>>>` — [`Stash`](stash/index.md#stash)
+
+#### Trait Implementations
+
+##### `impl Any for Context<'a>`
+
+- <span id="context-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Context<'a>`
+
+- <span id="context-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Context<'a>`
+
+- <span id="context-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Context<'a>`
+
+- <span id="context-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Context<'a>`
+
+- <span id="context-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Context<'a>`
+
+- <span id="context-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="context-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Context<'a>`
+
+- <span id="context-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="context-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Cache`
 
@@ -147,9 +239,51 @@ struct Cache {
 
 #### Trait Implementations
 
+##### `impl Any for Cache`
+
+- <span id="cache-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Cache`
+
+- <span id="cache-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Cache`
+
+- <span id="cache-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Default for Cache`
 
 - <span id="cache-default"></span>`fn default() -> Cache` — [`Cache`](#cache)
+
+##### `impl<T> From for Cache`
+
+- <span id="cache-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Cache`
+
+- <span id="cache-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Cache`
+
+- <span id="cache-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cache-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Cache`
+
+- <span id="cache-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cache-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Library`
 
@@ -177,6 +311,50 @@ struct Library {
   this bias is subtracted from real virtual memory addresses to index into
   debuginfo and the symbol table.
 
+#### Trait Implementations
+
+##### `impl Any for Library`
+
+- <span id="library-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Library`
+
+- <span id="library-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Library`
+
+- <span id="library-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Library`
+
+- <span id="library-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Library`
+
+- <span id="library-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Library`
+
+- <span id="library-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="library-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Library`
+
+- <span id="library-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="library-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `LibrarySegment`
 
 ```rust
@@ -200,6 +378,50 @@ struct LibrarySegment {
 
   The size of this segment in memory.
 
+#### Trait Implementations
+
+##### `impl Any for LibrarySegment`
+
+- <span id="librarysegment-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LibrarySegment`
+
+- <span id="librarysegment-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LibrarySegment`
+
+- <span id="librarysegment-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for LibrarySegment`
+
+- <span id="librarysegment-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LibrarySegment`
+
+- <span id="librarysegment-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for LibrarySegment`
+
+- <span id="librarysegment-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="librarysegment-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LibrarySegment`
+
+- <span id="librarysegment-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="librarysegment-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ## Enums
 
 ### `Either<A, B>`
@@ -212,6 +434,50 @@ enum Either<A, B> {
 ```
 
 *Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:70-74`](../../../../.source_1765521767/backtrace-0.3.76/src/symbolize/gimli.rs#L70-L74)*
+
+#### Trait Implementations
+
+##### `impl Any for Either<A, B>`
+
+- <span id="either-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Either<A, B>`
+
+- <span id="either-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Either<A, B>`
+
+- <span id="either-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Either<A, B>`
+
+- <span id="either-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Either<A, B>`
+
+- <span id="either-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Either<A, B>`
+
+- <span id="either-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="either-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Either<A, B>`
+
+- <span id="either-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="either-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Symbol<'a>`
 
@@ -255,6 +521,50 @@ enum Symbol<'a> {
 - <span id="symbol-lineno"></span>`fn lineno(&self) -> Option<u32>`
 
 - <span id="symbol-colno"></span>`fn colno(&self) -> Option<u32>`
+
+#### Trait Implementations
+
+##### `impl Any for Symbol<'a>`
+
+- <span id="symbol-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Symbol<'a>`
+
+- <span id="symbol-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Symbol<'a>`
+
+- <span id="symbol-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Symbol<'a>`
+
+- <span id="symbol-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Symbol<'a>`
+
+- <span id="symbol-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Symbol<'a>`
+
+- <span id="symbol-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symbol-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Symbol<'a>`
+
+- <span id="symbol-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symbol-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

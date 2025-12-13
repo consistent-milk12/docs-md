@@ -382,35 +382,91 @@ Command line argument parser kind of error
 
 - <span id="errorkind-as-str"></span>`fn as_str(self) -> Option<&'static str>`
 
+  End-user description of the error case, where relevant
+
 #### Trait Implementations
+
+##### `impl Any for ErrorKind`
+
+- <span id="errorkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ErrorKind`
+
+- <span id="errorkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ErrorKind`
+
+- <span id="errorkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ErrorKind`
 
 - <span id="errorkind-clone"></span>`fn clone(&self) -> ErrorKind` — [`ErrorKind`](#errorkind)
 
+##### `impl CloneToUninit for ErrorKind`
+
+- <span id="errorkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for ErrorKind`
 
 ##### `impl Debug for ErrorKind`
 
-- <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errorkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ErrorKind`
 
-- <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="errorkind-display-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for ErrorKind`
+
+##### `impl<T> From for ErrorKind`
+
+- <span id="errorkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for ErrorKind`
 
 - <span id="errorkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for ErrorKind`
+
+- <span id="errorkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ErrorKind`
 
-- <span id="errorkind-eq"></span>`fn eq(&self, other: &ErrorKind) -> bool` — [`ErrorKind`](#errorkind)
+- <span id="errorkind-partialeq-eq"></span>`fn eq(&self, other: &ErrorKind) -> bool` — [`ErrorKind`](#errorkind)
 
 ##### `impl StructuralPartialEq for ErrorKind`
 
+##### `impl ToOwned for ErrorKind`
+
+- <span id="errorkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="errorkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="errorkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for ErrorKind`
 
-- <span id="errorkind-to-string"></span>`fn to_string(&self) -> String`
+- <span id="errorkind-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for ErrorKind`
+
+- <span id="errorkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="errorkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ErrorKind`
+
+- <span id="errorkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="errorkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

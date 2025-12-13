@@ -217,25 +217,79 @@ trait.
 
 #### Trait Implementations
 
+##### `impl Any for BuildError`
+
+- <span id="builderror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BuildError`
+
+- <span id="builderror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BuildError`
+
+- <span id="builderror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BuildError`
 
 - <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](error/index.md#builderror)
 
+##### `impl CloneToUninit for BuildError`
+
+- <span id="builderror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for BuildError`
 
-- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="builderror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for BuildError`
 
-- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="builderror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for BuildError`
 
-- <span id="builderror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
+- <span id="builderror-error-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
+
+##### `impl<T> From for BuildError`
+
+- <span id="builderror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BuildError`
+
+- <span id="builderror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for BuildError`
+
+- <span id="builderror-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="builderror-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="builderror-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for BuildError`
 
-- <span id="builderror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="builderror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for BuildError`
+
+- <span id="builderror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="builderror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BuildError`
+
+- <span id="builderror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="builderror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CacheError`
 
@@ -271,23 +325,77 @@ trait.
 
 #### Trait Implementations
 
+##### `impl Any for CacheError`
+
+- <span id="cacheerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CacheError`
+
+- <span id="cacheerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CacheError`
+
+- <span id="cacheerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for CacheError`
 
 - <span id="cacheerror-clone"></span>`fn clone(&self) -> CacheError` — [`CacheError`](error/index.md#cacheerror)
 
+##### `impl CloneToUninit for CacheError`
+
+- <span id="cacheerror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for CacheError`
 
-- <span id="cacheerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cacheerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for CacheError`
 
-- <span id="cacheerror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="cacheerror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for CacheError`
 
+##### `impl<T> From for CacheError`
+
+- <span id="cacheerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CacheError`
+
+- <span id="cacheerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for CacheError`
+
+- <span id="cacheerror-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="cacheerror-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="cacheerror-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for CacheError`
 
-- <span id="cacheerror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="cacheerror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for CacheError`
+
+- <span id="cacheerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cacheerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CacheError`
+
+- <span id="cacheerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cacheerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LazyStateID`
 
@@ -481,11 +589,43 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="lazystateid-new"></span>`fn new(id: usize) -> Result<LazyStateID, LazyStateIDError>` — [`LazyStateID`](id/index.md#lazystateid), [`LazyStateIDError`](id/index.md#lazystateiderror)
 
+  Create a new lazy state ID.
+
+  
+
+  If the given identifier exceeds `LazyStateID::MAX`, then this returns
+
+  an error.
+
 - <span id="lazystateid-new-unchecked"></span>`const fn new_unchecked(id: usize) -> LazyStateID` — [`LazyStateID`](id/index.md#lazystateid)
+
+  Create a new lazy state ID without checking whether the given value
+
+  exceeds `LazyStateID::MAX`.
+
+  
+
+  While this is unchecked, providing an incorrect value must never
+
+  sacrifice memory safety.
 
 - <span id="lazystateid-as-usize-untagged"></span>`fn as_usize_untagged(&self) -> usize`
 
+  Return this lazy state ID as an untagged `usize`.
+
+  
+
+  If this lazy state ID is tagged, then the usize returned is the state
+
+  ID without the tag. If the ID was not tagged, then the usize returned
+
+  is equivalent to the state ID.
+
 - <span id="lazystateid-as-usize-unchecked"></span>`const fn as_usize_unchecked(&self) -> usize`
+
+  Return this lazy state ID as its raw internal `usize` value, which may
+
+  be tagged (and thus greater than LazyStateID::MAX).
 
 - <span id="lazystateid-to-unknown"></span>`const fn to_unknown(&self) -> LazyStateID` — [`LazyStateID`](id/index.md#lazystateid)
 
@@ -495,31 +635,109 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="lazystateid-to-start"></span>`const fn to_start(&self) -> LazyStateID` — [`LazyStateID`](id/index.md#lazystateid)
 
+  Return this lazy state ID as a state ID that is tagged as a start
+
+  state.
+
 - <span id="lazystateid-to-match"></span>`const fn to_match(&self) -> LazyStateID` — [`LazyStateID`](id/index.md#lazystateid)
+
+  Return this lazy state ID as a lazy state ID that is tagged as a match
+
+  state.
 
 - <span id="lazystateid-is-tagged"></span>`const fn is_tagged(&self) -> bool`
 
+  Return true if and only if this lazy state ID is tagged.
+
+  
+
+  When a lazy state ID is tagged, then one can conclude that it is one
+
+  of a match, start, dead, quit or unknown state.
+
 - <span id="lazystateid-is-unknown"></span>`const fn is_unknown(&self) -> bool`
+
+  Return true if and only if this represents a lazy state ID that is
+
+  "unknown." That is, the state has not yet been created. When a caller
+
+  sees this state ID, it generally means that a state has to be computed
+
+  in order to proceed.
 
 - <span id="lazystateid-is-dead"></span>`const fn is_dead(&self) -> bool`
 
+  Return true if and only if this represents a dead state. A dead state
+
+  is a state that can never transition to any other state except the
+
+  dead state. When a dead state is seen, it generally indicates that a
+
+  search should stop.
+
 - <span id="lazystateid-is-quit"></span>`const fn is_quit(&self) -> bool`
+
+  Return true if and only if this represents a quit state. A quit state
+
+  is a state that is representationally equivalent to a dead state,
+
+  except it indicates the automaton has reached a point at which it can
+
+  no longer determine whether a match exists or not. In general, this
+
+  indicates an error during search and the caller must either pass this
+
+  error up or use a different search technique.
 
 - <span id="lazystateid-is-start"></span>`const fn is_start(&self) -> bool`
 
+  Return true if and only if this lazy state ID has been tagged as a
+
+  start state.
+
+  
+
+  Note that if
+
+  [`Config::specialize_start_states`](crate::hybrid::dfa::Config) is
+
+  disabled (which is the default), then this will always return false
+
+  since start states won't be tagged.
+
 - <span id="lazystateid-is-match"></span>`const fn is_match(&self) -> bool`
 
+  Return true if and only if this lazy state ID has been tagged as a
+
+  match state.
+
 #### Trait Implementations
+
+##### `impl Any for LazyStateID`
+
+- <span id="lazystateid-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LazyStateID`
+
+- <span id="lazystateid-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LazyStateID`
+
+- <span id="lazystateid-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for LazyStateID`
 
 - <span id="lazystateid-clone"></span>`fn clone(&self) -> LazyStateID` — [`LazyStateID`](id/index.md#lazystateid)
 
+##### `impl CloneToUninit for LazyStateID`
+
+- <span id="lazystateid-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for LazyStateID`
 
 ##### `impl Debug for LazyStateID`
 
-- <span id="lazystateid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lazystateid-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for LazyStateID`
 
@@ -527,23 +745,61 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Eq for LazyStateID`
 
+##### `impl<T> From for LazyStateID`
+
+- <span id="lazystateid-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for LazyStateID`
 
 - <span id="lazystateid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for LazyStateID`
+
+- <span id="lazystateid-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for LazyStateID`
 
-- <span id="lazystateid-cmp"></span>`fn cmp(&self, other: &LazyStateID) -> cmp::Ordering` — [`LazyStateID`](id/index.md#lazystateid)
+- <span id="lazystateid-ord-cmp"></span>`fn cmp(&self, other: &LazyStateID) -> cmp::Ordering` — [`LazyStateID`](id/index.md#lazystateid)
 
 ##### `impl PartialEq for LazyStateID`
 
-- <span id="lazystateid-eq"></span>`fn eq(&self, other: &LazyStateID) -> bool` — [`LazyStateID`](id/index.md#lazystateid)
+- <span id="lazystateid-partialeq-eq"></span>`fn eq(&self, other: &LazyStateID) -> bool` — [`LazyStateID`](id/index.md#lazystateid)
 
 ##### `impl PartialOrd for LazyStateID`
 
-- <span id="lazystateid-partial-cmp"></span>`fn partial_cmp(&self, other: &LazyStateID) -> option::Option<cmp::Ordering>` — [`LazyStateID`](id/index.md#lazystateid)
+- <span id="lazystateid-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &LazyStateID) -> option::Option<cmp::Ordering>` — [`LazyStateID`](id/index.md#lazystateid)
 
 ##### `impl StructuralPartialEq for LazyStateID`
+
+##### `impl ToOwned for LazyStateID`
+
+- <span id="lazystateid-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="lazystateid-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="lazystateid-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LazyStateID`
+
+- <span id="lazystateid-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lazystateid-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LazyStateID`
+
+- <span id="lazystateid-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lazystateid-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -611,23 +867,77 @@ semver compatible release.
 
 #### Trait Implementations
 
+##### `impl Any for StartError`
+
+- <span id="starterror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StartError`
+
+- <span id="starterror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StartError`
+
+- <span id="starterror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for StartError`
 
 - <span id="starterror-clone"></span>`fn clone(&self) -> StartError` — [`StartError`](error/index.md#starterror)
 
+##### `impl CloneToUninit for StartError`
+
+- <span id="starterror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for StartError`
 
-- <span id="starterror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="starterror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for StartError`
 
-- <span id="starterror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="starterror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for StartError`
 
-- <span id="starterror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
+- <span id="starterror-error-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
+
+##### `impl<T> From for StartError`
+
+- <span id="starterror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StartError`
+
+- <span id="starterror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for StartError`
+
+- <span id="starterror-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="starterror-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="starterror-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for StartError`
 
-- <span id="starterror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="starterror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for StartError`
+
+- <span id="starterror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="starterror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StartError`
+
+- <span id="starterror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="starterror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

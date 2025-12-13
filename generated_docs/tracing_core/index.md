@@ -200,57 +200,357 @@ struct Dispatch {
 
 - <span id="dispatch-none"></span>`fn none() -> Self`
 
+  Returns a new `Dispatch` that discards events and spans.
+
 - <span id="dispatch-new"></span>`fn new<S>(subscriber: S) -> Self`
+
+  Returns a `Dispatch` that forwards to the given [`Subscriber`](subscriber/index.md).
 
 - <span id="dispatch-registrar"></span>`fn registrar(&self) -> Registrar` — [`Registrar`](dispatcher/index.md#registrar)
 
 - <span id="dispatch-downgrade"></span>`fn downgrade(&self) -> WeakDispatch` — [`WeakDispatch`](dispatcher/index.md#weakdispatch)
 
+  Creates a [`WeakDispatch`](dispatcher/index.md) from this `Dispatch`.
+
+  
+
+  A [`WeakDispatch`](dispatcher/index.md) is similar to a [`Dispatch`](dispatcher/index.md), but it does not prevent
+
+  the underlying [`Subscriber`](subscriber/index.md) from being dropped. Instead, it only permits
+
+  access while other references to the `Subscriber` exist. This is equivalent
+
+  to the standard library's `Arc::downgrade` method, but for `Dispatch`
+
+  rather than `Arc`.
+
+  
+
+  The primary use for creating a [`WeakDispatch`](dispatcher/index.md) is to allow a `Subscriber`
+
+  to hold a cyclical reference to itself without creating a memory leak.
+
+  See [here] for details.
+
+  
+
 - <span id="dispatch-subscriber"></span>`fn subscriber(&self) -> &dyn Subscriber + Send + Sync` — [`Subscriber`](subscriber/index.md#subscriber)
 
 - <span id="dispatch-register-callsite"></span>`fn register_callsite(&self, metadata: &'static Metadata<'static>) -> subscriber::Interest` — [`Metadata`](metadata/index.md#metadata), [`Interest`](subscriber/index.md#interest)
 
+  Registers a new callsite with this subscriber, returning whether or not
+
+  the subscriber is interested in being notified about the callsite.
+
+  
+
+  This calls the `register_callsite` function on the [`Subscriber`](subscriber/index.md)
+
+  that this `Dispatch` forwards to.
+
+  
+
 - <span id="dispatch-max-level-hint"></span>`fn max_level_hint(&self) -> Option<LevelFilter>` — [`LevelFilter`](metadata/index.md#levelfilter)
+
+  Returns the highest [verbosity level][`level`](../tracing_attributes/attr/kw/index.md) that this [`Subscriber`](subscriber/index.md) will
+
+  enable, or `None`, if the subscriber does not implement level-based
+
+  filtering or chooses not to implement this method.
+
+  
+
+  This calls the `max_level_hint` function on the [`Subscriber`](subscriber/index.md)
+
+  that this `Dispatch` forwards to.
+
+  
+
+  
 
 - <span id="dispatch-new-span"></span>`fn new_span(&self, span: &span::Attributes<'_>) -> span::Id` — [`Attributes`](span/index.md#attributes), [`Id`](span/index.md#id)
 
+  Record the construction of a new span, returning a new [ID] for the
+
+  span being constructed.
+
+  
+
+  This calls the `new_span` function on the [`Subscriber`](subscriber/index.md) that this
+
+  `Dispatch` forwards to.
+
+  
+
+  
+
 - <span id="dispatch-record"></span>`fn record(&self, span: &span::Id, values: &span::Record<'_>)` — [`Id`](span/index.md#id), [`Record`](span/index.md#record)
+
+  Record a set of values on a span.
+
+  
+
+  This calls the `record` function on the [`Subscriber`](subscriber/index.md) that this
+
+  `Dispatch` forwards to.
+
+  
 
 - <span id="dispatch-record-follows-from"></span>`fn record_follows_from(&self, span: &span::Id, follows: &span::Id)` — [`Id`](span/index.md#id)
 
+  Adds an indication that `span` follows from the span with the id
+
+  `follows`.
+
+  
+
+  This calls the `record_follows_from` function on the [`Subscriber`](subscriber/index.md)
+
+  that this `Dispatch` forwards to.
+
+  
+
 - <span id="dispatch-enabled"></span>`fn enabled(&self, metadata: &Metadata<'_>) -> bool` — [`Metadata`](metadata/index.md#metadata)
+
+  Returns true if a span with the specified [`metadata`](metadata/index.md) would be
+
+  recorded.
+
+  
+
+  This calls the `enabled` function on the [`Subscriber`](subscriber/index.md) that this
+
+  `Dispatch` forwards to.
+
+  
+
+  
 
 - <span id="dispatch-event"></span>`fn event(&self, event: &Event<'_>)` — [`Event`](event/index.md#event)
 
+  Records that an [`Event`](event/index.md) has occurred.
+
+  
+
+  This calls the [`event`](event/index.md) function on the [`Subscriber`](subscriber/index.md) that this
+
+  `Dispatch` forwards to.
+
+  
+
+  
+
 - <span id="dispatch-enter"></span>`fn enter(&self, span: &span::Id)` — [`Id`](span/index.md#id)
+
+  Records that a span has been can_enter.
+
+  
+
+  This calls the `enter` function on the [`Subscriber`](subscriber/index.md) that this
+
+  `Dispatch` forwards to.
+
+  
 
 - <span id="dispatch-exit"></span>`fn exit(&self, span: &span::Id)` — [`Id`](span/index.md#id)
 
+  Records that a span has been exited.
+
+  
+
+  This calls the [`exit`](#exit) function on the [`Subscriber`](subscriber/index.md) that this
+
+  `Dispatch` forwards to.
+
+  
+
 - <span id="dispatch-clone-span"></span>`fn clone_span(&self, id: &span::Id) -> span::Id` — [`Id`](span/index.md#id)
+
+  Notifies the subscriber that a [span ID] has been cloned.
+
+  
+
+  This function must only be called with span IDs that were returned by
+
+  this `Dispatch`'s `new_span` function. The `tracing` crate upholds
+
+  this guarantee and any other libraries implementing instrumentation APIs
+
+  must as well.
+
+  
+
+  This calls the `clone_span` function on the `Subscriber` that this
+
+  `Dispatch` forwards to.
+
+  
+
+  
+
+  
 
 - <span id="dispatch-drop-span"></span>`fn drop_span(&self, id: span::Id)` — [`Id`](span/index.md#id)
 
+  Notifies the subscriber that a [span ID] has been dropped.
+
+  
+
+  This function must only be called with span IDs that were returned by
+
+  this `Dispatch`'s `new_span` function. The `tracing` crate upholds
+
+  this guarantee and any other libraries implementing instrumentation APIs
+
+  must as well.
+
+  
+
+  This calls the `drop_span` function on the [`Subscriber`](subscriber/index.md) that this
+
+  `Dispatch` forwards to.
+
+  
+
+  <pre class="compile_fail" style="white-space:normal;font:inherit;">
+
+      <strong>Deprecated</strong>: The <a href="#method.try_close"><code>
+
+      try_close</code></a> method is functionally identical, but returns
+
+      <code>true</code> if the span is now closed. It should be used
+
+      instead of this method.
+
+  </pre>
+
+  
+
+  
+
+  
+
+  
+
 - <span id="dispatch-try-close"></span>`fn try_close(&self, id: span::Id) -> bool` — [`Id`](span/index.md#id)
+
+  Notifies the subscriber that a [span ID] has been dropped, and returns
+
+  `true` if there are now 0 IDs referring to that span.
+
+  
+
+  This function must only be called with span IDs that were returned by
+
+  this `Dispatch`'s `new_span` function. The `tracing` crate upholds
+
+  this guarantee and any other libraries implementing instrumentation APIs
+
+  must as well.
+
+  
+
+  This calls the `try_close` function on the [`Subscriber`](subscriber/index.md) that this
+
+   `Dispatch` forwards to.
+
+  
+
+  
+
+  
 
 - <span id="dispatch-current-span"></span>`fn current_span(&self) -> span::Current` — [`Current`](span/index.md#current)
 
+  Returns a type representing this subscriber's view of the current span.
+
+  
+
+  This calls the `current` function on the `Subscriber` that this
+
+  `Dispatch` forwards to.
+
 - <span id="dispatch-is"></span>`fn is<T: Any>(&self) -> bool`
+
+  Returns `true` if this `Dispatch` forwards to a `Subscriber` of type
+
+  `T`.
 
 - <span id="dispatch-downcast-ref"></span>`fn downcast_ref<T: Any>(&self) -> Option<&T>`
 
+  Returns some reference to the `Subscriber` this `Dispatch` forwards to
+
+  if it is of type `T`, or `None` if it isn't.
+
 #### Trait Implementations
+
+##### `impl Any for Dispatch`
+
+- <span id="dispatch-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Dispatch`
+
+- <span id="dispatch-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Dispatch`
+
+- <span id="dispatch-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Dispatch`
 
 - <span id="dispatch-clone"></span>`fn clone(&self) -> Dispatch` — [`Dispatch`](dispatcher/index.md#dispatch)
 
+##### `impl CloneToUninit for Dispatch`
+
+- <span id="dispatch-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Dispatch`
 
-- <span id="dispatch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dispatch-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Dispatch`
 
 - <span id="dispatch-default"></span>`fn default() -> Self`
+
+  Returns the current default dispatcher
+
+##### `impl<T> From for Dispatch`
+
+- <span id="dispatch-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Dispatch`
+
+- <span id="dispatch-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Dispatch`
+
+- <span id="dispatch-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dispatch-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dispatch-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Dispatch`
+
+- <span id="dispatch-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dispatch-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Dispatch`
+
+- <span id="dispatch-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dispatch-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Event<'a>`
 
@@ -284,29 +584,117 @@ two key differences:
 
 - <span id="event-dispatch"></span>`fn dispatch(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Metadata`](metadata/index.md#metadata), [`ValueSet`](field/index.md#valueset)
 
+  Constructs a new `Event` with the specified metadata and set of values,
+
+  and observes it with the current subscriber.
+
 - <span id="event-new"></span>`fn new(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](metadata/index.md#metadata), [`ValueSet`](field/index.md#valueset)
+
+  Returns a new `Event` in the current span, with the specified metadata
+
+  and set of values.
 
 - <span id="event-new-child-of"></span>`fn new_child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Id`](span/index.md#id), [`Metadata`](metadata/index.md#metadata), [`ValueSet`](field/index.md#valueset)
 
+  Returns a new `Event` as a child of the specified span, with the
+
+  provided metadata and set of values.
+
 - <span id="event-child-of"></span>`fn child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Id`](span/index.md#id), [`Metadata`](metadata/index.md#metadata), [`ValueSet`](field/index.md#valueset)
+
+  Constructs a new `Event` with the specified metadata and set of values,
+
+  and observes it with the current subscriber and an explicit parent.
 
 - <span id="event-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](field/index.md#visit)
 
+  Visits all the fields on this `Event` with the specified [`visitor`](../regex_syntax/ast/visitor/index.md).
+
 - <span id="event-fields"></span>`fn fields(&self) -> field::Iter` — [`Iter`](field/index.md#iter)
+
+  Returns an iterator over the set of values on this `Event`.
 
 - <span id="event-metadata"></span>`fn metadata(&self) -> &'static Metadata<'static>` — [`Metadata`](metadata/index.md#metadata)
 
+  Returns [`metadata`](metadata/index.md) describing this `Event`.
+
 - <span id="event-is-root"></span>`fn is_root(&self) -> bool`
+
+  Returns true if the new event should be a root.
 
 - <span id="event-is-contextual"></span>`fn is_contextual(&self) -> bool`
 
+  Returns true if the new event's parent should be determined based on the
+
+  current context.
+
+  
+
+  If this is true and the current thread is currently inside a span, then
+
+  that span should be the new event's parent. Otherwise, if the current
+
+  thread is _not_ inside a span, then the new event will be the root of its
+
+  own trace tree.
+
 - <span id="event-parent"></span>`fn parent(&self) -> Option<&Id>` — [`Id`](span/index.md#id)
+
+  Returns the new event's explicitly-specified parent, if there is one.
+
+  
+
+  Otherwise (if the new event is a root or is a child of the current span),
+
+  returns `None`.
 
 #### Trait Implementations
 
+##### `impl Any for Event<'a>`
+
+- <span id="event-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Event<'a>`
+
+- <span id="event-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Event<'a>`
+
+- <span id="event-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Event<'a>`
 
-- <span id="event-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="event-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Event<'a>`
+
+- <span id="event-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Event<'a>`
+
+- <span id="event-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Event<'a>`
+
+- <span id="event-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="event-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Event<'a>`
+
+- <span id="event-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="event-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Field`
 
@@ -332,41 +720,105 @@ and use the key for that name for all other accesses.
 
 - <span id="field-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](callsite/index.md#identifier)
 
+  Returns an [`Identifier`](callsite/index.md) that uniquely identifies the [`Callsite`](callsite/index.md)
+
+  which defines this field.
+
+  
+
 - <span id="field-name"></span>`fn name(&self) -> &'static str`
+
+  Returns a string representing the name of the field.
 
 - <span id="field-index"></span>`fn index(&self) -> usize`
 
+  Returns the index of this field in its [`FieldSet`](field/index.md).
+
 #### Trait Implementations
+
+##### `impl Any for Field`
+
+- <span id="field-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl AsRef for Field`
 
-- <span id="field-as-ref"></span>`fn as_ref(&self) -> &str`
+- <span id="field-asref-as-ref"></span>`fn as_ref(&self) -> &str`
+
+##### `impl<T> Borrow for Field`
+
+- <span id="field-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Field`
+
+- <span id="field-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Field`
 
 - <span id="field-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for Field`
+
+- <span id="field-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Field`
 
-- <span id="field-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="field-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Field`
 
-- <span id="field-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="field-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Field`
+
+##### `impl<T> From for Field`
+
+- <span id="field-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Field`
 
 - <span id="field-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
+##### `impl<U> Into for Field`
+
+- <span id="field-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Field`
 
-- <span id="field-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="field-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
+
+##### `impl ToOwned for Field`
+
+- <span id="field-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="field-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="field-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for Field`
 
-- <span id="field-to-string"></span>`fn to_string(&self) -> String`
+- <span id="field-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Field`
+
+- <span id="field-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="field-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Field`
+
+- <span id="field-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="field-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Level`
 
@@ -518,59 +970,119 @@ recorded in.
 
 - <span id="level-as-str"></span>`fn as_str(&self) -> &'static str`
 
+  Returns the string representation of the `Level`.
+
+  
+
+  This returns the same string as the `fmt::Display` implementation.
+
 #### Trait Implementations
+
+##### `impl Any for Level`
+
+- <span id="level-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Level`
+
+- <span id="level-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Level`
+
+- <span id="level-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Level`
 
 - <span id="level-clone"></span>`fn clone(&self) -> Level` — [`Level`](metadata/index.md#level)
 
+##### `impl CloneToUninit for Level`
+
+- <span id="level-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Level`
 
 ##### `impl Debug for Level`
 
-- <span id="level-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="level-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Level`
 
-- <span id="level-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="level-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Level`
+
+##### `impl<T> From for Level`
+
+- <span id="level-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromStr for Level`
 
 - <span id="level-fromstr-type-err"></span>`type Err = ParseLevelError`
 
-- <span id="level-from-str"></span>`fn from_str(s: &str) -> Result<Self, ParseLevelError>` — [`ParseLevelError`](metadata/index.md#parselevelerror)
+- <span id="level-fromstr-from-str"></span>`fn from_str(s: &str) -> Result<Self, ParseLevelError>` — [`ParseLevelError`](metadata/index.md#parselevelerror)
 
 ##### `impl Hash for Level`
 
 - <span id="level-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Level`
+
+- <span id="level-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Level`
 
-- <span id="level-cmp"></span>`fn cmp(&self, other: &Self) -> cmp::Ordering`
+- <span id="level-ord-cmp"></span>`fn cmp(&self, other: &Self) -> cmp::Ordering`
 
 ##### `impl PartialEq for Level`
 
-- <span id="level-eq"></span>`fn eq(&self, other: &Level) -> bool` — [`Level`](metadata/index.md#level)
+- <span id="level-partialeq-eq"></span>`fn eq(&self, other: &Level) -> bool` — [`Level`](metadata/index.md#level)
 
 ##### `impl PartialOrd for Level`
 
-- <span id="level-partial-cmp"></span>`fn partial_cmp(&self, other: &Level) -> Option<cmp::Ordering>` — [`Level`](metadata/index.md#level)
+- <span id="level-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Level) -> Option<cmp::Ordering>` — [`Level`](metadata/index.md#level)
 
-- <span id="level-lt"></span>`fn lt(&self, other: &Level) -> bool` — [`Level`](metadata/index.md#level)
+- <span id="level-partialord-lt"></span>`fn lt(&self, other: &Level) -> bool` — [`Level`](metadata/index.md#level)
 
-- <span id="level-le"></span>`fn le(&self, other: &Level) -> bool` — [`Level`](metadata/index.md#level)
+- <span id="level-partialord-le"></span>`fn le(&self, other: &Level) -> bool` — [`Level`](metadata/index.md#level)
 
-- <span id="level-gt"></span>`fn gt(&self, other: &Level) -> bool` — [`Level`](metadata/index.md#level)
+- <span id="level-partialord-gt"></span>`fn gt(&self, other: &Level) -> bool` — [`Level`](metadata/index.md#level)
 
-- <span id="level-ge"></span>`fn ge(&self, other: &Level) -> bool` — [`Level`](metadata/index.md#level)
+- <span id="level-partialord-ge"></span>`fn ge(&self, other: &Level) -> bool` — [`Level`](metadata/index.md#level)
 
 ##### `impl StructuralPartialEq for Level`
 
+##### `impl ToOwned for Level`
+
+- <span id="level-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="level-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="level-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Level`
 
-- <span id="level-to-string"></span>`fn to_string(&self) -> String`
+- <span id="level-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Level`
+
+- <span id="level-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="level-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Level`
+
+- <span id="level-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="level-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LevelFilter`
 
@@ -610,7 +1122,15 @@ and `LevelFilter`s interact.
 
 - <span id="levelfilter-from-level"></span>`const fn from_level(level: Level) -> Self` — [`Level`](metadata/index.md#level)
 
+  Returns a `LevelFilter` that enables spans and events with verbosity up
+
+  to and including `level`.
+
 - <span id="levelfilter-into-level"></span>`const fn into_level(self) -> Option<Level>` — [`Level`](metadata/index.md#level)
+
+  Returns the most verbose [`Level`](metadata/index.md) that this filter accepts, or `None`
+
+  if it is `OFF`.
 
 - <span id="levelfilter-const-error-usize"></span>`const ERROR_USIZE: usize`
 
@@ -626,61 +1146,143 @@ and `LevelFilter`s interact.
 
 - <span id="levelfilter-current"></span>`fn current() -> Self`
 
+  Returns a `LevelFilter` that matches the most verbose [`Level`](metadata/index.md) that any
+
+  currently active [`Subscriber`](subscriber/index.md) will enable.
+
+  
+
+  User code should treat this as a *hint*. If a given span or event has a
+
+  level *higher* than the returned `LevelFilter`, it will not be enabled.
+
+  However, if the level is less than or equal to this value, the span or
+
+  event is *not* guaranteed to be enabled; the subscriber will still
+
+  filter each callsite individually.
+
+  
+
+  Therefore, comparing a given span or event's level to the returned
+
+  `LevelFilter` **can** be used for determining if something is
+
+  *disabled*, but **should not** be used for determining if something is
+
+  *enabled*.
+
+  
+
 - <span id="levelfilter-set-max"></span>`fn set_max(LevelFilter: LevelFilter)` — [`LevelFilter`](metadata/index.md#levelfilter)
 
 #### Trait Implementations
+
+##### `impl Any for LevelFilter`
+
+- <span id="levelfilter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LevelFilter`
+
+- <span id="levelfilter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LevelFilter`
+
+- <span id="levelfilter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for LevelFilter`
 
 - <span id="levelfilter-clone"></span>`fn clone(&self) -> LevelFilter` — [`LevelFilter`](metadata/index.md#levelfilter)
 
+##### `impl CloneToUninit for LevelFilter`
+
+- <span id="levelfilter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for LevelFilter`
 
 ##### `impl Debug for LevelFilter`
 
-- <span id="levelfilter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="levelfilter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for LevelFilter`
 
-- <span id="levelfilter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="levelfilter-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LevelFilter`
+
+##### `impl<T> From for LevelFilter`
+
+- <span id="levelfilter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromStr for LevelFilter`
 
 - <span id="levelfilter-fromstr-type-err"></span>`type Err = ParseLevelFilterError`
 
-- <span id="levelfilter-from-str"></span>`fn from_str(from: &str) -> Result<Self, <Self as >::Err>`
+- <span id="levelfilter-fromstr-from-str"></span>`fn from_str(from: &str) -> Result<Self, <Self as >::Err>`
 
 ##### `impl Hash for LevelFilter`
 
 - <span id="levelfilter-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for LevelFilter`
+
+- <span id="levelfilter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for LevelFilter`
 
-- <span id="levelfilter-cmp"></span>`fn cmp(&self, other: &Self) -> cmp::Ordering`
+- <span id="levelfilter-ord-cmp"></span>`fn cmp(&self, other: &Self) -> cmp::Ordering`
 
 ##### `impl PartialEq for LevelFilter`
 
-- <span id="levelfilter-eq"></span>`fn eq(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md#levelfilter)
+- <span id="levelfilter-partialeq-eq"></span>`fn eq(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md#levelfilter)
 
 ##### `impl PartialOrd for Level`
 
-- <span id="level-partial-cmp"></span>`fn partial_cmp(&self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](metadata/index.md#levelfilter)
+- <span id="level-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](metadata/index.md#levelfilter)
 
-- <span id="level-lt"></span>`fn lt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md#levelfilter)
+- <span id="level-partialord-lt"></span>`fn lt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md#levelfilter)
 
-- <span id="level-le"></span>`fn le(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md#levelfilter)
+- <span id="level-partialord-le"></span>`fn le(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md#levelfilter)
 
-- <span id="level-gt"></span>`fn gt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md#levelfilter)
+- <span id="level-partialord-gt"></span>`fn gt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md#levelfilter)
 
-- <span id="level-ge"></span>`fn ge(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md#levelfilter)
+- <span id="level-partialord-ge"></span>`fn ge(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md#levelfilter)
 
 ##### `impl StructuralPartialEq for LevelFilter`
 
+##### `impl ToOwned for LevelFilter`
+
+- <span id="levelfilter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="levelfilter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="levelfilter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for LevelFilter`
 
-- <span id="levelfilter-to-string"></span>`fn to_string(&self) -> String`
+- <span id="levelfilter-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for LevelFilter`
+
+- <span id="levelfilter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="levelfilter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LevelFilter`
+
+- <span id="levelfilter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="levelfilter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Metadata<'a>`
 
@@ -790,37 +1392,119 @@ of `Metadata`'s other fields is checked in debug builds.
 
 - <span id="metadata-new"></span>`const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](metadata/index.md#level), [`FieldSet`](field/index.md#fieldset), [`Kind`](metadata/index.md#kind)
 
+  Construct new metadata for a span or event, with a name, target, level, field
+
+  names, and optional source code location.
+
 - <span id="metadata-fields"></span>`fn fields(&self) -> &field::FieldSet` — [`FieldSet`](field/index.md#fieldset)
+
+  Returns the names of the fields on the described span or event.
 
 - <span id="metadata-level"></span>`fn level(&self) -> &Level` — [`Level`](metadata/index.md#level)
 
+  Returns the level of verbosity of the described span or event.
+
 - <span id="metadata-name"></span>`fn name(&self) -> &'static str`
+
+  Returns the name of the span.
 
 - <span id="metadata-target"></span>`fn target(&self) -> &'a str`
 
+  Returns a string describing the part of the system where the span or
+
+  event that this metadata describes occurred.
+
+  
+
+  Typically, this is the module path, but alternate targets may be set
+
+  when spans or events are constructed.
+
 - <span id="metadata-module-path"></span>`fn module_path(&self) -> Option<&'a str>`
+
+  Returns the path to the Rust module where the span occurred, or
+
+  `None` if the module path is unknown.
 
 - <span id="metadata-file"></span>`fn file(&self) -> Option<&'a str>`
 
+  Returns the name of the source code file where the span
+
+  occurred, or `None` if the file is unknown
+
 - <span id="metadata-line"></span>`fn line(&self) -> Option<u32>`
+
+  Returns the line number in the source code file where the span
+
+  occurred, or `None` if the line number is unknown.
 
 - <span id="metadata-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](callsite/index.md#identifier)
 
+  Returns an opaque `Identifier` that uniquely identifies the callsite
+
+  this `Metadata` originated from.
+
 - <span id="metadata-is-event"></span>`fn is_event(&self) -> bool`
+
+  Returns true if the callsite kind is `Event`.
 
 - <span id="metadata-is-span"></span>`fn is_span(&self) -> bool`
 
+  Return true if the callsite kind is `Span`.
+
 #### Trait Implementations
+
+##### `impl Any for Metadata<'a>`
+
+- <span id="metadata-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Metadata<'a>`
+
+- <span id="metadata-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Metadata<'a>`
+
+- <span id="metadata-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for Metadata<'_>`
 
-- <span id="metadata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="metadata-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Metadata<'_>`
 
+##### `impl<T> From for Metadata<'a>`
+
+- <span id="metadata-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Metadata<'a>`
+
+- <span id="metadata-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Metadata<'_>`
 
-- <span id="metadata-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="metadata-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
+
+##### `impl<U> TryFrom for Metadata<'a>`
+
+- <span id="metadata-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="metadata-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Metadata<'a>`
+
+- <span id="metadata-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="metadata-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Kind`
 
@@ -848,29 +1532,97 @@ Indicates whether the callsite is a span or event.
 
 - <span id="kind-is-span"></span>`fn is_span(&self) -> bool`
 
+  Return true if the callsite kind is `Span`
+
 - <span id="kind-is-event"></span>`fn is_event(&self) -> bool`
+
+  Return true if the callsite kind is `Event`
 
 - <span id="kind-is-hint"></span>`fn is_hint(&self) -> bool`
 
+  Return true if the callsite kind is `Hint`
+
 - <span id="kind-hint"></span>`const fn hint(self) -> Self`
 
+  Sets that this `Kind` is a [hint](Self::HINT).
+
+  
+
+  This can be called on [`SPAN`](Self::SPAN) and [`EVENT`](Self::EVENT)
+
+  kinds to construct a hint callsite that also counts as a span or event.
+
 #### Trait Implementations
+
+##### `impl Any for Kind`
+
+- <span id="kind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Kind`
+
+- <span id="kind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Kind`
+
+- <span id="kind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Kind`
 
 - <span id="kind-clone"></span>`fn clone(&self) -> Kind` — [`Kind`](metadata/index.md#kind)
 
+##### `impl CloneToUninit for Kind`
+
+- <span id="kind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Kind`
 
-- <span id="kind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="kind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Kind`
 
+##### `impl<T> From for Kind`
+
+- <span id="kind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Kind`
+
+- <span id="kind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Kind`
 
-- <span id="kind-eq"></span>`fn eq(&self, other: &Kind) -> bool` — [`Kind`](metadata/index.md#kind)
+- <span id="kind-partialeq-eq"></span>`fn eq(&self, other: &Kind) -> bool` — [`Kind`](metadata/index.md#kind)
 
 ##### `impl StructuralPartialEq for Kind`
+
+##### `impl ToOwned for Kind`
+
+- <span id="kind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="kind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="kind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Kind`
+
+- <span id="kind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="kind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Kind`
+
+- <span id="kind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="kind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Interest`
 
@@ -891,27 +1643,139 @@ in order to determine whether that span should be enabled or disabled.
 
 - <span id="interest-never"></span>`fn never() -> Self`
 
+  Returns an `Interest` indicating that the subscriber is never interested
+
+  in being notified about a callsite.
+
+  
+
+  If all active subscribers are `never()` interested in a callsite, it will
+
+  be completely disabled unless a new subscriber becomes active.
+
 - <span id="interest-sometimes"></span>`fn sometimes() -> Self`
+
+  Returns an `Interest` indicating the subscriber is sometimes interested
+
+  in being notified about a callsite.
+
+  
+
+  If all active subscribers are `sometimes` or `never` interested in a
+
+  callsite, the currently active subscriber will be asked to filter that
+
+  callsite every time it creates a span. This will be the case until a new
+
+  subscriber expresses that it is `always` interested in the callsite.
 
 - <span id="interest-always"></span>`fn always() -> Self`
 
+  Returns an `Interest` indicating the subscriber is always interested in
+
+  being notified about a callsite.
+
+  
+
+  If any subscriber expresses that it is `always()` interested in a given
+
+  callsite, then the callsite will always be enabled.
+
 - <span id="interest-is-never"></span>`fn is_never(&self) -> bool`
+
+  Returns `true` if the subscriber is never interested in being notified
+
+  about this callsite.
 
 - <span id="interest-is-sometimes"></span>`fn is_sometimes(&self) -> bool`
 
+  Returns `true` if the subscriber is sometimes interested in being notified
+
+  about this callsite.
+
 - <span id="interest-is-always"></span>`fn is_always(&self) -> bool`
+
+  Returns `true` if the subscriber is always interested in being notified
+
+  about this callsite.
 
 - <span id="interest-and"></span>`fn and(self, rhs: Interest) -> Self` — [`Interest`](subscriber/index.md#interest)
 
+  Returns the common interest between these two Interests.
+
+  
+
+  If both interests are the same, this propagates that interest.
+
+  Otherwise, if they differ, the result must always be
+
+  `Interest::sometimes` --- if the two subscribers differ in opinion, we
+
+  will have to ask the current subscriber what it thinks, no matter what.
+
 #### Trait Implementations
+
+##### `impl Any for Interest`
+
+- <span id="interest-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Interest`
+
+- <span id="interest-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Interest`
+
+- <span id="interest-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Interest`
 
 - <span id="interest-clone"></span>`fn clone(&self) -> Interest` — [`Interest`](subscriber/index.md#interest)
 
+##### `impl CloneToUninit for Interest`
+
+- <span id="interest-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Interest`
 
-- <span id="interest-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="interest-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Interest`
+
+- <span id="interest-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Interest`
+
+- <span id="interest-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Interest`
+
+- <span id="interest-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="interest-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="interest-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Interest`
+
+- <span id="interest-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="interest-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Interest`
+
+- <span id="interest-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="interest-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

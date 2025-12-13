@@ -24,6 +24,50 @@ struct AllowNoSemi(bool);
 
 *Defined in [`syn-2.0.111/src/stmt.rs:98`](../../../../.source_1765521767/syn-2.0.111/src/stmt.rs#L98)*
 
+#### Trait Implementations
+
+##### `impl Any for AllowNoSemi`
+
+- <span id="allownosemi-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AllowNoSemi`
+
+- <span id="allownosemi-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AllowNoSemi`
+
+- <span id="allownosemi-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for AllowNoSemi`
+
+- <span id="allownosemi-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AllowNoSemi`
+
+- <span id="allownosemi-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for AllowNoSemi`
+
+- <span id="allownosemi-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="allownosemi-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AllowNoSemi`
+
+- <span id="allownosemi-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="allownosemi-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ## Functions
 
 ### `parse_stmt`

@@ -229,17 +229,47 @@ impl Serializer for MySerializer {
 
 #### Trait Implementations
 
+##### `impl Any for Impossible<Ok, Error>`
+
+- <span id="impossible-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Impossible<Ok, Error>`
+
+- <span id="impossible-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Impossible<Ok, Error>`
+
+- <span id="impossible-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Impossible<Ok, Error>`
+
+- <span id="impossible-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Impossible<Ok, Error>`
+
+- <span id="impossible-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<Ok, Error> SerializeMap for Impossible<Ok, Error>`
 
 - <span id="impossible-serializemap-type-ok"></span>`type Ok = Ok`
 
 - <span id="impossible-serializemap-type-error"></span>`type Error = Error`
 
-- <span id="impossible-serialize-key"></span>`fn serialize_key<T>(&mut self, key: &T) -> Result<(), Error>`
+- <span id="impossible-serializemap-serialize-key"></span>`fn serialize_key<T>(&mut self, key: &T) -> Result<(), Error>`
 
-- <span id="impossible-serialize-value"></span>`fn serialize_value<T>(&mut self, value: &T) -> Result<(), Error>`
+- <span id="impossible-serializemap-serialize-value"></span>`fn serialize_value<T>(&mut self, value: &T) -> Result<(), Error>`
 
-- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
+- <span id="impossible-serializemap-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ##### `impl<Ok, Error> SerializeSeq for Impossible<Ok, Error>`
 
@@ -247,9 +277,9 @@ impl Serializer for MySerializer {
 
 - <span id="impossible-serializeseq-type-error"></span>`type Error = Error`
 
-- <span id="impossible-serialize-element"></span>`fn serialize_element<T>(&mut self, value: &T) -> Result<(), Error>`
+- <span id="impossible-serializeseq-serialize-element"></span>`fn serialize_element<T>(&mut self, value: &T) -> Result<(), Error>`
 
-- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
+- <span id="impossible-serializeseq-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ##### `impl<Ok, Error> SerializeStruct for Impossible<Ok, Error>`
 
@@ -257,9 +287,9 @@ impl Serializer for MySerializer {
 
 - <span id="impossible-serializestruct-type-error"></span>`type Error = Error`
 
-- <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), Error>`
+- <span id="impossible-serializestruct-serialize-field"></span>`fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), Error>`
 
-- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
+- <span id="impossible-serializestruct-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ##### `impl<Ok, Error> SerializeStructVariant for Impossible<Ok, Error>`
 
@@ -267,9 +297,9 @@ impl Serializer for MySerializer {
 
 - <span id="impossible-serializestructvariant-type-error"></span>`type Error = Error`
 
-- <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), Error>`
+- <span id="impossible-serializestructvariant-serialize-field"></span>`fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), Error>`
 
-- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
+- <span id="impossible-serializestructvariant-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ##### `impl<Ok, Error> SerializeTuple for Impossible<Ok, Error>`
 
@@ -277,9 +307,9 @@ impl Serializer for MySerializer {
 
 - <span id="impossible-serializetuple-type-error"></span>`type Error = Error`
 
-- <span id="impossible-serialize-element"></span>`fn serialize_element<T>(&mut self, value: &T) -> Result<(), Error>`
+- <span id="impossible-serializetuple-serialize-element"></span>`fn serialize_element<T>(&mut self, value: &T) -> Result<(), Error>`
 
-- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
+- <span id="impossible-serializetuple-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ##### `impl<Ok, Error> SerializeTupleStruct for Impossible<Ok, Error>`
 
@@ -287,9 +317,9 @@ impl Serializer for MySerializer {
 
 - <span id="impossible-serializetuplestruct-type-error"></span>`type Error = Error`
 
-- <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, value: &T) -> Result<(), Error>`
+- <span id="impossible-serializetuplestruct-serialize-field"></span>`fn serialize_field<T>(&mut self, value: &T) -> Result<(), Error>`
 
-- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
+- <span id="impossible-serializetuplestruct-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ##### `impl<Ok, Error> SerializeTupleVariant for Impossible<Ok, Error>`
 
@@ -297,9 +327,21 @@ impl Serializer for MySerializer {
 
 - <span id="impossible-serializetuplevariant-type-error"></span>`type Error = Error`
 
-- <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, value: &T) -> Result<(), Error>`
+- <span id="impossible-serializetuplevariant-serialize-field"></span>`fn serialize_field<T>(&mut self, value: &T) -> Result<(), Error>`
 
-- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
+- <span id="impossible-serializetuplevariant-end"></span>`fn end(self) -> Result<Ok, Error>`
+
+##### `impl<U> TryFrom for Impossible<Ok, Error>`
+
+- <span id="impossible-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="impossible-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Impossible<Ok, Error>`
+
+- <span id="impossible-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="impossible-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

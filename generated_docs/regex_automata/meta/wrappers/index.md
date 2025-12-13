@@ -95,9 +95,51 @@ struct PikeVM(PikeVMEngine);
 
 #### Trait Implementations
 
+##### `impl Any for PikeVM`
+
+- <span id="pikevm-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PikeVM`
+
+- <span id="pikevm-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PikeVM`
+
+- <span id="pikevm-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for PikeVM`
 
-- <span id="pikevm-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pikevm-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for PikeVM`
+
+- <span id="pikevm-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PikeVM`
+
+- <span id="pikevm-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for PikeVM`
+
+- <span id="pikevm-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pikevm-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PikeVM`
+
+- <span id="pikevm-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pikevm-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PikeVMEngine`
 
@@ -119,9 +161,51 @@ struct PikeVMEngine(pikevm::PikeVM);
 
 #### Trait Implementations
 
+##### `impl Any for PikeVMEngine`
+
+- <span id="pikevmengine-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PikeVMEngine`
+
+- <span id="pikevmengine-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PikeVMEngine`
+
+- <span id="pikevmengine-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for PikeVMEngine`
 
-- <span id="pikevmengine-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pikevmengine-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for PikeVMEngine`
+
+- <span id="pikevmengine-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PikeVMEngine`
+
+- <span id="pikevmengine-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for PikeVMEngine`
+
+- <span id="pikevmengine-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pikevmengine-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PikeVMEngine`
+
+- <span id="pikevmengine-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pikevmengine-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PikeVMCache`
 
@@ -143,13 +227,67 @@ struct PikeVMCache(Option<pikevm::Cache>);
 
 #### Trait Implementations
 
+##### `impl Any for PikeVMCache`
+
+- <span id="pikevmcache-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PikeVMCache`
+
+- <span id="pikevmcache-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PikeVMCache`
+
+- <span id="pikevmcache-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for PikeVMCache`
 
 - <span id="pikevmcache-clone"></span>`fn clone(&self) -> PikeVMCache` — [`PikeVMCache`](#pikevmcache)
 
+##### `impl CloneToUninit for PikeVMCache`
+
+- <span id="pikevmcache-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for PikeVMCache`
 
-- <span id="pikevmcache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pikevmcache-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for PikeVMCache`
+
+- <span id="pikevmcache-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PikeVMCache`
+
+- <span id="pikevmcache-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for PikeVMCache`
+
+- <span id="pikevmcache-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="pikevmcache-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="pikevmcache-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PikeVMCache`
+
+- <span id="pikevmcache-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pikevmcache-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PikeVMCache`
+
+- <span id="pikevmcache-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pikevmcache-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BoundedBacktracker`
 
@@ -169,9 +307,51 @@ struct BoundedBacktracker(Option<BoundedBacktrackerEngine>);
 
 #### Trait Implementations
 
+##### `impl Any for BoundedBacktracker`
+
+- <span id="boundedbacktracker-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BoundedBacktracker`
+
+- <span id="boundedbacktracker-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BoundedBacktracker`
+
+- <span id="boundedbacktracker-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for BoundedBacktracker`
 
-- <span id="boundedbacktracker-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="boundedbacktracker-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BoundedBacktracker`
+
+- <span id="boundedbacktracker-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BoundedBacktracker`
+
+- <span id="boundedbacktracker-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for BoundedBacktracker`
+
+- <span id="boundedbacktracker-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="boundedbacktracker-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BoundedBacktracker`
+
+- <span id="boundedbacktracker-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="boundedbacktracker-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BoundedBacktrackerEngine`
 
@@ -193,9 +373,51 @@ struct BoundedBacktrackerEngine(backtrack::BoundedBacktracker);
 
 #### Trait Implementations
 
+##### `impl Any for BoundedBacktrackerEngine`
+
+- <span id="boundedbacktrackerengine-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BoundedBacktrackerEngine`
+
+- <span id="boundedbacktrackerengine-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BoundedBacktrackerEngine`
+
+- <span id="boundedbacktrackerengine-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for BoundedBacktrackerEngine`
 
-- <span id="boundedbacktrackerengine-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="boundedbacktrackerengine-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BoundedBacktrackerEngine`
+
+- <span id="boundedbacktrackerengine-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BoundedBacktrackerEngine`
+
+- <span id="boundedbacktrackerengine-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for BoundedBacktrackerEngine`
+
+- <span id="boundedbacktrackerengine-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="boundedbacktrackerengine-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BoundedBacktrackerEngine`
+
+- <span id="boundedbacktrackerengine-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="boundedbacktrackerengine-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BoundedBacktrackerCache`
 
@@ -217,13 +439,67 @@ struct BoundedBacktrackerCache(Option<backtrack::Cache>);
 
 #### Trait Implementations
 
+##### `impl Any for BoundedBacktrackerCache`
+
+- <span id="boundedbacktrackercache-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BoundedBacktrackerCache`
+
+- <span id="boundedbacktrackercache-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BoundedBacktrackerCache`
+
+- <span id="boundedbacktrackercache-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BoundedBacktrackerCache`
 
 - <span id="boundedbacktrackercache-clone"></span>`fn clone(&self) -> BoundedBacktrackerCache` — [`BoundedBacktrackerCache`](#boundedbacktrackercache)
 
+##### `impl CloneToUninit for BoundedBacktrackerCache`
+
+- <span id="boundedbacktrackercache-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for BoundedBacktrackerCache`
 
-- <span id="boundedbacktrackercache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="boundedbacktrackercache-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BoundedBacktrackerCache`
+
+- <span id="boundedbacktrackercache-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BoundedBacktrackerCache`
+
+- <span id="boundedbacktrackercache-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for BoundedBacktrackerCache`
+
+- <span id="boundedbacktrackercache-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="boundedbacktrackercache-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="boundedbacktrackercache-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BoundedBacktrackerCache`
+
+- <span id="boundedbacktrackercache-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="boundedbacktrackercache-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BoundedBacktrackerCache`
+
+- <span id="boundedbacktrackercache-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="boundedbacktrackercache-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `OnePass`
 
@@ -245,9 +521,51 @@ struct OnePass(Option<OnePassEngine>);
 
 #### Trait Implementations
 
+##### `impl Any for OnePass`
+
+- <span id="onepass-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for OnePass`
+
+- <span id="onepass-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for OnePass`
+
+- <span id="onepass-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for OnePass`
 
-- <span id="onepass-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="onepass-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for OnePass`
+
+- <span id="onepass-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for OnePass`
+
+- <span id="onepass-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for OnePass`
+
+- <span id="onepass-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="onepass-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for OnePass`
+
+- <span id="onepass-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="onepass-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `OnePassEngine`
 
@@ -269,9 +587,51 @@ struct OnePassEngine(onepass::DFA);
 
 #### Trait Implementations
 
+##### `impl Any for OnePassEngine`
+
+- <span id="onepassengine-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for OnePassEngine`
+
+- <span id="onepassengine-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for OnePassEngine`
+
+- <span id="onepassengine-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for OnePassEngine`
 
-- <span id="onepassengine-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="onepassengine-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for OnePassEngine`
+
+- <span id="onepassengine-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for OnePassEngine`
+
+- <span id="onepassengine-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for OnePassEngine`
+
+- <span id="onepassengine-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="onepassengine-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for OnePassEngine`
+
+- <span id="onepassengine-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="onepassengine-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `OnePassCache`
 
@@ -293,13 +653,67 @@ struct OnePassCache(Option<onepass::Cache>);
 
 #### Trait Implementations
 
+##### `impl Any for OnePassCache`
+
+- <span id="onepasscache-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for OnePassCache`
+
+- <span id="onepasscache-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for OnePassCache`
+
+- <span id="onepasscache-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for OnePassCache`
 
 - <span id="onepasscache-clone"></span>`fn clone(&self) -> OnePassCache` — [`OnePassCache`](#onepasscache)
 
+##### `impl CloneToUninit for OnePassCache`
+
+- <span id="onepasscache-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for OnePassCache`
 
-- <span id="onepasscache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="onepasscache-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for OnePassCache`
+
+- <span id="onepasscache-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for OnePassCache`
+
+- <span id="onepasscache-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for OnePassCache`
+
+- <span id="onepasscache-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="onepasscache-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="onepasscache-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for OnePassCache`
+
+- <span id="onepasscache-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="onepasscache-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for OnePassCache`
+
+- <span id="onepasscache-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="onepasscache-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Hybrid`
 
@@ -323,9 +737,51 @@ struct Hybrid(Option<HybridEngine>);
 
 #### Trait Implementations
 
+##### `impl Any for Hybrid`
+
+- <span id="hybrid-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Hybrid`
+
+- <span id="hybrid-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Hybrid`
+
+- <span id="hybrid-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Hybrid`
 
-- <span id="hybrid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hybrid-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Hybrid`
+
+- <span id="hybrid-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Hybrid`
+
+- <span id="hybrid-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Hybrid`
+
+- <span id="hybrid-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="hybrid-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Hybrid`
+
+- <span id="hybrid-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="hybrid-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `HybridEngine`
 
@@ -353,9 +809,51 @@ struct HybridEngine(hybrid::regex::Regex);
 
 #### Trait Implementations
 
+##### `impl Any for HybridEngine`
+
+- <span id="hybridengine-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HybridEngine`
+
+- <span id="hybridengine-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HybridEngine`
+
+- <span id="hybridengine-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for HybridEngine`
 
-- <span id="hybridengine-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hybridengine-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for HybridEngine`
+
+- <span id="hybridengine-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for HybridEngine`
+
+- <span id="hybridengine-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for HybridEngine`
+
+- <span id="hybridengine-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="hybridengine-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HybridEngine`
+
+- <span id="hybridengine-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="hybridengine-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `HybridCache`
 
@@ -377,13 +875,67 @@ struct HybridCache(Option<hybrid::regex::Cache>);
 
 #### Trait Implementations
 
+##### `impl Any for HybridCache`
+
+- <span id="hybridcache-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HybridCache`
+
+- <span id="hybridcache-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HybridCache`
+
+- <span id="hybridcache-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for HybridCache`
 
 - <span id="hybridcache-clone"></span>`fn clone(&self) -> HybridCache` — [`HybridCache`](#hybridcache)
 
+##### `impl CloneToUninit for HybridCache`
+
+- <span id="hybridcache-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for HybridCache`
 
-- <span id="hybridcache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hybridcache-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for HybridCache`
+
+- <span id="hybridcache-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for HybridCache`
+
+- <span id="hybridcache-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for HybridCache`
+
+- <span id="hybridcache-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="hybridcache-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="hybridcache-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for HybridCache`
+
+- <span id="hybridcache-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="hybridcache-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HybridCache`
+
+- <span id="hybridcache-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="hybridcache-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DFA`
 
@@ -407,9 +959,51 @@ struct DFA(Option<DFAEngine>);
 
 #### Trait Implementations
 
+##### `impl Any for DFA`
+
+- <span id="dfa-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DFA`
+
+- <span id="dfa-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DFA`
+
+- <span id="dfa-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for DFA`
 
-- <span id="dfa-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dfa-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DFA`
+
+- <span id="dfa-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DFA`
+
+- <span id="dfa-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DFA`
+
+- <span id="dfa-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dfa-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DFA`
+
+- <span id="dfa-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dfa-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DFAEngine`
 
@@ -439,9 +1033,51 @@ struct DFAEngine(());
 
 #### Trait Implementations
 
+##### `impl Any for DFAEngine`
+
+- <span id="dfaengine-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DFAEngine`
+
+- <span id="dfaengine-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DFAEngine`
+
+- <span id="dfaengine-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for DFAEngine`
 
-- <span id="dfaengine-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dfaengine-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DFAEngine`
+
+- <span id="dfaengine-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DFAEngine`
+
+- <span id="dfaengine-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DFAEngine`
+
+- <span id="dfaengine-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dfaengine-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DFAEngine`
+
+- <span id="dfaengine-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dfaengine-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ReverseHybrid`
 
@@ -463,9 +1099,51 @@ struct ReverseHybrid(Option<ReverseHybridEngine>);
 
 #### Trait Implementations
 
+##### `impl Any for ReverseHybrid`
+
+- <span id="reversehybrid-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ReverseHybrid`
+
+- <span id="reversehybrid-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ReverseHybrid`
+
+- <span id="reversehybrid-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ReverseHybrid`
 
-- <span id="reversehybrid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reversehybrid-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ReverseHybrid`
+
+- <span id="reversehybrid-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ReverseHybrid`
+
+- <span id="reversehybrid-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ReverseHybrid`
+
+- <span id="reversehybrid-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="reversehybrid-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ReverseHybrid`
+
+- <span id="reversehybrid-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="reversehybrid-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ReverseHybridEngine`
 
@@ -483,9 +1161,51 @@ struct ReverseHybridEngine(hybrid::dfa::DFA);
 
 #### Trait Implementations
 
+##### `impl Any for ReverseHybridEngine`
+
+- <span id="reversehybridengine-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ReverseHybridEngine`
+
+- <span id="reversehybridengine-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ReverseHybridEngine`
+
+- <span id="reversehybridengine-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ReverseHybridEngine`
 
-- <span id="reversehybridengine-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reversehybridengine-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ReverseHybridEngine`
+
+- <span id="reversehybridengine-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ReverseHybridEngine`
+
+- <span id="reversehybridengine-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ReverseHybridEngine`
+
+- <span id="reversehybridengine-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="reversehybridengine-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ReverseHybridEngine`
+
+- <span id="reversehybridengine-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="reversehybridengine-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ReverseHybridCache`
 
@@ -507,13 +1227,67 @@ struct ReverseHybridCache(Option<hybrid::dfa::Cache>);
 
 #### Trait Implementations
 
+##### `impl Any for ReverseHybridCache`
+
+- <span id="reversehybridcache-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ReverseHybridCache`
+
+- <span id="reversehybridcache-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ReverseHybridCache`
+
+- <span id="reversehybridcache-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ReverseHybridCache`
 
 - <span id="reversehybridcache-clone"></span>`fn clone(&self) -> ReverseHybridCache` — [`ReverseHybridCache`](#reversehybridcache)
 
+##### `impl CloneToUninit for ReverseHybridCache`
+
+- <span id="reversehybridcache-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for ReverseHybridCache`
 
-- <span id="reversehybridcache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reversehybridcache-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ReverseHybridCache`
+
+- <span id="reversehybridcache-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ReverseHybridCache`
+
+- <span id="reversehybridcache-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for ReverseHybridCache`
+
+- <span id="reversehybridcache-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="reversehybridcache-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="reversehybridcache-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ReverseHybridCache`
+
+- <span id="reversehybridcache-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="reversehybridcache-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ReverseHybridCache`
+
+- <span id="reversehybridcache-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="reversehybridcache-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ReverseDFA`
 
@@ -537,9 +1311,51 @@ struct ReverseDFA(Option<ReverseDFAEngine>);
 
 #### Trait Implementations
 
+##### `impl Any for ReverseDFA`
+
+- <span id="reversedfa-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ReverseDFA`
+
+- <span id="reversedfa-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ReverseDFA`
+
+- <span id="reversedfa-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ReverseDFA`
 
-- <span id="reversedfa-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reversedfa-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ReverseDFA`
+
+- <span id="reversedfa-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ReverseDFA`
+
+- <span id="reversedfa-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ReverseDFA`
+
+- <span id="reversedfa-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="reversedfa-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ReverseDFA`
+
+- <span id="reversedfa-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="reversedfa-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ReverseDFAEngine`
 
@@ -559,7 +1375,49 @@ struct ReverseDFAEngine(());
 
 #### Trait Implementations
 
+##### `impl Any for ReverseDFAEngine`
+
+- <span id="reversedfaengine-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ReverseDFAEngine`
+
+- <span id="reversedfaengine-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ReverseDFAEngine`
+
+- <span id="reversedfaengine-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ReverseDFAEngine`
 
-- <span id="reversedfaengine-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="reversedfaengine-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ReverseDFAEngine`
+
+- <span id="reversedfaengine-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ReverseDFAEngine`
+
+- <span id="reversedfaengine-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ReverseDFAEngine`
+
+- <span id="reversedfaengine-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="reversedfaengine-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ReverseDFAEngine`
+
+- <span id="reversedfaengine-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="reversedfaengine-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

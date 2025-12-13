@@ -64,23 +64,85 @@ that becomes true when `set()` is called.
 
 - <span id="corelatch-get-sleepy"></span>`fn get_sleepy(&self) -> bool`
 
+  Invoked by owning thread as it prepares to sleep. Returns true
+
+  if the owning thread may proceed to fall asleep, false if the
+
+  latch was set in the meantime.
+
 - <span id="corelatch-fall-asleep"></span>`fn fall_asleep(&self) -> bool`
+
+  Invoked by owning thread as it falls asleep sleep. Returns
+
+  true if the owning thread should block, or false if the latch
+
+  was set in the meantime.
 
 - <span id="corelatch-wake-up"></span>`fn wake_up(&self)`
 
+  Invoked by owning thread as it falls asleep sleep. Returns
+
+  true if the owning thread should block, or false if the latch
+
+  was set in the meantime.
+
 - <span id="corelatch-set"></span>`unsafe fn set(this: *const Self) -> bool`
+
+  Set the latch. If this returns true, the owning thread was sleeping
+
+  and must be awoken.
+
+  
+
+  This is private because, typically, setting a latch involves
+
+  doing some wakeups; those are encapsulated in the surrounding
+
+  latch code.
 
 - <span id="corelatch-probe"></span>`fn probe(&self) -> bool`
 
+  Test if this latch has been set.
+
 #### Trait Implementations
+
+##### `impl Any for CoreLatch`
+
+- <span id="corelatch-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl AsCoreLatch for CoreLatch`
 
-- <span id="corelatch-as-core-latch"></span>`fn as_core_latch(&self) -> &CoreLatch` — [`CoreLatch`](#corelatch)
+- <span id="corelatch-ascorelatch-as-core-latch"></span>`fn as_core_latch(&self) -> &CoreLatch` — [`CoreLatch`](#corelatch)
+
+##### `impl<T> Borrow for CoreLatch`
+
+- <span id="corelatch-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CoreLatch`
+
+- <span id="corelatch-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for CoreLatch`
 
-- <span id="corelatch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="corelatch-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CoreLatch`
+
+- <span id="corelatch-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CoreLatch`
+
+- <span id="corelatch-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for CoreLatch`
 
@@ -88,13 +150,25 @@ that becomes true when `set()` is called.
 
 - <span id="corelatch-pointable-type-init"></span>`type Init = T`
 
-- <span id="corelatch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="corelatch-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="corelatch-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="corelatch-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="corelatch-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="corelatch-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="corelatch-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="corelatch-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for CoreLatch`
+
+- <span id="corelatch-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="corelatch-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CoreLatch`
+
+- <span id="corelatch-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="corelatch-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SpinLatch<'r>`
 
@@ -117,19 +191,63 @@ that becomes true when `set()` is called.
 
 - <span id="spinlatch-new"></span>`fn new(thread: &'r WorkerThread) -> SpinLatch<'r>` — [`WorkerThread`](../registry/index.md#workerthread), [`SpinLatch`](#spinlatch)
 
+  Creates a new spin latch that is owned by `thread`. This means
+
+  that `thread` is the only thread that should be blocking on
+
+  this latch -- it also means that when the latch is set, we
+
+  will wake `thread` if it is sleeping.
+
 - <span id="spinlatch-cross"></span>`fn cross(thread: &'r WorkerThread) -> SpinLatch<'r>` — [`WorkerThread`](../registry/index.md#workerthread), [`SpinLatch`](#spinlatch)
+
+  Creates a new spin latch for cross-thread-pool blocking.  Notably, we
+
+  need to make sure the registry is kept alive after setting, so we can
+
+  safely call the notification.
 
 - <span id="spinlatch-probe"></span>`fn probe(&self) -> bool`
 
 #### Trait Implementations
 
+##### `impl Any for SpinLatch<'r>`
+
+- <span id="spinlatch-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl AsCoreLatch for SpinLatch<'_>`
 
-- <span id="spinlatch-as-core-latch"></span>`fn as_core_latch(&self) -> &CoreLatch` — [`CoreLatch`](#corelatch)
+- <span id="spinlatch-ascorelatch-as-core-latch"></span>`fn as_core_latch(&self) -> &CoreLatch` — [`CoreLatch`](#corelatch)
+
+##### `impl<T> Borrow for SpinLatch<'r>`
+
+- <span id="spinlatch-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SpinLatch<'r>`
+
+- <span id="spinlatch-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for SpinLatch<'r>`
+
+- <span id="spinlatch-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SpinLatch<'r>`
+
+- <span id="spinlatch-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Latch for SpinLatch<'_>`
 
-- <span id="spinlatch-set"></span>`unsafe fn set(this: *const Self)`
+- <span id="spinlatch-latch-set"></span>`unsafe fn set(this: *const Self)`
 
 ##### `impl Pointable for SpinLatch<'r>`
 
@@ -137,13 +255,25 @@ that becomes true when `set()` is called.
 
 - <span id="spinlatch-pointable-type-init"></span>`type Init = T`
 
-- <span id="spinlatch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="spinlatch-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="spinlatch-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="spinlatch-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="spinlatch-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="spinlatch-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="spinlatch-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="spinlatch-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for SpinLatch<'r>`
+
+- <span id="spinlatch-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="spinlatch-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SpinLatch<'r>`
+
+- <span id="spinlatch-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="spinlatch-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LockLatch`
 
@@ -165,17 +295,51 @@ until it becomes true.
 
 - <span id="locklatch-wait-and-reset"></span>`fn wait_and_reset(&self)`
 
+  Block until latch is set, then resets this lock latch so it can be reused again.
+
 - <span id="locklatch-wait"></span>`fn wait(&self)`
+
+  Block until latch is set.
 
 #### Trait Implementations
 
+##### `impl Any for LockLatch`
+
+- <span id="locklatch-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LockLatch`
+
+- <span id="locklatch-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LockLatch`
+
+- <span id="locklatch-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for LockLatch`
 
-- <span id="locklatch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="locklatch-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for LockLatch`
+
+- <span id="locklatch-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LockLatch`
+
+- <span id="locklatch-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Latch for LockLatch`
 
-- <span id="locklatch-set"></span>`unsafe fn set(this: *const Self)`
+- <span id="locklatch-latch-set"></span>`unsafe fn set(this: *const Self)`
 
 ##### `impl Pointable for LockLatch`
 
@@ -183,13 +347,25 @@ until it becomes true.
 
 - <span id="locklatch-pointable-type-init"></span>`type Init = T`
 
-- <span id="locklatch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="locklatch-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="locklatch-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="locklatch-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="locklatch-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="locklatch-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="locklatch-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="locklatch-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for LockLatch`
+
+- <span id="locklatch-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="locklatch-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LockLatch`
+
+- <span id="locklatch-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="locklatch-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `OnceLatch`
 
@@ -220,15 +396,49 @@ contexts).
 
 - <span id="oncelatch-set-and-tickle-one"></span>`unsafe fn set_and_tickle_one(this: *const Self, registry: &Registry, target_worker_index: usize)` — [`Registry`](../registry/index.md#registry)
 
+  Set the latch, then tickle the specific worker thread,
+
+  which should be the one that owns this latch.
+
 #### Trait Implementations
+
+##### `impl Any for OnceLatch`
+
+- <span id="oncelatch-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl AsCoreLatch for OnceLatch`
 
-- <span id="oncelatch-as-core-latch"></span>`fn as_core_latch(&self) -> &CoreLatch` — [`CoreLatch`](#corelatch)
+- <span id="oncelatch-ascorelatch-as-core-latch"></span>`fn as_core_latch(&self) -> &CoreLatch` — [`CoreLatch`](#corelatch)
+
+##### `impl<T> Borrow for OnceLatch`
+
+- <span id="oncelatch-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for OnceLatch`
+
+- <span id="oncelatch-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for OnceLatch`
 
-- <span id="oncelatch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="oncelatch-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for OnceLatch`
+
+- <span id="oncelatch-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for OnceLatch`
+
+- <span id="oncelatch-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for OnceLatch`
 
@@ -236,13 +446,25 @@ contexts).
 
 - <span id="oncelatch-pointable-type-init"></span>`type Init = T`
 
-- <span id="oncelatch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="oncelatch-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="oncelatch-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="oncelatch-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="oncelatch-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="oncelatch-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="oncelatch-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="oncelatch-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for OnceLatch`
+
+- <span id="oncelatch-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="oncelatch-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for OnceLatch`
+
+- <span id="oncelatch-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="oncelatch-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CountLatch`
 
@@ -273,13 +495,43 @@ decrements the counter. The latch is only "set" (in the sense that
 
 #### Trait Implementations
 
+##### `impl Any for CountLatch`
+
+- <span id="countlatch-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CountLatch`
+
+- <span id="countlatch-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CountLatch`
+
+- <span id="countlatch-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for CountLatch`
 
-- <span id="countlatch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="countlatch-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CountLatch`
+
+- <span id="countlatch-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CountLatch`
+
+- <span id="countlatch-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Latch for CountLatch`
 
-- <span id="countlatch-set"></span>`unsafe fn set(this: *const Self)`
+- <span id="countlatch-latch-set"></span>`unsafe fn set(this: *const Self)`
 
 ##### `impl Pointable for CountLatch`
 
@@ -287,13 +539,25 @@ decrements the counter. The latch is only "set" (in the sense that
 
 - <span id="countlatch-pointable-type-init"></span>`type Init = T`
 
-- <span id="countlatch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="countlatch-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="countlatch-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="countlatch-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="countlatch-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="countlatch-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="countlatch-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="countlatch-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for CountLatch`
+
+- <span id="countlatch-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="countlatch-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CountLatch`
+
+- <span id="countlatch-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="countlatch-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LatchRef<'a, L>`
 
@@ -314,15 +578,45 @@ struct LatchRef<'a, L> {
 
 #### Trait Implementations
 
+##### `impl Any for LatchRef<'a, L>`
+
+- <span id="latchref-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LatchRef<'a, L>`
+
+- <span id="latchref-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LatchRef<'a, L>`
+
+- <span id="latchref-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<L> Deref for LatchRef<'_, L>`
 
 - <span id="latchref-deref-type-target"></span>`type Target = L`
 
 - <span id="latchref-deref"></span>`fn deref(&self) -> &L`
 
+##### `impl<T> From for LatchRef<'a, L>`
+
+- <span id="latchref-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LatchRef<'a, L>`
+
+- <span id="latchref-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<L: Latch> Latch for LatchRef<'_, L>`
 
-- <span id="latchref-set"></span>`unsafe fn set(this: *const Self)`
+- <span id="latchref-latch-set"></span>`unsafe fn set(this: *const Self)`
 
 ##### `impl Pointable for LatchRef<'a, L>`
 
@@ -330,19 +624,31 @@ struct LatchRef<'a, L> {
 
 - <span id="latchref-pointable-type-init"></span>`type Init = T`
 
-- <span id="latchref-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="latchref-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="latchref-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="latchref-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="latchref-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="latchref-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="latchref-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="latchref-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl Receiver for LatchRef<'a, L>`
 
 - <span id="latchref-receiver-type-target"></span>`type Target = T`
 
 ##### `impl<L: Sync> Sync for LatchRef<'_, L>`
+
+##### `impl<U> TryFrom for LatchRef<'a, L>`
+
+- <span id="latchref-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="latchref-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LatchRef<'a, L>`
+
+- <span id="latchref-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="latchref-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -377,9 +683,39 @@ enum CountLatchKind {
 
 #### Trait Implementations
 
+##### `impl Any for CountLatchKind`
+
+- <span id="countlatchkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CountLatchKind`
+
+- <span id="countlatchkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CountLatchKind`
+
+- <span id="countlatchkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for CountLatchKind`
 
-- <span id="countlatchkind-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="countlatchkind-debug-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+
+##### `impl<T> From for CountLatchKind`
+
+- <span id="countlatchkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CountLatchKind`
+
+- <span id="countlatchkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for CountLatchKind`
 
@@ -387,13 +723,25 @@ enum CountLatchKind {
 
 - <span id="countlatchkind-pointable-type-init"></span>`type Init = T`
 
-- <span id="countlatchkind-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="countlatchkind-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="countlatchkind-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="countlatchkind-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="countlatchkind-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="countlatchkind-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="countlatchkind-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="countlatchkind-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for CountLatchKind`
+
+- <span id="countlatchkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="countlatchkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CountLatchKind`
+
+- <span id="countlatchkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="countlatchkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

@@ -427,15 +427,31 @@ The header at the start of every 32-bit XCOFF file.
 
 #### Trait Implementations
 
+##### `impl Any for FileHeader32`
+
+- <span id="fileheader32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FileHeader32`
+
+- <span id="fileheader32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FileHeader32`
+
+- <span id="fileheader32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for FileHeader32`
 
 - <span id="fileheader32-clone"></span>`fn clone(&self) -> FileHeader32` — [`FileHeader32`](#fileheader32)
+
+##### `impl CloneToUninit for FileHeader32`
+
+- <span id="fileheader32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for FileHeader32`
 
 ##### `impl Debug for FileHeader32`
 
-- <span id="fileheader32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fileheader32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FileHeader for xcoff::FileHeader32`
 
@@ -453,23 +469,61 @@ The header at the start of every 32-bit XCOFF file.
 
 - <span id="xcofffileheader32-fileheader-type-rel"></span>`type Rel = Rel32`
 
-- <span id="xcofffileheader32-is-type-64"></span>`fn is_type_64(&self) -> bool`
+- <span id="xcofffileheader32-fileheader-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
-- <span id="xcofffileheader32-f-magic"></span>`fn f_magic(&self) -> u16`
+- <span id="xcofffileheader32-fileheader-f-magic"></span>`fn f_magic(&self) -> u16`
 
-- <span id="xcofffileheader32-f-nscns"></span>`fn f_nscns(&self) -> u16`
+- <span id="xcofffileheader32-fileheader-f-nscns"></span>`fn f_nscns(&self) -> u16`
 
-- <span id="xcofffileheader32-f-timdat"></span>`fn f_timdat(&self) -> u32`
+- <span id="xcofffileheader32-fileheader-f-timdat"></span>`fn f_timdat(&self) -> u32`
 
-- <span id="xcofffileheader32-f-symptr"></span>`fn f_symptr(&self) -> <Self as >::Word` — [`FileHeader`](../read/xcoff/index.md#fileheader)
+- <span id="xcofffileheader32-fileheader-f-symptr"></span>`fn f_symptr(&self) -> <Self as >::Word` — [`FileHeader`](../read/xcoff/index.md#fileheader)
 
-- <span id="xcofffileheader32-f-nsyms"></span>`fn f_nsyms(&self) -> u32`
+- <span id="xcofffileheader32-fileheader-f-nsyms"></span>`fn f_nsyms(&self) -> u32`
 
-- <span id="xcofffileheader32-f-opthdr"></span>`fn f_opthdr(&self) -> u16`
+- <span id="xcofffileheader32-fileheader-f-opthdr"></span>`fn f_opthdr(&self) -> u16`
 
-- <span id="xcofffileheader32-f-flags"></span>`fn f_flags(&self) -> u16`
+- <span id="xcofffileheader32-fileheader-f-flags"></span>`fn f_flags(&self) -> u16`
+
+##### `impl<T> From for FileHeader32`
+
+- <span id="fileheader32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FileHeader32`
+
+- <span id="fileheader32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for FileHeader32`
+
+##### `impl ToOwned for FileHeader32`
+
+- <span id="fileheader32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="fileheader32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="fileheader32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FileHeader32`
+
+- <span id="fileheader32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fileheader32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FileHeader32`
+
+- <span id="fileheader32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fileheader32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FileHeader64`
 
@@ -521,15 +575,31 @@ The header at the start of every 64-bit XCOFF file.
 
 #### Trait Implementations
 
+##### `impl Any for FileHeader64`
+
+- <span id="fileheader64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FileHeader64`
+
+- <span id="fileheader64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FileHeader64`
+
+- <span id="fileheader64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for FileHeader64`
 
 - <span id="fileheader64-clone"></span>`fn clone(&self) -> FileHeader64` — [`FileHeader64`](#fileheader64)
+
+##### `impl CloneToUninit for FileHeader64`
+
+- <span id="fileheader64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for FileHeader64`
 
 ##### `impl Debug for FileHeader64`
 
-- <span id="fileheader64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fileheader64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FileHeader for xcoff::FileHeader64`
 
@@ -547,23 +617,61 @@ The header at the start of every 64-bit XCOFF file.
 
 - <span id="xcofffileheader64-fileheader-type-rel"></span>`type Rel = Rel64`
 
-- <span id="xcofffileheader64-is-type-64"></span>`fn is_type_64(&self) -> bool`
+- <span id="xcofffileheader64-fileheader-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
-- <span id="xcofffileheader64-f-magic"></span>`fn f_magic(&self) -> u16`
+- <span id="xcofffileheader64-fileheader-f-magic"></span>`fn f_magic(&self) -> u16`
 
-- <span id="xcofffileheader64-f-nscns"></span>`fn f_nscns(&self) -> u16`
+- <span id="xcofffileheader64-fileheader-f-nscns"></span>`fn f_nscns(&self) -> u16`
 
-- <span id="xcofffileheader64-f-timdat"></span>`fn f_timdat(&self) -> u32`
+- <span id="xcofffileheader64-fileheader-f-timdat"></span>`fn f_timdat(&self) -> u32`
 
-- <span id="xcofffileheader64-f-symptr"></span>`fn f_symptr(&self) -> <Self as >::Word` — [`FileHeader`](../read/xcoff/index.md#fileheader)
+- <span id="xcofffileheader64-fileheader-f-symptr"></span>`fn f_symptr(&self) -> <Self as >::Word` — [`FileHeader`](../read/xcoff/index.md#fileheader)
 
-- <span id="xcofffileheader64-f-nsyms"></span>`fn f_nsyms(&self) -> u32`
+- <span id="xcofffileheader64-fileheader-f-nsyms"></span>`fn f_nsyms(&self) -> u32`
 
-- <span id="xcofffileheader64-f-opthdr"></span>`fn f_opthdr(&self) -> u16`
+- <span id="xcofffileheader64-fileheader-f-opthdr"></span>`fn f_opthdr(&self) -> u16`
 
-- <span id="xcofffileheader64-f-flags"></span>`fn f_flags(&self) -> u16`
+- <span id="xcofffileheader64-fileheader-f-flags"></span>`fn f_flags(&self) -> u16`
+
+##### `impl<T> From for FileHeader64`
+
+- <span id="fileheader64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FileHeader64`
+
+- <span id="fileheader64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for FileHeader64`
+
+##### `impl ToOwned for FileHeader64`
+
+- <span id="fileheader64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="fileheader64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="fileheader64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FileHeader64`
+
+- <span id="fileheader64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fileheader64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FileHeader64`
+
+- <span id="fileheader64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fileheader64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AuxHeader32`
 
@@ -726,81 +834,135 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 #### Trait Implementations
 
+##### `impl Any for AuxHeader32`
+
+- <span id="auxheader32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl AuxHeader for xcoff::AuxHeader32`
 
 - <span id="xcoffauxheader32-auxheader-type-word"></span>`type Word = u32`
 
-- <span id="xcoffauxheader32-o-mflag"></span>`fn o_mflag(&self) -> u16`
+- <span id="xcoffauxheader32-auxheader-o-mflag"></span>`fn o_mflag(&self) -> u16`
 
-- <span id="xcoffauxheader32-o-vstamp"></span>`fn o_vstamp(&self) -> u16`
+- <span id="xcoffauxheader32-auxheader-o-vstamp"></span>`fn o_vstamp(&self) -> u16`
 
-- <span id="xcoffauxheader32-o-tsize"></span>`fn o_tsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
+- <span id="xcoffauxheader32-auxheader-o-tsize"></span>`fn o_tsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader32-o-dsize"></span>`fn o_dsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
+- <span id="xcoffauxheader32-auxheader-o-dsize"></span>`fn o_dsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader32-o-bsize"></span>`fn o_bsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
+- <span id="xcoffauxheader32-auxheader-o-bsize"></span>`fn o_bsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader32-o-entry"></span>`fn o_entry(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
+- <span id="xcoffauxheader32-auxheader-o-entry"></span>`fn o_entry(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader32-o-text-start"></span>`fn o_text_start(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
+- <span id="xcoffauxheader32-auxheader-o-text-start"></span>`fn o_text_start(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader32-o-data-start"></span>`fn o_data_start(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
+- <span id="xcoffauxheader32-auxheader-o-data-start"></span>`fn o_data_start(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader32-o-toc"></span>`fn o_toc(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
+- <span id="xcoffauxheader32-auxheader-o-toc"></span>`fn o_toc(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader32-o-snentry"></span>`fn o_snentry(&self) -> u16`
+- <span id="xcoffauxheader32-auxheader-o-snentry"></span>`fn o_snentry(&self) -> u16`
 
-- <span id="xcoffauxheader32-o-sntext"></span>`fn o_sntext(&self) -> u16`
+- <span id="xcoffauxheader32-auxheader-o-sntext"></span>`fn o_sntext(&self) -> u16`
 
-- <span id="xcoffauxheader32-o-sndata"></span>`fn o_sndata(&self) -> u16`
+- <span id="xcoffauxheader32-auxheader-o-sndata"></span>`fn o_sndata(&self) -> u16`
 
-- <span id="xcoffauxheader32-o-sntoc"></span>`fn o_sntoc(&self) -> u16`
+- <span id="xcoffauxheader32-auxheader-o-sntoc"></span>`fn o_sntoc(&self) -> u16`
 
-- <span id="xcoffauxheader32-o-snloader"></span>`fn o_snloader(&self) -> u16`
+- <span id="xcoffauxheader32-auxheader-o-snloader"></span>`fn o_snloader(&self) -> u16`
 
-- <span id="xcoffauxheader32-o-snbss"></span>`fn o_snbss(&self) -> u16`
+- <span id="xcoffauxheader32-auxheader-o-snbss"></span>`fn o_snbss(&self) -> u16`
 
-- <span id="xcoffauxheader32-o-algntext"></span>`fn o_algntext(&self) -> u16`
+- <span id="xcoffauxheader32-auxheader-o-algntext"></span>`fn o_algntext(&self) -> u16`
 
-- <span id="xcoffauxheader32-o-algndata"></span>`fn o_algndata(&self) -> u16`
+- <span id="xcoffauxheader32-auxheader-o-algndata"></span>`fn o_algndata(&self) -> u16`
 
-- <span id="xcoffauxheader32-o-modtype"></span>`fn o_modtype(&self) -> u16`
+- <span id="xcoffauxheader32-auxheader-o-modtype"></span>`fn o_modtype(&self) -> u16`
 
-- <span id="xcoffauxheader32-o-cpuflag"></span>`fn o_cpuflag(&self) -> u8`
+- <span id="xcoffauxheader32-auxheader-o-cpuflag"></span>`fn o_cpuflag(&self) -> u8`
 
-- <span id="xcoffauxheader32-o-cputype"></span>`fn o_cputype(&self) -> u8`
+- <span id="xcoffauxheader32-auxheader-o-cputype"></span>`fn o_cputype(&self) -> u8`
 
-- <span id="xcoffauxheader32-o-maxstack"></span>`fn o_maxstack(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
+- <span id="xcoffauxheader32-auxheader-o-maxstack"></span>`fn o_maxstack(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader32-o-maxdata"></span>`fn o_maxdata(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
+- <span id="xcoffauxheader32-auxheader-o-maxdata"></span>`fn o_maxdata(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader32-o-debugger"></span>`fn o_debugger(&self) -> u32`
+- <span id="xcoffauxheader32-auxheader-o-debugger"></span>`fn o_debugger(&self) -> u32`
 
-- <span id="xcoffauxheader32-o-textpsize"></span>`fn o_textpsize(&self) -> u8`
+- <span id="xcoffauxheader32-auxheader-o-textpsize"></span>`fn o_textpsize(&self) -> u8`
 
-- <span id="xcoffauxheader32-o-datapsize"></span>`fn o_datapsize(&self) -> u8`
+- <span id="xcoffauxheader32-auxheader-o-datapsize"></span>`fn o_datapsize(&self) -> u8`
 
-- <span id="xcoffauxheader32-o-stackpsize"></span>`fn o_stackpsize(&self) -> u8`
+- <span id="xcoffauxheader32-auxheader-o-stackpsize"></span>`fn o_stackpsize(&self) -> u8`
 
-- <span id="xcoffauxheader32-o-flags"></span>`fn o_flags(&self) -> u8`
+- <span id="xcoffauxheader32-auxheader-o-flags"></span>`fn o_flags(&self) -> u8`
 
-- <span id="xcoffauxheader32-o-sntdata"></span>`fn o_sntdata(&self) -> u16`
+- <span id="xcoffauxheader32-auxheader-o-sntdata"></span>`fn o_sntdata(&self) -> u16`
 
-- <span id="xcoffauxheader32-o-sntbss"></span>`fn o_sntbss(&self) -> u16`
+- <span id="xcoffauxheader32-auxheader-o-sntbss"></span>`fn o_sntbss(&self) -> u16`
 
-- <span id="xcoffauxheader32-o-x64flags"></span>`fn o_x64flags(&self) -> Option<u16>`
+- <span id="xcoffauxheader32-auxheader-o-x64flags"></span>`fn o_x64flags(&self) -> Option<u16>`
+
+##### `impl<T> Borrow for AuxHeader32`
+
+- <span id="auxheader32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AuxHeader32`
+
+- <span id="auxheader32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for AuxHeader32`
 
 - <span id="auxheader32-clone"></span>`fn clone(&self) -> AuxHeader32` — [`AuxHeader32`](#auxheader32)
 
+##### `impl CloneToUninit for AuxHeader32`
+
+- <span id="auxheader32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for AuxHeader32`
 
 ##### `impl Debug for AuxHeader32`
 
-- <span id="auxheader32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="auxheader32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AuxHeader32`
+
+- <span id="auxheader32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AuxHeader32`
+
+- <span id="auxheader32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for AuxHeader32`
+
+##### `impl ToOwned for AuxHeader32`
+
+- <span id="auxheader32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="auxheader32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="auxheader32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AuxHeader32`
+
+- <span id="auxheader32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="auxheader32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AuxHeader32`
+
+- <span id="auxheader32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="auxheader32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AuxHeader64`
 
@@ -978,81 +1140,135 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 #### Trait Implementations
 
+##### `impl Any for AuxHeader64`
+
+- <span id="auxheader64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
 ##### `impl AuxHeader for xcoff::AuxHeader64`
 
 - <span id="xcoffauxheader64-auxheader-type-word"></span>`type Word = u64`
 
-- <span id="xcoffauxheader64-o-mflag"></span>`fn o_mflag(&self) -> u16`
+- <span id="xcoffauxheader64-auxheader-o-mflag"></span>`fn o_mflag(&self) -> u16`
 
-- <span id="xcoffauxheader64-o-vstamp"></span>`fn o_vstamp(&self) -> u16`
+- <span id="xcoffauxheader64-auxheader-o-vstamp"></span>`fn o_vstamp(&self) -> u16`
 
-- <span id="xcoffauxheader64-o-tsize"></span>`fn o_tsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
+- <span id="xcoffauxheader64-auxheader-o-tsize"></span>`fn o_tsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader64-o-dsize"></span>`fn o_dsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
+- <span id="xcoffauxheader64-auxheader-o-dsize"></span>`fn o_dsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader64-o-bsize"></span>`fn o_bsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
+- <span id="xcoffauxheader64-auxheader-o-bsize"></span>`fn o_bsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader64-o-entry"></span>`fn o_entry(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
+- <span id="xcoffauxheader64-auxheader-o-entry"></span>`fn o_entry(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader64-o-text-start"></span>`fn o_text_start(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
+- <span id="xcoffauxheader64-auxheader-o-text-start"></span>`fn o_text_start(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader64-o-data-start"></span>`fn o_data_start(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
+- <span id="xcoffauxheader64-auxheader-o-data-start"></span>`fn o_data_start(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader64-o-toc"></span>`fn o_toc(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
+- <span id="xcoffauxheader64-auxheader-o-toc"></span>`fn o_toc(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader64-o-snentry"></span>`fn o_snentry(&self) -> u16`
+- <span id="xcoffauxheader64-auxheader-o-snentry"></span>`fn o_snentry(&self) -> u16`
 
-- <span id="xcoffauxheader64-o-sntext"></span>`fn o_sntext(&self) -> u16`
+- <span id="xcoffauxheader64-auxheader-o-sntext"></span>`fn o_sntext(&self) -> u16`
 
-- <span id="xcoffauxheader64-o-sndata"></span>`fn o_sndata(&self) -> u16`
+- <span id="xcoffauxheader64-auxheader-o-sndata"></span>`fn o_sndata(&self) -> u16`
 
-- <span id="xcoffauxheader64-o-sntoc"></span>`fn o_sntoc(&self) -> u16`
+- <span id="xcoffauxheader64-auxheader-o-sntoc"></span>`fn o_sntoc(&self) -> u16`
 
-- <span id="xcoffauxheader64-o-snloader"></span>`fn o_snloader(&self) -> u16`
+- <span id="xcoffauxheader64-auxheader-o-snloader"></span>`fn o_snloader(&self) -> u16`
 
-- <span id="xcoffauxheader64-o-snbss"></span>`fn o_snbss(&self) -> u16`
+- <span id="xcoffauxheader64-auxheader-o-snbss"></span>`fn o_snbss(&self) -> u16`
 
-- <span id="xcoffauxheader64-o-algntext"></span>`fn o_algntext(&self) -> u16`
+- <span id="xcoffauxheader64-auxheader-o-algntext"></span>`fn o_algntext(&self) -> u16`
 
-- <span id="xcoffauxheader64-o-algndata"></span>`fn o_algndata(&self) -> u16`
+- <span id="xcoffauxheader64-auxheader-o-algndata"></span>`fn o_algndata(&self) -> u16`
 
-- <span id="xcoffauxheader64-o-modtype"></span>`fn o_modtype(&self) -> u16`
+- <span id="xcoffauxheader64-auxheader-o-modtype"></span>`fn o_modtype(&self) -> u16`
 
-- <span id="xcoffauxheader64-o-cpuflag"></span>`fn o_cpuflag(&self) -> u8`
+- <span id="xcoffauxheader64-auxheader-o-cpuflag"></span>`fn o_cpuflag(&self) -> u8`
 
-- <span id="xcoffauxheader64-o-cputype"></span>`fn o_cputype(&self) -> u8`
+- <span id="xcoffauxheader64-auxheader-o-cputype"></span>`fn o_cputype(&self) -> u8`
 
-- <span id="xcoffauxheader64-o-maxstack"></span>`fn o_maxstack(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
+- <span id="xcoffauxheader64-auxheader-o-maxstack"></span>`fn o_maxstack(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader64-o-maxdata"></span>`fn o_maxdata(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
+- <span id="xcoffauxheader64-auxheader-o-maxdata"></span>`fn o_maxdata(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader64-o-debugger"></span>`fn o_debugger(&self) -> u32`
+- <span id="xcoffauxheader64-auxheader-o-debugger"></span>`fn o_debugger(&self) -> u32`
 
-- <span id="xcoffauxheader64-o-textpsize"></span>`fn o_textpsize(&self) -> u8`
+- <span id="xcoffauxheader64-auxheader-o-textpsize"></span>`fn o_textpsize(&self) -> u8`
 
-- <span id="xcoffauxheader64-o-datapsize"></span>`fn o_datapsize(&self) -> u8`
+- <span id="xcoffauxheader64-auxheader-o-datapsize"></span>`fn o_datapsize(&self) -> u8`
 
-- <span id="xcoffauxheader64-o-stackpsize"></span>`fn o_stackpsize(&self) -> u8`
+- <span id="xcoffauxheader64-auxheader-o-stackpsize"></span>`fn o_stackpsize(&self) -> u8`
 
-- <span id="xcoffauxheader64-o-flags"></span>`fn o_flags(&self) -> u8`
+- <span id="xcoffauxheader64-auxheader-o-flags"></span>`fn o_flags(&self) -> u8`
 
-- <span id="xcoffauxheader64-o-sntdata"></span>`fn o_sntdata(&self) -> u16`
+- <span id="xcoffauxheader64-auxheader-o-sntdata"></span>`fn o_sntdata(&self) -> u16`
 
-- <span id="xcoffauxheader64-o-sntbss"></span>`fn o_sntbss(&self) -> u16`
+- <span id="xcoffauxheader64-auxheader-o-sntbss"></span>`fn o_sntbss(&self) -> u16`
 
-- <span id="xcoffauxheader64-o-x64flags"></span>`fn o_x64flags(&self) -> Option<u16>`
+- <span id="xcoffauxheader64-auxheader-o-x64flags"></span>`fn o_x64flags(&self) -> Option<u16>`
+
+##### `impl<T> Borrow for AuxHeader64`
+
+- <span id="auxheader64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AuxHeader64`
+
+- <span id="auxheader64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for AuxHeader64`
 
 - <span id="auxheader64-clone"></span>`fn clone(&self) -> AuxHeader64` — [`AuxHeader64`](#auxheader64)
 
+##### `impl CloneToUninit for AuxHeader64`
+
+- <span id="auxheader64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for AuxHeader64`
 
 ##### `impl Debug for AuxHeader64`
 
-- <span id="auxheader64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="auxheader64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AuxHeader64`
+
+- <span id="auxheader64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AuxHeader64`
+
+- <span id="auxheader64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for AuxHeader64`
+
+##### `impl ToOwned for AuxHeader64`
+
+- <span id="auxheader64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="auxheader64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="auxheader64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AuxHeader64`
+
+- <span id="auxheader64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="auxheader64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AuxHeader64`
+
+- <span id="auxheader64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="auxheader64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SectionHeader32`
 
@@ -1119,15 +1335,49 @@ Section header.
 
 #### Trait Implementations
 
+##### `impl Any for SectionHeader32`
+
+- <span id="sectionheader32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SectionHeader32`
+
+- <span id="sectionheader32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SectionHeader32`
+
+- <span id="sectionheader32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SectionHeader32`
 
 - <span id="sectionheader32-clone"></span>`fn clone(&self) -> SectionHeader32` — [`SectionHeader32`](#sectionheader32)
+
+##### `impl CloneToUninit for SectionHeader32`
+
+- <span id="sectionheader32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for SectionHeader32`
 
 ##### `impl Debug for SectionHeader32`
 
-- <span id="sectionheader32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sectionheader32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SectionHeader32`
+
+- <span id="sectionheader32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SectionHeader32`
+
+- <span id="sectionheader32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for SectionHeader32`
 
@@ -1141,27 +1391,53 @@ Section header.
 
 - <span id="xcoffsectionheader32-sectionheader-type-rel"></span>`type Rel = Rel32`
 
-- <span id="xcoffsectionheader32-s-name"></span>`fn s_name(&self) -> &[u8; 8]`
+- <span id="xcoffsectionheader32-sectionheader-s-name"></span>`fn s_name(&self) -> &[u8; 8]`
 
-- <span id="xcoffsectionheader32-s-paddr"></span>`fn s_paddr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+- <span id="xcoffsectionheader32-sectionheader-s-paddr"></span>`fn s_paddr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader32-s-vaddr"></span>`fn s_vaddr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+- <span id="xcoffsectionheader32-sectionheader-s-vaddr"></span>`fn s_vaddr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader32-s-size"></span>`fn s_size(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+- <span id="xcoffsectionheader32-sectionheader-s-size"></span>`fn s_size(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader32-s-scnptr"></span>`fn s_scnptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+- <span id="xcoffsectionheader32-sectionheader-s-scnptr"></span>`fn s_scnptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader32-s-relptr"></span>`fn s_relptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+- <span id="xcoffsectionheader32-sectionheader-s-relptr"></span>`fn s_relptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader32-s-lnnoptr"></span>`fn s_lnnoptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+- <span id="xcoffsectionheader32-sectionheader-s-lnnoptr"></span>`fn s_lnnoptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader32-s-nreloc"></span>`fn s_nreloc(&self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+- <span id="xcoffsectionheader32-sectionheader-s-nreloc"></span>`fn s_nreloc(&self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader32-s-nlnno"></span>`fn s_nlnno(&self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+- <span id="xcoffsectionheader32-sectionheader-s-nlnno"></span>`fn s_nlnno(&self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader32-s-flags"></span>`fn s_flags(&self) -> u32`
+- <span id="xcoffsectionheader32-sectionheader-s-flags"></span>`fn s_flags(&self) -> u32`
 
-- <span id="xcoffsectionheader32-relocations"></span>`fn relocations<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [<Self as >::Rel]>` — [`Result`](../index.md#result), [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+- <span id="xcoffsectionheader32-sectionheader-relocations"></span>`fn relocations<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [<Self as >::Rel]>` — [`Result`](../index.md#result), [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+
+  Read the relocations in a XCOFF32 file.
+
+  
+
+  `data` must be the entire file data.
+
+##### `impl ToOwned for SectionHeader32`
+
+- <span id="sectionheader32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sectionheader32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sectionheader32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SectionHeader32`
+
+- <span id="sectionheader32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sectionheader32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SectionHeader32`
+
+- <span id="sectionheader32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sectionheader32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SectionHeader64`
 
@@ -1233,15 +1509,49 @@ Section header.
 
 #### Trait Implementations
 
+##### `impl Any for SectionHeader64`
+
+- <span id="sectionheader64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SectionHeader64`
+
+- <span id="sectionheader64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SectionHeader64`
+
+- <span id="sectionheader64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SectionHeader64`
 
 - <span id="sectionheader64-clone"></span>`fn clone(&self) -> SectionHeader64` — [`SectionHeader64`](#sectionheader64)
+
+##### `impl CloneToUninit for SectionHeader64`
+
+- <span id="sectionheader64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for SectionHeader64`
 
 ##### `impl Debug for SectionHeader64`
 
-- <span id="sectionheader64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sectionheader64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SectionHeader64`
+
+- <span id="sectionheader64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SectionHeader64`
+
+- <span id="sectionheader64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for SectionHeader64`
 
@@ -1255,27 +1565,53 @@ Section header.
 
 - <span id="xcoffsectionheader64-sectionheader-type-rel"></span>`type Rel = Rel64`
 
-- <span id="xcoffsectionheader64-s-name"></span>`fn s_name(&self) -> &[u8; 8]`
+- <span id="xcoffsectionheader64-sectionheader-s-name"></span>`fn s_name(&self) -> &[u8; 8]`
 
-- <span id="xcoffsectionheader64-s-paddr"></span>`fn s_paddr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+- <span id="xcoffsectionheader64-sectionheader-s-paddr"></span>`fn s_paddr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader64-s-vaddr"></span>`fn s_vaddr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+- <span id="xcoffsectionheader64-sectionheader-s-vaddr"></span>`fn s_vaddr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader64-s-size"></span>`fn s_size(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+- <span id="xcoffsectionheader64-sectionheader-s-size"></span>`fn s_size(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader64-s-scnptr"></span>`fn s_scnptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+- <span id="xcoffsectionheader64-sectionheader-s-scnptr"></span>`fn s_scnptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader64-s-relptr"></span>`fn s_relptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+- <span id="xcoffsectionheader64-sectionheader-s-relptr"></span>`fn s_relptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader64-s-lnnoptr"></span>`fn s_lnnoptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+- <span id="xcoffsectionheader64-sectionheader-s-lnnoptr"></span>`fn s_lnnoptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader64-s-nreloc"></span>`fn s_nreloc(&self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+- <span id="xcoffsectionheader64-sectionheader-s-nreloc"></span>`fn s_nreloc(&self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader64-s-nlnno"></span>`fn s_nlnno(&self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+- <span id="xcoffsectionheader64-sectionheader-s-nlnno"></span>`fn s_nlnno(&self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader64-s-flags"></span>`fn s_flags(&self) -> u32`
+- <span id="xcoffsectionheader64-sectionheader-s-flags"></span>`fn s_flags(&self) -> u32`
 
-- <span id="xcoffsectionheader64-relocations"></span>`fn relocations<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [<Self as >::Rel]>` — [`Result`](../index.md#result), [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+- <span id="xcoffsectionheader64-sectionheader-relocations"></span>`fn relocations<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [<Self as >::Rel]>` — [`Result`](../index.md#result), [`SectionHeader`](../read/xcoff/index.md#sectionheader)
+
+  Read the relocations in a XCOFF64 file.
+
+  
+
+  `data` must be the entire file data.
+
+##### `impl ToOwned for SectionHeader64`
+
+- <span id="sectionheader64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sectionheader64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sectionheader64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SectionHeader64`
+
+- <span id="sectionheader64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sectionheader64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SectionHeader64`
+
+- <span id="sectionheader64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sectionheader64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SymbolBytes`
 
@@ -1287,17 +1623,71 @@ struct SymbolBytes([u8; 18]);
 
 #### Trait Implementations
 
+##### `impl Any for SymbolBytes`
+
+- <span id="symbolbytes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SymbolBytes`
+
+- <span id="symbolbytes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SymbolBytes`
+
+- <span id="symbolbytes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SymbolBytes`
 
 - <span id="symbolbytes-clone"></span>`fn clone(&self) -> SymbolBytes` — [`SymbolBytes`](#symbolbytes)
+
+##### `impl CloneToUninit for SymbolBytes`
+
+- <span id="symbolbytes-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for SymbolBytes`
 
 ##### `impl Debug for SymbolBytes`
 
-- <span id="symbolbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbolbytes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SymbolBytes`
+
+- <span id="symbolbytes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SymbolBytes`
+
+- <span id="symbolbytes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for SymbolBytes`
+
+##### `impl ToOwned for SymbolBytes`
+
+- <span id="symbolbytes-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="symbolbytes-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="symbolbytes-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SymbolBytes`
+
+- <span id="symbolbytes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symbolbytes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SymbolBytes`
+
+- <span id="symbolbytes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symbolbytes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Symbol32`
 
@@ -1346,15 +1736,49 @@ Symbol table entry.
 
 #### Trait Implementations
 
+##### `impl Any for Symbol32`
+
+- <span id="symbol32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Symbol32`
+
+- <span id="symbol32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Symbol32`
+
+- <span id="symbol32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Symbol32`
 
 - <span id="symbol32-clone"></span>`fn clone(&self) -> Symbol32` — [`Symbol32`](#symbol32)
+
+##### `impl CloneToUninit for Symbol32`
+
+- <span id="symbol32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Symbol32`
 
 ##### `impl Debug for Symbol32`
 
-- <span id="symbol32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbol32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Symbol32`
+
+- <span id="symbol32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Symbol32`
+
+- <span id="symbol32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for Symbol32`
 
@@ -1362,19 +1786,41 @@ Symbol table entry.
 
 - <span id="xcoffsymbol32-symbol-type-word"></span>`type Word = u32`
 
-- <span id="xcoffsymbol32-n-value"></span>`fn n_value(&self) -> <Self as >::Word` — [`Symbol`](../read/xcoff/index.md#symbol)
+- <span id="xcoffsymbol32-symbol-n-value"></span>`fn n_value(&self) -> <Self as >::Word` — [`Symbol`](../read/xcoff/index.md#symbol)
 
-- <span id="xcoffsymbol32-n-scnum"></span>`fn n_scnum(&self) -> i16`
+- <span id="xcoffsymbol32-symbol-n-scnum"></span>`fn n_scnum(&self) -> i16`
 
-- <span id="xcoffsymbol32-n-type"></span>`fn n_type(&self) -> u16`
+- <span id="xcoffsymbol32-symbol-n-type"></span>`fn n_type(&self) -> u16`
 
-- <span id="xcoffsymbol32-n-sclass"></span>`fn n_sclass(&self) -> u8`
+- <span id="xcoffsymbol32-symbol-n-sclass"></span>`fn n_sclass(&self) -> u8`
 
-- <span id="xcoffsymbol32-n-numaux"></span>`fn n_numaux(&self) -> u8`
+- <span id="xcoffsymbol32-symbol-n-numaux"></span>`fn n_numaux(&self) -> u8`
 
-- <span id="xcoffsymbol32-name-offset"></span>`fn name_offset(&self) -> Option<u32>`
+- <span id="xcoffsymbol32-symbol-name-offset"></span>`fn name_offset(&self) -> Option<u32>`
 
-- <span id="xcoffsymbol32-name"></span>`fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md#stringtable), [`Result`](../index.md#result)
+- <span id="xcoffsymbol32-symbol-name"></span>`fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md#stringtable), [`Result`](../index.md#result)
+
+  Parse the symbol name for XCOFF32.
+
+##### `impl ToOwned for Symbol32`
+
+- <span id="symbol32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="symbol32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="symbol32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Symbol32`
+
+- <span id="symbol32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symbol32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Symbol32`
+
+- <span id="symbol32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symbol32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Symbol64`
 
@@ -1421,15 +1867,49 @@ Symbol table entry.
 
 #### Trait Implementations
 
+##### `impl Any for Symbol64`
+
+- <span id="symbol64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Symbol64`
+
+- <span id="symbol64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Symbol64`
+
+- <span id="symbol64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Symbol64`
 
 - <span id="symbol64-clone"></span>`fn clone(&self) -> Symbol64` — [`Symbol64`](#symbol64)
+
+##### `impl CloneToUninit for Symbol64`
+
+- <span id="symbol64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Symbol64`
 
 ##### `impl Debug for Symbol64`
 
-- <span id="symbol64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbol64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Symbol64`
+
+- <span id="symbol64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Symbol64`
+
+- <span id="symbol64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for Symbol64`
 
@@ -1437,19 +1917,41 @@ Symbol table entry.
 
 - <span id="xcoffsymbol64-symbol-type-word"></span>`type Word = u64`
 
-- <span id="xcoffsymbol64-n-value"></span>`fn n_value(&self) -> <Self as >::Word` — [`Symbol`](../read/xcoff/index.md#symbol)
+- <span id="xcoffsymbol64-symbol-n-value"></span>`fn n_value(&self) -> <Self as >::Word` — [`Symbol`](../read/xcoff/index.md#symbol)
 
-- <span id="xcoffsymbol64-n-scnum"></span>`fn n_scnum(&self) -> i16`
+- <span id="xcoffsymbol64-symbol-n-scnum"></span>`fn n_scnum(&self) -> i16`
 
-- <span id="xcoffsymbol64-n-type"></span>`fn n_type(&self) -> u16`
+- <span id="xcoffsymbol64-symbol-n-type"></span>`fn n_type(&self) -> u16`
 
-- <span id="xcoffsymbol64-n-sclass"></span>`fn n_sclass(&self) -> u8`
+- <span id="xcoffsymbol64-symbol-n-sclass"></span>`fn n_sclass(&self) -> u8`
 
-- <span id="xcoffsymbol64-n-numaux"></span>`fn n_numaux(&self) -> u8`
+- <span id="xcoffsymbol64-symbol-n-numaux"></span>`fn n_numaux(&self) -> u8`
 
-- <span id="xcoffsymbol64-name-offset"></span>`fn name_offset(&self) -> Option<u32>`
+- <span id="xcoffsymbol64-symbol-name-offset"></span>`fn name_offset(&self) -> Option<u32>`
 
-- <span id="xcoffsymbol64-name"></span>`fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md#stringtable), [`Result`](../index.md#result)
+- <span id="xcoffsymbol64-symbol-name"></span>`fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md#stringtable), [`Result`](../index.md#result)
+
+  Parse the symbol name for XCOFF64.
+
+##### `impl ToOwned for Symbol64`
+
+- <span id="symbol64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="symbol64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="symbol64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Symbol64`
+
+- <span id="symbol64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symbol64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Symbol64`
+
+- <span id="symbol64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symbol64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FileAux32`
 
@@ -1488,25 +1990,79 @@ File Auxiliary Entry for C_FILE Symbols.
 
 #### Trait Implementations
 
+##### `impl Any for FileAux32`
+
+- <span id="fileaux32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FileAux32`
+
+- <span id="fileaux32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FileAux32`
+
+- <span id="fileaux32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for FileAux32`
 
 - <span id="fileaux32-clone"></span>`fn clone(&self) -> FileAux32` — [`FileAux32`](#fileaux32)
+
+##### `impl CloneToUninit for FileAux32`
+
+- <span id="fileaux32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for FileAux32`
 
 ##### `impl Debug for FileAux32`
 
-- <span id="fileaux32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fileaux32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FileAux for xcoff::FileAux32`
 
-- <span id="xcofffileaux32-x-fname"></span>`fn x_fname(&self) -> &[u8; 8]`
+- <span id="xcofffileaux32-fileaux-x-fname"></span>`fn x_fname(&self) -> &[u8; 8]`
 
-- <span id="xcofffileaux32-x-ftype"></span>`fn x_ftype(&self) -> u8`
+- <span id="xcofffileaux32-fileaux-x-ftype"></span>`fn x_ftype(&self) -> u8`
 
-- <span id="xcofffileaux32-x-auxtype"></span>`fn x_auxtype(&self) -> Option<u8>`
+- <span id="xcofffileaux32-fileaux-x-auxtype"></span>`fn x_auxtype(&self) -> Option<u8>`
+
+##### `impl<T> From for FileAux32`
+
+- <span id="fileaux32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FileAux32`
+
+- <span id="fileaux32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for FileAux32`
+
+##### `impl ToOwned for FileAux32`
+
+- <span id="fileaux32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="fileaux32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="fileaux32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FileAux32`
+
+- <span id="fileaux32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fileaux32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FileAux32`
+
+- <span id="fileaux32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fileaux32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FileAux64`
 
@@ -1550,25 +2106,79 @@ File Auxiliary Entry for C_FILE Symbols.
 
 #### Trait Implementations
 
+##### `impl Any for FileAux64`
+
+- <span id="fileaux64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FileAux64`
+
+- <span id="fileaux64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FileAux64`
+
+- <span id="fileaux64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for FileAux64`
 
 - <span id="fileaux64-clone"></span>`fn clone(&self) -> FileAux64` — [`FileAux64`](#fileaux64)
+
+##### `impl CloneToUninit for FileAux64`
+
+- <span id="fileaux64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for FileAux64`
 
 ##### `impl Debug for FileAux64`
 
-- <span id="fileaux64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fileaux64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FileAux for xcoff::FileAux64`
 
-- <span id="xcofffileaux64-x-fname"></span>`fn x_fname(&self) -> &[u8; 8]`
+- <span id="xcofffileaux64-fileaux-x-fname"></span>`fn x_fname(&self) -> &[u8; 8]`
 
-- <span id="xcofffileaux64-x-ftype"></span>`fn x_ftype(&self) -> u8`
+- <span id="xcofffileaux64-fileaux-x-ftype"></span>`fn x_ftype(&self) -> u8`
 
-- <span id="xcofffileaux64-x-auxtype"></span>`fn x_auxtype(&self) -> Option<u8>`
+- <span id="xcofffileaux64-fileaux-x-auxtype"></span>`fn x_auxtype(&self) -> Option<u8>`
+
+##### `impl<T> From for FileAux64`
+
+- <span id="fileaux64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FileAux64`
+
+- <span id="fileaux64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for FileAux64`
+
+##### `impl ToOwned for FileAux64`
+
+- <span id="fileaux64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="fileaux64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="fileaux64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FileAux64`
+
+- <span id="fileaux64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fileaux64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FileAux64`
+
+- <span id="fileaux64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fileaux64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CsectAux32`
 
@@ -1620,35 +2230,89 @@ Csect auxiliary entry for C_EXT, C_WEAKEXT, and C_HIDEXT symbols.
 
 #### Trait Implementations
 
+##### `impl Any for CsectAux32`
+
+- <span id="csectaux32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CsectAux32`
+
+- <span id="csectaux32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CsectAux32`
+
+- <span id="csectaux32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for CsectAux32`
 
 - <span id="csectaux32-clone"></span>`fn clone(&self) -> CsectAux32` — [`CsectAux32`](#csectaux32)
+
+##### `impl CloneToUninit for CsectAux32`
+
+- <span id="csectaux32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for CsectAux32`
 
 ##### `impl CsectAux for xcoff::CsectAux32`
 
-- <span id="xcoffcsectaux32-x-scnlen"></span>`fn x_scnlen(&self) -> u64`
+- <span id="xcoffcsectaux32-csectaux-x-scnlen"></span>`fn x_scnlen(&self) -> u64`
 
-- <span id="xcoffcsectaux32-x-parmhash"></span>`fn x_parmhash(&self) -> u32`
+- <span id="xcoffcsectaux32-csectaux-x-parmhash"></span>`fn x_parmhash(&self) -> u32`
 
-- <span id="xcoffcsectaux32-x-snhash"></span>`fn x_snhash(&self) -> u16`
+- <span id="xcoffcsectaux32-csectaux-x-snhash"></span>`fn x_snhash(&self) -> u16`
 
-- <span id="xcoffcsectaux32-x-smtyp"></span>`fn x_smtyp(&self) -> u8`
+- <span id="xcoffcsectaux32-csectaux-x-smtyp"></span>`fn x_smtyp(&self) -> u8`
 
-- <span id="xcoffcsectaux32-x-smclas"></span>`fn x_smclas(&self) -> u8`
+- <span id="xcoffcsectaux32-csectaux-x-smclas"></span>`fn x_smclas(&self) -> u8`
 
-- <span id="xcoffcsectaux32-x-stab"></span>`fn x_stab(&self) -> Option<u32>`
+- <span id="xcoffcsectaux32-csectaux-x-stab"></span>`fn x_stab(&self) -> Option<u32>`
 
-- <span id="xcoffcsectaux32-x-snstab"></span>`fn x_snstab(&self) -> Option<u16>`
+- <span id="xcoffcsectaux32-csectaux-x-snstab"></span>`fn x_snstab(&self) -> Option<u16>`
 
-- <span id="xcoffcsectaux32-x-auxtype"></span>`fn x_auxtype(&self) -> Option<u8>`
+- <span id="xcoffcsectaux32-csectaux-x-auxtype"></span>`fn x_auxtype(&self) -> Option<u8>`
 
 ##### `impl Debug for CsectAux32`
 
-- <span id="csectaux32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="csectaux32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CsectAux32`
+
+- <span id="csectaux32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CsectAux32`
+
+- <span id="csectaux32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for CsectAux32`
+
+##### `impl ToOwned for CsectAux32`
+
+- <span id="csectaux32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="csectaux32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="csectaux32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CsectAux32`
+
+- <span id="csectaux32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="csectaux32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CsectAux32`
+
+- <span id="csectaux32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="csectaux32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CsectAux64`
 
@@ -1705,35 +2369,89 @@ Csect auxiliary entry for C_EXT, C_WEAKEXT, and C_HIDEXT symbols.
 
 #### Trait Implementations
 
+##### `impl Any for CsectAux64`
+
+- <span id="csectaux64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CsectAux64`
+
+- <span id="csectaux64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CsectAux64`
+
+- <span id="csectaux64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for CsectAux64`
 
 - <span id="csectaux64-clone"></span>`fn clone(&self) -> CsectAux64` — [`CsectAux64`](#csectaux64)
+
+##### `impl CloneToUninit for CsectAux64`
+
+- <span id="csectaux64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for CsectAux64`
 
 ##### `impl CsectAux for xcoff::CsectAux64`
 
-- <span id="xcoffcsectaux64-x-scnlen"></span>`fn x_scnlen(&self) -> u64`
+- <span id="xcoffcsectaux64-csectaux-x-scnlen"></span>`fn x_scnlen(&self) -> u64`
 
-- <span id="xcoffcsectaux64-x-parmhash"></span>`fn x_parmhash(&self) -> u32`
+- <span id="xcoffcsectaux64-csectaux-x-parmhash"></span>`fn x_parmhash(&self) -> u32`
 
-- <span id="xcoffcsectaux64-x-snhash"></span>`fn x_snhash(&self) -> u16`
+- <span id="xcoffcsectaux64-csectaux-x-snhash"></span>`fn x_snhash(&self) -> u16`
 
-- <span id="xcoffcsectaux64-x-smtyp"></span>`fn x_smtyp(&self) -> u8`
+- <span id="xcoffcsectaux64-csectaux-x-smtyp"></span>`fn x_smtyp(&self) -> u8`
 
-- <span id="xcoffcsectaux64-x-smclas"></span>`fn x_smclas(&self) -> u8`
+- <span id="xcoffcsectaux64-csectaux-x-smclas"></span>`fn x_smclas(&self) -> u8`
 
-- <span id="xcoffcsectaux64-x-stab"></span>`fn x_stab(&self) -> Option<u32>`
+- <span id="xcoffcsectaux64-csectaux-x-stab"></span>`fn x_stab(&self) -> Option<u32>`
 
-- <span id="xcoffcsectaux64-x-snstab"></span>`fn x_snstab(&self) -> Option<u16>`
+- <span id="xcoffcsectaux64-csectaux-x-snstab"></span>`fn x_snstab(&self) -> Option<u16>`
 
-- <span id="xcoffcsectaux64-x-auxtype"></span>`fn x_auxtype(&self) -> Option<u8>`
+- <span id="xcoffcsectaux64-csectaux-x-auxtype"></span>`fn x_auxtype(&self) -> Option<u8>`
 
 ##### `impl Debug for CsectAux64`
 
-- <span id="csectaux64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="csectaux64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CsectAux64`
+
+- <span id="csectaux64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CsectAux64`
+
+- <span id="csectaux64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for CsectAux64`
+
+##### `impl ToOwned for CsectAux64`
+
+- <span id="csectaux64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="csectaux64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="csectaux64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CsectAux64`
+
+- <span id="csectaux64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="csectaux64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CsectAux64`
+
+- <span id="csectaux64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="csectaux64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FunAux32`
 
@@ -1775,17 +2493,71 @@ Function auxiliary entry.
 
 #### Trait Implementations
 
+##### `impl Any for FunAux32`
+
+- <span id="funaux32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FunAux32`
+
+- <span id="funaux32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FunAux32`
+
+- <span id="funaux32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for FunAux32`
 
 - <span id="funaux32-clone"></span>`fn clone(&self) -> FunAux32` — [`FunAux32`](#funaux32)
+
+##### `impl CloneToUninit for FunAux32`
+
+- <span id="funaux32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for FunAux32`
 
 ##### `impl Debug for FunAux32`
 
-- <span id="funaux32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="funaux32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FunAux32`
+
+- <span id="funaux32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FunAux32`
+
+- <span id="funaux32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for FunAux32`
+
+##### `impl ToOwned for FunAux32`
+
+- <span id="funaux32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="funaux32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="funaux32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FunAux32`
+
+- <span id="funaux32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="funaux32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FunAux32`
+
+- <span id="funaux32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="funaux32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FunAux64`
 
@@ -1827,17 +2599,71 @@ Function auxiliary entry.
 
 #### Trait Implementations
 
+##### `impl Any for FunAux64`
+
+- <span id="funaux64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FunAux64`
+
+- <span id="funaux64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FunAux64`
+
+- <span id="funaux64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for FunAux64`
 
 - <span id="funaux64-clone"></span>`fn clone(&self) -> FunAux64` — [`FunAux64`](#funaux64)
+
+##### `impl CloneToUninit for FunAux64`
+
+- <span id="funaux64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for FunAux64`
 
 ##### `impl Debug for FunAux64`
 
-- <span id="funaux64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="funaux64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FunAux64`
+
+- <span id="funaux64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FunAux64`
+
+- <span id="funaux64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for FunAux64`
+
+##### `impl ToOwned for FunAux64`
+
+- <span id="funaux64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="funaux64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="funaux64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FunAux64`
+
+- <span id="funaux64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="funaux64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FunAux64`
+
+- <span id="funaux64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="funaux64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ExpAux`
 
@@ -1879,17 +2705,71 @@ Exception auxiliary entry. (XCOFF64 only)
 
 #### Trait Implementations
 
+##### `impl Any for ExpAux`
+
+- <span id="expaux-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ExpAux`
+
+- <span id="expaux-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ExpAux`
+
+- <span id="expaux-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ExpAux`
 
 - <span id="expaux-clone"></span>`fn clone(&self) -> ExpAux` — [`ExpAux`](#expaux)
+
+##### `impl CloneToUninit for ExpAux`
+
+- <span id="expaux-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ExpAux`
 
 ##### `impl Debug for ExpAux`
 
-- <span id="expaux-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="expaux-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ExpAux`
+
+- <span id="expaux-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ExpAux`
+
+- <span id="expaux-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for ExpAux`
+
+##### `impl ToOwned for ExpAux`
+
+- <span id="expaux-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="expaux-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="expaux-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ExpAux`
+
+- <span id="expaux-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="expaux-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ExpAux`
+
+- <span id="expaux-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="expaux-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BlockAux32`
 
@@ -1926,17 +2806,71 @@ Block auxiliary entry for the C_BLOCK and C_FCN Symbols.
 
 #### Trait Implementations
 
+##### `impl Any for BlockAux32`
+
+- <span id="blockaux32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BlockAux32`
+
+- <span id="blockaux32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BlockAux32`
+
+- <span id="blockaux32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BlockAux32`
 
 - <span id="blockaux32-clone"></span>`fn clone(&self) -> BlockAux32` — [`BlockAux32`](#blockaux32)
+
+##### `impl CloneToUninit for BlockAux32`
+
+- <span id="blockaux32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for BlockAux32`
 
 ##### `impl Debug for BlockAux32`
 
-- <span id="blockaux32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blockaux32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BlockAux32`
+
+- <span id="blockaux32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BlockAux32`
+
+- <span id="blockaux32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for BlockAux32`
+
+##### `impl ToOwned for BlockAux32`
+
+- <span id="blockaux32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="blockaux32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="blockaux32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BlockAux32`
+
+- <span id="blockaux32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="blockaux32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BlockAux32`
+
+- <span id="blockaux32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="blockaux32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BlockAux64`
 
@@ -1968,17 +2902,71 @@ Block auxiliary entry for the C_BLOCK and C_FCN Symbols.
 
 #### Trait Implementations
 
+##### `impl Any for BlockAux64`
+
+- <span id="blockaux64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BlockAux64`
+
+- <span id="blockaux64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BlockAux64`
+
+- <span id="blockaux64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BlockAux64`
 
 - <span id="blockaux64-clone"></span>`fn clone(&self) -> BlockAux64` — [`BlockAux64`](#blockaux64)
+
+##### `impl CloneToUninit for BlockAux64`
+
+- <span id="blockaux64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for BlockAux64`
 
 ##### `impl Debug for BlockAux64`
 
-- <span id="blockaux64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="blockaux64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BlockAux64`
+
+- <span id="blockaux64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BlockAux64`
+
+- <span id="blockaux64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for BlockAux64`
+
+##### `impl ToOwned for BlockAux64`
+
+- <span id="blockaux64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="blockaux64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="blockaux64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BlockAux64`
+
+- <span id="blockaux64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="blockaux64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BlockAux64`
+
+- <span id="blockaux64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="blockaux64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StatAux`
 
@@ -2015,17 +3003,71 @@ Section auxiliary entry for the C_STAT Symbol. (XCOFF32 Only)
 
 #### Trait Implementations
 
+##### `impl Any for StatAux`
+
+- <span id="stataux-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StatAux`
+
+- <span id="stataux-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StatAux`
+
+- <span id="stataux-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for StatAux`
 
 - <span id="stataux-clone"></span>`fn clone(&self) -> StatAux` — [`StatAux`](#stataux)
+
+##### `impl CloneToUninit for StatAux`
+
+- <span id="stataux-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for StatAux`
 
 ##### `impl Debug for StatAux`
 
-- <span id="stataux-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stataux-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for StatAux`
+
+- <span id="stataux-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StatAux`
+
+- <span id="stataux-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for StatAux`
+
+##### `impl ToOwned for StatAux`
+
+- <span id="stataux-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="stataux-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="stataux-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for StatAux`
+
+- <span id="stataux-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="stataux-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StatAux`
+
+- <span id="stataux-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="stataux-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwarfAux32`
 
@@ -2062,17 +3104,71 @@ Section auxiliary entry Format for C_DWARF symbols.
 
 #### Trait Implementations
 
+##### `impl Any for DwarfAux32`
+
+- <span id="dwarfaux32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwarfAux32`
+
+- <span id="dwarfaux32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwarfAux32`
+
+- <span id="dwarfaux32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwarfAux32`
 
 - <span id="dwarfaux32-clone"></span>`fn clone(&self) -> DwarfAux32` — [`DwarfAux32`](#dwarfaux32)
+
+##### `impl CloneToUninit for DwarfAux32`
+
+- <span id="dwarfaux32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwarfAux32`
 
 ##### `impl Debug for DwarfAux32`
 
-- <span id="dwarfaux32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwarfaux32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DwarfAux32`
+
+- <span id="dwarfaux32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DwarfAux32`
+
+- <span id="dwarfaux32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for DwarfAux32`
+
+##### `impl ToOwned for DwarfAux32`
+
+- <span id="dwarfaux32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwarfaux32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwarfaux32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DwarfAux32`
+
+- <span id="dwarfaux32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwarfaux32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwarfAux32`
+
+- <span id="dwarfaux32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwarfaux32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DwarfAux64`
 
@@ -2109,17 +3205,71 @@ Section auxiliary entry Format for C_DWARF symbols.
 
 #### Trait Implementations
 
+##### `impl Any for DwarfAux64`
+
+- <span id="dwarfaux64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DwarfAux64`
+
+- <span id="dwarfaux64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DwarfAux64`
+
+- <span id="dwarfaux64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DwarfAux64`
 
 - <span id="dwarfaux64-clone"></span>`fn clone(&self) -> DwarfAux64` — [`DwarfAux64`](#dwarfaux64)
+
+##### `impl CloneToUninit for DwarfAux64`
+
+- <span id="dwarfaux64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for DwarfAux64`
 
 ##### `impl Debug for DwarfAux64`
 
-- <span id="dwarfaux64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dwarfaux64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DwarfAux64`
+
+- <span id="dwarfaux64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DwarfAux64`
+
+- <span id="dwarfaux64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for DwarfAux64`
+
+##### `impl ToOwned for DwarfAux64`
+
+- <span id="dwarfaux64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="dwarfaux64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="dwarfaux64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DwarfAux64`
+
+- <span id="dwarfaux64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dwarfaux64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DwarfAux64`
+
+- <span id="dwarfaux64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dwarfaux64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Rel32`
 
@@ -2156,15 +3306,49 @@ Relocation table entry
 
 #### Trait Implementations
 
+##### `impl Any for Rel32`
+
+- <span id="rel32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Rel32`
+
+- <span id="rel32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Rel32`
+
+- <span id="rel32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Rel32`
 
 - <span id="rel32-clone"></span>`fn clone(&self) -> Rel32` — [`Rel32`](#rel32)
+
+##### `impl CloneToUninit for Rel32`
+
+- <span id="rel32-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Rel32`
 
 ##### `impl Debug for Rel32`
 
-- <span id="rel32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rel32-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Rel32`
+
+- <span id="rel32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Rel32`
+
+- <span id="rel32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for Rel32`
 
@@ -2172,13 +3356,33 @@ Relocation table entry
 
 - <span id="xcoffrel32-rel-type-word"></span>`type Word = u32`
 
-- <span id="xcoffrel32-r-vaddr"></span>`fn r_vaddr(&self) -> <Self as >::Word` — [`Rel`](../read/xcoff/index.md#rel)
+- <span id="xcoffrel32-rel-r-vaddr"></span>`fn r_vaddr(&self) -> <Self as >::Word` — [`Rel`](../read/xcoff/index.md#rel)
 
-- <span id="xcoffrel32-r-symndx"></span>`fn r_symndx(&self) -> u32`
+- <span id="xcoffrel32-rel-r-symndx"></span>`fn r_symndx(&self) -> u32`
 
-- <span id="xcoffrel32-r-rsize"></span>`fn r_rsize(&self) -> u8`
+- <span id="xcoffrel32-rel-r-rsize"></span>`fn r_rsize(&self) -> u8`
 
-- <span id="xcoffrel32-r-rtype"></span>`fn r_rtype(&self) -> u8`
+- <span id="xcoffrel32-rel-r-rtype"></span>`fn r_rtype(&self) -> u8`
+
+##### `impl ToOwned for Rel32`
+
+- <span id="rel32-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rel32-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rel32-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Rel32`
+
+- <span id="rel32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rel32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Rel32`
+
+- <span id="rel32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rel32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Rel64`
 
@@ -2215,15 +3419,49 @@ Relocation table entry
 
 #### Trait Implementations
 
+##### `impl Any for Rel64`
+
+- <span id="rel64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Rel64`
+
+- <span id="rel64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Rel64`
+
+- <span id="rel64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Rel64`
 
 - <span id="rel64-clone"></span>`fn clone(&self) -> Rel64` — [`Rel64`](#rel64)
+
+##### `impl CloneToUninit for Rel64`
+
+- <span id="rel64-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Rel64`
 
 ##### `impl Debug for Rel64`
 
-- <span id="rel64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rel64-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Rel64`
+
+- <span id="rel64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Rel64`
+
+- <span id="rel64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for Rel64`
 
@@ -2231,13 +3469,33 @@ Relocation table entry
 
 - <span id="xcoffrel64-rel-type-word"></span>`type Word = u64`
 
-- <span id="xcoffrel64-r-vaddr"></span>`fn r_vaddr(&self) -> <Self as >::Word` — [`Rel`](../read/xcoff/index.md#rel)
+- <span id="xcoffrel64-rel-r-vaddr"></span>`fn r_vaddr(&self) -> <Self as >::Word` — [`Rel`](../read/xcoff/index.md#rel)
 
-- <span id="xcoffrel64-r-symndx"></span>`fn r_symndx(&self) -> u32`
+- <span id="xcoffrel64-rel-r-symndx"></span>`fn r_symndx(&self) -> u32`
 
-- <span id="xcoffrel64-r-rsize"></span>`fn r_rsize(&self) -> u8`
+- <span id="xcoffrel64-rel-r-rsize"></span>`fn r_rsize(&self) -> u8`
 
-- <span id="xcoffrel64-r-rtype"></span>`fn r_rtype(&self) -> u8`
+- <span id="xcoffrel64-rel-r-rtype"></span>`fn r_rtype(&self) -> u8`
+
+##### `impl ToOwned for Rel64`
+
+- <span id="rel64-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="rel64-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="rel64-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Rel64`
+
+- <span id="rel64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="rel64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Rel64`
+
+- <span id="rel64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="rel64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Constants
 

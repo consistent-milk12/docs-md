@@ -53,27 +53,227 @@ Finds all occurrences of a single byte in a haystack.
 
 - <span id="one-new"></span>`unsafe fn new(needle: u8) -> One<V>` — [`One`](#one)
 
+  Create a new searcher that finds occurrences of the byte given.
+
 - <span id="one-needle1"></span>`fn needle1(&self) -> u8`
+
+  Returns the needle given to `One::new`.
 
 - <span id="one-find-raw"></span>`unsafe fn find_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
+  Return a pointer to the first occurrence of the needle in the given
+
+  haystack. If no such occurrence exists, then `None` is returned.
+
+  
+
+  When a match is found, the pointer returned is guaranteed to be
+
+  `>= start` and `< end`.
+
+  
+
+  # Safety
+
+  
+
+  * It must be the case that `start < end` and that the distance between
+
+  them is at least equal to `V::BYTES`. That is, it must always be valid
+
+  to do at least an unaligned load of `V` at `start`.
+
+  * Both `start` and `end` must be valid for reads.
+
+  * Both `start` and `end` must point to an initialized value.
+
+  * Both `start` and `end` must point to the same allocated object and
+
+  must either be in bounds or at most one byte past the end of the
+
+  allocated object.
+
+  * Both `start` and `end` must be _derived from_ a pointer to the same
+
+  object.
+
+  * The distance between `start` and `end` must not overflow `isize`.
+
+  * The distance being in bounds must not rely on "wrapping around" the
+
+  address space.
+
 - <span id="one-rfind-raw"></span>`unsafe fn rfind_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
+
+  Return a pointer to the last occurrence of the needle in the given
+
+  haystack. If no such occurrence exists, then `None` is returned.
+
+  
+
+  When a match is found, the pointer returned is guaranteed to be
+
+  `>= start` and `< end`.
+
+  
+
+  # Safety
+
+  
+
+  * It must be the case that `start < end` and that the distance between
+
+  them is at least equal to `V::BYTES`. That is, it must always be valid
+
+  to do at least an unaligned load of `V` at `start`.
+
+  * Both `start` and `end` must be valid for reads.
+
+  * Both `start` and `end` must point to an initialized value.
+
+  * Both `start` and `end` must point to the same allocated object and
+
+  must either be in bounds or at most one byte past the end of the
+
+  allocated object.
+
+  * Both `start` and `end` must be _derived from_ a pointer to the same
+
+  object.
+
+  * The distance between `start` and `end` must not overflow `isize`.
+
+  * The distance being in bounds must not rely on "wrapping around" the
+
+  address space.
 
 - <span id="one-count-raw"></span>`unsafe fn count_raw(&self, start: *const u8, end: *const u8) -> usize`
 
+  Return a count of all matching bytes in the given haystack.
+
+  
+
+  # Safety
+
+  
+
+  * It must be the case that `start < end` and that the distance between
+
+  them is at least equal to `V::BYTES`. That is, it must always be valid
+
+  to do at least an unaligned load of `V` at `start`.
+
+  * Both `start` and `end` must be valid for reads.
+
+  * Both `start` and `end` must point to an initialized value.
+
+  * Both `start` and `end` must point to the same allocated object and
+
+  must either be in bounds or at most one byte past the end of the
+
+  allocated object.
+
+  * Both `start` and `end` must be _derived from_ a pointer to the same
+
+  object.
+
+  * The distance between `start` and `end` must not overflow `isize`.
+
+  * The distance being in bounds must not rely on "wrapping around" the
+
+  address space.
+
 - <span id="one-search-chunk"></span>`unsafe fn search_chunk(&self, cur: *const u8, mask_to_offset: impl Fn(<V as >::Mask) -> usize) -> Option<*const u8>` — [`Vector`](../../../vector/index.md#vector)
 
+  Search `V::BYTES` starting at `cur` via an unaligned load.
+
+  
+
+  `mask_to_offset` should be a function that converts a `movemask` to
+
+  an offset such that `cur.add(offset)` corresponds to a pointer to the
+
+  match location if one is found. Generally it is expected to use either
+
+  `mask_to_first_offset` or `mask_to_last_offset`, depending on whether
+
+  one is implementing a forward or reverse search, respectively.
+
+  
+
+  # Safety
+
+  
+
+  `cur` must be a valid pointer and it must be valid to do an unaligned
+
+  load of size `V::BYTES` at `cur`.
+
 #### Trait Implementations
+
+##### `impl Any for One<V>`
+
+- <span id="one-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for One<V>`
+
+- <span id="one-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for One<V>`
+
+- <span id="one-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<V: clone::Clone> Clone for One<V>`
 
 - <span id="one-clone"></span>`fn clone(&self) -> One<V>` — [`One`](#one)
 
+##### `impl CloneToUninit for One<V>`
+
+- <span id="one-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<V: marker::Copy> Copy for One<V>`
 
 ##### `impl<V: fmt::Debug> Debug for One<V>`
 
-- <span id="one-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="one-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for One<V>`
+
+- <span id="one-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for One<V>`
+
+- <span id="one-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for One<V>`
+
+- <span id="one-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="one-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="one-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for One<V>`
+
+- <span id="one-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="one-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for One<V>`
+
+- <span id="one-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="one-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Two<V>`
 
@@ -100,27 +300,195 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 
 - <span id="two-new"></span>`unsafe fn new(needle1: u8, needle2: u8) -> Two<V>` — [`Two`](#two)
 
+  Create a new searcher that finds occurrences of the byte given.
+
 - <span id="two-needle1"></span>`fn needle1(&self) -> u8`
+
+  Returns the first needle given to `Two::new`.
 
 - <span id="two-needle2"></span>`fn needle2(&self) -> u8`
 
+  Returns the second needle given to `Two::new`.
+
 - <span id="two-find-raw"></span>`unsafe fn find_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
+
+  Return a pointer to the first occurrence of one of the needles in the
+
+  given haystack. If no such occurrence exists, then `None` is returned.
+
+  
+
+  When a match is found, the pointer returned is guaranteed to be
+
+  `>= start` and `< end`.
+
+  
+
+  # Safety
+
+  
+
+  * It must be the case that `start < end` and that the distance between
+
+  them is at least equal to `V::BYTES`. That is, it must always be valid
+
+  to do at least an unaligned load of `V` at `start`.
+
+  * Both `start` and `end` must be valid for reads.
+
+  * Both `start` and `end` must point to an initialized value.
+
+  * Both `start` and `end` must point to the same allocated object and
+
+  must either be in bounds or at most one byte past the end of the
+
+  allocated object.
+
+  * Both `start` and `end` must be _derived from_ a pointer to the same
+
+  object.
+
+  * The distance between `start` and `end` must not overflow `isize`.
+
+  * The distance being in bounds must not rely on "wrapping around" the
+
+  address space.
 
 - <span id="two-rfind-raw"></span>`unsafe fn rfind_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
+  Return a pointer to the last occurrence of the needle in the given
+
+  haystack. If no such occurrence exists, then `None` is returned.
+
+  
+
+  When a match is found, the pointer returned is guaranteed to be
+
+  `>= start` and `< end`.
+
+  
+
+  # Safety
+
+  
+
+  * It must be the case that `start < end` and that the distance between
+
+  them is at least equal to `V::BYTES`. That is, it must always be valid
+
+  to do at least an unaligned load of `V` at `start`.
+
+  * Both `start` and `end` must be valid for reads.
+
+  * Both `start` and `end` must point to an initialized value.
+
+  * Both `start` and `end` must point to the same allocated object and
+
+  must either be in bounds or at most one byte past the end of the
+
+  allocated object.
+
+  * Both `start` and `end` must be _derived from_ a pointer to the same
+
+  object.
+
+  * The distance between `start` and `end` must not overflow `isize`.
+
+  * The distance being in bounds must not rely on "wrapping around" the
+
+  address space.
+
 - <span id="two-search-chunk"></span>`unsafe fn search_chunk(&self, cur: *const u8, mask_to_offset: impl Fn(<V as >::Mask) -> usize) -> Option<*const u8>` — [`Vector`](../../../vector/index.md#vector)
 
+  Search `V::BYTES` starting at `cur` via an unaligned load.
+
+  
+
+  `mask_to_offset` should be a function that converts a `movemask` to
+
+  an offset such that `cur.add(offset)` corresponds to a pointer to the
+
+  match location if one is found. Generally it is expected to use either
+
+  `mask_to_first_offset` or `mask_to_last_offset`, depending on whether
+
+  one is implementing a forward or reverse search, respectively.
+
+  
+
+  # Safety
+
+  
+
+  `cur` must be a valid pointer and it must be valid to do an unaligned
+
+  load of size `V::BYTES` at `cur`.
+
 #### Trait Implementations
+
+##### `impl Any for Two<V>`
+
+- <span id="two-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Two<V>`
+
+- <span id="two-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Two<V>`
+
+- <span id="two-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<V: clone::Clone> Clone for Two<V>`
 
 - <span id="two-clone"></span>`fn clone(&self) -> Two<V>` — [`Two`](#two)
 
+##### `impl CloneToUninit for Two<V>`
+
+- <span id="two-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<V: marker::Copy> Copy for Two<V>`
 
 ##### `impl<V: fmt::Debug> Debug for Two<V>`
 
-- <span id="two-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="two-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Two<V>`
+
+- <span id="two-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Two<V>`
+
+- <span id="two-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Two<V>`
+
+- <span id="two-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="two-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="two-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Two<V>`
+
+- <span id="two-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="two-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Two<V>`
+
+- <span id="two-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="two-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Three<V>`
 
@@ -149,29 +517,199 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 
 - <span id="three-new"></span>`unsafe fn new(needle1: u8, needle2: u8, needle3: u8) -> Three<V>` — [`Three`](#three)
 
+  Create a new searcher that finds occurrences of the byte given.
+
 - <span id="three-needle1"></span>`fn needle1(&self) -> u8`
+
+  Returns the first needle given to `Three::new`.
 
 - <span id="three-needle2"></span>`fn needle2(&self) -> u8`
 
+  Returns the second needle given to `Three::new`.
+
 - <span id="three-needle3"></span>`fn needle3(&self) -> u8`
+
+  Returns the third needle given to `Three::new`.
 
 - <span id="three-find-raw"></span>`unsafe fn find_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
+  Return a pointer to the first occurrence of one of the needles in the
+
+  given haystack. If no such occurrence exists, then `None` is returned.
+
+  
+
+  When a match is found, the pointer returned is guaranteed to be
+
+  `>= start` and `< end`.
+
+  
+
+  # Safety
+
+  
+
+  * It must be the case that `start < end` and that the distance between
+
+  them is at least equal to `V::BYTES`. That is, it must always be valid
+
+  to do at least an unaligned load of `V` at `start`.
+
+  * Both `start` and `end` must be valid for reads.
+
+  * Both `start` and `end` must point to an initialized value.
+
+  * Both `start` and `end` must point to the same allocated object and
+
+  must either be in bounds or at most one byte past the end of the
+
+  allocated object.
+
+  * Both `start` and `end` must be _derived from_ a pointer to the same
+
+  object.
+
+  * The distance between `start` and `end` must not overflow `isize`.
+
+  * The distance being in bounds must not rely on "wrapping around" the
+
+  address space.
+
 - <span id="three-rfind-raw"></span>`unsafe fn rfind_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
+
+  Return a pointer to the last occurrence of the needle in the given
+
+  haystack. If no such occurrence exists, then `None` is returned.
+
+  
+
+  When a match is found, the pointer returned is guaranteed to be
+
+  `>= start` and `< end`.
+
+  
+
+  # Safety
+
+  
+
+  * It must be the case that `start < end` and that the distance between
+
+  them is at least equal to `V::BYTES`. That is, it must always be valid
+
+  to do at least an unaligned load of `V` at `start`.
+
+  * Both `start` and `end` must be valid for reads.
+
+  * Both `start` and `end` must point to an initialized value.
+
+  * Both `start` and `end` must point to the same allocated object and
+
+  must either be in bounds or at most one byte past the end of the
+
+  allocated object.
+
+  * Both `start` and `end` must be _derived from_ a pointer to the same
+
+  object.
+
+  * The distance between `start` and `end` must not overflow `isize`.
+
+  * The distance being in bounds must not rely on "wrapping around" the
+
+  address space.
 
 - <span id="three-search-chunk"></span>`unsafe fn search_chunk(&self, cur: *const u8, mask_to_offset: impl Fn(<V as >::Mask) -> usize) -> Option<*const u8>` — [`Vector`](../../../vector/index.md#vector)
 
+  Search `V::BYTES` starting at `cur` via an unaligned load.
+
+  
+
+  `mask_to_offset` should be a function that converts a `movemask` to
+
+  an offset such that `cur.add(offset)` corresponds to a pointer to the
+
+  match location if one is found. Generally it is expected to use either
+
+  `mask_to_first_offset` or `mask_to_last_offset`, depending on whether
+
+  one is implementing a forward or reverse search, respectively.
+
+  
+
+  # Safety
+
+  
+
+  `cur` must be a valid pointer and it must be valid to do an unaligned
+
+  load of size `V::BYTES` at `cur`.
+
 #### Trait Implementations
+
+##### `impl Any for Three<V>`
+
+- <span id="three-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Three<V>`
+
+- <span id="three-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Three<V>`
+
+- <span id="three-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<V: clone::Clone> Clone for Three<V>`
 
 - <span id="three-clone"></span>`fn clone(&self) -> Three<V>` — [`Three`](#three)
 
+##### `impl CloneToUninit for Three<V>`
+
+- <span id="three-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<V: marker::Copy> Copy for Three<V>`
 
 ##### `impl<V: fmt::Debug> Debug for Three<V>`
 
-- <span id="three-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="three-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Three<V>`
+
+- <span id="three-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Three<V>`
+
+- <span id="three-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Three<V>`
+
+- <span id="three-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="three-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="three-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Three<V>`
+
+- <span id="three-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="three-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Three<V>`
+
+- <span id="three-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="three-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Iter<'h>`
 
@@ -228,27 +766,115 @@ respectively.
 
 - <span id="iter-new"></span>`fn new(haystack: &'h [u8]) -> Iter<'h>` — [`Iter`](#iter)
 
+  Create a new generic memchr iterator.
+
 - <span id="iter-next"></span>`unsafe fn next(&mut self, find_raw: impl FnMut(*const u8, *const u8) -> Option<*const u8>) -> Option<usize>`
+
+  Returns the next occurrence in the forward direction.
+
+  
+
+  # Safety
+
+  
+
+  Callers must ensure that if a pointer is returned from the closure
+
+  provided, then it must be greater than or equal to the start pointer
+
+  and less than the end pointer.
 
 - <span id="iter-count"></span>`fn count(self, count_raw: impl FnMut(*const u8, *const u8) -> usize) -> usize`
 
+  Returns the number of remaining elements in this iterator.
+
 - <span id="iter-next-back"></span>`unsafe fn next_back(&mut self, rfind_raw: impl FnMut(*const u8, *const u8) -> Option<*const u8>) -> Option<usize>`
+
+  Returns the next occurrence in reverse.
+
+  
+
+  # Safety
+
+  
+
+  Callers must ensure that if a pointer is returned from the closure
+
+  provided, then it must be greater than or equal to the start pointer
+
+  and less than the end pointer.
 
 - <span id="iter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
+  Provides an implementation of `Iterator::size_hint`.
+
 #### Trait Implementations
+
+##### `impl Any for Iter<'h>`
+
+- <span id="iter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Iter<'h>`
+
+- <span id="iter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Iter<'h>`
+
+- <span id="iter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Iter<'h>`
 
 - <span id="iter-clone"></span>`fn clone(&self) -> Iter<'h>` — [`Iter`](#iter)
 
+##### `impl CloneToUninit for Iter<'h>`
+
+- <span id="iter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Iter<'h>`
 
-- <span id="iter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="iter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Iter<'h>`
+
+- <span id="iter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Iter<'h>`
+
+- <span id="iter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Send for Iter<'h>`
 
 ##### `impl Sync for Iter<'h>`
+
+##### `impl ToOwned for Iter<'h>`
+
+- <span id="iter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="iter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="iter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Iter<'h>`
+
+- <span id="iter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="iter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Iter<'h>`
+
+- <span id="iter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="iter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

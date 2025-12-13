@@ -97,17 +97,83 @@ much else. If you have a use case for more APIs, please submit an issue.
 
 - <span id="prefilter-find-in"></span>`fn find_in(&self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../util/search/index.md#span), [`Candidate`](../util/prefilter/index.md#candidate)
 
+  Execute a search in the haystack within the span given. If a match or
+
+  a possible match is returned, then it is guaranteed to occur within
+
+  the bounds of the span.
+
+  
+
+  If the span provided is invalid for the given haystack, then behavior
+
+  is unspecified.
+
 - <span id="prefilter-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
+
+##### `impl Any for Prefilter`
+
+- <span id="prefilter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Prefilter`
+
+- <span id="prefilter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Prefilter`
+
+- <span id="prefilter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Prefilter`
 
 - <span id="prefilter-clone"></span>`fn clone(&self) -> Prefilter` — [`Prefilter`](../util/prefilter/index.md#prefilter)
 
+##### `impl CloneToUninit for Prefilter`
+
+- <span id="prefilter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Prefilter`
 
-- <span id="prefilter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="prefilter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Prefilter`
+
+- <span id="prefilter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Prefilter`
+
+- <span id="prefilter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Prefilter`
+
+- <span id="prefilter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="prefilter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="prefilter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Prefilter`
+
+- <span id="prefilter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="prefilter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Prefilter`
+
+- <span id="prefilter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="prefilter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StateID`
 
@@ -147,47 +213,179 @@ panics or silent logical errors.
 
 - <span id="stateid-new"></span>`fn new(value: usize) -> Result<StateID, StateIDError>` — [`StateID`](../util/primitives/index.md#stateid), [`StateIDError`](../util/primitives/index.md#stateiderror)
 
+  Create a new value that is represented by a "small index."
+
+  
+
+  If the given index exceeds the maximum allowed value, then this
+
+  returns an error.
+
 - <span id="stateid-new-unchecked"></span>`const fn new_unchecked(value: usize) -> StateID` — [`StateID`](../util/primitives/index.md#stateid)
+
+  Create a new value without checking whether the given argument
+
+  exceeds the maximum.
+
+  
+
+  Using this routine with an invalid value will result in
+
+  unspecified behavior, but *not* undefined behavior. In
+
+  particular, an invalid ID value is likely to cause panics or
+
+  possibly even silent logical errors.
+
+  
+
+  Callers must never rely on this type to be within a certain
+
+  range for memory safety.
 
 - <span id="stateid-from-u32-unchecked"></span>`const fn from_u32_unchecked(index: u32) -> StateID` — [`StateID`](../util/primitives/index.md#stateid)
 
+  Create a new value from a `u32` without checking whether the
+
+  given value exceeds the maximum.
+
+  
+
+  Using this routine with an invalid value will result in
+
+  unspecified behavior, but *not* undefined behavior. In
+
+  particular, an invalid ID value is likely to cause panics or
+
+  possibly even silent logical errors.
+
+  
+
+  Callers must never rely on this type to be within a certain
+
+  range for memory safety.
+
 - <span id="stateid-must"></span>`fn must(value: usize) -> StateID` — [`StateID`](../util/primitives/index.md#stateid)
+
+  Like `new`, but panics if the given value is not valid.
 
 - <span id="stateid-as-usize"></span>`const fn as_usize(&self) -> usize`
 
+  Return the internal value as a `usize`. This is guaranteed to
+
+  never overflow `usize`.
+
 - <span id="stateid-as-u64"></span>`const fn as_u64(&self) -> u64`
+
+  Return the internal value as a `u64`. This is guaranteed to
+
+  never overflow.
 
 - <span id="stateid-as-u32"></span>`const fn as_u32(&self) -> u32`
 
+  Return the internal value as a `u32`. This is guaranteed to
+
+  never overflow `u32`.
+
 - <span id="stateid-as-i32"></span>`const fn as_i32(&self) -> i32`
+
+  Return the internal value as a `i32`. This is guaranteed to
+
+  never overflow an `i32`.
 
 - <span id="stateid-one-more"></span>`fn one_more(&self) -> usize`
 
+  Returns one more than this value as a usize.
+
+  
+
+  Since values represented by a "small index" have constraints
+
+  on their maximum value, adding `1` to it will always fit in a
+
+  `usize`, `u32` and a `i32`.
+
 - <span id="stateid-from-ne-bytes"></span>`fn from_ne_bytes(bytes: [u8; 4]) -> Result<StateID, StateIDError>` — [`StateID`](../util/primitives/index.md#stateid), [`StateIDError`](../util/primitives/index.md#stateiderror)
+
+  Decode this value from the bytes given using the native endian
+
+  byte order for the current target.
+
+  
+
+  If the decoded integer is not representable as a small index
+
+  for the current target, then this returns an error.
 
 - <span id="stateid-from-ne-bytes-unchecked"></span>`fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> StateID` — [`StateID`](../util/primitives/index.md#stateid)
 
+  Decode this value from the bytes given using the native endian
+
+  byte order for the current target.
+
+  
+
+  This is analogous to `new_unchecked` in that is does not check
+
+  whether the decoded integer is representable as a small index.
+
 - <span id="stateid-to-ne-bytes"></span>`fn to_ne_bytes(&self) -> [u8; 4]`
+
+  Return the underlying integer as raw bytes in native endian
+
+  format.
 
 - <span id="stateid-iter"></span>`fn iter(len: usize) -> StateIDIter` — [`StateIDIter`](../util/primitives/index.md#stateiditer)
 
+  Returns an iterator over all values from 0 up to and not
+
+  including the given length.
+
+  
+
+  If the given length exceeds this type's limit, then this
+
+  panics.
+
 #### Trait Implementations
+
+##### `impl Any for StateID`
+
+- <span id="stateid-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StateID`
+
+- <span id="stateid-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StateID`
+
+- <span id="stateid-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for StateID`
 
 - <span id="stateid-clone"></span>`fn clone(&self) -> StateID` — [`StateID`](../util/primitives/index.md#stateid)
 
+##### `impl CloneToUninit for StateID`
+
+- <span id="stateid-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for StateID`
 
 ##### `impl Debug for StateID`
 
-- <span id="stateid-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="stateid-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for StateID`
 
 - <span id="stateid-default"></span>`fn default() -> StateID` — [`StateID`](../util/primitives/index.md#stateid)
 
 ##### `impl Eq for StateID`
+
+##### `impl<T> From for StateID`
+
+- <span id="stateid-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for StateID`
 
@@ -201,21 +399,53 @@ panics or silent logical errors.
 
 ##### `impl<T> IndexMut for [T]`
 
-- <span id="t-index-mut"></span>`fn index_mut(&mut self, index: StateID) -> &mut T` — [`StateID`](../util/primitives/index.md#stateid)
+- <span id="t-indexmut-index-mut"></span>`fn index_mut(&mut self, index: StateID) -> &mut T` — [`StateID`](../util/primitives/index.md#stateid)
+
+##### `impl<U> Into for StateID`
+
+- <span id="stateid-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for StateID`
 
-- <span id="stateid-cmp"></span>`fn cmp(&self, other: &StateID) -> cmp::Ordering` — [`StateID`](../util/primitives/index.md#stateid)
+- <span id="stateid-ord-cmp"></span>`fn cmp(&self, other: &StateID) -> cmp::Ordering` — [`StateID`](../util/primitives/index.md#stateid)
 
 ##### `impl PartialEq for StateID`
 
-- <span id="stateid-eq"></span>`fn eq(&self, other: &StateID) -> bool` — [`StateID`](../util/primitives/index.md#stateid)
+- <span id="stateid-partialeq-eq"></span>`fn eq(&self, other: &StateID) -> bool` — [`StateID`](../util/primitives/index.md#stateid)
 
 ##### `impl PartialOrd for StateID`
 
-- <span id="stateid-partial-cmp"></span>`fn partial_cmp(&self, other: &StateID) -> option::Option<cmp::Ordering>` — [`StateID`](../util/primitives/index.md#stateid)
+- <span id="stateid-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &StateID) -> option::Option<cmp::Ordering>` — [`StateID`](../util/primitives/index.md#stateid)
 
 ##### `impl StructuralPartialEq for StateID`
+
+##### `impl ToOwned for StateID`
+
+- <span id="stateid-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="stateid-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="stateid-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for StateID`
+
+- <span id="stateid-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="stateid-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StateID`
+
+- <span id="stateid-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="stateid-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StateIDError`
 
@@ -237,33 +467,89 @@ trait.
 
 - <span id="stateiderror-attempted"></span>`fn attempted(&self) -> u64`
 
+  Returns the value that could not be converted to an ID.
+
 #### Trait Implementations
+
+##### `impl Any for StateIDError`
+
+- <span id="stateiderror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StateIDError`
+
+- <span id="stateiderror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StateIDError`
+
+- <span id="stateiderror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for StateIDError`
 
 - <span id="stateiderror-clone"></span>`fn clone(&self) -> StateIDError` — [`StateIDError`](../util/primitives/index.md#stateiderror)
 
+##### `impl CloneToUninit for StateIDError`
+
+- <span id="stateiderror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for StateIDError`
 
-- <span id="stateiderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stateiderror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for StateIDError`
 
-- <span id="stateiderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="stateiderror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for StateIDError`
 
 ##### `impl Error for StateIDError`
 
+##### `impl<T> From for StateIDError`
+
+- <span id="stateiderror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StateIDError`
+
+- <span id="stateiderror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for StateIDError`
 
-- <span id="stateiderror-eq"></span>`fn eq(&self, other: &StateIDError) -> bool` — [`StateIDError`](../util/primitives/index.md#stateiderror)
+- <span id="stateiderror-partialeq-eq"></span>`fn eq(&self, other: &StateIDError) -> bool` — [`StateIDError`](../util/primitives/index.md#stateiderror)
 
 ##### `impl StructuralPartialEq for StateIDError`
 
+##### `impl ToOwned for StateIDError`
+
+- <span id="stateiderror-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="stateiderror-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="stateiderror-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for StateIDError`
 
-- <span id="stateiderror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="stateiderror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for StateIDError`
+
+- <span id="stateiderror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="stateiderror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StateIDError`
+
+- <span id="stateiderror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="stateiderror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `OverlappingState`
 
@@ -379,17 +665,83 @@ assert_eq!(expected, matches);
 
 - <span id="overlappingstate-start"></span>`fn start() -> OverlappingState` — [`OverlappingState`](#overlappingstate)
 
+  Create a new overlapping state that begins at the start state.
+
 - <span id="overlappingstate-get-match"></span>`fn get_match(&self) -> Option<Match>` — [`Match`](../util/search/index.md#match)
 
+  Return the match result of the most recent search to execute with this
+
+  state.
+
+  
+
+  Every search will clear this result automatically, such that if no
+
+  match is found, this will always correctly report `None`.
+
 #### Trait Implementations
+
+##### `impl Any for OverlappingState`
+
+- <span id="overlappingstate-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for OverlappingState`
+
+- <span id="overlappingstate-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for OverlappingState`
+
+- <span id="overlappingstate-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for OverlappingState`
 
 - <span id="overlappingstate-clone"></span>`fn clone(&self) -> OverlappingState` — [`OverlappingState`](#overlappingstate)
 
+##### `impl CloneToUninit for OverlappingState`
+
+- <span id="overlappingstate-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for OverlappingState`
 
-- <span id="overlappingstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="overlappingstate-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for OverlappingState`
+
+- <span id="overlappingstate-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for OverlappingState`
+
+- <span id="overlappingstate-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for OverlappingState`
+
+- <span id="overlappingstate-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="overlappingstate-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="overlappingstate-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for OverlappingState`
+
+- <span id="overlappingstate-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="overlappingstate-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for OverlappingState`
+
+- <span id="overlappingstate-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="overlappingstate-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FindIter<'a, 'h, A>`
 
@@ -440,15 +792,105 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - <span id="finditer-new"></span>`fn new(aut: &'a A, input: Input<'h>) -> Result<FindIter<'a, 'h, A>, MatchError>` — [`Input`](../util/search/index.md#input), [`FindIter`](#finditer), [`MatchError`](../util/error/index.md#matcherror)
 
+  Creates a new non-overlapping iterator. If the given automaton would
+
+  return an error on a search with the given input configuration, then
+
+  that error is returned here.
+
 - <span id="finditer-search"></span>`fn search(&self) -> Option<Match>` — [`Match`](../util/search/index.md#match)
+
+  Executes a search and returns a match if one is found.
+
+  
+
+  This does not advance the input forward. It just executes a search
+
+  based on the current configuration/offsets.
 
 - <span id="finditer-handle-overlapping-empty-match"></span>`fn handle_overlapping_empty_match(&mut self, m: Match) -> Option<Match>` — [`Match`](../util/search/index.md#match)
 
+  Handles the special case of an empty match by ensuring that 1) the
+
+  iterator always advances and 2) empty matches never overlap with other
+
+  matches.
+
+  
+
+  (1) is necessary because we principally make progress by setting the
+
+  starting location of the next search to the ending location of the last
+
+  match. But if a match is empty, then this results in a search that does
+
+  not advance and thus does not terminate.
+
+  
+
+  (2) is not strictly necessary, but makes intuitive sense and matches
+
+  the presiding behavior of most general purpose regex engines.
+
+  (Obviously this crate isn't a regex engine, but we choose to match
+
+  their semantics.) The "intuitive sense" here is that we want to report
+
+  NON-overlapping matches. So for example, given the patterns 'a' and
+
+  '' (an empty string) against the haystack 'a', without the special
+
+  handling, you'd get the matches [0, 1) and [1, 1), where the latter
+
+  overlaps with the end bounds of the former.
+
+  
+
+  Note that we mark this cold and forcefully prevent inlining because
+
+  handling empty matches like this is extremely rare and does require
+
+  quite a bit of code, comparatively. Keeping this code out of the main
+
+  iterator function keeps it smaller and more amenable to inlining
+
+  itself.
+
 #### Trait Implementations
+
+##### `impl Any for FindIter<'a, 'h, A>`
+
+- <span id="finditer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FindIter<'a, 'h, A>`
+
+- <span id="finditer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FindIter<'a, 'h, A>`
+
+- <span id="finditer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<A: fmt::Debug> Debug for FindIter<'a, 'h, A>`
 
-- <span id="finditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="finditer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FindIter<'a, 'h, A>`
+
+- <span id="finditer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FindIter<'a, 'h, A>`
+
+- <span id="finditer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for FindIter<'a, 'h, A>`
 
@@ -456,13 +898,25 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - <span id="finditer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="finditer-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="finditer-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<A: Automaton> Iterator for FindIter<'a, 'h, A>`
 
 - <span id="finditer-iterator-type-item"></span>`type Item = Match`
 
-- <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md#match)
+- <span id="finditer-iterator-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md#match)
+
+##### `impl<U> TryFrom for FindIter<'a, 'h, A>`
+
+- <span id="finditer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="finditer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FindIter<'a, 'h, A>`
+
+- <span id="finditer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="finditer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FindOverlappingIter<'a, 'h, A>`
 
@@ -494,9 +948,39 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
+##### `impl Any for FindOverlappingIter<'a, 'h, A>`
+
+- <span id="findoverlappingiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FindOverlappingIter<'a, 'h, A>`
+
+- <span id="findoverlappingiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FindOverlappingIter<'a, 'h, A>`
+
+- <span id="findoverlappingiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<A: fmt::Debug> Debug for FindOverlappingIter<'a, 'h, A>`
 
-- <span id="findoverlappingiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="findoverlappingiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FindOverlappingIter<'a, 'h, A>`
+
+- <span id="findoverlappingiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FindOverlappingIter<'a, 'h, A>`
+
+- <span id="findoverlappingiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for FindOverlappingIter<'a, 'h, A>`
 
@@ -504,13 +988,25 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - <span id="findoverlappingiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="findoverlappingiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="findoverlappingiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<A: Automaton> Iterator for FindOverlappingIter<'a, 'h, A>`
 
 - <span id="findoverlappingiter-iterator-type-item"></span>`type Item = Match`
 
-- <span id="findoverlappingiter-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md#match)
+- <span id="findoverlappingiter-iterator-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md#match)
+
+##### `impl<U> TryFrom for FindOverlappingIter<'a, 'h, A>`
+
+- <span id="findoverlappingiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="findoverlappingiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FindOverlappingIter<'a, 'h, A>`
+
+- <span id="findoverlappingiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="findoverlappingiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StreamFindIter<'a, A, R>`
 
@@ -542,9 +1038,39 @@ implementation.
 
 #### Trait Implementations
 
+##### `impl Any for StreamFindIter<'a, A, R>`
+
+- <span id="streamfinditer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StreamFindIter<'a, A, R>`
+
+- <span id="streamfinditer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StreamFindIter<'a, A, R>`
+
+- <span id="streamfinditer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<A: fmt::Debug, R: fmt::Debug> Debug for StreamFindIter<'a, A, R>`
 
-- <span id="streamfinditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="streamfinditer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for StreamFindIter<'a, A, R>`
+
+- <span id="streamfinditer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StreamFindIter<'a, A, R>`
+
+- <span id="streamfinditer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for StreamFindIter<'a, A, R>`
 
@@ -552,13 +1078,25 @@ implementation.
 
 - <span id="streamfinditer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="streamfinditer-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="streamfinditer-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<A: Automaton, R: std::io::Read> Iterator for StreamFindIter<'a, A, R>`
 
 - <span id="streamfinditer-iterator-type-item"></span>`type Item = Result<Match, Error>`
 
-- <span id="streamfinditer-next"></span>`fn next(&mut self) -> Option<std::io::Result<Match>>` — [`Match`](../util/search/index.md#match)
+- <span id="streamfinditer-iterator-next"></span>`fn next(&mut self) -> Option<std::io::Result<Match>>` — [`Match`](../util/search/index.md#match)
+
+##### `impl<U> TryFrom for StreamFindIter<'a, A, R>`
+
+- <span id="streamfinditer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="streamfinditer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StreamFindIter<'a, A, R>`
+
+- <span id="streamfinditer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="streamfinditer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StreamChunkIter<'a, A, R>`
 
@@ -649,19 +1187,97 @@ chunks it can copy and which it needs to replace.
 
 - <span id="streamchunkiter-get-match-chunk"></span>`fn get_match_chunk(&self, mat: Match) -> core::ops::Range<usize>` — [`Match`](../util/search/index.md#match)
 
+  Return a match chunk for the given match. It is assumed that the match
+
+  ends at the current `buffer_pos`.
+
 - <span id="streamchunkiter-get-non-match-chunk"></span>`fn get_non_match_chunk(&self, mat: Match) -> Option<core::ops::Range<usize>>` — [`Match`](../util/search/index.md#match)
+
+  Return a non-match chunk, if necessary, just before reporting a match.
+
+  This returns `None` if there is nothing to report. Otherwise, this
+
+  assumes that the given match ends at the current `buffer_pos`.
 
 - <span id="streamchunkiter-get-pre-roll-non-match-chunk"></span>`fn get_pre_roll_non_match_chunk(&self) -> Option<core::ops::Range<usize>>`
 
+  Look for any bytes that should be reported as a non-match just before
+
+  rolling the buffer.
+
+  
+
+  Note that this only reports bytes up to `buffer.len() -
+
+  min_buffer_len`, as it's not possible to know whether the bytes
+
+  following that will participate in a match or not.
+
 - <span id="streamchunkiter-get-eof-non-match-chunk"></span>`fn get_eof_non_match_chunk(&self) -> Option<core::ops::Range<usize>>`
+
+  Return any unreported bytes as a non-match up to the end of the buffer.
+
+  
+
+  This should only be called when the entire contents of the buffer have
+
+  been searched and EOF has been hit when trying to fill the buffer.
 
 - <span id="streamchunkiter-get-match"></span>`fn get_match(&self) -> Match` — [`Match`](../util/search/index.md#match)
 
+  Return the match at the current position for the current state.
+
+  
+
+  This panics if `self.aut.is_match(self.sid)` isn't true.
+
 #### Trait Implementations
+
+##### `impl Any for StreamChunkIter<'a, A, R>`
+
+- <span id="streamchunkiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StreamChunkIter<'a, A, R>`
+
+- <span id="streamchunkiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StreamChunkIter<'a, A, R>`
+
+- <span id="streamchunkiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<A: fmt::Debug, R: fmt::Debug> Debug for StreamChunkIter<'a, A, R>`
 
-- <span id="streamchunkiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="streamchunkiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for StreamChunkIter<'a, A, R>`
+
+- <span id="streamchunkiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StreamChunkIter<'a, A, R>`
+
+- <span id="streamchunkiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for StreamChunkIter<'a, A, R>`
+
+- <span id="streamchunkiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="streamchunkiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StreamChunkIter<'a, A, R>`
+
+- <span id="streamchunkiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="streamchunkiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -713,15 +1329,75 @@ implementations are permitted to return false positives.
 
 - <span id="candidate-into-option"></span>`fn into_option(self) -> Option<usize>`
 
+  Convert this candidate into an option. This is useful when callers
+
+  do not distinguish between true positives and false positives (i.e.,
+
+  the caller must always confirm the match).
+
 #### Trait Implementations
+
+##### `impl Any for Candidate`
+
+- <span id="candidate-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Candidate`
+
+- <span id="candidate-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Candidate`
+
+- <span id="candidate-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Candidate`
 
 - <span id="candidate-clone"></span>`fn clone(&self) -> Candidate` — [`Candidate`](../util/prefilter/index.md#candidate)
 
+##### `impl CloneToUninit for Candidate`
+
+- <span id="candidate-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Candidate`
 
-- <span id="candidate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="candidate-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Candidate`
+
+- <span id="candidate-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Candidate`
+
+- <span id="candidate-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Candidate`
+
+- <span id="candidate-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="candidate-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="candidate-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Candidate`
+
+- <span id="candidate-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="candidate-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Candidate`
+
+- <span id="candidate-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="candidate-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `StreamChunk<'r>`
 
@@ -755,9 +1431,51 @@ The `'r` lifetime refers to the lifetime of the stream chunk iterator.
 
 #### Trait Implementations
 
+##### `impl Any for StreamChunk<'r>`
+
+- <span id="streamchunk-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StreamChunk<'r>`
+
+- <span id="streamchunk-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StreamChunk<'r>`
+
+- <span id="streamchunk-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for StreamChunk<'r>`
 
-- <span id="streamchunk-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="streamchunk-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for StreamChunk<'r>`
+
+- <span id="streamchunk-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StreamChunk<'r>`
+
+- <span id="streamchunk-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for StreamChunk<'r>`
+
+- <span id="streamchunk-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="streamchunk-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StreamChunk<'r>`
+
+- <span id="streamchunk-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="streamchunk-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

@@ -28,39 +28,93 @@ struct Date {
 
 #### Trait Implementations
 
+##### `impl Any for Date`
+
+- <span id="date-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Date`
+
+- <span id="date-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Date`
+
+- <span id="date-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Date`
 
 - <span id="date-clone"></span>`fn clone(&self) -> Date` — [`Date`](#date)
+
+##### `impl CloneToUninit for Date`
+
+- <span id="date-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Date`
 
 ##### `impl Debug for Date`
 
-- <span id="date-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="date-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Date`
 
-- <span id="date-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="date-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Date`
 
+##### `impl<T> From for Date`
+
+- <span id="date-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Date`
+
+- <span id="date-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Date`
 
-- <span id="date-cmp"></span>`fn cmp(&self, other: &Date) -> cmp::Ordering` — [`Date`](#date)
+- <span id="date-ord-cmp"></span>`fn cmp(&self, other: &Date) -> cmp::Ordering` — [`Date`](#date)
 
 ##### `impl PartialEq for Date`
 
-- <span id="date-eq"></span>`fn eq(&self, other: &Date) -> bool` — [`Date`](#date)
+- <span id="date-partialeq-eq"></span>`fn eq(&self, other: &Date) -> bool` — [`Date`](#date)
 
 ##### `impl PartialOrd for Date`
 
-- <span id="date-partial-cmp"></span>`fn partial_cmp(&self, other: &Date) -> option::Option<cmp::Ordering>` — [`Date`](#date)
+- <span id="date-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Date) -> option::Option<cmp::Ordering>` — [`Date`](#date)
 
 ##### `impl StructuralPartialEq for Date`
 
+##### `impl ToOwned for Date`
+
+- <span id="date-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="date-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="date-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Date`
 
-- <span id="date-to-string"></span>`fn to_string(&self) -> String`
+- <span id="date-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Date`
+
+- <span id="date-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="date-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Date`
+
+- <span id="date-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="date-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

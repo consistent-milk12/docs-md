@@ -1,23 +1,40 @@
 # cargo-docs-md
 
-Turn rustdoc JSON into markdown you can actually navigate.
+Turn rustdoc JSON into markdown you can actually navigate. Your code and all your dependencies, documented and searchable, navigable with reference links in one place.
 
-Point it at your crate and get a directory of interlinked markdown files — click through modules, jump across crate boundaries, and go straight to source code. Your code and all your dependencies, documented and searchable in one place.
-
-The [`generated_docs/`](generated_docs/) folder in this repo has 88 crates, 1,200+ markdown files, and 24,000+ searchable items generated from this tool's own dependency tree. Checkout the added docs and source code directly in repo to see how well it currently works (or not!).
+The [`generated_docs/`](generated_docs/) folder in this repo has 90 crates, 1,286 markdown files, and 24,000+ searchable items generated from this tool's own dependency tree. Checkout the added docs and source code directly in repo to see how well it currently works (or not!).
 
 ## Current Features
 
 **Clickable everything.** Each file has breadcrumb navigation at the top. References to types, traits, and functions link to their definitions — even across crates. For example, `regex_automata` docs link directly to `regex_syntax::hir::Hir`.
 
-```text
-*[cargo_docs_md](../index.md) / [generator](index.md) / [context](context/index.md)*
+```markdown
+*[cargo_docs_md](../../index.md) / [generator](../index.md) / [context](index.md)*
 ```
 
 **Source locations.** Every item shows where it's defined. Click through to the exact file and line.
 
+For your own crate:
+
 ```markdown
 *Defined in `src/generator/context.rs:135-168`*
+```
+
+For dependencies (with `collect-sources`):
+
+```markdown
+*Defined in [`compact_str-0.9.0/src/lib.rs:128`](../../.source_1765521767/compact_str-0.9.0/src/lib.rs#L128)*
+```
+
+**Full method documentation.** Methods include their complete documentation with examples:
+
+```markdown
+- `fn push(&mut self, ch: char)`
+
+  Appends the given char to the end of this CompactString.
+
+  # Examples
+  ...
 ```
 
 **Search index.** A `search_index.json` with every documented item — name, path, kind, and file location.
@@ -62,14 +79,53 @@ cargo docs-md docs              # auto-detects and links to them
 
 This snapshots dependency sources at their exact versions, so links stay valid even after updates.
 
+### Maximum detail output
+
+For the most comprehensive documentation with all available information:
+
+```bash
+cargo docs-md collect-sources
+cargo docs-md docs \
+  --include-blanket-impls \
+  --source-locations \
+  --full-method-docs
+```
+
+This enables:
+
+- **Blanket impls** — Shows `From`, `Into`, `Any`, `Borrow`, etc. implementations
+- **Source locations** — Links to exact file and line for every item
+- **Full method docs** — Complete method documentation with examples (not just summaries)
+
 ### More options
+
+**Add more detail:**
+
+| Flag | Effect |
+|------|--------|
+| `--include-blanket-impls` | Include `From`, `Into`, `Any`, `Borrow`, etc. |
+| `--source-locations` | Show source file locations with clickable links |
+| `--full-method-docs` | Include full method docs instead of first-paragraph summaries |
+
+**Reduce output:**
+
+| Flag | Effect |
+|------|--------|
+| `--exclude-private` | Public items only |
+| `--no-mdbook` | Skip `SUMMARY.md` generation |
+| `--no-search-index` | Skip `search_index.json` |
+| `--no-quick-reference` | Skip Quick Reference table |
+| `--no-group-impls` | Don't group impls by category |
+| `--hide-trivial-derives` | Collapse common derive traits (Debug, Clone, etc.) |
+| `--no-method-anchors` | Skip method deep-link anchors |
+
+**Other options:**
 
 | Flag | Effect |
 |------|--------|
 | `--format flat` | All markdown files in one directory |
-| `--no-mdbook` | Skip `SUMMARY.md` generation |
-| `--no-search-index` | Skip `search_index.json` |
-| `--include-blanket-impls` | Include `From`, `Into`, `Any`, etc. |
+| `--toc-threshold N` | Minimum items for TOC generation (default: 10) |
+| `--primary-crate NAME` | Prioritize this crate for link resolution |
 
 For manual control, generate rustdoc JSON yourself:
 

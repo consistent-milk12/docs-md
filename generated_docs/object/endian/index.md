@@ -69,15 +69,31 @@ Compile-time little endian byte order.
 
 #### Trait Implementations
 
+##### `impl Any for LittleEndian`
+
+- <span id="littleendian-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LittleEndian`
+
+- <span id="littleendian-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LittleEndian`
+
+- <span id="littleendian-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for LittleEndian`
 
 - <span id="littleendian-clone"></span>`fn clone(&self) -> LittleEndian` — [`LittleEndian`](../index.md#littleendian)
+
+##### `impl CloneToUninit for LittleEndian`
+
+- <span id="littleendian-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for LittleEndian`
 
 ##### `impl Debug for LittleEndian`
 
-- <span id="littleendian-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="littleendian-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for LittleEndian`
 
@@ -85,21 +101,59 @@ Compile-time little endian byte order.
 
 ##### `impl Endian for LittleEndian`
 
-- <span id="littleendian-from-big-endian"></span>`fn from_big_endian(big_endian: bool) -> Option<Self>`
+- <span id="littleendian-endian-from-big-endian"></span>`fn from_big_endian(big_endian: bool) -> Option<Self>`
 
-- <span id="littleendian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
+- <span id="littleendian-endian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for LittleEndian`
+
+##### `impl<T> From for LittleEndian`
+
+- <span id="littleendian-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for LittleEndian`
 
 - <span id="littleendian-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for LittleEndian`
+
+- <span id="littleendian-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for LittleEndian`
 
-- <span id="littleendian-eq"></span>`fn eq(&self, other: &LittleEndian) -> bool` — [`LittleEndian`](../index.md#littleendian)
+- <span id="littleendian-partialeq-eq"></span>`fn eq(&self, other: &LittleEndian) -> bool` — [`LittleEndian`](../index.md#littleendian)
 
 ##### `impl StructuralPartialEq for LittleEndian`
+
+##### `impl ToOwned for LittleEndian`
+
+- <span id="littleendian-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="littleendian-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="littleendian-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LittleEndian`
+
+- <span id="littleendian-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="littleendian-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LittleEndian`
+
+- <span id="littleendian-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="littleendian-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BigEndian`
 
@@ -113,15 +167,31 @@ Compile-time big endian byte order.
 
 #### Trait Implementations
 
+##### `impl Any for BigEndian`
+
+- <span id="bigendian-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BigEndian`
+
+- <span id="bigendian-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BigEndian`
+
+- <span id="bigendian-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for BigEndian`
 
 - <span id="bigendian-clone"></span>`fn clone(&self) -> BigEndian` — [`BigEndian`](../index.md#bigendian)
+
+##### `impl CloneToUninit for BigEndian`
+
+- <span id="bigendian-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for BigEndian`
 
 ##### `impl Debug for BigEndian`
 
-- <span id="bigendian-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bigendian-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for BigEndian`
 
@@ -129,21 +199,59 @@ Compile-time big endian byte order.
 
 ##### `impl Endian for BigEndian`
 
-- <span id="bigendian-from-big-endian"></span>`fn from_big_endian(big_endian: bool) -> Option<Self>`
+- <span id="bigendian-endian-from-big-endian"></span>`fn from_big_endian(big_endian: bool) -> Option<Self>`
 
-- <span id="bigendian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
+- <span id="bigendian-endian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for BigEndian`
+
+##### `impl<T> From for BigEndian`
+
+- <span id="bigendian-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for BigEndian`
 
 - <span id="bigendian-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for BigEndian`
+
+- <span id="bigendian-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for BigEndian`
 
-- <span id="bigendian-eq"></span>`fn eq(&self, other: &BigEndian) -> bool` — [`BigEndian`](../index.md#bigendian)
+- <span id="bigendian-partialeq-eq"></span>`fn eq(&self, other: &BigEndian) -> bool` — [`BigEndian`](../index.md#bigendian)
 
 ##### `impl StructuralPartialEq for BigEndian`
+
+##### `impl ToOwned for BigEndian`
+
+- <span id="bigendian-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="bigendian-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="bigendian-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BigEndian`
+
+- <span id="bigendian-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="bigendian-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BigEndian`
+
+- <span id="bigendian-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="bigendian-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `U16Bytes<E: Endian>`
 
@@ -159,23 +267,47 @@ An unaligned `u16` value with an externally specified endianness of type `E`.
 
 - <span id="u16bytes-from-bytes"></span>`const fn from_bytes(n: [u8; 2]) -> Self`
 
+  Construct a new value given bytes that already have the required endianness.
+
 - <span id="u16bytes-new"></span>`fn new(e: E, n: u16) -> Self`
+
+  Construct a new value given a native endian value.
 
 - <span id="u16bytes-get"></span>`fn get(self, e: E) -> u16`
 
+  Return the value as a native endian value.
+
 - <span id="u16bytes-set"></span>`fn set(&mut self, e: E, n: u16)`
 
+  Set the value given a native endian value.
+
 #### Trait Implementations
+
+##### `impl Any for U16Bytes<E>`
+
+- <span id="u16bytes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for U16Bytes<E>`
+
+- <span id="u16bytes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for U16Bytes<E>`
+
+- <span id="u16bytes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for U16Bytes<E>`
 
 - <span id="u16bytes-clone"></span>`fn clone(&self) -> U16Bytes<E>` — [`U16Bytes`](../index.md#u16bytes)
 
+##### `impl CloneToUninit for U16Bytes<E>`
+
+- <span id="u16bytes-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for U16Bytes<E>`
 
 ##### `impl<E: Endian> Debug for U16Bytes<E>`
 
-- <span id="u16bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="u16bytes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: default::Default + Endian> Default for U16Bytes<E>`
 
@@ -183,25 +315,63 @@ An unaligned `u16` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: cmp::Eq + Endian> Eq for U16Bytes<E>`
 
+##### `impl<T> From for U16Bytes<E>`
+
+- <span id="u16bytes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<E: hash::Hash + Endian> Hash for U16Bytes<E>`
 
 - <span id="u16bytes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for U16Bytes<E>`
+
+- <span id="u16bytes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<E: cmp::Ord + Endian> Ord for U16Bytes<E>`
 
-- <span id="u16bytes-cmp"></span>`fn cmp(&self, other: &U16Bytes<E>) -> cmp::Ordering` — [`U16Bytes`](../index.md#u16bytes)
+- <span id="u16bytes-ord-cmp"></span>`fn cmp(&self, other: &U16Bytes<E>) -> cmp::Ordering` — [`U16Bytes`](../index.md#u16bytes)
 
 ##### `impl<E: cmp::PartialEq + Endian> PartialEq for U16Bytes<E>`
 
-- <span id="u16bytes-eq"></span>`fn eq(&self, other: &U16Bytes<E>) -> bool` — [`U16Bytes`](../index.md#u16bytes)
+- <span id="u16bytes-partialeq-eq"></span>`fn eq(&self, other: &U16Bytes<E>) -> bool` — [`U16Bytes`](../index.md#u16bytes)
 
 ##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for U16Bytes<E>`
 
-- <span id="u16bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &U16Bytes<E>) -> option::Option<cmp::Ordering>` — [`U16Bytes`](../index.md#u16bytes)
+- <span id="u16bytes-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &U16Bytes<E>) -> option::Option<cmp::Ordering>` — [`U16Bytes`](../index.md#u16bytes)
 
 ##### `impl<E: Endian> Pod for U16Bytes<E>`
 
 ##### `impl<E: Endian> StructuralPartialEq for U16Bytes<E>`
+
+##### `impl ToOwned for U16Bytes<E>`
+
+- <span id="u16bytes-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="u16bytes-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="u16bytes-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for U16Bytes<E>`
+
+- <span id="u16bytes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="u16bytes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for U16Bytes<E>`
+
+- <span id="u16bytes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="u16bytes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `U32Bytes<E: Endian>`
 
@@ -217,23 +387,47 @@ An unaligned `u32` value with an externally specified endianness of type `E`.
 
 - <span id="u32bytes-from-bytes"></span>`const fn from_bytes(n: [u8; 4]) -> Self`
 
+  Construct a new value given bytes that already have the required endianness.
+
 - <span id="u32bytes-new"></span>`fn new(e: E, n: u32) -> Self`
+
+  Construct a new value given a native endian value.
 
 - <span id="u32bytes-get"></span>`fn get(self, e: E) -> u32`
 
+  Return the value as a native endian value.
+
 - <span id="u32bytes-set"></span>`fn set(&mut self, e: E, n: u32)`
 
+  Set the value given a native endian value.
+
 #### Trait Implementations
+
+##### `impl Any for U32Bytes<E>`
+
+- <span id="u32bytes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for U32Bytes<E>`
+
+- <span id="u32bytes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for U32Bytes<E>`
+
+- <span id="u32bytes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for U32Bytes<E>`
 
 - <span id="u32bytes-clone"></span>`fn clone(&self) -> U32Bytes<E>` — [`U32Bytes`](../index.md#u32bytes)
 
+##### `impl CloneToUninit for U32Bytes<E>`
+
+- <span id="u32bytes-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for U32Bytes<E>`
 
 ##### `impl<E: Endian> Debug for U32Bytes<E>`
 
-- <span id="u32bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="u32bytes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: default::Default + Endian> Default for U32Bytes<E>`
 
@@ -241,25 +435,63 @@ An unaligned `u32` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: cmp::Eq + Endian> Eq for U32Bytes<E>`
 
+##### `impl<T> From for U32Bytes<E>`
+
+- <span id="u32bytes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<E: hash::Hash + Endian> Hash for U32Bytes<E>`
 
 - <span id="u32bytes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for U32Bytes<E>`
+
+- <span id="u32bytes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<E: cmp::Ord + Endian> Ord for U32Bytes<E>`
 
-- <span id="u32bytes-cmp"></span>`fn cmp(&self, other: &U32Bytes<E>) -> cmp::Ordering` — [`U32Bytes`](../index.md#u32bytes)
+- <span id="u32bytes-ord-cmp"></span>`fn cmp(&self, other: &U32Bytes<E>) -> cmp::Ordering` — [`U32Bytes`](../index.md#u32bytes)
 
 ##### `impl<E: cmp::PartialEq + Endian> PartialEq for U32Bytes<E>`
 
-- <span id="u32bytes-eq"></span>`fn eq(&self, other: &U32Bytes<E>) -> bool` — [`U32Bytes`](../index.md#u32bytes)
+- <span id="u32bytes-partialeq-eq"></span>`fn eq(&self, other: &U32Bytes<E>) -> bool` — [`U32Bytes`](../index.md#u32bytes)
 
 ##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for U32Bytes<E>`
 
-- <span id="u32bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &U32Bytes<E>) -> option::Option<cmp::Ordering>` — [`U32Bytes`](../index.md#u32bytes)
+- <span id="u32bytes-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &U32Bytes<E>) -> option::Option<cmp::Ordering>` — [`U32Bytes`](../index.md#u32bytes)
 
 ##### `impl<E: Endian> Pod for U32Bytes<E>`
 
 ##### `impl<E: Endian> StructuralPartialEq for U32Bytes<E>`
+
+##### `impl ToOwned for U32Bytes<E>`
+
+- <span id="u32bytes-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="u32bytes-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="u32bytes-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for U32Bytes<E>`
+
+- <span id="u32bytes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="u32bytes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for U32Bytes<E>`
+
+- <span id="u32bytes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="u32bytes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `U64Bytes<E: Endian>`
 
@@ -275,23 +507,47 @@ An unaligned `u64` value with an externally specified endianness of type `E`.
 
 - <span id="u64bytes-from-bytes"></span>`const fn from_bytes(n: [u8; 8]) -> Self`
 
+  Construct a new value given bytes that already have the required endianness.
+
 - <span id="u64bytes-new"></span>`fn new(e: E, n: u64) -> Self`
+
+  Construct a new value given a native endian value.
 
 - <span id="u64bytes-get"></span>`fn get(self, e: E) -> u64`
 
+  Return the value as a native endian value.
+
 - <span id="u64bytes-set"></span>`fn set(&mut self, e: E, n: u64)`
 
+  Set the value given a native endian value.
+
 #### Trait Implementations
+
+##### `impl Any for U64Bytes<E>`
+
+- <span id="u64bytes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for U64Bytes<E>`
+
+- <span id="u64bytes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for U64Bytes<E>`
+
+- <span id="u64bytes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for U64Bytes<E>`
 
 - <span id="u64bytes-clone"></span>`fn clone(&self) -> U64Bytes<E>` — [`U64Bytes`](../index.md#u64bytes)
 
+##### `impl CloneToUninit for U64Bytes<E>`
+
+- <span id="u64bytes-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for U64Bytes<E>`
 
 ##### `impl<E: Endian> Debug for U64Bytes<E>`
 
-- <span id="u64bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="u64bytes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: default::Default + Endian> Default for U64Bytes<E>`
 
@@ -299,25 +555,63 @@ An unaligned `u64` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: cmp::Eq + Endian> Eq for U64Bytes<E>`
 
+##### `impl<T> From for U64Bytes<E>`
+
+- <span id="u64bytes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<E: hash::Hash + Endian> Hash for U64Bytes<E>`
 
 - <span id="u64bytes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for U64Bytes<E>`
+
+- <span id="u64bytes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<E: cmp::Ord + Endian> Ord for U64Bytes<E>`
 
-- <span id="u64bytes-cmp"></span>`fn cmp(&self, other: &U64Bytes<E>) -> cmp::Ordering` — [`U64Bytes`](../index.md#u64bytes)
+- <span id="u64bytes-ord-cmp"></span>`fn cmp(&self, other: &U64Bytes<E>) -> cmp::Ordering` — [`U64Bytes`](../index.md#u64bytes)
 
 ##### `impl<E: cmp::PartialEq + Endian> PartialEq for U64Bytes<E>`
 
-- <span id="u64bytes-eq"></span>`fn eq(&self, other: &U64Bytes<E>) -> bool` — [`U64Bytes`](../index.md#u64bytes)
+- <span id="u64bytes-partialeq-eq"></span>`fn eq(&self, other: &U64Bytes<E>) -> bool` — [`U64Bytes`](../index.md#u64bytes)
 
 ##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for U64Bytes<E>`
 
-- <span id="u64bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &U64Bytes<E>) -> option::Option<cmp::Ordering>` — [`U64Bytes`](../index.md#u64bytes)
+- <span id="u64bytes-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &U64Bytes<E>) -> option::Option<cmp::Ordering>` — [`U64Bytes`](../index.md#u64bytes)
 
 ##### `impl<E: Endian> Pod for U64Bytes<E>`
 
 ##### `impl<E: Endian> StructuralPartialEq for U64Bytes<E>`
+
+##### `impl ToOwned for U64Bytes<E>`
+
+- <span id="u64bytes-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="u64bytes-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="u64bytes-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for U64Bytes<E>`
+
+- <span id="u64bytes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="u64bytes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for U64Bytes<E>`
+
+- <span id="u64bytes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="u64bytes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `I16Bytes<E: Endian>`
 
@@ -333,23 +627,47 @@ An unaligned `i16` value with an externally specified endianness of type `E`.
 
 - <span id="i16bytes-from-bytes"></span>`const fn from_bytes(n: [u8; 2]) -> Self`
 
+  Construct a new value given bytes that already have the required endianness.
+
 - <span id="i16bytes-new"></span>`fn new(e: E, n: i16) -> Self`
+
+  Construct a new value given a native endian value.
 
 - <span id="i16bytes-get"></span>`fn get(self, e: E) -> i16`
 
+  Return the value as a native endian value.
+
 - <span id="i16bytes-set"></span>`fn set(&mut self, e: E, n: i16)`
 
+  Set the value given a native endian value.
+
 #### Trait Implementations
+
+##### `impl Any for I16Bytes<E>`
+
+- <span id="i16bytes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for I16Bytes<E>`
+
+- <span id="i16bytes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for I16Bytes<E>`
+
+- <span id="i16bytes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for I16Bytes<E>`
 
 - <span id="i16bytes-clone"></span>`fn clone(&self) -> I16Bytes<E>` — [`I16Bytes`](../index.md#i16bytes)
 
+##### `impl CloneToUninit for I16Bytes<E>`
+
+- <span id="i16bytes-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for I16Bytes<E>`
 
 ##### `impl<E: Endian> Debug for I16Bytes<E>`
 
-- <span id="i16bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="i16bytes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: default::Default + Endian> Default for I16Bytes<E>`
 
@@ -357,25 +675,63 @@ An unaligned `i16` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: cmp::Eq + Endian> Eq for I16Bytes<E>`
 
+##### `impl<T> From for I16Bytes<E>`
+
+- <span id="i16bytes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<E: hash::Hash + Endian> Hash for I16Bytes<E>`
 
 - <span id="i16bytes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for I16Bytes<E>`
+
+- <span id="i16bytes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<E: cmp::Ord + Endian> Ord for I16Bytes<E>`
 
-- <span id="i16bytes-cmp"></span>`fn cmp(&self, other: &I16Bytes<E>) -> cmp::Ordering` — [`I16Bytes`](../index.md#i16bytes)
+- <span id="i16bytes-ord-cmp"></span>`fn cmp(&self, other: &I16Bytes<E>) -> cmp::Ordering` — [`I16Bytes`](../index.md#i16bytes)
 
 ##### `impl<E: cmp::PartialEq + Endian> PartialEq for I16Bytes<E>`
 
-- <span id="i16bytes-eq"></span>`fn eq(&self, other: &I16Bytes<E>) -> bool` — [`I16Bytes`](../index.md#i16bytes)
+- <span id="i16bytes-partialeq-eq"></span>`fn eq(&self, other: &I16Bytes<E>) -> bool` — [`I16Bytes`](../index.md#i16bytes)
 
 ##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for I16Bytes<E>`
 
-- <span id="i16bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &I16Bytes<E>) -> option::Option<cmp::Ordering>` — [`I16Bytes`](../index.md#i16bytes)
+- <span id="i16bytes-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &I16Bytes<E>) -> option::Option<cmp::Ordering>` — [`I16Bytes`](../index.md#i16bytes)
 
 ##### `impl<E: Endian> Pod for I16Bytes<E>`
 
 ##### `impl<E: Endian> StructuralPartialEq for I16Bytes<E>`
+
+##### `impl ToOwned for I16Bytes<E>`
+
+- <span id="i16bytes-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="i16bytes-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="i16bytes-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for I16Bytes<E>`
+
+- <span id="i16bytes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="i16bytes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for I16Bytes<E>`
+
+- <span id="i16bytes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="i16bytes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `I32Bytes<E: Endian>`
 
@@ -391,23 +747,47 @@ An unaligned `i32` value with an externally specified endianness of type `E`.
 
 - <span id="i32bytes-from-bytes"></span>`const fn from_bytes(n: [u8; 4]) -> Self`
 
+  Construct a new value given bytes that already have the required endianness.
+
 - <span id="i32bytes-new"></span>`fn new(e: E, n: i32) -> Self`
+
+  Construct a new value given a native endian value.
 
 - <span id="i32bytes-get"></span>`fn get(self, e: E) -> i32`
 
+  Return the value as a native endian value.
+
 - <span id="i32bytes-set"></span>`fn set(&mut self, e: E, n: i32)`
 
+  Set the value given a native endian value.
+
 #### Trait Implementations
+
+##### `impl Any for I32Bytes<E>`
+
+- <span id="i32bytes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for I32Bytes<E>`
+
+- <span id="i32bytes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for I32Bytes<E>`
+
+- <span id="i32bytes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for I32Bytes<E>`
 
 - <span id="i32bytes-clone"></span>`fn clone(&self) -> I32Bytes<E>` — [`I32Bytes`](../index.md#i32bytes)
 
+##### `impl CloneToUninit for I32Bytes<E>`
+
+- <span id="i32bytes-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for I32Bytes<E>`
 
 ##### `impl<E: Endian> Debug for I32Bytes<E>`
 
-- <span id="i32bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="i32bytes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: default::Default + Endian> Default for I32Bytes<E>`
 
@@ -415,25 +795,63 @@ An unaligned `i32` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: cmp::Eq + Endian> Eq for I32Bytes<E>`
 
+##### `impl<T> From for I32Bytes<E>`
+
+- <span id="i32bytes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<E: hash::Hash + Endian> Hash for I32Bytes<E>`
 
 - <span id="i32bytes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for I32Bytes<E>`
+
+- <span id="i32bytes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<E: cmp::Ord + Endian> Ord for I32Bytes<E>`
 
-- <span id="i32bytes-cmp"></span>`fn cmp(&self, other: &I32Bytes<E>) -> cmp::Ordering` — [`I32Bytes`](../index.md#i32bytes)
+- <span id="i32bytes-ord-cmp"></span>`fn cmp(&self, other: &I32Bytes<E>) -> cmp::Ordering` — [`I32Bytes`](../index.md#i32bytes)
 
 ##### `impl<E: cmp::PartialEq + Endian> PartialEq for I32Bytes<E>`
 
-- <span id="i32bytes-eq"></span>`fn eq(&self, other: &I32Bytes<E>) -> bool` — [`I32Bytes`](../index.md#i32bytes)
+- <span id="i32bytes-partialeq-eq"></span>`fn eq(&self, other: &I32Bytes<E>) -> bool` — [`I32Bytes`](../index.md#i32bytes)
 
 ##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for I32Bytes<E>`
 
-- <span id="i32bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &I32Bytes<E>) -> option::Option<cmp::Ordering>` — [`I32Bytes`](../index.md#i32bytes)
+- <span id="i32bytes-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &I32Bytes<E>) -> option::Option<cmp::Ordering>` — [`I32Bytes`](../index.md#i32bytes)
 
 ##### `impl<E: Endian> Pod for I32Bytes<E>`
 
 ##### `impl<E: Endian> StructuralPartialEq for I32Bytes<E>`
+
+##### `impl ToOwned for I32Bytes<E>`
+
+- <span id="i32bytes-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="i32bytes-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="i32bytes-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for I32Bytes<E>`
+
+- <span id="i32bytes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="i32bytes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for I32Bytes<E>`
+
+- <span id="i32bytes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="i32bytes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `I64Bytes<E: Endian>`
 
@@ -449,23 +867,47 @@ An unaligned `i64` value with an externally specified endianness of type `E`.
 
 - <span id="i64bytes-from-bytes"></span>`const fn from_bytes(n: [u8; 8]) -> Self`
 
+  Construct a new value given bytes that already have the required endianness.
+
 - <span id="i64bytes-new"></span>`fn new(e: E, n: i64) -> Self`
+
+  Construct a new value given a native endian value.
 
 - <span id="i64bytes-get"></span>`fn get(self, e: E) -> i64`
 
+  Return the value as a native endian value.
+
 - <span id="i64bytes-set"></span>`fn set(&mut self, e: E, n: i64)`
 
+  Set the value given a native endian value.
+
 #### Trait Implementations
+
+##### `impl Any for I64Bytes<E>`
+
+- <span id="i64bytes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for I64Bytes<E>`
+
+- <span id="i64bytes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for I64Bytes<E>`
+
+- <span id="i64bytes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<E: clone::Clone + Endian> Clone for I64Bytes<E>`
 
 - <span id="i64bytes-clone"></span>`fn clone(&self) -> I64Bytes<E>` — [`I64Bytes`](../index.md#i64bytes)
 
+##### `impl CloneToUninit for I64Bytes<E>`
+
+- <span id="i64bytes-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<E: marker::Copy + Endian> Copy for I64Bytes<E>`
 
 ##### `impl<E: Endian> Debug for I64Bytes<E>`
 
-- <span id="i64bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="i64bytes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: default::Default + Endian> Default for I64Bytes<E>`
 
@@ -473,25 +915,63 @@ An unaligned `i64` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: cmp::Eq + Endian> Eq for I64Bytes<E>`
 
+##### `impl<T> From for I64Bytes<E>`
+
+- <span id="i64bytes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<E: hash::Hash + Endian> Hash for I64Bytes<E>`
 
 - <span id="i64bytes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for I64Bytes<E>`
+
+- <span id="i64bytes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<E: cmp::Ord + Endian> Ord for I64Bytes<E>`
 
-- <span id="i64bytes-cmp"></span>`fn cmp(&self, other: &I64Bytes<E>) -> cmp::Ordering` — [`I64Bytes`](../index.md#i64bytes)
+- <span id="i64bytes-ord-cmp"></span>`fn cmp(&self, other: &I64Bytes<E>) -> cmp::Ordering` — [`I64Bytes`](../index.md#i64bytes)
 
 ##### `impl<E: cmp::PartialEq + Endian> PartialEq for I64Bytes<E>`
 
-- <span id="i64bytes-eq"></span>`fn eq(&self, other: &I64Bytes<E>) -> bool` — [`I64Bytes`](../index.md#i64bytes)
+- <span id="i64bytes-partialeq-eq"></span>`fn eq(&self, other: &I64Bytes<E>) -> bool` — [`I64Bytes`](../index.md#i64bytes)
 
 ##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for I64Bytes<E>`
 
-- <span id="i64bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &I64Bytes<E>) -> option::Option<cmp::Ordering>` — [`I64Bytes`](../index.md#i64bytes)
+- <span id="i64bytes-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &I64Bytes<E>) -> option::Option<cmp::Ordering>` — [`I64Bytes`](../index.md#i64bytes)
 
 ##### `impl<E: Endian> Pod for I64Bytes<E>`
 
 ##### `impl<E: Endian> StructuralPartialEq for I64Bytes<E>`
+
+##### `impl ToOwned for I64Bytes<E>`
+
+- <span id="i64bytes-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="i64bytes-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="i64bytes-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for I64Bytes<E>`
+
+- <span id="i64bytes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="i64bytes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for I64Bytes<E>`
+
+- <span id="i64bytes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="i64bytes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -520,15 +1000,31 @@ An endianness that is selectable at run-time.
 
 #### Trait Implementations
 
+##### `impl Any for Endianness`
+
+- <span id="endianness-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Endianness`
+
+- <span id="endianness-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Endianness`
+
+- <span id="endianness-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Endianness`
 
 - <span id="endianness-clone"></span>`fn clone(&self) -> Endianness` — [`Endianness`](../index.md#endianness)
+
+##### `impl CloneToUninit for Endianness`
+
+- <span id="endianness-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Endianness`
 
 ##### `impl Debug for Endianness`
 
-- <span id="endianness-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="endianness-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Endianness`
 
@@ -536,21 +1032,59 @@ An endianness that is selectable at run-time.
 
 ##### `impl Endian for Endianness`
 
-- <span id="endianness-from-big-endian"></span>`fn from_big_endian(big_endian: bool) -> Option<Self>`
+- <span id="endianness-endian-from-big-endian"></span>`fn from_big_endian(big_endian: bool) -> Option<Self>`
 
-- <span id="endianness-is-big-endian"></span>`fn is_big_endian(self) -> bool`
+- <span id="endianness-endian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for Endianness`
+
+##### `impl<T> From for Endianness`
+
+- <span id="endianness-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Endianness`
 
 - <span id="endianness-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Endianness`
+
+- <span id="endianness-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Endianness`
 
-- <span id="endianness-eq"></span>`fn eq(&self, other: &Endianness) -> bool` — [`Endianness`](../index.md#endianness)
+- <span id="endianness-partialeq-eq"></span>`fn eq(&self, other: &Endianness) -> bool` — [`Endianness`](../index.md#endianness)
 
 ##### `impl StructuralPartialEq for Endianness`
+
+##### `impl ToOwned for Endianness`
+
+- <span id="endianness-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="endianness-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="endianness-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Endianness`
+
+- <span id="endianness-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="endianness-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Endianness`
+
+- <span id="endianness-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="endianness-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

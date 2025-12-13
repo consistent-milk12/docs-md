@@ -99,27 +99,139 @@ an entire paragraph at a time in order to find optimal line breaks
 
 - <span id="wrapalgorithm-new"></span>`const fn new() -> Self`
 
+  Create new wrap algorithm.
+
+  
+
+  The best wrapping algorithm is used by default, i.e.,
+
+  `WrapAlgorithm::OptimalFit` if available, otherwise
+
+  [`WrapAlgorithm::FirstFit`](../index.md).
+
 - <span id="wrapalgorithm-wrap"></span>`fn wrap<'a, 'b>(&self, words: &'b [Word<'a>], line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]>` — [`Word`](../core/index.md#word)
 
+  Wrap words according to line widths.
+
+  
+
+  The `line_widths` slice gives the target line width for each
+
+  line (the last slice element is repeated as necessary). This
+
+  can be used to implement hanging indentation.
+
 #### Trait Implementations
+
+##### `impl Any for WrapAlgorithm`
+
+- <span id="wrapalgorithm-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WrapAlgorithm`
+
+- <span id="wrapalgorithm-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WrapAlgorithm`
+
+- <span id="wrapalgorithm-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for WrapAlgorithm`
 
 - <span id="wrapalgorithm-clone"></span>`fn clone(&self) -> WrapAlgorithm` — [`WrapAlgorithm`](#wrapalgorithm)
 
+##### `impl CloneToUninit for WrapAlgorithm`
+
+- <span id="wrapalgorithm-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for WrapAlgorithm`
 
 ##### `impl Debug for WrapAlgorithm`
 
-- <span id="wrapalgorithm-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="wrapalgorithm-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for WrapAlgorithm`
 
 - <span id="wrapalgorithm-default"></span>`fn default() -> Self`
 
+##### `impl<T> From for WrapAlgorithm`
+
+- <span id="wrapalgorithm-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WrapAlgorithm`
+
+- <span id="wrapalgorithm-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for WrapAlgorithm`
 
-- <span id="wrapalgorithm-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="wrapalgorithm-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
+
+  Compare two wrap algorithms.
+
+  
+
+  ```rust
+
+  use textwrap::WrapAlgorithm;
+
+  
+
+  assert_eq!(WrapAlgorithm::FirstFit, WrapAlgorithm::FirstFit);
+
+  #[cfg(feature = "smawk")] {
+
+      assert_eq!(WrapAlgorithm::new_optimal_fit(), WrapAlgorithm::new_optimal_fit());
+
+  }
+
+  ```
+
+  
+
+  Note that `WrapAlgorithm::Custom` values never compare equal:
+
+  
+
+  ```rust
+
+  use textwrap::WrapAlgorithm;
+
+  
+
+  assert_ne!(WrapAlgorithm::Custom(|words, line_widths| vec![words]),
+
+             WrapAlgorithm::Custom(|words, line_widths| vec![words]));
+
+  ```
+
+##### `impl ToOwned for WrapAlgorithm`
+
+- <span id="wrapalgorithm-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="wrapalgorithm-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="wrapalgorithm-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for WrapAlgorithm`
+
+- <span id="wrapalgorithm-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="wrapalgorithm-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WrapAlgorithm`
+
+- <span id="wrapalgorithm-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="wrapalgorithm-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

@@ -96,9 +96,39 @@ struct InsertionHole<T> {
 
 #### Trait Implementations
 
+##### `impl<T> Any for InsertionHole<T>`
+
+- <span id="insertionhole-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for InsertionHole<T>`
+
+- <span id="insertionhole-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for InsertionHole<T>`
+
+- <span id="insertionhole-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T> Drop for InsertionHole<T>`
 
 - <span id="insertionhole-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for InsertionHole<T>`
+
+- <span id="insertionhole-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for InsertionHole<T>`
+
+- <span id="insertionhole-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for InsertionHole<T>`
 
@@ -108,13 +138,25 @@ struct InsertionHole<T> {
 
 - <span id="insertionhole-pointable-type-init"></span>`type Init = T`
 
-- <span id="insertionhole-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="insertionhole-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="insertionhole-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="insertionhole-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="insertionhole-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="insertionhole-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="insertionhole-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="insertionhole-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T, U> TryFrom for InsertionHole<T>`
+
+- <span id="insertionhole-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="insertionhole-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for InsertionHole<T>`
+
+- <span id="insertionhole-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="insertionhole-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MergeHole<T>`
 
@@ -130,9 +172,39 @@ struct MergeHole<T> {
 
 #### Trait Implementations
 
+##### `impl<T> Any for MergeHole<T>`
+
+- <span id="mergehole-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MergeHole<T>`
+
+- <span id="mergehole-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MergeHole<T>`
+
+- <span id="mergehole-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T> Drop for MergeHole<T>`
 
 - <span id="mergehole-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for MergeHole<T>`
+
+- <span id="mergehole-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for MergeHole<T>`
+
+- <span id="mergehole-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for MergeHole<T>`
 
@@ -142,13 +214,25 @@ struct MergeHole<T> {
 
 - <span id="mergehole-pointable-type-init"></span>`type Init = T`
 
-- <span id="mergehole-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="mergehole-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="mergehole-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="mergehole-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="mergehole-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="mergehole-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="mergehole-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="mergehole-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T, U> TryFrom for MergeHole<T>`
+
+- <span id="mergehole-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="mergehole-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for MergeHole<T>`
+
+- <span id="mergehole-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="mergehole-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `TimSortRun`
 
@@ -165,15 +249,49 @@ Internal type used by merge_sort.
 
 #### Trait Implementations
 
+##### `impl Any for TimSortRun`
+
+- <span id="timsortrun-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TimSortRun`
+
+- <span id="timsortrun-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TimSortRun`
+
+- <span id="timsortrun-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for TimSortRun`
 
 - <span id="timsortrun-clone"></span>`fn clone(&self) -> TimSortRun` — [`TimSortRun`](#timsortrun)
+
+##### `impl CloneToUninit for TimSortRun`
+
+- <span id="timsortrun-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for TimSortRun`
 
 ##### `impl Debug for TimSortRun`
 
-- <span id="timsortrun-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="timsortrun-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for TimSortRun`
+
+- <span id="timsortrun-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TimSortRun`
+
+- <span id="timsortrun-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TimSortRun`
 
@@ -183,13 +301,33 @@ Internal type used by merge_sort.
 
 - <span id="timsortrun-pointable-type-init"></span>`type Init = T`
 
-- <span id="timsortrun-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="timsortrun-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="timsortrun-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="timsortrun-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="timsortrun-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="timsortrun-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="timsortrun-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="timsortrun-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for TimSortRun`
+
+- <span id="timsortrun-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="timsortrun-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="timsortrun-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TimSortRun`
+
+- <span id="timsortrun-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="timsortrun-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TimSortRun`
+
+- <span id="timsortrun-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="timsortrun-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -223,19 +361,53 @@ The result of merge sort.
 
 #### Trait Implementations
 
+##### `impl Any for MergeSortResult`
+
+- <span id="mergesortresult-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MergeSortResult`
+
+- <span id="mergesortresult-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MergeSortResult`
+
+- <span id="mergesortresult-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for MergeSortResult`
 
 - <span id="mergesortresult-clone"></span>`fn clone(&self) -> MergeSortResult` — [`MergeSortResult`](#mergesortresult)
+
+##### `impl CloneToUninit for MergeSortResult`
+
+- <span id="mergesortresult-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for MergeSortResult`
 
 ##### `impl Eq for MergeSortResult`
 
+##### `impl<T> From for MergeSortResult`
+
+- <span id="mergesortresult-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MergeSortResult`
+
+- <span id="mergesortresult-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for MergeSortResult`
 
 ##### `impl PartialEq for MergeSortResult`
 
-- <span id="mergesortresult-eq"></span>`fn eq(&self, other: &MergeSortResult) -> bool` — [`MergeSortResult`](#mergesortresult)
+- <span id="mergesortresult-partialeq-eq"></span>`fn eq(&self, other: &MergeSortResult) -> bool` — [`MergeSortResult`](#mergesortresult)
 
 ##### `impl Pointable for MergeSortResult`
 
@@ -243,15 +415,35 @@ The result of merge sort.
 
 - <span id="mergesortresult-pointable-type-init"></span>`type Init = T`
 
-- <span id="mergesortresult-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="mergesortresult-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="mergesortresult-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="mergesortresult-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="mergesortresult-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="mergesortresult-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="mergesortresult-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="mergesortresult-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl StructuralPartialEq for MergeSortResult`
+
+##### `impl ToOwned for MergeSortResult`
+
+- <span id="mergesortresult-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="mergesortresult-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="mergesortresult-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MergeSortResult`
+
+- <span id="mergesortresult-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="mergesortresult-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MergeSortResult`
+
+- <span id="mergesortresult-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="mergesortresult-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

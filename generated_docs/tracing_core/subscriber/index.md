@@ -36,27 +36,139 @@ in order to determine whether that span should be enabled or disabled.
 
 - <span id="interest-never"></span>`fn never() -> Self`
 
+  Returns an `Interest` indicating that the subscriber is never interested
+
+  in being notified about a callsite.
+
+  
+
+  If all active subscribers are `never()` interested in a callsite, it will
+
+  be completely disabled unless a new subscriber becomes active.
+
 - <span id="interest-sometimes"></span>`fn sometimes() -> Self`
+
+  Returns an `Interest` indicating the subscriber is sometimes interested
+
+  in being notified about a callsite.
+
+  
+
+  If all active subscribers are `sometimes` or `never` interested in a
+
+  callsite, the currently active subscriber will be asked to filter that
+
+  callsite every time it creates a span. This will be the case until a new
+
+  subscriber expresses that it is `always` interested in the callsite.
 
 - <span id="interest-always"></span>`fn always() -> Self`
 
+  Returns an `Interest` indicating the subscriber is always interested in
+
+  being notified about a callsite.
+
+  
+
+  If any subscriber expresses that it is `always()` interested in a given
+
+  callsite, then the callsite will always be enabled.
+
 - <span id="interest-is-never"></span>`fn is_never(&self) -> bool`
+
+  Returns `true` if the subscriber is never interested in being notified
+
+  about this callsite.
 
 - <span id="interest-is-sometimes"></span>`fn is_sometimes(&self) -> bool`
 
+  Returns `true` if the subscriber is sometimes interested in being notified
+
+  about this callsite.
+
 - <span id="interest-is-always"></span>`fn is_always(&self) -> bool`
+
+  Returns `true` if the subscriber is always interested in being notified
+
+  about this callsite.
 
 - <span id="interest-and"></span>`fn and(self, rhs: Interest) -> Self` — [`Interest`](#interest)
 
+  Returns the common interest between these two Interests.
+
+  
+
+  If both interests are the same, this propagates that interest.
+
+  Otherwise, if they differ, the result must always be
+
+  `Interest::sometimes` --- if the two subscribers differ in opinion, we
+
+  will have to ask the current subscriber what it thinks, no matter what.
+
 #### Trait Implementations
+
+##### `impl Any for Interest`
+
+- <span id="interest-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Interest`
+
+- <span id="interest-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Interest`
+
+- <span id="interest-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Interest`
 
 - <span id="interest-clone"></span>`fn clone(&self) -> Interest` — [`Interest`](#interest)
 
+##### `impl CloneToUninit for Interest`
+
+- <span id="interest-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Interest`
 
-- <span id="interest-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="interest-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Interest`
+
+- <span id="interest-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Interest`
+
+- <span id="interest-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Interest`
+
+- <span id="interest-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="interest-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="interest-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Interest`
+
+- <span id="interest-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="interest-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Interest`
+
+- <span id="interest-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="interest-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `NoSubscriber`
 
@@ -75,39 +187,95 @@ never being interested in any callsite, and dropping all spans and events.
 
 - <span id="nosubscriber-new"></span>`const fn new() -> Self`
 
+  Returns a new `NoSubscriber`.
+
 #### Trait Implementations
+
+##### `impl Any for NoSubscriber`
+
+- <span id="nosubscriber-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for NoSubscriber`
+
+- <span id="nosubscriber-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for NoSubscriber`
+
+- <span id="nosubscriber-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for NoSubscriber`
 
 - <span id="nosubscriber-clone"></span>`fn clone(&self) -> NoSubscriber` — [`NoSubscriber`](#nosubscriber)
 
+##### `impl CloneToUninit for NoSubscriber`
+
+- <span id="nosubscriber-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for NoSubscriber`
 
 ##### `impl Debug for NoSubscriber`
 
-- <span id="nosubscriber-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="nosubscriber-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for NoSubscriber`
 
 - <span id="nosubscriber-default"></span>`fn default() -> NoSubscriber` — [`NoSubscriber`](#nosubscriber)
 
+##### `impl<T> From for NoSubscriber`
+
+- <span id="nosubscriber-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for NoSubscriber`
+
+- <span id="nosubscriber-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Subscriber for NoSubscriber`
 
-- <span id="nosubscriber-register-callsite"></span>`fn register_callsite(&self, _: &'static Metadata<'static>) -> Interest` — [`Metadata`](../metadata/index.md#metadata), [`Interest`](#interest)
+- <span id="nosubscriber-subscriber-register-callsite"></span>`fn register_callsite(&self, _: &'static Metadata<'static>) -> Interest` — [`Metadata`](../metadata/index.md#metadata), [`Interest`](#interest)
 
-- <span id="nosubscriber-new-span"></span>`fn new_span(&self, _: &span::Attributes<'_>) -> span::Id` — [`Attributes`](../span/index.md#attributes), [`Id`](../span/index.md#id)
+- <span id="nosubscriber-subscriber-new-span"></span>`fn new_span(&self, _: &span::Attributes<'_>) -> span::Id` — [`Attributes`](../span/index.md#attributes), [`Id`](../span/index.md#id)
 
-- <span id="nosubscriber-event"></span>`fn event(&self, _event: &Event<'_>)` — [`Event`](../event/index.md#event)
+- <span id="nosubscriber-subscriber-event"></span>`fn event(&self, _event: &Event<'_>)` — [`Event`](../event/index.md#event)
 
-- <span id="nosubscriber-record"></span>`fn record(&self, _span: &span::Id, _values: &span::Record<'_>)` — [`Id`](../span/index.md#id), [`Record`](../span/index.md#record)
+- <span id="nosubscriber-subscriber-record"></span>`fn record(&self, _span: &span::Id, _values: &span::Record<'_>)` — [`Id`](../span/index.md#id), [`Record`](../span/index.md#record)
 
-- <span id="nosubscriber-record-follows-from"></span>`fn record_follows_from(&self, _span: &span::Id, _follows: &span::Id)` — [`Id`](../span/index.md#id)
+- <span id="nosubscriber-subscriber-record-follows-from"></span>`fn record_follows_from(&self, _span: &span::Id, _follows: &span::Id)` — [`Id`](../span/index.md#id)
 
-- <span id="nosubscriber-enabled"></span>`fn enabled(&self, _metadata: &Metadata<'_>) -> bool` — [`Metadata`](../metadata/index.md#metadata)
+- <span id="nosubscriber-subscriber-enabled"></span>`fn enabled(&self, _metadata: &Metadata<'_>) -> bool` — [`Metadata`](../metadata/index.md#metadata)
 
-- <span id="nosubscriber-enter"></span>`fn enter(&self, _span: &span::Id)` — [`Id`](../span/index.md#id)
+- <span id="nosubscriber-subscriber-enter"></span>`fn enter(&self, _span: &span::Id)` — [`Id`](../span/index.md#id)
 
-- <span id="nosubscriber-exit"></span>`fn exit(&self, _span: &span::Id)` — [`Id`](../span/index.md#id)
+- <span id="nosubscriber-subscriber-exit"></span>`fn exit(&self, _span: &span::Id)` — [`Id`](../span/index.md#id)
+
+##### `impl ToOwned for NoSubscriber`
+
+- <span id="nosubscriber-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="nosubscriber-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="nosubscriber-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for NoSubscriber`
+
+- <span id="nosubscriber-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="nosubscriber-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for NoSubscriber`
+
+- <span id="nosubscriber-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="nosubscriber-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -125,31 +293,85 @@ enum InterestKind {
 
 #### Trait Implementations
 
+##### `impl Any for InterestKind`
+
+- <span id="interestkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for InterestKind`
+
+- <span id="interestkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for InterestKind`
+
+- <span id="interestkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for InterestKind`
 
 - <span id="interestkind-clone"></span>`fn clone(&self) -> InterestKind` — [`InterestKind`](#interestkind)
+
+##### `impl CloneToUninit for InterestKind`
+
+- <span id="interestkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for InterestKind`
 
 ##### `impl Debug for InterestKind`
 
-- <span id="interestkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="interestkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for InterestKind`
 
+##### `impl<T> From for InterestKind`
+
+- <span id="interestkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for InterestKind`
+
+- <span id="interestkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for InterestKind`
 
-- <span id="interestkind-cmp"></span>`fn cmp(&self, other: &InterestKind) -> cmp::Ordering` — [`InterestKind`](#interestkind)
+- <span id="interestkind-ord-cmp"></span>`fn cmp(&self, other: &InterestKind) -> cmp::Ordering` — [`InterestKind`](#interestkind)
 
 ##### `impl PartialEq for InterestKind`
 
-- <span id="interestkind-eq"></span>`fn eq(&self, other: &InterestKind) -> bool` — [`InterestKind`](#interestkind)
+- <span id="interestkind-partialeq-eq"></span>`fn eq(&self, other: &InterestKind) -> bool` — [`InterestKind`](#interestkind)
 
 ##### `impl PartialOrd for InterestKind`
 
-- <span id="interestkind-partial-cmp"></span>`fn partial_cmp(&self, other: &InterestKind) -> option::Option<cmp::Ordering>` — [`InterestKind`](#interestkind)
+- <span id="interestkind-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &InterestKind) -> option::Option<cmp::Ordering>` — [`InterestKind`](#interestkind)
 
 ##### `impl StructuralPartialEq for InterestKind`
+
+##### `impl ToOwned for InterestKind`
+
+- <span id="interestkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="interestkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="interestkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for InterestKind`
+
+- <span id="interestkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="interestkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for InterestKind`
+
+- <span id="interestkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="interestkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

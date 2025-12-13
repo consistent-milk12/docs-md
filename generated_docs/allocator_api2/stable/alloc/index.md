@@ -44,6 +44,50 @@ struct GlobalAlloc<R: gimli::Reader> {
 
 - <span id="inlinedfunction-parse"></span>`fn parse(state: &mut InlinedState<'_, R>, dw_die_offset: gimli::UnitOffset<<R as >::Offset>, abbrev: &gimli::Abbreviation, depth: isize, inlined_depth: usize) -> Result<(), gimli::Error>` — [`LayoutError`](#layouterror)
 
+#### Trait Implementations
+
+##### `impl Any for InlinedFunction<R>`
+
+- <span id="inlinedfunction-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for InlinedFunction<R>`
+
+- <span id="inlinedfunction-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for InlinedFunction<R>`
+
+- <span id="inlinedfunction-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for InlinedFunction<R>`
+
+- <span id="inlinedfunction-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for InlinedFunction<R>`
+
+- <span id="inlinedfunction-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for InlinedFunction<R>`
+
+- <span id="inlinedfunction-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="inlinedfunction-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for InlinedFunction<R>`
+
+- <span id="inlinedfunction-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="inlinedfunction-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `Global`
 
 ```rust
@@ -71,31 +115,85 @@ accessed through the [free functions in `alloc`](crate#functions).
 
 ##### `impl Allocator for Global`
 
-- <span id="global-allocate"></span>`fn allocate(&self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
+- <span id="global-allocator-allocate"></span>`fn allocate(&self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
 
-- <span id="global-allocate-zeroed"></span>`fn allocate_zeroed(&self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
+- <span id="global-allocator-allocate-zeroed"></span>`fn allocate_zeroed(&self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
 
-- <span id="global-deallocate"></span>`unsafe fn deallocate(&self, ptr: NonNull<u8>, layout: Layout)` — [`Layout`](#layout)
+- <span id="global-allocator-deallocate"></span>`unsafe fn deallocate(&self, ptr: NonNull<u8>, layout: Layout)` — [`Layout`](#layout)
 
-- <span id="global-grow"></span>`unsafe fn grow(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
+- <span id="global-allocator-grow"></span>`unsafe fn grow(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
 
-- <span id="global-grow-zeroed"></span>`unsafe fn grow_zeroed(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
+- <span id="global-allocator-grow-zeroed"></span>`unsafe fn grow_zeroed(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
 
-- <span id="global-shrink"></span>`unsafe fn shrink(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
+- <span id="global-allocator-shrink"></span>`unsafe fn shrink(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
+
+##### `impl Any for Global`
+
+- <span id="global-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Global`
+
+- <span id="global-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Global`
+
+- <span id="global-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Global`
 
 - <span id="global-clone"></span>`fn clone(&self) -> Global` — [`Global`](global/index.md#global)
 
+##### `impl CloneToUninit for Global`
+
+- <span id="global-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Global`
 
 ##### `impl Debug for Global`
 
-- <span id="global-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="global-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Global`
 
 - <span id="global-default"></span>`fn default() -> Global` — [`Global`](global/index.md#global)
+
+##### `impl<T> From for Global`
+
+- <span id="global-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Global`
+
+- <span id="global-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Global`
+
+- <span id="global-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="global-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="global-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Global`
+
+- <span id="global-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="global-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Global`
+
+- <span id="global-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="global-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AllocError`
 
@@ -112,31 +210,85 @@ allocator.
 
 #### Trait Implementations
 
+##### `impl Any for AllocError`
+
+- <span id="allocerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AllocError`
+
+- <span id="allocerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AllocError`
+
+- <span id="allocerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for AllocError`
 
 - <span id="allocerror-clone"></span>`fn clone(&self) -> AllocError` — [`AllocError`](#allocerror)
+
+##### `impl CloneToUninit for AllocError`
+
+- <span id="allocerror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for AllocError`
 
 ##### `impl Debug for AllocError`
 
-- <span id="allocerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="allocerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for AllocError`
 
-- <span id="allocerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="allocerror-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for AllocError`
 
+##### `impl<T> From for AllocError`
+
+- <span id="allocerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AllocError`
+
+- <span id="allocerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for AllocError`
 
-- <span id="allocerror-eq"></span>`fn eq(&self, other: &AllocError) -> bool` — [`AllocError`](#allocerror)
+- <span id="allocerror-partialeq-eq"></span>`fn eq(&self, other: &AllocError) -> bool` — [`AllocError`](#allocerror)
 
 ##### `impl StructuralPartialEq for AllocError`
 
+##### `impl ToOwned for AllocError`
+
+- <span id="allocerror-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="allocerror-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="allocerror-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for AllocError`
 
-- <span id="allocerror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="allocerror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for AllocError`
+
+- <span id="allocerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="allocerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AllocError`
+
+- <span id="allocerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="allocerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

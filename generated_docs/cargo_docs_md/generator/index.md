@@ -171,11 +171,77 @@ the current module, with each segment being a clickable link.
 
 - <span id="breadcrumbgenerator-new"></span>`const fn new(module_path: &'a [String], crate_name: &'a str) -> Self`
 
+  Create a new breadcrumb generator.
+
+  
+
+  # Arguments
+
+  
+
+  * `module_path` - The module path segments
+
+  * `crate_name` - The name of the crate for the root link
+
 - <span id="breadcrumbgenerator-generate"></span>`fn generate(&self) -> String`
+
+  Generate breadcrumb navigation markdown.
+
+  
+
+  Returns empty string for root module.
+
+  
+
+  # Example Output
+
+  
+
+  For `module_path = ["error", "types"]` and `crate_name = "docs_md"`:
+
+  ```markdown
+
+  *[docs_md](../../index.md) / [error](../index.md) / [types](index.md)*
+
+  
+
+  ---
+
+  ```
 
 #### Trait Implementations
 
+##### `impl Any for BreadcrumbGenerator<'a>`
+
+- <span id="breadcrumbgenerator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BreadcrumbGenerator<'a>`
+
+- <span id="breadcrumbgenerator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BreadcrumbGenerator<'a>`
+
+- <span id="breadcrumbgenerator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for BreadcrumbGenerator<'a>`
+
+- <span id="breadcrumbgenerator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for BreadcrumbGenerator<'a>`
+
+##### `impl<U> Into for BreadcrumbGenerator<'a>`
+
+- <span id="breadcrumbgenerator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for BreadcrumbGenerator<'a>`
 
@@ -187,13 +253,25 @@ the current module, with each segment being a clickable link.
 
 - <span id="breadcrumbgenerator-pointable-type-init"></span>`type Init = T`
 
-- <span id="breadcrumbgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="breadcrumbgenerator-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="breadcrumbgenerator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="breadcrumbgenerator-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="breadcrumbgenerator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="breadcrumbgenerator-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="breadcrumbgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="breadcrumbgenerator-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for BreadcrumbGenerator<'a>`
+
+- <span id="breadcrumbgenerator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="breadcrumbgenerator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BreadcrumbGenerator<'a>`
+
+- <span id="breadcrumbgenerator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="breadcrumbgenerator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for BreadcrumbGenerator<'a>`
 
@@ -224,31 +302,89 @@ side effects.
 
 - <span id="markdowncapture-new"></span>`fn new() -> Self`
 
+  Create a new empty capture.
+
 - <span id="markdowncapture-insert"></span>`fn insert(&mut self, path: String, content: String)`
+
+  Add a file to the capture.
+
+  
+
+  # Arguments
+
+  * `path` - Relative path of the file (e.g., "index.md" or "span/index.md")
+
+  * `content` - The markdown content for this file
 
 - <span id="markdowncapture-get"></span>`fn get(&self, path: &str) -> Option<&String>`
 
+  Get the content of a specific file.
+
 - <span id="markdowncapture-paths"></span>`fn paths(&self) -> Vec<&String>`
+
+  Get all file paths in sorted order.
 
 - <span id="markdowncapture-len"></span>`fn len(&self) -> usize`
 
+  Get the number of captured files.
+
 - <span id="markdowncapture-is-empty"></span>`fn is_empty(&self) -> bool`
+
+  Check if the capture is empty.
 
 - <span id="markdowncapture-to-snapshot-string"></span>`fn to_snapshot_string(&self) -> String`
 
+  Convert all captured files to a single string for snapshot testing.
+
+  
+
+  Files are sorted by path and separated with clear headers.
+
 - <span id="markdowncapture-into-inner"></span>`fn into_inner(self) -> HashMap<String, String>`
+
+  Consume self and return the underlying `HashMap`.
 
 #### Trait Implementations
 
+##### `impl Any for MarkdownCapture`
+
+- <span id="markdowncapture-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MarkdownCapture`
+
+- <span id="markdowncapture-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MarkdownCapture`
+
+- <span id="markdowncapture-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for MarkdownCapture`
 
-- <span id="markdowncapture-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="markdowncapture-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MarkdownCapture`
 
 - <span id="markdowncapture-default"></span>`fn default() -> MarkdownCapture` — [`MarkdownCapture`](capture/index.md#markdowncapture)
 
+##### `impl<T> From for MarkdownCapture`
+
+- <span id="markdowncapture-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for MarkdownCapture`
+
+##### `impl<U> Into for MarkdownCapture`
+
+- <span id="markdowncapture-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MarkdownCapture`
 
@@ -260,13 +396,25 @@ side effects.
 
 - <span id="markdowncapture-pointable-type-init"></span>`type Init = T`
 
-- <span id="markdowncapture-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="markdowncapture-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="markdowncapture-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="markdowncapture-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="markdowncapture-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="markdowncapture-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="markdowncapture-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="markdowncapture-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for MarkdownCapture`
+
+- <span id="markdowncapture-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="markdowncapture-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MarkdownCapture`
+
+- <span id="markdowncapture-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="markdowncapture-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for MarkdownCapture`
 
@@ -279,11 +427,12 @@ struct RenderConfig {
     pub group_impls: bool,
     pub hide_trivial_derives: bool,
     pub method_anchors: bool,
+    pub full_method_docs: bool,
     pub include_source: SourceConfig,
 }
 ```
 
-*Defined in `src/generator/config.rs:14-32`*
+*Defined in `src/generator/config.rs:14-39`*
 
 Configuration options for markdown rendering.
 
@@ -309,25 +458,67 @@ Configuration options for markdown rendering.
 
   Generate method-level anchors for deep linking.
 
+- **`full_method_docs`**: `bool`
+
+  Include full method documentation instead of first-paragraph summaries.
+  
+  When `false` (default), method docs in impl blocks show only the first
+  paragraph (up to the first blank line). When `true`, the complete
+  documentation is included.
+
 - **`include_source`**: `SourceConfig`
 
   Source code integration options.
 
 #### Trait Implementations
 
+##### `impl Any for RenderConfig`
+
+- <span id="renderconfig-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RenderConfig`
+
+- <span id="renderconfig-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RenderConfig`
+
+- <span id="renderconfig-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for RenderConfig`
 
 - <span id="renderconfig-clone"></span>`fn clone(&self) -> RenderConfig` — [`RenderConfig`](config/index.md#renderconfig)
 
+##### `impl CloneToUninit for RenderConfig`
+
+- <span id="renderconfig-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for RenderConfig`
 
-- <span id="renderconfig-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="renderconfig-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for RenderConfig`
 
 - <span id="renderconfig-default"></span>`fn default() -> Self`
 
+##### `impl<T> From for RenderConfig`
+
+- <span id="renderconfig-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for RenderConfig`
+
+##### `impl<U> Into for RenderConfig`
+
+- <span id="renderconfig-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for RenderConfig`
 
@@ -339,13 +530,33 @@ Configuration options for markdown rendering.
 
 - <span id="renderconfig-pointable-type-init"></span>`type Init = T`
 
-- <span id="renderconfig-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="renderconfig-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="renderconfig-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="renderconfig-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="renderconfig-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="renderconfig-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="renderconfig-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="renderconfig-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for RenderConfig`
+
+- <span id="renderconfig-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="renderconfig-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="renderconfig-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for RenderConfig`
+
+- <span id="renderconfig-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="renderconfig-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for RenderConfig`
+
+- <span id="renderconfig-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="renderconfig-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for RenderConfig`
 
@@ -361,7 +572,7 @@ struct SourceConfig {
 }
 ```
 
-*Defined in `src/generator/config.rs:42-61`*
+*Defined in `src/generator/config.rs:49-68`*
 
 Configuration for source code integration.
 
@@ -395,19 +606,53 @@ Requires the `source-parsing` feature to have any effect.
 
 #### Trait Implementations
 
+##### `impl Any for SourceConfig`
+
+- <span id="sourceconfig-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SourceConfig`
+
+- <span id="sourceconfig-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SourceConfig`
+
+- <span id="sourceconfig-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SourceConfig`
 
 - <span id="sourceconfig-clone"></span>`fn clone(&self) -> SourceConfig` — [`SourceConfig`](config/index.md#sourceconfig)
 
+##### `impl CloneToUninit for SourceConfig`
+
+- <span id="sourceconfig-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for SourceConfig`
 
-- <span id="sourceconfig-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sourceconfig-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for SourceConfig`
 
 - <span id="sourceconfig-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](config/index.md#sourceconfig)
 
+##### `impl<T> From for SourceConfig`
+
+- <span id="sourceconfig-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for SourceConfig`
+
+##### `impl<U> Into for SourceConfig`
+
+- <span id="sourceconfig-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SourceConfig`
 
@@ -419,13 +664,33 @@ Requires the `source-parsing` feature to have any effect.
 
 - <span id="sourceconfig-pointable-type-init"></span>`type Init = T`
 
-- <span id="sourceconfig-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="sourceconfig-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="sourceconfig-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="sourceconfig-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="sourceconfig-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="sourceconfig-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="sourceconfig-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="sourceconfig-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for SourceConfig`
+
+- <span id="sourceconfig-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sourceconfig-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sourceconfig-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SourceConfig`
+
+- <span id="sourceconfig-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sourceconfig-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SourceConfig`
+
+- <span id="sourceconfig-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sourceconfig-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for SourceConfig`
 
@@ -501,55 +766,173 @@ This struct is passed to all rendering components and provides:
 
 - <span id="generatorcontext-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Self` — [`Args`](../index.md#args), [`RenderConfig`](config/index.md#renderconfig)
 
+  Create a new generator context from crate data and CLI arguments.
+
+  
+
+  Builds the path map, impl map, and link registry needed for generation.
+
+  
+
+  # Arguments
+
+  
+
+  * `krate` - The parsed rustdoc JSON crate
+
+  * `args` - CLI arguments containing output path, format, and options
+
+  * `config` - Rendering configuration options
+
 - <span id="generatorcontext-set-source-dir"></span>`fn set_source_dir(&mut self, source_dir: &Path)`
+
+  Set the source directory for path transformation.
+
+  
+
+  This can be called after construction if a `.source_*` directory
+
+  is detected or specified via CLI. Only has effect if `source_locations`
+
+  is enabled in the config.
 
 - <span id="generatorcontext-build-impl-map"></span>`fn build_impl_map(krate: &'a Crate) -> HashMap<Id, Vec<&'a Impl>>`
 
+  Build a map from type ID to all impl blocks for that type.
+
+  
+
+  This enables rendering the "Implementations" and "Trait Implementations"
+
+  sections for structs, enums, and other types.
+
+  
+
+  Uses the `impls` field on Struct/Enum/Union items directly rather than
+
+  scanning all items and checking the `for_` field. This provides clearer
+
+  semantics and leverages `rustdoc_types` structured data.
+
 - <span id="generatorcontext-impl-sort-key"></span>`fn impl_sort_key(impl_block: &Impl) -> (u8, String)`
+
+  Generate a sort key for an impl block.
+
+  
+
+  Inherent impls (no trait) sort before trait impls.
+
+  Trait impls are sorted by trait name.
 
 - <span id="generatorcontext-should-include-item"></span>`const fn should_include_item(&self, item: &Item) -> bool`
 
+  Check if an item should be included based on visibility settings.
+
+  
+
+  By default, all items are included. If `--exclude-private`
+
+  is set, only public items are included.
+
+  
+
+  # Visibility Levels
+
+  
+
+  - `Public` - Always included
+
+  - `Crate`, `Restricted`, `Default` - Included by default, excluded with `--exclude-private`
+
 - <span id="generatorcontext-count-modules"></span>`fn count_modules(&self, item: &Item) -> usize`
+
+  Count the total number of modules that will be generated.
+
+  
+
+  Used to initialize the progress bar with the correct total.
+
+  Respects the `--exclude-private` flag when counting.
 
 - <span id="generatorcontext-build-path-name-index"></span>`fn build_path_name_index(krate: &'a Crate) -> HashMap<&'a str, Vec<Id>>`
 
+  Build an index mapping item names to their IDs for fast lookup.
+
+  
+
+  This index is built once at context construction time and shared
+
+  across all `DocLinkProcessor` instances, eliminating redundant
+
+  index building for each item with documentation.
+
 #### Trait Implementations
 
+##### `impl Any for GeneratorContext<'a>`
+
+- <span id="generatorcontext-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for GeneratorContext<'a>`
+
+- <span id="generatorcontext-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for GeneratorContext<'a>`
+
+- <span id="generatorcontext-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for GeneratorContext<'a>`
+
+- <span id="generatorcontext-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for GeneratorContext<'a>`
+
+##### `impl<U> Into for GeneratorContext<'a>`
+
+- <span id="generatorcontext-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for GeneratorContext<'a>`
 
 ##### `impl ItemAccess for GeneratorContext<'_>`
 
-- <span id="generatorcontext-krate"></span>`fn krate(&self) -> &Crate`
+- <span id="generatorcontext-itemaccess-krate"></span>`fn krate(&self) -> &Crate`
 
-- <span id="generatorcontext-crate-name"></span>`fn crate_name(&self) -> &str`
+- <span id="generatorcontext-itemaccess-crate-name"></span>`fn crate_name(&self) -> &str`
 
-- <span id="generatorcontext-get-item"></span>`fn get_item(&self, id: &Id) -> Option<&Item>`
+- <span id="generatorcontext-itemaccess-get-item"></span>`fn get_item(&self, id: &Id) -> Option<&Item>`
 
-- <span id="generatorcontext-get-impls"></span>`fn get_impls(&self, id: &Id) -> Option<&[&Impl]>`
+- <span id="generatorcontext-itemaccess-get-impls"></span>`fn get_impls(&self, id: &Id) -> Option<&[&Impl]>`
 
-- <span id="generatorcontext-crate-version"></span>`fn crate_version(&self) -> Option<&str>`
+- <span id="generatorcontext-itemaccess-crate-version"></span>`fn crate_version(&self) -> Option<&str>`
 
-- <span id="generatorcontext-render-config"></span>`fn render_config(&self) -> &RenderConfig` — [`RenderConfig`](config/index.md#renderconfig)
+- <span id="generatorcontext-itemaccess-render-config"></span>`fn render_config(&self) -> &RenderConfig` — [`RenderConfig`](config/index.md#renderconfig)
 
-- <span id="generatorcontext-source-path-config-for-file"></span>`fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig>` — [`SourcePathConfig`](render_shared/index.md#sourcepathconfig)
+- <span id="generatorcontext-itemaccess-source-path-config-for-file"></span>`fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig>` — [`SourcePathConfig`](render_shared/index.md#sourcepathconfig)
 
 ##### `impl ItemFilter for GeneratorContext<'_>`
 
-- <span id="generatorcontext-should-include-item"></span>`fn should_include_item(&self, item: &Item) -> bool`
+- <span id="generatorcontext-itemfilter-should-include-item"></span>`fn should_include_item(&self, item: &Item) -> bool`
 
-- <span id="generatorcontext-include-private"></span>`fn include_private(&self) -> bool`
+- <span id="generatorcontext-itemfilter-include-private"></span>`fn include_private(&self) -> bool`
 
-- <span id="generatorcontext-include-blanket-impls"></span>`fn include_blanket_impls(&self) -> bool`
+- <span id="generatorcontext-itemfilter-include-blanket-impls"></span>`fn include_blanket_impls(&self) -> bool`
 
 ##### `impl LinkResolver for GeneratorContext<'_>`
 
-- <span id="generatorcontext-link-registry"></span>`fn link_registry(&self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../linker/index.md#linkregistry)
+- <span id="generatorcontext-linkresolver-link-registry"></span>`fn link_registry(&self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../linker/index.md#linkregistry)
 
-- <span id="generatorcontext-process-docs"></span>`fn process_docs(&self, item: &Item, current_file: &str) -> Option<String>`
+- <span id="generatorcontext-linkresolver-process-docs"></span>`fn process_docs(&self, item: &Item, current_file: &str) -> Option<String>`
 
-- <span id="generatorcontext-create-link"></span>`fn create_link(&self, id: Id, current_file: &str) -> Option<String>`
+- <span id="generatorcontext-linkresolver-create-link"></span>`fn create_link(&self, id: Id, current_file: &str) -> Option<String>`
 
 ##### `impl OwoColorize for GeneratorContext<'a>`
 
@@ -559,15 +942,27 @@ This struct is passed to all rendering components and provides:
 
 - <span id="generatorcontext-pointable-type-init"></span>`type Init = T`
 
-- <span id="generatorcontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="generatorcontext-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="generatorcontext-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="generatorcontext-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="generatorcontext-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="generatorcontext-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="generatorcontext-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="generatorcontext-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl RenderContext for GeneratorContext<'a>`
+
+##### `impl<U> TryFrom for GeneratorContext<'a>`
+
+- <span id="generatorcontext-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="generatorcontext-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for GeneratorContext<'a>`
+
+- <span id="generatorcontext-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="generatorcontext-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for GeneratorContext<'a>`
 
@@ -630,51 +1025,219 @@ Links inside fenced code blocks are not processed.
 
 - <span id="doclinkprocessor-with-index"></span>`fn with_index(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str, path_name_index: &HashMap<&'a str, Vec<Id>>) -> Self` — [`LinkRegistry`](../linker/index.md#linkregistry)
 
+  Create a new processor with a pre-built path name index.
+
+  
+
+  This is the preferred constructor when the index has already been built
+
+  (e.g., in `GeneratorContext`), avoiding redundant index construction.
+
 - <span id="doclinkprocessor-new"></span>`fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../linker/index.md#linkregistry)
+
+  Create a new processor for the given context.
+
+  
+
+  Builds the path name index internally. Prefer `Self::with_index` when
+
+  the index has already been built to avoid redundant computation.
 
 - <span id="doclinkprocessor-process"></span>`fn process(&self, docs: &str, item_links: &HashMap<String, Id>) -> String`
 
+  Process a doc string and resolve all intra-doc links.
+
+  
+
+  Uses the item's `links` map to resolve link text to IDs,
+
+  then uses `LinkRegistry` to convert IDs to relative paths.
+
 - <span id="doclinkprocessor-process-links-protected"></span>`fn process_links_protected(&self, docs: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process links while protecting code block contents.
+
+  
+
+  Uses [`CodeBlockTracker`](doc_links/index.md) to identify which lines are inside code blocks
+
+  (and should be left unchanged) vs regular text (which needs link processing).
 
 - <span id="doclinkprocessor-process-line"></span>`fn process_line(&self, line: &str, item_links: &HashMap<String, Id>) -> String`
 
+  Process a single line for all link types.
+
 - <span id="doclinkprocessor-process-reference-links"></span>`fn process_reference_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process reference-style links `[display text]`Span``.
 
 - <span id="doclinkprocessor-process-path-reference-links"></span>`fn process_path_reference_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
+  Process path reference links ``text``.
+
 - <span id="doclinkprocessor-process-method-links"></span>`fn process_method_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process method links `[``Type::method``]`.
 
 - <span id="doclinkprocessor-process-backtick-links"></span>`fn process_backtick_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
+  Process backtick links ``Name``.
+
 - <span id="doclinkprocessor-process-plain-links"></span>`fn process_plain_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process plain links `[name]`.
 
 - <span id="doclinkprocessor-process-html-links-with-context"></span>`fn process_html_links_with_context(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
+  Process HTML-style rustdoc links with context awareness.
+
+  
+
+  Instead of blindly converting all HTML links to local anchors,
+
+  this method checks if the item actually exists on the current page.
+
+  If not, it tries to resolve to docs.rs or removes the broken link.
+
+  
+
+  For method links (e.g., `struct.Foo.html#method.bar`), creates a
+
+  method anchor like `#foo-bar` for deep linking.
+
 - <span id="doclinkprocessor-resolve-html-link-to-url"></span>`fn resolve_html_link_to_url(&self, item_name: &str, item_kind: &str, item_links: &HashMap<String, Id>) -> Option<String>`
+
+  Try to resolve an HTML-style link to a proper URL.
+
+  
+
+  Returns a URL if the item can be resolved (either locally or to docs.rs),
+
+  or None if the item cannot be found.
 
 - <span id="doclinkprocessor-kind-matches"></span>`fn kind_matches(html_kind: &str, item_kind: ItemKind) -> bool`
 
+  Check if the HTML link kind matches the rustdoc item kind.
+
 - <span id="doclinkprocessor-clean-blank-lines"></span>`fn clean_blank_lines(docs: &str) -> String`
+
+  Clean up multiple consecutive blank lines.
 
 - <span id="doclinkprocessor-resolve-with-strategies"></span>`fn resolve_with_strategies<T, F>(&self, link_text: &str, item_links: &HashMap<String, Id>, resolver: F) -> Option<T>`
 
+  Generic 3-strategy resolution with per-strategy display names.
+
+  
+
+  Unifies the resolution logic used by `resolve_to_url` and `resolve_link`.
+
+  The resolver closure receives both the `Id` and the appropriate display name
+
+  for that strategy:
+
+  - Strategy 1 (exact match): uses original `link_text` (preserves qualified paths)
+
+  - Strategy 2 & 3 (fuzzy matches): uses `short_name`
+
+  
+
+  # Type Parameters
+
+  
+
+  * `T` - The result type (e.g., `String` for URLs or markdown links)
+
+  
+
+  # Arguments
+
+  
+
+  * `link_text` - Original link text from documentation
+
+  * `item_links` - Pre-resolved links from rustdoc
+
+  * `resolver` - Closure that takes `(Id, display_name)` and returns `Option<T>`
+
 - <span id="doclinkprocessor-resolve-to-url"></span>`fn resolve_to_url(&self, link_text: &str, item_links: &HashMap<String, Id>) -> Option<String>`
+
+  Resolve a link reference to a URL.
+
+  
+
+  Uses the generic 3-strategy resolver. Display name is ignored since
+
+  we only need the URL.
 
 - <span id="doclinkprocessor-get-url-for-id"></span>`fn get_url_for_id(&self, id: Id) -> Option<String>`
 
+  Get the URL for an ID (local or docs.rs).
+
 - <span id="doclinkprocessor-get-docs-rs-url"></span>`fn get_docs_rs_url(path_info: &rustdoc_types::ItemSummary) -> Option<String>`
+
+  Get docs.rs URL for an external crate item.
 
 - <span id="doclinkprocessor-resolve-method-link"></span>`fn resolve_method_link(&self, type_name: &str, method_name: &str, item_links: &HashMap<String, Id>) -> Option<String>`
 
+  Resolve a method link to a markdown link with method anchor.
+
+  
+
+  Links to the type's page with a method anchor for deep linking
+
+  (e.g., `#hashmap-new` for `HashMap::new`).
+
 - <span id="doclinkprocessor-resolve-link"></span>`fn resolve_link(&self, link_text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Try to resolve link text to a markdown link.
+
+  
+
+  Uses the generic 3-strategy resolver. Falls back to unresolved link format
+
+  (backtick-wrapped text in brackets) if resolution fails.
 
 - <span id="doclinkprocessor-create-link-for-id"></span>`fn create_link_for_id(&self, id: Id, display_name: &str) -> Option<String>`
 
+  Create a markdown link for an ID.
+
 - <span id="doclinkprocessor-create-docs-rs-link"></span>`fn create_docs_rs_link(path_info: &rustdoc_types::ItemSummary, display_name: &str) -> Option<String>`
+
+  Create a docs.rs link for an external crate item.
 
 #### Trait Implementations
 
+##### `impl Any for DocLinkProcessor<'a>`
+
+- <span id="doclinkprocessor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DocLinkProcessor<'a>`
+
+- <span id="doclinkprocessor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DocLinkProcessor<'a>`
+
+- <span id="doclinkprocessor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for DocLinkProcessor<'a>`
+
+- <span id="doclinkprocessor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for DocLinkProcessor<'a>`
+
+##### `impl<U> Into for DocLinkProcessor<'a>`
+
+- <span id="doclinkprocessor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for DocLinkProcessor<'a>`
 
@@ -686,13 +1249,25 @@ Links inside fenced code blocks are not processed.
 
 - <span id="doclinkprocessor-pointable-type-init"></span>`type Init = T`
 
-- <span id="doclinkprocessor-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="doclinkprocessor-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="doclinkprocessor-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="doclinkprocessor-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="doclinkprocessor-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="doclinkprocessor-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="doclinkprocessor-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="doclinkprocessor-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for DocLinkProcessor<'a>`
+
+- <span id="doclinkprocessor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="doclinkprocessor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DocLinkProcessor<'a>`
+
+- <span id="doclinkprocessor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="doclinkprocessor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for DocLinkProcessor<'a>`
 
@@ -710,21 +1285,139 @@ Utility functions for document links
 
 - <span id="doclinkutils-convert-html-links"></span>`fn convert_html_links(docs: &str) -> String`
 
+  Convert HTML-style rustdoc links to markdown anchors.
+
+  
+
+  Transforms links like:
+
+  - `(#numberprefix)` -> `(#numberprefix)`
+
+  - `(#foo-bar)` -> `(#foo-bar)` (type-method anchor)
+
+  
+
+  This is useful for multi-crate documentation where the full processor
+
+  context may not be available.
+
 - <span id="doclinkutils-strip-duplicate-title"></span>`fn strip_duplicate_title<'a>(docs: &'a str, item_name: &str) -> &'a str`
+
+  Strip duplicate title from documentation.
+
+  
+
+  Some crate/module docs start with `# title` which duplicates the generated
+
+  `# Crate 'name'` or `# Module 'name'` heading.
+
+  
+
+  # Arguments
+
+  
+
+  * `docs` - The documentation string to process
+
+  * `item_name` - The name of the crate or module being documented
+
+  
+
+  # Returns
+
+  
+
+  The docs with the leading title removed if it matches the item name,
+
+  otherwise the original docs unchanged.
 
 - <span id="doclinkutils-strip-reference-definitions"></span>`fn strip_reference_definitions(docs: &str) -> String`
 
+  Strip markdown reference definition lines.
+
+  
+
+  Removes lines like ``Name`: path::to::item` which are no longer needed
+
+  after intra-doc links are processed.
+
 - <span id="doclinkutils-unhide-code-lines"></span>`fn unhide_code_lines(docs: &str) -> String`
+
+  Unhide rustdoc hidden lines in code blocks and add language identifiers.
+
+  
+
+  This function performs two transformations on code blocks:
+
+  1. Lines starting with `# ` inside code blocks are hidden in rustdoc
+
+     but compiled. We remove the prefix to show the full example.
+
+  2. Bare code fences (` ``` `) are converted to ` ```rust ` since doc
+
+     examples are Rust code.
+
+  
+
+  Uses [`CodeBlockTracker`](doc_links/index.md) to manage fence state.
 
 - <span id="doclinkutils-convert-path-reference-links"></span>`fn convert_path_reference_links(docs: &str) -> String`
 
+  Convert path-style reference links to inline code.
+
+  
+
+  Transforms: ```ProgressTracker```
+
+  Into: `` `ProgressTracker` ``
+
+  
+
+  Without full link resolution context, we can't create valid anchors,
+
+  so we preserve the display text as inline code.
+
 - <span id="doclinkutils-replace-with-regex"></span>`fn replace_with_regex<F>(text: &str, re: &Regex, replacer: F) -> String`
+
+  Replace regex matches using a closure.
 
 - <span id="doclinkutils-replace-with-regex-checked"></span>`fn replace_with_regex_checked<F>(text: &str, re: &Regex, replacer: F) -> String`
 
+  Replace regex matches with access to the text after the match.
+
 #### Trait Implementations
 
+##### `impl Any for DocLinkUtils`
+
+- <span id="doclinkutils-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DocLinkUtils`
+
+- <span id="doclinkutils-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DocLinkUtils`
+
+- <span id="doclinkutils-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for DocLinkUtils`
+
+- <span id="doclinkutils-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for DocLinkUtils`
+
+##### `impl<U> Into for DocLinkUtils`
+
+- <span id="doclinkutils-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for DocLinkUtils`
 
@@ -736,13 +1429,25 @@ Utility functions for document links
 
 - <span id="doclinkutils-pointable-type-init"></span>`type Init = T`
 
-- <span id="doclinkutils-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="doclinkutils-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="doclinkutils-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="doclinkutils-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="doclinkutils-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="doclinkutils-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="doclinkutils-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="doclinkutils-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for DocLinkUtils`
+
+- <span id="doclinkutils-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="doclinkutils-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DocLinkUtils`
+
+- <span id="doclinkutils-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="doclinkutils-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for DocLinkUtils`
 
@@ -787,41 +1492,277 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 - <span id="modulerenderer-new"></span>`fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](context/index.md#rendercontext)
 
+  Create a new module renderer.
+
+  
+
+  # Arguments
+
+  
+
+  * `ctx` - Render context (implements `RenderContext` trait)
+
+  * `current_file` - Path of this file (for relative link calculation)
+
+  * `is_root` - True if this is the crate root module
+
 - <span id="modulerenderer-process-docs"></span>`fn process_docs(&self, item: &Item) -> Option<String>`
+
+  Process documentation string to resolve intra-doc links.
+
+  
+
+  Delegates to the render context's `process_docs` method, which handles
+
+  both single-crate and multi-crate link resolution.
 
 - <span id="modulerenderer-render"></span>`fn render(&self, item: &Item) -> String`
 
+  Generate the complete markdown content for a module.
+
+  
+
+  # Output Structure
+
+  
+
+  ```markdown
+
+  Crate `name` (or Module `name`)
+
+  
+
+  [module documentation]
+
+  
+
+  ## Contents (if items exceed threshold)
+
+  - [Structs](#structs)
+
+    - [`Parser`](#parser)
+
+  
+
+  ## Modules
+
+  - [submodule](link) - first line of docs
+
+  
+
+  ## Structs
+
+  ### `StructName`
+
+  [struct definition and docs]
+
+  
+
+  ## Enums
+
+  ...
+
+  ```
+
 - <span id="modulerenderer-categorize-items"></span>`fn categorize_items(&self, item_ids: &'a [Id]) -> CategorizedItems<'a>` — [`CategorizedItems`](module/index.md#categorizeditems)
+
+  Categorize module items by type for organized rendering.
+
+  
+
+  Items are categorized into groups for structured documentation.
+
+  - Modules (for navigation)
+
+  - Types (structs, enums, unions, type aliases)
+
+  - Traits
+
+  - Functions
+
+  - Constants and statics
+
+  - Macros
 
 - <span id="modulerenderer-expand-glob-reexport"></span>`fn expand_glob_reexport(&self, items: &mut CategorizedItems<'a>, use_item: &rustdoc_types::Use, seen_items: &mut HashSet<&'a Id>)` — [`CategorizedItems`](module/index.md#categorizeditems)
 
+  Expand a glob re-export by adding all public items from the target module.
+
 - <span id="modulerenderer-render-all-sections"></span>`fn render_all_sections(&self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](module/index.md#categorizeditems)
+
+  Render all item sections with horizontal rule separators.
+
+  
+
+  Sections are rendered in this order:
+
+  1. Modules (navigation, no separator before)
+
+  2. Types (structs, enums, unions, type aliases)
+
+  3. Traits
+
+  4. Functions
+
+  5. Constants
+
+  6. Statics
+
+  7. Macros
+
+  
+
+  Horizontal rules (`---`) are added between major sections for
+
+  visual separation in the rendered output.
 
 - <span id="modulerenderer-render-types-section"></span>`fn render_types_section(&self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](module/index.md#categorizeditems)
 
+  Render the Types section (structs, enums, unions, type aliases).
+
+  
+
+  All type definitions are grouped under a single "Types" heading,
+
+  with each item type rendered in subsections:
+
+  
+
+  ```markdown
+
+  ## Types
+
+  
+
+  ### `MyStruct`
+
+  [struct definition]
+
+  
+
+  ### `MyEnum`
+
+  [enum definition]
+
+  
+
+  ### `MyUnion`
+
+  [union definition]
+
+  
+
+  ### `MyAlias`
+
+  [type alias definition]
+
+  ```
+
 - <span id="modulerenderer-render-statics-section"></span>`fn render_statics_section(&self, md: &mut String, statics: &[&Item])`
+
+  Render the Statics section.
 
 - <span id="modulerenderer-build-toc-entries"></span>`fn build_toc_entries(items: &CategorizedItems<'_>) -> Vec<TocEntry>` — [`CategorizedItems`](module/index.md#categorizeditems), [`TocEntry`](toc/index.md#tocentry)
 
+  Build TOC entries from categorized items.
+
+  
+
+  Creates a hierarchical structure for the table of contents:
+
+  - Modules section
+
+  - Types section (with children: structs, enums, unions, type aliases)
+
+  - Traits section
+
+  - Functions section
+
+  - Constants section
+
+  - Statics section
+
+  - Macros section
+
 - <span id="modulerenderer-build-quick-ref-entries"></span>`fn build_quick_ref_entries(&self, items: &CategorizedItems<'_>) -> Vec<QuickRefEntry>` — [`CategorizedItems`](module/index.md#categorizeditems), [`QuickRefEntry`](quick_ref/index.md#quickrefentry)
+
+  Build quick reference entries from categorized items.
+
+  
+
+  Creates a flat list of entries for the quick reference table,
+
+  including all item types with their names, kinds, and summaries.
+
+  For re-exports, uses the target item's docs when the re-export lacks its own.
 
 - <span id="modulerenderer-get-item-summary"></span>`fn get_item_summary(&self, item: &Item, item_id: Id) -> String`
 
+  Get summary for an item, with fallback for re-exports.
+
+  
+
+  For re-exports (`ItemEnum::Use`), if the item has no docs, falls back
+
+  to the target item's documentation.
+
 - <span id="modulerenderer-render-modules-section"></span>`fn render_modules_section(&self, md: &mut String, modules: &[(&Id, &Item)])`
+
+  Render the Modules section with links to submodules.
 
 - <span id="modulerenderer-get-module-summary"></span>`fn get_module_summary(&self, item: &Item, item_id: Id) -> String`
 
+  Get summary for a module, with fallback for re-exports.
+
 - <span id="modulerenderer-render-traits-section"></span>`fn render_traits_section(&self, md: &mut String, traits: &[(&Id, &Item)])`
+
+  Render the Traits section.
 
 - <span id="modulerenderer-render-functions-section"></span>`fn render_functions_section(&self, md: &mut String, functions: &[&Item])`
 
+  Render the Functions section.
+
 - <span id="modulerenderer-render-macros-section"></span>`fn render_macros_section(&self, md: &mut String, macros: &[&Item])`
+
+  Render the Macros section.
 
 - <span id="modulerenderer-render-constants-section"></span>`fn render_constants_section(&self, md: &mut String, constants: &[&Item])`
 
+  Render the Constants section.
+
 #### Trait Implementations
 
+##### `impl Any for ModuleRenderer<'a>`
+
+- <span id="modulerenderer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ModuleRenderer<'a>`
+
+- <span id="modulerenderer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ModuleRenderer<'a>`
+
+- <span id="modulerenderer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for ModuleRenderer<'a>`
+
+- <span id="modulerenderer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for ModuleRenderer<'a>`
+
+##### `impl<U> Into for ModuleRenderer<'a>`
+
+- <span id="modulerenderer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ModuleRenderer<'a>`
 
@@ -833,13 +1774,25 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 - <span id="modulerenderer-pointable-type-init"></span>`type Init = T`
 
-- <span id="modulerenderer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="modulerenderer-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="modulerenderer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="modulerenderer-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="modulerenderer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="modulerenderer-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="modulerenderer-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="modulerenderer-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for ModuleRenderer<'a>`
+
+- <span id="modulerenderer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="modulerenderer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ModuleRenderer<'a>`
+
+- <span id="modulerenderer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="modulerenderer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for ModuleRenderer<'a>`
 
@@ -883,17 +1836,67 @@ anchor link, and first-sentence summary.
 
 - <span id="quickrefentry-new"></span>`fn new(name: impl Into<String>, kind: &'static str, anchor: impl Into<String>, summary: impl Into<String>) -> Self`
 
+  Create a new quick reference entry.
+
+  
+
+  # Arguments
+
+  
+
+  * `name` - Display name for the entry
+
+  * `kind` - Item kind (struct, enum, fn, etc.)
+
+  * `anchor` - Anchor link target (without `#`)
+
+  * `summary` - First-sentence summary
+
 #### Trait Implementations
+
+##### `impl Any for QuickRefEntry`
+
+- <span id="quickrefentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for QuickRefEntry`
+
+- <span id="quickrefentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for QuickRefEntry`
+
+- <span id="quickrefentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for QuickRefEntry`
 
 - <span id="quickrefentry-clone"></span>`fn clone(&self) -> QuickRefEntry` — [`QuickRefEntry`](quick_ref/index.md#quickrefentry)
 
+##### `impl CloneToUninit for QuickRefEntry`
+
+- <span id="quickrefentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for QuickRefEntry`
 
-- <span id="quickrefentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="quickrefentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for QuickRefEntry`
+
+- <span id="quickrefentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Instrument for QuickRefEntry`
+
+##### `impl<U> Into for QuickRefEntry`
+
+- <span id="quickrefentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for QuickRefEntry`
 
@@ -905,13 +1908,33 @@ anchor link, and first-sentence summary.
 
 - <span id="quickrefentry-pointable-type-init"></span>`type Init = T`
 
-- <span id="quickrefentry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="quickrefentry-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="quickrefentry-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="quickrefentry-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="quickrefentry-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="quickrefentry-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="quickrefentry-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="quickrefentry-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for QuickRefEntry`
+
+- <span id="quickrefentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="quickrefentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="quickrefentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for QuickRefEntry`
+
+- <span id="quickrefentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="quickrefentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for QuickRefEntry`
+
+- <span id="quickrefentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="quickrefentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for QuickRefEntry`
 
@@ -932,23 +1955,81 @@ kinds, and first-sentence descriptions.
 
 - <span id="quickrefgenerator-new"></span>`const fn new() -> Self`
 
+  Create a new quick reference generator.
+
 - <span id="quickrefgenerator-generate"></span>`fn generate(&self, entries: &[QuickRefEntry]) -> String` — [`QuickRefEntry`](quick_ref/index.md#quickrefentry)
 
+  Generate a markdown quick reference table from the given entries.
+
+  
+
+  Returns an empty string if there are no entries.
+
+  
+
+  # Arguments
+
+  
+
+  * `entries` - Quick reference entries to include in the table
+
+  
+
+  # Returns
+
+  
+
+  A formatted markdown table string.
+
 #### Trait Implementations
+
+##### `impl Any for QuickRefGenerator`
+
+- <span id="quickrefgenerator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for QuickRefGenerator`
+
+- <span id="quickrefgenerator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for QuickRefGenerator`
+
+- <span id="quickrefgenerator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for QuickRefGenerator`
 
 - <span id="quickrefgenerator-clone"></span>`fn clone(&self) -> QuickRefGenerator` — [`QuickRefGenerator`](quick_ref/index.md#quickrefgenerator)
 
+##### `impl CloneToUninit for QuickRefGenerator`
+
+- <span id="quickrefgenerator-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for QuickRefGenerator`
 
-- <span id="quickrefgenerator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="quickrefgenerator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for QuickRefGenerator`
 
 - <span id="quickrefgenerator-default"></span>`fn default() -> QuickRefGenerator` — [`QuickRefGenerator`](quick_ref/index.md#quickrefgenerator)
 
+##### `impl<T> From for QuickRefGenerator`
+
+- <span id="quickrefgenerator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for QuickRefGenerator`
+
+##### `impl<U> Into for QuickRefGenerator`
+
+- <span id="quickrefgenerator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for QuickRefGenerator`
 
@@ -960,13 +2041,33 @@ kinds, and first-sentence descriptions.
 
 - <span id="quickrefgenerator-pointable-type-init"></span>`type Init = T`
 
-- <span id="quickrefgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="quickrefgenerator-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="quickrefgenerator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="quickrefgenerator-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="quickrefgenerator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="quickrefgenerator-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="quickrefgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="quickrefgenerator-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for QuickRefGenerator`
+
+- <span id="quickrefgenerator-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="quickrefgenerator-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="quickrefgenerator-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for QuickRefGenerator`
+
+- <span id="quickrefgenerator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="quickrefgenerator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for QuickRefGenerator`
+
+- <span id="quickrefgenerator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="quickrefgenerator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for QuickRefGenerator`
 
@@ -1006,21 +2107,83 @@ for nested navigation.
 
 - <span id="tocentry-new"></span>`fn new(title: impl Into<String>, anchor: impl Into<String>) -> Self`
 
+  Create a new TOC entry.
+
+  
+
+  # Arguments
+
+  
+
+  * `title` - Display title for the entry
+
+  * `anchor` - Anchor link target (without `#`)
+
 - <span id="tocentry-with-children"></span>`fn with_children(title: impl Into<String>, anchor: impl Into<String>, children: Vec<Self>) -> Self`
+
+  Create a new TOC entry with children.
+
+  
+
+  # Arguments
+
+  
+
+  * `title` - Display title for the entry
+
+  * `anchor` - Anchor link target (without `#`)
+
+  * `children` - Child entries for nested items
 
 - <span id="tocentry-count"></span>`fn count(&self) -> usize`
 
+  Count total items in this entry and all descendants.
+
 #### Trait Implementations
+
+##### `impl Any for TocEntry`
+
+- <span id="tocentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TocEntry`
+
+- <span id="tocentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TocEntry`
+
+- <span id="tocentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for TocEntry`
 
 - <span id="tocentry-clone"></span>`fn clone(&self) -> TocEntry` — [`TocEntry`](toc/index.md#tocentry)
 
+##### `impl CloneToUninit for TocEntry`
+
+- <span id="tocentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for TocEntry`
 
-- <span id="tocentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tocentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for TocEntry`
+
+- <span id="tocentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Instrument for TocEntry`
+
+##### `impl<U> Into for TocEntry`
+
+- <span id="tocentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TocEntry`
 
@@ -1032,13 +2195,33 @@ for nested navigation.
 
 - <span id="tocentry-pointable-type-init"></span>`type Init = T`
 
-- <span id="tocentry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="tocentry-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="tocentry-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="tocentry-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="tocentry-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="tocentry-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="tocentry-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="tocentry-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for TocEntry`
+
+- <span id="tocentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="tocentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="tocentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TocEntry`
+
+- <span id="tocentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tocentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TocEntry`
+
+- <span id="tocentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tocentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for TocEntry`
 
@@ -1068,21 +2251,89 @@ modules with unnecessary navigation.
 
 - <span id="tocgenerator-new"></span>`const fn new(threshold: usize) -> Self`
 
+  Create a new TOC generator with the given threshold.
+
+  
+
+  # Arguments
+
+  
+
+  * `threshold` - Minimum number of items required to generate a TOC
+
 - <span id="tocgenerator-generate"></span>`fn generate(&self, entries: &[TocEntry]) -> Option<String>` — [`TocEntry`](toc/index.md#tocentry)
+
+  Generate a markdown table of contents from the given entries.
+
+  
+
+  Returns `None` if the total item count is below the threshold.
+
+  
+
+  # Arguments
+
+  
+
+  * `entries` - Top-level TOC entries (typically section headings)
+
+  
+
+  # Returns
+
+  
+
+  A formatted markdown string with the TOC, or `None` if below threshold.
 
 - <span id="tocgenerator-render-entry"></span>`fn render_entry(md: &mut String, entry: &TocEntry, depth: usize)` — [`TocEntry`](toc/index.md#tocentry)
 
+  Render a single TOC entry with proper indentation.
+
 #### Trait Implementations
+
+##### `impl Any for TocGenerator`
+
+- <span id="tocgenerator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TocGenerator`
+
+- <span id="tocgenerator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TocGenerator`
+
+- <span id="tocgenerator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for TocGenerator`
 
 - <span id="tocgenerator-clone"></span>`fn clone(&self) -> TocGenerator` — [`TocGenerator`](toc/index.md#tocgenerator)
 
+##### `impl CloneToUninit for TocGenerator`
+
+- <span id="tocgenerator-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for TocGenerator`
 
-- <span id="tocgenerator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tocgenerator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for TocGenerator`
+
+- <span id="tocgenerator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Instrument for TocGenerator`
+
+##### `impl<U> Into for TocGenerator`
+
+- <span id="tocgenerator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TocGenerator`
 
@@ -1094,13 +2345,33 @@ modules with unnecessary navigation.
 
 - <span id="tocgenerator-pointable-type-init"></span>`type Init = T`
 
-- <span id="tocgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="tocgenerator-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="tocgenerator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="tocgenerator-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="tocgenerator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="tocgenerator-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="tocgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="tocgenerator-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for TocGenerator`
+
+- <span id="tocgenerator-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="tocgenerator-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="tocgenerator-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for TocGenerator`
+
+- <span id="tocgenerator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tocgenerator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TocGenerator`
+
+- <span id="tocgenerator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tocgenerator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for TocGenerator`
 
@@ -1147,25 +2418,239 @@ generator.generate()?;
 
 - <span id="generator-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Result<Self, Error>` — [`Args`](../index.md#args), [`RenderConfig`](config/index.md#renderconfig), [`Error`](../error/index.md#error)
 
+  Create a new generator for the given crate and arguments.
+
+  
+
+  This initializes the shared context including:
+
+  - Path map (item ID → module path)
+
+  - Impl map (type ID → impl blocks)
+
+  - Link registry for cross-references
+
+  
+
+  # Arguments
+
+  
+
+  * `krate` - The parsed rustdoc JSON crate
+
+  * `args` - CLI arguments containing output path, format, and options
+
+  * `config` - Rendering configuration options
+
+  
+
+  # Errors
+
+  
+
+  Returns an error if the root item cannot be found in the crate index.
+
 - <span id="generator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](../error/index.md#error)
+
+  Generate markdown documentation.
+
+  
+
+  This is the main entry point for documentation generation. It:
+
+  
+
+  1. Creates the output directory
+
+  2. Sets up a progress bar
+
+  3. Dispatches to the format-specific generator (flat or nested)
+
+  
+
+  # Errors
+
+  
+
+  Returns an error if any file operation fails.
 
 - <span id="generator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../error/index.md#error)
 
+  Create a progress bar for user feedback.
+
+  
+
+  # Errors
+
+  
+
+  Returns an error if the progress bar template is invalid.
+
 - <span id="generator-generate-to-capture"></span>`fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md#clioutputformat), [`MarkdownCapture`](capture/index.md#markdowncapture), [`Error`](../error/index.md#error)
+
+  Generate documentation to memory instead of disk.
+
+  
+
+  This function mirrors `generate()` but captures all output in a
+
+  `MarkdownCapture` struct instead of writing to the filesystem.
+
+  Useful for testing and programmatic access to generated docs.
+
+  
+
+  # Arguments
+
+  
+
+  * `krate` - The parsed rustdoc JSON crate
+
+  * `format` - Output format (Flat or Nested)
+
+  * `include_private` - Whether to include private items
+
+  
+
+  # Returns
+
+  
+
+  A `MarkdownCapture` containing all generated markdown files.
+
+  
+
+  # Errors
+
+  
+
+  Returns an error if the root item cannot be found in the crate index.
 
 - <span id="generator-generate-to-capture-with-config"></span>`fn generate_to_capture_with_config(krate: &Crate, format: CliOutputFormat, include_private: bool, config: RenderConfig) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md#clioutputformat), [`RenderConfig`](config/index.md#renderconfig), [`MarkdownCapture`](capture/index.md#markdowncapture), [`Error`](../error/index.md#error)
 
+  Generate markdown to an in-memory capture with custom configuration.
+
+  
+
+  This variant allows specifying a custom [`RenderConfig`](config/index.md) for testing
+
+  different rendering options like `hide_trivial_derives`.
+
+  
+
+  # Arguments
+
+  
+
+  * `krate` - The parsed rustdoc JSON crate
+
+  * `format` - Output format (Flat or Nested)
+
+  * `include_private` - Whether to include private items
+
+  * `config` - Custom rendering configuration
+
+  
+
+  # Returns
+
+  
+
+  A `MarkdownCapture` containing all generated markdown files.
+
+  
+
+  # Errors
+
+  
+
+  Returns an error if the root item cannot be found in the crate index.
+
 - <span id="generator-generate-flat-to-capture"></span>`fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md#generatorcontext), [`MarkdownCapture`](capture/index.md#markdowncapture), [`Error`](../error/index.md#error)
+
+  Generate flat structure to capture.
 
 - <span id="generator-generate-flat-recursive-capture"></span>`fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md#generatorcontext), [`MarkdownCapture`](capture/index.md#markdowncapture), [`Error`](../error/index.md#error)
 
+  Recursive flat generation to capture.
+
 - <span id="generator-generate-nested-to-capture"></span>`fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md#generatorcontext), [`MarkdownCapture`](capture/index.md#markdowncapture), [`Error`](../error/index.md#error)
+
+  Generate nested structure to capture.
 
 - <span id="generator-run"></span>`fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](../index.md#args), [`Error`](../error/index.md#error)
 
+  Convenience method to generate documentation in one call.
+
+  
+
+  Creates a `Generator` and runs it immediately. For more control
+
+  over the generation process, use `new()` and `generate()` separately.
+
+  
+
+  Uses default `RenderConfig`. For custom configuration, use `new()` directly.
+
+  
+
+  # Arguments
+
+  
+
+  * `krate` - The parsed rustdoc JSON crate
+
+  * `args` - CLI arguments containing output path, format, and options
+
+  
+
+  # Returns
+
+  
+
+  `Ok(())` on success, or an error if any file operation fails.
+
+  
+
+  # Errors
+
+  
+
+  Returns an error if the root item cannot be found or if file operations fail.
+
 #### Trait Implementations
 
+##### `impl Any for Generator<'a>`
+
+- <span id="generator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Generator<'a>`
+
+- <span id="generator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Generator<'a>`
+
+- <span id="generator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Generator<'a>`
+
+- <span id="generator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Instrument for Generator<'a>`
+
+##### `impl<U> Into for Generator<'a>`
+
+- <span id="generator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Generator<'a>`
 
@@ -1177,13 +2662,25 @@ generator.generate()?;
 
 - <span id="generator-pointable-type-init"></span>`type Init = T`
 
-- <span id="generator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="generator-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="generator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="generator-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="generator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="generator-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="generator-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="generator-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for Generator<'a>`
+
+- <span id="generator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="generator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Generator<'a>`
+
+- <span id="generator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="generator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for Generator<'a>`
 
@@ -1319,25 +2816,169 @@ The variants are ordered by their typical importance/frequency of use:
 
 - <span id="implcategory-from-trait-path"></span>`fn from_trait_path(path: Option<&str>) -> Self`
 
+  Categorize a trait implementation by its trait path.
+
+  
+
+  This method examines the trait path and returns the appropriate category.
+
+  It handles both simple trait names (`"Clone"`) and fully-qualified paths
+
+  (`"std::clone::Clone"`).
+
+  
+
+  # Arguments
+
+  
+
+  * `path` - The trait path, or `None` for inherent implementations
+
+  
+
+  # Returns
+
+  
+
+  The [`ImplCategory`](impl_category/index.md) that best matches the trait.
+
+  
+
+  # Examples
+
+  
+
+  ```rust,ignore
+
+  // Inherent impl (no trait)
+
+  assert_eq!(ImplCategory::from_trait_path(None), ImplCategory::Inherent);
+
+  
+
+  // Simple trait name
+
+  assert_eq!(ImplCategory::from_trait_path(Some("Clone")), ImplCategory::Derive);
+
+  
+
+  // Fully-qualified path
+
+  assert_eq!(
+
+      ImplCategory::from_trait_path(Some("std::clone::Clone")),
+
+      ImplCategory::Derive
+
+  );
+
+  
+
+  // Operator from std::ops
+
+  assert_eq!(
+
+      ImplCategory::from_trait_path(Some("std::ops::Add")),
+
+      ImplCategory::Operator
+
+  );
+
+  
+
+  // Unknown trait
+
+  assert_eq!(
+
+      ImplCategory::from_trait_path(Some("serde::Serialize")),
+
+      ImplCategory::Other
+
+  );
+
+  ```
+
 - <span id="implcategory-display-name"></span>`const fn display_name(&self) -> &'static str`
+
+  Get the human-readable display name for this category.
+
+  
+
+  This name is suitable for use as a section header in documentation.
+
+  
+
+  # Returns
+
+  
+
+  A static string with the display name.
+
+  
+
+  # Examples
+
+  
+
+  ```rust,ignore
+
+  assert_eq!(ImplCategory::Inherent.display_name(), "Implementations");
+
+  assert_eq!(ImplCategory::Derive.display_name(), "Derived Traits");
+
+  assert_eq!(ImplCategory::Conversion.display_name(), "Conversion");
+
+  ```
 
 - <span id="implcategory-sort-order"></span>`const fn sort_order(self) -> u8`
 
+  Get the sort order for this category.
+
+  
+
+  Lower numbers appear first in documentation. This ordering reflects
+
+  typical importance and frequency of use.
+
+  
+
+  # Returns
+
+  
+
+  A `u8` value representing the sort order (0-8).
+
 #### Trait Implementations
+
+##### `impl Any for ImplCategory`
+
+- <span id="implcategory-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImplCategory`
+
+- <span id="implcategory-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImplCategory`
+
+- <span id="implcategory-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ImplCategory`
 
 - <span id="implcategory-clone"></span>`fn clone(&self) -> ImplCategory` — [`ImplCategory`](impl_category/index.md#implcategory)
 
+##### `impl CloneToUninit for ImplCategory`
+
+- <span id="implcategory-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<K> Comparable for ImplCategory`
 
-- <span id="implcategory-compare"></span>`fn compare(&self, key: &K) -> Ordering`
+- <span id="implcategory-comparable-compare"></span>`fn compare(&self, key: &K) -> Ordering`
 
 ##### `impl Copy for ImplCategory`
 
 ##### `impl Debug for ImplCategory`
 
-- <span id="implcategory-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="implcategory-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ImplCategory`
 
@@ -1345,27 +2986,55 @@ The variants are ordered by their typical importance/frequency of use:
 
 - <span id="implcategory-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
+##### `impl<T> From for ImplCategory`
+
+- <span id="implcategory-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for ImplCategory`
 
 - <span id="implcategory-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Instrument for ImplCategory`
 
+##### `impl<U> Into for ImplCategory`
+
+- <span id="implcategory-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoEither for ImplCategory`
 
 ##### `impl Ord for ImplCategory`
 
-- <span id="implcategory-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
+- <span id="implcategory-ord-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
+
+  Compare categories by their display order.
+
+  
+
+  Categories are ordered by typical importance/frequency:
+
+  `Inherent` < `Derive` < `Conversion` < `Access` < `Iterator`
+
+  < `Operator` < `Formatting` < `Io` < `Other`
 
 ##### `impl OwoColorize for ImplCategory`
 
 ##### `impl PartialEq for ImplCategory`
 
-- <span id="implcategory-eq"></span>`fn eq(&self, other: &ImplCategory) -> bool` — [`ImplCategory`](impl_category/index.md#implcategory)
+- <span id="implcategory-partialeq-eq"></span>`fn eq(&self, other: &ImplCategory) -> bool` — [`ImplCategory`](impl_category/index.md#implcategory)
 
 ##### `impl PartialOrd for ImplCategory`
 
-- <span id="implcategory-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
+- <span id="implcategory-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
 
 ##### `impl Pointable for ImplCategory`
 
@@ -1373,15 +3042,35 @@ The variants are ordered by their typical importance/frequency of use:
 
 - <span id="implcategory-pointable-type-init"></span>`type Init = T`
 
-- <span id="implcategory-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="implcategory-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="implcategory-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="implcategory-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="implcategory-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="implcategory-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="implcategory-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="implcategory-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl StructuralPartialEq for ImplCategory`
+
+##### `impl ToOwned for ImplCategory`
+
+- <span id="implcategory-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="implcategory-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="implcategory-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImplCategory`
+
+- <span id="implcategory-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="implcategory-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImplCategory`
+
+- <span id="implcategory-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="implcategory-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl WithSubscriber for ImplCategory`
 

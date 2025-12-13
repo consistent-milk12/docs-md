@@ -86,21 +86,65 @@ searched.
 
 - <span id="memchr-new"></span>`fn new(needle1: u8, haystack: &'h [u8]) -> Memchr<'h>` — [`Memchr`](#memchr)
 
+  Returns an iterator over all occurrences of the needle byte in the
+
+  given haystack.
+
+  
+
+  The iterator returned implements `DoubleEndedIterator`. This means it
+
+  can also be used to find occurrences in reverse order.
+
 #### Trait Implementations
+
+##### `impl Any for Memchr<'h>`
+
+- <span id="memchr-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Memchr<'h>`
+
+- <span id="memchr-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Memchr<'h>`
+
+- <span id="memchr-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Memchr<'h>`
 
 - <span id="memchr-clone"></span>`fn clone(&self) -> Memchr<'h>` — [`Memchr`](#memchr)
 
+##### `impl CloneToUninit for Memchr<'h>`
+
+- <span id="memchr-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Memchr<'h>`
 
-- <span id="memchr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="memchr-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DoubleEndedIterator for Memchr<'h>`
 
-- <span id="memchr-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
+- <span id="memchr-doubleendediterator-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
+
+##### `impl<T> From for Memchr<'h>`
+
+- <span id="memchr-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FusedIterator for Memchr<'h>`
+
+##### `impl<U> Into for Memchr<'h>`
+
+- <span id="memchr-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Memchr<'h>`
 
@@ -108,17 +152,37 @@ searched.
 
 - <span id="memchr-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="memchr-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="memchr-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Memchr<'h>`
 
 - <span id="memchr-iterator-type-item"></span>`type Item = usize`
 
-- <span id="memchr-next"></span>`fn next(&mut self) -> Option<usize>`
+- <span id="memchr-iterator-next"></span>`fn next(&mut self) -> Option<usize>`
 
-- <span id="memchr-count"></span>`fn count(self) -> usize`
+- <span id="memchr-iterator-count"></span>`fn count(self) -> usize`
 
-- <span id="memchr-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="memchr-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+
+##### `impl ToOwned for Memchr<'h>`
+
+- <span id="memchr-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="memchr-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="memchr-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Memchr<'h>`
+
+- <span id="memchr-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="memchr-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Memchr<'h>`
+
+- <span id="memchr-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="memchr-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Memchr2<'h>`
 
@@ -147,21 +211,65 @@ searched.
 
 - <span id="memchr2-new"></span>`fn new(needle1: u8, needle2: u8, haystack: &'h [u8]) -> Memchr2<'h>` — [`Memchr2`](#memchr2)
 
+  Returns an iterator over all occurrences of the needle bytes in the
+
+  given haystack.
+
+  
+
+  The iterator returned implements `DoubleEndedIterator`. This means it
+
+  can also be used to find occurrences in reverse order.
+
 #### Trait Implementations
+
+##### `impl Any for Memchr2<'h>`
+
+- <span id="memchr2-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Memchr2<'h>`
+
+- <span id="memchr2-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Memchr2<'h>`
+
+- <span id="memchr2-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Memchr2<'h>`
 
 - <span id="memchr2-clone"></span>`fn clone(&self) -> Memchr2<'h>` — [`Memchr2`](#memchr2)
 
+##### `impl CloneToUninit for Memchr2<'h>`
+
+- <span id="memchr2-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Memchr2<'h>`
 
-- <span id="memchr2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="memchr2-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DoubleEndedIterator for Memchr2<'h>`
 
-- <span id="memchr2-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
+- <span id="memchr2-doubleendediterator-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
+
+##### `impl<T> From for Memchr2<'h>`
+
+- <span id="memchr2-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FusedIterator for Memchr2<'h>`
+
+##### `impl<U> Into for Memchr2<'h>`
+
+- <span id="memchr2-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Memchr2<'h>`
 
@@ -169,15 +277,35 @@ searched.
 
 - <span id="memchr2-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="memchr2-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="memchr2-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Memchr2<'h>`
 
 - <span id="memchr2-iterator-type-item"></span>`type Item = usize`
 
-- <span id="memchr2-next"></span>`fn next(&mut self) -> Option<usize>`
+- <span id="memchr2-iterator-next"></span>`fn next(&mut self) -> Option<usize>`
 
-- <span id="memchr2-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="memchr2-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+
+##### `impl ToOwned for Memchr2<'h>`
+
+- <span id="memchr2-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="memchr2-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="memchr2-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Memchr2<'h>`
+
+- <span id="memchr2-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="memchr2-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Memchr2<'h>`
+
+- <span id="memchr2-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="memchr2-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Memchr3<'h>`
 
@@ -207,21 +335,65 @@ searched.
 
 - <span id="memchr3-new"></span>`fn new(needle1: u8, needle2: u8, needle3: u8, haystack: &'h [u8]) -> Memchr3<'h>` — [`Memchr3`](#memchr3)
 
+  Returns an iterator over all occurrences of the needle bytes in the
+
+  given haystack.
+
+  
+
+  The iterator returned implements `DoubleEndedIterator`. This means it
+
+  can also be used to find occurrences in reverse order.
+
 #### Trait Implementations
+
+##### `impl Any for Memchr3<'h>`
+
+- <span id="memchr3-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Memchr3<'h>`
+
+- <span id="memchr3-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Memchr3<'h>`
+
+- <span id="memchr3-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Memchr3<'h>`
 
 - <span id="memchr3-clone"></span>`fn clone(&self) -> Memchr3<'h>` — [`Memchr3`](#memchr3)
 
+##### `impl CloneToUninit for Memchr3<'h>`
+
+- <span id="memchr3-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Memchr3<'h>`
 
-- <span id="memchr3-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="memchr3-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DoubleEndedIterator for Memchr3<'h>`
 
-- <span id="memchr3-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
+- <span id="memchr3-doubleendediterator-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
+
+##### `impl<T> From for Memchr3<'h>`
+
+- <span id="memchr3-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FusedIterator for Memchr3<'h>`
+
+##### `impl<U> Into for Memchr3<'h>`
+
+- <span id="memchr3-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Memchr3<'h>`
 
@@ -229,15 +401,35 @@ searched.
 
 - <span id="memchr3-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="memchr3-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="memchr3-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Memchr3<'h>`
 
 - <span id="memchr3-iterator-type-item"></span>`type Item = usize`
 
-- <span id="memchr3-next"></span>`fn next(&mut self) -> Option<usize>`
+- <span id="memchr3-iterator-next"></span>`fn next(&mut self) -> Option<usize>`
 
-- <span id="memchr3-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="memchr3-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+
+##### `impl ToOwned for Memchr3<'h>`
+
+- <span id="memchr3-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="memchr3-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="memchr3-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Memchr3<'h>`
+
+- <span id="memchr3-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="memchr3-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Memchr3<'h>`
+
+- <span id="memchr3-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="memchr3-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

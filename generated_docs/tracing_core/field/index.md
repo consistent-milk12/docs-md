@@ -38,7 +38,7 @@ for their field names rather than printing them.
 
 `tracing`'s [`Value`](#value) trait is intentionally minimalist: it supports only a small
 number of Rust primitives as typed values, and only permits recording
-user-defined types with their [`fmt::Debug`](../../object/index.md) or [`fmt::Display`](../../miette_derive/fmt/index.md)
+user-defined types with their [`fmt::Debug`](../../object/index.md) or [`fmt::Display`](../../miette_derive/index.md)
 implementations. However, there are some cases where it may be useful to record
 nested values (such as arrays, `Vec`s, or `HashMap`s containing values), or
 user-defined `struct` and `enum` types without having to format them as
@@ -193,41 +193,105 @@ and use the key for that name for all other accesses.
 
 - <span id="field-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md#identifier)
 
+  Returns an [`Identifier`](../callsite/index.md) that uniquely identifies the [`Callsite`](../callsite/index.md)
+
+  which defines this field.
+
+  
+
 - <span id="field-name"></span>`fn name(&self) -> &'static str`
+
+  Returns a string representing the name of the field.
 
 - <span id="field-index"></span>`fn index(&self) -> usize`
 
+  Returns the index of this field in its [`FieldSet`](#fieldset).
+
 #### Trait Implementations
+
+##### `impl Any for Field`
+
+- <span id="field-any-type-id"></span>`fn type_id(&self) -> TypeId`
 
 ##### `impl AsRef for Field`
 
-- <span id="field-as-ref"></span>`fn as_ref(&self) -> &str`
+- <span id="field-asref-as-ref"></span>`fn as_ref(&self) -> &str`
+
+##### `impl<T> Borrow for Field`
+
+- <span id="field-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Field`
+
+- <span id="field-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Field`
 
 - <span id="field-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for Field`
+
+- <span id="field-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Field`
 
-- <span id="field-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="field-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Field`
 
-- <span id="field-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="field-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Field`
+
+##### `impl<T> From for Field`
+
+- <span id="field-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Field`
 
 - <span id="field-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
+##### `impl<U> Into for Field`
+
+- <span id="field-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Field`
 
-- <span id="field-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="field-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
+
+##### `impl ToOwned for Field`
+
+- <span id="field-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="field-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="field-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for Field`
 
-- <span id="field-to-string"></span>`fn to_string(&self) -> String`
+- <span id="field-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Field`
+
+- <span id="field-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="field-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Field`
+
+- <span id="field-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="field-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Empty`
 
@@ -246,23 +310,65 @@ When a field's value is `Empty`. it will not be recorded.
 
 #### Trait Implementations
 
+##### `impl Any for Empty`
+
+- <span id="empty-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Empty`
+
+- <span id="empty-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Empty`
+
+- <span id="empty-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Empty`
 
-- <span id="empty-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="empty-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Empty`
 
+##### `impl<T> From for Empty`
+
+- <span id="empty-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Empty`
+
+- <span id="empty-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Empty`
 
-- <span id="empty-eq"></span>`fn eq(&self, other: &Empty) -> bool` — [`Empty`](#empty)
+- <span id="empty-partialeq-eq"></span>`fn eq(&self, other: &Empty) -> bool` — [`Empty`](#empty)
 
 ##### `impl Sealed for Empty`
 
 ##### `impl StructuralPartialEq for Empty`
 
+##### `impl<U> TryFrom for Empty`
+
+- <span id="empty-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="empty-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Empty`
+
+- <span id="empty-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="empty-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ##### `impl Value for Empty`
 
-- <span id="empty-record"></span>`fn record(&self, _: &Field, _: &mut dyn Visit)` — [`Field`](#field), [`Visit`](#visit)
+- <span id="empty-value-record"></span>`fn record(&self, _: &Field, _: &mut dyn Visit)` — [`Field`](#field), [`Visit`](#visit)
 
 ### `FieldSet`
 
@@ -300,29 +406,97 @@ callsites. However, the equality of field names is checked in debug builds.
 
 - <span id="fieldset-new"></span>`const fn new(names: &'static [&'static str], callsite: callsite::Identifier) -> Self` — [`Identifier`](../callsite/index.md#identifier)
 
+  Constructs a new `FieldSet` with the given array of field names and callsite.
+
 - <span id="fieldset-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md#identifier)
+
+  Returns an [`Identifier`](../callsite/index.md) that uniquely identifies the [`Callsite`](../callsite/index.md)
+
+  which defines this set of fields..
+
+  
 
 - <span id="fieldset-field"></span>`fn field<Q: Borrow<str> + ?Sized>(&self, name: &Q) -> Option<Field>` — [`Field`](#field)
 
+  Returns the [`Field`](#field) named `name`, or `None` if no such field exists.
+
 - <span id="fieldset-contains"></span>`fn contains(&self, field: &Field) -> bool` — [`Field`](#field)
+
+  Returns `true` if `self` contains the given `field`.
+
+  
+
+  <div class="example-wrap" style="display:inline-block">
+
+  <pre class="ignore" style="white-space:normal;font:inherit;">
+
+  <strong>Note</strong>: If <code>field</code> shares a name with a field
+
+  in this <code>FieldSet</code>, but was created by a <code>FieldSet</code>
+
+  with a different callsite, this <code>FieldSet</code> does <em>not</em>
+
+  contain it. This is so that if two separate span callsites define a field
+
+  named "foo", the <code>Field</code> corresponding to "foo" for each
+
+  of those callsites are not equivalent.
+
+  </pre></div>
 
 - <span id="fieldset-iter"></span>`fn iter(&self) -> Iter` — [`Iter`](#iter)
 
+  Returns an iterator over the `Field`s in this `FieldSet`.
+
 - <span id="fieldset-len"></span>`fn len(&self) -> usize`
+
+  Returns the number of fields in this `FieldSet`.
 
 - <span id="fieldset-is-empty"></span>`fn is_empty(&self) -> bool`
 
+  Returns whether or not this `FieldSet` has fields.
+
 #### Trait Implementations
+
+##### `impl Any for FieldSet`
+
+- <span id="fieldset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FieldSet`
+
+- <span id="fieldset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FieldSet`
+
+- <span id="fieldset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for FieldSet`
 
-- <span id="fieldset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fieldset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for FieldSet`
 
-- <span id="fieldset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fieldset-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for FieldSet`
+
+##### `impl<T> From for FieldSet`
+
+- <span id="fieldset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FieldSet`
+
+- <span id="fieldset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for &FieldSet`
 
@@ -330,15 +504,27 @@ callsites. However, the equality of field names is checked in debug builds.
 
 - <span id="fieldset-intoiterator-type-item"></span>`type Item = Field`
 
-- <span id="fieldset-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+- <span id="fieldset-intoiterator-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl PartialEq for FieldSet`
 
-- <span id="fieldset-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="fieldset-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl ToString for FieldSet`
 
-- <span id="fieldset-to-string"></span>`fn to_string(&self) -> String`
+- <span id="fieldset-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for FieldSet`
+
+- <span id="fieldset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fieldset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FieldSet`
+
+- <span id="fieldset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fieldset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ValueSet<'a>`
 
@@ -357,29 +543,89 @@ A set of fields and values for a span.
 
 - <span id="valueset-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md#identifier)
 
+  Returns an [`Identifier`](../callsite/index.md) that uniquely identifies the [`Callsite`](../callsite/index.md)
+
+  defining the fields this `ValueSet` refers to.
+
+  
+
 - <span id="valueset-record"></span>`fn record(&self, visitor: &mut dyn Visit)` — [`Visit`](#visit)
+
+  Visits all the fields in this `ValueSet` with the provided [`visitor`](../../regex_syntax/ast/visitor/index.md).
 
 - <span id="valueset-len"></span>`fn len(&self) -> usize`
 
+  Returns the number of fields in this `ValueSet` that would be visited
+
+  by a given [`visitor`](../../regex_syntax/ast/visitor/index.md) to the `ValueSet::record()` method.
+
+  
+
 - <span id="valueset-contains"></span>`fn contains(&self, field: &Field) -> bool` — [`Field`](#field)
 
+  Returns `true` if this `ValueSet` contains a value for the given `Field`.
+
 - <span id="valueset-is-empty"></span>`fn is_empty(&self) -> bool`
+
+  Returns true if this `ValueSet` contains _no_ values.
 
 - <span id="valueset-field-set"></span>`fn field_set(&self) -> &FieldSet` — [`FieldSet`](#fieldset)
 
 #### Trait Implementations
 
+##### `impl Any for ValueSet<'a>`
+
+- <span id="valueset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ValueSet<'a>`
+
+- <span id="valueset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ValueSet<'a>`
+
+- <span id="valueset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ValueSet<'_>`
 
-- <span id="valueset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="valueset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ValueSet<'_>`
 
-- <span id="valueset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="valueset-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ValueSet<'a>`
+
+- <span id="valueset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ValueSet<'a>`
+
+- <span id="valueset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for ValueSet<'a>`
 
-- <span id="valueset-to-string"></span>`fn to_string(&self) -> String`
+- <span id="valueset-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for ValueSet<'a>`
+
+- <span id="valueset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="valueset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ValueSet<'a>`
+
+- <span id="valueset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="valueset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Iter`
 
@@ -396,9 +642,39 @@ An iterator over a set of fields.
 
 #### Trait Implementations
 
+##### `impl Any for Iter`
+
+- <span id="iter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Iter`
+
+- <span id="iter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Iter`
+
+- <span id="iter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Iter`
 
-- <span id="iter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="iter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Iter`
+
+- <span id="iter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Iter`
+
+- <span id="iter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Iter`
 
@@ -406,13 +682,25 @@ An iterator over a set of fields.
 
 - <span id="iter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="iter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Iter`
 
 - <span id="iter-iterator-type-item"></span>`type Item = Field`
 
-- <span id="iter-next"></span>`fn next(&mut self) -> Option<Field>` — [`Field`](#field)
+- <span id="iter-iterator-next"></span>`fn next(&mut self) -> Option<Field>` — [`Field`](#field)
+
+##### `impl<U> TryFrom for Iter`
+
+- <span id="iter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="iter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Iter`
+
+- <span id="iter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="iter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `DisplayValue<T: fmt::Display>`
 
@@ -429,27 +717,81 @@ avoid an unnecessary evaluation.
 
 #### Trait Implementations
 
+##### `impl<T> Any for DisplayValue<T>`
+
+- <span id="displayvalue-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DisplayValue<T>`
+
+- <span id="displayvalue-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DisplayValue<T>`
+
+- <span id="displayvalue-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone + fmt::Display> Clone for DisplayValue<T>`
 
 - <span id="displayvalue-clone"></span>`fn clone(&self) -> DisplayValue<T>` — [`DisplayValue`](#displayvalue)
 
+##### `impl<T> CloneToUninit for DisplayValue<T>`
+
+- <span id="displayvalue-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Display> Debug for DisplayValue<T>`
 
-- <span id="displayvalue-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="displayvalue-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: fmt::Display> Display for DisplayValue<T>`
 
-- <span id="displayvalue-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="displayvalue-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DisplayValue<T>`
+
+- <span id="displayvalue-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for DisplayValue<T>`
+
+- <span id="displayvalue-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: fmt::Display> Sealed for DisplayValue<T>`
 
+##### `impl<T> ToOwned for DisplayValue<T>`
+
+- <span id="displayvalue-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="displayvalue-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="displayvalue-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl<T> ToString for DisplayValue<T>`
 
-- <span id="displayvalue-to-string"></span>`fn to_string(&self) -> String`
+- <span id="displayvalue-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for DisplayValue<T>`
+
+- <span id="displayvalue-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="displayvalue-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DisplayValue<T>`
+
+- <span id="displayvalue-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="displayvalue-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T> Value for DisplayValue<T>`
 
-- <span id="displayvalue-record"></span>`fn record(&self, key: &Field, visitor: &mut dyn Visit)` — [`Field`](#field), [`Visit`](#visit)
+- <span id="displayvalue-value-record"></span>`fn record(&self, key: &Field, visitor: &mut dyn Visit)` — [`Field`](#field), [`Visit`](#visit)
 
 ### `DebugValue<T: fmt::Debug>`
 
@@ -463,19 +805,73 @@ A `Value` which serializes as a string using `fmt::Debug`.
 
 #### Trait Implementations
 
+##### `impl<T> Any for DebugValue<T>`
+
+- <span id="debugvalue-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugValue<T>`
+
+- <span id="debugvalue-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugValue<T>`
+
+- <span id="debugvalue-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone + fmt::Debug> Clone for DebugValue<T>`
 
 - <span id="debugvalue-clone"></span>`fn clone(&self) -> DebugValue<T>` — [`DebugValue`](#debugvalue)
 
+##### `impl<T> CloneToUninit for DebugValue<T>`
+
+- <span id="debugvalue-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug> Debug for DebugValue<T>`
 
-- <span id="debugvalue-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugvalue-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DebugValue<T>`
+
+- <span id="debugvalue-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for DebugValue<T>`
+
+- <span id="debugvalue-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: fmt::Debug> Sealed for DebugValue<T>`
 
+##### `impl<T> ToOwned for DebugValue<T>`
+
+- <span id="debugvalue-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugvalue-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugvalue-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DebugValue<T>`
+
+- <span id="debugvalue-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugvalue-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DebugValue<T>`
+
+- <span id="debugvalue-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugvalue-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ##### `impl<T> Value for DebugValue<T>`
 
-- <span id="debugvalue-record"></span>`fn record(&self, key: &Field, visitor: &mut dyn Visit)` — [`Field`](#field), [`Visit`](#visit)
+- <span id="debugvalue-value-record"></span>`fn record(&self, key: &Field, visitor: &mut dyn Visit)` — [`Field`](#field), [`Visit`](#visit)
 
 ### `HexBytes<'a>`
 
@@ -487,9 +883,51 @@ struct HexBytes<'a>(&'a [u8]);
 
 #### Trait Implementations
 
+##### `impl Any for HexBytes<'a>`
+
+- <span id="hexbytes-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HexBytes<'a>`
+
+- <span id="hexbytes-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HexBytes<'a>`
+
+- <span id="hexbytes-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for HexBytes<'_>`
 
-- <span id="hexbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hexbytes-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for HexBytes<'a>`
+
+- <span id="hexbytes-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for HexBytes<'a>`
+
+- <span id="hexbytes-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for HexBytes<'a>`
+
+- <span id="hexbytes-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="hexbytes-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HexBytes<'a>`
+
+- <span id="hexbytes-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="hexbytes-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -514,6 +952,50 @@ enum Values<'a> {
 - **`All`**
 
   A list of values corresponding exactly to the fields in a `FieldSet`.
+
+#### Trait Implementations
+
+##### `impl Any for Values<'a>`
+
+- <span id="values-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Values<'a>`
+
+- <span id="values-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Values<'a>`
+
+- <span id="values-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Values<'a>`
+
+- <span id="values-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Values<'a>`
+
+- <span id="values-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Values<'a>`
+
+- <span id="values-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="values-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Values<'a>`
+
+- <span id="values-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="values-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

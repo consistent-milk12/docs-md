@@ -634,45 +634,157 @@ re-exported at the crate root due to how common it is.
 
 - <span id="patternid-new"></span>`fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md#patternid), [`PatternIDError`](util/primitives/index.md#patterniderror)
 
+  Create a new value that is represented by a "small index."
+
+  
+
+  If the given index exceeds the maximum allowed value, then this
+
+  returns an error.
+
 - <span id="patternid-new-unchecked"></span>`const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
+
+  Create a new value without checking whether the given argument
+
+  exceeds the maximum.
+
+  
+
+  Using this routine with an invalid value will result in
+
+  unspecified behavior, but *not* undefined behavior. In
+
+  particular, an invalid ID value is likely to cause panics or
+
+  possibly even silent logical errors.
+
+  
+
+  Callers must never rely on this type to be within a certain
+
+  range for memory safety.
 
 - <span id="patternid-must"></span>`fn must(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
+  Like `new`, but panics if the given value is not valid.
+
 - <span id="patternid-as-usize"></span>`const fn as_usize(&self) -> usize`
+
+  Return the internal value as a `usize`. This is guaranteed to
+
+  never overflow `usize`.
 
 - <span id="patternid-as-u64"></span>`const fn as_u64(&self) -> u64`
 
+  Return the internal value as a `u64`. This is guaranteed to
+
+  never overflow.
+
 - <span id="patternid-as-u32"></span>`const fn as_u32(&self) -> u32`
+
+  Return the internal value as a `u32`. This is guaranteed to
+
+  never overflow `u32`.
 
 - <span id="patternid-as-i32"></span>`const fn as_i32(&self) -> i32`
 
+  Return the internal value as a i32`. This is guaranteed to
+
+  never overflow an `i32`.
+
 - <span id="patternid-one-more"></span>`fn one_more(&self) -> usize`
+
+  Returns one more than this value as a usize.
+
+  
+
+  Since values represented by a "small index" have constraints
+
+  on their maximum value, adding `1` to it will always fit in a
+
+  `usize`, `u32` and a `i32`.
 
 - <span id="patternid-from-ne-bytes"></span>`fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md#patternid), [`PatternIDError`](util/primitives/index.md#patterniderror)
 
+  Decode this value from the bytes given using the native endian
+
+  byte order for the current target.
+
+  
+
+  If the decoded integer is not representable as a small index
+
+  for the current target, then this returns an error.
+
 - <span id="patternid-from-ne-bytes-unchecked"></span>`fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
+
+  Decode this value from the bytes given using the native endian
+
+  byte order for the current target.
+
+  
+
+  This is analogous to `new_unchecked` in that is does not check
+
+  whether the decoded integer is representable as a small index.
 
 - <span id="patternid-to-ne-bytes"></span>`fn to_ne_bytes(&self) -> [u8; 4]`
 
+  Return the underlying integer as raw bytes in native endian
+
+  format.
+
 - <span id="patternid-iter"></span>`fn iter(len: usize) -> PatternIDIter` — [`PatternIDIter`](util/primitives/index.md#patterniditer)
 
+  Returns an iterator over all values from 0 up to and not
+
+  including the given length.
+
+  
+
+  If the given length exceeds this type's limit, then this
+
+  panics.
+
 #### Trait Implementations
+
+##### `impl Any for PatternID`
+
+- <span id="patternid-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PatternID`
+
+- <span id="patternid-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PatternID`
+
+- <span id="patternid-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for PatternID`
 
 - <span id="patternid-clone"></span>`fn clone(&self) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
+##### `impl CloneToUninit for PatternID`
+
+- <span id="patternid-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for PatternID`
 
 ##### `impl Debug for PatternID`
 
-- <span id="patternid-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="patternid-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for PatternID`
 
 - <span id="patternid-default"></span>`fn default() -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
 ##### `impl Eq for PatternID`
+
+##### `impl<T> From for PatternID`
+
+- <span id="patternid-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for PatternID`
 
@@ -686,21 +798,53 @@ re-exported at the crate root due to how common it is.
 
 ##### `impl<T> IndexMut for [T]`
 
-- <span id="t-index-mut"></span>`fn index_mut(&mut self, index: PatternID) -> &mut T` — [`PatternID`](util/primitives/index.md#patternid)
+- <span id="t-indexmut-index-mut"></span>`fn index_mut(&mut self, index: PatternID) -> &mut T` — [`PatternID`](util/primitives/index.md#patternid)
+
+##### `impl<U> Into for PatternID`
+
+- <span id="patternid-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for PatternID`
 
-- <span id="patternid-cmp"></span>`fn cmp(&self, other: &PatternID) -> cmp::Ordering` — [`PatternID`](util/primitives/index.md#patternid)
+- <span id="patternid-ord-cmp"></span>`fn cmp(&self, other: &PatternID) -> cmp::Ordering` — [`PatternID`](util/primitives/index.md#patternid)
 
 ##### `impl PartialEq for PatternID`
 
-- <span id="patternid-eq"></span>`fn eq(&self, other: &PatternID) -> bool` — [`PatternID`](util/primitives/index.md#patternid)
+- <span id="patternid-partialeq-eq"></span>`fn eq(&self, other: &PatternID) -> bool` — [`PatternID`](util/primitives/index.md#patternid)
 
 ##### `impl PartialOrd for PatternID`
 
-- <span id="patternid-partial-cmp"></span>`fn partial_cmp(&self, other: &PatternID) -> option::Option<cmp::Ordering>` — [`PatternID`](util/primitives/index.md#patternid)
+- <span id="patternid-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &PatternID) -> option::Option<cmp::Ordering>` — [`PatternID`](util/primitives/index.md#patternid)
 
 ##### `impl StructuralPartialEq for PatternID`
+
+##### `impl ToOwned for PatternID`
+
+- <span id="patternid-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="patternid-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="patternid-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PatternID`
+
+- <span id="patternid-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="patternid-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PatternID`
+
+- <span id="patternid-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="patternid-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Input<'h>`
 
@@ -808,53 +952,1151 @@ results in no match being reported.
 
 - <span id="input-new"></span>`fn new<H: ?Sized + AsRef<[u8]>>(haystack: &'h H) -> Input<'h>` — [`Input`](#input)
 
+  Create a new search configuration for the given haystack.
+
 - <span id="input-span"></span>`fn span<S: Into<Span>>(self, span: S) -> Input<'h>` — [`Input`](#input)
+
+  Set the span for this search.
+
+  
+
+  This routine does not panic if the span given is not a valid range for
+
+  this search's haystack. If this search is run with an invalid range,
+
+  then the most likely outcome is that the actual search execution will
+
+  panic.
+
+  
+
+  This routine is generic over how a span is provided. While
+
+  a [`Span`](#span) may be given directly, one may also provide a
+
+  `std::ops::Range<usize>`. To provide anything supported by range
+
+  syntax, use the `Input::range` method.
+
+  
+
+  The default span is the entire haystack.
+
+  
+
+  Note that `Input::range` overrides this method and vice versa.
+
+  
+
+  # Panics
+
+  
+
+  This panics if the given span does not correspond to valid bounds in
+
+  the haystack or the termination of a search.
+
+  
+
+  # Example
+
+  
+
+  This example shows how the span of the search can impact whether a
+
+  match is reported or not. This is particularly relevant for look-around
+
+  operators, which might take things outside of the span into account
+
+  when determining whether they match.
+
+  
+
+  ```rust
+
+  if cfg!(miri) { return Ok(()); } // miri takes too long
+
+  use regex_automata::{
+
+      nfa::thompson::pikevm::PikeVM,
+
+      Match, Input,
+
+  };
+
+  
+
+  // Look for 'at', but as a distinct word.
+
+  let re = PikeVM::new(r"\bat\b")?;
+
+  let mut cache = re.create_cache();
+
+  let mut caps = re.create_captures();
+
+  
+
+  // Our haystack contains 'at', but not as a distinct word.
+
+  let haystack = "batter";
+
+  
+
+  // A standard search finds nothing, as expected.
+
+  let input = Input::new(haystack);
+
+  re.search(&mut cache, &input, &mut caps);
+
+  assert_eq!(None, caps.get_match());
+
+  
+
+  // But if we wanted to search starting at position '1', we might
+
+  // slice the haystack. If we do this, it's impossible for the \b
+
+  // anchors to take the surrounding context into account! And thus,
+
+  // a match is produced.
+
+  let input = Input::new(&haystack[1..3]);
+
+  re.search(&mut cache, &input, &mut caps);
+
+  assert_eq!(Some(Match::must(0, 0..2)), caps.get_match());
+
+  
+
+  // But if we specify the span of the search instead of slicing the
+
+  // haystack, then the regex engine can "see" outside of the span
+
+  // and resolve the anchors correctly.
+
+  let input = Input::new(haystack).span(1..3);
+
+  re.search(&mut cache, &input, &mut caps);
+
+  assert_eq!(None, caps.get_match());
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
+
+  
+
+  This may seem a little ham-fisted, but this scenario tends to come up
+
+  if some other regex engine found the match span and now you need to
+
+  re-process that span to look for capturing groups. (e.g., Run a faster
+
+  DFA first, find a match, then run the PikeVM on just the match span to
+
+  resolve capturing groups.) In order to implement that sort of logic
+
+  correctly, you need to set the span on the search instead of slicing
+
+  the haystack directly.
+
+  
+
+  The other advantage of using this routine to specify the bounds of the
+
+  search is that the match offsets are still reported in terms of the
+
+  original haystack. For example, the second search in the example above
+
+  reported a match at position `0`, even though `at` starts at offset
+
+  `1` because we sliced the haystack.
 
 - <span id="input-range"></span>`fn range<R: RangeBounds<usize>>(self, range: R) -> Input<'h>` — [`Input`](#input)
 
+  Like `Input::span`, but accepts any range instead.
+
+  
+
+  This routine does not panic if the range given is not a valid range for
+
+  this search's haystack. If this search is run with an invalid range,
+
+  then the most likely outcome is that the actual search execution will
+
+  panic.
+
+  
+
+  The default range is the entire haystack.
+
+  
+
+  Note that `Input::span` overrides this method and vice versa.
+
+  
+
+  # Panics
+
+  
+
+  This routine will panic if the given range could not be converted
+
+  to a valid [`Range`](../gimli/read/index.md). For example, this would panic when given
+
+  `0..=usize::MAX` since it cannot be represented using a half-open
+
+  interval in terms of `usize`.
+
+  
+
+  This also panics if the given range does not correspond to valid bounds
+
+  in the haystack or the termination of a search.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::Input;
+
+  
+
+  let input = Input::new("foobar");
+
+  assert_eq!(0..6, input.get_range());
+
+  
+
+  let input = Input::new("foobar").range(2..=4);
+
+  assert_eq!(2..5, input.get_range());
+
+  ```
+
 - <span id="input-anchored"></span>`fn anchored(self, mode: Anchored) -> Input<'h>` — [`Anchored`](#anchored), [`Input`](#input)
+
+  Sets the anchor mode of a search.
+
+  
+
+  When a search is anchored (so that's [`Anchored::Yes`](#anchoredyes) or
+
+  [`Anchored::Pattern`](#anchoredpattern)), a match must begin at the start of a search.
+
+  When a search is not anchored (that's [`Anchored::No`](#anchoredno)), regex engines
+
+  will behave as if the pattern started with a `(?s-u:.)*?`. This prefix
+
+  permits a match to appear anywhere.
+
+  
+
+  By default, the anchored mode is [`Anchored::No`](#anchoredno).
+
+  
+
+  **WARNING:** this is subtly different than using a `^` at the start of
+
+  your regex. A `^` forces a regex to match exclusively at the start of
+
+  a haystack, regardless of where you begin your search. In contrast,
+
+  anchoring a search will allow your regex to match anywhere in your
+
+  haystack, but the match must start at the beginning of a search.
+
+  
+
+  For example, consider the haystack `aba` and the following searches:
+
+  
+
+  1. The regex `^a` is compiled with `Anchored::No` and searches `aba`
+
+     starting at position `2`. Since `^` requires the match to start at
+
+     the beginning of the haystack and `2 > 0`, no match is found.
+
+  2. The regex `a` is compiled with `Anchored::Yes` and searches `aba`
+
+     starting at position `2`. This reports a match at `[2, 3]` since
+
+     the match starts where the search started. Since there is no `^`,
+
+     there is no requirement for the match to start at the beginning of
+
+     the haystack.
+
+  3. The regex `a` is compiled with `Anchored::Yes` and searches `aba`
+
+     starting at position `1`. Since `b` corresponds to position `1` and
+
+     since the search is anchored, it finds no match. While the regex
+
+     matches at other positions, configuring the search to be anchored
+
+     requires that it only report a match that begins at the same offset
+
+     as the beginning of the search.
+
+  4. The regex `a` is compiled with `Anchored::No` and searches `aba`
+
+     starting at position `1`. Since the search is not anchored and
+
+     the regex does not start with `^`, the search executes as if there
+
+     is a `(?s:.)*?` prefix that permits it to match anywhere. Thus, it
+
+     reports a match at `[2, 3]`.
+
+  
+
+  Note that the [`Anchored::Pattern`](#anchoredpattern) mode is like `Anchored::Yes`,
+
+  except it only reports matches for a particular pattern.
+
+  
+
+  # Example
+
+  
+
+  This demonstrates the differences between an anchored search and
+
+  a pattern that begins with `^` (as described in the above warning
+
+  message).
+
+  
+
+  ```rust
+
+  use regex_automata::{
+
+      nfa::thompson::pikevm::PikeVM,
+
+      Anchored, Match, Input,
+
+  };
+
+  
+
+  let haystack = "aba";
+
+  
+
+  let re = PikeVM::new(r"^a")?;
+
+  let (mut cache, mut caps) = (re.create_cache(), re.create_captures());
+
+  let input = Input::new(haystack).span(2..3).anchored(Anchored::No);
+
+  re.search(&mut cache, &input, &mut caps);
+
+  // No match is found because 2 is not the beginning of the haystack,
+
+  // which is what ^ requires.
+
+  assert_eq!(None, caps.get_match());
+
+  
+
+  let re = PikeVM::new(r"a")?;
+
+  let (mut cache, mut caps) = (re.create_cache(), re.create_captures());
+
+  let input = Input::new(haystack).span(2..3).anchored(Anchored::Yes);
+
+  re.search(&mut cache, &input, &mut caps);
+
+  // An anchored search can still match anywhere in the haystack, it just
+
+  // must begin at the start of the search which is '2' in this case.
+
+  assert_eq!(Some(Match::must(0, 2..3)), caps.get_match());
+
+  
+
+  let re = PikeVM::new(r"a")?;
+
+  let (mut cache, mut caps) = (re.create_cache(), re.create_captures());
+
+  let input = Input::new(haystack).span(1..3).anchored(Anchored::Yes);
+
+  re.search(&mut cache, &input, &mut caps);
+
+  // No match is found since we start searching at offset 1 which
+
+  // corresponds to 'b'. Since there is no '(?s:.)*?' prefix, no match
+
+  // is found.
+
+  assert_eq!(None, caps.get_match());
+
+  
+
+  let re = PikeVM::new(r"a")?;
+
+  let (mut cache, mut caps) = (re.create_cache(), re.create_captures());
+
+  let input = Input::new(haystack).span(1..3).anchored(Anchored::No);
+
+  re.search(&mut cache, &input, &mut caps);
+
+  // Since anchored=no, an implicit '(?s:.)*?' prefix was added to the
+
+  // pattern. Even though the search starts at 'b', the 'match anything'
+
+  // prefix allows the search to match 'a'.
+
+  let expected = Some(Match::must(0, 2..3));
+
+  assert_eq!(expected, caps.get_match());
+
+  
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
 
 - <span id="input-earliest"></span>`fn earliest(self, yes: bool) -> Input<'h>` — [`Input`](#input)
 
+  Whether to execute an "earliest" search or not.
+
+  
+
+  When running a non-overlapping search, an "earliest" search will return
+
+  the match location as early as possible. For example, given a pattern
+
+  of `foo[0-9]+` and a haystack of `foo12345`, a normal leftmost search
+
+  will return `foo12345` as a match. But an "earliest" search for regex
+
+  engines that support "earliest" semantics will return `foo1` as a
+
+  match, since as soon as the first digit following `foo` is seen, it is
+
+  known to have found a match.
+
+  
+
+  Note that "earliest" semantics generally depend on the regex engine.
+
+  Different regex engines may determine there is a match at different
+
+  points. So there is no guarantee that "earliest" matches will always
+
+  return the same offsets for all regex engines. The "earliest" notion
+
+  is really about when the particular regex engine determines there is
+
+  a match rather than a consistent semantic unto itself. This is often
+
+  useful for implementing "did a match occur or not" predicates, but
+
+  sometimes the offset is useful as well.
+
+  
+
+  This is disabled by default.
+
+  
+
+  # Example
+
+  
+
+  This example shows the difference between "earliest" searching and
+
+  normal searching.
+
+  
+
+  ```rust
+
+  use regex_automata::{nfa::thompson::pikevm::PikeVM, Match, Input};
+
+  
+
+  let re = PikeVM::new(r"foo[0-9]+")?;
+
+  let mut cache = re.create_cache();
+
+  let mut caps = re.create_captures();
+
+  
+
+  // A normal search implements greediness like you expect.
+
+  let input = Input::new("foo12345");
+
+  re.search(&mut cache, &input, &mut caps);
+
+  assert_eq!(Some(Match::must(0, 0..8)), caps.get_match());
+
+  
+
+  // When 'earliest' is enabled and the regex engine supports
+
+  // it, the search will bail once it knows a match has been
+
+  // found.
+
+  let input = Input::new("foo12345").earliest(true);
+
+  re.search(&mut cache, &input, &mut caps);
+
+  assert_eq!(Some(Match::must(0, 0..4)), caps.get_match());
+
+  Ok::<(), Box<dyn std::error::Error>>(())
+
+  ```
+
 - <span id="input-set-span"></span>`fn set_span<S: Into<Span>>(&mut self, span: S)`
+
+  Set the span for this search configuration.
+
+  
+
+  This is like the `Input::span` method, except this mutates the
+
+  span in place.
+
+  
+
+  This routine is generic over how a span is provided. While
+
+  a [`Span`](#span) may be given directly, one may also provide a
+
+  `std::ops::Range<usize>`.
+
+  
+
+  # Panics
+
+  
+
+  This panics if the given span does not correspond to valid bounds in
+
+  the haystack or the termination of a search.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::Input;
+
+  
+
+  let mut input = Input::new("foobar");
+
+  assert_eq!(0..6, input.get_range());
+
+  input.set_span(2..4);
+
+  assert_eq!(2..4, input.get_range());
+
+  ```
 
 - <span id="input-set-range"></span>`fn set_range<R: RangeBounds<usize>>(&mut self, range: R)`
 
+  Set the span for this search configuration given any range.
+
+  
+
+  This is like the `Input::range` method, except this mutates the
+
+  span in place.
+
+  
+
+  This routine does not panic if the range given is not a valid range for
+
+  this search's haystack. If this search is run with an invalid range,
+
+  then the most likely outcome is that the actual search execution will
+
+  panic.
+
+  
+
+  # Panics
+
+  
+
+  This routine will panic if the given range could not be converted
+
+  to a valid [`Range`](../gimli/read/index.md). For example, this would panic when given
+
+  `0..=usize::MAX` since it cannot be represented using a half-open
+
+  interval in terms of `usize`.
+
+  
+
+  This also panics if the given span does not correspond to valid bounds
+
+  in the haystack or the termination of a search.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::Input;
+
+  
+
+  let mut input = Input::new("foobar");
+
+  assert_eq!(0..6, input.get_range());
+
+  input.set_range(2..=4);
+
+  assert_eq!(2..5, input.get_range());
+
+  ```
+
 - <span id="input-set-start"></span>`fn set_start(&mut self, start: usize)`
+
+  Set the starting offset for the span for this search configuration.
+
+  
+
+  This is a convenience routine for only mutating the start of a span
+
+  without having to set the entire span.
+
+  
+
+  # Panics
+
+  
+
+  This panics if the span resulting from the new start position does not
+
+  correspond to valid bounds in the haystack or the termination of a
+
+  search.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::Input;
+
+  
+
+  let mut input = Input::new("foobar");
+
+  assert_eq!(0..6, input.get_range());
+
+  input.set_start(5);
+
+  assert_eq!(5..6, input.get_range());
+
+  ```
 
 - <span id="input-set-end"></span>`fn set_end(&mut self, end: usize)`
 
+  Set the ending offset for the span for this search configuration.
+
+  
+
+  This is a convenience routine for only mutating the end of a span
+
+  without having to set the entire span.
+
+  
+
+  # Panics
+
+  
+
+  This panics if the span resulting from the new end position does not
+
+  correspond to valid bounds in the haystack or the termination of a
+
+  search.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::Input;
+
+  
+
+  let mut input = Input::new("foobar");
+
+  assert_eq!(0..6, input.get_range());
+
+  input.set_end(5);
+
+  assert_eq!(0..5, input.get_range());
+
+  ```
+
 - <span id="input-set-anchored"></span>`fn set_anchored(&mut self, mode: Anchored)` — [`Anchored`](#anchored)
+
+  Set the anchor mode of a search.
+
+  
+
+  This is like `Input::anchored`, except it mutates the search
+
+  configuration in place.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::{Anchored, Input, PatternID};
+
+  
+
+  let mut input = Input::new("foobar");
+
+  assert_eq!(Anchored::No, input.get_anchored());
+
+  
+
+  let pid = PatternID::must(5);
+
+  input.set_anchored(Anchored::Pattern(pid));
+
+  assert_eq!(Anchored::Pattern(pid), input.get_anchored());
+
+  ```
 
 - <span id="input-set-earliest"></span>`fn set_earliest(&mut self, yes: bool)`
 
+  Set whether the search should execute in "earliest" mode or not.
+
+  
+
+  This is like `Input::earliest`, except it mutates the search
+
+  configuration in place.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::Input;
+
+  
+
+  let mut input = Input::new("foobar");
+
+  assert!(!input.get_earliest());
+
+  input.set_earliest(true);
+
+  assert!(input.get_earliest());
+
+  ```
+
 - <span id="input-haystack"></span>`fn haystack(&self) -> &'h [u8]`
+
+  Return a borrow of the underlying haystack as a slice of bytes.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::Input;
+
+  
+
+  let input = Input::new("foobar");
+
+  assert_eq!(b"foobar", input.haystack());
+
+  ```
 
 - <span id="input-start"></span>`fn start(&self) -> usize`
 
+  Return the start position of this search.
+
+  
+
+  This is a convenience routine for `search.get_span().start()`.
+
+  
+
+  When `Input::is_done` is `false`, this is guaranteed to return
+
+  an offset that is less than or equal to `Input::end`. Otherwise,
+
+  the offset is one greater than `Input::end`.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::Input;
+
+  
+
+  let input = Input::new("foobar");
+
+  assert_eq!(0, input.start());
+
+  
+
+  let input = Input::new("foobar").span(2..4);
+
+  assert_eq!(2, input.start());
+
+  ```
+
 - <span id="input-end"></span>`fn end(&self) -> usize`
+
+  Return the end position of this search.
+
+  
+
+  This is a convenience routine for `search.get_span().end()`.
+
+  
+
+  This is guaranteed to return an offset that is a valid exclusive end
+
+  bound for this input's haystack.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::Input;
+
+  
+
+  let input = Input::new("foobar");
+
+  assert_eq!(6, input.end());
+
+  
+
+  let input = Input::new("foobar").span(2..4);
+
+  assert_eq!(4, input.end());
+
+  ```
 
 - <span id="input-get-span"></span>`fn get_span(&self) -> Span` — [`Span`](#span)
 
+  Return the span for this search configuration.
+
+  
+
+  If one was not explicitly set, then the span corresponds to the entire
+
+  range of the haystack.
+
+  
+
+  When `Input::is_done` is `false`, the span returned is guaranteed
+
+  to correspond to valid bounds for this input's haystack.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::{Input, Span};
+
+  
+
+  let input = Input::new("foobar");
+
+  assert_eq!(Span { start: 0, end: 6 }, input.get_span());
+
+  ```
+
 - <span id="input-get-range"></span>`fn get_range(&self) -> Range<usize>`
+
+  Return the span as a range for this search configuration.
+
+  
+
+  If one was not explicitly set, then the span corresponds to the entire
+
+  range of the haystack.
+
+  
+
+  When `Input::is_done` is `false`, the range returned is guaranteed
+
+  to correspond to valid bounds for this input's haystack.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::Input;
+
+  
+
+  let input = Input::new("foobar");
+
+  assert_eq!(0..6, input.get_range());
+
+  ```
 
 - <span id="input-get-anchored"></span>`fn get_anchored(&self) -> Anchored` — [`Anchored`](#anchored)
 
+  Return the anchored mode for this search configuration.
+
+  
+
+  If no anchored mode was set, then it defaults to [`Anchored::No`](#anchoredno).
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::{Anchored, Input, PatternID};
+
+  
+
+  let mut input = Input::new("foobar");
+
+  assert_eq!(Anchored::No, input.get_anchored());
+
+  
+
+  let pid = PatternID::must(5);
+
+  input.set_anchored(Anchored::Pattern(pid));
+
+  assert_eq!(Anchored::Pattern(pid), input.get_anchored());
+
+  ```
+
 - <span id="input-get-earliest"></span>`fn get_earliest(&self) -> bool`
+
+  Return whether this search should execute in "earliest" mode.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::Input;
+
+  
+
+  let input = Input::new("foobar");
+
+  assert!(!input.get_earliest());
+
+  ```
 
 - <span id="input-is-done"></span>`fn is_done(&self) -> bool`
 
+  Return true if and only if this search can never return any other
+
+  matches.
+
+  
+
+  This occurs when the start position of this search is greater than the
+
+  end position of the search.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::Input;
+
+  
+
+  let mut input = Input::new("foobar");
+
+  assert!(!input.is_done());
+
+  input.set_start(6);
+
+  assert!(!input.is_done());
+
+  input.set_start(7);
+
+  assert!(input.is_done());
+
+  ```
+
 - <span id="input-is-char-boundary"></span>`fn is_char_boundary(&self, offset: usize) -> bool`
 
+  Returns true if and only if the given offset in this search's haystack
+
+  falls on a valid UTF-8 encoded codepoint boundary.
+
+  
+
+  If the haystack is not valid UTF-8, then the behavior of this routine
+
+  is unspecified.
+
+  
+
+  # Example
+
+  
+
+  This shows where codepoint boundaries do and don't exist in valid
+
+  UTF-8.
+
+  
+
+  ```rust
+
+  use regex_automata::Input;
+
+  
+
+  let input = Input::new("☃");
+
+  assert!(input.is_char_boundary(0));
+
+  assert!(!input.is_char_boundary(1));
+
+  assert!(!input.is_char_boundary(2));
+
+  assert!(input.is_char_boundary(3));
+
+  assert!(!input.is_char_boundary(4));
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for Input<'h>`
+
+- <span id="input-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Input<'h>`
+
+- <span id="input-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Input<'h>`
+
+- <span id="input-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Input<'h>`
 
 - <span id="input-clone"></span>`fn clone(&self) -> Input<'h>` — [`Input`](#input)
 
+##### `impl CloneToUninit for Input<'h>`
+
+- <span id="input-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Input<'h>`
 
-- <span id="input-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="input-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> From for Input<'h>`
+
+- <span id="input-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Input<'h>`
+
+- <span id="input-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Input<'h>`
+
+- <span id="input-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="input-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="input-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Input<'h>`
+
+- <span id="input-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="input-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Input<'h>`
+
+- <span id="input-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="input-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Span`
 
@@ -897,27 +2139,71 @@ which means things like `Span::from(5..10)` work.
 
 - <span id="span-range"></span>`fn range(&self) -> Range<usize>`
 
+  Returns this span as a range.
+
 - <span id="span-is-empty"></span>`fn is_empty(&self) -> bool`
+
+  Returns true when this span is empty. That is, when `start >= end`.
 
 - <span id="span-len"></span>`fn len(&self) -> usize`
 
+  Returns the length of this span.
+
+  
+
+  This returns `0` in precisely the cases that `is_empty` returns `true`.
+
 - <span id="span-contains"></span>`fn contains(&self, offset: usize) -> bool`
+
+  Returns true when the given offset is contained within this span.
+
+  
+
+  Note that an empty span contains no offsets and will always return
+
+  false.
 
 - <span id="span-offset"></span>`fn offset(&self, offset: usize) -> Span` — [`Span`](#span)
 
+  Returns a new span with `offset` added to this span's `start` and `end`
+
+  values.
+
 #### Trait Implementations
+
+##### `impl Any for Span`
+
+- <span id="span-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Span`
+
+- <span id="span-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Span`
+
+- <span id="span-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Span`
 
 - <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](#span)
 
+##### `impl CloneToUninit for Span`
+
+- <span id="span-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Span`
 
 ##### `impl Debug for Span`
 
-- <span id="span-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="span-debug-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Span`
+
+##### `impl<T> From for Span`
+
+- <span id="span-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Span`
 
@@ -931,13 +2217,45 @@ which means things like `Span::from(5..10)` work.
 
 ##### `impl IndexMut for [u8]`
 
-- <span id="u8-index-mut"></span>`fn index_mut(&mut self, index: Span) -> &mut [u8]` — [`Span`](#span)
+- <span id="u8-indexmut-index-mut"></span>`fn index_mut(&mut self, index: Span) -> &mut [u8]` — [`Span`](#span)
+
+##### `impl<U> Into for Span`
+
+- <span id="span-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Span`
 
-- <span id="span-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](#span)
+- <span id="span-partialeq-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](#span)
 
 ##### `impl StructuralPartialEq for Span`
+
+##### `impl ToOwned for Span`
+
+- <span id="span-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="span-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="span-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Span`
+
+- <span id="span-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="span-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Span`
+
+- <span id="span-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="span-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `HalfMatch`
 
@@ -980,35 +2298,121 @@ have a pattern ID of `0`.
 
 - <span id="halfmatch-new"></span>`fn new(pattern: PatternID, offset: usize) -> HalfMatch` — [`PatternID`](util/primitives/index.md#patternid), [`HalfMatch`](#halfmatch)
 
+  Create a new half match from a pattern ID and a byte offset.
+
 - <span id="halfmatch-must"></span>`fn must(pattern: usize, offset: usize) -> HalfMatch` — [`HalfMatch`](#halfmatch)
+
+  Create a new half match from a pattern ID and a byte offset.
+
+  
+
+  This is like `HalfMatch::new`, but accepts a `usize` instead of a
+
+  [`PatternID`](util/primitives/index.md). This panics if the given `usize` is not representable
+
+  as a `PatternID`.
 
 - <span id="halfmatch-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
+  Returns the ID of the pattern that matched.
+
+  
+
+  The ID of a pattern is derived from the position in which it was
+
+  originally inserted into the corresponding DFA. The first pattern has
+
+  identifier `0`, and each subsequent pattern is `1`, `2` and so on.
+
 - <span id="halfmatch-offset"></span>`fn offset(&self) -> usize`
 
+  The position of the match.
+
+  
+
+  If this match was produced by a forward search, then the offset is
+
+  exclusive. If this match was produced by a reverse search, then the
+
+  offset is inclusive.
+
 #### Trait Implementations
+
+##### `impl Any for HalfMatch`
+
+- <span id="halfmatch-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HalfMatch`
+
+- <span id="halfmatch-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HalfMatch`
+
+- <span id="halfmatch-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for HalfMatch`
 
 - <span id="halfmatch-clone"></span>`fn clone(&self) -> HalfMatch` — [`HalfMatch`](#halfmatch)
 
+##### `impl CloneToUninit for HalfMatch`
+
+- <span id="halfmatch-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for HalfMatch`
 
 ##### `impl Debug for HalfMatch`
 
-- <span id="halfmatch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="halfmatch-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for HalfMatch`
+
+##### `impl<T> From for HalfMatch`
+
+- <span id="halfmatch-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for HalfMatch`
 
 - <span id="halfmatch-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for HalfMatch`
+
+- <span id="halfmatch-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for HalfMatch`
 
-- <span id="halfmatch-eq"></span>`fn eq(&self, other: &HalfMatch) -> bool` — [`HalfMatch`](#halfmatch)
+- <span id="halfmatch-partialeq-eq"></span>`fn eq(&self, other: &HalfMatch) -> bool` — [`HalfMatch`](#halfmatch)
 
 ##### `impl StructuralPartialEq for HalfMatch`
+
+##### `impl ToOwned for HalfMatch`
+
+- <span id="halfmatch-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="halfmatch-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="halfmatch-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for HalfMatch`
+
+- <span id="halfmatch-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="halfmatch-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HalfMatch`
+
+- <span id="halfmatch-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="halfmatch-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Match`
 
@@ -1048,45 +2452,245 @@ start offset as less than or equal to its end offset.
 
 - <span id="match-new"></span>`fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](util/primitives/index.md#patternid), [`Match`](#match)
 
+  Create a new match from a pattern ID and a span.
+
+  
+
+  This constructor is generic over how a span is provided. While
+
+  a [`Span`](#span) may be given directly, one may also provide a
+
+  `std::ops::Range<usize>`.
+
+  
+
+  # Panics
+
+  
+
+  This panics if `end < start`.
+
+  
+
+  # Example
+
+  
+
+  This shows how to create a match for the first pattern in a regex
+
+  object using convenient range syntax.
+
+  
+
+  ```rust
+
+  use regex_automata::{Match, PatternID};
+
+  
+
+  let m = Match::new(PatternID::ZERO, 5..10);
+
+  assert_eq!(0, m.pattern().as_usize());
+
+  assert_eq!(5, m.start());
+
+  assert_eq!(10, m.end());
+
+  ```
+
 - <span id="match-must"></span>`fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](#match)
+
+  Create a new match from a pattern ID and a byte offset span.
+
+  
+
+  This constructor is generic over how a span is provided. While
+
+  a [`Span`](#span) may be given directly, one may also provide a
+
+  `std::ops::Range<usize>`.
+
+  
+
+  This is like `Match::new`, but accepts a `usize` instead of a
+
+  [`PatternID`](util/primitives/index.md). This panics if the given `usize` is not representable
+
+  as a `PatternID`.
+
+  
+
+  # Panics
+
+  
+
+  This panics if `end < start` or if `pattern > PatternID::MAX`.
+
+  
+
+  # Example
+
+  
+
+  This shows how to create a match for the third pattern in a regex
+
+  object using convenient range syntax.
+
+  
+
+  ```rust
+
+  use regex_automata::Match;
+
+  
+
+  let m = Match::must(3, 5..10);
+
+  assert_eq!(3, m.pattern().as_usize());
+
+  assert_eq!(5, m.start());
+
+  assert_eq!(10, m.end());
+
+  ```
 
 - <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
+  Returns the ID of the pattern that matched.
+
+  
+
+  The ID of a pattern is derived from the position in which it was
+
+  originally inserted into the corresponding regex engine. The first
+
+  pattern has identifier `0`, and each subsequent pattern is `1`, `2` and
+
+  so on.
+
 - <span id="match-start"></span>`fn start(&self) -> usize`
+
+  The starting position of the match.
+
+  
+
+  This is a convenience routine for `Match::span().start`.
 
 - <span id="match-end"></span>`fn end(&self) -> usize`
 
+  The ending position of the match.
+
+  
+
+  This is a convenience routine for `Match::span().end`.
+
 - <span id="match-range"></span>`fn range(&self) -> core::ops::Range<usize>`
+
+  Returns the match span as a range.
+
+  
+
+  This is a convenience routine for `Match::span().range()`.
 
 - <span id="match-span"></span>`fn span(&self) -> Span` — [`Span`](#span)
 
+  Returns the span for this match.
+
 - <span id="match-is-empty"></span>`fn is_empty(&self) -> bool`
+
+  Returns true when the span in this match is empty.
+
+  
+
+  An empty match can only be returned when the regex itself can match
+
+  the empty string.
 
 - <span id="match-len"></span>`fn len(&self) -> usize`
 
+  Returns the length of this match.
+
+  
+
+  This returns `0` in precisely the cases that `is_empty` returns `true`.
+
 #### Trait Implementations
+
+##### `impl Any for Match`
+
+- <span id="match-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Match`
+
+- <span id="match-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Match`
+
+- <span id="match-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Match`
 
 - <span id="match-clone"></span>`fn clone(&self) -> Match` — [`Match`](#match)
 
+##### `impl CloneToUninit for Match`
+
+- <span id="match-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Match`
 
 ##### `impl Debug for Match`
 
-- <span id="match-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="match-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Match`
+
+##### `impl<T> From for Match`
+
+- <span id="match-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Match`
 
 - <span id="match-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Match`
+
+- <span id="match-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Match`
 
-- <span id="match-eq"></span>`fn eq(&self, other: &Match) -> bool` — [`Match`](#match)
+- <span id="match-partialeq-eq"></span>`fn eq(&self, other: &Match) -> bool` — [`Match`](#match)
 
 ##### `impl StructuralPartialEq for Match`
+
+##### `impl ToOwned for Match`
+
+- <span id="match-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="match-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="match-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Match`
+
+- <span id="match-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="match-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Match`
+
+- <span id="match-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="match-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PatternSet`
 
@@ -1165,41 +2769,211 @@ assert!(set.is_empty());
 
 - <span id="patternset-new"></span>`fn new(capacity: usize) -> PatternSet` — [`PatternSet`](#patternset)
 
+  Create a new set of pattern identifiers with the given capacity.
+
+  
+
+  The given capacity typically corresponds to (at least) the number of
+
+  patterns in a compiled regex object.
+
+  
+
+  # Panics
+
+  
+
+  This panics if the given capacity exceeds `PatternID::LIMIT`. This is
+
+  impossible if you use the `pattern_len()` method as defined on any of
+
+  the regex engines in this crate. Namely, a regex will fail to build by
+
+  returning an error if the number of patterns given to it exceeds the
+
+  limit. Therefore, the number of patterns in a valid regex is always
+
+  a correct capacity to provide here.
+
 - <span id="patternset-clear"></span>`fn clear(&mut self)`
+
+  Clear this set such that it contains no pattern IDs.
 
 - <span id="patternset-contains"></span>`fn contains(&self, pid: PatternID) -> bool` — [`PatternID`](util/primitives/index.md#patternid)
 
+  Return true if and only if the given pattern identifier is in this set.
+
 - <span id="patternset-insert"></span>`fn insert(&mut self, pid: PatternID) -> bool` — [`PatternID`](util/primitives/index.md#patternid)
+
+  Insert the given pattern identifier into this set and return `true` if
+
+  the given pattern ID was not previously in this set.
+
+  
+
+  If the pattern identifier is already in this set, then this is a no-op.
+
+  
+
+  Use `PatternSet::try_insert` for a fallible version of this routine.
+
+  
+
+  # Panics
+
+  
+
+  This panics if this pattern set has insufficient capacity to
+
+  store the given pattern ID.
 
 - <span id="patternset-try-insert"></span>`fn try_insert(&mut self, pid: PatternID) -> Result<bool, PatternSetInsertError>` — [`PatternID`](util/primitives/index.md#patternid), [`PatternSetInsertError`](#patternsetinserterror)
 
+  Insert the given pattern identifier into this set and return `true` if
+
+  the given pattern ID was not previously in this set.
+
+  
+
+  If the pattern identifier is already in this set, then this is a no-op.
+
+  
+
+  # Errors
+
+  
+
+  This returns an error if this pattern set has insufficient capacity to
+
+  store the given pattern ID.
+
 - <span id="patternset-is-empty"></span>`fn is_empty(&self) -> bool`
+
+  Return true if and only if this set has no pattern identifiers in it.
 
 - <span id="patternset-is-full"></span>`fn is_full(&self) -> bool`
 
+  Return true if and only if this set has the maximum number of pattern
+
+  identifiers in the set. This occurs precisely when `PatternSet::len()
+
+  == PatternSet::capacity()`.
+
+  
+
+  This particular property is useful to test because it may allow one to
+
+  stop a search earlier than you might otherwise. Namely, if a search is
+
+  only reporting which patterns match a haystack and if you know all of
+
+  the patterns match at a given point, then there's no new information
+
+  that can be learned by continuing the search. (Because a pattern set
+
+  does not keep track of offset information.)
+
 - <span id="patternset-len"></span>`fn len(&self) -> usize`
+
+  Returns the total number of pattern identifiers in this set.
 
 - <span id="patternset-capacity"></span>`fn capacity(&self) -> usize`
 
+  Returns the total number of pattern identifiers that may be stored
+
+  in this set.
+
+  
+
+  This is guaranteed to be less than or equal to `PatternID::LIMIT`.
+
+  
+
+  Typically, the capacity of a pattern set matches the number of patterns
+
+  in a regex object with which you are searching.
+
 - <span id="patternset-iter"></span>`fn iter(&self) -> PatternSetIter<'_>` — [`PatternSetIter`](#patternsetiter)
 
+  Returns an iterator over all pattern identifiers in this set.
+
+  
+
+  The iterator yields pattern identifiers in ascending order, starting
+
+  at zero.
+
 #### Trait Implementations
+
+##### `impl Any for PatternSet`
+
+- <span id="patternset-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PatternSet`
+
+- <span id="patternset-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PatternSet`
+
+- <span id="patternset-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for PatternSet`
 
 - <span id="patternset-clone"></span>`fn clone(&self) -> PatternSet` — [`PatternSet`](#patternset)
 
+##### `impl CloneToUninit for PatternSet`
+
+- <span id="patternset-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for PatternSet`
 
-- <span id="patternset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="patternset-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for PatternSet`
 
+##### `impl<T> From for PatternSet`
+
+- <span id="patternset-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PatternSet`
+
+- <span id="patternset-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for PatternSet`
 
-- <span id="patternset-eq"></span>`fn eq(&self, other: &PatternSet) -> bool` — [`PatternSet`](#patternset)
+- <span id="patternset-partialeq-eq"></span>`fn eq(&self, other: &PatternSet) -> bool` — [`PatternSet`](#patternset)
 
 ##### `impl StructuralPartialEq for PatternSet`
+
+##### `impl ToOwned for PatternSet`
+
+- <span id="patternset-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="patternset-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="patternset-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PatternSet`
+
+- <span id="patternset-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="patternset-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PatternSet`
+
+- <span id="patternset-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="patternset-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PatternSetInsertError`
 
@@ -1222,23 +2996,77 @@ This error is created by the `PatternSet::try_insert` routine.
 
 #### Trait Implementations
 
+##### `impl Any for PatternSetInsertError`
+
+- <span id="patternsetinserterror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PatternSetInsertError`
+
+- <span id="patternsetinserterror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PatternSetInsertError`
+
+- <span id="patternsetinserterror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for PatternSetInsertError`
 
 - <span id="patternsetinserterror-clone"></span>`fn clone(&self) -> PatternSetInsertError` — [`PatternSetInsertError`](#patternsetinserterror)
 
+##### `impl CloneToUninit for PatternSetInsertError`
+
+- <span id="patternsetinserterror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for PatternSetInsertError`
 
-- <span id="patternsetinserterror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="patternsetinserterror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for PatternSetInsertError`
 
-- <span id="patternsetinserterror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="patternsetinserterror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for PatternSetInsertError`
 
+##### `impl<T> From for PatternSetInsertError`
+
+- <span id="patternsetinserterror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PatternSetInsertError`
+
+- <span id="patternsetinserterror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for PatternSetInsertError`
+
+- <span id="patternsetinserterror-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="patternsetinserterror-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="patternsetinserterror-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for PatternSetInsertError`
 
-- <span id="patternsetinserterror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="patternsetinserterror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for PatternSetInsertError`
+
+- <span id="patternsetinserterror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="patternsetinserterror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PatternSetInsertError`
+
+- <span id="patternsetinserterror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="patternsetinserterror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PatternSetIter<'a>`
 
@@ -1259,17 +3087,51 @@ This iterator is created by the `PatternSet::iter` method.
 
 #### Trait Implementations
 
+##### `impl Any for PatternSetIter<'a>`
+
+- <span id="patternsetiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PatternSetIter<'a>`
+
+- <span id="patternsetiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PatternSetIter<'a>`
+
+- <span id="patternsetiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for PatternSetIter<'a>`
 
 - <span id="patternsetiter-clone"></span>`fn clone(&self) -> PatternSetIter<'a>` — [`PatternSetIter`](#patternsetiter)
 
+##### `impl CloneToUninit for PatternSetIter<'a>`
+
+- <span id="patternsetiter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for PatternSetIter<'a>`
 
-- <span id="patternsetiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="patternsetiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DoubleEndedIterator for PatternSetIter<'a>`
 
-- <span id="patternsetiter-next-back"></span>`fn next_back(&mut self) -> Option<PatternID>` — [`PatternID`](util/primitives/index.md#patternid)
+- <span id="patternsetiter-doubleendediterator-next-back"></span>`fn next_back(&mut self) -> Option<PatternID>` — [`PatternID`](util/primitives/index.md#patternid)
+
+##### `impl<T> From for PatternSetIter<'a>`
+
+- <span id="patternsetiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PatternSetIter<'a>`
+
+- <span id="patternsetiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for PatternSetIter<'a>`
 
@@ -1277,15 +3139,35 @@ This iterator is created by the `PatternSet::iter` method.
 
 - <span id="patternsetiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="patternsetiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="patternsetiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for PatternSetIter<'a>`
 
 - <span id="patternsetiter-iterator-type-item"></span>`type Item = PatternID`
 
-- <span id="patternsetiter-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](util/primitives/index.md#patternid)
+- <span id="patternsetiter-iterator-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](util/primitives/index.md#patternid)
 
-- <span id="patternsetiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="patternsetiter-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+
+##### `impl ToOwned for PatternSetIter<'a>`
+
+- <span id="patternsetiter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="patternsetiter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="patternsetiter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PatternSetIter<'a>`
+
+- <span id="patternsetiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="patternsetiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PatternSetIter<'a>`
+
+- <span id="patternsetiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="patternsetiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MatchError`
 
@@ -1347,43 +3229,151 @@ with a [one-pass DFA](crate::dfa::onepass).
 
 - <span id="matcherror-new"></span>`fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](#matcherrorkind), [`MatchError`](#matcherror)
 
+  Create a new error value with the given kind.
+
+  
+
+  This is a more verbose version of the kind-specific constructors,
+
+  e.g., `MatchError::quit`.
+
 - <span id="matcherror-kind"></span>`fn kind(&self) -> &MatchErrorKind` — [`MatchErrorKind`](#matcherrorkind)
+
+  Returns a reference to the underlying error kind.
 
 - <span id="matcherror-quit"></span>`fn quit(byte: u8, offset: usize) -> MatchError` — [`MatchError`](#matcherror)
 
+  Create a new "quit" error. The given `byte` corresponds to the value
+
+  that tripped a search's quit condition, and `offset` corresponds to the
+
+  location in the haystack at which the search quit.
+
+  
+
+  This is the same as calling `MatchError::new` with a
+
+  [`MatchErrorKind::Quit`](#matcherrorkindquit) kind.
+
 - <span id="matcherror-gave-up"></span>`fn gave_up(offset: usize) -> MatchError` — [`MatchError`](#matcherror)
+
+  Create a new "gave up" error. The given `offset` corresponds to the
+
+  location in the haystack at which the search gave up.
+
+  
+
+  This is the same as calling `MatchError::new` with a
+
+  [`MatchErrorKind::GaveUp`](#matcherrorkindgaveup) kind.
 
 - <span id="matcherror-haystack-too-long"></span>`fn haystack_too_long(len: usize) -> MatchError` — [`MatchError`](#matcherror)
 
+  Create a new "haystack too long" error. The given `len` corresponds to
+
+  the length of the haystack that was problematic.
+
+  
+
+  This is the same as calling `MatchError::new` with a
+
+  [`MatchErrorKind::HaystackTooLong`](#matcherrorkindhaystacktoolong) kind.
+
 - <span id="matcherror-unsupported-anchored"></span>`fn unsupported_anchored(mode: Anchored) -> MatchError` — [`Anchored`](#anchored), [`MatchError`](#matcherror)
 
+  Create a new "unsupported anchored" error. This occurs when the caller
+
+  requests a search with an anchor mode that is not supported by the
+
+  regex engine.
+
+  
+
+  This is the same as calling `MatchError::new` with a
+
+  [`MatchErrorKind::UnsupportedAnchored`](#matcherrorkindunsupportedanchored) kind.
+
 #### Trait Implementations
+
+##### `impl Any for MatchError`
+
+- <span id="matcherror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MatchError`
+
+- <span id="matcherror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MatchError`
+
+- <span id="matcherror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for MatchError`
 
 - <span id="matcherror-clone"></span>`fn clone(&self) -> MatchError` — [`MatchError`](#matcherror)
 
+##### `impl CloneToUninit for MatchError`
+
+- <span id="matcherror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for MatchError`
 
-- <span id="matcherror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="matcherror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for MatchError`
 
-- <span id="matcherror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="matcherror-display-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for MatchError`
 
 ##### `impl Error for MatchError`
 
+##### `impl<T> From for MatchError`
+
+- <span id="matcherror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MatchError`
+
+- <span id="matcherror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for MatchError`
 
-- <span id="matcherror-eq"></span>`fn eq(&self, other: &MatchError) -> bool` — [`MatchError`](#matcherror)
+- <span id="matcherror-partialeq-eq"></span>`fn eq(&self, other: &MatchError) -> bool` — [`MatchError`](#matcherror)
 
 ##### `impl StructuralPartialEq for MatchError`
 
+##### `impl ToOwned for MatchError`
+
+- <span id="matcherror-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="matcherror-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="matcherror-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for MatchError`
 
-- <span id="matcherror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="matcherror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for MatchError`
+
+- <span id="matcherror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="matcherror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MatchError`
+
+- <span id="matcherror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="matcherror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -1520,27 +3510,139 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="anchored-is-anchored"></span>`fn is_anchored(&self) -> bool`
 
+  Returns true if and only if this anchor mode corresponds to any kind of
+
+  anchored search.
+
+  
+
+  # Example
+
+  
+
+  This examples shows that both `Anchored::Yes` and `Anchored::Pattern`
+
+  are considered anchored searches.
+
+  
+
+  ```rust
+
+  use regex_automata::{Anchored, PatternID};
+
+  
+
+  assert!(!Anchored::No.is_anchored());
+
+  assert!(Anchored::Yes.is_anchored());
+
+  assert!(Anchored::Pattern(PatternID::ZERO).is_anchored());
+
+  ```
+
 - <span id="anchored-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](util/primitives/index.md#patternid)
 
+  Returns the pattern ID associated with this configuration if it is an
+
+  anchored search for a specific pattern. Otherwise `None` is returned.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use regex_automata::{Anchored, PatternID};
+
+  
+
+  assert_eq!(None, Anchored::No.pattern());
+
+  assert_eq!(None, Anchored::Yes.pattern());
+
+  
+
+  let pid = PatternID::must(5);
+
+  assert_eq!(Some(pid), Anchored::Pattern(pid).pattern());
+
+  ```
+
 #### Trait Implementations
+
+##### `impl Any for Anchored`
+
+- <span id="anchored-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Anchored`
+
+- <span id="anchored-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Anchored`
+
+- <span id="anchored-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Anchored`
 
 - <span id="anchored-clone"></span>`fn clone(&self) -> Anchored` — [`Anchored`](#anchored)
 
+##### `impl CloneToUninit for Anchored`
+
+- <span id="anchored-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Anchored`
 
 ##### `impl Debug for Anchored`
 
-- <span id="anchored-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="anchored-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Anchored`
 
+##### `impl<T> From for Anchored`
+
+- <span id="anchored-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Anchored`
+
+- <span id="anchored-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Anchored`
 
-- <span id="anchored-eq"></span>`fn eq(&self, other: &Anchored) -> bool` — [`Anchored`](#anchored)
+- <span id="anchored-partialeq-eq"></span>`fn eq(&self, other: &Anchored) -> bool` — [`Anchored`](#anchored)
 
 ##### `impl StructuralPartialEq for Anchored`
+
+##### `impl ToOwned for Anchored`
+
+- <span id="anchored-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="anchored-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="anchored-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Anchored`
+
+- <span id="anchored-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="anchored-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Anchored`
+
+- <span id="anchored-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="anchored-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MatchKind`
 
@@ -1706,15 +3808,31 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Trait Implementations
 
+##### `impl Any for MatchKind`
+
+- <span id="matchkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MatchKind`
+
+- <span id="matchkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MatchKind`
+
+- <span id="matchkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for MatchKind`
 
 - <span id="matchkind-clone"></span>`fn clone(&self) -> MatchKind` — [`MatchKind`](#matchkind)
+
+##### `impl CloneToUninit for MatchKind`
+
+- <span id="matchkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for MatchKind`
 
 ##### `impl Debug for MatchKind`
 
-- <span id="matchkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="matchkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MatchKind`
 
@@ -1722,11 +3840,49 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Eq for MatchKind`
 
+##### `impl<T> From for MatchKind`
+
+- <span id="matchkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MatchKind`
+
+- <span id="matchkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for MatchKind`
 
-- <span id="matchkind-eq"></span>`fn eq(&self, other: &MatchKind) -> bool` — [`MatchKind`](#matchkind)
+- <span id="matchkind-partialeq-eq"></span>`fn eq(&self, other: &MatchKind) -> bool` — [`MatchKind`](#matchkind)
 
 ##### `impl StructuralPartialEq for MatchKind`
+
+##### `impl ToOwned for MatchKind`
+
+- <span id="matchkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="matchkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="matchkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MatchKind`
+
+- <span id="matchkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="matchkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MatchKind`
+
+- <span id="matchkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="matchkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MatchErrorKind`
 
@@ -1792,19 +3948,73 @@ a semver-compatible release.
 
 #### Trait Implementations
 
+##### `impl Any for MatchErrorKind`
+
+- <span id="matcherrorkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MatchErrorKind`
+
+- <span id="matcherrorkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MatchErrorKind`
+
+- <span id="matcherrorkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for MatchErrorKind`
 
 - <span id="matcherrorkind-clone"></span>`fn clone(&self) -> MatchErrorKind` — [`MatchErrorKind`](#matcherrorkind)
 
+##### `impl CloneToUninit for MatchErrorKind`
+
+- <span id="matcherrorkind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for MatchErrorKind`
 
-- <span id="matcherrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="matcherrorkind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for MatchErrorKind`
 
+##### `impl<T> From for MatchErrorKind`
+
+- <span id="matcherrorkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MatchErrorKind`
+
+- <span id="matcherrorkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for MatchErrorKind`
 
-- <span id="matcherrorkind-eq"></span>`fn eq(&self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](#matcherrorkind)
+- <span id="matcherrorkind-partialeq-eq"></span>`fn eq(&self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](#matcherrorkind)
 
 ##### `impl StructuralPartialEq for MatchErrorKind`
+
+##### `impl ToOwned for MatchErrorKind`
+
+- <span id="matcherrorkind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="matcherrorkind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="matcherrorkind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MatchErrorKind`
+
+- <span id="matcherrorkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="matcherrorkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MatchErrorKind`
+
+- <span id="matcherrorkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="matcherrorkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

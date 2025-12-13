@@ -45,33 +45,95 @@ Lifetime names must conform to the following rules:
 
 - <span id="lifetime-new"></span>`fn new(symbol: &str, span: Span) -> Self`
 
+  # Panics
+
+  
+
+  Panics if the lifetime does not conform to the bulleted rules above.
+
+  
+
+  # Invocation
+
+  
+
+  ```rust
+
+  use proc_macro2::Span;
+
+  use syn::Lifetime;
+
+  
+
+  fn f() -> Lifetime {
+
+  Lifetime::new("'a", Span::call_site())
+
+  }
+
+  ```
+
 - <span id="lifetime-span"></span>`fn span(&self) -> Span`
 
 - <span id="lifetime-set-span"></span>`fn set_span(&mut self, span: Span)`
 
 #### Trait Implementations
 
+##### `impl Any for Lifetime`
+
+- <span id="lifetime-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Lifetime`
+
+- <span id="lifetime-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Lifetime`
+
+- <span id="lifetime-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Lifetime`
 
 - <span id="lifetime-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for Lifetime`
+
+- <span id="lifetime-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::Lifetime`
 
-- <span id="cratelifetime-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelifetime-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Lifetime`
 
-- <span id="lifetime-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lifetime-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Lifetime`
+
+##### `impl<T> From for Lifetime`
+
+- <span id="lifetime-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for Lifetime`
 
 - <span id="lifetime-hash"></span>`fn hash<H: Hasher>(&self, h: &mut H)`
 
+##### `impl<U> Into for Lifetime`
+
+- <span id="lifetime-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Lifetime`
 
-- <span id="lifetime-cmp"></span>`fn cmp(&self, other: &Lifetime) -> Ordering` — [`Lifetime`](#lifetime)
+- <span id="lifetime-ord-cmp"></span>`fn cmp(&self, other: &Lifetime) -> Ordering` — [`Lifetime`](#lifetime)
 
 ##### `impl Parse for crate::lifetime::Lifetime`
 
@@ -79,25 +141,45 @@ Lifetime names must conform to the following rules:
 
 ##### `impl PartialEq for Lifetime`
 
-- <span id="lifetime-eq"></span>`fn eq(&self, other: &Lifetime) -> bool` — [`Lifetime`](#lifetime)
+- <span id="lifetime-partialeq-eq"></span>`fn eq(&self, other: &Lifetime) -> bool` — [`Lifetime`](#lifetime)
 
 ##### `impl PartialOrd for Lifetime`
 
-- <span id="lifetime-partial-cmp"></span>`fn partial_cmp(&self, other: &Lifetime) -> Option<Ordering>` — [`Lifetime`](#lifetime)
+- <span id="lifetime-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Lifetime) -> Option<Ordering>` — [`Lifetime`](#lifetime)
 
 ##### `impl Sealed for Lifetime`
 
 ##### `impl Spanned for Lifetime`
 
-- <span id="lifetime-span"></span>`fn span(&self) -> Span`
+- <span id="lifetime-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for Lifetime`
+
+- <span id="lifetime-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="lifetime-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="lifetime-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for Lifetime`
 
-- <span id="lifetime-to-string"></span>`fn to_string(&self) -> String`
+- <span id="lifetime-tostring-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ToTokens for crate::lifetime::Lifetime`
 
-- <span id="cratelifetimelifetime-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="cratelifetimelifetime-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lifetime::Lifetime`
+
+##### `impl<U> TryFrom for Lifetime`
+
+- <span id="lifetime-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lifetime-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Lifetime`
+
+- <span id="lifetime-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lifetime-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

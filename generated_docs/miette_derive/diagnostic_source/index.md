@@ -30,3 +30,47 @@ struct DiagnosticSource(syn::Member);
 
 - <span id="diagnosticsource-gen-struct"></span>`fn gen_struct(&self) -> Option<TokenStream>`
 
+#### Trait Implementations
+
+##### `impl Any for DiagnosticSource`
+
+- <span id="diagnosticsource-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DiagnosticSource`
+
+- <span id="diagnosticsource-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DiagnosticSource`
+
+- <span id="diagnosticsource-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for DiagnosticSource`
+
+- <span id="diagnosticsource-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DiagnosticSource`
+
+- <span id="diagnosticsource-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for DiagnosticSource`
+
+- <span id="diagnosticsource-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="diagnosticsource-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DiagnosticSource`
+
+- <span id="diagnosticsource-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="diagnosticsource-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+

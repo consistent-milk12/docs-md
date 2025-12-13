@@ -124,33 +124,101 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 
 - <span id="debugframe-set-address-size"></span>`fn set_address_size(&mut self, address_size: u8)`
 
+  Set the size of a target address in bytes.
+
+  
+
+  This defaults to the native word size.
+
+  This is only used if the CIE version is less than 4.
+
 - <span id="debugframe-set-vendor"></span>`fn set_vendor(&mut self, vendor: Vendor)` — [`Vendor`](../../index.md#vendor)
 
+  Set the vendor extensions to use.
+
+  
+
+  This defaults to `Vendor::Default`.
+
 #### Trait Implementations
+
+##### `impl Any for DebugFrame<R>`
+
+- <span id="debugframe-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DebugFrame<R>`
+
+- <span id="debugframe-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DebugFrame<R>`
+
+- <span id="debugframe-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R: clone::Clone + Reader> Clone for DebugFrame<R>`
 
 - <span id="debugframe-clone"></span>`fn clone(&self) -> DebugFrame<R>` — [`DebugFrame`](../index.md#debugframe)
 
+##### `impl CloneToUninit for DebugFrame<R>`
+
+- <span id="debugframe-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R: marker::Copy + Reader> Copy for DebugFrame<R>`
 
 ##### `impl<R: fmt::Debug + Reader> Debug for DebugFrame<R>`
 
-- <span id="debugframe-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugframe-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: cmp::Eq + Reader> Eq for DebugFrame<R>`
 
+##### `impl<T> From for DebugFrame<R>`
+
+- <span id="debugframe-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DebugFrame<R>`
+
+- <span id="debugframe-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for DebugFrame<R>`
 
-- <span id="debugframe-eq"></span>`fn eq(&self, other: &DebugFrame<R>) -> bool` — [`DebugFrame`](../index.md#debugframe)
+- <span id="debugframe-partialeq-eq"></span>`fn eq(&self, other: &DebugFrame<R>) -> bool` — [`DebugFrame`](../index.md#debugframe)
 
 ##### `impl<R: Reader> Section for DebugFrame<R>`
 
-- <span id="debugframe-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
+- <span id="debugframe-section-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
-- <span id="debugframe-reader"></span>`fn reader(&self) -> &R`
+- <span id="debugframe-section-reader"></span>`fn reader(&self) -> &R`
 
 ##### `impl<R: Reader> StructuralPartialEq for DebugFrame<R>`
+
+##### `impl ToOwned for DebugFrame<R>`
+
+- <span id="debugframe-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="debugframe-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="debugframe-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DebugFrame<R>`
+
+- <span id="debugframe-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="debugframe-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DebugFrame<R>`
+
+- <span id="debugframe-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="debugframe-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<R: Reader> UnwindSection for DebugFrame<R>`
 
@@ -173,31 +241,87 @@ search table of pointers to the `.eh_frame` records that are found in this secti
 
 - <span id="ehframehdr-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
+  Constructs a new `EhFrameHdr` instance from the data in the `.eh_frame_hdr` section.
+
 #### Trait Implementations
+
+##### `impl Any for EhFrameHdr<R>`
+
+- <span id="ehframehdr-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for EhFrameHdr<R>`
+
+- <span id="ehframehdr-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for EhFrameHdr<R>`
+
+- <span id="ehframehdr-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R: clone::Clone + Reader> Clone for EhFrameHdr<R>`
 
 - <span id="ehframehdr-clone"></span>`fn clone(&self) -> EhFrameHdr<R>` — [`EhFrameHdr`](../index.md#ehframehdr)
 
+##### `impl CloneToUninit for EhFrameHdr<R>`
+
+- <span id="ehframehdr-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R: marker::Copy + Reader> Copy for EhFrameHdr<R>`
 
 ##### `impl<R: fmt::Debug + Reader> Debug for EhFrameHdr<R>`
 
-- <span id="ehframehdr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ehframehdr-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: cmp::Eq + Reader> Eq for EhFrameHdr<R>`
 
+##### `impl<T> From for EhFrameHdr<R>`
+
+- <span id="ehframehdr-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for EhFrameHdr<R>`
+
+- <span id="ehframehdr-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for EhFrameHdr<R>`
 
-- <span id="ehframehdr-eq"></span>`fn eq(&self, other: &EhFrameHdr<R>) -> bool` — [`EhFrameHdr`](../index.md#ehframehdr)
+- <span id="ehframehdr-partialeq-eq"></span>`fn eq(&self, other: &EhFrameHdr<R>) -> bool` — [`EhFrameHdr`](../index.md#ehframehdr)
 
 ##### `impl<R: Reader> Section for EhFrameHdr<R>`
 
-- <span id="ehframehdr-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
+- <span id="ehframehdr-section-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
-- <span id="ehframehdr-reader"></span>`fn reader(&self) -> &R`
+- <span id="ehframehdr-section-reader"></span>`fn reader(&self) -> &R`
 
 ##### `impl<R: Reader> StructuralPartialEq for EhFrameHdr<R>`
+
+##### `impl ToOwned for EhFrameHdr<R>`
+
+- <span id="ehframehdr-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="ehframehdr-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="ehframehdr-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for EhFrameHdr<R>`
+
+- <span id="ehframehdr-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ehframehdr-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for EhFrameHdr<R>`
+
+- <span id="ehframehdr-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ehframehdr-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ParsedEhFrameHdr<R: Reader>`
 
@@ -220,17 +344,75 @@ struct ParsedEhFrameHdr<R: Reader> {
 
 - <span id="parsedehframehdr-eh-frame-ptr"></span>`fn eh_frame_ptr(&self) -> Pointer` — [`Pointer`](../index.md#pointer)
 
+  Returns the address of the binary's `.eh_frame` section.
+
 - <span id="parsedehframehdr-table"></span>`fn table(&self) -> Option<EhHdrTable<'_, R>>` — [`EhHdrTable`](../index.md#ehhdrtable)
 
+  Retrieves the CFI binary search table, if there is one.
+
 #### Trait Implementations
+
+##### `impl Any for ParsedEhFrameHdr<R>`
+
+- <span id="parsedehframehdr-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ParsedEhFrameHdr<R>`
+
+- <span id="parsedehframehdr-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ParsedEhFrameHdr<R>`
+
+- <span id="parsedehframehdr-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R: clone::Clone + Reader> Clone for ParsedEhFrameHdr<R>`
 
 - <span id="parsedehframehdr-clone"></span>`fn clone(&self) -> ParsedEhFrameHdr<R>` — [`ParsedEhFrameHdr`](../index.md#parsedehframehdr)
 
+##### `impl CloneToUninit for ParsedEhFrameHdr<R>`
+
+- <span id="parsedehframehdr-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R: fmt::Debug + Reader> Debug for ParsedEhFrameHdr<R>`
 
-- <span id="parsedehframehdr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parsedehframehdr-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ParsedEhFrameHdr<R>`
+
+- <span id="parsedehframehdr-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ParsedEhFrameHdr<R>`
+
+- <span id="parsedehframehdr-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for ParsedEhFrameHdr<R>`
+
+- <span id="parsedehframehdr-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="parsedehframehdr-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="parsedehframehdr-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ParsedEhFrameHdr<R>`
+
+- <span id="parsedehframehdr-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="parsedehframehdr-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ParsedEhFrameHdr<R>`
+
+- <span id="parsedehframehdr-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="parsedehframehdr-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `EhHdrTableIter<'a, 'bases, R: Reader>`
 
@@ -256,13 +438,59 @@ The `address` can be converted with `EhHdrTable::pointer_to_offset` and `EhFrame
 
 - <span id="ehhdrtableiter-next"></span>`fn next(&mut self) -> Result<Option<(Pointer, Pointer)>>` — [`Result`](../../index.md#result), [`Pointer`](../index.md#pointer)
 
+  Yield the next entry in the `EhHdrTableIter`.
+
 - <span id="ehhdrtableiter-nth"></span>`fn nth(&mut self, n: usize) -> Result<Option<(Pointer, Pointer)>>` — [`Result`](../../index.md#result), [`Pointer`](../index.md#pointer)
+
+  Yield the nth entry in the `EhHdrTableIter`
 
 #### Trait Implementations
 
+##### `impl Any for EhHdrTableIter<'a, 'bases, R>`
+
+- <span id="ehhdrtableiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for EhHdrTableIter<'a, 'bases, R>`
+
+- <span id="ehhdrtableiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for EhHdrTableIter<'a, 'bases, R>`
+
+- <span id="ehhdrtableiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug + Reader> Debug for EhHdrTableIter<'a, 'bases, R>`
 
-- <span id="ehhdrtableiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ehhdrtableiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for EhHdrTableIter<'a, 'bases, R>`
+
+- <span id="ehhdrtableiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for EhHdrTableIter<'a, 'bases, R>`
+
+- <span id="ehhdrtableiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for EhHdrTableIter<'a, 'bases, R>`
+
+- <span id="ehhdrtableiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ehhdrtableiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for EhHdrTableIter<'a, 'bases, R>`
+
+- <span id="ehhdrtableiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ehhdrtableiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `EhHdrTable<'a, R: Reader>`
 
@@ -280,23 +508,157 @@ The CFI binary search table that is an optional part of the `.eh_frame_hdr` sect
 
 - <span id="ehhdrtable-iter"></span>`fn iter<'bases>(&self, bases: &'bases BaseAddresses) -> EhHdrTableIter<'_, 'bases, R>` — [`BaseAddresses`](../index.md#baseaddresses), [`EhHdrTableIter`](../index.md#ehhdrtableiter)
 
+  Return an iterator that can walk the `.eh_frame_hdr` table.
+
+  
+
+  Each table entry consists of a tuple containing an `initial_location` and `address`.
+
+  The `initial location` represents the first address that the targeted FDE
+
+  is able to decode. The `address` is the address of the FDE in the `.eh_frame` section.
+
+  The `address` can be converted with `EhHdrTable::pointer_to_offset` and `EhFrame::fde_from_offset` to an FDE.
+
 - <span id="ehhdrtable-lookup"></span>`fn lookup(&self, address: u64, bases: &BaseAddresses) -> Result<Pointer>` — [`BaseAddresses`](../index.md#baseaddresses), [`Result`](../../index.md#result), [`Pointer`](../index.md#pointer)
+
+  *Probably* returns a pointer to the FDE for the given address.
+
+  
+
+  This performs a binary search, so if there is no FDE for the given address,
+
+  this function **will** return a pointer to any other FDE that's close by.
+
+  
+
+  To be sure, you **must** call `contains` on the FDE.
 
 - <span id="ehhdrtable-pointer-to-offset"></span>`fn pointer_to_offset(&self, ptr: Pointer) -> Result<EhFrameOffset<<R as >::Offset>>` — [`Pointer`](../index.md#pointer), [`Result`](../../index.md#result), [`EhFrameOffset`](../../index.md#ehframeoffset), [`Reader`](../index.md#reader)
 
+  Convert a `Pointer` to a section offset.
+
+  
+
+  This does not support indirect pointers.
+
 - <span id="ehhdrtable-fde-for-address"></span>`fn fde_for_address<F>(&self, frame: &EhFrame<R>, bases: &BaseAddresses, address: u64, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`EhFrame`](../index.md#ehframe), [`BaseAddresses`](../index.md#baseaddresses), [`Result`](../../index.md#result), [`FrameDescriptionEntry`](../index.md#framedescriptionentry)
+
+  Returns a parsed FDE for the given address, or `NoUnwindInfoForAddress`
+
+  if there are none.
+
+  
+
+  You must provide a function to get its associated CIE. See
+
+  `PartialFrameDescriptionEntry::parse` for more information.
+
+  
+
+  # Example
+
+  
+
+  ```rust
+
+  use gimli::{BaseAddresses, EhFrame, ParsedEhFrameHdr, EndianSlice, NativeEndian, Error, UnwindSection};
+
+  fn foo() -> Result<(), Error> {
+
+  let eh_frame: EhFrame<EndianSlice<NativeEndian>> = unreachable!();
+
+  let eh_frame_hdr: ParsedEhFrameHdr<EndianSlice<NativeEndian>> = unimplemented!();
+
+  let addr = 0;
+
+  let bases = unimplemented!();
+
+  let table = eh_frame_hdr.table().unwrap();
+
+  let fde = table.fde_for_address(&eh_frame, &bases, addr, EhFrame::cie_from_offset)?;
+
+  Ok(())
+
+  }
+
+  ```
 
 - <span id="ehhdrtable-unwind-info-for-address"></span>`fn unwind_info_for_address<'ctx, F, S>(&self, frame: &EhFrame<R>, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64, get_cie: F) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`EhFrame`](../index.md#ehframe), [`BaseAddresses`](../index.md#baseaddresses), [`UnwindContext`](../index.md#unwindcontext), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`UnwindTableRow`](../index.md#unwindtablerow)
 
+  Returns the frame unwind information for the given address,
+
+  or `NoUnwindInfoForAddress` if there are none.
+
+  
+
+  You must provide a function to get the associated CIE. See
+
+  `PartialFrameDescriptionEntry::parse` for more information.
+
 #### Trait Implementations
+
+##### `impl Any for EhHdrTable<'a, R>`
+
+- <span id="ehhdrtable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for EhHdrTable<'a, R>`
+
+- <span id="ehhdrtable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for EhHdrTable<'a, R>`
+
+- <span id="ehhdrtable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R: clone::Clone + Reader> Clone for EhHdrTable<'a, R>`
 
 - <span id="ehhdrtable-clone"></span>`fn clone(&self) -> EhHdrTable<'a, R>` — [`EhHdrTable`](../index.md#ehhdrtable)
 
+##### `impl CloneToUninit for EhHdrTable<'a, R>`
+
+- <span id="ehhdrtable-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R: fmt::Debug + Reader> Debug for EhHdrTable<'a, R>`
 
-- <span id="ehhdrtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ehhdrtable-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for EhHdrTable<'a, R>`
+
+- <span id="ehhdrtable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for EhHdrTable<'a, R>`
+
+- <span id="ehhdrtable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for EhHdrTable<'a, R>`
+
+- <span id="ehhdrtable-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="ehhdrtable-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="ehhdrtable-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for EhHdrTable<'a, R>`
+
+- <span id="ehhdrtable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ehhdrtable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for EhHdrTable<'a, R>`
+
+- <span id="ehhdrtable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ehhdrtable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `EhFrame<R: Reader>`
 
@@ -325,33 +687,99 @@ for some discussion on the differences between `.debug_frame` and
 
 - <span id="ehframe-set-address-size"></span>`fn set_address_size(&mut self, address_size: u8)`
 
+  Set the size of a target address in bytes.
+
+  
+
+  This defaults to the native word size.
+
 - <span id="ehframe-set-vendor"></span>`fn set_vendor(&mut self, vendor: Vendor)` — [`Vendor`](../../index.md#vendor)
 
+  Set the vendor extensions to use.
+
+  
+
+  This defaults to `Vendor::Default`.
+
 #### Trait Implementations
+
+##### `impl Any for EhFrame<R>`
+
+- <span id="ehframe-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for EhFrame<R>`
+
+- <span id="ehframe-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for EhFrame<R>`
+
+- <span id="ehframe-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R: clone::Clone + Reader> Clone for EhFrame<R>`
 
 - <span id="ehframe-clone"></span>`fn clone(&self) -> EhFrame<R>` — [`EhFrame`](../index.md#ehframe)
 
+##### `impl CloneToUninit for EhFrame<R>`
+
+- <span id="ehframe-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R: marker::Copy + Reader> Copy for EhFrame<R>`
 
 ##### `impl<R: fmt::Debug + Reader> Debug for EhFrame<R>`
 
-- <span id="ehframe-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ehframe-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: cmp::Eq + Reader> Eq for EhFrame<R>`
 
+##### `impl<T> From for EhFrame<R>`
+
+- <span id="ehframe-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for EhFrame<R>`
+
+- <span id="ehframe-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for EhFrame<R>`
 
-- <span id="ehframe-eq"></span>`fn eq(&self, other: &EhFrame<R>) -> bool` — [`EhFrame`](../index.md#ehframe)
+- <span id="ehframe-partialeq-eq"></span>`fn eq(&self, other: &EhFrame<R>) -> bool` — [`EhFrame`](../index.md#ehframe)
 
 ##### `impl<R: Reader> Section for EhFrame<R>`
 
-- <span id="ehframe-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
+- <span id="ehframe-section-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
-- <span id="ehframe-reader"></span>`fn reader(&self) -> &R`
+- <span id="ehframe-section-reader"></span>`fn reader(&self) -> &R`
 
 ##### `impl<R: Reader> StructuralPartialEq for EhFrame<R>`
+
+##### `impl ToOwned for EhFrame<R>`
+
+- <span id="ehframe-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="ehframe-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="ehframe-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for EhFrame<R>`
+
+- <span id="ehframe-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ehframe-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for EhFrame<R>`
+
+- <span id="ehframe-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ehframe-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<R: Reader> UnwindSection for EhFrame<R>`
 
@@ -405,21 +833,45 @@ let _ = bases;
 
 - <span id="baseaddresses-set-eh-frame-hdr"></span>`fn set_eh_frame_hdr(self, addr: u64) -> Self`
 
+  Set the `.eh_frame_hdr` section base address.
+
 - <span id="baseaddresses-set-eh-frame"></span>`fn set_eh_frame(self, addr: u64) -> Self`
+
+  Set the `.eh_frame` section base address.
 
 - <span id="baseaddresses-set-text"></span>`fn set_text(self, addr: u64) -> Self`
 
+  Set the `.text` section base address.
+
 - <span id="baseaddresses-set-got"></span>`fn set_got(self, addr: u64) -> Self`
 
+  Set the `.got` section base address.
+
 #### Trait Implementations
+
+##### `impl Any for BaseAddresses`
+
+- <span id="baseaddresses-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BaseAddresses`
+
+- <span id="baseaddresses-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BaseAddresses`
+
+- <span id="baseaddresses-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for BaseAddresses`
 
 - <span id="baseaddresses-clone"></span>`fn clone(&self) -> BaseAddresses` — [`BaseAddresses`](../index.md#baseaddresses)
 
+##### `impl CloneToUninit for BaseAddresses`
+
+- <span id="baseaddresses-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for BaseAddresses`
 
-- <span id="baseaddresses-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="baseaddresses-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for BaseAddresses`
 
@@ -427,11 +879,49 @@ let _ = bases;
 
 ##### `impl Eq for BaseAddresses`
 
+##### `impl<T> From for BaseAddresses`
+
+- <span id="baseaddresses-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BaseAddresses`
+
+- <span id="baseaddresses-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for BaseAddresses`
 
-- <span id="baseaddresses-eq"></span>`fn eq(&self, other: &BaseAddresses) -> bool` — [`BaseAddresses`](../index.md#baseaddresses)
+- <span id="baseaddresses-partialeq-eq"></span>`fn eq(&self, other: &BaseAddresses) -> bool` — [`BaseAddresses`](../index.md#baseaddresses)
 
 ##### `impl StructuralPartialEq for BaseAddresses`
+
+##### `impl ToOwned for BaseAddresses`
+
+- <span id="baseaddresses-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="baseaddresses-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="baseaddresses-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BaseAddresses`
+
+- <span id="baseaddresses-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="baseaddresses-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BaseAddresses`
+
+- <span id="baseaddresses-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="baseaddresses-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SectionBaseAddresses`
 
@@ -473,13 +963,29 @@ See `BaseAddresses` for methods that are helpful in setting these addresses.
 
 #### Trait Implementations
 
+##### `impl Any for SectionBaseAddresses`
+
+- <span id="sectionbaseaddresses-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SectionBaseAddresses`
+
+- <span id="sectionbaseaddresses-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SectionBaseAddresses`
+
+- <span id="sectionbaseaddresses-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for SectionBaseAddresses`
 
 - <span id="sectionbaseaddresses-clone"></span>`fn clone(&self) -> SectionBaseAddresses` — [`SectionBaseAddresses`](../index.md#sectionbaseaddresses)
 
+##### `impl CloneToUninit for SectionBaseAddresses`
+
+- <span id="sectionbaseaddresses-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for SectionBaseAddresses`
 
-- <span id="sectionbaseaddresses-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sectionbaseaddresses-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for SectionBaseAddresses`
 
@@ -487,11 +993,49 @@ See `BaseAddresses` for methods that are helpful in setting these addresses.
 
 ##### `impl Eq for SectionBaseAddresses`
 
+##### `impl<T> From for SectionBaseAddresses`
+
+- <span id="sectionbaseaddresses-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SectionBaseAddresses`
+
+- <span id="sectionbaseaddresses-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for SectionBaseAddresses`
 
-- <span id="sectionbaseaddresses-eq"></span>`fn eq(&self, other: &SectionBaseAddresses) -> bool` — [`SectionBaseAddresses`](../index.md#sectionbaseaddresses)
+- <span id="sectionbaseaddresses-partialeq-eq"></span>`fn eq(&self, other: &SectionBaseAddresses) -> bool` — [`SectionBaseAddresses`](../index.md#sectionbaseaddresses)
 
 ##### `impl StructuralPartialEq for SectionBaseAddresses`
+
+##### `impl ToOwned for SectionBaseAddresses`
+
+- <span id="sectionbaseaddresses-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sectionbaseaddresses-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sectionbaseaddresses-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SectionBaseAddresses`
+
+- <span id="sectionbaseaddresses-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sectionbaseaddresses-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SectionBaseAddresses`
+
+- <span id="sectionbaseaddresses-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sectionbaseaddresses-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CfiEntriesIter<'bases, Section, R>`
 
@@ -552,15 +1096,71 @@ unreachable!()
 
 - <span id="cfientriesiter-next"></span>`fn next(&mut self) -> Result<Option<CieOrFde<'bases, Section, R>>>` — [`Result`](../../index.md#result), [`CieOrFde`](../index.md#cieorfde)
 
+  Advance the iterator to the next entry.
+
 #### Trait Implementations
+
+##### `impl Any for CfiEntriesIter<'bases, Section, R>`
+
+- <span id="cfientriesiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CfiEntriesIter<'bases, Section, R>`
+
+- <span id="cfientriesiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CfiEntriesIter<'bases, Section, R>`
+
+- <span id="cfientriesiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<Section, R> Clone for CfiEntriesIter<'bases, Section, R>`
 
 - <span id="cfientriesiter-clone"></span>`fn clone(&self) -> CfiEntriesIter<'bases, Section, R>` — [`CfiEntriesIter`](../index.md#cfientriesiter)
 
+##### `impl CloneToUninit for CfiEntriesIter<'bases, Section, R>`
+
+- <span id="cfientriesiter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<Section, R> Debug for CfiEntriesIter<'bases, Section, R>`
 
-- <span id="cfientriesiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cfientriesiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CfiEntriesIter<'bases, Section, R>`
+
+- <span id="cfientriesiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CfiEntriesIter<'bases, Section, R>`
+
+- <span id="cfientriesiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for CfiEntriesIter<'bases, Section, R>`
+
+- <span id="cfientriesiter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="cfientriesiter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="cfientriesiter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CfiEntriesIter<'bases, Section, R>`
+
+- <span id="cfientriesiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cfientriesiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CfiEntriesIter<'bases, Section, R>`
+
+- <span id="cfientriesiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cfientriesiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Augmentation`
 
@@ -620,15 +1220,31 @@ We support the z-style augmentation [defined by `.eh_frame`][ehframe].
 
 #### Trait Implementations
 
+##### `impl Any for Augmentation`
+
+- <span id="augmentation-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Augmentation`
+
+- <span id="augmentation-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Augmentation`
+
+- <span id="augmentation-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Augmentation`
 
 - <span id="augmentation-clone"></span>`fn clone(&self) -> Augmentation` — [`Augmentation`](../index.md#augmentation)
+
+##### `impl CloneToUninit for Augmentation`
+
+- <span id="augmentation-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for Augmentation`
 
 ##### `impl Debug for Augmentation`
 
-- <span id="augmentation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="augmentation-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Augmentation`
 
@@ -636,11 +1252,49 @@ We support the z-style augmentation [defined by `.eh_frame`][ehframe].
 
 ##### `impl Eq for Augmentation`
 
+##### `impl<T> From for Augmentation`
+
+- <span id="augmentation-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Augmentation`
+
+- <span id="augmentation-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Augmentation`
 
-- <span id="augmentation-eq"></span>`fn eq(&self, other: &Augmentation) -> bool` — [`Augmentation`](../index.md#augmentation)
+- <span id="augmentation-partialeq-eq"></span>`fn eq(&self, other: &Augmentation) -> bool` — [`Augmentation`](../index.md#augmentation)
 
 ##### `impl StructuralPartialEq for Augmentation`
+
+##### `impl ToOwned for Augmentation`
+
+- <span id="augmentation-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="augmentation-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="augmentation-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Augmentation`
+
+- <span id="augmentation-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="augmentation-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Augmentation`
+
+- <span id="augmentation-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="augmentation-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AugmentationData`
 
@@ -660,13 +1314,29 @@ Parsed augmentation data for a `FrameDescriptEntry`.
 
 #### Trait Implementations
 
+##### `impl Any for AugmentationData`
+
+- <span id="augmentationdata-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AugmentationData`
+
+- <span id="augmentationdata-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AugmentationData`
+
+- <span id="augmentationdata-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for AugmentationData`
 
 - <span id="augmentationdata-clone"></span>`fn clone(&self) -> AugmentationData` — [`AugmentationData`](#augmentationdata)
 
+##### `impl CloneToUninit for AugmentationData`
+
+- <span id="augmentationdata-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for AugmentationData`
 
-- <span id="augmentationdata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="augmentationdata-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AugmentationData`
 
@@ -674,11 +1344,49 @@ Parsed augmentation data for a `FrameDescriptEntry`.
 
 ##### `impl Eq for AugmentationData`
 
+##### `impl<T> From for AugmentationData`
+
+- <span id="augmentationdata-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AugmentationData`
+
+- <span id="augmentationdata-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for AugmentationData`
 
-- <span id="augmentationdata-eq"></span>`fn eq(&self, other: &AugmentationData) -> bool` — [`AugmentationData`](#augmentationdata)
+- <span id="augmentationdata-partialeq-eq"></span>`fn eq(&self, other: &AugmentationData) -> bool` — [`AugmentationData`](#augmentationdata)
 
 ##### `impl StructuralPartialEq for AugmentationData`
+
+##### `impl ToOwned for AugmentationData`
+
+- <span id="augmentationdata-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="augmentationdata-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="augmentationdata-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AugmentationData`
+
+- <span id="augmentationdata-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="augmentationdata-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AugmentationData`
+
+- <span id="augmentationdata-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="augmentationdata-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CommonInformationEntry<R, Offset>`
 
@@ -771,21 +1479,75 @@ where
 
 #### Trait Implementations
 
+##### `impl Any for CommonInformationEntry<R, Offset>`
+
+- <span id="commoninformationentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CommonInformationEntry<R, Offset>`
+
+- <span id="commoninformationentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CommonInformationEntry<R, Offset>`
+
+- <span id="commoninformationentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R, Offset> Clone for CommonInformationEntry<R, Offset>`
 
 - <span id="commoninformationentry-clone"></span>`fn clone(&self) -> CommonInformationEntry<R, Offset>` — [`CommonInformationEntry`](../index.md#commoninformationentry)
 
+##### `impl CloneToUninit for CommonInformationEntry<R, Offset>`
+
+- <span id="commoninformationentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R, Offset> Debug for CommonInformationEntry<R, Offset>`
 
-- <span id="commoninformationentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="commoninformationentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for CommonInformationEntry<R, Offset>`
 
+##### `impl<T> From for CommonInformationEntry<R, Offset>`
+
+- <span id="commoninformationentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CommonInformationEntry<R, Offset>`
+
+- <span id="commoninformationentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<R, Offset> PartialEq for CommonInformationEntry<R, Offset>`
 
-- <span id="commoninformationentry-eq"></span>`fn eq(&self, other: &CommonInformationEntry<R, Offset>) -> bool` — [`CommonInformationEntry`](../index.md#commoninformationentry)
+- <span id="commoninformationentry-partialeq-eq"></span>`fn eq(&self, other: &CommonInformationEntry<R, Offset>) -> bool` — [`CommonInformationEntry`](../index.md#commoninformationentry)
 
 ##### `impl<R, Offset> StructuralPartialEq for CommonInformationEntry<R, Offset>`
+
+##### `impl ToOwned for CommonInformationEntry<R, Offset>`
+
+- <span id="commoninformationentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="commoninformationentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="commoninformationentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CommonInformationEntry<R, Offset>`
+
+- <span id="commoninformationentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="commoninformationentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CommonInformationEntry<R, Offset>`
+
+- <span id="commoninformationentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="commoninformationentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PartialFrameDescriptionEntry<'bases, Section, R>`
 
@@ -816,29 +1578,105 @@ Fully parsing this FDE requires first parsing its CIE.
 
 - <span id="partialframedescriptionentry-parse"></span>`fn parse<F>(&self, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`Result`](../../index.md#result), [`FrameDescriptionEntry`](../index.md#framedescriptionentry)
 
+  Fully parse this FDE.
+
+  
+
+  You must provide a function get its associated CIE (either by parsing it
+
+  on demand, or looking it up in some table mapping offsets to CIEs that
+
+  you've already parsed, etc.)
+
 - <span id="partialframedescriptionentry-offset"></span>`fn offset(&self) -> <R as >::Offset` — [`Reader`](../index.md#reader)
+
+  Get the offset of this entry from the start of its containing section.
 
 - <span id="partialframedescriptionentry-cie-offset"></span>`fn cie_offset(&self) -> <Section as >::Offset` — [`UnwindSection`](../index.md#unwindsection)
 
+  Get the offset of this FDE's CIE.
+
 - <span id="partialframedescriptionentry-entry-len"></span>`fn entry_len(&self) -> <R as >::Offset` — [`Reader`](../index.md#reader)
 
+  > A constant that gives the number of bytes of the header and
+
+  > instruction stream for this function, not including the length field
+
+  > itself (see Section 7.2.2). The size of the length field plus the value
+
+  > of length must be an integral multiple of the address size.
+
 #### Trait Implementations
+
+##### `impl Any for PartialFrameDescriptionEntry<'bases, Section, R>`
+
+- <span id="partialframedescriptionentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PartialFrameDescriptionEntry<'bases, Section, R>`
+
+- <span id="partialframedescriptionentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PartialFrameDescriptionEntry<'bases, Section, R>`
+
+- <span id="partialframedescriptionentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<Section, R> Clone for PartialFrameDescriptionEntry<'bases, Section, R>`
 
 - <span id="partialframedescriptionentry-clone"></span>`fn clone(&self) -> PartialFrameDescriptionEntry<'bases, Section, R>` — [`PartialFrameDescriptionEntry`](../index.md#partialframedescriptionentry)
 
+##### `impl CloneToUninit for PartialFrameDescriptionEntry<'bases, Section, R>`
+
+- <span id="partialframedescriptionentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<Section, R> Debug for PartialFrameDescriptionEntry<'bases, Section, R>`
 
-- <span id="partialframedescriptionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="partialframedescriptionentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Section, R> Eq for PartialFrameDescriptionEntry<'bases, Section, R>`
 
+##### `impl<T> From for PartialFrameDescriptionEntry<'bases, Section, R>`
+
+- <span id="partialframedescriptionentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PartialFrameDescriptionEntry<'bases, Section, R>`
+
+- <span id="partialframedescriptionentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<Section, R> PartialEq for PartialFrameDescriptionEntry<'bases, Section, R>`
 
-- <span id="partialframedescriptionentry-eq"></span>`fn eq(&self, other: &PartialFrameDescriptionEntry<'bases, Section, R>) -> bool` — [`PartialFrameDescriptionEntry`](../index.md#partialframedescriptionentry)
+- <span id="partialframedescriptionentry-partialeq-eq"></span>`fn eq(&self, other: &PartialFrameDescriptionEntry<'bases, Section, R>) -> bool` — [`PartialFrameDescriptionEntry`](../index.md#partialframedescriptionentry)
 
 ##### `impl<Section, R> StructuralPartialEq for PartialFrameDescriptionEntry<'bases, Section, R>`
+
+##### `impl ToOwned for PartialFrameDescriptionEntry<'bases, Section, R>`
+
+- <span id="partialframedescriptionentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="partialframedescriptionentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="partialframedescriptionentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PartialFrameDescriptionEntry<'bases, Section, R>`
+
+- <span id="partialframedescriptionentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="partialframedescriptionentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PartialFrameDescriptionEntry<'bases, Section, R>`
+
+- <span id="partialframedescriptionentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="partialframedescriptionentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FrameDescriptionEntry<R, Offset>`
 
@@ -911,25 +1749,93 @@ A `FrameDescriptionEntry` is a set of CFA instructions for an address range.
 
 - <span id="framedescriptionentry-rows"></span>`fn rows<'a, 'ctx, Section, S>(&self, section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>) -> Result<UnwindTable<'a, 'ctx, R, S>>` — [`BaseAddresses`](../index.md#baseaddresses), [`UnwindContext`](../index.md#unwindcontext), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`UnwindTable`](../index.md#unwindtable)
 
+  Return the table of unwind information for this FDE.
+
 - <span id="framedescriptionentry-unwind-info-for-address"></span>`fn unwind_info_for_address<'ctx, Section, S>(&self, section: &Section, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`BaseAddresses`](../index.md#baseaddresses), [`UnwindContext`](../index.md#unwindcontext), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`UnwindTableRow`](../index.md#unwindtablerow)
 
+  Find the frame unwind information for the given address.
+
+  
+
+  If found, the unwind information is returned along with the reset
+
+  context in the form `Ok((unwind_info, context))`. If not found,
+
+  `Err(gimli::Error::NoUnwindInfoForAddress)` is returned. If parsing or
+
+  CFI evaluation fails, the error is returned.
+
 #### Trait Implementations
+
+##### `impl Any for FrameDescriptionEntry<R, Offset>`
+
+- <span id="framedescriptionentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FrameDescriptionEntry<R, Offset>`
+
+- <span id="framedescriptionentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FrameDescriptionEntry<R, Offset>`
+
+- <span id="framedescriptionentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R, Offset> Clone for FrameDescriptionEntry<R, Offset>`
 
 - <span id="framedescriptionentry-clone"></span>`fn clone(&self) -> FrameDescriptionEntry<R, Offset>` — [`FrameDescriptionEntry`](../index.md#framedescriptionentry)
 
+##### `impl CloneToUninit for FrameDescriptionEntry<R, Offset>`
+
+- <span id="framedescriptionentry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R, Offset> Debug for FrameDescriptionEntry<R, Offset>`
 
-- <span id="framedescriptionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="framedescriptionentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for FrameDescriptionEntry<R, Offset>`
 
+##### `impl<T> From for FrameDescriptionEntry<R, Offset>`
+
+- <span id="framedescriptionentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FrameDescriptionEntry<R, Offset>`
+
+- <span id="framedescriptionentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<R, Offset> PartialEq for FrameDescriptionEntry<R, Offset>`
 
-- <span id="framedescriptionentry-eq"></span>`fn eq(&self, other: &FrameDescriptionEntry<R, Offset>) -> bool` — [`FrameDescriptionEntry`](../index.md#framedescriptionentry)
+- <span id="framedescriptionentry-partialeq-eq"></span>`fn eq(&self, other: &FrameDescriptionEntry<R, Offset>) -> bool` — [`FrameDescriptionEntry`](../index.md#framedescriptionentry)
 
 ##### `impl<R, Offset> StructuralPartialEq for FrameDescriptionEntry<R, Offset>`
+
+##### `impl ToOwned for FrameDescriptionEntry<R, Offset>`
+
+- <span id="framedescriptionentry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="framedescriptionentry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="framedescriptionentry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FrameDescriptionEntry<R, Offset>`
+
+- <span id="framedescriptionentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="framedescriptionentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FrameDescriptionEntry<R, Offset>`
+
+- <span id="framedescriptionentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="framedescriptionentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UnwindContext<T, S>`
 
@@ -984,15 +1890,33 @@ unreachable!()
 
 - <span id="unwindcontext-new"></span>`fn new() -> Self`
 
+  Construct a new call frame unwinding context.
+
 #### Trait Implementations
+
+##### `impl<T> Any for UnwindContext<T, S>`
+
+- <span id="unwindcontext-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnwindContext<T, S>`
+
+- <span id="unwindcontext-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnwindContext<T, S>`
+
+- <span id="unwindcontext-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T, S> Clone for UnwindContext<T, S>`
 
 - <span id="unwindcontext-clone"></span>`fn clone(&self) -> UnwindContext<T, S>` — [`UnwindContext`](../index.md#unwindcontext)
 
+##### `impl<T> CloneToUninit for UnwindContext<T, S>`
+
+- <span id="unwindcontext-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T, S> Debug for UnwindContext<T, S>`
 
-- <span id="unwindcontext-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unwindcontext-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, S> Default for UnwindContext<T, S>`
 
@@ -1000,11 +1924,49 @@ unreachable!()
 
 ##### `impl<T, S> Eq for UnwindContext<T, S>`
 
+##### `impl<T> From for UnwindContext<T, S>`
+
+- <span id="unwindcontext-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for UnwindContext<T, S>`
+
+- <span id="unwindcontext-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T, S> PartialEq for UnwindContext<T, S>`
 
-- <span id="unwindcontext-eq"></span>`fn eq(&self, other: &UnwindContext<T, S>) -> bool` — [`UnwindContext`](../index.md#unwindcontext)
+- <span id="unwindcontext-partialeq-eq"></span>`fn eq(&self, other: &UnwindContext<T, S>) -> bool` — [`UnwindContext`](../index.md#unwindcontext)
 
 ##### `impl<T, S> StructuralPartialEq for UnwindContext<T, S>`
+
+##### `impl<T> ToOwned for UnwindContext<T, S>`
+
+- <span id="unwindcontext-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="unwindcontext-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="unwindcontext-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for UnwindContext<T, S>`
+
+- <span id="unwindcontext-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unwindcontext-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for UnwindContext<T, S>`
+
+- <span id="unwindcontext-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unwindcontext-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UnwindTable<'a, 'ctx, R, S>`
 
@@ -1088,21 +2050,83 @@ The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 
 - <span id="unwindtable-new"></span>`fn new<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, fde: &FrameDescriptionEntry<R>) -> Result<Self>` — [`BaseAddresses`](../index.md#baseaddresses), [`UnwindContext`](../index.md#unwindcontext), [`Reader`](../index.md#reader), [`FrameDescriptionEntry`](../index.md#framedescriptionentry), [`Result`](../../index.md#result)
 
+  Construct a new `UnwindTable` for the given
+
+  `FrameDescriptionEntry`'s CFI unwinding program.
+
 - <span id="unwindtable-new-for-fde"></span>`fn new_for_fde<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, fde: &FrameDescriptionEntry<R>) -> Self` — [`BaseAddresses`](../index.md#baseaddresses), [`UnwindContext`](../index.md#unwindcontext), [`Reader`](../index.md#reader), [`FrameDescriptionEntry`](../index.md#framedescriptionentry)
 
 - <span id="unwindtable-new-for-cie"></span>`fn new_for_cie<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, cie: &CommonInformationEntry<R>) -> Self` — [`BaseAddresses`](../index.md#baseaddresses), [`UnwindContext`](../index.md#unwindcontext), [`Reader`](../index.md#reader), [`CommonInformationEntry`](../index.md#commoninformationentry)
 
 - <span id="unwindtable-next-row"></span>`fn next_row(&mut self) -> Result<Option<&UnwindTableRow<<R as >::Offset, S>>>` — [`Result`](../../index.md#result), [`UnwindTableRow`](../index.md#unwindtablerow), [`Reader`](../index.md#reader)
 
+  Evaluate call frame instructions until the next row of the table is
+
+  completed, and return it.
+
+  
+
+  Unfortunately, this cannot be used with `FallibleIterator` because of
+
+  the restricted lifetime of the yielded item.
+
 - <span id="unwindtable-into-current-row"></span>`fn into_current_row(self) -> Option<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`UnwindTableRow`](../index.md#unwindtablerow), [`Reader`](../index.md#reader)
+
+  Returns the current row with the lifetime of the context.
 
 - <span id="unwindtable-evaluate"></span>`fn evaluate(&mut self, instruction: CallFrameInstruction<<R as >::Offset>) -> Result<bool>` — [`CallFrameInstruction`](../index.md#callframeinstruction), [`Reader`](../index.md#reader), [`Result`](../../index.md#result)
 
+  Evaluate one call frame instruction. Return `Ok(true)` if the row is
+
+  complete, `Ok(false)` otherwise.
+
 #### Trait Implementations
+
+##### `impl Any for UnwindTable<'a, 'ctx, R, S>`
+
+- <span id="unwindtable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnwindTable<'a, 'ctx, R, S>`
+
+- <span id="unwindtable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnwindTable<'a, 'ctx, R, S>`
+
+- <span id="unwindtable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R, S> Debug for UnwindTable<'a, 'ctx, R, S>`
 
-- <span id="unwindtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unwindtable-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for UnwindTable<'a, 'ctx, R, S>`
+
+- <span id="unwindtable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for UnwindTable<'a, 'ctx, R, S>`
+
+- <span id="unwindtable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for UnwindTable<'a, 'ctx, R, S>`
+
+- <span id="unwindtable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unwindtable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UnwindTable<'a, 'ctx, R, S>`
+
+- <span id="unwindtable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unwindtable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RegisterRuleMap<T, S>`
 
@@ -1129,13 +2153,29 @@ where
 
 #### Trait Implementations
 
+##### `impl<T> Any for RegisterRuleMap<T, S>`
+
+- <span id="registerrulemap-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RegisterRuleMap<T, S>`
+
+- <span id="registerrulemap-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RegisterRuleMap<T, S>`
+
+- <span id="registerrulemap-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T, S> Clone for RegisterRuleMap<T, S>`
 
 - <span id="registerrulemap-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for RegisterRuleMap<T, S>`
+
+- <span id="registerrulemap-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T, S> Debug for RegisterRuleMap<T, S>`
 
-- <span id="registerrulemap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="registerrulemap-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, S> Default for RegisterRuleMap<T, S>`
 
@@ -1143,13 +2183,51 @@ where
 
 ##### `impl<T, S> Eq for RegisterRuleMap<T, S>`
 
+##### `impl<T> From for RegisterRuleMap<T, S>`
+
+- <span id="registerrulemap-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl<R, S> FromIterator for RegisterRuleMap<R, S>`
 
-- <span id="registerrulemap-from-iter"></span>`fn from_iter<T>(iter: T) -> Self`
+- <span id="registerrulemap-fromiterator-from-iter"></span>`fn from_iter<T>(iter: T) -> Self`
+
+##### `impl<T, U> Into for RegisterRuleMap<T, S>`
+
+- <span id="registerrulemap-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, S> PartialEq for RegisterRuleMap<T, S>`
 
-- <span id="registerrulemap-eq"></span>`fn eq(&self, rhs: &Self) -> bool`
+- <span id="registerrulemap-partialeq-eq"></span>`fn eq(&self, rhs: &Self) -> bool`
+
+##### `impl<T> ToOwned for RegisterRuleMap<T, S>`
+
+- <span id="registerrulemap-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="registerrulemap-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="registerrulemap-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for RegisterRuleMap<T, S>`
+
+- <span id="registerrulemap-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="registerrulemap-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RegisterRuleMap<T, S>`
+
+- <span id="registerrulemap-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="registerrulemap-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RegisterRuleIter<'iter, T>`
 
@@ -1165,13 +2243,47 @@ An unordered iterator for register rules.
 
 #### Trait Implementations
 
+##### `impl<T> Any for RegisterRuleIter<'iter, T>`
+
+- <span id="registerruleiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RegisterRuleIter<'iter, T>`
+
+- <span id="registerruleiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RegisterRuleIter<'iter, T>`
+
+- <span id="registerruleiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T> Clone for RegisterRuleIter<'iter, T>`
 
 - <span id="registerruleiter-clone"></span>`fn clone(&self) -> RegisterRuleIter<'iter, T>` — [`RegisterRuleIter`](../index.md#registerruleiter)
 
+##### `impl<T> CloneToUninit for RegisterRuleIter<'iter, T>`
+
+- <span id="registerruleiter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T> Debug for RegisterRuleIter<'iter, T>`
 
-- <span id="registerruleiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="registerruleiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for RegisterRuleIter<'iter, T>`
+
+- <span id="registerruleiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for RegisterRuleIter<'iter, T>`
+
+- <span id="registerruleiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for RegisterRuleIter<'iter, T>`
 
@@ -1179,13 +2291,33 @@ An unordered iterator for register rules.
 
 - <span id="registerruleiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="registerruleiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="registerruleiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T: ReaderOffset> Iterator for RegisterRuleIter<'iter, T>`
 
 - <span id="registerruleiter-iterator-type-item"></span>`type Item = &'iter (Register, RegisterRule<T>)`
 
-- <span id="registerruleiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="registerruleiter-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<T> ToOwned for RegisterRuleIter<'iter, T>`
+
+- <span id="registerruleiter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="registerruleiter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="registerruleiter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for RegisterRuleIter<'iter, T>`
+
+- <span id="registerruleiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="registerruleiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RegisterRuleIter<'iter, T>`
+
+- <span id="registerruleiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="registerruleiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UnwindTableRow<T, S>`
 
@@ -1213,27 +2345,191 @@ the registers in the *previous* frame for a range of PC addresses.
 
 - <span id="unwindtablerow-start-address"></span>`fn start_address(&self) -> u64`
 
+  Get the starting PC address that this row applies to.
+
 - <span id="unwindtablerow-end-address"></span>`fn end_address(&self) -> u64`
+
+  Get the end PC address where this row's register rules become
+
+  unapplicable.
+
+  
+
+  In other words, this row describes how to recover the last frame's
+
+  registers for all PCs where `row.start_address() <= PC <
+
+  row.end_address()`. This row does NOT describe how to recover registers
+
+  when `PC == row.end_address()`.
 
 - <span id="unwindtablerow-contains"></span>`fn contains(&self, address: u64) -> bool`
 
+  Return `true` if the given `address` is within this row's address range,
+
+  `false` otherwise.
+
 - <span id="unwindtablerow-saved-args-size"></span>`fn saved_args_size(&self) -> u64`
+
+  Returns the amount of args currently on the stack.
+
+  
+
+  When unwinding, if the personality function requested a change in IP,
+
+  the SP needs to be adjusted by saved_args_size.
 
 - <span id="unwindtablerow-cfa"></span>`fn cfa(&self) -> &CfaRule<T>` — [`CfaRule`](../index.md#cfarule)
 
+  Get the canonical frame address (CFA) recovery rule for this row.
+
 - <span id="unwindtablerow-register"></span>`fn register(&self, register: Register) -> RegisterRule<T>` — [`Register`](../../index.md#register), [`RegisterRule`](../index.md#registerrule)
+
+  Get the register recovery rule for the given register number.
+
+  
+
+  The register number mapping is architecture dependent. For example, in
+
+  the x86-64 ABI the register number mapping is defined in Figure 3.36:
+
+  
+
+  > Figure 3.36: DWARF Register Number Mapping
+
+  >
+
+  > <table>
+
+  >   <tr><th>Register Name</th>                    <th>Number</th>  <th>Abbreviation</th></tr>
+
+  >   <tr><td>General Purpose Register RAX</td>     <td>0</td>       <td>%rax</td></tr>
+
+  >   <tr><td>General Purpose Register RDX</td>     <td>1</td>       <td>%rdx</td></tr>
+
+  >   <tr><td>General Purpose Register RCX</td>     <td>2</td>       <td>%rcx</td></tr>
+
+  >   <tr><td>General Purpose Register RBX</td>     <td>3</td>       <td>%rbx</td></tr>
+
+  >   <tr><td>General Purpose Register RSI</td>     <td>4</td>       <td>%rsi</td></tr>
+
+  >   <tr><td>General Purpose Register RDI</td>     <td>5</td>       <td>%rdi</td></tr>
+
+  >   <tr><td>General Purpose Register RBP</td>     <td>6</td>       <td>%rbp</td></tr>
+
+  >   <tr><td>Stack Pointer Register RSP</td>       <td>7</td>       <td>%rsp</td></tr>
+
+  >   <tr><td>Extended Integer Registers 8-15</td>  <td>8-15</td>    <td>%r8-%r15</td></tr>
+
+  >   <tr><td>Return Address RA</td>                <td>16</td>      <td></td></tr>
+
+  >   <tr><td>Vector Registers 0–7</td>             <td>17-24</td>   <td>%xmm0–%xmm7</td></tr>
+
+  >   <tr><td>Extended Vector Registers 8–15</td>   <td>25-32</td>   <td>%xmm8–%xmm15</td></tr>
+
+  >   <tr><td>Floating Point Registers 0–7</td>     <td>33-40</td>   <td>%st0–%st7</td></tr>
+
+  >   <tr><td>MMX Registers 0–7</td>                <td>41-48</td>   <td>%mm0–%mm7</td></tr>
+
+  >   <tr><td>Flag Register</td>                    <td>49</td>      <td>%rFLAGS</td></tr>
+
+  >   <tr><td>Segment Register ES</td>              <td>50</td>      <td>%es</td></tr>
+
+  >   <tr><td>Segment Register CS</td>              <td>51</td>      <td>%cs</td></tr>
+
+  >   <tr><td>Segment Register SS</td>              <td>52</td>      <td>%ss</td></tr>
+
+  >   <tr><td>Segment Register DS</td>              <td>53</td>      <td>%ds</td></tr>
+
+  >   <tr><td>Segment Register FS</td>              <td>54</td>      <td>%fs</td></tr>
+
+  >   <tr><td>Segment Register GS</td>              <td>55</td>      <td>%gs</td></tr>
+
+  >   <tr><td>Reserved</td>                         <td>56-57</td>   <td></td></tr>
+
+  >   <tr><td>FS Base address</td>                  <td>58</td>      <td>%fs.base</td></tr>
+
+  >   <tr><td>GS Base address</td>                  <td>59</td>      <td>%gs.base</td></tr>
+
+  >   <tr><td>Reserved</td>                         <td>60-61</td>   <td></td></tr>
+
+  >   <tr><td>Task Register</td>                    <td>62</td>      <td>%tr</td></tr>
+
+  >   <tr><td>LDT Register</td>                     <td>63</td>      <td>%ldtr</td></tr>
+
+  >   <tr><td>128-bit Media Control and Status</td> <td>64</td>      <td>%mxcsr</td></tr>
+
+  >   <tr><td>x87 Control Word</td>                 <td>65</td>      <td>%fcw</td></tr>
+
+  >   <tr><td>x87 Status Word</td>                  <td>66</td>      <td>%fsw</td></tr>
+
+  >   <tr><td>Upper Vector Registers 16–31</td>     <td>67-82</td>   <td>%xmm16–%xmm31</td></tr>
+
+  >   <tr><td>Reserved</td>                         <td>83-117</td>  <td></td></tr>
+
+  >   <tr><td>Vector Mask Registers 0–7</td>        <td>118-125</td> <td>%k0–%k7</td></tr>
+
+  >   <tr><td>Reserved</td>                         <td>126-129</td> <td></td></tr>
+
+  > </table>
 
 - <span id="unwindtablerow-registers"></span>`fn registers(&self) -> RegisterRuleIter<'_, T>` — [`RegisterRuleIter`](../index.md#registerruleiter)
 
+  Iterate over all defined register `(number, rule)` pairs.
+
+  
+
+  The rules are not iterated in any guaranteed order. Any register that
+
+  does not make an appearance in the iterator implicitly has the rule
+
+  `RegisterRule::Undefined`.
+
+  
+
+  ```rust
+
+  use gimli::{EndianSlice, LittleEndian, UnwindTableRow};
+
+  fn foo<'input>(unwind_table_row: UnwindTableRow<usize>) {
+
+  for &(register, ref rule) in unwind_table_row.registers() {
+
+      // ...
+
+      drop(register); drop(rule);
+
+  }
+
+  }
+
+  ```
+
 #### Trait Implementations
+
+##### `impl<T> Any for UnwindTableRow<T, S>`
+
+- <span id="unwindtablerow-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnwindTableRow<T, S>`
+
+- <span id="unwindtablerow-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnwindTableRow<T, S>`
+
+- <span id="unwindtablerow-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T, S> Clone for UnwindTableRow<T, S>`
 
 - <span id="unwindtablerow-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl<T> CloneToUninit for UnwindTableRow<T, S>`
+
+- <span id="unwindtablerow-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T, S> Debug for UnwindTableRow<T, S>`
 
-- <span id="unwindtablerow-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unwindtablerow-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, S> Default for UnwindTableRow<T, S>`
 
@@ -1241,11 +2537,49 @@ the registers in the *previous* frame for a range of PC addresses.
 
 ##### `impl<T, S> Eq for UnwindTableRow<T, S>`
 
+##### `impl<T> From for UnwindTableRow<T, S>`
+
+- <span id="unwindtablerow-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for UnwindTableRow<T, S>`
+
+- <span id="unwindtablerow-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T, S> PartialEq for UnwindTableRow<T, S>`
 
-- <span id="unwindtablerow-eq"></span>`fn eq(&self, other: &UnwindTableRow<T, S>) -> bool` — [`UnwindTableRow`](../index.md#unwindtablerow)
+- <span id="unwindtablerow-partialeq-eq"></span>`fn eq(&self, other: &UnwindTableRow<T, S>) -> bool` — [`UnwindTableRow`](../index.md#unwindtablerow)
 
 ##### `impl<T, S> StructuralPartialEq for UnwindTableRow<T, S>`
+
+##### `impl<T> ToOwned for UnwindTableRow<T, S>`
+
+- <span id="unwindtablerow-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="unwindtablerow-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="unwindtablerow-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for UnwindTableRow<T, S>`
+
+- <span id="unwindtablerow-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unwindtablerow-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for UnwindTableRow<T, S>`
+
+- <span id="unwindtablerow-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unwindtablerow-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CallFrameInstructionIter<'a, R: Reader>`
 
@@ -1269,15 +2603,71 @@ Can be [used with
 
 - <span id="callframeinstructioniter-next"></span>`fn next(&mut self) -> Result<Option<CallFrameInstruction<<R as >::Offset>>>` — [`Result`](../../index.md#result), [`CallFrameInstruction`](../index.md#callframeinstruction), [`Reader`](../index.md#reader)
 
+  Parse the next call frame instruction.
+
 #### Trait Implementations
+
+##### `impl Any for CallFrameInstructionIter<'a, R>`
+
+- <span id="callframeinstructioniter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CallFrameInstructionIter<'a, R>`
+
+- <span id="callframeinstructioniter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CallFrameInstructionIter<'a, R>`
+
+- <span id="callframeinstructioniter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R: clone::Clone + Reader> Clone for CallFrameInstructionIter<'a, R>`
 
 - <span id="callframeinstructioniter-clone"></span>`fn clone(&self) -> CallFrameInstructionIter<'a, R>` — [`CallFrameInstructionIter`](../index.md#callframeinstructioniter)
 
+##### `impl CloneToUninit for CallFrameInstructionIter<'a, R>`
+
+- <span id="callframeinstructioniter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R: fmt::Debug + Reader> Debug for CallFrameInstructionIter<'a, R>`
 
-- <span id="callframeinstructioniter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="callframeinstructioniter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CallFrameInstructionIter<'a, R>`
+
+- <span id="callframeinstructioniter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CallFrameInstructionIter<'a, R>`
+
+- <span id="callframeinstructioniter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for CallFrameInstructionIter<'a, R>`
+
+- <span id="callframeinstructioniter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="callframeinstructioniter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="callframeinstructioniter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CallFrameInstructionIter<'a, R>`
+
+- <span id="callframeinstructioniter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="callframeinstructioniter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CallFrameInstructionIter<'a, R>`
+
+- <span id="callframeinstructioniter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="callframeinstructioniter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `UnwindExpression<T: ReaderOffset>`
 
@@ -1331,25 +2721,87 @@ Ok(())
 
 - <span id="unwindexpression-get"></span>`fn get<R, S>(&self, section: &S) -> Result<Expression<R>>` — [`Result`](../../index.md#result), [`Expression`](../index.md#expression)
 
+  Get the expression from the section.
+
+  
+
+  The offset and length were previously validated when the
+
+  `UnwindExpression` was created, so this should not fail.
+
 #### Trait Implementations
+
+##### `impl<T> Any for UnwindExpression<T>`
+
+- <span id="unwindexpression-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnwindExpression<T>`
+
+- <span id="unwindexpression-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnwindExpression<T>`
+
+- <span id="unwindexpression-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<T: clone::Clone + ReaderOffset> Clone for UnwindExpression<T>`
 
 - <span id="unwindexpression-clone"></span>`fn clone(&self) -> UnwindExpression<T>` — [`UnwindExpression`](../index.md#unwindexpression)
 
+##### `impl<T> CloneToUninit for UnwindExpression<T>`
+
+- <span id="unwindexpression-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: marker::Copy + ReaderOffset> Copy for UnwindExpression<T>`
 
 ##### `impl<T: fmt::Debug + ReaderOffset> Debug for UnwindExpression<T>`
 
-- <span id="unwindexpression-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unwindexpression-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq + ReaderOffset> Eq for UnwindExpression<T>`
 
+##### `impl<T> From for UnwindExpression<T>`
+
+- <span id="unwindexpression-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for UnwindExpression<T>`
+
+- <span id="unwindexpression-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for UnwindExpression<T>`
 
-- <span id="unwindexpression-eq"></span>`fn eq(&self, other: &UnwindExpression<T>) -> bool` — [`UnwindExpression`](../index.md#unwindexpression)
+- <span id="unwindexpression-partialeq-eq"></span>`fn eq(&self, other: &UnwindExpression<T>) -> bool` — [`UnwindExpression`](../index.md#unwindexpression)
 
 ##### `impl<T: ReaderOffset> StructuralPartialEq for UnwindExpression<T>`
+
+##### `impl<T> ToOwned for UnwindExpression<T>`
+
+- <span id="unwindexpression-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="unwindexpression-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="unwindexpression-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for UnwindExpression<T>`
+
+- <span id="unwindexpression-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unwindexpression-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for UnwindExpression<T>`
+
+- <span id="unwindexpression-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unwindexpression-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PointerEncodingParameters<'a, R: Reader>`
 
@@ -1366,13 +2818,67 @@ struct PointerEncodingParameters<'a, R: Reader> {
 
 #### Trait Implementations
 
+##### `impl Any for PointerEncodingParameters<'a, R>`
+
+- <span id="pointerencodingparameters-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PointerEncodingParameters<'a, R>`
+
+- <span id="pointerencodingparameters-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PointerEncodingParameters<'a, R>`
+
+- <span id="pointerencodingparameters-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: clone::Clone + Reader> Clone for PointerEncodingParameters<'a, R>`
 
 - <span id="pointerencodingparameters-clone"></span>`fn clone(&self) -> PointerEncodingParameters<'a, R>` — [`PointerEncodingParameters`](#pointerencodingparameters)
 
+##### `impl CloneToUninit for PointerEncodingParameters<'a, R>`
+
+- <span id="pointerencodingparameters-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R: fmt::Debug + Reader> Debug for PointerEncodingParameters<'a, R>`
 
-- <span id="pointerencodingparameters-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pointerencodingparameters-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for PointerEncodingParameters<'a, R>`
+
+- <span id="pointerencodingparameters-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PointerEncodingParameters<'a, R>`
+
+- <span id="pointerencodingparameters-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for PointerEncodingParameters<'a, R>`
+
+- <span id="pointerencodingparameters-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="pointerencodingparameters-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="pointerencodingparameters-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PointerEncodingParameters<'a, R>`
+
+- <span id="pointerencodingparameters-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pointerencodingparameters-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PointerEncodingParameters<'a, R>`
+
+- <span id="pointerencodingparameters-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pointerencodingparameters-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -1406,21 +2912,75 @@ Either a `CommonInformationEntry` (CIE) or a `FrameDescriptionEntry` (FDE).
 
 #### Trait Implementations
 
+##### `impl Any for CieOrFde<'bases, Section, R>`
+
+- <span id="cieorfde-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CieOrFde<'bases, Section, R>`
+
+- <span id="cieorfde-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CieOrFde<'bases, Section, R>`
+
+- <span id="cieorfde-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Section, R> Clone for CieOrFde<'bases, Section, R>`
 
 - <span id="cieorfde-clone"></span>`fn clone(&self) -> CieOrFde<'bases, Section, R>` — [`CieOrFde`](../index.md#cieorfde)
 
+##### `impl CloneToUninit for CieOrFde<'bases, Section, R>`
+
+- <span id="cieorfde-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<Section, R> Debug for CieOrFde<'bases, Section, R>`
 
-- <span id="cieorfde-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cieorfde-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Section, R> Eq for CieOrFde<'bases, Section, R>`
 
+##### `impl<T> From for CieOrFde<'bases, Section, R>`
+
+- <span id="cieorfde-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CieOrFde<'bases, Section, R>`
+
+- <span id="cieorfde-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<Section, R> PartialEq for CieOrFde<'bases, Section, R>`
 
-- <span id="cieorfde-eq"></span>`fn eq(&self, other: &CieOrFde<'bases, Section, R>) -> bool` — [`CieOrFde`](../index.md#cieorfde)
+- <span id="cieorfde-partialeq-eq"></span>`fn eq(&self, other: &CieOrFde<'bases, Section, R>) -> bool` — [`CieOrFde`](../index.md#cieorfde)
 
 ##### `impl<Section, R> StructuralPartialEq for CieOrFde<'bases, Section, R>`
+
+##### `impl ToOwned for CieOrFde<'bases, Section, R>`
+
+- <span id="cieorfde-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="cieorfde-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="cieorfde-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CieOrFde<'bases, Section, R>`
+
+- <span id="cieorfde-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cieorfde-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CieOrFde<'bases, Section, R>`
+
+- <span id="cieorfde-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cieorfde-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CfaRule<T: ReaderOffset>`
 
@@ -1454,13 +3014,29 @@ The canonical frame address (CFA) recovery rules.
 
 #### Trait Implementations
 
+##### `impl<T> Any for CfaRule<T>`
+
+- <span id="cfarule-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CfaRule<T>`
+
+- <span id="cfarule-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CfaRule<T>`
+
+- <span id="cfarule-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone + ReaderOffset> Clone for CfaRule<T>`
 
 - <span id="cfarule-clone"></span>`fn clone(&self) -> CfaRule<T>` — [`CfaRule`](../index.md#cfarule)
 
+##### `impl<T> CloneToUninit for CfaRule<T>`
+
+- <span id="cfarule-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug + ReaderOffset> Debug for CfaRule<T>`
 
-- <span id="cfarule-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cfarule-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ReaderOffset> Default for CfaRule<T>`
 
@@ -1468,11 +3044,49 @@ The canonical frame address (CFA) recovery rules.
 
 ##### `impl<T: cmp::Eq + ReaderOffset> Eq for CfaRule<T>`
 
+##### `impl<T> From for CfaRule<T>`
+
+- <span id="cfarule-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for CfaRule<T>`
+
+- <span id="cfarule-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for CfaRule<T>`
 
-- <span id="cfarule-eq"></span>`fn eq(&self, other: &CfaRule<T>) -> bool` — [`CfaRule`](../index.md#cfarule)
+- <span id="cfarule-partialeq-eq"></span>`fn eq(&self, other: &CfaRule<T>) -> bool` — [`CfaRule`](../index.md#cfarule)
 
 ##### `impl<T: ReaderOffset> StructuralPartialEq for CfaRule<T>`
+
+##### `impl<T> ToOwned for CfaRule<T>`
+
+- <span id="cfarule-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="cfarule-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="cfarule-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for CfaRule<T>`
+
+- <span id="cfarule-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cfarule-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for CfaRule<T>`
+
+- <span id="cfarule-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cfarule-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `RegisterRule<T: ReaderOffset>`
 
@@ -1551,21 +3165,75 @@ previous frame."
 
 #### Trait Implementations
 
+##### `impl<T> Any for RegisterRule<T>`
+
+- <span id="registerrule-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for RegisterRule<T>`
+
+- <span id="registerrule-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for RegisterRule<T>`
+
+- <span id="registerrule-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone + ReaderOffset> Clone for RegisterRule<T>`
 
 - <span id="registerrule-clone"></span>`fn clone(&self) -> RegisterRule<T>` — [`RegisterRule`](../index.md#registerrule)
 
+##### `impl<T> CloneToUninit for RegisterRule<T>`
+
+- <span id="registerrule-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug + ReaderOffset> Debug for RegisterRule<T>`
 
-- <span id="registerrule-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="registerrule-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq + ReaderOffset> Eq for RegisterRule<T>`
 
+##### `impl<T> From for RegisterRule<T>`
+
+- <span id="registerrule-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for RegisterRule<T>`
+
+- <span id="registerrule-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for RegisterRule<T>`
 
-- <span id="registerrule-eq"></span>`fn eq(&self, other: &RegisterRule<T>) -> bool` — [`RegisterRule`](../index.md#registerrule)
+- <span id="registerrule-partialeq-eq"></span>`fn eq(&self, other: &RegisterRule<T>) -> bool` — [`RegisterRule`](../index.md#registerrule)
 
 ##### `impl<T: ReaderOffset> StructuralPartialEq for RegisterRule<T>`
+
+##### `impl<T> ToOwned for RegisterRule<T>`
+
+- <span id="registerrule-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="registerrule-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="registerrule-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for RegisterRule<T>`
+
+- <span id="registerrule-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="registerrule-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for RegisterRule<T>`
+
+- <span id="registerrule-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="registerrule-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CallFrameInstruction<T: ReaderOffset>`
 
@@ -1892,21 +3560,75 @@ A parsed call frame instruction.
 
 #### Trait Implementations
 
+##### `impl<T> Any for CallFrameInstruction<T>`
+
+- <span id="callframeinstruction-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CallFrameInstruction<T>`
+
+- <span id="callframeinstruction-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CallFrameInstruction<T>`
+
+- <span id="callframeinstruction-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone + ReaderOffset> Clone for CallFrameInstruction<T>`
 
 - <span id="callframeinstruction-clone"></span>`fn clone(&self) -> CallFrameInstruction<T>` — [`CallFrameInstruction`](../index.md#callframeinstruction)
 
+##### `impl<T> CloneToUninit for CallFrameInstruction<T>`
+
+- <span id="callframeinstruction-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<T: fmt::Debug + ReaderOffset> Debug for CallFrameInstruction<T>`
 
-- <span id="callframeinstruction-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="callframeinstruction-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq + ReaderOffset> Eq for CallFrameInstruction<T>`
 
+##### `impl<T> From for CallFrameInstruction<T>`
+
+- <span id="callframeinstruction-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for CallFrameInstruction<T>`
+
+- <span id="callframeinstruction-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for CallFrameInstruction<T>`
 
-- <span id="callframeinstruction-eq"></span>`fn eq(&self, other: &CallFrameInstruction<T>) -> bool` — [`CallFrameInstruction`](../index.md#callframeinstruction)
+- <span id="callframeinstruction-partialeq-eq"></span>`fn eq(&self, other: &CallFrameInstruction<T>) -> bool` — [`CallFrameInstruction`](../index.md#callframeinstruction)
 
 ##### `impl<T: ReaderOffset> StructuralPartialEq for CallFrameInstruction<T>`
+
+##### `impl<T> ToOwned for CallFrameInstruction<T>`
+
+- <span id="callframeinstruction-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="callframeinstruction-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="callframeinstruction-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for CallFrameInstruction<T>`
+
+- <span id="callframeinstruction-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="callframeinstruction-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for CallFrameInstruction<T>`
+
+- <span id="callframeinstruction-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="callframeinstruction-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Pointer`
 
@@ -1942,19 +3664,39 @@ A decoded pointer.
 
 - <span id="pointer-direct"></span>`fn direct(self) -> Result<u64>` — [`Result`](../../index.md#result)
 
+  Return the direct pointer value.
+
 - <span id="pointer-pointer"></span>`fn pointer(self) -> u64`
 
+  Return the pointer value, discarding indirectness information.
+
 #### Trait Implementations
+
+##### `impl Any for Pointer`
+
+- <span id="pointer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Pointer`
+
+- <span id="pointer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Pointer`
+
+- <span id="pointer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Pointer`
 
 - <span id="pointer-clone"></span>`fn clone(&self) -> Pointer` — [`Pointer`](../index.md#pointer)
 
+##### `impl CloneToUninit for Pointer`
+
+- <span id="pointer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Pointer`
 
 ##### `impl Debug for Pointer`
 
-- <span id="pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pointer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Pointer`
 
@@ -1962,11 +3704,49 @@ A decoded pointer.
 
 ##### `impl Eq for Pointer`
 
+##### `impl<T> From for Pointer`
+
+- <span id="pointer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Pointer`
+
+- <span id="pointer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Pointer`
 
-- <span id="pointer-eq"></span>`fn eq(&self, other: &Pointer) -> bool` — [`Pointer`](../index.md#pointer)
+- <span id="pointer-partialeq-eq"></span>`fn eq(&self, other: &Pointer) -> bool` — [`Pointer`](../index.md#pointer)
 
 ##### `impl StructuralPartialEq for Pointer`
+
+##### `impl ToOwned for Pointer`
+
+- <span id="pointer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="pointer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="pointer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Pointer`
+
+- <span id="pointer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pointer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Pointer`
+
+- <span id="pointer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pointer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

@@ -176,21 +176,117 @@ until runtime.
 
 - <span id="frame-ip"></span>`fn ip(&self) -> *mut c_void`
 
+  Returns the current instruction pointer of this frame.
+
+  
+
+  This is normally the next instruction to execute in the frame, but not
+
+  all implementations list this with 100% accuracy (but it's generally
+
+  pretty close).
+
+  
+
+  It is recommended to pass this value to `backtrace::resolve` to turn it
+
+  into a symbol name.
+
 - <span id="frame-sp"></span>`fn sp(&self) -> *mut c_void`
+
+  Returns the current stack pointer of this frame.
+
+  
+
+  In the case that a backend cannot recover the stack pointer for this
+
+  frame, a null pointer is returned.
 
 - <span id="frame-symbol-address"></span>`fn symbol_address(&self) -> *mut c_void`
 
+  Returns the starting symbol address of the frame of this function.
+
+  
+
+  This will attempt to rewind the instruction pointer returned by `ip` to
+
+  the start of the function, returning that value. In some cases, however,
+
+  backends will just return `ip` from this function.
+
+  
+
+  The returned value can sometimes be used if `backtrace::resolve` failed
+
+  on the `ip` given above.
+
 - <span id="frame-module-base-address"></span>`fn module_base_address(&self) -> Option<*mut c_void>`
 
+  Returns the base address of the module to which the frame belongs.
+
 #### Trait Implementations
+
+##### `impl Any for Frame`
+
+- <span id="frame-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Frame`
+
+- <span id="frame-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Frame`
+
+- <span id="frame-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Frame`
 
 - <span id="frame-clone"></span>`fn clone(&self) -> Frame` — [`Frame`](backtrace/index.md#frame)
 
+##### `impl CloneToUninit for Frame`
+
+- <span id="frame-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Frame`
 
-- <span id="frame-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="frame-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Frame`
+
+- <span id="frame-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Frame`
+
+- <span id="frame-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Frame`
+
+- <span id="frame-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="frame-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="frame-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Frame`
+
+- <span id="frame-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="frame-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Frame`
+
+- <span id="frame-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="frame-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Symbol`
 
@@ -216,21 +312,125 @@ always available in a symbol, however, so all methods return an `Option`.
 
 - <span id="symbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](symbolize/index.md#symbolname)
 
+  Returns the name of this function.
+
+  
+
+  The returned structure can be used to query various properties about the
+
+  symbol name:
+
+  
+
+  * The `Display` implementation will print out the demangled symbol.
+
+  * The raw `str` value of the symbol can be accessed (if it's valid
+
+    utf-8).
+
+  * The raw bytes for the symbol name can be accessed.
+
 - <span id="symbol-addr"></span>`fn addr(&self) -> Option<*mut c_void>`
+
+  Returns the starting address of this function.
 
 - <span id="symbol-filename-raw"></span>`fn filename_raw(&self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](types/index.md#bytesorwidestring)
 
+  Returns the raw filename as a slice. This is mainly useful for `no_std`
+
+  environments.
+
 - <span id="symbol-colno"></span>`fn colno(&self) -> Option<u32>`
+
+  Returns the column number for where this symbol is currently executing.
+
+  
+
+  Only gimli currently provides a value here and even then only if `filename`
+
+  returns `Some`, and so it is then consequently subject to similar caveats.
 
 - <span id="symbol-lineno"></span>`fn lineno(&self) -> Option<u32>`
 
+  Returns the line number for where this symbol is currently executing.
+
+  
+
+  This return value is typically `Some` if `filename` returns `Some`, and
+
+  is consequently subject to similar caveats.
+
 - <span id="symbol-filename"></span>`fn filename(&self) -> Option<&Path>`
+
+  Returns the file name where this function was defined.
+
+  
+
+  This is currently only available when libbacktrace or gimli is being
+
+  used (e.g. unix platforms other) and when a binary is compiled with
+
+  debuginfo. If neither of these conditions is met then this will likely
+
+  return `None`.
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
 
 #### Trait Implementations
 
+##### `impl Any for Symbol`
+
+- <span id="symbol-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Symbol`
+
+- <span id="symbol-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Symbol`
+
+- <span id="symbol-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Symbol`
 
-- <span id="symbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbol-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Symbol`
+
+- <span id="symbol-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Symbol`
+
+- <span id="symbol-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Symbol`
+
+- <span id="symbol-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symbol-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Symbol`
+
+- <span id="symbol-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symbol-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SymbolName<'a>`
 
@@ -250,23 +450,75 @@ demangled name, the raw bytes, the raw string, etc.
 
 - <span id="symbolname-new"></span>`fn new(bytes: &'a [u8]) -> SymbolName<'a>` — [`SymbolName`](symbolize/index.md#symbolname)
 
+  Creates a new symbol name from the raw underlying bytes.
+
 - <span id="symbolname-as-str"></span>`fn as_str(&self) -> Option<&'a str>`
+
+  Returns the raw (mangled) symbol name as a `str` if the symbol is valid utf-8.
+
+  
+
+  Use the `Display` implementation if you want the demangled version.
 
 - <span id="symbolname-as-bytes"></span>`fn as_bytes(&self) -> &'a [u8]`
 
+  Returns the raw symbol name as a list of bytes
+
 #### Trait Implementations
+
+##### `impl Any for SymbolName<'a>`
+
+- <span id="symbolname-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SymbolName<'a>`
+
+- <span id="symbolname-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SymbolName<'a>`
+
+- <span id="symbolname-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for SymbolName<'a>`
 
-- <span id="symbolname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbolname-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for SymbolName<'a>`
 
-- <span id="symbolname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbolname-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SymbolName<'a>`
+
+- <span id="symbolname-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SymbolName<'a>`
+
+- <span id="symbolname-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for SymbolName<'a>`
 
-- <span id="symbolname-to-string"></span>`fn to_string(&self) -> String`
+- <span id="symbolname-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for SymbolName<'a>`
+
+- <span id="symbolname-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symbolname-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SymbolName<'a>`
+
+- <span id="symbolname-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symbolname-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BacktraceFmt<'a, 'b>`
 
@@ -291,15 +543,119 @@ implementation already uses this printing format.
 
 - <span id="backtracefmt-new"></span>`fn new(fmt: &'a mut fmt::Formatter<'b>, format: PrintFmt, print_path: &'a mut dyn FnMut(&mut fmt::Formatter<'_>, BytesOrWideString<'_>) -> fmt::Result) -> Self` — [`PrintFmt`](print/index.md#printfmt), [`BytesOrWideString`](types/index.md#bytesorwidestring)
 
+  Create a new `BacktraceFmt` which will write output to the provided
+
+  `fmt`.
+
+  
+
+  The `format` argument will control the style in which the backtrace is
+
+  printed, and the `print_path` argument will be used to print the
+
+  `BytesOrWideString` instances of filenames. This type itself doesn't do
+
+  any printing of filenames, but this callback is required to do so.
+
 - <span id="backtracefmt-add-context"></span>`fn add_context(&mut self) -> fmt::Result`
+
+  Prints a preamble for the backtrace about to be printed.
+
+  
+
+  This is required on some platforms for backtraces to be fully
+
+  symbolicated later, and otherwise this should just be the first method
+
+  you call after creating a `BacktraceFmt`.
 
 - <span id="backtracefmt-frame"></span>`fn frame(&mut self) -> BacktraceFrameFmt<'_, 'a, 'b>` — [`BacktraceFrameFmt`](print/index.md#backtraceframefmt)
 
+  Adds a frame to the backtrace output.
+
+  
+
+  This commit returns an RAII instance of a `BacktraceFrameFmt` which can be used
+
+  to actually print a frame, and on destruction it will increment the
+
+  frame counter.
+
 - <span id="backtracefmt-finish"></span>`fn finish(&mut self) -> fmt::Result`
+
+  Completes the backtrace output.
+
+  
+
+  This is currently a no-op but is added for future compatibility with
+
+  backtrace formats.
 
 - <span id="backtracefmt-message"></span>`fn message(&mut self, msg: &str) -> fmt::Result`
 
+  Inserts a message in the backtrace output.
+
+  
+
+  This allows information to be inserted between frames,
+
+  and won't increment the `frame_index` unlike the `frame`
+
+  method.
+
 - <span id="backtracefmt-formatter"></span>`fn formatter(&mut self) -> &mut fmt::Formatter<'b>`
+
+  Return the inner formatter.
+
+  
+
+  This is used for writing custom information between frames with `write!` and `writeln!`,
+
+  and won't increment the `frame_index` unlike the `frame` method.
+
+#### Trait Implementations
+
+##### `impl Any for BacktraceFmt<'a, 'b>`
+
+- <span id="backtracefmt-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BacktraceFmt<'a, 'b>`
+
+- <span id="backtracefmt-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BacktraceFmt<'a, 'b>`
+
+- <span id="backtracefmt-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for BacktraceFmt<'a, 'b>`
+
+- <span id="backtracefmt-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BacktraceFmt<'a, 'b>`
+
+- <span id="backtracefmt-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for BacktraceFmt<'a, 'b>`
+
+- <span id="backtracefmt-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="backtracefmt-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BacktraceFmt<'a, 'b>`
+
+- <span id="backtracefmt-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="backtracefmt-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BacktraceFrameFmt<'fmt, 'a, 'b>`
 
@@ -320,13 +676,67 @@ This type is created by the `BacktraceFmt::frame` function.
 
 - <span id="backtraceframefmt-backtrace-frame"></span>`fn backtrace_frame(&mut self, frame: &BacktraceFrame) -> fmt::Result` — [`BacktraceFrame`](capture/index.md#backtraceframe)
 
+  Prints a `BacktraceFrame` with this frame formatter.
+
+  
+
+  This will recursively print all `BacktraceSymbol` instances within the
+
+  `BacktraceFrame`.
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
+
 - <span id="backtraceframefmt-backtrace-symbol"></span>`fn backtrace_symbol(&mut self, frame: &BacktraceFrame, symbol: &BacktraceSymbol) -> fmt::Result` — [`BacktraceFrame`](capture/index.md#backtraceframe), [`BacktraceSymbol`](capture/index.md#backtracesymbol)
+
+  Prints a `BacktraceSymbol` within a `BacktraceFrame`.
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
 
 - <span id="backtraceframefmt-symbol"></span>`fn symbol(&mut self, frame: &Frame, symbol: &super::Symbol) -> fmt::Result` — [`Frame`](backtrace/index.md#frame), [`Symbol`](symbolize/index.md#symbol)
 
+  Prints a raw traced `Frame` and `Symbol`, typically from within the raw
+
+  callbacks of this crate.
+
 - <span id="backtraceframefmt-print-raw"></span>`fn print_raw(&mut self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>) -> fmt::Result` — [`SymbolName`](symbolize/index.md#symbolname), [`BytesOrWideString`](types/index.md#bytesorwidestring)
 
+  Adds a raw frame to the backtrace output.
+
+  
+
+  This method, unlike the previous, takes the raw arguments in case
+
+  they're being source from different locations. Note that this may be
+
+  called multiple times for one frame.
+
 - <span id="backtraceframefmt-print-raw-with-column"></span>`fn print_raw_with_column(&mut self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result` — [`SymbolName`](symbolize/index.md#symbolname), [`BytesOrWideString`](types/index.md#bytesorwidestring)
+
+  Adds a raw frame to the backtrace output, including column information.
+
+  
+
+  This method, like the previous, takes the raw arguments in case
+
+  they're being source from different locations. Note that this may be
+
+  called multiple times for one frame.
 
 - <span id="backtraceframefmt-print-raw-generic"></span>`fn print_raw_generic(&mut self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result` — [`SymbolName`](symbolize/index.md#symbolname), [`BytesOrWideString`](types/index.md#bytesorwidestring)
 
@@ -336,9 +746,51 @@ This type is created by the `BacktraceFmt::frame` function.
 
 #### Trait Implementations
 
+##### `impl Any for BacktraceFrameFmt<'fmt, 'a, 'b>`
+
+- <span id="backtraceframefmt-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BacktraceFrameFmt<'fmt, 'a, 'b>`
+
+- <span id="backtraceframefmt-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BacktraceFrameFmt<'fmt, 'a, 'b>`
+
+- <span id="backtraceframefmt-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Drop for BacktraceFrameFmt<'_, '_, '_>`
 
 - <span id="backtraceframefmt-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for BacktraceFrameFmt<'fmt, 'a, 'b>`
+
+- <span id="backtraceframefmt-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BacktraceFrameFmt<'fmt, 'a, 'b>`
+
+- <span id="backtraceframefmt-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for BacktraceFrameFmt<'fmt, 'a, 'b>`
+
+- <span id="backtraceframefmt-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="backtraceframefmt-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BacktraceFrameFmt<'fmt, 'a, 'b>`
+
+- <span id="backtraceframefmt-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="backtraceframefmt-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Backtrace`
 
@@ -367,27 +819,219 @@ enabled, and the `std` feature is enabled by default.
 
 - <span id="backtrace-new"></span>`fn new() -> Backtrace` — [`Backtrace`](capture/index.md#backtrace)
 
+  Captures a backtrace at the callsite of this function, returning an
+
+  owned representation.
+
+  
+
+  This function is useful for representing a backtrace as an object in
+
+  Rust. This returned value can be sent across threads and printed
+
+  elsewhere, and the purpose of this value is to be entirely self
+
+  contained.
+
+  
+
+  Note that on some platforms acquiring a full backtrace and resolving it
+
+  can be extremely expensive. If the cost is too much for your application
+
+  it's recommended to instead use `Backtrace::new_unresolved()` which
+
+  avoids the symbol resolution step (which typically takes the longest)
+
+  and allows deferring that to a later date.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use backtrace::Backtrace;
+
+  
+
+  let current_backtrace = Backtrace::new();
+
+  ```
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
+
 - <span id="backtrace-new-unresolved"></span>`fn new_unresolved() -> Backtrace` — [`Backtrace`](capture/index.md#backtrace)
+
+  Similar to `new` except that this does not resolve any symbols, this
+
+  simply captures the backtrace as a list of addresses.
+
+  
+
+  At a later time the `resolve` function can be called to resolve this
+
+  backtrace's symbols into readable names. This function exists because
+
+  the resolution process can sometimes take a significant amount of time
+
+  whereas any one backtrace may only be rarely printed.
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use backtrace::Backtrace;
+
+  
+
+  let mut current_backtrace = Backtrace::new_unresolved();
+
+  println!("{current_backtrace:?}"); // no symbol names
+
+  current_backtrace.resolve();
+
+  println!("{current_backtrace:?}"); // symbol names now present
+
+  ```
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
 
 - <span id="backtrace-create"></span>`fn create(ip: usize) -> Backtrace` — [`Backtrace`](capture/index.md#backtrace)
 
 - <span id="backtrace-frames"></span>`fn frames(&self) -> &[BacktraceFrame]` — [`BacktraceFrame`](capture/index.md#backtraceframe)
 
+  Returns the frames from when this backtrace was captured.
+
+  
+
+  The first entry of this slice is likely the function `Backtrace::new`,
+
+  and the last frame is likely something about how this thread or the main
+
+  function started.
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
+
 - <span id="backtrace-resolve"></span>`fn resolve(&mut self)`
 
+  If this backtrace was created from `new_unresolved` then this function
+
+  will resolve all addresses in the backtrace to their symbolic names.
+
+  
+
+  If this backtrace has been previously resolved or was created through
+
+  `new`, this function does nothing.
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
+
 #### Trait Implementations
+
+##### `impl Any for Backtrace`
+
+- <span id="backtrace-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Backtrace`
+
+- <span id="backtrace-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Backtrace`
+
+- <span id="backtrace-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Backtrace`
 
 - <span id="backtrace-clone"></span>`fn clone(&self) -> Backtrace` — [`Backtrace`](capture/index.md#backtrace)
 
+##### `impl CloneToUninit for Backtrace`
+
+- <span id="backtrace-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Backtrace`
 
-- <span id="backtrace-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="backtrace-debug-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Backtrace`
 
 - <span id="backtrace-default"></span>`fn default() -> Backtrace` — [`Backtrace`](capture/index.md#backtrace)
+
+##### `impl<T> From for Backtrace`
+
+- <span id="backtrace-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Backtrace`
+
+- <span id="backtrace-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for Backtrace`
+
+- <span id="backtrace-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="backtrace-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="backtrace-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Backtrace`
+
+- <span id="backtrace-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="backtrace-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Backtrace`
+
+- <span id="backtrace-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="backtrace-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BacktraceFrame`
 
@@ -414,23 +1058,157 @@ enabled, and the `std` feature is enabled by default.
 
 - <span id="backtraceframe-ip"></span>`fn ip(&self) -> *mut c_void`
 
+  Same as `Frame::ip`
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
+
 - <span id="backtraceframe-symbol-address"></span>`fn symbol_address(&self) -> *mut c_void`
+
+  Same as `Frame::symbol_address`
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
 
 - <span id="backtraceframe-module-base-address"></span>`fn module_base_address(&self) -> Option<*mut c_void>`
 
+  Same as `Frame::module_base_address`
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
+
 - <span id="backtraceframe-symbols"></span>`fn symbols(&self) -> &[BacktraceSymbol]` — [`BacktraceSymbol`](capture/index.md#backtracesymbol)
+
+  Returns the list of symbols that this frame corresponds to.
+
+  
+
+  Normally there is only one symbol per frame, but sometimes if a number
+
+  of functions are inlined into one frame then multiple symbols will be
+
+  returned. The first symbol listed is the "innermost function", whereas
+
+  the last symbol is the outermost (last caller).
+
+  
+
+  Note that if this frame came from an unresolved backtrace then this will
+
+  return an empty list.
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
 
 - <span id="backtraceframe-resolve"></span>`fn resolve(&mut self)`
 
+  Resolve all addresses in this frame to their symbolic names.
+
+  
+
+  If this frame has been previously resolved, this function does nothing.
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
+
 #### Trait Implementations
+
+##### `impl Any for BacktraceFrame`
+
+- <span id="backtraceframe-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BacktraceFrame`
+
+- <span id="backtraceframe-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BacktraceFrame`
+
+- <span id="backtraceframe-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for BacktraceFrame`
 
 - <span id="backtraceframe-clone"></span>`fn clone(&self) -> BacktraceFrame` — [`BacktraceFrame`](capture/index.md#backtraceframe)
 
+##### `impl CloneToUninit for BacktraceFrame`
+
+- <span id="backtraceframe-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for BacktraceFrame`
 
-- <span id="backtraceframe-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="backtraceframe-debug-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BacktraceFrame`
+
+- <span id="backtraceframe-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BacktraceFrame`
+
+- <span id="backtraceframe-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for BacktraceFrame`
+
+- <span id="backtraceframe-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="backtraceframe-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="backtraceframe-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BacktraceFrame`
+
+- <span id="backtraceframe-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="backtraceframe-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BacktraceFrame`
+
+- <span id="backtraceframe-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="backtraceframe-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BacktraceSymbol`
 
@@ -460,23 +1238,137 @@ enabled, and the `std` feature is enabled by default.
 
 - <span id="backtracesymbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](symbolize/index.md#symbolname)
 
+  Same as `Symbol::name`
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
+
 - <span id="backtracesymbol-addr"></span>`fn addr(&self) -> Option<*mut c_void>`
+
+  Same as `Symbol::addr`
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
 
 - <span id="backtracesymbol-filename"></span>`fn filename(&self) -> Option<&Path>`
 
+  Same as `Symbol::filename`
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
+
 - <span id="backtracesymbol-lineno"></span>`fn lineno(&self) -> Option<u32>`
+
+  Same as `Symbol::lineno`
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
 
 - <span id="backtracesymbol-colno"></span>`fn colno(&self) -> Option<u32>`
 
+  Same as `Symbol::colno`
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
+
 #### Trait Implementations
+
+##### `impl Any for BacktraceSymbol`
+
+- <span id="backtracesymbol-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BacktraceSymbol`
+
+- <span id="backtracesymbol-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BacktraceSymbol`
+
+- <span id="backtracesymbol-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for BacktraceSymbol`
 
 - <span id="backtracesymbol-clone"></span>`fn clone(&self) -> BacktraceSymbol` — [`BacktraceSymbol`](capture/index.md#backtracesymbol)
 
+##### `impl CloneToUninit for BacktraceSymbol`
+
+- <span id="backtracesymbol-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for BacktraceSymbol`
 
-- <span id="backtracesymbol-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="backtracesymbol-debug-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BacktraceSymbol`
+
+- <span id="backtracesymbol-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BacktraceSymbol`
+
+- <span id="backtracesymbol-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for BacktraceSymbol`
+
+- <span id="backtracesymbol-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="backtracesymbol-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="backtracesymbol-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for BacktraceSymbol`
+
+- <span id="backtracesymbol-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="backtracesymbol-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BacktraceSymbol`
+
+- <span id="backtracesymbol-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="backtracesymbol-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -509,21 +1401,89 @@ conversions to `std` types.
 
 - <span id="bytesorwidestring-to-str-lossy"></span>`fn to_str_lossy(&self) -> Cow<'a, str>`
 
+  Lossy converts to a `Cow<str>`, will allocate if `Bytes` is not valid
+
+  UTF-8 or if `BytesOrWideString` is `Wide`.
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
+
 - <span id="bytesorwidestring-into-path-buf"></span>`fn into_path_buf(self) -> PathBuf`
+
+  Provides a `Path` representation of `BytesOrWideString`.
+
+  
+
+  # Required features
+
+  
+
+  This function requires the `std` feature of the `backtrace` crate to be
+
+  enabled, and the `std` feature is enabled by default.
 
 #### Trait Implementations
 
+##### `impl Any for BytesOrWideString<'a>`
+
+- <span id="bytesorwidestring-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BytesOrWideString<'a>`
+
+- <span id="bytesorwidestring-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BytesOrWideString<'a>`
+
+- <span id="bytesorwidestring-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for BytesOrWideString<'a>`
 
-- <span id="bytesorwidestring-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bytesorwidestring-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for BytesOrWideString<'a>`
 
-- <span id="bytesorwidestring-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bytesorwidestring-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BytesOrWideString<'a>`
+
+- <span id="bytesorwidestring-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BytesOrWideString<'a>`
+
+- <span id="bytesorwidestring-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for BytesOrWideString<'a>`
 
-- <span id="bytesorwidestring-to-string"></span>`fn to_string(&self) -> String`
+- <span id="bytesorwidestring-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for BytesOrWideString<'a>`
+
+- <span id="bytesorwidestring-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="bytesorwidestring-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BytesOrWideString<'a>`
+
+- <span id="bytesorwidestring-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="bytesorwidestring-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `PrintFmt`
 
@@ -550,19 +1510,73 @@ The styles of printing that we can print
 
 #### Trait Implementations
 
+##### `impl Any for PrintFmt`
+
+- <span id="printfmt-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PrintFmt`
+
+- <span id="printfmt-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PrintFmt`
+
+- <span id="printfmt-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for PrintFmt`
 
 - <span id="printfmt-clone"></span>`fn clone(&self) -> PrintFmt` — [`PrintFmt`](print/index.md#printfmt)
+
+##### `impl CloneToUninit for PrintFmt`
+
+- <span id="printfmt-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for PrintFmt`
 
 ##### `impl Eq for PrintFmt`
 
+##### `impl<T> From for PrintFmt`
+
+- <span id="printfmt-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PrintFmt`
+
+- <span id="printfmt-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for PrintFmt`
 
-- <span id="printfmt-eq"></span>`fn eq(&self, other: &PrintFmt) -> bool` — [`PrintFmt`](print/index.md#printfmt)
+- <span id="printfmt-partialeq-eq"></span>`fn eq(&self, other: &PrintFmt) -> bool` — [`PrintFmt`](print/index.md#printfmt)
 
 ##### `impl StructuralPartialEq for PrintFmt`
+
+##### `impl ToOwned for PrintFmt`
+
+- <span id="printfmt-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="printfmt-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="printfmt-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PrintFmt`
+
+- <span id="printfmt-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="printfmt-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PrintFmt`
+
+- <span id="printfmt-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="printfmt-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

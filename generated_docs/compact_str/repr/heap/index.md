@@ -60,27 +60,107 @@ struct HeapBuffer {
 
 - <span id="heapbuffer-new"></span>`fn new(text: &str) -> Result<Self, ReserveError>` — [`ReserveError`](../../index.md#reserveerror)
 
+  Create a [`HeapBuffer`](#heapbuffer) with the provided text
+
 - <span id="heapbuffer-with-capacity"></span>`fn with_capacity(capacity: usize) -> Result<Self, ReserveError>` — [`ReserveError`](../../index.md#reserveerror)
+
+  Create an empty [`HeapBuffer`](#heapbuffer) with a specific capacity
 
 - <span id="heapbuffer-with-additional"></span>`fn with_additional(text: &str, additional: usize) -> Result<Self, ReserveError>` — [`ReserveError`](../../index.md#reserveerror)
 
+  Create a [`HeapBuffer`](#heapbuffer) with `text` that has _at least_ `additional` bytes of capacity
+
+  
+
+  To prevent frequent re-allocations, this method will create a [`HeapBuffer`](#heapbuffer) with a capacity
+
+  of `text.len() + additional` or `text.len() * 1.5`, whichever is greater
+
 - <span id="heapbuffer-capacity"></span>`fn capacity(&self) -> usize`
+
+  Return the capacity of the [`HeapBuffer`](#heapbuffer)
 
 - <span id="heapbuffer-realloc"></span>`fn realloc(&mut self, new_capacity: usize) -> Result<usize, ()>`
 
+  Try to grow the [`HeapBuffer`](#heapbuffer) by reallocating, returning an error if we fail
+
 - <span id="heapbuffer-set-len"></span>`unsafe fn set_len(&mut self, len: usize)`
+
+  Set's the length of the content for this [`HeapBuffer`](#heapbuffer)
+
+  
+
+  # SAFETY:
+
+  * The caller must guarantee that `len` bytes in the buffer are valid UTF-8
 
 - <span id="heapbuffer-dealloc"></span>`fn dealloc(&mut self)`
 
+  Deallocates the memory owned by the provided [`HeapBuffer`](#heapbuffer)
+
 #### Trait Implementations
+
+##### `impl Any for HeapBuffer`
+
+- <span id="heapbuffer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for HeapBuffer`
+
+- <span id="heapbuffer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for HeapBuffer`
+
+- <span id="heapbuffer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for HeapBuffer`
 
 - <span id="heapbuffer-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for HeapBuffer`
+
+- <span id="heapbuffer-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Drop for HeapBuffer`
 
 - <span id="heapbuffer-drop"></span>`fn drop(&mut self)`
+
+##### `impl<T> From for HeapBuffer`
+
+- <span id="heapbuffer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for HeapBuffer`
+
+- <span id="heapbuffer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for HeapBuffer`
+
+- <span id="heapbuffer-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="heapbuffer-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="heapbuffer-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for HeapBuffer`
+
+- <span id="heapbuffer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="heapbuffer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for HeapBuffer`
+
+- <span id="heapbuffer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="heapbuffer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

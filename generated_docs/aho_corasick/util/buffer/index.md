@@ -74,21 +74,97 @@ second read call whether a match exists or not.
 
 - <span id="buffer-new"></span>`fn new(min_buffer_len: usize) -> Buffer` — [`Buffer`](#buffer)
 
+  Create a new buffer for stream searching. The minimum buffer length
+
+  given should be the size of the maximum possible match length.
+
 - <span id="buffer-buffer"></span>`fn buffer(&self) -> &[u8]`
+
+  Return the contents of this buffer.
 
 - <span id="buffer-min-buffer-len"></span>`fn min_buffer_len(&self) -> usize`
 
+  Return the minimum size of the buffer. The only way a buffer may be
+
+  smaller than this is if the stream itself contains less than the
+
+  minimum buffer amount.
+
 - <span id="buffer-free-buffer"></span>`fn free_buffer(&mut self) -> &mut [u8]`
+
+  Return all free capacity in this buffer.
 
 - <span id="buffer-fill"></span>`fn fill<R: std::io::Read>(&mut self, rdr: R) -> std::io::Result<bool>`
 
+  Refill the contents of this buffer by reading as much as possible into
+
+  this buffer's free capacity. If no more bytes could be read, then this
+
+  returns false. Otherwise, this reads until it has filled the buffer
+
+  past the minimum amount.
+
 - <span id="buffer-roll"></span>`fn roll(&mut self)`
+
+  Roll the contents of the buffer so that the suffix of this buffer is
+
+  moved to the front and all other contents are dropped. The size of the
+
+  suffix corresponds precisely to the minimum buffer length.
+
+  
+
+  This should only be called when the entire contents of this buffer have
+
+  been searched.
 
 #### Trait Implementations
 
+##### `impl Any for Buffer`
+
+- <span id="buffer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Buffer`
+
+- <span id="buffer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Buffer`
+
+- <span id="buffer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Buffer`
 
-- <span id="buffer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="buffer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Buffer`
+
+- <span id="buffer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Buffer`
+
+- <span id="buffer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Buffer`
+
+- <span id="buffer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="buffer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Buffer`
+
+- <span id="buffer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="buffer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Constants
 

@@ -31,19 +31,53 @@ struct IdentUnraw(proc_macro2::Ident);
 
 #### Trait Implementations
 
+##### `impl Any for IdentUnraw`
+
+- <span id="identunraw-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IdentUnraw`
+
+- <span id="identunraw-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IdentUnraw`
+
+- <span id="identunraw-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for IdentUnraw`
 
 - <span id="identunraw-clone"></span>`fn clone(&self) -> IdentUnraw` — [`IdentUnraw`](#identunraw)
 
+##### `impl CloneToUninit for IdentUnraw`
+
+- <span id="identunraw-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Display for IdentUnraw`
 
-- <span id="identunraw-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="identunraw-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for IdentUnraw`
 
+##### `impl<T> From for IdentUnraw`
+
+- <span id="identunraw-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for IdentUnraw`
+
+- <span id="identunraw-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for IdentUnraw`
 
-- <span id="identunraw-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
+- <span id="identunraw-ord-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
 
 ##### `impl Parse for IdentUnraw`
 
@@ -51,23 +85,43 @@ struct IdentUnraw(proc_macro2::Ident);
 
 ##### `impl PartialEq for IdentUnraw`
 
-- <span id="identunraw-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="identunraw-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl PartialOrd for IdentUnraw`
 
-- <span id="identunraw-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
+- <span id="identunraw-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
 
 ##### `impl Spanned for IdentUnraw`
 
-- <span id="identunraw-span"></span>`fn span(&self) -> Span`
+- <span id="identunraw-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for IdentUnraw`
+
+- <span id="identunraw-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="identunraw-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="identunraw-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for IdentUnraw`
 
-- <span id="identunraw-to-string"></span>`fn to_string(&self) -> String`
+- <span id="identunraw-tostring-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ToTokens for IdentUnraw`
 
-- <span id="identunraw-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="identunraw-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for IdentUnraw`
+
+- <span id="identunraw-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="identunraw-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IdentUnraw`
+
+- <span id="identunraw-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="identunraw-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -88,33 +142,87 @@ enum MemberUnraw {
 
 #### Trait Implementations
 
+##### `impl Any for MemberUnraw`
+
+- <span id="memberunraw-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MemberUnraw`
+
+- <span id="memberunraw-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MemberUnraw`
+
+- <span id="memberunraw-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for MemberUnraw`
 
 - <span id="memberunraw-clone"></span>`fn clone(&self) -> MemberUnraw` — [`MemberUnraw`](#memberunraw)
 
+##### `impl CloneToUninit for MemberUnraw`
+
+- <span id="memberunraw-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Display for MemberUnraw`
 
-- <span id="memberunraw-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="memberunraw-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for MemberUnraw`
+
+##### `impl<T> From for MemberUnraw`
+
+- <span id="memberunraw-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for MemberUnraw`
 
 - <span id="memberunraw-hash"></span>`fn hash<H: Hasher>(&self, hasher: &mut H)`
 
+##### `impl<U> Into for MemberUnraw`
+
+- <span id="memberunraw-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for MemberUnraw`
 
-- <span id="memberunraw-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="memberunraw-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Spanned for MemberUnraw`
 
-- <span id="memberunraw-span"></span>`fn span(&self) -> Span`
+- <span id="memberunraw-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for MemberUnraw`
+
+- <span id="memberunraw-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="memberunraw-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="memberunraw-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToString for MemberUnraw`
 
-- <span id="memberunraw-to-string"></span>`fn to_string(&self) -> String`
+- <span id="memberunraw-tostring-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ToTokens for MemberUnraw`
 
-- <span id="memberunraw-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="memberunraw-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for MemberUnraw`
+
+- <span id="memberunraw-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="memberunraw-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MemberUnraw`
+
+- <span id="memberunraw-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="memberunraw-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

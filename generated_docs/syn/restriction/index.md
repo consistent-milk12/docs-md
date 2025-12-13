@@ -43,33 +43,87 @@ A visibility level restricted to some path: `pub(self)` or
 
 #### Trait Implementations
 
+##### `impl Any for VisRestricted`
+
+- <span id="visrestricted-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for VisRestricted`
+
+- <span id="visrestricted-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for VisRestricted`
+
+- <span id="visrestricted-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::VisRestricted`
 
 - <span id="cratevisrestricted-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for VisRestricted`
+
+- <span id="visrestricted-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::VisRestricted`
 
-- <span id="cratevisrestricted-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratevisrestricted-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::VisRestricted`
+
+##### `impl<T> From for VisRestricted`
+
+- <span id="visrestricted-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::VisRestricted`
 
 - <span id="cratevisrestricted-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
+##### `impl<U> Into for VisRestricted`
+
+- <span id="visrestricted-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for crate::VisRestricted`
 
-- <span id="cratevisrestricted-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="cratevisrestricted-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for VisRestricted`
 
 ##### `impl Spanned for VisRestricted`
 
-- <span id="visrestricted-span"></span>`fn span(&self) -> Span`
+- <span id="visrestricted-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for VisRestricted`
+
+- <span id="visrestricted-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="visrestricted-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="visrestricted-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::restriction::VisRestricted`
 
-- <span id="craterestrictionvisrestricted-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="craterestrictionvisrestricted-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for VisRestricted`
+
+- <span id="visrestricted-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="visrestricted-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for VisRestricted`
+
+- <span id="visrestricted-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="visrestricted-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -114,19 +168,53 @@ This type is a [syntax tree enum].
 
 #### Trait Implementations
 
+##### `impl Any for Visibility`
+
+- <span id="visibility-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Visibility`
+
+- <span id="visibility-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Visibility`
+
+- <span id="visibility-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::Visibility`
 
 - <span id="cratevisibility-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for Visibility`
+
+- <span id="visibility-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::Visibility`
 
-- <span id="cratevisibility-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratevisibility-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Visibility`
+
+##### `impl<T> From for Visibility`
+
+- <span id="visibility-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::Visibility`
 
 - <span id="cratevisibility-hash"></span>`fn hash<H>(&self, state: &mut H)`
+
+##### `impl<U> Into for Visibility`
+
+- <span id="visibility-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::restriction::Visibility`
 
@@ -134,17 +222,37 @@ This type is a [syntax tree enum].
 
 ##### `impl PartialEq for crate::Visibility`
 
-- <span id="cratevisibility-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="cratevisibility-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for Visibility`
 
 ##### `impl Spanned for Visibility`
 
-- <span id="visibility-span"></span>`fn span(&self) -> Span`
+- <span id="visibility-spanned-span"></span>`fn span(&self) -> Span`
+
+##### `impl ToOwned for Visibility`
+
+- <span id="visibility-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="visibility-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="visibility-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
 
 ##### `impl ToTokens for crate::restriction::Visibility`
 
-- <span id="craterestrictionvisibility-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+- <span id="craterestrictionvisibility-totokens-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
+
+##### `impl<U> TryFrom for Visibility`
+
+- <span id="visibility-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="visibility-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Visibility`
+
+- <span id="visibility-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="visibility-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FieldMutability`
 
@@ -160,21 +268,75 @@ Unused, but reserved for RFC 3323 restrictions.
 
 #### Trait Implementations
 
+##### `impl Any for FieldMutability`
+
+- <span id="fieldmutability-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FieldMutability`
+
+- <span id="fieldmutability-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FieldMutability`
+
+- <span id="fieldmutability-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for crate::FieldMutability`
 
 - <span id="cratefieldmutability-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for FieldMutability`
+
+- <span id="fieldmutability-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for crate::FieldMutability`
 
-- <span id="cratefieldmutability-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefieldmutability-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::FieldMutability`
+
+##### `impl<T> From for FieldMutability`
+
+- <span id="fieldmutability-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for crate::FieldMutability`
 
 - <span id="cratefieldmutability-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
+##### `impl<U> Into for FieldMutability`
+
+- <span id="fieldmutability-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for crate::FieldMutability`
 
-- <span id="cratefieldmutability-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="cratefieldmutability-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
+
+##### `impl ToOwned for FieldMutability`
+
+- <span id="fieldmutability-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="fieldmutability-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="fieldmutability-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for FieldMutability`
+
+- <span id="fieldmutability-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fieldmutability-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FieldMutability`
+
+- <span id="fieldmutability-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fieldmutability-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

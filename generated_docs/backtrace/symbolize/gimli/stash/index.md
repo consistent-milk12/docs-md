@@ -31,5 +31,57 @@ A simple arena allocator for byte buffers.
 
 - <span id="stash-allocate"></span>`fn allocate(&self, size: usize) -> &mut [u8]`
 
+  Allocates a buffer of the specified size and returns a mutable reference
+
+  to it.
+
 - <span id="stash-cache-mmap"></span>`fn cache_mmap(&self, map: Mmap) -> &[u8]` — [`Mmap`](../mmap/index.md#mmap)
+
+  Stores a `Mmap` for the lifetime of this `Stash`, returning a pointer
+
+  which is scoped to just this lifetime.
+
+#### Trait Implementations
+
+##### `impl Any for Stash`
+
+- <span id="stash-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Stash`
+
+- <span id="stash-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Stash`
+
+- <span id="stash-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Stash`
+
+- <span id="stash-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Stash`
+
+- <span id="stash-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Stash`
+
+- <span id="stash-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="stash-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Stash`
+
+- <span id="stash-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="stash-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 

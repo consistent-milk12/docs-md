@@ -25,6 +25,50 @@ struct Align8<T>(T);
 
 *Defined in [`unicode-ident-1.0.22/src/tables.rs:8`](../../../.source_1765521767/unicode-ident-1.0.22/src/tables.rs#L8)*
 
+#### Trait Implementations
+
+##### `impl<T> Any for Align8<T>`
+
+- <span id="align8-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Align8<T>`
+
+- <span id="align8-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Align8<T>`
+
+- <span id="align8-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Align8<T>`
+
+- <span id="align8-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Align8<T>`
+
+- <span id="align8-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<T, U> TryFrom for Align8<T>`
+
+- <span id="align8-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="align8-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Align8<T>`
+
+- <span id="align8-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="align8-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ### `Align64<T>`
 
 ```rust
@@ -32,6 +76,50 @@ struct Align64<T>(T);
 ```
 
 *Defined in [`unicode-ident-1.0.22/src/tables.rs:10`](../../../.source_1765521767/unicode-ident-1.0.22/src/tables.rs#L10)*
+
+#### Trait Implementations
+
+##### `impl<T> Any for Align64<T>`
+
+- <span id="align64-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Align64<T>`
+
+- <span id="align64-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Align64<T>`
+
+- <span id="align64-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Align64<T>`
+
+- <span id="align64-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for Align64<T>`
+
+- <span id="align64-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<T, U> TryFrom for Align64<T>`
+
+- <span id="align64-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="align64-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for Align64<T>`
+
+- <span id="align64-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="align64-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Constants
 

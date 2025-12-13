@@ -33,9 +33,39 @@ An iterator for the relocations in an [`XcoffSection`](super::XcoffSection).
 
 #### Trait Implementations
 
+##### `impl Any for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffrelocationiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffrelocationiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffrelocationiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Xcoff, R> Debug for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xcoffrelocationiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffrelocationiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffrelocationiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
@@ -43,13 +73,25 @@ An iterator for the relocations in an [`XcoffSection`](super::XcoffSection).
 
 - <span id="xcoffrelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="xcoffrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="xcoffrelocationiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Xcoff, R> Iterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffrelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
-- <span id="xcoffrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="xcoffrelocationiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffrelocationiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="xcoffrelocationiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
+
+- <span id="xcoffrelocationiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="xcoffrelocationiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

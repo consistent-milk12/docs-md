@@ -80,11 +80,45 @@ job is actually stolen into a different thread.
 
 #### Trait Implementations
 
+##### `impl Any for Splitter`
+
+- <span id="splitter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Splitter`
+
+- <span id="splitter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Splitter`
+
+- <span id="splitter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Splitter`
 
 - <span id="splitter-clone"></span>`fn clone(&self) -> Splitter` — [`Splitter`](#splitter)
 
+##### `impl CloneToUninit for Splitter`
+
+- <span id="splitter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Splitter`
+
+##### `impl<T> From for Splitter`
+
+- <span id="splitter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Splitter`
+
+- <span id="splitter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Splitter`
 
@@ -94,13 +128,33 @@ job is actually stolen into a different thread.
 
 - <span id="splitter-pointable-type-init"></span>`type Init = T`
 
-- <span id="splitter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitter-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="splitter-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitter-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="splitter-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitter-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="splitter-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="splitter-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for Splitter`
+
+- <span id="splitter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="splitter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="splitter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Splitter`
+
+- <span id="splitter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="splitter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Splitter`
+
+- <span id="splitter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="splitter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LengthSplitter`
 
@@ -127,15 +181,67 @@ into account the remaining length of the iterator.
 
 - <span id="lengthsplitter-new"></span>`fn new(min: usize, max: usize, len: usize) -> LengthSplitter` — [`LengthSplitter`](#lengthsplitter)
 
+  Creates a new splitter based on lengths.
+
+  
+
+  The `min` is a hard lower bound.  We'll never split below that, but
+
+  of course an iterator might start out smaller already.
+
+  
+
+  The `max` is an upper bound on the working size, used to determine
+
+  the minimum number of times we need to split to get under that limit.
+
+  The adaptive algorithm may very well split even further, but never
+
+  smaller than the `min`.
+
 - <span id="lengthsplitter-try-split"></span>`fn try_split(&mut self, len: usize, stolen: bool) -> bool`
 
 #### Trait Implementations
+
+##### `impl Any for LengthSplitter`
+
+- <span id="lengthsplitter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LengthSplitter`
+
+- <span id="lengthsplitter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LengthSplitter`
+
+- <span id="lengthsplitter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for LengthSplitter`
 
 - <span id="lengthsplitter-clone"></span>`fn clone(&self) -> LengthSplitter` — [`LengthSplitter`](#lengthsplitter)
 
+##### `impl CloneToUninit for LengthSplitter`
+
+- <span id="lengthsplitter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for LengthSplitter`
+
+##### `impl<T> From for LengthSplitter`
+
+- <span id="lengthsplitter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for LengthSplitter`
+
+- <span id="lengthsplitter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for LengthSplitter`
 
@@ -145,13 +251,33 @@ into account the remaining length of the iterator.
 
 - <span id="lengthsplitter-pointable-type-init"></span>`type Init = T`
 
-- <span id="lengthsplitter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="lengthsplitter-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="lengthsplitter-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="lengthsplitter-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="lengthsplitter-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="lengthsplitter-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="lengthsplitter-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="lengthsplitter-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl ToOwned for LengthSplitter`
+
+- <span id="lengthsplitter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="lengthsplitter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="lengthsplitter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LengthSplitter`
+
+- <span id="lengthsplitter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lengthsplitter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LengthSplitter`
+
+- <span id="lengthsplitter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lengthsplitter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

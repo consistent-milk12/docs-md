@@ -42,6 +42,50 @@ struct FloatingDecimal32 {
 
 *Defined in [`ryu-1.0.20/src/f2s.rs:32-37`](../../../.source_1765521767/ryu-1.0.20/src/f2s.rs#L32-L37)*
 
+#### Trait Implementations
+
+##### `impl Any for FloatingDecimal32`
+
+- <span id="floatingdecimal32-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FloatingDecimal32`
+
+- <span id="floatingdecimal32-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FloatingDecimal32`
+
+- <span id="floatingdecimal32-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for FloatingDecimal32`
+
+- <span id="floatingdecimal32-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for FloatingDecimal32`
+
+- <span id="floatingdecimal32-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for FloatingDecimal32`
+
+- <span id="floatingdecimal32-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="floatingdecimal32-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FloatingDecimal32`
+
+- <span id="floatingdecimal32-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="floatingdecimal32-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
+
 ## Functions
 
 ### `f2d`

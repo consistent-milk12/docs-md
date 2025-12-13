@@ -61,13 +61,151 @@ See [`scope()`](#scope) for more information.
 
 - <span id="scope-spawn"></span>`fn spawn<BODY>(&self, body: BODY)`
 
+  Spawns a job into the fork-join scope `self`. This job will
+
+  execute sometime before the fork-join scope completes.  The
+
+  job is specified as a closure, and this closure receives its
+
+  own reference to the scope `self` as argument. This can be
+
+  used to inject new jobs into `self`.
+
+  
+
+  # Returns
+
+  
+
+  Nothing. The spawned closures cannot pass back values to the
+
+  caller directly, though they can write to local variables on
+
+  the stack (if those variables outlive the scope) or
+
+  communicate through shared channels.
+
+  
+
+  (The intention is to eventually integrate with Rust futures to
+
+  support spawns of functions that compute a value.)
+
+  
+
+  # Examples
+
+  
+
+  ```rust
+
+  use rayon_core as rayon;
+
+  let mut value_a = None;
+
+  let mut value_b = None;
+
+  let mut value_c = None;
+
+  rayon::scope(|s| {
+
+      s.spawn(|s1| {
+
+            // ^ this is the same scope as `s`; this handle `s1`
+
+            //   is intended for use by the spawned task,
+
+            //   since scope handles cannot cross thread boundaries.
+
+  
+
+          value_a = Some(22);
+
+  
+
+          // the scope `s` will not end until all these tasks are done
+
+          s1.spawn(|_| {
+
+              value_b = Some(44);
+
+          });
+
+      });
+
+  
+
+      s.spawn(|_| {
+
+          value_c = Some(66);
+
+      });
+
+  });
+
+  assert_eq!(value_a, Some(22));
+
+  assert_eq!(value_b, Some(44));
+
+  assert_eq!(value_c, Some(66));
+
+  ```
+
+  
+
+  # See also
+
+  
+
+  The [`scope` function] has more extensive documentation about
+
+  task spawning.
+
 - <span id="scope-spawn-broadcast"></span>`fn spawn_broadcast<BODY>(&self, body: BODY)`
+
+  Spawns a job into every thread of the fork-join scope `self`. This job will
+
+  execute on each thread sometime before the fork-join scope completes.  The
+
+  job is specified as a closure, and this closure receives its own reference
+
+  to the scope `self` as argument, as well as a `BroadcastContext`.
 
 #### Trait Implementations
 
+##### `impl Any for Scope<'scope>`
+
+- <span id="scope-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Scope<'scope>`
+
+- <span id="scope-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Scope<'scope>`
+
+- <span id="scope-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Scope<'scope>`
 
-- <span id="scope-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scope-debug-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Scope<'scope>`
+
+- <span id="scope-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Scope<'scope>`
+
+- <span id="scope-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for Scope<'scope>`
 
@@ -75,13 +213,25 @@ See [`scope()`](#scope) for more information.
 
 - <span id="scope-pointable-type-init"></span>`type Init = T`
 
-- <span id="scope-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="scope-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="scope-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="scope-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="scope-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="scope-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="scope-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="scope-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for Scope<'scope>`
+
+- <span id="scope-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="scope-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Scope<'scope>`
+
+- <span id="scope-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="scope-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ScopeFifo<'scope>`
 
@@ -104,13 +254,73 @@ See [`scope_fifo()`](#scope-fifo) for more information.
 
 - <span id="scopefifo-spawn-fifo"></span>`fn spawn_fifo<BODY>(&self, body: BODY)`
 
+  Spawns a job into the fork-join scope `self`. This job will
+
+  execute sometime before the fork-join scope completes.  The
+
+  job is specified as a closure, and this closure receives its
+
+  own reference to the scope `self` as argument. This can be
+
+  used to inject new jobs into `self`.
+
+  
+
+  # See also
+
+  
+
+  This method is akin to `Scope::spawn()`, but with a FIFO
+
+  priority.  The [`scope_fifo` function] has more details about
+
+  this distinction.
+
 - <span id="scopefifo-spawn-broadcast"></span>`fn spawn_broadcast<BODY>(&self, body: BODY)`
+
+  Spawns a job into every thread of the fork-join scope `self`. This job will
+
+  execute on each thread sometime before the fork-join scope completes.  The
+
+  job is specified as a closure, and this closure receives its own reference
+
+  to the scope `self` as argument, as well as a `BroadcastContext`.
 
 #### Trait Implementations
 
+##### `impl Any for ScopeFifo<'scope>`
+
+- <span id="scopefifo-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ScopeFifo<'scope>`
+
+- <span id="scopefifo-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ScopeFifo<'scope>`
+
+- <span id="scopefifo-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ScopeFifo<'scope>`
 
-- <span id="scopefifo-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scopefifo-debug-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ScopeFifo<'scope>`
+
+- <span id="scopefifo-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ScopeFifo<'scope>`
+
+- <span id="scopefifo-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for ScopeFifo<'scope>`
 
@@ -118,13 +328,25 @@ See [`scope_fifo()`](#scope-fifo) for more information.
 
 - <span id="scopefifo-pointable-type-init"></span>`type Init = T`
 
-- <span id="scopefifo-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="scopefifo-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="scopefifo-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="scopefifo-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="scopefifo-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="scopefifo-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="scopefifo-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="scopefifo-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for ScopeFifo<'scope>`
+
+- <span id="scopefifo-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="scopefifo-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ScopeFifo<'scope>`
+
+- <span id="scopefifo-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="scopefifo-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ScopeBase<'scope>`
 
@@ -166,15 +388,31 @@ struct ScopeBase<'scope> {
 
 - <span id="scopebase-new"></span>`fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](../registry/index.md#workerthread), [`Registry`](../registry/index.md#registry)
 
+  Creates the base of a new scope for the given registry
+
 - <span id="scopebase-heap-job-ref"></span>`fn heap_job_ref<FUNC>(&self, job: Box<HeapJob<FUNC>>) -> JobRef` — [`HeapJob`](../job/index.md#heapjob), [`JobRef`](../job/index.md#jobref)
 
 - <span id="scopebase-inject-broadcast"></span>`fn inject_broadcast<FUNC>(&self, job: Arc<ArcJob<FUNC>>)` — [`ArcJob`](../job/index.md#arcjob)
 
 - <span id="scopebase-complete"></span>`fn complete<FUNC, R>(&self, owner: Option<&WorkerThread>, func: FUNC) -> R` — [`WorkerThread`](../registry/index.md#workerthread)
 
+  Executes `func` as a job, either aborting or executing as
+
+  appropriate.
+
 - <span id="scopebase-execute-job"></span>`unsafe fn execute_job<FUNC>(this: *const Self, func: FUNC)`
 
+  Executes `func` as a job, either aborting or executing as
+
+  appropriate.
+
 - <span id="scopebase-execute-job-closure"></span>`unsafe fn execute_job_closure<FUNC, R>(this: *const Self, func: FUNC) -> Option<R>`
+
+  Executes `func` as a job in scope. Adjusts the "job completed"
+
+  counters and also catches any panic and stores it into
+
+  `scope`.
 
 - <span id="scopebase-job-panicked"></span>`fn job_panicked(&self, err: Box<dyn Any + Send>)`
 
@@ -182,19 +420,61 @@ struct ScopeBase<'scope> {
 
 #### Trait Implementations
 
+##### `impl Any for ScopeBase<'scope>`
+
+- <span id="scopebase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ScopeBase<'scope>`
+
+- <span id="scopebase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ScopeBase<'scope>`
+
+- <span id="scopebase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for ScopeBase<'scope>`
+
+- <span id="scopebase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ScopeBase<'scope>`
+
+- <span id="scopebase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Pointable for ScopeBase<'scope>`
 
 - <span id="scopebase-pointable-const-align"></span>`const ALIGN: usize`
 
 - <span id="scopebase-pointable-type-init"></span>`type Init = T`
 
-- <span id="scopebase-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="scopebase-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="scopebase-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="scopebase-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="scopebase-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="scopebase-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="scopebase-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="scopebase-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<U> TryFrom for ScopeBase<'scope>`
+
+- <span id="scopebase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="scopebase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ScopeBase<'scope>`
+
+- <span id="scopebase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="scopebase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ScopePtr<T>`
 
@@ -215,23 +495,65 @@ scope jobs that are guaranteed to execute before the scope ends.
 
 #### Trait Implementations
 
+##### `impl<T> Any for ScopePtr<T>`
+
+- <span id="scopeptr-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ScopePtr<T>`
+
+- <span id="scopeptr-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ScopePtr<T>`
+
+- <span id="scopeptr-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for ScopePtr<T>`
+
+- <span id="scopeptr-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for ScopePtr<T>`
+
+- <span id="scopeptr-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T> Pointable for ScopePtr<T>`
 
 - <span id="scopeptr-pointable-const-align"></span>`const ALIGN: usize`
 
 - <span id="scopeptr-pointable-type-init"></span>`type Init = T`
 
-- <span id="scopeptr-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="scopeptr-pointable-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- <span id="scopeptr-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="scopeptr-pointable-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- <span id="scopeptr-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="scopeptr-pointable-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- <span id="scopeptr-drop"></span>`unsafe fn drop(ptr: usize)`
+- <span id="scopeptr-pointable-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: Sync> Send for ScopePtr<T>`
 
 ##### `impl<T: Sync> Sync for ScopePtr<T>`
+
+##### `impl<T, U> TryFrom for ScopePtr<T>`
+
+- <span id="scopeptr-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="scopeptr-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for ScopePtr<T>`
+
+- <span id="scopeptr-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="scopeptr-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

@@ -103,7 +103,7 @@ struct Errno(u16);
 
 `errno`—An error code.
 
-The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../addr2line/index.md),
+The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../cargo_docs_md/error/index.md),
 but only holds an OS error code, and no extra error value.
 
 # References
@@ -130,45 +130,113 @@ but only holds an OS error code, and no extra error value.
 
 - <span id="errno-from-io-error"></span>`fn from_io_error(io_err: &std::io::Error) -> Option<Self>`
 
+  Extract an `Errno` value from a `std::io::Error`.
+
+  
+
+  This isn't a `From` conversion because it's expected to be relatively
+
+  uncommon.
+
 - <span id="errno-raw-os-error"></span>`const fn raw_os_error(self) -> i32`
+
+  Extract the raw OS error number from this error.
 
 - <span id="errno-from-raw-os-error"></span>`const fn from_raw_os_error(raw: i32) -> Self`
 
+  Construct an `Errno` from a raw OS error number.
+
 - <span id="errno-from-errno"></span>`const fn from_errno(raw: u32) -> Self`
 
+  Convert from a C `errno` value (which is positive) to an `Errno`.
+
 #### Trait Implementations
+
+##### `impl Any for Errno`
+
+- <span id="errno-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Errno`
+
+- <span id="errno-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Errno`
+
+- <span id="errno-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Errno`
 
 - <span id="errno-clone"></span>`fn clone(&self) -> Errno` — [`Errno`](../backend/io/errno/index.md#errno)
 
+##### `impl CloneToUninit for Errno`
+
+- <span id="errno-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Errno`
 
 ##### `impl Debug for Errno`
 
-- <span id="errno-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errno-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Errno`
 
-- <span id="errno-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errno-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Errno`
 
 ##### `impl Error for Errno`
 
+##### `impl<T> From for Errno`
+
+- <span id="errno-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for Errno`
 
 - <span id="errno-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Errno`
+
+- <span id="errno-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Errno`
 
-- <span id="errno-eq"></span>`fn eq(&self, other: &Errno) -> bool` — [`Errno`](../backend/io/errno/index.md#errno)
+- <span id="errno-partialeq-eq"></span>`fn eq(&self, other: &Errno) -> bool` — [`Errno`](../backend/io/errno/index.md#errno)
 
 ##### `impl StructuralPartialEq for Errno`
 
+##### `impl ToOwned for Errno`
+
+- <span id="errno-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="errno-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="errno-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Errno`
 
-- <span id="errno-to-string"></span>`fn to_string(&self) -> String`
+- <span id="errno-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Errno`
+
+- <span id="errno-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="errno-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Errno`
+
+- <span id="errno-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="errno-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 
@@ -241,7 +309,7 @@ fn dup<Fd: AsFd>(fd: Fd) -> io::Result<crate::fd::OwnedFd>
 underlying [file description] as `fd`.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup` that does
-set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](#fcntl-dupfd-cloexec).
+set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](../backend/io/syscalls/index.md).
 
 POSIX guarantees that `dup` will use the lowest unused file descriptor,
 however it is not safe in general to rely on this, as file descriptors may
@@ -286,7 +354,7 @@ be subsequently used.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup2` that does
 set `O_CLOEXEC`, use [`dup3`](#dup3) with `DupFlags::CLOEXEC` on platforms which
-support it, or [`fcntl_dupfd_cloexec`](#fcntl-dupfd-cloexec).
+support it, or [`fcntl_dupfd_cloexec`](../backend/io/syscalls/index.md).
 
 For `dup2` to stdin, stdout, and stderr, see `stdio::dup2_stdin`,
 `stdio::dup2_stdout`, and `stdio::dup2_stderr`.

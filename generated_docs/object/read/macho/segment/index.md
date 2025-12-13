@@ -51,9 +51,39 @@ An iterator for the segments in a [`MachOFile`](../index.md).
 
 #### Trait Implementations
 
+##### `impl Any for MachOSegmentIterator<'data, 'file, Mach, R>`
+
+- <span id="machosegmentiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOSegmentIterator<'data, 'file, Mach, R>`
+
+- <span id="machosegmentiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOSegmentIterator<'data, 'file, Mach, R>`
+
+- <span id="machosegmentiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach, R> Debug for MachOSegmentIterator<'data, 'file, Mach, R>`
 
-- <span id="machosegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machosegmentiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOSegmentIterator<'data, 'file, Mach, R>`
+
+- <span id="machosegmentiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOSegmentIterator<'data, 'file, Mach, R>`
+
+- <span id="machosegmentiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachOSegmentIterator<'data, 'file, Mach, R>`
 
@@ -61,13 +91,25 @@ An iterator for the segments in a [`MachOFile`](../index.md).
 
 - <span id="machosegmentiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="machosegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="machosegmentiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<Mach, R> Iterator for MachOSegmentIterator<'data, 'file, Mach, R>`
 
 - <span id="machosegmentiterator-iterator-type-item"></span>`type Item = MachOSegment<'data, 'file, Mach, R>`
 
-- <span id="machosegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="machosegmentiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for MachOSegmentIterator<'data, 'file, Mach, R>`
+
+- <span id="machosegmentiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machosegmentiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOSegmentIterator<'data, 'file, Mach, R>`
+
+- <span id="machosegmentiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machosegmentiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOSegment<'data, 'file, Mach, R>`
 
@@ -91,37 +133,83 @@ Most functionality is provided by the [`ObjectSegment`](../../index.md) trait im
 
 - <span id="machosegment-macho-file"></span>`fn macho_file(&self) -> &'file MachOFile<'data, Mach, R>` — [`MachOFile`](../index.md#machofile)
 
+  Get the Mach-O file containing this segment.
+
 - <span id="machosegment-macho-segment"></span>`fn macho_segment(&self) -> &'data <Mach as >::Segment` — [`MachHeader`](../index.md#machheader)
+
+  Get the raw Mach-O segment structure.
 
 - <span id="machosegment-bytes"></span>`fn bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
 #### Trait Implementations
 
+##### `impl Any for MachOSegment<'data, 'file, Mach, R>`
+
+- <span id="machosegment-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOSegment<'data, 'file, Mach, R>`
+
+- <span id="machosegment-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOSegment<'data, 'file, Mach, R>`
+
+- <span id="machosegment-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach, R> Debug for MachOSegment<'data, 'file, Mach, R>`
 
-- <span id="machosegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machosegment-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOSegment<'data, 'file, Mach, R>`
+
+- <span id="machosegment-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOSegment<'data, 'file, Mach, R>`
+
+- <span id="machosegment-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> ObjectSegment for MachOSegment<'data, 'file, Mach, R>`
 
-- <span id="machosegment-address"></span>`fn address(&self) -> u64`
+- <span id="machosegment-objectsegment-address"></span>`fn address(&self) -> u64`
 
-- <span id="machosegment-size"></span>`fn size(&self) -> u64`
+- <span id="machosegment-objectsegment-size"></span>`fn size(&self) -> u64`
 
-- <span id="machosegment-align"></span>`fn align(&self) -> u64`
+- <span id="machosegment-objectsegment-align"></span>`fn align(&self) -> u64`
 
-- <span id="machosegment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
+- <span id="machosegment-objectsegment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
 
-- <span id="machosegment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
+- <span id="machosegment-objectsegment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
-- <span id="machosegment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md#result)
+- <span id="machosegment-objectsegment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md#result)
 
-- <span id="machosegment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../../index.md#result)
+- <span id="machosegment-objectsegment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../../index.md#result)
 
-- <span id="machosegment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../../../index.md#result)
+- <span id="machosegment-objectsegment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../../../index.md#result)
 
-- <span id="machosegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../../index.md#segmentflags)
+- <span id="machosegment-objectsegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../../index.md#segmentflags)
 
 ##### `impl<Mach, R> Sealed for MachOSegment<'data, 'file, Mach, R>`
+
+##### `impl<U> TryFrom for MachOSegment<'data, 'file, Mach, R>`
+
+- <span id="machosegment-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machosegment-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOSegment<'data, 'file, Mach, R>`
+
+- <span id="machosegment-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machosegment-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>>`
 
@@ -145,15 +233,69 @@ struct MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
+##### `impl Any for MachOSegmentInternal<'data, Mach, R>`
+
+- <span id="machosegmentinternal-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MachOSegmentInternal<'data, Mach, R>`
+
+- <span id="machosegmentinternal-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MachOSegmentInternal<'data, Mach, R>`
+
+- <span id="machosegmentinternal-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<Mach: clone::Clone + MachHeader, R: clone::Clone + ReadRef<'data>> Clone for MachOSegmentInternal<'data, Mach, R>`
 
 - <span id="machosegmentinternal-clone"></span>`fn clone(&self) -> MachOSegmentInternal<'data, Mach, R>` — [`MachOSegmentInternal`](#machosegmentinternal)
+
+##### `impl CloneToUninit for MachOSegmentInternal<'data, Mach, R>`
+
+- <span id="machosegmentinternal-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<Mach: marker::Copy + MachHeader, R: marker::Copy + ReadRef<'data>> Copy for MachOSegmentInternal<'data, Mach, R>`
 
 ##### `impl<Mach: fmt::Debug + MachHeader, R: fmt::Debug + ReadRef<'data>> Debug for MachOSegmentInternal<'data, Mach, R>`
 
-- <span id="machosegmentinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machosegmentinternal-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for MachOSegmentInternal<'data, Mach, R>`
+
+- <span id="machosegmentinternal-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for MachOSegmentInternal<'data, Mach, R>`
+
+- <span id="machosegmentinternal-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for MachOSegmentInternal<'data, Mach, R>`
+
+- <span id="machosegmentinternal-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="machosegmentinternal-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="machosegmentinternal-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for MachOSegmentInternal<'data, Mach, R>`
+
+- <span id="machosegmentinternal-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="machosegmentinternal-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MachOSegmentInternal<'data, Mach, R>`
+
+- <span id="machosegmentinternal-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="machosegmentinternal-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

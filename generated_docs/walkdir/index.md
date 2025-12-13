@@ -215,21 +215,141 @@ operations operate on the symbolic link.
 
 - <span id="direntry-path"></span>`fn path(&self) -> &Path`
 
+  The full path that this entry represents.
+
+  
+
+  The full path is created by joining the parents of this entry up to the
+
+  root initially given to `WalkDir::new` with the file name of this
+
+  entry.
+
+  
+
+  Note that this *always* returns the path reported by the underlying
+
+  directory entry, even when symbolic links are followed. To get the
+
+  target path, use `path_is_symlink` to (cheaply) check if this entry
+
+  corresponds to a symbolic link, and `std::fs::read_link` to resolve
+
+  the target.
+
+  
+
+  
+
 - <span id="direntry-into-path"></span>`fn into_path(self) -> PathBuf`
+
+  The full path that this entry represents.
+
+  
+
+  Analogous to [`path`](#path), but moves ownership of the path.
 
 - <span id="direntry-path-is-symlink"></span>`fn path_is_symlink(&self) -> bool`
 
+  Returns `true` if and only if this entry was created from a symbolic
+
+  link. This is unaffected by the `follow_links` setting.
+
+  
+
+  When `true`, the value returned by the [`path`](#path) method is a
+
+  symbolic link name. To get the full target path, you must call
+
+  `std::fs::read_link(entry.path())`.
+
+  
+
+  
+
 - <span id="direntry-metadata"></span>`fn metadata(&self) -> Result<fs::Metadata>` — [`Result`](#result)
+
+  Return the metadata for the file that this entry points to.
+
+  
+
+  This will follow symbolic links if and only if the [`WalkDir`](#walkdir) value
+
+  has `follow_links` enabled.
+
+  
+
+  # Platform behavior
+
+  
+
+  This always calls `std::fs::symlink_metadata`.
+
+  
+
+  If this entry is a symbolic link and `follow_links` is enabled, then
+
+  `std::fs::metadata` is called instead.
+
+  
+
+  # Errors
+
+  
+
+  Similar to `std::fs::metadata`, returns errors for path values that
+
+  the program does not have permissions to access or if the path does not
+
+  exist.
+
+  
+
+  
+
+  
 
 - <span id="direntry-metadata-internal"></span>`fn metadata_internal(&self) -> Result<fs::Metadata>` — [`Result`](#result)
 
 - <span id="direntry-file-type"></span>`fn file_type(&self) -> fs::FileType`
 
+  Return the file type for the file that this entry points to.
+
+  
+
+  If this is a symbolic link and `follow_links` is `true`, then this
+
+  returns the type of the target.
+
+  
+
+  This never makes any system calls.
+
 - <span id="direntry-file-name"></span>`fn file_name(&self) -> &OsStr`
+
+  Return the file name of this entry.
+
+  
+
+  If this entry has no file name (e.g., `/`), then the full path is
+
+  returned.
 
 - <span id="direntry-depth"></span>`fn depth(&self) -> usize`
 
+  Returns the depth at which this entry was created relative to the root.
+
+  
+
+  The smallest depth is `0` and always corresponds to the path given
+
+  to the `new` function on `WalkDir`. Its direct descendents have depth
+
+  `1`, and their descendents have depth `2`, and so on.
+
 - <span id="direntry-is-dir"></span>`fn is_dir(&self) -> bool`
+
+  Returns true if and only if this entry points to a directory.
 
 - <span id="direntry-from-entry"></span>`fn from_entry(depth: usize, ent: &fs::DirEntry) -> Result<DirEntry>` — [`Result`](#result)
 
@@ -237,17 +357,75 @@ operations operate on the symbolic link.
 
 #### Trait Implementations
 
+##### `impl Any for DirEntry`
+
+- <span id="direntry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DirEntry`
+
+- <span id="direntry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DirEntry`
+
+- <span id="direntry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for DirEntry`
 
 - <span id="direntry-clone"></span>`fn clone(&self) -> DirEntry` — [`DirEntry`](dent/index.md#direntry)
 
+##### `impl CloneToUninit for DirEntry`
+
+- <span id="direntry-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for DirEntry`
 
-- <span id="direntry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="direntry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DirEntryExt for DirEntry`
 
-- <span id="direntry-ino"></span>`fn ino(&self) -> u64`
+- <span id="direntry-direntryext-ino"></span>`fn ino(&self) -> u64`
+
+  Returns the underlying `d_ino` field in the contained `dirent`
+
+  structure.
+
+##### `impl<T> From for DirEntry`
+
+- <span id="direntry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DirEntry`
+
+- <span id="direntry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for DirEntry`
+
+- <span id="direntry-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="direntry-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="direntry-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for DirEntry`
+
+- <span id="direntry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="direntry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DirEntry`
+
+- <span id="direntry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="direntry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Error`
 
@@ -283,13 +461,171 @@ accessing the underlying error data in a structured form.
 
 - <span id="error-path"></span>`fn path(&self) -> Option<&Path>`
 
+  Returns the path associated with this error if one exists.
+
+  
+
+  For example, if an error occurred while opening a directory handle,
+
+  the error will include the path passed to `std::fs::read_dir`.
+
 - <span id="error-loop-ancestor"></span>`fn loop_ancestor(&self) -> Option<&Path>`
+
+  Returns the path at which a cycle was detected.
+
+  
+
+  If no cycle was detected, [`None`](#none) is returned.
+
+  
+
+  A cycle is detected when a directory entry is equivalent to one of
+
+  its ancestors.
+
+  
+
+  To get the path to the child directory entry in the cycle, use the
+
+  [`path`](#path) method.
+
+  
 
 - <span id="error-depth"></span>`fn depth(&self) -> usize`
 
+  Returns the depth at which this error occurred relative to the root.
+
+  
+
+  The smallest depth is `0` and always corresponds to the path given to
+
+  the `new` function on [`WalkDir`](#walkdir). Its direct descendents have depth
+
+  `1`, and their descendents have depth `2`, and so on.
+
+  
+
 - <span id="error-io-error"></span>`fn io_error(&self) -> Option<&io::Error>`
 
+  Inspect the original `io::Error` if there is one.
+
+  
+
+  [`None`](#none) is returned if the [`Error`](error/index.md) doesn't correspond to an
+
+  `io::Error`. This might happen, for example, when the error was
+
+  produced because a cycle was found in the directory tree while
+
+  following symbolic links.
+
+  
+
+  This method returns a borrowed value that is bound to the lifetime of the [`Error`](error/index.md). To
+
+  obtain an owned value, the `into_io_error` can be used instead.
+
+  
+
+  > This is the original `io::Error` and is _not_ the same as
+
+  > [`impl From<Error> for std::io::Error`][impl] which contains additional context about the
+
+  error.
+
+  
+
+  # Example
+
+  
+
+  ```rust,no_run
+
+  use std::io;
+
+  use std::path::Path;
+
+  
+
+  use walkdir::WalkDir;
+
+  
+
+  for entry in WalkDir::new("foo") {
+
+      match entry {
+
+          Ok(entry) => println!("{}", entry.path().display()),
+
+          Err(err) => {
+
+              let path = err.path().unwrap_or(Path::new("")).display();
+
+              println!("failed to access entry {}", path);
+
+              if let Some(inner) = err.io_error() {
+
+                  match inner.kind() {
+
+                      io::ErrorKind::InvalidData => {
+
+                          println!(
+
+                              "entry contains invalid data: {}",
+
+                              inner)
+
+                      }
+
+                      io::ErrorKind::PermissionDenied => {
+
+                          println!(
+
+                              "Missing permission to read entry: {}",
+
+                              inner)
+
+                      }
+
+                      _ => {
+
+                          println!(
+
+                              "Unexpected error occurred: {}",
+
+                              inner)
+
+                      }
+
+                  }
+
+              }
+
+          }
+
+      }
+
+  }
+
+  ```
+
+  
+
+  
+
+  
+
+  
+
+  
+
 - <span id="error-into-io-error"></span>`fn into_io_error(self) -> Option<io::Error>`
+
+  Similar to `io_error` except consumes self to convert to the original
+
+  `io::Error` if one exists.
+
+  
 
 - <span id="error-from-path"></span>`fn from_path(depth: usize, pb: PathBuf, err: io::Error) -> Self`
 
@@ -301,25 +637,67 @@ accessing the underlying error data in a structured form.
 
 #### Trait Implementations
 
+##### `impl Any for Error`
+
+- <span id="error-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Error`
+
+- <span id="error-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Error`
+
+- <span id="error-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Error`
 
-- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for Error`
 
-- <span id="error-description"></span>`fn description(&self) -> &str`
+- <span id="error-error-description"></span>`fn description(&self) -> &str`
 
-- <span id="error-cause"></span>`fn cause(&self) -> Option<&dyn error::Error>`
+- <span id="error-error-cause"></span>`fn cause(&self) -> Option<&dyn error::Error>`
 
-- <span id="error-source"></span>`fn source(&self) -> Option<&dyn error::Error>`
+- <span id="error-error-source"></span>`fn source(&self) -> Option<&dyn error::Error>`
+
+##### `impl<T> From for Error`
+
+- <span id="error-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Error`
+
+- <span id="error-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for Error`
 
-- <span id="error-to-string"></span>`fn to_string(&self) -> String`
+- <span id="error-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Error`
+
+- <span id="error-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="error-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Error`
+
+- <span id="error-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="error-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `WalkDir`
 
@@ -405,31 +783,399 @@ error is reported.
 
 - <span id="walkdir-new"></span>`fn new<P: AsRef<Path>>(root: P) -> Self`
 
+  Create a builder for a recursive directory iterator starting at the
+
+  file path `root`. If `root` is a directory, then it is the first item
+
+  yielded by the iterator. If `root` is a file, then it is the first
+
+  and only item yielded by the iterator. If `root` is a symlink, then it
+
+  is always followed for the purposes of directory traversal. (A root
+
+  `DirEntry` still obeys its documentation with respect to symlinks and
+
+  the `follow_links` setting.)
+
 - <span id="walkdir-min-depth"></span>`fn min_depth(self, depth: usize) -> Self`
+
+  Set the minimum depth of entries yielded by the iterator.
+
+  
+
+  The smallest depth is `0` and always corresponds to the path given
+
+  to the `new` function on this type. Its direct descendents have depth
+
+  `1`, and their descendents have depth `2`, and so on.
 
 - <span id="walkdir-max-depth"></span>`fn max_depth(self, depth: usize) -> Self`
 
+  Set the maximum depth of entries yield by the iterator.
+
+  
+
+  The smallest depth is `0` and always corresponds to the path given
+
+  to the `new` function on this type. Its direct descendents have depth
+
+  `1`, and their descendents have depth `2`, and so on.
+
+  
+
+  Note that this will not simply filter the entries of the iterator, but
+
+  it will actually avoid descending into directories when the depth is
+
+  exceeded.
+
 - <span id="walkdir-follow-links"></span>`fn follow_links(self, yes: bool) -> Self`
+
+  Follow symbolic links. By default, this is disabled.
+
+  
+
+  When `yes` is `true`, symbolic links are followed as if they were
+
+  normal directories and files. If a symbolic link is broken or is
+
+  involved in a loop, an error is yielded.
+
+  
+
+  When enabled, the yielded [`DirEntry`](dent/index.md) values represent the target of
+
+  the link while the path corresponds to the link. See the [`DirEntry`](dent/index.md)
+
+  type for more details.
 
 - <span id="walkdir-follow-root-links"></span>`fn follow_root_links(self, yes: bool) -> Self`
 
+  Follow symbolic links if these are the root of the traversal.
+
+  By default, this is enabled.
+
+  
+
+  When `yes` is `true`, symbolic links on root paths are followed
+
+  which is effective if the symbolic link points to a directory.
+
+  If a symbolic link is broken or is involved in a loop, an error is yielded
+
+  as the first entry of the traversal.
+
+  
+
+  When enabled, the yielded [`DirEntry`](dent/index.md) values represent the target of
+
+  the link while the path corresponds to the link. See the [`DirEntry`](dent/index.md)
+
+  type for more details, and all future entries will be contained within
+
+  the resolved directory behind the symbolic link of the root path.
+
 - <span id="walkdir-max-open"></span>`fn max_open(self, n: usize) -> Self`
+
+  Set the maximum number of simultaneously open file descriptors used
+
+  by the iterator.
+
+  
+
+  `n` must be greater than or equal to `1`. If `n` is `0`, then it is set
+
+  to `1` automatically. If this is not set, then it defaults to some
+
+  reasonably low number.
+
+  
+
+  This setting has no impact on the results yielded by the iterator
+
+  (even when `n` is `1`). Instead, this setting represents a trade off
+
+  between scarce resources (file descriptors) and memory. Namely, when
+
+  the maximum number of file descriptors is reached and a new directory
+
+  needs to be opened to continue iteration, then a previous directory
+
+  handle is closed and has its unyielded entries stored in memory. In
+
+  practice, this is a satisfying trade off because it scales with respect
+
+  to the *depth* of your file tree. Therefore, low values (even `1`) are
+
+  acceptable.
+
+  
+
+  Note that this value does not impact the number of system calls made by
+
+  an exhausted iterator.
+
+  
+
+  # Platform behavior
+
+  
+
+  On Windows, if `follow_links` is enabled, then this limit is not
+
+  respected. In particular, the maximum number of file descriptors opened
+
+  is proportional to the depth of the directory tree traversed.
 
 - <span id="walkdir-sort-by"></span>`fn sort_by<F>(self, cmp: F) -> Self`
 
+  Set a function for sorting directory entries with a comparator
+
+  function.
+
+  
+
+  If a compare function is set, the resulting iterator will return all
+
+  paths in sorted order. The compare function will be called to compare
+
+  entries from the same directory.
+
+  
+
+  ```rust,no_run
+
+  use std::cmp;
+
+  use std::ffi::OsString;
+
+  use walkdir::WalkDir;
+
+  
+
+  WalkDir::new("foo").sort_by(|a,b| a.file_name().cmp(b.file_name()));
+
+  ```
+
 - <span id="walkdir-sort-by-key"></span>`fn sort_by_key<K, F>(self, cmp: F) -> Self`
+
+  Set a function for sorting directory entries with a key extraction
+
+  function.
+
+  
+
+  If a compare function is set, the resulting iterator will return all
+
+  paths in sorted order. The compare function will be called to compare
+
+  entries from the same directory.
+
+  
+
+  ```rust,no_run
+
+  use std::cmp;
+
+  use std::ffi::OsString;
+
+  use walkdir::WalkDir;
+
+  
+
+  WalkDir::new("foo").sort_by_key(|a| a.file_name().to_owned());
+
+  ```
 
 - <span id="walkdir-sort-by-file-name"></span>`fn sort_by_file_name(self) -> Self`
 
+  Sort directory entries by file name, to ensure a deterministic order.
+
+  
+
+  This is a convenience function for calling `Self::sort_by()`.
+
+  
+
+  ```rust,no_run
+
+  use walkdir::WalkDir;
+
+  
+
+  WalkDir::new("foo").sort_by_file_name();
+
+  ```
+
 - <span id="walkdir-contents-first"></span>`fn contents_first(self, yes: bool) -> Self`
+
+  Yield a directory's contents before the directory itself. By default,
+
+  this is disabled.
+
+  
+
+  When `yes` is `false` (as is the default), the directory is yielded
+
+  before its contents are read. This is useful when, e.g. you want to
+
+  skip processing of some directories.
+
+  
+
+  When `yes` is `true`, the iterator yields the contents of a directory
+
+  before yielding the directory itself. This is useful when, e.g. you
+
+  want to recursively delete a directory.
+
+  
+
+  # Example
+
+  
+
+  Assume the following directory tree:
+
+  
+
+  ```text
+
+  foo/
+
+    abc/
+
+      qrs
+
+      tuv
+
+    def/
+
+  ```
+
+  
+
+  With contents_first disabled (the default), the following code visits
+
+  the directory tree in depth-first order:
+
+  
+
+  ```no_run
+
+  use walkdir::WalkDir;
+
+  
+
+  for entry in WalkDir::new("foo") {
+
+      let entry = entry.unwrap();
+
+      println!("{}", entry.path().display());
+
+  }
+
+  
+
+  // foo
+
+  // foo/abc
+
+  // foo/abc/qrs
+
+  // foo/abc/tuv
+
+  // foo/def
+
+  ```
+
+  
+
+  With contents_first enabled:
+
+  
+
+  ```no_run
+
+  use walkdir::WalkDir;
+
+  
+
+  for entry in WalkDir::new("foo").contents_first(true) {
+
+      let entry = entry.unwrap();
+
+      println!("{}", entry.path().display());
+
+  }
+
+  
+
+  // foo/abc/qrs
+
+  // foo/abc/tuv
+
+  // foo/abc
+
+  // foo/def
+
+  // foo
+
+  ```
 
 - <span id="walkdir-same-file-system"></span>`fn same_file_system(self, yes: bool) -> Self`
 
+  Do not cross file system boundaries.
+
+  
+
+  When this option is enabled, directory traversal will not descend into
+
+  directories that are on a different file system from the root path.
+
+  
+
+  Currently, this option is only supported on Unix and Windows. If this
+
+  option is used on an unsupported platform, then directory traversal
+
+  will immediately return an error and will not yield any entries.
+
 #### Trait Implementations
+
+##### `impl Any for WalkDir`
+
+- <span id="walkdir-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WalkDir`
+
+- <span id="walkdir-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WalkDir`
+
+- <span id="walkdir-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for WalkDir`
 
-- <span id="walkdir-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="walkdir-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for WalkDir`
+
+- <span id="walkdir-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WalkDir`
+
+- <span id="walkdir-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for WalkDir`
 
@@ -437,7 +1183,19 @@ error is reported.
 
 - <span id="walkdir-intoiterator-type-intoiter"></span>`type IntoIter = IntoIter`
 
-- <span id="walkdir-into-iter"></span>`fn into_iter(self) -> IntoIter` — [`IntoIter`](#intoiter)
+- <span id="walkdir-intoiterator-into-iter"></span>`fn into_iter(self) -> IntoIter` — [`IntoIter`](#intoiter)
+
+##### `impl<U> TryFrom for WalkDir`
+
+- <span id="walkdir-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="walkdir-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WalkDir`
+
+- <span id="walkdir-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="walkdir-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `WalkDirOptions`
 
@@ -458,9 +1216,51 @@ struct WalkDirOptions {
 
 #### Trait Implementations
 
+##### `impl Any for WalkDirOptions`
+
+- <span id="walkdiroptions-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for WalkDirOptions`
+
+- <span id="walkdiroptions-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for WalkDirOptions`
+
+- <span id="walkdiroptions-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for WalkDirOptions`
 
-- <span id="walkdiroptions-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> result::Result<(), fmt::Error>`
+- <span id="walkdiroptions-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> result::Result<(), fmt::Error>`
+
+##### `impl<T> From for WalkDirOptions`
+
+- <span id="walkdiroptions-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for WalkDirOptions`
+
+- <span id="walkdiroptions-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for WalkDirOptions`
+
+- <span id="walkdiroptions-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="walkdiroptions-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for WalkDirOptions`
+
+- <span id="walkdiroptions-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="walkdiroptions-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `IntoIter`
 
@@ -549,7 +1349,177 @@ The order of elements yielded by this iterator is unspecified.
 
 - <span id="intoiter-skip-current-dir"></span>`fn skip_current_dir(&mut self)`
 
+  Skips the current directory.
+
+  
+
+  This causes the iterator to stop traversing the contents of the least
+
+  recently yielded directory. This means any remaining entries in that
+
+  directory will be skipped (including sub-directories).
+
+  
+
+  Note that the ergonomics of this method are questionable since it
+
+  borrows the iterator mutably. Namely, you must write out the looping
+
+  condition manually. For example, to skip hidden entries efficiently on
+
+  unix systems:
+
+  
+
+  ```no_run
+
+  use walkdir::{DirEntry, WalkDir};
+
+  
+
+  fn is_hidden(entry: &DirEntry) -> bool {
+
+      entry.file_name()
+
+           .to_str()
+
+           .map(|s| s.starts_with("."))
+
+           .unwrap_or(false)
+
+  }
+
+  
+
+  let mut it = WalkDir::new("foo").into_iter();
+
+  loop {
+
+      let entry = match it.next() {
+
+          None => break,
+
+          Some(Err(err)) => panic!("ERROR: {}", err),
+
+          Some(Ok(entry)) => entry,
+
+      };
+
+      if is_hidden(&entry) {
+
+          if entry.file_type().is_dir() {
+
+              it.skip_current_dir();
+
+          }
+
+          continue;
+
+      }
+
+      println!("{}", entry.path().display());
+
+  }
+
+  ```
+
+  
+
+  You may find it more convenient to use the `filter_entry` iterator
+
+  adapter. (See its documentation for the same example functionality as
+
+  above.)
+
 - <span id="intoiter-filter-entry"></span>`fn filter_entry<P>(self, predicate: P) -> FilterEntry<Self, P>` — [`FilterEntry`](#filterentry)
+
+  Yields only entries which satisfy the given predicate and skips
+
+  descending into directories that do not satisfy the given predicate.
+
+  
+
+  The predicate is applied to all entries. If the predicate is
+
+  true, iteration carries on as normal. If the predicate is false, the
+
+  entry is ignored and if it is a directory, it is not descended into.
+
+  
+
+  This is often more convenient to use than `skip_current_dir`. For
+
+  example, to skip hidden files and directories efficiently on unix
+
+  systems:
+
+  
+
+  ```no_run
+
+  use walkdir::{DirEntry, WalkDir};
+
+  use walkdir::Error;
+
+  
+
+  fn is_hidden(entry: &DirEntry) -> bool {
+
+      entry.file_name()
+
+           .to_str()
+
+           .map(|s| s.starts_with("."))
+
+           .unwrap_or(false)
+
+  }
+
+  
+
+  fn try_main() -> Result<(), Error> {
+
+  for entry in WalkDir::new("foo")
+
+                       .into_iter()
+
+                       .filter_entry(|e| !is_hidden(e)) {
+
+      println!("{}", entry?.path().display());
+
+  }
+
+  Ok(())
+
+  }
+
+  ```
+
+  
+
+  Note that the iterator will still yield errors for reading entries that
+
+  may not satisfy the predicate.
+
+  
+
+  Note that entries skipped with `min_depth` and `max_depth` are not
+
+  passed to this predicate.
+
+  
+
+  Note that if the iterator has `contents_first` enabled, then this
+
+  method is no different than calling the standard `Iterator::filter`
+
+  method (because directory entries are yielded after they've been
+
+  descended into).
+
+  
+
+  
 
 - <span id="intoiter-handle-entry"></span>`fn handle_entry(&mut self, dent: DirEntry) -> Option<Result<DirEntry>>` — [`DirEntry`](dent/index.md#direntry), [`Result`](#result)
 
@@ -569,11 +1539,41 @@ The order of elements yielded by this iterator is unspecified.
 
 #### Trait Implementations
 
+##### `impl Any for IntoIter`
+
+- <span id="intoiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for IntoIter`
+
+- <span id="intoiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for IntoIter`
+
+- <span id="intoiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for IntoIter`
 
-- <span id="intoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="intoiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for IntoIter`
+
+- <span id="intoiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FusedIterator for IntoIter`
+
+##### `impl<U> Into for IntoIter`
+
+- <span id="intoiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IntoIter`
 
@@ -581,13 +1581,37 @@ The order of elements yielded by this iterator is unspecified.
 
 - <span id="intoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="intoiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IntoIter`
 
 - <span id="intoiter-iterator-type-item"></span>`type Item = Result<DirEntry, Error>`
 
-- <span id="intoiter-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md#direntry)
+- <span id="intoiter-iterator-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md#direntry)
+
+  Advances the iterator and returns the next value.
+
+  
+
+  # Errors
+
+  
+
+  If the iterator fails to retrieve the next value, this method returns
+
+  an error value. The error will be wrapped in an Option::Some.
+
+##### `impl<U> TryFrom for IntoIter`
+
+- <span id="intoiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="intoiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for IntoIter`
+
+- <span id="intoiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="intoiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Ancestor`
 
@@ -612,13 +1636,61 @@ used to check for loops in the tree when traversing symlinks.
 
 - <span id="ancestor-new"></span>`fn new(dent: &DirEntry) -> io::Result<Ancestor>` — [`DirEntry`](dent/index.md#direntry), [`Ancestor`](#ancestor)
 
+  Create a new ancestor from the given directory path.
+
 - <span id="ancestor-is-same"></span>`fn is_same(&self, child: &Handle) -> io::Result<bool>`
+
+  Returns true if and only if the given open file handle corresponds to
+
+  the same directory as this ancestor.
 
 #### Trait Implementations
 
+##### `impl Any for Ancestor`
+
+- <span id="ancestor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Ancestor`
+
+- <span id="ancestor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Ancestor`
+
+- <span id="ancestor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Ancestor`
 
-- <span id="ancestor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ancestor-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Ancestor`
+
+- <span id="ancestor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Ancestor`
+
+- <span id="ancestor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Ancestor`
+
+- <span id="ancestor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="ancestor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Ancestor`
+
+- <span id="ancestor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="ancestor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `FilterEntry<I, P>`
 
@@ -656,15 +1728,215 @@ predicate, which is usually `FnMut(&DirEntry) -> bool`.
 
 - <span id="filterentry-filter-entry"></span>`fn filter_entry(self, predicate: P) -> FilterEntry<Self, P>` — [`FilterEntry`](#filterentry)
 
+  Yields only entries which satisfy the given predicate and skips
+
+  descending into directories that do not satisfy the given predicate.
+
+  
+
+  The predicate is applied to all entries. If the predicate is
+
+  true, iteration carries on as normal. If the predicate is false, the
+
+  entry is ignored and if it is a directory, it is not descended into.
+
+  
+
+  This is often more convenient to use than `skip_current_dir`. For
+
+  example, to skip hidden files and directories efficiently on unix
+
+  systems:
+
+  
+
+  ```no_run
+
+  use walkdir::{DirEntry, WalkDir};
+
+  use walkdir::Error;
+
+  
+
+  fn is_hidden(entry: &DirEntry) -> bool {
+
+      entry.file_name()
+
+           .to_str()
+
+           .map(|s| s.starts_with("."))
+
+           .unwrap_or(false)
+
+  }
+
+  
+
+  fn try_main() -> Result<(), Error> {
+
+  for entry in WalkDir::new("foo")
+
+                       .into_iter()
+
+                       .filter_entry(|e| !is_hidden(e)) {
+
+      println!("{}", entry?.path().display());
+
+  }
+
+  Ok(())
+
+  }
+
+  ```
+
+  
+
+  Note that the iterator will still yield errors for reading entries that
+
+  may not satisfy the predicate.
+
+  
+
+  Note that entries skipped with `min_depth` and `max_depth` are not
+
+  passed to this predicate.
+
+  
+
+  Note that if the iterator has `contents_first` enabled, then this
+
+  method is no different than calling the standard `Iterator::filter`
+
+  method (because directory entries are yielded after they've been
+
+  descended into).
+
+  
+
+  
+
 - <span id="filterentry-skip-current-dir"></span>`fn skip_current_dir(&mut self)`
+
+  Skips the current directory.
+
+  
+
+  This causes the iterator to stop traversing the contents of the least
+
+  recently yielded directory. This means any remaining entries in that
+
+  directory will be skipped (including sub-directories).
+
+  
+
+  Note that the ergonomics of this method are questionable since it
+
+  borrows the iterator mutably. Namely, you must write out the looping
+
+  condition manually. For example, to skip hidden entries efficiently on
+
+  unix systems:
+
+  
+
+  ```no_run
+
+  use walkdir::{DirEntry, WalkDir};
+
+  
+
+  fn is_hidden(entry: &DirEntry) -> bool {
+
+      entry.file_name()
+
+           .to_str()
+
+           .map(|s| s.starts_with("."))
+
+           .unwrap_or(false)
+
+  }
+
+  
+
+  let mut it = WalkDir::new("foo").into_iter();
+
+  loop {
+
+      let entry = match it.next() {
+
+          None => break,
+
+          Some(Err(err)) => panic!("ERROR: {}", err),
+
+          Some(Ok(entry)) => entry,
+
+      };
+
+      if is_hidden(&entry) {
+
+          if entry.file_type().is_dir() {
+
+              it.skip_current_dir();
+
+          }
+
+          continue;
+
+      }
+
+      println!("{}", entry.path().display());
+
+  }
+
+  ```
+
+  
+
+  You may find it more convenient to use the `filter_entry` iterator
+
+  adapter. (See its documentation for the same example functionality as
+
+  above.)
 
 #### Trait Implementations
 
+##### `impl Any for FilterEntry<I, P>`
+
+- <span id="filterentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FilterEntry<I, P>`
+
+- <span id="filterentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FilterEntry<I, P>`
+
+- <span id="filterentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<I: fmt::Debug, P: fmt::Debug> Debug for FilterEntry<I, P>`
 
-- <span id="filterentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="filterentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FilterEntry<I, P>`
+
+- <span id="filterentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<P> FusedIterator for FilterEntry<IntoIter, P>`
+
+##### `impl<U> Into for FilterEntry<I, P>`
+
+- <span id="filterentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<I> IntoIterator for FilterEntry<I, P>`
 
@@ -672,13 +1944,37 @@ predicate, which is usually `FnMut(&DirEntry) -> bool`.
 
 - <span id="filterentry-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="filterentry-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="filterentry-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<P> Iterator for FilterEntry<IntoIter, P>`
 
 - <span id="filterentry-iterator-type-item"></span>`type Item = Result<DirEntry, Error>`
 
-- <span id="filterentry-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md#direntry)
+- <span id="filterentry-iterator-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md#direntry)
+
+  Advances the iterator and returns the next value.
+
+  
+
+  # Errors
+
+  
+
+  If the iterator fails to retrieve the next value, this method returns
+
+  an error value. The error will be wrapped in an `Option::Some`.
+
+##### `impl<U> TryFrom for FilterEntry<I, P>`
+
+- <span id="filterentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="filterentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for FilterEntry<I, P>`
+
+- <span id="filterentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="filterentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -731,9 +2027,39 @@ proceeds over a `Vec<fs::DirEntry>`.
 
 #### Trait Implementations
 
+##### `impl Any for DirList`
+
+- <span id="dirlist-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DirList`
+
+- <span id="dirlist-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DirList`
+
+- <span id="dirlist-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for DirList`
 
-- <span id="dirlist-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dirlist-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for DirList`
+
+- <span id="dirlist-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for DirList`
+
+- <span id="dirlist-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for DirList`
 
@@ -741,13 +2067,25 @@ proceeds over a `Vec<fs::DirEntry>`.
 
 - <span id="dirlist-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="dirlist-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="dirlist-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for DirList`
 
 - <span id="dirlist-iterator-type-item"></span>`type Item = Result<DirEntry, Error>`
 
-- <span id="dirlist-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md#direntry)
+- <span id="dirlist-iterator-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md#direntry)
+
+##### `impl<U> TryFrom for DirList`
+
+- <span id="dirlist-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="dirlist-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for DirList`
+
+- <span id="dirlist-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="dirlist-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

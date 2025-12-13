@@ -39,17 +39,71 @@ remains unexported.
 
 #### Trait Implementations
 
+##### `impl Any for PrinterBuilder`
+
+- <span id="printerbuilder-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PrinterBuilder`
+
+- <span id="printerbuilder-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PrinterBuilder`
+
+- <span id="printerbuilder-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for PrinterBuilder`
 
 - <span id="printerbuilder-clone"></span>`fn clone(&self) -> PrinterBuilder` — [`PrinterBuilder`](#printerbuilder)
 
+##### `impl CloneToUninit for PrinterBuilder`
+
+- <span id="printerbuilder-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for PrinterBuilder`
 
-- <span id="printerbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="printerbuilder-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for PrinterBuilder`
 
 - <span id="printerbuilder-default"></span>`fn default() -> PrinterBuilder` — [`PrinterBuilder`](#printerbuilder)
+
+##### `impl<T> From for PrinterBuilder`
+
+- <span id="printerbuilder-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PrinterBuilder`
+
+- <span id="printerbuilder-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for PrinterBuilder`
+
+- <span id="printerbuilder-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="printerbuilder-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="printerbuilder-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for PrinterBuilder`
+
+- <span id="printerbuilder-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="printerbuilder-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PrinterBuilder`
+
+- <span id="printerbuilder-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="printerbuilder-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Printer`
 
@@ -75,13 +129,65 @@ are ignored.
 
 - <span id="printer-new"></span>`fn new() -> Printer` — [`Printer`](#printer)
 
+  Create a new printer.
+
 - <span id="printer-print"></span>`fn print<W: fmt::Write>(&mut self, ast: &Ast, wtr: W) -> fmt::Result` — [`Ast`](../index.md#ast)
+
+  Print the given `Ast` to the given writer. The writer must implement
+
+  `fmt::Write`. Typical implementations of `fmt::Write` that can be used
+
+  here are a `fmt::Formatter` (which is available in `fmt::Display`
+
+  implementations) or a `&mut String`.
 
 #### Trait Implementations
 
+##### `impl Any for Printer`
+
+- <span id="printer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Printer`
+
+- <span id="printer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Printer`
+
+- <span id="printer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for Printer`
 
-- <span id="printer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="printer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Printer`
+
+- <span id="printer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Printer`
+
+- <span id="printer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Printer`
+
+- <span id="printer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="printer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Printer`
+
+- <span id="printer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="printer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Writer<W>`
 
@@ -125,9 +231,51 @@ struct Writer<W> {
 
 #### Trait Implementations
 
+##### `impl Any for Writer<W>`
+
+- <span id="writer-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Writer<W>`
+
+- <span id="writer-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Writer<W>`
+
+- <span id="writer-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<W: fmt::Debug> Debug for Writer<W>`
 
-- <span id="writer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="writer-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Writer<W>`
+
+- <span id="writer-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Writer<W>`
+
+- <span id="writer-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Writer<W>`
+
+- <span id="writer-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="writer-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Writer<W>`
+
+- <span id="writer-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="writer-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<W: fmt::Write> Visitor for Writer<W>`
 
@@ -135,17 +283,17 @@ struct Writer<W> {
 
 - <span id="writer-visitor-type-err"></span>`type Err = Error`
 
-- <span id="writer-finish"></span>`fn finish(self) -> fmt::Result`
+- <span id="writer-visitor-finish"></span>`fn finish(self) -> fmt::Result`
 
-- <span id="writer-visit-pre"></span>`fn visit_pre(&mut self, ast: &Ast) -> fmt::Result` — [`Ast`](../index.md#ast)
+- <span id="writer-visitor-visit-pre"></span>`fn visit_pre(&mut self, ast: &Ast) -> fmt::Result` — [`Ast`](../index.md#ast)
 
-- <span id="writer-visit-post"></span>`fn visit_post(&mut self, ast: &Ast) -> fmt::Result` — [`Ast`](../index.md#ast)
+- <span id="writer-visitor-visit-post"></span>`fn visit_post(&mut self, ast: &Ast) -> fmt::Result` — [`Ast`](../index.md#ast)
 
-- <span id="writer-visit-alternation-in"></span>`fn visit_alternation_in(&mut self) -> fmt::Result`
+- <span id="writer-visitor-visit-alternation-in"></span>`fn visit_alternation_in(&mut self) -> fmt::Result`
 
-- <span id="writer-visit-class-set-item-pre"></span>`fn visit_class_set_item_pre(&mut self, ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>` — [`ClassSetItem`](../index.md#classsetitem), [`Visitor`](../visitor/index.md#visitor)
+- <span id="writer-visitor-visit-class-set-item-pre"></span>`fn visit_class_set_item_pre(&mut self, ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>` — [`ClassSetItem`](../index.md#classsetitem), [`Visitor`](../visitor/index.md#visitor)
 
-- <span id="writer-visit-class-set-item-post"></span>`fn visit_class_set_item_post(&mut self, ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>` — [`ClassSetItem`](../index.md#classsetitem), [`Visitor`](../visitor/index.md#visitor)
+- <span id="writer-visitor-visit-class-set-item-post"></span>`fn visit_class_set_item_post(&mut self, ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>` — [`ClassSetItem`](../index.md#classsetitem), [`Visitor`](../visitor/index.md#visitor)
 
-- <span id="writer-visit-class-set-binary-op-in"></span>`fn visit_class_set_binary_op_in(&mut self, ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>` — [`ClassSetBinaryOp`](../index.md#classsetbinaryop), [`Visitor`](../visitor/index.md#visitor)
+- <span id="writer-visitor-visit-class-set-binary-op-in"></span>`fn visit_class_set_binary_op_in(&mut self, ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>` — [`ClassSetBinaryOp`](../index.md#classsetbinaryop), [`Visitor`](../visitor/index.md#visitor)
 

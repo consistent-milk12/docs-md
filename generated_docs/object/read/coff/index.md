@@ -174,9 +174,51 @@ The common parts of `PeFile` and `CoffFile`.
 
 #### Trait Implementations
 
+##### `impl Any for CoffCommon<'data, R, Coff>`
+
+- <span id="coffcommon-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CoffCommon<'data, R, Coff>`
+
+- <span id="coffcommon-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CoffCommon<'data, R, Coff>`
+
+- <span id="coffcommon-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffCommon<'data, R, Coff>`
 
-- <span id="coffcommon-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="coffcommon-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CoffCommon<'data, R, Coff>`
+
+- <span id="coffcommon-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CoffCommon<'data, R, Coff>`
+
+- <span id="coffcommon-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for CoffCommon<'data, R, Coff>`
+
+- <span id="coffcommon-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="coffcommon-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CoffCommon<'data, R, Coff>`
+
+- <span id="coffcommon-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="coffcommon-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CoffFile<'data, R: ReadRef<'data>, Coff: CoffHeader>`
 
@@ -201,17 +243,55 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 
 - <span id="cofffile-parse"></span>`fn parse(data: R) -> Result<Self>` — [`Result`](../../index.md#result)
 
+  Parse the raw COFF file data.
+
 - <span id="cofffile-coff-header"></span>`fn coff_header(&self) -> &'data Coff`
+
+  Get the raw COFF file header.
 
 - <span id="cofffile-coff-section-table"></span>`fn coff_section_table(&self) -> SectionTable<'data>` — [`SectionTable`](#sectiontable)
 
+  Get the COFF section table.
+
 - <span id="cofffile-coff-symbol-table"></span>`fn coff_symbol_table(&self) -> &SymbolTable<'data, R, Coff>` — [`SymbolTable`](#symboltable)
+
+  Get the COFF symbol table.
 
 #### Trait Implementations
 
+##### `impl Any for CoffFile<'data, R, Coff>`
+
+- <span id="cofffile-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CoffFile<'data, R, Coff>`
+
+- <span id="cofffile-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CoffFile<'data, R, Coff>`
+
+- <span id="cofffile-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffFile<'data, R, Coff>`
 
-- <span id="cofffile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cofffile-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CoffFile<'data, R, Coff>`
+
+- <span id="cofffile-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CoffFile<'data, R, Coff>`
+
+- <span id="cofffile-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Coff> Object for CoffFile<'data, R, Coff>`
 
@@ -235,51 +315,63 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 
 - <span id="cofffile-object-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
-- <span id="cofffile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md#architecture)
+- <span id="cofffile-object-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md#architecture)
 
-- <span id="cofffile-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../index.md#subarchitecture)
+- <span id="cofffile-object-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../index.md#subarchitecture)
 
-- <span id="cofffile-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
+- <span id="cofffile-object-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
 
-- <span id="cofffile-is-64"></span>`fn is_64(&self) -> bool`
+- <span id="cofffile-object-is-64"></span>`fn is_64(&self) -> bool`
 
-- <span id="cofffile-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../index.md#objectkind)
+- <span id="cofffile-object-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../index.md#objectkind)
 
-- <span id="cofffile-segments"></span>`fn segments(&self) -> CoffSegmentIterator<'data, '_, R, Coff>` — [`CoffSegmentIterator`](#coffsegmentiterator)
+- <span id="cofffile-object-segments"></span>`fn segments(&self) -> CoffSegmentIterator<'data, '_, R, Coff>` — [`CoffSegmentIterator`](#coffsegmentiterator)
 
-- <span id="cofffile-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<CoffSection<'data, 'file, R, Coff>>` — [`CoffSection`](#coffsection)
+- <span id="cofffile-object-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<CoffSection<'data, 'file, R, Coff>>` — [`CoffSection`](#coffsection)
 
-- <span id="cofffile-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<CoffSection<'data, '_, R, Coff>>` — [`SectionIndex`](../../index.md#sectionindex), [`Result`](../../index.md#result), [`CoffSection`](#coffsection)
+- <span id="cofffile-object-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<CoffSection<'data, '_, R, Coff>>` — [`SectionIndex`](../../index.md#sectionindex), [`Result`](../../index.md#result), [`CoffSection`](#coffsection)
 
-- <span id="cofffile-sections"></span>`fn sections(&self) -> CoffSectionIterator<'data, '_, R, Coff>` — [`CoffSectionIterator`](#coffsectioniterator)
+- <span id="cofffile-object-sections"></span>`fn sections(&self) -> CoffSectionIterator<'data, '_, R, Coff>` — [`CoffSectionIterator`](#coffsectioniterator)
 
-- <span id="cofffile-comdats"></span>`fn comdats(&self) -> CoffComdatIterator<'data, '_, R, Coff>` — [`CoffComdatIterator`](#coffcomdatiterator)
+- <span id="cofffile-object-comdats"></span>`fn comdats(&self) -> CoffComdatIterator<'data, '_, R, Coff>` — [`CoffComdatIterator`](#coffcomdatiterator)
 
-- <span id="cofffile-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<CoffSymbol<'data, '_, R, Coff>>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`CoffSymbol`](#coffsymbol)
+- <span id="cofffile-object-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<CoffSymbol<'data, '_, R, Coff>>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`CoffSymbol`](#coffsymbol)
 
-- <span id="cofffile-symbols"></span>`fn symbols(&self) -> CoffSymbolIterator<'data, '_, R, Coff>` — [`CoffSymbolIterator`](#coffsymboliterator)
+- <span id="cofffile-object-symbols"></span>`fn symbols(&self) -> CoffSymbolIterator<'data, '_, R, Coff>` — [`CoffSymbolIterator`](#coffsymboliterator)
 
-- <span id="cofffile-symbol-table"></span>`fn symbol_table(&self) -> Option<CoffSymbolTable<'data, '_, R, Coff>>` — [`CoffSymbolTable`](#coffsymboltable)
+- <span id="cofffile-object-symbol-table"></span>`fn symbol_table(&self) -> Option<CoffSymbolTable<'data, '_, R, Coff>>` — [`CoffSymbolTable`](#coffsymboltable)
 
-- <span id="cofffile-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> CoffSymbolIterator<'data, '_, R, Coff>` — [`CoffSymbolIterator`](#coffsymboliterator)
+- <span id="cofffile-object-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> CoffSymbolIterator<'data, '_, R, Coff>` — [`CoffSymbolIterator`](#coffsymboliterator)
 
-- <span id="cofffile-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<CoffSymbolTable<'data, '_, R, Coff>>` — [`CoffSymbolTable`](#coffsymboltable)
+- <span id="cofffile-object-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<CoffSymbolTable<'data, '_, R, Coff>>` — [`CoffSymbolTable`](#coffsymboltable)
 
-- <span id="cofffile-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<NoDynamicRelocationIterator>` — [`NoDynamicRelocationIterator`](../index.md#nodynamicrelocationiterator)
+- <span id="cofffile-object-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<NoDynamicRelocationIterator>` — [`NoDynamicRelocationIterator`](../index.md#nodynamicrelocationiterator)
 
-- <span id="cofffile-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../../index.md#result), [`Import`](../../index.md#import)
+- <span id="cofffile-object-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../../index.md#result), [`Import`](../../index.md#import)
 
-- <span id="cofffile-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../index.md#result), [`Export`](../../index.md#export)
+- <span id="cofffile-object-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../index.md#result), [`Export`](../../index.md#export)
 
-- <span id="cofffile-has-debug-symbols"></span>`fn has_debug_symbols(&self) -> bool`
+- <span id="cofffile-object-has-debug-symbols"></span>`fn has_debug_symbols(&self) -> bool`
 
-- <span id="cofffile-relative-address-base"></span>`fn relative_address_base(&self) -> u64`
+- <span id="cofffile-object-relative-address-base"></span>`fn relative_address_base(&self) -> u64`
 
-- <span id="cofffile-entry"></span>`fn entry(&self) -> u64`
+- <span id="cofffile-object-entry"></span>`fn entry(&self) -> u64`
 
-- <span id="cofffile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../index.md#fileflags)
+- <span id="cofffile-object-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../index.md#fileflags)
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Sealed for CoffFile<'data, R, Coff>`
+
+##### `impl<U> TryFrom for CoffFile<'data, R, Coff>`
+
+- <span id="cofffile-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cofffile-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CoffFile<'data, R, Coff>`
+
+- <span id="cofffile-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cofffile-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SectionTable<'data>`
 
@@ -300,35 +392,133 @@ Returned by `CoffHeader::sections` and
 
 - <span id="sectiontable-parse"></span>`fn parse<Coff: CoffHeader, R: ReadRef<'data>>(header: &Coff, data: R, offset: u64) -> Result<Self>` — [`Result`](../../index.md#result)
 
+  Parse the section table.
+
+  
+
+  `data` must be the entire file data.
+
+  `offset` must be after the optional file header.
+
 - <span id="sectiontable-iter"></span>`fn iter(&self) -> slice::Iter<'data, pe::ImageSectionHeader>` — [`ImageSectionHeader`](../../pe/index.md#imagesectionheader)
+
+  Iterate over the section headers.
+
+  
+
+  Warning: section indices start at 1.
 
 - <span id="sectiontable-enumerate"></span>`fn enumerate(&self) -> impl Iterator<Item = (SectionIndex, &'data pe::ImageSectionHeader)>` — [`SectionIndex`](../../index.md#sectionindex), [`ImageSectionHeader`](../../pe/index.md#imagesectionheader)
 
+  Iterate over the section headers and their indices.
+
 - <span id="sectiontable-is-empty"></span>`fn is_empty(&self) -> bool`
+
+  Return true if the section table is empty.
 
 - <span id="sectiontable-len"></span>`fn len(&self) -> usize`
 
+  The number of section headers.
+
 - <span id="sectiontable-section"></span>`fn section(&self, index: SectionIndex) -> read::Result<&'data pe::ImageSectionHeader>` — [`SectionIndex`](../../index.md#sectionindex), [`Result`](../../index.md#result), [`ImageSectionHeader`](../../pe/index.md#imagesectionheader)
+
+  Return the section header at the given index.
+
+  
+
+  The index is 1-based.
 
 - <span id="sectiontable-section-by-name"></span>`fn section_by_name<R: ReadRef<'data>>(&self, strings: StringTable<'data, R>, name: &[u8]) -> Option<(SectionIndex, &'data pe::ImageSectionHeader)>` — [`StringTable`](../index.md#stringtable), [`SectionIndex`](../../index.md#sectionindex), [`ImageSectionHeader`](../../pe/index.md#imagesectionheader)
 
+  Return the section header with the given name.
+
+  
+
+  The returned index is 1-based.
+
+  
+
+  Ignores sections with invalid names.
+
 - <span id="sectiontable-max-section-file-offset"></span>`fn max_section_file_offset(&self) -> u64`
 
+  Compute the maximum file offset used by sections.
+
+  
+
+  This will usually match the end of file, unless the PE file has a
+
+  [data overlay](https://security.stackexchange.com/questions/77336/how-is-the-file-overlay-read-by-an-exe-virus)
+
 #### Trait Implementations
+
+##### `impl Any for SectionTable<'data>`
+
+- <span id="sectiontable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SectionTable<'data>`
+
+- <span id="sectiontable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SectionTable<'data>`
+
+- <span id="sectiontable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for SectionTable<'data>`
 
 - <span id="sectiontable-clone"></span>`fn clone(&self) -> SectionTable<'data>` — [`SectionTable`](#sectiontable)
 
+##### `impl CloneToUninit for SectionTable<'data>`
+
+- <span id="sectiontable-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for SectionTable<'data>`
 
 ##### `impl Debug for SectionTable<'data>`
 
-- <span id="sectiontable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sectiontable-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for SectionTable<'data>`
 
 - <span id="sectiontable-default"></span>`fn default() -> SectionTable<'data>` — [`SectionTable`](#sectiontable)
+
+##### `impl<T> From for SectionTable<'data>`
+
+- <span id="sectiontable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SectionTable<'data>`
+
+- <span id="sectiontable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for SectionTable<'data>`
+
+- <span id="sectiontable-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="sectiontable-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="sectiontable-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for SectionTable<'data>`
+
+- <span id="sectiontable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="sectiontable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SectionTable<'data>`
+
+- <span id="sectiontable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="sectiontable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CoffSegmentIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>`
 
@@ -345,9 +535,39 @@ An iterator for the loadable sections in a [`CoffFile`](#cofffile).
 
 #### Trait Implementations
 
+##### `impl Any for CoffSegmentIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsegmentiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CoffSegmentIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsegmentiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CoffSegmentIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsegmentiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffSegmentIterator<'data, 'file, R, Coff>`
 
-- <span id="coffsegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="coffsegmentiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CoffSegmentIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsegmentiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CoffSegmentIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsegmentiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for CoffSegmentIterator<'data, 'file, R, Coff>`
 
@@ -355,13 +575,25 @@ An iterator for the loadable sections in a [`CoffFile`](#cofffile).
 
 - <span id="coffsegmentiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="coffsegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="coffsegmentiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffSegmentIterator<'data, 'file, R, Coff>`
 
 - <span id="coffsegmentiterator-iterator-type-item"></span>`type Item = CoffSegment<'data, 'file, R, Coff>`
 
-- <span id="coffsegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="coffsegmentiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for CoffSegmentIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsegmentiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="coffsegmentiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CoffSegmentIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsegmentiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="coffsegmentiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CoffSegment<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>`
 
@@ -382,37 +614,83 @@ Most functionality is provided by the [`ObjectSegment`](../index.md) trait imple
 
 - <span id="coffsegment-coff-file"></span>`fn coff_file(&self) -> &'file CoffFile<'data, R, Coff>` — [`CoffFile`](#cofffile)
 
+  Get the COFF file containing this segment.
+
 - <span id="coffsegment-coff-section"></span>`fn coff_section(&self) -> &'data pe::ImageSectionHeader` — [`ImageSectionHeader`](../../pe/index.md#imagesectionheader)
+
+  Get the raw COFF section header.
 
 - <span id="coffsegment-bytes"></span>`fn bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
 #### Trait Implementations
 
+##### `impl Any for CoffSegment<'data, 'file, R, Coff>`
+
+- <span id="coffsegment-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CoffSegment<'data, 'file, R, Coff>`
+
+- <span id="coffsegment-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CoffSegment<'data, 'file, R, Coff>`
+
+- <span id="coffsegment-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffSegment<'data, 'file, R, Coff>`
 
-- <span id="coffsegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="coffsegment-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CoffSegment<'data, 'file, R, Coff>`
+
+- <span id="coffsegment-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CoffSegment<'data, 'file, R, Coff>`
+
+- <span id="coffsegment-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> ObjectSegment for CoffSegment<'data, 'file, R, Coff>`
 
-- <span id="coffsegment-address"></span>`fn address(&self) -> u64`
+- <span id="coffsegment-objectsegment-address"></span>`fn address(&self) -> u64`
 
-- <span id="coffsegment-size"></span>`fn size(&self) -> u64`
+- <span id="coffsegment-objectsegment-size"></span>`fn size(&self) -> u64`
 
-- <span id="coffsegment-align"></span>`fn align(&self) -> u64`
+- <span id="coffsegment-objectsegment-align"></span>`fn align(&self) -> u64`
 
-- <span id="coffsegment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
+- <span id="coffsegment-objectsegment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
 
-- <span id="coffsegment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
+- <span id="coffsegment-objectsegment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="coffsegment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md#result)
+- <span id="coffsegment-objectsegment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md#result)
 
-- <span id="coffsegment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md#result)
+- <span id="coffsegment-objectsegment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md#result)
 
-- <span id="coffsegment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md#result)
+- <span id="coffsegment-objectsegment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md#result)
 
-- <span id="coffsegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../index.md#segmentflags)
+- <span id="coffsegment-objectsegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../index.md#segmentflags)
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Sealed for CoffSegment<'data, 'file, R, Coff>`
+
+##### `impl<U> TryFrom for CoffSegment<'data, 'file, R, Coff>`
+
+- <span id="coffsegment-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="coffsegment-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CoffSegment<'data, 'file, R, Coff>`
+
+- <span id="coffsegment-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="coffsegment-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CoffSectionIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>`
 
@@ -429,9 +707,39 @@ An iterator for the sections in a [`CoffFile`](#cofffile).
 
 #### Trait Implementations
 
+##### `impl Any for CoffSectionIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsectioniterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CoffSectionIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsectioniterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CoffSectionIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsectioniterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffSectionIterator<'data, 'file, R, Coff>`
 
-- <span id="coffsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="coffsectioniterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CoffSectionIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsectioniterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CoffSectionIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsectioniterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for CoffSectionIterator<'data, 'file, R, Coff>`
 
@@ -439,13 +747,25 @@ An iterator for the sections in a [`CoffFile`](#cofffile).
 
 - <span id="coffsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="coffsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="coffsectioniterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffSectionIterator<'data, 'file, R, Coff>`
 
 - <span id="coffsectioniterator-iterator-type-item"></span>`type Item = CoffSection<'data, 'file, R, Coff>`
 
-- <span id="coffsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="coffsectioniterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for CoffSectionIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsectioniterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="coffsectioniterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CoffSectionIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsectioniterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="coffsectioniterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CoffSection<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>`
 
@@ -467,57 +787,105 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 - <span id="coffsection-coff-file"></span>`fn coff_file(&self) -> &'file CoffFile<'data, R, Coff>` — [`CoffFile`](#cofffile)
 
+  Get the COFF file containing this section.
+
 - <span id="coffsection-coff-section"></span>`fn coff_section(&self) -> &'data pe::ImageSectionHeader` — [`ImageSectionHeader`](../../pe/index.md#imagesectionheader)
 
+  Get the raw COFF section header.
+
 - <span id="coffsection-coff-relocations"></span>`fn coff_relocations(&self) -> Result<&'data [pe::ImageRelocation]>` — [`Result`](../../index.md#result), [`ImageRelocation`](../../pe/index.md#imagerelocation)
+
+  Get the raw COFF relocations for this section.
 
 - <span id="coffsection-bytes"></span>`fn bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
 #### Trait Implementations
 
+##### `impl Any for CoffSection<'data, 'file, R, Coff>`
+
+- <span id="coffsection-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CoffSection<'data, 'file, R, Coff>`
+
+- <span id="coffsection-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CoffSection<'data, 'file, R, Coff>`
+
+- <span id="coffsection-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffSection<'data, 'file, R, Coff>`
 
-- <span id="coffsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="coffsection-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CoffSection<'data, 'file, R, Coff>`
+
+- <span id="coffsection-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CoffSection<'data, 'file, R, Coff>`
+
+- <span id="coffsection-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> ObjectSection for CoffSection<'data, 'file, R, Coff>`
 
 - <span id="coffsection-objectsection-type-relocationiterator"></span>`type RelocationIterator = CoffRelocationIterator<'data, 'file, R, Coff>`
 
-- <span id="coffsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md#sectionindex)
+- <span id="coffsection-objectsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md#sectionindex)
 
-- <span id="coffsection-address"></span>`fn address(&self) -> u64`
+- <span id="coffsection-objectsection-address"></span>`fn address(&self) -> u64`
 
-- <span id="coffsection-size"></span>`fn size(&self) -> u64`
+- <span id="coffsection-objectsection-size"></span>`fn size(&self) -> u64`
 
-- <span id="coffsection-align"></span>`fn align(&self) -> u64`
+- <span id="coffsection-objectsection-align"></span>`fn align(&self) -> u64`
 
-- <span id="coffsection-file-range"></span>`fn file_range(&self) -> Option<(u64, u64)>`
+- <span id="coffsection-objectsection-file-range"></span>`fn file_range(&self) -> Option<(u64, u64)>`
 
-- <span id="coffsection-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
+- <span id="coffsection-objectsection-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="coffsection-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md#result)
+- <span id="coffsection-objectsection-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md#result)
 
-- <span id="coffsection-compressed-file-range"></span>`fn compressed_file_range(&self) -> Result<CompressedFileRange>` — [`Result`](../../index.md#result), [`CompressedFileRange`](../../index.md#compressedfilerange)
+- <span id="coffsection-objectsection-compressed-file-range"></span>`fn compressed_file_range(&self) -> Result<CompressedFileRange>` — [`Result`](../../index.md#result), [`CompressedFileRange`](../../index.md#compressedfilerange)
 
-- <span id="coffsection-compressed-data"></span>`fn compressed_data(&self) -> Result<CompressedData<'data>>` — [`Result`](../../index.md#result), [`CompressedData`](../../index.md#compresseddata)
+- <span id="coffsection-objectsection-compressed-data"></span>`fn compressed_data(&self) -> Result<CompressedData<'data>>` — [`Result`](../../index.md#result), [`CompressedData`](../../index.md#compresseddata)
 
-- <span id="coffsection-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
+- <span id="coffsection-objectsection-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="coffsection-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md#result)
+- <span id="coffsection-objectsection-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md#result)
 
-- <span id="coffsection-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md#result)
+- <span id="coffsection-objectsection-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md#result)
 
-- <span id="coffsection-segment-name"></span>`fn segment_name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md#result)
+- <span id="coffsection-objectsection-segment-name"></span>`fn segment_name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md#result)
 
-- <span id="coffsection-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../index.md#sectionkind)
+- <span id="coffsection-objectsection-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../index.md#sectionkind)
 
-- <span id="coffsection-relocations"></span>`fn relocations(&self) -> CoffRelocationIterator<'data, 'file, R, Coff>` — [`CoffRelocationIterator`](#coffrelocationiterator)
+- <span id="coffsection-objectsection-relocations"></span>`fn relocations(&self) -> CoffRelocationIterator<'data, 'file, R, Coff>` — [`CoffRelocationIterator`](#coffrelocationiterator)
 
-- <span id="coffsection-relocation-map"></span>`fn relocation_map(&self) -> read::Result<RelocationMap>` — [`Result`](../../index.md#result), [`RelocationMap`](../../index.md#relocationmap)
+- <span id="coffsection-objectsection-relocation-map"></span>`fn relocation_map(&self) -> read::Result<RelocationMap>` — [`Result`](../../index.md#result), [`RelocationMap`](../../index.md#relocationmap)
 
-- <span id="coffsection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../index.md#sectionflags)
+- <span id="coffsection-objectsection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../index.md#sectionflags)
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Sealed for CoffSection<'data, 'file, R, Coff>`
+
+##### `impl<U> TryFrom for CoffSection<'data, 'file, R, Coff>`
+
+- <span id="coffsection-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="coffsection-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CoffSection<'data, 'file, R, Coff>`
+
+- <span id="coffsection-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="coffsection-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SymbolTable<'data, R, Coff>`
 
@@ -544,37 +912,123 @@ Returned by `CoffHeader::symbols` and
 
 - <span id="symboltable-parse"></span>`fn parse(header: &Coff, data: R) -> Result<Self>` — [`Result`](../../index.md#result)
 
+  Read the symbol table.
+
 - <span id="symboltable-strings"></span>`fn strings(&self) -> StringTable<'data, R>` — [`StringTable`](../index.md#stringtable)
+
+  Return the string table used for the symbol names.
 
 - <span id="symboltable-is-empty"></span>`fn is_empty(&self) -> bool`
 
+  Return true if the symbol table is empty.
+
 - <span id="symboltable-len"></span>`fn len(&self) -> usize`
+
+  The number of symbol table entries.
+
+  
+
+  This includes auxiliary symbol table entries.
 
 - <span id="symboltable-iter"></span>`fn iter<'table>(self: &'table Self) -> SymbolIterator<'data, 'table, R, Coff>` — [`SymbolIterator`](#symboliterator)
 
+  Iterate over the symbols.
+
 - <span id="symboltable-symbol"></span>`fn symbol(&self, index: SymbolIndex) -> Result<&'data <Coff as >::ImageSymbol>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`CoffHeader`](#coffheader)
+
+  Return the symbol table entry at the given index.
 
 - <span id="symboltable-aux-function"></span>`fn aux_function(&self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolFunction>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`ImageAuxSymbolFunction`](../../pe/index.md#imageauxsymbolfunction)
 
+  Return the auxiliary function symbol for the symbol table entry at the given index.
+
+  
+
+  Note that the index is of the symbol, not the first auxiliary record.
+
 - <span id="symboltable-aux-section"></span>`fn aux_section(&self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolSection>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`ImageAuxSymbolSection`](../../pe/index.md#imageauxsymbolsection)
+
+  Return the auxiliary section symbol for the symbol table entry at the given index.
+
+  
+
+  Note that the index is of the symbol, not the first auxiliary record.
 
 - <span id="symboltable-aux-weak-external"></span>`fn aux_weak_external(&self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolWeak>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`ImageAuxSymbolWeak`](../../pe/index.md#imageauxsymbolweak)
 
+  Return the auxiliary weak external symbol for the symbol table entry at the given index.
+
+  
+
+  Note that the index is of the symbol, not the first auxiliary record.
+
 - <span id="symboltable-aux-file-name"></span>`fn aux_file_name(&self, index: SymbolIndex, aux_count: u8) -> Result<&'data [u8]>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result)
+
+  Return the auxiliary file name for the symbol table entry at the given index.
+
+  
+
+  Note that the index is of the symbol, not the first auxiliary record.
 
 - <span id="symboltable-get"></span>`fn get<T: Pod>(&self, index: SymbolIndex, offset: usize) -> Result<&'data T>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result)
 
+  Return the symbol table entry or auxiliary record at the given index and offset.
+
 - <span id="symboltable-map"></span>`fn map<Entry: SymbolMapEntry, F: Fn(&'data <Coff as >::ImageSymbol) -> Option<Entry>>(&self, f: F) -> SymbolMap<Entry>` — [`SymbolMap`](../../index.md#symbolmap)
+
+  Construct a map from addresses to a user-defined map entry.
 
 #### Trait Implementations
 
+##### `impl Any for SymbolTable<'data, R, Coff>`
+
+- <span id="symboltable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SymbolTable<'data, R, Coff>`
+
+- <span id="symboltable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SymbolTable<'data, R, Coff>`
+
+- <span id="symboltable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R, Coff> Debug for SymbolTable<'data, R, Coff>`
 
-- <span id="symboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symboltable-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Default for SymbolTable<'data, R, Coff>`
 
 - <span id="symboltable-default"></span>`fn default() -> Self`
+
+##### `impl<T> From for SymbolTable<'data, R, Coff>`
+
+- <span id="symboltable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SymbolTable<'data, R, Coff>`
+
+- <span id="symboltable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for SymbolTable<'data, R, Coff>`
+
+- <span id="symboltable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symboltable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SymbolTable<'data, R, Coff>`
+
+- <span id="symboltable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symboltable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `SymbolIterator<'data, 'table, R, Coff>`
 
@@ -596,9 +1050,39 @@ Yields the index and symbol structure for each symbol.
 
 #### Trait Implementations
 
+##### `impl Any for SymbolIterator<'data, 'table, R, Coff>`
+
+- <span id="symboliterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for SymbolIterator<'data, 'table, R, Coff>`
+
+- <span id="symboliterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for SymbolIterator<'data, 'table, R, Coff>`
+
+- <span id="symboliterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R, Coff> Debug for SymbolIterator<'data, 'table, R, Coff>`
 
-- <span id="symboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symboliterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for SymbolIterator<'data, 'table, R, Coff>`
+
+- <span id="symboliterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for SymbolIterator<'data, 'table, R, Coff>`
+
+- <span id="symboliterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SymbolIterator<'data, 'table, R, Coff>`
 
@@ -606,13 +1090,25 @@ Yields the index and symbol structure for each symbol.
 
 - <span id="symboliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="symboliterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="symboliterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Iterator for SymbolIterator<'data, 'table, R, Coff>`
 
 - <span id="symboliterator-iterator-type-item"></span>`type Item = (SymbolIndex, &'data <Coff as CoffHeader>::ImageSymbol)`
 
-- <span id="symboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="symboliterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for SymbolIterator<'data, 'table, R, Coff>`
+
+- <span id="symboliterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="symboliterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for SymbolIterator<'data, 'table, R, Coff>`
+
+- <span id="symboliterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="symboliterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CoffSymbolTable<'data, 'file, R, Coff>`
 
@@ -632,15 +1128,49 @@ or [`PeFile`](crate::read::pe::PeFile).
 
 #### Trait Implementations
 
+##### `impl Any for CoffSymbolTable<'data, 'file, R, Coff>`
+
+- <span id="coffsymboltable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CoffSymbolTable<'data, 'file, R, Coff>`
+
+- <span id="coffsymboltable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CoffSymbolTable<'data, 'file, R, Coff>`
+
+- <span id="coffsymboltable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R, Coff> Clone for CoffSymbolTable<'data, 'file, R, Coff>`
 
 - <span id="coffsymboltable-clone"></span>`fn clone(&self) -> CoffSymbolTable<'data, 'file, R, Coff>` — [`CoffSymbolTable`](#coffsymboltable)
+
+##### `impl CloneToUninit for CoffSymbolTable<'data, 'file, R, Coff>`
+
+- <span id="coffsymboltable-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<R, Coff> Copy for CoffSymbolTable<'data, 'file, R, Coff>`
 
 ##### `impl<R, Coff> Debug for CoffSymbolTable<'data, 'file, R, Coff>`
 
-- <span id="coffsymboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="coffsymboltable-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CoffSymbolTable<'data, 'file, R, Coff>`
+
+- <span id="coffsymboltable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CoffSymbolTable<'data, 'file, R, Coff>`
+
+- <span id="coffsymboltable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> ObjectSymbolTable for CoffSymbolTable<'data, 'file, R, Coff>`
 
@@ -648,11 +1178,31 @@ or [`PeFile`](crate::read::pe::PeFile).
 
 - <span id="coffsymboltable-objectsymboltable-type-symboliterator"></span>`type SymbolIterator = CoffSymbolIterator<'data, 'file, R, Coff>`
 
-- <span id="coffsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md#objectsymboltable)
+- <span id="coffsymboltable-objectsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md#objectsymboltable)
 
-- <span id="coffsymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`ObjectSymbolTable`](../index.md#objectsymboltable)
+- <span id="coffsymboltable-objectsymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`ObjectSymbolTable`](../index.md#objectsymboltable)
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Sealed for CoffSymbolTable<'data, 'file, R, Coff>`
+
+##### `impl ToOwned for CoffSymbolTable<'data, 'file, R, Coff>`
+
+- <span id="coffsymboltable-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="coffsymboltable-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="coffsymboltable-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CoffSymbolTable<'data, 'file, R, Coff>`
+
+- <span id="coffsymboltable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="coffsymboltable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CoffSymbolTable<'data, 'file, R, Coff>`
+
+- <span id="coffsymboltable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="coffsymboltable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CoffSymbolIterator<'data, 'file, R, Coff>`
 
@@ -679,9 +1229,39 @@ or [`PeFile`](crate::read::pe::PeFile).
 
 #### Trait Implementations
 
+##### `impl Any for CoffSymbolIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsymboliterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CoffSymbolIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsymboliterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CoffSymbolIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsymboliterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Debug for CoffSymbolIterator<'data, 'file, R, Coff>`
 
-- <span id="coffsymboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="coffsymboliterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CoffSymbolIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsymboliterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CoffSymbolIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsymboliterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for CoffSymbolIterator<'data, 'file, R, Coff>`
 
@@ -689,13 +1269,25 @@ or [`PeFile`](crate::read::pe::PeFile).
 
 - <span id="coffsymboliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="coffsymboliterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="coffsymboliterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffSymbolIterator<'data, 'file, R, Coff>`
 
 - <span id="coffsymboliterator-iterator-type-item"></span>`type Item = CoffSymbol<'data, 'file, R, Coff>`
 
-- <span id="coffsymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="coffsymboliterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for CoffSymbolIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsymboliterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="coffsymboliterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CoffSymbolIterator<'data, 'file, R, Coff>`
+
+- <span id="coffsymboliterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="coffsymboliterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CoffSymbol<'data, 'file, R, Coff>`
 
@@ -720,53 +1312,111 @@ Most functionality is provided by the [`ObjectSymbol`](../index.md) trait implem
 
 - <span id="coffsymbol-raw-symbol"></span>`fn raw_symbol(&self) -> &'data <Coff as >::ImageSymbol` — [`CoffHeader`](#coffheader)
 
+  Get the raw `ImageSymbol` struct.
+
 - <span id="coffsymbol-coff-symbol"></span>`fn coff_symbol(&self) -> &'data <Coff as >::ImageSymbol` — [`CoffHeader`](#coffheader)
 
+  Get the raw `ImageSymbol` struct.
+
 #### Trait Implementations
+
+##### `impl Any for CoffSymbol<'data, 'file, R, Coff>`
+
+- <span id="coffsymbol-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CoffSymbol<'data, 'file, R, Coff>`
+
+- <span id="coffsymbol-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CoffSymbol<'data, 'file, R, Coff>`
+
+- <span id="coffsymbol-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R, Coff> Clone for CoffSymbol<'data, 'file, R, Coff>`
 
 - <span id="coffsymbol-clone"></span>`fn clone(&self) -> CoffSymbol<'data, 'file, R, Coff>` — [`CoffSymbol`](#coffsymbol)
 
+##### `impl CloneToUninit for CoffSymbol<'data, 'file, R, Coff>`
+
+- <span id="coffsymbol-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R, Coff> Copy for CoffSymbol<'data, 'file, R, Coff>`
 
 ##### `impl<R, Coff> Debug for CoffSymbol<'data, 'file, R, Coff>`
 
-- <span id="coffsymbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="coffsymbol-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CoffSymbol<'data, 'file, R, Coff>`
+
+- <span id="coffsymbol-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CoffSymbol<'data, 'file, R, Coff>`
+
+- <span id="coffsymbol-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> ObjectSymbol for CoffSymbol<'data, 'file, R, Coff>`
 
-- <span id="coffsymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md#symbolindex)
+- <span id="coffsymbol-objectsymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md#symbolindex)
 
-- <span id="coffsymbol-name-bytes"></span>`fn name_bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../index.md#result)
+- <span id="coffsymbol-objectsymbol-name-bytes"></span>`fn name_bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="coffsymbol-name"></span>`fn name(&self) -> read::Result<&'data str>` — [`Result`](../../index.md#result)
+- <span id="coffsymbol-objectsymbol-name"></span>`fn name(&self) -> read::Result<&'data str>` — [`Result`](../../index.md#result)
 
-- <span id="coffsymbol-address"></span>`fn address(&self) -> u64`
+- <span id="coffsymbol-objectsymbol-address"></span>`fn address(&self) -> u64`
 
-- <span id="coffsymbol-size"></span>`fn size(&self) -> u64`
+- <span id="coffsymbol-objectsymbol-size"></span>`fn size(&self) -> u64`
 
-- <span id="coffsymbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../index.md#symbolkind)
+- <span id="coffsymbol-objectsymbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../index.md#symbolkind)
 
-- <span id="coffsymbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../index.md#symbolsection)
+- <span id="coffsymbol-objectsymbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../index.md#symbolsection)
 
-- <span id="coffsymbol-is-undefined"></span>`fn is_undefined(&self) -> bool`
+- <span id="coffsymbol-objectsymbol-is-undefined"></span>`fn is_undefined(&self) -> bool`
 
-- <span id="coffsymbol-is-definition"></span>`fn is_definition(&self) -> bool`
+- <span id="coffsymbol-objectsymbol-is-definition"></span>`fn is_definition(&self) -> bool`
 
-- <span id="coffsymbol-is-common"></span>`fn is_common(&self) -> bool`
+- <span id="coffsymbol-objectsymbol-is-common"></span>`fn is_common(&self) -> bool`
 
-- <span id="coffsymbol-is-weak"></span>`fn is_weak(&self) -> bool`
+- <span id="coffsymbol-objectsymbol-is-weak"></span>`fn is_weak(&self) -> bool`
 
-- <span id="coffsymbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../index.md#symbolscope)
+- <span id="coffsymbol-objectsymbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../index.md#symbolscope)
 
-- <span id="coffsymbol-is-global"></span>`fn is_global(&self) -> bool`
+- <span id="coffsymbol-objectsymbol-is-global"></span>`fn is_global(&self) -> bool`
 
-- <span id="coffsymbol-is-local"></span>`fn is_local(&self) -> bool`
+- <span id="coffsymbol-objectsymbol-is-local"></span>`fn is_local(&self) -> bool`
 
-- <span id="coffsymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../index.md#symbolflags), [`SectionIndex`](../../index.md#sectionindex), [`SymbolIndex`](../../index.md#symbolindex)
+- <span id="coffsymbol-objectsymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../index.md#symbolflags), [`SectionIndex`](../../index.md#sectionindex), [`SymbolIndex`](../../index.md#symbolindex)
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Sealed for CoffSymbol<'data, 'file, R, Coff>`
+
+##### `impl ToOwned for CoffSymbol<'data, 'file, R, Coff>`
+
+- <span id="coffsymbol-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="coffsymbol-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="coffsymbol-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for CoffSymbol<'data, 'file, R, Coff>`
+
+- <span id="coffsymbol-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="coffsymbol-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CoffSymbol<'data, 'file, R, Coff>`
+
+- <span id="coffsymbol-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="coffsymbol-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CoffRelocationIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>`
 
@@ -783,9 +1433,39 @@ An iterator for the relocations in a [`CoffSection`](super::CoffSection).
 
 #### Trait Implementations
 
+##### `impl Any for CoffRelocationIterator<'data, 'file, R, Coff>`
+
+- <span id="coffrelocationiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CoffRelocationIterator<'data, 'file, R, Coff>`
+
+- <span id="coffrelocationiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CoffRelocationIterator<'data, 'file, R, Coff>`
+
+- <span id="coffrelocationiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Debug for CoffRelocationIterator<'data, 'file, R, Coff>`
 
-- <span id="coffrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="coffrelocationiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CoffRelocationIterator<'data, 'file, R, Coff>`
+
+- <span id="coffrelocationiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CoffRelocationIterator<'data, 'file, R, Coff>`
+
+- <span id="coffrelocationiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for CoffRelocationIterator<'data, 'file, R, Coff>`
 
@@ -793,13 +1473,25 @@ An iterator for the relocations in a [`CoffSection`](super::CoffSection).
 
 - <span id="coffrelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="coffrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="coffrelocationiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffRelocationIterator<'data, 'file, R, Coff>`
 
 - <span id="coffrelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
-- <span id="coffrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="coffrelocationiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for CoffRelocationIterator<'data, 'file, R, Coff>`
+
+- <span id="coffrelocationiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="coffrelocationiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CoffRelocationIterator<'data, 'file, R, Coff>`
+
+- <span id="coffrelocationiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="coffrelocationiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CoffComdatIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>`
 
@@ -820,9 +1512,39 @@ An iterator for the COMDAT section groups in a [`CoffFile`](#cofffile).
 
 #### Trait Implementations
 
+##### `impl Any for CoffComdatIterator<'data, 'file, R, Coff>`
+
+- <span id="coffcomdatiterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CoffComdatIterator<'data, 'file, R, Coff>`
+
+- <span id="coffcomdatiterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CoffComdatIterator<'data, 'file, R, Coff>`
+
+- <span id="coffcomdatiterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffComdatIterator<'data, 'file, R, Coff>`
 
-- <span id="coffcomdatiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="coffcomdatiterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CoffComdatIterator<'data, 'file, R, Coff>`
+
+- <span id="coffcomdatiterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CoffComdatIterator<'data, 'file, R, Coff>`
+
+- <span id="coffcomdatiterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for CoffComdatIterator<'data, 'file, R, Coff>`
 
@@ -830,13 +1552,25 @@ An iterator for the COMDAT section groups in a [`CoffFile`](#cofffile).
 
 - <span id="coffcomdatiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="coffcomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="coffcomdatiterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffComdatIterator<'data, 'file, R, Coff>`
 
 - <span id="coffcomdatiterator-iterator-type-item"></span>`type Item = CoffComdat<'data, 'file, R, Coff>`
 
-- <span id="coffcomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="coffcomdatiterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for CoffComdatIterator<'data, 'file, R, Coff>`
+
+- <span id="coffcomdatiterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="coffcomdatiterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CoffComdatIterator<'data, 'file, R, Coff>`
+
+- <span id="coffcomdatiterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="coffcomdatiterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CoffComdat<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>`
 
@@ -861,25 +1595,67 @@ Most functionality is provided by the [`ObjectComdat`](../index.md) trait implem
 
 #### Trait Implementations
 
+##### `impl Any for CoffComdat<'data, 'file, R, Coff>`
+
+- <span id="coffcomdat-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CoffComdat<'data, 'file, R, Coff>`
+
+- <span id="coffcomdat-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CoffComdat<'data, 'file, R, Coff>`
+
+- <span id="coffcomdat-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffComdat<'data, 'file, R, Coff>`
 
-- <span id="coffcomdat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="coffcomdat-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CoffComdat<'data, 'file, R, Coff>`
+
+- <span id="coffcomdat-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CoffComdat<'data, 'file, R, Coff>`
+
+- <span id="coffcomdat-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> ObjectComdat for CoffComdat<'data, 'file, R, Coff>`
 
 - <span id="coffcomdat-objectcomdat-type-sectioniterator"></span>`type SectionIterator = CoffComdatSectionIterator<'data, 'file, R, Coff>`
 
-- <span id="coffcomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md#comdatkind)
+- <span id="coffcomdat-objectcomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md#comdatkind)
 
-- <span id="coffcomdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md#symbolindex)
+- <span id="coffcomdat-objectcomdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md#symbolindex)
 
-- <span id="coffcomdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
+- <span id="coffcomdat-objectcomdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="coffcomdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md#result)
+- <span id="coffcomdat-objectcomdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md#result)
 
-- <span id="coffcomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../index.md#objectcomdat)
+- <span id="coffcomdat-objectcomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../index.md#objectcomdat)
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Sealed for CoffComdat<'data, 'file, R, Coff>`
+
+##### `impl<U> TryFrom for CoffComdat<'data, 'file, R, Coff>`
+
+- <span id="coffcomdat-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="coffcomdat-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CoffComdat<'data, 'file, R, Coff>`
+
+- <span id="coffcomdat-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="coffcomdat-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CoffComdatSectionIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>`
 
@@ -897,9 +1673,39 @@ An iterator for the sections in a COMDAT section group in a [`CoffFile`](#cofffi
 
 #### Trait Implementations
 
+##### `impl Any for CoffComdatSectionIterator<'data, 'file, R, Coff>`
+
+- <span id="coffcomdatsectioniterator-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CoffComdatSectionIterator<'data, 'file, R, Coff>`
+
+- <span id="coffcomdatsectioniterator-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CoffComdatSectionIterator<'data, 'file, R, Coff>`
+
+- <span id="coffcomdatsectioniterator-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffComdatSectionIterator<'data, 'file, R, Coff>`
 
-- <span id="coffcomdatsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="coffcomdatsectioniterator-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CoffComdatSectionIterator<'data, 'file, R, Coff>`
+
+- <span id="coffcomdatsectioniterator-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CoffComdatSectionIterator<'data, 'file, R, Coff>`
+
+- <span id="coffcomdatsectioniterator-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for CoffComdatSectionIterator<'data, 'file, R, Coff>`
 
@@ -907,13 +1713,25 @@ An iterator for the sections in a COMDAT section group in a [`CoffFile`](#cofffi
 
 - <span id="coffcomdatsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="coffcomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="coffcomdatsectioniterator-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffComdatSectionIterator<'data, 'file, R, Coff>`
 
 - <span id="coffcomdatsectioniterator-iterator-type-item"></span>`type Item = SectionIndex`
 
-- <span id="coffcomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="coffcomdatsectioniterator-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+
+##### `impl<U> TryFrom for CoffComdatSectionIterator<'data, 'file, R, Coff>`
+
+- <span id="coffcomdatsectioniterator-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="coffcomdatsectioniterator-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CoffComdatSectionIterator<'data, 'file, R, Coff>`
+
+- <span id="coffcomdatsectioniterator-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="coffcomdatsectioniterator-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImportFile<'data>`
 
@@ -941,27 +1759,95 @@ to [`crate::FileKind::CoffImport`](../../index.md).
 
 - <span id="importfile-parse"></span>`fn parse<R: ReadRef<'data>>(data: R) -> Result<Self>` — [`Result`](../../index.md#result)
 
+  Parse it.
+
 - <span id="importfile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md#architecture)
+
+  Get the machine type.
 
 - <span id="importfile-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../index.md#subarchitecture)
 
+  Get the sub machine type, if available.
+
 - <span id="importfile-symbol"></span>`fn symbol(&self) -> &'data [u8]`
+
+  The public symbol name.
 
 - <span id="importfile-dll"></span>`fn dll(&self) -> &'data [u8]`
 
+  The name of the DLL to import the symbol from.
+
 - <span id="importfile-import"></span>`fn import(&self) -> ImportName<'data>` — [`ImportName`](#importname)
+
+  The name exported from the DLL.
 
 - <span id="importfile-import-type"></span>`fn import_type(&self) -> ImportType` — [`ImportType`](#importtype)
 
+  The type of import. Usually either a function or data.
+
 #### Trait Implementations
+
+##### `impl Any for ImportFile<'data>`
+
+- <span id="importfile-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImportFile<'data>`
+
+- <span id="importfile-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImportFile<'data>`
+
+- <span id="importfile-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ImportFile<'data>`
 
 - <span id="importfile-clone"></span>`fn clone(&self) -> ImportFile<'data>` — [`ImportFile`](#importfile)
 
+##### `impl CloneToUninit for ImportFile<'data>`
+
+- <span id="importfile-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for ImportFile<'data>`
 
-- <span id="importfile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="importfile-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImportFile<'data>`
+
+- <span id="importfile-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImportFile<'data>`
+
+- <span id="importfile-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for ImportFile<'data>`
+
+- <span id="importfile-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="importfile-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="importfile-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImportFile<'data>`
+
+- <span id="importfile-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="importfile-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImportFile<'data>`
+
+- <span id="importfile-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="importfile-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImportObjectData<'data>`
 
@@ -981,19 +1867,83 @@ The data following [`pe::ImportObjectHeader`](../../pe/index.md).
 
 - <span id="importobjectdata-symbol"></span>`fn symbol(&self) -> &'data [u8]`
 
+  The public symbol name.
+
 - <span id="importobjectdata-dll"></span>`fn dll(&self) -> &'data [u8]`
+
+  The name of the DLL to import the symbol from.
 
 - <span id="importobjectdata-export"></span>`fn export(&self) -> Option<&'data [u8]>`
 
+  The name exported from the DLL.
+
+  
+
+  This is only set if the name is not derived from the symbol name.
+
 #### Trait Implementations
+
+##### `impl Any for ImportObjectData<'data>`
+
+- <span id="importobjectdata-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImportObjectData<'data>`
+
+- <span id="importobjectdata-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImportObjectData<'data>`
+
+- <span id="importobjectdata-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for ImportObjectData<'data>`
 
 - <span id="importobjectdata-clone"></span>`fn clone(&self) -> ImportObjectData<'data>` — [`ImportObjectData`](#importobjectdata)
 
+##### `impl CloneToUninit for ImportObjectData<'data>`
+
+- <span id="importobjectdata-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for ImportObjectData<'data>`
 
-- <span id="importobjectdata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="importobjectdata-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ImportObjectData<'data>`
+
+- <span id="importobjectdata-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImportObjectData<'data>`
+
+- <span id="importobjectdata-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for ImportObjectData<'data>`
+
+- <span id="importobjectdata-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="importobjectdata-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="importobjectdata-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImportObjectData<'data>`
+
+- <span id="importobjectdata-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="importobjectdata-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImportObjectData<'data>`
+
+- <span id="importobjectdata-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="importobjectdata-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -1022,23 +1972,77 @@ The name or ordinal to import from a DLL.
 
 #### Trait Implementations
 
+##### `impl Any for ImportName<'data>`
+
+- <span id="importname-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImportName<'data>`
+
+- <span id="importname-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImportName<'data>`
+
+- <span id="importname-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImportName<'data>`
 
 - <span id="importname-clone"></span>`fn clone(&self) -> ImportName<'data>` — [`ImportName`](#importname)
+
+##### `impl CloneToUninit for ImportName<'data>`
+
+- <span id="importname-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImportName<'data>`
 
 ##### `impl Debug for ImportName<'data>`
 
-- <span id="importname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="importname-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ImportName<'data>`
 
+##### `impl<T> From for ImportName<'data>`
+
+- <span id="importname-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ImportName<'data>`
+
+- <span id="importname-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ImportName<'data>`
 
-- <span id="importname-eq"></span>`fn eq(&self, other: &ImportName<'data>) -> bool` — [`ImportName`](#importname)
+- <span id="importname-partialeq-eq"></span>`fn eq(&self, other: &ImportName<'data>) -> bool` — [`ImportName`](#importname)
 
 ##### `impl StructuralPartialEq for ImportName<'data>`
+
+##### `impl ToOwned for ImportName<'data>`
+
+- <span id="importname-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="importname-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="importname-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImportName<'data>`
+
+- <span id="importname-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="importname-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImportName<'data>`
+
+- <span id="importname-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="importname-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ImportType`
 
@@ -1070,27 +2074,81 @@ The kind of import symbol.
 
 #### Trait Implementations
 
+##### `impl Any for ImportType`
+
+- <span id="importtype-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ImportType`
+
+- <span id="importtype-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ImportType`
+
+- <span id="importtype-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ImportType`
 
 - <span id="importtype-clone"></span>`fn clone(&self) -> ImportType` — [`ImportType`](#importtype)
+
+##### `impl CloneToUninit for ImportType`
+
+- <span id="importtype-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for ImportType`
 
 ##### `impl Debug for ImportType`
 
-- <span id="importtype-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="importtype-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ImportType`
+
+##### `impl<T> From for ImportType`
+
+- <span id="importtype-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for ImportType`
 
 - <span id="importtype-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for ImportType`
+
+- <span id="importtype-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for ImportType`
 
-- <span id="importtype-eq"></span>`fn eq(&self, other: &ImportType) -> bool` — [`ImportType`](#importtype)
+- <span id="importtype-partialeq-eq"></span>`fn eq(&self, other: &ImportType) -> bool` — [`ImportType`](#importtype)
 
 ##### `impl StructuralPartialEq for ImportType`
+
+##### `impl ToOwned for ImportType`
+
+- <span id="importtype-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="importtype-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="importtype-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for ImportType`
+
+- <span id="importtype-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="importtype-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ImportType`
+
+- <span id="importtype-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="importtype-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

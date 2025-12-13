@@ -48,27 +48,93 @@ string larger than 16 megabytes probably isn't that uncommon.
 
 - <span id="capacity-as-usize"></span>`unsafe fn as_usize(self) -> usize`
 
+  Re-interprets a [`Capacity`](#capacity) as a `usize`
+
+  
+
+  # SAFETY:
+
+  * `self` must be less than or equal to [`MAX_VALUE`](#max-value)
+
 - <span id="capacity-is-heap"></span>`fn is_heap(self) -> bool`
 
+  Returns whether or not this [`Capacity`](#capacity) has a value that indicates the capacity is being
+
+  stored on the heap
+
 #### Trait Implementations
+
+##### `impl Any for Capacity`
+
+- <span id="capacity-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Capacity`
+
+- <span id="capacity-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Capacity`
+
+- <span id="capacity-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Capacity`
 
 - <span id="capacity-clone"></span>`fn clone(&self) -> Capacity` — [`Capacity`](#capacity)
 
+##### `impl CloneToUninit for Capacity`
+
+- <span id="capacity-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Capacity`
 
 ##### `impl Debug for Capacity`
 
-- <span id="capacity-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="capacity-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Capacity`
 
+##### `impl<T> From for Capacity`
+
+- <span id="capacity-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Capacity`
+
+- <span id="capacity-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Capacity`
 
-- <span id="capacity-eq"></span>`fn eq(&self, other: &Capacity) -> bool` — [`Capacity`](#capacity)
+- <span id="capacity-partialeq-eq"></span>`fn eq(&self, other: &Capacity) -> bool` — [`Capacity`](#capacity)
 
 ##### `impl StructuralPartialEq for Capacity`
+
+##### `impl ToOwned for Capacity`
+
+- <span id="capacity-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="capacity-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="capacity-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Capacity`
+
+- <span id="capacity-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="capacity-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Capacity`
+
+- <span id="capacity-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="capacity-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Constants
 

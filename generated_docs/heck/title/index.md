@@ -21,7 +21,7 @@ struct AsTitleCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/title.rs:44`](../../../.source_1765521767/heck-0.5.0/src/title.rs#L44)*
 
-This wrapper performs a title case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
+This wrapper performs a title case conversion in [`fmt::Display`](../../miette_derive/index.md).
 
 ## Example:
 
@@ -34,13 +34,55 @@ assert_eq!(format!("{}", AsTitleCase(sentence)), "We Have Always Lived In Slums 
 
 #### Trait Implementations
 
+##### `impl<T> Any for AsTitleCase<T>`
+
+- <span id="astitlecase-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AsTitleCase<T>`
+
+- <span id="astitlecase-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AsTitleCase<T>`
+
+- <span id="astitlecase-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: AsRef<str>> Display for AsTitleCase<T>`
 
-- <span id="astitlecase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="astitlecase-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for AsTitleCase<T>`
+
+- <span id="astitlecase-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for AsTitleCase<T>`
+
+- <span id="astitlecase-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for AsTitleCase<T>`
 
-- <span id="astitlecase-to-string"></span>`fn to_string(&self) -> String`
+- <span id="astitlecase-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<T, U> TryFrom for AsTitleCase<T>`
+
+- <span id="astitlecase-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="astitlecase-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for AsTitleCase<T>`
+
+- <span id="astitlecase-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="astitlecase-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

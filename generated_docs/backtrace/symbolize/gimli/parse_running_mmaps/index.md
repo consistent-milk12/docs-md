@@ -92,23 +92,65 @@ struct MapsEntry {
 
 #### Trait Implementations
 
+##### `impl Any for MapsEntry`
+
+- <span id="mapsentry-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for MapsEntry`
+
+- <span id="mapsentry-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for MapsEntry`
+
+- <span id="mapsentry-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for MapsEntry`
 
-- <span id="mapsentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mapsentry-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for MapsEntry`
+
+##### `impl<T> From for MapsEntry`
+
+- <span id="mapsentry-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromStr for MapsEntry`
 
 - <span id="mapsentry-fromstr-type-err"></span>`type Err = &'static str`
 
-- <span id="mapsentry-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
+- <span id="mapsentry-fromstr-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
+
+##### `impl<U> Into for MapsEntry`
+
+- <span id="mapsentry-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for MapsEntry`
 
-- <span id="mapsentry-eq"></span>`fn eq(&self, other: &MapsEntry) -> bool` — [`MapsEntry`](#mapsentry)
+- <span id="mapsentry-partialeq-eq"></span>`fn eq(&self, other: &MapsEntry) -> bool` — [`MapsEntry`](#mapsentry)
 
 ##### `impl StructuralPartialEq for MapsEntry`
+
+##### `impl<U> TryFrom for MapsEntry`
+
+- <span id="mapsentry-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="mapsentry-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for MapsEntry`
+
+- <span id="mapsentry-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="mapsentry-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

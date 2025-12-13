@@ -100,7 +100,87 @@ impl Parse for GenericParam {
 
 - <span id="lookahead1-peek"></span>`fn peek<T: Peek>(&self, token: T) -> bool`
 
+  Looks at the next token in the parse stream to determine whether it
+
+  matches the requested type of token.
+
+  
+
+  # Syntax
+
+  
+
+  Note that this method does not use turbofish syntax. Pass the peek type
+
+  inside of parentheses.
+
+  
+
+  - `input.peek(Token![struct])`
+
+  - `input.peek(Token![==])`
+
+  - `input.peek(Ident)`&emsp;*(does not accept keywords)*
+
+  - `input.peek(Ident::peek_any)`
+
+  - `input.peek(Lifetime)`
+
+  - `input.peek(token::Brace)`
+
 - <span id="lookahead1-error"></span>`fn error(self) -> Error` — [`Error`](../error/index.md#error)
+
+  Triggers an error at the current position of the parse stream.
+
+  
+
+  The error message will identify all of the expected token types that
+
+  have been peeked against this lookahead instance.
+
+#### Trait Implementations
+
+##### `impl Any for Lookahead1<'a>`
+
+- <span id="lookahead1-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Lookahead1<'a>`
+
+- <span id="lookahead1-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Lookahead1<'a>`
+
+- <span id="lookahead1-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for Lookahead1<'a>`
+
+- <span id="lookahead1-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Lookahead1<'a>`
+
+- <span id="lookahead1-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Lookahead1<'a>`
+
+- <span id="lookahead1-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="lookahead1-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Lookahead1<'a>`
+
+- <span id="lookahead1-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="lookahead1-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CommaSeparated<'a>`
 
@@ -112,13 +192,55 @@ struct CommaSeparated<'a>(&'a [&'a str]);
 
 #### Trait Implementations
 
+##### `impl Any for CommaSeparated<'a>`
+
+- <span id="commaseparated-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CommaSeparated<'a>`
+
+- <span id="commaseparated-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CommaSeparated<'a>`
+
+- <span id="commaseparated-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Display for CommaSeparated<'a>`
 
-- <span id="commaseparated-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="commaseparated-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CommaSeparated<'a>`
+
+- <span id="commaseparated-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CommaSeparated<'a>`
+
+- <span id="commaseparated-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for CommaSeparated<'a>`
 
-- <span id="commaseparated-to-string"></span>`fn to_string(&self) -> String`
+- <span id="commaseparated-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for CommaSeparated<'a>`
+
+- <span id="commaseparated-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="commaseparated-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CommaSeparated<'a>`
+
+- <span id="commaseparated-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="commaseparated-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `End`
 
@@ -261,21 +383,75 @@ Ok(())
 
 #### Trait Implementations
 
+##### `impl Any for End`
+
+- <span id="end-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for End`
+
+- <span id="end-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for End`
+
+- <span id="end-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for End`
 
 - <span id="end-clone"></span>`fn clone(&self) -> Self`
 
+##### `impl CloneToUninit for End`
+
+- <span id="end-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for End`
+
+##### `impl<T> From for End`
+
+- <span id="end-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for End`
+
+- <span id="end-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Peek for End`
 
 ##### `impl Sealed for End`
 
+##### `impl ToOwned for End`
+
+- <span id="end-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="end-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="end-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl Token for End`
 
-- <span id="end-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../buffer/index.md#cursor)
+- <span id="end-token-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../buffer/index.md#cursor)
 
-- <span id="end-display"></span>`fn display() -> &'static str`
+- <span id="end-token-display"></span>`fn display() -> &'static str`
+
+##### `impl<U> TryFrom for End`
+
+- <span id="end-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="end-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for End`
+
+- <span id="end-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="end-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -287,6 +463,50 @@ enum TokenMarker {
 ```
 
 *Defined in [`syn-2.0.111/src/lookahead.rs:338`](../../../.source_1765521767/syn-2.0.111/src/lookahead.rs#L338)*
+
+#### Trait Implementations
+
+##### `impl Any for TokenMarker`
+
+- <span id="tokenmarker-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for TokenMarker`
+
+- <span id="tokenmarker-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for TokenMarker`
+
+- <span id="tokenmarker-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for TokenMarker`
+
+- <span id="tokenmarker-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for TokenMarker`
+
+- <span id="tokenmarker-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for TokenMarker`
+
+- <span id="tokenmarker-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="tokenmarker-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for TokenMarker`
+
+- <span id="tokenmarker-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="tokenmarker-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

@@ -143,37 +143,119 @@ of `Metadata`'s other fields is checked in debug builds.
 
 - <span id="metadata-new"></span>`const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](#level), [`FieldSet`](../field/index.md#fieldset), [`Kind`](#kind)
 
+  Construct new metadata for a span or event, with a name, target, level, field
+
+  names, and optional source code location.
+
 - <span id="metadata-fields"></span>`fn fields(&self) -> &field::FieldSet` — [`FieldSet`](../field/index.md#fieldset)
+
+  Returns the names of the fields on the described span or event.
 
 - <span id="metadata-level"></span>`fn level(&self) -> &Level` — [`Level`](#level)
 
+  Returns the level of verbosity of the described span or event.
+
 - <span id="metadata-name"></span>`fn name(&self) -> &'static str`
+
+  Returns the name of the span.
 
 - <span id="metadata-target"></span>`fn target(&self) -> &'a str`
 
+  Returns a string describing the part of the system where the span or
+
+  event that this metadata describes occurred.
+
+  
+
+  Typically, this is the module path, but alternate targets may be set
+
+  when spans or events are constructed.
+
 - <span id="metadata-module-path"></span>`fn module_path(&self) -> Option<&'a str>`
+
+  Returns the path to the Rust module where the span occurred, or
+
+  `None` if the module path is unknown.
 
 - <span id="metadata-file"></span>`fn file(&self) -> Option<&'a str>`
 
+  Returns the name of the source code file where the span
+
+  occurred, or `None` if the file is unknown
+
 - <span id="metadata-line"></span>`fn line(&self) -> Option<u32>`
+
+  Returns the line number in the source code file where the span
+
+  occurred, or `None` if the line number is unknown.
 
 - <span id="metadata-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md#identifier)
 
+  Returns an opaque `Identifier` that uniquely identifies the callsite
+
+  this `Metadata` originated from.
+
 - <span id="metadata-is-event"></span>`fn is_event(&self) -> bool`
+
+  Returns true if the callsite kind is `Event`.
 
 - <span id="metadata-is-span"></span>`fn is_span(&self) -> bool`
 
+  Return true if the callsite kind is `Span`.
+
 #### Trait Implementations
+
+##### `impl Any for Metadata<'a>`
+
+- <span id="metadata-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Metadata<'a>`
+
+- <span id="metadata-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Metadata<'a>`
+
+- <span id="metadata-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Debug for Metadata<'_>`
 
-- <span id="metadata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="metadata-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Metadata<'_>`
 
+##### `impl<T> From for Metadata<'a>`
+
+- <span id="metadata-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Metadata<'a>`
+
+- <span id="metadata-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Metadata<'_>`
 
-- <span id="metadata-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="metadata-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
+
+##### `impl<U> TryFrom for Metadata<'a>`
+
+- <span id="metadata-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="metadata-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Metadata<'a>`
+
+- <span id="metadata-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="metadata-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Kind`
 
@@ -201,29 +283,97 @@ Indicates whether the callsite is a span or event.
 
 - <span id="kind-is-span"></span>`fn is_span(&self) -> bool`
 
+  Return true if the callsite kind is `Span`
+
 - <span id="kind-is-event"></span>`fn is_event(&self) -> bool`
+
+  Return true if the callsite kind is `Event`
 
 - <span id="kind-is-hint"></span>`fn is_hint(&self) -> bool`
 
+  Return true if the callsite kind is `Hint`
+
 - <span id="kind-hint"></span>`const fn hint(self) -> Self`
 
+  Sets that this `Kind` is a [hint](Self::HINT).
+
+  
+
+  This can be called on [`SPAN`](Self::SPAN) and [`EVENT`](Self::EVENT)
+
+  kinds to construct a hint callsite that also counts as a span or event.
+
 #### Trait Implementations
+
+##### `impl Any for Kind`
+
+- <span id="kind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Kind`
+
+- <span id="kind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Kind`
+
+- <span id="kind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Kind`
 
 - <span id="kind-clone"></span>`fn clone(&self) -> Kind` — [`Kind`](#kind)
 
+##### `impl CloneToUninit for Kind`
+
+- <span id="kind-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Kind`
 
-- <span id="kind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="kind-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Kind`
 
+##### `impl<T> From for Kind`
+
+- <span id="kind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Kind`
+
+- <span id="kind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Kind`
 
-- <span id="kind-eq"></span>`fn eq(&self, other: &Kind) -> bool` — [`Kind`](#kind)
+- <span id="kind-partialeq-eq"></span>`fn eq(&self, other: &Kind) -> bool` — [`Kind`](#kind)
 
 ##### `impl StructuralPartialEq for Kind`
+
+##### `impl ToOwned for Kind`
+
+- <span id="kind-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="kind-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="kind-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Kind`
+
+- <span id="kind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="kind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Kind`
+
+- <span id="kind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="kind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Level`
 
@@ -375,59 +525,119 @@ recorded in.
 
 - <span id="level-as-str"></span>`fn as_str(&self) -> &'static str`
 
+  Returns the string representation of the `Level`.
+
+  
+
+  This returns the same string as the `fmt::Display` implementation.
+
 #### Trait Implementations
+
+##### `impl Any for Level`
+
+- <span id="level-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Level`
+
+- <span id="level-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Level`
+
+- <span id="level-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Level`
 
 - <span id="level-clone"></span>`fn clone(&self) -> Level` — [`Level`](#level)
 
+##### `impl CloneToUninit for Level`
+
+- <span id="level-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for Level`
 
 ##### `impl Debug for Level`
 
-- <span id="level-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="level-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Level`
 
-- <span id="level-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="level-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Level`
+
+##### `impl<T> From for Level`
+
+- <span id="level-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromStr for Level`
 
 - <span id="level-fromstr-type-err"></span>`type Err = ParseLevelError`
 
-- <span id="level-from-str"></span>`fn from_str(s: &str) -> Result<Self, ParseLevelError>` — [`ParseLevelError`](#parselevelerror)
+- <span id="level-fromstr-from-str"></span>`fn from_str(s: &str) -> Result<Self, ParseLevelError>` — [`ParseLevelError`](#parselevelerror)
 
 ##### `impl Hash for Level`
 
 - <span id="level-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Level`
+
+- <span id="level-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for Level`
 
-- <span id="level-cmp"></span>`fn cmp(&self, other: &Self) -> cmp::Ordering`
+- <span id="level-ord-cmp"></span>`fn cmp(&self, other: &Self) -> cmp::Ordering`
 
 ##### `impl PartialEq for Level`
 
-- <span id="level-eq"></span>`fn eq(&self, other: &Level) -> bool` — [`Level`](#level)
+- <span id="level-partialeq-eq"></span>`fn eq(&self, other: &Level) -> bool` — [`Level`](#level)
 
 ##### `impl PartialOrd for Level`
 
-- <span id="level-partial-cmp"></span>`fn partial_cmp(&self, other: &Level) -> Option<cmp::Ordering>` — [`Level`](#level)
+- <span id="level-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Level) -> Option<cmp::Ordering>` — [`Level`](#level)
 
-- <span id="level-lt"></span>`fn lt(&self, other: &Level) -> bool` — [`Level`](#level)
+- <span id="level-partialord-lt"></span>`fn lt(&self, other: &Level) -> bool` — [`Level`](#level)
 
-- <span id="level-le"></span>`fn le(&self, other: &Level) -> bool` — [`Level`](#level)
+- <span id="level-partialord-le"></span>`fn le(&self, other: &Level) -> bool` — [`Level`](#level)
 
-- <span id="level-gt"></span>`fn gt(&self, other: &Level) -> bool` — [`Level`](#level)
+- <span id="level-partialord-gt"></span>`fn gt(&self, other: &Level) -> bool` — [`Level`](#level)
 
-- <span id="level-ge"></span>`fn ge(&self, other: &Level) -> bool` — [`Level`](#level)
+- <span id="level-partialord-ge"></span>`fn ge(&self, other: &Level) -> bool` — [`Level`](#level)
 
 ##### `impl StructuralPartialEq for Level`
 
+##### `impl ToOwned for Level`
+
+- <span id="level-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="level-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="level-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for Level`
 
-- <span id="level-to-string"></span>`fn to_string(&self) -> String`
+- <span id="level-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Level`
+
+- <span id="level-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="level-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Level`
+
+- <span id="level-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="level-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `LevelFilter`
 
@@ -467,7 +677,15 @@ and `LevelFilter`s interact.
 
 - <span id="levelfilter-from-level"></span>`const fn from_level(level: Level) -> Self` — [`Level`](#level)
 
+  Returns a `LevelFilter` that enables spans and events with verbosity up
+
+  to and including `level`.
+
 - <span id="levelfilter-into-level"></span>`const fn into_level(self) -> Option<Level>` — [`Level`](#level)
+
+  Returns the most verbose [`Level`](#level) that this filter accepts, or `None`
+
+  if it is `OFF`.
 
 - <span id="levelfilter-const-error-usize"></span>`const ERROR_USIZE: usize`
 
@@ -483,61 +701,143 @@ and `LevelFilter`s interact.
 
 - <span id="levelfilter-current"></span>`fn current() -> Self`
 
+  Returns a `LevelFilter` that matches the most verbose [`Level`](#level) that any
+
+  currently active [`Subscriber`](../subscriber/index.md) will enable.
+
+  
+
+  User code should treat this as a *hint*. If a given span or event has a
+
+  level *higher* than the returned `LevelFilter`, it will not be enabled.
+
+  However, if the level is less than or equal to this value, the span or
+
+  event is *not* guaranteed to be enabled; the subscriber will still
+
+  filter each callsite individually.
+
+  
+
+  Therefore, comparing a given span or event's level to the returned
+
+  `LevelFilter` **can** be used for determining if something is
+
+  *disabled*, but **should not** be used for determining if something is
+
+  *enabled*.
+
+  
+
 - <span id="levelfilter-set-max"></span>`fn set_max(LevelFilter: LevelFilter)` — [`LevelFilter`](#levelfilter)
 
 #### Trait Implementations
+
+##### `impl Any for LevelFilter`
+
+- <span id="levelfilter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LevelFilter`
+
+- <span id="levelfilter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LevelFilter`
+
+- <span id="levelfilter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for LevelFilter`
 
 - <span id="levelfilter-clone"></span>`fn clone(&self) -> LevelFilter` — [`LevelFilter`](#levelfilter)
 
+##### `impl CloneToUninit for LevelFilter`
+
+- <span id="levelfilter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Copy for LevelFilter`
 
 ##### `impl Debug for LevelFilter`
 
-- <span id="levelfilter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="levelfilter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for LevelFilter`
 
-- <span id="levelfilter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="levelfilter-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LevelFilter`
+
+##### `impl<T> From for LevelFilter`
+
+- <span id="levelfilter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl FromStr for LevelFilter`
 
 - <span id="levelfilter-fromstr-type-err"></span>`type Err = ParseLevelFilterError`
 
-- <span id="levelfilter-from-str"></span>`fn from_str(from: &str) -> Result<Self, <Self as >::Err>`
+- <span id="levelfilter-fromstr-from-str"></span>`fn from_str(from: &str) -> Result<Self, <Self as >::Err>`
 
 ##### `impl Hash for LevelFilter`
 
 - <span id="levelfilter-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for LevelFilter`
+
+- <span id="levelfilter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Ord for LevelFilter`
 
-- <span id="levelfilter-cmp"></span>`fn cmp(&self, other: &Self) -> cmp::Ordering`
+- <span id="levelfilter-ord-cmp"></span>`fn cmp(&self, other: &Self) -> cmp::Ordering`
 
 ##### `impl PartialEq for LevelFilter`
 
-- <span id="levelfilter-eq"></span>`fn eq(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- <span id="levelfilter-partialeq-eq"></span>`fn eq(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
 ##### `impl PartialOrd for Level`
 
-- <span id="level-partial-cmp"></span>`fn partial_cmp(&self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](#levelfilter)
+- <span id="level-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](#levelfilter)
 
-- <span id="level-lt"></span>`fn lt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- <span id="level-partialord-lt"></span>`fn lt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-- <span id="level-le"></span>`fn le(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- <span id="level-partialord-le"></span>`fn le(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-- <span id="level-gt"></span>`fn gt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- <span id="level-partialord-gt"></span>`fn gt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-- <span id="level-ge"></span>`fn ge(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- <span id="level-partialord-ge"></span>`fn ge(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
 ##### `impl StructuralPartialEq for LevelFilter`
 
+##### `impl ToOwned for LevelFilter`
+
+- <span id="levelfilter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="levelfilter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="levelfilter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for LevelFilter`
 
-- <span id="levelfilter-to-string"></span>`fn to_string(&self) -> String`
+- <span id="levelfilter-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for LevelFilter`
+
+- <span id="levelfilter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="levelfilter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LevelFilter`
+
+- <span id="levelfilter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="levelfilter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ParseLevelFilterError`
 
@@ -551,23 +851,77 @@ Indicates that a string could not be parsed to a valid level.
 
 #### Trait Implementations
 
+##### `impl Any for ParseLevelFilterError`
+
+- <span id="parselevelfiltererror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ParseLevelFilterError`
+
+- <span id="parselevelfiltererror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ParseLevelFilterError`
+
+- <span id="parselevelfiltererror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for ParseLevelFilterError`
 
 - <span id="parselevelfiltererror-clone"></span>`fn clone(&self) -> ParseLevelFilterError` — [`ParseLevelFilterError`](#parselevelfiltererror)
 
+##### `impl CloneToUninit for ParseLevelFilterError`
+
+- <span id="parselevelfiltererror-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for ParseLevelFilterError`
 
-- <span id="parselevelfiltererror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parselevelfiltererror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ParseLevelFilterError`
 
-- <span id="parselevelfiltererror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parselevelfiltererror-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for ParseLevelFilterError`
 
+##### `impl<T> From for ParseLevelFilterError`
+
+- <span id="parselevelfiltererror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ParseLevelFilterError`
+
+- <span id="parselevelfiltererror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for ParseLevelFilterError`
+
+- <span id="parselevelfiltererror-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="parselevelfiltererror-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="parselevelfiltererror-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl ToString for ParseLevelFilterError`
 
-- <span id="parselevelfiltererror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="parselevelfiltererror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for ParseLevelFilterError`
+
+- <span id="parselevelfiltererror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="parselevelfiltererror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ParseLevelFilterError`
+
+- <span id="parselevelfiltererror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="parselevelfiltererror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ParseLevelError`
 
@@ -583,19 +937,61 @@ Returned if parsing a `Level` fails.
 
 #### Trait Implementations
 
+##### `impl Any for ParseLevelError`
+
+- <span id="parselevelerror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ParseLevelError`
+
+- <span id="parselevelerror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ParseLevelError`
+
+- <span id="parselevelerror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Debug for ParseLevelError`
 
-- <span id="parselevelerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parselevelerror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ParseLevelError`
 
-- <span id="parselevelerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parselevelerror-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for ParseLevelError`
 
+##### `impl<T> From for ParseLevelError`
+
+- <span id="parselevelerror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ParseLevelError`
+
+- <span id="parselevelerror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl ToString for ParseLevelError`
 
-- <span id="parselevelerror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="parselevelerror-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for ParseLevelError`
+
+- <span id="parselevelerror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="parselevelerror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ParseLevelError`
+
+- <span id="parselevelerror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="parselevelerror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -647,27 +1043,81 @@ enum LevelInner {
 
 #### Trait Implementations
 
+##### `impl Any for LevelInner`
+
+- <span id="levelinner-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for LevelInner`
+
+- <span id="levelinner-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for LevelInner`
+
+- <span id="levelinner-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for LevelInner`
 
 - <span id="levelinner-clone"></span>`fn clone(&self) -> LevelInner` — [`LevelInner`](#levelinner)
+
+##### `impl CloneToUninit for LevelInner`
+
+- <span id="levelinner-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Copy for LevelInner`
 
 ##### `impl Debug for LevelInner`
 
-- <span id="levelinner-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="levelinner-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LevelInner`
+
+##### `impl<T> From for LevelInner`
+
+- <span id="levelinner-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl Hash for LevelInner`
 
 - <span id="levelinner-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for LevelInner`
+
+- <span id="levelinner-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for LevelInner`
 
-- <span id="levelinner-eq"></span>`fn eq(&self, other: &LevelInner) -> bool` — [`LevelInner`](#levelinner)
+- <span id="levelinner-partialeq-eq"></span>`fn eq(&self, other: &LevelInner) -> bool` — [`LevelInner`](#levelinner)
 
 ##### `impl StructuralPartialEq for LevelInner`
+
+##### `impl ToOwned for LevelInner`
+
+- <span id="levelinner-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="levelinner-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="levelinner-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for LevelInner`
+
+- <span id="levelinner-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="levelinner-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for LevelInner`
+
+- <span id="levelinner-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="levelinner-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

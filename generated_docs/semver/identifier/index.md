@@ -68,9 +68,25 @@ struct Identifier {
 
 #### Trait Implementations
 
+##### `impl Any for Identifier`
+
+- <span id="identifier-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Identifier`
+
+- <span id="identifier-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Identifier`
+
+- <span id="identifier-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Clone for Identifier`
 
 - <span id="identifier-clone"></span>`fn clone(&self) -> Self`
+
+##### `impl CloneToUninit for Identifier`
+
+- <span id="identifier-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl Default for crate::identifier::Identifier`
 
@@ -82,17 +98,55 @@ struct Identifier {
 
 ##### `impl Eq for crate::identifier::Identifier`
 
+##### `impl<T> From for Identifier`
+
+- <span id="identifier-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
 ##### `impl Hash for crate::identifier::Identifier`
 
 - <span id="crateidentifieridentifier-hash"></span>`fn hash<H: Hasher>(&self, hasher: &mut H)`
 
+##### `impl<U> Into for Identifier`
+
+- <span id="identifier-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Identifier`
 
-- <span id="identifier-eq"></span>`fn eq(&self, rhs: &Self) -> bool`
+- <span id="identifier-partialeq-eq"></span>`fn eq(&self, rhs: &Self) -> bool`
 
 ##### `impl Send for Identifier`
 
 ##### `impl Sync for Identifier`
+
+##### `impl ToOwned for Identifier`
+
+- <span id="identifier-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="identifier-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="identifier-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Identifier`
+
+- <span id="identifier-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="identifier-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Identifier`
+
+- <span id="identifier-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="identifier-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

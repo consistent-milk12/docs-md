@@ -30,13 +30,55 @@ Used in panic messages.
 
 #### Trait Implementations
 
+##### `impl Any for Type<'a>`
+
+- <span id="type-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Type<'a>`
+
+- <span id="type-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Type<'a>`
+
+- <span id="type-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Display for Type<'a>`
 
-- <span id="type-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="type-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Type<'a>`
+
+- <span id="type-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Type<'a>`
+
+- <span id="type-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for Type<'a>`
 
-- <span id="type-to-string"></span>`fn to_string(&self) -> String`
+- <span id="type-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for Type<'a>`
+
+- <span id="type-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="type-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Type<'a>`
+
+- <span id="type-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="type-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

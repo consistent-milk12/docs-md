@@ -67,7 +67,49 @@ struct ErrorVTable {
 
 #### Trait Implementations
 
+##### `impl Any for ErrorVTable`
+
+- <span id="errorvtable-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ErrorVTable`
+
+- <span id="errorvtable-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ErrorVTable`
+
+- <span id="errorvtable-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for ErrorVTable`
+
+- <span id="errorvtable-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ErrorVTable`
+
+- <span id="errorvtable-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl OwoColorize for ErrorVTable`
+
+##### `impl<U> TryFrom for ErrorVTable`
+
+- <span id="errorvtable-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="errorvtable-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ErrorVTable`
+
+- <span id="errorvtable-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="errorvtable-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ErrorImpl<E>`
 
@@ -87,19 +129,61 @@ struct ErrorImpl<E> {
 
 #### Trait Implementations
 
+##### `impl Any for ErrorImpl<E>`
+
+- <span id="errorimpl-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ErrorImpl<E>`
+
+- <span id="errorimpl-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ErrorImpl<E>`
+
+- <span id="errorimpl-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<E> Debug for ErrorImpl<E>`
 
-- <span id="errorimpl-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errorimpl-debug-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Display for ErrorImpl<E>`
 
-- <span id="errorimpl-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errorimpl-display-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ErrorImpl<E>`
+
+- <span id="errorimpl-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ErrorImpl<E>`
+
+- <span id="errorimpl-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ErrorImpl<E>`
 
 ##### `impl ToString for ErrorImpl<E>`
 
-- <span id="errorimpl-to-string"></span>`fn to_string(&self) -> String`
+- <span id="errorimpl-tostring-to-string"></span>`fn to_string(&self) -> String`
+
+##### `impl<U> TryFrom for ErrorImpl<E>`
+
+- <span id="errorimpl-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="errorimpl-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ErrorImpl<E>`
+
+- <span id="errorimpl-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="errorimpl-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ContextError<D, E>`
 
@@ -114,45 +198,87 @@ struct ContextError<D, E> {
 
 #### Trait Implementations
 
+##### `impl Any for ContextError<D, E>`
+
+- <span id="contexterror-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ContextError<D, E>`
+
+- <span id="contexterror-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ContextError<D, E>`
+
+- <span id="contexterror-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<D, E> Debug for super::error::ContextError<D, E>`
 
-- <span id="supererrorcontexterror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="supererrorcontexterror-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Diag for ContextError<D, E>`
 
-- <span id="contexterror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md#report)
+- <span id="contexterror-diag-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md#report)
 
 ##### `impl<D, E> Diagnostic for super::error::ContextError<D, E>`
 
-- <span id="supererrorcontexterror-code"></span>`fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="supererrorcontexterror-diagnostic-code"></span>`fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- <span id="supererrorcontexterror-severity"></span>`fn severity(&self) -> Option<crate::Severity>` — [`Severity`](../../index.md#severity)
+- <span id="supererrorcontexterror-diagnostic-severity"></span>`fn severity(&self) -> Option<crate::Severity>` — [`Severity`](../../index.md#severity)
 
-- <span id="supererrorcontexterror-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="supererrorcontexterror-diagnostic-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- <span id="supererrorcontexterror-url"></span>`fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="supererrorcontexterror-diagnostic-url"></span>`fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- <span id="supererrorcontexterror-labels"></span>`fn labels<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](../../index.md#labeledspan)
+- <span id="supererrorcontexterror-diagnostic-labels"></span>`fn labels<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](../../index.md#labeledspan)
 
-- <span id="supererrorcontexterror-source-code"></span>`fn source_code(&self) -> Option<&dyn crate::SourceCode>` — [`SourceCode`](../../index.md#sourcecode)
+- <span id="supererrorcontexterror-diagnostic-source-code"></span>`fn source_code(&self) -> Option<&dyn crate::SourceCode>` — [`SourceCode`](../../index.md#sourcecode)
 
-- <span id="supererrorcontexterror-related"></span>`fn related<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = &'a dyn Diagnostic>>>` — [`Diagnostic`](../../index.md#diagnostic)
+- <span id="supererrorcontexterror-diagnostic-related"></span>`fn related<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = &'a dyn Diagnostic>>>` — [`Diagnostic`](../../index.md#diagnostic)
 
 ##### `impl<D, E> Display for super::error::ContextError<D, E>`
 
-- <span id="supererrorcontexterror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="supererrorcontexterror-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D, E> Error for super::error::ContextError<D, E>`
 
-- <span id="supererrorcontexterror-source"></span>`fn source(&self) -> Option<&dyn StdError>`
+- <span id="supererrorcontexterror-error-source"></span>`fn source(&self) -> Option<&dyn StdError>`
+
+##### `impl<T> From for ContextError<D, E>`
+
+- <span id="contexterror-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ContextError<D, E>`
+
+- <span id="contexterror-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<D> OwoColorize for ContextError<D, E>`
 
 ##### `impl ToString for ContextError<D, E>`
 
-- <span id="contexterror-to-string"></span>`fn to_string(&self) -> String`
+- <span id="contexterror-tostring-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<E> TraitKind for ContextError<D, E>`
+
+##### `impl<U> TryFrom for ContextError<D, E>`
+
+- <span id="contexterror-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="contexterror-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ContextError<D, E>`
+
+- <span id="contexterror-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="contexterror-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

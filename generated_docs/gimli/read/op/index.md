@@ -93,21 +93,75 @@ expression.
 
 #### Trait Implementations
 
+##### `impl Any for Piece<R, Offset>`
+
+- <span id="piece-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Piece<R, Offset>`
+
+- <span id="piece-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Piece<R, Offset>`
+
+- <span id="piece-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R, Offset> Clone for Piece<R, Offset>`
 
 - <span id="piece-clone"></span>`fn clone(&self) -> Piece<R, Offset>` — [`Piece`](../index.md#piece)
+
+##### `impl CloneToUninit for Piece<R, Offset>`
+
+- <span id="piece-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<R, Offset> Copy for Piece<R, Offset>`
 
 ##### `impl<R, Offset> Debug for Piece<R, Offset>`
 
-- <span id="piece-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="piece-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Piece<R, Offset>`
+
+- <span id="piece-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Piece<R, Offset>`
+
+- <span id="piece-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for Piece<R, Offset>`
 
-- <span id="piece-eq"></span>`fn eq(&self, other: &Piece<R, Offset>) -> bool` — [`Piece`](../index.md#piece)
+- <span id="piece-partialeq-eq"></span>`fn eq(&self, other: &Piece<R, Offset>) -> bool` — [`Piece`](../index.md#piece)
 
 ##### `impl<R, Offset> StructuralPartialEq for Piece<R, Offset>`
+
+##### `impl ToOwned for Piece<R, Offset>`
+
+- <span id="piece-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="piece-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="piece-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Piece<R, Offset>`
+
+- <span id="piece-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="piece-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Piece<R, Offset>`
+
+- <span id="piece-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="piece-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Expression<R: Reader>`
 
@@ -123,31 +177,123 @@ The bytecode for a DWARF expression or location description.
 
 - <span id="expression-evaluation"></span>`fn evaluation(self, encoding: Encoding) -> Evaluation<R>` — [`Encoding`](../../index.md#encoding), [`Evaluation`](../index.md#evaluation)
 
+  Create an evaluation for this expression.
+
+  
+
+  The `encoding` is determined by the
+
+  [`CompilationUnitHeader`](#compilationunitheader) or
+
+  [`TypeUnitHeader`](#typeunitheader) that this expression
+
+  relates to.
+
+  
+
+  # Examples
+
+  ```rust,no_run
+
+  use gimli::Expression;
+
+  let endian = gimli::LittleEndian;
+
+  let debug_info = gimli::DebugInfo::from(gimli::EndianSlice::new(&[], endian));
+
+  let unit = debug_info.units().next().unwrap().unwrap();
+
+  let bytecode = gimli::EndianSlice::new(&[], endian);
+
+  let expression = gimli::Expression(bytecode);
+
+  let mut eval = expression.evaluation(unit.encoding());
+
+  let mut result = eval.evaluate().unwrap();
+
+  ```
+
 - <span id="expression-operations"></span>`fn operations(self, encoding: Encoding) -> OperationIter<R>` — [`Encoding`](../../index.md#encoding), [`OperationIter`](../index.md#operationiter)
 
+  Return an iterator for the operations in the expression.
+
 #### Trait Implementations
+
+##### `impl Any for Expression<R>`
+
+- <span id="expression-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Expression<R>`
+
+- <span id="expression-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Expression<R>`
+
+- <span id="expression-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R: clone::Clone + Reader> Clone for Expression<R>`
 
 - <span id="expression-clone"></span>`fn clone(&self) -> Expression<R>` — [`Expression`](../index.md#expression)
 
+##### `impl CloneToUninit for Expression<R>`
+
+- <span id="expression-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R: marker::Copy + Reader> Copy for Expression<R>`
 
 ##### `impl<R: fmt::Debug + Reader> Debug for Expression<R>`
 
-- <span id="expression-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="expression-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: cmp::Eq + Reader> Eq for Expression<R>`
+
+##### `impl<T> From for Expression<R>`
+
+- <span id="expression-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
 
 ##### `impl<R: hash::Hash + Reader> Hash for Expression<R>`
 
 - <span id="expression-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<U> Into for Expression<R>`
+
+- <span id="expression-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for Expression<R>`
 
-- <span id="expression-eq"></span>`fn eq(&self, other: &Expression<R>) -> bool` — [`Expression`](../index.md#expression)
+- <span id="expression-partialeq-eq"></span>`fn eq(&self, other: &Expression<R>) -> bool` — [`Expression`](../index.md#expression)
 
 ##### `impl<R: Reader> StructuralPartialEq for Expression<R>`
+
+##### `impl ToOwned for Expression<R>`
+
+- <span id="expression-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="expression-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="expression-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Expression<R>`
+
+- <span id="expression-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="expression-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Expression<R>`
+
+- <span id="expression-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="expression-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `OperationIter<R: Reader>`
 
@@ -166,19 +312,77 @@ An iterator for the operations in an expression.
 
 - <span id="operationiter-next"></span>`fn next(&mut self) -> Result<Option<Operation<R>>>` — [`Result`](../../index.md#result), [`Operation`](../index.md#operation)
 
+  Read the next operation in an expression.
+
 - <span id="operationiter-offset-from"></span>`fn offset_from(&self, expression: &Expression<R>) -> <R as >::Offset` — [`Expression`](../index.md#expression), [`Reader`](../index.md#reader)
 
+  Return the current byte offset of the iterator.
+
 #### Trait Implementations
+
+##### `impl Any for OperationIter<R>`
+
+- <span id="operationiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for OperationIter<R>`
+
+- <span id="operationiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for OperationIter<R>`
+
+- <span id="operationiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R: clone::Clone + Reader> Clone for OperationIter<R>`
 
 - <span id="operationiter-clone"></span>`fn clone(&self) -> OperationIter<R>` — [`OperationIter`](../index.md#operationiter)
 
+##### `impl CloneToUninit for OperationIter<R>`
+
+- <span id="operationiter-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R: marker::Copy + Reader> Copy for OperationIter<R>`
 
 ##### `impl<R: fmt::Debug + Reader> Debug for OperationIter<R>`
 
-- <span id="operationiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="operationiter-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for OperationIter<R>`
+
+- <span id="operationiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for OperationIter<R>`
+
+- <span id="operationiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl ToOwned for OperationIter<R>`
+
+- <span id="operationiter-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="operationiter-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="operationiter-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for OperationIter<R>`
+
+- <span id="operationiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="operationiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for OperationIter<R>`
+
+- <span id="operationiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="operationiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Evaluation<R: Reader, S: EvaluationStorage<R>>`
 
@@ -251,13 +455,71 @@ println!("{:?}", result);
 
 - <span id="evaluation-new"></span>`fn new(bytecode: R, encoding: Encoding) -> Self` — [`Encoding`](../../index.md#encoding)
 
+  Create a new DWARF expression evaluator.
+
+  
+
+  The new evaluator is created without an initial value, without
+
+  an object address, and without a maximum number of iterations.
+
 - <span id="evaluation-result"></span>`fn result(self) -> Vec<Piece<R>>` — [`Piece`](../index.md#piece)
+
+  Get the result of this `Evaluation`.
+
+  
+
+  # Panics
+
+  Panics if this `Evaluation` has not been driven to completion.
 
 #### Trait Implementations
 
+##### `impl Any for Evaluation<R, S>`
+
+- <span id="evaluation-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Evaluation<R, S>`
+
+- <span id="evaluation-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Evaluation<R, S>`
+
+- <span id="evaluation-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug + Reader, S: fmt::Debug + EvaluationStorage<R>> Debug for Evaluation<R, S>`
 
-- <span id="evaluation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="evaluation-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Evaluation<R, S>`
+
+- <span id="evaluation-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Evaluation<R, S>`
+
+- <span id="evaluation-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for Evaluation<R, S>`
+
+- <span id="evaluation-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="evaluation-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Evaluation<R, S>`
+
+- <span id="evaluation-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="evaluation-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -287,23 +549,77 @@ relative to the section.
 
 #### Trait Implementations
 
+##### `impl<T> Any for DieReference<T>`
+
+- <span id="diereference-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for DieReference<T>`
+
+- <span id="diereference-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for DieReference<T>`
+
+- <span id="diereference-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T: clone::Clone> Clone for DieReference<T>`
 
 - <span id="diereference-clone"></span>`fn clone(&self) -> DieReference<T>` — [`DieReference`](../index.md#diereference)
+
+##### `impl<T> CloneToUninit for DieReference<T>`
+
+- <span id="diereference-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
 
 ##### `impl<T: marker::Copy> Copy for DieReference<T>`
 
 ##### `impl<T: fmt::Debug> Debug for DieReference<T>`
 
-- <span id="diereference-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="diereference-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: cmp::Eq> Eq for DieReference<T>`
 
+##### `impl<T> From for DieReference<T>`
+
+- <span id="diereference-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for DieReference<T>`
+
+- <span id="diereference-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<T: cmp::PartialEq> PartialEq for DieReference<T>`
 
-- <span id="diereference-eq"></span>`fn eq(&self, other: &DieReference<T>) -> bool` — [`DieReference`](../index.md#diereference)
+- <span id="diereference-partialeq-eq"></span>`fn eq(&self, other: &DieReference<T>) -> bool` — [`DieReference`](../index.md#diereference)
 
 ##### `impl<T> StructuralPartialEq for DieReference<T>`
+
+##### `impl<T> ToOwned for DieReference<T>`
+
+- <span id="diereference-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="diereference-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="diereference-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<T, U> TryFrom for DieReference<T>`
+
+- <span id="diereference-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="diereference-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for DieReference<T>`
+
+- <span id="diereference-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="diereference-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Operation<R, Offset>`
 
@@ -713,25 +1029,95 @@ using `Operation::Deref`.
 
 - <span id="operation-parse"></span>`fn parse(bytes: &mut R, encoding: Encoding) -> Result<Operation<R, Offset>>` — [`Encoding`](../../index.md#encoding), [`Result`](../../index.md#result), [`Operation`](../index.md#operation)
 
+  Parse a single DWARF expression operation.
+
+  
+
+  This is useful when examining a DWARF expression for reasons other
+
+  than direct evaluation.
+
+  
+
+  `bytes` points to a the operation to decode.  It should point into
+
+  the same array as `bytecode`, which should be the entire
+
+  expression.
+
 #### Trait Implementations
+
+##### `impl Any for Operation<R, Offset>`
+
+- <span id="operation-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Operation<R, Offset>`
+
+- <span id="operation-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Operation<R, Offset>`
+
+- <span id="operation-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R, Offset> Clone for Operation<R, Offset>`
 
 - <span id="operation-clone"></span>`fn clone(&self) -> Operation<R, Offset>` — [`Operation`](../index.md#operation)
 
+##### `impl CloneToUninit for Operation<R, Offset>`
+
+- <span id="operation-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R, Offset> Copy for Operation<R, Offset>`
 
 ##### `impl<R, Offset> Debug for Operation<R, Offset>`
 
-- <span id="operation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="operation-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for Operation<R, Offset>`
 
+##### `impl<T> From for Operation<R, Offset>`
+
+- <span id="operation-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Operation<R, Offset>`
+
+- <span id="operation-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<R, Offset> PartialEq for Operation<R, Offset>`
 
-- <span id="operation-eq"></span>`fn eq(&self, other: &Operation<R, Offset>) -> bool` — [`Operation`](../index.md#operation)
+- <span id="operation-partialeq-eq"></span>`fn eq(&self, other: &Operation<R, Offset>) -> bool` — [`Operation`](../index.md#operation)
 
 ##### `impl<R, Offset> StructuralPartialEq for Operation<R, Offset>`
+
+##### `impl ToOwned for Operation<R, Offset>`
+
+- <span id="operation-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="operation-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="operation-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Operation<R, Offset>`
+
+- <span id="operation-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="operation-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Operation<R, Offset>`
+
+- <span id="operation-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="operation-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `OperationEvaluationResult<R: Reader>`
 
@@ -750,9 +1136,51 @@ enum OperationEvaluationResult<R: Reader> {
 
 #### Trait Implementations
 
+##### `impl Any for OperationEvaluationResult<R>`
+
+- <span id="operationevaluationresult-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for OperationEvaluationResult<R>`
+
+- <span id="operationevaluationresult-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for OperationEvaluationResult<R>`
+
+- <span id="operationevaluationresult-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug + Reader> Debug for OperationEvaluationResult<R>`
 
-- <span id="operationevaluationresult-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="operationevaluationresult-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for OperationEvaluationResult<R>`
+
+- <span id="operationevaluationresult-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for OperationEvaluationResult<R>`
+
+- <span id="operationevaluationresult-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for OperationEvaluationResult<R>`
+
+- <span id="operationevaluationresult-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="operationevaluationresult-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for OperationEvaluationResult<R>`
+
+- <span id="operationevaluationresult-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="operationevaluationresult-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Location<R, Offset>`
 
@@ -816,23 +1244,79 @@ A single location of a piece of the result of a DWARF expression.
 
 - <span id="location-is-empty"></span>`fn is_empty(&self) -> bool`
 
+  Return true if the piece is empty.
+
 #### Trait Implementations
+
+##### `impl Any for Location<R, Offset>`
+
+- <span id="location-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Location<R, Offset>`
+
+- <span id="location-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Location<R, Offset>`
+
+- <span id="location-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<R, Offset> Clone for Location<R, Offset>`
 
 - <span id="location-clone"></span>`fn clone(&self) -> Location<R, Offset>` — [`Location`](../index.md#location)
 
+##### `impl CloneToUninit for Location<R, Offset>`
+
+- <span id="location-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<R, Offset> Copy for Location<R, Offset>`
 
 ##### `impl<R, Offset> Debug for Location<R, Offset>`
 
-- <span id="location-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="location-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for Location<R, Offset>`
+
+- <span id="location-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Location<R, Offset>`
+
+- <span id="location-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for Location<R, Offset>`
 
-- <span id="location-eq"></span>`fn eq(&self, other: &Location<R, Offset>) -> bool` — [`Location`](../index.md#location)
+- <span id="location-partialeq-eq"></span>`fn eq(&self, other: &Location<R, Offset>) -> bool` — [`Location`](../index.md#location)
 
 ##### `impl<R, Offset> StructuralPartialEq for Location<R, Offset>`
+
+##### `impl ToOwned for Location<R, Offset>`
+
+- <span id="location-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="location-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="location-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Location<R, Offset>`
+
+- <span id="location-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="location-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Location<R, Offset>`
+
+- <span id="location-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="location-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `EvaluationState<R: Reader>`
 
@@ -850,9 +1334,51 @@ enum EvaluationState<R: Reader> {
 
 #### Trait Implementations
 
+##### `impl Any for EvaluationState<R>`
+
+- <span id="evaluationstate-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for EvaluationState<R>`
+
+- <span id="evaluationstate-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for EvaluationState<R>`
+
+- <span id="evaluationstate-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug + Reader> Debug for EvaluationState<R>`
 
-- <span id="evaluationstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="evaluationstate-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for EvaluationState<R>`
+
+- <span id="evaluationstate-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for EvaluationState<R>`
+
+- <span id="evaluationstate-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for EvaluationState<R>`
+
+- <span id="evaluationstate-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="evaluationstate-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for EvaluationState<R>`
+
+- <span id="evaluationstate-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="evaluationstate-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `EvaluationWaiting<R: Reader>`
 
@@ -884,9 +1410,51 @@ enum EvaluationWaiting<R: Reader> {
 
 #### Trait Implementations
 
+##### `impl Any for EvaluationWaiting<R>`
+
+- <span id="evaluationwaiting-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for EvaluationWaiting<R>`
+
+- <span id="evaluationwaiting-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for EvaluationWaiting<R>`
+
+- <span id="evaluationwaiting-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug + Reader> Debug for EvaluationWaiting<R>`
 
-- <span id="evaluationwaiting-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="evaluationwaiting-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for EvaluationWaiting<R>`
+
+- <span id="evaluationwaiting-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for EvaluationWaiting<R>`
+
+- <span id="evaluationwaiting-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for EvaluationWaiting<R>`
+
+- <span id="evaluationwaiting-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="evaluationwaiting-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for EvaluationWaiting<R>`
+
+- <span id="evaluationwaiting-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="evaluationwaiting-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `EvaluationResult<R: Reader>`
 
@@ -1005,15 +1573,57 @@ to continue, as described by the variant.
 
 #### Trait Implementations
 
+##### `impl Any for EvaluationResult<R>`
+
+- <span id="evaluationresult-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for EvaluationResult<R>`
+
+- <span id="evaluationresult-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for EvaluationResult<R>`
+
+- <span id="evaluationresult-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<R: fmt::Debug + Reader> Debug for EvaluationResult<R>`
 
-- <span id="evaluationresult-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="evaluationresult-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for EvaluationResult<R>`
+
+- <span id="evaluationresult-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for EvaluationResult<R>`
+
+- <span id="evaluationresult-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for EvaluationResult<R>`
 
-- <span id="evaluationresult-eq"></span>`fn eq(&self, other: &EvaluationResult<R>) -> bool` — [`EvaluationResult`](../index.md#evaluationresult)
+- <span id="evaluationresult-partialeq-eq"></span>`fn eq(&self, other: &EvaluationResult<R>) -> bool` — [`EvaluationResult`](../index.md#evaluationresult)
 
 ##### `impl<R: Reader> StructuralPartialEq for EvaluationResult<R>`
+
+##### `impl<U> TryFrom for EvaluationResult<R>`
+
+- <span id="evaluationresult-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="evaluationresult-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for EvaluationResult<R>`
+
+- <span id="evaluationresult-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="evaluationresult-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

@@ -116,27 +116,57 @@ struct Params {
 
 - <span id="params-len"></span>`fn len(&self) -> usize`
 
+  Returns the number of parameters.
+
 - <span id="params-is-empty"></span>`fn is_empty(&self) -> bool`
+
+  Returns `true` if there are no parameters present.
 
 - <span id="params-iter"></span>`fn iter(&self) -> ParamsIter<'_>` — [`ParamsIter`](params/index.md#paramsiter)
 
+  Returns an iterator over all parameters and subparameters.
+
 - <span id="params-is-full"></span>`fn is_full(&self) -> bool`
+
+  Returns `true` if there is no more space for additional parameters.
 
 - <span id="params-clear"></span>`fn clear(&mut self)`
 
+  Clear all parameters.
+
 - <span id="params-push"></span>`fn push(&mut self, item: u16)`
+
+  Add an additional parameter.
 
 - <span id="params-extend"></span>`fn extend(&mut self, item: u16)`
 
+  Add an additional subparameter to the current parameter.
+
 #### Trait Implementations
+
+##### `impl Any for Params`
+
+- <span id="params-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Params`
+
+- <span id="params-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Params`
+
+- <span id="params-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl Clone for Params`
 
 - <span id="params-clone"></span>`fn clone(&self) -> Params` — [`Params`](params/index.md#params)
 
+##### `impl CloneToUninit for Params`
+
+- <span id="params-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Params`
 
-- <span id="params-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result`
+- <span id="params-debug-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Params`
 
@@ -144,19 +174,57 @@ struct Params {
 
 ##### `impl Eq for Params`
 
+##### `impl<T> From for Params`
+
+- <span id="params-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Params`
+
+- <span id="params-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoIterator for &'a Params`
 
 - <span id="a-params-intoiterator-type-intoiter"></span>`type IntoIter = ParamsIter<'a>`
 
 - <span id="a-params-intoiterator-type-item"></span>`type Item = &'a [u16]`
 
-- <span id="a-params-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+- <span id="a-params-intoiterator-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl PartialEq for Params`
 
-- <span id="params-eq"></span>`fn eq(&self, other: &Params) -> bool` — [`Params`](params/index.md#params)
+- <span id="params-partialeq-eq"></span>`fn eq(&self, other: &Params) -> bool` — [`Params`](params/index.md#params)
 
 ##### `impl StructuralPartialEq for Params`
+
+##### `impl ToOwned for Params`
+
+- <span id="params-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="params-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="params-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Params`
+
+- <span id="params-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="params-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Params`
+
+- <span id="params-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="params-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `ParamsIter<'a>`
 
@@ -177,21 +245,63 @@ Immutable subparameter iterator.
 
 #### Trait Implementations
 
+##### `impl Any for ParamsIter<'a>`
+
+- <span id="paramsiter-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ParamsIter<'a>`
+
+- <span id="paramsiter-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ParamsIter<'a>`
+
+- <span id="paramsiter-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for ParamsIter<'a>`
+
+- <span id="paramsiter-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ParamsIter<'a>`
+
+- <span id="paramsiter-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl IntoIterator for ParamsIter<'a>`
 
 - <span id="paramsiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="paramsiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
-- <span id="paramsiter-into-iter"></span>`fn into_iter(self) -> I`
+- <span id="paramsiter-intoiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ParamsIter<'a>`
 
 - <span id="paramsiter-iterator-type-item"></span>`type Item = &'a [u16]`
 
-- <span id="paramsiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
+- <span id="paramsiter-iterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- <span id="paramsiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+- <span id="paramsiter-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
+
+##### `impl<U> TryFrom for ParamsIter<'a>`
+
+- <span id="paramsiter-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="paramsiter-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ParamsIter<'a>`
+
+- <span id="paramsiter-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="paramsiter-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Parser<C>`
 
@@ -218,11 +328,19 @@ Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 
 - <span id="parser-new"></span>`fn new() -> Parser` — [`Parser`](#parser)
 
+  Create a new Parser
+
 - <span id="parser-params"></span>`fn params(&self) -> &Params` — [`Params`](params/index.md#params)
 
 - <span id="parser-intermediates"></span>`fn intermediates(&self) -> &[u8]`
 
 - <span id="parser-advance"></span>`fn advance<P: Perform>(&mut self, performer: &mut P, byte: u8)`
+
+  Advance the parser state
+
+  
+
+  Requires a [`Perform`](#perform) in case `byte` triggers an action
 
 - <span id="parser-process-utf8"></span>`fn process_utf8<P>(&mut self, performer: &mut P, byte: u8)`
 
@@ -230,17 +348,39 @@ Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 
 - <span id="parser-osc-dispatch"></span>`fn osc_dispatch<P: Perform>(&self, performer: &mut P, byte: u8)`
 
+  Separate method for `osc_dispatch` that borrows self as read-only
+
+  
+
+  The aliasing is needed here for multiple slices into `self.osc_raw`
+
 - <span id="parser-perform-action"></span>`fn perform_action<P: Perform>(&mut self, performer: &mut P, action: Action, byte: u8)` — [`Action`](state/definitions/index.md#action)
 
 #### Trait Implementations
+
+##### `impl Any for Parser<C>`
+
+- <span id="parser-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Parser<C>`
+
+- <span id="parser-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Parser<C>`
+
+- <span id="parser-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ##### `impl<C: clone::Clone> Clone for Parser<C>`
 
 - <span id="parser-clone"></span>`fn clone(&self) -> Parser<C>` — [`Parser`](#parser)
 
+##### `impl CloneToUninit for Parser<C>`
+
+- <span id="parser-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl<C: fmt::Debug> Debug for Parser<C>`
 
-- <span id="parser-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parser-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<C: default::Default> Default for Parser<C>`
 
@@ -248,11 +388,49 @@ Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 
 ##### `impl<C: cmp::Eq> Eq for Parser<C>`
 
+##### `impl<T> From for Parser<C>`
+
+- <span id="parser-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Parser<C>`
+
+- <span id="parser-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl<C: cmp::PartialEq> PartialEq for Parser<C>`
 
-- <span id="parser-eq"></span>`fn eq(&self, other: &Parser<C>) -> bool` — [`Parser`](#parser)
+- <span id="parser-partialeq-eq"></span>`fn eq(&self, other: &Parser<C>) -> bool` — [`Parser`](#parser)
 
 ##### `impl<C> StructuralPartialEq for Parser<C>`
+
+##### `impl ToOwned for Parser<C>`
+
+- <span id="parser-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="parser-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="parser-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Parser<C>`
+
+- <span id="parser-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="parser-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Parser<C>`
+
+- <span id="parser-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="parser-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `AsciiParser`
 
@@ -266,17 +444,33 @@ Only allow parsing 7-bit ASCII
 
 #### Trait Implementations
 
+##### `impl Any for AsciiParser`
+
+- <span id="asciiparser-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for AsciiParser`
+
+- <span id="asciiparser-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for AsciiParser`
+
+- <span id="asciiparser-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl CharAccumulator for AsciiParser`
 
-- <span id="asciiparser-add"></span>`fn add(&mut self, _byte: u8) -> Option<char>`
+- <span id="asciiparser-characcumulator-add"></span>`fn add(&mut self, _byte: u8) -> Option<char>`
 
 ##### `impl Clone for AsciiParser`
 
 - <span id="asciiparser-clone"></span>`fn clone(&self) -> AsciiParser` — [`AsciiParser`](#asciiparser)
 
+##### `impl CloneToUninit for AsciiParser`
+
+- <span id="asciiparser-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for AsciiParser`
 
-- <span id="asciiparser-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="asciiparser-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AsciiParser`
 
@@ -284,11 +478,49 @@ Only allow parsing 7-bit ASCII
 
 ##### `impl Eq for AsciiParser`
 
+##### `impl<T> From for AsciiParser`
+
+- <span id="asciiparser-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for AsciiParser`
+
+- <span id="asciiparser-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for AsciiParser`
 
-- <span id="asciiparser-eq"></span>`fn eq(&self, other: &AsciiParser) -> bool` — [`AsciiParser`](#asciiparser)
+- <span id="asciiparser-partialeq-eq"></span>`fn eq(&self, other: &AsciiParser) -> bool` — [`AsciiParser`](#asciiparser)
 
 ##### `impl StructuralPartialEq for AsciiParser`
+
+##### `impl ToOwned for AsciiParser`
+
+- <span id="asciiparser-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="asciiparser-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="asciiparser-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for AsciiParser`
+
+- <span id="asciiparser-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="asciiparser-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for AsciiParser`
+
+- <span id="asciiparser-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="asciiparser-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Utf8Parser`
 
@@ -304,17 +536,33 @@ Allow parsing UTF-8
 
 #### Trait Implementations
 
+##### `impl Any for Utf8Parser`
+
+- <span id="utf8parser-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for Utf8Parser`
+
+- <span id="utf8parser-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for Utf8Parser`
+
+- <span id="utf8parser-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl CharAccumulator for Utf8Parser`
 
-- <span id="utf8parser-add"></span>`fn add(&mut self, byte: u8) -> Option<char>`
+- <span id="utf8parser-characcumulator-add"></span>`fn add(&mut self, byte: u8) -> Option<char>`
 
 ##### `impl Clone for Utf8Parser`
 
 - <span id="utf8parser-clone"></span>`fn clone(&self) -> Utf8Parser` — [`Utf8Parser`](#utf8parser)
 
+##### `impl CloneToUninit for Utf8Parser`
+
+- <span id="utf8parser-clonetouninit-clone-to-uninit"></span>`unsafe fn clone_to_uninit(&self, dest: *mut u8)`
+
 ##### `impl Debug for Utf8Parser`
 
-- <span id="utf8parser-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="utf8parser-debug-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Utf8Parser`
 
@@ -322,11 +570,49 @@ Allow parsing UTF-8
 
 ##### `impl Eq for Utf8Parser`
 
+##### `impl<T> From for Utf8Parser`
+
+- <span id="utf8parser-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for Utf8Parser`
+
+- <span id="utf8parser-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl PartialEq for Utf8Parser`
 
-- <span id="utf8parser-eq"></span>`fn eq(&self, other: &Utf8Parser) -> bool` — [`Utf8Parser`](#utf8parser)
+- <span id="utf8parser-partialeq-eq"></span>`fn eq(&self, other: &Utf8Parser) -> bool` — [`Utf8Parser`](#utf8parser)
 
 ##### `impl StructuralPartialEq for Utf8Parser`
+
+##### `impl ToOwned for Utf8Parser`
+
+- <span id="utf8parser-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="utf8parser-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="utf8parser-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl<U> TryFrom for Utf8Parser`
+
+- <span id="utf8parser-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="utf8parser-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for Utf8Parser`
+
+- <span id="utf8parser-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="utf8parser-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `VtUtf8Receiver<'a>`
 
@@ -338,11 +624,53 @@ struct VtUtf8Receiver<'a>(&'a mut Option<char>);
 
 #### Trait Implementations
 
+##### `impl Any for VtUtf8Receiver<'a>`
+
+- <span id="vtutf8receiver-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for VtUtf8Receiver<'a>`
+
+- <span id="vtutf8receiver-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for VtUtf8Receiver<'a>`
+
+- <span id="vtutf8receiver-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<T> From for VtUtf8Receiver<'a>`
+
+- <span id="vtutf8receiver-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for VtUtf8Receiver<'a>`
+
+- <span id="vtutf8receiver-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
 ##### `impl Receiver for VtUtf8Receiver<'_>`
 
-- <span id="vtutf8receiver-codepoint"></span>`fn codepoint(&mut self, c: char)`
+- <span id="vtutf8receiver-receiver-codepoint"></span>`fn codepoint(&mut self, c: char)`
 
-- <span id="vtutf8receiver-invalid-sequence"></span>`fn invalid_sequence(&mut self)`
+- <span id="vtutf8receiver-receiver-invalid-sequence"></span>`fn invalid_sequence(&mut self)`
+
+##### `impl<U> TryFrom for VtUtf8Receiver<'a>`
+
+- <span id="vtutf8receiver-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="vtutf8receiver-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for VtUtf8Receiver<'a>`
+
+- <span id="vtutf8receiver-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="vtutf8receiver-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

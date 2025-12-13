@@ -117,17 +117,59 @@ struct UnitVisitor;
 
 #### Trait Implementations
 
+##### `impl Any for UnitVisitor`
+
+- <span id="unitvisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for UnitVisitor`
+
+- <span id="unitvisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for UnitVisitor`
+
+- <span id="unitvisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Expected for UnitVisitor`
 
-- <span id="unitvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unitvisitor-expected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for UnitVisitor`
+
+- <span id="unitvisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for UnitVisitor`
+
+- <span id="unitvisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for UnitVisitor`
+
+- <span id="unitvisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="unitvisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for UnitVisitor`
+
+- <span id="unitvisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="unitvisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Visitor for UnitVisitor`
 
 - <span id="unitvisitor-visitor-type-value"></span>`type Value = ()`
 
-- <span id="unitvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unitvisitor-visitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="unitvisitor-visit-unit"></span>`fn visit_unit<E>(self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="unitvisitor-visitor-visit-unit"></span>`fn visit_unit<E>(self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
 ### `BoolVisitor`
 
@@ -139,17 +181,59 @@ struct BoolVisitor;
 
 #### Trait Implementations
 
+##### `impl Any for BoolVisitor`
+
+- <span id="boolvisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BoolVisitor`
+
+- <span id="boolvisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BoolVisitor`
+
+- <span id="boolvisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Expected for BoolVisitor`
 
-- <span id="boolvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="boolvisitor-expected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BoolVisitor`
+
+- <span id="boolvisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BoolVisitor`
+
+- <span id="boolvisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for BoolVisitor`
+
+- <span id="boolvisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="boolvisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BoolVisitor`
+
+- <span id="boolvisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="boolvisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Visitor for BoolVisitor`
 
 - <span id="boolvisitor-visitor-type-value"></span>`type Value = bool`
 
-- <span id="boolvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="boolvisitor-visitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="boolvisitor-visit-bool"></span>`fn visit_bool<E>(self, v: bool) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="boolvisitor-visitor-visit-bool"></span>`fn visit_bool<E>(self, v: bool) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
 ### `CharVisitor`
 
@@ -161,19 +245,61 @@ struct CharVisitor;
 
 #### Trait Implementations
 
+##### `impl Any for CharVisitor`
+
+- <span id="charvisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CharVisitor`
+
+- <span id="charvisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CharVisitor`
+
+- <span id="charvisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Expected for CharVisitor`
 
-- <span id="charvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="charvisitor-expected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CharVisitor`
+
+- <span id="charvisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CharVisitor`
+
+- <span id="charvisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for CharVisitor`
+
+- <span id="charvisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="charvisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CharVisitor`
+
+- <span id="charvisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="charvisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Visitor for CharVisitor`
 
 - <span id="charvisitor-visitor-type-value"></span>`type Value = char`
 
-- <span id="charvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="charvisitor-visitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="charvisitor-visit-char"></span>`fn visit_char<E>(self, v: char) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="charvisitor-visitor-visit-char"></span>`fn visit_char<E>(self, v: char) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
-- <span id="charvisitor-visit-str"></span>`fn visit_str<E>(self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="charvisitor-visitor-visit-str"></span>`fn visit_str<E>(self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
 ### `StringVisitor`
 
@@ -185,23 +311,65 @@ struct StringVisitor;
 
 #### Trait Implementations
 
+##### `impl Any for StringVisitor`
+
+- <span id="stringvisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StringVisitor`
+
+- <span id="stringvisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StringVisitor`
+
+- <span id="stringvisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Expected for StringVisitor`
 
-- <span id="stringvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stringvisitor-expected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for StringVisitor`
+
+- <span id="stringvisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StringVisitor`
+
+- <span id="stringvisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for StringVisitor`
+
+- <span id="stringvisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="stringvisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StringVisitor`
+
+- <span id="stringvisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="stringvisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Visitor for StringVisitor`
 
 - <span id="stringvisitor-visitor-type-value"></span>`type Value = String`
 
-- <span id="stringvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stringvisitor-visitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="stringvisitor-visit-str"></span>`fn visit_str<E>(self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="stringvisitor-visitor-visit-str"></span>`fn visit_str<E>(self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
-- <span id="stringvisitor-visit-string"></span>`fn visit_string<E>(self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md#string), [`Visitor`](../index.md#visitor)
+- <span id="stringvisitor-visitor-visit-string"></span>`fn visit_string<E>(self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md#string), [`Visitor`](../index.md#visitor)
 
-- <span id="stringvisitor-visit-bytes"></span>`fn visit_bytes<E>(self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="stringvisitor-visitor-visit-bytes"></span>`fn visit_bytes<E>(self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
-- <span id="stringvisitor-visit-byte-buf"></span>`fn visit_byte_buf<E>(self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md#vec), [`Visitor`](../index.md#visitor)
+- <span id="stringvisitor-visitor-visit-byte-buf"></span>`fn visit_byte_buf<E>(self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md#vec), [`Visitor`](../index.md#visitor)
 
 ### `StringInPlaceVisitor<'a>`
 
@@ -213,23 +381,65 @@ struct StringInPlaceVisitor<'a>(&'a mut String);
 
 #### Trait Implementations
 
+##### `impl Any for StringInPlaceVisitor<'a>`
+
+- <span id="stringinplacevisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StringInPlaceVisitor<'a>`
+
+- <span id="stringinplacevisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StringInPlaceVisitor<'a>`
+
+- <span id="stringinplacevisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Expected for StringInPlaceVisitor<'a>`
 
-- <span id="stringinplacevisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stringinplacevisitor-expected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for StringInPlaceVisitor<'a>`
+
+- <span id="stringinplacevisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StringInPlaceVisitor<'a>`
+
+- <span id="stringinplacevisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for StringInPlaceVisitor<'a>`
+
+- <span id="stringinplacevisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="stringinplacevisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StringInPlaceVisitor<'a>`
+
+- <span id="stringinplacevisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="stringinplacevisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Visitor for StringInPlaceVisitor<'a>`
 
 - <span id="stringinplacevisitor-visitor-type-value"></span>`type Value = ()`
 
-- <span id="stringinplacevisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stringinplacevisitor-visitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="stringinplacevisitor-visit-str"></span>`fn visit_str<E>(self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="stringinplacevisitor-visitor-visit-str"></span>`fn visit_str<E>(self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
-- <span id="stringinplacevisitor-visit-string"></span>`fn visit_string<E>(self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md#string), [`Visitor`](../index.md#visitor)
+- <span id="stringinplacevisitor-visitor-visit-string"></span>`fn visit_string<E>(self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md#string), [`Visitor`](../index.md#visitor)
 
-- <span id="stringinplacevisitor-visit-bytes"></span>`fn visit_bytes<E>(self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="stringinplacevisitor-visitor-visit-bytes"></span>`fn visit_bytes<E>(self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
-- <span id="stringinplacevisitor-visit-byte-buf"></span>`fn visit_byte_buf<E>(self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md#vec), [`Visitor`](../index.md#visitor)
+- <span id="stringinplacevisitor-visitor-visit-byte-buf"></span>`fn visit_byte_buf<E>(self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md#vec), [`Visitor`](../index.md#visitor)
 
 ### `StrVisitor`
 
@@ -241,19 +451,61 @@ struct StrVisitor;
 
 #### Trait Implementations
 
+##### `impl Any for StrVisitor`
+
+- <span id="strvisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for StrVisitor`
+
+- <span id="strvisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for StrVisitor`
+
+- <span id="strvisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Expected for StrVisitor`
 
-- <span id="strvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="strvisitor-expected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for StrVisitor`
+
+- <span id="strvisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for StrVisitor`
+
+- <span id="strvisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for StrVisitor`
+
+- <span id="strvisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="strvisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for StrVisitor`
+
+- <span id="strvisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="strvisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Visitor for StrVisitor`
 
 - <span id="strvisitor-visitor-type-value"></span>`type Value = &'a str`
 
-- <span id="strvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="strvisitor-visitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="strvisitor-visit-borrowed-str"></span>`fn visit_borrowed_str<E>(self, v: &'a str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="strvisitor-visitor-visit-borrowed-str"></span>`fn visit_borrowed_str<E>(self, v: &'a str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
-- <span id="strvisitor-visit-borrowed-bytes"></span>`fn visit_borrowed_bytes<E>(self, v: &'a [u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="strvisitor-visitor-visit-borrowed-bytes"></span>`fn visit_borrowed_bytes<E>(self, v: &'a [u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
 ### `BytesVisitor`
 
@@ -265,19 +517,61 @@ struct BytesVisitor;
 
 #### Trait Implementations
 
+##### `impl Any for BytesVisitor`
+
+- <span id="bytesvisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for BytesVisitor`
+
+- <span id="bytesvisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for BytesVisitor`
+
+- <span id="bytesvisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Expected for BytesVisitor`
 
-- <span id="bytesvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bytesvisitor-expected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for BytesVisitor`
+
+- <span id="bytesvisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for BytesVisitor`
+
+- <span id="bytesvisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for BytesVisitor`
+
+- <span id="bytesvisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="bytesvisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for BytesVisitor`
+
+- <span id="bytesvisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="bytesvisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Visitor for BytesVisitor`
 
 - <span id="bytesvisitor-visitor-type-value"></span>`type Value = &'a [u8]`
 
-- <span id="bytesvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bytesvisitor-visitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="bytesvisitor-visit-borrowed-bytes"></span>`fn visit_borrowed_bytes<E>(self, v: &'a [u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="bytesvisitor-visitor-visit-borrowed-bytes"></span>`fn visit_borrowed_bytes<E>(self, v: &'a [u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
-- <span id="bytesvisitor-visit-borrowed-str"></span>`fn visit_borrowed_str<E>(self, v: &'a str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="bytesvisitor-visitor-visit-borrowed-str"></span>`fn visit_borrowed_str<E>(self, v: &'a str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
 ### `CStringVisitor`
 
@@ -289,25 +583,67 @@ struct CStringVisitor;
 
 #### Trait Implementations
 
+##### `impl Any for CStringVisitor`
+
+- <span id="cstringvisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for CStringVisitor`
+
+- <span id="cstringvisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for CStringVisitor`
+
+- <span id="cstringvisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Expected for CStringVisitor`
 
-- <span id="cstringvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cstringvisitor-expected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for CStringVisitor`
+
+- <span id="cstringvisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for CStringVisitor`
+
+- <span id="cstringvisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for CStringVisitor`
+
+- <span id="cstringvisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="cstringvisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for CStringVisitor`
+
+- <span id="cstringvisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="cstringvisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Visitor for CStringVisitor`
 
 - <span id="cstringvisitor-visitor-type-value"></span>`type Value = CString`
 
-- <span id="cstringvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cstringvisitor-visitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="cstringvisitor-visit-seq"></span>`fn visit_seq<A>(self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="cstringvisitor-visitor-visit-seq"></span>`fn visit_seq<A>(self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md#visitor)
 
-- <span id="cstringvisitor-visit-bytes"></span>`fn visit_bytes<E>(self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="cstringvisitor-visitor-visit-bytes"></span>`fn visit_bytes<E>(self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
-- <span id="cstringvisitor-visit-byte-buf"></span>`fn visit_byte_buf<E>(self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md#vec), [`Visitor`](../index.md#visitor)
+- <span id="cstringvisitor-visitor-visit-byte-buf"></span>`fn visit_byte_buf<E>(self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md#vec), [`Visitor`](../index.md#visitor)
 
-- <span id="cstringvisitor-visit-str"></span>`fn visit_str<E>(self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="cstringvisitor-visitor-visit-str"></span>`fn visit_str<E>(self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
-- <span id="cstringvisitor-visit-string"></span>`fn visit_string<E>(self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md#string), [`Visitor`](../index.md#visitor)
+- <span id="cstringvisitor-visitor-visit-string"></span>`fn visit_string<E>(self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md#string), [`Visitor`](../index.md#visitor)
 
 ### `OptionVisitor<T>`
 
@@ -321,21 +657,63 @@ struct OptionVisitor<T> {
 
 #### Trait Implementations
 
+##### `impl<T> Any for OptionVisitor<T>`
+
+- <span id="optionvisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for OptionVisitor<T>`
+
+- <span id="optionvisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for OptionVisitor<T>`
+
+- <span id="optionvisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T> Expected for OptionVisitor<T>`
 
-- <span id="optionvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="optionvisitor-expected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for OptionVisitor<T>`
+
+- <span id="optionvisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for OptionVisitor<T>`
+
+- <span id="optionvisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<T, U> TryFrom for OptionVisitor<T>`
+
+- <span id="optionvisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="optionvisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for OptionVisitor<T>`
+
+- <span id="optionvisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="optionvisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T> Visitor for OptionVisitor<T>`
 
 - <span id="optionvisitor-visitor-type-value"></span>`type Value = Option<T>`
 
-- <span id="optionvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="optionvisitor-visitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="optionvisitor-visit-unit"></span>`fn visit_unit<E>(self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="optionvisitor-visitor-visit-unit"></span>`fn visit_unit<E>(self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
-- <span id="optionvisitor-visit-none"></span>`fn visit_none<E>(self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="optionvisitor-visitor-visit-none"></span>`fn visit_none<E>(self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
-- <span id="optionvisitor-visit-some"></span>`fn visit_some<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="optionvisitor-visitor-visit-some"></span>`fn visit_some<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](../index.md#visitor)
 
 ### `PhantomDataVisitor<T: ?Sized>`
 
@@ -349,17 +727,59 @@ struct PhantomDataVisitor<T: ?Sized> {
 
 #### Trait Implementations
 
+##### `impl<T> Any for PhantomDataVisitor<T>`
+
+- <span id="phantomdatavisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PhantomDataVisitor<T>`
+
+- <span id="phantomdatavisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PhantomDataVisitor<T>`
+
+- <span id="phantomdatavisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T> Expected for PhantomDataVisitor<T>`
 
-- <span id="phantomdatavisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="phantomdatavisitor-expected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for PhantomDataVisitor<T>`
+
+- <span id="phantomdatavisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for PhantomDataVisitor<T>`
+
+- <span id="phantomdatavisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<T, U> TryFrom for PhantomDataVisitor<T>`
+
+- <span id="phantomdatavisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="phantomdatavisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for PhantomDataVisitor<T>`
+
+- <span id="phantomdatavisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="phantomdatavisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T> Visitor for PhantomDataVisitor<T>`
 
 - <span id="phantomdatavisitor-visitor-type-value"></span>`type Value = PhantomData<T>`
 
-- <span id="phantomdatavisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="phantomdatavisitor-visitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="phantomdatavisitor-visit-unit"></span>`fn visit_unit<E>(self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="phantomdatavisitor-visitor-visit-unit"></span>`fn visit_unit<E>(self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
 ### `ArrayVisitor<A>`
 
@@ -377,17 +797,59 @@ struct ArrayVisitor<A> {
 
 #### Trait Implementations
 
+##### `impl Any for ArrayVisitor<A>`
+
+- <span id="arrayvisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ArrayVisitor<A>`
+
+- <span id="arrayvisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ArrayVisitor<A>`
+
+- <span id="arrayvisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Expected for ArrayVisitor<A>`
 
-- <span id="arrayvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="arrayvisitor-expected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ArrayVisitor<A>`
+
+- <span id="arrayvisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ArrayVisitor<A>`
+
+- <span id="arrayvisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ArrayVisitor<A>`
+
+- <span id="arrayvisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="arrayvisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ArrayVisitor<A>`
+
+- <span id="arrayvisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="arrayvisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T> Visitor for ArrayVisitor<[T; 0]>`
 
 - <span id="arrayvisitor-visitor-type-value"></span>`type Value = [T; 0]`
 
-- <span id="arrayvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="arrayvisitor-visitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="arrayvisitor-visit-seq"></span>`fn visit_seq<A>(self, _: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="arrayvisitor-visitor-visit-seq"></span>`fn visit_seq<A>(self, _: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md#visitor)
 
 ### `ArrayInPlaceVisitor<'a, A: 'a>`
 
@@ -399,17 +861,59 @@ struct ArrayInPlaceVisitor<'a, A: 'a>(&'a mut A);
 
 #### Trait Implementations
 
+##### `impl Any for ArrayInPlaceVisitor<'a, A>`
+
+- <span id="arrayinplacevisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for ArrayInPlaceVisitor<'a, A>`
+
+- <span id="arrayinplacevisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for ArrayInPlaceVisitor<'a, A>`
+
+- <span id="arrayinplacevisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Expected for ArrayInPlaceVisitor<'a, A>`
 
-- <span id="arrayinplacevisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="arrayinplacevisitor-expected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for ArrayInPlaceVisitor<'a, A>`
+
+- <span id="arrayinplacevisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for ArrayInPlaceVisitor<'a, A>`
+
+- <span id="arrayinplacevisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for ArrayInPlaceVisitor<'a, A>`
+
+- <span id="arrayinplacevisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="arrayinplacevisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for ArrayInPlaceVisitor<'a, A>`
+
+- <span id="arrayinplacevisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="arrayinplacevisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T> Visitor for ArrayInPlaceVisitor<'a, [T; 1]>`
 
 - <span id="arrayinplacevisitor-visitor-type-value"></span>`type Value = ()`
 
-- <span id="arrayinplacevisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="arrayinplacevisitor-visitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="arrayinplacevisitor-visit-seq"></span>`fn visit_seq<A>(self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="arrayinplacevisitor-visitor-visit-seq"></span>`fn visit_seq<A>(self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md#visitor)
 
 ### `PathVisitor`
 
@@ -421,19 +925,61 @@ struct PathVisitor;
 
 #### Trait Implementations
 
+##### `impl Any for PathVisitor`
+
+- <span id="pathvisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PathVisitor`
+
+- <span id="pathvisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PathVisitor`
+
+- <span id="pathvisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Expected for PathVisitor`
 
-- <span id="pathvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pathvisitor-expected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for PathVisitor`
+
+- <span id="pathvisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PathVisitor`
+
+- <span id="pathvisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for PathVisitor`
+
+- <span id="pathvisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pathvisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PathVisitor`
+
+- <span id="pathvisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pathvisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Visitor for PathVisitor`
 
 - <span id="pathvisitor-visitor-type-value"></span>`type Value = &'a Path`
 
-- <span id="pathvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pathvisitor-visitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="pathvisitor-visit-borrowed-str"></span>`fn visit_borrowed_str<E>(self, v: &'a str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="pathvisitor-visitor-visit-borrowed-str"></span>`fn visit_borrowed_str<E>(self, v: &'a str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
-- <span id="pathvisitor-visit-borrowed-bytes"></span>`fn visit_borrowed_bytes<E>(self, v: &'a [u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="pathvisitor-visitor-visit-borrowed-bytes"></span>`fn visit_borrowed_bytes<E>(self, v: &'a [u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
 ### `PathBufVisitor`
 
@@ -445,23 +991,65 @@ struct PathBufVisitor;
 
 #### Trait Implementations
 
+##### `impl Any for PathBufVisitor`
+
+- <span id="pathbufvisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for PathBufVisitor`
+
+- <span id="pathbufvisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for PathBufVisitor`
+
+- <span id="pathbufvisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Expected for PathBufVisitor`
 
-- <span id="pathbufvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pathbufvisitor-expected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for PathBufVisitor`
+
+- <span id="pathbufvisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for PathBufVisitor`
+
+- <span id="pathbufvisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for PathBufVisitor`
+
+- <span id="pathbufvisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="pathbufvisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for PathBufVisitor`
+
+- <span id="pathbufvisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="pathbufvisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Visitor for PathBufVisitor`
 
 - <span id="pathbufvisitor-visitor-type-value"></span>`type Value = PathBuf`
 
-- <span id="pathbufvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pathbufvisitor-visitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="pathbufvisitor-visit-str"></span>`fn visit_str<E>(self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="pathbufvisitor-visitor-visit-str"></span>`fn visit_str<E>(self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
-- <span id="pathbufvisitor-visit-string"></span>`fn visit_string<E>(self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md#string), [`Visitor`](../index.md#visitor)
+- <span id="pathbufvisitor-visitor-visit-string"></span>`fn visit_string<E>(self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md#string), [`Visitor`](../index.md#visitor)
 
-- <span id="pathbufvisitor-visit-bytes"></span>`fn visit_bytes<E>(self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="pathbufvisitor-visitor-visit-bytes"></span>`fn visit_bytes<E>(self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
-- <span id="pathbufvisitor-visit-byte-buf"></span>`fn visit_byte_buf<E>(self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md#vec), [`Visitor`](../index.md#visitor)
+- <span id="pathbufvisitor-visitor-visit-byte-buf"></span>`fn visit_byte_buf<E>(self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md#vec), [`Visitor`](../index.md#visitor)
 
 ### `OsStringVisitor`
 
@@ -473,17 +1061,59 @@ struct OsStringVisitor;
 
 #### Trait Implementations
 
+##### `impl Any for OsStringVisitor`
+
+- <span id="osstringvisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for OsStringVisitor`
+
+- <span id="osstringvisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for OsStringVisitor`
+
+- <span id="osstringvisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Expected for OsStringVisitor`
 
-- <span id="osstringvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="osstringvisitor-expected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for OsStringVisitor`
+
+- <span id="osstringvisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for OsStringVisitor`
+
+- <span id="osstringvisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for OsStringVisitor`
+
+- <span id="osstringvisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="osstringvisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for OsStringVisitor`
+
+- <span id="osstringvisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="osstringvisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Visitor for OsStringVisitor`
 
 - <span id="osstringvisitor-visitor-type-value"></span>`type Value = OsString`
 
-- <span id="osstringvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="osstringvisitor-visitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="osstringvisitor-visit-enum"></span>`fn visit_enum<A>(self, data: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md#visitor)
+- <span id="osstringvisitor-visitor-visit-enum"></span>`fn visit_enum<A>(self, data: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md#visitor)
 
 ### `FromStrVisitor<T>`
 
@@ -502,17 +1132,59 @@ struct FromStrVisitor<T> {
 
 #### Trait Implementations
 
+##### `impl<T> Any for FromStrVisitor<T>`
+
+- <span id="fromstrvisitor-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for FromStrVisitor<T>`
+
+- <span id="fromstrvisitor-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for FromStrVisitor<T>`
+
+- <span id="fromstrvisitor-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl<T> Expected for FromStrVisitor<T>`
 
-- <span id="fromstrvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fromstrvisitor-expected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> From for FromStrVisitor<T>`
+
+- <span id="fromstrvisitor-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into for FromStrVisitor<T>`
+
+- <span id="fromstrvisitor-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<T, U> TryFrom for FromStrVisitor<T>`
+
+- <span id="fromstrvisitor-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="fromstrvisitor-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto for FromStrVisitor<T>`
+
+- <span id="fromstrvisitor-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="fromstrvisitor-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl<T> Visitor for FromStrVisitor<T>`
 
 - <span id="fromstrvisitor-visitor-type-value"></span>`type Value = T`
 
-- <span id="fromstrvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fromstrvisitor-visitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- <span id="fromstrvisitor-visit-str"></span>`fn visit_str<E>(self, s: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
+- <span id="fromstrvisitor-visitor-visit-str"></span>`fn visit_str<E>(self, s: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md#visitor)
 
 ## Enums
 
@@ -529,11 +1201,53 @@ enum OsStringKind {
 
 #### Trait Implementations
 
+##### `impl Any for OsStringKind`
+
+- <span id="osstringkind-any-type-id"></span>`fn type_id(&self) -> TypeId`
+
+##### `impl<T> Borrow for OsStringKind`
+
+- <span id="osstringkind-borrow"></span>`fn borrow(&self) -> &T`
+
+##### `impl<T> BorrowMut for OsStringKind`
+
+- <span id="osstringkind-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
 ##### `impl Deserialize for OsStringKind`
 
 - <span id="osstringkind-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>` — [`Deserializer`](../index.md#deserializer)
 
 ##### `impl DeserializeOwned for OsStringKind`
+
+##### `impl<T> From for OsStringKind`
+
+- <span id="osstringkind-from"></span>`fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<U> Into for OsStringKind`
+
+- <span id="osstringkind-into"></span>`fn into(self) -> U`
+
+  Calls `U::from(self)`.
+
+  
+
+  That is, this conversion is whatever the implementation of
+
+  <code>[From]&lt;T&gt; for U</code> chooses to do.
+
+##### `impl<U> TryFrom for OsStringKind`
+
+- <span id="osstringkind-tryfrom-type-error"></span>`type Error = Infallible`
+
+- <span id="osstringkind-tryfrom-try-from"></span>`fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<U> TryInto for OsStringKind`
+
+- <span id="osstringkind-tryinto-type-error"></span>`type Error = <U as TryFrom>::Error`
+
+- <span id="osstringkind-tryinto-try-into"></span>`fn try_into(self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 
