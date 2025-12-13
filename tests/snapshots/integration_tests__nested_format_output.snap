@@ -4366,7 +4366,7 @@ modules with unnecessary navigation.
 === index.md ===
 # Crate `cargo_docs_md`
 
-**Version:** 0.2.2
+**Version:** 0.2.3
 
 docs-md library interface for testing and reuse.
 
@@ -4395,6 +4395,10 @@ generation capabilities programmatically.
   - [`Command`](#command)
   - [`OutputFormat`](#outputformat)
   - [`Args`](#args)
+- [Functions](#functions)
+  - [`index_loop`](#index-loop)
+  - [`index_loop_no_assert`](#index-loop-no-assert)
+  - [`iter_zip`](#iter-zip)
 
 ## Quick Reference
 
@@ -4416,6 +4420,9 @@ generation capabilities programmatically.
 | [`CliOutputFormat`](#clioutputformat) | enum | CLI-compatible output format enum (for clap `ValueEnum` derive). |
 | [`Command`](#command) | enum | Available subcommands |
 | [`OutputFormat`](#outputformat) | enum | Output format for the generated markdown documentation. |
+| [`index_loop`](#index-loop) | fn | Test function: index loop with assert (bounds check elided). |
+| [`index_loop_no_assert`](#index-loop-no-assert) | fn | Test function: index loop without assert (bounds check present). |
+| [`iter_zip`](#iter-zip) | fn | Test function: iterator zip (no bounds checks in loop). |
 | [`Args`](#args) | type | Backwards-compatible type alias for existing code. |
 
 ## Modules
@@ -5700,6 +5707,8 @@ struct CollectSourcesArgs {
     pub include_dev: bool,
     pub dry_run: bool,
     pub manifest_path: Option<std::path::PathBuf>,
+    pub minimal_sources: bool,
+    pub no_gitignore: bool,
 }
 ```
 
@@ -5726,6 +5735,24 @@ Arguments for the `collect-sources` subcommand.
 - **`manifest_path`**: `Option<std::path::PathBuf>`
 
   Path to Cargo.toml (defaults to current directory).
+
+- **`minimal_sources`**: `bool`
+
+  Only copy `src/` directory and `Cargo.toml`.
+  
+  By default, the entire crate directory is copied to ensure all source
+  files are available (including `build.rs`, modules outside `src/`, etc.).
+  Enable this flag to minimize disk usage at the cost of potentially
+  missing some source files.
+
+- **`no_gitignore`**: `bool`
+
+  Do not add `.source_*` pattern to `.gitignore`.
+  
+  By default, the tool appends `.source_*` to `.gitignore` to prevent
+  accidentally committing collected source files. Enable this flag to
+  skip this modification (useful for projects with strict `.gitignore`
+  management).
 
 #### Trait Implementations
 
@@ -5919,8 +5946,8 @@ Arguments for the `docs` subcommand (build + generate).
 struct GenerateArgs {
     pub path: Option<std::path::PathBuf>,
     pub dir: Option<std::path::PathBuf>,
-    pub mdbook: bool,
-    pub search_index: bool,
+    pub no_mdbook: bool,
+    pub no_search_index: bool,
     pub primary_crate: Option<String>,
     pub output: std::path::PathBuf,
     pub format: CliOutputFormat,
@@ -5966,22 +5993,22 @@ The tool accepts input from two mutually exclusive sources:
   
   Mutually exclusive with `--path`.
 
-- **`mdbook`**: `bool`
+- **`no_mdbook`**: `bool`
 
-  Generate mdBook-compatible SUMMARY.md file.
+  Skip generating mdBook SUMMARY.md file.
   
   Only valid with `--dir` for multi-crate documentation.
-  Creates a `SUMMARY.md` file in the output directory that can be
-  used as the entry point for an mdBook documentation site.
+  By default, a `SUMMARY.md` file is created in the output directory
+  that can be used as the entry point for an mdBook documentation site.
 
-- **`search_index`**: `bool`
+- **`no_search_index`**: `bool`
 
-  Generate `search_index.json` for client-side search.
+  Skip generating `search_index.json` file.
   
   Only valid with `--dir` for multi-crate documentation.
-  Creates a `search_index.json` file containing all documented items,
-  which can be used with client-side search libraries like Fuse.js,
-  Lunr.js, or `FlexSearch`.
+  By default, a `search_index.json` file is created containing all
+  documented items, which can be used with client-side search libraries
+  like Fuse.js, Lunr.js, or `FlexSearch`.
 
 - **`primary_crate`**: `Option<String>`
 
@@ -6339,6 +6366,35 @@ type Args = GenerateArgs;
 ```
 
 Backwards-compatible type alias for existing code.
+
+
+---
+
+## Functions
+
+### `index_loop`
+
+```rust
+fn index_loop(a: Vec<i64>, b: Vec<i64>) -> i64
+```
+
+Test function: index loop with assert (bounds check elided).
+
+### `index_loop_no_assert`
+
+```rust
+fn index_loop_no_assert(a: Vec<i64>, b: Vec<i64>) -> i64
+```
+
+Test function: index loop without assert (bounds check present).
+
+### `iter_zip`
+
+```rust
+fn iter_zip(a: Vec<i64>, b: Vec<i64>) -> i64
+```
+
+Test function: iterator zip (no bounds checks in loop).
 
 
 === linker/index.md ===
@@ -8398,6 +8454,8 @@ struct CollectOptions {
     pub include_dev: bool,
     pub output: Option<std::path::PathBuf>,
     pub dry_run: bool,
+    pub minimal_sources: bool,
+    pub no_gitignore: bool,
 }
 ```
 
@@ -8416,6 +8474,18 @@ Options for source collection.
 - **`dry_run`**: `bool`
 
   Dry run - don't actually copy files.
+
+- **`minimal_sources`**: `bool`
+
+  Only copy `src/` directory and `Cargo.toml` (minimal mode).
+  
+  By default (false), the entire crate directory is copied to ensure
+  all source files are available (including `build.rs`, modules outside
+  `src/`, etc.).
+
+- **`no_gitignore`**: `bool`
+
+  Skip adding `.source_*` pattern to `.gitignore`.
 
 #### Trait Implementations
 
@@ -8587,7 +8657,7 @@ Collector for gathering dependency sources.
 
   Find a crate's source in the cargo registry.
 
-- <span id="sourcecollector-copy-crate-source"></span>`fn copy_crate_source(source: &Path, dest: &Path) -> Result<(), Error>` — [`Error`](../error/index.md#error)
+- <span id="sourcecollector-copy-crate-source"></span>`fn copy_crate_source(source: &Path, dest: &Path, minimal: bool) -> Result<(), Error>` — [`Error`](../error/index.md#error)
 
   Copy crate source to destination.
 
