@@ -9,7 +9,7 @@ use std::path::PathBuf;
 #[derive(Debug, Clone)]
 #[expect(
     clippy::struct_excessive_bools,
-    reason = "TODO: Consider cache line efficiency later"
+    reason = "CLI flags map directly to these bools; cache optimization unnecessary here"
 )]
 pub struct RenderConfig {
     /// Generate table of contents for modules with more than this many items.
@@ -26,6 +26,13 @@ pub struct RenderConfig {
 
     /// Generate method-level anchors for deep linking.
     pub method_anchors: bool,
+
+    /// Include full method documentation instead of first-paragraph summaries.
+    ///
+    /// When `false` (default), method docs in impl blocks show only the first
+    /// paragraph (up to the first blank line). When `true`, the complete
+    /// documentation is included.
+    pub full_method_docs: bool,
 
     /// Source code integration options.
     pub include_source: SourceConfig,
@@ -68,6 +75,7 @@ impl Default for RenderConfig {
             group_impls: true,
             hide_trivial_derives: false,
             method_anchors: true,
+            full_method_docs: false,
             include_source: SourceConfig::default(),
         }
     }
@@ -86,6 +94,7 @@ mod tests {
         assert!(config.group_impls);
         assert!(!config.hide_trivial_derives);
         assert!(config.method_anchors);
+        assert!(!config.full_method_docs);
     }
 
     #[test]
@@ -118,6 +127,7 @@ mod tests {
             group_impls: false,
             hide_trivial_derives: true,
             method_anchors: false,
+            full_method_docs: true,
             include_source: SourceConfig {
                 function_bodies: true,
                 const_values: true,
@@ -132,6 +142,7 @@ mod tests {
         assert!(!config.group_impls);
         assert!(config.hide_trivial_derives);
         assert!(!config.method_anchors);
+        assert!(config.full_method_docs);
         assert!(config.include_source.function_bodies);
         assert!(config.include_source.const_values);
         assert!(config.include_source.private_items);
