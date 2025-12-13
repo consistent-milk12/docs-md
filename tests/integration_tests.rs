@@ -24,24 +24,53 @@ use cargo_docs_md::linker::LinkRegistry;
 use cargo_docs_md::parser::Parser;
 use cargo_docs_md::{CliOutputFormat, MarkdownCapture};
 
-/// Helper to get the path to the test fixture.
-fn fixture_path() -> PathBuf {
+/// Helper to get the path to the committed test fixture.
+///
+/// This fixture is checked into the repo so tests can run without building JSON first.
+fn committed_fixture_path() -> PathBuf {
+    PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .join("tests")
+        .join("fixtures")
+        .join("cargo_docs_md.json")
+}
+
+/// Helper to get the path to the freshly-generated test fixture.
+///
+/// This is useful for testing against the latest code changes.
+fn generated_fixture_path() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .join("target")
         .join("doc")
-        .join("docs_md.json")
+        .join("cargo_docs_md.json")
 }
 
-/// Check if the test fixture exists.
+/// Get the best available fixture path.
+///
+/// Prefers the committed fixture for reproducibility, falls back to generated.
+fn fixture_path() -> PathBuf {
+    let committed = committed_fixture_path();
+    if committed.exists() {
+        return committed;
+    }
+    generated_fixture_path()
+}
+
+/// Check if any test fixture exists.
 fn fixture_exists() -> bool {
-    fixture_path().exists()
+    committed_fixture_path().exists() || generated_fixture_path().exists()
 }
 
 /// Load the test fixture crate.
 fn load_fixture() -> rustdoc_types::Crate {
     let path = fixture_path();
-    Parser::parse_file(&path)
-        .expect("Failed to parse test fixture. Run `cargo doc --output-format json` first.")
+    Parser::parse_file(&path).unwrap_or_else(|e| {
+        panic!(
+            "Failed to parse test fixture at '{}': {e}\n\
+             Either commit tests/fixtures/cargo_docs_md.json or run:\n  \
+             RUSTDOCFLAGS='-Z unstable-options --output-format json' cargo +nightly doc",
+            path.display()
+        )
+    })
 }
 
 // =============================================================================
@@ -887,14 +916,18 @@ fn test_default_config_no_collapsible_derives() {
     let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Flat, false)
         .expect("Generation failed");
 
-    // With default config, should not have "Derived Traits (N implementations)" summary
+    // With default config, should not have actual <details> collapsible blocks
+    // for "Derived Traits". We need to exclude doc string examples that mention
+    // this pattern, so look for the actual HTML structure.
+    let collapsible_pattern =
+        regex::Regex::new(r"<details>\s*<summary>Derived Traits").unwrap();
     let mut found_derived_traits_summary = false;
 
     for path in capture.paths() {
         let content = capture.get(path).unwrap();
 
-        // Look for the specific collapsible summary pattern we generate
-        if content.contains("<summary>Derived Traits") {
+        // Look for actual collapsible blocks (not doc string examples)
+        if collapsible_pattern.is_match(content) {
             found_derived_traits_summary = true;
             break;
         }
@@ -1278,14 +1311,21 @@ mod link_resolution_tests {
         let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Flat, false)
             .expect("Generation failed");
 
-        // Unresolved links should have format: [`link_text`]
-        // (no parentheses with URL)
-        let unresolved_pattern = regex::Regex::new(r"\[`[^`]+`\](?!\()").unwrap();
+        // Find all link references: [`text`] potentially followed by (url)
+        // An unresolved link is [`text`] NOT followed by (url)
+        let link_ref_pattern = regex::Regex::new(r"\[`[^`]+`\]").unwrap();
         let mut unresolved_count = 0;
 
         for path in capture.paths() {
             let content = capture.get(path).unwrap();
-            unresolved_count += unresolved_pattern.find_iter(content).count();
+            for mat in link_ref_pattern.find_iter(content) {
+                // Check if this match is followed by ( which would indicate a resolved link
+                let end_pos = mat.end();
+                let is_resolved = content[end_pos..].starts_with('(');
+                if !is_resolved {
+                    unresolved_count += 1;
+                }
+            }
         }
 
         eprintln!("Found {unresolved_count} unresolved link references");
@@ -1587,7 +1627,8 @@ mod markdown_format_tests {
             .expect("Generation failed");
 
         // Check for Quick Reference table in module files
-        let table_header_pattern = regex::Regex::new(r"\| Item \| Description \|").unwrap();
+        // The table has 3 columns: Item, Kind, Description
+        let table_header_pattern = regex::Regex::new(r"\| Item \| Kind \| Description \|").unwrap();
         let mut found_quick_ref = false;
 
         for path in capture.paths() {
