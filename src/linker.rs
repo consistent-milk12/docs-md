@@ -132,7 +132,13 @@ impl AnchorUtils {
     ///
     /// This extends `assoc_item_anchor` to handle trait impls, where multiple traits
     /// may define the same associated type (e.g., `Output` in both `Add` and `Sub`).
-    /// For trait impls, the trait name is included in the anchor to ensure uniqueness.
+    ///
+    /// # Disambiguation Strategy
+    ///
+    /// - **Associated types/consts**: Always include trait name (high collision risk)
+    /// - **Methods**: Only include trait name when it differs from the method name
+    ///   - Avoids redundant `Clone::clone` → `type-clone-clone`
+    ///   - Keeps `Debug::fmt` → `type-debug-fmt` for disambiguation from `Display::fmt`
     ///
     /// # Arguments
     ///
@@ -148,9 +154,10 @@ impl AnchorUtils {
     /// | Inherent | Method | `type-method` | `vec-push` |
     /// | Inherent | Type | `type-type-item` | `vec-type-item` |
     /// | Inherent | Const | `type-const-item` | `vec-const-align` |
-    /// | Trait(Add) | Method | `type-add-method` | `vec-add-add` |
-    /// | Trait(Add) | Type | `type-add-type-item` | `vec-add-type-output` |
-    /// | Trait(Add) | Const | `type-add-const-item` | `vec-add-const-max` |
+    /// | Trait(Clone) | Method | `type-method` | `vec-clone` (trait=method) |
+    /// | Trait(Debug) | Method | `type-trait-method` | `vec-debug-fmt` (trait≠method) |
+    /// | Trait(Add) | Type | `type-trait-type-item` | `vec-add-type-output` |
+    /// | Trait(Add) | Const | `type-trait-const-item` | `vec-add-const-max` |
     #[must_use]
     pub fn impl_item_anchor(
         type_name: &str,
@@ -170,10 +177,23 @@ impl AnchorUtils {
             },
 
             // Trait impls: include trait name to avoid collisions
+            // For associated types/consts, always include trait name (high collision risk:
+            // e.g., Add::Output vs Sub::Output on same type)
+            // For methods, only include trait name when it differs from method name
+            // (avoids redundant Clone::clone -> "type-clone-clone", but keeps
+            // Debug::fmt -> "type-debug-fmt" for disambiguation from Display::fmt)
             ImplContext::Trait(trait_name) => {
                 let trait_slug = Self::slugify_anchor(trait_name);
                 match kind {
-                    AssocItemKind::Method => format!("{type_slug}-{trait_slug}-{item_slug}"),
+                    AssocItemKind::Method => {
+                        if trait_slug == item_slug {
+                            // Skip redundant trait prefix (e.g., Clone::clone, Default::default)
+                            format!("{type_slug}-{item_slug}")
+                        } else {
+                            // Keep trait prefix for disambiguation (e.g., Debug::fmt vs Display::fmt)
+                            format!("{type_slug}-{trait_slug}-{item_slug}")
+                        }
+                    },
                     AssocItemKind::Const => {
                         format!("{type_slug}-{trait_slug}-const-{item_slug}")
                     },

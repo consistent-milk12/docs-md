@@ -12,9 +12,8 @@
 //!
 //! Instead of modifying existing generator types, this module provides:
 //!
-//! - [`SourceAccess`] - Trait for accessing parsed source data
-//! - [`SourceContext`] - Wrapper that adds source access to any  `RenderContext`
-//! - [`SourceRenderer`] - Helper for rendering source-enhanced content
+//! - `SourceAccess` trait (in `traits`) - For accessing parsed source data
+//! - Context and render helpers for source-enhanced content
 
 mod context;
 mod render;
