@@ -303,7 +303,8 @@ generator.generate()?;
 
 ```rust
 struct BreadcrumbGenerator<'a> {
-    // [REDACTED: Private Fields]
+    module_path: &'a [String],
+    crate_name: &'a str,
 }
 ```
 
@@ -311,6 +312,16 @@ Generates breadcrumb navigation for nested module pages.
 
 Creates a navigation line showing the path from the crate root to
 the current module, with each segment being a clickable link.
+
+#### Fields
+
+- **`module_path`**: `&'a [String]`
+
+  The module path segments (e.g., `["error", "types"]`).
+
+- **`crate_name`**: `&'a str`
+
+  The name of the crate for the root link.
 
 #### Implementations
 
@@ -358,7 +369,7 @@ the current module, with each segment being a clickable link.
 
 ```rust
 struct MarkdownCapture {
-    // [REDACTED: Private Fields]
+    files: std::collections::HashMap<String, String>,
 }
 ```
 
@@ -368,6 +379,12 @@ Instead of writing files to disk, this struct stores all generated
 markdown content in a `HashMap`, keyed by relative file path. This
 enables snapshot testing and verification of output without filesystem
 side effects.
+
+#### Fields
+
+- **`files`**: `std::collections::HashMap<String, String>`
+
+  Maps file paths (relative to output directory) to their generated content.
 
 #### Implementations
 
@@ -562,11 +579,13 @@ Requires the `source-parsing` feature to have any effect.
 ```rust
 struct GeneratorContext<'a> {
     pub krate: &'a rustdoc_types::Crate,
+    crate_name: String,
     pub impl_map: std::collections::HashMap<rustdoc_types::Id, Vec<&'a rustdoc_types::Impl>>,
     pub link_registry: crate::linker::LinkRegistry,
     pub args: &'a crate::Args,
     pub config: crate::generator::config::RenderConfig,
-    // [REDACTED: Private Fields]
+    path_name_index: std::collections::HashMap<&'a str, Vec<rustdoc_types::Id>>,
+    source_path_config: Option<crate::generator::render_shared::SourcePathConfig>,
 }
 ```
 
@@ -583,6 +602,10 @@ This struct is passed to all rendering components and provides:
 - **`krate`**: `&'a rustdoc_types::Crate`
 
   The parsed rustdoc JSON crate.
+
+- **`crate_name`**: `String`
+
+  The crate name (extracted from root module).
 
 - **`impl_map`**: `std::collections::HashMap<rustdoc_types::Id, Vec<&'a rustdoc_types::Impl>>`
 
@@ -602,6 +625,21 @@ This struct is passed to all rendering components and provides:
 
   Rendering configuration options.
 
+- **`path_name_index`**: `std::collections::HashMap<&'a str, Vec<rustdoc_types::Id>>`
+
+  Pre-built index mapping item names to their IDs for fast lookup.
+  
+  Built once at construction time from `krate.paths` and shared across
+  all `DocLinkProcessor` instances for efficiency.
+
+- **`source_path_config`**: `Option<crate::generator::render_shared::SourcePathConfig>`
+
+  Base source path configuration for transforming cargo registry paths.
+  
+  `None` if source locations are disabled or no `.source_*` dir detected.
+  The `depth` field is set to 0; use `source_path_config_for_file()` to
+  get a config with the correct depth for a specific file.
+
 #### Implementations
 
 - <span id="generatorcontext-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Self` — [`Args`](index.md#args), [`RenderConfig`](generator__config.md#renderconfig)
@@ -612,6 +650,14 @@ This struct is passed to all rendering components and provides:
 
   Set the source directory for path transformation.
 
+- <span id="generatorcontext-build-impl-map"></span>`fn build_impl_map(krate: &'a Crate) -> HashMap<Id, Vec<&'a Impl>>`
+
+  Build a map from type ID to all impl blocks for that type.
+
+- <span id="generatorcontext-impl-sort-key"></span>`fn impl_sort_key(impl_block: &Impl) -> (u8, String)`
+
+  Generate a sort key for an impl block.
+
 - <span id="generatorcontext-should-include-item"></span>`const fn should_include_item(&self, item: &Item) -> bool`
 
   Check if an item should be included based on visibility settings.
@@ -619,6 +665,10 @@ This struct is passed to all rendering components and provides:
 - <span id="generatorcontext-count-modules"></span>`fn count_modules(&self, item: &Item) -> usize`
 
   Count the total number of modules that will be generated.
+
+- <span id="generatorcontext-build-path-name-index"></span>`fn build_path_name_index(krate: &'a Crate) -> HashMap<&'a str, Vec<Id>>`
+
+  Build an index mapping item names to their IDs for fast lookup.
 
 #### Trait Implementations
 
@@ -668,7 +718,10 @@ This struct is passed to all rendering components and provides:
 
 ```rust
 struct DocLinkProcessor<'a> {
-    // [REDACTED: Private Fields]
+    krate: &'a rustdoc_types::Crate,
+    link_registry: &'a crate::linker::LinkRegistry,
+    current_file: &'a str,
+    path_name_index: std::collections::HashMap<&'a str, Vec<rustdoc_types::Id>>,
 }
 ```
 
@@ -695,6 +748,25 @@ Items from external crates are linked to docs.rs when possible.
 
 Links inside fenced code blocks are not processed.
 
+#### Fields
+
+- **`krate`**: `&'a rustdoc_types::Crate`
+
+  The crate being documented (for looking up items).
+
+- **`link_registry`**: `&'a crate::linker::LinkRegistry`
+
+  Registry mapping IDs to file paths.
+
+- **`current_file`**: `&'a str`
+
+  The current file path (for relative link calculation).
+
+- **`path_name_index`**: `std::collections::HashMap<&'a str, Vec<rustdoc_types::Id>>`
+
+  Index mapping item names to their IDs for fast lookup.
+  Built from `krate.paths` at construction time.
+
 #### Implementations
 
 - <span id="doclinkprocessor-with-index"></span>`fn with_index(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str, path_name_index: &HashMap<&'a str, Vec<Id>>) -> Self` — [`LinkRegistry`](linker.md#linkregistry)
@@ -708,6 +780,82 @@ Links inside fenced code blocks are not processed.
 - <span id="doclinkprocessor-process"></span>`fn process(&self, docs: &str, item_links: &HashMap<String, Id>) -> String`
 
   Process a doc string and resolve all intra-doc links.
+
+- <span id="doclinkprocessor-process-links-protected"></span>`fn process_links_protected(&self, docs: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process links while protecting code block contents.
+
+- <span id="doclinkprocessor-process-line"></span>`fn process_line(&self, line: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process a single line for all link types.
+
+- <span id="doclinkprocessor-process-reference-links"></span>`fn process_reference_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process reference-style links `[display text](https://docs.rs/aho_corasick/latest/aho_corasick/util/search/struct.Span.html)`.
+
+- <span id="doclinkprocessor-process-path-reference-links"></span>`fn process_path_reference_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process path reference links `[text](https://docs.rs/core/latest/core/option/struct.Item.html)`.
+
+- <span id="doclinkprocessor-process-method-links"></span>`fn process_method_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process method links `[``Type::method``]`.
+
+- <span id="doclinkprocessor-process-backtick-links"></span>`fn process_backtick_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process backtick links `[`Name`]`.
+
+- <span id="doclinkprocessor-process-plain-links"></span>`fn process_plain_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process plain links `[name]`.
+
+- <span id="doclinkprocessor-process-html-links-with-context"></span>`fn process_html_links_with_context(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process HTML-style rustdoc links with context awareness.
+
+- <span id="doclinkprocessor-resolve-html-link-to-url"></span>`fn resolve_html_link_to_url(&self, item_name: &str, item_kind: &str, item_links: &HashMap<String, Id>) -> Option<String>`
+
+  Try to resolve an HTML-style link to a proper URL.
+
+- <span id="doclinkprocessor-kind-matches"></span>`fn kind_matches(html_kind: &str, item_kind: ItemKind) -> bool`
+
+  Check if the HTML link kind matches the rustdoc item kind.
+
+- <span id="doclinkprocessor-clean-blank-lines"></span>`fn clean_blank_lines(docs: &str) -> String`
+
+  Clean up multiple consecutive blank lines.
+
+- <span id="doclinkprocessor-resolve-with-strategies"></span>`fn resolve_with_strategies<T, F>(&self, link_text: &str, item_links: &HashMap<String, Id>, resolver: F) -> Option<T>`
+
+  Generic 3-strategy resolution with per-strategy display names.
+
+- <span id="doclinkprocessor-resolve-to-url"></span>`fn resolve_to_url(&self, link_text: &str, item_links: &HashMap<String, Id>) -> Option<String>`
+
+  Resolve a link reference to a URL.
+
+- <span id="doclinkprocessor-get-url-for-id"></span>`fn get_url_for_id(&self, id: Id) -> Option<String>`
+
+  Get the URL for an ID (local or docs.rs).
+
+- <span id="doclinkprocessor-get-docs-rs-url"></span>`fn get_docs_rs_url(path_info: &rustdoc_types::ItemSummary) -> Option<String>`
+
+  Get docs.rs URL for an external crate item.
+
+- <span id="doclinkprocessor-resolve-method-link"></span>`fn resolve_method_link(&self, type_name: &str, method_name: &str, item_links: &HashMap<String, Id>) -> Option<String>`
+
+  Resolve a method link to a markdown link with method anchor.
+
+- <span id="doclinkprocessor-resolve-link"></span>`fn resolve_link(&self, link_text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Try to resolve link text to a markdown link.
+
+- <span id="doclinkprocessor-create-link-for-id"></span>`fn create_link_for_id(&self, id: Id, display_name: &str) -> Option<String>`
+
+  Create a markdown link for an ID.
+
+- <span id="doclinkprocessor-create-docs-rs-link"></span>`fn create_docs_rs_link(path_info: &rustdoc_types::ItemSummary, display_name: &str) -> Option<String>`
+
+  Create a docs.rs link for an external crate item.
 
 #### Trait Implementations
 
@@ -765,6 +913,14 @@ Utility functions for document links
 
   Convert path-style reference links to inline code.
 
+- <span id="doclinkutils-replace-with-regex"></span>`fn replace_with_regex<F>(text: &str, re: &Regex, replacer: F) -> String`
+
+  Replace regex matches using a closure.
+
+- <span id="doclinkutils-replace-with-regex-checked"></span>`fn replace_with_regex_checked<F>(text: &str, re: &Regex, replacer: F) -> String`
+
+  Replace regex matches with access to the text after the match.
+
 #### Trait Implementations
 
 ##### `impl Instrument for DocLinkUtils`
@@ -779,7 +935,9 @@ Utility functions for document links
 
 ```rust
 struct ModuleRenderer<'a> {
-    // [REDACTED: Private Fields]
+    ctx: &'a dyn RenderContext,
+    current_file: &'a str,
+    is_root: bool,
 }
 ```
 
@@ -794,11 +952,29 @@ including:
 The renderer is generic over [`RenderContext`](#rendercontext), allowing it to work with
 both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes.
 
+#### Fields
+
+- **`ctx`**: `&'a dyn RenderContext`
+
+  Reference to the render context (either single-crate or multi-crate).
+
+- **`current_file`**: `&'a str`
+
+  Path of the current file being generated (for relative link calculation).
+
+- **`is_root`**: `bool`
+
+  Whether this is the crate root module.
+
 #### Implementations
 
 - <span id="modulerenderer-new"></span>`fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](#rendercontext)
 
   Create a new module renderer.
+
+- <span id="modulerenderer-process-docs"></span>`fn process_docs(&self, item: &Item) -> Option<String>`
+
+  Process documentation string to resolve intra-doc links.
 
 - <span id="modulerenderer-render"></span>`fn render(&self, item: &Item) -> String`
 
@@ -847,6 +1023,100 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
   ...
 
   ```
+
+- <span id="modulerenderer-categorize-items"></span>`fn categorize_items(&self, item_ids: &'a [Id]) -> CategorizedItems<'a>`
+
+  Categorize module items by type for organized rendering.
+
+- <span id="modulerenderer-expand-glob-reexport"></span>`fn expand_glob_reexport(&self, items: &mut CategorizedItems<'a>, use_item: &rustdoc_types::Use, seen_items: &mut HashSet<&'a Id>)`
+
+  Expand a glob re-export by adding all public items from the target module.
+
+- <span id="modulerenderer-render-all-sections"></span>`fn render_all_sections(&self, md: &mut String, items: &CategorizedItems<'_>)`
+
+  Render all item sections with horizontal rule separators.
+
+- <span id="modulerenderer-render-types-section"></span>`fn render_types_section(&self, md: &mut String, items: &CategorizedItems<'_>)`
+
+  Render the Types section (structs, enums, unions, type aliases).
+
+  
+
+  All type definitions are grouped under a single "Types" heading,
+
+  with each item type rendered in subsections:
+
+  
+
+  ```markdown
+
+  ## Types
+
+  
+
+  ### `MyStruct`
+
+  [struct definition]
+
+  
+
+  ### `MyEnum`
+
+  [enum definition]
+
+  
+
+  ### `MyUnion`
+
+  [union definition]
+
+  
+
+  ### `MyAlias`
+
+  [type alias definition]
+
+  ```
+
+- <span id="modulerenderer-render-statics-section"></span>`fn render_statics_section(&self, md: &mut String, statics: &[&Item])`
+
+  Render the Statics section.
+
+- <span id="modulerenderer-build-toc-entries"></span>`fn build_toc_entries(items: &CategorizedItems<'_>) -> Vec<TocEntry>` — [`TocEntry`](generator__toc.md#tocentry)
+
+  Build TOC entries from categorized items.
+
+- <span id="modulerenderer-build-quick-ref-entries"></span>`fn build_quick_ref_entries(&self, items: &CategorizedItems<'_>) -> Vec<QuickRefEntry>` — [`QuickRefEntry`](generator__quick_ref.md#quickrefentry)
+
+  Build quick reference entries from categorized items.
+
+- <span id="modulerenderer-get-item-summary"></span>`fn get_item_summary(&self, item: &Item, item_id: Id) -> String`
+
+  Get summary for an item, with fallback for re-exports.
+
+- <span id="modulerenderer-render-modules-section"></span>`fn render_modules_section(&self, md: &mut String, modules: &[(&Id, &Item)])`
+
+  Render the Modules section with links to submodules.
+
+- <span id="modulerenderer-get-module-summary"></span>`fn get_module_summary(&self, item: &Item, item_id: Id) -> String`
+
+  Get summary for a module, with fallback for re-exports.
+
+- <span id="modulerenderer-render-traits-section"></span>`fn render_traits_section(&self, md: &mut String, traits: &[(&Id, &Item)])`
+
+  Render the Traits section.
+
+- <span id="modulerenderer-render-functions-section"></span>`fn render_functions_section(&self, md: &mut String, functions: &[&Item])`
+
+  Render the Functions section.
+
+- <span id="modulerenderer-render-macros-section"></span>`fn render_macros_section(&self, md: &mut String, macros: &[&Item])`
+
+  Render the Macros section.
+
+- <span id="modulerenderer-render-constants-section"></span>`fn render_constants_section(&self, md: &mut String, constants: &[&Item])`
+
+  Render the Constants section.
 
 #### Trait Implementations
 
@@ -1025,7 +1295,7 @@ for nested navigation.
 
 ```rust
 struct TocGenerator {
-    // [REDACTED: Private Fields]
+    threshold: usize,
 }
 ```
 
@@ -1034,6 +1304,12 @@ Generator for markdown table of contents.
 The generator only produces output when the total number of items
 exceeds the configured threshold. This prevents cluttering small
 modules with unnecessary navigation.
+
+#### Fields
+
+- **`threshold`**: `usize`
+
+  Minimum items required to generate a TOC.
 
 #### Implementations
 
@@ -1044,6 +1320,10 @@ modules with unnecessary navigation.
 - <span id="tocgenerator-generate"></span>`fn generate(&self, entries: &[TocEntry]) -> Option<String>` — [`TocEntry`](generator__toc.md#tocentry)
 
   Generate a markdown table of contents from the given entries.
+
+- <span id="tocgenerator-render-entry"></span>`fn render_entry(md: &mut String, entry: &TocEntry, depth: usize)` — [`TocEntry`](generator__toc.md#tocentry)
+
+  Render a single TOC entry with proper indentation.
 
 #### Trait Implementations
 
@@ -1067,7 +1347,9 @@ modules with unnecessary navigation.
 
 ```rust
 struct Generator<'a> {
-    // [REDACTED: Private Fields]
+    ctx: GeneratorContext<'a>,
+    args: &'a crate::Args,
+    root_item: &'a rustdoc_types::Item,
 }
 ```
 
@@ -1084,6 +1366,20 @@ let generator = Generator::new(&krate, &args)?;
 generator.generate()?;
 ```
 
+#### Fields
+
+- **`ctx`**: `GeneratorContext<'a>`
+
+  Shared context containing crate data, maps, and configuration.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments containing output path and format options.
+
+- **`root_item`**: `&'a rustdoc_types::Item`
+
+  The root module item of the crate.
+
 #### Implementations
 
 - <span id="generator-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Result<Self, Error>` — [`Args`](index.md#args), [`RenderConfig`](generator__config.md#renderconfig), [`Error`](error.md#error)
@@ -1094,6 +1390,10 @@ generator.generate()?;
 
   Generate markdown documentation.
 
+- <span id="generator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error.md#error)
+
+  Create a progress bar for user feedback.
+
 - <span id="generator-generate-to-capture"></span>`fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](index.md#clioutputformat), [`MarkdownCapture`](#markdowncapture), [`Error`](error.md#error)
 
   Generate documentation to memory instead of disk.
@@ -1101,6 +1401,18 @@ generator.generate()?;
 - <span id="generator-generate-to-capture-with-config"></span>`fn generate_to_capture_with_config(krate: &Crate, format: CliOutputFormat, include_private: bool, config: RenderConfig) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](index.md#clioutputformat), [`RenderConfig`](generator__config.md#renderconfig), [`MarkdownCapture`](#markdowncapture), [`Error`](error.md#error)
 
   Generate markdown to an in-memory capture with custom configuration.
+
+- <span id="generator-generate-flat-to-capture"></span>`fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](#generatorcontext), [`MarkdownCapture`](#markdowncapture), [`Error`](error.md#error)
+
+  Generate flat structure to capture.
+
+- <span id="generator-generate-flat-recursive-capture"></span>`fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](#generatorcontext), [`MarkdownCapture`](#markdowncapture), [`Error`](error.md#error)
+
+  Recursive flat generation to capture.
+
+- <span id="generator-generate-nested-to-capture"></span>`fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](#generatorcontext), [`MarkdownCapture`](#markdowncapture), [`Error`](error.md#error)
+
+  Generate nested structure to capture.
 
 - <span id="generator-run"></span>`fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](index.md#args), [`Error`](error.md#error)
 
@@ -1358,6 +1670,10 @@ The variants are ordered by their typical importance/frequency of use:
 
   ```
 
+- <span id="implcategory-sort-order"></span>`const fn sort_order(self) -> u8`
+
+  Get the sort order for this category.
+
 #### Trait Implementations
 
 ##### `impl Clone for ImplCategory`
@@ -1599,7 +1915,8 @@ links showing the path from crate root to the current module.
 
 ```rust
 struct BreadcrumbGenerator<'a> {
-    // [REDACTED: Private Fields]
+    module_path: &'a [String],
+    crate_name: &'a str,
 }
 ```
 
@@ -1607,6 +1924,16 @@ Generates breadcrumb navigation for nested module pages.
 
 Creates a navigation line showing the path from the crate root to
 the current module, with each segment being a clickable link.
+
+#### Fields
+
+- **`module_path`**: `&'a [String]`
+
+  The module path segments (e.g., `["error", "types"]`).
+
+- **`crate_name`**: `&'a str`
+
+  The name of the crate for the root link.
 
 #### Implementations
 
@@ -1840,7 +2167,10 @@ Links inside code blocks are protected from transformation.
 
 ```rust
 struct DocLinkProcessor<'a> {
-    // [REDACTED: Private Fields]
+    krate: &'a rustdoc_types::Crate,
+    link_registry: &'a crate::linker::LinkRegistry,
+    current_file: &'a str,
+    path_name_index: std::collections::HashMap<&'a str, Vec<rustdoc_types::Id>>,
 }
 ```
 
@@ -1867,6 +2197,25 @@ Items from external crates are linked to docs.rs when possible.
 
 Links inside fenced code blocks are not processed.
 
+#### Fields
+
+- **`krate`**: `&'a rustdoc_types::Crate`
+
+  The crate being documented (for looking up items).
+
+- **`link_registry`**: `&'a crate::linker::LinkRegistry`
+
+  Registry mapping IDs to file paths.
+
+- **`current_file`**: `&'a str`
+
+  The current file path (for relative link calculation).
+
+- **`path_name_index`**: `std::collections::HashMap<&'a str, Vec<rustdoc_types::Id>>`
+
+  Index mapping item names to their IDs for fast lookup.
+  Built from `krate.paths` at construction time.
+
 #### Implementations
 
 - <span id="doclinkprocessor-with-index"></span>`fn with_index(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str, path_name_index: &HashMap<&'a str, Vec<Id>>) -> Self` — [`LinkRegistry`](linker.md#linkregistry)
@@ -1880,6 +2229,82 @@ Links inside fenced code blocks are not processed.
 - <span id="doclinkprocessor-process"></span>`fn process(&self, docs: &str, item_links: &HashMap<String, Id>) -> String`
 
   Process a doc string and resolve all intra-doc links.
+
+- <span id="doclinkprocessor-process-links-protected"></span>`fn process_links_protected(&self, docs: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process links while protecting code block contents.
+
+- <span id="doclinkprocessor-process-line"></span>`fn process_line(&self, line: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process a single line for all link types.
+
+- <span id="doclinkprocessor-process-reference-links"></span>`fn process_reference_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process reference-style links `[display text](https://docs.rs/aho_corasick/latest/aho_corasick/util/search/struct.Span.html)`.
+
+- <span id="doclinkprocessor-process-path-reference-links"></span>`fn process_path_reference_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process path reference links `[text](https://docs.rs/core/latest/core/option/struct.Item.html)`.
+
+- <span id="doclinkprocessor-process-method-links"></span>`fn process_method_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process method links `[``Type::method``]`.
+
+- <span id="doclinkprocessor-process-backtick-links"></span>`fn process_backtick_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process backtick links `[`Name`]`.
+
+- <span id="doclinkprocessor-process-plain-links"></span>`fn process_plain_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process plain links `[name]`.
+
+- <span id="doclinkprocessor-process-html-links-with-context"></span>`fn process_html_links_with_context(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process HTML-style rustdoc links with context awareness.
+
+- <span id="doclinkprocessor-resolve-html-link-to-url"></span>`fn resolve_html_link_to_url(&self, item_name: &str, item_kind: &str, item_links: &HashMap<String, Id>) -> Option<String>`
+
+  Try to resolve an HTML-style link to a proper URL.
+
+- <span id="doclinkprocessor-kind-matches"></span>`fn kind_matches(html_kind: &str, item_kind: ItemKind) -> bool`
+
+  Check if the HTML link kind matches the rustdoc item kind.
+
+- <span id="doclinkprocessor-clean-blank-lines"></span>`fn clean_blank_lines(docs: &str) -> String`
+
+  Clean up multiple consecutive blank lines.
+
+- <span id="doclinkprocessor-resolve-with-strategies"></span>`fn resolve_with_strategies<T, F>(&self, link_text: &str, item_links: &HashMap<String, Id>, resolver: F) -> Option<T>`
+
+  Generic 3-strategy resolution with per-strategy display names.
+
+- <span id="doclinkprocessor-resolve-to-url"></span>`fn resolve_to_url(&self, link_text: &str, item_links: &HashMap<String, Id>) -> Option<String>`
+
+  Resolve a link reference to a URL.
+
+- <span id="doclinkprocessor-get-url-for-id"></span>`fn get_url_for_id(&self, id: Id) -> Option<String>`
+
+  Get the URL for an ID (local or docs.rs).
+
+- <span id="doclinkprocessor-get-docs-rs-url"></span>`fn get_docs_rs_url(path_info: &rustdoc_types::ItemSummary) -> Option<String>`
+
+  Get docs.rs URL for an external crate item.
+
+- <span id="doclinkprocessor-resolve-method-link"></span>`fn resolve_method_link(&self, type_name: &str, method_name: &str, item_links: &HashMap<String, Id>) -> Option<String>`
+
+  Resolve a method link to a markdown link with method anchor.
+
+- <span id="doclinkprocessor-resolve-link"></span>`fn resolve_link(&self, link_text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Try to resolve link text to a markdown link.
+
+- <span id="doclinkprocessor-create-link-for-id"></span>`fn create_link_for_id(&self, id: Id, display_name: &str) -> Option<String>`
+
+  Create a markdown link for an ID.
+
+- <span id="doclinkprocessor-create-docs-rs-link"></span>`fn create_docs_rs_link(path_info: &rustdoc_types::ItemSummary, display_name: &str) -> Option<String>`
+
+  Create a docs.rs link for an external crate item.
 
 #### Trait Implementations
 
@@ -1936,6 +2361,14 @@ Utility functions for document links
 - <span id="doclinkutils-convert-path-reference-links"></span>`fn convert_path_reference_links(docs: &str) -> String`
 
   Convert path-style reference links to inline code.
+
+- <span id="doclinkutils-replace-with-regex"></span>`fn replace_with_regex<F>(text: &str, re: &Regex, replacer: F) -> String`
+
+  Replace regex matches using a closure.
+
+- <span id="doclinkutils-replace-with-regex-checked"></span>`fn replace_with_regex_checked<F>(text: &str, re: &Regex, replacer: F) -> String`
+
+  Replace regex matches with access to the text after the match.
 
 #### Trait Implementations
 
@@ -2245,6 +2678,10 @@ The variants are ordered by their typical importance/frequency of use:
 
   ```
 
+- <span id="implcategory-sort-order"></span>`const fn sort_order(self) -> u8`
+
+  Get the sort order for this category.
+
 #### Trait Implementations
 
 ##### `impl Clone for ImplCategory`
@@ -2335,7 +2772,9 @@ The `Path.path` string is already formatted for display, while
 
 ```rust
 struct ImplRenderer<'a> {
-    // [REDACTED: Private Fields]
+    ctx: &'a dyn RenderContext,
+    current_file: &'a str,
+    type_renderer: crate::types::TypeRenderer<'a>,
 }
 ```
 
@@ -2350,15 +2789,49 @@ This struct handles:
 The renderer is generic over [`RenderContext`](generator.md#rendercontext), allowing it to work with
 both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes.
 
+#### Fields
+
+- **`ctx`**: `&'a dyn RenderContext`
+
+  Reference to the render context (either single-crate or multi-crate).
+
+- **`current_file`**: `&'a str`
+
+  Path of the current file being generated (for relative link calculation).
+
+- **`type_renderer`**: `crate::types::TypeRenderer<'a>`
+
+  Cached type renderer to avoid repeated construction.
+
 #### Implementations
 
 - <span id="implrenderer-new"></span>`fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](generator.md#rendercontext)
 
   Create a new impl renderer with the given context.
 
+- <span id="implrenderer-process-docs"></span>`fn process_docs(&self, item: &Item) -> Option<String>`
+
+  Process documentation string to resolve intra-doc links.
+
 - <span id="implrenderer-render-impl-blocks"></span>`fn render_impl_blocks(&self, md: &mut String, item_id: Id)`
 
   Render impl blocks for a given type.
+
+- <span id="implrenderer-render-trivial-derives-collapsed"></span>`fn render_trivial_derives_collapsed(md: &mut String, impls: &[&&Impl])`
+
+  Render trivial derive trait implementations in a collapsible block.
+
+- <span id="implrenderer-render-trait-impl"></span>`fn render_trait_impl(&self, md: &mut String, impl_block: &Impl)`
+
+  Render a single trait implementation block.
+
+- <span id="implrenderer-render-impl-methods"></span>`fn render_impl_methods(&self, md: &mut String, impl_block: &Impl)`
+
+  Render the items (methods, constants, types) within an impl block.
+
+- <span id="implrenderer-render-generic-args-for-impl"></span>`fn render_generic_args_for_impl(&self, args: &GenericArgs) -> String`
+
+  Render generic arguments for impl block signatures.
 
 #### Trait Implementations
 
@@ -2459,6 +2932,10 @@ Utility functions to work with impl's and generics
   }) == true
 
   ```
+
+- <span id="implutils-generic-args-contain-generic"></span>`fn generic_args_contain_generic(args: &GenericArgs) -> bool`
+
+  Check if generic args contain any generic type parameters.
 
 - <span id="implutils-extract-impl-signature-generics"></span>`fn extract_impl_signature_generics(impl_block: &Impl) -> HashSet<String>`
 
@@ -2607,6 +3084,106 @@ Utility functions to work with impl's and generics
     └─ for_ type has `StyledObject<D>` → extracts ["D"]
 
     └─ Result: render as `impl<D>` (not `impl<T>`)
+
+  ```
+
+- <span id="implutils-extract-type-generics-into"></span>`fn extract_type_generics_into(ty: &Type, names: &mut HashSet<String>)`
+
+  Extract generic parameter names from a type into a set.
+
+  
+
+  Recursively traverses the type structure to find all `Type::Generic` variants.
+
+  This handles all the ways generics can be nested in complex types.
+
+  
+
+  # Type Tree Visualization
+
+  
+
+  ```text
+
+  HashMap<K, Vec<T>>
+
+  └─ ResolvedPath("HashMap")
+
+     └─ args: [K, Vec<T>]
+
+              │  └─ ResolvedPath("Vec")
+
+              │     └─ args: [T]
+
+              │              └─ Generic("T") ← extracted!
+
+              └─ Generic("K") ← extracted!
+
+  ```
+
+- <span id="implutils-extract-generic-args-into"></span>`fn extract_generic_args_into(args: &GenericArgs, names: &mut HashSet<String>)`
+
+  Extract generic parameter names from generic arguments.
+
+  
+
+  Generic arguments come in three forms:
+
+  
+
+  # Forms
+
+  
+
+  ```text
+
+  AngleBracketed: Vec<T, U>           → args: [T, U], constraints: []
+
+                  Iterator<Item = T>  → args: [], constraints: [Item = T]
+
+  
+
+  Parenthesized:  Fn(T, U) -> V       → inputs: [T, U], output: Some(V)
+
+                  FnOnce(T)           → inputs: [T], output: None
+
+  
+
+  ReturnTypeNotation: method(..)      → (no generics to extract)
+
+  ```
+
+- <span id="implutils-extract-term-generics-into"></span>`fn extract_term_generics_into(term: &Term, names: &mut HashSet<String>)`
+
+  Extract generic parameter names from a type or const term.
+
+- <span id="implutils-extract-bound-generics-into"></span>`fn extract_bound_generics_into(bound: &GenericBound, names: &mut HashSet<String>)`
+
+  Extract generic parameter names from a generic bound.
+
+  
+
+  Bounds appear in where clauses: `where T: Clone + Iterator<Item = U>`
+
+  
+
+  We only care about `TraitBound` (not `Outlives` like `'a: 'b`).
+
+  From the trait bound, we extract any generic args on the trait itself.
+
+  
+
+  # Example
+
+  
+
+  ```text
+
+  where T: Iterator<Item = U>
+
+           └─ TraitBound { trait_: Path("Iterator"), args: [Item = U] }
+
+                                                               └─ extracts U
 
   ```
 
@@ -2775,7 +3352,9 @@ organized by type.
 
 ```rust
 struct ModuleRenderer<'a> {
-    // [REDACTED: Private Fields]
+    ctx: &'a dyn RenderContext,
+    current_file: &'a str,
+    is_root: bool,
 }
 ```
 
@@ -2790,11 +3369,29 @@ including:
 The renderer is generic over [`RenderContext`](generator.md#rendercontext), allowing it to work with
 both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes.
 
+#### Fields
+
+- **`ctx`**: `&'a dyn RenderContext`
+
+  Reference to the render context (either single-crate or multi-crate).
+
+- **`current_file`**: `&'a str`
+
+  Path of the current file being generated (for relative link calculation).
+
+- **`is_root`**: `bool`
+
+  Whether this is the crate root module.
+
 #### Implementations
 
 - <span id="modulerenderer-new"></span>`fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](generator.md#rendercontext)
 
   Create a new module renderer.
+
+- <span id="modulerenderer-process-docs"></span>`fn process_docs(&self, item: &Item) -> Option<String>`
+
+  Process documentation string to resolve intra-doc links.
 
 - <span id="modulerenderer-render"></span>`fn render(&self, item: &Item) -> String`
 
@@ -2843,6 +3440,100 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
   ...
 
   ```
+
+- <span id="modulerenderer-categorize-items"></span>`fn categorize_items(&self, item_ids: &'a [Id]) -> CategorizedItems<'a>`
+
+  Categorize module items by type for organized rendering.
+
+- <span id="modulerenderer-expand-glob-reexport"></span>`fn expand_glob_reexport(&self, items: &mut CategorizedItems<'a>, use_item: &rustdoc_types::Use, seen_items: &mut HashSet<&'a Id>)`
+
+  Expand a glob re-export by adding all public items from the target module.
+
+- <span id="modulerenderer-render-all-sections"></span>`fn render_all_sections(&self, md: &mut String, items: &CategorizedItems<'_>)`
+
+  Render all item sections with horizontal rule separators.
+
+- <span id="modulerenderer-render-types-section"></span>`fn render_types_section(&self, md: &mut String, items: &CategorizedItems<'_>)`
+
+  Render the Types section (structs, enums, unions, type aliases).
+
+  
+
+  All type definitions are grouped under a single "Types" heading,
+
+  with each item type rendered in subsections:
+
+  
+
+  ```markdown
+
+  ## Types
+
+  
+
+  ### `MyStruct`
+
+  [struct definition]
+
+  
+
+  ### `MyEnum`
+
+  [enum definition]
+
+  
+
+  ### `MyUnion`
+
+  [union definition]
+
+  
+
+  ### `MyAlias`
+
+  [type alias definition]
+
+  ```
+
+- <span id="modulerenderer-render-statics-section"></span>`fn render_statics_section(&self, md: &mut String, statics: &[&Item])`
+
+  Render the Statics section.
+
+- <span id="modulerenderer-build-toc-entries"></span>`fn build_toc_entries(items: &CategorizedItems<'_>) -> Vec<TocEntry>` — [`TocEntry`](generator__toc.md#tocentry)
+
+  Build TOC entries from categorized items.
+
+- <span id="modulerenderer-build-quick-ref-entries"></span>`fn build_quick_ref_entries(&self, items: &CategorizedItems<'_>) -> Vec<QuickRefEntry>` — [`QuickRefEntry`](generator__quick_ref.md#quickrefentry)
+
+  Build quick reference entries from categorized items.
+
+- <span id="modulerenderer-get-item-summary"></span>`fn get_item_summary(&self, item: &Item, item_id: Id) -> String`
+
+  Get summary for an item, with fallback for re-exports.
+
+- <span id="modulerenderer-render-modules-section"></span>`fn render_modules_section(&self, md: &mut String, modules: &[(&Id, &Item)])`
+
+  Render the Modules section with links to submodules.
+
+- <span id="modulerenderer-get-module-summary"></span>`fn get_module_summary(&self, item: &Item, item_id: Id) -> String`
+
+  Get summary for a module, with fallback for re-exports.
+
+- <span id="modulerenderer-render-traits-section"></span>`fn render_traits_section(&self, md: &mut String, traits: &[(&Id, &Item)])`
+
+  Render the Traits section.
+
+- <span id="modulerenderer-render-functions-section"></span>`fn render_functions_section(&self, md: &mut String, functions: &[&Item])`
+
+  Render the Functions section.
+
+- <span id="modulerenderer-render-macros-section"></span>`fn render_macros_section(&self, md: &mut String, macros: &[&Item])`
+
+  Render the Macros section.
+
+- <span id="modulerenderer-render-constants-section"></span>`fn render_constants_section(&self, md: &mut String, constants: &[&Item])`
+
+  Render the Constants section.
 
 #### Trait Implementations
 
@@ -3152,6 +3843,18 @@ Helpful because free functions are annoying.
 - <span id="rendererinternals-render-impl-items"></span>`fn render_impl_items<F, L>(md: &mut String, impl_block: &Impl, krate: &Crate, type_renderer: &TypeRenderer<'_>, process_docs: &Option<F>, create_type_link: &Option<L>, parent_type_name: Option<&str>, impl_ctx: ImplContext<'_>, full_method_docs: bool)` — [`TypeRenderer`](types.md#typerenderer), [`ImplContext`](linker.md#implcontext)
 
   Render the items within an impl block.
+
+- <span id="rendererinternals-extract-method-summary"></span>`fn extract_method_summary(docs: &str, full_method_docs: bool) -> String`
+
+  Extract method documentation summary for impl blocks.
+
+- <span id="rendererinternals-render-function-type-links-inline"></span>`fn render_function_type_links_inline<L>(md: &mut String, f: &rustdoc_types::Function, type_renderer: TypeRenderer<'_>, create_link: &L)` — [`TypeRenderer`](types.md#typerenderer)
+
+  Render type links for a function signature inline (for impl methods).
+
+- <span id="rendererinternals-render-impl-function"></span>`fn render_impl_function(md: &mut String, name: &str, f: &rustdoc_types::Function, type_renderer: TypeRenderer<'_>, parent_type_name: Option<&str>, impl_ctx: ImplContext<'_>)` — [`TypeRenderer`](types.md#typerenderer), [`ImplContext`](linker.md#implcontext)
+
+  Render a function signature within an impl block.
 
 - <span id="rendererinternals-append-docs"></span>`fn append_docs(md: &mut String, docs: Option<String>)`
 
@@ -3465,6 +4168,10 @@ Unit struct to organize trait related functions.
 
 #### Implementations
 
+- <span id="traitrenderer-write-trait-bounds"></span>`fn write_trait_bounds(out: &mut String, bounds: &[rustdoc_types::GenericBound], type_renderer: TypeRenderer<'_>)` — [`TypeRenderer`](types.md#typerenderer)
+
+  Write trait bounds with `: ` prefix directly to buffer.
+
 - <span id="traitrenderer-render-trait-definition"></span>`fn render_trait_definition(md: &mut String, name: &str, t: &rustdoc_types::Trait, type_renderer: &TypeRenderer<'_>)` — [`TypeRenderer`](types.md#typerenderer)
 
   Render a trait definition code block to markdown.
@@ -3607,7 +4314,7 @@ for nested navigation.
 
 ```rust
 struct TocGenerator {
-    // [REDACTED: Private Fields]
+    threshold: usize,
 }
 ```
 
@@ -3616,6 +4323,12 @@ Generator for markdown table of contents.
 The generator only produces output when the total number of items
 exceeds the configured threshold. This prevents cluttering small
 modules with unnecessary navigation.
+
+#### Fields
+
+- **`threshold`**: `usize`
+
+  Minimum items required to generate a TOC.
 
 #### Implementations
 
@@ -3626,6 +4339,10 @@ modules with unnecessary navigation.
 - <span id="tocgenerator-generate"></span>`fn generate(&self, entries: &[TocEntry]) -> Option<String>` — [`TocEntry`](#tocentry)
 
   Generate a markdown table of contents from the given entries.
+
+- <span id="tocgenerator-render-entry"></span>`fn render_entry(md: &mut String, entry: &TocEntry, depth: usize)` — [`TocEntry`](#tocentry)
+
+  Render a single TOC entry with proper indentation.
 
 #### Trait Implementations
 
@@ -3721,7 +4438,9 @@ generation capabilities programmatically.
 
 ```rust
 struct Generator<'a> {
-    // [REDACTED: Private Fields]
+    ctx: GeneratorContext<'a>,
+    args: &'a crate::Args,
+    root_item: &'a rustdoc_types::Item,
 }
 ```
 
@@ -3738,6 +4457,20 @@ let generator = Generator::new(&krate, &args)?;
 generator.generate()?;
 ```
 
+#### Fields
+
+- **`ctx`**: `GeneratorContext<'a>`
+
+  Shared context containing crate data, maps, and configuration.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments containing output path and format options.
+
+- **`root_item`**: `&'a rustdoc_types::Item`
+
+  The root module item of the crate.
+
 #### Implementations
 
 - <span id="generator-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Result<Self, Error>` — [`Args`](#args), [`RenderConfig`](generator__config.md#renderconfig), [`Error`](error.md#error)
@@ -3748,6 +4481,10 @@ generator.generate()?;
 
   Generate markdown documentation.
 
+- <span id="generator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error.md#error)
+
+  Create a progress bar for user feedback.
+
 - <span id="generator-generate-to-capture"></span>`fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](#clioutputformat), [`MarkdownCapture`](generator.md#markdowncapture), [`Error`](error.md#error)
 
   Generate documentation to memory instead of disk.
@@ -3755,6 +4492,18 @@ generator.generate()?;
 - <span id="generator-generate-to-capture-with-config"></span>`fn generate_to_capture_with_config(krate: &Crate, format: CliOutputFormat, include_private: bool, config: RenderConfig) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](#clioutputformat), [`RenderConfig`](generator__config.md#renderconfig), [`MarkdownCapture`](generator.md#markdowncapture), [`Error`](error.md#error)
 
   Generate markdown to an in-memory capture with custom configuration.
+
+- <span id="generator-generate-flat-to-capture"></span>`fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator.md#generatorcontext), [`MarkdownCapture`](generator.md#markdowncapture), [`Error`](error.md#error)
+
+  Generate flat structure to capture.
+
+- <span id="generator-generate-flat-recursive-capture"></span>`fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator.md#generatorcontext), [`MarkdownCapture`](generator.md#markdowncapture), [`Error`](error.md#error)
+
+  Recursive flat generation to capture.
+
+- <span id="generator-generate-nested-to-capture"></span>`fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator.md#generatorcontext), [`MarkdownCapture`](generator.md#markdowncapture), [`Error`](error.md#error)
+
+  Generate nested structure to capture.
 
 - <span id="generator-run"></span>`fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](#args), [`Error`](error.md#error)
 
@@ -3774,7 +4523,7 @@ generator.generate()?;
 
 ```rust
 struct MarkdownCapture {
-    // [REDACTED: Private Fields]
+    files: std::collections::HashMap<String, String>,
 }
 ```
 
@@ -3784,6 +4533,12 @@ Instead of writing files to disk, this struct stores all generated
 markdown content in a `HashMap`, keyed by relative file path. This
 enables snapshot testing and verification of output without filesystem
 side effects.
+
+#### Fields
+
+- **`files`**: `std::collections::HashMap<String, String>`
+
+  Maps file paths (relative to output directory) to their generated content.
 
 #### Implementations
 
@@ -4121,6 +4876,14 @@ Utilify functions to handle anchors
 
   ```
 
+- <span id="anchorutils-slugify-anchor-ascii"></span>`fn slugify_anchor_ascii(name: &str) -> String`
+
+  Fast ASCII-only slugification (no allocation for normalization).
+
+- <span id="anchorutils-slugify-anchor-impl"></span>`fn slugify_anchor_impl(name: &str) -> String`
+
+  Unicode-aware slugification with full lowercase support.
+
 - <span id="anchorutils-item-has-anchor"></span>`const fn item_has_anchor(kind: ItemKind) -> bool`
 
   Check if an item kind generates a heading anchor in markdown.
@@ -4139,7 +4902,8 @@ Utilify functions to handle anchors
 
 ```rust
 struct LinkRegistry {
-    // [REDACTED: Private Fields]
+    item_paths: std::collections::HashMap<rustdoc_types::Id, String>,
+    item_names: std::collections::HashMap<rustdoc_types::Id, String>,
 }
 ```
 
@@ -4149,11 +4913,35 @@ This is the central data structure for cross-reference resolution.
 It's built once during generation and queried whenever we need to
 create links between items.
 
+#### Fields
+
+- **`item_paths`**: `std::collections::HashMap<rustdoc_types::Id, String>`
+
+  Maps each item's ID to the markdown file path where it's documented.
+  
+  Paths are relative to the output directory root.
+  Examples: `"index.md"`, `"span.md"`, `"span/index.md"`
+
+- **`item_names`**: `std::collections::HashMap<rustdoc_types::Id, String>`
+
+  Maps each item's ID to its display name.
+  
+  Used to generate the link text (e.g., `[`name`](path)`).
+  This is typically the item's identifier without the full path.
+
 #### Implementations
 
 - <span id="linkregistry-build"></span>`fn build(krate: &Crate, flat_format: bool, include_private: bool) -> Self`
 
   Build a link registry by traversing all items in the crate.
+
+- <span id="linkregistry-register-module-items"></span>`fn register_module_items(&mut self, krate: &Crate, module_id: Id, module_item: &rustdoc_types::Item, path: &str, module_prefix: &str, flat_format: bool, include_private: bool)`
+
+  Recursively register all items within a module.
+
+- <span id="linkregistry-register-glob-items"></span>`fn register_glob_items(&mut self, krate: &Crate, use_item: &rustdoc_types::Use, path: &str, include_private: bool)`
+
+  Register items from a glob re-export target module.
 
 - <span id="linkregistry-get-path"></span>`fn get_path(&self, id: Id) -> Option<&String>`
 
@@ -4253,7 +5041,7 @@ create links between items.
 
 ```rust
 struct CrateCollection {
-    // [REDACTED: Private Fields]
+    crates: std::collections::HashMap<String, rustdoc_types::Crate>,
 }
 ```
 
@@ -4276,6 +5064,13 @@ for (name, krate) in collection.iter() {
     println!("Processing {name}");
 }
 ```
+
+#### Fields
+
+- **`crates`**: `std::collections::HashMap<String, rustdoc_types::Crate>`
+
+  Map from crate name to parsed Crate data.
+  `HashMap` provides O(1) lookups; sorting done on-demand.
 
 #### Implementations
 
@@ -4337,7 +5132,12 @@ for (name, krate) in collection.iter() {
 
 ```rust
 struct MultiCrateContext<'a> {
-    // [REDACTED: Private Fields]
+    crates: &'a crate::multi_crate::CrateCollection,
+    registry: crate::multi_crate::UnifiedLinkRegistry,
+    args: &'a crate::Args,
+    config: crate::generator::config::RenderConfig,
+    cross_crate_impls: std::collections::HashMap<String, std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>,
+    source_path_config: Option<crate::generator::render_shared::SourcePathConfig>,
 }
 ```
 
@@ -4346,6 +5146,37 @@ Shared context for multi-crate documentation generation.
 Holds references to all crates, the unified link registry, and
 CLI configuration. Used by [`MultiCrateGenerator`](multi_crate.md#multicrategenerator) to coordinate
 generation across crates.
+
+#### Fields
+
+- **`crates`**: `&'a crate::multi_crate::CrateCollection`
+
+  All crates being documented.
+
+- **`registry`**: `crate::multi_crate::UnifiedLinkRegistry`
+
+  Unified link registry for cross-crate resolution.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments.
+
+- **`config`**: `crate::generator::config::RenderConfig`
+
+  Rendering configuration options.
+
+- **`cross_crate_impls`**: `std::collections::HashMap<String, std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>`
+
+  Pre-computed cross-crate impl blocks.
+  
+  Maps target crate name -> type name -> impl blocks from other crates.
+  This is computed once during construction rather than per-view.
+
+- **`source_path_config`**: `Option<crate::generator::render_shared::SourcePathConfig>`
+
+  Base source path configuration for transforming cargo registry paths.
+  
+  `None` if source locations are disabled or no `.source_*` dir detected.
 
 #### Implementations
 
@@ -4360,6 +5191,10 @@ generation across crates.
 - <span id="multicratecontext-source-path-config-for-file"></span>`fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig>` — [`SourcePathConfig`](generator__render_shared.md#sourcepathconfig)
 
   Get source path config for a specific file.
+
+- <span id="multicratecontext-build-cross-crate-impls"></span>`fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](multi_crate.md#cratecollection)
+
+  Build the cross-crate impl map for all crates.
 
 - <span id="multicratecontext-crates"></span>`const fn crates(&self) -> &CrateCollection` — [`CrateCollection`](multi_crate.md#cratecollection)
 
@@ -4385,6 +5220,10 @@ generation across crates.
 
   Get pre-computed cross-crate impl blocks for a target crate.
 
+- <span id="multicratecontext-get-impl-target-path"></span>`fn get_impl_target_path(impl_block: &Impl) -> Option<String>`
+
+  Get the target type path for an impl block.
+
 #### Trait Implementations
 
 ##### `impl Instrument for MultiCrateContext<'a>`
@@ -4399,7 +5238,8 @@ generation across crates.
 
 ```rust
 struct MultiCrateGenerator<'a> {
-    // [REDACTED: Private Fields]
+    ctx: crate::multi_crate::MultiCrateContext<'a>,
+    args: &'a crate::Args,
 }
 ```
 
@@ -4423,6 +5263,16 @@ output/
 └── SUMMARY.md        # If --mdbook enabled
 ```
 
+#### Fields
+
+- **`ctx`**: `crate::multi_crate::MultiCrateContext<'a>`
+
+  Multi-crate context with unified registry.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments.
+
 #### Implementations
 
 - <span id="multicrategenerator-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](multi_crate.md#cratecollection), [`Args`](#args), [`RenderConfig`](generator__config.md#renderconfig)
@@ -4432,6 +5282,30 @@ output/
 - <span id="multicrategenerator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](error.md#error)
 
   Generate documentation for all crates.
+
+- <span id="multicrategenerator-collect-rendered-items"></span>`fn collect_rendered_items(&self) -> HashMap<String, HashSet<Id>>`
+
+  Collect the IDs of all items that would be rendered.
+
+- <span id="multicrategenerator-collect-crate-items"></span>`fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate.md#singlecrateview)
+
+  Collect rendered item IDs for a single crate.
+
+- <span id="multicrategenerator-collect-module-items"></span>`fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate.md#singlecrateview)
+
+  Recursively collect rendered item IDs from a module.
+
+- <span id="multicrategenerator-generate-crate"></span>`fn generate_crate(&self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate.md#singlecrateview), [`Error`](error.md#error)
+
+  Generate documentation for a single crate.
+
+- <span id="multicrategenerator-generate-module"></span>`fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate.md#singlecrateview), [`Error`](error.md#error)
+
+  Generate a module directory with index.md and child modules.
+
+- <span id="multicrategenerator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error.md#error)
+
+  Create a progress bar.
 
 #### Trait Implementations
 
@@ -4466,6 +5340,10 @@ println!("Found {} crates", crates.len());
 - <span id="multicrateparser-parse-directory"></span>`fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](multi_crate.md#cratecollection), [`Error`](error.md#error)
 
   Parse all rustdoc JSON files in a directory.
+
+- <span id="multicrateparser-extract-crate-name"></span>`fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](error.md#error)
+
+  Extract the crate name from a parsed Crate.
 
 #### Trait Implementations
 
@@ -4517,7 +5395,9 @@ Serialized to `search_index.json` for client-side consumption.
 
 ```rust
 struct SearchIndexGenerator<'a> {
-    // [REDACTED: Private Fields]
+    crates: &'a super::CrateCollection,
+    include_private: bool,
+    rendered_items: std::collections::HashMap<String, std::collections::HashSet<rustdoc_types::Id>>,
 }
 ```
 
@@ -4535,6 +5415,26 @@ let generator = SearchIndexGenerator::new(&crates, false, rendered_items);
 generator.write(Path::new("generated_docs/"))?;
 ```
 
+#### Fields
+
+- **`crates`**: `&'a super::CrateCollection`
+
+  Collection of crates to index.
+
+- **`include_private`**: `bool`
+
+  Whether to include private items in the search index.
+  
+  When false (default), only public items are indexed.
+  When true, all items regardless of visibility are indexed.
+
+- **`rendered_items`**: `std::collections::HashMap<String, std::collections::HashSet<rustdoc_types::Id>>`
+
+  Set of item IDs that were actually rendered per crate.
+  
+  Only items in this set will appear in the search index.
+  This ensures the search index matches the generated documentation.
+
 #### Implementations
 
 - <span id="searchindexgenerator-new"></span>`const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](multi_crate.md#cratecollection)
@@ -4548,6 +5448,18 @@ generator.write(Path::new("generated_docs/"))?;
 - <span id="searchindexgenerator-write"></span>`fn write(&self, output_dir: &Path) -> std::io::Result<()>`
 
   Write the search index to `search_index.json` in the output directory.
+
+- <span id="searchindexgenerator-index-crate"></span>`fn index_crate(&self, items: &mut Vec<SearchEntry>, crate_name: &str, krate: &Crate)`
+
+  Index all items in a single crate.
+
+- <span id="searchindexgenerator-build-path-map"></span>`fn build_path_map(krate: &Crate) -> HashMap<Id, String>`
+
+  Build a map from item ID to its module path.
+
+- <span id="searchindexgenerator-compute-file-path"></span>`fn compute_file_path(crate_name: &str, module_path: &str, kind: &str) -> String`
+
+  Compute the file path for an item based on its module location.
 
 #### Trait Implementations
 
@@ -4563,7 +5475,11 @@ generator.write(Path::new("generated_docs/"))?;
 
 ```rust
 struct UnifiedLinkRegistry {
-    // [REDACTED: Private Fields]
+    item_paths: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
+    item_names: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
+    name_index: std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id, rustdoc_types::ItemKind)>>,
+    re_export_sources: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
+    primary_crate: Option<compact_str::CompactString>,
 }
 ```
 
@@ -4594,11 +5510,60 @@ When resolving ambiguous names:
 Uses `hashbrown` with raw entry API for zero-allocation lookups.
 This avoids allocating a `String` for the crate name on every lookup.
 
+#### Fields
+
+- **`item_paths`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
+
+  Maps `(crate_name, item_id)` to the file path within output.
+  Uses hashbrown for `raw_entry` API (zero-alloc lookups).
+
+- **`item_names`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
+
+  Maps `(crate_name, item_id)` to the item's display name.
+  Uses hashbrown for `raw_entry` API (zero-alloc lookups).
+
+- **`name_index`**: `std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id, rustdoc_types::ItemKind)>>`
+
+  Maps short names to all `(crate_name, item_id, item_kind)` tuples.
+  Used for disambiguating links like `Span` that exist in multiple crates.
+  The `ItemKind` enables preferring modules over macros with the same name.
+
+- **`re_export_sources`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
+
+  Maps `(crate_name, reexport_id)` to the original source path.
+  Used for resolving external re-exports where `use_item.id` is `None`
+  but `use_item.source` provides the canonical path.
+  Example: `("tracing", id_123)` -> `"tracing_core::field::Visit"`
+
+- **`primary_crate`**: `Option<compact_str::CompactString>`
+
+  The primary crate name for preferential resolution.
+
 #### Implementations
 
 - <span id="unifiedlinkregistry-build"></span>`fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](multi_crate.md#cratecollection)
 
   Build a unified registry from a collection of crates.
+
+- <span id="unifiedlinkregistry-register-crate"></span>`fn register_crate(&mut self, crate_name: &str, krate: &Crate)`
+
+  Register all items from a single crate.
+
+- <span id="unifiedlinkregistry-register-from-paths"></span>`fn register_from_paths(&mut self, crate_name: &str, krate: &Crate)`
+
+  Register items using the `paths` field from rustdoc JSON.
+
+- <span id="unifiedlinkregistry-item-enum-to-kind"></span>`const fn item_enum_to_kind(inner: &ItemEnum) -> ItemKind`
+
+  Convert `ItemEnum` to `ItemKind` for the name index.
+
+- <span id="unifiedlinkregistry-register-item-recursive"></span>`fn register_item_recursive(&mut self, krate: &Crate, crate_name: &str, item_id: Id, item: &rustdoc_types::Item, parent_path: &str)`
+
+  Recursively register an item and its children.
+
+- <span id="unifiedlinkregistry-register-item"></span>`fn register_item(&mut self, crate_name: &str, id: Id, name: &str, path: &str, kind: ItemKind)`
+
+  Register a single item in the registry.
 
 - <span id="unifiedlinkregistry-get-path"></span>`fn get_path(&self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
@@ -5567,6 +6532,14 @@ Utilify functions to handle anchors
 
   ```
 
+- <span id="anchorutils-slugify-anchor-ascii"></span>`fn slugify_anchor_ascii(name: &str) -> String`
+
+  Fast ASCII-only slugification (no allocation for normalization).
+
+- <span id="anchorutils-slugify-anchor-impl"></span>`fn slugify_anchor_impl(name: &str) -> String`
+
+  Unicode-aware slugification with full lowercase support.
+
 - <span id="anchorutils-item-has-anchor"></span>`const fn item_has_anchor(kind: ItemKind) -> bool`
 
   Check if an item kind generates a heading anchor in markdown.
@@ -5585,7 +6558,8 @@ Utilify functions to handle anchors
 
 ```rust
 struct LinkRegistry {
-    // [REDACTED: Private Fields]
+    item_paths: std::collections::HashMap<rustdoc_types::Id, String>,
+    item_names: std::collections::HashMap<rustdoc_types::Id, String>,
 }
 ```
 
@@ -5595,11 +6569,35 @@ This is the central data structure for cross-reference resolution.
 It's built once during generation and queried whenever we need to
 create links between items.
 
+#### Fields
+
+- **`item_paths`**: `std::collections::HashMap<rustdoc_types::Id, String>`
+
+  Maps each item's ID to the markdown file path where it's documented.
+  
+  Paths are relative to the output directory root.
+  Examples: `"index.md"`, `"span.md"`, `"span/index.md"`
+
+- **`item_names`**: `std::collections::HashMap<rustdoc_types::Id, String>`
+
+  Maps each item's ID to its display name.
+  
+  Used to generate the link text (e.g., `[`name`](path)`).
+  This is typically the item's identifier without the full path.
+
 #### Implementations
 
 - <span id="linkregistry-build"></span>`fn build(krate: &Crate, flat_format: bool, include_private: bool) -> Self`
 
   Build a link registry by traversing all items in the crate.
+
+- <span id="linkregistry-register-module-items"></span>`fn register_module_items(&mut self, krate: &Crate, module_id: Id, module_item: &rustdoc_types::Item, path: &str, module_prefix: &str, flat_format: bool, include_private: bool)`
+
+  Recursively register all items within a module.
+
+- <span id="linkregistry-register-glob-items"></span>`fn register_glob_items(&mut self, krate: &Crate, use_item: &rustdoc_types::Use, path: &str, include_private: bool)`
+
+  Register items from a glob re-export target module.
 
 - <span id="linkregistry-get-path"></span>`fn get_path(&self, id: Id) -> Option<&String>`
 
@@ -5846,7 +6844,7 @@ generator.generate()?;
 
 ```rust
 struct CrateCollection {
-    // [REDACTED: Private Fields]
+    crates: std::collections::HashMap<String, rustdoc_types::Crate>,
 }
 ```
 
@@ -5869,6 +6867,13 @@ for (name, krate) in collection.iter() {
     println!("Processing {name}");
 }
 ```
+
+#### Fields
+
+- **`crates`**: `std::collections::HashMap<String, rustdoc_types::Crate>`
+
+  Map from crate name to parsed Crate data.
+  `HashMap` provides O(1) lookups; sorting done on-demand.
 
 #### Implementations
 
@@ -5930,7 +6935,12 @@ for (name, krate) in collection.iter() {
 
 ```rust
 struct MultiCrateContext<'a> {
-    // [REDACTED: Private Fields]
+    crates: &'a crate::multi_crate::CrateCollection,
+    registry: crate::multi_crate::UnifiedLinkRegistry,
+    args: &'a crate::Args,
+    config: crate::generator::config::RenderConfig,
+    cross_crate_impls: std::collections::HashMap<String, std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>,
+    source_path_config: Option<crate::generator::render_shared::SourcePathConfig>,
 }
 ```
 
@@ -5939,6 +6949,37 @@ Shared context for multi-crate documentation generation.
 Holds references to all crates, the unified link registry, and
 CLI configuration. Used by [`MultiCrateGenerator`](#multicrategenerator) to coordinate
 generation across crates.
+
+#### Fields
+
+- **`crates`**: `&'a crate::multi_crate::CrateCollection`
+
+  All crates being documented.
+
+- **`registry`**: `crate::multi_crate::UnifiedLinkRegistry`
+
+  Unified link registry for cross-crate resolution.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments.
+
+- **`config`**: `crate::generator::config::RenderConfig`
+
+  Rendering configuration options.
+
+- **`cross_crate_impls`**: `std::collections::HashMap<String, std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>`
+
+  Pre-computed cross-crate impl blocks.
+  
+  Maps target crate name -> type name -> impl blocks from other crates.
+  This is computed once during construction rather than per-view.
+
+- **`source_path_config`**: `Option<crate::generator::render_shared::SourcePathConfig>`
+
+  Base source path configuration for transforming cargo registry paths.
+  
+  `None` if source locations are disabled or no `.source_*` dir detected.
 
 #### Implementations
 
@@ -5953,6 +6994,10 @@ generation across crates.
 - <span id="multicratecontext-source-path-config-for-file"></span>`fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig>` — [`SourcePathConfig`](generator__render_shared.md#sourcepathconfig)
 
   Get source path config for a specific file.
+
+- <span id="multicratecontext-build-cross-crate-impls"></span>`fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](#cratecollection)
+
+  Build the cross-crate impl map for all crates.
 
 - <span id="multicratecontext-crates"></span>`const fn crates(&self) -> &CrateCollection` — [`CrateCollection`](#cratecollection)
 
@@ -5978,6 +7023,10 @@ generation across crates.
 
   Get pre-computed cross-crate impl blocks for a target crate.
 
+- <span id="multicratecontext-get-impl-target-path"></span>`fn get_impl_target_path(impl_block: &Impl) -> Option<String>`
+
+  Get the target type path for an impl block.
+
 #### Trait Implementations
 
 ##### `impl Instrument for MultiCrateContext<'a>`
@@ -5992,7 +7041,14 @@ generation across crates.
 
 ```rust
 struct SingleCrateView<'a> {
-    // [REDACTED: Private Fields]
+    crate_name: &'a str,
+    krate: &'a rustdoc_types::Crate,
+    registry: &'a crate::multi_crate::UnifiedLinkRegistry,
+    args: &'a crate::Args,
+    ctx: &'a MultiCrateContext<'a>,
+    impl_map: std::collections::HashMap<rustdoc_types::Id, Vec<&'a rustdoc_types::Impl>>,
+    cross_crate_impls: Option<&'a std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>,
+    type_name_to_id: std::collections::HashMap<String, rustdoc_types::Id>,
 }
 ```
 
@@ -6002,7 +7058,58 @@ Provides an interface similar to [`GeneratorContext`](generator.md#generatorcont
 [`UnifiedLinkRegistry`](#unifiedlinkregistry) for cross-crate link resolution. This
 allows existing rendering code to work with minimal changes.
 
+#### Fields
+
+- **`crate_name`**: `&'a str`
+
+  Name of this crate (borrowed from the context).
+
+- **`krate`**: `&'a rustdoc_types::Crate`
+
+  The crate being rendered.
+
+- **`registry`**: `&'a crate::multi_crate::UnifiedLinkRegistry`
+
+  Unified registry for link resolution.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments.
+
+- **`ctx`**: `&'a MultiCrateContext<'a>`
+
+  Reference to the parent multi-crate context for cross-crate lookups.
+
+- **`impl_map`**: `std::collections::HashMap<rustdoc_types::Id, Vec<&'a rustdoc_types::Impl>>`
+
+  Map from type ID to impl blocks (local crate only).
+
+- **`cross_crate_impls`**: `Option<&'a std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>`
+
+  Reference to pre-computed cross-crate impl blocks from context.
+  Maps type name to impl blocks from other crates.
+
+- **`type_name_to_id`**: `std::collections::HashMap<String, rustdoc_types::Id>`
+
+  Map from type name to type ID for cross-crate impl lookup.
+
 #### Implementations
+
+- <span id="singlecrateview-new"></span>`fn new(crate_name: &'a str, krate: &'a Crate, registry: &'a UnifiedLinkRegistry, args: &'a Args, ctx: &'a MultiCrateContext<'a>) -> Self` — [`UnifiedLinkRegistry`](#unifiedlinkregistry), [`Args`](index.md#args), [`MultiCrateContext`](#multicratecontext)
+
+  Create a new single-crate view.
+
+- <span id="singlecrateview-build-impl-map"></span>`fn build_impl_map(&mut self)`
+
+  Build the impl map for all types.
+
+- <span id="singlecrateview-build-type-name-map"></span>`fn build_type_name_map(&mut self)`
+
+  Build a map from type name to type ID.
+
+- <span id="singlecrateview-impl-sort-key"></span>`fn impl_sort_key(impl_block: &Impl) -> (u8, String)`
+
+  Generate a sort key for impl blocks.
 
 - <span id="singlecrateview-crate-name"></span>`const fn crate_name(&self) -> &str`
 
@@ -6032,6 +7139,10 @@ allows existing rendering code to work with minimal changes.
 
   Get impl blocks for a type from a specific crate.
 
+- <span id="singlecrateview-get-impl-target-id-from-type"></span>`const fn get_impl_target_id_from_type(ty: &rustdoc_types::Type) -> Option<Id>`
+
+  Extract the target ID from a Type (for impl block matching).
+
 - <span id="singlecrateview-should-include-item"></span>`const fn should_include_item(&self, item: &rustdoc_types::Item) -> bool`
 
   Check if an item should be included based on visibility.
@@ -6059,6 +7170,548 @@ allows existing rendering code to work with minimal changes.
 - <span id="singlecrateview-resolve-external-path"></span>`fn resolve_external_path(&self, path: &str) -> Option<(&str, &Item, Id)>`
 
   Resolve a path like `regex_automata::Regex` to an item.
+
+- <span id="singlecrateview-process-backtick-links"></span>`fn process_backtick_links(&self, docs: &str, item_links: &HashMap<String, Id>, current_file: &str) -> String`
+
+  Process backtick links like `[`Span`](https://docs.rs/aho_corasick/latest/aho_corasick/util/search/struct.Span.html)` to markdown links.
+
+- <span id="singlecrateview-process-plain-links"></span>`fn process_plain_links(&self, docs: &str, current_file: &str) -> String`
+
+  Process plain links like `[enter]` to markdown links.
+
+- <span id="singlecrateview-resolve-plain-link"></span>`fn resolve_plain_link(&self, link_text: &str, current_file: &str) -> Option<String>`
+
+  Resolve a plain link `[name]` to a markdown link.
+
+- <span id="singlecrateview-resolve-link"></span>`fn resolve_link(&self, link_text: &str, item_links: &HashMap<String, Id>, current_file: &str) -> Option<String>`
+
+  Resolve a link text to a markdown link using the registry.
+
+  
+
+  This function attempts to convert rustdoc link syntax into valid markdown
+
+  links that work in the generated documentation.
+
+  
+
+  # Arguments
+
+  * `link_text` - The raw link target from rustdoc (e.g., "`crate::config::ConfigBuilder::method`")
+
+  * `item_links` - Map of link texts to Item IDs from rustdoc's `links` field
+
+  * `current_file` - The markdown file being generated (e.g., "ureq/index.md")
+
+  
+
+  # Returns
+
+  * `Some(markdown_link)` - A formatted markdown link like `[`text`](path.md#anchor)`
+
+  * `None` - If the link cannot be resolved (will be rendered as inline code)
+
+  
+
+  # Examples
+
+  
+
+  ```text
+
+  Input:  link_text = "crate::config::ConfigBuilder::http_status_as_error"
+
+          current_file = "ureq/index.md"
+
+  Output: Some("[`crate::config::ConfigBuilder::http_status_as_error`](config/index.md#http_status_as_error)")
+
+  
+
+  Input:  link_text = "ConfigBuilder"
+
+          current_file = "ureq/agent/index.md"
+
+  Output: Some("[`ConfigBuilder`](../config/index.md#configbuilder)")
+
+  
+
+  Input:  link_text = "std::io::Error"  (external crate, not in registry)
+
+          current_file = "ureq/index.md"
+
+  Output: None  (rendered as `std::io::Error` inline code)
+
+  ```
+
+- <span id="singlecrateview-build-link-to-id"></span>`fn build_link_to_id(&self, id: Id, current_file: &str, display_name: &str, anchor: Option<&str>) -> Option<String>`
+
+  Build a link to an item by ID.
+
+  
+
+  This is the simplest path when we already have a resolved Item ID from
+
+  rustdoc's links map. We just need to look up the file path in our registry.
+
+  
+
+  # Arguments
+
+  * `id` - The rustdoc Item ID to link to
+
+  * `current_file` - Source file for relative path computation
+
+  * `display_name` - Text to show in the link
+
+  * `anchor` - Optional anchor (e.g., method name)
+
+  
+
+  # Example Transformation
+
+  
+
+  ```text
+
+  Input:
+
+    id = Id(123)  (rustdoc's internal ID for ConfigBuilder)
+
+    current_file = "ureq/agent/index.md"
+
+    display_name = "ConfigBuilder"
+
+    anchor = None
+
+  
+
+  Step 1: Look up ID in registry
+
+    registry.get_path("ureq", Id(123)) → Some("config/index.md")
+
+  
+
+  Step 2: Build markdown link
+
+    build_markdown_link("ureq/agent/index.md", "ureq", "config/index.md", "ConfigBuilder", None)
+
+    → "[`ConfigBuilder`](../config/index.md)"
+
+  
+
+  Output: Some("[`ConfigBuilder`](../config/index.md)")
+
+  ```
+
+- <span id="singlecrateview-resolve-crate-path"></span>`fn resolve_crate_path(&self, path_without_crate: &str, display_name: &str, current_file: &str) -> Option<String>`
+
+  Resolve `crate::path::Item` or `crate::path::Item::method` patterns.
+
+  
+
+  This handles the common rustdoc pattern where docs reference items using
+
+  crate-relative paths. The tricky part is distinguishing between:
+
+  - `crate::module::Type` (link to Type, no anchor)
+
+  - `crate::module::Type::method` (link to Type with #method anchor)
+
+  - `crate::module::Type::Variant` (link to Type with #Variant anchor)
+
+  
+
+  # Arguments
+
+  * `path_without_crate` - The path after stripping "`crate::`" prefix
+
+  * `display_name` - Full original text for display (includes "`crate::`")
+
+  * `current_file` - Source file for relative path computation
+
+  
+
+  # Example Transformation
+
+  
+
+  ```text
+
+  Input:
+
+    path_without_crate = "config::ConfigBuilder::http_status_as_error"
+
+    display_name = "crate::config::ConfigBuilder::http_status_as_error"
+
+    current_file = "ureq/index.md"
+
+  
+
+  Step 1: Split into type path and anchor
+
+    split_type_and_anchor("config::ConfigBuilder::http_status_as_error")
+
+    → ("config::ConfigBuilder", Some("http_status_as_error"))
+
+    (lowercase "http_status_as_error" indicates a method)
+
+  
+
+  Step 2: Extract the type name (last segment of type path)
+
+    "config::ConfigBuilder".rsplit("::").next() → "ConfigBuilder"
+
+  
+
+  Step 3: Resolve type name in registry
+
+    registry.resolve_name("ConfigBuilder", "ureq") → Some(("ureq", Id(123)))
+
+    registry.get_path("ureq", Id(123)) → Some("config/index.md")
+
+  
+
+  Step 4: Build markdown link with anchor
+
+    build_markdown_link("ureq/index.md", "ureq", "config/index.md",
+
+                        "crate::config::ConfigBuilder::http_status_as_error",
+
+                        Some("http_status_as_error"))
+
+    → "[`crate::config::ConfigBuilder::http_status_as_error`](config/index.md#http_status_as_error)"
+
+  
+
+  Output: Some("[`crate::config::ConfigBuilder::http_status_as_error`](config/index.md#http_status_as_error)")
+
+  ```
+
+- <span id="singlecrateview-split-type-and-anchor"></span>`fn split_type_and_anchor(path: &str) -> (&str, Option<&str>)`
+
+  Split `config::ConfigBuilder::method` into (`config::ConfigBuilder`, Some("method")).
+
+  
+
+  Detects methods (lowercase) and enum variants (`Type::Variant` pattern).
+
+  
+
+  # Detection Rules
+
+  
+
+  1. **Methods/fields**: Last segment starts with lowercase
+
+     - `Type::method` → (Type, method)
+
+     - `mod::Type::field_name` → (`mod::Type`, `field_name`)
+
+  
+
+  2. **Enum variants**: Two consecutive uppercase segments
+
+     - `Option::Some` → (Option, Some)
+
+     - `mod::Error::IoError` → (`mod::Error`, `IoError`)
+
+  
+
+  3. **Nested types**: Uppercase but no uppercase predecessor
+
+     - `mod::OuterType::InnerType` → (`mod::OuterType::InnerType`, None)
+
+  
+
+  # Examples
+
+  
+
+  ```text
+
+  "ConfigBuilder::http_status_as_error"
+
+    Last segment "http_status_as_error" starts lowercase → method
+
+    → ("ConfigBuilder", Some("http_status_as_error"))
+
+  
+
+  "config::ConfigBuilder::new"
+
+    Last segment "new" starts lowercase → method
+
+    → ("config::ConfigBuilder", Some("new"))
+
+  
+
+  "Option::Some"
+
+    "Option" uppercase, "Some" uppercase → enum variant
+
+    → ("Option", Some("Some"))
+
+  
+
+  "error::Error::Io"
+
+    "Error" uppercase, "Io" uppercase → enum variant
+
+    → ("error::Error", Some("Io"))
+
+  
+
+  "config::ConfigBuilder"
+
+    "config" lowercase, "ConfigBuilder" uppercase → not a variant
+
+    → ("config::ConfigBuilder", None)
+
+  
+
+  "Vec"
+
+    No "::" separator
+
+    → ("Vec", None)
+
+  ```
+
+- <span id="singlecrateview-build-markdown-link"></span>`fn build_markdown_link(&self, current_file: &str, target_crate: &str, target_path: &str, display_name: &str, anchor: Option<&str>) -> String`
+
+  Build a markdown link, handling same-crate and cross-crate cases.
+
+  
+
+  This is the core function that computes relative paths between markdown
+
+  files and formats the final link.
+
+  
+
+  # Arguments
+
+  * `current_file` - The file we're generating (e.g., "ureq/agent/index.md")
+
+  * `target_crate` - The crate containing the target item
+
+  * `target_path` - Path to target within its crate (e.g., "config/index.md")
+
+  * `display_name` - Text to show in the link
+
+  * `anchor` - Optional anchor suffix (e.g., "`method_name`")
+
+  
+
+  # Path Computation Examples
+
+  
+
+  ## Same Crate Examples
+
+  
+
+  ```text
+
+  Example 1: Link from index to nested module
+
+     current_file = "ureq/index.md"
+
+     target_crate = "ureq"
+
+     target_path = "config/index.md"
+
+  
+
+     Step 1: Strip crate prefix from current
+
+       "ureq/index.md" -> "index.md"
+
+  
+
+     Step 2: Compute relative path
+
+       from "index.md" to "config/index.md"
+
+       -> "config/index.md"
+
+  
+
+     Output: "[`display`](config/index.md)"
+
+  
+
+  Example 2: Link from nested to sibling module
+
+     current_file = "ureq/agent/index.md"
+
+     target_crate = "ureq"
+
+     target_path = "config/index.md"
+
+  
+
+     Step 1: Strip crate prefix
+
+       "ureq/agent/index.md" -> "agent/index.md"
+
+  
+
+     Step 2: Compute relative path
+
+       from "agent/index.md" to "config/index.md"
+
+       -> "config/index.md"
+
+  
+
+     Output: "[`display`][../config/index.md]"
+
+  
+
+  ## Cross-Crate Examples
+
+  
+
+  ```text
+
+  Example 3: Link from one crate to another
+
+    current_file = "ureq/agent/index.md"
+
+    target_crate = "http"
+
+    target_path  = "status/index.md"
+
+  
+
+    Step 1: Strip crate prefix
+
+      "ureq/agent/index.md" → "agent/index.md"
+
+  
+
+    Step 2: Count depth (number of '/' in local path)
+
+      "agent/index.md" has 1 slash → depth = 1
+
+  
+
+    Step 3: Build cross-crate path
+
+      Go up (depth + 1) levels: "../" * 2 = "../../"
+
+      Then into target crate: "../../http/status/index.md"
+
+  
+
+    Output: "[`display`](../../http/status/index.md)"
+
+  
+
+  Example 4: Cross-crate from root
+
+    current_file = "ureq/index.md"
+
+    target_crate = "http"
+
+    target_path  = "index.md"
+
+  
+
+    depth = 0 (no slashes in "index.md")
+
+    prefix = "../" * 1 = "../"
+
+  
+
+    Output: "[`display`](../http/index.md)"
+
+  ```rust
+
+- <span id="singlecrateview-compute-cross-crate-path"></span>`fn compute_cross_crate_path(current_local: &str, target_crate: &str, target_path: &str) -> String`
+
+  Compute a relative path for cross-crate linking.
+
+  
+
+  Given the local portion of the current file path (without crate prefix),
+
+  computes the `../` prefix needed to navigate to another crate's file.
+
+  
+
+  # Arguments
+
+  * `current_local` - Current file path within crate (e.g., "agent/index.md")
+
+  * `target_crate` - Name of the target crate
+
+  * `target_path` - Path within target crate (e.g., "status/index.md")
+
+  
+
+  # Examples
+
+  
+
+  ```text
+
+  // From root of one crate to another
+
+  compute_cross_crate_path("index.md", "http", "index.md")
+
+    → "../http/index.md"
+
+  
+
+  // From nested module to another crate
+
+  compute_cross_crate_path("agent/index.md", "http", "status/index.md")
+
+    → "../../http/status/index.md"
+
+  
+
+  // From deeply nested to another crate root
+
+  compute_cross_crate_path("a/b/c/index.md", "other", "index.md")
+
+    → "../../../../other/index.md"
+
+  ```
+
+- <span id="singlecrateview-strip-crate-prefix"></span>`fn strip_crate_prefix(path: &str) -> &str`
+
+  Strip the crate prefix from a file path.
+
+  
+
+  File paths in our system includes the crate name as the first directory.
+
+  This helper removes it to get the crate-local path.
+
+  
+
+  # Examples
+
+  
+
+  ```text
+
+  "ureq/config/index.md" -> "config/index.md"
+
+  "ureq/index.md"        -> "index.md"
+
+  "http/status/index.md" -> "status/index.md"
+
+  "simple.md"            -> "simple.md" (no slash returns as is)
+
+  ```
+
+- <span id="singlecrateview-looks-like-external-reference"></span>`fn looks_like_external_reference(link_text: &str) -> bool`
+
+  Check if a link text looks like an intentional external crate reference.
 
 #### Trait Implementations
 
@@ -6108,7 +7761,8 @@ allows existing rendering code to work with minimal changes.
 
 ```rust
 struct MultiCrateGenerator<'a> {
-    // [REDACTED: Private Fields]
+    ctx: crate::multi_crate::MultiCrateContext<'a>,
+    args: &'a crate::Args,
 }
 ```
 
@@ -6132,6 +7786,16 @@ output/
 └── SUMMARY.md        # If --mdbook enabled
 ```
 
+#### Fields
+
+- **`ctx`**: `crate::multi_crate::MultiCrateContext<'a>`
+
+  Multi-crate context with unified registry.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments.
+
 #### Implementations
 
 - <span id="multicrategenerator-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](#cratecollection), [`Args`](index.md#args), [`RenderConfig`](generator__config.md#renderconfig)
@@ -6141,6 +7805,30 @@ output/
 - <span id="multicrategenerator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](error.md#error)
 
   Generate documentation for all crates.
+
+- <span id="multicrategenerator-collect-rendered-items"></span>`fn collect_rendered_items(&self) -> HashMap<String, HashSet<Id>>`
+
+  Collect the IDs of all items that would be rendered.
+
+- <span id="multicrategenerator-collect-crate-items"></span>`fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](#singlecrateview)
+
+  Collect rendered item IDs for a single crate.
+
+- <span id="multicrategenerator-collect-module-items"></span>`fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](#singlecrateview)
+
+  Recursively collect rendered item IDs from a module.
+
+- <span id="multicrategenerator-generate-crate"></span>`fn generate_crate(&self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](#singlecrateview), [`Error`](error.md#error)
+
+  Generate documentation for a single crate.
+
+- <span id="multicrategenerator-generate-module"></span>`fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](#singlecrateview), [`Error`](error.md#error)
+
+  Generate a module directory with index.md and child modules.
+
+- <span id="multicrategenerator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error.md#error)
+
+  Create a progress bar.
 
 #### Trait Implementations
 
@@ -6176,6 +7864,10 @@ println!("Found {} crates", crates.len());
 
   Parse all rustdoc JSON files in a directory.
 
+- <span id="multicrateparser-extract-crate-name"></span>`fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](error.md#error)
+
+  Extract the crate name from a parsed Crate.
+
 #### Trait Implementations
 
 ##### `impl Instrument for MultiCrateParser`
@@ -6190,7 +7882,11 @@ println!("Found {} crates", crates.len());
 
 ```rust
 struct UnifiedLinkRegistry {
-    // [REDACTED: Private Fields]
+    item_paths: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
+    item_names: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
+    name_index: std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id, rustdoc_types::ItemKind)>>,
+    re_export_sources: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
+    primary_crate: Option<compact_str::CompactString>,
 }
 ```
 
@@ -6221,11 +7917,60 @@ When resolving ambiguous names:
 Uses `hashbrown` with raw entry API for zero-allocation lookups.
 This avoids allocating a `String` for the crate name on every lookup.
 
+#### Fields
+
+- **`item_paths`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
+
+  Maps `(crate_name, item_id)` to the file path within output.
+  Uses hashbrown for `raw_entry` API (zero-alloc lookups).
+
+- **`item_names`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
+
+  Maps `(crate_name, item_id)` to the item's display name.
+  Uses hashbrown for `raw_entry` API (zero-alloc lookups).
+
+- **`name_index`**: `std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id, rustdoc_types::ItemKind)>>`
+
+  Maps short names to all `(crate_name, item_id, item_kind)` tuples.
+  Used for disambiguating links like `Span` that exist in multiple crates.
+  The `ItemKind` enables preferring modules over macros with the same name.
+
+- **`re_export_sources`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
+
+  Maps `(crate_name, reexport_id)` to the original source path.
+  Used for resolving external re-exports where `use_item.id` is `None`
+  but `use_item.source` provides the canonical path.
+  Example: `("tracing", id_123)` -> `"tracing_core::field::Visit"`
+
+- **`primary_crate`**: `Option<compact_str::CompactString>`
+
+  The primary crate name for preferential resolution.
+
 #### Implementations
 
 - <span id="unifiedlinkregistry-build"></span>`fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](#cratecollection)
 
   Build a unified registry from a collection of crates.
+
+- <span id="unifiedlinkregistry-register-crate"></span>`fn register_crate(&mut self, crate_name: &str, krate: &Crate)`
+
+  Register all items from a single crate.
+
+- <span id="unifiedlinkregistry-register-from-paths"></span>`fn register_from_paths(&mut self, crate_name: &str, krate: &Crate)`
+
+  Register items using the `paths` field from rustdoc JSON.
+
+- <span id="unifiedlinkregistry-item-enum-to-kind"></span>`const fn item_enum_to_kind(inner: &ItemEnum) -> ItemKind`
+
+  Convert `ItemEnum` to `ItemKind` for the name index.
+
+- <span id="unifiedlinkregistry-register-item-recursive"></span>`fn register_item_recursive(&mut self, krate: &Crate, crate_name: &str, item_id: Id, item: &rustdoc_types::Item, parent_path: &str)`
+
+  Recursively register an item and its children.
+
+- <span id="unifiedlinkregistry-register-item"></span>`fn register_item(&mut self, crate_name: &str, id: Id, name: &str, path: &str, kind: ItemKind)`
+
+  Register a single item in the registry.
 
 - <span id="unifiedlinkregistry-get-path"></span>`fn get_path(&self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
@@ -6333,7 +8078,9 @@ Serialized to `search_index.json` for client-side consumption.
 
 ```rust
 struct SearchIndexGenerator<'a> {
-    // [REDACTED: Private Fields]
+    crates: &'a super::CrateCollection,
+    include_private: bool,
+    rendered_items: std::collections::HashMap<String, std::collections::HashSet<rustdoc_types::Id>>,
 }
 ```
 
@@ -6351,6 +8098,26 @@ let generator = SearchIndexGenerator::new(&crates, false, rendered_items);
 generator.write(Path::new("generated_docs/"))?;
 ```
 
+#### Fields
+
+- **`crates`**: `&'a super::CrateCollection`
+
+  Collection of crates to index.
+
+- **`include_private`**: `bool`
+
+  Whether to include private items in the search index.
+  
+  When false (default), only public items are indexed.
+  When true, all items regardless of visibility are indexed.
+
+- **`rendered_items`**: `std::collections::HashMap<String, std::collections::HashSet<rustdoc_types::Id>>`
+
+  Set of item IDs that were actually rendered per crate.
+  
+  Only items in this set will appear in the search index.
+  This ensures the search index matches the generated documentation.
+
 #### Implementations
 
 - <span id="searchindexgenerator-new"></span>`const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](#cratecollection)
@@ -6364,6 +8131,18 @@ generator.write(Path::new("generated_docs/"))?;
 - <span id="searchindexgenerator-write"></span>`fn write(&self, output_dir: &Path) -> std::io::Result<()>`
 
   Write the search index to `search_index.json` in the output directory.
+
+- <span id="searchindexgenerator-index-crate"></span>`fn index_crate(&self, items: &mut Vec<SearchEntry>, crate_name: &str, krate: &Crate)`
+
+  Index all items in a single crate.
+
+- <span id="searchindexgenerator-build-path-map"></span>`fn build_path_map(krate: &Crate) -> HashMap<Id, String>`
+
+  Build a map from item ID to its module path.
+
+- <span id="searchindexgenerator-compute-file-path"></span>`fn compute_file_path(crate_name: &str, module_path: &str, kind: &str) -> String`
+
+  Compute the file path for an item based on its module location.
 
 #### Trait Implementations
 
@@ -6379,7 +8158,9 @@ generator.write(Path::new("generated_docs/"))?;
 
 ```rust
 struct SummaryGenerator<'a> {
-    // [REDACTED: Private Fields]
+    crates: &'a crate::multi_crate::CrateCollection,
+    output_dir: &'a std::path::Path,
+    include_private: bool,
 }
 ```
 
@@ -6400,6 +8181,20 @@ Summary
   - [subscriber](tracing_core/subscriber/index.md)
 ```
 
+#### Fields
+
+- **`crates`**: `&'a crate::multi_crate::CrateCollection`
+
+  Collection of crates to document.
+
+- **`output_dir`**: `&'a std::path::Path`
+
+  Output directory for SUMMARY.md.
+
+- **`include_private`**: `bool`
+
+  Whether to include private items.
+
 #### Implementations
 
 - <span id="summarygenerator-new"></span>`const fn new(crates: &'a CrateCollection, output_dir: &'a Path, include_private: bool) -> Self` — [`CrateCollection`](#cratecollection)
@@ -6409,6 +8204,10 @@ Summary
 - <span id="summarygenerator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](error.md#error)
 
   Generate the SUMMARY.md file.
+
+- <span id="summarygenerator-add-modules"></span>`fn add_modules(&self, content: &mut String, krate: &rustdoc_types::Crate, items: &[rustdoc_types::Id], path_prefix: &str, indent: usize)`
+
+  Add module entries recursively.
 
 #### Trait Implementations
 
@@ -6749,11 +8548,22 @@ Result of a collection operation.
 
 ```rust
 struct SourceCollector {
-    // [REDACTED: Private Fields]
+    metadata: cargo_metadata::Metadata,
+    registry_path: std::path::PathBuf,
 }
 ```
 
 Collector for gathering dependency sources.
+
+#### Fields
+
+- **`metadata`**: `cargo_metadata::Metadata`
+
+  Cargo metadata for the workspace.
+
+- **`registry_path`**: `std::path::PathBuf`
+
+  Path to cargo registry sources.
 
 #### Implementations
 
@@ -6769,9 +8579,37 @@ Collector for gathering dependency sources.
 
   Collect all dependency sources.
 
+- <span id="sourcecollector-generate-output-dir"></span>`fn generate_output_dir(&self) -> Result<PathBuf, Error>` — [`Error`](error.md#error)
+
+  Generate a timestamp-based output directory name.
+
+- <span id="sourcecollector-find-registry-source"></span>`fn find_registry_source(&self, name: &str, version: &str) -> Option<PathBuf>`
+
+  Find a crate's source in the cargo registry.
+
+- <span id="sourcecollector-copy-crate-source"></span>`fn copy_crate_source(source: &Path, dest: &Path) -> Result<(), Error>` — [`Error`](error.md#error)
+
+  Copy crate source to destination.
+
+- <span id="sourcecollector-get-dev-only-packages"></span>`fn get_dev_only_packages(&self) -> HashSet<PackageId>`
+
+  Get the set of package IDs that are dev-only dependencies.
+
+- <span id="sourcecollector-dry-run-collect"></span>`fn dry_run_collect(&self, output_dir: &Path, options: &CollectOptions) -> Result<CollectionResult, Error>` — [`CollectOptions`](#collectoptions), [`CollectionResult`](#collectionresult), [`Error`](error.md#error)
+
+  Perform a dry run, returning what would be collected.
+
+- <span id="sourcecollector-update-gitignore"></span>`fn update_gitignore(&self) -> Result<(), Error>` — [`Error`](error.md#error)
+
+  Update .gitignore to include .source_* pattern.
+
 - <span id="sourcecollector-list-dependencies"></span>`fn list_dependencies(&self) -> Vec<(&str, &str)>`
 
   List all external dependencies.
+
+- <span id="sourcecollector-copy-dir-recursive"></span>`fn copy_dir_recursive(src: &Path, dest: &Path) -> Result<(), Error>` — [`Error`](error.md#error)
+
+  Recursively copy a directory.
 
 #### Trait Implementations
 
@@ -6841,7 +8679,8 @@ Manifest stored in `.source_*/manifest.json`.
 
 ```rust
 struct SourceLocator {
-    // [REDACTED: Private Fields]
+    registry_path: std::path::PathBuf,
+    metadata: Option<cargo_metadata::Metadata>,
 }
 ```
 
@@ -6849,6 +8688,17 @@ Locates crate sources in the Cargo registry.
 
 The locator can find sources either by scanning the registry directly
 or by using `cargo metadata` to find exact paths for dependencies.
+
+#### Fields
+
+- **`registry_path`**: `std::path::PathBuf`
+
+  Path to the cargo registry source directory.
+  Typically `~/.cargo/registry/src/`.
+
+- **`metadata`**: `Option<cargo_metadata::Metadata>`
+
+  Cached cargo metadata (if loaded from a project).
 
 #### Implementations
 
@@ -6871,6 +8721,14 @@ or by using `cargo metadata` to find exact paths for dependencies.
 - <span id="sourcelocator-locate"></span>`fn locate(&self, name: &str, version: &str) -> Result<PathBuf, Error>` — [`Error`](error.md#error)
 
   Locate the source directory for a crate by name and version.
+
+- <span id="sourcelocator-locate-from-metadata"></span>`fn locate_from_metadata(metadata: &Metadata, name: &str, version: &str) -> Option<PathBuf>`
+
+  Locate source using cargo metadata.
+
+- <span id="sourcelocator-locate-in-registry"></span>`fn locate_in_registry(&self, name: &str, version: &str) -> Result<PathBuf, Error>` — [`Error`](error.md#error)
+
+  Locate source by scanning the registry directory.
 
 - <span id="sourcelocator-packages"></span>`fn packages(&self) -> Option<&[Package]>`
 
@@ -6906,11 +8764,27 @@ or by using `cargo metadata` to find exact paths for dependencies.
 
 ```rust
 struct SourceParser {
-    // [REDACTED: Private Fields]
+    crate_name: String,
+    crate_version: String,
+    crate_root: std::path::PathBuf,
 }
 ```
 
 Parser for Rust source code using `syn`.
+
+#### Fields
+
+- **`crate_name`**: `String`
+
+  The crate name being parsed.
+
+- **`crate_version`**: `String`
+
+  The crate version.
+
+- **`crate_root`**: `std::path::PathBuf`
+
+  Root path of the crate.
 
 #### Implementations
 
@@ -6921,6 +8795,74 @@ Parser for Rust source code using `syn`.
 - <span id="sourceparser-parse-crate"></span>`fn parse_crate(&self) -> Result<CrateSource, Error>` — [`CrateSource`](source__types.md#cratesource), [`Error`](error.md#error)
 
   Parse an entire crate starting from its root.
+
+- <span id="sourceparser-find-entry-point"></span>`fn find_entry_point(&self) -> Result<PathBuf, Error>` — [`Error`](error.md#error)
+
+  Find the crate entry point (lib.rs or main.rs).
+
+- <span id="sourceparser-parse-module-file"></span>`fn parse_module_file(&self, path: &Path, module_path: &str, source: &mut CrateSource) -> Result<(), Error>` — [`CrateSource`](source__types.md#cratesource), [`Error`](error.md#error)
+
+  Parse a single module file and its submodules.
+
+- <span id="sourceparser-process-file"></span>`fn process_file(&self, file: &File, file_path: &Path, module_path: &str, source: &mut CrateSource) -> Result<(), Error>` — [`CrateSource`](source__types.md#cratesource), [`Error`](error.md#error)
+
+  Process a parsed file, extracting items and following submodules.
+
+- <span id="sourceparser-process-item"></span>`fn process_item(&self, item: &Item, file_path: &Path, module_path: &str, source: &mut CrateSource) -> Result<(), Error>` — [`CrateSource`](source__types.md#cratesource), [`Error`](error.md#error)
+
+  Process a single item from a file.
+
+- <span id="sourceparser-process-module"></span>`fn process_module(&self, module: &ItemMod, current_file: &Path, parent_module_path: &str, source: &mut CrateSource) -> Result<(), Error>` — [`CrateSource`](source__types.md#cratesource), [`Error`](error.md#error)
+
+  Process a module declaration, potentially following to an external file.
+
+- <span id="sourceparser-find-module-file"></span>`fn find_module_file(&self, current_file: &Path, module_name: &str) -> Option<PathBuf>`
+
+  Find the file for an external module declaration.
+
+- <span id="sourceparser-extract-function"></span>`fn extract_function(&self, func: &ItemFn, file_path: &Path, module_path: &str) -> FunctionInfo` — [`FunctionInfo`](source__types.md#functioninfo)
+
+  Extract function information.
+
+- <span id="sourceparser-extract-struct"></span>`fn extract_struct(&self, s: &ItemStruct, file_path: &Path, module_path: &str) -> StructInfo` — [`StructInfo`](source__types.md#structinfo)
+
+  Extract struct information.
+
+- <span id="sourceparser-extract-enum"></span>`fn extract_enum(&self, e: &ItemEnum, file_path: &Path, module_path: &str) -> EnumInfo` — [`EnumInfo`](source__types.md#enuminfo)
+
+  Extract enum information.
+
+- <span id="sourceparser-extract-trait"></span>`fn extract_trait(&self, t: &ItemTrait, file_path: &Path, module_path: &str) -> TraitInfo` — [`TraitInfo`](source__types.md#traitinfo)
+
+  Extract trait information.
+
+- <span id="sourceparser-extract-impl"></span>`fn extract_impl(&self, impl_block: &ItemImpl, file_path: &Path, module_path: &str) -> ImplInfo` — [`ImplInfo`](source__types.md#implinfo)
+
+  Extract impl block information.
+
+- <span id="sourceparser-extract-const"></span>`fn extract_const(&self, c: &ItemConst, file_path: &Path, module_path: &str) -> ConstInfo` — [`ConstInfo`](source__types.md#constinfo)
+
+  Extract constant information.
+
+- <span id="sourceparser-extract-static"></span>`fn extract_static(&self, s: &ItemStatic, file_path: &Path, module_path: &str) -> StaticInfo` — [`StaticInfo`](source__types.md#staticinfo)
+
+  Extract static information.
+
+- <span id="sourceparser-extract-type-alias"></span>`fn extract_type_alias(&self, t: &ItemType, file_path: &Path, module_path: &str) -> TypeAliasInfo` — [`TypeAliasInfo`](source__types.md#typealiasinfo)
+
+  Extract type alias information.
+
+- <span id="sourceparser-line-of"></span>`fn line_of<T: Spanned>(item: &T) -> usize`
+
+  Extract the starting line number from a spanned item.
+
+- <span id="sourceparser-extract-doc-comments"></span>`fn extract_doc_comments(attrs: &[Attribute]) -> Vec<String>`
+
+  Extract doc comments from attributes.
+
+- <span id="sourceparser-extract-fields"></span>`fn extract_fields(fields: &Fields) -> Vec<FieldInfo>` — [`FieldInfo`](source__types.md#fieldinfo)
+
+  Extract field information from struct/enum fields.
 
 - <span id="sourceparser-parse-file"></span>`fn parse_file(path: &Path) -> Result<File, Error>` — [`Error`](error.md#error)
 
@@ -8799,7 +10741,7 @@ return owned strings.
 
 ```rust
 struct TypeRenderer<'a> {
-    // [REDACTED: Private Fields]
+    krate: &'a rustdoc_types::Crate,
 }
 ```
 
@@ -8824,6 +10766,14 @@ let type_str = renderer.render_type(&some_type);
 let generics = renderer.render_generics(&params);
 ```
 
+#### Fields
+
+- **`krate`**: `&'a rustdoc_types::Crate`
+
+  Reference to the crate for looking up type information.
+  
+  Reserved for future use (e.g., resolving paths, getting item metadata).
+
 #### Implementations
 
 - <span id="typerenderer-new"></span>`const fn new(krate: &'a Crate) -> Self`
@@ -8834,9 +10784,37 @@ let generics = renderer.render_generics(&params);
 
   Get the ID of a resolved type, if available.
 
+- <span id="typerenderer-render-path-with-args"></span>`fn render_path_with_args<'p>(self, path: &'p str, args: Option<&GenericArgs>) -> Cow<'p, str>`
+
+  Render a sanitized path with optional generic arguments.
+
+- <span id="typerenderer-write-bounds-joined"></span>`fn write_bounds_joined(self, out: &mut String, bounds: &[GenericBound])`
+
+  Render bounds joined with " + " directly to a buffer.
+
+- <span id="typerenderer-write-types-joined"></span>`fn write_types_joined<'t, I>(self, out: &mut String, types: I, sep: &str)`
+
+  Write multiple rendered types separated by a delimiter.
+
 - <span id="typerenderer-render-type"></span>`fn render_type<'t>(&self, ty: &'t Type) -> Cow<'t, str>`
 
   Render a rustdoc `Type` to its Rust syntax string representation.
+
+- <span id="typerenderer-render-generic-args"></span>`fn render_generic_args(self, args: &GenericArgs) -> String`
+
+  Render generic arguments in angle bracket or parenthesized form.
+
+- <span id="typerenderer-render-generic-arg"></span>`fn render_generic_arg(self, arg: &GenericArg) -> Cow<'_, str>`
+
+  Render a single generic argument.
+
+- <span id="typerenderer-render-assoc-item-constraint"></span>`fn render_assoc_item_constraint(self, constraint: &AssocItemConstraint) -> String`
+
+  Render an associated type constraint.
+
+- <span id="typerenderer-render-term"></span>`fn render_term(self, term: &Term) -> Cow<'_, str>`
+
+  Render a term, which is either a type or a constant.
 
 - <span id="typerenderer-render-generic-bound"></span>`fn render_generic_bound<'t>(&self, bound: &'t GenericBound) -> Cow<'t, str>`
 
@@ -8845,6 +10823,10 @@ let generics = renderer.render_generics(&params);
 - <span id="typerenderer-render-generics"></span>`fn render_generics(&self, generics: &[GenericParamDef]) -> String`
 
   Render a list of generic parameter definitions.
+
+- <span id="typerenderer-render-generic-param-def"></span>`fn render_generic_param_def(self, param: &GenericParamDef) -> Option<String>`
+
+  Render a single generic parameter definition.
 
 - <span id="typerenderer-render-where-clause"></span>`fn render_where_clause(&self, where_predicates: &[WherePredicate]) -> String`
 
@@ -8886,9 +10868,21 @@ let generics = renderer.render_generics(&params);
 
   ```
 
+- <span id="typerenderer-render-where-predicate"></span>`fn render_where_predicate(self, pred: &WherePredicate) -> String`
+
+  Render a single where predicate.
+
 - <span id="typerenderer-collect-linkable-types"></span>`fn collect_linkable_types(&self, ty: &Type) -> Vec<(String, rustdoc_types::Id)>`
 
   Collect all linkable type names from a type.
+
+- <span id="typerenderer-collect-types-recursive"></span>`fn collect_types_recursive(self, ty: &Type, result: &mut Vec<(String, rustdoc_types::Id)>)`
+
+  Recursively collect linkable types from a type tree.
+
+- <span id="typerenderer-collect-from-generic-args"></span>`fn collect_from_generic_args(self, args: &GenericArgs, result: &mut Vec<(String, rustdoc_types::Id)>)`
+
+  Collect types from generic arguments.
 
 #### Trait Implementations
 
