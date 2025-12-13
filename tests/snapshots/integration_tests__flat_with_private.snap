@@ -5689,7 +5689,7 @@ modules with unnecessary navigation.
 === index.md ===
 # Crate `cargo_docs_md`
 
-**Version:** 0.2.3
+**Version:** 0.2.4
 
 docs-md library interface for testing and reuse.
 

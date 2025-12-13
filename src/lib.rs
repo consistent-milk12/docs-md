@@ -413,6 +413,7 @@ impl From<CliOutputFormat> for OutputFormat {
 
 /// Test function: iterator zip (no bounds checks in loop).
 #[inline(never)]
+#[must_use] 
 pub fn iter_zip(a: Vec<i64>, b: Vec<i64>) -> i64 {
     let mut r = 0i64;
     assert!(a.len() == b.len());
@@ -424,6 +425,7 @@ pub fn iter_zip(a: Vec<i64>, b: Vec<i64>) -> i64 {
 
 /// Test function: index loop with assert (bounds check elided).
 #[inline(never)]
+#[must_use] 
 pub fn index_loop(a: Vec<i64>, b: Vec<i64>) -> i64 {
     let mut r = 0i64;
     assert!(a.len() == b.len());
@@ -435,6 +437,7 @@ pub fn index_loop(a: Vec<i64>, b: Vec<i64>) -> i64 {
 
 /// Test function: index loop without assert (bounds check present).
 #[inline(never)]
+#[must_use] 
 pub fn index_loop_no_assert(a: Vec<i64>, b: Vec<i64>) -> i64 {
     let mut r = 0i64;
     for i in 0..a.len() {

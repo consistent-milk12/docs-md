@@ -283,12 +283,11 @@ fn detect_crate_name() -> Option<String> {
 
     // First, try to find a package whose manifest matches current directory
     for pkg in &metadata.packages {
-        if let Ok(pkg_manifest) = pkg.manifest_path.canonicalize() {
-            if pkg_manifest == current_manifest {
+        if let Ok(pkg_manifest) = pkg.manifest_path.canonicalize()
+            && pkg_manifest == current_manifest {
                 eprintln!("Detected primary crate: {}", pkg.name);
                 return Some(pkg.name.to_string());
             }
-        }
     }
 
     // Fallback: if we're in a workspace root, use the first workspace member

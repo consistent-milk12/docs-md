@@ -15,9 +15,10 @@ help:
     @echo "{{cyan}}docs-md development recipes:{{reset}}"
     @echo ""
     @echo "{{yellow}}Documentation:{{reset}}"
-    @echo "  {{green}}just docs{{reset}}         - Full docs (clean + build + rustdoc + generate)"
+    @echo "  {{green}}just docs{{reset}}         - Full docs (clean + sources + build + generate with max detail)"
     @echo "  {{green}}just regen{{reset}}        - Regenerate generated_docs/ (quick, uses debug build)"
     @echo "  {{green}}just quick{{reset}}        - Quick rebuild generated_docs/ (uses release build)"
+    @echo "  {{green}}just sources{{reset}}      - Collect dependency sources to .source_*/"
     @echo "  {{green}}just walkdir{{reset}}      - Generate only walkdir docs (for testing traits)"
     @echo ""
     @echo "{{yellow}}Testing:{{reset}}"
@@ -33,7 +34,7 @@ help:
     @echo "  {{green}}just lint{{reset}}         - Run clippy (pedantic + nursery)"
     @echo "  {{green}}just errors{{reset}}       - Build and show only errors/warnings"
     @echo "  {{green}}just bench{{reset}}        - Run benchmarks"
-    @echo "  {{green}}just clean{{reset}}        - Remove docs/ and cargo clean"
+    @echo "  {{green}}just clean{{reset}}        - Remove generated_docs/, .source_*/, and cargo clean"
 
 # Check that cargo is available
 [private]
@@ -58,14 +59,21 @@ check-nightly: check-cargo
         exit 1; \
     }
 
-# Clean everything and regenerate documentation
-docs: clean release rustdoc generate
+# Clean everything and regenerate documentation with max detail
+docs: clean release sources rustdoc generate
     @echo "{{green}}Documentation generated successfully in generated_docs/{{reset}}"
 
-# Remove generated_docs directory and run cargo clean
+# Collect dependency sources to .source_*/
+sources: release
+    @echo "{{yellow}}Collecting dependency sources...{{reset}}"
+    ./target/release/cargo-docs-md docs-md collect-sources
+    @echo "{{green}}Sources collected{{reset}}"
+
+# Remove generated_docs, .source_* directories and run cargo clean
 clean: check-cargo
     @echo "{{yellow}}Cleaning...{{reset}}"
     rm -rf generated_docs/
+    rm -rf .source_*/
     cargo clean
     @echo "{{green}}Clean complete{{reset}}"
 
@@ -98,13 +106,13 @@ rustdoc: check-nightly
     RUSTDOCFLAGS='-Z unstable-options --output-format json --document-private-items' cargo +nightly doc
     @echo "{{green}}Rustdoc JSON generated in target/doc/{{reset}}"
 
-# Generate markdown documentation (assumes binary is built)
+# Generate markdown documentation with max detail (assumes binary is built)
 generate:
     #!/usr/bin/env bash
     set -euo pipefail
     if [[ ! -f ./target/release/cargo-docs-md ]]; then
         echo -e "{{red}}Error: Binary not found at target/release/cargo-docs-md{{reset}}"
-        echo "Run 'just build' first"
+        echo "Run 'just release' first"
         exit 1
     fi
     if [[ ! -d ./target/doc ]]; then
@@ -113,17 +121,25 @@ generate:
         exit 1
     fi
     echo -e "{{yellow}}Generating markdown documentation...{{reset}}"
-    ./target/release/cargo-docs-md docs-md --dir target/doc/ -o generated_docs/ --mdbook --search-index --primary-crate cargo_docs_md
+    ./target/release/cargo-docs-md docs-md --dir target/doc/ -o generated_docs/ \
+        --primary-crate cargo_docs_md \
+        --include-blanket-impls \
+        --source-locations \
+        --full-method-docs
     echo -e "{{green}}Markdown docs generated in generated_docs/{{reset}}"
 
-# Quick regenerate (skip cargo clean, just rebuild docs)
+# Quick regenerate (skip cargo clean, just rebuild docs with max detail)
 quick: check-nightly
     @echo "{{yellow}}Quick rebuild starting...{{reset}}"
     rm -rf generated_docs/
     @echo "{{yellow}}Building release binary...{{reset}}"
     cargo build --release
     @echo "{{yellow}}Generating markdown documentation...{{reset}}"
-    ./target/release/cargo-docs-md docs-md --dir target/doc/ -o generated_docs/ --mdbook --search-index --primary-crate cargo_docs_md
+    ./target/release/cargo-docs-md docs-md --dir target/doc/ -o generated_docs/ \
+        --primary-crate cargo_docs_md \
+        --include-blanket-impls \
+        --source-locations \
+        --full-method-docs
     @echo "{{green}}Quick rebuild complete - docs in generated_docs/{{reset}}"
 
 # Run all tests
@@ -165,7 +181,11 @@ bench: check-cargo
 regen: build
     @echo "{{yellow}}Regenerating generated_docs/...{{reset}}"
     rm -rf generated_docs/
-    ./target/debug/cargo-docs-md docs-md --dir target/doc/ -o generated_docs/ --mdbook --search-index --primary-crate cargo_docs_md --include-blanket-impls --source-locations --full-method-docs
+    ./target/debug/cargo-docs-md docs-md --dir target/doc/ -o generated_docs/ \
+        --primary-crate cargo_docs_md \
+        --include-blanket-impls \
+        --source-locations \
+        --full-method-docs
     @echo "{{green}}Documentation regenerated in generated_docs/{{reset}}"
 
 # Generate only walkdir docs (useful for testing trait rendering)
