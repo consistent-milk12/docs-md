@@ -827,18 +827,18 @@ impl<'a> DocLinkProcessor<'a> {
         let short = PathUtils::short_name(link_text);
 
         // Strategy 1: Exact match - preserve original link_text as display name
-        if let Some(&id) = item_links.get(link_text) {
-            if let Some(result) = resolver(id, link_text) {
-                return Some(result);
-            }
+        if let Some(&id) = item_links.get(link_text)
+            && let Some(result) = resolver(id, link_text)
+        {
+            return Some(result);
         }
 
         // Strategy 2: Short name match in item_links - use short name
         for (key, &id) in item_links {
-            if PathUtils::short_name(key) == short {
-                if let Some(result) = resolver(id, short) {
-                    return Some(result);
-                }
+            if PathUtils::short_name(key) == short
+                && let Some(result) = resolver(id, short)
+            {
+                return Some(result);
             }
         }
 
@@ -995,7 +995,7 @@ impl<'a> DocLinkProcessor<'a> {
     /// Try to resolve link text to a markdown link.
     ///
     /// Uses the generic 3-strategy resolver. Falls back to unresolved link format
-    /// `[`link_text`]` if resolution fails.
+    /// (backtick-wrapped text in brackets) if resolution fails.
     fn resolve_link(&self, link_text: &str, item_links: &HashMap<String, Id>) -> String {
         self.resolve_with_strategies(link_text, item_links, |id, display| {
             self.create_link_for_id(id, display)
