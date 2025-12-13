@@ -236,11 +236,6 @@ impl ImplUtils {
         }
     }
 
-    // Contains AI generated docs - Start (STILL NOT PROPERLY CHECKED)
-    // TODO: Clean this up later to reduce it down to the necessary details,
-    // various information related to rustdoc JSON and rustdoc_types crate
-    // needs to be checked.
-
     /// Extract generic parameter names that appear in the impl signature (for_ and trait).
     ///
     /// This extracts generics from only the visible parts of the impl header:
@@ -721,8 +716,6 @@ impl ImplUtils {
         // No hidden generics are used in associated types - impl is okay to render
         false
     }
-
-    // Contains AI generated docs - End
 }
 
 /// Renders impl blocks to markdown.
@@ -1004,6 +997,7 @@ impl<'a> ImplRenderer<'a> {
             &Some(|id: Id| self.ctx.create_link(id, self.current_file)),
             Some(type_name.as_ref()),
             impl_ctx,
+            self.ctx.render_config().full_method_docs,
         );
     }
 

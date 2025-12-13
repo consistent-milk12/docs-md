@@ -215,15 +215,9 @@ impl<'a> Generator<'a> {
     ) -> Result<MarkdownCapture, Error> {
         // Create a mock Args for the context
         let args = Args {
-            path: None,
-            dir: None,
-            mdbook: false,
-            search_index: false,
-            primary_crate: None,
-            output: std::path::PathBuf::new(),
             format,
             exclude_private: !include_private,
-            include_blanket_impls: false,
+            ..Args::default()
         };
 
         let root_item = krate
@@ -273,15 +267,9 @@ impl<'a> Generator<'a> {
     ) -> Result<MarkdownCapture, Error> {
         // Create a mock Args for the context
         let args = Args {
-            path: None,
-            dir: None,
-            mdbook: false,
-            search_index: false,
-            primary_crate: None,
-            output: std::path::PathBuf::new(),
             format,
             exclude_private: !include_private,
-            include_blanket_impls: false,
+            ..Args::default()
         };
 
         let root_item = krate

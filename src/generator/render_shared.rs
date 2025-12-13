@@ -839,6 +839,7 @@ impl RendererInternals {
         create_type_link: &Option<L>,
         parent_type_name: Option<&str>,
         impl_ctx: ImplContext<'_>,
+        full_method_docs: bool,
     ) where
         F: Fn(&Item) -> Option<String>,
         L: Fn(rustdoc_types::Id) -> Option<String>,
@@ -849,7 +850,7 @@ impl RendererInternals {
 
                 match &item.inner {
                     ItemEnum::Function(f) => {
-                        Self::render_impl_function(md, name, f, *type_renderer, parent_type_name);
+                        Self::render_impl_function(md, name, f, *type_renderer, parent_type_name, impl_ctx);
 
                         // Add type links if link creator is provided
                         if let Some(link_creator) = create_type_link {
@@ -861,12 +862,17 @@ impl RendererInternals {
                             );
                         }
 
-                        // First line of docs as summary (with blank line before)
+                        // Extract and render method documentation
                         if let Some(pf) = process_docs
                             && let Some(docs) = pf(item)
-                            && let Some(first_line) = docs.lines().next()
                         {
-                            _ = write!(md, "\n\n  {first_line}");
+                            let summary = Self::extract_method_summary(&docs, full_method_docs);
+                            if !summary.is_empty() {
+                                // Indent the summary for proper markdown rendering under the list item
+                                for line in summary.lines() {
+                                    _ = write!(md, "\n\n  {line}");
+                                }
+                            }
                         }
 
                         _ = writeln!(md, "\n");
@@ -929,6 +935,38 @@ impl RendererInternals {
         }
     }
 
+    /// Extract method documentation summary for impl blocks.
+    ///
+    /// The extraction strategy is:
+    /// 1. If `full_method_docs` is true, return the entire documentation
+    /// 2. If the docs contain code examples (triple-backtick blocks), return full docs to preserve them
+    /// 3. Otherwise, extract just the first paragraph (lines until first blank line)
+    ///
+    /// This ensures important code examples are never lost while keeping summaries
+    /// concise for methods without examples.
+    fn extract_method_summary(docs: &str, full_method_docs: bool) -> String {
+        // If full docs requested, return everything
+        if full_method_docs {
+            return docs.to_string();
+        }
+
+        // Auto-expand if docs contain code examples (``` blocks)
+        // This preserves important usage examples that would otherwise be truncated
+        if docs.contains("```") {
+            return docs.to_string();
+        }
+
+        // Extract first paragraph: lines until first blank line
+        // This captures the essential description without examples
+        let first_paragraph: String = docs
+            .lines()
+            .take_while(|line| !line.trim().is_empty())
+            .collect::<Vec<_>>()
+            .join("\n");
+
+        first_paragraph
+    }
+
     /// Render type links for a function signature inline (for impl methods).
     ///
     /// This is a helper that collects types from function signatures and
@@ -978,12 +1016,15 @@ impl RendererInternals {
     ///
     /// Renders as a bullet point with the full signature including modifiers.
     /// If `parent_type_name` is provided, includes a hidden anchor for deep linking.
+    /// The `impl_ctx` parameter ensures unique anchors when the same method name
+    /// appears in multiple trait implementations (e.g., `fmt` in Debug and Display).
     fn render_impl_function(
         md: &mut String,
         name: &str,
         f: &rustdoc_types::Function,
         type_renderer: TypeRenderer,
         parent_type_name: Option<&str>,
+        impl_ctx: ImplContext<'_>,
     ) {
         let generics = type_renderer.render_generics(&f.generics.params);
 
@@ -1010,11 +1051,12 @@ impl RendererInternals {
         let is_unsafe = if f.header.is_unsafe { "unsafe " } else { "" };
 
         // Add anchor for deep linking if parent type is known
+        // Use impl_item_anchor to include trait name for unique anchors
         let anchor_span = parent_type_name
             .map(|tn| {
                 format!(
                     "<span id=\"{}\"></span>",
-                    AnchorUtils::method_anchor(tn, name)
+                    AnchorUtils::impl_item_anchor(tn, name, AssocItemKind::Method, impl_ctx)
                 )
             })
             .unwrap_or_default();

@@ -165,6 +165,41 @@ pub struct DocsArgs {
     #[arg(long, default_value_t = false)]
     pub clean: bool,
 
+    // === RenderConfig toggles ===
+    /// Minimum number of items before generating a table of contents.
+    ///
+    /// Modules with fewer items than this threshold won't have a TOC.
+    /// Default: 10
+    #[arg(long, default_value_t = 10)]
+    pub toc_threshold: usize,
+
+    /// Disable quick reference tables at the top of modules.
+    #[arg(long, default_value_t = false)]
+    pub no_quick_reference: bool,
+
+    /// Disable grouping impl blocks by category (Derive, Conversion, etc.).
+    #[arg(long, default_value_t = false)]
+    pub no_group_impls: bool,
+
+    /// Hide trivial derive implementations (Clone, Copy, Debug, etc.).
+    #[arg(long, default_value_t = false)]
+    pub hide_trivial_derives: bool,
+
+    /// Disable method-level anchors for deep linking.
+    #[arg(long, default_value_t = false)]
+    pub no_method_anchors: bool,
+
+    /// Include source file locations for items.
+    #[arg(long, default_value_t = false)]
+    pub source_locations: bool,
+
+    /// Include full method documentation instead of first-line summaries.
+    ///
+    /// By default, only the first paragraph of method docs is shown in impl blocks.
+    /// Enable this to include the complete documentation for each method.
+    #[arg(long, default_value_t = false)]
+    pub full_method_docs: bool,
+
     /// Additional arguments to pass to cargo doc.
     ///
     /// Example: `docs-md docs -- --all-features`
@@ -294,6 +329,41 @@ pub struct GenerateArgs {
     /// noise. Enable this to include them in the documentation.
     #[arg(long, default_value_t = false)]
     pub include_blanket_impls: bool,
+
+    // === RenderConfig toggles ===
+    /// Minimum number of items before generating a table of contents.
+    ///
+    /// Modules with fewer items than this threshold won't have a TOC.
+    /// Default: 10
+    #[arg(long, default_value_t = 10)]
+    pub toc_threshold: usize,
+
+    /// Disable quick reference tables at the top of modules.
+    #[arg(long, default_value_t = false)]
+    pub no_quick_reference: bool,
+
+    /// Disable grouping impl blocks by category (Derive, Conversion, etc.).
+    #[arg(long, default_value_t = false)]
+    pub no_group_impls: bool,
+
+    /// Hide trivial derive implementations (Clone, Copy, Debug, etc.).
+    #[arg(long, default_value_t = false)]
+    pub hide_trivial_derives: bool,
+
+    /// Disable method-level anchors for deep linking.
+    #[arg(long, default_value_t = false)]
+    pub no_method_anchors: bool,
+
+    /// Include source file locations for items.
+    #[arg(long, default_value_t = false)]
+    pub source_locations: bool,
+
+    /// Include full method documentation instead of first-line summaries.
+    ///
+    /// By default, only the first paragraph of method docs is shown in impl blocks.
+    /// Enable this to include the complete documentation for each method.
+    #[arg(long, default_value_t = false)]
+    pub full_method_docs: bool,
 }
 
 /// Backwards-compatible type alias for existing code.

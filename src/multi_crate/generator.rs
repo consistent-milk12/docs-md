@@ -2000,6 +2000,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     &Some(|id: Id| LinkResolver::create_link(self.view, id, self.file_path)),
                     Some(type_name.as_ref()),
                     ImplContext::Inherent,
+                    self.view.render_config().full_method_docs,
                 );
             }
         }
@@ -2069,6 +2070,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     &Some(|id: Id| LinkResolver::create_link(self.view, id, self.file_path)),
                     Some(for_type.as_ref()),
                     impl_ctx,
+                    self.view.render_config().full_method_docs,
                 );
             }
         }

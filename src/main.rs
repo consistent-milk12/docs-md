@@ -146,9 +146,43 @@ fn run_docs_command(args: DocsArgs) -> Result<()> {
         format: args.format,
         exclude_private: args.exclude_private,
         include_blanket_impls: args.include_blanket_impls,
+        // Pass through RenderConfig toggles
+        toc_threshold: args.toc_threshold,
+        no_quick_reference: args.no_quick_reference,
+        no_group_impls: args.no_group_impls,
+        hide_trivial_derives: args.hide_trivial_derives,
+        no_method_anchors: args.no_method_anchors,
+        source_locations: args.source_locations,
+        full_method_docs: args.full_method_docs,
     };
 
     run_generate(&generate_args)
+}
+
+/// Build a `RenderConfig` from CLI arguments.
+///
+/// This converts the CLI flags (which use negative form like `--no-quick-reference`)
+/// into the positive boolean fields in `RenderConfig`.
+fn build_render_config(args: &GenerateArgs) -> RenderConfig {
+    // Auto-detect .source_* directory for source location links
+    #[cfg(feature = "source-parsing")]
+    let source_dir = find_source_dir(Path::new("."));
+    #[cfg(not(feature = "source-parsing"))]
+    let source_dir: Option<PathBuf> = None;
+
+    RenderConfig {
+        toc_threshold: args.toc_threshold,
+        quick_reference: !args.no_quick_reference,
+        group_impls: !args.no_group_impls,
+        hide_trivial_derives: args.hide_trivial_derives,
+        method_anchors: !args.no_method_anchors,
+        full_method_docs: args.full_method_docs,
+        include_source: SourceConfig {
+            source_locations: args.source_locations,
+            source_dir,
+            ..SourceConfig::default()
+        },
+    }
 }
 
 /// Run the generation logic (shared by direct invocation and `docs` subcommand).
@@ -173,21 +207,8 @@ fn run_generate(args: &GenerateArgs) -> Result<()> {
                 .join(", ")
         );
 
-        // Generate documentation for all crates
-        // Auto-detect .source_* directory for source location links
-        #[cfg(feature = "source-parsing")]
-        let source_dir = find_source_dir(Path::new("."));
-        #[cfg(not(feature = "source-parsing"))]
-        let source_dir: Option<PathBuf> = None;
-
-        let config = RenderConfig {
-            include_source: SourceConfig {
-                source_locations: true,
-                source_dir,
-                ..SourceConfig::default()
-            },
-            ..RenderConfig::default()
-        };
+        // Generate documentation for all crates with CLI-configured settings
+        let config = build_render_config(args);
         let generator = MultiCrateGenerator::new(&crates, args, config);
         generator.generate()?;
 
@@ -207,8 +228,9 @@ fn run_generate(args: &GenerateArgs) -> Result<()> {
         .expect("clap ensures path or dir is provided");
     let krate = InternalParser::parse_file(path)?;
 
-    // Generate markdown files
-    Generator::run(&krate, args)?;
+    // Generate markdown files with CLI-configured settings
+    let config = build_render_config(args);
+    Generator::new(&krate, args, config)?.generate()?;
 
     println!(
         "Documentation generated successfully in '{}'",
