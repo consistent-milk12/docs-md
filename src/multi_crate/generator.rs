@@ -745,6 +745,16 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         }
     }
 
+    /// Process documentation for an item.
+    ///
+    /// Delegates to the view's `process_docs` method which handles:
+    /// - Stripping duplicate titles
+    /// - Converting doc links to markdown links
+    /// - Processing code blocks
+    fn process_docs(&self, item: &Item) -> Option<String> {
+        self.view.process_docs(item, self.file_path)
+    }
+
     /// Render source location if enabled in config.
     ///
     /// Returns the source location string if `source_locations` is enabled,
@@ -1975,7 +1985,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     impl_block,
                     render_krate,
                     &type_renderer,
-                    &None::<fn(&Item) -> Option<String>>,
+                    &Some(|item: &Item| self.process_docs(item)),
                     &Some(|id: Id| LinkResolver::create_link(self.view, id, self.file_path)),
                     Some(type_name.as_ref()),
                     ImplContext::Inherent,
@@ -2045,7 +2055,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     impl_block,
                     render_krate,
                     &type_renderer,
-                    &None::<fn(&Item) -> Option<String>>,
+                    &Some(|item: &Item| self.process_docs(item)),
                     &Some(|id: Id| LinkResolver::create_link(self.view, id, self.file_path)),
                     Some(for_type.as_ref()),
                     impl_ctx,
