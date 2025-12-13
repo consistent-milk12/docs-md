@@ -45,7 +45,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:22-29`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/section.rs#L22-L29)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:22-29`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/section.rs#L22-L29)*
 
 An iterator for the sections in a [`MachOFile`](../index.md).
 
@@ -123,7 +123,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:68-75`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/section.rs#L68-L75)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:68-75`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/section.rs#L68-L75)*
 
 A section in a [`MachOFile`](../index.md).
 
@@ -246,7 +246,7 @@ struct MachOSectionInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:241-250`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/section.rs#L241-L250)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:241-250`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/section.rs#L241-L250)*
 
 #### Fields
 
@@ -335,7 +335,7 @@ struct MachOSectionInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 trait Section: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:285-354`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/section.rs#L285-L354)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:285-354`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/section.rs#L285-L354)*
 
 A trait for generic access to [`macho::Section32`](../../../macho/index.md) and [`macho::Section64`](../../../macho/index.md).
 
@@ -400,7 +400,7 @@ A trait for generic access to [`macho::Section32`](../../../macho/index.md) and 
 type MachOSectionIterator32<'data, 'file, Endian, R> = MachOSectionIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:15-16`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/section.rs#L15-L16)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:15-16`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/section.rs#L15-L16)*
 
 An iterator for the sections in a [`MachOFile32`](super::MachOFile32).
 
@@ -410,7 +410,7 @@ An iterator for the sections in a [`MachOFile32`](super::MachOFile32).
 type MachOSectionIterator64<'data, 'file, Endian, R> = MachOSectionIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:18-19`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/section.rs#L18-L19)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:18-19`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/section.rs#L18-L19)*
 
 An iterator for the sections in a [`MachOFile64`](super::MachOFile64).
 
@@ -420,7 +420,7 @@ An iterator for the sections in a [`MachOFile64`](super::MachOFile64).
 type MachOSection32<'data, 'file, Endian, R> = MachOSection<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:58-59`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/section.rs#L58-L59)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:58-59`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/section.rs#L58-L59)*
 
 A section in a [`MachOFile32`](super::MachOFile32).
 
@@ -430,7 +430,7 @@ A section in a [`MachOFile32`](super::MachOFile32).
 type MachOSection64<'data, 'file, Endian, R> = MachOSection<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:61-62`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/section.rs#L61-L62)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:61-62`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/section.rs#L61-L62)*
 
 A section in a [`MachOFile64`](super::MachOFile64).
 

@@ -113,7 +113,7 @@
 struct UnitVisitor;
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:14`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L14)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:14`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L14)*
 
 #### Trait Implementations
 
@@ -177,7 +177,7 @@ struct UnitVisitor;
 struct BoolVisitor;
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:53`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L53)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:53`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L53)*
 
 #### Trait Implementations
 
@@ -241,7 +241,7 @@ struct BoolVisitor;
 struct CharVisitor;
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:537`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L537)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:537`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L537)*
 
 #### Trait Implementations
 
@@ -307,7 +307,7 @@ struct CharVisitor;
 struct StringVisitor;
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:580`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L580)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:580`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L580)*
 
 #### Trait Implementations
 
@@ -377,7 +377,7 @@ struct StringVisitor;
 struct StringInPlaceVisitor<'a>(&'a mut String);
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:582`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L582)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:582`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L582)*
 
 #### Trait Implementations
 
@@ -447,7 +447,7 @@ struct StringInPlaceVisitor<'a>(&'a mut String);
 struct StrVisitor;
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:706`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L706)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:706`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L706)*
 
 #### Trait Implementations
 
@@ -513,7 +513,7 @@ struct StrVisitor;
 struct BytesVisitor;
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:741`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L741)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:741`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L741)*
 
 #### Trait Implementations
 
@@ -579,7 +579,7 @@ struct BytesVisitor;
 struct CStringVisitor;
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:777`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L777)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:777`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L777)*
 
 #### Trait Implementations
 
@@ -653,7 +653,7 @@ struct OptionVisitor<T> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:870-872`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L870-L872)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:870-872`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L870-L872)*
 
 #### Trait Implementations
 
@@ -723,7 +723,7 @@ struct PhantomDataVisitor<T: ?Sized> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:938-940`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L938-L940)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:938-940`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L938-L940)*
 
 #### Trait Implementations
 
@@ -789,7 +789,7 @@ struct ArrayVisitor<A> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:1228-1230`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L1228-L1230)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1228-1230`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L1228-L1230)*
 
 #### Implementations
 
@@ -857,7 +857,7 @@ struct ArrayVisitor<A> {
 struct ArrayInPlaceVisitor<'a, A: 'a>(&'a mut A);
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:1231`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L1231)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1231`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L1231)*
 
 #### Trait Implementations
 
@@ -921,7 +921,7 @@ struct ArrayInPlaceVisitor<'a, A: 'a>(&'a mut A);
 struct PathVisitor;
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:1785`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L1785)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1785`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L1785)*
 
 #### Trait Implementations
 
@@ -987,7 +987,7 @@ struct PathVisitor;
 struct PathBufVisitor;
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:1824`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L1824)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1824`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L1824)*
 
 #### Trait Implementations
 
@@ -1057,7 +1057,7 @@ struct PathBufVisitor;
 struct OsStringVisitor;
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:1898`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L1898)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1898`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L1898)*
 
 #### Trait Implementations
 
@@ -1124,7 +1124,7 @@ struct FromStrVisitor<T> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:3140-3143`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L3140-L3143)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:3140-3143`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L3140-L3143)*
 
 #### Implementations
 
@@ -1197,7 +1197,7 @@ enum OsStringKind {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:1891-1895`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L1891-L1895)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1891-1895`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L1891-L1895)*
 
 #### Trait Implementations
 
@@ -1257,87 +1257,87 @@ enum OsStringKind {
 fn nop_reserve<T>(_seq: T, _n: usize)
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:1074`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L1074)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1074`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L1074)*
 
 ## Macros
 
 ### `impl_deserialize_num!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:81-152`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L81-L152)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:81-152`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L81-L152)*
 
 ### `num_self!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:154-186`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L154-L186)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:154-186`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L154-L186)*
 
 ### `num_as_self!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:188-220`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L188-L220)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:188-220`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L188-L220)*
 
 ### `num_as_copysign_self!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:222-242`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L222-L242)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:222-242`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L222-L242)*
 
 ### `int_to_int!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:244-284`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L244-L284)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:244-284`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L244-L284)*
 
 ### `int_to_uint!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:286-334`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L286-L334)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:286-334`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L286-L334)*
 
 ### `uint_to_self!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:336-374`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L336-L374)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:336-374`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L336-L374)*
 
 ### `num_128!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:466-517`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L466-L517)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:466-517`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L466-L517)*
 
 ### `forwarded_impl!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:841-856`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L841-L856)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:841-856`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L841-L856)*
 
 ### `seq_impl!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:978-1070`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L978-L1070)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:978-1070`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L978-L1070)*
 
 ### `array_impls!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:1267-1343`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L1267-L1343)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1267-1343`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L1267-L1343)*
 
 ### `tuple_impls!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:1382-1394`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L1382-L1394)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1382-1394`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L1382-L1394)*
 
 ### `tuple_impl_body!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:1396-1467`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L1396-L1467)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1396-1467`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L1396-L1467)*
 
 ### `map_impl!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:1501-1555`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L1501-L1555)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1501-1555`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L1501-L1555)*
 
 ### `parse_ip_impl!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:1576-1591`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L1576-L1591)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1576-1591`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L1576-L1591)*
 
 ### `variant_identifier!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:1594-1666`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L1594-L1666)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1594-1666`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L1594-L1666)*
 
 ### `deserialize_enum!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:1669-1703`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L1669-L1703)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1669-1703`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L1669-L1703)*
 
 ### `parse_socket_impl!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:1731-1749`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L1731-L1749)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1731-1749`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L1731-L1749)*
 
 ### `box_forwarded_impl!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:2042-2061`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L2042-L2061)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:2042-2061`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L2042-L2061)*
 
 ### `atomic_impl!`
 
-*Defined in [`serde_core-1.0.228/src/de/impls.rs:3103-3118`](../../../../.source_1765521767/serde_core-1.0.228/src/de/impls.rs#L3103-L3118)*
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:3103-3118`](../../../../.source_1765633015/serde_core-1.0.228/src/de/impls.rs#L3103-L3118)*
 

@@ -18,7 +18,7 @@
 trait Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:111`](../../../../.source_1765521767/object-0.37.3/src/read/mod.rs#L111)*
+*Defined in [`object-0.37.3/src/read/mod.rs:111`](../../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L111)*
 
 #### Implementors
 

@@ -20,9 +20,9 @@
 struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:4-18`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L4-L18)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:4-18`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L4-L18)*
 
-`FD_*` constants for use with [`fcntl_getfd`](../syscalls/index.md) and [`fcntl_setfd`](../../../io/index.md).
+`FD_*` constants for use with [`fcntl_getfd`](../syscalls/index.md) and [`fcntl_setfd`](../syscalls/index.md).
 
 
 
@@ -242,9 +242,9 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:20-42`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L20-L42)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:20-42`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L20-L42)*
 
-`RWF_*` constants for use with [`preadv2`](../syscalls/index.md) and [`pwritev2`](../../../io/index.md).
+`RWF_*` constants for use with [`preadv2`](../../../io/index.md) and [`pwritev2`](../../../io/index.md).
 
 
 
@@ -472,9 +472,9 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:44-57`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L44-L57)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:44-57`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L44-L57)*
 
-`O_*` constants for use with [`dup2`](../../../io/index.md).
+`O_*` constants for use with [`dup2`](../syscalls/index.md).
 
 
 #### Implementations

@@ -22,7 +22,7 @@ struct OutputBuffer<'a> {
 }
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/output_buffer.rs:6-9`](../../../../.source_1765521767/miniz_oxide-0.8.9/src/inflate/output_buffer.rs#L6-L9)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/output_buffer.rs:6-9`](../../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/output_buffer.rs#L6-L9)*
 
 A wrapper for the output slice used when decompressing.
 
@@ -112,7 +112,7 @@ struct InputWrapper<'a> {
 }
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/output_buffer.rs:68-70`](../../../../.source_1765521767/miniz_oxide-0.8.9/src/inflate/output_buffer.rs#L68-L70)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/output_buffer.rs:68-70`](../../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/output_buffer.rs#L68-L70)*
 
 A wrapper for the output slice used when decompressing.
 

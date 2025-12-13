@@ -76,7 +76,7 @@ fn main() {
 trait Equivalent<K: ?Sized> { ... }
 ```
 
-*Defined in [`equivalent-1.0.2/src/lib.rs:77-80`](../../.source_1765521767/equivalent-1.0.2/src/lib.rs#L77-L80)*
+*Defined in [`equivalent-1.0.2/src/lib.rs:77-80`](../../.source_1765633015/equivalent-1.0.2/src/lib.rs#L77-L80)*
 
 Key equivalence trait.
 
@@ -105,7 +105,7 @@ The implementor **must** hash like `K`, if it is hashable.
 trait Comparable<K: ?Sized>: Equivalent<K> { ... }
 ```
 
-*Defined in [`equivalent-1.0.2/src/lib.rs:99-102`](../../.source_1765521767/equivalent-1.0.2/src/lib.rs#L99-L102)*
+*Defined in [`equivalent-1.0.2/src/lib.rs:99-102`](../../.source_1765633015/equivalent-1.0.2/src/lib.rs#L99-L102)*
 
 Key ordering trait.
 

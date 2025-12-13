@@ -55,7 +55,7 @@ struct Path {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:11-18`](../../../.source_1765521767/syn-2.0.111/src/path.rs#L11-L18)*
+*Defined in [`syn-2.0.111/src/path.rs:11-18`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L11-L18)*
 
 A path at which a named item is exported (e.g. `std::collections::HashMap`).
 
@@ -228,7 +228,7 @@ struct PathSegment {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:107-114`](../../../.source_1765521767/syn-2.0.111/src/path.rs#L107-L114)*
+*Defined in [`syn-2.0.111/src/path.rs:107-114`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L107-L114)*
 
 A segment of a path together with any path arguments on that segment.
 
@@ -335,7 +335,7 @@ struct AngleBracketedGenericArguments {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:196-206`](../../../.source_1765521767/syn-2.0.111/src/path.rs#L196-L206)*
+*Defined in [`syn-2.0.111/src/path.rs:196-206`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L196-L206)*
 
 Angle bracketed arguments of a path segment: the `<K, V>` in `HashMap<K,
 V>`.
@@ -453,7 +453,7 @@ struct AssocType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:208-218`](../../../.source_1765521767/syn-2.0.111/src/path.rs#L208-L218)*
+*Defined in [`syn-2.0.111/src/path.rs:208-218`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L208-L218)*
 
 A binding (equality constraint) on an associated type: the `Item = u8`
 in `Iterator<Item = u8>`.
@@ -553,7 +553,7 @@ struct AssocConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:220-230`](../../../.source_1765521767/syn-2.0.111/src/path.rs#L220-L230)*
+*Defined in [`syn-2.0.111/src/path.rs:220-230`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L220-L230)*
 
 An equality constraint on an associated constant: the `PANIC = false` in
 `Trait<PANIC = false>`.
@@ -653,7 +653,7 @@ struct Constraint {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:232-241`](../../../.source_1765521767/syn-2.0.111/src/path.rs#L232-L241)*
+*Defined in [`syn-2.0.111/src/path.rs:232-241`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L232-L241)*
 
 An associated type bound: `Iterator<Item: Display>`.
 
@@ -751,7 +751,7 @@ struct ParenthesizedGenericArguments {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:243-254`](../../../.source_1765521767/syn-2.0.111/src/path.rs#L243-L254)*
+*Defined in [`syn-2.0.111/src/path.rs:243-254`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L243-L254)*
 
 Arguments of a function path segment: the `(A, B) -> C` in `Fn(A,B) ->
 C`.
@@ -870,7 +870,7 @@ struct QSelf {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:256-281`](../../../.source_1765521767/syn-2.0.111/src/path.rs#L256-L281)*
+*Defined in [`syn-2.0.111/src/path.rs:256-281`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L256-L281)*
 
 The explicit Self type in a qualified path: the `T` in `<T as
 Display>::fmt`.
@@ -981,7 +981,7 @@ enum PathArguments {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:128-146`](../../../.source_1765521767/syn-2.0.111/src/path.rs#L128-L146)*
+*Defined in [`syn-2.0.111/src/path.rs:128-146`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L128-L146)*
 
 Angle bracketed or parenthesized arguments of a path segment.
 
@@ -1110,7 +1110,7 @@ enum GenericArgument {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:171-194`](../../../.source_1765521767/syn-2.0.111/src/path.rs#L171-L194)*
+*Defined in [`syn-2.0.111/src/path.rs:171-194`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L171-L194)*
 
 An individual generic argument, like `'a`, `T`, or `Item = T`.
 

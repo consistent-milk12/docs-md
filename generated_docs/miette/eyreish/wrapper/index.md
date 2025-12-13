@@ -21,7 +21,7 @@
 struct DisplayError<M>(M);
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:10`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/wrapper.rs#L10)*
+*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:10`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/wrapper.rs#L10)*
 
 #### Trait Implementations
 
@@ -97,7 +97,7 @@ struct DisplayError<M>(M);
 struct MessageError<M>(M);
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:34`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/wrapper.rs#L34)*
+*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:34`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/wrapper.rs#L34)*
 
 #### Trait Implementations
 
@@ -173,7 +173,7 @@ struct MessageError<M>(M);
 struct BoxedError(Box<dyn Diagnostic + Send + Sync>);
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:58`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/wrapper.rs#L58)*
+*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:58`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/wrapper.rs#L58)*
 
 #### Trait Implementations
 
@@ -274,7 +274,7 @@ struct WithSourceCode<E, C> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:122-125`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/wrapper.rs#L122-L125)*
+*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:122-125`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/wrapper.rs#L122-L125)*
 
 #### Trait Implementations
 

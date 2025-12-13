@@ -23,7 +23,7 @@ struct Split<D, S> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/splitter.rs:117-120`](../../../../.source_1765521767/rayon-1.11.0/src/iter/splitter.rs#L117-L120)*
+*Defined in [`rayon-1.11.0/src/iter/splitter.rs:117-120`](../../../../.source_1765633015/rayon-1.11.0/src/iter/splitter.rs#L117-L120)*
 
 `Split` is a parallel iterator using arbitrary data and a splitting function.
 This struct is created by the [`split()`](#split) function.
@@ -131,7 +131,7 @@ struct SplitProducer<'a, D, S> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/splitter.rs:147-150`](../../../../.source_1765521767/rayon-1.11.0/src/iter/splitter.rs#L147-L150)*
+*Defined in [`rayon-1.11.0/src/iter/splitter.rs:147-150`](../../../../.source_1765633015/rayon-1.11.0/src/iter/splitter.rs#L147-L150)*
 
 #### Trait Implementations
 
@@ -212,7 +212,7 @@ where
     S: Fn(D) -> (D, Option<D>) + Sync
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/splitter.rs:106-112`](../../../../.source_1765521767/rayon-1.11.0/src/iter/splitter.rs#L106-L112)*
+*Defined in [`rayon-1.11.0/src/iter/splitter.rs:106-112`](../../../../.source_1765633015/rayon-1.11.0/src/iter/splitter.rs#L106-L112)*
 
 The `split` function takes arbitrary data and a closure that knows how to
 split it, and turns this into a `ParallelIterator`.

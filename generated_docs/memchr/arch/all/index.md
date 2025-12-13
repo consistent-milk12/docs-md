@@ -53,7 +53,7 @@ specialized architecture dependent routines are unavailable.
 fn is_prefix(haystack: &[u8], needle: &[u8]) -> bool
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/mod.rs:26-29`](../../../../.source_1765521767/memchr-2.7.6/src/arch/all/mod.rs#L26-L29)*
+*Defined in [`memchr-2.7.6/src/arch/all/mod.rs:26-29`](../../../../.source_1765633015/memchr-2.7.6/src/arch/all/mod.rs#L26-L29)*
 
 Returns true if and only if `needle` is a prefix of `haystack`.
 
@@ -72,7 +72,7 @@ another function that is marked as `inline(never)` or just `inline`.
 fn is_suffix(haystack: &[u8], needle: &[u8]) -> bool
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/mod.rs:42-45`](../../../../.source_1765521767/memchr-2.7.6/src/arch/all/mod.rs#L42-L45)*
+*Defined in [`memchr-2.7.6/src/arch/all/mod.rs:42-45`](../../../../.source_1765633015/memchr-2.7.6/src/arch/all/mod.rs#L42-L45)*
 
 Returns true if and only if `needle` is a suffix of `haystack`.
 
@@ -91,7 +91,7 @@ another function that is marked as `inline(never)` or just `inline`.
 fn is_equal(x: &[u8], y: &[u8]) -> bool
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/mod.rs:65-73`](../../../../.source_1765521767/memchr-2.7.6/src/arch/all/mod.rs#L65-L73)*
+*Defined in [`memchr-2.7.6/src/arch/all/mod.rs:65-73`](../../../../.source_1765633015/memchr-2.7.6/src/arch/all/mod.rs#L65-L73)*
 
 Compare corresponding bytes in `x` and `y` for equality.
 
@@ -117,7 +117,7 @@ might be in some cases.
 unsafe fn is_equal_raw(x: *const u8, y: *const u8, n: usize) -> bool
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/mod.rs:108-158`](../../../../.source_1765521767/memchr-2.7.6/src/arch/all/mod.rs#L108-L158)*
+*Defined in [`memchr-2.7.6/src/arch/all/mod.rs:108-158`](../../../../.source_1765633015/memchr-2.7.6/src/arch/all/mod.rs#L108-L158)*
 
 Compare `n` bytes at the given pointers for equality.
 

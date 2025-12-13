@@ -19,7 +19,7 @@
 fn gen_for_struct(item: &crate::item::Item, item_name: &syn::Ident, generics: &syn::Generics) -> Result<proc_macro2::TokenStream, syn::Error>
 ```
 
-*Defined in [`clap_derive-4.5.49/src/derives/into_app.rs:21-67`](../../../../.source_1765521767/clap_derive-4.5.49/src/derives/into_app.rs#L21-L67)*
+*Defined in [`clap_derive-4.5.49/src/derives/into_app.rs:21-67`](../../../../.source_1765633015/clap_derive-4.5.49/src/derives/into_app.rs#L21-L67)*
 
 ### `gen_for_enum`
 
@@ -27,5 +27,5 @@ fn gen_for_struct(item: &crate::item::Item, item_name: &syn::Ident, generics: &s
 fn gen_for_enum(item: &crate::item::Item, item_name: &syn::Ident, generics: &syn::Generics) -> Result<proc_macro2::TokenStream, syn::Error>
 ```
 
-*Defined in [`clap_derive-4.5.49/src/derives/into_app.rs:69-117`](../../../../.source_1765521767/clap_derive-4.5.49/src/derives/into_app.rs#L69-L117)*
+*Defined in [`clap_derive-4.5.49/src/derives/into_app.rs:69-117`](../../../../.source_1765633015/clap_derive-4.5.49/src/derives/into_app.rs#L69-L117)*
 

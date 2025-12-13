@@ -26,7 +26,7 @@ struct ParseNestedMeta<'a> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/meta.rs:164-167`](../../../.source_1765521767/syn-2.0.111/src/meta.rs#L164-L167)*
+*Defined in [`syn-2.0.111/src/meta.rs:164-167`](../../../.source_1765633015/syn-2.0.111/src/meta.rs#L164-L167)*
 
 Context for parsing a single property in the conventional syntax for
 structured attributes.
@@ -497,7 +497,7 @@ Refer to usage examples on the following two entry-points:
 fn parser(logic: impl FnMut(ParseNestedMeta<'_>) -> crate::error::Result<()>) -> impl Parser<Output = ()>
 ```
 
-*Defined in [`syn-2.0.111/src/meta.rs:132-140`](../../../.source_1765521767/syn-2.0.111/src/meta.rs#L132-L140)*
+*Defined in [`syn-2.0.111/src/meta.rs:132-140`](../../../.source_1765633015/syn-2.0.111/src/meta.rs#L132-L140)*
 
 Make a parser that is usable with `parse_macro_input!` in a
 `#[proc_macro_attribute]` macro.
@@ -624,7 +624,7 @@ impl TeaAttributes {
 fn parse_nested_meta(input: crate::parse::ParseStream<'_>, logic: impl FnMut(ParseNestedMeta<'_>) -> crate::error::Result<()>) -> crate::error::Result<()>
 ```
 
-*Defined in [`syn-2.0.111/src/meta.rs:385-400`](../../../.source_1765521767/syn-2.0.111/src/meta.rs#L385-L400)*
+*Defined in [`syn-2.0.111/src/meta.rs:385-400`](../../../.source_1765633015/syn-2.0.111/src/meta.rs#L385-L400)*
 
 ### `parse_meta_path`
 
@@ -632,5 +632,5 @@ fn parse_nested_meta(input: crate::parse::ParseStream<'_>, logic: impl FnMut(Par
 fn parse_meta_path(input: crate::parse::ParseStream<'_>) -> crate::error::Result<crate::path::Path>
 ```
 
-*Defined in [`syn-2.0.111/src/meta.rs:403-427`](../../../.source_1765521767/syn-2.0.111/src/meta.rs#L403-L427)*
+*Defined in [`syn-2.0.111/src/meta.rs:403-427`](../../../.source_1765633015/syn-2.0.111/src/meta.rs#L403-L427)*
 

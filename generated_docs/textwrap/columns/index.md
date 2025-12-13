@@ -22,7 +22,7 @@ where
     Opt: Into<crate::Options<'a>>
 ```
 
-*Defined in [`textwrap-0.16.2/src/columns.rs:63-114`](../../../.source_1765521767/textwrap-0.16.2/src/columns.rs#L63-L114)*
+*Defined in [`textwrap-0.16.2/src/columns.rs:63-114`](../../../.source_1765633015/textwrap-0.16.2/src/columns.rs#L63-L114)*
 
 Wrap text into columns with a given total width.
 

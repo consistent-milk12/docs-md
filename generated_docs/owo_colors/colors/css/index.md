@@ -330,7 +330,7 @@ Reference: <https://developer.mozilla.org/en-US/docs/Web/CSS/color_value>
 type AliceBlue = CustomColor<240, 248, 255>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `AntiqueWhite`
 
@@ -338,7 +338,7 @@ type AliceBlue = CustomColor<240, 248, 255>;
 type AntiqueWhite = CustomColor<250, 235, 215>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Aqua`
 
@@ -346,7 +346,7 @@ type AntiqueWhite = CustomColor<250, 235, 215>;
 type Aqua = CustomColor<0, 255, 255>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Aquamarine`
 
@@ -354,7 +354,7 @@ type Aqua = CustomColor<0, 255, 255>;
 type Aquamarine = CustomColor<127, 255, 212>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Azure`
 
@@ -362,7 +362,7 @@ type Aquamarine = CustomColor<127, 255, 212>;
 type Azure = CustomColor<240, 255, 255>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Beige`
 
@@ -370,7 +370,7 @@ type Azure = CustomColor<240, 255, 255>;
 type Beige = CustomColor<245, 245, 220>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Bisque`
 
@@ -378,7 +378,7 @@ type Beige = CustomColor<245, 245, 220>;
 type Bisque = CustomColor<255, 228, 196>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Black`
 
@@ -386,7 +386,7 @@ type Bisque = CustomColor<255, 228, 196>;
 type Black = CustomColor<0, 0, 0>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `BlanchedAlmond`
 
@@ -394,7 +394,7 @@ type Black = CustomColor<0, 0, 0>;
 type BlanchedAlmond = CustomColor<255, 235, 205>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Blue`
 
@@ -402,7 +402,7 @@ type BlanchedAlmond = CustomColor<255, 235, 205>;
 type Blue = CustomColor<0, 0, 255>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `BlueViolet`
 
@@ -410,7 +410,7 @@ type Blue = CustomColor<0, 0, 255>;
 type BlueViolet = CustomColor<138, 43, 226>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Brown`
 
@@ -418,7 +418,7 @@ type BlueViolet = CustomColor<138, 43, 226>;
 type Brown = CustomColor<165, 42, 42>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `BurlyWood`
 
@@ -426,7 +426,7 @@ type Brown = CustomColor<165, 42, 42>;
 type BurlyWood = CustomColor<222, 184, 135>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `CadetBlue`
 
@@ -434,7 +434,7 @@ type BurlyWood = CustomColor<222, 184, 135>;
 type CadetBlue = CustomColor<95, 158, 160>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Chartreuse`
 
@@ -442,7 +442,7 @@ type CadetBlue = CustomColor<95, 158, 160>;
 type Chartreuse = CustomColor<127, 255, 0>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Chocolate`
 
@@ -450,7 +450,7 @@ type Chartreuse = CustomColor<127, 255, 0>;
 type Chocolate = CustomColor<210, 105, 30>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Coral`
 
@@ -458,7 +458,7 @@ type Chocolate = CustomColor<210, 105, 30>;
 type Coral = CustomColor<255, 127, 80>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `CornflowerBlue`
 
@@ -466,7 +466,7 @@ type Coral = CustomColor<255, 127, 80>;
 type CornflowerBlue = CustomColor<100, 149, 237>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Cornsilk`
 
@@ -474,7 +474,7 @@ type CornflowerBlue = CustomColor<100, 149, 237>;
 type Cornsilk = CustomColor<255, 248, 220>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Crimson`
 
@@ -482,7 +482,7 @@ type Cornsilk = CustomColor<255, 248, 220>;
 type Crimson = CustomColor<220, 20, 60>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkBlue`
 
@@ -490,7 +490,7 @@ type Crimson = CustomColor<220, 20, 60>;
 type DarkBlue = CustomColor<0, 0, 139>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkCyan`
 
@@ -498,7 +498,7 @@ type DarkBlue = CustomColor<0, 0, 139>;
 type DarkCyan = CustomColor<0, 139, 139>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkGoldenRod`
 
@@ -506,7 +506,7 @@ type DarkCyan = CustomColor<0, 139, 139>;
 type DarkGoldenRod = CustomColor<184, 134, 11>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkGray`
 
@@ -514,7 +514,7 @@ type DarkGoldenRod = CustomColor<184, 134, 11>;
 type DarkGray = CustomColor<169, 169, 169>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkGrey`
 
@@ -522,7 +522,7 @@ type DarkGray = CustomColor<169, 169, 169>;
 type DarkGrey = CustomColor<169, 169, 169>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkGreen`
 
@@ -530,7 +530,7 @@ type DarkGrey = CustomColor<169, 169, 169>;
 type DarkGreen = CustomColor<0, 100, 0>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkKhaki`
 
@@ -538,7 +538,7 @@ type DarkGreen = CustomColor<0, 100, 0>;
 type DarkKhaki = CustomColor<189, 183, 107>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkMagenta`
 
@@ -546,7 +546,7 @@ type DarkKhaki = CustomColor<189, 183, 107>;
 type DarkMagenta = CustomColor<139, 0, 139>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkOliveGreen`
 
@@ -554,7 +554,7 @@ type DarkMagenta = CustomColor<139, 0, 139>;
 type DarkOliveGreen = CustomColor<85, 107, 47>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkOrange`
 
@@ -562,7 +562,7 @@ type DarkOliveGreen = CustomColor<85, 107, 47>;
 type DarkOrange = CustomColor<255, 140, 0>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkOrchid`
 
@@ -570,7 +570,7 @@ type DarkOrange = CustomColor<255, 140, 0>;
 type DarkOrchid = CustomColor<153, 50, 204>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkRed`
 
@@ -578,7 +578,7 @@ type DarkOrchid = CustomColor<153, 50, 204>;
 type DarkRed = CustomColor<139, 0, 0>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkSalmon`
 
@@ -586,7 +586,7 @@ type DarkRed = CustomColor<139, 0, 0>;
 type DarkSalmon = CustomColor<233, 150, 122>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkSeaGreen`
 
@@ -594,7 +594,7 @@ type DarkSalmon = CustomColor<233, 150, 122>;
 type DarkSeaGreen = CustomColor<143, 188, 143>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkSlateBlue`
 
@@ -602,7 +602,7 @@ type DarkSeaGreen = CustomColor<143, 188, 143>;
 type DarkSlateBlue = CustomColor<72, 61, 139>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkSlateGray`
 
@@ -610,7 +610,7 @@ type DarkSlateBlue = CustomColor<72, 61, 139>;
 type DarkSlateGray = CustomColor<47, 79, 79>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkSlateGrey`
 
@@ -618,7 +618,7 @@ type DarkSlateGray = CustomColor<47, 79, 79>;
 type DarkSlateGrey = CustomColor<47, 79, 79>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkTurquoise`
 
@@ -626,7 +626,7 @@ type DarkSlateGrey = CustomColor<47, 79, 79>;
 type DarkTurquoise = CustomColor<0, 206, 209>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DarkViolet`
 
@@ -634,7 +634,7 @@ type DarkTurquoise = CustomColor<0, 206, 209>;
 type DarkViolet = CustomColor<148, 0, 211>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DeepPink`
 
@@ -642,7 +642,7 @@ type DarkViolet = CustomColor<148, 0, 211>;
 type DeepPink = CustomColor<255, 20, 147>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DeepSkyBlue`
 
@@ -650,7 +650,7 @@ type DeepPink = CustomColor<255, 20, 147>;
 type DeepSkyBlue = CustomColor<0, 191, 255>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DimGray`
 
@@ -658,7 +658,7 @@ type DeepSkyBlue = CustomColor<0, 191, 255>;
 type DimGray = CustomColor<105, 105, 105>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DimGrey`
 
@@ -666,7 +666,7 @@ type DimGray = CustomColor<105, 105, 105>;
 type DimGrey = CustomColor<105, 105, 105>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `DodgerBlue`
 
@@ -674,7 +674,7 @@ type DimGrey = CustomColor<105, 105, 105>;
 type DodgerBlue = CustomColor<30, 144, 255>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `FireBrick`
 
@@ -682,7 +682,7 @@ type DodgerBlue = CustomColor<30, 144, 255>;
 type FireBrick = CustomColor<178, 34, 34>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `FloralWhite`
 
@@ -690,7 +690,7 @@ type FireBrick = CustomColor<178, 34, 34>;
 type FloralWhite = CustomColor<255, 250, 240>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `ForestGreen`
 
@@ -698,7 +698,7 @@ type FloralWhite = CustomColor<255, 250, 240>;
 type ForestGreen = CustomColor<34, 139, 34>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Fuchsia`
 
@@ -706,7 +706,7 @@ type ForestGreen = CustomColor<34, 139, 34>;
 type Fuchsia = CustomColor<255, 0, 255>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Gainsboro`
 
@@ -714,7 +714,7 @@ type Fuchsia = CustomColor<255, 0, 255>;
 type Gainsboro = CustomColor<220, 220, 220>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `GhostWhite`
 
@@ -722,7 +722,7 @@ type Gainsboro = CustomColor<220, 220, 220>;
 type GhostWhite = CustomColor<248, 248, 255>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Gold`
 
@@ -730,7 +730,7 @@ type GhostWhite = CustomColor<248, 248, 255>;
 type Gold = CustomColor<255, 215, 0>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `GoldenRod`
 
@@ -738,7 +738,7 @@ type Gold = CustomColor<255, 215, 0>;
 type GoldenRod = CustomColor<218, 165, 32>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Gray`
 
@@ -746,7 +746,7 @@ type GoldenRod = CustomColor<218, 165, 32>;
 type Gray = CustomColor<128, 128, 128>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Grey`
 
@@ -754,7 +754,7 @@ type Gray = CustomColor<128, 128, 128>;
 type Grey = CustomColor<128, 128, 128>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Green`
 
@@ -762,7 +762,7 @@ type Grey = CustomColor<128, 128, 128>;
 type Green = CustomColor<0, 128, 0>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `GreenYellow`
 
@@ -770,7 +770,7 @@ type Green = CustomColor<0, 128, 0>;
 type GreenYellow = CustomColor<173, 255, 47>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `HoneyDew`
 
@@ -778,7 +778,7 @@ type GreenYellow = CustomColor<173, 255, 47>;
 type HoneyDew = CustomColor<240, 255, 240>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `HotPink`
 
@@ -786,7 +786,7 @@ type HoneyDew = CustomColor<240, 255, 240>;
 type HotPink = CustomColor<255, 105, 180>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `IndianRed`
 
@@ -794,7 +794,7 @@ type HotPink = CustomColor<255, 105, 180>;
 type IndianRed = CustomColor<205, 92, 92>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Indigo`
 
@@ -802,7 +802,7 @@ type IndianRed = CustomColor<205, 92, 92>;
 type Indigo = CustomColor<75, 0, 130>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Ivory`
 
@@ -810,7 +810,7 @@ type Indigo = CustomColor<75, 0, 130>;
 type Ivory = CustomColor<255, 255, 240>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Khaki`
 
@@ -818,7 +818,7 @@ type Ivory = CustomColor<255, 255, 240>;
 type Khaki = CustomColor<240, 230, 140>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Lavender`
 
@@ -826,7 +826,7 @@ type Khaki = CustomColor<240, 230, 140>;
 type Lavender = CustomColor<230, 230, 250>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LavenderBlush`
 
@@ -834,7 +834,7 @@ type Lavender = CustomColor<230, 230, 250>;
 type LavenderBlush = CustomColor<255, 240, 245>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LawnGreen`
 
@@ -842,7 +842,7 @@ type LavenderBlush = CustomColor<255, 240, 245>;
 type LawnGreen = CustomColor<124, 252, 0>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LemonChiffon`
 
@@ -850,7 +850,7 @@ type LawnGreen = CustomColor<124, 252, 0>;
 type LemonChiffon = CustomColor<255, 250, 205>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LightBlue`
 
@@ -858,7 +858,7 @@ type LemonChiffon = CustomColor<255, 250, 205>;
 type LightBlue = CustomColor<173, 216, 230>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LightCoral`
 
@@ -866,7 +866,7 @@ type LightBlue = CustomColor<173, 216, 230>;
 type LightCoral = CustomColor<240, 128, 128>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LightCyan`
 
@@ -874,7 +874,7 @@ type LightCoral = CustomColor<240, 128, 128>;
 type LightCyan = CustomColor<224, 255, 255>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LightGoldenRodYellow`
 
@@ -882,7 +882,7 @@ type LightCyan = CustomColor<224, 255, 255>;
 type LightGoldenRodYellow = CustomColor<250, 250, 210>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LightGray`
 
@@ -890,7 +890,7 @@ type LightGoldenRodYellow = CustomColor<250, 250, 210>;
 type LightGray = CustomColor<211, 211, 211>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LightGrey`
 
@@ -898,7 +898,7 @@ type LightGray = CustomColor<211, 211, 211>;
 type LightGrey = CustomColor<211, 211, 211>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LightGreen`
 
@@ -906,7 +906,7 @@ type LightGrey = CustomColor<211, 211, 211>;
 type LightGreen = CustomColor<144, 238, 144>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LightPink`
 
@@ -914,7 +914,7 @@ type LightGreen = CustomColor<144, 238, 144>;
 type LightPink = CustomColor<255, 182, 193>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LightSalmon`
 
@@ -922,7 +922,7 @@ type LightPink = CustomColor<255, 182, 193>;
 type LightSalmon = CustomColor<255, 160, 122>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LightSeaGreen`
 
@@ -930,7 +930,7 @@ type LightSalmon = CustomColor<255, 160, 122>;
 type LightSeaGreen = CustomColor<32, 178, 170>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LightSkyBlue`
 
@@ -938,7 +938,7 @@ type LightSeaGreen = CustomColor<32, 178, 170>;
 type LightSkyBlue = CustomColor<135, 206, 250>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LightSlateGray`
 
@@ -946,7 +946,7 @@ type LightSkyBlue = CustomColor<135, 206, 250>;
 type LightSlateGray = CustomColor<119, 136, 153>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LightSlateGrey`
 
@@ -954,7 +954,7 @@ type LightSlateGray = CustomColor<119, 136, 153>;
 type LightSlateGrey = CustomColor<119, 136, 153>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LightSteelBlue`
 
@@ -962,7 +962,7 @@ type LightSlateGrey = CustomColor<119, 136, 153>;
 type LightSteelBlue = CustomColor<176, 196, 222>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LightYellow`
 
@@ -970,7 +970,7 @@ type LightSteelBlue = CustomColor<176, 196, 222>;
 type LightYellow = CustomColor<255, 255, 224>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Lime`
 
@@ -978,7 +978,7 @@ type LightYellow = CustomColor<255, 255, 224>;
 type Lime = CustomColor<0, 255, 0>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `LimeGreen`
 
@@ -986,7 +986,7 @@ type Lime = CustomColor<0, 255, 0>;
 type LimeGreen = CustomColor<50, 205, 50>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Linen`
 
@@ -994,7 +994,7 @@ type LimeGreen = CustomColor<50, 205, 50>;
 type Linen = CustomColor<250, 240, 230>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Magenta`
 
@@ -1002,7 +1002,7 @@ type Linen = CustomColor<250, 240, 230>;
 type Magenta = CustomColor<255, 0, 255>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Maroon`
 
@@ -1010,7 +1010,7 @@ type Magenta = CustomColor<255, 0, 255>;
 type Maroon = CustomColor<128, 0, 0>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `MediumAquaMarine`
 
@@ -1018,7 +1018,7 @@ type Maroon = CustomColor<128, 0, 0>;
 type MediumAquaMarine = CustomColor<102, 205, 170>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `MediumBlue`
 
@@ -1026,7 +1026,7 @@ type MediumAquaMarine = CustomColor<102, 205, 170>;
 type MediumBlue = CustomColor<0, 0, 205>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `MediumOrchid`
 
@@ -1034,7 +1034,7 @@ type MediumBlue = CustomColor<0, 0, 205>;
 type MediumOrchid = CustomColor<186, 85, 211>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `MediumPurple`
 
@@ -1042,7 +1042,7 @@ type MediumOrchid = CustomColor<186, 85, 211>;
 type MediumPurple = CustomColor<147, 112, 219>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `MediumSeaGreen`
 
@@ -1050,7 +1050,7 @@ type MediumPurple = CustomColor<147, 112, 219>;
 type MediumSeaGreen = CustomColor<60, 179, 113>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `MediumSlateBlue`
 
@@ -1058,7 +1058,7 @@ type MediumSeaGreen = CustomColor<60, 179, 113>;
 type MediumSlateBlue = CustomColor<123, 104, 238>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `MediumSpringGreen`
 
@@ -1066,7 +1066,7 @@ type MediumSlateBlue = CustomColor<123, 104, 238>;
 type MediumSpringGreen = CustomColor<0, 250, 154>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `MediumTurquoise`
 
@@ -1074,7 +1074,7 @@ type MediumSpringGreen = CustomColor<0, 250, 154>;
 type MediumTurquoise = CustomColor<72, 209, 204>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `MediumVioletRed`
 
@@ -1082,7 +1082,7 @@ type MediumTurquoise = CustomColor<72, 209, 204>;
 type MediumVioletRed = CustomColor<199, 21, 133>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `MidnightBlue`
 
@@ -1090,7 +1090,7 @@ type MediumVioletRed = CustomColor<199, 21, 133>;
 type MidnightBlue = CustomColor<25, 25, 112>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `MintCream`
 
@@ -1098,7 +1098,7 @@ type MidnightBlue = CustomColor<25, 25, 112>;
 type MintCream = CustomColor<245, 255, 250>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `MistyRose`
 
@@ -1106,7 +1106,7 @@ type MintCream = CustomColor<245, 255, 250>;
 type MistyRose = CustomColor<255, 228, 225>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Moccasin`
 
@@ -1114,7 +1114,7 @@ type MistyRose = CustomColor<255, 228, 225>;
 type Moccasin = CustomColor<255, 228, 181>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `NavajoWhite`
 
@@ -1122,7 +1122,7 @@ type Moccasin = CustomColor<255, 228, 181>;
 type NavajoWhite = CustomColor<255, 222, 173>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Navy`
 
@@ -1130,7 +1130,7 @@ type NavajoWhite = CustomColor<255, 222, 173>;
 type Navy = CustomColor<0, 0, 128>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `OldLace`
 
@@ -1138,7 +1138,7 @@ type Navy = CustomColor<0, 0, 128>;
 type OldLace = CustomColor<253, 245, 230>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Olive`
 
@@ -1146,7 +1146,7 @@ type OldLace = CustomColor<253, 245, 230>;
 type Olive = CustomColor<128, 128, 0>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `OliveDrab`
 
@@ -1154,7 +1154,7 @@ type Olive = CustomColor<128, 128, 0>;
 type OliveDrab = CustomColor<107, 142, 35>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Orange`
 
@@ -1162,7 +1162,7 @@ type OliveDrab = CustomColor<107, 142, 35>;
 type Orange = CustomColor<255, 165, 0>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `OrangeRed`
 
@@ -1170,7 +1170,7 @@ type Orange = CustomColor<255, 165, 0>;
 type OrangeRed = CustomColor<255, 69, 0>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Orchid`
 
@@ -1178,7 +1178,7 @@ type OrangeRed = CustomColor<255, 69, 0>;
 type Orchid = CustomColor<218, 112, 214>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `PaleGoldenRod`
 
@@ -1186,7 +1186,7 @@ type Orchid = CustomColor<218, 112, 214>;
 type PaleGoldenRod = CustomColor<238, 232, 170>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `PaleGreen`
 
@@ -1194,7 +1194,7 @@ type PaleGoldenRod = CustomColor<238, 232, 170>;
 type PaleGreen = CustomColor<152, 251, 152>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `PaleTurquoise`
 
@@ -1202,7 +1202,7 @@ type PaleGreen = CustomColor<152, 251, 152>;
 type PaleTurquoise = CustomColor<175, 238, 238>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `PaleVioletRed`
 
@@ -1210,7 +1210,7 @@ type PaleTurquoise = CustomColor<175, 238, 238>;
 type PaleVioletRed = CustomColor<219, 112, 147>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `PapayaWhip`
 
@@ -1218,7 +1218,7 @@ type PaleVioletRed = CustomColor<219, 112, 147>;
 type PapayaWhip = CustomColor<255, 239, 213>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `PeachPuff`
 
@@ -1226,7 +1226,7 @@ type PapayaWhip = CustomColor<255, 239, 213>;
 type PeachPuff = CustomColor<255, 218, 185>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Peru`
 
@@ -1234,7 +1234,7 @@ type PeachPuff = CustomColor<255, 218, 185>;
 type Peru = CustomColor<205, 133, 63>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Pink`
 
@@ -1242,7 +1242,7 @@ type Peru = CustomColor<205, 133, 63>;
 type Pink = CustomColor<255, 192, 203>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Plum`
 
@@ -1250,7 +1250,7 @@ type Pink = CustomColor<255, 192, 203>;
 type Plum = CustomColor<221, 160, 221>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `PowderBlue`
 
@@ -1258,7 +1258,7 @@ type Plum = CustomColor<221, 160, 221>;
 type PowderBlue = CustomColor<176, 224, 230>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Purple`
 
@@ -1266,7 +1266,7 @@ type PowderBlue = CustomColor<176, 224, 230>;
 type Purple = CustomColor<128, 0, 128>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `RebeccaPurple`
 
@@ -1274,7 +1274,7 @@ type Purple = CustomColor<128, 0, 128>;
 type RebeccaPurple = CustomColor<102, 51, 153>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Red`
 
@@ -1282,7 +1282,7 @@ type RebeccaPurple = CustomColor<102, 51, 153>;
 type Red = CustomColor<255, 0, 0>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `RosyBrown`
 
@@ -1290,7 +1290,7 @@ type Red = CustomColor<255, 0, 0>;
 type RosyBrown = CustomColor<188, 143, 143>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `RoyalBlue`
 
@@ -1298,7 +1298,7 @@ type RosyBrown = CustomColor<188, 143, 143>;
 type RoyalBlue = CustomColor<65, 105, 225>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `SaddleBrown`
 
@@ -1306,7 +1306,7 @@ type RoyalBlue = CustomColor<65, 105, 225>;
 type SaddleBrown = CustomColor<139, 69, 19>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Salmon`
 
@@ -1314,7 +1314,7 @@ type SaddleBrown = CustomColor<139, 69, 19>;
 type Salmon = CustomColor<250, 128, 114>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `SandyBrown`
 
@@ -1322,7 +1322,7 @@ type Salmon = CustomColor<250, 128, 114>;
 type SandyBrown = CustomColor<244, 164, 96>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `SeaGreen`
 
@@ -1330,7 +1330,7 @@ type SandyBrown = CustomColor<244, 164, 96>;
 type SeaGreen = CustomColor<46, 139, 87>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `SeaShell`
 
@@ -1338,7 +1338,7 @@ type SeaGreen = CustomColor<46, 139, 87>;
 type SeaShell = CustomColor<255, 245, 238>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Sienna`
 
@@ -1346,7 +1346,7 @@ type SeaShell = CustomColor<255, 245, 238>;
 type Sienna = CustomColor<160, 82, 45>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Silver`
 
@@ -1354,7 +1354,7 @@ type Sienna = CustomColor<160, 82, 45>;
 type Silver = CustomColor<192, 192, 192>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `SkyBlue`
 
@@ -1362,7 +1362,7 @@ type Silver = CustomColor<192, 192, 192>;
 type SkyBlue = CustomColor<135, 206, 235>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `SlateBlue`
 
@@ -1370,7 +1370,7 @@ type SkyBlue = CustomColor<135, 206, 235>;
 type SlateBlue = CustomColor<106, 90, 205>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `SlateGray`
 
@@ -1378,7 +1378,7 @@ type SlateBlue = CustomColor<106, 90, 205>;
 type SlateGray = CustomColor<112, 128, 144>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `SlateGrey`
 
@@ -1386,7 +1386,7 @@ type SlateGray = CustomColor<112, 128, 144>;
 type SlateGrey = CustomColor<112, 128, 144>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Snow`
 
@@ -1394,7 +1394,7 @@ type SlateGrey = CustomColor<112, 128, 144>;
 type Snow = CustomColor<255, 250, 250>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `SpringGreen`
 
@@ -1402,7 +1402,7 @@ type Snow = CustomColor<255, 250, 250>;
 type SpringGreen = CustomColor<0, 255, 127>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `SteelBlue`
 
@@ -1410,7 +1410,7 @@ type SpringGreen = CustomColor<0, 255, 127>;
 type SteelBlue = CustomColor<70, 130, 180>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Tan`
 
@@ -1418,7 +1418,7 @@ type SteelBlue = CustomColor<70, 130, 180>;
 type Tan = CustomColor<210, 180, 140>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Teal`
 
@@ -1426,7 +1426,7 @@ type Tan = CustomColor<210, 180, 140>;
 type Teal = CustomColor<0, 128, 128>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Thistle`
 
@@ -1434,7 +1434,7 @@ type Teal = CustomColor<0, 128, 128>;
 type Thistle = CustomColor<216, 191, 216>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Tomato`
 
@@ -1442,7 +1442,7 @@ type Thistle = CustomColor<216, 191, 216>;
 type Tomato = CustomColor<255, 99, 71>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Turquoise`
 
@@ -1450,7 +1450,7 @@ type Tomato = CustomColor<255, 99, 71>;
 type Turquoise = CustomColor<64, 224, 208>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Violet`
 
@@ -1458,7 +1458,7 @@ type Turquoise = CustomColor<64, 224, 208>;
 type Violet = CustomColor<238, 130, 238>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Wheat`
 
@@ -1466,7 +1466,7 @@ type Violet = CustomColor<238, 130, 238>;
 type Wheat = CustomColor<245, 222, 179>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `White`
 
@@ -1474,7 +1474,7 @@ type Wheat = CustomColor<245, 222, 179>;
 type White = CustomColor<255, 255, 255>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `WhiteSmoke`
 
@@ -1482,7 +1482,7 @@ type White = CustomColor<255, 255, 255>;
 type WhiteSmoke = CustomColor<245, 245, 245>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `Yellow`
 
@@ -1490,7 +1490,7 @@ type WhiteSmoke = CustomColor<245, 245, 245>;
 type Yellow = CustomColor<255, 255, 0>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ### `YellowGreen`
 
@@ -1498,11 +1498,11 @@ type Yellow = CustomColor<255, 255, 0>;
 type YellowGreen = CustomColor<154, 205, 50>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 ## Macros
 
 ### `css_color_types!`
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:1-82`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L1-L82)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:1-82`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L1-L82)*
 

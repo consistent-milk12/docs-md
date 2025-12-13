@@ -26,7 +26,7 @@ struct WithDispatch<T> {
 }
 ```
 
-*Defined in [`tracing-0.1.43/src/instrument.rs:236-252`](../../../.source_1765521767/tracing-0.1.43/src/instrument.rs#L236-L252)*
+*Defined in [`tracing-0.1.43/src/instrument.rs:236-252`](../../../.source_1765633015/tracing-0.1.43/src/instrument.rs#L236-L252)*
 
 A `Future` that has been instrumented with a `tracing` [`Subscriber`](../../tracing_core/subscriber/index.md).
 
@@ -158,7 +158,7 @@ struct Instrumented<T> {
 }
 ```
 
-*Defined in [`tracing-0.1.43/src/instrument.rs:254-288`](../../../.source_1765521767/tracing-0.1.43/src/instrument.rs#L254-L288)*
+*Defined in [`tracing-0.1.43/src/instrument.rs:254-288`](../../../.source_1765633015/tracing-0.1.43/src/instrument.rs#L254-L288)*
 
 A `Future` that has been instrumented with a `tracing` [`Span`](../span/index.md).
 
@@ -297,7 +297,7 @@ trait's documentation for details.
 trait Instrument: Sized { ... }
 ```
 
-*Defined in [`tracing-0.1.43/src/instrument.rs:20-131`](../../../.source_1765521767/tracing-0.1.43/src/instrument.rs#L20-L131)*
+*Defined in [`tracing-0.1.43/src/instrument.rs:20-131`](../../../.source_1765633015/tracing-0.1.43/src/instrument.rs#L20-L131)*
 
 Attaches spans to a `std::future::Future`.
 
@@ -325,7 +325,7 @@ instrumented with a `tracing` [`span`](../span/index.md).
 trait WithSubscriber: Sized { ... }
 ```
 
-*Defined in [`tracing-0.1.43/src/instrument.rs:136-234`](../../../.source_1765521767/tracing-0.1.43/src/instrument.rs#L136-L234)*
+*Defined in [`tracing-0.1.43/src/instrument.rs:136-234`](../../../.source_1765633015/tracing-0.1.43/src/instrument.rs#L136-L234)*
 
 Extension trait allowing futures to be instrumented with
 a `tracing` [`Subscriber`](crate::Subscriber).

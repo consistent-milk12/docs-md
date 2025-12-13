@@ -38,7 +38,7 @@
 struct Bytes<'data>(&'data [u8]);
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:16`](../../../../.source_1765521767/object-0.37.3/src/read/util.rs#L16)*
+*Defined in [`object-0.37.3/src/read/util.rs:16`](../../../../.source_1765633015/object-0.37.3/src/read/util.rs#L16)*
 
 A newtype for byte slices.
 
@@ -239,7 +239,7 @@ It has these important features:
 struct DebugByte(u8);
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:222`](../../../../.source_1765521767/object-0.37.3/src/read/util.rs#L222)*
+*Defined in [`object-0.37.3/src/read/util.rs:222`](../../../../.source_1765633015/object-0.37.3/src/read/util.rs#L222)*
 
 #### Trait Implementations
 
@@ -295,7 +295,7 @@ struct DebugByte(u8);
 struct DebugLen(usize);
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:230`](../../../../.source_1765521767/object-0.37.3/src/read/util.rs#L230)*
+*Defined in [`object-0.37.3/src/read/util.rs:230`](../../../../.source_1765633015/object-0.37.3/src/read/util.rs#L230)*
 
 #### Trait Implementations
 
@@ -351,7 +351,7 @@ struct DebugLen(usize);
 struct ByteString<'data>(&'data [u8]);
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:244`](../../../../.source_1765521767/object-0.37.3/src/read/util.rs#L244)*
+*Defined in [`object-0.37.3/src/read/util.rs:244`](../../../../.source_1765633015/object-0.37.3/src/read/util.rs#L244)*
 
 A newtype for byte strings.
 
@@ -450,7 +450,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:274-282`](../../../../.source_1765521767/object-0.37.3/src/read/util.rs#L274-L282)*
+*Defined in [`object-0.37.3/src/read/util.rs:274-282`](../../../../.source_1765633015/object-0.37.3/src/read/util.rs#L274-L282)*
 
 A table of zero-terminated strings.
 
@@ -544,7 +544,7 @@ This is used by most file formats for strings such as section names and symbol n
 fn debug_list_bytes(bytes: &[u8], fmt: &mut fmt::Formatter<'_>) -> fmt::Result
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:213-220`](../../../../.source_1765521767/object-0.37.3/src/read/util.rs#L213-L220)*
+*Defined in [`object-0.37.3/src/read/util.rs:213-220`](../../../../.source_1765633015/object-0.37.3/src/read/util.rs#L213-L220)*
 
 ### `align`
 
@@ -552,7 +552,7 @@ fn debug_list_bytes(bytes: &[u8], fmt: &mut fmt::Formatter<'_>) -> fmt::Result
 fn align(offset: usize, size: usize) -> usize
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:254-256`](../../../../.source_1765521767/object-0.37.3/src/read/util.rs#L254-L256)*
+*Defined in [`object-0.37.3/src/read/util.rs:254-256`](../../../../.source_1765633015/object-0.37.3/src/read/util.rs#L254-L256)*
 
 ### `data_range`
 
@@ -560,5 +560,5 @@ fn align(offset: usize, size: usize) -> usize
 fn data_range(data: &[u8], data_address: u64, range_address: u64, size: u64) -> Option<&[u8]>
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:259-268`](../../../../.source_1765521767/object-0.37.3/src/read/util.rs#L259-L268)*
+*Defined in [`object-0.37.3/src/read/util.rs:259-268`](../../../../.source_1765633015/object-0.37.3/src/read/util.rs#L259-L268)*
 

@@ -45,7 +45,7 @@ struct Flag<B> {
 }
 ```
 
-*Defined in [`bitflags-2.10.0/src/traits.rs:15-18`](../../../.source_1765521767/bitflags-2.10.0/src/traits.rs#L15-L18)*
+*Defined in [`bitflags-2.10.0/src/traits.rs:15-18`](../../../.source_1765633015/bitflags-2.10.0/src/traits.rs#L15-L18)*
 
 A defined flags value that may be named or unnamed.
 
@@ -153,7 +153,7 @@ A defined flags value that may be named or unnamed.
 trait Flags: Sized + 'static { ... }
 ```
 
-*Defined in [`bitflags-2.10.0/src/traits.rs:132-341`](../../../.source_1765521767/bitflags-2.10.0/src/traits.rs#L132-L341)*
+*Defined in [`bitflags-2.10.0/src/traits.rs:132-341`](../../../.source_1765633015/bitflags-2.10.0/src/traits.rs#L132-L341)*
 
 A set of defined flags using a bits type as storage.
 
@@ -343,7 +343,7 @@ assert_eq!(3, defined_flags::<MyFlags>());
 trait Bits: Clone + Copy + PartialEq + BitAnd<Output = Self> + BitOr<Output = Self> + BitXor<Output = Self> + Not<Output = Self> + Sized + 'static { ... }
 ```
 
-*Defined in [`bitflags-2.10.0/src/traits.rs:346-362`](../../../.source_1765521767/bitflags-2.10.0/src/traits.rs#L346-L362)*
+*Defined in [`bitflags-2.10.0/src/traits.rs:346-362`](../../../.source_1765633015/bitflags-2.10.0/src/traits.rs#L346-L362)*
 
 A bits type that can be used as storage for a flags type.
 
@@ -374,7 +374,7 @@ A bits type that can be used as storage for a flags type.
 trait Primitive { ... }
 ```
 
-*Defined in [`bitflags-2.10.0/src/traits.rs:366`](../../../.source_1765521767/bitflags-2.10.0/src/traits.rs#L366)*
+*Defined in [`bitflags-2.10.0/src/traits.rs:366`](../../../.source_1765633015/bitflags-2.10.0/src/traits.rs#L366)*
 
 #### Implementors
 
@@ -397,7 +397,7 @@ trait Primitive { ... }
 trait PublicFlags { ... }
 ```
 
-*Defined in [`bitflags-2.10.0/src/traits.rs:422-428`](../../../.source_1765521767/bitflags-2.10.0/src/traits.rs#L422-L428)*
+*Defined in [`bitflags-2.10.0/src/traits.rs:422-428`](../../../.source_1765633015/bitflags-2.10.0/src/traits.rs#L422-L428)*
 
 A trait for referencing the `bitflags`-owned internal type
 without exposing it publicly.
@@ -412,5 +412,5 @@ without exposing it publicly.
 
 ### `impl_bits!`
 
-*Defined in [`bitflags-2.10.0/src/traits.rs:368-409`](../../../.source_1765521767/bitflags-2.10.0/src/traits.rs#L368-L409)*
+*Defined in [`bitflags-2.10.0/src/traits.rs:368-409`](../../../.source_1765633015/bitflags-2.10.0/src/traits.rs#L368-L409)*
 

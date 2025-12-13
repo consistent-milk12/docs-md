@@ -25,7 +25,7 @@ Serde implementations for the types in this crate.
 struct Utf8PathBufVisitor;
 ```
 
-*Defined in [`camino-1.2.1/src/serde_impls.rs:14`](../../../.source_1765521767/camino-1.2.1/src/serde_impls.rs#L14)*
+*Defined in [`camino-1.2.1/src/serde_impls.rs:14`](../../../.source_1765633015/camino-1.2.1/src/serde_impls.rs#L14)*
 
 #### Trait Implementations
 
@@ -95,7 +95,7 @@ struct Utf8PathBufVisitor;
 struct Utf8PathVisitor;
 ```
 
-*Defined in [`camino-1.2.1/src/serde_impls.rs:74`](../../../.source_1765521767/camino-1.2.1/src/serde_impls.rs#L74)*
+*Defined in [`camino-1.2.1/src/serde_impls.rs:74`](../../../.source_1765633015/camino-1.2.1/src/serde_impls.rs#L74)*
 
 #### Trait Implementations
 

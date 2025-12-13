@@ -39,7 +39,7 @@ struct DebugCuIndex<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:12-14`](../../../../.source_1765521767/gimli-0.32.3/src/read/index.rs#L12-L14)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:12-14`](../../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L12-L14)*
 
 The data in the `.debug_cu_index` section of a `.dwp` file.
 
@@ -137,7 +137,7 @@ struct DebugTuIndex<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:68-70`](../../../../.source_1765521767/gimli-0.32.3/src/read/index.rs#L68-L70)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:68-70`](../../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L68-L70)*
 
 The data in the `.debug_tu_index` section of a `.dwp` file.
 
@@ -243,7 +243,7 @@ struct UnitIndex<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:124-135`](../../../../.source_1765521767/gimli-0.32.3/src/read/index.rs#L124-L135)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:124-135`](../../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L124-L135)*
 
 The partially parsed index from a `DebugCuIndex` or `DebugTuIndex`.
 
@@ -359,7 +359,7 @@ struct UnitIndexSectionIterator<'index, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:307-311`](../../../../.source_1765521767/gimli-0.32.3/src/read/index.rs#L307-L311)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:307-311`](../../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L307-L311)*
 
 An iterator over the section offsets and sizes for a row in a `UnitIndex`.
 
@@ -451,7 +451,7 @@ struct UnitIndexSection {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:331-338`](../../../../.source_1765521767/gimli-0.32.3/src/read/index.rs#L331-L338)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:331-338`](../../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L331-L338)*
 
 Information about a unit's contribution to a section in a `.dwp` file.
 
@@ -562,7 +562,7 @@ enum IndexSectionId {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:342-363`](../../../../.source_1765521767/gimli-0.32.3/src/read/index.rs#L342-L363)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:342-363`](../../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L342-L363)*
 
 Section kinds which are permitted in a `.dwp` index.
 
@@ -699,5 +699,5 @@ Section kinds which are permitted in a `.dwp` index.
 const SECTION_COUNT_MAX: u8 = 8u8;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:120`](../../../../.source_1765521767/gimli-0.32.3/src/read/index.rs#L120)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:120`](../../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L120)*
 

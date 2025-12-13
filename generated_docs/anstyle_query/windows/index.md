@@ -25,7 +25,7 @@ Windows-specific style queries
 fn enable_ansi_colors() -> Option<bool>
 ```
 
-*Defined in [`anstyle-query-1.1.5/src/windows.rs:71-73`](../../../.source_1765521767/anstyle-query-1.1.5/src/windows.rs#L71-L73)*
+*Defined in [`anstyle-query-1.1.5/src/windows.rs:71-73`](../../../.source_1765633015/anstyle-query-1.1.5/src/windows.rs#L71-L73)*
 
 Enable ANSI escape codes ([`ENABLE_VIRTUAL_TERMINAL_PROCESSING`](https://learn.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences#output-sequences))
 

@@ -47,7 +47,7 @@
 fn find_fwd(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache, input: &crate::util::search::Input<'_>) -> Result<Option<crate::util::search::HalfMatch>, crate::util::search::MatchError>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:13-47`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/search.rs#L13-L47)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:13-47`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/search.rs#L13-L47)*
 
 ### `find_fwd_imp`
 
@@ -55,7 +55,7 @@ fn find_fwd(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache
 fn find_fwd_imp(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache, input: &crate::util::search::Input<'_>, pre: Option<&crate::util::prefilter::Prefilter>, earliest: bool) -> Result<Option<crate::util::search::HalfMatch>, crate::util::search::MatchError>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:50-293`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/search.rs#L50-L293)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:50-293`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/search.rs#L50-L293)*
 
 ### `find_rev`
 
@@ -63,7 +63,7 @@ fn find_fwd_imp(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::C
 fn find_rev(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache, input: &crate::util::search::Input<'_>) -> Result<Option<crate::util::search::HalfMatch>, crate::util::search::MatchError>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:296-309`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/search.rs#L296-L309)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:296-309`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/search.rs#L296-L309)*
 
 ### `find_rev_imp`
 
@@ -71,7 +71,7 @@ fn find_rev(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache
 fn find_rev_imp(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache, input: &crate::util::search::Input<'_>, earliest: bool) -> Result<Option<crate::util::search::HalfMatch>, crate::util::search::MatchError>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:312-440`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/search.rs#L312-L440)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:312-440`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/search.rs#L312-L440)*
 
 ### `find_overlapping_fwd`
 
@@ -79,7 +79,7 @@ fn find_rev_imp(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::C
 fn find_overlapping_fwd(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache, input: &crate::util::search::Input<'_>, state: &mut crate::hybrid::dfa::OverlappingState) -> Result<(), crate::util::search::MatchError>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:443-463`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/search.rs#L443-L463)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:443-463`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/search.rs#L443-L463)*
 
 ### `find_overlapping_fwd_imp`
 
@@ -87,7 +87,7 @@ fn find_overlapping_fwd(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid
 fn find_overlapping_fwd_imp(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache, input: &crate::util::search::Input<'_>, pre: Option<&crate::util::prefilter::Prefilter>, state: &mut crate::hybrid::dfa::OverlappingState) -> Result<(), crate::util::search::MatchError>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:466-564`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/search.rs#L466-L564)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:466-564`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/search.rs#L466-L564)*
 
 ### `find_overlapping_rev`
 
@@ -95,7 +95,7 @@ fn find_overlapping_fwd_imp(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hy
 fn find_overlapping_rev(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache, input: &crate::util::search::Input<'_>, state: &mut crate::hybrid::dfa::OverlappingState) -> Result<(), crate::util::search::MatchError>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:567-664`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/search.rs#L567-L664)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:567-664`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/search.rs#L567-L664)*
 
 ### `init_fwd`
 
@@ -103,7 +103,7 @@ fn find_overlapping_rev(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid
 fn init_fwd(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache, input: &crate::util::search::Input<'_>) -> Result<crate::hybrid::id::LazyStateID, crate::util::search::MatchError>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:667-677`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/search.rs#L667-L677)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:667-677`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/search.rs#L667-L677)*
 
 ### `init_rev`
 
@@ -111,7 +111,7 @@ fn init_fwd(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache
 fn init_rev(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache, input: &crate::util::search::Input<'_>) -> Result<crate::hybrid::id::LazyStateID, crate::util::search::MatchError>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:680-690`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/search.rs#L680-L690)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:680-690`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/search.rs#L680-L690)*
 
 ### `eoi_fwd`
 
@@ -119,7 +119,7 @@ fn init_rev(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache
 fn eoi_fwd(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache, input: &crate::util::search::Input<'_>, sid: &mut crate::hybrid::id::LazyStateID, mat: &mut Option<crate::util::search::HalfMatch>) -> Result<(), crate::util::search::MatchError>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:693-726`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/search.rs#L693-L726)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:693-726`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/search.rs#L693-L726)*
 
 ### `eoi_rev`
 
@@ -127,7 +127,7 @@ fn eoi_fwd(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache,
 fn eoi_rev(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache, input: &crate::util::search::Input<'_>, sid: &mut crate::hybrid::id::LazyStateID, mat: &mut Option<crate::util::search::HalfMatch>) -> Result<(), crate::util::search::MatchError>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:729-760`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/search.rs#L729-L760)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:729-760`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/search.rs#L729-L760)*
 
 ### `prefilter_restart`
 
@@ -135,7 +135,7 @@ fn eoi_rev(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache,
 fn prefilter_restart(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache, input: &crate::util::search::Input<'_>, at: usize) -> Result<crate::hybrid::id::LazyStateID, crate::util::search::MatchError>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:787-796`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/search.rs#L787-L796)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:787-796`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/search.rs#L787-L796)*
 
 Re-compute the starting state that a DFA should be in after finding a
 prefilter candidate match at the position `at`.
@@ -168,7 +168,7 @@ just state in the current state if you know it to be correct.
 fn gave_up(offset: usize) -> crate::util::search::MatchError
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:800-802`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/search.rs#L800-L802)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/search.rs:800-802`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/search.rs#L800-L802)*
 
 A convenience routine for constructing a "gave up" match error.
 

@@ -17,11 +17,11 @@ The `bitcast` and `bitflags_bits` macros.
 
 ### `bitcast!`
 
-*Defined in [`rustix-1.1.2/src/bitcast.rs:7-31`](../../../.source_1765521767/rustix-1.1.2/src/bitcast.rs#L7-L31)*
+*Defined in [`rustix-1.1.2/src/bitcast.rs:7-31`](../../../.source_1765633015/rustix-1.1.2/src/bitcast.rs#L7-L31)*
 
 ### `bitflags_bits!`
 
-*Defined in [`rustix-1.1.2/src/bitcast.rs:35-39`](../../../.source_1765521767/rustix-1.1.2/src/bitcast.rs#L35-L39)*
+*Defined in [`rustix-1.1.2/src/bitcast.rs:35-39`](../../../.source_1765633015/rustix-1.1.2/src/bitcast.rs#L35-L39)*
 
 Return a [`bitcast`](#bitcast) of the value of `$x.bits()`, where `$x` is a
 `bitflags` type.

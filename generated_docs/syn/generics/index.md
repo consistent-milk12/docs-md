@@ -88,7 +88,7 @@ struct Generics {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:15-32`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L15-L32)*
+*Defined in [`syn-2.0.111/src/generics.rs:15-32`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L15-L32)*
 
 Lifetimes and type parameters attached to a declaration of a function,
 enum, trait, etc.
@@ -270,7 +270,7 @@ struct LifetimeParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:56-65`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L56-L65)*
+*Defined in [`syn-2.0.111/src/generics.rs:56-65`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L56-L65)*
 
 A lifetime definition: `'a: 'b + 'c + 'd`.
 
@@ -379,7 +379,7 @@ struct TypeParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:67-78`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L67-L78)*
+*Defined in [`syn-2.0.111/src/generics.rs:67-78`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L67-L78)*
 
 A generic type parameter: `T: Into<String>`.
 
@@ -485,7 +485,7 @@ struct ConstParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:80-92`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L80-L92)*
+*Defined in [`syn-2.0.111/src/generics.rs:80-92`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L80-L92)*
 
 A const generic parameter: `const LENGTH: usize`.
 
@@ -583,7 +583,7 @@ A const generic parameter: `const LENGTH: usize`.
 struct Lifetimes<'a>(crate::punctuated::Iter<'a, GenericParam>);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:185`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L185)*
+*Defined in [`syn-2.0.111/src/generics.rs:185`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L185)*
 
 #### Trait Implementations
 
@@ -649,7 +649,7 @@ struct Lifetimes<'a>(crate::punctuated::Iter<'a, GenericParam>);
 struct LifetimesMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:199`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L199)*
+*Defined in [`syn-2.0.111/src/generics.rs:199`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L199)*
 
 #### Trait Implementations
 
@@ -715,7 +715,7 @@ struct LifetimesMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 struct TypeParams<'a>(crate::punctuated::Iter<'a, GenericParam>);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:213`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L213)*
+*Defined in [`syn-2.0.111/src/generics.rs:213`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L213)*
 
 #### Trait Implementations
 
@@ -781,7 +781,7 @@ struct TypeParams<'a>(crate::punctuated::Iter<'a, GenericParam>);
 struct TypeParamsMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:227`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L227)*
+*Defined in [`syn-2.0.111/src/generics.rs:227`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L227)*
 
 #### Trait Implementations
 
@@ -847,7 +847,7 @@ struct TypeParamsMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 struct ConstParams<'a>(crate::punctuated::Iter<'a, GenericParam>);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:241`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L241)*
+*Defined in [`syn-2.0.111/src/generics.rs:241`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L241)*
 
 #### Trait Implementations
 
@@ -913,7 +913,7 @@ struct ConstParams<'a>(crate::punctuated::Iter<'a, GenericParam>);
 struct ConstParamsMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:255`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L255)*
+*Defined in [`syn-2.0.111/src/generics.rs:255`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L255)*
 
 #### Trait Implementations
 
@@ -979,7 +979,7 @@ struct ConstParamsMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 struct ImplGenerics<'a>(&'a Generics);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:275`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L275)*
+*Defined in [`syn-2.0.111/src/generics.rs:275`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L275)*
 
 Returned by `Generics::split_for_impl`.
 
@@ -1073,7 +1073,7 @@ Returned by `Generics::split_for_impl`.
 struct TypeGenerics<'a>(&'a Generics);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:283`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L283)*
+*Defined in [`syn-2.0.111/src/generics.rs:283`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L283)*
 
 Returned by `Generics::split_for_impl`.
 
@@ -1173,7 +1173,7 @@ Returned by `Generics::split_for_impl`.
 struct Turbofish<'a>(&'a Generics);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:291`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L291)*
+*Defined in [`syn-2.0.111/src/generics.rs:291`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L291)*
 
 Returned by `TypeGenerics::as_turbofish`.
 
@@ -1272,7 +1272,7 @@ struct BoundLifetimes {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:352-361`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L352-L361)*
+*Defined in [`syn-2.0.111/src/generics.rs:352-361`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L352-L361)*
 
 A set of bound lifetimes: `for<'a, 'b, 'c>`.
 
@@ -1379,7 +1379,7 @@ struct TraitBound {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:410-421`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L410-L421)*
+*Defined in [`syn-2.0.111/src/generics.rs:410-421`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L410-L421)*
 
 A trait used as a bound on a type parameter.
 
@@ -1496,7 +1496,7 @@ struct PreciseCapture {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:433-443`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L433-L443)*
+*Defined in [`syn-2.0.111/src/generics.rs:433-443`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L433-L443)*
 
 Precise capturing bound: the 'use&lt;&hellip;&gt;' in `impl Trait +
 use<'a, T>`.
@@ -1598,7 +1598,7 @@ struct WhereClause {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:461-469`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L461-L469)*
+*Defined in [`syn-2.0.111/src/generics.rs:461-469`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L461-L469)*
 
 A `where` clause in a definition: `where T: Deserialize<'de>, D:
 'static`.
@@ -1701,7 +1701,7 @@ struct PredicateLifetime {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:490-498`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L490-L498)*
+*Defined in [`syn-2.0.111/src/generics.rs:490-498`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L490-L498)*
 
 A lifetime predicate in a `where` clause: `'a: 'b + 'c`.
 
@@ -1800,7 +1800,7 @@ struct PredicateType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:500-512`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L500-L512)*
+*Defined in [`syn-2.0.111/src/generics.rs:500-512`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L500-L512)*
 
 A type predicate in a `where` clause: `for<'c> Foo<'c>: Trait<'c>`.
 
@@ -1914,7 +1914,7 @@ enum GenericParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:34-54`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L34-L54)*
+*Defined in [`syn-2.0.111/src/generics.rs:34-54`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L34-L54)*
 
 A generic type parameter, lifetime, or const generic: `T: Into<String>`,
 `'a: 'b`, `const LEN: usize`.
@@ -2037,7 +2037,7 @@ enum TypeParamBound {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:398-408`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L398-L408)*
+*Defined in [`syn-2.0.111/src/generics.rs:398-408`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L398-L408)*
 
 A trait or lifetime used as a bound on a type parameter.
 
@@ -2144,7 +2144,7 @@ enum TraitBoundModifier {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:423-431`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L423-L431)*
+*Defined in [`syn-2.0.111/src/generics.rs:423-431`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L423-L431)*
 
 A modifier on a trait bound, currently only used for the `?` in
 `?Sized`.
@@ -2248,7 +2248,7 @@ enum CapturedParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:446-459`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L446-L459)*
+*Defined in [`syn-2.0.111/src/generics.rs:446-459`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L446-L459)*
 
 Single parameter in a precise capturing bound.
 
@@ -2362,7 +2362,7 @@ enum WherePredicate {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:471-488`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L471-L488)*
+*Defined in [`syn-2.0.111/src/generics.rs:471-488`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L471-L488)*
 
 A single predicate in a `where` clause: `T: Deserialize<'de>`.
 
@@ -2473,5 +2473,5 @@ This type is a [syntax tree enum].
 
 ### `generics_wrapper_impls!`
 
-*Defined in [`syn-2.0.111/src/generics.rs:294-335`](../../../.source_1765521767/syn-2.0.111/src/generics.rs#L294-L335)*
+*Defined in [`syn-2.0.111/src/generics.rs:294-335`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L294-L335)*
 

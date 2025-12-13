@@ -158,7 +158,7 @@ struct LineColumn {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/location.rs:8-15`](../../.source_1765521767/proc-macro2-1.0.103/src/location.rs#L8-L15)*
+*Defined in [`proc-macro2-1.0.103/src/location.rs:8-15`](../../.source_1765633015/proc-macro2-1.0.103/src/location.rs#L8-L15)*
 
 A line-column pair representing the start or end of a `Span`.
 
@@ -271,7 +271,7 @@ struct TokenStream {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:205-208`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L205-L208)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:205-208`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L205-L208)*
 
 An abstract stream of tokens, or more concretely a sequence of token trees.
 
@@ -416,7 +416,7 @@ struct LexError {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:211-214`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L211-L214)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:211-214`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L211-L214)*
 
 Error returned from `TokenStream::from_str`.
 
@@ -491,7 +491,7 @@ struct Span {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:358-361`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L358-L361)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:358-361`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L358-L361)*
 
 A region of source code, along with macro expansion information.
 
@@ -749,7 +749,7 @@ struct Group {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:647-649`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L647-L649)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:647-649`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L647-L649)*
 
 A delimited token stream.
 
@@ -948,7 +948,7 @@ struct Punct {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:787-791`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L787-L791)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:787-791`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L787-L791)*
 
 A `Punct` is a single punctuation character like `+`, `-` or `#`.
 
@@ -1090,7 +1090,7 @@ struct Ident {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:936-939`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L936-L939)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:936-939`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L936-L939)*
 
 A word of Rust code, which may be a keyword or legal variable name.
 
@@ -1362,7 +1362,7 @@ struct Literal {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:1070-1073`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L1070-L1073)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:1070-1073`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L1070-L1073)*
 
 A literal string (`"hello"`), byte string (`b"hello"`), character (`'a'`),
 byte character (`b'a'`), an integer or floating point number with or without
@@ -2256,7 +2256,7 @@ enum TokenTree {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:546-555`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L546-L555)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:546-555`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L546-L555)*
 
 A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
@@ -2399,7 +2399,7 @@ enum Delimiter {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:653-680`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L653-L680)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:653-680`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L653-L680)*
 
 Describes how a sequence of token trees is delimited.
 
@@ -2522,7 +2522,7 @@ enum Spacing {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:796-804`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L796-L804)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:796-804`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L796-L804)*
 
 Whether a `Punct` is followed immediately by another `Punct` or followed by
 another token or whitespace.
@@ -2618,9 +2618,9 @@ another token or whitespace.
 
 ### `suffixed_int_literals!`
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:1075-1092`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L1075-L1092)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:1075-1092`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L1075-L1092)*
 
 ### `unsuffixed_int_literals!`
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:1094-1113`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L1094-L1113)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:1094-1113`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L1094-L1113)*
 

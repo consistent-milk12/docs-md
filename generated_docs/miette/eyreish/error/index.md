@@ -63,7 +63,7 @@ struct ErrorVTable {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/error.rs:484-497`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/error.rs#L484-L497)*
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:484-497`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/error.rs#L484-L497)*
 
 #### Trait Implementations
 
@@ -121,7 +121,7 @@ struct ErrorImpl<E> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/error.rs:674-680`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/error.rs#L674-L680)*
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:674-680`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/error.rs#L674-L680)*
 
 #### Implementations
 
@@ -194,7 +194,7 @@ struct ContextError<D, E> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/error.rs:685-688`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/error.rs#L685-L688)*
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:685-688`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/error.rs#L685-L688)*
 
 #### Trait Implementations
 
@@ -288,7 +288,7 @@ struct ContextError<D, E> {
 unsafe fn object_drop<E>(e: super::ptr::Own<ErrorImpl<()>>)
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/error.rs:500-505`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/error.rs#L500-L505)*
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:500-505`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/error.rs#L500-L505)*
 
 ### `object_drop_front`
 
@@ -296,7 +296,7 @@ unsafe fn object_drop<E>(e: super::ptr::Own<ErrorImpl<()>>)
 unsafe fn object_drop_front<E>(e: super::ptr::Own<ErrorImpl<()>>, target: core::any::TypeId)
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/error.rs:508-515`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/error.rs#L508-L515)*
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:508-515`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/error.rs#L508-L515)*
 
 ### `object_ref`
 
@@ -306,7 +306,7 @@ where
     E: Diagnostic + Send + Sync + 'static
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/error.rs:518-530`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/error.rs#L518-L530)*
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:518-530`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/error.rs#L518-L530)*
 
 ### `object_ref_stderr`
 
@@ -316,7 +316,7 @@ where
     E: StdError + Send + Sync + 'static
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/error.rs:533-545`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/error.rs#L533-L545)*
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:533-545`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/error.rs#L533-L545)*
 
 ### `object_boxed`
 
@@ -326,7 +326,7 @@ where
     E: Diagnostic + Send + Sync + 'static
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/error.rs:548-555`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/error.rs#L548-L555)*
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:548-555`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/error.rs#L548-L555)*
 
 ### `object_boxed_stderr`
 
@@ -336,7 +336,7 @@ where
     E: StdError + Send + Sync + 'static
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/error.rs:558-567`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/error.rs#L558-L567)*
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:558-567`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/error.rs#L558-L567)*
 
 ### `object_downcast`
 
@@ -346,7 +346,7 @@ where
     E: 'static
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/error.rs:570-588`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/error.rs#L570-L588)*
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:570-588`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/error.rs#L570-L588)*
 
 ### `context_downcast`
 
@@ -357,7 +357,7 @@ where
     E: 'static
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/error.rs:591-605`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/error.rs#L591-L605)*
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:591-605`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/error.rs#L591-L605)*
 
 ### `context_drop_rest`
 
@@ -368,7 +368,7 @@ where
     E: 'static
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/error.rs:608-626`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/error.rs#L608-L626)*
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:608-626`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/error.rs#L608-L626)*
 
 ### `context_chain_downcast`
 
@@ -378,7 +378,7 @@ where
     D: 'static
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/error.rs:629-644`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/error.rs#L629-L644)*
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:629-644`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/error.rs#L629-L644)*
 
 ### `context_chain_drop_rest`
 
@@ -388,7 +388,7 @@ where
     D: 'static
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/error.rs:647-670`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/error.rs#L647-L670)*
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:647-670`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/error.rs#L647-L670)*
 
 ### `vtable`
 
@@ -396,7 +396,7 @@ where
 unsafe fn vtable(p: core::ptr::NonNull<ErrorImpl<()>>) -> &'static ErrorVTable
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/error.rs:693-695`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/error.rs#L693-L695)*
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:693-695`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/error.rs#L693-L695)*
 
 ## Type Aliases
 
@@ -406,5 +406,5 @@ unsafe fn vtable(p: core::ptr::NonNull<ErrorImpl<()>>) -> &'static ErrorVTable
 type ErasedErrorImpl = ErrorImpl<()>;
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/error.rs:690`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/error.rs#L690)*
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:690`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/error.rs#L690)*
 

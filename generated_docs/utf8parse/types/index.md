@@ -30,7 +30,7 @@ enum Action {
 }
 ```
 
-*Defined in [`utf8parse-0.2.2/src/types.rs:5-22`](../../../.source_1765521767/utf8parse-0.2.2/src/types.rs#L5-L22)*
+*Defined in [`utf8parse-0.2.2/src/types.rs:5-22`](../../../.source_1765633015/utf8parse-0.2.2/src/types.rs#L5-L22)*
 
 Action to take when receiving a byte
 
@@ -141,7 +141,7 @@ enum State {
 }
 ```
 
-*Defined in [`utf8parse-0.2.2/src/types.rs:30-48`](../../../.source_1765521767/utf8parse-0.2.2/src/types.rs#L30-L48)*
+*Defined in [`utf8parse-0.2.2/src/types.rs:30-48`](../../../.source_1765633015/utf8parse-0.2.2/src/types.rs#L30-L48)*
 
 States the parser can be in.
 

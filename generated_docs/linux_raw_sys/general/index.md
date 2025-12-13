@@ -3972,7 +3972,7 @@ struct __BindgenBitfieldUnit<Storage> {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:72-74`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L72-L74)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:72-74`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L72-L74)*
 
 #### Implementations
 
@@ -4066,7 +4066,7 @@ struct __BindgenBitfieldUnit<Storage> {
 struct __IncompleteArrayField<T>(::core::marker::PhantomData<T>, [T; 0]);
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:77`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L77)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:77`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L77)*
 
 #### Implementations
 
@@ -4140,7 +4140,7 @@ struct __kernel_fd_set {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:80-82`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L80-L82)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:80-82`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L80-L82)*
 
 #### Trait Implementations
 
@@ -4208,7 +4208,7 @@ struct __kernel_fsid_t {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:85-87`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L85-L87)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:85-87`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L85-L87)*
 
 #### Trait Implementations
 
@@ -4277,7 +4277,7 @@ struct __user_cap_header_struct {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:90-93`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L90-L93)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:90-93`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L90-L93)*
 
 #### Trait Implementations
 
@@ -4347,7 +4347,7 @@ struct __user_cap_data_struct {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:96-100`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L96-L100)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:96-100`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L96-L100)*
 
 #### Trait Implementations
 
@@ -4416,7 +4416,7 @@ struct vfs_cap_data {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:103-106`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L103-L106)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:103-106`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L103-L106)*
 
 #### Trait Implementations
 
@@ -4485,7 +4485,7 @@ struct vfs_cap_data__bindgen_ty_1 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:109-112`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L109-L112)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:109-112`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L109-L112)*
 
 #### Trait Implementations
 
@@ -4555,7 +4555,7 @@ struct vfs_ns_cap_data {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:115-119`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L115-L119)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:115-119`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L115-L119)*
 
 #### Trait Implementations
 
@@ -4624,7 +4624,7 @@ struct vfs_ns_cap_data__bindgen_ty_1 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:122-125`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L122-L125)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:122-125`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L122-L125)*
 
 #### Trait Implementations
 
@@ -4693,7 +4693,7 @@ struct f_owner_ex {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:128-131`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L128-L131)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:128-131`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L128-L131)*
 
 #### Trait Implementations
 
@@ -4765,7 +4765,7 @@ struct flock {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:134-140`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L134-L140)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:134-140`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L134-L140)*
 
 #### Trait Implementations
 
@@ -4837,7 +4837,7 @@ struct flock64 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:143-149`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L143-L149)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:143-149`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L143-L149)*
 
 #### Trait Implementations
 
@@ -4907,7 +4907,7 @@ struct open_how {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:152-156`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L152-L156)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:152-156`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L152-L156)*
 
 #### Trait Implementations
 
@@ -4976,7 +4976,7 @@ struct epoll_event {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:159-162`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L159-L162)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:159-162`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L159-L162)*
 
 #### Trait Implementations
 
@@ -5047,7 +5047,7 @@ struct epoll_params {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:165-170`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L165-L170)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:165-170`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L165-L170)*
 
 #### Trait Implementations
 
@@ -5119,7 +5119,7 @@ struct fscrypt_policy_v1 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:173-179`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L173-L179)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:173-179`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L173-L179)*
 
 #### Trait Implementations
 
@@ -5189,7 +5189,7 @@ struct fscrypt_key {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:182-186`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L182-L186)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:182-186`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L182-L186)*
 
 #### Trait Implementations
 
@@ -5263,7 +5263,7 @@ struct fscrypt_policy_v2 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:189-197`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L189-L197)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:189-197`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L189-L197)*
 
 #### Trait Implementations
 
@@ -5332,7 +5332,7 @@ struct fscrypt_get_policy_ex_arg {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:200-203`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L200-L203)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:200-203`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L200-L203)*
 
 #### Trait Implementations
 
@@ -5398,7 +5398,7 @@ struct fscrypt_key_specifier {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:206-210`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L206-L210)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:206-210`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L206-L210)*
 
 #### Trait Implementations
 
@@ -5464,7 +5464,7 @@ struct fscrypt_provisioning_key_payload {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:213-217`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L213-L217)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:213-217`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L213-L217)*
 
 #### Trait Implementations
 
@@ -5527,7 +5527,7 @@ struct fscrypt_add_key_arg {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:219-226`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L219-L226)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:219-226`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L219-L226)*
 
 #### Trait Implementations
 
@@ -5583,7 +5583,7 @@ struct fscrypt_remove_key_arg {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:229-233`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L229-L233)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:229-233`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L229-L233)*
 
 #### Trait Implementations
 
@@ -5652,7 +5652,7 @@ struct fscrypt_get_key_status_arg {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:236-243`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L236-L243)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:236-243`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L236-L243)*
 
 #### Trait Implementations
 
@@ -5719,7 +5719,7 @@ struct mount_attr {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:246-251`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L246-L251)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:246-251`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L246-L251)*
 
 #### Trait Implementations
 
@@ -5819,7 +5819,7 @@ struct statmount {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:254-288`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L254-L288)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:254-288`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L254-L288)*
 
 #### Trait Implementations
 
@@ -5881,7 +5881,7 @@ struct mnt_id_req {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:291-297`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L291-L297)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:291-297`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L291-L297)*
 
 #### Trait Implementations
 
@@ -5952,7 +5952,7 @@ struct file_clone_range {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:300-305`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L300-L305)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:300-305`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L300-L305)*
 
 #### Trait Implementations
 
@@ -6022,7 +6022,7 @@ struct fstrim_range {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:308-312`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L308-L312)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:308-312`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L308-L312)*
 
 #### Trait Implementations
 
@@ -6091,7 +6091,7 @@ struct fsuuid2 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:315-318`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L315-L318)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:315-318`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L315-L318)*
 
 #### Trait Implementations
 
@@ -6160,7 +6160,7 @@ struct fs_sysfs_path {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:321-324`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L321-L324)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:321-324`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L321-L324)*
 
 #### Trait Implementations
 
@@ -6232,7 +6232,7 @@ struct file_dedupe_range_info {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:327-333`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L327-L333)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:327-333`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L327-L333)*
 
 #### Trait Implementations
 
@@ -6305,7 +6305,7 @@ struct file_dedupe_range {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:336-343`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L336-L343)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:336-343`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L336-L343)*
 
 #### Trait Implementations
 
@@ -6365,7 +6365,7 @@ struct files_stat_struct {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:346-350`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L346-L350)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:346-350`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L346-L350)*
 
 #### Trait Implementations
 
@@ -6435,7 +6435,7 @@ struct inodes_stat_t {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:353-357`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L353-L357)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:353-357`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L353-L357)*
 
 #### Trait Implementations
 
@@ -6508,7 +6508,7 @@ struct fsxattr {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:360-367`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L360-L367)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:360-367`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L360-L367)*
 
 #### Trait Implementations
 
@@ -6578,7 +6578,7 @@ struct page_region {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:370-374`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L370-L374)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:370-374`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L370-L374)*
 
 #### Trait Implementations
 
@@ -6657,7 +6657,7 @@ struct pm_scan_arg {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:377-390`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L377-L390)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:377-390`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L377-L390)*
 
 #### Trait Implementations
 
@@ -6739,7 +6739,7 @@ struct procmap_query {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:393-409`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L393-L409)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:393-409`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L393-L409)*
 
 #### Trait Implementations
 
@@ -6810,7 +6810,7 @@ struct futex_waitv {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:412-417`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L412-L417)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:412-417`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L412-L417)*
 
 #### Trait Implementations
 
@@ -6878,7 +6878,7 @@ struct robust_list {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:420-422`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L420-L422)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:420-422`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L420-L422)*
 
 #### Trait Implementations
 
@@ -6948,7 +6948,7 @@ struct robust_list_head {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:425-429`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L425-L429)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:425-429`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L425-L429)*
 
 #### Trait Implementations
 
@@ -7020,7 +7020,7 @@ struct inotify_event {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:432-438`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L432-L438)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:432-438`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L432-L438)*
 
 #### Trait Implementations
 
@@ -7079,7 +7079,7 @@ struct cachestat_range {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:441-444`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L441-L444)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:441-444`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L441-L444)*
 
 #### Trait Implementations
 
@@ -7151,7 +7151,7 @@ struct cachestat {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:447-453`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L447-L453)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:447-453`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L447-L453)*
 
 #### Trait Implementations
 
@@ -7221,7 +7221,7 @@ struct pollfd {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:456-460`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L456-L460)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:456-460`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L456-L460)*
 
 #### Trait Implementations
 
@@ -7291,7 +7291,7 @@ struct rand_pool_info {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:463-467`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L463-L467)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:463-467`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L463-L467)*
 
 #### Trait Implementations
 
@@ -7352,7 +7352,7 @@ struct vgetrandom_opaque_params {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:470-475`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L470-L475)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:470-475`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L470-L475)*
 
 #### Trait Implementations
 
@@ -7421,7 +7421,7 @@ struct __kernel_timespec {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:478-481`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L478-L481)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:478-481`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L478-L481)*
 
 #### Trait Implementations
 
@@ -7496,7 +7496,7 @@ struct __kernel_itimerspec {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:484-487`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L484-L487)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:484-487`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L484-L487)*
 
 #### Trait Implementations
 
@@ -7565,7 +7565,7 @@ struct __kernel_old_timeval {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:490-493`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L490-L493)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:490-493`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L490-L493)*
 
 #### Trait Implementations
 
@@ -7634,7 +7634,7 @@ struct __kernel_old_timespec {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:496-499`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L496-L499)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:496-499`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L496-L499)*
 
 #### Trait Implementations
 
@@ -7703,7 +7703,7 @@ struct __kernel_old_itimerval {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:502-505`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L502-L505)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:502-505`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L502-L505)*
 
 #### Trait Implementations
 
@@ -7772,7 +7772,7 @@ struct __kernel_sock_timeval {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:508-511`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L508-L511)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:508-511`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L508-L511)*
 
 #### Trait Implementations
 
@@ -7855,7 +7855,7 @@ struct rusage {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:514-531`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L514-L531)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:514-531`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L514-L531)*
 
 #### Trait Implementations
 
@@ -7924,7 +7924,7 @@ struct rlimit {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:534-537`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L534-L537)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:534-537`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L534-L537)*
 
 #### Trait Implementations
 
@@ -7993,7 +7993,7 @@ struct rlimit64 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:540-543`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L540-L543)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:540-543`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L540-L543)*
 
 #### Trait Implementations
 
@@ -8071,7 +8071,7 @@ struct clone_args {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:546-558`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L546-L558)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:546-558`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L546-L558)*
 
 #### Trait Implementations
 
@@ -8142,7 +8142,7 @@ struct sigaction {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:561-566`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L561-L566)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:561-566`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L561-L566)*
 
 #### Trait Implementations
 
@@ -8212,7 +8212,7 @@ struct sigaltstack {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:569-573`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L569-L573)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:569-573`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L569-L573)*
 
 #### Trait Implementations
 
@@ -8281,7 +8281,7 @@ struct __sifields__bindgen_ty_1 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:576-579`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L576-L579)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:576-579`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L576-L579)*
 
 #### Trait Implementations
 
@@ -8352,7 +8352,7 @@ struct __sifields__bindgen_ty_2 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:582-587`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L582-L587)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:582-587`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L582-L587)*
 
 #### Trait Implementations
 
@@ -8418,7 +8418,7 @@ struct __sifields__bindgen_ty_3 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:590-594`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L590-L594)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:590-594`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L590-L594)*
 
 #### Trait Implementations
 
@@ -8486,7 +8486,7 @@ struct __sifields__bindgen_ty_4 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:597-603`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L597-L603)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:597-603`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L597-L603)*
 
 #### Trait Implementations
 
@@ -8555,7 +8555,7 @@ struct __sifields__bindgen_ty_5 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:606-609`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L606-L609)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:606-609`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L606-L609)*
 
 #### Trait Implementations
 
@@ -8621,7 +8621,7 @@ struct __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_1 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:612-616`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L612-L616)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:612-616`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L612-L616)*
 
 #### Trait Implementations
 
@@ -8690,7 +8690,7 @@ struct __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_2 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:619-622`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L619-L622)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:619-622`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L619-L622)*
 
 #### Trait Implementations
 
@@ -8760,7 +8760,7 @@ struct __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_3 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:625-629`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L625-L629)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:625-629`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L625-L629)*
 
 #### Trait Implementations
 
@@ -8829,7 +8829,7 @@ struct __sifields__bindgen_ty_6 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:632-635`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L632-L635)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:632-635`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L632-L635)*
 
 #### Trait Implementations
 
@@ -8899,7 +8899,7 @@ struct __sifields__bindgen_ty_7 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:638-642`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L638-L642)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:638-642`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L638-L642)*
 
 #### Trait Implementations
 
@@ -8967,7 +8967,7 @@ struct siginfo {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:645-647`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L645-L647)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:645-647`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L645-L647)*
 
 #### Trait Implementations
 
@@ -9034,7 +9034,7 @@ struct siginfo__bindgen_ty_1__bindgen_ty_1 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:650-655`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L650-L655)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:650-655`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L650-L655)*
 
 #### Trait Implementations
 
@@ -9101,7 +9101,7 @@ struct sigevent {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:658-663`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L658-L663)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:658-663`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L658-L663)*
 
 #### Trait Implementations
 
@@ -9166,7 +9166,7 @@ struct sigevent__bindgen_ty_1__bindgen_ty_1 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:666-669`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L666-L669)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:666-669`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L666-L669)*
 
 #### Trait Implementations
 
@@ -9236,7 +9236,7 @@ struct statx_timestamp {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:672-676`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L672-L676)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:672-676`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L672-L676)*
 
 #### Trait Implementations
 
@@ -9334,7 +9334,7 @@ struct statx {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:679-711`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L679-L711)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:679-711`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L679-L711)*
 
 #### Trait Implementations
 
@@ -9407,7 +9407,7 @@ struct termios {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:714-721`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L714-L721)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:714-721`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L714-L721)*
 
 #### Trait Implementations
 
@@ -9482,7 +9482,7 @@ struct termios2 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:724-733`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L724-L733)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:724-733`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L724-L733)*
 
 #### Trait Implementations
 
@@ -9557,7 +9557,7 @@ struct ktermios {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:736-745`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L736-L745)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:736-745`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L736-L745)*
 
 #### Trait Implementations
 
@@ -9628,7 +9628,7 @@ struct winsize {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:748-753`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L748-L753)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:748-753`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L748-L753)*
 
 #### Trait Implementations
 
@@ -9701,7 +9701,7 @@ struct termio {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:756-763`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L756-L763)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:756-763`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L756-L763)*
 
 #### Trait Implementations
 
@@ -9770,7 +9770,7 @@ struct timespec {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:766-769`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L766-L769)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:766-769`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L766-L769)*
 
 #### Trait Implementations
 
@@ -9839,7 +9839,7 @@ struct timeval {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:772-775`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L772-L775)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:772-775`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L772-L775)*
 
 #### Trait Implementations
 
@@ -9908,7 +9908,7 @@ struct itimerspec {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:778-781`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L778-L781)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:778-781`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L778-L781)*
 
 #### Trait Implementations
 
@@ -9977,7 +9977,7 @@ struct itimerval {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:784-787`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L784-L787)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:784-787`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L784-L787)*
 
 #### Trait Implementations
 
@@ -10046,7 +10046,7 @@ struct timezone {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:790-793`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L790-L793)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:790-793`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L790-L793)*
 
 #### Trait Implementations
 
@@ -10115,7 +10115,7 @@ struct iovec {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:796-799`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L796-L799)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:796-799`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L796-L799)*
 
 #### Trait Implementations
 
@@ -10187,7 +10187,7 @@ struct dmabuf_cmsg {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:802-808`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L802-L808)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:802-808`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L802-L808)*
 
 #### Trait Implementations
 
@@ -10256,7 +10256,7 @@ struct dmabuf_token {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:811-814`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L811-L814)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:811-814`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L811-L814)*
 
 #### Trait Implementations
 
@@ -10326,7 +10326,7 @@ struct xattr_args {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:817-821`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L817-L821)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:817-821`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L817-L821)*
 
 #### Trait Implementations
 
@@ -10398,7 +10398,7 @@ struct uffd_msg {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:824-830`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L824-L830)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:824-830`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L824-L830)*
 
 #### Trait Implementations
 
@@ -10464,7 +10464,7 @@ struct uffd_msg__bindgen_ty_1__bindgen_ty_1 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:833-837`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L833-L837)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:833-837`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L833-L837)*
 
 #### Trait Implementations
 
@@ -10528,7 +10528,7 @@ struct uffd_msg__bindgen_ty_1__bindgen_ty_2 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:840-842`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L840-L842)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:840-842`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L840-L842)*
 
 #### Trait Implementations
 
@@ -10598,7 +10598,7 @@ struct uffd_msg__bindgen_ty_1__bindgen_ty_3 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:845-849`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L845-L849)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:845-849`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L845-L849)*
 
 #### Trait Implementations
 
@@ -10667,7 +10667,7 @@ struct uffd_msg__bindgen_ty_1__bindgen_ty_4 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:852-855`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L852-L855)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:852-855`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L852-L855)*
 
 #### Trait Implementations
 
@@ -10737,7 +10737,7 @@ struct uffd_msg__bindgen_ty_1__bindgen_ty_5 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:858-862`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L858-L862)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:858-862`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L858-L862)*
 
 #### Trait Implementations
 
@@ -10807,7 +10807,7 @@ struct uffdio_api {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:865-869`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L865-L869)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:865-869`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L865-L869)*
 
 #### Trait Implementations
 
@@ -10876,7 +10876,7 @@ struct uffdio_range {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:872-875`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L872-L875)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:872-875`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L872-L875)*
 
 #### Trait Implementations
 
@@ -10946,7 +10946,7 @@ struct uffdio_register {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:878-882`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L878-L882)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:878-882`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L878-L882)*
 
 #### Trait Implementations
 
@@ -11018,7 +11018,7 @@ struct uffdio_copy {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:885-891`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L885-L891)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:885-891`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L885-L891)*
 
 #### Trait Implementations
 
@@ -11088,7 +11088,7 @@ struct uffdio_zeropage {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:894-898`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L894-L898)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:894-898`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L894-L898)*
 
 #### Trait Implementations
 
@@ -11157,7 +11157,7 @@ struct uffdio_writeprotect {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:901-904`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L901-L904)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:901-904`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L901-L904)*
 
 #### Trait Implementations
 
@@ -11227,7 +11227,7 @@ struct uffdio_continue {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:907-911`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L907-L911)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:907-911`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L907-L911)*
 
 #### Trait Implementations
 
@@ -11297,7 +11297,7 @@ struct uffdio_poison {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:914-918`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L914-L918)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:914-918`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L914-L918)*
 
 #### Trait Implementations
 
@@ -11369,7 +11369,7 @@ struct uffdio_move {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:921-927`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L921-L927)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:921-927`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L921-L927)*
 
 #### Trait Implementations
 
@@ -11441,7 +11441,7 @@ struct linux_dirent64 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:930-936`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L930-L936)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:930-936`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L930-L936)*
 
 #### Trait Implementations
 
@@ -11516,7 +11516,7 @@ struct stat {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:939-958`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L939-L958)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:939-958`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L939-L958)*
 
 #### Trait Implementations
 
@@ -11594,7 +11594,7 @@ struct __old_kernel_stat {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:961-973`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L961-L973)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:961-973`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L961-L973)*
 
 #### Trait Implementations
 
@@ -11673,7 +11673,7 @@ struct statfs {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:976-989`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L976-L989)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:976-989`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L976-L989)*
 
 #### Trait Implementations
 
@@ -11752,7 +11752,7 @@ struct statfs64 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:992-1005`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L992-L1005)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:992-1005`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L992-L1005)*
 
 #### Trait Implementations
 
@@ -11831,7 +11831,7 @@ struct compat_statfs64 {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1008-1021`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1008-L1021)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1008-1021`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1008-L1021)*
 
 #### Trait Implementations
 
@@ -11904,7 +11904,7 @@ struct user_desc {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1024-1031`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1024-L1031)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1024-1031`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1024-L1031)*
 
 #### Implementations
 
@@ -12032,7 +12032,7 @@ struct kernel_sigset_t {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1034-1036`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1034-L1036)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1034-1036`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1034-L1036)*
 
 #### Trait Implementations
 
@@ -12103,7 +12103,7 @@ struct kernel_sigaction {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1039-1044`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1039-L1044)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1039-1044`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1039-L1044)*
 
 #### Trait Implementations
 
@@ -12181,7 +12181,7 @@ enum fsconfig_command {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2835-2845`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2835-L2845)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2835-2845`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2835-L2845)*
 
 #### Trait Implementations
 
@@ -12266,7 +12266,7 @@ enum procmap_query_flags {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2849-2856`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2849-L2856)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2849-2856`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2849-L2856)*
 
 #### Trait Implementations
 
@@ -12356,7 +12356,7 @@ enum membarrier_cmd {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2860-2872`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2860-L2872)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2860-2872`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2860-L2872)*
 
 #### Implementations
 
@@ -12440,7 +12440,7 @@ enum membarrier_cmd_flag {
 }
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2876-2878`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2876-L2878)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2876-2878`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2876-L2878)*
 
 #### Trait Implementations
 
@@ -12520,7 +12520,7 @@ enum membarrier_cmd_flag {
 type __s8 = crate::ctypes::c_schar;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:3`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L3)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:3`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L3)*
 
 ### `__u8`
 
@@ -12528,7 +12528,7 @@ type __s8 = crate::ctypes::c_schar;
 type __u8 = crate::ctypes::c_uchar;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:4`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L4)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:4`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L4)*
 
 ### `__s16`
 
@@ -12536,7 +12536,7 @@ type __u8 = crate::ctypes::c_uchar;
 type __s16 = crate::ctypes::c_short;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:5`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L5)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:5`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L5)*
 
 ### `__u16`
 
@@ -12544,7 +12544,7 @@ type __s16 = crate::ctypes::c_short;
 type __u16 = crate::ctypes::c_ushort;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:6`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L6)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:6`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L6)*
 
 ### `__s32`
 
@@ -12552,7 +12552,7 @@ type __u16 = crate::ctypes::c_ushort;
 type __s32 = crate::ctypes::c_int;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:7`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L7)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:7`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L7)*
 
 ### `__u32`
 
@@ -12560,7 +12560,7 @@ type __s32 = crate::ctypes::c_int;
 type __u32 = crate::ctypes::c_uint;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:8`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L8)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:8`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L8)*
 
 ### `__s64`
 
@@ -12568,7 +12568,7 @@ type __u32 = crate::ctypes::c_uint;
 type __s64 = crate::ctypes::c_longlong;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:9`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L9)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:9`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L9)*
 
 ### `__u64`
 
@@ -12576,7 +12576,7 @@ type __s64 = crate::ctypes::c_longlong;
 type __u64 = crate::ctypes::c_ulonglong;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:10`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L10)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:10`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L10)*
 
 ### `__kernel_sighandler_t`
 
@@ -12584,7 +12584,7 @@ type __u64 = crate::ctypes::c_ulonglong;
 type __kernel_sighandler_t = ::core::option::Option<fn(crate::ctypes::c_int)>;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:11`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L11)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:11`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L11)*
 
 ### `__kernel_key_t`
 
@@ -12592,7 +12592,7 @@ type __kernel_sighandler_t = ::core::option::Option<fn(crate::ctypes::c_int)>;
 type __kernel_key_t = crate::ctypes::c_int;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:12`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L12)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:12`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L12)*
 
 ### `__kernel_mqd_t`
 
@@ -12600,7 +12600,7 @@ type __kernel_key_t = crate::ctypes::c_int;
 type __kernel_mqd_t = crate::ctypes::c_int;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:13`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L13)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:13`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L13)*
 
 ### `__kernel_old_uid_t`
 
@@ -12608,7 +12608,7 @@ type __kernel_mqd_t = crate::ctypes::c_int;
 type __kernel_old_uid_t = crate::ctypes::c_ushort;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:14`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L14)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:14`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L14)*
 
 ### `__kernel_old_gid_t`
 
@@ -12616,7 +12616,7 @@ type __kernel_old_uid_t = crate::ctypes::c_ushort;
 type __kernel_old_gid_t = crate::ctypes::c_ushort;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:15`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L15)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:15`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L15)*
 
 ### `__kernel_old_dev_t`
 
@@ -12624,7 +12624,7 @@ type __kernel_old_gid_t = crate::ctypes::c_ushort;
 type __kernel_old_dev_t = crate::ctypes::c_ulong;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:16`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L16)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:16`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L16)*
 
 ### `__kernel_long_t`
 
@@ -12632,7 +12632,7 @@ type __kernel_old_dev_t = crate::ctypes::c_ulong;
 type __kernel_long_t = crate::ctypes::c_long;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:17`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L17)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:17`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L17)*
 
 ### `__kernel_ulong_t`
 
@@ -12640,7 +12640,7 @@ type __kernel_long_t = crate::ctypes::c_long;
 type __kernel_ulong_t = crate::ctypes::c_ulong;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:18`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L18)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:18`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L18)*
 
 ### `__kernel_ino_t`
 
@@ -12648,7 +12648,7 @@ type __kernel_ulong_t = crate::ctypes::c_ulong;
 type __kernel_ino_t = __kernel_ulong_t;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:19`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L19)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:19`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L19)*
 
 ### `__kernel_mode_t`
 
@@ -12656,7 +12656,7 @@ type __kernel_ino_t = __kernel_ulong_t;
 type __kernel_mode_t = crate::ctypes::c_uint;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:20`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L20)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:20`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L20)*
 
 ### `__kernel_pid_t`
 
@@ -12664,7 +12664,7 @@ type __kernel_mode_t = crate::ctypes::c_uint;
 type __kernel_pid_t = crate::ctypes::c_int;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:21`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L21)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:21`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L21)*
 
 ### `__kernel_ipc_pid_t`
 
@@ -12672,7 +12672,7 @@ type __kernel_pid_t = crate::ctypes::c_int;
 type __kernel_ipc_pid_t = crate::ctypes::c_int;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:22`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L22)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:22`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L22)*
 
 ### `__kernel_uid_t`
 
@@ -12680,7 +12680,7 @@ type __kernel_ipc_pid_t = crate::ctypes::c_int;
 type __kernel_uid_t = crate::ctypes::c_uint;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:23`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L23)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:23`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L23)*
 
 ### `__kernel_gid_t`
 
@@ -12688,7 +12688,7 @@ type __kernel_uid_t = crate::ctypes::c_uint;
 type __kernel_gid_t = crate::ctypes::c_uint;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:24`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L24)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:24`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L24)*
 
 ### `__kernel_suseconds_t`
 
@@ -12696,7 +12696,7 @@ type __kernel_gid_t = crate::ctypes::c_uint;
 type __kernel_suseconds_t = __kernel_long_t;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:25`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L25)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:25`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L25)*
 
 ### `__kernel_daddr_t`
 
@@ -12704,7 +12704,7 @@ type __kernel_suseconds_t = __kernel_long_t;
 type __kernel_daddr_t = crate::ctypes::c_int;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:26`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L26)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:26`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L26)*
 
 ### `__kernel_uid32_t`
 
@@ -12712,7 +12712,7 @@ type __kernel_daddr_t = crate::ctypes::c_int;
 type __kernel_uid32_t = crate::ctypes::c_uint;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:27`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L27)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:27`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L27)*
 
 ### `__kernel_gid32_t`
 
@@ -12720,7 +12720,7 @@ type __kernel_uid32_t = crate::ctypes::c_uint;
 type __kernel_gid32_t = crate::ctypes::c_uint;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:28`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L28)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:28`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L28)*
 
 ### `__kernel_size_t`
 
@@ -12728,7 +12728,7 @@ type __kernel_gid32_t = crate::ctypes::c_uint;
 type __kernel_size_t = __kernel_ulong_t;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:29`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L29)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:29`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L29)*
 
 ### `__kernel_ssize_t`
 
@@ -12736,7 +12736,7 @@ type __kernel_size_t = __kernel_ulong_t;
 type __kernel_ssize_t = __kernel_long_t;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:30`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L30)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:30`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L30)*
 
 ### `__kernel_ptrdiff_t`
 
@@ -12744,7 +12744,7 @@ type __kernel_ssize_t = __kernel_long_t;
 type __kernel_ptrdiff_t = __kernel_long_t;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:31`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L31)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:31`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L31)*
 
 ### `__kernel_off_t`
 
@@ -12752,7 +12752,7 @@ type __kernel_ptrdiff_t = __kernel_long_t;
 type __kernel_off_t = __kernel_long_t;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:32`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L32)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:32`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L32)*
 
 ### `__kernel_loff_t`
 
@@ -12760,7 +12760,7 @@ type __kernel_off_t = __kernel_long_t;
 type __kernel_loff_t = crate::ctypes::c_longlong;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:33`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L33)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:33`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L33)*
 
 ### `__kernel_old_time_t`
 
@@ -12768,7 +12768,7 @@ type __kernel_loff_t = crate::ctypes::c_longlong;
 type __kernel_old_time_t = __kernel_long_t;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:34`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L34)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:34`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L34)*
 
 ### `__kernel_time_t`
 
@@ -12776,7 +12776,7 @@ type __kernel_old_time_t = __kernel_long_t;
 type __kernel_time_t = __kernel_long_t;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:35`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L35)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:35`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L35)*
 
 ### `__kernel_time64_t`
 
@@ -12784,7 +12784,7 @@ type __kernel_time_t = __kernel_long_t;
 type __kernel_time64_t = crate::ctypes::c_longlong;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:36`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L36)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:36`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L36)*
 
 ### `__kernel_clock_t`
 
@@ -12792,7 +12792,7 @@ type __kernel_time64_t = crate::ctypes::c_longlong;
 type __kernel_clock_t = __kernel_long_t;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:37`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L37)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:37`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L37)*
 
 ### `__kernel_timer_t`
 
@@ -12800,7 +12800,7 @@ type __kernel_clock_t = __kernel_long_t;
 type __kernel_timer_t = crate::ctypes::c_int;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:38`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L38)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:38`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L38)*
 
 ### `__kernel_clockid_t`
 
@@ -12808,7 +12808,7 @@ type __kernel_timer_t = crate::ctypes::c_int;
 type __kernel_clockid_t = crate::ctypes::c_int;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:39`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L39)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:39`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L39)*
 
 ### `__kernel_caddr_t`
 
@@ -12816,7 +12816,7 @@ type __kernel_clockid_t = crate::ctypes::c_int;
 type __kernel_caddr_t = *mut crate::ctypes::c_char;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:40`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L40)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:40`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L40)*
 
 ### `__kernel_uid16_t`
 
@@ -12824,7 +12824,7 @@ type __kernel_caddr_t = *mut crate::ctypes::c_char;
 type __kernel_uid16_t = crate::ctypes::c_ushort;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:41`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L41)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:41`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L41)*
 
 ### `__kernel_gid16_t`
 
@@ -12832,7 +12832,7 @@ type __kernel_uid16_t = crate::ctypes::c_ushort;
 type __kernel_gid16_t = crate::ctypes::c_ushort;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:42`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L42)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:42`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L42)*
 
 ### `__s128`
 
@@ -12840,7 +12840,7 @@ type __kernel_gid16_t = crate::ctypes::c_ushort;
 type __s128 = i128;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:43`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L43)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:43`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L43)*
 
 ### `__u128`
 
@@ -12848,7 +12848,7 @@ type __s128 = i128;
 type __u128 = u128;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:44`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L44)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:44`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L44)*
 
 ### `__le16`
 
@@ -12856,7 +12856,7 @@ type __u128 = u128;
 type __le16 = __u16;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:45`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L45)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:45`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L45)*
 
 ### `__be16`
 
@@ -12864,7 +12864,7 @@ type __le16 = __u16;
 type __be16 = __u16;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:46`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L46)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:46`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L46)*
 
 ### `__le32`
 
@@ -12872,7 +12872,7 @@ type __be16 = __u16;
 type __le32 = __u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:47`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L47)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:47`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L47)*
 
 ### `__be32`
 
@@ -12880,7 +12880,7 @@ type __le32 = __u32;
 type __be32 = __u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:48`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L48)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:48`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L48)*
 
 ### `__le64`
 
@@ -12888,7 +12888,7 @@ type __be32 = __u32;
 type __le64 = __u64;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:49`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L49)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:49`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L49)*
 
 ### `__be64`
 
@@ -12896,7 +12896,7 @@ type __le64 = __u64;
 type __be64 = __u64;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:50`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L50)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:50`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L50)*
 
 ### `__sum16`
 
@@ -12904,7 +12904,7 @@ type __be64 = __u64;
 type __sum16 = __u16;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:51`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L51)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:51`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L51)*
 
 ### `__wsum`
 
@@ -12912,7 +12912,7 @@ type __sum16 = __u16;
 type __wsum = __u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:52`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L52)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:52`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L52)*
 
 ### `__poll_t`
 
@@ -12920,7 +12920,7 @@ type __wsum = __u32;
 type __poll_t = crate::ctypes::c_uint;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:53`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L53)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:53`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L53)*
 
 ### `cap_user_header_t`
 
@@ -12928,7 +12928,7 @@ type __poll_t = crate::ctypes::c_uint;
 type cap_user_header_t = *mut __user_cap_header_struct;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:54`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L54)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:54`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L54)*
 
 ### `cap_user_data_t`
 
@@ -12936,7 +12936,7 @@ type cap_user_header_t = *mut __user_cap_header_struct;
 type cap_user_data_t = *mut __user_cap_data_struct;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:55`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L55)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:55`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L55)*
 
 ### `__kernel_rwf_t`
 
@@ -12944,7 +12944,7 @@ type cap_user_data_t = *mut __user_cap_data_struct;
 type __kernel_rwf_t = crate::ctypes::c_int;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:56`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L56)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:56`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L56)*
 
 ### `sigset_t`
 
@@ -12952,7 +12952,7 @@ type __kernel_rwf_t = crate::ctypes::c_int;
 type sigset_t = crate::ctypes::c_ulong;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:57`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L57)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:57`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L57)*
 
 ### `__signalfn_t`
 
@@ -12960,7 +12960,7 @@ type sigset_t = crate::ctypes::c_ulong;
 type __signalfn_t = ::core::option::Option<fn(crate::ctypes::c_int)>;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:58`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L58)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:58`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L58)*
 
 ### `__sighandler_t`
 
@@ -12968,7 +12968,7 @@ type __signalfn_t = ::core::option::Option<fn(crate::ctypes::c_int)>;
 type __sighandler_t = __signalfn_t;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:59`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L59)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:59`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L59)*
 
 ### `__restorefn_t`
 
@@ -12976,7 +12976,7 @@ type __sighandler_t = __signalfn_t;
 type __restorefn_t = ::core::option::Option<fn()>;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:60`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L60)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:60`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L60)*
 
 ### `__sigrestore_t`
 
@@ -12984,7 +12984,7 @@ type __restorefn_t = ::core::option::Option<fn()>;
 type __sigrestore_t = __restorefn_t;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:61`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L61)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:61`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L61)*
 
 ### `stack_t`
 
@@ -12992,7 +12992,7 @@ type __sigrestore_t = __restorefn_t;
 type stack_t = sigaltstack;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:62`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L62)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:62`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L62)*
 
 ### `sigval_t`
 
@@ -13000,7 +13000,7 @@ type stack_t = sigaltstack;
 type sigval_t = sigval;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:63`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L63)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:63`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L63)*
 
 ### `siginfo_t`
 
@@ -13008,7 +13008,7 @@ type sigval_t = sigval;
 type siginfo_t = siginfo;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:64`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L64)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:64`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L64)*
 
 ### `sigevent_t`
 
@@ -13016,7 +13016,7 @@ type siginfo_t = siginfo;
 type sigevent_t = sigevent;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:65`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L65)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:65`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L65)*
 
 ### `cc_t`
 
@@ -13024,7 +13024,7 @@ type sigevent_t = sigevent;
 type cc_t = crate::ctypes::c_uchar;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:66`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L66)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:66`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L66)*
 
 ### `speed_t`
 
@@ -13032,7 +13032,7 @@ type cc_t = crate::ctypes::c_uchar;
 type speed_t = crate::ctypes::c_uint;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:67`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L67)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:67`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L67)*
 
 ### `tcflag_t`
 
@@ -13040,7 +13040,7 @@ type speed_t = crate::ctypes::c_uint;
 type tcflag_t = crate::ctypes::c_uint;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:68`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L68)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:68`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L68)*
 
 ### `__fsword_t`
 
@@ -13048,7 +13048,7 @@ type tcflag_t = crate::ctypes::c_uint;
 type __fsword_t = __kernel_long_t;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:69`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L69)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:69`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L69)*
 
 ## Constants
 
@@ -13057,12507 +13057,12507 @@ type __fsword_t = __kernel_long_t;
 const LINUX_VERSION_CODE: u32 = 397_312u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1045`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1045)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1045`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1045)*
 
 ### `LINUX_VERSION_MAJOR`
 ```rust
 const LINUX_VERSION_MAJOR: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1046`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1046)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1046`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1046)*
 
 ### `LINUX_VERSION_PATCHLEVEL`
 ```rust
 const LINUX_VERSION_PATCHLEVEL: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1047`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1047)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1047`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1047)*
 
 ### `LINUX_VERSION_SUBLEVEL`
 ```rust
 const LINUX_VERSION_SUBLEVEL: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1048`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1048)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1048`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1048)*
 
 ### `__BITS_PER_LONG_LONG`
 ```rust
 const __BITS_PER_LONG_LONG: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1049`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1049)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1049`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1049)*
 
 ### `__FD_SETSIZE`
 ```rust
 const __FD_SETSIZE: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1050`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1050)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1050`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1050)*
 
 ### `_LINUX_CAPABILITY_VERSION_1`
 ```rust
 const _LINUX_CAPABILITY_VERSION_1: u32 = 429_392_688u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1051`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1051)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1051`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1051)*
 
 ### `_LINUX_CAPABILITY_U32S_1`
 ```rust
 const _LINUX_CAPABILITY_U32S_1: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1052`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1052)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1052`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1052)*
 
 ### `_LINUX_CAPABILITY_VERSION_2`
 ```rust
 const _LINUX_CAPABILITY_VERSION_2: u32 = 537_333_798u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1053`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1053)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1053`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1053)*
 
 ### `_LINUX_CAPABILITY_U32S_2`
 ```rust
 const _LINUX_CAPABILITY_U32S_2: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1054`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1054)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1054`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1054)*
 
 ### `_LINUX_CAPABILITY_VERSION_3`
 ```rust
 const _LINUX_CAPABILITY_VERSION_3: u32 = 537_396_514u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1055`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1055)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1055`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1055)*
 
 ### `_LINUX_CAPABILITY_U32S_3`
 ```rust
 const _LINUX_CAPABILITY_U32S_3: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1056`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1056)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1056`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1056)*
 
 ### `VFS_CAP_REVISION_MASK`
 ```rust
 const VFS_CAP_REVISION_MASK: u32 = 4_278_190_080u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1057`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1057)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1057`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1057)*
 
 ### `VFS_CAP_REVISION_SHIFT`
 ```rust
 const VFS_CAP_REVISION_SHIFT: u32 = 24u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1058`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1058)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1058`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1058)*
 
 ### `VFS_CAP_FLAGS_MASK`
 ```rust
 const VFS_CAP_FLAGS_MASK: i64 = -4_278_190_081i64;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1059`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1059)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1059`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1059)*
 
 ### `VFS_CAP_FLAGS_EFFECTIVE`
 ```rust
 const VFS_CAP_FLAGS_EFFECTIVE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1060`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1060)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1060`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1060)*
 
 ### `VFS_CAP_REVISION_1`
 ```rust
 const VFS_CAP_REVISION_1: u32 = 16_777_216u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1061`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1061)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1061`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1061)*
 
 ### `VFS_CAP_U32_1`
 ```rust
 const VFS_CAP_U32_1: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1062`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1062)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1062`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1062)*
 
 ### `VFS_CAP_REVISION_2`
 ```rust
 const VFS_CAP_REVISION_2: u32 = 33_554_432u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1063`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1063)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1063`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1063)*
 
 ### `VFS_CAP_U32_2`
 ```rust
 const VFS_CAP_U32_2: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1064`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1064)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1064`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1064)*
 
 ### `VFS_CAP_REVISION_3`
 ```rust
 const VFS_CAP_REVISION_3: u32 = 50_331_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1065`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1065)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1065`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1065)*
 
 ### `VFS_CAP_U32_3`
 ```rust
 const VFS_CAP_U32_3: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1066`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1066)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1066`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1066)*
 
 ### `VFS_CAP_U32`
 ```rust
 const VFS_CAP_U32: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1067`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1067)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1067`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1067)*
 
 ### `VFS_CAP_REVISION`
 ```rust
 const VFS_CAP_REVISION: u32 = 50_331_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1068`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1068)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1068`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1068)*
 
 ### `_LINUX_CAPABILITY_VERSION`
 ```rust
 const _LINUX_CAPABILITY_VERSION: u32 = 429_392_688u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1069`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1069)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1069`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1069)*
 
 ### `_LINUX_CAPABILITY_U32S`
 ```rust
 const _LINUX_CAPABILITY_U32S: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1070`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1070)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1070`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1070)*
 
 ### `CAP_CHOWN`
 ```rust
 const CAP_CHOWN: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1071`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1071)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1071`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1071)*
 
 ### `CAP_DAC_OVERRIDE`
 ```rust
 const CAP_DAC_OVERRIDE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1072`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1072)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1072`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1072)*
 
 ### `CAP_DAC_READ_SEARCH`
 ```rust
 const CAP_DAC_READ_SEARCH: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1073`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1073)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1073`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1073)*
 
 ### `CAP_FOWNER`
 ```rust
 const CAP_FOWNER: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1074`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1074)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1074`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1074)*
 
 ### `CAP_FSETID`
 ```rust
 const CAP_FSETID: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1075`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1075)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1075`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1075)*
 
 ### `CAP_KILL`
 ```rust
 const CAP_KILL: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1076`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1076)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1076`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1076)*
 
 ### `CAP_SETGID`
 ```rust
 const CAP_SETGID: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1077`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1077)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1077`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1077)*
 
 ### `CAP_SETUID`
 ```rust
 const CAP_SETUID: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1078`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1078)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1078`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1078)*
 
 ### `CAP_SETPCAP`
 ```rust
 const CAP_SETPCAP: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1079`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1079)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1079`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1079)*
 
 ### `CAP_LINUX_IMMUTABLE`
 ```rust
 const CAP_LINUX_IMMUTABLE: u32 = 9u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1080`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1080)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1080`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1080)*
 
 ### `CAP_NET_BIND_SERVICE`
 ```rust
 const CAP_NET_BIND_SERVICE: u32 = 10u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1081`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1081)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1081`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1081)*
 
 ### `CAP_NET_BROADCAST`
 ```rust
 const CAP_NET_BROADCAST: u32 = 11u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1082`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1082)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1082`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1082)*
 
 ### `CAP_NET_ADMIN`
 ```rust
 const CAP_NET_ADMIN: u32 = 12u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1083`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1083)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1083`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1083)*
 
 ### `CAP_NET_RAW`
 ```rust
 const CAP_NET_RAW: u32 = 13u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1084`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1084)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1084`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1084)*
 
 ### `CAP_IPC_LOCK`
 ```rust
 const CAP_IPC_LOCK: u32 = 14u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1085`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1085)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1085`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1085)*
 
 ### `CAP_IPC_OWNER`
 ```rust
 const CAP_IPC_OWNER: u32 = 15u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1086`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1086)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1086`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1086)*
 
 ### `CAP_SYS_MODULE`
 ```rust
 const CAP_SYS_MODULE: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1087`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1087)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1087`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1087)*
 
 ### `CAP_SYS_RAWIO`
 ```rust
 const CAP_SYS_RAWIO: u32 = 17u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1088`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1088)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1088`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1088)*
 
 ### `CAP_SYS_CHROOT`
 ```rust
 const CAP_SYS_CHROOT: u32 = 18u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1089`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1089)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1089`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1089)*
 
 ### `CAP_SYS_PTRACE`
 ```rust
 const CAP_SYS_PTRACE: u32 = 19u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1090`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1090)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1090`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1090)*
 
 ### `CAP_SYS_PACCT`
 ```rust
 const CAP_SYS_PACCT: u32 = 20u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1091`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1091)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1091`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1091)*
 
 ### `CAP_SYS_ADMIN`
 ```rust
 const CAP_SYS_ADMIN: u32 = 21u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1092`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1092)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1092`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1092)*
 
 ### `CAP_SYS_BOOT`
 ```rust
 const CAP_SYS_BOOT: u32 = 22u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1093`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1093)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1093`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1093)*
 
 ### `CAP_SYS_NICE`
 ```rust
 const CAP_SYS_NICE: u32 = 23u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1094`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1094)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1094`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1094)*
 
 ### `CAP_SYS_RESOURCE`
 ```rust
 const CAP_SYS_RESOURCE: u32 = 24u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1095`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1095)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1095`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1095)*
 
 ### `CAP_SYS_TIME`
 ```rust
 const CAP_SYS_TIME: u32 = 25u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1096`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1096)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1096`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1096)*
 
 ### `CAP_SYS_TTY_CONFIG`
 ```rust
 const CAP_SYS_TTY_CONFIG: u32 = 26u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1097`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1097)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1097`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1097)*
 
 ### `CAP_MKNOD`
 ```rust
 const CAP_MKNOD: u32 = 27u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1098`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1098)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1098`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1098)*
 
 ### `CAP_LEASE`
 ```rust
 const CAP_LEASE: u32 = 28u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1099`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1099)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1099`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1099)*
 
 ### `CAP_AUDIT_WRITE`
 ```rust
 const CAP_AUDIT_WRITE: u32 = 29u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1100`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1100)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1100`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1100)*
 
 ### `CAP_AUDIT_CONTROL`
 ```rust
 const CAP_AUDIT_CONTROL: u32 = 30u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1101`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1101)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1101`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1101)*
 
 ### `CAP_SETFCAP`
 ```rust
 const CAP_SETFCAP: u32 = 31u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1102`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1102)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1102`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1102)*
 
 ### `CAP_MAC_OVERRIDE`
 ```rust
 const CAP_MAC_OVERRIDE: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1103`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1103)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1103`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1103)*
 
 ### `CAP_MAC_ADMIN`
 ```rust
 const CAP_MAC_ADMIN: u32 = 33u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1104`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1104)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1104`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1104)*
 
 ### `CAP_SYSLOG`
 ```rust
 const CAP_SYSLOG: u32 = 34u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1105`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1105)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1105`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1105)*
 
 ### `CAP_WAKE_ALARM`
 ```rust
 const CAP_WAKE_ALARM: u32 = 35u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1106`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1106)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1106`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1106)*
 
 ### `CAP_BLOCK_SUSPEND`
 ```rust
 const CAP_BLOCK_SUSPEND: u32 = 36u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1107`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1107)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1107`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1107)*
 
 ### `CAP_AUDIT_READ`
 ```rust
 const CAP_AUDIT_READ: u32 = 37u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1108`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1108)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1108`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1108)*
 
 ### `CAP_PERFMON`
 ```rust
 const CAP_PERFMON: u32 = 38u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1109`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1109)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1109`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1109)*
 
 ### `CAP_BPF`
 ```rust
 const CAP_BPF: u32 = 39u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1110`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1110)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1110`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1110)*
 
 ### `CAP_CHECKPOINT_RESTORE`
 ```rust
 const CAP_CHECKPOINT_RESTORE: u32 = 40u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1111`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1111)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1111`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1111)*
 
 ### `CAP_LAST_CAP`
 ```rust
 const CAP_LAST_CAP: u32 = 40u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1112`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1112)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1112`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1112)*
 
 ### `O_ACCMODE`
 ```rust
 const O_ACCMODE: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1113`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1113)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1113`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1113)*
 
 ### `O_RDONLY`
 ```rust
 const O_RDONLY: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1114`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1114)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1114`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1114)*
 
 ### `O_WRONLY`
 ```rust
 const O_WRONLY: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1115`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1115)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1115`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1115)*
 
 ### `O_RDWR`
 ```rust
 const O_RDWR: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1116`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1116)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1116`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1116)*
 
 ### `O_CREAT`
 ```rust
 const O_CREAT: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1117`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1117)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1117`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1117)*
 
 ### `O_EXCL`
 ```rust
 const O_EXCL: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1118`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1118)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1118`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1118)*
 
 ### `O_NOCTTY`
 ```rust
 const O_NOCTTY: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1119`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1119)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1119`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1119)*
 
 ### `O_TRUNC`
 ```rust
 const O_TRUNC: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1120`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1120)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1120`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1120)*
 
 ### `O_APPEND`
 ```rust
 const O_APPEND: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1121`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1121)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1121`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1121)*
 
 ### `O_NONBLOCK`
 ```rust
 const O_NONBLOCK: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1122`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1122)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1122`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1122)*
 
 ### `O_DSYNC`
 ```rust
 const O_DSYNC: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1123`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1123)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1123`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1123)*
 
 ### `FASYNC`
 ```rust
 const FASYNC: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1124`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1124)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1124`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1124)*
 
 ### `O_DIRECT`
 ```rust
 const O_DIRECT: u32 = 16_384u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1125`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1125)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1125`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1125)*
 
 ### `O_LARGEFILE`
 ```rust
 const O_LARGEFILE: u32 = 32_768u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1126`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1126)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1126`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1126)*
 
 ### `O_DIRECTORY`
 ```rust
 const O_DIRECTORY: u32 = 65_536u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1127`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1127)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1127`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1127)*
 
 ### `O_NOFOLLOW`
 ```rust
 const O_NOFOLLOW: u32 = 131_072u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1128`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1128)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1128`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1128)*
 
 ### `O_NOATIME`
 ```rust
 const O_NOATIME: u32 = 262_144u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1129`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1129)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1129`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1129)*
 
 ### `O_CLOEXEC`
 ```rust
 const O_CLOEXEC: u32 = 524_288u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1130`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1130)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1130`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1130)*
 
 ### `__O_SYNC`
 ```rust
 const __O_SYNC: u32 = 1_048_576u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1131`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1131)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1131`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1131)*
 
 ### `O_SYNC`
 ```rust
 const O_SYNC: u32 = 1_052_672u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1132`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1132)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1132`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1132)*
 
 ### `O_PATH`
 ```rust
 const O_PATH: u32 = 2_097_152u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1133`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1133)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1133`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1133)*
 
 ### `__O_TMPFILE`
 ```rust
 const __O_TMPFILE: u32 = 4_194_304u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1134`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1134)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1134`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1134)*
 
 ### `O_TMPFILE`
 ```rust
 const O_TMPFILE: u32 = 4_259_840u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1135`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1135)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1135`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1135)*
 
 ### `O_NDELAY`
 ```rust
 const O_NDELAY: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1136`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1136)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1136`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1136)*
 
 ### `F_DUPFD`
 ```rust
 const F_DUPFD: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1137`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1137)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1137`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1137)*
 
 ### `F_GETFD`
 ```rust
 const F_GETFD: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1138`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1138)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1138`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1138)*
 
 ### `F_SETFD`
 ```rust
 const F_SETFD: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1139`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1139)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1139`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1139)*
 
 ### `F_GETFL`
 ```rust
 const F_GETFL: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1140`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1140)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1140`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1140)*
 
 ### `F_SETFL`
 ```rust
 const F_SETFL: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1141`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1141)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1141`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1141)*
 
 ### `F_GETLK`
 ```rust
 const F_GETLK: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1142`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1142)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1142`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1142)*
 
 ### `F_SETLK`
 ```rust
 const F_SETLK: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1143`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1143)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1143`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1143)*
 
 ### `F_SETLKW`
 ```rust
 const F_SETLKW: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1144`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1144)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1144`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1144)*
 
 ### `F_SETOWN`
 ```rust
 const F_SETOWN: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1145`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1145)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1145`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1145)*
 
 ### `F_GETOWN`
 ```rust
 const F_GETOWN: u32 = 9u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1146`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1146)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1146`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1146)*
 
 ### `F_SETSIG`
 ```rust
 const F_SETSIG: u32 = 10u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1147`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1147)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1147`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1147)*
 
 ### `F_GETSIG`
 ```rust
 const F_GETSIG: u32 = 11u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1148`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1148)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1148`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1148)*
 
 ### `F_SETOWN_EX`
 ```rust
 const F_SETOWN_EX: u32 = 15u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1149`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1149)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1149`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1149)*
 
 ### `F_GETOWN_EX`
 ```rust
 const F_GETOWN_EX: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1150`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1150)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1150`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1150)*
 
 ### `F_GETOWNER_UIDS`
 ```rust
 const F_GETOWNER_UIDS: u32 = 17u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1151`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1151)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1151`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1151)*
 
 ### `F_OFD_GETLK`
 ```rust
 const F_OFD_GETLK: u32 = 36u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1152`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1152)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1152`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1152)*
 
 ### `F_OFD_SETLK`
 ```rust
 const F_OFD_SETLK: u32 = 37u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1153`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1153)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1153`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1153)*
 
 ### `F_OFD_SETLKW`
 ```rust
 const F_OFD_SETLKW: u32 = 38u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1154`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1154)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1154`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1154)*
 
 ### `F_OWNER_TID`
 ```rust
 const F_OWNER_TID: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1155`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1155)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1155`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1155)*
 
 ### `F_OWNER_PID`
 ```rust
 const F_OWNER_PID: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1156`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1156)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1156`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1156)*
 
 ### `F_OWNER_PGRP`
 ```rust
 const F_OWNER_PGRP: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1157`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1157)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1157`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1157)*
 
 ### `FD_CLOEXEC`
 ```rust
 const FD_CLOEXEC: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1158`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1158)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1158`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1158)*
 
 ### `F_RDLCK`
 ```rust
 const F_RDLCK: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1159`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1159)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1159`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1159)*
 
 ### `F_WRLCK`
 ```rust
 const F_WRLCK: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1160`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1160)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1160`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1160)*
 
 ### `F_UNLCK`
 ```rust
 const F_UNLCK: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1161`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1161)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1161`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1161)*
 
 ### `F_EXLCK`
 ```rust
 const F_EXLCK: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1162`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1162)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1162`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1162)*
 
 ### `F_SHLCK`
 ```rust
 const F_SHLCK: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1163`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1163)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1163`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1163)*
 
 ### `LOCK_SH`
 ```rust
 const LOCK_SH: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1164`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1164)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1164`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1164)*
 
 ### `LOCK_EX`
 ```rust
 const LOCK_EX: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1165`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1165)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1165`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1165)*
 
 ### `LOCK_NB`
 ```rust
 const LOCK_NB: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1166`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1166)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1166`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1166)*
 
 ### `LOCK_UN`
 ```rust
 const LOCK_UN: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1167`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1167)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1167`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1167)*
 
 ### `LOCK_MAND`
 ```rust
 const LOCK_MAND: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1168`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1168)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1168`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1168)*
 
 ### `LOCK_READ`
 ```rust
 const LOCK_READ: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1169`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1169)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1169`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1169)*
 
 ### `LOCK_WRITE`
 ```rust
 const LOCK_WRITE: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1170`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1170)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1170`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1170)*
 
 ### `LOCK_RW`
 ```rust
 const LOCK_RW: u32 = 192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1171`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1171)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1171`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1171)*
 
 ### `F_LINUX_SPECIFIC_BASE`
 ```rust
 const F_LINUX_SPECIFIC_BASE: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1172`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1172)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1172`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1172)*
 
 ### `RESOLVE_NO_XDEV`
 ```rust
 const RESOLVE_NO_XDEV: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1173`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1173)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1173`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1173)*
 
 ### `RESOLVE_NO_MAGICLINKS`
 ```rust
 const RESOLVE_NO_MAGICLINKS: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1174`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1174)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1174`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1174)*
 
 ### `RESOLVE_NO_SYMLINKS`
 ```rust
 const RESOLVE_NO_SYMLINKS: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1175`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1175)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1175`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1175)*
 
 ### `RESOLVE_BENEATH`
 ```rust
 const RESOLVE_BENEATH: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1176`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1176)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1176`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1176)*
 
 ### `RESOLVE_IN_ROOT`
 ```rust
 const RESOLVE_IN_ROOT: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1177`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1177)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1177`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1177)*
 
 ### `RESOLVE_CACHED`
 ```rust
 const RESOLVE_CACHED: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1178`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1178)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1178`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1178)*
 
 ### `F_SETLEASE`
 ```rust
 const F_SETLEASE: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1179`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1179)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1179`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1179)*
 
 ### `F_GETLEASE`
 ```rust
 const F_GETLEASE: u32 = 1_025u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1180`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1180)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1180`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1180)*
 
 ### `F_NOTIFY`
 ```rust
 const F_NOTIFY: u32 = 1_026u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1181`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1181)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1181`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1181)*
 
 ### `F_DUPFD_QUERY`
 ```rust
 const F_DUPFD_QUERY: u32 = 1_027u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1182`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1182)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1182`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1182)*
 
 ### `F_CREATED_QUERY`
 ```rust
 const F_CREATED_QUERY: u32 = 1_028u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1183`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1183)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1183`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1183)*
 
 ### `F_CANCELLK`
 ```rust
 const F_CANCELLK: u32 = 1_029u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1184`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1184)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1184`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1184)*
 
 ### `F_DUPFD_CLOEXEC`
 ```rust
 const F_DUPFD_CLOEXEC: u32 = 1_030u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1185`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1185)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1185`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1185)*
 
 ### `F_SETPIPE_SZ`
 ```rust
 const F_SETPIPE_SZ: u32 = 1_031u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1186`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1186)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1186`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1186)*
 
 ### `F_GETPIPE_SZ`
 ```rust
 const F_GETPIPE_SZ: u32 = 1_032u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1187`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1187)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1187`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1187)*
 
 ### `F_ADD_SEALS`
 ```rust
 const F_ADD_SEALS: u32 = 1_033u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1188`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1188)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1188`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1188)*
 
 ### `F_GET_SEALS`
 ```rust
 const F_GET_SEALS: u32 = 1_034u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1189`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1189)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1189`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1189)*
 
 ### `F_SEAL_SEAL`
 ```rust
 const F_SEAL_SEAL: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1190`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1190)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1190`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1190)*
 
 ### `F_SEAL_SHRINK`
 ```rust
 const F_SEAL_SHRINK: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1191`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1191)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1191`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1191)*
 
 ### `F_SEAL_GROW`
 ```rust
 const F_SEAL_GROW: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1192`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1192)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1192`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1192)*
 
 ### `F_SEAL_WRITE`
 ```rust
 const F_SEAL_WRITE: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1193`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1193)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1193`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1193)*
 
 ### `F_SEAL_FUTURE_WRITE`
 ```rust
 const F_SEAL_FUTURE_WRITE: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1194`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1194)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1194`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1194)*
 
 ### `F_SEAL_EXEC`
 ```rust
 const F_SEAL_EXEC: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1195`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1195)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1195`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1195)*
 
 ### `F_GET_RW_HINT`
 ```rust
 const F_GET_RW_HINT: u32 = 1_035u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1196`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1196)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1196`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1196)*
 
 ### `F_SET_RW_HINT`
 ```rust
 const F_SET_RW_HINT: u32 = 1_036u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1197`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1197)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1197`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1197)*
 
 ### `F_GET_FILE_RW_HINT`
 ```rust
 const F_GET_FILE_RW_HINT: u32 = 1_037u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1198`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1198)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1198`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1198)*
 
 ### `F_SET_FILE_RW_HINT`
 ```rust
 const F_SET_FILE_RW_HINT: u32 = 1_038u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1199`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1199)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1199`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1199)*
 
 ### `RWH_WRITE_LIFE_NOT_SET`
 ```rust
 const RWH_WRITE_LIFE_NOT_SET: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1200`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1200)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1200`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1200)*
 
 ### `RWH_WRITE_LIFE_NONE`
 ```rust
 const RWH_WRITE_LIFE_NONE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1201`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1201)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1201`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1201)*
 
 ### `RWH_WRITE_LIFE_SHORT`
 ```rust
 const RWH_WRITE_LIFE_SHORT: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1202`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1202)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1202`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1202)*
 
 ### `RWH_WRITE_LIFE_MEDIUM`
 ```rust
 const RWH_WRITE_LIFE_MEDIUM: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1203`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1203)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1203`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1203)*
 
 ### `RWH_WRITE_LIFE_LONG`
 ```rust
 const RWH_WRITE_LIFE_LONG: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1204`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1204)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1204`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1204)*
 
 ### `RWH_WRITE_LIFE_EXTREME`
 ```rust
 const RWH_WRITE_LIFE_EXTREME: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1205`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1205)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1205`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1205)*
 
 ### `RWF_WRITE_LIFE_NOT_SET`
 ```rust
 const RWF_WRITE_LIFE_NOT_SET: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1206`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1206)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1206`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1206)*
 
 ### `DN_ACCESS`
 ```rust
 const DN_ACCESS: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1207`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1207)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1207`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1207)*
 
 ### `DN_MODIFY`
 ```rust
 const DN_MODIFY: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1208`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1208)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1208`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1208)*
 
 ### `DN_CREATE`
 ```rust
 const DN_CREATE: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1209`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1209)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1209`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1209)*
 
 ### `DN_DELETE`
 ```rust
 const DN_DELETE: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1210`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1210)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1210`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1210)*
 
 ### `DN_RENAME`
 ```rust
 const DN_RENAME: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1211`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1211)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1211`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1211)*
 
 ### `DN_ATTRIB`
 ```rust
 const DN_ATTRIB: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1212`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1212)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1212`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1212)*
 
 ### `DN_MULTISHOT`
 ```rust
 const DN_MULTISHOT: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1213`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1213)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1213`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1213)*
 
 ### `AT_FDCWD`
 ```rust
 const AT_FDCWD: i32 = -100i32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1214`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1214)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1214`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1214)*
 
 ### `AT_SYMLINK_NOFOLLOW`
 ```rust
 const AT_SYMLINK_NOFOLLOW: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1215`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1215)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1215`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1215)*
 
 ### `AT_SYMLINK_FOLLOW`
 ```rust
 const AT_SYMLINK_FOLLOW: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1216`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1216)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1216`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1216)*
 
 ### `AT_NO_AUTOMOUNT`
 ```rust
 const AT_NO_AUTOMOUNT: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1217`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1217)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1217`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1217)*
 
 ### `AT_EMPTY_PATH`
 ```rust
 const AT_EMPTY_PATH: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1218`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1218)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1218`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1218)*
 
 ### `AT_STATX_SYNC_TYPE`
 ```rust
 const AT_STATX_SYNC_TYPE: u32 = 24_576u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1219`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1219)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1219`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1219)*
 
 ### `AT_STATX_SYNC_AS_STAT`
 ```rust
 const AT_STATX_SYNC_AS_STAT: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1220`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1220)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1220`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1220)*
 
 ### `AT_STATX_FORCE_SYNC`
 ```rust
 const AT_STATX_FORCE_SYNC: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1221`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1221)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1221`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1221)*
 
 ### `AT_STATX_DONT_SYNC`
 ```rust
 const AT_STATX_DONT_SYNC: u32 = 16_384u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1222`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1222)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1222`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1222)*
 
 ### `AT_RECURSIVE`
 ```rust
 const AT_RECURSIVE: u32 = 32_768u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1223`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1223)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1223`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1223)*
 
 ### `AT_RENAME_NOREPLACE`
 ```rust
 const AT_RENAME_NOREPLACE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1224`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1224)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1224`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1224)*
 
 ### `AT_RENAME_EXCHANGE`
 ```rust
 const AT_RENAME_EXCHANGE: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1225`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1225)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1225`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1225)*
 
 ### `AT_RENAME_WHITEOUT`
 ```rust
 const AT_RENAME_WHITEOUT: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1226`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1226)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1226`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1226)*
 
 ### `AT_EACCESS`
 ```rust
 const AT_EACCESS: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1227`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1227)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1227`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1227)*
 
 ### `AT_REMOVEDIR`
 ```rust
 const AT_REMOVEDIR: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1228`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1228)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1228`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1228)*
 
 ### `AT_HANDLE_FID`
 ```rust
 const AT_HANDLE_FID: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1229`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1229)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1229`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1229)*
 
 ### `AT_HANDLE_MNT_ID_UNIQUE`
 ```rust
 const AT_HANDLE_MNT_ID_UNIQUE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1230`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1230)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1230`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1230)*
 
 ### `AT_HANDLE_CONNECTABLE`
 ```rust
 const AT_HANDLE_CONNECTABLE: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1231`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1231)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1231`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1231)*
 
 ### `AT_EXECVE_CHECK`
 ```rust
 const AT_EXECVE_CHECK: u32 = 65_536u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1232`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1232)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1232`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1232)*
 
 ### `EPOLL_CLOEXEC`
 ```rust
 const EPOLL_CLOEXEC: u32 = 524_288u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1233`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1233)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1233`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1233)*
 
 ### `EPOLL_CTL_ADD`
 ```rust
 const EPOLL_CTL_ADD: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1234`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1234)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1234`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1234)*
 
 ### `EPOLL_CTL_DEL`
 ```rust
 const EPOLL_CTL_DEL: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1235`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1235)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1235`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1235)*
 
 ### `EPOLL_CTL_MOD`
 ```rust
 const EPOLL_CTL_MOD: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1236`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1236)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1236`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1236)*
 
 ### `EPOLL_IOC_TYPE`
 ```rust
 const EPOLL_IOC_TYPE: u32 = 138u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1237`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1237)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1237`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1237)*
 
 ### `POSIX_FADV_NORMAL`
 ```rust
 const POSIX_FADV_NORMAL: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1238`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1238)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1238`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1238)*
 
 ### `POSIX_FADV_RANDOM`
 ```rust
 const POSIX_FADV_RANDOM: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1239`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1239)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1239`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1239)*
 
 ### `POSIX_FADV_SEQUENTIAL`
 ```rust
 const POSIX_FADV_SEQUENTIAL: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1240`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1240)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1240`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1240)*
 
 ### `POSIX_FADV_WILLNEED`
 ```rust
 const POSIX_FADV_WILLNEED: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1241`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1241)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1241`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1241)*
 
 ### `POSIX_FADV_DONTNEED`
 ```rust
 const POSIX_FADV_DONTNEED: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1242`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1242)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1242`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1242)*
 
 ### `POSIX_FADV_NOREUSE`
 ```rust
 const POSIX_FADV_NOREUSE: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1243`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1243)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1243`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1243)*
 
 ### `FALLOC_FL_ALLOCATE_RANGE`
 ```rust
 const FALLOC_FL_ALLOCATE_RANGE: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1244`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1244)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1244`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1244)*
 
 ### `FALLOC_FL_KEEP_SIZE`
 ```rust
 const FALLOC_FL_KEEP_SIZE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1245`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1245)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1245`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1245)*
 
 ### `FALLOC_FL_PUNCH_HOLE`
 ```rust
 const FALLOC_FL_PUNCH_HOLE: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1246`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1246)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1246`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1246)*
 
 ### `FALLOC_FL_NO_HIDE_STALE`
 ```rust
 const FALLOC_FL_NO_HIDE_STALE: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1247`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1247)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1247`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1247)*
 
 ### `FALLOC_FL_COLLAPSE_RANGE`
 ```rust
 const FALLOC_FL_COLLAPSE_RANGE: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1248`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1248)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1248`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1248)*
 
 ### `FALLOC_FL_ZERO_RANGE`
 ```rust
 const FALLOC_FL_ZERO_RANGE: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1249`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1249)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1249`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1249)*
 
 ### `FALLOC_FL_INSERT_RANGE`
 ```rust
 const FALLOC_FL_INSERT_RANGE: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1250`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1250)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1250`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1250)*
 
 ### `FALLOC_FL_UNSHARE_RANGE`
 ```rust
 const FALLOC_FL_UNSHARE_RANGE: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1251`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1251)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1251`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1251)*
 
 ### `NR_OPEN`
 ```rust
 const NR_OPEN: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1252`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1252)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1252`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1252)*
 
 ### `NGROUPS_MAX`
 ```rust
 const NGROUPS_MAX: u32 = 65_536u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1253`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1253)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1253`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1253)*
 
 ### `ARG_MAX`
 ```rust
 const ARG_MAX: u32 = 131_072u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1254`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1254)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1254`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1254)*
 
 ### `LINK_MAX`
 ```rust
 const LINK_MAX: u32 = 127u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1255`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1255)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1255`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1255)*
 
 ### `MAX_CANON`
 ```rust
 const MAX_CANON: u32 = 255u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1256`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1256)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1256`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1256)*
 
 ### `MAX_INPUT`
 ```rust
 const MAX_INPUT: u32 = 255u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1257`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1257)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1257`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1257)*
 
 ### `NAME_MAX`
 ```rust
 const NAME_MAX: u32 = 255u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1258`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1258)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1258`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1258)*
 
 ### `PATH_MAX`
 ```rust
 const PATH_MAX: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1259`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1259)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1259`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1259)*
 
 ### `PIPE_BUF`
 ```rust
 const PIPE_BUF: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1260`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1260)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1260`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1260)*
 
 ### `XATTR_NAME_MAX`
 ```rust
 const XATTR_NAME_MAX: u32 = 255u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1261`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1261)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1261`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1261)*
 
 ### `XATTR_SIZE_MAX`
 ```rust
 const XATTR_SIZE_MAX: u32 = 65_536u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1262`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1262)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1262`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1262)*
 
 ### `XATTR_LIST_MAX`
 ```rust
 const XATTR_LIST_MAX: u32 = 65_536u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1263`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1263)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1263`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1263)*
 
 ### `RTSIG_MAX`
 ```rust
 const RTSIG_MAX: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1264`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1264)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1264`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1264)*
 
 ### `_IOC_NRBITS`
 ```rust
 const _IOC_NRBITS: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1265`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1265)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1265`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1265)*
 
 ### `_IOC_TYPEBITS`
 ```rust
 const _IOC_TYPEBITS: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1266`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1266)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1266`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1266)*
 
 ### `_IOC_SIZEBITS`
 ```rust
 const _IOC_SIZEBITS: u32 = 14u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1267`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1267)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1267`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1267)*
 
 ### `_IOC_DIRBITS`
 ```rust
 const _IOC_DIRBITS: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1268`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1268)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1268`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1268)*
 
 ### `_IOC_NRMASK`
 ```rust
 const _IOC_NRMASK: u32 = 255u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1269`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1269)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1269`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1269)*
 
 ### `_IOC_TYPEMASK`
 ```rust
 const _IOC_TYPEMASK: u32 = 255u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1270`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1270)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1270`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1270)*
 
 ### `_IOC_SIZEMASK`
 ```rust
 const _IOC_SIZEMASK: u32 = 16_383u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1271`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1271)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1271`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1271)*
 
 ### `_IOC_DIRMASK`
 ```rust
 const _IOC_DIRMASK: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1272`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1272)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1272`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1272)*
 
 ### `_IOC_NRSHIFT`
 ```rust
 const _IOC_NRSHIFT: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1273`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1273)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1273`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1273)*
 
 ### `_IOC_TYPESHIFT`
 ```rust
 const _IOC_TYPESHIFT: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1274`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1274)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1274`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1274)*
 
 ### `_IOC_SIZESHIFT`
 ```rust
 const _IOC_SIZESHIFT: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1275`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1275)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1275`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1275)*
 
 ### `_IOC_DIRSHIFT`
 ```rust
 const _IOC_DIRSHIFT: u32 = 30u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1276`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1276)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1276`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1276)*
 
 ### `_IOC_NONE`
 ```rust
 const _IOC_NONE: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1277`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1277)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1277`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1277)*
 
 ### `_IOC_WRITE`
 ```rust
 const _IOC_WRITE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1278`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1278)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1278`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1278)*
 
 ### `_IOC_READ`
 ```rust
 const _IOC_READ: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1279`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1279)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1279`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1279)*
 
 ### `IOC_IN`
 ```rust
 const IOC_IN: u32 = 1_073_741_824u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1280`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1280)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1280`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1280)*
 
 ### `IOC_OUT`
 ```rust
 const IOC_OUT: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1281`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1281)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1281`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1281)*
 
 ### `IOC_INOUT`
 ```rust
 const IOC_INOUT: u32 = 3_221_225_472u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1282`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1282)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1282`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1282)*
 
 ### `IOCSIZE_MASK`
 ```rust
 const IOCSIZE_MASK: u32 = 1_073_676_288u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1283`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1283)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1283`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1283)*
 
 ### `IOCSIZE_SHIFT`
 ```rust
 const IOCSIZE_SHIFT: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1284`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1284)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1284`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1284)*
 
 ### `FSCRYPT_POLICY_FLAGS_PAD_4`
 ```rust
 const FSCRYPT_POLICY_FLAGS_PAD_4: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1285`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1285)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1285`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1285)*
 
 ### `FSCRYPT_POLICY_FLAGS_PAD_8`
 ```rust
 const FSCRYPT_POLICY_FLAGS_PAD_8: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1286`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1286)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1286`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1286)*
 
 ### `FSCRYPT_POLICY_FLAGS_PAD_16`
 ```rust
 const FSCRYPT_POLICY_FLAGS_PAD_16: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1287`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1287)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1287`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1287)*
 
 ### `FSCRYPT_POLICY_FLAGS_PAD_32`
 ```rust
 const FSCRYPT_POLICY_FLAGS_PAD_32: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1288`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1288)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1288`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1288)*
 
 ### `FSCRYPT_POLICY_FLAGS_PAD_MASK`
 ```rust
 const FSCRYPT_POLICY_FLAGS_PAD_MASK: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1289`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1289)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1289`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1289)*
 
 ### `FSCRYPT_POLICY_FLAG_DIRECT_KEY`
 ```rust
 const FSCRYPT_POLICY_FLAG_DIRECT_KEY: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1290`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1290)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1290`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1290)*
 
 ### `FSCRYPT_POLICY_FLAG_IV_INO_LBLK_64`
 ```rust
 const FSCRYPT_POLICY_FLAG_IV_INO_LBLK_64: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1291`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1291)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1291`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1291)*
 
 ### `FSCRYPT_POLICY_FLAG_IV_INO_LBLK_32`
 ```rust
 const FSCRYPT_POLICY_FLAG_IV_INO_LBLK_32: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1292`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1292)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1292`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1292)*
 
 ### `FSCRYPT_MODE_AES_256_XTS`
 ```rust
 const FSCRYPT_MODE_AES_256_XTS: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1293`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1293)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1293`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1293)*
 
 ### `FSCRYPT_MODE_AES_256_CTS`
 ```rust
 const FSCRYPT_MODE_AES_256_CTS: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1294`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1294)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1294`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1294)*
 
 ### `FSCRYPT_MODE_AES_128_CBC`
 ```rust
 const FSCRYPT_MODE_AES_128_CBC: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1295`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1295)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1295`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1295)*
 
 ### `FSCRYPT_MODE_AES_128_CTS`
 ```rust
 const FSCRYPT_MODE_AES_128_CTS: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1296`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1296)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1296`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1296)*
 
 ### `FSCRYPT_MODE_SM4_XTS`
 ```rust
 const FSCRYPT_MODE_SM4_XTS: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1297`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1297)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1297`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1297)*
 
 ### `FSCRYPT_MODE_SM4_CTS`
 ```rust
 const FSCRYPT_MODE_SM4_CTS: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1298`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1298)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1298`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1298)*
 
 ### `FSCRYPT_MODE_ADIANTUM`
 ```rust
 const FSCRYPT_MODE_ADIANTUM: u32 = 9u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1299`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1299)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1299`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1299)*
 
 ### `FSCRYPT_MODE_AES_256_HCTR2`
 ```rust
 const FSCRYPT_MODE_AES_256_HCTR2: u32 = 10u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1300`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1300)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1300`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1300)*
 
 ### `FSCRYPT_POLICY_V1`
 ```rust
 const FSCRYPT_POLICY_V1: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1301`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1301)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1301`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1301)*
 
 ### `FSCRYPT_KEY_DESCRIPTOR_SIZE`
 ```rust
 const FSCRYPT_KEY_DESCRIPTOR_SIZE: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1302`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1302)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1302`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1302)*
 
 ### `FSCRYPT_KEY_DESC_PREFIX`
 ```rust
 const FSCRYPT_KEY_DESC_PREFIX: &[u8; 9];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1303`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1303)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1303`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1303)*
 
 ### `FSCRYPT_KEY_DESC_PREFIX_SIZE`
 ```rust
 const FSCRYPT_KEY_DESC_PREFIX_SIZE: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1304`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1304)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1304`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1304)*
 
 ### `FSCRYPT_MAX_KEY_SIZE`
 ```rust
 const FSCRYPT_MAX_KEY_SIZE: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1305`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1305)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1305`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1305)*
 
 ### `FSCRYPT_POLICY_V2`
 ```rust
 const FSCRYPT_POLICY_V2: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1306`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1306)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1306`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1306)*
 
 ### `FSCRYPT_KEY_IDENTIFIER_SIZE`
 ```rust
 const FSCRYPT_KEY_IDENTIFIER_SIZE: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1307`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1307)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1307`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1307)*
 
 ### `FSCRYPT_KEY_SPEC_TYPE_DESCRIPTOR`
 ```rust
 const FSCRYPT_KEY_SPEC_TYPE_DESCRIPTOR: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1308`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1308)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1308`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1308)*
 
 ### `FSCRYPT_KEY_SPEC_TYPE_IDENTIFIER`
 ```rust
 const FSCRYPT_KEY_SPEC_TYPE_IDENTIFIER: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1309`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1309)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1309`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1309)*
 
 ### `FSCRYPT_ADD_KEY_FLAG_HW_WRAPPED`
 ```rust
 const FSCRYPT_ADD_KEY_FLAG_HW_WRAPPED: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1310`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1310)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1310`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1310)*
 
 ### `FSCRYPT_KEY_REMOVAL_STATUS_FLAG_FILES_BUSY`
 ```rust
 const FSCRYPT_KEY_REMOVAL_STATUS_FLAG_FILES_BUSY: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1311`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1311)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1311`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1311)*
 
 ### `FSCRYPT_KEY_REMOVAL_STATUS_FLAG_OTHER_USERS`
 ```rust
 const FSCRYPT_KEY_REMOVAL_STATUS_FLAG_OTHER_USERS: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1312`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1312)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1312`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1312)*
 
 ### `FSCRYPT_KEY_STATUS_ABSENT`
 ```rust
 const FSCRYPT_KEY_STATUS_ABSENT: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1313`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1313)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1313`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1313)*
 
 ### `FSCRYPT_KEY_STATUS_PRESENT`
 ```rust
 const FSCRYPT_KEY_STATUS_PRESENT: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1314`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1314)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1314`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1314)*
 
 ### `FSCRYPT_KEY_STATUS_INCOMPLETELY_REMOVED`
 ```rust
 const FSCRYPT_KEY_STATUS_INCOMPLETELY_REMOVED: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1315`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1315)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1315`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1315)*
 
 ### `FSCRYPT_KEY_STATUS_FLAG_ADDED_BY_SELF`
 ```rust
 const FSCRYPT_KEY_STATUS_FLAG_ADDED_BY_SELF: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1316`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1316)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1316`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1316)*
 
 ### `FS_KEY_DESCRIPTOR_SIZE`
 ```rust
 const FS_KEY_DESCRIPTOR_SIZE: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1317`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1317)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1317`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1317)*
 
 ### `FS_POLICY_FLAGS_PAD_4`
 ```rust
 const FS_POLICY_FLAGS_PAD_4: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1318`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1318)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1318`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1318)*
 
 ### `FS_POLICY_FLAGS_PAD_8`
 ```rust
 const FS_POLICY_FLAGS_PAD_8: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1319`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1319)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1319`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1319)*
 
 ### `FS_POLICY_FLAGS_PAD_16`
 ```rust
 const FS_POLICY_FLAGS_PAD_16: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1320`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1320)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1320`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1320)*
 
 ### `FS_POLICY_FLAGS_PAD_32`
 ```rust
 const FS_POLICY_FLAGS_PAD_32: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1321`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1321)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1321`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1321)*
 
 ### `FS_POLICY_FLAGS_PAD_MASK`
 ```rust
 const FS_POLICY_FLAGS_PAD_MASK: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1322`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1322)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1322`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1322)*
 
 ### `FS_POLICY_FLAG_DIRECT_KEY`
 ```rust
 const FS_POLICY_FLAG_DIRECT_KEY: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1323`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1323)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1323`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1323)*
 
 ### `FS_POLICY_FLAGS_VALID`
 ```rust
 const FS_POLICY_FLAGS_VALID: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1324`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1324)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1324`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1324)*
 
 ### `FS_ENCRYPTION_MODE_INVALID`
 ```rust
 const FS_ENCRYPTION_MODE_INVALID: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1325`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1325)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1325`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1325)*
 
 ### `FS_ENCRYPTION_MODE_AES_256_XTS`
 ```rust
 const FS_ENCRYPTION_MODE_AES_256_XTS: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1326`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1326)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1326`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1326)*
 
 ### `FS_ENCRYPTION_MODE_AES_256_GCM`
 ```rust
 const FS_ENCRYPTION_MODE_AES_256_GCM: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1327`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1327)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1327`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1327)*
 
 ### `FS_ENCRYPTION_MODE_AES_256_CBC`
 ```rust
 const FS_ENCRYPTION_MODE_AES_256_CBC: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1328`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1328)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1328`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1328)*
 
 ### `FS_ENCRYPTION_MODE_AES_256_CTS`
 ```rust
 const FS_ENCRYPTION_MODE_AES_256_CTS: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1329`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1329)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1329`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1329)*
 
 ### `FS_ENCRYPTION_MODE_AES_128_CBC`
 ```rust
 const FS_ENCRYPTION_MODE_AES_128_CBC: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1330`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1330)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1330`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1330)*
 
 ### `FS_ENCRYPTION_MODE_AES_128_CTS`
 ```rust
 const FS_ENCRYPTION_MODE_AES_128_CTS: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1331`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1331)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1331`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1331)*
 
 ### `FS_ENCRYPTION_MODE_ADIANTUM`
 ```rust
 const FS_ENCRYPTION_MODE_ADIANTUM: u32 = 9u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1332`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1332)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1332`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1332)*
 
 ### `FS_KEY_DESC_PREFIX`
 ```rust
 const FS_KEY_DESC_PREFIX: &[u8; 9];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1333`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1333)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1333`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1333)*
 
 ### `FS_KEY_DESC_PREFIX_SIZE`
 ```rust
 const FS_KEY_DESC_PREFIX_SIZE: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1334`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1334)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1334`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1334)*
 
 ### `FS_MAX_KEY_SIZE`
 ```rust
 const FS_MAX_KEY_SIZE: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1335`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1335)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1335`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1335)*
 
 ### `MS_RDONLY`
 ```rust
 const MS_RDONLY: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1336`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1336)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1336`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1336)*
 
 ### `MS_NOSUID`
 ```rust
 const MS_NOSUID: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1337`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1337)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1337`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1337)*
 
 ### `MS_NODEV`
 ```rust
 const MS_NODEV: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1338`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1338)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1338`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1338)*
 
 ### `MS_NOEXEC`
 ```rust
 const MS_NOEXEC: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1339`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1339)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1339`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1339)*
 
 ### `MS_SYNCHRONOUS`
 ```rust
 const MS_SYNCHRONOUS: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1340`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1340)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1340`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1340)*
 
 ### `MS_REMOUNT`
 ```rust
 const MS_REMOUNT: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1341`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1341)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1341`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1341)*
 
 ### `MS_MANDLOCK`
 ```rust
 const MS_MANDLOCK: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1342`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1342)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1342`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1342)*
 
 ### `MS_DIRSYNC`
 ```rust
 const MS_DIRSYNC: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1343`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1343)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1343`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1343)*
 
 ### `MS_NOSYMFOLLOW`
 ```rust
 const MS_NOSYMFOLLOW: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1344`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1344)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1344`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1344)*
 
 ### `MS_NOATIME`
 ```rust
 const MS_NOATIME: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1345`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1345)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1345`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1345)*
 
 ### `MS_NODIRATIME`
 ```rust
 const MS_NODIRATIME: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1346`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1346)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1346`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1346)*
 
 ### `MS_BIND`
 ```rust
 const MS_BIND: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1347`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1347)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1347`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1347)*
 
 ### `MS_MOVE`
 ```rust
 const MS_MOVE: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1348`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1348)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1348`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1348)*
 
 ### `MS_REC`
 ```rust
 const MS_REC: u32 = 16_384u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1349`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1349)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1349`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1349)*
 
 ### `MS_VERBOSE`
 ```rust
 const MS_VERBOSE: u32 = 32_768u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1350`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1350)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1350`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1350)*
 
 ### `MS_SILENT`
 ```rust
 const MS_SILENT: u32 = 32_768u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1351`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1351)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1351`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1351)*
 
 ### `MS_POSIXACL`
 ```rust
 const MS_POSIXACL: u32 = 65_536u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1352`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1352)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1352`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1352)*
 
 ### `MS_UNBINDABLE`
 ```rust
 const MS_UNBINDABLE: u32 = 131_072u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1353`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1353)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1353`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1353)*
 
 ### `MS_PRIVATE`
 ```rust
 const MS_PRIVATE: u32 = 262_144u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1354`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1354)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1354`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1354)*
 
 ### `MS_SLAVE`
 ```rust
 const MS_SLAVE: u32 = 524_288u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1355`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1355)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1355`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1355)*
 
 ### `MS_SHARED`
 ```rust
 const MS_SHARED: u32 = 1_048_576u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1356`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1356)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1356`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1356)*
 
 ### `MS_RELATIME`
 ```rust
 const MS_RELATIME: u32 = 2_097_152u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1357`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1357)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1357`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1357)*
 
 ### `MS_KERNMOUNT`
 ```rust
 const MS_KERNMOUNT: u32 = 4_194_304u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1358`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1358)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1358`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1358)*
 
 ### `MS_I_VERSION`
 ```rust
 const MS_I_VERSION: u32 = 8_388_608u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1359`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1359)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1359`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1359)*
 
 ### `MS_STRICTATIME`
 ```rust
 const MS_STRICTATIME: u32 = 16_777_216u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1360`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1360)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1360`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1360)*
 
 ### `MS_LAZYTIME`
 ```rust
 const MS_LAZYTIME: u32 = 33_554_432u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1361`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1361)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1361`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1361)*
 
 ### `MS_SUBMOUNT`
 ```rust
 const MS_SUBMOUNT: u32 = 67_108_864u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1362`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1362)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1362`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1362)*
 
 ### `MS_NOREMOTELOCK`
 ```rust
 const MS_NOREMOTELOCK: u32 = 134_217_728u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1363`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1363)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1363`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1363)*
 
 ### `MS_NOSEC`
 ```rust
 const MS_NOSEC: u32 = 268_435_456u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1364`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1364)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1364`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1364)*
 
 ### `MS_BORN`
 ```rust
 const MS_BORN: u32 = 536_870_912u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1365`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1365)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1365`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1365)*
 
 ### `MS_ACTIVE`
 ```rust
 const MS_ACTIVE: u32 = 1_073_741_824u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1366`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1366)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1366`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1366)*
 
 ### `MS_NOUSER`
 ```rust
 const MS_NOUSER: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1367`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1367)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1367`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1367)*
 
 ### `MS_RMT_MASK`
 ```rust
 const MS_RMT_MASK: u32 = 41_943_121u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1368`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1368)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1368`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1368)*
 
 ### `MS_MGC_VAL`
 ```rust
 const MS_MGC_VAL: u32 = 3_236_757_504u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1369`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1369)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1369`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1369)*
 
 ### `MS_MGC_MSK`
 ```rust
 const MS_MGC_MSK: u32 = 4_294_901_760u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1370`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1370)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1370`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1370)*
 
 ### `OPEN_TREE_CLONE`
 ```rust
 const OPEN_TREE_CLONE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1371`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1371)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1371`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1371)*
 
 ### `OPEN_TREE_CLOEXEC`
 ```rust
 const OPEN_TREE_CLOEXEC: u32 = 524_288u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1372`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1372)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1372`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1372)*
 
 ### `MOVE_MOUNT_F_SYMLINKS`
 ```rust
 const MOVE_MOUNT_F_SYMLINKS: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1373`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1373)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1373`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1373)*
 
 ### `MOVE_MOUNT_F_AUTOMOUNTS`
 ```rust
 const MOVE_MOUNT_F_AUTOMOUNTS: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1374`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1374)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1374`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1374)*
 
 ### `MOVE_MOUNT_F_EMPTY_PATH`
 ```rust
 const MOVE_MOUNT_F_EMPTY_PATH: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1375`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1375)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1375`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1375)*
 
 ### `MOVE_MOUNT_T_SYMLINKS`
 ```rust
 const MOVE_MOUNT_T_SYMLINKS: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1376`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1376)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1376`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1376)*
 
 ### `MOVE_MOUNT_T_AUTOMOUNTS`
 ```rust
 const MOVE_MOUNT_T_AUTOMOUNTS: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1377`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1377)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1377`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1377)*
 
 ### `MOVE_MOUNT_T_EMPTY_PATH`
 ```rust
 const MOVE_MOUNT_T_EMPTY_PATH: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1378`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1378)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1378`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1378)*
 
 ### `MOVE_MOUNT_SET_GROUP`
 ```rust
 const MOVE_MOUNT_SET_GROUP: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1379`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1379)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1379`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1379)*
 
 ### `MOVE_MOUNT_BENEATH`
 ```rust
 const MOVE_MOUNT_BENEATH: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1380`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1380)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1380`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1380)*
 
 ### `MOVE_MOUNT__MASK`
 ```rust
 const MOVE_MOUNT__MASK: u32 = 887u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1381`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1381)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1381`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1381)*
 
 ### `FSOPEN_CLOEXEC`
 ```rust
 const FSOPEN_CLOEXEC: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1382`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1382)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1382`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1382)*
 
 ### `FSPICK_CLOEXEC`
 ```rust
 const FSPICK_CLOEXEC: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1383`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1383)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1383`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1383)*
 
 ### `FSPICK_SYMLINK_NOFOLLOW`
 ```rust
 const FSPICK_SYMLINK_NOFOLLOW: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1384`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1384)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1384`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1384)*
 
 ### `FSPICK_NO_AUTOMOUNT`
 ```rust
 const FSPICK_NO_AUTOMOUNT: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1385`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1385)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1385`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1385)*
 
 ### `FSPICK_EMPTY_PATH`
 ```rust
 const FSPICK_EMPTY_PATH: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1386`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1386)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1386`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1386)*
 
 ### `FSMOUNT_CLOEXEC`
 ```rust
 const FSMOUNT_CLOEXEC: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1387`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1387)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1387`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1387)*
 
 ### `MOUNT_ATTR_RDONLY`
 ```rust
 const MOUNT_ATTR_RDONLY: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1388`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1388)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1388`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1388)*
 
 ### `MOUNT_ATTR_NOSUID`
 ```rust
 const MOUNT_ATTR_NOSUID: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1389`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1389)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1389`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1389)*
 
 ### `MOUNT_ATTR_NODEV`
 ```rust
 const MOUNT_ATTR_NODEV: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1390`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1390)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1390`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1390)*
 
 ### `MOUNT_ATTR_NOEXEC`
 ```rust
 const MOUNT_ATTR_NOEXEC: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1391`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1391)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1391`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1391)*
 
 ### `MOUNT_ATTR__ATIME`
 ```rust
 const MOUNT_ATTR__ATIME: u32 = 112u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1392`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1392)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1392`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1392)*
 
 ### `MOUNT_ATTR_RELATIME`
 ```rust
 const MOUNT_ATTR_RELATIME: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1393`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1393)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1393`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1393)*
 
 ### `MOUNT_ATTR_NOATIME`
 ```rust
 const MOUNT_ATTR_NOATIME: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1394`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1394)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1394`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1394)*
 
 ### `MOUNT_ATTR_STRICTATIME`
 ```rust
 const MOUNT_ATTR_STRICTATIME: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1395`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1395)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1395`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1395)*
 
 ### `MOUNT_ATTR_NODIRATIME`
 ```rust
 const MOUNT_ATTR_NODIRATIME: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1396`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1396)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1396`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1396)*
 
 ### `MOUNT_ATTR_IDMAP`
 ```rust
 const MOUNT_ATTR_IDMAP: u32 = 1_048_576u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1397`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1397)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1397`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1397)*
 
 ### `MOUNT_ATTR_NOSYMFOLLOW`
 ```rust
 const MOUNT_ATTR_NOSYMFOLLOW: u32 = 2_097_152u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1398`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1398)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1398`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1398)*
 
 ### `MOUNT_ATTR_SIZE_VER0`
 ```rust
 const MOUNT_ATTR_SIZE_VER0: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1399`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1399)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1399`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1399)*
 
 ### `MNT_ID_REQ_SIZE_VER0`
 ```rust
 const MNT_ID_REQ_SIZE_VER0: u32 = 24u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1400`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1400)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1400`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1400)*
 
 ### `MNT_ID_REQ_SIZE_VER1`
 ```rust
 const MNT_ID_REQ_SIZE_VER1: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1401`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1401)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1401`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1401)*
 
 ### `STATMOUNT_SB_BASIC`
 ```rust
 const STATMOUNT_SB_BASIC: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1402`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1402)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1402`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1402)*
 
 ### `STATMOUNT_MNT_BASIC`
 ```rust
 const STATMOUNT_MNT_BASIC: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1403`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1403)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1403`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1403)*
 
 ### `STATMOUNT_PROPAGATE_FROM`
 ```rust
 const STATMOUNT_PROPAGATE_FROM: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1404`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1404)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1404`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1404)*
 
 ### `STATMOUNT_MNT_ROOT`
 ```rust
 const STATMOUNT_MNT_ROOT: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1405`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1405)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1405`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1405)*
 
 ### `STATMOUNT_MNT_POINT`
 ```rust
 const STATMOUNT_MNT_POINT: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1406`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1406)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1406`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1406)*
 
 ### `STATMOUNT_FS_TYPE`
 ```rust
 const STATMOUNT_FS_TYPE: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1407`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1407)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1407`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1407)*
 
 ### `STATMOUNT_MNT_NS_ID`
 ```rust
 const STATMOUNT_MNT_NS_ID: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1408`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1408)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1408`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1408)*
 
 ### `STATMOUNT_MNT_OPTS`
 ```rust
 const STATMOUNT_MNT_OPTS: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1409`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1409)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1409`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1409)*
 
 ### `STATMOUNT_FS_SUBTYPE`
 ```rust
 const STATMOUNT_FS_SUBTYPE: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1410`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1410)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1410`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1410)*
 
 ### `STATMOUNT_SB_SOURCE`
 ```rust
 const STATMOUNT_SB_SOURCE: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1411`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1411)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1411`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1411)*
 
 ### `STATMOUNT_OPT_ARRAY`
 ```rust
 const STATMOUNT_OPT_ARRAY: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1412`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1412)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1412`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1412)*
 
 ### `STATMOUNT_OPT_SEC_ARRAY`
 ```rust
 const STATMOUNT_OPT_SEC_ARRAY: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1413`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1413)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1413`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1413)*
 
 ### `STATMOUNT_SUPPORTED_MASK`
 ```rust
 const STATMOUNT_SUPPORTED_MASK: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1414`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1414)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1414`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1414)*
 
 ### `STATMOUNT_MNT_UIDMAP`
 ```rust
 const STATMOUNT_MNT_UIDMAP: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1415`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1415)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1415`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1415)*
 
 ### `STATMOUNT_MNT_GIDMAP`
 ```rust
 const STATMOUNT_MNT_GIDMAP: u32 = 16_384u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1416`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1416)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1416`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1416)*
 
 ### `LSMT_ROOT`
 ```rust
 const LSMT_ROOT: i32 = -1i32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1417`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1417)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1417`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1417)*
 
 ### `LISTMOUNT_REVERSE`
 ```rust
 const LISTMOUNT_REVERSE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1418`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1418)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1418`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1418)*
 
 ### `INR_OPEN_CUR`
 ```rust
 const INR_OPEN_CUR: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1419`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1419)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1419`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1419)*
 
 ### `INR_OPEN_MAX`
 ```rust
 const INR_OPEN_MAX: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1420`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1420)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1420`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1420)*
 
 ### `BLOCK_SIZE_BITS`
 ```rust
 const BLOCK_SIZE_BITS: u32 = 10u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1421`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1421)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1421`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1421)*
 
 ### `BLOCK_SIZE`
 ```rust
 const BLOCK_SIZE: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1422`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1422)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1422`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1422)*
 
 ### `IO_INTEGRITY_CHK_GUARD`
 ```rust
 const IO_INTEGRITY_CHK_GUARD: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1423`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1423)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1423`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1423)*
 
 ### `IO_INTEGRITY_CHK_REFTAG`
 ```rust
 const IO_INTEGRITY_CHK_REFTAG: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1424`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1424)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1424`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1424)*
 
 ### `IO_INTEGRITY_CHK_APPTAG`
 ```rust
 const IO_INTEGRITY_CHK_APPTAG: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1425`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1425)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1425`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1425)*
 
 ### `IO_INTEGRITY_VALID_FLAGS`
 ```rust
 const IO_INTEGRITY_VALID_FLAGS: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1426`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1426)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1426`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1426)*
 
 ### `SEEK_SET`
 ```rust
 const SEEK_SET: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1427`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1427)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1427`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1427)*
 
 ### `SEEK_CUR`
 ```rust
 const SEEK_CUR: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1428`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1428)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1428`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1428)*
 
 ### `SEEK_END`
 ```rust
 const SEEK_END: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1429`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1429)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1429`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1429)*
 
 ### `SEEK_DATA`
 ```rust
 const SEEK_DATA: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1430`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1430)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1430`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1430)*
 
 ### `SEEK_HOLE`
 ```rust
 const SEEK_HOLE: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1431`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1431)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1431`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1431)*
 
 ### `SEEK_MAX`
 ```rust
 const SEEK_MAX: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1432`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1432)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1432`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1432)*
 
 ### `RENAME_NOREPLACE`
 ```rust
 const RENAME_NOREPLACE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1433`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1433)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1433`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1433)*
 
 ### `RENAME_EXCHANGE`
 ```rust
 const RENAME_EXCHANGE: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1434`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1434)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1434`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1434)*
 
 ### `RENAME_WHITEOUT`
 ```rust
 const RENAME_WHITEOUT: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1435`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1435)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1435`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1435)*
 
 ### `FILE_DEDUPE_RANGE_SAME`
 ```rust
 const FILE_DEDUPE_RANGE_SAME: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1436`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1436)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1436`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1436)*
 
 ### `FILE_DEDUPE_RANGE_DIFFERS`
 ```rust
 const FILE_DEDUPE_RANGE_DIFFERS: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1437`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1437)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1437`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1437)*
 
 ### `NR_FILE`
 ```rust
 const NR_FILE: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1438`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1438)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1438`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1438)*
 
 ### `FS_XFLAG_REALTIME`
 ```rust
 const FS_XFLAG_REALTIME: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1439`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1439)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1439`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1439)*
 
 ### `FS_XFLAG_PREALLOC`
 ```rust
 const FS_XFLAG_PREALLOC: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1440`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1440)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1440`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1440)*
 
 ### `FS_XFLAG_IMMUTABLE`
 ```rust
 const FS_XFLAG_IMMUTABLE: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1441`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1441)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1441`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1441)*
 
 ### `FS_XFLAG_APPEND`
 ```rust
 const FS_XFLAG_APPEND: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1442`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1442)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1442`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1442)*
 
 ### `FS_XFLAG_SYNC`
 ```rust
 const FS_XFLAG_SYNC: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1443`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1443)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1443`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1443)*
 
 ### `FS_XFLAG_NOATIME`
 ```rust
 const FS_XFLAG_NOATIME: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1444`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1444)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1444`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1444)*
 
 ### `FS_XFLAG_NODUMP`
 ```rust
 const FS_XFLAG_NODUMP: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1445`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1445)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1445`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1445)*
 
 ### `FS_XFLAG_RTINHERIT`
 ```rust
 const FS_XFLAG_RTINHERIT: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1446`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1446)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1446`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1446)*
 
 ### `FS_XFLAG_PROJINHERIT`
 ```rust
 const FS_XFLAG_PROJINHERIT: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1447`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1447)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1447`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1447)*
 
 ### `FS_XFLAG_NOSYMLINKS`
 ```rust
 const FS_XFLAG_NOSYMLINKS: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1448`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1448)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1448`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1448)*
 
 ### `FS_XFLAG_EXTSIZE`
 ```rust
 const FS_XFLAG_EXTSIZE: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1449`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1449)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1449`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1449)*
 
 ### `FS_XFLAG_EXTSZINHERIT`
 ```rust
 const FS_XFLAG_EXTSZINHERIT: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1450`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1450)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1450`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1450)*
 
 ### `FS_XFLAG_NODEFRAG`
 ```rust
 const FS_XFLAG_NODEFRAG: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1451`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1451)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1451`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1451)*
 
 ### `FS_XFLAG_FILESTREAM`
 ```rust
 const FS_XFLAG_FILESTREAM: u32 = 16_384u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1452`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1452)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1452`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1452)*
 
 ### `FS_XFLAG_DAX`
 ```rust
 const FS_XFLAG_DAX: u32 = 32_768u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1453`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1453)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1453`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1453)*
 
 ### `FS_XFLAG_COWEXTSIZE`
 ```rust
 const FS_XFLAG_COWEXTSIZE: u32 = 65_536u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1454`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1454)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1454`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1454)*
 
 ### `FS_XFLAG_HASATTR`
 ```rust
 const FS_XFLAG_HASATTR: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1455`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1455)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1455`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1455)*
 
 ### `BMAP_IOCTL`
 ```rust
 const BMAP_IOCTL: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1456`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1456)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1456`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1456)*
 
 ### `FSLABEL_MAX`
 ```rust
 const FSLABEL_MAX: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1457`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1457)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1457`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1457)*
 
 ### `FS_SECRM_FL`
 ```rust
 const FS_SECRM_FL: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1458`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1458)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1458`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1458)*
 
 ### `FS_UNRM_FL`
 ```rust
 const FS_UNRM_FL: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1459`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1459)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1459`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1459)*
 
 ### `FS_COMPR_FL`
 ```rust
 const FS_COMPR_FL: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1460`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1460)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1460`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1460)*
 
 ### `FS_SYNC_FL`
 ```rust
 const FS_SYNC_FL: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1461`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1461)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1461`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1461)*
 
 ### `FS_IMMUTABLE_FL`
 ```rust
 const FS_IMMUTABLE_FL: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1462`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1462)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1462`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1462)*
 
 ### `FS_APPEND_FL`
 ```rust
 const FS_APPEND_FL: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1463`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1463)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1463`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1463)*
 
 ### `FS_NODUMP_FL`
 ```rust
 const FS_NODUMP_FL: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1464`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1464)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1464`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1464)*
 
 ### `FS_NOATIME_FL`
 ```rust
 const FS_NOATIME_FL: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1465`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1465)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1465`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1465)*
 
 ### `FS_DIRTY_FL`
 ```rust
 const FS_DIRTY_FL: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1466`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1466)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1466`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1466)*
 
 ### `FS_COMPRBLK_FL`
 ```rust
 const FS_COMPRBLK_FL: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1467`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1467)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1467`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1467)*
 
 ### `FS_NOCOMP_FL`
 ```rust
 const FS_NOCOMP_FL: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1468`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1468)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1468`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1468)*
 
 ### `FS_ENCRYPT_FL`
 ```rust
 const FS_ENCRYPT_FL: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1469`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1469)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1469`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1469)*
 
 ### `FS_BTREE_FL`
 ```rust
 const FS_BTREE_FL: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1470`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1470)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1470`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1470)*
 
 ### `FS_INDEX_FL`
 ```rust
 const FS_INDEX_FL: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1471`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1471)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1471`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1471)*
 
 ### `FS_IMAGIC_FL`
 ```rust
 const FS_IMAGIC_FL: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1472`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1472)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1472`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1472)*
 
 ### `FS_JOURNAL_DATA_FL`
 ```rust
 const FS_JOURNAL_DATA_FL: u32 = 16_384u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1473`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1473)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1473`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1473)*
 
 ### `FS_NOTAIL_FL`
 ```rust
 const FS_NOTAIL_FL: u32 = 32_768u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1474`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1474)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1474`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1474)*
 
 ### `FS_DIRSYNC_FL`
 ```rust
 const FS_DIRSYNC_FL: u32 = 65_536u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1475`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1475)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1475`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1475)*
 
 ### `FS_TOPDIR_FL`
 ```rust
 const FS_TOPDIR_FL: u32 = 131_072u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1476`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1476)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1476`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1476)*
 
 ### `FS_HUGE_FILE_FL`
 ```rust
 const FS_HUGE_FILE_FL: u32 = 262_144u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1477`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1477)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1477`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1477)*
 
 ### `FS_EXTENT_FL`
 ```rust
 const FS_EXTENT_FL: u32 = 524_288u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1478`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1478)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1478`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1478)*
 
 ### `FS_VERITY_FL`
 ```rust
 const FS_VERITY_FL: u32 = 1_048_576u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1479`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1479)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1479`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1479)*
 
 ### `FS_EA_INODE_FL`
 ```rust
 const FS_EA_INODE_FL: u32 = 2_097_152u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1480`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1480)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1480`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1480)*
 
 ### `FS_EOFBLOCKS_FL`
 ```rust
 const FS_EOFBLOCKS_FL: u32 = 4_194_304u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1481`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1481)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1481`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1481)*
 
 ### `FS_NOCOW_FL`
 ```rust
 const FS_NOCOW_FL: u32 = 8_388_608u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1482`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1482)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1482`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1482)*
 
 ### `FS_DAX_FL`
 ```rust
 const FS_DAX_FL: u32 = 33_554_432u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1483`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1483)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1483`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1483)*
 
 ### `FS_INLINE_DATA_FL`
 ```rust
 const FS_INLINE_DATA_FL: u32 = 268_435_456u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1484`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1484)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1484`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1484)*
 
 ### `FS_PROJINHERIT_FL`
 ```rust
 const FS_PROJINHERIT_FL: u32 = 536_870_912u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1485`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1485)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1485`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1485)*
 
 ### `FS_CASEFOLD_FL`
 ```rust
 const FS_CASEFOLD_FL: u32 = 1_073_741_824u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1486`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1486)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1486`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1486)*
 
 ### `FS_RESERVED_FL`
 ```rust
 const FS_RESERVED_FL: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1487`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1487)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1487`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1487)*
 
 ### `FS_FL_USER_VISIBLE`
 ```rust
 const FS_FL_USER_VISIBLE: u32 = 253_951u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1488`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1488)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1488`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1488)*
 
 ### `FS_FL_USER_MODIFIABLE`
 ```rust
 const FS_FL_USER_MODIFIABLE: u32 = 229_631u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1489`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1489)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1489`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1489)*
 
 ### `SYNC_FILE_RANGE_WAIT_BEFORE`
 ```rust
 const SYNC_FILE_RANGE_WAIT_BEFORE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1490`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1490)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1490`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1490)*
 
 ### `SYNC_FILE_RANGE_WRITE`
 ```rust
 const SYNC_FILE_RANGE_WRITE: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1491`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1491)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1491`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1491)*
 
 ### `SYNC_FILE_RANGE_WAIT_AFTER`
 ```rust
 const SYNC_FILE_RANGE_WAIT_AFTER: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1492`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1492)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1492`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1492)*
 
 ### `SYNC_FILE_RANGE_WRITE_AND_WAIT`
 ```rust
 const SYNC_FILE_RANGE_WRITE_AND_WAIT: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1493`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1493)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1493`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1493)*
 
 ### `PROCFS_IOCTL_MAGIC`
 ```rust
 const PROCFS_IOCTL_MAGIC: u8 = 102u8;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1494`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1494)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1494`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1494)*
 
 ### `PAGE_IS_WPALLOWED`
 ```rust
 const PAGE_IS_WPALLOWED: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1495`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1495)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1495`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1495)*
 
 ### `PAGE_IS_WRITTEN`
 ```rust
 const PAGE_IS_WRITTEN: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1496`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1496)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1496`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1496)*
 
 ### `PAGE_IS_FILE`
 ```rust
 const PAGE_IS_FILE: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1497`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1497)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1497`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1497)*
 
 ### `PAGE_IS_PRESENT`
 ```rust
 const PAGE_IS_PRESENT: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1498`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1498)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1498`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1498)*
 
 ### `PAGE_IS_SWAPPED`
 ```rust
 const PAGE_IS_SWAPPED: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1499`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1499)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1499`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1499)*
 
 ### `PAGE_IS_PFNZERO`
 ```rust
 const PAGE_IS_PFNZERO: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1500`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1500)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1500`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1500)*
 
 ### `PAGE_IS_HUGE`
 ```rust
 const PAGE_IS_HUGE: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1501`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1501)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1501`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1501)*
 
 ### `PAGE_IS_SOFT_DIRTY`
 ```rust
 const PAGE_IS_SOFT_DIRTY: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1502`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1502)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1502`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1502)*
 
 ### `PAGE_IS_GUARD`
 ```rust
 const PAGE_IS_GUARD: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1503`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1503)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1503`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1503)*
 
 ### `PM_SCAN_WP_MATCHING`
 ```rust
 const PM_SCAN_WP_MATCHING: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1504`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1504)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1504`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1504)*
 
 ### `PM_SCAN_CHECK_WPASYNC`
 ```rust
 const PM_SCAN_CHECK_WPASYNC: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1505`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1505)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1505`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1505)*
 
 ### `FUTEX_WAIT`
 ```rust
 const FUTEX_WAIT: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1506`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1506)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1506`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1506)*
 
 ### `FUTEX_WAKE`
 ```rust
 const FUTEX_WAKE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1507`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1507)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1507`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1507)*
 
 ### `FUTEX_FD`
 ```rust
 const FUTEX_FD: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1508`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1508)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1508`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1508)*
 
 ### `FUTEX_REQUEUE`
 ```rust
 const FUTEX_REQUEUE: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1509`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1509)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1509`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1509)*
 
 ### `FUTEX_CMP_REQUEUE`
 ```rust
 const FUTEX_CMP_REQUEUE: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1510`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1510)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1510`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1510)*
 
 ### `FUTEX_WAKE_OP`
 ```rust
 const FUTEX_WAKE_OP: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1511`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1511)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1511`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1511)*
 
 ### `FUTEX_LOCK_PI`
 ```rust
 const FUTEX_LOCK_PI: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1512`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1512)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1512`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1512)*
 
 ### `FUTEX_UNLOCK_PI`
 ```rust
 const FUTEX_UNLOCK_PI: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1513`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1513)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1513`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1513)*
 
 ### `FUTEX_TRYLOCK_PI`
 ```rust
 const FUTEX_TRYLOCK_PI: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1514`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1514)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1514`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1514)*
 
 ### `FUTEX_WAIT_BITSET`
 ```rust
 const FUTEX_WAIT_BITSET: u32 = 9u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1515`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1515)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1515`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1515)*
 
 ### `FUTEX_WAKE_BITSET`
 ```rust
 const FUTEX_WAKE_BITSET: u32 = 10u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1516`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1516)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1516`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1516)*
 
 ### `FUTEX_WAIT_REQUEUE_PI`
 ```rust
 const FUTEX_WAIT_REQUEUE_PI: u32 = 11u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1517`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1517)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1517`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1517)*
 
 ### `FUTEX_CMP_REQUEUE_PI`
 ```rust
 const FUTEX_CMP_REQUEUE_PI: u32 = 12u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1518`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1518)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1518`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1518)*
 
 ### `FUTEX_LOCK_PI2`
 ```rust
 const FUTEX_LOCK_PI2: u32 = 13u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1519`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1519)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1519`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1519)*
 
 ### `FUTEX_PRIVATE_FLAG`
 ```rust
 const FUTEX_PRIVATE_FLAG: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1520`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1520)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1520`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1520)*
 
 ### `FUTEX_CLOCK_REALTIME`
 ```rust
 const FUTEX_CLOCK_REALTIME: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1521`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1521)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1521`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1521)*
 
 ### `FUTEX_CMD_MASK`
 ```rust
 const FUTEX_CMD_MASK: i32 = -385i32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1522`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1522)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1522`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1522)*
 
 ### `FUTEX_WAIT_PRIVATE`
 ```rust
 const FUTEX_WAIT_PRIVATE: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1523`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1523)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1523`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1523)*
 
 ### `FUTEX_WAKE_PRIVATE`
 ```rust
 const FUTEX_WAKE_PRIVATE: u32 = 129u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1524`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1524)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1524`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1524)*
 
 ### `FUTEX_REQUEUE_PRIVATE`
 ```rust
 const FUTEX_REQUEUE_PRIVATE: u32 = 131u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1525`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1525)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1525`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1525)*
 
 ### `FUTEX_CMP_REQUEUE_PRIVATE`
 ```rust
 const FUTEX_CMP_REQUEUE_PRIVATE: u32 = 132u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1526`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1526)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1526`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1526)*
 
 ### `FUTEX_WAKE_OP_PRIVATE`
 ```rust
 const FUTEX_WAKE_OP_PRIVATE: u32 = 133u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1527`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1527)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1527`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1527)*
 
 ### `FUTEX_LOCK_PI_PRIVATE`
 ```rust
 const FUTEX_LOCK_PI_PRIVATE: u32 = 134u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1528`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1528)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1528`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1528)*
 
 ### `FUTEX_LOCK_PI2_PRIVATE`
 ```rust
 const FUTEX_LOCK_PI2_PRIVATE: u32 = 141u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1529`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1529)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1529`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1529)*
 
 ### `FUTEX_UNLOCK_PI_PRIVATE`
 ```rust
 const FUTEX_UNLOCK_PI_PRIVATE: u32 = 135u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1530`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1530)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1530`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1530)*
 
 ### `FUTEX_TRYLOCK_PI_PRIVATE`
 ```rust
 const FUTEX_TRYLOCK_PI_PRIVATE: u32 = 136u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1531`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1531)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1531`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1531)*
 
 ### `FUTEX_WAIT_BITSET_PRIVATE`
 ```rust
 const FUTEX_WAIT_BITSET_PRIVATE: u32 = 137u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1532`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1532)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1532`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1532)*
 
 ### `FUTEX_WAKE_BITSET_PRIVATE`
 ```rust
 const FUTEX_WAKE_BITSET_PRIVATE: u32 = 138u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1533`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1533)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1533`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1533)*
 
 ### `FUTEX_WAIT_REQUEUE_PI_PRIVATE`
 ```rust
 const FUTEX_WAIT_REQUEUE_PI_PRIVATE: u32 = 139u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1534`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1534)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1534`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1534)*
 
 ### `FUTEX_CMP_REQUEUE_PI_PRIVATE`
 ```rust
 const FUTEX_CMP_REQUEUE_PI_PRIVATE: u32 = 140u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1535`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1535)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1535`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1535)*
 
 ### `FUTEX2_SIZE_U8`
 ```rust
 const FUTEX2_SIZE_U8: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1536`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1536)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1536`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1536)*
 
 ### `FUTEX2_SIZE_U16`
 ```rust
 const FUTEX2_SIZE_U16: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1537`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1537)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1537`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1537)*
 
 ### `FUTEX2_SIZE_U32`
 ```rust
 const FUTEX2_SIZE_U32: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1538`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1538)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1538`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1538)*
 
 ### `FUTEX2_SIZE_U64`
 ```rust
 const FUTEX2_SIZE_U64: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1539`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1539)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1539`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1539)*
 
 ### `FUTEX2_NUMA`
 ```rust
 const FUTEX2_NUMA: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1540`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1540)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1540`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1540)*
 
 ### `FUTEX2_MPOL`
 ```rust
 const FUTEX2_MPOL: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1541`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1541)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1541`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1541)*
 
 ### `FUTEX2_PRIVATE`
 ```rust
 const FUTEX2_PRIVATE: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1542`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1542)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1542`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1542)*
 
 ### `FUTEX2_SIZE_MASK`
 ```rust
 const FUTEX2_SIZE_MASK: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1543`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1543)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1543`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1543)*
 
 ### `FUTEX_32`
 ```rust
 const FUTEX_32: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1544`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1544)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1544`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1544)*
 
 ### `FUTEX_NO_NODE`
 ```rust
 const FUTEX_NO_NODE: i32 = -1i32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1545`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1545)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1545`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1545)*
 
 ### `FUTEX_WAITV_MAX`
 ```rust
 const FUTEX_WAITV_MAX: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1546`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1546)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1546`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1546)*
 
 ### `FUTEX_WAITERS`
 ```rust
 const FUTEX_WAITERS: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1547`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1547)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1547`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1547)*
 
 ### `FUTEX_OWNER_DIED`
 ```rust
 const FUTEX_OWNER_DIED: u32 = 1_073_741_824u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1548`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1548)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1548`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1548)*
 
 ### `FUTEX_TID_MASK`
 ```rust
 const FUTEX_TID_MASK: u32 = 1_073_741_823u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1549`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1549)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1549`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1549)*
 
 ### `ROBUST_LIST_LIMIT`
 ```rust
 const ROBUST_LIST_LIMIT: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1550`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1550)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1550`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1550)*
 
 ### `FUTEX_BITSET_MATCH_ANY`
 ```rust
 const FUTEX_BITSET_MATCH_ANY: u32 = 4_294_967_295u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1551`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1551)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1551`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1551)*
 
 ### `FUTEX_OP_SET`
 ```rust
 const FUTEX_OP_SET: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1552`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1552)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1552`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1552)*
 
 ### `FUTEX_OP_ADD`
 ```rust
 const FUTEX_OP_ADD: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1553`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1553)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1553`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1553)*
 
 ### `FUTEX_OP_OR`
 ```rust
 const FUTEX_OP_OR: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1554`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1554)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1554`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1554)*
 
 ### `FUTEX_OP_ANDN`
 ```rust
 const FUTEX_OP_ANDN: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1555`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1555)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1555`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1555)*
 
 ### `FUTEX_OP_XOR`
 ```rust
 const FUTEX_OP_XOR: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1556`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1556)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1556`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1556)*
 
 ### `FUTEX_OP_OPARG_SHIFT`
 ```rust
 const FUTEX_OP_OPARG_SHIFT: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1557`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1557)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1557`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1557)*
 
 ### `FUTEX_OP_CMP_EQ`
 ```rust
 const FUTEX_OP_CMP_EQ: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1558`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1558)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1558`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1558)*
 
 ### `FUTEX_OP_CMP_NE`
 ```rust
 const FUTEX_OP_CMP_NE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1559`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1559)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1559`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1559)*
 
 ### `FUTEX_OP_CMP_LT`
 ```rust
 const FUTEX_OP_CMP_LT: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1560`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1560)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1560`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1560)*
 
 ### `FUTEX_OP_CMP_LE`
 ```rust
 const FUTEX_OP_CMP_LE: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1561`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1561)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1561`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1561)*
 
 ### `FUTEX_OP_CMP_GT`
 ```rust
 const FUTEX_OP_CMP_GT: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1562`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1562)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1562`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1562)*
 
 ### `FUTEX_OP_CMP_GE`
 ```rust
 const FUTEX_OP_CMP_GE: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1563`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1563)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1563`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1563)*
 
 ### `IN_ACCESS`
 ```rust
 const IN_ACCESS: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1564`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1564)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1564`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1564)*
 
 ### `IN_MODIFY`
 ```rust
 const IN_MODIFY: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1565`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1565)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1565`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1565)*
 
 ### `IN_ATTRIB`
 ```rust
 const IN_ATTRIB: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1566`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1566)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1566`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1566)*
 
 ### `IN_CLOSE_WRITE`
 ```rust
 const IN_CLOSE_WRITE: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1567`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1567)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1567`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1567)*
 
 ### `IN_CLOSE_NOWRITE`
 ```rust
 const IN_CLOSE_NOWRITE: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1568`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1568)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1568`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1568)*
 
 ### `IN_OPEN`
 ```rust
 const IN_OPEN: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1569`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1569)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1569`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1569)*
 
 ### `IN_MOVED_FROM`
 ```rust
 const IN_MOVED_FROM: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1570`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1570)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1570`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1570)*
 
 ### `IN_MOVED_TO`
 ```rust
 const IN_MOVED_TO: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1571`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1571)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1571`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1571)*
 
 ### `IN_CREATE`
 ```rust
 const IN_CREATE: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1572`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1572)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1572`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1572)*
 
 ### `IN_DELETE`
 ```rust
 const IN_DELETE: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1573`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1573)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1573`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1573)*
 
 ### `IN_DELETE_SELF`
 ```rust
 const IN_DELETE_SELF: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1574`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1574)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1574`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1574)*
 
 ### `IN_MOVE_SELF`
 ```rust
 const IN_MOVE_SELF: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1575`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1575)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1575`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1575)*
 
 ### `IN_UNMOUNT`
 ```rust
 const IN_UNMOUNT: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1576`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1576)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1576`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1576)*
 
 ### `IN_Q_OVERFLOW`
 ```rust
 const IN_Q_OVERFLOW: u32 = 16_384u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1577`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1577)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1577`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1577)*
 
 ### `IN_IGNORED`
 ```rust
 const IN_IGNORED: u32 = 32_768u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1578`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1578)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1578`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1578)*
 
 ### `IN_CLOSE`
 ```rust
 const IN_CLOSE: u32 = 24u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1579`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1579)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1579`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1579)*
 
 ### `IN_MOVE`
 ```rust
 const IN_MOVE: u32 = 192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1580`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1580)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1580`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1580)*
 
 ### `IN_ONLYDIR`
 ```rust
 const IN_ONLYDIR: u32 = 16_777_216u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1581`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1581)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1581`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1581)*
 
 ### `IN_DONT_FOLLOW`
 ```rust
 const IN_DONT_FOLLOW: u32 = 33_554_432u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1582`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1582)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1582`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1582)*
 
 ### `IN_EXCL_UNLINK`
 ```rust
 const IN_EXCL_UNLINK: u32 = 67_108_864u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1583`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1583)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1583`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1583)*
 
 ### `IN_MASK_CREATE`
 ```rust
 const IN_MASK_CREATE: u32 = 268_435_456u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1584`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1584)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1584`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1584)*
 
 ### `IN_MASK_ADD`
 ```rust
 const IN_MASK_ADD: u32 = 536_870_912u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1585`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1585)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1585`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1585)*
 
 ### `IN_ISDIR`
 ```rust
 const IN_ISDIR: u32 = 1_073_741_824u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1586`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1586)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1586`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1586)*
 
 ### `IN_ONESHOT`
 ```rust
 const IN_ONESHOT: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1587`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1587)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1587`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1587)*
 
 ### `IN_ALL_EVENTS`
 ```rust
 const IN_ALL_EVENTS: u32 = 4_095u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1588`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1588)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1588`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1588)*
 
 ### `IN_CLOEXEC`
 ```rust
 const IN_CLOEXEC: u32 = 524_288u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1589`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1589)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1589`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1589)*
 
 ### `IN_NONBLOCK`
 ```rust
 const IN_NONBLOCK: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1590`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1590)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1590`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1590)*
 
 ### `ADFS_SUPER_MAGIC`
 ```rust
 const ADFS_SUPER_MAGIC: u32 = 44_533u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1591`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1591)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1591`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1591)*
 
 ### `AFFS_SUPER_MAGIC`
 ```rust
 const AFFS_SUPER_MAGIC: u32 = 44_543u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1592`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1592)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1592`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1592)*
 
 ### `AFS_SUPER_MAGIC`
 ```rust
 const AFS_SUPER_MAGIC: u32 = 1_397_113_167u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1593`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1593)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1593`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1593)*
 
 ### `AUTOFS_SUPER_MAGIC`
 ```rust
 const AUTOFS_SUPER_MAGIC: u32 = 391u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1594`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1594)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1594`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1594)*
 
 ### `CEPH_SUPER_MAGIC`
 ```rust
 const CEPH_SUPER_MAGIC: u32 = 12_805_120u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1595`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1595)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1595`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1595)*
 
 ### `CODA_SUPER_MAGIC`
 ```rust
 const CODA_SUPER_MAGIC: u32 = 1_937_076_805u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1596`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1596)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1596`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1596)*
 
 ### `CRAMFS_MAGIC`
 ```rust
 const CRAMFS_MAGIC: u32 = 684_539_205u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1597`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1597)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1597`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1597)*
 
 ### `CRAMFS_MAGIC_WEND`
 ```rust
 const CRAMFS_MAGIC_WEND: u32 = 1_161_678_120u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1598`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1598)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1598`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1598)*
 
 ### `DEBUGFS_MAGIC`
 ```rust
 const DEBUGFS_MAGIC: u32 = 1_684_170_528u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1599`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1599)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1599`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1599)*
 
 ### `SECURITYFS_MAGIC`
 ```rust
 const SECURITYFS_MAGIC: u32 = 1_935_894_131u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1600`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1600)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1600`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1600)*
 
 ### `SELINUX_MAGIC`
 ```rust
 const SELINUX_MAGIC: u32 = 4_185_718_668u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1601`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1601)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1601`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1601)*
 
 ### `SMACK_MAGIC`
 ```rust
 const SMACK_MAGIC: u32 = 1_128_357_203u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1602`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1602)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1602`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1602)*
 
 ### `RAMFS_MAGIC`
 ```rust
 const RAMFS_MAGIC: u32 = 2_240_043_254u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1603`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1603)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1603`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1603)*
 
 ### `TMPFS_MAGIC`
 ```rust
 const TMPFS_MAGIC: u32 = 16_914_836u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1604`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1604)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1604`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1604)*
 
 ### `HUGETLBFS_MAGIC`
 ```rust
 const HUGETLBFS_MAGIC: u32 = 2_508_478_710u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1605`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1605)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1605`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1605)*
 
 ### `SQUASHFS_MAGIC`
 ```rust
 const SQUASHFS_MAGIC: u32 = 1_936_814_952u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1606`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1606)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1606`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1606)*
 
 ### `ECRYPTFS_SUPER_MAGIC`
 ```rust
 const ECRYPTFS_SUPER_MAGIC: u32 = 61_791u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1607`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1607)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1607`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1607)*
 
 ### `EFS_SUPER_MAGIC`
 ```rust
 const EFS_SUPER_MAGIC: u32 = 4_278_867u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1608`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1608)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1608`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1608)*
 
 ### `EROFS_SUPER_MAGIC_V1`
 ```rust
 const EROFS_SUPER_MAGIC_V1: u32 = 3_774_210_530u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1609`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1609)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1609`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1609)*
 
 ### `EXT2_SUPER_MAGIC`
 ```rust
 const EXT2_SUPER_MAGIC: u32 = 61_267u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1610`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1610)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1610`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1610)*
 
 ### `EXT3_SUPER_MAGIC`
 ```rust
 const EXT3_SUPER_MAGIC: u32 = 61_267u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1611`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1611)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1611`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1611)*
 
 ### `XENFS_SUPER_MAGIC`
 ```rust
 const XENFS_SUPER_MAGIC: u32 = 2_881_100_148u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1612`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1612)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1612`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1612)*
 
 ### `EXT4_SUPER_MAGIC`
 ```rust
 const EXT4_SUPER_MAGIC: u32 = 61_267u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1613`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1613)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1613`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1613)*
 
 ### `BTRFS_SUPER_MAGIC`
 ```rust
 const BTRFS_SUPER_MAGIC: u32 = 2_435_016_766u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1614`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1614)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1614`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1614)*
 
 ### `NILFS_SUPER_MAGIC`
 ```rust
 const NILFS_SUPER_MAGIC: u32 = 13_364u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1615`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1615)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1615`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1615)*
 
 ### `F2FS_SUPER_MAGIC`
 ```rust
 const F2FS_SUPER_MAGIC: u32 = 4_076_150_800u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1616`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1616)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1616`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1616)*
 
 ### `HPFS_SUPER_MAGIC`
 ```rust
 const HPFS_SUPER_MAGIC: u32 = 4_187_351_113u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1617`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1617)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1617`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1617)*
 
 ### `ISOFS_SUPER_MAGIC`
 ```rust
 const ISOFS_SUPER_MAGIC: u32 = 38_496u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1618`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1618)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1618`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1618)*
 
 ### `JFFS2_SUPER_MAGIC`
 ```rust
 const JFFS2_SUPER_MAGIC: u32 = 29_366u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1619`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1619)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1619`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1619)*
 
 ### `XFS_SUPER_MAGIC`
 ```rust
 const XFS_SUPER_MAGIC: u32 = 1_481_003_842u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1620`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1620)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1620`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1620)*
 
 ### `PSTOREFS_MAGIC`
 ```rust
 const PSTOREFS_MAGIC: u32 = 1_634_035_564u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1621`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1621)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1621`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1621)*
 
 ### `EFIVARFS_MAGIC`
 ```rust
 const EFIVARFS_MAGIC: u32 = 3_730_735_588u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1622`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1622)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1622`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1622)*
 
 ### `HOSTFS_SUPER_MAGIC`
 ```rust
 const HOSTFS_SUPER_MAGIC: u32 = 12_648_430u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1623`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1623)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1623`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1623)*
 
 ### `OVERLAYFS_SUPER_MAGIC`
 ```rust
 const OVERLAYFS_SUPER_MAGIC: u32 = 2_035_054_128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1624`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1624)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1624`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1624)*
 
 ### `FUSE_SUPER_MAGIC`
 ```rust
 const FUSE_SUPER_MAGIC: u32 = 1_702_057_286u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1625`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1625)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1625`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1625)*
 
 ### `BCACHEFS_SUPER_MAGIC`
 ```rust
 const BCACHEFS_SUPER_MAGIC: u32 = 3_393_526_350u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1626`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1626)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1626`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1626)*
 
 ### `MINIX_SUPER_MAGIC`
 ```rust
 const MINIX_SUPER_MAGIC: u32 = 4_991u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1627`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1627)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1627`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1627)*
 
 ### `MINIX_SUPER_MAGIC2`
 ```rust
 const MINIX_SUPER_MAGIC2: u32 = 5_007u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1628`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1628)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1628`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1628)*
 
 ### `MINIX2_SUPER_MAGIC`
 ```rust
 const MINIX2_SUPER_MAGIC: u32 = 9_320u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1629`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1629)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1629`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1629)*
 
 ### `MINIX2_SUPER_MAGIC2`
 ```rust
 const MINIX2_SUPER_MAGIC2: u32 = 9_336u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1630`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1630)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1630`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1630)*
 
 ### `MINIX3_SUPER_MAGIC`
 ```rust
 const MINIX3_SUPER_MAGIC: u32 = 19_802u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1631`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1631)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1631`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1631)*
 
 ### `MSDOS_SUPER_MAGIC`
 ```rust
 const MSDOS_SUPER_MAGIC: u32 = 19_780u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1632`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1632)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1632`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1632)*
 
 ### `EXFAT_SUPER_MAGIC`
 ```rust
 const EXFAT_SUPER_MAGIC: u32 = 538_032_816u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1633`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1633)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1633`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1633)*
 
 ### `NCP_SUPER_MAGIC`
 ```rust
 const NCP_SUPER_MAGIC: u32 = 22_092u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1634`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1634)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1634`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1634)*
 
 ### `NFS_SUPER_MAGIC`
 ```rust
 const NFS_SUPER_MAGIC: u32 = 26_985u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1635`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1635)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1635`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1635)*
 
 ### `OCFS2_SUPER_MAGIC`
 ```rust
 const OCFS2_SUPER_MAGIC: u32 = 1_952_539_503u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1636`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1636)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1636`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1636)*
 
 ### `OPENPROM_SUPER_MAGIC`
 ```rust
 const OPENPROM_SUPER_MAGIC: u32 = 40_865u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1637`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1637)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1637`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1637)*
 
 ### `QNX4_SUPER_MAGIC`
 ```rust
 const QNX4_SUPER_MAGIC: u32 = 47u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1638`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1638)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1638`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1638)*
 
 ### `QNX6_SUPER_MAGIC`
 ```rust
 const QNX6_SUPER_MAGIC: u32 = 1_746_473_250u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1639`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1639)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1639`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1639)*
 
 ### `AFS_FS_MAGIC`
 ```rust
 const AFS_FS_MAGIC: u32 = 1_799_439_955u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1640`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1640)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1640`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1640)*
 
 ### `REISERFS_SUPER_MAGIC`
 ```rust
 const REISERFS_SUPER_MAGIC: u32 = 1_382_369_651u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1641`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1641)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1641`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1641)*
 
 ### `REISERFS_SUPER_MAGIC_STRING`
 ```rust
 const REISERFS_SUPER_MAGIC_STRING: &[u8; 9];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1642`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1642)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1642`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1642)*
 
 ### `REISER2FS_SUPER_MAGIC_STRING`
 ```rust
 const REISER2FS_SUPER_MAGIC_STRING: &[u8; 10];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1643`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1643)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1643`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1643)*
 
 ### `REISER2FS_JR_SUPER_MAGIC_STRING`
 ```rust
 const REISER2FS_JR_SUPER_MAGIC_STRING: &[u8; 10];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1644`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1644)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1644`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1644)*
 
 ### `SMB_SUPER_MAGIC`
 ```rust
 const SMB_SUPER_MAGIC: u32 = 20_859u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1645`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1645)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1645`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1645)*
 
 ### `CIFS_SUPER_MAGIC`
 ```rust
 const CIFS_SUPER_MAGIC: u32 = 4_283_649_346u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1646`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1646)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1646`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1646)*
 
 ### `SMB2_SUPER_MAGIC`
 ```rust
 const SMB2_SUPER_MAGIC: u32 = 4_266_872_130u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1647`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1647)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1647`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1647)*
 
 ### `CGROUP_SUPER_MAGIC`
 ```rust
 const CGROUP_SUPER_MAGIC: u32 = 2_613_483u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1648`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1648)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1648`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1648)*
 
 ### `CGROUP2_SUPER_MAGIC`
 ```rust
 const CGROUP2_SUPER_MAGIC: u32 = 1_667_723_888u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1649`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1649)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1649`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1649)*
 
 ### `RDTGROUP_SUPER_MAGIC`
 ```rust
 const RDTGROUP_SUPER_MAGIC: u32 = 124_082_209u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1650`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1650)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1650`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1650)*
 
 ### `STACK_END_MAGIC`
 ```rust
 const STACK_END_MAGIC: u32 = 1_470_918_301u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1651`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1651)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1651`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1651)*
 
 ### `TRACEFS_MAGIC`
 ```rust
 const TRACEFS_MAGIC: u32 = 1_953_653_091u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1652`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1652)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1652`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1652)*
 
 ### `V9FS_MAGIC`
 ```rust
 const V9FS_MAGIC: u32 = 16_914_839u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1653`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1653)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1653`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1653)*
 
 ### `BDEVFS_MAGIC`
 ```rust
 const BDEVFS_MAGIC: u32 = 1_650_746_742u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1654`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1654)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1654`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1654)*
 
 ### `DAXFS_MAGIC`
 ```rust
 const DAXFS_MAGIC: u32 = 1_684_300_152u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1655`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1655)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1655`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1655)*
 
 ### `BINFMTFS_MAGIC`
 ```rust
 const BINFMTFS_MAGIC: u32 = 1_112_100_429u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1656`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1656)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1656`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1656)*
 
 ### `DEVPTS_SUPER_MAGIC`
 ```rust
 const DEVPTS_SUPER_MAGIC: u32 = 7_377u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1657`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1657)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1657`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1657)*
 
 ### `BINDERFS_SUPER_MAGIC`
 ```rust
 const BINDERFS_SUPER_MAGIC: u32 = 1_819_242_352u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1658`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1658)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1658`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1658)*
 
 ### `FUTEXFS_SUPER_MAGIC`
 ```rust
 const FUTEXFS_SUPER_MAGIC: u32 = 195_894_762u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1659`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1659)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1659`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1659)*
 
 ### `PIPEFS_MAGIC`
 ```rust
 const PIPEFS_MAGIC: u32 = 1_346_981_957u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1660`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1660)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1660`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1660)*
 
 ### `PROC_SUPER_MAGIC`
 ```rust
 const PROC_SUPER_MAGIC: u32 = 40_864u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1661`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1661)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1661`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1661)*
 
 ### `SOCKFS_MAGIC`
 ```rust
 const SOCKFS_MAGIC: u32 = 1_397_703_499u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1662`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1662)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1662`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1662)*
 
 ### `SYSFS_MAGIC`
 ```rust
 const SYSFS_MAGIC: u32 = 1_650_812_274u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1663`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1663)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1663`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1663)*
 
 ### `USBDEVICE_SUPER_MAGIC`
 ```rust
 const USBDEVICE_SUPER_MAGIC: u32 = 40_866u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1664`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1664)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1664`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1664)*
 
 ### `MTD_INODE_FS_MAGIC`
 ```rust
 const MTD_INODE_FS_MAGIC: u32 = 288_389_204u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1665`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1665)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1665`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1665)*
 
 ### `ANON_INODE_FS_MAGIC`
 ```rust
 const ANON_INODE_FS_MAGIC: u32 = 151_263_540u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1666`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1666)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1666`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1666)*
 
 ### `BTRFS_TEST_MAGIC`
 ```rust
 const BTRFS_TEST_MAGIC: u32 = 1_936_880_249u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1667`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1667)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1667`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1667)*
 
 ### `NSFS_MAGIC`
 ```rust
 const NSFS_MAGIC: u32 = 1_853_056_627u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1668`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1668)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1668`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1668)*
 
 ### `BPF_FS_MAGIC`
 ```rust
 const BPF_FS_MAGIC: u32 = 3_405_662_737u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1669`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1669)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1669`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1669)*
 
 ### `AAFS_MAGIC`
 ```rust
 const AAFS_MAGIC: u32 = 1_513_908_720u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1670`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1670)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1670`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1670)*
 
 ### `ZONEFS_MAGIC`
 ```rust
 const ZONEFS_MAGIC: u32 = 1_515_144_787u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1671`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1671)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1671`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1671)*
 
 ### `UDF_SUPER_MAGIC`
 ```rust
 const UDF_SUPER_MAGIC: u32 = 352_400_198u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1672`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1672)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1672`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1672)*
 
 ### `DMA_BUF_MAGIC`
 ```rust
 const DMA_BUF_MAGIC: u32 = 1_145_913_666u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1673`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1673)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1673`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1673)*
 
 ### `DEVMEM_MAGIC`
 ```rust
 const DEVMEM_MAGIC: u32 = 1_162_691_661u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1674`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1674)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1674`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1674)*
 
 ### `SECRETMEM_MAGIC`
 ```rust
 const SECRETMEM_MAGIC: u32 = 1_397_048_141u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1675`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1675)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1675`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1675)*
 
 ### `PID_FS_MAGIC`
 ```rust
 const PID_FS_MAGIC: u32 = 1_346_978_886u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1676`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1676)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1676`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1676)*
 
 ### `MAP_32BIT`
 ```rust
 const MAP_32BIT: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1677`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1677)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1677`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1677)*
 
 ### `MAP_ABOVE4G`
 ```rust
 const MAP_ABOVE4G: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1678`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1678)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1678`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1678)*
 
 ### `PROT_READ`
 ```rust
 const PROT_READ: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1679`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1679)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1679`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1679)*
 
 ### `PROT_WRITE`
 ```rust
 const PROT_WRITE: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1680`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1680)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1680`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1680)*
 
 ### `PROT_EXEC`
 ```rust
 const PROT_EXEC: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1681`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1681)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1681`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1681)*
 
 ### `PROT_SEM`
 ```rust
 const PROT_SEM: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1682`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1682)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1682`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1682)*
 
 ### `PROT_NONE`
 ```rust
 const PROT_NONE: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1683`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1683)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1683`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1683)*
 
 ### `PROT_GROWSDOWN`
 ```rust
 const PROT_GROWSDOWN: u32 = 16_777_216u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1684`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1684)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1684`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1684)*
 
 ### `PROT_GROWSUP`
 ```rust
 const PROT_GROWSUP: u32 = 33_554_432u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1685`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1685)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1685`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1685)*
 
 ### `MAP_TYPE`
 ```rust
 const MAP_TYPE: u32 = 15u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1686`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1686)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1686`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1686)*
 
 ### `MAP_FIXED`
 ```rust
 const MAP_FIXED: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1687`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1687)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1687`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1687)*
 
 ### `MAP_ANONYMOUS`
 ```rust
 const MAP_ANONYMOUS: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1688`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1688)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1688`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1688)*
 
 ### `MAP_POPULATE`
 ```rust
 const MAP_POPULATE: u32 = 32_768u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1689`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1689)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1689`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1689)*
 
 ### `MAP_NONBLOCK`
 ```rust
 const MAP_NONBLOCK: u32 = 65_536u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1690`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1690)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1690`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1690)*
 
 ### `MAP_STACK`
 ```rust
 const MAP_STACK: u32 = 131_072u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1691`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1691)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1691`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1691)*
 
 ### `MAP_HUGETLB`
 ```rust
 const MAP_HUGETLB: u32 = 262_144u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1692`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1692)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1692`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1692)*
 
 ### `MAP_SYNC`
 ```rust
 const MAP_SYNC: u32 = 524_288u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1693`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1693)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1693`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1693)*
 
 ### `MAP_FIXED_NOREPLACE`
 ```rust
 const MAP_FIXED_NOREPLACE: u32 = 1_048_576u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1694`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1694)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1694`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1694)*
 
 ### `MAP_UNINITIALIZED`
 ```rust
 const MAP_UNINITIALIZED: u32 = 67_108_864u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1695`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1695)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1695`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1695)*
 
 ### `MLOCK_ONFAULT`
 ```rust
 const MLOCK_ONFAULT: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1696`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1696)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1696`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1696)*
 
 ### `MS_ASYNC`
 ```rust
 const MS_ASYNC: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1697`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1697)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1697`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1697)*
 
 ### `MS_INVALIDATE`
 ```rust
 const MS_INVALIDATE: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1698`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1698)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1698`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1698)*
 
 ### `MS_SYNC`
 ```rust
 const MS_SYNC: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1699`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1699)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1699`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1699)*
 
 ### `MADV_NORMAL`
 ```rust
 const MADV_NORMAL: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1700`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1700)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1700`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1700)*
 
 ### `MADV_RANDOM`
 ```rust
 const MADV_RANDOM: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1701`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1701)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1701`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1701)*
 
 ### `MADV_SEQUENTIAL`
 ```rust
 const MADV_SEQUENTIAL: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1702`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1702)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1702`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1702)*
 
 ### `MADV_WILLNEED`
 ```rust
 const MADV_WILLNEED: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1703`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1703)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1703`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1703)*
 
 ### `MADV_DONTNEED`
 ```rust
 const MADV_DONTNEED: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1704`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1704)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1704`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1704)*
 
 ### `MADV_FREE`
 ```rust
 const MADV_FREE: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1705`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1705)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1705`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1705)*
 
 ### `MADV_REMOVE`
 ```rust
 const MADV_REMOVE: u32 = 9u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1706`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1706)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1706`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1706)*
 
 ### `MADV_DONTFORK`
 ```rust
 const MADV_DONTFORK: u32 = 10u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1707`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1707)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1707`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1707)*
 
 ### `MADV_DOFORK`
 ```rust
 const MADV_DOFORK: u32 = 11u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1708`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1708)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1708`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1708)*
 
 ### `MADV_HWPOISON`
 ```rust
 const MADV_HWPOISON: u32 = 100u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1709`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1709)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1709`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1709)*
 
 ### `MADV_SOFT_OFFLINE`
 ```rust
 const MADV_SOFT_OFFLINE: u32 = 101u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1710`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1710)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1710`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1710)*
 
 ### `MADV_MERGEABLE`
 ```rust
 const MADV_MERGEABLE: u32 = 12u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1711`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1711)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1711`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1711)*
 
 ### `MADV_UNMERGEABLE`
 ```rust
 const MADV_UNMERGEABLE: u32 = 13u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1712`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1712)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1712`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1712)*
 
 ### `MADV_HUGEPAGE`
 ```rust
 const MADV_HUGEPAGE: u32 = 14u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1713`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1713)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1713`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1713)*
 
 ### `MADV_NOHUGEPAGE`
 ```rust
 const MADV_NOHUGEPAGE: u32 = 15u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1714`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1714)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1714`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1714)*
 
 ### `MADV_DONTDUMP`
 ```rust
 const MADV_DONTDUMP: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1715`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1715)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1715`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1715)*
 
 ### `MADV_DODUMP`
 ```rust
 const MADV_DODUMP: u32 = 17u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1716`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1716)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1716`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1716)*
 
 ### `MADV_WIPEONFORK`
 ```rust
 const MADV_WIPEONFORK: u32 = 18u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1717`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1717)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1717`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1717)*
 
 ### `MADV_KEEPONFORK`
 ```rust
 const MADV_KEEPONFORK: u32 = 19u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1718`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1718)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1718`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1718)*
 
 ### `MADV_COLD`
 ```rust
 const MADV_COLD: u32 = 20u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1719`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1719)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1719`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1719)*
 
 ### `MADV_PAGEOUT`
 ```rust
 const MADV_PAGEOUT: u32 = 21u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1720`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1720)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1720`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1720)*
 
 ### `MADV_POPULATE_READ`
 ```rust
 const MADV_POPULATE_READ: u32 = 22u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1721`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1721)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1721`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1721)*
 
 ### `MADV_POPULATE_WRITE`
 ```rust
 const MADV_POPULATE_WRITE: u32 = 23u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1722`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1722)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1722`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1722)*
 
 ### `MADV_DONTNEED_LOCKED`
 ```rust
 const MADV_DONTNEED_LOCKED: u32 = 24u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1723`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1723)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1723`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1723)*
 
 ### `MADV_COLLAPSE`
 ```rust
 const MADV_COLLAPSE: u32 = 25u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1724`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1724)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1724`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1724)*
 
 ### `MADV_GUARD_INSTALL`
 ```rust
 const MADV_GUARD_INSTALL: u32 = 102u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1725`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1725)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1725`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1725)*
 
 ### `MADV_GUARD_REMOVE`
 ```rust
 const MADV_GUARD_REMOVE: u32 = 103u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1726`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1726)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1726`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1726)*
 
 ### `MAP_FILE`
 ```rust
 const MAP_FILE: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1727`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1727)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1727`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1727)*
 
 ### `PKEY_UNRESTRICTED`
 ```rust
 const PKEY_UNRESTRICTED: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1728`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1728)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1728`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1728)*
 
 ### `PKEY_DISABLE_ACCESS`
 ```rust
 const PKEY_DISABLE_ACCESS: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1729`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1729)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1729`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1729)*
 
 ### `PKEY_DISABLE_WRITE`
 ```rust
 const PKEY_DISABLE_WRITE: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1730`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1730)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1730`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1730)*
 
 ### `PKEY_ACCESS_MASK`
 ```rust
 const PKEY_ACCESS_MASK: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1731`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1731)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1731`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1731)*
 
 ### `MAP_GROWSDOWN`
 ```rust
 const MAP_GROWSDOWN: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1732`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1732)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1732`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1732)*
 
 ### `MAP_DENYWRITE`
 ```rust
 const MAP_DENYWRITE: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1733`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1733)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1733`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1733)*
 
 ### `MAP_EXECUTABLE`
 ```rust
 const MAP_EXECUTABLE: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1734`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1734)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1734`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1734)*
 
 ### `MAP_LOCKED`
 ```rust
 const MAP_LOCKED: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1735`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1735)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1735`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1735)*
 
 ### `MAP_NORESERVE`
 ```rust
 const MAP_NORESERVE: u32 = 16_384u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1736`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1736)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1736`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1736)*
 
 ### `MCL_CURRENT`
 ```rust
 const MCL_CURRENT: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1737`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1737)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1737`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1737)*
 
 ### `MCL_FUTURE`
 ```rust
 const MCL_FUTURE: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1738`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1738)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1738`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1738)*
 
 ### `MCL_ONFAULT`
 ```rust
 const MCL_ONFAULT: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1739`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1739)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1739`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1739)*
 
 ### `SHADOW_STACK_SET_TOKEN`
 ```rust
 const SHADOW_STACK_SET_TOKEN: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1740`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1740)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1740`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1740)*
 
 ### `SHADOW_STACK_SET_MARKER`
 ```rust
 const SHADOW_STACK_SET_MARKER: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1741`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1741)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1741`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1741)*
 
 ### `HUGETLB_FLAG_ENCODE_SHIFT`
 ```rust
 const HUGETLB_FLAG_ENCODE_SHIFT: u32 = 26u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1742`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1742)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1742`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1742)*
 
 ### `HUGETLB_FLAG_ENCODE_MASK`
 ```rust
 const HUGETLB_FLAG_ENCODE_MASK: u32 = 63u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1743`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1743)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1743`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1743)*
 
 ### `HUGETLB_FLAG_ENCODE_16KB`
 ```rust
 const HUGETLB_FLAG_ENCODE_16KB: u32 = 939_524_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1744`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1744)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1744`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1744)*
 
 ### `HUGETLB_FLAG_ENCODE_64KB`
 ```rust
 const HUGETLB_FLAG_ENCODE_64KB: u32 = 1_073_741_824u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1745`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1745)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1745`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1745)*
 
 ### `HUGETLB_FLAG_ENCODE_512KB`
 ```rust
 const HUGETLB_FLAG_ENCODE_512KB: u32 = 1_275_068_416u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1746`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1746)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1746`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1746)*
 
 ### `HUGETLB_FLAG_ENCODE_1MB`
 ```rust
 const HUGETLB_FLAG_ENCODE_1MB: u32 = 1_342_177_280u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1747`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1747)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1747`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1747)*
 
 ### `HUGETLB_FLAG_ENCODE_2MB`
 ```rust
 const HUGETLB_FLAG_ENCODE_2MB: u32 = 1_409_286_144u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1748`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1748)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1748`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1748)*
 
 ### `HUGETLB_FLAG_ENCODE_8MB`
 ```rust
 const HUGETLB_FLAG_ENCODE_8MB: u32 = 1_543_503_872u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1749`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1749)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1749`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1749)*
 
 ### `HUGETLB_FLAG_ENCODE_16MB`
 ```rust
 const HUGETLB_FLAG_ENCODE_16MB: u32 = 1_610_612_736u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1750`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1750)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1750`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1750)*
 
 ### `HUGETLB_FLAG_ENCODE_32MB`
 ```rust
 const HUGETLB_FLAG_ENCODE_32MB: u32 = 1_677_721_600u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1751`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1751)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1751`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1751)*
 
 ### `HUGETLB_FLAG_ENCODE_256MB`
 ```rust
 const HUGETLB_FLAG_ENCODE_256MB: u32 = 1_879_048_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1752`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1752)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1752`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1752)*
 
 ### `HUGETLB_FLAG_ENCODE_512MB`
 ```rust
 const HUGETLB_FLAG_ENCODE_512MB: u32 = 1_946_157_056u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1753`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1753)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1753`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1753)*
 
 ### `HUGETLB_FLAG_ENCODE_1GB`
 ```rust
 const HUGETLB_FLAG_ENCODE_1GB: u32 = 2_013_265_920u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1754`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1754)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1754`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1754)*
 
 ### `HUGETLB_FLAG_ENCODE_2GB`
 ```rust
 const HUGETLB_FLAG_ENCODE_2GB: u32 = 2_080_374_784u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1755`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1755)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1755`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1755)*
 
 ### `HUGETLB_FLAG_ENCODE_16GB`
 ```rust
 const HUGETLB_FLAG_ENCODE_16GB: u32 = 2_281_701_376u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1756`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1756)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1756`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1756)*
 
 ### `MREMAP_MAYMOVE`
 ```rust
 const MREMAP_MAYMOVE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1757`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1757)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1757`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1757)*
 
 ### `MREMAP_FIXED`
 ```rust
 const MREMAP_FIXED: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1758`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1758)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1758`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1758)*
 
 ### `MREMAP_DONTUNMAP`
 ```rust
 const MREMAP_DONTUNMAP: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1759`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1759)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1759`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1759)*
 
 ### `OVERCOMMIT_GUESS`
 ```rust
 const OVERCOMMIT_GUESS: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1760`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1760)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1760`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1760)*
 
 ### `OVERCOMMIT_ALWAYS`
 ```rust
 const OVERCOMMIT_ALWAYS: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1761`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1761)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1761`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1761)*
 
 ### `OVERCOMMIT_NEVER`
 ```rust
 const OVERCOMMIT_NEVER: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1762`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1762)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1762`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1762)*
 
 ### `MAP_SHARED`
 ```rust
 const MAP_SHARED: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1763`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1763)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1763`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1763)*
 
 ### `MAP_PRIVATE`
 ```rust
 const MAP_PRIVATE: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1764`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1764)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1764`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1764)*
 
 ### `MAP_SHARED_VALIDATE`
 ```rust
 const MAP_SHARED_VALIDATE: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1765`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1765)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1765`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1765)*
 
 ### `MAP_DROPPABLE`
 ```rust
 const MAP_DROPPABLE: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1766`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1766)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1766`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1766)*
 
 ### `MAP_HUGE_SHIFT`
 ```rust
 const MAP_HUGE_SHIFT: u32 = 26u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1767`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1767)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1767`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1767)*
 
 ### `MAP_HUGE_MASK`
 ```rust
 const MAP_HUGE_MASK: u32 = 63u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1768`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1768)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1768`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1768)*
 
 ### `MAP_HUGE_16KB`
 ```rust
 const MAP_HUGE_16KB: u32 = 939_524_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1769`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1769)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1769`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1769)*
 
 ### `MAP_HUGE_64KB`
 ```rust
 const MAP_HUGE_64KB: u32 = 1_073_741_824u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1770`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1770)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1770`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1770)*
 
 ### `MAP_HUGE_512KB`
 ```rust
 const MAP_HUGE_512KB: u32 = 1_275_068_416u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1771`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1771)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1771`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1771)*
 
 ### `MAP_HUGE_1MB`
 ```rust
 const MAP_HUGE_1MB: u32 = 1_342_177_280u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1772`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1772)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1772`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1772)*
 
 ### `MAP_HUGE_2MB`
 ```rust
 const MAP_HUGE_2MB: u32 = 1_409_286_144u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1773`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1773)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1773`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1773)*
 
 ### `MAP_HUGE_8MB`
 ```rust
 const MAP_HUGE_8MB: u32 = 1_543_503_872u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1774`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1774)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1774`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1774)*
 
 ### `MAP_HUGE_16MB`
 ```rust
 const MAP_HUGE_16MB: u32 = 1_610_612_736u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1775`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1775)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1775`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1775)*
 
 ### `MAP_HUGE_32MB`
 ```rust
 const MAP_HUGE_32MB: u32 = 1_677_721_600u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1776`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1776)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1776`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1776)*
 
 ### `MAP_HUGE_256MB`
 ```rust
 const MAP_HUGE_256MB: u32 = 1_879_048_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1777`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1777)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1777`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1777)*
 
 ### `MAP_HUGE_512MB`
 ```rust
 const MAP_HUGE_512MB: u32 = 1_946_157_056u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1778`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1778)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1778`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1778)*
 
 ### `MAP_HUGE_1GB`
 ```rust
 const MAP_HUGE_1GB: u32 = 2_013_265_920u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1779`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1779)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1779`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1779)*
 
 ### `MAP_HUGE_2GB`
 ```rust
 const MAP_HUGE_2GB: u32 = 2_080_374_784u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1780`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1780)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1780`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1780)*
 
 ### `MAP_HUGE_16GB`
 ```rust
 const MAP_HUGE_16GB: u32 = 2_281_701_376u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1781`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1781)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1781`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1781)*
 
 ### `POLLIN`
 ```rust
 const POLLIN: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1782`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1782)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1782`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1782)*
 
 ### `POLLPRI`
 ```rust
 const POLLPRI: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1783`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1783)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1783`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1783)*
 
 ### `POLLOUT`
 ```rust
 const POLLOUT: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1784`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1784)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1784`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1784)*
 
 ### `POLLERR`
 ```rust
 const POLLERR: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1785`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1785)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1785`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1785)*
 
 ### `POLLHUP`
 ```rust
 const POLLHUP: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1786`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1786)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1786`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1786)*
 
 ### `POLLNVAL`
 ```rust
 const POLLNVAL: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1787`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1787)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1787`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1787)*
 
 ### `POLLRDNORM`
 ```rust
 const POLLRDNORM: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1788`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1788)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1788`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1788)*
 
 ### `POLLRDBAND`
 ```rust
 const POLLRDBAND: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1789`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1789)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1789`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1789)*
 
 ### `POLLWRNORM`
 ```rust
 const POLLWRNORM: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1790`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1790)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1790`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1790)*
 
 ### `POLLWRBAND`
 ```rust
 const POLLWRBAND: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1791`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1791)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1791`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1791)*
 
 ### `POLLMSG`
 ```rust
 const POLLMSG: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1792`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1792)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1792`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1792)*
 
 ### `POLLREMOVE`
 ```rust
 const POLLREMOVE: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1793`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1793)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1793`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1793)*
 
 ### `POLLRDHUP`
 ```rust
 const POLLRDHUP: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1794`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1794)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1794`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1794)*
 
 ### `GRND_NONBLOCK`
 ```rust
 const GRND_NONBLOCK: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1795`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1795)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1795`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1795)*
 
 ### `GRND_RANDOM`
 ```rust
 const GRND_RANDOM: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1796`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1796)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1796`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1796)*
 
 ### `GRND_INSECURE`
 ```rust
 const GRND_INSECURE: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1797`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1797)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1797`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1797)*
 
 ### `LINUX_REBOOT_MAGIC1`
 ```rust
 const LINUX_REBOOT_MAGIC1: u32 = 4_276_215_469u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1798`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1798)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1798`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1798)*
 
 ### `LINUX_REBOOT_MAGIC2`
 ```rust
 const LINUX_REBOOT_MAGIC2: u32 = 672_274_793u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1799`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1799)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1799`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1799)*
 
 ### `LINUX_REBOOT_MAGIC2A`
 ```rust
 const LINUX_REBOOT_MAGIC2A: u32 = 85_072_278u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1800`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1800)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1800`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1800)*
 
 ### `LINUX_REBOOT_MAGIC2B`
 ```rust
 const LINUX_REBOOT_MAGIC2B: u32 = 369_367_448u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1801`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1801)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1801`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1801)*
 
 ### `LINUX_REBOOT_MAGIC2C`
 ```rust
 const LINUX_REBOOT_MAGIC2C: u32 = 537_993_216u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1802`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1802)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1802`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1802)*
 
 ### `LINUX_REBOOT_CMD_RESTART`
 ```rust
 const LINUX_REBOOT_CMD_RESTART: u32 = 19_088_743u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1803`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1803)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1803`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1803)*
 
 ### `LINUX_REBOOT_CMD_HALT`
 ```rust
 const LINUX_REBOOT_CMD_HALT: u32 = 3_454_992_675u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1804`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1804)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1804`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1804)*
 
 ### `LINUX_REBOOT_CMD_CAD_ON`
 ```rust
 const LINUX_REBOOT_CMD_CAD_ON: u32 = 2_309_737_967u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1805`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1805)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1805`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1805)*
 
 ### `LINUX_REBOOT_CMD_CAD_OFF`
 ```rust
 const LINUX_REBOOT_CMD_CAD_OFF: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1806`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1806)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1806`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1806)*
 
 ### `LINUX_REBOOT_CMD_POWER_OFF`
 ```rust
 const LINUX_REBOOT_CMD_POWER_OFF: u32 = 1_126_301_404u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1807`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1807)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1807`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1807)*
 
 ### `LINUX_REBOOT_CMD_RESTART2`
 ```rust
 const LINUX_REBOOT_CMD_RESTART2: u32 = 2_712_847_316u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1808`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1808)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1808`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1808)*
 
 ### `LINUX_REBOOT_CMD_SW_SUSPEND`
 ```rust
 const LINUX_REBOOT_CMD_SW_SUSPEND: u32 = 3_489_725_666u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1809`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1809)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1809`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1809)*
 
 ### `LINUX_REBOOT_CMD_KEXEC`
 ```rust
 const LINUX_REBOOT_CMD_KEXEC: u32 = 1_163_412_803u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1810`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1810)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1810`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1810)*
 
 ### `RUSAGE_SELF`
 ```rust
 const RUSAGE_SELF: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1811`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1811)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1811`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1811)*
 
 ### `RUSAGE_CHILDREN`
 ```rust
 const RUSAGE_CHILDREN: i32 = -1i32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1812`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1812)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1812`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1812)*
 
 ### `RUSAGE_BOTH`
 ```rust
 const RUSAGE_BOTH: i32 = -2i32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1813`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1813)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1813`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1813)*
 
 ### `RUSAGE_THREAD`
 ```rust
 const RUSAGE_THREAD: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1814`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1814)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1814`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1814)*
 
 ### `RLIM64_INFINITY`
 ```rust
 const RLIM64_INFINITY: i32 = -1i32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1815`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1815)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1815`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1815)*
 
 ### `PRIO_MIN`
 ```rust
 const PRIO_MIN: i32 = -20i32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1816`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1816)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1816`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1816)*
 
 ### `PRIO_MAX`
 ```rust
 const PRIO_MAX: u32 = 20u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1817`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1817)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1817`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1817)*
 
 ### `PRIO_PROCESS`
 ```rust
 const PRIO_PROCESS: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1818`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1818)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1818`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1818)*
 
 ### `PRIO_PGRP`
 ```rust
 const PRIO_PGRP: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1819`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1819)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1819`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1819)*
 
 ### `PRIO_USER`
 ```rust
 const PRIO_USER: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1820`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1820)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1820`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1820)*
 
 ### `_STK_LIM`
 ```rust
 const _STK_LIM: u32 = 8_388_608u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1821`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1821)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1821`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1821)*
 
 ### `MLOCK_LIMIT`
 ```rust
 const MLOCK_LIMIT: u32 = 8_388_608u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1822`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1822)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1822`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1822)*
 
 ### `RLIMIT_CPU`
 ```rust
 const RLIMIT_CPU: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1823`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1823)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1823`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1823)*
 
 ### `RLIMIT_FSIZE`
 ```rust
 const RLIMIT_FSIZE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1824`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1824)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1824`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1824)*
 
 ### `RLIMIT_DATA`
 ```rust
 const RLIMIT_DATA: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1825`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1825)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1825`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1825)*
 
 ### `RLIMIT_STACK`
 ```rust
 const RLIMIT_STACK: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1826`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1826)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1826`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1826)*
 
 ### `RLIMIT_CORE`
 ```rust
 const RLIMIT_CORE: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1827`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1827)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1827`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1827)*
 
 ### `RLIMIT_RSS`
 ```rust
 const RLIMIT_RSS: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1828`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1828)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1828`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1828)*
 
 ### `RLIMIT_NPROC`
 ```rust
 const RLIMIT_NPROC: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1829`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1829)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1829`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1829)*
 
 ### `RLIMIT_NOFILE`
 ```rust
 const RLIMIT_NOFILE: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1830`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1830)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1830`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1830)*
 
 ### `RLIMIT_MEMLOCK`
 ```rust
 const RLIMIT_MEMLOCK: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1831`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1831)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1831`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1831)*
 
 ### `RLIMIT_AS`
 ```rust
 const RLIMIT_AS: u32 = 9u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1832`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1832)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1832`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1832)*
 
 ### `RLIMIT_LOCKS`
 ```rust
 const RLIMIT_LOCKS: u32 = 10u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1833`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1833)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1833`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1833)*
 
 ### `RLIMIT_SIGPENDING`
 ```rust
 const RLIMIT_SIGPENDING: u32 = 11u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1834`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1834)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1834`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1834)*
 
 ### `RLIMIT_MSGQUEUE`
 ```rust
 const RLIMIT_MSGQUEUE: u32 = 12u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1835`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1835)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1835`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1835)*
 
 ### `RLIMIT_NICE`
 ```rust
 const RLIMIT_NICE: u32 = 13u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1836`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1836)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1836`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1836)*
 
 ### `RLIMIT_RTPRIO`
 ```rust
 const RLIMIT_RTPRIO: u32 = 14u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1837`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1837)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1837`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1837)*
 
 ### `RLIMIT_RTTIME`
 ```rust
 const RLIMIT_RTTIME: u32 = 15u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1838`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1838)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1838`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1838)*
 
 ### `RLIM_NLIMITS`
 ```rust
 const RLIM_NLIMITS: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1839`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1839)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1839`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1839)*
 
 ### `RLIM_INFINITY`
 ```rust
 const RLIM_INFINITY: i32 = -1i32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1840`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1840)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1840`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1840)*
 
 ### `CSIGNAL`
 ```rust
 const CSIGNAL: u32 = 255u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1841`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1841)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1841`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1841)*
 
 ### `CLONE_VM`
 ```rust
 const CLONE_VM: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1842`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1842)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1842`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1842)*
 
 ### `CLONE_FS`
 ```rust
 const CLONE_FS: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1843`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1843)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1843`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1843)*
 
 ### `CLONE_FILES`
 ```rust
 const CLONE_FILES: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1844`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1844)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1844`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1844)*
 
 ### `CLONE_SIGHAND`
 ```rust
 const CLONE_SIGHAND: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1845`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1845)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1845`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1845)*
 
 ### `CLONE_PIDFD`
 ```rust
 const CLONE_PIDFD: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1846`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1846)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1846`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1846)*
 
 ### `CLONE_PTRACE`
 ```rust
 const CLONE_PTRACE: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1847`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1847)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1847`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1847)*
 
 ### `CLONE_VFORK`
 ```rust
 const CLONE_VFORK: u32 = 16_384u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1848`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1848)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1848`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1848)*
 
 ### `CLONE_PARENT`
 ```rust
 const CLONE_PARENT: u32 = 32_768u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1849`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1849)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1849`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1849)*
 
 ### `CLONE_THREAD`
 ```rust
 const CLONE_THREAD: u32 = 65_536u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1850`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1850)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1850`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1850)*
 
 ### `CLONE_NEWNS`
 ```rust
 const CLONE_NEWNS: u32 = 131_072u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1851`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1851)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1851`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1851)*
 
 ### `CLONE_SYSVSEM`
 ```rust
 const CLONE_SYSVSEM: u32 = 262_144u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1852`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1852)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1852`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1852)*
 
 ### `CLONE_SETTLS`
 ```rust
 const CLONE_SETTLS: u32 = 524_288u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1853`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1853)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1853`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1853)*
 
 ### `CLONE_PARENT_SETTID`
 ```rust
 const CLONE_PARENT_SETTID: u32 = 1_048_576u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1854`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1854)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1854`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1854)*
 
 ### `CLONE_CHILD_CLEARTID`
 ```rust
 const CLONE_CHILD_CLEARTID: u32 = 2_097_152u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1855`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1855)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1855`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1855)*
 
 ### `CLONE_DETACHED`
 ```rust
 const CLONE_DETACHED: u32 = 4_194_304u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1856`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1856)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1856`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1856)*
 
 ### `CLONE_UNTRACED`
 ```rust
 const CLONE_UNTRACED: u32 = 8_388_608u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1857`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1857)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1857`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1857)*
 
 ### `CLONE_CHILD_SETTID`
 ```rust
 const CLONE_CHILD_SETTID: u32 = 16_777_216u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1858`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1858)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1858`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1858)*
 
 ### `CLONE_NEWCGROUP`
 ```rust
 const CLONE_NEWCGROUP: u32 = 33_554_432u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1859`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1859)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1859`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1859)*
 
 ### `CLONE_NEWUTS`
 ```rust
 const CLONE_NEWUTS: u32 = 67_108_864u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1860`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1860)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1860`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1860)*
 
 ### `CLONE_NEWIPC`
 ```rust
 const CLONE_NEWIPC: u32 = 134_217_728u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1861`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1861)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1861`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1861)*
 
 ### `CLONE_NEWUSER`
 ```rust
 const CLONE_NEWUSER: u32 = 268_435_456u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1862`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1862)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1862`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1862)*
 
 ### `CLONE_NEWPID`
 ```rust
 const CLONE_NEWPID: u32 = 536_870_912u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1863`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1863)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1863`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1863)*
 
 ### `CLONE_NEWNET`
 ```rust
 const CLONE_NEWNET: u32 = 1_073_741_824u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1864`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1864)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1864`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1864)*
 
 ### `CLONE_IO`
 ```rust
 const CLONE_IO: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1865`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1865)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1865`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1865)*
 
 ### `CLONE_CLEAR_SIGHAND`
 ```rust
 const CLONE_CLEAR_SIGHAND: u64 = 4_294_967_296u64;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1866`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1866)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1866`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1866)*
 
 ### `CLONE_INTO_CGROUP`
 ```rust
 const CLONE_INTO_CGROUP: u64 = 8_589_934_592u64;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1867`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1867)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1867`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1867)*
 
 ### `CLONE_NEWTIME`
 ```rust
 const CLONE_NEWTIME: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1868`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1868)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1868`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1868)*
 
 ### `CLONE_ARGS_SIZE_VER0`
 ```rust
 const CLONE_ARGS_SIZE_VER0: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1869`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1869)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1869`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1869)*
 
 ### `CLONE_ARGS_SIZE_VER1`
 ```rust
 const CLONE_ARGS_SIZE_VER1: u32 = 80u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1870`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1870)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1870`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1870)*
 
 ### `CLONE_ARGS_SIZE_VER2`
 ```rust
 const CLONE_ARGS_SIZE_VER2: u32 = 88u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1871`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1871)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1871`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1871)*
 
 ### `SCHED_NORMAL`
 ```rust
 const SCHED_NORMAL: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1872`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1872)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1872`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1872)*
 
 ### `SCHED_FIFO`
 ```rust
 const SCHED_FIFO: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1873`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1873)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1873`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1873)*
 
 ### `SCHED_RR`
 ```rust
 const SCHED_RR: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1874`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1874)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1874`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1874)*
 
 ### `SCHED_BATCH`
 ```rust
 const SCHED_BATCH: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1875`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1875)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1875`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1875)*
 
 ### `SCHED_IDLE`
 ```rust
 const SCHED_IDLE: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1876`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1876)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1876`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1876)*
 
 ### `SCHED_DEADLINE`
 ```rust
 const SCHED_DEADLINE: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1877`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1877)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1877`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1877)*
 
 ### `SCHED_EXT`
 ```rust
 const SCHED_EXT: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1878`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1878)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1878`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1878)*
 
 ### `SCHED_RESET_ON_FORK`
 ```rust
 const SCHED_RESET_ON_FORK: u32 = 1_073_741_824u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1879`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1879)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1879`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1879)*
 
 ### `SCHED_FLAG_RESET_ON_FORK`
 ```rust
 const SCHED_FLAG_RESET_ON_FORK: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1880`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1880)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1880`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1880)*
 
 ### `SCHED_FLAG_RECLAIM`
 ```rust
 const SCHED_FLAG_RECLAIM: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1881`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1881)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1881`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1881)*
 
 ### `SCHED_FLAG_DL_OVERRUN`
 ```rust
 const SCHED_FLAG_DL_OVERRUN: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1882`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1882)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1882`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1882)*
 
 ### `SCHED_FLAG_KEEP_POLICY`
 ```rust
 const SCHED_FLAG_KEEP_POLICY: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1883`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1883)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1883`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1883)*
 
 ### `SCHED_FLAG_KEEP_PARAMS`
 ```rust
 const SCHED_FLAG_KEEP_PARAMS: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1884`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1884)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1884`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1884)*
 
 ### `SCHED_FLAG_UTIL_CLAMP_MIN`
 ```rust
 const SCHED_FLAG_UTIL_CLAMP_MIN: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1885`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1885)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1885`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1885)*
 
 ### `SCHED_FLAG_UTIL_CLAMP_MAX`
 ```rust
 const SCHED_FLAG_UTIL_CLAMP_MAX: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1886`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1886)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1886`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1886)*
 
 ### `SCHED_FLAG_KEEP_ALL`
 ```rust
 const SCHED_FLAG_KEEP_ALL: u32 = 24u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1887`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1887)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1887`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1887)*
 
 ### `SCHED_FLAG_UTIL_CLAMP`
 ```rust
 const SCHED_FLAG_UTIL_CLAMP: u32 = 96u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1888`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1888)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1888`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1888)*
 
 ### `SCHED_FLAG_ALL`
 ```rust
 const SCHED_FLAG_ALL: u32 = 127u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1889`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1889)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1889`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1889)*
 
 ### `NSIG`
 ```rust
 const NSIG: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1890`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1890)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1890`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1890)*
 
 ### `SIGHUP`
 ```rust
 const SIGHUP: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1891`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1891)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1891`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1891)*
 
 ### `SIGINT`
 ```rust
 const SIGINT: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1892`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1892)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1892`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1892)*
 
 ### `SIGQUIT`
 ```rust
 const SIGQUIT: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1893`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1893)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1893`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1893)*
 
 ### `SIGILL`
 ```rust
 const SIGILL: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1894`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1894)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1894`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1894)*
 
 ### `SIGTRAP`
 ```rust
 const SIGTRAP: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1895`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1895)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1895`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1895)*
 
 ### `SIGABRT`
 ```rust
 const SIGABRT: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1896`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1896)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1896`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1896)*
 
 ### `SIGIOT`
 ```rust
 const SIGIOT: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1897`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1897)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1897`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1897)*
 
 ### `SIGBUS`
 ```rust
 const SIGBUS: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1898`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1898)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1898`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1898)*
 
 ### `SIGFPE`
 ```rust
 const SIGFPE: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1899`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1899)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1899`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1899)*
 
 ### `SIGKILL`
 ```rust
 const SIGKILL: u32 = 9u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1900`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1900)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1900`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1900)*
 
 ### `SIGUSR1`
 ```rust
 const SIGUSR1: u32 = 10u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1901`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1901)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1901`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1901)*
 
 ### `SIGSEGV`
 ```rust
 const SIGSEGV: u32 = 11u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1902`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1902)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1902`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1902)*
 
 ### `SIGUSR2`
 ```rust
 const SIGUSR2: u32 = 12u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1903`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1903)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1903`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1903)*
 
 ### `SIGPIPE`
 ```rust
 const SIGPIPE: u32 = 13u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1904`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1904)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1904`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1904)*
 
 ### `SIGALRM`
 ```rust
 const SIGALRM: u32 = 14u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1905`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1905)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1905`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1905)*
 
 ### `SIGTERM`
 ```rust
 const SIGTERM: u32 = 15u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1906`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1906)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1906`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1906)*
 
 ### `SIGSTKFLT`
 ```rust
 const SIGSTKFLT: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1907`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1907)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1907`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1907)*
 
 ### `SIGCHLD`
 ```rust
 const SIGCHLD: u32 = 17u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1908`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1908)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1908`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1908)*
 
 ### `SIGCONT`
 ```rust
 const SIGCONT: u32 = 18u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1909`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1909)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1909`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1909)*
 
 ### `SIGSTOP`
 ```rust
 const SIGSTOP: u32 = 19u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1910`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1910)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1910`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1910)*
 
 ### `SIGTSTP`
 ```rust
 const SIGTSTP: u32 = 20u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1911`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1911)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1911`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1911)*
 
 ### `SIGTTIN`
 ```rust
 const SIGTTIN: u32 = 21u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1912`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1912)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1912`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1912)*
 
 ### `SIGTTOU`
 ```rust
 const SIGTTOU: u32 = 22u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1913`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1913)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1913`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1913)*
 
 ### `SIGURG`
 ```rust
 const SIGURG: u32 = 23u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1914`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1914)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1914`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1914)*
 
 ### `SIGXCPU`
 ```rust
 const SIGXCPU: u32 = 24u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1915`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1915)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1915`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1915)*
 
 ### `SIGXFSZ`
 ```rust
 const SIGXFSZ: u32 = 25u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1916`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1916)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1916`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1916)*
 
 ### `SIGVTALRM`
 ```rust
 const SIGVTALRM: u32 = 26u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1917`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1917)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1917`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1917)*
 
 ### `SIGPROF`
 ```rust
 const SIGPROF: u32 = 27u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1918`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1918)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1918`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1918)*
 
 ### `SIGWINCH`
 ```rust
 const SIGWINCH: u32 = 28u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1919`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1919)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1919`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1919)*
 
 ### `SIGIO`
 ```rust
 const SIGIO: u32 = 29u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1920`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1920)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1920`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1920)*
 
 ### `SIGPOLL`
 ```rust
 const SIGPOLL: u32 = 29u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1921`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1921)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1921`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1921)*
 
 ### `SIGPWR`
 ```rust
 const SIGPWR: u32 = 30u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1922`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1922)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1922`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1922)*
 
 ### `SIGSYS`
 ```rust
 const SIGSYS: u32 = 31u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1923`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1923)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1923`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1923)*
 
 ### `SIGUNUSED`
 ```rust
 const SIGUNUSED: u32 = 31u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1924`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1924)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1924`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1924)*
 
 ### `SIGRTMIN`
 ```rust
 const SIGRTMIN: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1925`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1925)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1925`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1925)*
 
 ### `SA_RESTORER`
 ```rust
 const SA_RESTORER: u32 = 67_108_864u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1926`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1926)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1926`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1926)*
 
 ### `MINSIGSTKSZ`
 ```rust
 const MINSIGSTKSZ: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1927`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1927)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1927`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1927)*
 
 ### `SIGSTKSZ`
 ```rust
 const SIGSTKSZ: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1928`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1928)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1928`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1928)*
 
 ### `SA_NOCLDSTOP`
 ```rust
 const SA_NOCLDSTOP: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1929`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1929)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1929`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1929)*
 
 ### `SA_NOCLDWAIT`
 ```rust
 const SA_NOCLDWAIT: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1930`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1930)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1930`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1930)*
 
 ### `SA_SIGINFO`
 ```rust
 const SA_SIGINFO: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1931`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1931)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1931`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1931)*
 
 ### `SA_UNSUPPORTED`
 ```rust
 const SA_UNSUPPORTED: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1932`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1932)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1932`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1932)*
 
 ### `SA_EXPOSE_TAGBITS`
 ```rust
 const SA_EXPOSE_TAGBITS: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1933`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1933)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1933`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1933)*
 
 ### `SA_ONSTACK`
 ```rust
 const SA_ONSTACK: u32 = 134_217_728u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1934`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1934)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1934`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1934)*
 
 ### `SA_RESTART`
 ```rust
 const SA_RESTART: u32 = 268_435_456u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1935`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1935)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1935`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1935)*
 
 ### `SA_NODEFER`
 ```rust
 const SA_NODEFER: u32 = 1_073_741_824u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1936`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1936)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1936`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1936)*
 
 ### `SA_RESETHAND`
 ```rust
 const SA_RESETHAND: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1937`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1937)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1937`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1937)*
 
 ### `SA_NOMASK`
 ```rust
 const SA_NOMASK: u32 = 1_073_741_824u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1938`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1938)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1938`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1938)*
 
 ### `SA_ONESHOT`
 ```rust
 const SA_ONESHOT: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1939`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1939)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1939`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1939)*
 
 ### `SIG_BLOCK`
 ```rust
 const SIG_BLOCK: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1940`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1940)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1940`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1940)*
 
 ### `SIG_UNBLOCK`
 ```rust
 const SIG_UNBLOCK: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1941`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1941)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1941`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1941)*
 
 ### `SIG_SETMASK`
 ```rust
 const SIG_SETMASK: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1942`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1942)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1942`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1942)*
 
 ### `SI_MAX_SIZE`
 ```rust
 const SI_MAX_SIZE: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1943`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1943)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1943`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1943)*
 
 ### `SI_USER`
 ```rust
 const SI_USER: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1944`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1944)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1944`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1944)*
 
 ### `SI_KERNEL`
 ```rust
 const SI_KERNEL: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1945`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1945)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1945`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1945)*
 
 ### `SI_QUEUE`
 ```rust
 const SI_QUEUE: i32 = -1i32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1946`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1946)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1946`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1946)*
 
 ### `SI_TIMER`
 ```rust
 const SI_TIMER: i32 = -2i32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1947`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1947)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1947`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1947)*
 
 ### `SI_MESGQ`
 ```rust
 const SI_MESGQ: i32 = -3i32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1948`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1948)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1948`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1948)*
 
 ### `SI_ASYNCIO`
 ```rust
 const SI_ASYNCIO: i32 = -4i32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1949`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1949)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1949`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1949)*
 
 ### `SI_SIGIO`
 ```rust
 const SI_SIGIO: i32 = -5i32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1950`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1950)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1950`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1950)*
 
 ### `SI_TKILL`
 ```rust
 const SI_TKILL: i32 = -6i32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1951`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1951)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1951`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1951)*
 
 ### `SI_DETHREAD`
 ```rust
 const SI_DETHREAD: i32 = -7i32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1952`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1952)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1952`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1952)*
 
 ### `SI_ASYNCNL`
 ```rust
 const SI_ASYNCNL: i32 = -60i32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1953`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1953)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1953`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1953)*
 
 ### `ILL_ILLOPC`
 ```rust
 const ILL_ILLOPC: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1954`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1954)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1954`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1954)*
 
 ### `ILL_ILLOPN`
 ```rust
 const ILL_ILLOPN: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1955`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1955)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1955`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1955)*
 
 ### `ILL_ILLADR`
 ```rust
 const ILL_ILLADR: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1956`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1956)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1956`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1956)*
 
 ### `ILL_ILLTRP`
 ```rust
 const ILL_ILLTRP: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1957`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1957)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1957`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1957)*
 
 ### `ILL_PRVOPC`
 ```rust
 const ILL_PRVOPC: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1958`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1958)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1958`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1958)*
 
 ### `ILL_PRVREG`
 ```rust
 const ILL_PRVREG: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1959`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1959)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1959`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1959)*
 
 ### `ILL_COPROC`
 ```rust
 const ILL_COPROC: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1960`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1960)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1960`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1960)*
 
 ### `ILL_BADSTK`
 ```rust
 const ILL_BADSTK: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1961`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1961)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1961`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1961)*
 
 ### `ILL_BADIADDR`
 ```rust
 const ILL_BADIADDR: u32 = 9u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1962`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1962)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1962`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1962)*
 
 ### `__ILL_BREAK`
 ```rust
 const __ILL_BREAK: u32 = 10u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1963`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1963)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1963`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1963)*
 
 ### `__ILL_BNDMOD`
 ```rust
 const __ILL_BNDMOD: u32 = 11u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1964`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1964)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1964`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1964)*
 
 ### `NSIGILL`
 ```rust
 const NSIGILL: u32 = 11u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1965`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1965)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1965`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1965)*
 
 ### `FPE_INTDIV`
 ```rust
 const FPE_INTDIV: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1966`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1966)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1966`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1966)*
 
 ### `FPE_INTOVF`
 ```rust
 const FPE_INTOVF: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1967`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1967)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1967`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1967)*
 
 ### `FPE_FLTDIV`
 ```rust
 const FPE_FLTDIV: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1968`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1968)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1968`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1968)*
 
 ### `FPE_FLTOVF`
 ```rust
 const FPE_FLTOVF: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1969`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1969)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1969`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1969)*
 
 ### `FPE_FLTUND`
 ```rust
 const FPE_FLTUND: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1970`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1970)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1970`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1970)*
 
 ### `FPE_FLTRES`
 ```rust
 const FPE_FLTRES: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1971`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1971)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1971`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1971)*
 
 ### `FPE_FLTINV`
 ```rust
 const FPE_FLTINV: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1972`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1972)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1972`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1972)*
 
 ### `FPE_FLTSUB`
 ```rust
 const FPE_FLTSUB: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1973`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1973)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1973`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1973)*
 
 ### `__FPE_DECOVF`
 ```rust
 const __FPE_DECOVF: u32 = 9u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1974`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1974)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1974`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1974)*
 
 ### `__FPE_DECDIV`
 ```rust
 const __FPE_DECDIV: u32 = 10u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1975`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1975)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1975`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1975)*
 
 ### `__FPE_DECERR`
 ```rust
 const __FPE_DECERR: u32 = 11u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1976`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1976)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1976`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1976)*
 
 ### `__FPE_INVASC`
 ```rust
 const __FPE_INVASC: u32 = 12u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1977`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1977)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1977`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1977)*
 
 ### `__FPE_INVDEC`
 ```rust
 const __FPE_INVDEC: u32 = 13u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1978`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1978)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1978`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1978)*
 
 ### `FPE_FLTUNK`
 ```rust
 const FPE_FLTUNK: u32 = 14u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1979`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1979)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1979`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1979)*
 
 ### `FPE_CONDTRAP`
 ```rust
 const FPE_CONDTRAP: u32 = 15u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1980`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1980)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1980`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1980)*
 
 ### `NSIGFPE`
 ```rust
 const NSIGFPE: u32 = 15u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1981`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1981)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1981`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1981)*
 
 ### `SEGV_MAPERR`
 ```rust
 const SEGV_MAPERR: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1982`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1982)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1982`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1982)*
 
 ### `SEGV_ACCERR`
 ```rust
 const SEGV_ACCERR: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1983`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1983)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1983`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1983)*
 
 ### `SEGV_BNDERR`
 ```rust
 const SEGV_BNDERR: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1984`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1984)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1984`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1984)*
 
 ### `SEGV_PKUERR`
 ```rust
 const SEGV_PKUERR: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1985`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1985)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1985`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1985)*
 
 ### `SEGV_ACCADI`
 ```rust
 const SEGV_ACCADI: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1986`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1986)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1986`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1986)*
 
 ### `SEGV_ADIDERR`
 ```rust
 const SEGV_ADIDERR: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1987`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1987)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1987`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1987)*
 
 ### `SEGV_ADIPERR`
 ```rust
 const SEGV_ADIPERR: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1988`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1988)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1988`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1988)*
 
 ### `SEGV_MTEAERR`
 ```rust
 const SEGV_MTEAERR: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1989`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1989)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1989`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1989)*
 
 ### `SEGV_MTESERR`
 ```rust
 const SEGV_MTESERR: u32 = 9u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1990`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1990)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1990`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1990)*
 
 ### `SEGV_CPERR`
 ```rust
 const SEGV_CPERR: u32 = 10u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1991`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1991)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1991`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1991)*
 
 ### `NSIGSEGV`
 ```rust
 const NSIGSEGV: u32 = 10u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1992`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1992)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1992`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1992)*
 
 ### `BUS_ADRALN`
 ```rust
 const BUS_ADRALN: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1993`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1993)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1993`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1993)*
 
 ### `BUS_ADRERR`
 ```rust
 const BUS_ADRERR: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1994`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1994)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1994`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1994)*
 
 ### `BUS_OBJERR`
 ```rust
 const BUS_OBJERR: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1995`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1995)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1995`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1995)*
 
 ### `BUS_MCEERR_AR`
 ```rust
 const BUS_MCEERR_AR: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1996`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1996)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1996`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1996)*
 
 ### `BUS_MCEERR_AO`
 ```rust
 const BUS_MCEERR_AO: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1997`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1997)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1997`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1997)*
 
 ### `NSIGBUS`
 ```rust
 const NSIGBUS: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1998`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1998)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1998`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1998)*
 
 ### `TRAP_BRKPT`
 ```rust
 const TRAP_BRKPT: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1999`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1999)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:1999`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L1999)*
 
 ### `TRAP_TRACE`
 ```rust
 const TRAP_TRACE: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2000`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2000)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2000`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2000)*
 
 ### `TRAP_BRANCH`
 ```rust
 const TRAP_BRANCH: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2001`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2001)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2001`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2001)*
 
 ### `TRAP_HWBKPT`
 ```rust
 const TRAP_HWBKPT: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2002`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2002)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2002`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2002)*
 
 ### `TRAP_UNK`
 ```rust
 const TRAP_UNK: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2003`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2003)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2003`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2003)*
 
 ### `TRAP_PERF`
 ```rust
 const TRAP_PERF: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2004`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2004)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2004`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2004)*
 
 ### `NSIGTRAP`
 ```rust
 const NSIGTRAP: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2005`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2005)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2005`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2005)*
 
 ### `TRAP_PERF_FLAG_ASYNC`
 ```rust
 const TRAP_PERF_FLAG_ASYNC: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2006`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2006)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2006`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2006)*
 
 ### `CLD_EXITED`
 ```rust
 const CLD_EXITED: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2007`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2007)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2007`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2007)*
 
 ### `CLD_KILLED`
 ```rust
 const CLD_KILLED: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2008`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2008)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2008`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2008)*
 
 ### `CLD_DUMPED`
 ```rust
 const CLD_DUMPED: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2009`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2009)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2009`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2009)*
 
 ### `CLD_TRAPPED`
 ```rust
 const CLD_TRAPPED: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2010`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2010)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2010`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2010)*
 
 ### `CLD_STOPPED`
 ```rust
 const CLD_STOPPED: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2011`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2011)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2011`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2011)*
 
 ### `CLD_CONTINUED`
 ```rust
 const CLD_CONTINUED: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2012`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2012)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2012`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2012)*
 
 ### `NSIGCHLD`
 ```rust
 const NSIGCHLD: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2013`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2013)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2013`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2013)*
 
 ### `POLL_IN`
 ```rust
 const POLL_IN: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2014`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2014)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2014`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2014)*
 
 ### `POLL_OUT`
 ```rust
 const POLL_OUT: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2015`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2015)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2015`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2015)*
 
 ### `POLL_MSG`
 ```rust
 const POLL_MSG: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2016`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2016)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2016`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2016)*
 
 ### `POLL_ERR`
 ```rust
 const POLL_ERR: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2017`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2017)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2017`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2017)*
 
 ### `POLL_PRI`
 ```rust
 const POLL_PRI: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2018`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2018)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2018`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2018)*
 
 ### `POLL_HUP`
 ```rust
 const POLL_HUP: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2019`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2019)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2019`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2019)*
 
 ### `NSIGPOLL`
 ```rust
 const NSIGPOLL: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2020`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2020)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2020`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2020)*
 
 ### `SYS_SECCOMP`
 ```rust
 const SYS_SECCOMP: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2021`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2021)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2021`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2021)*
 
 ### `SYS_USER_DISPATCH`
 ```rust
 const SYS_USER_DISPATCH: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2022`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2022)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2022`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2022)*
 
 ### `NSIGSYS`
 ```rust
 const NSIGSYS: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2023`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2023)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2023`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2023)*
 
 ### `EMT_TAGOVF`
 ```rust
 const EMT_TAGOVF: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2024`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2024)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2024`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2024)*
 
 ### `NSIGEMT`
 ```rust
 const NSIGEMT: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2025`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2025)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2025`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2025)*
 
 ### `SIGEV_SIGNAL`
 ```rust
 const SIGEV_SIGNAL: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2026`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2026)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2026`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2026)*
 
 ### `SIGEV_NONE`
 ```rust
 const SIGEV_NONE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2027`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2027)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2027`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2027)*
 
 ### `SIGEV_THREAD`
 ```rust
 const SIGEV_THREAD: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2028`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2028)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2028`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2028)*
 
 ### `SIGEV_THREAD_ID`
 ```rust
 const SIGEV_THREAD_ID: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2029`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2029)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2029`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2029)*
 
 ### `SIGEV_MAX_SIZE`
 ```rust
 const SIGEV_MAX_SIZE: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2030`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2030)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2030`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2030)*
 
 ### `SS_ONSTACK`
 ```rust
 const SS_ONSTACK: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2031`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2031)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2031`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2031)*
 
 ### `SS_DISABLE`
 ```rust
 const SS_DISABLE: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2032`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2032)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2032`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2032)*
 
 ### `SS_AUTODISARM`
 ```rust
 const SS_AUTODISARM: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2033`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2033)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2033`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2033)*
 
 ### `SS_FLAG_BITS`
 ```rust
 const SS_FLAG_BITS: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2034`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2034)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2034`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2034)*
 
 ### `S_IFMT`
 ```rust
 const S_IFMT: u32 = 61_440u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2035`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2035)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2035`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2035)*
 
 ### `S_IFSOCK`
 ```rust
 const S_IFSOCK: u32 = 49_152u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2036`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2036)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2036`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2036)*
 
 ### `S_IFLNK`
 ```rust
 const S_IFLNK: u32 = 40_960u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2037`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2037)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2037`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2037)*
 
 ### `S_IFREG`
 ```rust
 const S_IFREG: u32 = 32_768u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2038`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2038)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2038`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2038)*
 
 ### `S_IFBLK`
 ```rust
 const S_IFBLK: u32 = 24_576u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2039`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2039)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2039`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2039)*
 
 ### `S_IFDIR`
 ```rust
 const S_IFDIR: u32 = 16_384u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2040`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2040)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2040`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2040)*
 
 ### `S_IFCHR`
 ```rust
 const S_IFCHR: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2041`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2041)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2041`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2041)*
 
 ### `S_IFIFO`
 ```rust
 const S_IFIFO: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2042`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2042)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2042`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2042)*
 
 ### `S_ISUID`
 ```rust
 const S_ISUID: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2043`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2043)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2043`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2043)*
 
 ### `S_ISGID`
 ```rust
 const S_ISGID: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2044`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2044)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2044`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2044)*
 
 ### `S_ISVTX`
 ```rust
 const S_ISVTX: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2045`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2045)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2045`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2045)*
 
 ### `S_IRWXU`
 ```rust
 const S_IRWXU: u32 = 448u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2046`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2046)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2046`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2046)*
 
 ### `S_IRUSR`
 ```rust
 const S_IRUSR: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2047`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2047)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2047`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2047)*
 
 ### `S_IWUSR`
 ```rust
 const S_IWUSR: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2048`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2048)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2048`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2048)*
 
 ### `S_IXUSR`
 ```rust
 const S_IXUSR: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2049`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2049)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2049`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2049)*
 
 ### `S_IRWXG`
 ```rust
 const S_IRWXG: u32 = 56u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2050`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2050)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2050`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2050)*
 
 ### `S_IRGRP`
 ```rust
 const S_IRGRP: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2051`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2051)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2051`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2051)*
 
 ### `S_IWGRP`
 ```rust
 const S_IWGRP: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2052`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2052)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2052`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2052)*
 
 ### `S_IXGRP`
 ```rust
 const S_IXGRP: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2053`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2053)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2053`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2053)*
 
 ### `S_IRWXO`
 ```rust
 const S_IRWXO: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2054`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2054)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2054`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2054)*
 
 ### `S_IROTH`
 ```rust
 const S_IROTH: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2055`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2055)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2055`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2055)*
 
 ### `S_IWOTH`
 ```rust
 const S_IWOTH: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2056`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2056)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2056`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2056)*
 
 ### `S_IXOTH`
 ```rust
 const S_IXOTH: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2057`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2057)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2057`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2057)*
 
 ### `STATX_TYPE`
 ```rust
 const STATX_TYPE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2058`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2058)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2058`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2058)*
 
 ### `STATX_MODE`
 ```rust
 const STATX_MODE: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2059`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2059)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2059`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2059)*
 
 ### `STATX_NLINK`
 ```rust
 const STATX_NLINK: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2060`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2060)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2060`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2060)*
 
 ### `STATX_UID`
 ```rust
 const STATX_UID: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2061`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2061)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2061`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2061)*
 
 ### `STATX_GID`
 ```rust
 const STATX_GID: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2062`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2062)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2062`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2062)*
 
 ### `STATX_ATIME`
 ```rust
 const STATX_ATIME: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2063`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2063)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2063`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2063)*
 
 ### `STATX_MTIME`
 ```rust
 const STATX_MTIME: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2064`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2064)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2064`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2064)*
 
 ### `STATX_CTIME`
 ```rust
 const STATX_CTIME: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2065`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2065)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2065`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2065)*
 
 ### `STATX_INO`
 ```rust
 const STATX_INO: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2066`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2066)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2066`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2066)*
 
 ### `STATX_SIZE`
 ```rust
 const STATX_SIZE: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2067`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2067)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2067`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2067)*
 
 ### `STATX_BLOCKS`
 ```rust
 const STATX_BLOCKS: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2068`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2068)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2068`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2068)*
 
 ### `STATX_BASIC_STATS`
 ```rust
 const STATX_BASIC_STATS: u32 = 2_047u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2069`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2069)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2069`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2069)*
 
 ### `STATX_BTIME`
 ```rust
 const STATX_BTIME: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2070`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2070)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2070`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2070)*
 
 ### `STATX_MNT_ID`
 ```rust
 const STATX_MNT_ID: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2071`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2071)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2071`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2071)*
 
 ### `STATX_DIOALIGN`
 ```rust
 const STATX_DIOALIGN: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2072`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2072)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2072`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2072)*
 
 ### `STATX_MNT_ID_UNIQUE`
 ```rust
 const STATX_MNT_ID_UNIQUE: u32 = 16_384u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2073`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2073)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2073`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2073)*
 
 ### `STATX_SUBVOL`
 ```rust
 const STATX_SUBVOL: u32 = 32_768u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2074`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2074)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2074`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2074)*
 
 ### `STATX_WRITE_ATOMIC`
 ```rust
 const STATX_WRITE_ATOMIC: u32 = 65_536u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2075`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2075)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2075`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2075)*
 
 ### `STATX_DIO_READ_ALIGN`
 ```rust
 const STATX_DIO_READ_ALIGN: u32 = 131_072u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2076`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2076)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2076`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2076)*
 
 ### `STATX__RESERVED`
 ```rust
 const STATX__RESERVED: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2077`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2077)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2077`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2077)*
 
 ### `STATX_ALL`
 ```rust
 const STATX_ALL: u32 = 4_095u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2078`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2078)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2078`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2078)*
 
 ### `STATX_ATTR_COMPRESSED`
 ```rust
 const STATX_ATTR_COMPRESSED: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2079`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2079)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2079`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2079)*
 
 ### `STATX_ATTR_IMMUTABLE`
 ```rust
 const STATX_ATTR_IMMUTABLE: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2080`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2080)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2080`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2080)*
 
 ### `STATX_ATTR_APPEND`
 ```rust
 const STATX_ATTR_APPEND: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2081`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2081)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2081`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2081)*
 
 ### `STATX_ATTR_NODUMP`
 ```rust
 const STATX_ATTR_NODUMP: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2082`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2082)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2082`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2082)*
 
 ### `STATX_ATTR_ENCRYPTED`
 ```rust
 const STATX_ATTR_ENCRYPTED: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2083`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2083)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2083`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2083)*
 
 ### `STATX_ATTR_AUTOMOUNT`
 ```rust
 const STATX_ATTR_AUTOMOUNT: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2084`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2084)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2084`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2084)*
 
 ### `STATX_ATTR_MOUNT_ROOT`
 ```rust
 const STATX_ATTR_MOUNT_ROOT: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2085`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2085)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2085`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2085)*
 
 ### `STATX_ATTR_VERITY`
 ```rust
 const STATX_ATTR_VERITY: u32 = 1_048_576u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2086`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2086)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2086`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2086)*
 
 ### `STATX_ATTR_DAX`
 ```rust
 const STATX_ATTR_DAX: u32 = 2_097_152u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2087`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2087)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2087`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2087)*
 
 ### `STATX_ATTR_WRITE_ATOMIC`
 ```rust
 const STATX_ATTR_WRITE_ATOMIC: u32 = 4_194_304u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2088`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2088)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2088`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2088)*
 
 ### `IGNBRK`
 ```rust
 const IGNBRK: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2089`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2089)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2089`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2089)*
 
 ### `BRKINT`
 ```rust
 const BRKINT: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2090`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2090)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2090`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2090)*
 
 ### `IGNPAR`
 ```rust
 const IGNPAR: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2091`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2091)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2091`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2091)*
 
 ### `PARMRK`
 ```rust
 const PARMRK: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2092`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2092)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2092`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2092)*
 
 ### `INPCK`
 ```rust
 const INPCK: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2093`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2093)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2093`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2093)*
 
 ### `ISTRIP`
 ```rust
 const ISTRIP: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2094`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2094)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2094`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2094)*
 
 ### `INLCR`
 ```rust
 const INLCR: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2095`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2095)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2095`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2095)*
 
 ### `IGNCR`
 ```rust
 const IGNCR: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2096`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2096)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2096`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2096)*
 
 ### `ICRNL`
 ```rust
 const ICRNL: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2097`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2097)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2097`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2097)*
 
 ### `IXANY`
 ```rust
 const IXANY: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2098`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2098)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2098`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2098)*
 
 ### `OPOST`
 ```rust
 const OPOST: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2099`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2099)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2099`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2099)*
 
 ### `OCRNL`
 ```rust
 const OCRNL: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2100`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2100)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2100`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2100)*
 
 ### `ONOCR`
 ```rust
 const ONOCR: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2101`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2101)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2101`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2101)*
 
 ### `ONLRET`
 ```rust
 const ONLRET: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2102`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2102)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2102`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2102)*
 
 ### `OFILL`
 ```rust
 const OFILL: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2103`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2103)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2103`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2103)*
 
 ### `OFDEL`
 ```rust
 const OFDEL: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2104`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2104)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2104`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2104)*
 
 ### `B0`
 ```rust
 const B0: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2105`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2105)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2105`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2105)*
 
 ### `B50`
 ```rust
 const B50: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2106`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2106)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2106`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2106)*
 
 ### `B75`
 ```rust
 const B75: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2107`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2107)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2107`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2107)*
 
 ### `B110`
 ```rust
 const B110: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2108`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2108)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2108`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2108)*
 
 ### `B134`
 ```rust
 const B134: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2109`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2109)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2109`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2109)*
 
 ### `B150`
 ```rust
 const B150: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2110`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2110)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2110`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2110)*
 
 ### `B200`
 ```rust
 const B200: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2111`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2111)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2111`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2111)*
 
 ### `B300`
 ```rust
 const B300: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2112`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2112)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2112`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2112)*
 
 ### `B600`
 ```rust
 const B600: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2113`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2113)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2113`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2113)*
 
 ### `B1200`
 ```rust
 const B1200: u32 = 9u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2114`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2114)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2114`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2114)*
 
 ### `B1800`
 ```rust
 const B1800: u32 = 10u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2115`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2115)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2115`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2115)*
 
 ### `B2400`
 ```rust
 const B2400: u32 = 11u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2116`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2116)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2116`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2116)*
 
 ### `B4800`
 ```rust
 const B4800: u32 = 12u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2117`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2117)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2117`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2117)*
 
 ### `B9600`
 ```rust
 const B9600: u32 = 13u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2118`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2118)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2118`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2118)*
 
 ### `B19200`
 ```rust
 const B19200: u32 = 14u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2119`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2119)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2119`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2119)*
 
 ### `B38400`
 ```rust
 const B38400: u32 = 15u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2120`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2120)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2120`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2120)*
 
 ### `EXTA`
 ```rust
 const EXTA: u32 = 14u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2121`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2121)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2121`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2121)*
 
 ### `EXTB`
 ```rust
 const EXTB: u32 = 15u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2122`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2122)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2122`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2122)*
 
 ### `ADDRB`
 ```rust
 const ADDRB: u32 = 536_870_912u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2123`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2123)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2123`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2123)*
 
 ### `CMSPAR`
 ```rust
 const CMSPAR: u32 = 1_073_741_824u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2124`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2124)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2124`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2124)*
 
 ### `CRTSCTS`
 ```rust
 const CRTSCTS: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2125`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2125)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2125`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2125)*
 
 ### `IBSHIFT`
 ```rust
 const IBSHIFT: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2126`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2126)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2126`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2126)*
 
 ### `TCOOFF`
 ```rust
 const TCOOFF: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2127`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2127)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2127`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2127)*
 
 ### `TCOON`
 ```rust
 const TCOON: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2128`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2128)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2128`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2128)*
 
 ### `TCIOFF`
 ```rust
 const TCIOFF: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2129`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2129)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2129`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2129)*
 
 ### `TCION`
 ```rust
 const TCION: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2130`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2130)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2130`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2130)*
 
 ### `TCIFLUSH`
 ```rust
 const TCIFLUSH: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2131`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2131)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2131`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2131)*
 
 ### `TCOFLUSH`
 ```rust
 const TCOFLUSH: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2132`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2132)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2132`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2132)*
 
 ### `TCIOFLUSH`
 ```rust
 const TCIOFLUSH: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2133`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2133)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2133`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2133)*
 
 ### `NCCS`
 ```rust
 const NCCS: u32 = 19u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2134`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2134)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2134`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2134)*
 
 ### `VINTR`
 ```rust
 const VINTR: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2135`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2135)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2135`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2135)*
 
 ### `VQUIT`
 ```rust
 const VQUIT: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2136`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2136)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2136`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2136)*
 
 ### `VERASE`
 ```rust
 const VERASE: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2137`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2137)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2137`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2137)*
 
 ### `VKILL`
 ```rust
 const VKILL: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2138`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2138)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2138`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2138)*
 
 ### `VEOF`
 ```rust
 const VEOF: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2139`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2139)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2139`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2139)*
 
 ### `VTIME`
 ```rust
 const VTIME: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2140`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2140)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2140`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2140)*
 
 ### `VMIN`
 ```rust
 const VMIN: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2141`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2141)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2141`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2141)*
 
 ### `VSWTC`
 ```rust
 const VSWTC: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2142`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2142)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2142`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2142)*
 
 ### `VSTART`
 ```rust
 const VSTART: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2143`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2143)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2143`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2143)*
 
 ### `VSTOP`
 ```rust
 const VSTOP: u32 = 9u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2144`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2144)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2144`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2144)*
 
 ### `VSUSP`
 ```rust
 const VSUSP: u32 = 10u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2145`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2145)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2145`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2145)*
 
 ### `VEOL`
 ```rust
 const VEOL: u32 = 11u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2146`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2146)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2146`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2146)*
 
 ### `VREPRINT`
 ```rust
 const VREPRINT: u32 = 12u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2147`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2147)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2147`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2147)*
 
 ### `VDISCARD`
 ```rust
 const VDISCARD: u32 = 13u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2148`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2148)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2148`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2148)*
 
 ### `VWERASE`
 ```rust
 const VWERASE: u32 = 14u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2149`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2149)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2149`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2149)*
 
 ### `VLNEXT`
 ```rust
 const VLNEXT: u32 = 15u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2150`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2150)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2150`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2150)*
 
 ### `VEOL2`
 ```rust
 const VEOL2: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2151`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2151)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2151`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2151)*
 
 ### `IUCLC`
 ```rust
 const IUCLC: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2152`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2152)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2152`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2152)*
 
 ### `IXON`
 ```rust
 const IXON: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2153`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2153)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2153`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2153)*
 
 ### `IXOFF`
 ```rust
 const IXOFF: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2154`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2154)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2154`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2154)*
 
 ### `IMAXBEL`
 ```rust
 const IMAXBEL: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2155`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2155)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2155`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2155)*
 
 ### `IUTF8`
 ```rust
 const IUTF8: u32 = 16_384u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2156`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2156)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2156`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2156)*
 
 ### `OLCUC`
 ```rust
 const OLCUC: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2157`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2157)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2157`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2157)*
 
 ### `ONLCR`
 ```rust
 const ONLCR: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2158`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2158)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2158`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2158)*
 
 ### `NLDLY`
 ```rust
 const NLDLY: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2159`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2159)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2159`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2159)*
 
 ### `NL0`
 ```rust
 const NL0: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2160`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2160)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2160`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2160)*
 
 ### `NL1`
 ```rust
 const NL1: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2161`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2161)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2161`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2161)*
 
 ### `CRDLY`
 ```rust
 const CRDLY: u32 = 1_536u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2162`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2162)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2162`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2162)*
 
 ### `CR0`
 ```rust
 const CR0: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2163`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2163)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2163`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2163)*
 
 ### `CR1`
 ```rust
 const CR1: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2164`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2164)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2164`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2164)*
 
 ### `CR2`
 ```rust
 const CR2: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2165`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2165)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2165`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2165)*
 
 ### `CR3`
 ```rust
 const CR3: u32 = 1_536u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2166`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2166)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2166`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2166)*
 
 ### `TABDLY`
 ```rust
 const TABDLY: u32 = 6_144u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2167`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2167)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2167`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2167)*
 
 ### `TAB0`
 ```rust
 const TAB0: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2168`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2168)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2168`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2168)*
 
 ### `TAB1`
 ```rust
 const TAB1: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2169`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2169)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2169`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2169)*
 
 ### `TAB2`
 ```rust
 const TAB2: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2170`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2170)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2170`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2170)*
 
 ### `TAB3`
 ```rust
 const TAB3: u32 = 6_144u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2171`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2171)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2171`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2171)*
 
 ### `XTABS`
 ```rust
 const XTABS: u32 = 6_144u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2172`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2172)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2172`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2172)*
 
 ### `BSDLY`
 ```rust
 const BSDLY: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2173`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2173)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2173`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2173)*
 
 ### `BS0`
 ```rust
 const BS0: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2174`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2174)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2174`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2174)*
 
 ### `BS1`
 ```rust
 const BS1: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2175`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2175)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2175`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2175)*
 
 ### `VTDLY`
 ```rust
 const VTDLY: u32 = 16_384u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2176`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2176)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2176`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2176)*
 
 ### `VT0`
 ```rust
 const VT0: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2177`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2177)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2177`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2177)*
 
 ### `VT1`
 ```rust
 const VT1: u32 = 16_384u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2178`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2178)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2178`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2178)*
 
 ### `FFDLY`
 ```rust
 const FFDLY: u32 = 32_768u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2179`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2179)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2179`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2179)*
 
 ### `FF0`
 ```rust
 const FF0: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2180`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2180)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2180`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2180)*
 
 ### `FF1`
 ```rust
 const FF1: u32 = 32_768u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2181`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2181)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2181`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2181)*
 
 ### `CBAUD`
 ```rust
 const CBAUD: u32 = 4_111u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2182`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2182)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2182`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2182)*
 
 ### `CSIZE`
 ```rust
 const CSIZE: u32 = 48u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2183`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2183)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2183`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2183)*
 
 ### `CS5`
 ```rust
 const CS5: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2184`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2184)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2184`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2184)*
 
 ### `CS6`
 ```rust
 const CS6: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2185`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2185)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2185`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2185)*
 
 ### `CS7`
 ```rust
 const CS7: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2186`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2186)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2186`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2186)*
 
 ### `CS8`
 ```rust
 const CS8: u32 = 48u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2187`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2187)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2187`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2187)*
 
 ### `CSTOPB`
 ```rust
 const CSTOPB: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2188`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2188)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2188`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2188)*
 
 ### `CREAD`
 ```rust
 const CREAD: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2189`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2189)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2189`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2189)*
 
 ### `PARENB`
 ```rust
 const PARENB: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2190`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2190)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2190`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2190)*
 
 ### `PARODD`
 ```rust
 const PARODD: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2191`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2191)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2191`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2191)*
 
 ### `HUPCL`
 ```rust
 const HUPCL: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2192`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2192)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2192`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2192)*
 
 ### `CLOCAL`
 ```rust
 const CLOCAL: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2193`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2193)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2193`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2193)*
 
 ### `CBAUDEX`
 ```rust
 const CBAUDEX: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2194`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2194)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2194`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2194)*
 
 ### `BOTHER`
 ```rust
 const BOTHER: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2195`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2195)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2195`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2195)*
 
 ### `B57600`
 ```rust
 const B57600: u32 = 4_097u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2196`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2196)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2196`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2196)*
 
 ### `B115200`
 ```rust
 const B115200: u32 = 4_098u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2197`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2197)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2197`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2197)*
 
 ### `B230400`
 ```rust
 const B230400: u32 = 4_099u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2198`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2198)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2198`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2198)*
 
 ### `B460800`
 ```rust
 const B460800: u32 = 4_100u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2199`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2199)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2199`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2199)*
 
 ### `B500000`
 ```rust
 const B500000: u32 = 4_101u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2200`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2200)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2200`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2200)*
 
 ### `B576000`
 ```rust
 const B576000: u32 = 4_102u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2201`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2201)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2201`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2201)*
 
 ### `B921600`
 ```rust
 const B921600: u32 = 4_103u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2202`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2202)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2202`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2202)*
 
 ### `B1000000`
 ```rust
 const B1000000: u32 = 4_104u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2203`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2203)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2203`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2203)*
 
 ### `B1152000`
 ```rust
 const B1152000: u32 = 4_105u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2204`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2204)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2204`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2204)*
 
 ### `B1500000`
 ```rust
 const B1500000: u32 = 4_106u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2205`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2205)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2205`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2205)*
 
 ### `B2000000`
 ```rust
 const B2000000: u32 = 4_107u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2206`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2206)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2206`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2206)*
 
 ### `B2500000`
 ```rust
 const B2500000: u32 = 4_108u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2207`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2207)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2207`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2207)*
 
 ### `B3000000`
 ```rust
 const B3000000: u32 = 4_109u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2208`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2208)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2208`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2208)*
 
 ### `B3500000`
 ```rust
 const B3500000: u32 = 4_110u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2209`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2209)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2209`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2209)*
 
 ### `B4000000`
 ```rust
 const B4000000: u32 = 4_111u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2210`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2210)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2210`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2210)*
 
 ### `CIBAUD`
 ```rust
 const CIBAUD: u32 = 269_418_496u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2211`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2211)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2211`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2211)*
 
 ### `ISIG`
 ```rust
 const ISIG: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2212`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2212)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2212`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2212)*
 
 ### `ICANON`
 ```rust
 const ICANON: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2213`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2213)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2213`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2213)*
 
 ### `XCASE`
 ```rust
 const XCASE: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2214`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2214)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2214`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2214)*
 
 ### `ECHO`
 ```rust
 const ECHO: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2215`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2215)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2215`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2215)*
 
 ### `ECHOE`
 ```rust
 const ECHOE: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2216`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2216)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2216`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2216)*
 
 ### `ECHOK`
 ```rust
 const ECHOK: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2217`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2217)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2217`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2217)*
 
 ### `ECHONL`
 ```rust
 const ECHONL: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2218`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2218)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2218`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2218)*
 
 ### `NOFLSH`
 ```rust
 const NOFLSH: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2219`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2219)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2219`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2219)*
 
 ### `TOSTOP`
 ```rust
 const TOSTOP: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2220`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2220)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2220`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2220)*
 
 ### `ECHOCTL`
 ```rust
 const ECHOCTL: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2221`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2221)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2221`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2221)*
 
 ### `ECHOPRT`
 ```rust
 const ECHOPRT: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2222`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2222)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2222`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2222)*
 
 ### `ECHOKE`
 ```rust
 const ECHOKE: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2223`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2223)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2223`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2223)*
 
 ### `FLUSHO`
 ```rust
 const FLUSHO: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2224`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2224)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2224`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2224)*
 
 ### `PENDIN`
 ```rust
 const PENDIN: u32 = 16_384u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2225`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2225)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2225`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2225)*
 
 ### `IEXTEN`
 ```rust
 const IEXTEN: u32 = 32_768u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2226`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2226)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2226`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2226)*
 
 ### `EXTPROC`
 ```rust
 const EXTPROC: u32 = 65_536u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2227`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2227)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2227`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2227)*
 
 ### `TCSANOW`
 ```rust
 const TCSANOW: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2228`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2228)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2228`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2228)*
 
 ### `TCSADRAIN`
 ```rust
 const TCSADRAIN: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2229`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2229)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2229`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2229)*
 
 ### `TCSAFLUSH`
 ```rust
 const TCSAFLUSH: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2230`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2230)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2230`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2230)*
 
 ### `TIOCPKT_DATA`
 ```rust
 const TIOCPKT_DATA: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2231`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2231)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2231`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2231)*
 
 ### `TIOCPKT_FLUSHREAD`
 ```rust
 const TIOCPKT_FLUSHREAD: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2232`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2232)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2232`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2232)*
 
 ### `TIOCPKT_FLUSHWRITE`
 ```rust
 const TIOCPKT_FLUSHWRITE: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2233`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2233)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2233`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2233)*
 
 ### `TIOCPKT_STOP`
 ```rust
 const TIOCPKT_STOP: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2234`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2234)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2234`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2234)*
 
 ### `TIOCPKT_START`
 ```rust
 const TIOCPKT_START: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2235`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2235)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2235`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2235)*
 
 ### `TIOCPKT_NOSTOP`
 ```rust
 const TIOCPKT_NOSTOP: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2236`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2236)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2236`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2236)*
 
 ### `TIOCPKT_DOSTOP`
 ```rust
 const TIOCPKT_DOSTOP: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2237`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2237)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2237`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2237)*
 
 ### `TIOCPKT_IOCTL`
 ```rust
 const TIOCPKT_IOCTL: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2238`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2238)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2238`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2238)*
 
 ### `TIOCSER_TEMT`
 ```rust
 const TIOCSER_TEMT: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2239`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2239)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2239`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2239)*
 
 ### `NCC`
 ```rust
 const NCC: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2240`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2240)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2240`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2240)*
 
 ### `TIOCM_LE`
 ```rust
 const TIOCM_LE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2241`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2241)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2241`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2241)*
 
 ### `TIOCM_DTR`
 ```rust
 const TIOCM_DTR: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2242`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2242)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2242`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2242)*
 
 ### `TIOCM_RTS`
 ```rust
 const TIOCM_RTS: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2243`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2243)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2243`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2243)*
 
 ### `TIOCM_ST`
 ```rust
 const TIOCM_ST: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2244`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2244)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2244`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2244)*
 
 ### `TIOCM_SR`
 ```rust
 const TIOCM_SR: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2245`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2245)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2245`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2245)*
 
 ### `TIOCM_CTS`
 ```rust
 const TIOCM_CTS: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2246`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2246)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2246`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2246)*
 
 ### `TIOCM_CAR`
 ```rust
 const TIOCM_CAR: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2247`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2247)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2247`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2247)*
 
 ### `TIOCM_RNG`
 ```rust
 const TIOCM_RNG: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2248`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2248)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2248`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2248)*
 
 ### `TIOCM_DSR`
 ```rust
 const TIOCM_DSR: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2249`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2249)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2249`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2249)*
 
 ### `TIOCM_CD`
 ```rust
 const TIOCM_CD: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2250`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2250)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2250`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2250)*
 
 ### `TIOCM_RI`
 ```rust
 const TIOCM_RI: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2251`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2251)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2251`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2251)*
 
 ### `TIOCM_OUT1`
 ```rust
 const TIOCM_OUT1: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2252`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2252)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2252`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2252)*
 
 ### `TIOCM_OUT2`
 ```rust
 const TIOCM_OUT2: u32 = 16_384u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2253`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2253)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2253`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2253)*
 
 ### `TIOCM_LOOP`
 ```rust
 const TIOCM_LOOP: u32 = 32_768u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2254`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2254)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2254`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2254)*
 
 ### `ITIMER_REAL`
 ```rust
 const ITIMER_REAL: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2255`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2255)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2255`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2255)*
 
 ### `ITIMER_VIRTUAL`
 ```rust
 const ITIMER_VIRTUAL: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2256`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2256)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2256`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2256)*
 
 ### `ITIMER_PROF`
 ```rust
 const ITIMER_PROF: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2257`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2257)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2257`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2257)*
 
 ### `CLOCK_REALTIME`
 ```rust
 const CLOCK_REALTIME: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2258`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2258)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2258`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2258)*
 
 ### `CLOCK_MONOTONIC`
 ```rust
 const CLOCK_MONOTONIC: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2259`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2259)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2259`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2259)*
 
 ### `CLOCK_PROCESS_CPUTIME_ID`
 ```rust
 const CLOCK_PROCESS_CPUTIME_ID: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2260`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2260)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2260`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2260)*
 
 ### `CLOCK_THREAD_CPUTIME_ID`
 ```rust
 const CLOCK_THREAD_CPUTIME_ID: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2261`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2261)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2261`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2261)*
 
 ### `CLOCK_MONOTONIC_RAW`
 ```rust
 const CLOCK_MONOTONIC_RAW: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2262`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2262)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2262`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2262)*
 
 ### `CLOCK_REALTIME_COARSE`
 ```rust
 const CLOCK_REALTIME_COARSE: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2263`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2263)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2263`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2263)*
 
 ### `CLOCK_MONOTONIC_COARSE`
 ```rust
 const CLOCK_MONOTONIC_COARSE: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2264`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2264)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2264`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2264)*
 
 ### `CLOCK_BOOTTIME`
 ```rust
 const CLOCK_BOOTTIME: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2265`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2265)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2265`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2265)*
 
 ### `CLOCK_REALTIME_ALARM`
 ```rust
 const CLOCK_REALTIME_ALARM: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2266`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2266)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2266`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2266)*
 
 ### `CLOCK_BOOTTIME_ALARM`
 ```rust
 const CLOCK_BOOTTIME_ALARM: u32 = 9u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2267`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2267)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2267`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2267)*
 
 ### `CLOCK_SGI_CYCLE`
 ```rust
 const CLOCK_SGI_CYCLE: u32 = 10u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2268`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2268)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2268`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2268)*
 
 ### `CLOCK_TAI`
 ```rust
 const CLOCK_TAI: u32 = 11u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2269`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2269)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2269`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2269)*
 
 ### `MAX_CLOCKS`
 ```rust
 const MAX_CLOCKS: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2270`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2270)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2270`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2270)*
 
 ### `CLOCKS_MASK`
 ```rust
 const CLOCKS_MASK: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2271`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2271)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2271`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2271)*
 
 ### `CLOCKS_MONO`
 ```rust
 const CLOCKS_MONO: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2272`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2272)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2272`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2272)*
 
 ### `TIMER_ABSTIME`
 ```rust
 const TIMER_ABSTIME: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2273`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2273)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2273`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2273)*
 
 ### `UIO_FASTIOV`
 ```rust
 const UIO_FASTIOV: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2274`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2274)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2274`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2274)*
 
 ### `UIO_MAXIOV`
 ```rust
 const UIO_MAXIOV: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2275`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2275)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2275`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2275)*
 
 ### `__X32_SYSCALL_BIT`
 ```rust
 const __X32_SYSCALL_BIT: u32 = 1_073_741_824u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2276`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2276)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2276`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2276)*
 
 ### `__NR_read`
 ```rust
 const __NR_read: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2277`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2277)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2277`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2277)*
 
 ### `__NR_write`
 ```rust
 const __NR_write: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2278`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2278)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2278`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2278)*
 
 ### `__NR_open`
 ```rust
 const __NR_open: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2279`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2279)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2279`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2279)*
 
 ### `__NR_close`
 ```rust
 const __NR_close: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2280`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2280)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2280`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2280)*
 
 ### `__NR_stat`
 ```rust
 const __NR_stat: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2281`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2281)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2281`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2281)*
 
 ### `__NR_fstat`
 ```rust
 const __NR_fstat: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2282`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2282)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2282`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2282)*
 
 ### `__NR_lstat`
 ```rust
 const __NR_lstat: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2283`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2283)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2283`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2283)*
 
 ### `__NR_poll`
 ```rust
 const __NR_poll: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2284`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2284)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2284`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2284)*
 
 ### `__NR_lseek`
 ```rust
 const __NR_lseek: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2285`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2285)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2285`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2285)*
 
 ### `__NR_mmap`
 ```rust
 const __NR_mmap: u32 = 9u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2286`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2286)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2286`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2286)*
 
 ### `__NR_mprotect`
 ```rust
 const __NR_mprotect: u32 = 10u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2287`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2287)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2287`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2287)*
 
 ### `__NR_munmap`
 ```rust
 const __NR_munmap: u32 = 11u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2288`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2288)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2288`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2288)*
 
 ### `__NR_brk`
 ```rust
 const __NR_brk: u32 = 12u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2289`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2289)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2289`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2289)*
 
 ### `__NR_rt_sigaction`
 ```rust
 const __NR_rt_sigaction: u32 = 13u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2290`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2290)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2290`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2290)*
 
 ### `__NR_rt_sigprocmask`
 ```rust
 const __NR_rt_sigprocmask: u32 = 14u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2291`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2291)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2291`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2291)*
 
 ### `__NR_rt_sigreturn`
 ```rust
 const __NR_rt_sigreturn: u32 = 15u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2292`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2292)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2292`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2292)*
 
 ### `__NR_ioctl`
 ```rust
 const __NR_ioctl: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2293`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2293)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2293`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2293)*
 
 ### `__NR_pread64`
 ```rust
 const __NR_pread64: u32 = 17u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2294`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2294)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2294`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2294)*
 
 ### `__NR_pwrite64`
 ```rust
 const __NR_pwrite64: u32 = 18u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2295`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2295)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2295`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2295)*
 
 ### `__NR_readv`
 ```rust
 const __NR_readv: u32 = 19u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2296`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2296)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2296`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2296)*
 
 ### `__NR_writev`
 ```rust
 const __NR_writev: u32 = 20u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2297`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2297)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2297`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2297)*
 
 ### `__NR_access`
 ```rust
 const __NR_access: u32 = 21u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2298`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2298)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2298`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2298)*
 
 ### `__NR_pipe`
 ```rust
 const __NR_pipe: u32 = 22u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2299`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2299)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2299`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2299)*
 
 ### `__NR_select`
 ```rust
 const __NR_select: u32 = 23u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2300`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2300)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2300`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2300)*
 
 ### `__NR_sched_yield`
 ```rust
 const __NR_sched_yield: u32 = 24u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2301`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2301)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2301`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2301)*
 
 ### `__NR_mremap`
 ```rust
 const __NR_mremap: u32 = 25u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2302`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2302)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2302`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2302)*
 
 ### `__NR_msync`
 ```rust
 const __NR_msync: u32 = 26u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2303`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2303)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2303`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2303)*
 
 ### `__NR_mincore`
 ```rust
 const __NR_mincore: u32 = 27u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2304`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2304)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2304`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2304)*
 
 ### `__NR_madvise`
 ```rust
 const __NR_madvise: u32 = 28u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2305`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2305)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2305`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2305)*
 
 ### `__NR_shmget`
 ```rust
 const __NR_shmget: u32 = 29u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2306`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2306)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2306`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2306)*
 
 ### `__NR_shmat`
 ```rust
 const __NR_shmat: u32 = 30u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2307`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2307)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2307`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2307)*
 
 ### `__NR_shmctl`
 ```rust
 const __NR_shmctl: u32 = 31u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2308`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2308)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2308`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2308)*
 
 ### `__NR_dup`
 ```rust
 const __NR_dup: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2309`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2309)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2309`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2309)*
 
 ### `__NR_dup2`
 ```rust
 const __NR_dup2: u32 = 33u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2310`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2310)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2310`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2310)*
 
 ### `__NR_pause`
 ```rust
 const __NR_pause: u32 = 34u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2311`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2311)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2311`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2311)*
 
 ### `__NR_nanosleep`
 ```rust
 const __NR_nanosleep: u32 = 35u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2312`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2312)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2312`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2312)*
 
 ### `__NR_getitimer`
 ```rust
 const __NR_getitimer: u32 = 36u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2313`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2313)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2313`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2313)*
 
 ### `__NR_alarm`
 ```rust
 const __NR_alarm: u32 = 37u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2314`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2314)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2314`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2314)*
 
 ### `__NR_setitimer`
 ```rust
 const __NR_setitimer: u32 = 38u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2315`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2315)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2315`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2315)*
 
 ### `__NR_getpid`
 ```rust
 const __NR_getpid: u32 = 39u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2316`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2316)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2316`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2316)*
 
 ### `__NR_sendfile`
 ```rust
 const __NR_sendfile: u32 = 40u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2317`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2317)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2317`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2317)*
 
 ### `__NR_socket`
 ```rust
 const __NR_socket: u32 = 41u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2318`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2318)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2318`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2318)*
 
 ### `__NR_connect`
 ```rust
 const __NR_connect: u32 = 42u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2319`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2319)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2319`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2319)*
 
 ### `__NR_accept`
 ```rust
 const __NR_accept: u32 = 43u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2320`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2320)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2320`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2320)*
 
 ### `__NR_sendto`
 ```rust
 const __NR_sendto: u32 = 44u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2321`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2321)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2321`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2321)*
 
 ### `__NR_recvfrom`
 ```rust
 const __NR_recvfrom: u32 = 45u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2322`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2322)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2322`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2322)*
 
 ### `__NR_sendmsg`
 ```rust
 const __NR_sendmsg: u32 = 46u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2323`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2323)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2323`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2323)*
 
 ### `__NR_recvmsg`
 ```rust
 const __NR_recvmsg: u32 = 47u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2324`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2324)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2324`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2324)*
 
 ### `__NR_shutdown`
 ```rust
 const __NR_shutdown: u32 = 48u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2325`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2325)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2325`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2325)*
 
 ### `__NR_bind`
 ```rust
 const __NR_bind: u32 = 49u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2326`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2326)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2326`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2326)*
 
 ### `__NR_listen`
 ```rust
 const __NR_listen: u32 = 50u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2327`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2327)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2327`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2327)*
 
 ### `__NR_getsockname`
 ```rust
 const __NR_getsockname: u32 = 51u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2328`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2328)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2328`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2328)*
 
 ### `__NR_getpeername`
 ```rust
 const __NR_getpeername: u32 = 52u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2329`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2329)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2329`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2329)*
 
 ### `__NR_socketpair`
 ```rust
 const __NR_socketpair: u32 = 53u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2330`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2330)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2330`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2330)*
 
 ### `__NR_setsockopt`
 ```rust
 const __NR_setsockopt: u32 = 54u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2331`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2331)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2331`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2331)*
 
 ### `__NR_getsockopt`
 ```rust
 const __NR_getsockopt: u32 = 55u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2332`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2332)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2332`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2332)*
 
 ### `__NR_clone`
 ```rust
 const __NR_clone: u32 = 56u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2333`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2333)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2333`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2333)*
 
 ### `__NR_fork`
 ```rust
 const __NR_fork: u32 = 57u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2334`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2334)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2334`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2334)*
 
 ### `__NR_vfork`
 ```rust
 const __NR_vfork: u32 = 58u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2335`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2335)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2335`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2335)*
 
 ### `__NR_execve`
 ```rust
 const __NR_execve: u32 = 59u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2336`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2336)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2336`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2336)*
 
 ### `__NR_exit`
 ```rust
 const __NR_exit: u32 = 60u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2337`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2337)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2337`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2337)*
 
 ### `__NR_wait4`
 ```rust
 const __NR_wait4: u32 = 61u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2338`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2338)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2338`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2338)*
 
 ### `__NR_kill`
 ```rust
 const __NR_kill: u32 = 62u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2339`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2339)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2339`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2339)*
 
 ### `__NR_uname`
 ```rust
 const __NR_uname: u32 = 63u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2340`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2340)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2340`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2340)*
 
 ### `__NR_semget`
 ```rust
 const __NR_semget: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2341`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2341)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2341`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2341)*
 
 ### `__NR_semop`
 ```rust
 const __NR_semop: u32 = 65u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2342`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2342)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2342`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2342)*
 
 ### `__NR_semctl`
 ```rust
 const __NR_semctl: u32 = 66u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2343`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2343)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2343`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2343)*
 
 ### `__NR_shmdt`
 ```rust
 const __NR_shmdt: u32 = 67u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2344`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2344)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2344`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2344)*
 
 ### `__NR_msgget`
 ```rust
 const __NR_msgget: u32 = 68u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2345`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2345)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2345`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2345)*
 
 ### `__NR_msgsnd`
 ```rust
 const __NR_msgsnd: u32 = 69u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2346`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2346)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2346`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2346)*
 
 ### `__NR_msgrcv`
 ```rust
 const __NR_msgrcv: u32 = 70u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2347`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2347)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2347`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2347)*
 
 ### `__NR_msgctl`
 ```rust
 const __NR_msgctl: u32 = 71u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2348`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2348)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2348`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2348)*
 
 ### `__NR_fcntl`
 ```rust
 const __NR_fcntl: u32 = 72u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2349`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2349)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2349`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2349)*
 
 ### `__NR_flock`
 ```rust
 const __NR_flock: u32 = 73u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2350`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2350)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2350`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2350)*
 
 ### `__NR_fsync`
 ```rust
 const __NR_fsync: u32 = 74u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2351`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2351)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2351`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2351)*
 
 ### `__NR_fdatasync`
 ```rust
 const __NR_fdatasync: u32 = 75u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2352`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2352)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2352`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2352)*
 
 ### `__NR_truncate`
 ```rust
 const __NR_truncate: u32 = 76u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2353`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2353)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2353`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2353)*
 
 ### `__NR_ftruncate`
 ```rust
 const __NR_ftruncate: u32 = 77u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2354`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2354)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2354`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2354)*
 
 ### `__NR_getdents`
 ```rust
 const __NR_getdents: u32 = 78u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2355`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2355)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2355`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2355)*
 
 ### `__NR_getcwd`
 ```rust
 const __NR_getcwd: u32 = 79u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2356`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2356)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2356`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2356)*
 
 ### `__NR_chdir`
 ```rust
 const __NR_chdir: u32 = 80u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2357`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2357)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2357`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2357)*
 
 ### `__NR_fchdir`
 ```rust
 const __NR_fchdir: u32 = 81u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2358`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2358)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2358`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2358)*
 
 ### `__NR_rename`
 ```rust
 const __NR_rename: u32 = 82u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2359`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2359)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2359`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2359)*
 
 ### `__NR_mkdir`
 ```rust
 const __NR_mkdir: u32 = 83u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2360`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2360)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2360`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2360)*
 
 ### `__NR_rmdir`
 ```rust
 const __NR_rmdir: u32 = 84u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2361`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2361)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2361`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2361)*
 
 ### `__NR_creat`
 ```rust
 const __NR_creat: u32 = 85u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2362`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2362)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2362`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2362)*
 
 ### `__NR_link`
 ```rust
 const __NR_link: u32 = 86u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2363`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2363)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2363`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2363)*
 
 ### `__NR_unlink`
 ```rust
 const __NR_unlink: u32 = 87u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2364`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2364)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2364`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2364)*
 
 ### `__NR_symlink`
 ```rust
 const __NR_symlink: u32 = 88u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2365`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2365)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2365`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2365)*
 
 ### `__NR_readlink`
 ```rust
 const __NR_readlink: u32 = 89u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2366`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2366)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2366`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2366)*
 
 ### `__NR_chmod`
 ```rust
 const __NR_chmod: u32 = 90u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2367`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2367)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2367`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2367)*
 
 ### `__NR_fchmod`
 ```rust
 const __NR_fchmod: u32 = 91u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2368`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2368)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2368`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2368)*
 
 ### `__NR_chown`
 ```rust
 const __NR_chown: u32 = 92u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2369`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2369)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2369`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2369)*
 
 ### `__NR_fchown`
 ```rust
 const __NR_fchown: u32 = 93u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2370`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2370)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2370`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2370)*
 
 ### `__NR_lchown`
 ```rust
 const __NR_lchown: u32 = 94u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2371`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2371)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2371`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2371)*
 
 ### `__NR_umask`
 ```rust
 const __NR_umask: u32 = 95u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2372`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2372)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2372`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2372)*
 
 ### `__NR_gettimeofday`
 ```rust
 const __NR_gettimeofday: u32 = 96u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2373`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2373)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2373`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2373)*
 
 ### `__NR_getrlimit`
 ```rust
 const __NR_getrlimit: u32 = 97u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2374`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2374)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2374`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2374)*
 
 ### `__NR_getrusage`
 ```rust
 const __NR_getrusage: u32 = 98u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2375`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2375)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2375`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2375)*
 
 ### `__NR_sysinfo`
 ```rust
 const __NR_sysinfo: u32 = 99u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2376`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2376)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2376`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2376)*
 
 ### `__NR_times`
 ```rust
 const __NR_times: u32 = 100u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2377`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2377)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2377`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2377)*
 
 ### `__NR_ptrace`
 ```rust
 const __NR_ptrace: u32 = 101u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2378`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2378)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2378`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2378)*
 
 ### `__NR_getuid`
 ```rust
 const __NR_getuid: u32 = 102u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2379`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2379)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2379`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2379)*
 
 ### `__NR_syslog`
 ```rust
 const __NR_syslog: u32 = 103u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2380`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2380)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2380`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2380)*
 
 ### `__NR_getgid`
 ```rust
 const __NR_getgid: u32 = 104u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2381`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2381)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2381`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2381)*
 
 ### `__NR_setuid`
 ```rust
 const __NR_setuid: u32 = 105u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2382`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2382)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2382`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2382)*
 
 ### `__NR_setgid`
 ```rust
 const __NR_setgid: u32 = 106u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2383`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2383)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2383`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2383)*
 
 ### `__NR_geteuid`
 ```rust
 const __NR_geteuid: u32 = 107u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2384`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2384)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2384`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2384)*
 
 ### `__NR_getegid`
 ```rust
 const __NR_getegid: u32 = 108u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2385`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2385)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2385`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2385)*
 
 ### `__NR_setpgid`
 ```rust
 const __NR_setpgid: u32 = 109u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2386`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2386)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2386`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2386)*
 
 ### `__NR_getppid`
 ```rust
 const __NR_getppid: u32 = 110u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2387`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2387)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2387`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2387)*
 
 ### `__NR_getpgrp`
 ```rust
 const __NR_getpgrp: u32 = 111u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2388`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2388)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2388`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2388)*
 
 ### `__NR_setsid`
 ```rust
 const __NR_setsid: u32 = 112u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2389`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2389)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2389`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2389)*
 
 ### `__NR_setreuid`
 ```rust
 const __NR_setreuid: u32 = 113u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2390`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2390)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2390`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2390)*
 
 ### `__NR_setregid`
 ```rust
 const __NR_setregid: u32 = 114u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2391`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2391)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2391`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2391)*
 
 ### `__NR_getgroups`
 ```rust
 const __NR_getgroups: u32 = 115u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2392`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2392)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2392`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2392)*
 
 ### `__NR_setgroups`
 ```rust
 const __NR_setgroups: u32 = 116u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2393`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2393)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2393`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2393)*
 
 ### `__NR_setresuid`
 ```rust
 const __NR_setresuid: u32 = 117u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2394`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2394)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2394`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2394)*
 
 ### `__NR_getresuid`
 ```rust
 const __NR_getresuid: u32 = 118u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2395`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2395)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2395`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2395)*
 
 ### `__NR_setresgid`
 ```rust
 const __NR_setresgid: u32 = 119u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2396`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2396)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2396`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2396)*
 
 ### `__NR_getresgid`
 ```rust
 const __NR_getresgid: u32 = 120u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2397`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2397)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2397`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2397)*
 
 ### `__NR_getpgid`
 ```rust
 const __NR_getpgid: u32 = 121u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2398`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2398)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2398`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2398)*
 
 ### `__NR_setfsuid`
 ```rust
 const __NR_setfsuid: u32 = 122u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2399`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2399)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2399`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2399)*
 
 ### `__NR_setfsgid`
 ```rust
 const __NR_setfsgid: u32 = 123u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2400`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2400)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2400`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2400)*
 
 ### `__NR_getsid`
 ```rust
 const __NR_getsid: u32 = 124u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2401`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2401)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2401`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2401)*
 
 ### `__NR_capget`
 ```rust
 const __NR_capget: u32 = 125u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2402`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2402)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2402`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2402)*
 
 ### `__NR_capset`
 ```rust
 const __NR_capset: u32 = 126u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2403`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2403)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2403`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2403)*
 
 ### `__NR_rt_sigpending`
 ```rust
 const __NR_rt_sigpending: u32 = 127u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2404`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2404)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2404`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2404)*
 
 ### `__NR_rt_sigtimedwait`
 ```rust
 const __NR_rt_sigtimedwait: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2405`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2405)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2405`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2405)*
 
 ### `__NR_rt_sigqueueinfo`
 ```rust
 const __NR_rt_sigqueueinfo: u32 = 129u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2406`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2406)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2406`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2406)*
 
 ### `__NR_rt_sigsuspend`
 ```rust
 const __NR_rt_sigsuspend: u32 = 130u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2407`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2407)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2407`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2407)*
 
 ### `__NR_sigaltstack`
 ```rust
 const __NR_sigaltstack: u32 = 131u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2408`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2408)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2408`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2408)*
 
 ### `__NR_utime`
 ```rust
 const __NR_utime: u32 = 132u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2409`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2409)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2409`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2409)*
 
 ### `__NR_mknod`
 ```rust
 const __NR_mknod: u32 = 133u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2410`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2410)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2410`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2410)*
 
 ### `__NR_uselib`
 ```rust
 const __NR_uselib: u32 = 134u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2411`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2411)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2411`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2411)*
 
 ### `__NR_personality`
 ```rust
 const __NR_personality: u32 = 135u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2412`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2412)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2412`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2412)*
 
 ### `__NR_ustat`
 ```rust
 const __NR_ustat: u32 = 136u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2413`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2413)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2413`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2413)*
 
 ### `__NR_statfs`
 ```rust
 const __NR_statfs: u32 = 137u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2414`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2414)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2414`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2414)*
 
 ### `__NR_fstatfs`
 ```rust
 const __NR_fstatfs: u32 = 138u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2415`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2415)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2415`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2415)*
 
 ### `__NR_sysfs`
 ```rust
 const __NR_sysfs: u32 = 139u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2416`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2416)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2416`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2416)*
 
 ### `__NR_getpriority`
 ```rust
 const __NR_getpriority: u32 = 140u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2417`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2417)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2417`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2417)*
 
 ### `__NR_setpriority`
 ```rust
 const __NR_setpriority: u32 = 141u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2418`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2418)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2418`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2418)*
 
 ### `__NR_sched_setparam`
 ```rust
 const __NR_sched_setparam: u32 = 142u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2419`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2419)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2419`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2419)*
 
 ### `__NR_sched_getparam`
 ```rust
 const __NR_sched_getparam: u32 = 143u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2420`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2420)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2420`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2420)*
 
 ### `__NR_sched_setscheduler`
 ```rust
 const __NR_sched_setscheduler: u32 = 144u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2421`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2421)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2421`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2421)*
 
 ### `__NR_sched_getscheduler`
 ```rust
 const __NR_sched_getscheduler: u32 = 145u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2422`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2422)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2422`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2422)*
 
 ### `__NR_sched_get_priority_max`
 ```rust
 const __NR_sched_get_priority_max: u32 = 146u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2423`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2423)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2423`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2423)*
 
 ### `__NR_sched_get_priority_min`
 ```rust
 const __NR_sched_get_priority_min: u32 = 147u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2424`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2424)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2424`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2424)*
 
 ### `__NR_sched_rr_get_interval`
 ```rust
 const __NR_sched_rr_get_interval: u32 = 148u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2425`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2425)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2425`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2425)*
 
 ### `__NR_mlock`
 ```rust
 const __NR_mlock: u32 = 149u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2426`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2426)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2426`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2426)*
 
 ### `__NR_munlock`
 ```rust
 const __NR_munlock: u32 = 150u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2427`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2427)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2427`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2427)*
 
 ### `__NR_mlockall`
 ```rust
 const __NR_mlockall: u32 = 151u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2428`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2428)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2428`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2428)*
 
 ### `__NR_munlockall`
 ```rust
 const __NR_munlockall: u32 = 152u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2429`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2429)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2429`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2429)*
 
 ### `__NR_vhangup`
 ```rust
 const __NR_vhangup: u32 = 153u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2430`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2430)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2430`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2430)*
 
 ### `__NR_modify_ldt`
 ```rust
 const __NR_modify_ldt: u32 = 154u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2431`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2431)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2431`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2431)*
 
 ### `__NR_pivot_root`
 ```rust
 const __NR_pivot_root: u32 = 155u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2432`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2432)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2432`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2432)*
 
 ### `__NR__sysctl`
 ```rust
 const __NR__sysctl: u32 = 156u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2433`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2433)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2433`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2433)*
 
 ### `__NR_prctl`
 ```rust
 const __NR_prctl: u32 = 157u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2434`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2434)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2434`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2434)*
 
 ### `__NR_arch_prctl`
 ```rust
 const __NR_arch_prctl: u32 = 158u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2435`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2435)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2435`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2435)*
 
 ### `__NR_adjtimex`
 ```rust
 const __NR_adjtimex: u32 = 159u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2436`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2436)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2436`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2436)*
 
 ### `__NR_setrlimit`
 ```rust
 const __NR_setrlimit: u32 = 160u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2437`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2437)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2437`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2437)*
 
 ### `__NR_chroot`
 ```rust
 const __NR_chroot: u32 = 161u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2438`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2438)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2438`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2438)*
 
 ### `__NR_sync`
 ```rust
 const __NR_sync: u32 = 162u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2439`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2439)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2439`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2439)*
 
 ### `__NR_acct`
 ```rust
 const __NR_acct: u32 = 163u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2440`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2440)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2440`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2440)*
 
 ### `__NR_settimeofday`
 ```rust
 const __NR_settimeofday: u32 = 164u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2441`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2441)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2441`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2441)*
 
 ### `__NR_mount`
 ```rust
 const __NR_mount: u32 = 165u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2442`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2442)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2442`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2442)*
 
 ### `__NR_umount2`
 ```rust
 const __NR_umount2: u32 = 166u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2443`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2443)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2443`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2443)*
 
 ### `__NR_swapon`
 ```rust
 const __NR_swapon: u32 = 167u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2444`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2444)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2444`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2444)*
 
 ### `__NR_swapoff`
 ```rust
 const __NR_swapoff: u32 = 168u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2445`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2445)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2445`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2445)*
 
 ### `__NR_reboot`
 ```rust
 const __NR_reboot: u32 = 169u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2446`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2446)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2446`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2446)*
 
 ### `__NR_sethostname`
 ```rust
 const __NR_sethostname: u32 = 170u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2447`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2447)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2447`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2447)*
 
 ### `__NR_setdomainname`
 ```rust
 const __NR_setdomainname: u32 = 171u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2448`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2448)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2448`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2448)*
 
 ### `__NR_iopl`
 ```rust
 const __NR_iopl: u32 = 172u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2449`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2449)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2449`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2449)*
 
 ### `__NR_ioperm`
 ```rust
 const __NR_ioperm: u32 = 173u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2450`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2450)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2450`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2450)*
 
 ### `__NR_create_module`
 ```rust
 const __NR_create_module: u32 = 174u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2451`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2451)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2451`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2451)*
 
 ### `__NR_init_module`
 ```rust
 const __NR_init_module: u32 = 175u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2452`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2452)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2452`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2452)*
 
 ### `__NR_delete_module`
 ```rust
 const __NR_delete_module: u32 = 176u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2453`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2453)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2453`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2453)*
 
 ### `__NR_get_kernel_syms`
 ```rust
 const __NR_get_kernel_syms: u32 = 177u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2454`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2454)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2454`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2454)*
 
 ### `__NR_query_module`
 ```rust
 const __NR_query_module: u32 = 178u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2455`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2455)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2455`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2455)*
 
 ### `__NR_quotactl`
 ```rust
 const __NR_quotactl: u32 = 179u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2456`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2456)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2456`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2456)*
 
 ### `__NR_nfsservctl`
 ```rust
 const __NR_nfsservctl: u32 = 180u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2457`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2457)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2457`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2457)*
 
 ### `__NR_getpmsg`
 ```rust
 const __NR_getpmsg: u32 = 181u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2458`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2458)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2458`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2458)*
 
 ### `__NR_putpmsg`
 ```rust
 const __NR_putpmsg: u32 = 182u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2459`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2459)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2459`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2459)*
 
 ### `__NR_afs_syscall`
 ```rust
 const __NR_afs_syscall: u32 = 183u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2460`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2460)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2460`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2460)*
 
 ### `__NR_tuxcall`
 ```rust
 const __NR_tuxcall: u32 = 184u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2461`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2461)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2461`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2461)*
 
 ### `__NR_security`
 ```rust
 const __NR_security: u32 = 185u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2462`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2462)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2462`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2462)*
 
 ### `__NR_gettid`
 ```rust
 const __NR_gettid: u32 = 186u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2463`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2463)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2463`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2463)*
 
 ### `__NR_readahead`
 ```rust
 const __NR_readahead: u32 = 187u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2464`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2464)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2464`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2464)*
 
 ### `__NR_setxattr`
 ```rust
 const __NR_setxattr: u32 = 188u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2465`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2465)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2465`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2465)*
 
 ### `__NR_lsetxattr`
 ```rust
 const __NR_lsetxattr: u32 = 189u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2466`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2466)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2466`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2466)*
 
 ### `__NR_fsetxattr`
 ```rust
 const __NR_fsetxattr: u32 = 190u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2467`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2467)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2467`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2467)*
 
 ### `__NR_getxattr`
 ```rust
 const __NR_getxattr: u32 = 191u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2468`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2468)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2468`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2468)*
 
 ### `__NR_lgetxattr`
 ```rust
 const __NR_lgetxattr: u32 = 192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2469`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2469)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2469`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2469)*
 
 ### `__NR_fgetxattr`
 ```rust
 const __NR_fgetxattr: u32 = 193u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2470`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2470)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2470`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2470)*
 
 ### `__NR_listxattr`
 ```rust
 const __NR_listxattr: u32 = 194u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2471`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2471)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2471`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2471)*
 
 ### `__NR_llistxattr`
 ```rust
 const __NR_llistxattr: u32 = 195u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2472`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2472)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2472`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2472)*
 
 ### `__NR_flistxattr`
 ```rust
 const __NR_flistxattr: u32 = 196u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2473`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2473)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2473`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2473)*
 
 ### `__NR_removexattr`
 ```rust
 const __NR_removexattr: u32 = 197u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2474`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2474)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2474`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2474)*
 
 ### `__NR_lremovexattr`
 ```rust
 const __NR_lremovexattr: u32 = 198u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2475`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2475)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2475`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2475)*
 
 ### `__NR_fremovexattr`
 ```rust
 const __NR_fremovexattr: u32 = 199u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2476`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2476)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2476`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2476)*
 
 ### `__NR_tkill`
 ```rust
 const __NR_tkill: u32 = 200u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2477`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2477)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2477`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2477)*
 
 ### `__NR_time`
 ```rust
 const __NR_time: u32 = 201u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2478`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2478)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2478`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2478)*
 
 ### `__NR_futex`
 ```rust
 const __NR_futex: u32 = 202u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2479`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2479)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2479`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2479)*
 
 ### `__NR_sched_setaffinity`
 ```rust
 const __NR_sched_setaffinity: u32 = 203u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2480`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2480)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2480`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2480)*
 
 ### `__NR_sched_getaffinity`
 ```rust
 const __NR_sched_getaffinity: u32 = 204u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2481`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2481)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2481`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2481)*
 
 ### `__NR_set_thread_area`
 ```rust
 const __NR_set_thread_area: u32 = 205u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2482`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2482)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2482`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2482)*
 
 ### `__NR_io_setup`
 ```rust
 const __NR_io_setup: u32 = 206u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2483`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2483)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2483`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2483)*
 
 ### `__NR_io_destroy`
 ```rust
 const __NR_io_destroy: u32 = 207u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2484`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2484)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2484`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2484)*
 
 ### `__NR_io_getevents`
 ```rust
 const __NR_io_getevents: u32 = 208u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2485`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2485)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2485`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2485)*
 
 ### `__NR_io_submit`
 ```rust
 const __NR_io_submit: u32 = 209u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2486`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2486)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2486`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2486)*
 
 ### `__NR_io_cancel`
 ```rust
 const __NR_io_cancel: u32 = 210u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2487`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2487)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2487`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2487)*
 
 ### `__NR_get_thread_area`
 ```rust
 const __NR_get_thread_area: u32 = 211u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2488`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2488)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2488`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2488)*
 
 ### `__NR_lookup_dcookie`
 ```rust
 const __NR_lookup_dcookie: u32 = 212u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2489`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2489)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2489`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2489)*
 
 ### `__NR_epoll_create`
 ```rust
 const __NR_epoll_create: u32 = 213u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2490`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2490)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2490`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2490)*
 
 ### `__NR_epoll_ctl_old`
 ```rust
 const __NR_epoll_ctl_old: u32 = 214u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2491`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2491)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2491`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2491)*
 
 ### `__NR_epoll_wait_old`
 ```rust
 const __NR_epoll_wait_old: u32 = 215u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2492`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2492)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2492`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2492)*
 
 ### `__NR_remap_file_pages`
 ```rust
 const __NR_remap_file_pages: u32 = 216u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2493`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2493)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2493`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2493)*
 
 ### `__NR_getdents64`
 ```rust
 const __NR_getdents64: u32 = 217u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2494`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2494)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2494`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2494)*
 
 ### `__NR_set_tid_address`
 ```rust
 const __NR_set_tid_address: u32 = 218u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2495`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2495)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2495`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2495)*
 
 ### `__NR_restart_syscall`
 ```rust
 const __NR_restart_syscall: u32 = 219u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2496`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2496)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2496`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2496)*
 
 ### `__NR_semtimedop`
 ```rust
 const __NR_semtimedop: u32 = 220u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2497`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2497)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2497`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2497)*
 
 ### `__NR_fadvise64`
 ```rust
 const __NR_fadvise64: u32 = 221u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2498`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2498)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2498`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2498)*
 
 ### `__NR_timer_create`
 ```rust
 const __NR_timer_create: u32 = 222u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2499`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2499)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2499`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2499)*
 
 ### `__NR_timer_settime`
 ```rust
 const __NR_timer_settime: u32 = 223u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2500`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2500)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2500`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2500)*
 
 ### `__NR_timer_gettime`
 ```rust
 const __NR_timer_gettime: u32 = 224u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2501`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2501)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2501`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2501)*
 
 ### `__NR_timer_getoverrun`
 ```rust
 const __NR_timer_getoverrun: u32 = 225u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2502`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2502)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2502`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2502)*
 
 ### `__NR_timer_delete`
 ```rust
 const __NR_timer_delete: u32 = 226u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2503`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2503)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2503`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2503)*
 
 ### `__NR_clock_settime`
 ```rust
 const __NR_clock_settime: u32 = 227u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2504`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2504)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2504`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2504)*
 
 ### `__NR_clock_gettime`
 ```rust
 const __NR_clock_gettime: u32 = 228u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2505`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2505)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2505`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2505)*
 
 ### `__NR_clock_getres`
 ```rust
 const __NR_clock_getres: u32 = 229u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2506`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2506)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2506`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2506)*
 
 ### `__NR_clock_nanosleep`
 ```rust
 const __NR_clock_nanosleep: u32 = 230u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2507`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2507)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2507`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2507)*
 
 ### `__NR_exit_group`
 ```rust
 const __NR_exit_group: u32 = 231u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2508`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2508)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2508`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2508)*
 
 ### `__NR_epoll_wait`
 ```rust
 const __NR_epoll_wait: u32 = 232u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2509`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2509)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2509`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2509)*
 
 ### `__NR_epoll_ctl`
 ```rust
 const __NR_epoll_ctl: u32 = 233u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2510`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2510)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2510`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2510)*
 
 ### `__NR_tgkill`
 ```rust
 const __NR_tgkill: u32 = 234u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2511`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2511)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2511`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2511)*
 
 ### `__NR_utimes`
 ```rust
 const __NR_utimes: u32 = 235u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2512`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2512)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2512`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2512)*
 
 ### `__NR_vserver`
 ```rust
 const __NR_vserver: u32 = 236u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2513`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2513)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2513`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2513)*
 
 ### `__NR_mbind`
 ```rust
 const __NR_mbind: u32 = 237u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2514`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2514)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2514`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2514)*
 
 ### `__NR_set_mempolicy`
 ```rust
 const __NR_set_mempolicy: u32 = 238u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2515`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2515)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2515`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2515)*
 
 ### `__NR_get_mempolicy`
 ```rust
 const __NR_get_mempolicy: u32 = 239u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2516`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2516)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2516`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2516)*
 
 ### `__NR_mq_open`
 ```rust
 const __NR_mq_open: u32 = 240u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2517`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2517)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2517`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2517)*
 
 ### `__NR_mq_unlink`
 ```rust
 const __NR_mq_unlink: u32 = 241u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2518`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2518)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2518`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2518)*
 
 ### `__NR_mq_timedsend`
 ```rust
 const __NR_mq_timedsend: u32 = 242u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2519`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2519)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2519`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2519)*
 
 ### `__NR_mq_timedreceive`
 ```rust
 const __NR_mq_timedreceive: u32 = 243u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2520`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2520)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2520`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2520)*
 
 ### `__NR_mq_notify`
 ```rust
 const __NR_mq_notify: u32 = 244u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2521`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2521)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2521`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2521)*
 
 ### `__NR_mq_getsetattr`
 ```rust
 const __NR_mq_getsetattr: u32 = 245u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2522`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2522)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2522`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2522)*
 
 ### `__NR_kexec_load`
 ```rust
 const __NR_kexec_load: u32 = 246u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2523`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2523)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2523`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2523)*
 
 ### `__NR_waitid`
 ```rust
 const __NR_waitid: u32 = 247u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2524`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2524)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2524`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2524)*
 
 ### `__NR_add_key`
 ```rust
 const __NR_add_key: u32 = 248u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2525`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2525)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2525`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2525)*
 
 ### `__NR_request_key`
 ```rust
 const __NR_request_key: u32 = 249u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2526`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2526)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2526`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2526)*
 
 ### `__NR_keyctl`
 ```rust
 const __NR_keyctl: u32 = 250u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2527`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2527)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2527`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2527)*
 
 ### `__NR_ioprio_set`
 ```rust
 const __NR_ioprio_set: u32 = 251u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2528`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2528)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2528`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2528)*
 
 ### `__NR_ioprio_get`
 ```rust
 const __NR_ioprio_get: u32 = 252u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2529`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2529)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2529`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2529)*
 
 ### `__NR_inotify_init`
 ```rust
 const __NR_inotify_init: u32 = 253u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2530`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2530)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2530`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2530)*
 
 ### `__NR_inotify_add_watch`
 ```rust
 const __NR_inotify_add_watch: u32 = 254u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2531`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2531)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2531`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2531)*
 
 ### `__NR_inotify_rm_watch`
 ```rust
 const __NR_inotify_rm_watch: u32 = 255u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2532`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2532)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2532`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2532)*
 
 ### `__NR_migrate_pages`
 ```rust
 const __NR_migrate_pages: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2533`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2533)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2533`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2533)*
 
 ### `__NR_openat`
 ```rust
 const __NR_openat: u32 = 257u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2534`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2534)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2534`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2534)*
 
 ### `__NR_mkdirat`
 ```rust
 const __NR_mkdirat: u32 = 258u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2535`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2535)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2535`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2535)*
 
 ### `__NR_mknodat`
 ```rust
 const __NR_mknodat: u32 = 259u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2536`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2536)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2536`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2536)*
 
 ### `__NR_fchownat`
 ```rust
 const __NR_fchownat: u32 = 260u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2537`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2537)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2537`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2537)*
 
 ### `__NR_futimesat`
 ```rust
 const __NR_futimesat: u32 = 261u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2538`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2538)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2538`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2538)*
 
 ### `__NR_newfstatat`
 ```rust
 const __NR_newfstatat: u32 = 262u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2539`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2539)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2539`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2539)*
 
 ### `__NR_unlinkat`
 ```rust
 const __NR_unlinkat: u32 = 263u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2540`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2540)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2540`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2540)*
 
 ### `__NR_renameat`
 ```rust
 const __NR_renameat: u32 = 264u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2541`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2541)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2541`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2541)*
 
 ### `__NR_linkat`
 ```rust
 const __NR_linkat: u32 = 265u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2542`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2542)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2542`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2542)*
 
 ### `__NR_symlinkat`
 ```rust
 const __NR_symlinkat: u32 = 266u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2543`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2543)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2543`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2543)*
 
 ### `__NR_readlinkat`
 ```rust
 const __NR_readlinkat: u32 = 267u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2544`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2544)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2544`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2544)*
 
 ### `__NR_fchmodat`
 ```rust
 const __NR_fchmodat: u32 = 268u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2545`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2545)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2545`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2545)*
 
 ### `__NR_faccessat`
 ```rust
 const __NR_faccessat: u32 = 269u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2546`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2546)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2546`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2546)*
 
 ### `__NR_pselect6`
 ```rust
 const __NR_pselect6: u32 = 270u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2547`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2547)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2547`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2547)*
 
 ### `__NR_ppoll`
 ```rust
 const __NR_ppoll: u32 = 271u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2548`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2548)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2548`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2548)*
 
 ### `__NR_unshare`
 ```rust
 const __NR_unshare: u32 = 272u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2549`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2549)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2549`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2549)*
 
 ### `__NR_set_robust_list`
 ```rust
 const __NR_set_robust_list: u32 = 273u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2550`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2550)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2550`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2550)*
 
 ### `__NR_get_robust_list`
 ```rust
 const __NR_get_robust_list: u32 = 274u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2551`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2551)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2551`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2551)*
 
 ### `__NR_splice`
 ```rust
 const __NR_splice: u32 = 275u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2552`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2552)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2552`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2552)*
 
 ### `__NR_tee`
 ```rust
 const __NR_tee: u32 = 276u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2553`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2553)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2553`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2553)*
 
 ### `__NR_sync_file_range`
 ```rust
 const __NR_sync_file_range: u32 = 277u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2554`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2554)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2554`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2554)*
 
 ### `__NR_vmsplice`
 ```rust
 const __NR_vmsplice: u32 = 278u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2555`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2555)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2555`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2555)*
 
 ### `__NR_move_pages`
 ```rust
 const __NR_move_pages: u32 = 279u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2556`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2556)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2556`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2556)*
 
 ### `__NR_utimensat`
 ```rust
 const __NR_utimensat: u32 = 280u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2557`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2557)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2557`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2557)*
 
 ### `__NR_epoll_pwait`
 ```rust
 const __NR_epoll_pwait: u32 = 281u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2558`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2558)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2558`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2558)*
 
 ### `__NR_signalfd`
 ```rust
 const __NR_signalfd: u32 = 282u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2559`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2559)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2559`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2559)*
 
 ### `__NR_timerfd_create`
 ```rust
 const __NR_timerfd_create: u32 = 283u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2560`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2560)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2560`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2560)*
 
 ### `__NR_eventfd`
 ```rust
 const __NR_eventfd: u32 = 284u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2561`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2561)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2561`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2561)*
 
 ### `__NR_fallocate`
 ```rust
 const __NR_fallocate: u32 = 285u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2562`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2562)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2562`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2562)*
 
 ### `__NR_timerfd_settime`
 ```rust
 const __NR_timerfd_settime: u32 = 286u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2563`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2563)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2563`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2563)*
 
 ### `__NR_timerfd_gettime`
 ```rust
 const __NR_timerfd_gettime: u32 = 287u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2564`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2564)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2564`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2564)*
 
 ### `__NR_accept4`
 ```rust
 const __NR_accept4: u32 = 288u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2565`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2565)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2565`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2565)*
 
 ### `__NR_signalfd4`
 ```rust
 const __NR_signalfd4: u32 = 289u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2566`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2566)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2566`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2566)*
 
 ### `__NR_eventfd2`
 ```rust
 const __NR_eventfd2: u32 = 290u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2567`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2567)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2567`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2567)*
 
 ### `__NR_epoll_create1`
 ```rust
 const __NR_epoll_create1: u32 = 291u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2568`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2568)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2568`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2568)*
 
 ### `__NR_dup3`
 ```rust
 const __NR_dup3: u32 = 292u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2569`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2569)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2569`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2569)*
 
 ### `__NR_pipe2`
 ```rust
 const __NR_pipe2: u32 = 293u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2570`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2570)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2570`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2570)*
 
 ### `__NR_inotify_init1`
 ```rust
 const __NR_inotify_init1: u32 = 294u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2571`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2571)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2571`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2571)*
 
 ### `__NR_preadv`
 ```rust
 const __NR_preadv: u32 = 295u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2572`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2572)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2572`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2572)*
 
 ### `__NR_pwritev`
 ```rust
 const __NR_pwritev: u32 = 296u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2573`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2573)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2573`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2573)*
 
 ### `__NR_rt_tgsigqueueinfo`
 ```rust
 const __NR_rt_tgsigqueueinfo: u32 = 297u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2574`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2574)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2574`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2574)*
 
 ### `__NR_perf_event_open`
 ```rust
 const __NR_perf_event_open: u32 = 298u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2575`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2575)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2575`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2575)*
 
 ### `__NR_recvmmsg`
 ```rust
 const __NR_recvmmsg: u32 = 299u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2576`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2576)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2576`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2576)*
 
 ### `__NR_fanotify_init`
 ```rust
 const __NR_fanotify_init: u32 = 300u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2577`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2577)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2577`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2577)*
 
 ### `__NR_fanotify_mark`
 ```rust
 const __NR_fanotify_mark: u32 = 301u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2578`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2578)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2578`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2578)*
 
 ### `__NR_prlimit64`
 ```rust
 const __NR_prlimit64: u32 = 302u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2579`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2579)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2579`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2579)*
 
 ### `__NR_name_to_handle_at`
 ```rust
 const __NR_name_to_handle_at: u32 = 303u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2580`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2580)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2580`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2580)*
 
 ### `__NR_open_by_handle_at`
 ```rust
 const __NR_open_by_handle_at: u32 = 304u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2581`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2581)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2581`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2581)*
 
 ### `__NR_clock_adjtime`
 ```rust
 const __NR_clock_adjtime: u32 = 305u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2582`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2582)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2582`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2582)*
 
 ### `__NR_syncfs`
 ```rust
 const __NR_syncfs: u32 = 306u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2583`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2583)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2583`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2583)*
 
 ### `__NR_sendmmsg`
 ```rust
 const __NR_sendmmsg: u32 = 307u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2584`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2584)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2584`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2584)*
 
 ### `__NR_setns`
 ```rust
 const __NR_setns: u32 = 308u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2585`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2585)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2585`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2585)*
 
 ### `__NR_getcpu`
 ```rust
 const __NR_getcpu: u32 = 309u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2586`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2586)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2586`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2586)*
 
 ### `__NR_process_vm_readv`
 ```rust
 const __NR_process_vm_readv: u32 = 310u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2587`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2587)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2587`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2587)*
 
 ### `__NR_process_vm_writev`
 ```rust
 const __NR_process_vm_writev: u32 = 311u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2588`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2588)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2588`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2588)*
 
 ### `__NR_kcmp`
 ```rust
 const __NR_kcmp: u32 = 312u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2589`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2589)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2589`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2589)*
 
 ### `__NR_finit_module`
 ```rust
 const __NR_finit_module: u32 = 313u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2590`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2590)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2590`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2590)*
 
 ### `__NR_sched_setattr`
 ```rust
 const __NR_sched_setattr: u32 = 314u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2591`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2591)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2591`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2591)*
 
 ### `__NR_sched_getattr`
 ```rust
 const __NR_sched_getattr: u32 = 315u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2592`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2592)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2592`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2592)*
 
 ### `__NR_renameat2`
 ```rust
 const __NR_renameat2: u32 = 316u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2593`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2593)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2593`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2593)*
 
 ### `__NR_seccomp`
 ```rust
 const __NR_seccomp: u32 = 317u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2594`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2594)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2594`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2594)*
 
 ### `__NR_getrandom`
 ```rust
 const __NR_getrandom: u32 = 318u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2595`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2595)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2595`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2595)*
 
 ### `__NR_memfd_create`
 ```rust
 const __NR_memfd_create: u32 = 319u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2596`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2596)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2596`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2596)*
 
 ### `__NR_kexec_file_load`
 ```rust
 const __NR_kexec_file_load: u32 = 320u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2597`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2597)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2597`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2597)*
 
 ### `__NR_bpf`
 ```rust
 const __NR_bpf: u32 = 321u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2598`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2598)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2598`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2598)*
 
 ### `__NR_execveat`
 ```rust
 const __NR_execveat: u32 = 322u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2599`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2599)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2599`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2599)*
 
 ### `__NR_userfaultfd`
 ```rust
 const __NR_userfaultfd: u32 = 323u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2600`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2600)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2600`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2600)*
 
 ### `__NR_membarrier`
 ```rust
 const __NR_membarrier: u32 = 324u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2601`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2601)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2601`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2601)*
 
 ### `__NR_mlock2`
 ```rust
 const __NR_mlock2: u32 = 325u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2602`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2602)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2602`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2602)*
 
 ### `__NR_copy_file_range`
 ```rust
 const __NR_copy_file_range: u32 = 326u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2603`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2603)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2603`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2603)*
 
 ### `__NR_preadv2`
 ```rust
 const __NR_preadv2: u32 = 327u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2604`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2604)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2604`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2604)*
 
 ### `__NR_pwritev2`
 ```rust
 const __NR_pwritev2: u32 = 328u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2605`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2605)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2605`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2605)*
 
 ### `__NR_pkey_mprotect`
 ```rust
 const __NR_pkey_mprotect: u32 = 329u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2606`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2606)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2606`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2606)*
 
 ### `__NR_pkey_alloc`
 ```rust
 const __NR_pkey_alloc: u32 = 330u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2607`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2607)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2607`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2607)*
 
 ### `__NR_pkey_free`
 ```rust
 const __NR_pkey_free: u32 = 331u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2608`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2608)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2608`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2608)*
 
 ### `__NR_statx`
 ```rust
 const __NR_statx: u32 = 332u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2609`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2609)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2609`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2609)*
 
 ### `__NR_io_pgetevents`
 ```rust
 const __NR_io_pgetevents: u32 = 333u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2610`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2610)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2610`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2610)*
 
 ### `__NR_rseq`
 ```rust
 const __NR_rseq: u32 = 334u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2611`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2611)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2611`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2611)*
 
 ### `__NR_uretprobe`
 ```rust
 const __NR_uretprobe: u32 = 335u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2612`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2612)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2612`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2612)*
 
 ### `__NR_pidfd_send_signal`
 ```rust
 const __NR_pidfd_send_signal: u32 = 424u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2613`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2613)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2613`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2613)*
 
 ### `__NR_io_uring_setup`
 ```rust
 const __NR_io_uring_setup: u32 = 425u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2614`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2614)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2614`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2614)*
 
 ### `__NR_io_uring_enter`
 ```rust
 const __NR_io_uring_enter: u32 = 426u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2615`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2615)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2615`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2615)*
 
 ### `__NR_io_uring_register`
 ```rust
 const __NR_io_uring_register: u32 = 427u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2616`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2616)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2616`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2616)*
 
 ### `__NR_open_tree`
 ```rust
 const __NR_open_tree: u32 = 428u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2617`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2617)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2617`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2617)*
 
 ### `__NR_move_mount`
 ```rust
 const __NR_move_mount: u32 = 429u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2618`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2618)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2618`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2618)*
 
 ### `__NR_fsopen`
 ```rust
 const __NR_fsopen: u32 = 430u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2619`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2619)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2619`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2619)*
 
 ### `__NR_fsconfig`
 ```rust
 const __NR_fsconfig: u32 = 431u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2620`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2620)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2620`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2620)*
 
 ### `__NR_fsmount`
 ```rust
 const __NR_fsmount: u32 = 432u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2621`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2621)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2621`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2621)*
 
 ### `__NR_fspick`
 ```rust
 const __NR_fspick: u32 = 433u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2622`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2622)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2622`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2622)*
 
 ### `__NR_pidfd_open`
 ```rust
 const __NR_pidfd_open: u32 = 434u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2623`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2623)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2623`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2623)*
 
 ### `__NR_clone3`
 ```rust
 const __NR_clone3: u32 = 435u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2624`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2624)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2624`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2624)*
 
 ### `__NR_close_range`
 ```rust
 const __NR_close_range: u32 = 436u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2625`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2625)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2625`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2625)*
 
 ### `__NR_openat2`
 ```rust
 const __NR_openat2: u32 = 437u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2626`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2626)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2626`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2626)*
 
 ### `__NR_pidfd_getfd`
 ```rust
 const __NR_pidfd_getfd: u32 = 438u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2627`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2627)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2627`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2627)*
 
 ### `__NR_faccessat2`
 ```rust
 const __NR_faccessat2: u32 = 439u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2628`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2628)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2628`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2628)*
 
 ### `__NR_process_madvise`
 ```rust
 const __NR_process_madvise: u32 = 440u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2629`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2629)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2629`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2629)*
 
 ### `__NR_epoll_pwait2`
 ```rust
 const __NR_epoll_pwait2: u32 = 441u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2630`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2630)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2630`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2630)*
 
 ### `__NR_mount_setattr`
 ```rust
 const __NR_mount_setattr: u32 = 442u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2631`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2631)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2631`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2631)*
 
 ### `__NR_quotactl_fd`
 ```rust
 const __NR_quotactl_fd: u32 = 443u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2632`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2632)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2632`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2632)*
 
 ### `__NR_landlock_create_ruleset`
 ```rust
 const __NR_landlock_create_ruleset: u32 = 444u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2633`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2633)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2633`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2633)*
 
 ### `__NR_landlock_add_rule`
 ```rust
 const __NR_landlock_add_rule: u32 = 445u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2634`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2634)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2634`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2634)*
 
 ### `__NR_landlock_restrict_self`
 ```rust
 const __NR_landlock_restrict_self: u32 = 446u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2635`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2635)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2635`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2635)*
 
 ### `__NR_memfd_secret`
 ```rust
 const __NR_memfd_secret: u32 = 447u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2636`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2636)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2636`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2636)*
 
 ### `__NR_process_mrelease`
 ```rust
 const __NR_process_mrelease: u32 = 448u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2637`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2637)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2637`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2637)*
 
 ### `__NR_futex_waitv`
 ```rust
 const __NR_futex_waitv: u32 = 449u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2638`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2638)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2638`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2638)*
 
 ### `__NR_set_mempolicy_home_node`
 ```rust
 const __NR_set_mempolicy_home_node: u32 = 450u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2639`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2639)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2639`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2639)*
 
 ### `__NR_cachestat`
 ```rust
 const __NR_cachestat: u32 = 451u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2640`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2640)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2640`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2640)*
 
 ### `__NR_fchmodat2`
 ```rust
 const __NR_fchmodat2: u32 = 452u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2641`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2641)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2641`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2641)*
 
 ### `__NR_map_shadow_stack`
 ```rust
 const __NR_map_shadow_stack: u32 = 453u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2642`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2642)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2642`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2642)*
 
 ### `__NR_futex_wake`
 ```rust
 const __NR_futex_wake: u32 = 454u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2643`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2643)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2643`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2643)*
 
 ### `__NR_futex_wait`
 ```rust
 const __NR_futex_wait: u32 = 455u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2644`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2644)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2644`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2644)*
 
 ### `__NR_futex_requeue`
 ```rust
 const __NR_futex_requeue: u32 = 456u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2645`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2645)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2645`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2645)*
 
 ### `__NR_statmount`
 ```rust
 const __NR_statmount: u32 = 457u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2646`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2646)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2646`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2646)*
 
 ### `__NR_listmount`
 ```rust
 const __NR_listmount: u32 = 458u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2647`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2647)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2647`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2647)*
 
 ### `__NR_lsm_get_self_attr`
 ```rust
 const __NR_lsm_get_self_attr: u32 = 459u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2648`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2648)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2648`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2648)*
 
 ### `__NR_lsm_set_self_attr`
 ```rust
 const __NR_lsm_set_self_attr: u32 = 460u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2649`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2649)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2649`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2649)*
 
 ### `__NR_lsm_list_modules`
 ```rust
 const __NR_lsm_list_modules: u32 = 461u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2650`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2650)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2650`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2650)*
 
 ### `__NR_mseal`
 ```rust
 const __NR_mseal: u32 = 462u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2651`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2651)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2651`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2651)*
 
 ### `__NR_setxattrat`
 ```rust
 const __NR_setxattrat: u32 = 463u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2652`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2652)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2652`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2652)*
 
 ### `__NR_getxattrat`
 ```rust
 const __NR_getxattrat: u32 = 464u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2653`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2653)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2653`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2653)*
 
 ### `__NR_listxattrat`
 ```rust
 const __NR_listxattrat: u32 = 465u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2654`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2654)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2654`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2654)*
 
 ### `__NR_removexattrat`
 ```rust
 const __NR_removexattrat: u32 = 466u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2655`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2655)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2655`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2655)*
 
 ### `__NR_open_tree_attr`
 ```rust
 const __NR_open_tree_attr: u32 = 467u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2656`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2656)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2656`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2656)*
 
 ### `WNOHANG`
 ```rust
 const WNOHANG: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2657`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2657)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2657`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2657)*
 
 ### `WUNTRACED`
 ```rust
 const WUNTRACED: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2658`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2658)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2658`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2658)*
 
 ### `WSTOPPED`
 ```rust
 const WSTOPPED: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2659`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2659)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2659`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2659)*
 
 ### `WEXITED`
 ```rust
 const WEXITED: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2660`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2660)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2660`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2660)*
 
 ### `WCONTINUED`
 ```rust
 const WCONTINUED: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2661`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2661)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2661`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2661)*
 
 ### `WNOWAIT`
 ```rust
 const WNOWAIT: u32 = 16_777_216u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2662`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2662)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2662`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2662)*
 
 ### `__WNOTHREAD`
 ```rust
 const __WNOTHREAD: u32 = 536_870_912u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2663`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2663)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2663`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2663)*
 
 ### `__WALL`
 ```rust
 const __WALL: u32 = 1_073_741_824u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2664`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2664)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2664`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2664)*
 
 ### `__WCLONE`
 ```rust
 const __WCLONE: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2665`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2665)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2665`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2665)*
 
 ### `P_ALL`
 ```rust
 const P_ALL: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2666`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2666)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2666`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2666)*
 
 ### `P_PID`
 ```rust
 const P_PID: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2667`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2667)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2667`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2667)*
 
 ### `P_PGID`
 ```rust
 const P_PGID: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2668`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2668)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2668`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2668)*
 
 ### `P_PIDFD`
 ```rust
 const P_PIDFD: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2669`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2669)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2669`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2669)*
 
 ### `XATTR_CREATE`
 ```rust
 const XATTR_CREATE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2670`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2670)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2670`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2670)*
 
 ### `XATTR_REPLACE`
 ```rust
 const XATTR_REPLACE: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2671`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2671)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2671`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2671)*
 
 ### `XATTR_OS2_PREFIX`
 ```rust
 const XATTR_OS2_PREFIX: &[u8; 5];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2672`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2672)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2672`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2672)*
 
 ### `XATTR_MAC_OSX_PREFIX`
 ```rust
 const XATTR_MAC_OSX_PREFIX: &[u8; 5];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2673`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2673)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2673`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2673)*
 
 ### `XATTR_BTRFS_PREFIX`
 ```rust
 const XATTR_BTRFS_PREFIX: &[u8; 7];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2674`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2674)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2674`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2674)*
 
 ### `XATTR_HURD_PREFIX`
 ```rust
 const XATTR_HURD_PREFIX: &[u8; 5];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2675`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2675)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2675`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2675)*
 
 ### `XATTR_SECURITY_PREFIX`
 ```rust
 const XATTR_SECURITY_PREFIX: &[u8; 10];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2676`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2676)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2676`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2676)*
 
 ### `XATTR_SYSTEM_PREFIX`
 ```rust
 const XATTR_SYSTEM_PREFIX: &[u8; 8];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2677`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2677)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2677`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2677)*
 
 ### `XATTR_TRUSTED_PREFIX`
 ```rust
 const XATTR_TRUSTED_PREFIX: &[u8; 9];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2678`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2678)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2678`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2678)*
 
 ### `XATTR_USER_PREFIX`
 ```rust
 const XATTR_USER_PREFIX: &[u8; 6];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2679`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2679)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2679`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2679)*
 
 ### `XATTR_EVM_SUFFIX`
 ```rust
 const XATTR_EVM_SUFFIX: &[u8; 4];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2680`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2680)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2680`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2680)*
 
 ### `XATTR_NAME_EVM`
 ```rust
 const XATTR_NAME_EVM: &[u8; 13];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2681`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2681)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2681`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2681)*
 
 ### `XATTR_IMA_SUFFIX`
 ```rust
 const XATTR_IMA_SUFFIX: &[u8; 4];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2682`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2682)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2682`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2682)*
 
 ### `XATTR_NAME_IMA`
 ```rust
 const XATTR_NAME_IMA: &[u8; 13];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2683`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2683)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2683`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2683)*
 
 ### `XATTR_SELINUX_SUFFIX`
 ```rust
 const XATTR_SELINUX_SUFFIX: &[u8; 8];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2684`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2684)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2684`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2684)*
 
 ### `XATTR_NAME_SELINUX`
 ```rust
 const XATTR_NAME_SELINUX: &[u8; 17];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2685`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2685)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2685`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2685)*
 
 ### `XATTR_SMACK_SUFFIX`
 ```rust
 const XATTR_SMACK_SUFFIX: &[u8; 8];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2686`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2686)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2686`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2686)*
 
 ### `XATTR_SMACK_IPIN`
 ```rust
 const XATTR_SMACK_IPIN: &[u8; 12];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2687`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2687)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2687`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2687)*
 
 ### `XATTR_SMACK_IPOUT`
 ```rust
 const XATTR_SMACK_IPOUT: &[u8; 13];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2688`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2688)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2688`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2688)*
 
 ### `XATTR_SMACK_EXEC`
 ```rust
 const XATTR_SMACK_EXEC: &[u8; 12];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2689`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2689)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2689`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2689)*
 
 ### `XATTR_SMACK_TRANSMUTE`
 ```rust
 const XATTR_SMACK_TRANSMUTE: &[u8; 17];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2690`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2690)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2690`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2690)*
 
 ### `XATTR_SMACK_MMAP`
 ```rust
 const XATTR_SMACK_MMAP: &[u8; 12];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2691`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2691)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2691`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2691)*
 
 ### `XATTR_NAME_SMACK`
 ```rust
 const XATTR_NAME_SMACK: &[u8; 17];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2692`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2692)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2692`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2692)*
 
 ### `XATTR_NAME_SMACKIPIN`
 ```rust
 const XATTR_NAME_SMACKIPIN: &[u8; 21];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2693`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2693)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2693`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2693)*
 
 ### `XATTR_NAME_SMACKIPOUT`
 ```rust
 const XATTR_NAME_SMACKIPOUT: &[u8; 22];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2694`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2694)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2694`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2694)*
 
 ### `XATTR_NAME_SMACKEXEC`
 ```rust
 const XATTR_NAME_SMACKEXEC: &[u8; 21];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2695`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2695)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2695`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2695)*
 
 ### `XATTR_NAME_SMACKTRANSMUTE`
 ```rust
 const XATTR_NAME_SMACKTRANSMUTE: &[u8; 26];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2696`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2696)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2696`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2696)*
 
 ### `XATTR_NAME_SMACKMMAP`
 ```rust
 const XATTR_NAME_SMACKMMAP: &[u8; 21];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2697`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2697)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2697`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2697)*
 
 ### `XATTR_APPARMOR_SUFFIX`
 ```rust
 const XATTR_APPARMOR_SUFFIX: &[u8; 9];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2698`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2698)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2698`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2698)*
 
 ### `XATTR_NAME_APPARMOR`
 ```rust
 const XATTR_NAME_APPARMOR: &[u8; 18];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2699`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2699)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2699`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2699)*
 
 ### `XATTR_CAPS_SUFFIX`
 ```rust
 const XATTR_CAPS_SUFFIX: &[u8; 11];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2700`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2700)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2700`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2700)*
 
 ### `XATTR_NAME_CAPS`
 ```rust
 const XATTR_NAME_CAPS: &[u8; 20];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2701`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2701)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2701`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2701)*
 
 ### `XATTR_BPF_LSM_SUFFIX`
 ```rust
 const XATTR_BPF_LSM_SUFFIX: &[u8; 5];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2702`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2702)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2702`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2702)*
 
 ### `XATTR_NAME_BPF_LSM`
 ```rust
 const XATTR_NAME_BPF_LSM: &[u8; 14];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2703`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2703)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2703`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2703)*
 
 ### `XATTR_POSIX_ACL_ACCESS`
 ```rust
 const XATTR_POSIX_ACL_ACCESS: &[u8; 17];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2704`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2704)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2704`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2704)*
 
 ### `XATTR_NAME_POSIX_ACL_ACCESS`
 ```rust
 const XATTR_NAME_POSIX_ACL_ACCESS: &[u8; 24];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2705`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2705)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2705`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2705)*
 
 ### `XATTR_POSIX_ACL_DEFAULT`
 ```rust
 const XATTR_POSIX_ACL_DEFAULT: &[u8; 18];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2706`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2706)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2706`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2706)*
 
 ### `XATTR_NAME_POSIX_ACL_DEFAULT`
 ```rust
 const XATTR_NAME_POSIX_ACL_DEFAULT: &[u8; 25];
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2707`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2707)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2707`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2707)*
 
 ### `MFD_CLOEXEC`
 ```rust
 const MFD_CLOEXEC: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2708`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2708)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2708`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2708)*
 
 ### `MFD_ALLOW_SEALING`
 ```rust
 const MFD_ALLOW_SEALING: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2709`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2709)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2709`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2709)*
 
 ### `MFD_HUGETLB`
 ```rust
 const MFD_HUGETLB: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2710`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2710)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2710`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2710)*
 
 ### `MFD_NOEXEC_SEAL`
 ```rust
 const MFD_NOEXEC_SEAL: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2711`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2711)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2711`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2711)*
 
 ### `MFD_EXEC`
 ```rust
 const MFD_EXEC: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2712`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2712)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2712`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2712)*
 
 ### `MFD_HUGE_SHIFT`
 ```rust
 const MFD_HUGE_SHIFT: u32 = 26u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2713`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2713)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2713`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2713)*
 
 ### `MFD_HUGE_MASK`
 ```rust
 const MFD_HUGE_MASK: u32 = 63u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2714`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2714)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2714`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2714)*
 
 ### `MFD_HUGE_64KB`
 ```rust
 const MFD_HUGE_64KB: u32 = 1_073_741_824u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2715`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2715)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2715`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2715)*
 
 ### `MFD_HUGE_512KB`
 ```rust
 const MFD_HUGE_512KB: u32 = 1_275_068_416u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2716`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2716)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2716`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2716)*
 
 ### `MFD_HUGE_1MB`
 ```rust
 const MFD_HUGE_1MB: u32 = 1_342_177_280u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2717`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2717)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2717`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2717)*
 
 ### `MFD_HUGE_2MB`
 ```rust
 const MFD_HUGE_2MB: u32 = 1_409_286_144u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2718`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2718)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2718`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2718)*
 
 ### `MFD_HUGE_8MB`
 ```rust
 const MFD_HUGE_8MB: u32 = 1_543_503_872u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2719`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2719)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2719`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2719)*
 
 ### `MFD_HUGE_16MB`
 ```rust
 const MFD_HUGE_16MB: u32 = 1_610_612_736u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2720`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2720)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2720`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2720)*
 
 ### `MFD_HUGE_32MB`
 ```rust
 const MFD_HUGE_32MB: u32 = 1_677_721_600u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2721`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2721)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2721`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2721)*
 
 ### `MFD_HUGE_256MB`
 ```rust
 const MFD_HUGE_256MB: u32 = 1_879_048_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2722`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2722)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2722`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2722)*
 
 ### `MFD_HUGE_512MB`
 ```rust
 const MFD_HUGE_512MB: u32 = 1_946_157_056u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2723`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2723)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2723`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2723)*
 
 ### `MFD_HUGE_1GB`
 ```rust
 const MFD_HUGE_1GB: u32 = 2_013_265_920u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2724`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2724)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2724`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2724)*
 
 ### `MFD_HUGE_2GB`
 ```rust
 const MFD_HUGE_2GB: u32 = 2_080_374_784u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2725`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2725)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2725`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2725)*
 
 ### `MFD_HUGE_16GB`
 ```rust
 const MFD_HUGE_16GB: u32 = 2_281_701_376u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2726`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2726)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2726`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2726)*
 
 ### `TFD_TIMER_ABSTIME`
 ```rust
 const TFD_TIMER_ABSTIME: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2727`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2727)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2727`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2727)*
 
 ### `TFD_TIMER_CANCEL_ON_SET`
 ```rust
 const TFD_TIMER_CANCEL_ON_SET: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2728`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2728)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2728`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2728)*
 
 ### `TFD_CLOEXEC`
 ```rust
 const TFD_CLOEXEC: u32 = 524_288u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2729`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2729)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2729`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2729)*
 
 ### `TFD_NONBLOCK`
 ```rust
 const TFD_NONBLOCK: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2730`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2730)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2730`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2730)*
 
 ### `USERFAULTFD_IOC`
 ```rust
 const USERFAULTFD_IOC: u32 = 170u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2731`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2731)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2731`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2731)*
 
 ### `_UFFDIO_REGISTER`
 ```rust
 const _UFFDIO_REGISTER: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2732`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2732)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2732`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2732)*
 
 ### `_UFFDIO_UNREGISTER`
 ```rust
 const _UFFDIO_UNREGISTER: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2733`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2733)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2733`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2733)*
 
 ### `_UFFDIO_WAKE`
 ```rust
 const _UFFDIO_WAKE: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2734`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2734)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2734`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2734)*
 
 ### `_UFFDIO_COPY`
 ```rust
 const _UFFDIO_COPY: u32 = 3u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2735`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2735)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2735`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2735)*
 
 ### `_UFFDIO_ZEROPAGE`
 ```rust
 const _UFFDIO_ZEROPAGE: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2736`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2736)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2736`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2736)*
 
 ### `_UFFDIO_MOVE`
 ```rust
 const _UFFDIO_MOVE: u32 = 5u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2737`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2737)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2737`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2737)*
 
 ### `_UFFDIO_WRITEPROTECT`
 ```rust
 const _UFFDIO_WRITEPROTECT: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2738`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2738)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2738`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2738)*
 
 ### `_UFFDIO_CONTINUE`
 ```rust
 const _UFFDIO_CONTINUE: u32 = 7u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2739`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2739)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2739`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2739)*
 
 ### `_UFFDIO_POISON`
 ```rust
 const _UFFDIO_POISON: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2740`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2740)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2740`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2740)*
 
 ### `_UFFDIO_API`
 ```rust
 const _UFFDIO_API: u32 = 63u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2741`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2741)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2741`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2741)*
 
 ### `UFFDIO`
 ```rust
 const UFFDIO: u32 = 170u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2742`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2742)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2742`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2742)*
 
 ### `UFFD_EVENT_PAGEFAULT`
 ```rust
 const UFFD_EVENT_PAGEFAULT: u32 = 18u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2743`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2743)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2743`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2743)*
 
 ### `UFFD_EVENT_FORK`
 ```rust
 const UFFD_EVENT_FORK: u32 = 19u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2744`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2744)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2744`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2744)*
 
 ### `UFFD_EVENT_REMAP`
 ```rust
 const UFFD_EVENT_REMAP: u32 = 20u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2745`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2745)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2745`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2745)*
 
 ### `UFFD_EVENT_REMOVE`
 ```rust
 const UFFD_EVENT_REMOVE: u32 = 21u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2746`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2746)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2746`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2746)*
 
 ### `UFFD_EVENT_UNMAP`
 ```rust
 const UFFD_EVENT_UNMAP: u32 = 22u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2747`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2747)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2747`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2747)*
 
 ### `UFFD_PAGEFAULT_FLAG_WRITE`
 ```rust
 const UFFD_PAGEFAULT_FLAG_WRITE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2748`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2748)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2748`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2748)*
 
 ### `UFFD_PAGEFAULT_FLAG_WP`
 ```rust
 const UFFD_PAGEFAULT_FLAG_WP: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2749`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2749)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2749`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2749)*
 
 ### `UFFD_PAGEFAULT_FLAG_MINOR`
 ```rust
 const UFFD_PAGEFAULT_FLAG_MINOR: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2750`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2750)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2750`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2750)*
 
 ### `UFFD_FEATURE_PAGEFAULT_FLAG_WP`
 ```rust
 const UFFD_FEATURE_PAGEFAULT_FLAG_WP: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2751`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2751)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2751`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2751)*
 
 ### `UFFD_FEATURE_EVENT_FORK`
 ```rust
 const UFFD_FEATURE_EVENT_FORK: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2752`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2752)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2752`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2752)*
 
 ### `UFFD_FEATURE_EVENT_REMAP`
 ```rust
 const UFFD_FEATURE_EVENT_REMAP: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2753`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2753)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2753`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2753)*
 
 ### `UFFD_FEATURE_EVENT_REMOVE`
 ```rust
 const UFFD_FEATURE_EVENT_REMOVE: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2754`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2754)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2754`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2754)*
 
 ### `UFFD_FEATURE_MISSING_HUGETLBFS`
 ```rust
 const UFFD_FEATURE_MISSING_HUGETLBFS: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2755`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2755)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2755`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2755)*
 
 ### `UFFD_FEATURE_MISSING_SHMEM`
 ```rust
 const UFFD_FEATURE_MISSING_SHMEM: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2756`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2756)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2756`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2756)*
 
 ### `UFFD_FEATURE_EVENT_UNMAP`
 ```rust
 const UFFD_FEATURE_EVENT_UNMAP: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2757`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2757)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2757`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2757)*
 
 ### `UFFD_FEATURE_SIGBUS`
 ```rust
 const UFFD_FEATURE_SIGBUS: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2758`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2758)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2758`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2758)*
 
 ### `UFFD_FEATURE_THREAD_ID`
 ```rust
 const UFFD_FEATURE_THREAD_ID: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2759`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2759)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2759`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2759)*
 
 ### `UFFD_FEATURE_MINOR_HUGETLBFS`
 ```rust
 const UFFD_FEATURE_MINOR_HUGETLBFS: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2760`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2760)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2760`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2760)*
 
 ### `UFFD_FEATURE_MINOR_SHMEM`
 ```rust
 const UFFD_FEATURE_MINOR_SHMEM: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2761`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2761)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2761`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2761)*
 
 ### `UFFD_FEATURE_EXACT_ADDRESS`
 ```rust
 const UFFD_FEATURE_EXACT_ADDRESS: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2762`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2762)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2762`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2762)*
 
 ### `UFFD_FEATURE_WP_HUGETLBFS_SHMEM`
 ```rust
 const UFFD_FEATURE_WP_HUGETLBFS_SHMEM: u32 = 4_096u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2763`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2763)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2763`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2763)*
 
 ### `UFFD_FEATURE_WP_UNPOPULATED`
 ```rust
 const UFFD_FEATURE_WP_UNPOPULATED: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2764`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2764)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2764`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2764)*
 
 ### `UFFD_FEATURE_POISON`
 ```rust
 const UFFD_FEATURE_POISON: u32 = 16_384u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2765`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2765)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2765`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2765)*
 
 ### `UFFD_FEATURE_WP_ASYNC`
 ```rust
 const UFFD_FEATURE_WP_ASYNC: u32 = 32_768u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2766`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2766)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2766`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2766)*
 
 ### `UFFD_FEATURE_MOVE`
 ```rust
 const UFFD_FEATURE_MOVE: u32 = 65_536u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2767`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2767)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2767`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2767)*
 
 ### `UFFD_USER_MODE_ONLY`
 ```rust
 const UFFD_USER_MODE_ONLY: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2768`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2768)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2768`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2768)*
 
 ### `DT_UNKNOWN`
 ```rust
 const DT_UNKNOWN: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2769`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2769)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2769`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2769)*
 
 ### `DT_FIFO`
 ```rust
 const DT_FIFO: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2770`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2770)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2770`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2770)*
 
 ### `DT_CHR`
 ```rust
 const DT_CHR: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2771`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2771)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2771`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2771)*
 
 ### `DT_DIR`
 ```rust
 const DT_DIR: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2772`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2772)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2772`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2772)*
 
 ### `DT_BLK`
 ```rust
 const DT_BLK: u32 = 6u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2773`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2773)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2773`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2773)*
 
 ### `DT_REG`
 ```rust
 const DT_REG: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2774`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2774)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2774`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2774)*
 
 ### `DT_LNK`
 ```rust
 const DT_LNK: u32 = 10u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2775`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2775)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2775`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2775)*
 
 ### `DT_SOCK`
 ```rust
 const DT_SOCK: u32 = 12u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2776`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2776)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2776`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2776)*
 
 ### `STAT_HAVE_NSEC`
 ```rust
 const STAT_HAVE_NSEC: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2777`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2777)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2777`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2777)*
 
 ### `F_OK`
 ```rust
 const F_OK: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2778`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2778)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2778`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2778)*
 
 ### `R_OK`
 ```rust
 const R_OK: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2779`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2779)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2779`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2779)*
 
 ### `W_OK`
 ```rust
 const W_OK: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2780`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2780)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2780`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2780)*
 
 ### `X_OK`
 ```rust
 const X_OK: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2781`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2781)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2781`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2781)*
 
 ### `UTIME_NOW`
 ```rust
 const UTIME_NOW: u32 = 1_073_741_823u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2782`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2782)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2782`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2782)*
 
 ### `UTIME_OMIT`
 ```rust
 const UTIME_OMIT: u32 = 1_073_741_822u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2783`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2783)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2783`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2783)*
 
 ### `MNT_FORCE`
 ```rust
 const MNT_FORCE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2784`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2784)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2784`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2784)*
 
 ### `MNT_DETACH`
 ```rust
 const MNT_DETACH: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2785`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2785)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2785`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2785)*
 
 ### `MNT_EXPIRE`
 ```rust
 const MNT_EXPIRE: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2786`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2786)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2786`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2786)*
 
 ### `UMOUNT_NOFOLLOW`
 ```rust
 const UMOUNT_NOFOLLOW: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2787`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2787)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2787`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2787)*
 
 ### `UMOUNT_UNUSED`
 ```rust
 const UMOUNT_UNUSED: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2788`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2788)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2788`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2788)*
 
 ### `STDIN_FILENO`
 ```rust
 const STDIN_FILENO: u32 = 0u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2789`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2789)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2789`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2789)*
 
 ### `STDOUT_FILENO`
 ```rust
 const STDOUT_FILENO: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2790`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2790)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2790`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2790)*
 
 ### `STDERR_FILENO`
 ```rust
 const STDERR_FILENO: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2791`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2791)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2791`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2791)*
 
 ### `RWF_HIPRI`
 ```rust
 const RWF_HIPRI: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2792`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2792)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2792`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2792)*
 
 ### `RWF_DSYNC`
 ```rust
 const RWF_DSYNC: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2793`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2793)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2793`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2793)*
 
 ### `RWF_SYNC`
 ```rust
 const RWF_SYNC: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2794`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2794)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2794`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2794)*
 
 ### `RWF_NOWAIT`
 ```rust
 const RWF_NOWAIT: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2795`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2795)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2795`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2795)*
 
 ### `RWF_APPEND`
 ```rust
 const RWF_APPEND: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2796`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2796)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2796`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2796)*
 
 ### `EFD_SEMAPHORE`
 ```rust
 const EFD_SEMAPHORE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2797`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2797)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2797`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2797)*
 
 ### `EFD_CLOEXEC`
 ```rust
 const EFD_CLOEXEC: u32 = 524_288u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2798`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2798)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2798`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2798)*
 
 ### `EFD_NONBLOCK`
 ```rust
 const EFD_NONBLOCK: u32 = 2_048u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2799`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2799)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2799`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2799)*
 
 ### `EPOLLIN`
 ```rust
 const EPOLLIN: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2800`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2800)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2800`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2800)*
 
 ### `EPOLLPRI`
 ```rust
 const EPOLLPRI: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2801`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2801)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2801`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2801)*
 
 ### `EPOLLOUT`
 ```rust
 const EPOLLOUT: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2802`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2802)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2802`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2802)*
 
 ### `EPOLLERR`
 ```rust
 const EPOLLERR: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2803`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2803)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2803`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2803)*
 
 ### `EPOLLHUP`
 ```rust
 const EPOLLHUP: u32 = 16u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2804`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2804)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2804`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2804)*
 
 ### `EPOLLNVAL`
 ```rust
 const EPOLLNVAL: u32 = 32u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2805`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2805)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2805`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2805)*
 
 ### `EPOLLRDNORM`
 ```rust
 const EPOLLRDNORM: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2806`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2806)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2806`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2806)*
 
 ### `EPOLLRDBAND`
 ```rust
 const EPOLLRDBAND: u32 = 128u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2807`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2807)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2807`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2807)*
 
 ### `EPOLLWRNORM`
 ```rust
 const EPOLLWRNORM: u32 = 256u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2808`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2808)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2808`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2808)*
 
 ### `EPOLLWRBAND`
 ```rust
 const EPOLLWRBAND: u32 = 512u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2809`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2809)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2809`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2809)*
 
 ### `EPOLLMSG`
 ```rust
 const EPOLLMSG: u32 = 1_024u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2810`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2810)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2810`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2810)*
 
 ### `EPOLLRDHUP`
 ```rust
 const EPOLLRDHUP: u32 = 8_192u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2811`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2811)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2811`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2811)*
 
 ### `EPOLLEXCLUSIVE`
 ```rust
 const EPOLLEXCLUSIVE: u32 = 268_435_456u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2812`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2812)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2812`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2812)*
 
 ### `EPOLLWAKEUP`
 ```rust
 const EPOLLWAKEUP: u32 = 536_870_912u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2813`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2813)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2813`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2813)*
 
 ### `EPOLLONESHOT`
 ```rust
 const EPOLLONESHOT: u32 = 1_073_741_824u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2814`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2814)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2814`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2814)*
 
 ### `EPOLLET`
 ```rust
 const EPOLLET: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2815`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2815)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2815`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2815)*
 
 ### `TFD_SHARED_FCNTL_FLAGS`
 ```rust
 const TFD_SHARED_FCNTL_FLAGS: u32 = 526_336u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2816`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2816)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2816`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2816)*
 
 ### `TFD_CREATE_FLAGS`
 ```rust
 const TFD_CREATE_FLAGS: u32 = 526_336u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2817`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2817)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2817`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2817)*
 
 ### `TFD_SETTIME_FLAGS`
 ```rust
 const TFD_SETTIME_FLAGS: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2818`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2818)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2818`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2818)*
 
 ### `ARCH_SET_FS`
 ```rust
 const ARCH_SET_FS: u32 = 4_098u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2819`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2819)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2819`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2819)*
 
 ### `UFFD_API`
 ```rust
 const UFFD_API: u32 = 170u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2820`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2820)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2820`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2820)*
 
 ### `UFFDIO_REGISTER_MODE_MISSING`
 ```rust
 const UFFDIO_REGISTER_MODE_MISSING: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2821`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2821)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2821`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2821)*
 
 ### `UFFDIO_REGISTER_MODE_WP`
 ```rust
 const UFFDIO_REGISTER_MODE_WP: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2822`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2822)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2822`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2822)*
 
 ### `UFFDIO_REGISTER_MODE_MINOR`
 ```rust
 const UFFDIO_REGISTER_MODE_MINOR: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2823`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2823)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2823`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2823)*
 
 ### `UFFDIO_COPY_MODE_DONTWAKE`
 ```rust
 const UFFDIO_COPY_MODE_DONTWAKE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2824`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2824)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2824`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2824)*
 
 ### `UFFDIO_COPY_MODE_WP`
 ```rust
 const UFFDIO_COPY_MODE_WP: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2825`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2825)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2825`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2825)*
 
 ### `UFFDIO_ZEROPAGE_MODE_DONTWAKE`
 ```rust
 const UFFDIO_ZEROPAGE_MODE_DONTWAKE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2826`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2826)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2826`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2826)*
 
 ### `SPLICE_F_MOVE`
 ```rust
 const SPLICE_F_MOVE: u32 = 1u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2827`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2827)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2827`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2827)*
 
 ### `SPLICE_F_NONBLOCK`
 ```rust
 const SPLICE_F_NONBLOCK: u32 = 2u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2828`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2828)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2828`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2828)*
 
 ### `SPLICE_F_MORE`
 ```rust
 const SPLICE_F_MORE: u32 = 4u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2829`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2829)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2829`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2829)*
 
 ### `SPLICE_F_GIFT`
 ```rust
 const SPLICE_F_GIFT: u32 = 8u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2830`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2830)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2830`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2830)*
 
 ### `_NSIG`
 ```rust
 const _NSIG: u32 = 64u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2831`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2831)*
+*Defined in [`linux-raw-sys-0.11.0/src/x86_64/general.rs:2831`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/x86_64/general.rs#L2831)*
 

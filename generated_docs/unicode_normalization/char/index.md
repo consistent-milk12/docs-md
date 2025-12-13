@@ -26,7 +26,7 @@ Methods for composing and decomposing characters.
 fn compose(a: char, b: char) -> Option<char>
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/normalize.rs:110-112`](../../../.source_1765521767/unicode-normalization-0.1.25/src/normalize.rs#L110-L112)*
+*Defined in [`unicode-normalization-0.1.25/src/normalize.rs:110-112`](../../../.source_1765633015/unicode-normalization-0.1.25/src/normalize.rs#L110-L112)*
 
 Compose two characters into a single character, if possible.
 See [Unicode Standard Annex #15](http://www.unicode.org/reports/tr15/)
@@ -40,7 +40,7 @@ where
     F: FnMut(char)
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/normalize.rs:23-28`](../../../.source_1765521767/unicode-normalization-0.1.25/src/normalize.rs#L23-L28)*
+*Defined in [`unicode-normalization-0.1.25/src/normalize.rs:23-28`](../../../.source_1765633015/unicode-normalization-0.1.25/src/normalize.rs#L23-L28)*
 
 Compute canonical Unicode decomposition for character.
 See [Unicode Standard Annex #15](http://www.unicode.org/reports/tr15/)
@@ -54,7 +54,7 @@ where
     F: FnMut(char)
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/normalize.rs:51-72`](../../../.source_1765521767/unicode-normalization-0.1.25/src/normalize.rs#L51-L72)*
+*Defined in [`unicode-normalization-0.1.25/src/normalize.rs:51-72`](../../../.source_1765633015/unicode-normalization-0.1.25/src/normalize.rs#L51-L72)*
 
 Compute standard-variation decomposition for character.
 
@@ -72,7 +72,7 @@ to avoid losing information. See the [Unicode Variation Sequence FAQ] and the
 fn decompose_compatible<F: FnMut(char)>(c: char, emit_char: F)
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/normalize.rs:34-38`](../../../.source_1765521767/unicode-normalization-0.1.25/src/normalize.rs#L34-L38)*
+*Defined in [`unicode-normalization-0.1.25/src/normalize.rs:34-38`](../../../.source_1765633015/unicode-normalization-0.1.25/src/normalize.rs#L34-L38)*
 
 Compute canonical or compatible Unicode decomposition for character.
 See [Unicode Standard Annex #15](http://www.unicode.org/reports/tr15/)
@@ -84,7 +84,7 @@ for more information.
 fn canonical_combining_class(c: char) -> u8
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/lookups.rs:19-28`](../../../.source_1765521767/unicode-normalization-0.1.25/src/lookups.rs#L19-L28)*
+*Defined in [`unicode-normalization-0.1.25/src/lookups.rs:19-28`](../../../.source_1765633015/unicode-normalization-0.1.25/src/lookups.rs#L19-L28)*
 
 Look up the canonical combining class for a codepoint.
 
@@ -96,7 +96,7 @@ The value returned is as defined in the Unicode Character Database.
 fn is_combining_mark(c: char) -> bool
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/lookups.rs:82-91`](../../../.source_1765521767/unicode-normalization-0.1.25/src/lookups.rs#L82-L91)*
+*Defined in [`unicode-normalization-0.1.25/src/lookups.rs:82-91`](../../../.source_1765633015/unicode-normalization-0.1.25/src/lookups.rs#L82-L91)*
 
 Return whether the given character is a combining mark (`General_Category=Mark`)
 
@@ -106,5 +106,5 @@ Return whether the given character is a combining mark (`General_Category=Mark`)
 fn is_public_assigned(c: char) -> bool
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/tables.rs:20435-21172`](../../../.source_1765521767/unicode-normalization-0.1.25/src/tables.rs#L20435-L21172)*
+*Defined in [`unicode-normalization-0.1.25/src/tables.rs:20435-21172`](../../../.source_1765633015/unicode-normalization-0.1.25/src/tables.rs#L20435-L21172)*
 

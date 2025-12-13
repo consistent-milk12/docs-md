@@ -19,7 +19,7 @@
 struct ParseColorError;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_colors.rs:72`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_colors.rs#L72)*
+*Defined in [`owo-colors-4.2.3/src/dyn_colors.rs:72`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_colors.rs#L72)*
 
 An error for when the color can not be parsed from a string at runtime
 
@@ -86,7 +86,7 @@ enum DynColors {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_colors.rs:13-18`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_colors.rs#L13-L18)*
+*Defined in [`owo-colors-4.2.3/src/dyn_colors.rs:13-18`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_colors.rs#L13-L18)*
 
 An enum describing runtime-configurable colors
 

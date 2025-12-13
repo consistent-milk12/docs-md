@@ -19,7 +19,7 @@
 struct ArgFlags(u32);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg_settings.rs:5`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/arg_settings.rs#L5)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg_settings.rs:5`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/arg_settings.rs#L5)*
 
 #### Implementations
 
@@ -139,7 +139,7 @@ enum ArgSettings {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg_settings.rs:44-64`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/arg_settings.rs#L44-L64)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg_settings.rs:44-64`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/arg_settings.rs#L44-L64)*
 
 Various settings that apply to arguments and may be set, unset, and checked via getter/setter
 methods `Arg::setting`, `Arg::unset_setting`, and `Arg::is_set`. This is what the

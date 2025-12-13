@@ -42,7 +42,7 @@ enum WordSeparator {
 }
 ```
 
-*Defined in [`textwrap-0.16.2/src/word_separators.rs:42-123`](../../../.source_1765521767/textwrap-0.16.2/src/word_separators.rs#L42-L123)*
+*Defined in [`textwrap-0.16.2/src/word_separators.rs:42-123`](../../../.source_1765633015/textwrap-0.16.2/src/word_separators.rs#L42-L123)*
 
 Describes where words occur in a line of text.
 
@@ -292,7 +292,7 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
 fn find_words_ascii_space<'a>(line: &'a str) -> Box<dyn Iterator<Item = crate::core::Word<'a>>>
 ```
 
-*Defined in [`textwrap-0.16.2/src/word_separators.rs:191-216`](../../../.source_1765521767/textwrap-0.16.2/src/word_separators.rs#L191-L216)*
+*Defined in [`textwrap-0.16.2/src/word_separators.rs:191-216`](../../../.source_1765633015/textwrap-0.16.2/src/word_separators.rs#L191-L216)*
 
 ### `strip_ansi_escape_sequences`
 
@@ -300,7 +300,7 @@ fn find_words_ascii_space<'a>(line: &'a str) -> Box<dyn Iterator<Item = crate::c
 fn strip_ansi_escape_sequences(text: &str) -> String
 ```
 
-*Defined in [`textwrap-0.16.2/src/word_separators.rs:220-232`](../../../.source_1765521767/textwrap-0.16.2/src/word_separators.rs#L220-L232)*
+*Defined in [`textwrap-0.16.2/src/word_separators.rs:220-232`](../../../.source_1765633015/textwrap-0.16.2/src/word_separators.rs#L220-L232)*
 
 ### `find_words_unicode_break_properties`
 
@@ -308,7 +308,7 @@ fn strip_ansi_escape_sequences(text: &str) -> String
 fn find_words_unicode_break_properties<'a>(line: &'a str) -> Box<dyn Iterator<Item = crate::core::Word<'a>>>
 ```
 
-*Defined in [`textwrap-0.16.2/src/word_separators.rs:243-305`](../../../.source_1765521767/textwrap-0.16.2/src/word_separators.rs#L243-L305)*
+*Defined in [`textwrap-0.16.2/src/word_separators.rs:243-305`](../../../.source_1765633015/textwrap-0.16.2/src/word_separators.rs#L243-L305)*
 
 Find words in line. ANSI escape sequences are ignored in `line`.
 
@@ -319,7 +319,7 @@ Find words in line. ANSI escape sequences are ignored in `line`.
 const SHY: char = '\u{ad}';
 ```
 
-*Defined in [`textwrap-0.16.2/src/word_separators.rs:239`](../../../.source_1765521767/textwrap-0.16.2/src/word_separators.rs#L239)*
+*Defined in [`textwrap-0.16.2/src/word_separators.rs:239`](../../../.source_1765633015/textwrap-0.16.2/src/word_separators.rs#L239)*
 
 Soft hyphen, also knows as a “shy hyphen”. Should show up as ‘-’
 if a line is broken at this point, and otherwise be invisible.

@@ -289,7 +289,7 @@ struct AtomicBool {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:555-557`](../../.source_1765521767/portable-atomic-1.11.1/src/lib.rs#L555-L557)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:555-557`](../../.source_1765633015/portable-atomic-1.11.1/src/lib.rs#L555-L557)*
 
 A boolean type which can be safely shared between threads.
 
@@ -523,7 +523,7 @@ assembly.
 
   
 
-  Panics if `order` is [`Release`](../rustversion/index.md) or `AcqRel`.
+  Panics if `order` is [`Release`](../rustversion/release/index.md) or `AcqRel`.
 
   
 
@@ -553,7 +553,7 @@ assembly.
 
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering
 
-  of this operation. Possible values are `SeqCst`, [`Release`](../rustversion/index.md) and `Relaxed`.
+  of this operation. Possible values are `SeqCst`, [`Release`](../rustversion/release/index.md) and `Relaxed`.
 
   
 
@@ -597,7 +597,7 @@ assembly.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -643,7 +643,7 @@ assembly.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -653,7 +653,7 @@ assembly.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -721,7 +721,7 @@ assembly.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -731,7 +731,7 @@ assembly.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -789,7 +789,7 @@ assembly.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -849,7 +849,7 @@ assembly.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -927,7 +927,7 @@ assembly.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -989,7 +989,7 @@ assembly.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -1049,7 +1049,7 @@ assembly.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -1127,7 +1127,7 @@ assembly.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -1187,7 +1187,7 @@ assembly.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -1265,7 +1265,7 @@ assembly.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -1317,7 +1317,7 @@ assembly.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -1399,7 +1399,7 @@ assembly.
 
   Using `Acquire` as success ordering makes the store part of this
 
-  operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the final successful
+  operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the final successful
 
   load `Relaxed`. The (failed) load ordering can only be `SeqCst`,
 
@@ -1425,7 +1425,7 @@ assembly.
 
   
 
-  Panics if `fetch_order` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `fetch_order` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -1549,7 +1549,7 @@ struct AtomicPtr<T> {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:1594-1596`](../../.source_1765521767/portable-atomic-1.11.1/src/lib.rs#L1594-L1596)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:1594-1596`](../../.source_1765633015/portable-atomic-1.11.1/src/lib.rs#L1594-L1596)*
 
 A raw pointer type which can be safely shared between threads.
 
@@ -1787,7 +1787,7 @@ assembly.
 
   
 
-  Panics if `order` is [`Release`](../rustversion/index.md) or `AcqRel`.
+  Panics if `order` is [`Release`](../rustversion/release/index.md) or `AcqRel`.
 
   
 
@@ -1819,7 +1819,7 @@ assembly.
 
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering
 
-  of this operation. Possible values are `SeqCst`, [`Release`](../rustversion/index.md) and `Relaxed`.
+  of this operation. Possible values are `SeqCst`, [`Release`](../rustversion/release/index.md) and `Relaxed`.
 
   
 
@@ -1867,7 +1867,7 @@ assembly.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -1917,7 +1917,7 @@ assembly.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -1927,7 +1927,7 @@ assembly.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -1981,7 +1981,7 @@ assembly.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -1991,7 +1991,7 @@ assembly.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -2061,7 +2061,7 @@ assembly.
 
   Using `Acquire` as success ordering makes the store part of this
 
-  operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the final successful
+  operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the final successful
 
   load `Relaxed`. The (failed) load ordering can only be `SeqCst`,
 
@@ -2073,7 +2073,7 @@ assembly.
 
   
 
-  Panics if `fetch_order` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `fetch_order` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -2163,7 +2163,7 @@ assembly.
 
   that using `Acquire` makes the store part of this operation
 
-  `Relaxed`, and using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -2223,7 +2223,7 @@ assembly.
 
   using `Acquire` makes the store part of this operation `Relaxed`,
 
-  and using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  and using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -2269,7 +2269,7 @@ assembly.
 
   that using `Acquire` makes the store part of this operation
 
-  `Relaxed`, and using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -2319,7 +2319,7 @@ assembly.
 
   that using `Acquire` makes the store part of this operation
 
-  `Relaxed`, and using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -2379,7 +2379,7 @@ assembly.
 
   using `Acquire` makes the store part of this operation `Relaxed`,
 
-  and using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  and using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -2457,7 +2457,7 @@ assembly.
 
   using `Acquire` makes the store part of this operation `Relaxed`,
 
-  and using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  and using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -2531,7 +2531,7 @@ assembly.
 
   using `Acquire` makes the store part of this operation `Relaxed`,
 
-  and using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  and using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -2587,7 +2587,7 @@ assembly.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -2645,7 +2645,7 @@ assembly.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -2697,7 +2697,7 @@ assembly.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -2833,7 +2833,7 @@ struct AtomicIsize {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4786`](../../.source_1765521767/portable-atomic-1.11.1/src/lib.rs#L4786)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4786`](../../.source_1765633015/portable-atomic-1.11.1/src/lib.rs#L4786)*
 
 An integer type which can be safely shared between threads.
 
@@ -3067,7 +3067,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `order` is [`Release`](../rustversion/index.md) or `AcqRel`.
+  Panics if `order` is [`Release`](../rustversion/release/index.md) or `AcqRel`.
 
   
 
@@ -3097,7 +3097,7 @@ atomic instructions or locks will be used.
 
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
 
-  Possible values are `SeqCst`, [`Release`](../rustversion/index.md) and `Relaxed`.
+  Possible values are `SeqCst`, [`Release`](../rustversion/release/index.md) and `Relaxed`.
 
   
 
@@ -3141,7 +3141,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -3189,7 +3189,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -3199,7 +3199,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -3269,7 +3269,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -3279,7 +3279,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -3331,7 +3331,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -3373,7 +3373,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -3419,7 +3419,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -3461,7 +3461,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -3513,7 +3513,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -3557,7 +3557,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -3619,7 +3619,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -3663,7 +3663,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -3707,7 +3707,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -3769,7 +3769,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -3813,7 +3813,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -3883,7 +3883,7 @@ atomic instructions or locks will be used.
 
   Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the final successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the final successful load
 
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -3893,7 +3893,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `fetch_order` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `fetch_order` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -3955,7 +3955,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -4021,7 +4021,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -4085,7 +4085,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -4131,7 +4131,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -4173,7 +4173,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -4219,7 +4219,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -4257,7 +4257,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -4305,7 +4305,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -4347,7 +4347,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -4473,7 +4473,7 @@ struct AtomicUsize {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4788`](../../.source_1765521767/portable-atomic-1.11.1/src/lib.rs#L4788)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4788`](../../.source_1765633015/portable-atomic-1.11.1/src/lib.rs#L4788)*
 
 An integer type which can be safely shared between threads.
 
@@ -4707,7 +4707,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `order` is [`Release`](../rustversion/index.md) or `AcqRel`.
+  Panics if `order` is [`Release`](../rustversion/release/index.md) or `AcqRel`.
 
   
 
@@ -4737,7 +4737,7 @@ atomic instructions or locks will be used.
 
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
 
-  Possible values are `SeqCst`, [`Release`](../rustversion/index.md) and `Relaxed`.
+  Possible values are `SeqCst`, [`Release`](../rustversion/release/index.md) and `Relaxed`.
 
   
 
@@ -4781,7 +4781,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -4829,7 +4829,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -4839,7 +4839,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -4909,7 +4909,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -4919,7 +4919,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -4971,7 +4971,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5013,7 +5013,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5059,7 +5059,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5101,7 +5101,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5153,7 +5153,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5197,7 +5197,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5259,7 +5259,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5303,7 +5303,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5347,7 +5347,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5409,7 +5409,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5453,7 +5453,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5523,7 +5523,7 @@ atomic instructions or locks will be used.
 
   Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the final successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the final successful load
 
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -5533,7 +5533,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `fetch_order` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `fetch_order` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -5595,7 +5595,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5661,7 +5661,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5725,7 +5725,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5771,7 +5771,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5813,7 +5813,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5859,7 +5859,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5897,7 +5897,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5945,7 +5945,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -5987,7 +5987,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -6113,7 +6113,7 @@ struct AtomicI8 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4796`](../../.source_1765521767/portable-atomic-1.11.1/src/lib.rs#L4796)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4796`](../../.source_1765633015/portable-atomic-1.11.1/src/lib.rs#L4796)*
 
 An integer type which can be safely shared between threads.
 
@@ -6347,7 +6347,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `order` is [`Release`](../rustversion/index.md) or `AcqRel`.
+  Panics if `order` is [`Release`](../rustversion/release/index.md) or `AcqRel`.
 
   
 
@@ -6377,7 +6377,7 @@ atomic instructions or locks will be used.
 
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
 
-  Possible values are `SeqCst`, [`Release`](../rustversion/index.md) and `Relaxed`.
+  Possible values are `SeqCst`, [`Release`](../rustversion/release/index.md) and `Relaxed`.
 
   
 
@@ -6421,7 +6421,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -6469,7 +6469,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -6479,7 +6479,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -6549,7 +6549,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -6559,7 +6559,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -6611,7 +6611,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -6653,7 +6653,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -6699,7 +6699,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -6741,7 +6741,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -6793,7 +6793,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -6837,7 +6837,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -6899,7 +6899,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -6943,7 +6943,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -6987,7 +6987,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -7049,7 +7049,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -7093,7 +7093,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -7163,7 +7163,7 @@ atomic instructions or locks will be used.
 
   Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the final successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the final successful load
 
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -7173,7 +7173,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `fetch_order` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `fetch_order` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -7235,7 +7235,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -7301,7 +7301,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -7365,7 +7365,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -7411,7 +7411,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -7453,7 +7453,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -7499,7 +7499,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -7537,7 +7537,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -7585,7 +7585,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -7627,7 +7627,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -7753,7 +7753,7 @@ struct AtomicU8 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4797`](../../.source_1765521767/portable-atomic-1.11.1/src/lib.rs#L4797)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4797`](../../.source_1765633015/portable-atomic-1.11.1/src/lib.rs#L4797)*
 
 An integer type which can be safely shared between threads.
 
@@ -7987,7 +7987,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `order` is [`Release`](../rustversion/index.md) or `AcqRel`.
+  Panics if `order` is [`Release`](../rustversion/release/index.md) or `AcqRel`.
 
   
 
@@ -8017,7 +8017,7 @@ atomic instructions or locks will be used.
 
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
 
-  Possible values are `SeqCst`, [`Release`](../rustversion/index.md) and `Relaxed`.
+  Possible values are `SeqCst`, [`Release`](../rustversion/release/index.md) and `Relaxed`.
 
   
 
@@ -8061,7 +8061,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -8109,7 +8109,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -8119,7 +8119,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -8189,7 +8189,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -8199,7 +8199,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -8251,7 +8251,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -8293,7 +8293,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -8339,7 +8339,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -8381,7 +8381,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -8433,7 +8433,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -8477,7 +8477,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -8539,7 +8539,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -8583,7 +8583,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -8627,7 +8627,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -8689,7 +8689,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -8733,7 +8733,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -8803,7 +8803,7 @@ atomic instructions or locks will be used.
 
   Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the final successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the final successful load
 
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -8813,7 +8813,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `fetch_order` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `fetch_order` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -8875,7 +8875,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -8941,7 +8941,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -9005,7 +9005,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -9051,7 +9051,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -9093,7 +9093,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -9139,7 +9139,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -9177,7 +9177,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -9225,7 +9225,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -9267,7 +9267,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -9393,7 +9393,7 @@ struct AtomicI16 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4800`](../../.source_1765521767/portable-atomic-1.11.1/src/lib.rs#L4800)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4800`](../../.source_1765633015/portable-atomic-1.11.1/src/lib.rs#L4800)*
 
 An integer type which can be safely shared between threads.
 
@@ -9627,7 +9627,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `order` is [`Release`](../rustversion/index.md) or `AcqRel`.
+  Panics if `order` is [`Release`](../rustversion/release/index.md) or `AcqRel`.
 
   
 
@@ -9657,7 +9657,7 @@ atomic instructions or locks will be used.
 
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
 
-  Possible values are `SeqCst`, [`Release`](../rustversion/index.md) and `Relaxed`.
+  Possible values are `SeqCst`, [`Release`](../rustversion/release/index.md) and `Relaxed`.
 
   
 
@@ -9701,7 +9701,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -9749,7 +9749,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -9759,7 +9759,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -9829,7 +9829,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -9839,7 +9839,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -9891,7 +9891,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -9933,7 +9933,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -9979,7 +9979,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -10021,7 +10021,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -10073,7 +10073,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -10117,7 +10117,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -10179,7 +10179,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -10223,7 +10223,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -10267,7 +10267,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -10329,7 +10329,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -10373,7 +10373,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -10443,7 +10443,7 @@ atomic instructions or locks will be used.
 
   Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the final successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the final successful load
 
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -10453,7 +10453,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `fetch_order` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `fetch_order` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -10515,7 +10515,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -10581,7 +10581,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -10645,7 +10645,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -10691,7 +10691,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -10733,7 +10733,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -10779,7 +10779,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -10817,7 +10817,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -10865,7 +10865,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -10907,7 +10907,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -11033,7 +11033,7 @@ struct AtomicU16 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4801-4802`](../../.source_1765521767/portable-atomic-1.11.1/src/lib.rs#L4801-L4802)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4801-4802`](../../.source_1765633015/portable-atomic-1.11.1/src/lib.rs#L4801-L4802)*
 
 An integer type which can be safely shared between threads.
 
@@ -11267,7 +11267,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `order` is [`Release`](../rustversion/index.md) or `AcqRel`.
+  Panics if `order` is [`Release`](../rustversion/release/index.md) or `AcqRel`.
 
   
 
@@ -11297,7 +11297,7 @@ atomic instructions or locks will be used.
 
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
 
-  Possible values are `SeqCst`, [`Release`](../rustversion/index.md) and `Relaxed`.
+  Possible values are `SeqCst`, [`Release`](../rustversion/release/index.md) and `Relaxed`.
 
   
 
@@ -11341,7 +11341,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -11389,7 +11389,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -11399,7 +11399,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -11469,7 +11469,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -11479,7 +11479,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -11531,7 +11531,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -11573,7 +11573,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -11619,7 +11619,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -11661,7 +11661,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -11713,7 +11713,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -11757,7 +11757,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -11819,7 +11819,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -11863,7 +11863,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -11907,7 +11907,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -11969,7 +11969,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -12013,7 +12013,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -12083,7 +12083,7 @@ atomic instructions or locks will be used.
 
   Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the final successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the final successful load
 
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -12093,7 +12093,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `fetch_order` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `fetch_order` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -12155,7 +12155,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -12221,7 +12221,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -12285,7 +12285,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -12331,7 +12331,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -12373,7 +12373,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -12419,7 +12419,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -12457,7 +12457,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -12505,7 +12505,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -12547,7 +12547,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -12673,7 +12673,7 @@ struct AtomicI32 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4805`](../../.source_1765521767/portable-atomic-1.11.1/src/lib.rs#L4805)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4805`](../../.source_1765633015/portable-atomic-1.11.1/src/lib.rs#L4805)*
 
 An integer type which can be safely shared between threads.
 
@@ -12907,7 +12907,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `order` is [`Release`](../rustversion/index.md) or `AcqRel`.
+  Panics if `order` is [`Release`](../rustversion/release/index.md) or `AcqRel`.
 
   
 
@@ -12937,7 +12937,7 @@ atomic instructions or locks will be used.
 
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
 
-  Possible values are `SeqCst`, [`Release`](../rustversion/index.md) and `Relaxed`.
+  Possible values are `SeqCst`, [`Release`](../rustversion/release/index.md) and `Relaxed`.
 
   
 
@@ -12981,7 +12981,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -13029,7 +13029,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -13039,7 +13039,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -13109,7 +13109,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -13119,7 +13119,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -13171,7 +13171,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -13213,7 +13213,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -13259,7 +13259,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -13301,7 +13301,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -13353,7 +13353,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -13397,7 +13397,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -13459,7 +13459,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -13503,7 +13503,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -13547,7 +13547,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -13609,7 +13609,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -13653,7 +13653,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -13723,7 +13723,7 @@ atomic instructions or locks will be used.
 
   Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the final successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the final successful load
 
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -13733,7 +13733,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `fetch_order` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `fetch_order` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -13795,7 +13795,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -13861,7 +13861,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -13925,7 +13925,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -13971,7 +13971,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -14013,7 +14013,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -14059,7 +14059,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -14097,7 +14097,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -14145,7 +14145,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -14187,7 +14187,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -14313,7 +14313,7 @@ struct AtomicU32 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4806-4807`](../../.source_1765521767/portable-atomic-1.11.1/src/lib.rs#L4806-L4807)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4806-4807`](../../.source_1765633015/portable-atomic-1.11.1/src/lib.rs#L4806-L4807)*
 
 An integer type which can be safely shared between threads.
 
@@ -14547,7 +14547,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `order` is [`Release`](../rustversion/index.md) or `AcqRel`.
+  Panics if `order` is [`Release`](../rustversion/release/index.md) or `AcqRel`.
 
   
 
@@ -14577,7 +14577,7 @@ atomic instructions or locks will be used.
 
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
 
-  Possible values are `SeqCst`, [`Release`](../rustversion/index.md) and `Relaxed`.
+  Possible values are `SeqCst`, [`Release`](../rustversion/release/index.md) and `Relaxed`.
 
   
 
@@ -14621,7 +14621,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -14669,7 +14669,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -14679,7 +14679,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -14749,7 +14749,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -14759,7 +14759,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -14811,7 +14811,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -14853,7 +14853,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -14899,7 +14899,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -14941,7 +14941,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -14993,7 +14993,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -15037,7 +15037,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -15099,7 +15099,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -15143,7 +15143,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -15187,7 +15187,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -15249,7 +15249,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -15293,7 +15293,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -15363,7 +15363,7 @@ atomic instructions or locks will be used.
 
   Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the final successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the final successful load
 
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -15373,7 +15373,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `fetch_order` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `fetch_order` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -15435,7 +15435,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -15501,7 +15501,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -15565,7 +15565,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -15611,7 +15611,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -15653,7 +15653,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -15699,7 +15699,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -15737,7 +15737,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -15785,7 +15785,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -15827,7 +15827,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -15953,7 +15953,7 @@ struct AtomicI64 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4810`](../../.source_1765521767/portable-atomic-1.11.1/src/lib.rs#L4810)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4810`](../../.source_1765633015/portable-atomic-1.11.1/src/lib.rs#L4810)*
 
 An integer type which can be safely shared between threads.
 
@@ -16187,7 +16187,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `order` is [`Release`](../rustversion/index.md) or `AcqRel`.
+  Panics if `order` is [`Release`](../rustversion/release/index.md) or `AcqRel`.
 
   
 
@@ -16217,7 +16217,7 @@ atomic instructions or locks will be used.
 
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
 
-  Possible values are `SeqCst`, [`Release`](../rustversion/index.md) and `Relaxed`.
+  Possible values are `SeqCst`, [`Release`](../rustversion/release/index.md) and `Relaxed`.
 
   
 
@@ -16261,7 +16261,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -16309,7 +16309,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -16319,7 +16319,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -16389,7 +16389,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -16399,7 +16399,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -16451,7 +16451,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -16493,7 +16493,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -16539,7 +16539,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -16581,7 +16581,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -16633,7 +16633,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -16677,7 +16677,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -16739,7 +16739,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -16783,7 +16783,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -16827,7 +16827,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -16889,7 +16889,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -16933,7 +16933,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -17003,7 +17003,7 @@ atomic instructions or locks will be used.
 
   Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the final successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the final successful load
 
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -17013,7 +17013,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `fetch_order` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `fetch_order` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -17075,7 +17075,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -17141,7 +17141,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -17205,7 +17205,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -17251,7 +17251,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -17293,7 +17293,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -17339,7 +17339,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -17377,7 +17377,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -17425,7 +17425,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -17467,7 +17467,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -17593,7 +17593,7 @@ struct AtomicU64 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4811-4812`](../../.source_1765521767/portable-atomic-1.11.1/src/lib.rs#L4811-L4812)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4811-4812`](../../.source_1765633015/portable-atomic-1.11.1/src/lib.rs#L4811-L4812)*
 
 An integer type which can be safely shared between threads.
 
@@ -17827,7 +17827,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `order` is [`Release`](../rustversion/index.md) or `AcqRel`.
+  Panics if `order` is [`Release`](../rustversion/release/index.md) or `AcqRel`.
 
   
 
@@ -17857,7 +17857,7 @@ atomic instructions or locks will be used.
 
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
 
-  Possible values are `SeqCst`, [`Release`](../rustversion/index.md) and `Relaxed`.
+  Possible values are `SeqCst`, [`Release`](../rustversion/release/index.md) and `Relaxed`.
 
   
 
@@ -17901,7 +17901,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -17949,7 +17949,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -17959,7 +17959,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -18029,7 +18029,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -18039,7 +18039,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -18091,7 +18091,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -18133,7 +18133,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -18179,7 +18179,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -18221,7 +18221,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -18273,7 +18273,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -18317,7 +18317,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -18379,7 +18379,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -18423,7 +18423,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -18467,7 +18467,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -18529,7 +18529,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -18573,7 +18573,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -18643,7 +18643,7 @@ atomic instructions or locks will be used.
 
   Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the final successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the final successful load
 
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -18653,7 +18653,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `fetch_order` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `fetch_order` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -18715,7 +18715,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -18781,7 +18781,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -18845,7 +18845,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -18891,7 +18891,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -18933,7 +18933,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -18979,7 +18979,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -19017,7 +19017,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -19065,7 +19065,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -19107,7 +19107,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -19233,7 +19233,7 @@ struct AtomicI128 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4815`](../../.source_1765521767/portable-atomic-1.11.1/src/lib.rs#L4815)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4815`](../../.source_1765633015/portable-atomic-1.11.1/src/lib.rs#L4815)*
 
 An integer type which can be safely shared between threads.
 
@@ -19467,7 +19467,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `order` is [`Release`](../rustversion/index.md) or `AcqRel`.
+  Panics if `order` is [`Release`](../rustversion/release/index.md) or `AcqRel`.
 
   
 
@@ -19497,7 +19497,7 @@ atomic instructions or locks will be used.
 
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
 
-  Possible values are `SeqCst`, [`Release`](../rustversion/index.md) and `Relaxed`.
+  Possible values are `SeqCst`, [`Release`](../rustversion/release/index.md) and `Relaxed`.
 
   
 
@@ -19541,7 +19541,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -19589,7 +19589,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -19599,7 +19599,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -19669,7 +19669,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -19679,7 +19679,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -19731,7 +19731,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -19773,7 +19773,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -19819,7 +19819,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -19861,7 +19861,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -19913,7 +19913,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -19957,7 +19957,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -20019,7 +20019,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -20063,7 +20063,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -20107,7 +20107,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -20169,7 +20169,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -20213,7 +20213,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -20283,7 +20283,7 @@ atomic instructions or locks will be used.
 
   Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the final successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the final successful load
 
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -20293,7 +20293,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `fetch_order` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `fetch_order` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -20355,7 +20355,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -20421,7 +20421,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -20485,7 +20485,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -20531,7 +20531,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -20573,7 +20573,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -20619,7 +20619,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -20657,7 +20657,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -20705,7 +20705,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -20747,7 +20747,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -20873,7 +20873,7 @@ struct AtomicU128 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4816-4817`](../../.source_1765521767/portable-atomic-1.11.1/src/lib.rs#L4816-L4817)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4816-4817`](../../.source_1765633015/portable-atomic-1.11.1/src/lib.rs#L4816-L4817)*
 
 An integer type which can be safely shared between threads.
 
@@ -21107,7 +21107,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `order` is [`Release`](../rustversion/index.md) or `AcqRel`.
+  Panics if `order` is [`Release`](../rustversion/release/index.md) or `AcqRel`.
 
   
 
@@ -21137,7 +21137,7 @@ atomic instructions or locks will be used.
 
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
 
-  Possible values are `SeqCst`, [`Release`](../rustversion/index.md) and `Relaxed`.
+  Possible values are `SeqCst`, [`Release`](../rustversion/release/index.md) and `Relaxed`.
 
   
 
@@ -21181,7 +21181,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -21229,7 +21229,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -21239,7 +21239,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -21309,7 +21309,7 @@ atomic instructions or locks will be used.
 
   the comparison fails. Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the successful load
 
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -21319,7 +21319,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `failure` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `failure` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -21371,7 +21371,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -21413,7 +21413,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -21459,7 +21459,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -21501,7 +21501,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -21553,7 +21553,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -21597,7 +21597,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -21659,7 +21659,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -21703,7 +21703,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -21747,7 +21747,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -21809,7 +21809,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -21853,7 +21853,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -21923,7 +21923,7 @@ atomic instructions or locks will be used.
 
   Using `Acquire` as success ordering makes the store part
 
-  of this operation `Relaxed`, and using [`Release`](../rustversion/index.md) makes the final successful load
+  of this operation `Relaxed`, and using [`Release`](../rustversion/release/index.md) makes the final successful load
 
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
 
@@ -21933,7 +21933,7 @@ atomic instructions or locks will be used.
 
   
 
-  Panics if `fetch_order` is [`Release`](../rustversion/index.md), `AcqRel`.
+  Panics if `fetch_order` is [`Release`](../rustversion/release/index.md), `AcqRel`.
 
   
 
@@ -21995,7 +21995,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -22061,7 +22061,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -22125,7 +22125,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -22171,7 +22171,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -22213,7 +22213,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -22259,7 +22259,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -22297,7 +22297,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -22345,7 +22345,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -22387,7 +22387,7 @@ atomic instructions or locks will be used.
 
   `Acquire` makes the store part of this operation `Relaxed`, and
 
-  using [`Release`](../rustversion/index.md) makes the load part `Relaxed`.
+  using [`Release`](../rustversion/release/index.md) makes the load part `Relaxed`.
 
   
 
@@ -22517,61 +22517,61 @@ fn Ordering(self) -> Result<U, <U as TryFrom>::Error>
 
 ### `cfg_has_atomic_ptr!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:174-178`](../../.source_1765521767/portable-atomic-1.11.1/src/cfgs.rs#L174-L178)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:174-178`](../../.source_1765633015/portable-atomic-1.11.1/src/cfgs.rs#L174-L178)*
 
 ### `cfg_no_atomic_ptr!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:180-182`](../../.source_1765521767/portable-atomic-1.11.1/src/cfgs.rs#L180-L182)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:180-182`](../../.source_1765633015/portable-atomic-1.11.1/src/cfgs.rs#L180-L182)*
 
 ### `atomic_int!`
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:2720-4774`](../../.source_1765521767/portable-atomic-1.11.1/src/lib.rs#L2720-L4774)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:2720-4774`](../../.source_1765633015/portable-atomic-1.11.1/src/lib.rs#L2720-L4774)*
 
 ### `cfg_has_atomic_8!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:18-22`](../../.source_1765521767/portable-atomic-1.11.1/src/cfgs.rs#L18-L22)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:18-22`](../../.source_1765633015/portable-atomic-1.11.1/src/cfgs.rs#L18-L22)*
 
 ### `cfg_no_atomic_8!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:24-26`](../../.source_1765521767/portable-atomic-1.11.1/src/cfgs.rs#L24-L26)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:24-26`](../../.source_1765633015/portable-atomic-1.11.1/src/cfgs.rs#L24-L26)*
 
 ### `cfg_has_atomic_16!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:28-32`](../../.source_1765521767/portable-atomic-1.11.1/src/cfgs.rs#L28-L32)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:28-32`](../../.source_1765633015/portable-atomic-1.11.1/src/cfgs.rs#L28-L32)*
 
 ### `cfg_no_atomic_16!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:34-36`](../../.source_1765521767/portable-atomic-1.11.1/src/cfgs.rs#L34-L36)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:34-36`](../../.source_1765633015/portable-atomic-1.11.1/src/cfgs.rs#L34-L36)*
 
 ### `cfg_has_atomic_32!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:88-92`](../../.source_1765521767/portable-atomic-1.11.1/src/cfgs.rs#L88-L92)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:88-92`](../../.source_1765633015/portable-atomic-1.11.1/src/cfgs.rs#L88-L92)*
 
 ### `cfg_no_atomic_32!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:94-96`](../../.source_1765521767/portable-atomic-1.11.1/src/cfgs.rs#L94-L96)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:94-96`](../../.source_1765633015/portable-atomic-1.11.1/src/cfgs.rs#L94-L96)*
 
 ### `cfg_has_atomic_64!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:174-178`](../../.source_1765521767/portable-atomic-1.11.1/src/cfgs.rs#L174-L178)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:174-178`](../../.source_1765633015/portable-atomic-1.11.1/src/cfgs.rs#L174-L178)*
 
 ### `cfg_no_atomic_64!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:180-182`](../../.source_1765521767/portable-atomic-1.11.1/src/cfgs.rs#L180-L182)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:180-182`](../../.source_1765633015/portable-atomic-1.11.1/src/cfgs.rs#L180-L182)*
 
 ### `cfg_has_atomic_128!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:323-327`](../../.source_1765521767/portable-atomic-1.11.1/src/cfgs.rs#L323-L327)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:323-327`](../../.source_1765633015/portable-atomic-1.11.1/src/cfgs.rs#L323-L327)*
 
 ### `cfg_no_atomic_128!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:329-331`](../../.source_1765521767/portable-atomic-1.11.1/src/cfgs.rs#L329-L331)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:329-331`](../../.source_1765633015/portable-atomic-1.11.1/src/cfgs.rs#L329-L331)*
 
 ### `cfg_has_atomic_cas!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:446-450`](../../.source_1765521767/portable-atomic-1.11.1/src/cfgs.rs#L446-L450)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:446-450`](../../.source_1765633015/portable-atomic-1.11.1/src/cfgs.rs#L446-L450)*
 
 ### `cfg_no_atomic_cas!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:452-454`](../../.source_1765521767/portable-atomic-1.11.1/src/cfgs.rs#L452-L454)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:452-454`](../../.source_1765633015/portable-atomic-1.11.1/src/cfgs.rs#L452-L454)*
 

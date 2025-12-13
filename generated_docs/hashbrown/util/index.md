@@ -21,7 +21,7 @@
 fn cold_path()
 ```
 
-*Defined in [`hashbrown-0.16.1/src/util.rs:8`](../../../.source_1765521767/hashbrown-0.16.1/src/util.rs#L8)*
+*Defined in [`hashbrown-0.16.1/src/util.rs:8`](../../../.source_1765633015/hashbrown-0.16.1/src/util.rs#L8)*
 
 ### `likely`
 
@@ -29,7 +29,7 @@ fn cold_path()
 fn likely(b: bool) -> bool
 ```
 
-*Defined in [`hashbrown-0.16.1/src/util.rs:12-19`](../../../.source_1765521767/hashbrown-0.16.1/src/util.rs#L12-L19)*
+*Defined in [`hashbrown-0.16.1/src/util.rs:12-19`](../../../.source_1765633015/hashbrown-0.16.1/src/util.rs#L12-L19)*
 
 ### `unlikely`
 
@@ -37,7 +37,7 @@ fn likely(b: bool) -> bool
 fn unlikely(b: bool) -> bool
 ```
 
-*Defined in [`hashbrown-0.16.1/src/util.rs:23-30`](../../../.source_1765521767/hashbrown-0.16.1/src/util.rs#L23-L30)*
+*Defined in [`hashbrown-0.16.1/src/util.rs:23-30`](../../../.source_1765633015/hashbrown-0.16.1/src/util.rs#L23-L30)*
 
 ### `invalid_mut`
 
@@ -45,5 +45,5 @@ fn unlikely(b: bool) -> bool
 fn invalid_mut<T>(addr: usize) -> *mut T
 ```
 
-*Defined in [`hashbrown-0.16.1/src/util.rs:36-38`](../../../.source_1765521767/hashbrown-0.16.1/src/util.rs#L36-L38)*
+*Defined in [`hashbrown-0.16.1/src/util.rs:36-38`](../../../.source_1765633015/hashbrown-0.16.1/src/util.rs#L36-L38)*
 

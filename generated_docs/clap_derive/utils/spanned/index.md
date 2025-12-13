@@ -21,7 +21,7 @@ struct Sp<T> {
 }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/utils/spanned.rs:9-12`](../../../../.source_1765521767/clap_derive-4.5.49/src/utils/spanned.rs#L9-L12)*
+*Defined in [`clap_derive-4.5.49/src/utils/spanned.rs:9-12`](../../../../.source_1765633015/clap_derive-4.5.49/src/utils/spanned.rs#L9-L12)*
 
 An entity with a span attached.
 

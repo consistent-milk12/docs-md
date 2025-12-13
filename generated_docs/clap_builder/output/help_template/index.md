@@ -50,7 +50,7 @@ struct AutoHelp<'cmd, 'writer> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:25-27`](../../../../.source_1765521767/clap_builder-4.5.53/src/output/help_template.rs#L25-L27)*
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:25-27`](../../../../.source_1765633015/clap_builder-4.5.53/src/output/help_template.rs#L25-L27)*
 
 `clap` auto-generated help writer
 
@@ -120,7 +120,7 @@ struct HelpTemplate<'cmd, 'writer> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:82-90`](../../../../.source_1765521767/clap_builder-4.5.53/src/output/help_template.rs#L82-L90)*
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:82-90`](../../../../.source_1765633015/clap_builder-4.5.53/src/output/help_template.rs#L82-L90)*
 
 Help template writer
 
@@ -194,7 +194,7 @@ Wraps a writer stream providing different methods to generate help for `clap` ob
 fn positional_sort_key(arg: &crate::builder::Arg) -> (usize, String)
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1083-1085`](../../../../.source_1765521767/clap_builder-4.5.53/src/output/help_template.rs#L1083-L1085)*
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1083-1085`](../../../../.source_1765633015/clap_builder-4.5.53/src/output/help_template.rs#L1083-L1085)*
 
 ### `option_sort_key`
 
@@ -202,7 +202,7 @@ fn positional_sort_key(arg: &crate::builder::Arg) -> (usize, String)
 fn option_sort_key(arg: &crate::builder::Arg) -> (usize, String)
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1087-1108`](../../../../.source_1765521767/clap_builder-4.5.53/src/output/help_template.rs#L1087-L1108)*
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1087-1108`](../../../../.source_1765633015/clap_builder-4.5.53/src/output/help_template.rs#L1087-L1108)*
 
 ### `dimensions`
 
@@ -210,7 +210,7 @@ fn option_sort_key(arg: &crate::builder::Arg) -> (usize, String)
 fn dimensions() -> (Option<usize>, Option<usize>)
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1110-1118`](../../../../.source_1765521767/clap_builder-4.5.53/src/output/help_template.rs#L1110-L1118)*
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1110-1118`](../../../../.source_1765633015/clap_builder-4.5.53/src/output/help_template.rs#L1110-L1118)*
 
 ### `should_show_arg`
 
@@ -218,7 +218,7 @@ fn dimensions() -> (Option<usize>, Option<usize>)
 fn should_show_arg(use_long: bool, arg: &crate::builder::Arg) -> bool
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1127-1139`](../../../../.source_1765521767/clap_builder-4.5.53/src/output/help_template.rs#L1127-L1139)*
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1127-1139`](../../../../.source_1765633015/clap_builder-4.5.53/src/output/help_template.rs#L1127-L1139)*
 
 ### `should_show_subcommand`
 
@@ -226,7 +226,7 @@ fn should_show_arg(use_long: bool, arg: &crate::builder::Arg) -> bool
 fn should_show_subcommand(subcommand: &crate::builder::Command) -> bool
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1141-1143`](../../../../.source_1765521767/clap_builder-4.5.53/src/output/help_template.rs#L1141-L1143)*
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1141-1143`](../../../../.source_1765633015/clap_builder-4.5.53/src/output/help_template.rs#L1141-L1143)*
 
 ## Type Aliases
 
@@ -236,7 +236,7 @@ fn should_show_subcommand(subcommand: &crate::builder::Command) -> bool
 type ArgSortKey = fn(&crate::builder::Arg) -> (usize, String);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1081`](../../../../.source_1765521767/clap_builder-4.5.53/src/output/help_template.rs#L1081)*
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1081`](../../../../.source_1765633015/clap_builder-4.5.53/src/output/help_template.rs#L1081)*
 
 ## Constants
 
@@ -245,26 +245,26 @@ type ArgSortKey = fn(&crate::builder::Arg) -> (usize, String);
 const DEFAULT_TEMPLATE: &str;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:65-70`](../../../../.source_1765521767/clap_builder-4.5.53/src/output/help_template.rs#L65-L70)*
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:65-70`](../../../../.source_1765633015/clap_builder-4.5.53/src/output/help_template.rs#L65-L70)*
 
 ### `DEFAULT_NO_ARGS_TEMPLATE`
 ```rust
 const DEFAULT_NO_ARGS_TEMPLATE: &str;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:72-75`](../../../../.source_1765521767/clap_builder-4.5.53/src/output/help_template.rs#L72-L75)*
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:72-75`](../../../../.source_1765633015/clap_builder-4.5.53/src/output/help_template.rs#L72-L75)*
 
 ### `SHORT_SIZE`
 ```rust
 const SHORT_SIZE: usize = 4usize;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:77`](../../../../.source_1765521767/clap_builder-4.5.53/src/output/help_template.rs#L77)*
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:77`](../../../../.source_1765633015/clap_builder-4.5.53/src/output/help_template.rs#L77)*
 
 ### `NEXT_LINE_INDENT`
 ```rust
 const NEXT_LINE_INDENT: &str;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1079`](../../../../.source_1765521767/clap_builder-4.5.53/src/output/help_template.rs#L1079)*
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1079`](../../../../.source_1765633015/clap_builder-4.5.53/src/output/help_template.rs#L1079)*
 

@@ -22,7 +22,7 @@ struct RelocationBlockIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/relocation.rs:11-13`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/relocation.rs#L11-L13)*
+*Defined in [`object-0.37.3/src/read/pe/relocation.rs:11-13`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/relocation.rs#L11-L13)*
 
 An iterator over the relocation blocks in the `.reloc` section of a PE file.
 
@@ -134,7 +134,7 @@ struct RelocationIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/relocation.rs:68-72`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/relocation.rs#L68-L72)*
+*Defined in [`object-0.37.3/src/read/pe/relocation.rs:68-72`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/relocation.rs#L68-L72)*
 
 An iterator of the relocations in a block in the `.reloc` section of a PE file.
 
@@ -235,7 +235,7 @@ struct Relocation {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/relocation.rs:104-109`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/relocation.rs#L104-L109)*
+*Defined in [`object-0.37.3/src/read/pe/relocation.rs:104-109`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/relocation.rs#L104-L109)*
 
 A relocation in the `.reloc` section of a PE file.
 

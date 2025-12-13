@@ -155,7 +155,7 @@ which does perform sandboxing and restricts ambient authorities.
 
 ### `cstr!`
 
-*Defined in [`rustix-1.1.2/src/cstr.rs:29-58`](../../.source_1765521767/rustix-1.1.2/src/cstr.rs#L29-L58)*
+*Defined in [`rustix-1.1.2/src/cstr.rs:29-58`](../../.source_1765633015/rustix-1.1.2/src/cstr.rs#L29-L58)*
 
 A macro for [`CStr`](ffi/index.md) literals.
 

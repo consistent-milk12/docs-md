@@ -55,7 +55,7 @@ struct CompareExchangeError<'g, T: ?Sized + Pointable, P: Pointer<T>> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:34-40`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L34-L40)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:34-40`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L34-L40)*
 
 The error returned on failed compare-and-swap operation.
 
@@ -140,7 +140,7 @@ struct Array<T> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:237-241`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L237-L241)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:237-241`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L237-L241)*
 
 Array with size.
 
@@ -240,7 +240,7 @@ struct Atomic<T: ?Sized + Pointable> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:294-297`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L294-L297)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:294-297`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L294-L297)*
 
 An atomic pointer that can be safely shared between threads.
 
@@ -383,7 +383,7 @@ struct Owned<T: ?Sized + Pointable> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1048-1051`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L1048-L1051)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1048-1051`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L1048-L1051)*
 
 An owned heap-allocated object.
 
@@ -613,7 +613,7 @@ struct Shared<'g, T: 'g + ?Sized + Pointable> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1297-1300`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L1297-L1300)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1297-1300`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L1297-L1300)*
 
 A pointer to an object protected by the epoch GC.
 
@@ -772,7 +772,7 @@ least significant bits of the address.
 trait CompareAndSetOrdering { ... }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:67-76`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L67-L76)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:67-76`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L67-L76)*
 
 Memory orderings for compare-and-set operations.
 
@@ -807,7 +807,7 @@ The two ways of specifying orderings for compare-and-set are:
 trait Pointable { ... }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:150-192`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L150-L192)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:150-192`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L150-L192)*
 
 Types that are pointed to by a single word.
 
@@ -867,7 +867,7 @@ let o = Owned::<[MaybeUninit<i32>]>::init(10); // allocating [i32; 10]
 trait Pointer<T: ?Sized + Pointable> { ... }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1029-1040`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L1029-L1040)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1029-1040`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L1029-L1040)*
 
 A trait for either `Owned` or `Shared` pointers.
 
@@ -894,7 +894,7 @@ A trait for either `Owned` or `Shared` pointers.
 fn strongest_failure_ordering(ord: core::sync::atomic::Ordering) -> core::sync::atomic::Ordering
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:19-26`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L19-L26)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:19-26`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L19-L26)*
 
 Given ordering for the success case in a compare-exchange operation, returns the strongest
 appropriate ordering for the failure case.
@@ -905,7 +905,7 @@ appropriate ordering for the failure case.
 fn low_bits<T: ?Sized + Pointable>() -> usize
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:106-108`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L106-L108)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:106-108`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L106-L108)*
 
 Returns a bitmask containing the unused least significant bits of an aligned pointer to `T`.
 
@@ -915,7 +915,7 @@ Returns a bitmask containing the unused least significant bits of an aligned poi
 fn ensure_aligned<T: ?Sized + Pointable>(raw: usize)
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:112-114`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L112-L114)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:112-114`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L112-L114)*
 
 Panics if the pointer is not properly unaligned.
 
@@ -925,7 +925,7 @@ Panics if the pointer is not properly unaligned.
 fn compose_tag<T: ?Sized + Pointable>(data: usize, tag: usize) -> usize
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:120-122`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L120-L122)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:120-122`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L120-L122)*
 
 Given a tagged pointer `data`, returns the same pointer, but tagged with `tag`.
 
@@ -937,7 +937,7 @@ Given a tagged pointer `data`, returns the same pointer, but tagged with `tag`.
 fn decompose_tag<T: ?Sized + Pointable>(data: usize) -> (usize, usize)
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:126-128`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L126-L128)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:126-128`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L126-L128)*
 
 Decomposes a tagged pointer `data` into the pointer and the tag.
 
@@ -949,7 +949,7 @@ Decomposes a tagged pointer `data` into the pointer and the tag.
 type CompareAndSetError<'g, T, P> = CompareExchangeError<'g, T, P>;
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:31`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L31)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:31`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L31)*
 
 The error returned on failed compare-and-set operation.
 

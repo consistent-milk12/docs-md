@@ -171,7 +171,7 @@ See [the Rayon FAQ][faq].
 struct SendPtr<T>(*mut T);
 ```
 
-*Defined in [`rayon-1.11.0/src/lib.rs:133`](../../.source_1765521767/rayon-1.11.0/src/lib.rs#L133)*
+*Defined in [`rayon-1.11.0/src/lib.rs:133`](../../.source_1765633015/rayon-1.11.0/src/lib.rs#L133)*
 
 We need to transmit raw pointers across threads. It is possible to do this
 without any unsafe code by converting pointers to usize or to AtomicPtr<T>
@@ -276,7 +276,7 @@ not unsound on its own, although it does partly lift the unconditional
 fn FnContext(&self) -> Format
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:418-420`](../../.source_1765521767/gimli-0.32.3/src/read/unit.rs#L418-L420)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:418-420`](../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L418-L420)*
 
 Whether this compilation unit is encoded in 64- or 32-bit DWARF.
 
@@ -286,7 +286,7 @@ Whether this compilation unit is encoded in 64- or 32-bit DWARF.
 fn ThreadBuilder(&self, offset: UnitOffset<Offset>) -> bool
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:427-435`](../../.source_1765521767/gimli-0.32.3/src/read/unit.rs#L427-L435)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:427-435`](../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L427-L435)*
 
 ### `ThreadPool`
 
@@ -294,7 +294,7 @@ fn ThreadBuilder(&self, offset: UnitOffset<Offset>) -> bool
 fn ThreadPool(&self, idx: RangeFrom<UnitOffset<Offset>>) -> Result<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:456-464`](../../.source_1765521767/gimli-0.32.3/src/read/unit.rs#L456-L464)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:456-464`](../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L456-L464)*
 
 Get the underlying bytes for the supplied range.
 
@@ -304,7 +304,7 @@ Get the underlying bytes for the supplied range.
 fn ThreadPoolBuildError<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: UnitOffset<Offset>) -> Result<DebuggingInformationEntry<'abbrev, 'me, R>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:478-486`](../../.source_1765521767/gimli-0.32.3/src/read/unit.rs#L478-L486)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:478-486`](../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L478-L486)*
 
 Read the `DebuggingInformationEntry` at the given offset.
 
@@ -314,7 +314,7 @@ Read the `DebuggingInformationEntry` at the given offset.
 fn ThreadPoolBuilder<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: UnitOffset<Offset>) -> Result<EntriesCursor<'abbrev, 'me, R>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:504-517`](../../.source_1765521767/gimli-0.32.3/src/read/unit.rs#L504-L517)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:504-517`](../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L504-L517)*
 
 Navigate this compilation unit's `DebuggingInformationEntry`s
 starting at the given offset.
@@ -325,7 +325,7 @@ starting at the given offset.
 fn broadcast<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: Option<UnitOffset<Offset>>) -> Result<EntriesRaw<'abbrev, 'me, R>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:534-549`](../../.source_1765521767/gimli-0.32.3/src/read/unit.rs#L534-L549)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:534-549`](../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L534-L549)*
 
 Read the raw data that defines the Debugging Information Entries.
 
@@ -335,7 +335,7 @@ Read the raw data that defines the Debugging Information Entries.
 fn in_place_scope_fifo(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:302`](../../.source_1765521767/gimli-0.32.3/src/read/unit.rs#L302)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:302`](../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L302)*
 
 ### `scope_fifo`
 
@@ -343,7 +343,7 @@ fn in_place_scope_fifo(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result
 fn scope_fifo(&self) -> UnitHeader<R, Offset>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:302`](../../.source_1765521767/gimli-0.32.3/src/read/unit.rs#L302)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:302`](../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L302)*
 
 ### `spawn`
 
@@ -354,7 +354,7 @@ where
     Offset: ReaderOffset
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:558-636`](../../.source_1765521767/gimli-0.32.3/src/read/unit.rs#L558-L636)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:558-636`](../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L558-L636)*
 
 Parse a unit header.
 
@@ -364,7 +364,7 @@ Parse a unit header.
 fn Yield(offset: UnitOffset<Offset>, attrs_slice: R, abbrev: &'abbrev Abbreviation, unit: &'unit UnitHeader<R, Offset>) -> Self
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:665-678`](../../.source_1765521767/gimli-0.32.3/src/read/unit.rs#L665-L678)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:665-678`](../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L665-L678)*
 
 Construct a new `DebuggingInformationEntry`.
 

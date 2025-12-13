@@ -23,7 +23,7 @@ struct Demangle<'a> {
 }
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/legacy.rs:5-9`](../../../.source_1765521767/rustc-demangle-0.1.26/src/legacy.rs#L5-L9)*
+*Defined in [`rustc-demangle-0.1.26/src/legacy.rs:5-9`](../../../.source_1765633015/rustc-demangle-0.1.26/src/legacy.rs#L5-L9)*
 
 Representation of a demangled symbol name.
 
@@ -89,7 +89,7 @@ Representation of a demangled symbol name.
 fn demangle(s: &str) -> Result<(Demangle<'_>, &str), ()>
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/legacy.rs:49-98`](../../../.source_1765521767/rustc-demangle-0.1.26/src/legacy.rs#L49-L98)*
+*Defined in [`rustc-demangle-0.1.26/src/legacy.rs:49-98`](../../../.source_1765633015/rustc-demangle-0.1.26/src/legacy.rs#L49-L98)*
 
 De-mangles a Rust symbol into a more readable version
 
@@ -118,5 +118,5 @@ assert_eq!(demangle("foo").to_string(), "foo");
 fn is_rust_hash(s: &str) -> bool
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/legacy.rs:101-103`](../../../.source_1765521767/rustc-demangle-0.1.26/src/legacy.rs#L101-L103)*
+*Defined in [`rustc-demangle-0.1.26/src/legacy.rs:101-103`](../../../.source_1765633015/rustc-demangle-0.1.26/src/legacy.rs#L101-L103)*
 

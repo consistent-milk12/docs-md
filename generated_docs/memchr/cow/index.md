@@ -19,7 +19,7 @@
 struct CowBytes<'a>(Imp<'a>);
 ```
 
-*Defined in [`memchr-2.7.6/src/cow.rs:11`](../../../.source_1765521767/memchr-2.7.6/src/cow.rs#L11)*
+*Defined in [`memchr-2.7.6/src/cow.rs:11`](../../../.source_1765633015/memchr-2.7.6/src/cow.rs#L11)*
 
 A specialized copy-on-write byte string.
 
@@ -140,7 +140,7 @@ enum Imp<'a> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/cow.rs:18-21`](../../../.source_1765521767/memchr-2.7.6/src/cow.rs#L18-L21)*
+*Defined in [`memchr-2.7.6/src/cow.rs:18-21`](../../../.source_1765633015/memchr-2.7.6/src/cow.rs#L18-L21)*
 
 #### Implementations
 

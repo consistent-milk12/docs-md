@@ -27,7 +27,7 @@
 struct SensibleMoveMask(u32);
 ```
 
-*Defined in [`memchr-2.7.6/src/vector.rs:118`](../../../.source_1765521767/memchr-2.7.6/src/vector.rs#L118)*
+*Defined in [`memchr-2.7.6/src/vector.rs:118`](../../../.source_1765633015/memchr-2.7.6/src/vector.rs#L118)*
 
 This is a "sensible" movemask implementation where each bit represents
 whether the most significant bit is set in each corresponding lane of a
@@ -141,7 +141,7 @@ movemask instructions. But neon has no such native equivalent.
 trait Vector: Copy + core::fmt::Debug { ... }
 ```
 
-*Defined in [`memchr-2.7.6/src/vector.rs:17-66`](../../../.source_1765521767/memchr-2.7.6/src/vector.rs#L17-L66)*
+*Defined in [`memchr-2.7.6/src/vector.rs:17-66`](../../../.source_1765633015/memchr-2.7.6/src/vector.rs#L17-L66)*
 
 A trait for describing vector operations used by vectorized searchers.
 
@@ -217,7 +217,7 @@ with target_feature.)
 trait MoveMask: Copy + core::fmt::Debug { ... }
 ```
 
-*Defined in [`memchr-2.7.6/src/vector.rs:82-108`](../../../.source_1765521767/memchr-2.7.6/src/vector.rs#L82-L108)*
+*Defined in [`memchr-2.7.6/src/vector.rs:82-108`](../../../.source_1765633015/memchr-2.7.6/src/vector.rs#L82-L108)*
 
 A trait that abstracts over a vector-to-scalar operation called
 "move mask."

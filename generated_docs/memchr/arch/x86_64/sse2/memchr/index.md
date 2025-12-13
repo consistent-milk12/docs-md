@@ -43,7 +43,7 @@ expected match frequency.
 struct One(generic::One<core::arch::x86_64::__m128i>);
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:29`](../../../../../../.source_1765521767/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L29)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:29`](../../../../../../.source_1765633015/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L29)*
 
 Finds all occurrences of a single byte in a haystack.
 
@@ -432,7 +432,7 @@ struct OneIter<'a, 'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:356-359`](../../../../../../.source_1765521767/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L356-L359)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:356-359`](../../../../../../.source_1765633015/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L356-L359)*
 
 An iterator over all occurrences of a single byte in a haystack.
 
@@ -540,7 +540,7 @@ The lifetime parameters are as follows:
 struct Two(generic::Two<core::arch::x86_64::__m128i>);
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:405`](../../../../../../.source_1765521767/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L405)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:405`](../../../../../../.source_1765633015/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L405)*
 
 Finds all occurrences of two bytes in a haystack.
 
@@ -863,7 +863,7 @@ struct TwoIter<'a, 'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:662-665`](../../../../../../.source_1765521767/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L662-L665)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:662-665`](../../../../../../.source_1765633015/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L662-L665)*
 
 An iterator over all occurrences of two possible bytes in a haystack.
 
@@ -969,7 +969,7 @@ The lifetime parameters are as follows:
 struct Three(generic::Three<core::arch::x86_64::__m128i>);
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:702`](../../../../../../.source_1765521767/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L702)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:702`](../../../../../../.source_1765633015/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L702)*
 
 Finds all occurrences of three bytes in a haystack.
 
@@ -1292,7 +1292,7 @@ struct ThreeIter<'a, 'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:967-970`](../../../../../../.source_1765521767/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L967-L970)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:967-970`](../../../../../../.source_1765633015/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L967-L970)*
 
 An iterator over all occurrences of three possible bytes in a haystack.
 

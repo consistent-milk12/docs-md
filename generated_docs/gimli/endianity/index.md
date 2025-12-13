@@ -24,7 +24,7 @@ Types for compile-time and run-time endianity.
 struct LittleEndian;
 ```
 
-*Defined in [`gimli-0.32.3/src/endianity.rs:206`](../../../.source_1765521767/gimli-0.32.3/src/endianity.rs#L206)*
+*Defined in [`gimli-0.32.3/src/endianity.rs:206`](../../../.source_1765633015/gimli-0.32.3/src/endianity.rs#L206)*
 
 Little endian byte order.
 
@@ -120,7 +120,7 @@ Little endian byte order.
 struct BigEndian;
 ```
 
-*Defined in [`gimli-0.32.3/src/endianity.rs:224`](../../../.source_1765521767/gimli-0.32.3/src/endianity.rs#L224)*
+*Defined in [`gimli-0.32.3/src/endianity.rs:224`](../../../.source_1765633015/gimli-0.32.3/src/endianity.rs#L224)*
 
 Big endian byte order.
 
@@ -221,7 +221,7 @@ enum RunTimeEndian {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/endianity.rs:176-181`](../../../.source_1765521767/gimli-0.32.3/src/endianity.rs#L176-L181)*
+*Defined in [`gimli-0.32.3/src/endianity.rs:176-181`](../../../.source_1765633015/gimli-0.32.3/src/endianity.rs#L176-L181)*
 
 Byte order that is selectable at runtime.
 
@@ -329,7 +329,7 @@ Byte order that is selectable at runtime.
 trait Endianity: Debug + Default + Clone + Copy + PartialEq + Eq { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/endianity.rs:7-172`](../../../.source_1765521767/gimli-0.32.3/src/endianity.rs#L7-L172)*
+*Defined in [`gimli-0.32.3/src/endianity.rs:7-172`](../../../.source_1765633015/gimli-0.32.3/src/endianity.rs#L7-L172)*
 
 A trait describing the endianity of some buffer.
 
@@ -407,7 +407,7 @@ A trait describing the endianity of some buffer.
 type NativeEndian = LittleEndian;
 ```
 
-*Defined in [`gimli-0.32.3/src/endianity.rs:242`](../../../.source_1765521767/gimli-0.32.3/src/endianity.rs#L242)*
+*Defined in [`gimli-0.32.3/src/endianity.rs:242`](../../../.source_1765633015/gimli-0.32.3/src/endianity.rs#L242)*
 
 The native endianity for the target platform.
 

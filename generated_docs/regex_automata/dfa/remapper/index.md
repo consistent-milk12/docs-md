@@ -28,7 +28,7 @@ struct Remapper {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:68-85`](../../../../.source_1765521767/regex-automata-0.4.13/src/dfa/remapper.rs#L68-L85)*
+*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:68-85`](../../../../.source_1765633015/regex-automata-0.4.13/src/dfa/remapper.rs#L68-L85)*
 
 Remapper is an abstraction the manages the remapping of state IDs in a
 finite state machine. This is useful when one wants to shuffle states into
@@ -143,7 +143,7 @@ struct IndexMapper {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:169-174`](../../../../.source_1765521767/regex-automata-0.4.13/src/dfa/remapper.rs#L169-L174)*
+*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:169-174`](../../../../.source_1765633015/regex-automata-0.4.13/src/dfa/remapper.rs#L169-L174)*
 
 A simple type for mapping between state indices and state IDs.
 
@@ -235,7 +235,7 @@ indices.
 trait Remappable: core::fmt::Debug { ... }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:28-55`](../../../../.source_1765521767/regex-automata-0.4.13/src/dfa/remapper.rs#L28-L55)*
+*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:28-55`](../../../../.source_1765633015/regex-automata-0.4.13/src/dfa/remapper.rs#L28-L55)*
 
 Remappable is a tightly coupled abstraction that facilitates remapping
 state identifiers in DFAs.

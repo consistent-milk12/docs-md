@@ -18,7 +18,7 @@
 struct Rgb(u8, u8, u8);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/dynamic.rs:10`](../../../../.source_1765521767/owo-colors-4.2.3/src/colors/dynamic.rs#L10)*
+*Defined in [`owo-colors-4.2.3/src/colors/dynamic.rs:10`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/dynamic.rs#L10)*
 
 Available RGB colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)

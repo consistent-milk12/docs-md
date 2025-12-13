@@ -19,7 +19,7 @@
 struct NoDrop<T: ?Sized>(std::mem::ManuallyDrop<T>);
 ```
 
-*Defined in [`syn-2.0.111/src/drops.rs:8`](../../../.source_1765521767/syn-2.0.111/src/drops.rs#L8)*
+*Defined in [`syn-2.0.111/src/drops.rs:8`](../../../.source_1765633015/syn-2.0.111/src/drops.rs#L8)*
 
 #### Implementations
 
@@ -91,7 +91,7 @@ struct NoDrop<T: ?Sized>(std::mem::ManuallyDrop<T>);
 trait TrivialDrop { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/drops.rs:32`](../../../.source_1765521767/syn-2.0.111/src/drops.rs#L32)*
+*Defined in [`syn-2.0.111/src/drops.rs:32`](../../../.source_1765633015/syn-2.0.111/src/drops.rs#L32)*
 
 #### Implementors
 

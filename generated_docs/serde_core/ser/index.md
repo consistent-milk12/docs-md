@@ -175,7 +175,7 @@ struct Impossible<Ok, Error> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/impossible.rs:60-64`](../../../.source_1765521767/serde_core-1.0.228/src/ser/impossible.rs#L60-L64)*
+*Defined in [`serde_core-1.0.228/src/ser/impossible.rs:60-64`](../../../.source_1765633015/serde_core-1.0.228/src/ser/impossible.rs#L60-L64)*
 
 Helper type for implementing a `Serializer` that does not support
 serializing one of the compound types.
@@ -351,7 +351,7 @@ impl Serializer for MySerializer {
 trait Error: Sized + StdError { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:192`](../../../.source_1765521767/serde_core-1.0.228/src/ser/mod.rs#L192)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:192`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L192)*
 
 Trait used by `Serialize` implementations to generically construct
 errors belonging to the `Serializer` against which they are
@@ -380,7 +380,7 @@ type appropriate for a basic JSON data format.
 trait Serialize { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:234-268`](../../../.source_1765521767/serde_core-1.0.228/src/ser/mod.rs#L234-L268)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:234-268`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L234-L268)*
 
 A **data structure** that can be serialized into any data format supported
 by Serde.
@@ -556,7 +556,7 @@ provides an implementation of `Serialize` for it.
 trait Serializer: Sized { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:355-1462`](../../../.source_1765521767/serde_core-1.0.228/src/ser/mod.rs#L355-L1462)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:355-1462`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L355-L1462)*
 
 A **data format** that can serialize any data structure supported by Serde.
 
@@ -803,7 +803,7 @@ a basic JSON `Serializer`.
 trait SerializeSeq { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1518-1532`](../../../.source_1765521767/serde_core-1.0.228/src/ser/mod.rs#L1518-L1532)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1518-1532`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L1518-L1532)*
 
 Returned from `Serializer::serialize_seq`.
 
@@ -879,7 +879,7 @@ implementation of `SerializeSeq` for a basic JSON data format.
 trait SerializeTuple { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1624-1638`](../../../.source_1765521767/serde_core-1.0.228/src/ser/mod.rs#L1624-L1638)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1624-1638`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L1624-L1638)*
 
 Returned from `Serializer::serialize_tuple`.
 
@@ -991,7 +991,7 @@ implementation of `SerializeTuple` for a basic JSON data format.
 trait SerializeTupleStruct { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1675-1689`](../../../.source_1765521767/serde_core-1.0.228/src/ser/mod.rs#L1675-L1689)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1675-1689`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L1675-L1689)*
 
 Returned from `Serializer::serialize_tuple_struct`.
 
@@ -1048,7 +1048,7 @@ implementation of `SerializeTupleStruct` for a basic JSON data format.
 trait SerializeTupleVariant { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1739-1753`](../../../.source_1765521767/serde_core-1.0.228/src/ser/mod.rs#L1739-L1753)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1739-1753`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L1739-L1753)*
 
 Returned from `Serializer::serialize_tuple_variant`.
 
@@ -1118,7 +1118,7 @@ implementation of `SerializeTupleVariant` for a basic JSON data format.
 trait SerializeMap { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1811-1866`](../../../.source_1765521767/serde_core-1.0.228/src/ser/mod.rs#L1811-L1866)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1811-1866`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L1811-L1866)*
 
 Returned from `Serializer::serialize_map`.
 
@@ -1206,7 +1206,7 @@ implementation of `SerializeMap` for a basic JSON data format.
 trait SerializeStruct { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1907-1930`](../../../.source_1765521767/serde_core-1.0.228/src/ser/mod.rs#L1907-L1930)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1907-1930`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L1907-L1930)*
 
 Returned from `Serializer::serialize_struct`.
 
@@ -1273,7 +1273,7 @@ implementation of `SerializeStruct` for a basic JSON data format.
 trait SerializeStructVariant { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1977-2000`](../../../.source_1765521767/serde_core-1.0.228/src/ser/mod.rs#L1977-L2000)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1977-2000`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L1977-L2000)*
 
 Returned from `Serializer::serialize_struct_variant`.
 
@@ -1350,11 +1350,11 @@ where
     I: Iterator
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:2002-2010`](../../../.source_1765521767/serde_core-1.0.228/src/ser/mod.rs#L2002-L2010)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:2002-2010`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L2002-L2010)*
 
 ## Macros
 
 ### `declare_error_trait!`
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:130-189`](../../../.source_1765521767/serde_core-1.0.228/src/ser/mod.rs#L130-L189)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:130-189`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L130-L189)*
 

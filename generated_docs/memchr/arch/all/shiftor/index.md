@@ -25,7 +25,7 @@ struct Finder {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/shiftor.rs:20-23`](../../../../../.source_1765521767/memchr-2.7.6/src/arch/all/shiftor.rs#L20-L23)*
+*Defined in [`memchr-2.7.6/src/arch/all/shiftor.rs:20-23`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/shiftor.rs#L20-L23)*
 
 A forward substring searcher using the Shift-Or algorithm.
 
@@ -123,7 +123,7 @@ A forward substring searcher using the Shift-Or algorithm.
 type Mask = u16;
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/shiftor.rs:16`](../../../../../.source_1765521767/memchr-2.7.6/src/arch/all/shiftor.rs#L16)*
+*Defined in [`memchr-2.7.6/src/arch/all/shiftor.rs:16`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/shiftor.rs#L16)*
 
 The type of our mask.
 

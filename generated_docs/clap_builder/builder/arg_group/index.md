@@ -25,7 +25,7 @@ struct ArgGroup {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg_group.rs:68-75`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/arg_group.rs#L68-L75)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg_group.rs:68-75`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/arg_group.rs#L68-L75)*
 
 Specifies a logical group of [arguments]
 
@@ -404,7 +404,7 @@ assert_eq!(matches
 
   
 
-  **NOTE:** This setting only applies to the current [`Command`](../command/index.md) / [`Subcommand`](../../derive/index.md)s, and not
+  **NOTE:** This setting only applies to the current [`Command`](../../index.md) / [`Subcommand`](../../derive/index.md)s, and not
 
   globally.
 

@@ -64,7 +64,7 @@ enum TINFLStatus {
 }
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/mod.rs:29-79`](../../../.source_1765521767/miniz_oxide-0.8.9/src/inflate/mod.rs#L29-L79)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/mod.rs:29-79`](../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/mod.rs#L29-L79)*
 
 Return status codes.
 
@@ -197,7 +197,7 @@ Return status codes.
 fn decompress_slice_iter_to_slice<'out, 'inp>(out: &'out mut [u8], it: impl Iterator<Item = &'inp [u8]>, zlib_header: bool, ignore_adler32: bool) -> Result<usize, TINFLStatus>
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/mod.rs:265-302`](../../../.source_1765521767/miniz_oxide-0.8.9/src/inflate/mod.rs#L265-L302)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/mod.rs:265-302`](../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/mod.rs#L265-L302)*
 
 Decompress one or more source slices from an iterator into the output slice.
 
@@ -220,47 +220,47 @@ the output buffer will still contain the partial decompression.
 const TINFL_STATUS_FAILED_CANNOT_MAKE_PROGRESS: i32 = -4i32;
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/mod.rs:15`](../../../.source_1765521767/miniz_oxide-0.8.9/src/inflate/mod.rs#L15)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/mod.rs:15`](../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/mod.rs#L15)*
 
 ### `TINFL_STATUS_BAD_PARAM`
 ```rust
 const TINFL_STATUS_BAD_PARAM: i32 = -3i32;
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/mod.rs:16`](../../../.source_1765521767/miniz_oxide-0.8.9/src/inflate/mod.rs#L16)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/mod.rs:16`](../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/mod.rs#L16)*
 
 ### `TINFL_STATUS_ADLER32_MISMATCH`
 ```rust
 const TINFL_STATUS_ADLER32_MISMATCH: i32 = -2i32;
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/mod.rs:17`](../../../.source_1765521767/miniz_oxide-0.8.9/src/inflate/mod.rs#L17)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/mod.rs:17`](../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/mod.rs#L17)*
 
 ### `TINFL_STATUS_FAILED`
 ```rust
 const TINFL_STATUS_FAILED: i32 = -1i32;
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/mod.rs:18`](../../../.source_1765521767/miniz_oxide-0.8.9/src/inflate/mod.rs#L18)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/mod.rs:18`](../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/mod.rs#L18)*
 
 ### `TINFL_STATUS_DONE`
 ```rust
 const TINFL_STATUS_DONE: i32 = 0i32;
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/mod.rs:19`](../../../.source_1765521767/miniz_oxide-0.8.9/src/inflate/mod.rs#L19)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/mod.rs:19`](../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/mod.rs#L19)*
 
 ### `TINFL_STATUS_NEEDS_MORE_INPUT`
 ```rust
 const TINFL_STATUS_NEEDS_MORE_INPUT: i32 = 1i32;
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/mod.rs:20`](../../../.source_1765521767/miniz_oxide-0.8.9/src/inflate/mod.rs#L20)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/mod.rs:20`](../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/mod.rs#L20)*
 
 ### `TINFL_STATUS_HAS_MORE_OUTPUT`
 ```rust
 const TINFL_STATUS_HAS_MORE_OUTPUT: i32 = 2i32;
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/mod.rs:21`](../../../.source_1765521767/miniz_oxide-0.8.9/src/inflate/mod.rs#L21)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/mod.rs:21`](../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/mod.rs#L21)*
 

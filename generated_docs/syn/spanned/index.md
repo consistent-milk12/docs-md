@@ -11,7 +11,7 @@ tree node.
 
 # Example
 
-Suppose in a procedural macro we have a [`Type`](../token/index.md) that we want to assert
+Suppose in a procedural macro we have a [`Type`](../index.md) that we want to assert
 implements the `Sync` trait. Maybe this is the type of one of the fields
 of a struct for which we are deriving a trait implementation, and we need to
 be able to pass a reference to one of those fields across threads.
@@ -101,7 +101,7 @@ needing the unstable `join`.
 trait Spanned: private::Sealed { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/spanned.rs:96-102`](../../../.source_1765521767/syn-2.0.111/src/spanned.rs#L96-L102)*
+*Defined in [`syn-2.0.111/src/spanned.rs:96-102`](../../../.source_1765633015/syn-2.0.111/src/spanned.rs#L96-L102)*
 
 A trait that can provide the `Span` of the complete contents of a syntax
 tree node.

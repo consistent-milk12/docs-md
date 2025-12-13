@@ -19,7 +19,7 @@
 fn choose_generics_over_qpath(input: crate::parse::ParseStream<'_>) -> bool
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:1097-1129`](../../../../.source_1765521767/syn-2.0.111/src/generics.rs#L1097-L1129)*
+*Defined in [`syn-2.0.111/src/generics.rs:1097-1129`](../../../../.source_1765633015/syn-2.0.111/src/generics.rs#L1097-L1129)*
 
 ### `choose_generics_over_qpath_after_keyword`
 
@@ -27,5 +27,5 @@ fn choose_generics_over_qpath(input: crate::parse::ParseStream<'_>) -> bool
 fn choose_generics_over_qpath_after_keyword(input: crate::parse::ParseStream<'_>) -> bool
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:1132-1136`](../../../../.source_1765521767/syn-2.0.111/src/generics.rs#L1132-L1136)*
+*Defined in [`syn-2.0.111/src/generics.rs:1132-1136`](../../../../.source_1765633015/syn-2.0.111/src/generics.rs#L1132-L1136)*
 

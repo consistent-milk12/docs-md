@@ -122,7 +122,7 @@ struct Parameters {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:116-142`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L116-L142)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:116-142`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L116-L142)*
 
 #### Fields
 
@@ -230,7 +230,7 @@ struct FieldWithAliases<'a> {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:650-653`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L650-L653)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:650-653`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L650-L653)*
 
 #### Trait Implementations
 
@@ -282,7 +282,7 @@ struct FieldWithAliases<'a> {
 struct DeImplGenerics<'a>(&'a Parameters);
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:853`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L853)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:853`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L853)*
 
 #### Trait Implementations
 
@@ -342,7 +342,7 @@ struct DeImplGenerics<'a>(&'a Parameters);
 struct DeTypeGenerics<'a>(&'a Parameters);
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:913`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L913)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:913`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L913)*
 
 #### Trait Implementations
 
@@ -407,7 +407,7 @@ enum BorrowedLifetimes {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:257-260`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L257-L260)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:257-260`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L257-L260)*
 
 #### Implementations
 
@@ -469,7 +469,7 @@ enum TupleForm<'a> {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:443-449`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L443-L449)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:443-449`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L443-L449)*
 
 #### Variants
 
@@ -536,7 +536,7 @@ enum StructForm<'a> {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:640-648`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L640-L648)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:640-648`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L640-L648)*
 
 #### Variants
 
@@ -604,7 +604,7 @@ enum StructForm<'a> {
 fn expand_derive_deserialize(input: &mut syn::DeriveInput) -> syn::Result<proc_macro2::TokenStream>
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:25-82`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L25-L82)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:25-82`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L25-L82)*
 
 ### `precondition`
 
@@ -612,7 +612,7 @@ fn expand_derive_deserialize(input: &mut syn::DeriveInput) -> syn::Result<proc_m
 fn precondition(cx: &crate::internals::Ctxt, cont: &crate::internals::ast::Container<'_>)
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:84-87`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L84-L87)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:84-87`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L84-L87)*
 
 ### `precondition_sized`
 
@@ -620,7 +620,7 @@ fn precondition(cx: &crate::internals::Ctxt, cont: &crate::internals::ast::Conta
 fn precondition_sized(cx: &crate::internals::Ctxt, cont: &crate::internals::ast::Container<'_>)
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:89-100`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L89-L100)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:89-100`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L89-L100)*
 
 ### `precondition_no_de_lifetime`
 
@@ -628,7 +628,7 @@ fn precondition_sized(cx: &crate::internals::Ctxt, cont: &crate::internals::ast:
 fn precondition_no_de_lifetime(cx: &crate::internals::Ctxt, cont: &crate::internals::ast::Container<'_>)
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:102-114`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L102-L114)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:102-114`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L102-L114)*
 
 ### `build_generics`
 
@@ -636,7 +636,7 @@ fn precondition_no_de_lifetime(cx: &crate::internals::Ctxt, cont: &crate::intern
 fn build_generics(cont: &crate::internals::ast::Container<'_>, borrowed: &BorrowedLifetimes) -> syn::Generics
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:192-228`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L192-L228)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:192-228`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L192-L228)*
 
 ### `needs_deserialize_bound`
 
@@ -644,7 +644,7 @@ fn build_generics(cont: &crate::internals::ast::Container<'_>, borrowed: &Borrow
 fn needs_deserialize_bound(field: &attr::Field, variant: Option<&attr::Variant>) -> bool
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:236-245`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L236-L245)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:236-245`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L236-L245)*
 
 ### `requires_default`
 
@@ -652,7 +652,7 @@ fn needs_deserialize_bound(field: &attr::Field, variant: Option<&attr::Variant>)
 fn requires_default(field: &attr::Field, _variant: Option<&attr::Variant>) -> bool
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:249-255`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L249-L255)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:249-255`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L249-L255)*
 
 ### `borrowed_lifetimes`
 
@@ -660,7 +660,7 @@ fn requires_default(field: &attr::Field, _variant: Option<&attr::Variant>) -> bo
 fn borrowed_lifetimes(cont: &crate::internals::ast::Container<'_>) -> BorrowedLifetimes
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:292-304`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L292-L304)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:292-304`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L292-L304)*
 
 ### `deserialize_body`
 
@@ -668,7 +668,7 @@ fn borrowed_lifetimes(cont: &crate::internals::ast::Container<'_>) -> BorrowedLi
 fn deserialize_body(cont: &crate::internals::ast::Container<'_>, params: &Parameters) -> crate::fragment::Fragment
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:306-330`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L306-L330)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:306-330`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L306-L330)*
 
 ### `deserialize_in_place_body`
 
@@ -676,7 +676,7 @@ fn deserialize_body(cont: &crate::internals::ast::Container<'_>, params: &Parame
 fn deserialize_in_place_body(_cont: &crate::internals::ast::Container<'_>, _params: &Parameters) -> Option<crate::fragment::Stmts>
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:378-380`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L378-L380)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:378-380`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L378-L380)*
 
 ### `deserialize_transparent`
 
@@ -684,7 +684,7 @@ fn deserialize_in_place_body(_cont: &crate::internals::ast::Container<'_>, _para
 fn deserialize_transparent(cont: &crate::internals::ast::Container<'_>, params: &Parameters) -> crate::fragment::Fragment
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:383-423`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L383-L423)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:383-423`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L383-L423)*
 
 Generates `Deserialize::deserialize` body for a type with `#[serde(transparent)]` attribute
 
@@ -694,7 +694,7 @@ Generates `Deserialize::deserialize` body for a type with `#[serde(transparent)]
 fn deserialize_from(type_from: &syn::Type) -> crate::fragment::Fragment
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:426-432`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L426-L432)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:426-432`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L426-L432)*
 
 Generates `Deserialize::deserialize` body for a type with `#[serde(from)]` attribute
 
@@ -704,7 +704,7 @@ Generates `Deserialize::deserialize` body for a type with `#[serde(from)]` attri
 fn deserialize_try_from(type_try_from: &syn::Type) -> crate::fragment::Fragment
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:435-441`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L435-L441)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:435-441`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L435-L441)*
 
 Generates `Deserialize::deserialize` body for a type with `#[serde(try_from)]` attribute
 
@@ -714,7 +714,7 @@ Generates `Deserialize::deserialize` body for a type with `#[serde(try_from)]` a
 fn deserialize_seq(type_path: &proc_macro2::TokenStream, params: &Parameters, fields: &[crate::internals::ast::Field<'_>], is_struct: bool, cattrs: &attr::Container, expecting: &str) -> crate::fragment::Fragment
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:451-552`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L451-L552)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:451-552`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L451-L552)*
 
 ### `field_i`
 
@@ -722,7 +722,7 @@ fn deserialize_seq(type_path: &proc_macro2::TokenStream, params: &Parameters, fi
 fn field_i(i: usize) -> syn::Ident
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:655-657`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L655-L657)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:655-657`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L655-L657)*
 
 ### `wrap_deserialize_with`
 
@@ -730,7 +730,7 @@ fn field_i(i: usize) -> syn::Ident
 fn wrap_deserialize_with(params: &Parameters, value_ty: &proc_macro2::TokenStream, deserialize_with: &syn::ExprPath) -> (proc_macro2::TokenStream, proc_macro2::TokenStream)
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:661-705`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L661-L705)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:661-705`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L661-L705)*
 
 This function wraps the expression in `#[serde(deserialize_with = "...")]`
 in a trait to prevent it from accessing the internal `Deserialize` state.
@@ -741,7 +741,7 @@ in a trait to prevent it from accessing the internal `Deserialize` state.
 fn wrap_deserialize_field_with(params: &Parameters, field_ty: &syn::Type, deserialize_with: &syn::ExprPath) -> (proc_macro2::TokenStream, proc_macro2::TokenStream)
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:707-713`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L707-L713)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:707-713`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L707-L713)*
 
 ### `unwrap_to_variant_closure`
 
@@ -749,7 +749,7 @@ fn wrap_deserialize_field_with(params: &Parameters, field_ty: &syn::Type, deseri
 fn unwrap_to_variant_closure(params: &Parameters, variant: &crate::internals::ast::Variant<'_>, with_wrapper: bool) -> proc_macro2::TokenStream
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:716-761`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L716-L761)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:716-761`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L716-L761)*
 
 ### `expr_is_missing`
 
@@ -757,7 +757,7 @@ fn unwrap_to_variant_closure(params: &Parameters, variant: &crate::internals::as
 fn expr_is_missing(field: &crate::internals::ast::Field<'_>, cattrs: &attr::Container) -> crate::fragment::Fragment
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:763-803`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L763-L803)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:763-803`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L763-L803)*
 
 ### `expr_is_missing_seq`
 
@@ -765,7 +765,7 @@ fn expr_is_missing(field: &crate::internals::ast::Field<'_>, cattrs: &attr::Cont
 fn expr_is_missing_seq(assign_to: Option<proc_macro2::TokenStream>, index: usize, field: &crate::internals::ast::Field<'_>, cattrs: &attr::Container, expecting: &str) -> proc_macro2::TokenStream
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:805-836`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L805-L836)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:805-836`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L805-L836)*
 
 ### `effective_style`
 
@@ -773,7 +773,7 @@ fn expr_is_missing_seq(assign_to: Option<proc_macro2::TokenStream>, index: usize
 fn effective_style(variant: &crate::internals::ast::Variant<'_>) -> crate::internals::ast::Style
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:838-843`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L838-L843)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:838-843`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L838-L843)*
 
 ### `has_flatten`
 
@@ -781,7 +781,7 @@ fn effective_style(variant: &crate::internals::ast::Variant<'_>) -> crate::inter
 fn has_flatten(fields: &[crate::internals::ast::Field<'_>]) -> bool
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:847-851`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L847-L851)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:847-851`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L847-L851)*
 
 True if there is any field with a `#[serde(flatten)]` attribute, other than
 fields which are skipped.
@@ -792,5 +792,5 @@ fields which are skipped.
 fn de_type_generics_to_tokens(generics: syn::Generics, borrowed: &BorrowedLifetimes, tokens: &mut proc_macro2::TokenStream)
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de.rs:917-937`](../../../.source_1765521767/serde_derive-1.0.228/src/de.rs#L917-L937)*
+*Defined in [`serde_derive-1.0.228/src/de.rs:917-937`](../../../.source_1765633015/serde_derive-1.0.228/src/de.rs#L917-L937)*
 

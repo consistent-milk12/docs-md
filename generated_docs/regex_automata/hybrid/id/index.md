@@ -19,7 +19,7 @@
 struct LazyStateID(u32);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/id.rs:169`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/id.rs#L169)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/id.rs:169`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/id.rs#L169)*
 
 A state identifier specifically tailored for lazy DFAs.
 
@@ -425,7 +425,7 @@ struct LazyStateIDError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/id.rs:331-333`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/id.rs#L331-L333)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/id.rs:331-333`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/id.rs#L331-L333)*
 
 This error occurs when a lazy state ID could not be constructed.
 

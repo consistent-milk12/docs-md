@@ -78,7 +78,7 @@ struct Mapping {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:63-68`](../../../../.source_1765521767/backtrace-0.3.76/src/symbolize/gimli.rs#L63-L68)*
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:63-68`](../../../../.source_1765633015/backtrace-0.3.76/src/symbolize/gimli.rs#L63-L68)*
 
 #### Implementations
 
@@ -146,7 +146,7 @@ struct Context<'a> {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:111-115`](../../../../.source_1765521767/backtrace-0.3.76/src/symbolize/gimli.rs#L111-L115)*
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:111-115`](../../../../.source_1765633015/backtrace-0.3.76/src/symbolize/gimli.rs#L111-L115)*
 
 #### Implementations
 
@@ -207,7 +207,7 @@ struct Cache {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:259-273`](../../../../.source_1765521767/backtrace-0.3.76/src/symbolize/gimli.rs#L259-L273)*
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:259-273`](../../../../.source_1765633015/backtrace-0.3.76/src/symbolize/gimli.rs#L259-L273)*
 
 #### Fields
 
@@ -295,7 +295,7 @@ struct Library {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:275-307`](../../../../.source_1765521767/backtrace-0.3.76/src/symbolize/gimli.rs#L275-L307)*
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:275-307`](../../../../.source_1765633015/backtrace-0.3.76/src/symbolize/gimli.rs#L275-L307)*
 
 #### Fields
 
@@ -364,7 +364,7 @@ struct LibrarySegment {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:309-316`](../../../../.source_1765521767/backtrace-0.3.76/src/symbolize/gimli.rs#L309-L316)*
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:309-316`](../../../../.source_1765633015/backtrace-0.3.76/src/symbolize/gimli.rs#L309-L316)*
 
 #### Fields
 
@@ -433,7 +433,7 @@ enum Either<A, B> {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:70-74`](../../../../.source_1765521767/backtrace-0.3.76/src/symbolize/gimli.rs#L70-L74)*
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:70-74`](../../../../.source_1765633015/backtrace-0.3.76/src/symbolize/gimli.rs#L70-L74)*
 
 #### Trait Implementations
 
@@ -494,7 +494,7 @@ enum Symbol<'a> {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:503-514`](../../../../.source_1765521767/backtrace-0.3.76/src/symbolize/gimli.rs#L503-L514)*
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:503-514`](../../../../.source_1765633015/backtrace-0.3.76/src/symbolize/gimli.rs#L503-L514)*
 
 #### Variants
 
@@ -574,7 +574,7 @@ enum Symbol<'a> {
 fn mmap(path: &mystd::path::Path) -> Option<self::mmap::Mmap>
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:192-196`](../../../../.source_1765521767/backtrace-0.3.76/src/symbolize/gimli.rs#L192-L196)*
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:192-196`](../../../../.source_1765633015/backtrace-0.3.76/src/symbolize/gimli.rs#L192-L196)*
 
 ### `create_mapping`
 
@@ -582,7 +582,7 @@ fn mmap(path: &mystd::path::Path) -> Option<self::mmap::Mmap>
 fn create_mapping(lib: &Library) -> Option<Mapping>
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:318-328`](../../../../.source_1765521767/backtrace-0.3.76/src/symbolize/gimli.rs#L318-L328)*
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:318-328`](../../../../.source_1765633015/backtrace-0.3.76/src/symbolize/gimli.rs#L318-L328)*
 
 ### `clear_symbol_cache`
 
@@ -590,7 +590,7 @@ fn create_mapping(lib: &Library) -> Option<Mapping>
 unsafe fn clear_symbol_cache()
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:346-350`](../../../../.source_1765521767/backtrace-0.3.76/src/symbolize/gimli.rs#L346-L350)*
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:346-350`](../../../../.source_1765633015/backtrace-0.3.76/src/symbolize/gimli.rs#L346-L350)*
 
 ### `resolve`
 
@@ -598,7 +598,7 @@ unsafe fn clear_symbol_cache()
 unsafe fn resolve(what: super::ResolveWhat<'_>, cb: &mut dyn FnMut(&super::Symbol))
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:441-501`](../../../../.source_1765521767/backtrace-0.3.76/src/symbolize/gimli.rs#L441-L501)*
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:441-501`](../../../../.source_1765633015/backtrace-0.3.76/src/symbolize/gimli.rs#L441-L501)*
 
 ## Constants
 
@@ -607,5 +607,5 @@ unsafe fn resolve(what: super::ResolveWhat<'_>, cb: &mut dyn FnMut(&super::Symbo
 const MAPPINGS_CACHE_SIZE: usize = 4usize;
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:61`](../../../../.source_1765521767/backtrace-0.3.76/src/symbolize/gimli.rs#L61)*
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:61`](../../../../.source_1765633015/backtrace-0.3.76/src/symbolize/gimli.rs#L61)*
 

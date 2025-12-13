@@ -118,7 +118,7 @@ struct Error {
 }
 ```
 
-*Defined in [`semver-1.0.27/src/parse.rs:21-23`](../../.source_1765521767/semver-1.0.27/src/parse.rs#L21-L23)*
+*Defined in [`semver-1.0.27/src/parse.rs:21-23`](../../.source_1765633015/semver-1.0.27/src/parse.rs#L21-L23)*
 
 Error parsing a SemVer version or version requirement.
 
@@ -209,7 +209,7 @@ struct Version {
 }
 ```
 
-*Defined in [`semver-1.0.27/src/lib.rs:159-165`](../../.source_1765521767/semver-1.0.27/src/lib.rs#L159-L165)*
+*Defined in [`semver-1.0.27/src/lib.rs:159-165`](../../.source_1765633015/semver-1.0.27/src/lib.rs#L159-L165)*
 
 **SemVer version** as defined by <https://semver.org>.
 
@@ -545,7 +545,7 @@ struct VersionReq {
 }
 ```
 
-*Defined in [`semver-1.0.27/src/lib.rs:185-187`](../../.source_1765521767/semver-1.0.27/src/lib.rs#L185-L187)*
+*Defined in [`semver-1.0.27/src/lib.rs:185-187`](../../.source_1765633015/semver-1.0.27/src/lib.rs#L185-L187)*
 
 **SemVer version requirement** describing the intersection of some version
 comparators, such as `>=1.2.3, <1.8`.
@@ -727,7 +727,7 @@ struct Comparator {
 }
 ```
 
-*Defined in [`semver-1.0.27/src/lib.rs:192-200`](../../.source_1765521767/semver-1.0.27/src/lib.rs#L192-L200)*
+*Defined in [`semver-1.0.27/src/lib.rs:192-200`](../../.source_1765633015/semver-1.0.27/src/lib.rs#L192-L200)*
 
 A pair of comparison operator and partial version, such as `>=1.2`. Forms
 one piece of a VersionReq.
@@ -860,7 +860,7 @@ struct Prerelease {
 }
 ```
 
-*Defined in [`semver-1.0.27/src/lib.rs:310-312`](../../.source_1765521767/semver-1.0.27/src/lib.rs#L310-L312)*
+*Defined in [`semver-1.0.27/src/lib.rs:310-312`](../../.source_1765633015/semver-1.0.27/src/lib.rs#L310-L312)*
 
 Optional pre-release identifier on a version string. This comes after `-` in
 a SemVer version, like `1.0.0-alpha.1`
@@ -1040,7 +1040,7 @@ struct BuildMetadata {
 }
 ```
 
-*Defined in [`semver-1.0.27/src/lib.rs:368-370`](../../.source_1765521767/semver-1.0.27/src/lib.rs#L368-L370)*
+*Defined in [`semver-1.0.27/src/lib.rs:368-370`](../../.source_1765633015/semver-1.0.27/src/lib.rs#L368-L370)*
 
 Optional build metadata identifier. This comes after `+` in a SemVer
 version, as in `0.8.1+zstd.1.5.0`.
@@ -1233,7 +1233,7 @@ enum Op {
 }
 ```
 
-*Defined in [`semver-1.0.27/src/lib.rs:249-258`](../../.source_1765521767/semver-1.0.27/src/lib.rs#L249-L258)*
+*Defined in [`semver-1.0.27/src/lib.rs:249-258`](../../.source_1765633015/semver-1.0.27/src/lib.rs#L249-L258)*
 
 SemVer comparison operator: `=`, `>`, `>=`, `<`, `<=`, `~`, `^`, `*`.
 

@@ -21,7 +21,7 @@ struct ThreadBound<T> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/thread.rs:7-10`](../../../.source_1765521767/syn-2.0.111/src/thread.rs#L7-L10)*
+*Defined in [`syn-2.0.111/src/thread.rs:7-10`](../../../.source_1765633015/syn-2.0.111/src/thread.rs#L7-L10)*
 
 ThreadBound is a Sync-maker and Send-maker that allows accessing a value
 of type T only from the original thread on which the ThreadBound was

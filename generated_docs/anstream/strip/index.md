@@ -27,7 +27,7 @@ where
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/strip.rs:7-13`](../../../.source_1765521767/anstream-0.6.21/src/strip.rs#L7-L13)*
+*Defined in [`anstream-0.6.21/src/strip.rs:7-13`](../../../.source_1765633015/anstream-0.6.21/src/strip.rs#L7-L13)*
 
 Only pass printable data to the inner `Write`
 
@@ -113,7 +113,7 @@ Only pass printable data to the inner `Write`
 fn write(raw: &mut dyn std::io::Write, state: &mut crate::adapter::StripBytes, buf: &[u8]) -> std::io::Result<usize>
 ```
 
-*Defined in [`anstream-0.6.21/src/strip.rs:118-138`](../../../.source_1765521767/anstream-0.6.21/src/strip.rs#L118-L138)*
+*Defined in [`anstream-0.6.21/src/strip.rs:118-138`](../../../.source_1765633015/anstream-0.6.21/src/strip.rs#L118-L138)*
 
 ### `write_all`
 
@@ -121,7 +121,7 @@ fn write(raw: &mut dyn std::io::Write, state: &mut crate::adapter::StripBytes, b
 fn write_all(raw: &mut dyn std::io::Write, state: &mut crate::adapter::StripBytes, buf: &[u8]) -> std::io::Result<()>
 ```
 
-*Defined in [`anstream-0.6.21/src/strip.rs:140-149`](../../../.source_1765521767/anstream-0.6.21/src/strip.rs#L140-L149)*
+*Defined in [`anstream-0.6.21/src/strip.rs:140-149`](../../../.source_1765633015/anstream-0.6.21/src/strip.rs#L140-L149)*
 
 ### `write_fmt`
 
@@ -129,7 +129,7 @@ fn write_all(raw: &mut dyn std::io::Write, state: &mut crate::adapter::StripByte
 fn write_fmt(raw: &mut dyn std::io::Write, state: &mut crate::adapter::StripBytes, args: std::fmt::Arguments<'_>) -> std::io::Result<()>
 ```
 
-*Defined in [`anstream-0.6.21/src/strip.rs:151-158`](../../../.source_1765521767/anstream-0.6.21/src/strip.rs#L151-L158)*
+*Defined in [`anstream-0.6.21/src/strip.rs:151-158`](../../../.source_1765633015/anstream-0.6.21/src/strip.rs#L151-L158)*
 
 ### `offset_to`
 
@@ -137,5 +137,5 @@ fn write_fmt(raw: &mut dyn std::io::Write, state: &mut crate::adapter::StripByte
 fn offset_to(total: &[u8], subslice: &[u8]) -> usize
 ```
 
-*Defined in [`anstream-0.6.21/src/strip.rs:161-170`](../../../.source_1765521767/anstream-0.6.21/src/strip.rs#L161-L170)*
+*Defined in [`anstream-0.6.21/src/strip.rs:161-170`](../../../.source_1765633015/anstream-0.6.21/src/strip.rs#L161-L170)*
 

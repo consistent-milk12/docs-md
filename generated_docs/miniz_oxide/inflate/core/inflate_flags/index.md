@@ -25,7 +25,7 @@ These define bits for a bitmask argument.
 const TINFL_FLAG_PARSE_ZLIB_HEADER: u32 = 1u32;
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/core.rs:127`](../../../../../.source_1765521767/miniz_oxide-0.8.9/src/inflate/core.rs#L127)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/core.rs:127`](../../../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/core.rs#L127)*
 
 Should we try to parse a zlib header?
 
@@ -37,7 +37,7 @@ RFC1950 zlib wrapper around the deflate stream.
 const TINFL_FLAG_HAS_MORE_INPUT: u32 = 2u32;
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/core.rs:139`](../../../../../.source_1765521767/miniz_oxide-0.8.9/src/inflate/core.rs#L139)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/core.rs:139`](../../../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/core.rs#L139)*
 
 There will be more input that hasn't been given to the decompressor yet.
 
@@ -55,7 +55,7 @@ suggesting the stream is corrupt, since you claimed it was all there.
 const TINFL_FLAG_USING_NON_WRAPPING_OUTPUT_BUF: u32 = 4u32;
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/core.rs:142`](../../../../../.source_1765521767/miniz_oxide-0.8.9/src/inflate/core.rs#L142)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/core.rs:142`](../../../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/core.rs#L142)*
 
 The output buffer should not wrap around.
 
@@ -64,7 +64,7 @@ The output buffer should not wrap around.
 const TINFL_FLAG_COMPUTE_ADLER32: u32 = 8u32;
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/core.rs:150`](../../../../../.source_1765521767/miniz_oxide-0.8.9/src/inflate/core.rs#L150)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/core.rs:150`](../../../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/core.rs#L150)*
 
 Calculate the adler32 checksum of the output data even if we're not inflating a zlib stream.
 
@@ -78,7 +78,7 @@ checksum.
 const TINFL_FLAG_IGNORE_ADLER32: u32 = 64u32;
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/core.rs:162`](../../../../../.source_1765521767/miniz_oxide-0.8.9/src/inflate/core.rs#L162)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/core.rs:162`](../../../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/core.rs#L162)*
 
 Ignore adler32 checksum even if we are inflating a zlib stream.
 

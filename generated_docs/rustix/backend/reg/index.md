@@ -76,7 +76,7 @@ instructions.
 struct Opaque(c::c_void);
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:49`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/reg.rs#L49)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:49`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/reg.rs#L49)*
 
 To preserve provenance, syscall arguments and return values are passed as
 pointer types. They need a type to point to, so we define a custom private
@@ -132,7 +132,7 @@ type, to prevent it from being used for anything else.
 struct A0(());
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:52`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/reg.rs#L52)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:52`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/reg.rs#L52)*
 
 #### Trait Implementations
 
@@ -188,7 +188,7 @@ struct A0(());
 struct A1(());
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:53`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/reg.rs#L53)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:53`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/reg.rs#L53)*
 
 #### Trait Implementations
 
@@ -244,7 +244,7 @@ struct A1(());
 struct A2(());
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:54`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/reg.rs#L54)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:54`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/reg.rs#L54)*
 
 #### Trait Implementations
 
@@ -300,7 +300,7 @@ struct A2(());
 struct A3(());
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:55`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/reg.rs#L55)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:55`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/reg.rs#L55)*
 
 #### Trait Implementations
 
@@ -356,7 +356,7 @@ struct A3(());
 struct A4(());
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:56`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/reg.rs#L56)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:56`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/reg.rs#L56)*
 
 #### Trait Implementations
 
@@ -412,7 +412,7 @@ struct A4(());
 struct A5(());
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:57`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/reg.rs#L57)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:57`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/reg.rs#L57)*
 
 #### Trait Implementations
 
@@ -468,7 +468,7 @@ struct A5(());
 struct R0(());
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:76`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/reg.rs#L76)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:76`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/reg.rs#L76)*
 
 #### Trait Implementations
 
@@ -527,7 +527,7 @@ struct ArgReg<'a, Num: ArgNumber> {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:89-92`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/reg.rs#L89-L92)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:89-92`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/reg.rs#L89-L92)*
 
 Syscall arguments use register-sized types. We use a newtype to
 discourage accidental misuse of the raw integer values.
@@ -595,7 +595,7 @@ struct RetReg<Num: RetNumber> {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:108-111`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/reg.rs#L108-L111)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:108-111`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/reg.rs#L108-L111)*
 
 Syscall return values use register-sized types. We use a newtype to
 discourage accidental misuse of the raw integer values.
@@ -686,7 +686,7 @@ struct SyscallNumber<'a> {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:208-211`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/reg.rs#L208-L211)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:208-211`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/reg.rs#L208-L211)*
 
 #### Trait Implementations
 
@@ -746,7 +746,7 @@ struct SyscallNumber<'a> {
 trait ToAsm: private::Sealed { ... }
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:20-30`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/reg.rs#L20-L30)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:20-30`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/reg.rs#L20-L30)*
 
 #### Required Methods
 
@@ -765,7 +765,7 @@ trait ToAsm: private::Sealed { ... }
 trait FromAsm: private::Sealed { ... }
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:32-42`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/reg.rs#L32-L42)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:32-42`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/reg.rs#L32-L42)*
 
 #### Required Methods
 
@@ -783,7 +783,7 @@ trait FromAsm: private::Sealed { ... }
 trait ArgNumber: private::Sealed { ... }
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:63`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/reg.rs#L63)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:63`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/reg.rs#L63)*
 
 #### Implementors
 
@@ -800,7 +800,7 @@ trait ArgNumber: private::Sealed { ... }
 trait RetNumber: private::Sealed { ... }
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:78`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/reg.rs#L78)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:78`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/reg.rs#L78)*
 
 #### Implementors
 
@@ -814,7 +814,7 @@ trait RetNumber: private::Sealed { ... }
 fn raw_arg<'a, Num: ArgNumber>(raw: *mut Opaque) -> ArgReg<'a, Num>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:222-227`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/reg.rs#L222-L227)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:222-227`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/reg.rs#L222-L227)*
 
 Encode a system call argument as an `ArgReg`.
 
@@ -824,7 +824,7 @@ Encode a system call argument as an `ArgReg`.
 const fn nr<'a>(nr: u32) -> SyscallNumber<'a>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:231-236`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/reg.rs#L231-L236)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:231-236`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/reg.rs#L231-L236)*
 
 Encode a system call number (a `__NR_*` constant) as a `SyscallNumber`.
 

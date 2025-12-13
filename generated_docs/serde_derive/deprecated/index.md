@@ -20,7 +20,7 @@
 fn allow_deprecated(input: &syn::DeriveInput) -> Option<proc_macro2::TokenStream>
 ```
 
-*Defined in [`serde_derive-1.0.228/src/deprecated.rs:4-10`](../../../.source_1765521767/serde_derive-1.0.228/src/deprecated.rs#L4-L10)*
+*Defined in [`serde_derive-1.0.228/src/deprecated.rs:4-10`](../../../.source_1765633015/serde_derive-1.0.228/src/deprecated.rs#L4-L10)*
 
 ### `should_allow_deprecated`
 
@@ -28,7 +28,7 @@ fn allow_deprecated(input: &syn::DeriveInput) -> Option<proc_macro2::TokenStream
 fn should_allow_deprecated(input: &syn::DeriveInput) -> bool
 ```
 
-*Defined in [`serde_derive-1.0.228/src/deprecated.rs:18-30`](../../../.source_1765521767/serde_derive-1.0.228/src/deprecated.rs#L18-L30)*
+*Defined in [`serde_derive-1.0.228/src/deprecated.rs:18-30`](../../../.source_1765633015/serde_derive-1.0.228/src/deprecated.rs#L18-L30)*
 
 Determine if an `#[allow(deprecated)]` should be added to the derived impl.
 
@@ -43,7 +43,7 @@ one of:
 fn contains_deprecated(attrs: &[syn::Attribute]) -> bool
 ```
 
-*Defined in [`serde_derive-1.0.228/src/deprecated.rs:35-56`](../../../.source_1765521767/serde_derive-1.0.228/src/deprecated.rs#L35-L56)*
+*Defined in [`serde_derive-1.0.228/src/deprecated.rs:35-56`](../../../.source_1765633015/serde_derive-1.0.228/src/deprecated.rs#L35-L56)*
 
 Check whether the given attributes contains one of:
   - `#[deprecated]`

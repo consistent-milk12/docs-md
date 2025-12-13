@@ -51,7 +51,7 @@
 struct KindFormatter;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:36`](../../../../.source_1765521767/clap_builder-4.5.53/src/error/format.rs#L36)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:36`](../../../../.source_1765633015/clap_builder-4.5.53/src/error/format.rs#L36)*
 
 Report [`ErrorKind`](../kind/index.md)
 
@@ -118,7 +118,7 @@ overhead for [`RichFormatter`](#richformatter).
 struct RichFormatter;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:62`](../../../../.source_1765521767/clap_builder-4.5.53/src/error/format.rs#L62)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:62`](../../../../.source_1765633015/clap_builder-4.5.53/src/error/format.rs#L62)*
 
 Richly formatted error context
 
@@ -178,7 +178,7 @@ This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lan
 struct Escape<'s>(&'s str);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:495`](../../../../.source_1765521767/clap_builder-4.5.53/src/error/format.rs#L495)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:495`](../../../../.source_1765633015/clap_builder-4.5.53/src/error/format.rs#L495)*
 
 #### Trait Implementations
 
@@ -240,7 +240,7 @@ struct Escape<'s>(&'s str);
 trait ErrorFormatter: Sized { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:20-23`](../../../../.source_1765521767/clap_builder-4.5.53/src/error/format.rs#L20-L23)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:20-23`](../../../../.source_1765633015/clap_builder-4.5.53/src/error/format.rs#L20-L23)*
 
 Defines how to format an error for displaying to the user
 
@@ -263,7 +263,7 @@ Defines how to format an error for displaying to the user
 fn start_error(styled: &mut crate::builder::StyledStr, styles: &crate::builder::Styles)
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:131-135`](../../../../.source_1765521767/clap_builder-4.5.53/src/error/format.rs#L131-L135)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:131-135`](../../../../.source_1765633015/clap_builder-4.5.53/src/error/format.rs#L131-L135)*
 
 ### `write_dynamic_context`
 
@@ -271,7 +271,7 @@ fn start_error(styled: &mut crate::builder::StyledStr, styles: &crate::builder::
 fn write_dynamic_context(error: &crate::error::Error, styled: &mut crate::builder::StyledStr, styles: &crate::builder::Styles) -> bool
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:139-370`](../../../../.source_1765521767/clap_builder-4.5.53/src/error/format.rs#L139-L370)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:139-370`](../../../../.source_1765633015/clap_builder-4.5.53/src/error/format.rs#L139-L370)*
 
 ### `write_values_list`
 
@@ -279,7 +279,7 @@ fn write_dynamic_context(error: &crate::error::Error, styled: &mut crate::builde
 fn write_values_list(list_name: &'static str, styled: &mut crate::builder::StyledStr, valid: &anstyle::Style, possible_values: Option<&crate::error::ContextValue>)
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:373-394`](../../../../.source_1765521767/clap_builder-4.5.53/src/error/format.rs#L373-L394)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:373-394`](../../../../.source_1765633015/clap_builder-4.5.53/src/error/format.rs#L373-L394)*
 
 ### `format_error_message`
 
@@ -287,7 +287,7 @@ fn write_values_list(list_name: &'static str, styled: &mut crate::builder::Style
 fn format_error_message(message: &str, styles: &crate::builder::Styles, cmd: Option<&crate::builder::Command>, usage: Option<&crate::builder::StyledStr>) -> crate::builder::StyledStr
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:396-412`](../../../../.source_1765521767/clap_builder-4.5.53/src/error/format.rs#L396-L412)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:396-412`](../../../../.source_1765633015/clap_builder-4.5.53/src/error/format.rs#L396-L412)*
 
 ### `singular_or_plural`
 
@@ -295,7 +295,7 @@ fn format_error_message(message: &str, styles: &crate::builder::Styles, cmd: Opt
 fn singular_or_plural(n: usize) -> &'static str
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:415-421`](../../../../.source_1765521767/clap_builder-4.5.53/src/error/format.rs#L415-L421)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:415-421`](../../../../.source_1765633015/clap_builder-4.5.53/src/error/format.rs#L415-L421)*
 
 Returns the singular or plural form on the verb to be based on the argument's value.
 
@@ -305,7 +305,7 @@ Returns the singular or plural form on the verb to be based on the argument's va
 fn put_usage(styled: &mut crate::builder::StyledStr, usage: &crate::builder::StyledStr)
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:423-426`](../../../../.source_1765521767/clap_builder-4.5.53/src/error/format.rs#L423-L426)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:423-426`](../../../../.source_1765633015/clap_builder-4.5.53/src/error/format.rs#L423-L426)*
 
 ### `get_help_flag`
 
@@ -313,7 +313,7 @@ fn put_usage(styled: &mut crate::builder::StyledStr, usage: &crate::builder::Sty
 fn get_help_flag(cmd: &crate::builder::Command) -> Option<std::borrow::Cow<'static, str>>
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:428-438`](../../../../.source_1765521767/clap_builder-4.5.53/src/error/format.rs#L428-L438)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:428-438`](../../../../.source_1765633015/clap_builder-4.5.53/src/error/format.rs#L428-L438)*
 
 ### `get_user_help_flag`
 
@@ -321,7 +321,7 @@ fn get_help_flag(cmd: &crate::builder::Command) -> Option<std::borrow::Cow<'stat
 fn get_user_help_flag(cmd: &crate::builder::Command) -> Option<String>
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:440-454`](../../../../.source_1765521767/clap_builder-4.5.53/src/error/format.rs#L440-L454)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:440-454`](../../../../.source_1765633015/clap_builder-4.5.53/src/error/format.rs#L440-L454)*
 
 ### `try_help`
 
@@ -329,7 +329,7 @@ fn get_user_help_flag(cmd: &crate::builder::Command) -> Option<String>
 fn try_help(styled: &mut crate::builder::StyledStr, styles: &crate::builder::Styles, help: Option<&str>)
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:456-467`](../../../../.source_1765521767/clap_builder-4.5.53/src/error/format.rs#L456-L467)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:456-467`](../../../../.source_1765633015/clap_builder-4.5.53/src/error/format.rs#L456-L467)*
 
 ### `did_you_mean`
 
@@ -337,5 +337,5 @@ fn try_help(styled: &mut crate::builder::StyledStr, styles: &crate::builder::Sty
 fn did_you_mean(styled: &mut crate::builder::StyledStr, styles: &crate::builder::Styles, context: &str, possibles: &crate::error::ContextValue)
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:470-493`](../../../../.source_1765521767/clap_builder-4.5.53/src/error/format.rs#L470-L493)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:470-493`](../../../../.source_1765633015/clap_builder-4.5.53/src/error/format.rs#L470-L493)*
 

@@ -34,7 +34,7 @@ struct Dependency {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/dependency.rs:52-85`](../../../.source_1765521767/cargo_metadata-0.23.1/src/dependency.rs#L52-L85)*
+*Defined in [`cargo_metadata-0.23.1/src/dependency.rs:52-85`](../../../.source_1765633015/cargo_metadata-0.23.1/src/dependency.rs#L52-L85)*
 
 A dependency of the main crate
 
@@ -190,7 +190,7 @@ enum DependencyKind {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/dependency.rs:15-29`](../../../.source_1765521767/cargo_metadata-0.23.1/src/dependency.rs#L15-L29)*
+*Defined in [`cargo_metadata-0.23.1/src/dependency.rs:15-29`](../../../.source_1765633015/cargo_metadata-0.23.1/src/dependency.rs#L15-L29)*
 
 Dependencies can come in three kinds
 
@@ -318,7 +318,7 @@ where
     D: Deserializer<'de>
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/dependency.rs:40-45`](../../../.source_1765521767/cargo_metadata-0.23.1/src/dependency.rs#L40-L45)*
+*Defined in [`cargo_metadata-0.23.1/src/dependency.rs:40-45`](../../../.source_1765633015/cargo_metadata-0.23.1/src/dependency.rs#L40-L45)*
 
 The `kind` can be `null`, which is interpreted as the default - `Normal`.
 

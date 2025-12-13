@@ -24,7 +24,7 @@ struct RegexSet {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/string.rs:132-135`](../../../../.source_1765521767/regex-1.12.2/src/regexset/string.rs#L132-L135)*
+*Defined in [`regex-1.12.2/src/regexset/string.rs:132-135`](../../../../.source_1765633015/regex-1.12.2/src/regexset/string.rs#L132-L135)*
 
 Match multiple, possibly overlapping, regexes in a single search.
 
@@ -659,7 +659,7 @@ alternate isn't always obvious to reason about.
 struct SetMatches(regex_automata::PatternSet);
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/string.rs:459`](../../../../.source_1765521767/regex-1.12.2/src/regexset/string.rs#L459)*
+*Defined in [`regex-1.12.2/src/regexset/string.rs:459`](../../../../.source_1765633015/regex-1.12.2/src/regexset/string.rs#L459)*
 
 A set of matches returned by a regex set.
 
@@ -994,7 +994,7 @@ struct SetMatchesIntoIter {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/string.rs:652-655`](../../../../.source_1765521767/regex-1.12.2/src/regexset/string.rs#L652-L655)*
+*Defined in [`regex-1.12.2/src/regexset/string.rs:652-655`](../../../../.source_1765633015/regex-1.12.2/src/regexset/string.rs#L652-L655)*
 
 An owned iterator over the set of matches from a regex set.
 
@@ -1100,7 +1100,7 @@ assert_eq!(matches, vec![0, 1, 3]);
 struct SetMatchesIter<'a>(regex_automata::PatternSetIter<'a>);
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/string.rs:698`](../../../../.source_1765521767/regex-1.12.2/src/regexset/string.rs#L698)*
+*Defined in [`regex-1.12.2/src/regexset/string.rs:698`](../../../../.source_1765633015/regex-1.12.2/src/regexset/string.rs#L698)*
 
 A borrowed iterator over the set of matches from a regex set.
 

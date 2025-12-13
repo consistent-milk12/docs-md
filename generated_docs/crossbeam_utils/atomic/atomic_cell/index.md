@@ -47,7 +47,7 @@ struct AtomicCell<T> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:30-45`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L30-L45)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:30-45`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L30-L45)*
 
 A thread-safe mutable memory location.
 
@@ -343,7 +343,7 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 struct AtomicUnit;
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:1015`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L1015)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:1015`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L1015)*
 
 An atomic `()`.
 
@@ -411,7 +411,7 @@ All operations are noops.
 const fn can_transmute<A, B>() -> bool
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:965-968`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L965-L968)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:965-968`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L965-L968)*
 
 Returns `true` if values of type `A` can be transmuted into values of type `B`.
 
@@ -421,7 +421,7 @@ Returns `true` if values of type `A` can be transmuted into values of type `B`.
 fn lock(addr: usize) -> &'static super::seq_lock::SeqLock
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:980-1010`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L980-L1010)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:980-1010`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L980-L1010)*
 
 Returns a reference to the global lock associated with the `AtomicCell` at address `addr`.
 
@@ -438,7 +438,7 @@ scalability.
 const fn atomic_is_lock_free<T>() -> bool
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:1040-1042`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L1040-L1042)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:1040-1042`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L1040-L1042)*
 
 Returns `true` if operations on `AtomicCell<T>` are lock-free.
 
@@ -450,7 +450,7 @@ where
     T: Copy
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:1048-1084`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L1048-L1084)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:1048-1084`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L1048-L1084)*
 
 Atomically reads data from `src`.
 
@@ -463,7 +463,7 @@ global lock otherwise.
 unsafe fn atomic_store<T>(dst: *mut T, val: T)
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:1090-1103`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L1090-L1103)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:1090-1103`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L1090-L1103)*
 
 Atomically writes `val` to `dst`.
 
@@ -476,7 +476,7 @@ global lock otherwise.
 unsafe fn atomic_swap<T>(dst: *mut T, val: T) -> T
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:1109-1123`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L1109-L1123)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:1109-1123`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L1109-L1123)*
 
 Atomically swaps data at `dst` with `val`.
 
@@ -491,7 +491,7 @@ where
     T: Copy + Eq
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:1133-1182`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L1133-L1182)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:1133-1182`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L1133-L1182)*
 
 Atomically compares data at `dst` to `current` and, if equal byte-for-byte, exchanges data at
 `dst` with `new`.
@@ -505,9 +505,9 @@ global lock otherwise.
 
 ### `atomic!`
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:321-349`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L321-L349)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:321-349`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L321-L349)*
 
 ### `impl_arithmetic!`
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:351-778`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L351-L778)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:351-778`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L351-L778)*
 

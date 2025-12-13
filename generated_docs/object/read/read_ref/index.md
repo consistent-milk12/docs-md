@@ -19,7 +19,7 @@
 trait ReadRef<'a>: Clone + Copy { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_ref.rs:49-124`](../../../../.source_1765521767/object-0.37.3/src/read/read_ref.rs#L49-L124)*
+*Defined in [`object-0.37.3/src/read/read_ref.rs:49-124`](../../../../.source_1765633015/object-0.37.3/src/read/read_ref.rs#L49-L124)*
 
 A trait for reading references to [`Pod`](../../index.md) types from a block of data.
 
@@ -106,5 +106,5 @@ the size that was read.
 type Result<T> = result::Result<T, ()>;
 ```
 
-*Defined in [`object-0.37.3/src/read/read_ref.rs:9`](../../../../.source_1765521767/object-0.37.3/src/read/read_ref.rs#L9)*
+*Defined in [`object-0.37.3/src/read/read_ref.rs:9`](../../../../.source_1765633015/object-0.37.3/src/read/read_ref.rs#L9)*
 

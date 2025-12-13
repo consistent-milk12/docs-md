@@ -14,5 +14,5 @@
 
 ### `fmt_primitives!`
 
-*Defined in [`serde_core-1.0.228/src/ser/fmt.rs:10-18`](../../../../.source_1765521767/serde_core-1.0.228/src/ser/fmt.rs#L10-L18)*
+*Defined in [`serde_core-1.0.228/src/ser/fmt.rs:10-18`](../../../../.source_1765633015/serde_core-1.0.228/src/ser/fmt.rs#L10-L18)*
 

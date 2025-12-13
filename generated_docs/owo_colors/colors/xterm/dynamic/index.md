@@ -275,7 +275,7 @@ enum XtermColors {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../../.source_1765521767/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 Available Xterm colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)

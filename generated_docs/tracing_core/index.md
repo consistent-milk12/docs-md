@@ -192,7 +192,7 @@ struct Dispatch {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:149-151`](../../.source_1765521767/tracing-core-0.1.35/src/dispatcher.rs#L149-L151)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:149-151`](../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L149-L151)*
 
 `Dispatch` trace data to a [`Subscriber`](subscriber/index.md).
 
@@ -562,7 +562,7 @@ struct Event<'a> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/event.rs:23-27`](../../.source_1765521767/tracing-core-0.1.35/src/event.rs#L23-L27)*
+*Defined in [`tracing-core-0.1.35/src/event.rs:23-27`](../../.source_1765633015/tracing-core-0.1.35/src/event.rs#L23-L27)*
 
 `Event`s represent single points in time where something occurred during the
 execution of a program.
@@ -705,7 +705,7 @@ struct Field {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:134-137`](../../.source_1765521767/tracing-core-0.1.35/src/field.rs#L134-L137)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:134-137`](../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L134-L137)*
 
 An opaque key allowing _O_(1) access to a field in a `Span`'s key-value
 data.
@@ -826,7 +826,7 @@ and use the key for that name for all other accesses.
 struct Level(LevelInner);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:221`](../../.source_1765521767/tracing-core-0.1.35/src/metadata.rs#L221)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:221`](../../.source_1765633015/tracing-core-0.1.35/src/metadata.rs#L221)*
 
 Describes the level of verbosity of a span or event.
 
@@ -1090,7 +1090,7 @@ recorded in.
 struct LevelFilter(Option<Level>);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:239`](../../.source_1765521767/tracing-core-0.1.35/src/metadata.rs#L239)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:239`](../../.source_1765633015/tracing-core-0.1.35/src/metadata.rs#L239)*
 
 A filter comparable to a verbosity [`Level`](metadata/index.md).
 
@@ -1299,7 +1299,7 @@ struct Metadata<'a> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:57-86`](../../.source_1765521767/tracing-core-0.1.35/src/metadata.rs#L57-L86)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:57-86`](../../.source_1765633015/tracing-core-0.1.35/src/metadata.rs#L57-L86)*
 
 Metadata describing a [`span`](span/index.md) or [`event`](event/index.md).
 
@@ -1512,7 +1512,7 @@ of `Metadata`'s other fields is checked in debug builds.
 struct Kind(u8);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:90`](../../.source_1765521767/tracing-core-0.1.35/src/metadata.rs#L90)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:90`](../../.source_1765633015/tracing-core-0.1.35/src/metadata.rs#L90)*
 
 Indicates whether the callsite is a span or event.
 
@@ -1630,7 +1630,7 @@ Indicates whether the callsite is a span or event.
 struct Interest(InterestKind);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/subscriber.rs:589`](../../.source_1765521767/tracing-core-0.1.35/src/subscriber.rs#L589)*
+*Defined in [`tracing-core-0.1.35/src/subscriber.rs:589`](../../.source_1765633015/tracing-core-0.1.35/src/subscriber.rs#L589)*
 
 Indicates a [`Subscriber`](subscriber/index.md)'s interest in a particular callsite.
 
@@ -1785,7 +1785,7 @@ in order to determine whether that span should be enabled or disabled.
 trait Callsite: Sync { ... }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/callsite.rs:125-170`](../../.source_1765521767/tracing-core-0.1.35/src/callsite.rs#L125-L170)*
+*Defined in [`tracing-core-0.1.35/src/callsite.rs:125-170`](../../.source_1765633015/tracing-core-0.1.35/src/callsite.rs#L125-L170)*
 
 Trait implemented by callsites.
 
@@ -1815,7 +1815,7 @@ callsites.
 trait Subscriber: 'static { ... }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/subscriber.rs:80-499`](../../.source_1765521767/tracing-core-0.1.35/src/subscriber.rs#L80-L499)*
+*Defined in [`tracing-core-0.1.35/src/subscriber.rs:80-499`](../../.source_1765633015/tracing-core-0.1.35/src/subscriber.rs#L80-L499)*
 
 Trait representing the functions required to collect trace data.
 
@@ -1968,7 +1968,7 @@ The following methods are likely of interest:
 
 ### `identify_callsite!`
 
-*Defined in [`tracing-core-0.1.35/src/lib.rs:192-196`](../../.source_1765521767/tracing-core-0.1.35/src/lib.rs#L192-L196)*
+*Defined in [`tracing-core-0.1.35/src/lib.rs:192-196`](../../.source_1765633015/tracing-core-0.1.35/src/lib.rs#L192-L196)*
 
 Statically constructs an [`Identifier`](callsite/index.md) for the provided [`Callsite`](callsite/index.md).
 
@@ -2000,7 +2000,7 @@ static CALLSITE_ID: callsite::Identifier = identify_callsite!(&CALLSITE);
 
 ### `metadata!`
 
-*Defined in [`tracing-core-0.1.35/src/lib.rs:230-267`](../../.source_1765521767/tracing-core-0.1.35/src/lib.rs#L230-L267)*
+*Defined in [`tracing-core-0.1.35/src/lib.rs:230-267`](../../.source_1765633015/tracing-core-0.1.35/src/lib.rs#L230-L267)*
 
 Statically constructs new span [`metadata`](metadata/index.md).
 

@@ -233,7 +233,7 @@ Thanks for readingme!
 struct CompactString(repr::Repr);
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:128`](../../.source_1765521767/compact_str-0.9.0/src/lib.rs#L128)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:128`](../../.source_1765633015/compact_str-0.9.0/src/lib.rs#L128)*
 
 A [`CompactString`](#compactstring) is a compact string type that can be used almost anywhere a
 [`String`](../cargo_platform/index.md) or [`str`](../clap_builder/builder/str/index.md) can be used.
@@ -2723,7 +2723,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 struct Utf16Error(());
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:2483`](../../.source_1765521767/compact_str-0.9.0/src/lib.rs#L2483)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:2483`](../../.source_1765633015/compact_str-0.9.0/src/lib.rs#L2483)*
 
 A possible error value when converting a [`CompactString`](#compactstring) from a UTF-16 byte slice.
 
@@ -2831,7 +2831,7 @@ struct Drain<'a> {
 }
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:2493-2498`](../../.source_1765521767/compact_str-0.9.0/src/lib.rs#L2493-L2498)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:2493-2498`](../../.source_1765633015/compact_str-0.9.0/src/lib.rs#L2493-L2498)*
 
 An iterator over the exacted data by `CompactString::drain()`.
 
@@ -2951,7 +2951,7 @@ An iterator over the exacted data by `CompactString::drain()`.
 struct ReserveError(());
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:2579`](../../.source_1765521767/compact_str-0.9.0/src/lib.rs#L2579)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:2579`](../../.source_1765633015/compact_str-0.9.0/src/lib.rs#L2579)*
 
 A possible error value if allocating or resizing a [`CompactString`](#compactstring) failed.
 
@@ -3052,7 +3052,7 @@ enum ToCompactStringError {
 }
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:2594-2599`](../../.source_1765521767/compact_str-0.9.0/src/lib.rs#L2594-L2599)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:2594-2599`](../../.source_1765633015/compact_str-0.9.0/src/lib.rs#L2594-L2599)*
 
 A possible error value if `ToCompactString::try_to_compact_string()` failed.
 
@@ -3162,7 +3162,7 @@ A possible error value if `ToCompactString::try_to_compact_string()` failed.
 trait CompactStringExt { ... }
 ```
 
-*Defined in [`compact_str-0.9.0/src/traits.rs:142-169`](../../.source_1765521767/compact_str-0.9.0/src/traits.rs#L142-L169)*
+*Defined in [`compact_str-0.9.0/src/traits.rs:142-169`](../../.source_1765633015/compact_str-0.9.0/src/traits.rs#L142-L169)*
 
 A trait that provides convenience methods for creating a [`CompactString`](#compactstring) from a collection of
 items. It is implemented for all types that can be converted into an iterator, and that iterator
@@ -3206,7 +3206,7 @@ assert_eq!(join, "☀️ ➡️ 🌕 ➡️ 🌑 ➡️ ☀️");
 trait ToCompactString { ... }
 ```
 
-*Defined in [`compact_str-0.9.0/src/traits.rs:16-49`](../../.source_1765521767/compact_str-0.9.0/src/traits.rs#L16-L49)*
+*Defined in [`compact_str-0.9.0/src/traits.rs:16-49`](../../.source_1765633015/compact_str-0.9.0/src/traits.rs#L16-L49)*
 
 A trait for converting a value to a `CompactString`.
 
@@ -3237,7 +3237,7 @@ implementation for free.
 trait UnwrapWithMsg { ... }
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:2635-2639`](../../.source_1765521767/compact_str-0.9.0/src/lib.rs#L2635-L2639)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:2635-2639`](../../.source_1765633015/compact_str-0.9.0/src/lib.rs#L2635-L2639)*
 
 #### Associated Types
 
@@ -3259,7 +3259,7 @@ trait UnwrapWithMsg { ... }
 fn convert_while_ascii(b: &[u8], convert: fn(&u8) -> u8) -> CompactString
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:1907-1947`](../../.source_1765521767/compact_str-0.9.0/src/lib.rs#L1907-L1947)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:1907-1947`](../../.source_1765633015/compact_str-0.9.0/src/lib.rs#L1907-L1947)*
 
 Converts the bytes while the bytes are still ascii.
 For better average performance, this is happens in chunks of `2*size_of::<usize>()`.
@@ -3273,13 +3273,13 @@ Copied from https://doc.rust-lang.org/nightly/src/alloc/str.rs.html#623-666
 fn unwrap_with_msg_fail<E: fmt::Display>(error: E) -> never
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:2657-2659`](../../.source_1765521767/compact_str-0.9.0/src/lib.rs#L2657-L2659)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:2657-2659`](../../.source_1765633015/compact_str-0.9.0/src/lib.rs#L2657-L2659)*
 
 ## Macros
 
 ### `format_compact!`
 
-*Defined in [`compact_str-0.9.0/src/macros.rs:28-32`](../../.source_1765521767/compact_str-0.9.0/src/macros.rs#L28-L32)*
+*Defined in [`compact_str-0.9.0/src/macros.rs:28-32`](../../.source_1765633015/compact_str-0.9.0/src/macros.rs#L28-L32)*
 
 Creates a `CompactString` using interpolation of runtime expressions.
 

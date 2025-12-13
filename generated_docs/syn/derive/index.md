@@ -48,7 +48,7 @@ struct DeriveInput {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:9-19`](../../../.source_1765521767/syn-2.0.111/src/derive.rs#L9-L19)*
+*Defined in [`syn-2.0.111/src/derive.rs:9-19`](../../../.source_1765633015/syn-2.0.111/src/derive.rs#L9-L19)*
 
 Data structure sent to a `proc_macro_derive` macro.
 
@@ -150,7 +150,7 @@ struct DataStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:37-45`](../../../.source_1765521767/syn-2.0.111/src/derive.rs#L37-L45)*
+*Defined in [`syn-2.0.111/src/derive.rs:37-45`](../../../.source_1765633015/syn-2.0.111/src/derive.rs#L37-L45)*
 
 A struct input to a `proc_macro_derive` macro.
 
@@ -242,7 +242,7 @@ struct DataEnum {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:47-55`](../../../.source_1765521767/syn-2.0.111/src/derive.rs#L47-L55)*
+*Defined in [`syn-2.0.111/src/derive.rs:47-55`](../../../.source_1765633015/syn-2.0.111/src/derive.rs#L47-L55)*
 
 An enum input to a `proc_macro_derive` macro.
 
@@ -333,7 +333,7 @@ struct DataUnion {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:57-64`](../../../.source_1765521767/syn-2.0.111/src/derive.rs#L57-L64)*
+*Defined in [`syn-2.0.111/src/derive.rs:57-64`](../../../.source_1765633015/syn-2.0.111/src/derive.rs#L57-L64)*
 
 An untagged union input to a `proc_macro_derive` macro.
 
@@ -427,7 +427,7 @@ enum Data {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:21-35`](../../../.source_1765521767/syn-2.0.111/src/derive.rs#L21-L35)*
+*Defined in [`syn-2.0.111/src/derive.rs:21-35`](../../../.source_1765633015/syn-2.0.111/src/derive.rs#L21-L35)*
 
 The storage of a struct, enum or union data structure.
 

@@ -32,7 +32,7 @@ struct Macro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/mac.rs:14-23`](../../../.source_1765521767/syn-2.0.111/src/mac.rs#L14-L23)*
+*Defined in [`syn-2.0.111/src/mac.rs:14-23`](../../../.source_1765633015/syn-2.0.111/src/mac.rs#L14-L23)*
 
 A macro invocation: `println!("{}", mac)`.
 
@@ -310,7 +310,7 @@ enum MacroDelimiter {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/mac.rs:25-33`](../../../.source_1765521767/syn-2.0.111/src/mac.rs#L25-L33)*
+*Defined in [`syn-2.0.111/src/mac.rs:25-33`](../../../.source_1765633015/syn-2.0.111/src/mac.rs#L25-L33)*
 
 A grouping token that surrounds a macro body: `m!(...)` or `m!{...}` or `m![...]`.
 
@@ -400,5 +400,5 @@ A grouping token that surrounds a macro body: `m!(...)` or `m!{...}` or `m![...]
 fn parse_delimiter(input: crate::parse::ParseStream<'_>) -> crate::error::Result<(MacroDelimiter, proc_macro2::TokenStream)>
 ```
 
-*Defined in [`syn-2.0.111/src/mac.rs:153-170`](../../../.source_1765521767/syn-2.0.111/src/mac.rs#L153-L170)*
+*Defined in [`syn-2.0.111/src/mac.rs:153-170`](../../../.source_1765633015/syn-2.0.111/src/mac.rs#L153-L170)*
 

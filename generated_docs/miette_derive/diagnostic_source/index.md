@@ -18,7 +18,7 @@
 struct DiagnosticSource(syn::Member);
 ```
 
-*Defined in [`miette-derive-7.6.0/src/diagnostic_source.rs:11`](../../../.source_1765521767/miette-derive-7.6.0/src/diagnostic_source.rs#L11)*
+*Defined in [`miette-derive-7.6.0/src/diagnostic_source.rs:11`](../../../.source_1765633015/miette-derive-7.6.0/src/diagnostic_source.rs#L11)*
 
 #### Implementations
 

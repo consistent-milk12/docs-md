@@ -25,7 +25,7 @@ frequencies to heuristically select the pair of bytes to search for.
 struct Finder(packedpair::Finder<core::arch::x86_64::__m128i>);
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/packedpair.rs:23`](../../../../../../.source_1765521767/memchr-2.7.6/src/arch/x86_64/sse2/packedpair.rs#L23)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/packedpair.rs:23`](../../../../../../.source_1765633015/memchr-2.7.6/src/arch/x86_64/sse2/packedpair.rs#L23)*
 
 A "packed pair" finder that uses 128-bit vector operations.
 

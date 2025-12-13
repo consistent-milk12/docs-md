@@ -18,7 +18,7 @@
 trait TermLike: Debug + Send + Sync { ... }
 ```
 
-*Defined in [`indicatif-0.18.3/src/term_like.rs:11-37`](../../../.source_1765521767/indicatif-0.18.3/src/term_like.rs#L11-L37)*
+*Defined in [`indicatif-0.18.3/src/term_like.rs:11-37`](../../../.source_1765633015/indicatif-0.18.3/src/term_like.rs#L11-L37)*
 
 A trait for minimal terminal-like behavior.
 

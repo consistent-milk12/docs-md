@@ -83,7 +83,7 @@ See `examples/is_stderr.rs` for a runnable example and compare the output of:
 struct Handle(imp::Handle);
 ```
 
-*Defined in [`same-file-1.0.6/src/lib.rs:109`](../../.source_1765521767/same-file-1.0.6/src/lib.rs#L109)*
+*Defined in [`same-file-1.0.6/src/lib.rs:109`](../../.source_1765633015/same-file-1.0.6/src/lib.rs#L109)*
 
 A handle to a file that can be tested for equality with other handles.
 
@@ -564,7 +564,7 @@ where
     Q: AsRef<std::path::Path>
 ```
 
-*Defined in [`same-file-1.0.6/src/lib.rs:370-376`](../../.source_1765521767/same-file-1.0.6/src/lib.rs#L370-L376)*
+*Defined in [`same-file-1.0.6/src/lib.rs:370-376`](../../.source_1765633015/same-file-1.0.6/src/lib.rs#L370-L376)*
 
 Returns true if the two file paths may correspond to the same file.
 

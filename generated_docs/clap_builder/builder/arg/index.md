@@ -48,7 +48,7 @@ struct Arg {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg.rs:60-92`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/arg.rs#L60-L92)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg.rs:60-92`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/arg.rs#L60-L92)*
 
 The abstract representation of a command line argument. Used to set all the options and
 relationships that define a valid argument for the program.
@@ -707,7 +707,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
   
 
-  [`Command`](../command/index.md) will [`panic!`](../../../miette/panic/index.md) if indexes are skipped (such as defining `index(1)` and `index(3)`
+  [`Command`](../../index.md) will [`panic!`](../../../miette/panic/index.md) if indexes are skipped (such as defining `index(1)` and `index(3)`
 
   but not `index(2)`, or a positional argument is defined as multiple and is not the highest
 
@@ -885,7 +885,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
   
 
-  **NOTE:** This setting will imply [`crate::Command::dont_collapse_args_in_usage`](../command/index.md#dont-collapse-args-in-usage) because failing
+  **NOTE:** This setting will imply [`crate::Command::dont_collapse_args_in_usage`](../../index.md#dont-collapse-args-in-usage) because failing
 
   to set this can make the usage string very confusing.
 
@@ -927,9 +927,9 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
   recommended with the exception of *also* using
 
-  [`crate::Command::args_conflicts_with_subcommands`](../command/index.md#args-conflicts-with-subcommands)
+  [`crate::Command::args_conflicts_with_subcommands`](../../index.md#args-conflicts-with-subcommands)
 
-  (or [`crate::Command::subcommand_negates_reqs`](../command/index.md#subcommand-negates-reqs) if the argument marked `Last` is also
+  (or [`crate::Command::subcommand_negates_reqs`](../../index.md#subcommand-negates-reqs) if the argument marked `Last` is also
 
   marked `Arg::required`)
 

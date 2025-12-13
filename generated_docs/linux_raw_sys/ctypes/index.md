@@ -47,7 +47,7 @@
 type c_char = c_schar;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:40`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/lib.rs#L40)*
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:40`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/lib.rs#L40)*
 
 ### `c_schar`
 
@@ -55,7 +55,7 @@ type c_char = c_schar;
 type c_schar = i8;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:49`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/lib.rs#L49)*
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:49`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/lib.rs#L49)*
 
 ### `c_uchar`
 
@@ -63,7 +63,7 @@ type c_schar = i8;
 type c_uchar = u8;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:50`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/lib.rs#L50)*
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:50`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/lib.rs#L50)*
 
 ### `c_short`
 
@@ -71,7 +71,7 @@ type c_uchar = u8;
 type c_short = i16;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:51`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/lib.rs#L51)*
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:51`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/lib.rs#L51)*
 
 ### `c_ushort`
 
@@ -79,7 +79,7 @@ type c_short = i16;
 type c_ushort = u16;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:52`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/lib.rs#L52)*
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:52`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/lib.rs#L52)*
 
 ### `c_int`
 
@@ -87,7 +87,7 @@ type c_ushort = u16;
 type c_int = i32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:53`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/lib.rs#L53)*
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:53`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/lib.rs#L53)*
 
 ### `c_uint`
 
@@ -95,7 +95,7 @@ type c_int = i32;
 type c_uint = u32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:54`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/lib.rs#L54)*
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:54`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/lib.rs#L54)*
 
 ### `c_long`
 
@@ -103,7 +103,7 @@ type c_uint = u32;
 type c_long = i64;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:60`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/lib.rs#L60)*
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:60`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/lib.rs#L60)*
 
 ### `c_ulong`
 
@@ -111,7 +111,7 @@ type c_long = i64;
 type c_ulong = u64;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:62`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/lib.rs#L62)*
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:62`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/lib.rs#L62)*
 
 ### `c_longlong`
 
@@ -119,7 +119,7 @@ type c_ulong = u64;
 type c_longlong = i64;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:63`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/lib.rs#L63)*
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:63`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/lib.rs#L63)*
 
 ### `c_ulonglong`
 
@@ -127,7 +127,7 @@ type c_longlong = i64;
 type c_ulonglong = u64;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:64`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/lib.rs#L64)*
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:64`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/lib.rs#L64)*
 
 ### `c_float`
 
@@ -135,7 +135,7 @@ type c_ulonglong = u64;
 type c_float = f32;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:65`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/lib.rs#L65)*
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:65`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/lib.rs#L65)*
 
 ### `c_double`
 
@@ -143,5 +143,5 @@ type c_float = f32;
 type c_double = f64;
 ```
 
-*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:66`](../../../.source_1765521767/linux-raw-sys-0.11.0/src/lib.rs#L66)*
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:66`](../../../.source_1765633015/linux-raw-sys-0.11.0/src/lib.rs#L66)*
 

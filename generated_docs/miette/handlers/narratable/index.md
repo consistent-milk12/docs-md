@@ -25,7 +25,7 @@ struct NarratableReportHandler {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/narratable.rs:15-19`](../../../../.source_1765521767/miette-7.6.0/src/handlers/narratable.rs#L15-L19)*
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:15-19`](../../../../.source_1765633015/miette-7.6.0/src/handlers/narratable.rs#L15-L19)*
 
 [`ReportHandler`](../../index.md) that renders plain text and avoids extraneous graphics.
 It's optimized for screen readers and braille users, but is also used in any
@@ -142,7 +142,7 @@ struct Line {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/narratable.rs:360-365`](../../../../.source_1765521767/miette-7.6.0/src/handlers/narratable.rs#L360-L365)*
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:360-365`](../../../../.source_1765633015/miette-7.6.0/src/handlers/narratable.rs#L360-L365)*
 
 #### Implementations
 
@@ -213,7 +213,7 @@ enum SpanAttach {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/narratable.rs:367-371`](../../../../.source_1765521767/miette-7.6.0/src/handlers/narratable.rs#L367-L371)*
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:367-371`](../../../../.source_1765633015/miette-7.6.0/src/handlers/narratable.rs#L367-L371)*
 
 #### Trait Implementations
 
@@ -269,7 +269,7 @@ enum SpanAttach {
 fn safe_get_column(text: &str, offset: usize, start: bool) -> usize
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/narratable.rs:375-392`](../../../../.source_1765521767/miette-7.6.0/src/handlers/narratable.rs#L375-L392)*
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:375-392`](../../../../.source_1765633015/miette-7.6.0/src/handlers/narratable.rs#L375-L392)*
 
 Returns column at offset, and nearest boundary if offset is in the middle of
 the character

@@ -244,7 +244,7 @@ struct Parser {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/parser.rs:230-233`](../../.source_1765521767/regex-syntax-0.8.8/src/parser.rs#L230-L233)*
+*Defined in [`regex-syntax-0.8.8/src/parser.rs:230-233`](../../.source_1765633015/regex-syntax-0.8.8/src/parser.rs#L230-L233)*
 
 A convenience parser for regular expressions.
 
@@ -357,7 +357,7 @@ struct ParserBuilder {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/parser.rs:25-28`](../../.source_1765521767/regex-syntax-0.8.8/src/parser.rs#L25-L28)*
+*Defined in [`regex-syntax-0.8.8/src/parser.rs:25-28`](../../.source_1765633015/regex-syntax-0.8.8/src/parser.rs#L25-L28)*
 
 A builder for a regular expression parser.
 
@@ -711,7 +711,7 @@ This type combines the builder options for both the [AST
 struct UnicodeWordError(());
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:52`](../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L52)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:52`](../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L52)*
 
 An error that occurs when the Unicode-aware `\w` class is unavailable.
 
@@ -788,7 +788,7 @@ enum Error {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/error.rs:16-23`](../../.source_1765521767/regex-syntax-0.8.8/src/error.rs#L16-L23)*
+*Defined in [`regex-syntax-0.8.8/src/error.rs:16-23`](../../.source_1765633015/regex-syntax-0.8.8/src/error.rs#L16-L23)*
 
 This error type encompasses any error that can be returned by this crate.
 
@@ -897,7 +897,7 @@ new variant is not considered a breaking change.
 fn parse(pattern: &str) -> Result<hir::Hir, crate::Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/parser.rs:13-15`](../../.source_1765521767/regex-syntax-0.8.8/src/parser.rs#L13-L15)*
+*Defined in [`regex-syntax-0.8.8/src/parser.rs:13-15`](../../.source_1765633015/regex-syntax-0.8.8/src/parser.rs#L13-L15)*
 
 A convenience routine for parsing a regex using default options.
 
@@ -916,7 +916,7 @@ you should use a [`ast::parse::Parser`](ast/parse/index.md).
 fn escape(text: &str) -> alloc::string::String
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/lib.rs:203-207`](../../.source_1765521767/regex-syntax-0.8.8/src/lib.rs#L203-L207)*
+*Defined in [`regex-syntax-0.8.8/src/lib.rs:203-207`](../../.source_1765633015/regex-syntax-0.8.8/src/lib.rs#L203-L207)*
 
 Escapes all regular expression meta characters in `text`.
 
@@ -929,7 +929,7 @@ expression.
 fn escape_into(text: &str, buf: &mut alloc::string::String)
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/lib.rs:213-221`](../../.source_1765521767/regex-syntax-0.8.8/src/lib.rs#L213-L221)*
+*Defined in [`regex-syntax-0.8.8/src/lib.rs:213-221`](../../.source_1765633015/regex-syntax-0.8.8/src/lib.rs#L213-L221)*
 
 Escapes all meta characters in `text` and writes the result into `buf`.
 
@@ -942,7 +942,7 @@ that are appended are safe to use as a literal in a regular expression.
 fn is_meta_character(c: char) -> bool
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/lib.rs:262-268`](../../.source_1765521767/regex-syntax-0.8.8/src/lib.rs#L262-L268)*
+*Defined in [`regex-syntax-0.8.8/src/lib.rs:262-268`](../../.source_1765633015/regex-syntax-0.8.8/src/lib.rs#L262-L268)*
 
 Returns true if the given character has significance in a regex.
 
@@ -990,7 +990,7 @@ assert!(!is_meta_character('e'));
 fn is_escapeable_character(c: char) -> bool
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/lib.rs:305-333`](../../.source_1765521767/regex-syntax-0.8.8/src/lib.rs#L305-L333)*
+*Defined in [`regex-syntax-0.8.8/src/lib.rs:305-333`](../../.source_1765633015/regex-syntax-0.8.8/src/lib.rs#L305-L333)*
 
 Returns true if the given character can be escaped in a regex.
 
@@ -1034,7 +1034,7 @@ assert!(!is_escapeable_character('e'));
 fn is_word_character(c: char) -> bool
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/lib.rs:350-352`](../../.source_1765521767/regex-syntax-0.8.8/src/lib.rs#L350-L352)*
+*Defined in [`regex-syntax-0.8.8/src/lib.rs:350-352`](../../.source_1765633015/regex-syntax-0.8.8/src/lib.rs#L350-L352)*
 
 Returns true if and only if the given character is a Unicode word
 character.
@@ -1058,7 +1058,7 @@ panics. For this reason, it is recommended that callers use
 fn try_is_word_character(c: char) -> core::result::Result<bool, UnicodeWordError>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/lib.rs:368-372`](../../.source_1765521767/regex-syntax-0.8.8/src/lib.rs#L368-L372)*
+*Defined in [`regex-syntax-0.8.8/src/lib.rs:368-372`](../../.source_1765633015/regex-syntax-0.8.8/src/lib.rs#L368-L372)*
 
 Returns true if and only if the given character is a Unicode word
 character.
@@ -1081,7 +1081,7 @@ returns an error.
 fn is_word_byte(c: u8) -> bool
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/lib.rs:378-383`](../../.source_1765521767/regex-syntax-0.8.8/src/lib.rs#L378-L383)*
+*Defined in [`regex-syntax-0.8.8/src/lib.rs:378-383`](../../.source_1765633015/regex-syntax-0.8.8/src/lib.rs#L378-L383)*
 
 Returns true if and only if the given character is an ASCII word character.
 

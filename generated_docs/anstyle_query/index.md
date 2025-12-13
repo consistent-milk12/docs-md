@@ -42,7 +42,7 @@ Low level terminal capability lookups
 fn clicolor() -> Option<bool>
 ```
 
-*Defined in [`anstyle-query-1.1.5/src/lib.rs:23-26`](../../.source_1765521767/anstyle-query-1.1.5/src/lib.rs#L23-L26)*
+*Defined in [`anstyle-query-1.1.5/src/lib.rs:23-26`](../../.source_1765633015/anstyle-query-1.1.5/src/lib.rs#L23-L26)*
 
 Check [CLICOLOR] status
 
@@ -62,7 +62,7 @@ See also:
 fn clicolor_force() -> bool
 ```
 
-*Defined in [`anstyle-query-1.1.5/src/lib.rs:34-36`](../../.source_1765521767/anstyle-query-1.1.5/src/lib.rs#L34-L36)*
+*Defined in [`anstyle-query-1.1.5/src/lib.rs:34-36`](../../.source_1765633015/anstyle-query-1.1.5/src/lib.rs#L34-L36)*
 
 Check [CLICOLOR_FORCE] status
 
@@ -75,7 +75,7 @@ ANSI colors should be enabled no matter what.
 fn no_color() -> bool
 ```
 
-*Defined in [`anstyle-query-1.1.5/src/lib.rs:49-51`](../../.source_1765521767/anstyle-query-1.1.5/src/lib.rs#L49-L51)*
+*Defined in [`anstyle-query-1.1.5/src/lib.rs:49-51`](../../.source_1765633015/anstyle-query-1.1.5/src/lib.rs#L49-L51)*
 
 Check [NO_COLOR] status
 
@@ -93,7 +93,7 @@ color.
 fn term_supports_color() -> bool
 ```
 
-*Defined in [`anstyle-query-1.1.5/src/lib.rs:55-82`](../../.source_1765521767/anstyle-query-1.1.5/src/lib.rs#L55-L82)*
+*Defined in [`anstyle-query-1.1.5/src/lib.rs:55-82`](../../.source_1765633015/anstyle-query-1.1.5/src/lib.rs#L55-L82)*
 
 Check `TERM` for color support
 
@@ -103,7 +103,7 @@ Check `TERM` for color support
 fn term_supports_ansi_color() -> bool
 ```
 
-*Defined in [`anstyle-query-1.1.5/src/lib.rs:89-109`](../../.source_1765521767/anstyle-query-1.1.5/src/lib.rs#L89-L109)*
+*Defined in [`anstyle-query-1.1.5/src/lib.rs:89-109`](../../.source_1765633015/anstyle-query-1.1.5/src/lib.rs#L89-L109)*
 
 Check `TERM` for ANSI color support
 
@@ -116,7 +116,7 @@ is opt-in, rather than assumed.
 fn truecolor() -> bool
 ```
 
-*Defined in [`anstyle-query-1.1.5/src/lib.rs:115-119`](../../.source_1765521767/anstyle-query-1.1.5/src/lib.rs#L115-L119)*
+*Defined in [`anstyle-query-1.1.5/src/lib.rs:115-119`](../../.source_1765633015/anstyle-query-1.1.5/src/lib.rs#L115-L119)*
 
 Check [COLORTERM] for truecolor support
 
@@ -127,7 +127,7 @@ Check [COLORTERM] for truecolor support
 fn is_ci() -> bool
 ```
 
-*Defined in [`anstyle-query-1.1.5/src/lib.rs:128-135`](../../.source_1765521767/anstyle-query-1.1.5/src/lib.rs#L128-L135)*
+*Defined in [`anstyle-query-1.1.5/src/lib.rs:128-135`](../../.source_1765633015/anstyle-query-1.1.5/src/lib.rs#L128-L135)*
 
 Report whether this is running in CI
 
@@ -142,5 +142,5 @@ cases.
 fn non_empty(var: Option<&std::ffi::OsStr>) -> bool
 ```
 
-*Defined in [`anstyle-query-1.1.5/src/lib.rs:137-139`](../../.source_1765521767/anstyle-query-1.1.5/src/lib.rs#L137-L139)*
+*Defined in [`anstyle-query-1.1.5/src/lib.rs:137-139`](../../.source_1765633015/anstyle-query-1.1.5/src/lib.rs#L137-L139)*
 

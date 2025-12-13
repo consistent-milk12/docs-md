@@ -24,7 +24,7 @@ Spans represent periods of time in the execution of a program.
 struct Id(core::num::NonZeroU64);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/span.rs:18`](../../../.source_1765521767/tracing-core-0.1.35/src/span.rs#L18)*
+*Defined in [`tracing-core-0.1.35/src/span.rs:18`](../../../.source_1765633015/tracing-core-0.1.35/src/span.rs#L18)*
 
 Identifies a span within the context of a subscriber.
 
@@ -156,7 +156,7 @@ struct Attributes<'a> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/span.rs:23-27`](../../../.source_1765521767/tracing-core-0.1.35/src/span.rs#L23-L27)*
+*Defined in [`tracing-core-0.1.35/src/span.rs:23-27`](../../../.source_1765633015/tracing-core-0.1.35/src/span.rs#L23-L27)*
 
 Attributes provided to a `Subscriber` describing a new span when it is
 created.
@@ -313,7 +313,7 @@ struct Record<'a> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/span.rs:31-33`](../../../.source_1765521767/tracing-core-0.1.35/src/span.rs#L31-L33)*
+*Defined in [`tracing-core-0.1.35/src/span.rs:31-33`](../../../.source_1765633015/tracing-core-0.1.35/src/span.rs#L31-L33)*
 
 A set of fields recorded by a span.
 
@@ -397,7 +397,7 @@ struct Current {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/span.rs:46-48`](../../../.source_1765521767/tracing-core-0.1.35/src/span.rs#L46-L48)*
+*Defined in [`tracing-core-0.1.35/src/span.rs:46-48`](../../../.source_1765633015/tracing-core-0.1.35/src/span.rs#L46-L48)*
 
 Indicates what [the `Subscriber` considers] the "current" span.
 
@@ -528,7 +528,7 @@ enum CurrentInner {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/span.rs:51-58`](../../../.source_1765521767/tracing-core-0.1.35/src/span.rs#L51-L58)*
+*Defined in [`tracing-core-0.1.35/src/span.rs:51-58`](../../../.source_1765633015/tracing-core-0.1.35/src/span.rs#L51-L58)*
 
 #### Trait Implementations
 

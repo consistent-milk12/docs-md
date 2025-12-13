@@ -26,7 +26,7 @@ struct PanicFuse<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:14-16`](../../../../.source_1765521767/rayon-1.11.0/src/iter/panic_fuse.rs#L14-L16)*
+*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:14-16`](../../../../.source_1765633015/rayon-1.11.0/src/iter/panic_fuse.rs#L14-L16)*
 
 `PanicFuse` is an adaptor that wraps an iterator with a fuse in case
 of panics, to halt all threads as soon as possible.
@@ -150,7 +150,7 @@ This struct is created by the `panic_fuse()` method on [`ParallelIterator`](../i
 struct Fuse<'a>(&'a std::sync::atomic::AtomicBool);
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:20`](../../../../.source_1765521767/rayon-1.11.0/src/iter/panic_fuse.rs#L20)*
+*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:20`](../../../../.source_1765633015/rayon-1.11.0/src/iter/panic_fuse.rs#L20)*
 
 Helper that sets a bool to `true` if dropped while unwinding.
 
@@ -247,7 +247,7 @@ struct PanicFuseProducer<'a, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:122-125`](../../../../.source_1765521767/rayon-1.11.0/src/iter/panic_fuse.rs#L122-L125)*
+*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:122-125`](../../../../.source_1765633015/rayon-1.11.0/src/iter/panic_fuse.rs#L122-L125)*
 
 #### Trait Implementations
 
@@ -334,7 +334,7 @@ struct PanicFuseIter<'a, I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:174-177`](../../../../.source_1765521767/rayon-1.11.0/src/iter/panic_fuse.rs#L174-L177)*
+*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:174-177`](../../../../.source_1765633015/rayon-1.11.0/src/iter/panic_fuse.rs#L174-L177)*
 
 #### Trait Implementations
 
@@ -429,7 +429,7 @@ struct PanicFuseConsumer<'a, C> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:223-226`](../../../../.source_1765521767/rayon-1.11.0/src/iter/panic_fuse.rs#L223-L226)*
+*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:223-226`](../../../../.source_1765633015/rayon-1.11.0/src/iter/panic_fuse.rs#L223-L226)*
 
 #### Trait Implementations
 
@@ -520,7 +520,7 @@ struct PanicFuseFolder<'a, C> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:285-288`](../../../../.source_1765521767/rayon-1.11.0/src/iter/panic_fuse.rs#L285-L288)*
+*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:285-288`](../../../../.source_1765633015/rayon-1.11.0/src/iter/panic_fuse.rs#L285-L288)*
 
 #### Trait Implementations
 
@@ -603,7 +603,7 @@ struct PanicFuseReducer<'a, C> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:326-329`](../../../../.source_1765521767/rayon-1.11.0/src/iter/panic_fuse.rs#L326-L329)*
+*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:326-329`](../../../../.source_1765633015/rayon-1.11.0/src/iter/panic_fuse.rs#L326-L329)*
 
 #### Trait Implementations
 

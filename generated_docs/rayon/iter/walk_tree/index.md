@@ -46,7 +46,7 @@ struct WalkTreePrefixProducer<'b, S, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:6-10`](../../../../.source_1765521767/rayon-1.11.0/src/iter/walk_tree.rs#L6-L10)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:6-10`](../../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L6-L10)*
 
 #### Trait Implementations
 
@@ -129,7 +129,7 @@ struct WalkTreePrefix<S, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:76-79`](../../../../.source_1765521767/rayon-1.11.0/src/iter/walk_tree.rs#L76-L79)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:76-79`](../../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L76-L79)*
 
 ParallelIterator for arbitrary tree-shaped patterns.
 Returned by the [`walk_tree_prefix()`](#walk-tree-prefix) function.
@@ -222,7 +222,7 @@ struct WalkTreePostfixProducer<'b, S, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:219-223`](../../../../.source_1765521767/rayon-1.11.0/src/iter/walk_tree.rs#L219-L223)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:219-223`](../../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L219-L223)*
 
 #### Trait Implementations
 
@@ -305,7 +305,7 @@ struct WalkTreePostfix<S, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:302-305`](../../../../.source_1765521767/rayon-1.11.0/src/iter/walk_tree.rs#L302-L305)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:302-305`](../../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L302-L305)*
 
 ParallelIterator for arbitrary tree-shaped patterns.
 Returned by the [`walk_tree_postfix()`](#walk-tree-postfix) function.
@@ -394,7 +394,7 @@ Returned by the [`walk_tree_postfix()`](#walk-tree-postfix) function.
 struct WalkTree<S, B>(WalkTreePostfix<S, B>);
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:459`](../../../../.source_1765521767/rayon-1.11.0/src/iter/walk_tree.rs#L459)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:459`](../../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L459)*
 
 ParallelIterator for arbitrary tree-shaped patterns.
 Returned by the [`walk_tree()`](#walk-tree) function.
@@ -489,7 +489,7 @@ where
     I: IntoIterator<Item = S, IntoIter: DoubleEndedIterator>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:204-214`](../../../../.source_1765521767/rayon-1.11.0/src/iter/walk_tree.rs#L204-L214)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:204-214`](../../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L204-L214)*
 
 Create a tree-like prefix parallel iterator from an initial root node.
 The `children_of` function should take a node and return an iterator over its child nodes.
@@ -604,7 +604,7 @@ where
     I: IntoIterator<Item = S>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:283-297`](../../../../.source_1765521767/rayon-1.11.0/src/iter/walk_tree.rs#L283-L297)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:283-297`](../../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L283-L297)*
 
 ### `split_vec`
 
@@ -612,7 +612,7 @@ where
 fn split_vec<T>(v: &mut Vec<T>) -> Option<Vec<T>>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:331-338`](../../../../.source_1765521767/rayon-1.11.0/src/iter/walk_tree.rs#L331-L338)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:331-338`](../../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L331-L338)*
 
 Divide given vector in two equally sized vectors.
 Return `None` if initial size is <=1.
@@ -628,7 +628,7 @@ where
     I: IntoIterator<Item = S>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:444-454`](../../../../.source_1765521767/rayon-1.11.0/src/iter/walk_tree.rs#L444-L454)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:444-454`](../../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L444-L454)*
 
 Create a tree like postfix parallel iterator from an initial root node.
 The `children_of` function should take a node and iterate on all of its child nodes.
@@ -745,7 +745,7 @@ where
     I: IntoIterator<Item = S, IntoIter: DoubleEndedIterator>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:497-508`](../../../../.source_1765521767/rayon-1.11.0/src/iter/walk_tree.rs#L497-L508)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:497-508`](../../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L497-L508)*
 
 Create a tree like parallel iterator from an initial root node.
 The `children_of` function should take a node and iterate on all of its child nodes.

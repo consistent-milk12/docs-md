@@ -102,7 +102,7 @@ struct Chars<'ch> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:467-469`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L467-L469)*
+*Defined in [`rayon-1.11.0/src/str.rs:467-469`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L467-L469)*
 
 Parallel iterator over the characters of a string
 
@@ -208,7 +208,7 @@ struct CharsProducer<'ch> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:471-473`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L471-L473)*
+*Defined in [`rayon-1.11.0/src/str.rs:471-473`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L471-L473)*
 
 #### Trait Implementations
 
@@ -286,7 +286,7 @@ struct CharIndices<'ch> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:511-513`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L511-L513)*
+*Defined in [`rayon-1.11.0/src/str.rs:511-513`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L511-L513)*
 
 Parallel iterator over the characters of a string, with their positions
 
@@ -393,7 +393,7 @@ struct CharIndicesProducer<'ch> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:515-518`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L515-L518)*
+*Defined in [`rayon-1.11.0/src/str.rs:515-518`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L515-L518)*
 
 #### Trait Implementations
 
@@ -471,7 +471,7 @@ struct Bytes<'ch> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:567-569`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L567-L569)*
+*Defined in [`rayon-1.11.0/src/str.rs:567-569`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L567-L569)*
 
 Parallel iterator over the bytes of a string
 
@@ -577,7 +577,7 @@ struct BytesProducer<'ch> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:571-573`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L571-L573)*
+*Defined in [`rayon-1.11.0/src/str.rs:571-573`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L571-L573)*
 
 #### Trait Implementations
 
@@ -655,7 +655,7 @@ struct EncodeUtf16<'ch> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:611-613`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L611-L613)*
+*Defined in [`rayon-1.11.0/src/str.rs:611-613`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L611-L613)*
 
 Parallel iterator over a string encoded as UTF-16
 
@@ -761,7 +761,7 @@ struct EncodeUtf16Producer<'ch> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:615-617`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L615-L617)*
+*Defined in [`rayon-1.11.0/src/str.rs:615-617`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L615-L617)*
 
 #### Trait Implementations
 
@@ -840,7 +840,7 @@ struct Split<'ch, P: Pattern> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:655-658`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L655-L658)*
+*Defined in [`rayon-1.11.0/src/str.rs:655-658`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L655-L658)*
 
 Parallel iterator over substrings separated by a pattern
 
@@ -951,7 +951,7 @@ struct SplitInclusive<'ch, P: Pattern> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:727-730`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L727-L730)*
+*Defined in [`rayon-1.11.0/src/str.rs:727-730`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L727-L730)*
 
 Parallel iterator over substrings separated by a pattern
 
@@ -1062,7 +1062,7 @@ struct SplitTerminator<'ch, P: Pattern> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:754-757`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L754-L757)*
+*Defined in [`rayon-1.11.0/src/str.rs:754-757`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L754-L757)*
 
 Parallel iterator over substrings separated by a terminator pattern
 
@@ -1173,7 +1173,7 @@ struct SplitTerminatorProducer<'ch, 'sep, P: Pattern> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:759-762`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L759-L762)*
+*Defined in [`rayon-1.11.0/src/str.rs:759-762`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L759-L762)*
 
 #### Implementations
 
@@ -1253,7 +1253,7 @@ struct SplitTerminatorProducer<'ch, 'sep, P: Pattern> {
 struct Lines<'ch>(&'ch str);
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:820`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L820)*
+*Defined in [`rayon-1.11.0/src/str.rs:820`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L820)*
 
 Parallel iterator over lines in a string
 
@@ -1357,7 +1357,7 @@ Parallel iterator over lines in a string
 struct SplitWhitespace<'ch>(&'ch str);
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:845`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L845)*
+*Defined in [`rayon-1.11.0/src/str.rs:845`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L845)*
 
 Parallel iterator over substrings separated by whitespace
 
@@ -1461,7 +1461,7 @@ Parallel iterator over substrings separated by whitespace
 struct SplitAsciiWhitespace<'ch>(&'ch str);
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:870`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L870)*
+*Defined in [`rayon-1.11.0/src/str.rs:870`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L870)*
 
 Parallel iterator over substrings separated by ASCII whitespace
 
@@ -1568,7 +1568,7 @@ struct Matches<'ch, P: Pattern> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:895-898`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L895-L898)*
+*Defined in [`rayon-1.11.0/src/str.rs:895-898`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L895-L898)*
 
 Parallel iterator over substrings that match a pattern
 
@@ -1675,7 +1675,7 @@ struct MatchesProducer<'ch, 'pat, P: Pattern> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:900-903`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L900-L903)*
+*Defined in [`rayon-1.11.0/src/str.rs:900-903`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L900-L903)*
 
 #### Trait Implementations
 
@@ -1754,7 +1754,7 @@ struct MatchIndices<'ch, P: Pattern> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:951-954`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L951-L954)*
+*Defined in [`rayon-1.11.0/src/str.rs:951-954`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L951-L954)*
 
 Parallel iterator over substrings that match a pattern, with their positions
 
@@ -1862,7 +1862,7 @@ struct MatchIndicesProducer<'ch, 'pat, P: Pattern> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:956-960`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L956-L960)*
+*Defined in [`rayon-1.11.0/src/str.rs:956-960`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L956-L960)*
 
 #### Trait Implementations
 
@@ -1940,7 +1940,7 @@ struct MatchIndicesProducer<'ch, 'pat, P: Pattern> {
 trait ParallelString { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:58-342`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L58-L342)*
+*Defined in [`rayon-1.11.0/src/str.rs:58-342`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L58-L342)*
 
 Parallel extensions for strings.
 
@@ -2012,7 +2012,7 @@ Parallel extensions for strings.
 fn is_char_boundary(b: u8) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:22-25`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L22-L25)*
+*Defined in [`rayon-1.11.0/src/str.rs:22-25`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L22-L25)*
 
 Test if a byte is the start of a UTF-8 character.
 (extracted from `str::is_char_boundary`)
@@ -2023,7 +2023,7 @@ Test if a byte is the start of a UTF-8 character.
 fn find_char_midpoint(chars: &str) -> usize
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:29-44`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L29-L44)*
+*Defined in [`rayon-1.11.0/src/str.rs:29-44`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L29-L44)*
 
 Find the index of a character boundary near the midpoint.
 
@@ -2033,7 +2033,7 @@ Find the index of a character boundary near the midpoint.
 fn split(chars: &str) -> Option<(&str, &str)>
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:48-55`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L48-L55)*
+*Defined in [`rayon-1.11.0/src/str.rs:48-55`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L48-L55)*
 
 Try to split a string near the midpoint.
 
@@ -2043,7 +2043,7 @@ Try to split a string near the midpoint.
 fn offset<T>(base: usize) -> impl Fn((usize, T)) -> (usize, T)
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:386-388`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L386-L388)*
+*Defined in [`rayon-1.11.0/src/str.rs:386-388`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L386-L388)*
 
 ### `no_carriage_return`
 
@@ -2051,7 +2051,7 @@ fn offset<T>(base: usize) -> impl Fn((usize, T)) -> (usize, T)
 fn no_carriage_return(line: &str) -> &str
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:823-825`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L823-L825)*
+*Defined in [`rayon-1.11.0/src/str.rs:823-825`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L823-L825)*
 
 ### `not_empty`
 
@@ -2059,7 +2059,7 @@ fn no_carriage_return(line: &str) -> &str
 fn not_empty(s: &&str) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:848-850`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L848-L850)*
+*Defined in [`rayon-1.11.0/src/str.rs:848-850`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L848-L850)*
 
 ### `is_ascii_whitespace`
 
@@ -2067,11 +2067,11 @@ fn not_empty(s: &&str) -> bool
 fn is_ascii_whitespace(c: char) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:873-875`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L873-L875)*
+*Defined in [`rayon-1.11.0/src/str.rs:873-875`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L873-L875)*
 
 ## Macros
 
 ### `impl_pattern!`
 
-*Defined in [`rayon-1.11.0/src/str.rs:390-441`](../../../.source_1765521767/rayon-1.11.0/src/str.rs#L390-L441)*
+*Defined in [`rayon-1.11.0/src/str.rs:390-441`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L390-L441)*
 

@@ -53,7 +53,7 @@ enum Stream {
 }
 ```
 
-*Defined in [`supports-hyperlinks-3.1.0/src/lib.rs:5-8`](../../.source_1765521767/supports-hyperlinks-3.1.0/src/lib.rs#L5-L8)*
+*Defined in [`supports-hyperlinks-3.1.0/src/lib.rs:5-8`](../../.source_1765633015/supports-hyperlinks-3.1.0/src/lib.rs#L5-L8)*
 
 possible stream sources
 
@@ -131,7 +131,7 @@ possible stream sources
 fn supports_hyperlinks() -> bool
 ```
 
-*Defined in [`supports-hyperlinks-3.1.0/src/lib.rs:12-53`](../../.source_1765521767/supports-hyperlinks-3.1.0/src/lib.rs#L12-L53)*
+*Defined in [`supports-hyperlinks-3.1.0/src/lib.rs:12-53`](../../.source_1765633015/supports-hyperlinks-3.1.0/src/lib.rs#L12-L53)*
 
 Returns true if the current terminal, detected through various environment
 variables, is known to support hyperlink rendering.
@@ -142,7 +142,7 @@ variables, is known to support hyperlink rendering.
 fn is_a_tty(stream: Stream) -> bool
 ```
 
-*Defined in [`supports-hyperlinks-3.1.0/src/lib.rs:55-61`](../../.source_1765521767/supports-hyperlinks-3.1.0/src/lib.rs#L55-L61)*
+*Defined in [`supports-hyperlinks-3.1.0/src/lib.rs:55-61`](../../.source_1765633015/supports-hyperlinks-3.1.0/src/lib.rs#L55-L61)*
 
 ### `on`
 
@@ -150,7 +150,7 @@ fn is_a_tty(stream: Stream) -> bool
 fn on(stream: Stream) -> bool
 ```
 
-*Defined in [`supports-hyperlinks-3.1.0/src/lib.rs:65-67`](../../.source_1765521767/supports-hyperlinks-3.1.0/src/lib.rs#L65-L67)*
+*Defined in [`supports-hyperlinks-3.1.0/src/lib.rs:65-67`](../../.source_1765633015/supports-hyperlinks-3.1.0/src/lib.rs#L65-L67)*
 
 Returns true if `stream` is a TTY, and the current terminal
 [supports_hyperlinks](#supports-hyperlinks).

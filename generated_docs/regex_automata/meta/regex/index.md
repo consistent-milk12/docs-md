@@ -53,7 +53,7 @@ struct Regex {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:235-252`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L235-L252)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:235-252`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L235-L252)*
 
 A regex matcher that works by composing several other regex matchers
 automatically.
@@ -653,7 +653,7 @@ struct RegexI {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:257-278`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L257-L278)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:257-278`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L257-L278)*
 
 The internal implementation of `Regex`, split out so that it can be wrapped
 in an `Arc`.
@@ -738,7 +738,7 @@ in an `Arc`.
 struct RegexInfo(alloc::sync::Arc<RegexInfoI>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:1924`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L1924)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:1924`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L1924)*
 
 #### Implementations
 
@@ -902,7 +902,7 @@ struct RegexInfoI {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:1927-1931`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L1927-L1931)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:1927-1931`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L1927-L1931)*
 
 #### Trait Implementations
 
@@ -978,7 +978,7 @@ struct FindMatches<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2075-2079`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L2075-L2079)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2075-2079`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L2075-L2079)*
 
 An iterator over all non-overlapping matches.
 
@@ -1084,7 +1084,7 @@ struct CapturesMatches<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2138-2143`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L2138-L2143)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2138-2143`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L2138-L2143)*
 
 An iterator over all non-overlapping leftmost matches with their capturing
 groups.
@@ -1190,7 +1190,7 @@ struct Split<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2206-2209`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L2206-L2209)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2206-2209`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L2206-L2209)*
 
 Yields all substrings delimited by a regular expression match.
 
@@ -1288,7 +1288,7 @@ struct SplitN<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2260-2263`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L2260-L2263)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2260-2263`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L2260-L2263)*
 
 Yields at most `N` spans delimited by a regular expression match.
 
@@ -1393,7 +1393,7 @@ struct Cache {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2353-2360`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L2353-L2360)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2353-2360`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L2353-L2360)*
 
 Represents mutable scratch space used by regex engines during a search.
 
@@ -1629,7 +1629,7 @@ struct Config {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2453-2477`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L2453-L2477)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2453-2477`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L2453-L2477)*
 
 An object describing the configuration of a `Regex`.
 
@@ -3020,7 +3020,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:3380-3384`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L3380-L3384)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:3380-3384`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L3380-L3384)*
 
 A builder for configuring and constructing a `Regex`.
 
@@ -3616,7 +3616,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 type CachePool = crate::util::pool::Pool<Cache, alloc::boxed::Box<dyn Fn() -> Cache + Send + Sync + UnwindSafe + RefUnwindSafe>>;
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:32`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L32)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:32`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L32)*
 
 A type alias for our pool of meta::Cache that fixes the type parameters to
 what we use for the meta regex below.
@@ -3627,7 +3627,7 @@ what we use for the meta regex below.
 type CachePoolGuard<'a> = crate::util::pool::PoolGuard<'a, Cache, alloc::boxed::Box<dyn Fn() -> Cache + Send + Sync + UnwindSafe + RefUnwindSafe>>;
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:35`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L35)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:35`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L35)*
 
 Same as above, but for the guard returned by a pool.
 
@@ -3637,7 +3637,7 @@ Same as above, but for the guard returned by a pool.
 type CachePoolFn = alloc::boxed::Box<dyn Fn() -> Cache + Send + Sync + UnwindSafe + RefUnwindSafe>;
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:39-40`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L39-L40)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:39-40`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L39-L40)*
 
 The type of the closure we use to create new caches. We need to spell out
 all of the marker traits or else we risk leaking !MARKER impls.

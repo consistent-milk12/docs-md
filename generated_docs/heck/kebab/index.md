@@ -19,7 +19,7 @@
 struct AsKebabCase<T: AsRef<str>>(T);
 ```
 
-*Defined in [`heck-0.5.0/src/kebab.rs:40`](../../../.source_1765521767/heck-0.5.0/src/kebab.rs#L40)*
+*Defined in [`heck-0.5.0/src/kebab.rs:40`](../../../.source_1765633015/heck-0.5.0/src/kebab.rs#L40)*
 
 This wrapper performs a kebab case conversion in [`fmt::Display`](../../miette_derive/index.md).
 
@@ -92,7 +92,7 @@ assert_eq!(format!("{}", AsKebabCase(sentence)), "we-are-going-to-inherit-the-ea
 trait ToKebabCase: ToOwned { ... }
 ```
 
-*Defined in [`heck-0.5.0/src/kebab.rs:19-22`](../../../.source_1765521767/heck-0.5.0/src/kebab.rs#L19-L22)*
+*Defined in [`heck-0.5.0/src/kebab.rs:19-22`](../../../.source_1765633015/heck-0.5.0/src/kebab.rs#L19-L22)*
 
 This trait defines a kebab case conversion.
 

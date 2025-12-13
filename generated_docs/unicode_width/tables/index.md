@@ -67,7 +67,7 @@
 struct WidthInfo(u16);
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:16`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L16)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:16`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L16)*
 
 #### Implementations
 
@@ -279,7 +279,7 @@ struct WidthInfo(u16);
 struct Align32<T>(T);
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:947`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L947)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:947`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L947)*
 
 #### Trait Implementations
 
@@ -333,7 +333,7 @@ struct Align32<T>(T);
 struct Align64<T>(T);
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:950`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L950)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:950`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L950)*
 
 #### Trait Implementations
 
@@ -387,7 +387,7 @@ struct Align64<T>(T);
 struct Align128<T>(T);
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:953`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L953)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:953`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L953)*
 
 #### Trait Implementations
 
@@ -443,7 +443,7 @@ struct Align128<T>(T);
 fn lookup_width(c: char) -> (u8, WidthInfo)
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:176-218`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L176-L218)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:176-218`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L176-L218)*
 
 Returns the [UAX #11](https://www.unicode.org/reports/tr11/) based width of `c` by
 consulting a multi-level lookup table.
@@ -460,7 +460,7 @@ However, if you change the *actual structure* of the lookup tables (perhaps by e
 fn single_char_width(c: char) -> Option<usize>
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:224-240`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L224-L240)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:224-240`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L224-L240)*
 
 Returns the [UAX #11](https://www.unicode.org/reports/tr11/) based width of `c`, or
 `None` if `c` is a control character.
@@ -472,7 +472,7 @@ Ambiguous width characters are treated as narrow.
 fn width_in_str(c: char, next_info: WidthInfo) -> (i8, WidthInfo)
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:245-462`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L245-L462)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:245-462`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L245-L462)*
 
 Returns the [UAX #11](https://www.unicode.org/reports/tr11/) based width of `c`.
 Ambiguous width characters are treated as narrow.
@@ -483,7 +483,7 @@ Ambiguous width characters are treated as narrow.
 fn str_width(s: &str) -> usize
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:465-475`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L465-L475)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:465-475`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L465-L475)*
 
 ### `lookup_width_cjk`
 
@@ -491,7 +491,7 @@ fn str_width(s: &str) -> usize
 fn lookup_width_cjk(c: char) -> (u8, WidthInfo)
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:487-529`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L487-L529)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:487-529`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L487-L529)*
 
 Returns the [UAX #11](https://www.unicode.org/reports/tr11/) based width of `c` by
 consulting a multi-level lookup table.
@@ -508,7 +508,7 @@ However, if you change the *actual structure* of the lookup tables (perhaps by e
 fn single_char_width_cjk(c: char) -> Option<usize>
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:536-552`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L536-L552)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:536-552`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L536-L552)*
 
 Returns the [UAX #11](https://www.unicode.org/reports/tr11/) based width of `c`, or
 `None` if `c` is a control character.
@@ -520,7 +520,7 @@ Ambiguous width characters are treated as wide.
 fn width_in_str_cjk(c: char, next_info: WidthInfo) -> (i8, WidthInfo)
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:558-782`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L558-L782)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:558-782`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L558-L782)*
 
 Returns the [UAX #11](https://www.unicode.org/reports/tr11/) based width of `c`.
 Ambiguous width characters are treated as wide.
@@ -531,7 +531,7 @@ Ambiguous width characters are treated as wide.
 fn str_width_cjk(s: &str) -> usize
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:786-796`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L786-L796)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:786-796`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L786-L796)*
 
 ### `is_transparent_zero_width`
 
@@ -539,7 +539,7 @@ fn str_width_cjk(s: &str) -> usize
 fn is_transparent_zero_width(c: char) -> bool
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:802-822`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L802-L822)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:802-822`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L802-L822)*
 
 Whether this character is a zero-width character with
 `Joining_Type=Transparent`. Used by the Alef-Lamed ligatures.
@@ -552,7 +552,7 @@ which is transparent for non-Arabic ligatures.
 fn is_ligature_transparent(c: char) -> bool
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:826-828`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L826-L828)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:826-828`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L826-L828)*
 
 Whether this character is a default-ignorable combining mark
 or ZWJ. These characters won't interrupt non-Arabic ligatures.
@@ -563,7 +563,7 @@ or ZWJ. These characters won't interrupt non-Arabic ligatures.
 fn is_solidus_transparent(c: char) -> bool
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:834-850`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L834-L850)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:834-850`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L834-L850)*
 
 Whether this character is transparent wrt the effect of
 U+0338 COMBINING LONG SOLIDUS OVERLAY
@@ -575,7 +575,7 @@ on its base character.
 fn starts_emoji_presentation_seq(c: char) -> bool
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:857-877`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L857-L877)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:857-877`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L857-L877)*
 
 Whether this character forms an [emoji presentation sequence]
 (https://www.unicode.org/reports/tr51/#def_emoji_presentation_sequence)
@@ -588,7 +588,7 @@ Emoji presentation sequences are considered to have width 2.
 fn starts_non_ideographic_text_presentation_seq(c: char) -> bool
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:884-913`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L884-L913)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:884-913`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L884-L913)*
 
 Returns `true` if `c` has default emoji presentation, but forms a [text presentation sequence]
 (https://www.unicode.org/reports/tr51/#def_text_presentation_sequence)
@@ -601,7 +601,7 @@ Such sequences are considered to have width 1.
 fn is_emoji_modifier_base(c: char) -> bool
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:917-944`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L917-L944)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:917-944`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L917-L944)*
 
 Returns `true` if `c` is an `Emoji_Modifier_Base`.
 
@@ -612,14 +612,14 @@ Returns `true` if `c` is an `Emoji_Modifier_Base`.
 const LIGATURE_TRANSPARENT_MASK: u16 = 8_192u16;
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:18`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L18)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:18`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L18)*
 
 ### `UNICODE_VERSION`
 ```rust
 const UNICODE_VERSION: (u8, u8, u8);
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:165`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L165)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:165`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L165)*
 
 The version of [Unicode](http://www.unicode.org/)
 that this version of unicode-width is based on.
@@ -629,12 +629,12 @@ that this version of unicode-width is based on.
 const WIDTH_MIDDLE_LEN: usize = 20usize;
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:995`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L995)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:995`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L995)*
 
 ### `WIDTH_LEAVES_LEN`
 ```rust
 const WIDTH_LEAVES_LEN: usize = 186usize;
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:1147`](../../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L1147)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:1147`](../../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L1147)*
 

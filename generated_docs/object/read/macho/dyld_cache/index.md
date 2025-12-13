@@ -80,7 +80,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:12-23`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L12-L23)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:12-23`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L12-L23)*
 
 A parsed representation of the dyld shared cache.
 
@@ -202,7 +202,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:214-221`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L214-L221)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:214-221`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L214-L221)*
 
 The data for one file in the cache.
 
@@ -276,7 +276,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:256-263`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L256-L263)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:256-263`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L256-L263)*
 
 An iterator over all the images (dylibs) in the dyld shared cache.
 
@@ -354,7 +354,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:283-290`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L283-L290)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:283-290`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L283-L290)*
 
 One image (dylib) from inside the dyld shared cache.
 
@@ -439,7 +439,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:343-351`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L343-L351)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:343-351`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L343-L351)*
 
 An iterator over all the mappings for one subcache in a dyld shared cache.
 
@@ -518,7 +518,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:384-392`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L384-L392)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:384-392`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L384-L392)*
 
 Information about a mapping.
 
@@ -629,7 +629,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:558-564`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L558-L564)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:558-564`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L558-L564)*
 
 An iterator over relocations in a mapping
 
@@ -719,7 +719,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:605-629`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L605-L629)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:605-629`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L605-L629)*
 
 #### Fields
 
@@ -810,7 +810,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:713-730`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L713-L730)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:713-730`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L713-L730)*
 
 #### Fields
 
@@ -893,7 +893,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:810-827`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L810-L827)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:810-827`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L810-L827)*
 
 #### Fields
 
@@ -967,7 +967,7 @@ struct DyldRelocation {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:896-906`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L896-L906)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:896-906`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L896-L906)*
 
 A cache mapping relocation.
 
@@ -1046,7 +1046,7 @@ struct DyldRelocationAuth {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:921-928`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L921-L928)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:921-928`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L921-L928)*
 
 Pointer authentication data.
 
@@ -1125,7 +1125,7 @@ enum DyldSubCacheSlice<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:31-36`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L31-L36)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:31-36`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L31-L36)*
 
 A slice of structs describing each subcache.
 
@@ -1217,7 +1217,7 @@ enum DyldCacheMappingSlice<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:331-336`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L331-L336)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:331-336`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L331-L336)*
 
 The array of mappings for a single dyld cache file.
 
@@ -1311,7 +1311,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:354-360`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L354-L360)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:354-360`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L354-L360)*
 
 #### Trait Implementations
 
@@ -1372,7 +1372,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:395-401`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L395-L401)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:395-401`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L395-L401)*
 
 #### Trait Implementations
 
@@ -1457,7 +1457,7 @@ enum DyldCacheSlideInfo<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:539-554`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L539-L554)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:539-554`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L539-L554)*
 
 The slide info for a dyld cache mapping, including variable length arrays.
 
@@ -1541,7 +1541,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:585-594`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L585-L594)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:585-594`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L585-L594)*
 
 #### Trait Implementations
 
@@ -1602,7 +1602,7 @@ enum RelocationStateV2 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:597-602`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L597-L602)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:597-602`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L597-L602)*
 
 #### Trait Implementations
 
@@ -1687,7 +1687,7 @@ enum RelocationStateV3 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:707-710`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L707-L710)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:707-710`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L707-L710)*
 
 #### Trait Implementations
 
@@ -1772,7 +1772,7 @@ enum RelocationStateV5 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:804-807`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L804-L807)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:804-807`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L804-L807)*
 
 #### Trait Implementations
 
@@ -1855,19 +1855,19 @@ enum RelocationStateV5 {
 const MIN_HEADER_SIZE_SUBCACHES_V1: u32 = 456u32;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:39`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L39)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:39`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L39)*
 
 ### `MIN_HEADER_SIZE_SUBCACHES_V2`
 ```rust
 const MIN_HEADER_SIZE_SUBCACHES_V2: u32 = 464u32;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:42`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L42)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:42`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L42)*
 
 ### `MIN_HEADER_SIZE_MAPPINGS_V2`
 ```rust
 const MIN_HEADER_SIZE_MAPPINGS_V2: u32 = 320u32;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:339`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/dyld_cache.rs#L339)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:339`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L339)*
 

@@ -33,7 +33,7 @@ struct Adler32 {
 }
 ```
 
-*Defined in [`adler2-2.0.1/src/lib.rs:87-90`](../../.source_1765521767/adler2-2.0.1/src/lib.rs#L87-L90)*
+*Defined in [`adler2-2.0.1/src/lib.rs:87-90`](../../.source_1765633015/adler2-2.0.1/src/lib.rs#L87-L90)*
 
 Adler-32 checksum calculator.
 
@@ -172,7 +172,7 @@ if cfg!(target_endian = "big") {
 fn adler32_slice(data: &[u8]) -> u32
 ```
 
-*Defined in [`adler2-2.0.1/src/lib.rs:170-174`](../../.source_1765521767/adler2-2.0.1/src/lib.rs#L170-L174)*
+*Defined in [`adler2-2.0.1/src/lib.rs:170-174`](../../.source_1765633015/adler2-2.0.1/src/lib.rs#L170-L174)*
 
 Calculates the Adler-32 checksum of a byte slice.
 

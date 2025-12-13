@@ -63,7 +63,7 @@ struct ProgressStyle {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/style.rs:23-31`](../../../.source_1765521767/indicatif-0.18.3/src/style.rs#L23-L31)*
+*Defined in [`indicatif-0.18.3/src/style.rs:23-31`](../../../.source_1765633015/indicatif-0.18.3/src/style.rs#L23-L31)*
 
 #### Implementations
 
@@ -223,7 +223,7 @@ struct ProgressStyle {
 struct TabRewriter<'a>(&'a mut dyn fmt::Write, usize);
 ```
 
-*Defined in [`indicatif-0.18.3/src/style.rs:444`](../../../.source_1765521767/indicatif-0.18.3/src/style.rs#L444)*
+*Defined in [`indicatif-0.18.3/src/style.rs:444`](../../../.source_1765633015/indicatif-0.18.3/src/style.rs#L444)*
 
 #### Trait Implementations
 
@@ -281,7 +281,7 @@ struct Template {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/style.rs:506-508`](../../../.source_1765521767/indicatif-0.18.3/src/style.rs#L506-L508)*
+*Defined in [`indicatif-0.18.3/src/style.rs:506-508`](../../../.source_1765633015/indicatif-0.18.3/src/style.rs#L506-L508)*
 
 #### Implementations
 
@@ -364,7 +364,7 @@ struct TemplateError {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/style.rs:656-659`](../../../.source_1765521767/indicatif-0.18.3/src/style.rs#L656-L659)*
+*Defined in [`indicatif-0.18.3/src/style.rs:656-659`](../../../.source_1765633015/indicatif-0.18.3/src/style.rs#L656-L659)*
 
 #### Trait Implementations
 
@@ -435,7 +435,7 @@ struct BarDisplay<'a> {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/style.rs:699-704`](../../../.source_1765521767/indicatif-0.18.3/src/style.rs#L699-L704)*
+*Defined in [`indicatif-0.18.3/src/style.rs:699-704`](../../../.source_1765633015/indicatif-0.18.3/src/style.rs#L699-L704)*
 
 #### Trait Implementations
 
@@ -498,7 +498,7 @@ struct RepeatedStringDisplay<'a> {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/style.rs:718-721`](../../../.source_1765521767/indicatif-0.18.3/src/style.rs#L718-L721)*
+*Defined in [`indicatif-0.18.3/src/style.rs:718-721`](../../../.source_1765633015/indicatif-0.18.3/src/style.rs#L718-L721)*
 
 #### Trait Implementations
 
@@ -563,7 +563,7 @@ struct PaddedStringDisplay<'a> {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/style.rs:732-737`](../../../.source_1765521767/indicatif-0.18.3/src/style.rs#L732-L737)*
+*Defined in [`indicatif-0.18.3/src/style.rs:732-737`](../../../.source_1765633015/indicatif-0.18.3/src/style.rs#L732-L737)*
 
 #### Trait Implementations
 
@@ -632,7 +632,7 @@ enum WideElement<'a> {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/style.rs:454-457`](../../../.source_1765521767/indicatif-0.18.3/src/style.rs#L454-L457)*
+*Defined in [`indicatif-0.18.3/src/style.rs:454-457`](../../../.source_1765633015/indicatif-0.18.3/src/style.rs#L454-L457)*
 
 #### Implementations
 
@@ -717,7 +717,7 @@ enum TemplatePart {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/style.rs:674-685`](../../../.source_1765521767/indicatif-0.18.3/src/style.rs#L674-L685)*
+*Defined in [`indicatif-0.18.3/src/style.rs:674-685`](../../../.source_1765633015/indicatif-0.18.3/src/style.rs#L674-L685)*
 
 #### Trait Implementations
 
@@ -806,7 +806,7 @@ enum State {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/style.rs:688-697`](../../../.source_1765521767/indicatif-0.18.3/src/style.rs#L688-L697)*
+*Defined in [`indicatif-0.18.3/src/style.rs:688-697`](../../../.source_1765633015/indicatif-0.18.3/src/style.rs#L688-L697)*
 
 #### Trait Implementations
 
@@ -892,7 +892,7 @@ enum Alignment {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/style.rs:808-812`](../../../.source_1765521767/indicatif-0.18.3/src/style.rs#L808-L812)*
+*Defined in [`indicatif-0.18.3/src/style.rs:808-812`](../../../.source_1765633015/indicatif-0.18.3/src/style.rs#L808-L812)*
 
 #### Trait Implementations
 
@@ -976,7 +976,7 @@ enum Alignment {
 trait ProgressTracker: Send + Sync { ... }
 ```
 
-*Defined in [`indicatif-0.18.3/src/style.rs:815-824`](../../../.source_1765521767/indicatif-0.18.3/src/style.rs#L815-L824)*
+*Defined in [`indicatif-0.18.3/src/style.rs:815-824`](../../../.source_1765633015/indicatif-0.18.3/src/style.rs#L815-L824)*
 
 Trait for defining stateful or stateless formatters
 
@@ -1010,7 +1010,7 @@ Trait for defining stateful or stateless formatters
 fn segment(s: &str) -> Vec<Box<str>>
 ```
 
-*Defined in [`indicatif-0.18.3/src/style.rs:41-43`](../../../.source_1765521767/indicatif-0.18.3/src/style.rs#L41-L43)*
+*Defined in [`indicatif-0.18.3/src/style.rs:41-43`](../../../.source_1765633015/indicatif-0.18.3/src/style.rs#L41-L43)*
 
 ### `measure`
 
@@ -1018,7 +1018,7 @@ fn segment(s: &str) -> Vec<Box<str>>
 fn measure(s: &str) -> usize
 ```
 
-*Defined in [`indicatif-0.18.3/src/style.rs:46-48`](../../../.source_1765521767/indicatif-0.18.3/src/style.rs#L46-L48)*
+*Defined in [`indicatif-0.18.3/src/style.rs:46-48`](../../../.source_1765633015/indicatif-0.18.3/src/style.rs#L46-L48)*
 
 ### `width`
 
@@ -1026,7 +1026,7 @@ fn measure(s: &str) -> usize
 fn width(c: &[Box<str>]) -> usize
 ```
 
-*Defined in [`indicatif-0.18.3/src/style.rs:57-68`](../../../.source_1765521767/indicatif-0.18.3/src/style.rs#L57-L68)*
+*Defined in [`indicatif-0.18.3/src/style.rs:57-68`](../../../.source_1765633015/indicatif-0.18.3/src/style.rs#L57-L68)*
 
 finds the unicode-aware width of the passed grapheme cluters
 panics on an empty parameter, or if the characters are not equal-width
@@ -1037,7 +1037,7 @@ panics on an empty parameter, or if the characters are not equal-width
 fn write_ansi_range(formatter: &mut std::fmt::Formatter<'_>, text: &str, start: usize, end: usize) -> fmt::Result
 ```
 
-*Defined in [`indicatif-0.18.3/src/style.rs:774-805`](../../../.source_1765521767/indicatif-0.18.3/src/style.rs#L774-L805)*
+*Defined in [`indicatif-0.18.3/src/style.rs:774-805`](../../../.source_1765633015/indicatif-0.18.3/src/style.rs#L774-L805)*
 
 Write the visible text between start and end. The ansi escape
 sequences are written unchanged.

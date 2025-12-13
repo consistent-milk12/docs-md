@@ -362,1195 +362,1195 @@
 const BY_NAME: &'static [(&'static str, &'static [(char, char)])];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:9-180`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L9-L180)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:9-180`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L9-L180)*
 
 ### `ADLAM`
 ```rust
 const ADLAM: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:182-183`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L182-L183)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:182-183`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L182-L183)*
 
 ### `AHOM`
 ```rust
 const AHOM: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:185-186`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L185-L186)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:185-186`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L185-L186)*
 
 ### `ANATOLIAN_HIEROGLYPHS`
 ```rust
 const ANATOLIAN_HIEROGLYPHS: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:188`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L188)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:188`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L188)*
 
 ### `ARABIC`
 ```rust
 const ARABIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:190-250`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L190-L250)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:190-250`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L190-L250)*
 
 ### `ARMENIAN`
 ```rust
 const ARMENIAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:252-253`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L252-L253)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:252-253`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L252-L253)*
 
 ### `AVESTAN`
 ```rust
 const AVESTAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:255`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L255)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:255`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L255)*
 
 ### `BALINESE`
 ```rust
 const BALINESE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:257`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L257)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:257`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L257)*
 
 ### `BAMUM`
 ```rust
 const BAMUM: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:259`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L259)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:259`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L259)*
 
 ### `BASSA_VAH`
 ```rust
 const BASSA_VAH: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:261-262`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L261-L262)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:261-262`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L261-L262)*
 
 ### `BATAK`
 ```rust
 const BATAK: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:264`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L264)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:264`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L264)*
 
 ### `BENGALI`
 ```rust
 const BENGALI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:266-281`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L266-L281)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:266-281`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L266-L281)*
 
 ### `BHAIKSUKI`
 ```rust
 const BHAIKSUKI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:283-284`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L283-L284)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:283-284`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L283-L284)*
 
 ### `BOPOMOFO`
 ```rust
 const BOPOMOFO: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:286-287`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L286-L287)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:286-287`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L286-L287)*
 
 ### `BRAHMI`
 ```rust
 const BRAHMI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:289-290`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L289-L290)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:289-290`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L289-L290)*
 
 ### `BRAILLE`
 ```rust
 const BRAILLE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:292`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L292)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:292`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L292)*
 
 ### `BUGINESE`
 ```rust
 const BUGINESE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:294`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L294)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:294`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L294)*
 
 ### `BUHID`
 ```rust
 const BUHID: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:296`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L296)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:296`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L296)*
 
 ### `CANADIAN_ABORIGINAL`
 ```rust
 const CANADIAN_ABORIGINAL: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:298-299`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L298-L299)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:298-299`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L298-L299)*
 
 ### `CARIAN`
 ```rust
 const CARIAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:301`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L301)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:301`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L301)*
 
 ### `CAUCASIAN_ALBANIAN`
 ```rust
 const CAUCASIAN_ALBANIAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:303-304`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L303-L304)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:303-304`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L303-L304)*
 
 ### `CHAKMA`
 ```rust
 const CHAKMA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:306-307`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L306-L307)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:306-307`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L306-L307)*
 
 ### `CHAM`
 ```rust
 const CHAM: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:309-310`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L309-L310)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:309-310`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L309-L310)*
 
 ### `CHEROKEE`
 ```rust
 const CHEROKEE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:312-313`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L312-L313)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:312-313`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L312-L313)*
 
 ### `CHORASMIAN`
 ```rust
 const CHORASMIAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:315`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L315)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:315`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L315)*
 
 ### `COMMON`
 ```rust
 const COMMON: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:317-492`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L317-L492)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:317-492`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L317-L492)*
 
 ### `COPTIC`
 ```rust
 const COPTIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:494-495`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L494-L495)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:494-495`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L494-L495)*
 
 ### `CUNEIFORM`
 ```rust
 const CUNEIFORM: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:497-498`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L497-L498)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:497-498`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L497-L498)*
 
 ### `CYPRIOT`
 ```rust
 const CYPRIOT: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:500-501`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L500-L501)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:500-501`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L500-L501)*
 
 ### `CYPRO_MINOAN`
 ```rust
 const CYPRO_MINOAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:503`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L503)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:503`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L503)*
 
 ### `CYRILLIC`
 ```rust
 const CYRILLIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:505-516`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L505-L516)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:505-516`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L505-L516)*
 
 ### `DESERET`
 ```rust
 const DESERET: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:518`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L518)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:518`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L518)*
 
 ### `DEVANAGARI`
 ```rust
 const DEVANAGARI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:520-526`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L520-L526)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:520-526`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L520-L526)*
 
 ### `DIVES_AKURU`
 ```rust
 const DIVES_AKURU: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:528-537`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L528-L537)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:528-537`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L528-L537)*
 
 ### `DOGRA`
 ```rust
 const DOGRA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:539`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L539)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:539`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L539)*
 
 ### `DUPLOYAN`
 ```rust
 const DUPLOYAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:541-542`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L541-L542)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:541-542`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L541-L542)*
 
 ### `EGYPTIAN_HIEROGLYPHS`
 ```rust
 const EGYPTIAN_HIEROGLYPHS: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:544-545`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L544-L545)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:544-545`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L544-L545)*
 
 ### `ELBASAN`
 ```rust
 const ELBASAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:547`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L547)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:547`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L547)*
 
 ### `ELYMAIC`
 ```rust
 const ELYMAIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:549`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L549)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:549`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L549)*
 
 ### `ETHIOPIC`
 ```rust
 const ETHIOPIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:551-588`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L551-L588)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:551-588`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L551-L588)*
 
 ### `GARAY`
 ```rust
 const GARAY: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:590-591`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L590-L591)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:590-591`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L590-L591)*
 
 ### `GEORGIAN`
 ```rust
 const GEORGIAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:593-604`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L593-L604)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:593-604`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L593-L604)*
 
 ### `GLAGOLITIC`
 ```rust
 const GLAGOLITIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:606-613`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L606-L613)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:606-613`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L606-L613)*
 
 ### `GOTHIC`
 ```rust
 const GOTHIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:615`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L615)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:615`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L615)*
 
 ### `GRANTHA`
 ```rust
 const GRANTHA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:617-633`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L617-L633)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:617-633`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L617-L633)*
 
 ### `GREEK`
 ```rust
 const GREEK: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:635-672`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L635-L672)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:635-672`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L635-L672)*
 
 ### `GUJARATI`
 ```rust
 const GUJARATI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:674-689`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L674-L689)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:674-689`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L674-L689)*
 
 ### `GUNJALA_GONDI`
 ```rust
 const GUNJALA_GONDI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:691-698`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L691-L698)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:691-698`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L691-L698)*
 
 ### `GURMUKHI`
 ```rust
 const GURMUKHI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:700-717`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L700-L717)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:700-717`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L700-L717)*
 
 ### `GURUNG_KHEMA`
 ```rust
 const GURUNG_KHEMA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:719`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L719)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:719`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L719)*
 
 ### `HAN`
 ```rust
 const HAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:721-744`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L721-L744)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:721-744`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L721-L744)*
 
 ### `HANGUL`
 ```rust
 const HANGUL: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:746-761`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L746-L761)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:746-761`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L746-L761)*
 
 ### `HANIFI_ROHINGYA`
 ```rust
 const HANIFI_ROHINGYA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:763-764`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L763-L764)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:763-764`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L763-L764)*
 
 ### `HANUNOO`
 ```rust
 const HANUNOO: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:766`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L766)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:766`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L766)*
 
 ### `HATRAN`
 ```rust
 const HATRAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:768-769`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L768-L769)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:768-769`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L768-L769)*
 
 ### `HEBREW`
 ```rust
 const HEBREW: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:771-781`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L771-L781)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:771-781`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L771-L781)*
 
 ### `HIRAGANA`
 ```rust
 const HIRAGANA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:783-790`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L783-L790)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:783-790`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L783-L790)*
 
 ### `IMPERIAL_ARAMAIC`
 ```rust
 const IMPERIAL_ARAMAIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:792-793`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L792-L793)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:792-793`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L792-L793)*
 
 ### `INHERITED`
 ```rust
 const INHERITED: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:795-825`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L795-L825)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:795-825`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L795-L825)*
 
 ### `INSCRIPTIONAL_PAHLAVI`
 ```rust
 const INSCRIPTIONAL_PAHLAVI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:827-828`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L827-L828)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:827-828`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L827-L828)*
 
 ### `INSCRIPTIONAL_PARTHIAN`
 ```rust
 const INSCRIPTIONAL_PARTHIAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:830-831`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L830-L831)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:830-831`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L830-L831)*
 
 ### `JAVANESE`
 ```rust
 const JAVANESE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:833-834`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L833-L834)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:833-834`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L833-L834)*
 
 ### `KAITHI`
 ```rust
 const KAITHI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:836-837`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L836-L837)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:836-837`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L836-L837)*
 
 ### `KANNADA`
 ```rust
 const KANNADA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:839-853`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L839-L853)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:839-853`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L839-L853)*
 
 ### `KATAKANA`
 ```rust
 const KATAKANA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:855-870`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L855-L870)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:855-870`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L855-L870)*
 
 ### `KAWI`
 ```rust
 const KAWI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:872-873`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L872-L873)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:872-873`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L872-L873)*
 
 ### `KAYAH_LI`
 ```rust
 const KAYAH_LI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:875`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L875)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:875`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L875)*
 
 ### `KHAROSHTHI`
 ```rust
 const KHAROSHTHI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:877-886`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L877-L886)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:877-886`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L877-L886)*
 
 ### `KHITAN_SMALL_SCRIPT`
 ```rust
 const KHITAN_SMALL_SCRIPT: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:888-889`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L888-L889)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:888-889`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L888-L889)*
 
 ### `KHMER`
 ```rust
 const KHMER: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:891-892`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L891-L892)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:891-892`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L891-L892)*
 
 ### `KHOJKI`
 ```rust
 const KHOJKI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:894`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L894)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:894`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L894)*
 
 ### `KHUDAWADI`
 ```rust
 const KHUDAWADI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:896-897`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L896-L897)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:896-897`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L896-L897)*
 
 ### `KIRAT_RAI`
 ```rust
 const KIRAT_RAI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:899`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L899)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:899`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L899)*
 
 ### `LAO`
 ```rust
 const LAO: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:901-913`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L901-L913)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:901-913`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L901-L913)*
 
 ### `LATIN`
 ```rust
 const LATIN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:915-955`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L915-L955)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:915-955`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L915-L955)*
 
 ### `LEPCHA`
 ```rust
 const LEPCHA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:957-958`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L957-L958)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:957-958`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L957-L958)*
 
 ### `LIMBU`
 ```rust
 const LIMBU: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:960-966`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L960-L966)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:960-966`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L960-L966)*
 
 ### `LINEAR_A`
 ```rust
 const LINEAR_A: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:968-969`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L968-L969)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:968-969`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L968-L969)*
 
 ### `LINEAR_B`
 ```rust
 const LINEAR_B: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:971-979`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L971-L979)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:971-979`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L971-L979)*
 
 ### `LISU`
 ```rust
 const LISU: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:981`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L981)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:981`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L981)*
 
 ### `LYCIAN`
 ```rust
 const LYCIAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:983`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L983)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:983`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L983)*
 
 ### `LYDIAN`
 ```rust
 const LYDIAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:985`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L985)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:985`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L985)*
 
 ### `MAHAJANI`
 ```rust
 const MAHAJANI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:987`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L987)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:987`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L987)*
 
 ### `MAKASAR`
 ```rust
 const MAKASAR: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:989`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L989)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:989`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L989)*
 
 ### `MALAYALAM`
 ```rust
 const MALAYALAM: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:991-999`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L991-L999)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:991-999`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L991-L999)*
 
 ### `MANDAIC`
 ```rust
 const MANDAIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1001`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1001)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1001`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1001)*
 
 ### `MANICHAEAN`
 ```rust
 const MANICHAEAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1003-1004`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1003-L1004)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1003-1004`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1003-L1004)*
 
 ### `MARCHEN`
 ```rust
 const MARCHEN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1006-1007`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1006-L1007)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1006-1007`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1006-L1007)*
 
 ### `MASARAM_GONDI`
 ```rust
 const MASARAM_GONDI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1009-1017`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1009-L1017)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1009-1017`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1009-L1017)*
 
 ### `MEDEFAIDRIN`
 ```rust
 const MEDEFAIDRIN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1019`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1019)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1019`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1019)*
 
 ### `MEETEI_MAYEK`
 ```rust
 const MEETEI_MAYEK: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1021-1022`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1021-L1022)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1021-1022`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1021-L1022)*
 
 ### `MENDE_KIKAKUI`
 ```rust
 const MENDE_KIKAKUI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1024-1025`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1024-L1025)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1024-1025`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1024-L1025)*
 
 ### `MEROITIC_CURSIVE`
 ```rust
 const MEROITIC_CURSIVE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1027-1028`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1027-L1028)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1027-1028`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1027-L1028)*
 
 ### `MEROITIC_HIEROGLYPHS`
 ```rust
 const MEROITIC_HIEROGLYPHS: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1030`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1030)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1030`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1030)*
 
 ### `MIAO`
 ```rust
 const MIAO: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1032-1033`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1032-L1033)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1032-1033`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1032-L1033)*
 
 ### `MODI`
 ```rust
 const MODI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1035`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1035)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1035`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1035)*
 
 ### `MONGOLIAN`
 ```rust
 const MONGOLIAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1037-1038`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1037-L1038)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1037-1038`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1037-L1038)*
 
 ### `MRO`
 ```rust
 const MRO: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1040`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1040)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1040`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1040)*
 
 ### `MULTANI`
 ```rust
 const MULTANI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1042-1043`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1042-L1043)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1042-1043`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1042-L1043)*
 
 ### `MYANMAR`
 ```rust
 const MYANMAR: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1045-1046`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1045-L1046)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1045-1046`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1045-L1046)*
 
 ### `NABATAEAN`
 ```rust
 const NABATAEAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1048`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1048)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1048`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1048)*
 
 ### `NAG_MUNDARI`
 ```rust
 const NAG_MUNDARI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1050`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1050)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1050`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1050)*
 
 ### `NANDINAGARI`
 ```rust
 const NANDINAGARI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1052-1053`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1052-L1053)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1052-1053`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1052-L1053)*
 
 ### `NEW_TAI_LUE`
 ```rust
 const NEW_TAI_LUE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1055-1056`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1055-L1056)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1055-1056`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1055-L1056)*
 
 ### `NEWA`
 ```rust
 const NEWA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1058`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1058)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1058`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1058)*
 
 ### `NKO`
 ```rust
 const NKO: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1060`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1060)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1060`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1060)*
 
 ### `NUSHU`
 ```rust
 const NUSHU: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1062`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1062)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1062`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1062)*
 
 ### `NYIAKENG_PUACHUE_HMONG`
 ```rust
 const NYIAKENG_PUACHUE_HMONG: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1064-1065`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1064-L1065)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1064-1065`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1064-L1065)*
 
 ### `OGHAM`
 ```rust
 const OGHAM: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1067`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1067)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1067`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1067)*
 
 ### `OL_CHIKI`
 ```rust
 const OL_CHIKI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1069`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1069)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1069`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1069)*
 
 ### `OL_ONAL`
 ```rust
 const OL_ONAL: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1071`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1071)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1071`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1071)*
 
 ### `OLD_HUNGARIAN`
 ```rust
 const OLD_HUNGARIAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1073-1074`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1073-L1074)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1073-1074`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1073-L1074)*
 
 ### `OLD_ITALIC`
 ```rust
 const OLD_ITALIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1076`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1076)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1076`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1076)*
 
 ### `OLD_NORTH_ARABIAN`
 ```rust
 const OLD_NORTH_ARABIAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1078`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1078)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1078`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1078)*
 
 ### `OLD_PERMIC`
 ```rust
 const OLD_PERMIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1080`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1080)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1080`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1080)*
 
 ### `OLD_PERSIAN`
 ```rust
 const OLD_PERSIAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1082`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1082)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1082`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1082)*
 
 ### `OLD_SOGDIAN`
 ```rust
 const OLD_SOGDIAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1084`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1084)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1084`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1084)*
 
 ### `OLD_SOUTH_ARABIAN`
 ```rust
 const OLD_SOUTH_ARABIAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1086`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1086)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1086`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1086)*
 
 ### `OLD_TURKIC`
 ```rust
 const OLD_TURKIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1088`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1088)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1088`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1088)*
 
 ### `OLD_UYGHUR`
 ```rust
 const OLD_UYGHUR: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1090`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1090)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1090`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1090)*
 
 ### `ORIYA`
 ```rust
 const ORIYA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1092-1107`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1092-L1107)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1092-1107`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1092-L1107)*
 
 ### `OSAGE`
 ```rust
 const OSAGE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1109`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1109)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1109`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1109)*
 
 ### `OSMANYA`
 ```rust
 const OSMANYA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1111`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1111)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1111`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1111)*
 
 ### `PAHAWH_HMONG`
 ```rust
 const PAHAWH_HMONG: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1113-1114`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1113-L1114)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1113-1114`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1113-L1114)*
 
 ### `PALMYRENE`
 ```rust
 const PALMYRENE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1116`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1116)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1116`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1116)*
 
 ### `PAU_CIN_HAU`
 ```rust
 const PAU_CIN_HAU: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1118`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1118)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1118`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1118)*
 
 ### `PHAGS_PA`
 ```rust
 const PHAGS_PA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1120`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1120)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1120`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1120)*
 
 ### `PHOENICIAN`
 ```rust
 const PHOENICIAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1122`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1122)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1122`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1122)*
 
 ### `PSALTER_PAHLAVI`
 ```rust
 const PSALTER_PAHLAVI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1124-1125`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1124-L1125)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1124-1125`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1124-L1125)*
 
 ### `REJANG`
 ```rust
 const REJANG: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1127`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1127)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1127`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1127)*
 
 ### `RUNIC`
 ```rust
 const RUNIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1129`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1129)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1129`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1129)*
 
 ### `SAMARITAN`
 ```rust
 const SAMARITAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1131`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1131)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1131`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1131)*
 
 ### `SAURASHTRA`
 ```rust
 const SAURASHTRA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1133-1134`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1133-L1134)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1133-1134`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1133-L1134)*
 
 ### `SHARADA`
 ```rust
 const SHARADA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1136`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1136)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1136`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1136)*
 
 ### `SHAVIAN`
 ```rust
 const SHAVIAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1138`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1138)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1138`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1138)*
 
 ### `SIDDHAM`
 ```rust
 const SIDDHAM: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1140-1141`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1140-L1141)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1140-1141`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1140-L1141)*
 
 ### `SIGNWRITING`
 ```rust
 const SIGNWRITING: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1143-1144`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1143-L1144)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1143-1144`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1143-L1144)*
 
 ### `SINHALA`
 ```rust
 const SINHALA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1146-1160`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1146-L1160)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1146-1160`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1146-L1160)*
 
 ### `SOGDIAN`
 ```rust
 const SOGDIAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1162`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1162)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1162`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1162)*
 
 ### `SORA_SOMPENG`
 ```rust
 const SORA_SOMPENG: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1164`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1164)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1164`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1164)*
 
 ### `SOYOMBO`
 ```rust
 const SOYOMBO: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1166`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1166)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1166`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1166)*
 
 ### `SUNDANESE`
 ```rust
 const SUNDANESE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1168-1169`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1168-L1169)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1168-1169`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1168-L1169)*
 
 ### `SUNUWAR`
 ```rust
 const SUNUWAR: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1171`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1171)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1171`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1171)*
 
 ### `SYLOTI_NAGRI`
 ```rust
 const SYLOTI_NAGRI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1173`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1173)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1173`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1173)*
 
 ### `SYRIAC`
 ```rust
 const SYRIAC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1175-1176`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1175-L1176)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1175-1176`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1175-L1176)*
 
 ### `TAGALOG`
 ```rust
 const TAGALOG: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1178`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1178)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1178`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1178)*
 
 ### `TAGBANWA`
 ```rust
 const TAGBANWA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1180-1181`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1180-L1181)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1180-1181`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1180-L1181)*
 
 ### `TAI_LE`
 ```rust
 const TAI_LE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1183`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1183)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1183`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1183)*
 
 ### `TAI_THAM`
 ```rust
 const TAI_THAM: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1185-1191`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1185-L1191)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1185-1191`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1185-L1191)*
 
 ### `TAI_VIET`
 ```rust
 const TAI_VIET: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1193`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1193)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1193`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1193)*
 
 ### `TAKRI`
 ```rust
 const TAKRI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1195`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1195)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1195`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1195)*
 
 ### `TAMIL`
 ```rust
 const TAMIL: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1197-1216`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1197-L1216)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1197-1216`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1197-L1216)*
 
 ### `TANGSA`
 ```rust
 const TANGSA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1218`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1218)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1218`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1218)*
 
 ### `TANGUT`
 ```rust
 const TANGUT: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1220-1221`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1220-L1221)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1220-1221`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1220-L1221)*
 
 ### `TELUGU`
 ```rust
 const TELUGU: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1223-1237`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1223-L1237)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1223-1237`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1223-L1237)*
 
 ### `THAANA`
 ```rust
 const THAANA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1239`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1239)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1239`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1239)*
 
 ### `THAI`
 ```rust
 const THAI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1241`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1241)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1241`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1241)*
 
 ### `TIBETAN`
 ```rust
 const TIBETAN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1243-1251`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1243-L1251)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1243-1251`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1243-L1251)*
 
 ### `TIFINAGH`
 ```rust
 const TIFINAGH: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1253-1254`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1253-L1254)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1253-1254`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1253-L1254)*
 
 ### `TIRHUTA`
 ```rust
 const TIRHUTA: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1256`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1256)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1256`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1256)*
 
 ### `TODHRI`
 ```rust
 const TODHRI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1258`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1258)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1258`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1258)*
 
 ### `TOTO`
 ```rust
 const TOTO: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1260`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1260)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1260`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1260)*
 
 ### `TULU_TIGALARI`
 ```rust
 const TULU_TIGALARI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1262-1274`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1262-L1274)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1262-1274`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1262-L1274)*
 
 ### `UGARITIC`
 ```rust
 const UGARITIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1276`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1276)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1276`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1276)*
 
 ### `VAI`
 ```rust
 const VAI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1278`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1278)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1278`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1278)*
 
 ### `VITHKUQI`
 ```rust
 const VITHKUQI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1280-1289`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1280-L1289)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1280-1289`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1280-L1289)*
 
 ### `WANCHO`
 ```rust
 const WANCHO: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1291`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1291)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1291`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1291)*
 
 ### `WARANG_CITI`
 ```rust
 const WARANG_CITI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1293`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1293)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1293`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1293)*
 
 ### `YEZIDI`
 ```rust
 const YEZIDI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1295-1296`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1295-L1296)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1295-1296`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1295-L1296)*
 
 ### `YI`
 ```rust
 const YI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1298`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1298)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1298`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1298)*
 
 ### `ZANABAZAR_SQUARE`
 ```rust
 const ZANABAZAR_SQUARE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1300`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1300)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/script.rs:1300`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/script.rs#L1300)*
 

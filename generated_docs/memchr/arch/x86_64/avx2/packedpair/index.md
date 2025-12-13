@@ -28,7 +28,7 @@ struct Finder {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/packedpair.rs:23-26`](../../../../../../.source_1765521767/memchr-2.7.6/src/arch/x86_64/avx2/packedpair.rs#L23-L26)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/packedpair.rs:23-26`](../../../../../../.source_1765633015/memchr-2.7.6/src/arch/x86_64/avx2/packedpair.rs#L23-L26)*
 
 A "packed pair" finder that uses 256-bit vector operations.
 

@@ -61,7 +61,7 @@ it into logical sub-components works better.
 fn next(nfa: &thompson::NFA, match_kind: crate::util::search::MatchKind, sparses: &mut crate::util::sparse_set::SparseSets, stack: &mut alloc::vec::Vec<crate::util::primitives::StateID>, state: &self::state::State, unit: alphabet::Unit, empty_builder: self::state::StateBuilderEmpty) -> self::state::StateBuilderNFA
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/mod.rs:92-353`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/determinize/mod.rs#L92-L353)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/mod.rs:92-353`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/determinize/mod.rs#L92-L353)*
 
 Compute the set of all reachable NFA states, including the full epsilon
 closure, from a DFA state for a single unit of input. The set of reachable
@@ -103,7 +103,7 @@ turned into a `State` if necessary.
 fn epsilon_closure(nfa: &thompson::NFA, start_nfa_id: crate::util::primitives::StateID, look_have: crate::util::look::LookSet, stack: &mut alloc::vec::Vec<crate::util::primitives::StateID>, set: &mut crate::util::sparse_set::SparseSet)
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/mod.rs:369-428`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/determinize/mod.rs#L369-L428)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/mod.rs:369-428`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/determinize/mod.rs#L369-L428)*
 
 Compute the epsilon closure for the given NFA state. The epsilon closure
 consists of all NFA state IDs, including `start_nfa_id`, that can be
@@ -126,7 +126,7 @@ traversal. After returning, it is guaranteed that `stack` will have length
 fn add_nfa_states(nfa: &thompson::NFA, set: &crate::util::sparse_set::SparseSet, builder: &mut self::state::StateBuilderNFA)
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/mod.rs:448-579`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/determinize/mod.rs#L448-L579)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/mod.rs:448-579`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/determinize/mod.rs#L448-L579)*
 
 Add the NFA state IDs in the given `set` to the given DFA builder state.
 The order in which states are added corresponds to the order in which they
@@ -153,7 +153,7 @@ to `nfa.len()`.
 fn set_lookbehind_from_start(nfa: &thompson::NFA, start: &crate::util::start::Start, builder: &mut self::state::StateBuilderMatches)
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/mod.rs:583-682`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/determinize/mod.rs#L583-L682)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/mod.rs:583-682`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/determinize/mod.rs#L583-L682)*
 
 Sets the appropriate look-behind assertions on the given state based on
 this starting configuration.

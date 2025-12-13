@@ -25,7 +25,7 @@ struct DirEntry {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/dent.rs:35-59`](../../../.source_1765521767/walkdir-2.5.0/src/dent.rs#L35-L59)*
+*Defined in [`walkdir-2.5.0/src/dent.rs:35-59`](../../../.source_1765633015/walkdir-2.5.0/src/dent.rs#L35-L59)*
 
 A directory entry.
 
@@ -302,7 +302,7 @@ operations operate on the symbolic link.
 trait DirEntryExt { ... }
 ```
 
-*Defined in [`walkdir-2.5.0/src/dent.rs:339-343`](../../../.source_1765521767/walkdir-2.5.0/src/dent.rs#L339-L343)*
+*Defined in [`walkdir-2.5.0/src/dent.rs:339-343`](../../../.source_1765633015/walkdir-2.5.0/src/dent.rs#L339-L343)*
 
 Unix-specific extension methods for `walkdir::DirEntry`
 

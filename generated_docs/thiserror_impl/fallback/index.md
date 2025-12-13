@@ -18,5 +18,5 @@
 fn expand(input: &syn::DeriveInput, error: syn::Error) -> proc_macro2::TokenStream
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/fallback.rs:7-33`](../../../.source_1765521767/thiserror-impl-2.0.17/src/fallback.rs#L7-L33)*
+*Defined in [`thiserror-impl-2.0.17/src/fallback.rs:7-33`](../../../.source_1765633015/thiserror-impl-2.0.17/src/fallback.rs#L7-L33)*
 

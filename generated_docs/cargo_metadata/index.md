@@ -203,7 +203,7 @@ struct Dependency {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/dependency.rs:52-85`](../../.source_1765521767/cargo_metadata-0.23.1/src/dependency.rs#L52-L85)*
+*Defined in [`cargo_metadata-0.23.1/src/dependency.rs:52-85`](../../.source_1765633015/cargo_metadata-0.23.1/src/dependency.rs#L52-L85)*
 
 A dependency of the main crate
 
@@ -362,7 +362,7 @@ struct Artifact {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:156-175`](../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L156-L175)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:156-175`](../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L156-L175)*
 
 A compiler-generated file.
 
@@ -499,7 +499,7 @@ struct ArtifactProfile {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:15-28`](../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L15-L28)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:15-28`](../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L15-L28)*
 
 Profile settings used to determine which compiler flags to use for a
 target.
@@ -621,7 +621,7 @@ struct BuildFinished {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:220-223`](../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L220-L223)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:220-223`](../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L220-L223)*
 
 Final result of a build.
 
@@ -730,7 +730,7 @@ struct BuildScript {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:197-213`](../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L197-L213)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:197-213`](../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L197-L213)*
 
 Output of a build script execution.
 
@@ -858,7 +858,7 @@ struct CompilerMessage {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:183-190`](../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L183-L190)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:183-190`](../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L183-L190)*
 
 Message left by the compiler
 
@@ -978,7 +978,7 @@ struct MessageIter<R> {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:262-264`](../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L262-L264)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:262-264`](../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L262-L264)*
 
 An iterator of Messages.
 
@@ -1046,7 +1046,7 @@ An iterator of Messages.
 struct FeatureName<T: AsRef<str>>(T);
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:209-219`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L209-L219)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:209-219`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L209-L219)*
 
 Feature name newtype
 
@@ -1188,7 +1188,7 @@ Based on [cargo-util-schema's string newtype] but with two crucial differences:
 struct PackageName<T: AsRef<str>>(T);
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:221-231`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L221-L231)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:221-231`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L221-L231)*
 
 Package name newtype
 
@@ -1332,7 +1332,7 @@ struct PackageId {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:241-244`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L241-L244)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:241-244`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L241-L244)*
 
 An "opaque" identifier for a package.
 
@@ -1471,7 +1471,7 @@ struct Metadata {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:262-289`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L262-L289)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:262-289`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L262-L289)*
 
 Starting point for metadata returned by `cargo metadata`
 
@@ -1638,7 +1638,7 @@ Starting point for metadata returned by `cargo metadata`
 struct WorkspaceDefaultMembers(Option<Vec<PackageId>>);
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:353`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L353)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:353`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L353)*
 
 A list of default workspace members.
 
@@ -1797,7 +1797,7 @@ struct Resolve {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:396-402`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L396-L402)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:396-402`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L396-L402)*
 
 A dependency graph
 
@@ -1914,7 +1914,7 @@ struct Node {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:420-436`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L420-L436)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:420-436`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L420-L436)*
 
 A node in a dependencies graph
 
@@ -2035,7 +2035,7 @@ struct NodeDep {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:443-460`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L443-L460)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:443-460`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L443-L460)*
 
 A dependency in a node
 
@@ -2157,7 +2157,7 @@ struct DepKindInfo {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:467-483`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L467-L483)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:467-483`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L467-L483)*
 
 Information about a dependency kind.
 
@@ -2297,7 +2297,7 @@ struct Package {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:493-614`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L493-L614)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:493-614`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L493-L614)*
 
 One or more crates described by a single `Cargo.toml`
 
@@ -2547,7 +2547,7 @@ struct Source {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:661-664`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L661-L664)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:661-664`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L661-L664)*
 
 The source of a package such as crates.io.
 
@@ -2676,7 +2676,7 @@ struct Target {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:684-736`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L684-L736)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:684-736`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L684-L736)*
 
 A single target (lib, bin, example, ...) provided by a crate
 
@@ -2890,7 +2890,7 @@ struct MetadataCommand {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:1005-1031`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L1005-L1031)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:1005-1031`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L1005-L1031)*
 
 A builder for configuring `cargo metadata` invocation.
 
@@ -3219,7 +3219,7 @@ enum DependencyKind {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/dependency.rs:15-29`](../../.source_1765521767/cargo_metadata-0.23.1/src/dependency.rs#L15-L29)*
+*Defined in [`cargo_metadata-0.23.1/src/dependency.rs:15-29`](../../.source_1765633015/cargo_metadata-0.23.1/src/dependency.rs#L15-L29)*
 
 Dependencies can come in three kinds
 
@@ -3352,7 +3352,7 @@ enum Error {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/errors.rs:25-52`](../../.source_1765521767/cargo_metadata-0.23.1/src/errors.rs#L25-L52)*
+*Defined in [`cargo_metadata-0.23.1/src/errors.rs:25-52`](../../.source_1765633015/cargo_metadata-0.23.1/src/errors.rs#L25-L52)*
 
 Error returned when executing/parsing `cargo metadata` fails.
 
@@ -3473,7 +3473,7 @@ enum ArtifactDebuginfo {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:33-57`](../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L33-L57)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:33-57`](../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L33-L57)*
 
 The kind of debug information included in the artifact.
 
@@ -3625,7 +3625,7 @@ enum Message {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:229-245`](../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L229-L245)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:229-245`](../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L229-L245)*
 
 A cargo message
 
@@ -3768,7 +3768,7 @@ enum TargetKind {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:780-817`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L780-L817)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:780-817`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L780-L817)*
 
 Kind of target.
 
@@ -3951,7 +3951,7 @@ enum CrateType {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:874-899`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L874-L899)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:874-899`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L874-L899)*
 
 Similar to `kind`, but only reports the
 [Cargo crate types](https://doc.rust-lang.org/cargo/reference/cargo-targets.html#the-crate-type-field):
@@ -4114,7 +4114,7 @@ enum Edition {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:945-965`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L945-L965)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:945-965`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L945-L965)*
 
 The Rust edition
 
@@ -4262,7 +4262,7 @@ enum CargoOpt {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:994-1001`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L994-L1001)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:994-1001`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L994-L1001)*
 
 Cargo features flags
 
@@ -4352,7 +4352,7 @@ Cargo features flags
 fn parse_messages<R: Read>(input: R) -> serde_json::StreamDeserializer<'static, serde_json::de::IoRead<R>, Message>
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:295-297`](../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L295-L297)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:295-297`](../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L295-L297)*
 
 Creates an iterator of Message from a Read outputting a stream of JSON
 messages. For usage information, look at the top-level documentation.
@@ -4363,7 +4363,7 @@ messages. For usage information, look at the top-level documentation.
 fn is_null(value: &serde_json::Value) -> bool
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:253-255`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L253-L255)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:253-255`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L253-L255)*
 
 Helpers for default metadata fields
 
@@ -4373,7 +4373,7 @@ Helpers for default metadata fields
 fn default_true() -> bool
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:988-990`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L988-L990)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:988-990`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L988-L990)*
 
 ### `deserialize_rust_version`
 
@@ -4383,7 +4383,7 @@ where
     D: Deserializer<'de>
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:1256-1287`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L1256-L1287)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:1256-1287`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L1256-L1287)*
 
 As per the Cargo Book the [`rust-version` field](https://doc.rust-lang.org/cargo/reference/manifest.html#the-rust-version-field) must:
 
@@ -4402,7 +4402,7 @@ and ensuring that it does not contain a pre-release version or build metadata.
 type Result<T, E> = ::std::result::Result<T, E>;
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/errors.rs:4`](../../.source_1765521767/cargo_metadata-0.23.1/src/errors.rs#L4)*
+*Defined in [`cargo_metadata-0.23.1/src/errors.rs:4`](../../.source_1765633015/cargo_metadata-0.23.1/src/errors.rs#L4)*
 
 Custom result type for `cargo_metadata::Error`
 
@@ -4410,9 +4410,9 @@ Custom result type for `cargo_metadata::Error`
 
 ### `str_newtype!`
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:131-207`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L131-L207)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:131-207`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L131-L207)*
 
 ### `methods_target_is_kind!`
 
-*Defined in [`cargo_metadata-0.23.1/src/lib.rs:738-747`](../../.source_1765521767/cargo_metadata-0.23.1/src/lib.rs#L738-L747)*
+*Defined in [`cargo_metadata-0.23.1/src/lib.rs:738-747`](../../.source_1765633015/cargo_metadata-0.23.1/src/lib.rs#L738-L747)*
 

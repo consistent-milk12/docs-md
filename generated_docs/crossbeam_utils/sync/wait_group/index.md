@@ -21,7 +21,7 @@ struct WaitGroup {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:46-48`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L46-L48)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:46-48`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L46-L48)*
 
 Enables threads to synchronize the beginning or end of some computation.
 
@@ -214,7 +214,7 @@ struct Inner {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:51-54`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L51-L54)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:51-54`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L51-L54)*
 
 Inner state of a `WaitGroup`.
 

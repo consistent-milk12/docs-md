@@ -24,7 +24,7 @@ struct Key {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:9-12`](../../../.source_1765521767/clap_builder-4.5.53/src/mkeymap.rs#L9-L12)*
+*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:9-12`](../../../.source_1765633015/clap_builder-4.5.53/src/mkeymap.rs#L9-L12)*
 
 #### Trait Implementations
 
@@ -107,7 +107,7 @@ struct MKeyMap {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:15-22`](../../../.source_1765521767/clap_builder-4.5.53/src/mkeymap.rs#L15-L22)*
+*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:15-22`](../../../.source_1765633015/clap_builder-4.5.53/src/mkeymap.rs#L15-L22)*
 
 #### Fields
 
@@ -263,7 +263,7 @@ enum KeyType {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:25-29`](../../../.source_1765521767/clap_builder-4.5.53/src/mkeymap.rs#L25-L29)*
+*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:25-29`](../../../.source_1765633015/clap_builder-4.5.53/src/mkeymap.rs#L25-L29)*
 
 #### Implementations
 
@@ -359,7 +359,7 @@ enum KeyType {
 fn append_keys(keys: &mut Vec<Key>, arg: &crate::Arg, index: usize)
 ```
 
-*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:165-188`](../../../.source_1765521767/clap_builder-4.5.53/src/mkeymap.rs#L165-L188)*
+*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:165-188`](../../../.source_1765633015/clap_builder-4.5.53/src/mkeymap.rs#L165-L188)*
 
 Generate key types for an specific Arg.
 

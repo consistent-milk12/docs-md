@@ -42,7 +42,7 @@ struct Pre<P> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:189-192`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/strategy.rs#L189-L192)*
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:189-192`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/strategy.rs#L189-L192)*
 
 #### Implementations
 
@@ -150,7 +150,7 @@ struct Core {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:443-453`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/strategy.rs#L443-L453)*
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:443-453`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/strategy.rs#L443-L453)*
 
 #### Implementations
 
@@ -246,7 +246,7 @@ struct ReverseAnchored {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:904-906`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/strategy.rs#L904-L906)*
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:904-906`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/strategy.rs#L904-L906)*
 
 #### Implementations
 
@@ -333,7 +333,7 @@ struct ReverseSuffix {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:1116-1119`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/strategy.rs#L1116-L1119)*
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:1116-1119`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/strategy.rs#L1116-L1119)*
 
 #### Implementations
 
@@ -427,7 +427,7 @@ struct ReverseInner {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:1494-1500`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/strategy.rs#L1494-L1500)*
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:1494-1500`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/strategy.rs#L1494-L1500)*
 
 #### Implementations
 
@@ -517,7 +517,7 @@ struct ReverseInner {
 trait Strategy: Debug + Send + Sync + RefUnwindSafe + UnwindSafe + 'static { ... }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:40-76`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/strategy.rs#L40-L76)*
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:40-76`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/strategy.rs#L40-L76)*
 
 A trait that represents a single meta strategy. Its main utility is in
 providing a way to do dynamic dispatch over a few choices.
@@ -572,7 +572,7 @@ is, a benchmark to test the overall latency of a search call.
 fn new(info: &crate::meta::regex::RegexInfo, hirs: &[&regex_syntax::hir::Hir]) -> Result<alloc::sync::Arc<dyn Strategy>, crate::meta::error::BuildError>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:78-186`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/strategy.rs#L78-L186)*
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:78-186`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/strategy.rs#L78-L186)*
 
 ### `copy_match_to_slots`
 
@@ -580,7 +580,7 @@ fn new(info: &crate::meta::regex::RegexInfo, hirs: &[&regex_syntax::hir::Hir]) -
 fn copy_match_to_slots(m: crate::util::search::Match, slots: &mut [Option<crate::util::primitives::NonMaxUsize>])
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:1896-1905`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/strategy.rs#L1896-L1905)*
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:1896-1905`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/strategy.rs#L1896-L1905)*
 
 Copies the offsets in the given match to the corresponding positions in
 `slots`.

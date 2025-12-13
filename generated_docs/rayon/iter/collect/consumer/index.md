@@ -24,7 +24,7 @@ struct CollectConsumer<'c, T: Send> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/collect/consumer.rs:7-12`](../../../../../.source_1765521767/rayon-1.11.0/src/iter/collect/consumer.rs#L7-L12)*
+*Defined in [`rayon-1.11.0/src/iter/collect/consumer.rs:7-12`](../../../../../.source_1765633015/rayon-1.11.0/src/iter/collect/consumer.rs#L7-L12)*
 
 #### Fields
 
@@ -129,7 +129,7 @@ struct CollectResult<'c, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/collect/consumer.rs:44-55`](../../../../../.source_1765521767/rayon-1.11.0/src/iter/collect/consumer.rs#L44-L55)*
+*Defined in [`rayon-1.11.0/src/iter/collect/consumer.rs:44-55`](../../../../../.source_1765633015/rayon-1.11.0/src/iter/collect/consumer.rs#L44-L55)*
 
 CollectResult represents an initialized part of the target slice.
 
@@ -249,7 +249,7 @@ the elements will be dropped, unless its ownership is released before then.
 struct CollectReducer;
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/collect/consumer.rs:166`](../../../../../.source_1765521767/rayon-1.11.0/src/iter/collect/consumer.rs#L166)*
+*Defined in [`rayon-1.11.0/src/iter/collect/consumer.rs:166`](../../../../../.source_1765633015/rayon-1.11.0/src/iter/collect/consumer.rs#L166)*
 
 CollectReducer combines adjacent chunks; the result must always
 be contiguous so that it is one combined slice.

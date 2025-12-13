@@ -29,7 +29,7 @@ hint::spin_loop();
 fn spin_loop()
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:530-533`](../../../.source_1765521767/portable-atomic-1.11.1/src/lib.rs#L530-L533)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:530-533`](../../../.source_1765633015/portable-atomic-1.11.1/src/lib.rs#L530-L533)*
 
 Emits a machine instruction to signal the processor that it is running in
 a busy-wait spin-loop ("spin lock").

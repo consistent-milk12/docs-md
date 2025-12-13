@@ -18,7 +18,7 @@
 struct DebugByte(u8);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/debug.rs:3`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/debug.rs#L3)*
+*Defined in [`aho-corasick-1.1.4/src/util/debug.rs:3`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/debug.rs#L3)*
 
 A type that wraps a single byte with a convenient fmt::Debug impl that
 escapes the byte.

@@ -185,7 +185,7 @@ struct SharedSeed {
 }
 ```
 
-*Defined in [`foldhash-0.2.0/src/seed.rs:78-80`](../../.source_1765521767/foldhash-0.2.0/src/seed.rs#L78-L80)*
+*Defined in [`foldhash-0.2.0/src/seed.rs:78-80`](../../.source_1765633015/foldhash-0.2.0/src/seed.rs#L78-L80)*
 
 A random seed intended to be shared by many different foldhash instances.
 
@@ -282,7 +282,7 @@ and [`SeedableRandomState::with_seed`](crate::fast::SeedableRandomState::with_se
 const fn folded_multiply(x: u64, y: u64) -> u64
 ```
 
-*Defined in [`foldhash-0.2.0/src/lib.rs:143-206`](../../.source_1765521767/foldhash-0.2.0/src/lib.rs#L143-L206)*
+*Defined in [`foldhash-0.2.0/src/lib.rs:143-206`](../../.source_1765633015/foldhash-0.2.0/src/lib.rs#L143-L206)*
 
 ### `rotate_right`
 
@@ -290,7 +290,7 @@ const fn folded_multiply(x: u64, y: u64) -> u64
 const fn rotate_right(x: u64, r: u32) -> u64
 ```
 
-*Defined in [`foldhash-0.2.0/src/lib.rs:209-233`](../../.source_1765521767/foldhash-0.2.0/src/lib.rs#L209-L233)*
+*Defined in [`foldhash-0.2.0/src/lib.rs:209-233`](../../.source_1765633015/foldhash-0.2.0/src/lib.rs#L209-L233)*
 
 ### `cold_path`
 
@@ -298,7 +298,7 @@ const fn rotate_right(x: u64, r: u32) -> u64
 fn cold_path()
 ```
 
-*Defined in [`foldhash-0.2.0/src/lib.rs:236`](../../.source_1765521767/foldhash-0.2.0/src/lib.rs#L236)*
+*Defined in [`foldhash-0.2.0/src/lib.rs:236`](../../.source_1765633015/foldhash-0.2.0/src/lib.rs#L236)*
 
 ### `hash_bytes_short`
 
@@ -306,7 +306,7 @@ fn cold_path()
 fn hash_bytes_short(bytes: &[u8], accumulator: u64, seeds: &[u64; 6]) -> u64
 ```
 
-*Defined in [`foldhash-0.2.0/src/lib.rs:240-259`](../../.source_1765521767/foldhash-0.2.0/src/lib.rs#L240-L259)*
+*Defined in [`foldhash-0.2.0/src/lib.rs:240-259`](../../.source_1765633015/foldhash-0.2.0/src/lib.rs#L240-L259)*
 
 Hashes strings <= 16 bytes, has unspecified behavior when bytes.len() > 16.
 
@@ -316,7 +316,7 @@ Hashes strings <= 16 bytes, has unspecified behavior when bytes.len() > 16.
 unsafe fn load(bytes: &[u8], offset: usize) -> u64
 ```
 
-*Defined in [`foldhash-0.2.0/src/lib.rs:266-271`](../../.source_1765521767/foldhash-0.2.0/src/lib.rs#L266-L271)*
+*Defined in [`foldhash-0.2.0/src/lib.rs:266-271`](../../.source_1765633015/foldhash-0.2.0/src/lib.rs#L266-L271)*
 
 Load 8 bytes into a u64 word at the given offset.
 
@@ -329,7 +329,7 @@ You must ensure that offset + 8 <= bytes.len().
 unsafe fn hash_bytes_long(v: &[u8], accumulator: u64, seeds: &[u64; 6]) -> u64
 ```
 
-*Defined in [`foldhash-0.2.0/src/lib.rs:279-350`](../../.source_1765521767/foldhash-0.2.0/src/lib.rs#L279-L350)*
+*Defined in [`foldhash-0.2.0/src/lib.rs:279-350`](../../.source_1765633015/foldhash-0.2.0/src/lib.rs#L279-L350)*
 
 Hashes strings > 16 bytes.
 
@@ -343,82 +343,82 @@ v.len() must be > 16 bytes.
 const ARBITRARY0: u64 = 2_611_923_443_488_327_891u64;
 ```
 
-*Defined in [`foldhash-0.2.0/src/lib.rs:129`](../../.source_1765521767/foldhash-0.2.0/src/lib.rs#L129)*
+*Defined in [`foldhash-0.2.0/src/lib.rs:129`](../../.source_1765633015/foldhash-0.2.0/src/lib.rs#L129)*
 
 ### `ARBITRARY1`
 ```rust
 const ARBITRARY1: u64 = 1_376_283_091_369_227_076u64;
 ```
 
-*Defined in [`foldhash-0.2.0/src/lib.rs:130`](../../.source_1765521767/foldhash-0.2.0/src/lib.rs#L130)*
+*Defined in [`foldhash-0.2.0/src/lib.rs:130`](../../.source_1765633015/foldhash-0.2.0/src/lib.rs#L130)*
 
 ### `ARBITRARY2`
 ```rust
 const ARBITRARY2: u64 = 11_820_040_416_388_919_760u64;
 ```
 
-*Defined in [`foldhash-0.2.0/src/lib.rs:131`](../../.source_1765521767/foldhash-0.2.0/src/lib.rs#L131)*
+*Defined in [`foldhash-0.2.0/src/lib.rs:131`](../../.source_1765633015/foldhash-0.2.0/src/lib.rs#L131)*
 
 ### `ARBITRARY3`
 ```rust
 const ARBITRARY3: u64 = 589_684_135_938_649_225u64;
 ```
 
-*Defined in [`foldhash-0.2.0/src/lib.rs:132`](../../.source_1765521767/foldhash-0.2.0/src/lib.rs#L132)*
+*Defined in [`foldhash-0.2.0/src/lib.rs:132`](../../.source_1765633015/foldhash-0.2.0/src/lib.rs#L132)*
 
 ### `ARBITRARY4`
 ```rust
 const ARBITRARY4: u64 = 4_983_270_260_364_809_079u64;
 ```
 
-*Defined in [`foldhash-0.2.0/src/lib.rs:133`](../../.source_1765521767/foldhash-0.2.0/src/lib.rs#L133)*
+*Defined in [`foldhash-0.2.0/src/lib.rs:133`](../../.source_1765633015/foldhash-0.2.0/src/lib.rs#L133)*
 
 ### `ARBITRARY5`
 ```rust
 const ARBITRARY5: u64 = 13_714_699_805_381_954_668u64;
 ```
 
-*Defined in [`foldhash-0.2.0/src/lib.rs:134`](../../.source_1765521767/foldhash-0.2.0/src/lib.rs#L134)*
+*Defined in [`foldhash-0.2.0/src/lib.rs:134`](../../.source_1765633015/foldhash-0.2.0/src/lib.rs#L134)*
 
 ### `ARBITRARY6`
 ```rust
 const ARBITRARY6: u64 = 13_883_517_620_612_518_109u64;
 ```
 
-*Defined in [`foldhash-0.2.0/src/lib.rs:135`](../../.source_1765521767/foldhash-0.2.0/src/lib.rs#L135)*
+*Defined in [`foldhash-0.2.0/src/lib.rs:135`](../../.source_1765633015/foldhash-0.2.0/src/lib.rs#L135)*
 
 ### `ARBITRARY7`
 ```rust
 const ARBITRARY7: u64 = 4_577_018_097_722_394_903u64;
 ```
 
-*Defined in [`foldhash-0.2.0/src/lib.rs:136`](../../.source_1765521767/foldhash-0.2.0/src/lib.rs#L136)*
+*Defined in [`foldhash-0.2.0/src/lib.rs:136`](../../.source_1765633015/foldhash-0.2.0/src/lib.rs#L136)*
 
 ### `ARBITRARY8`
 ```rust
 const ARBITRARY8: u64 = 10_526_836_309_316_205_339u64;
 ```
 
-*Defined in [`foldhash-0.2.0/src/lib.rs:137`](../../.source_1765521767/foldhash-0.2.0/src/lib.rs#L137)*
+*Defined in [`foldhash-0.2.0/src/lib.rs:137`](../../.source_1765633015/foldhash-0.2.0/src/lib.rs#L137)*
 
 ### `ARBITRARY9`
 ```rust
 const ARBITRARY9: u64 = 15_073_842_237_943_035_308u64;
 ```
 
-*Defined in [`foldhash-0.2.0/src/lib.rs:138`](../../.source_1765521767/foldhash-0.2.0/src/lib.rs#L138)*
+*Defined in [`foldhash-0.2.0/src/lib.rs:138`](../../.source_1765633015/foldhash-0.2.0/src/lib.rs#L138)*
 
 ### `ARBITRARY10`
 ```rust
 const ARBITRARY10: u64 = 3_458_046_377_305_235_383u64;
 ```
 
-*Defined in [`foldhash-0.2.0/src/lib.rs:139`](../../.source_1765521767/foldhash-0.2.0/src/lib.rs#L139)*
+*Defined in [`foldhash-0.2.0/src/lib.rs:139`](../../.source_1765633015/foldhash-0.2.0/src/lib.rs#L139)*
 
 ### `ARBITRARY11`
 ```rust
 const ARBITRARY11: u64 = 13_322_122_606_961_655_446u64;
 ```
 
-*Defined in [`foldhash-0.2.0/src/lib.rs:140`](../../.source_1765521767/foldhash-0.2.0/src/lib.rs#L140)*
+*Defined in [`foldhash-0.2.0/src/lib.rs:140`](../../.source_1765633015/foldhash-0.2.0/src/lib.rs#L140)*
 

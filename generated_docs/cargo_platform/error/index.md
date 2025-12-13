@@ -22,7 +22,7 @@ struct ParseError {
 }
 ```
 
-*Defined in [`cargo-platform-0.3.1/src/error.rs:4-7`](../../../.source_1765521767/cargo-platform-0.3.1/src/error.rs#L4-L7)*
+*Defined in [`cargo-platform-0.3.1/src/error.rs:4-7`](../../../.source_1765633015/cargo-platform-0.3.1/src/error.rs#L4-L7)*
 
 #### Implementations
 
@@ -104,7 +104,7 @@ enum ParseErrorKind {
 }
 ```
 
-*Defined in [`cargo-platform-0.3.1/src/error.rs:11-21`](../../../.source_1765521767/cargo-platform-0.3.1/src/error.rs#L11-L21)*
+*Defined in [`cargo-platform-0.3.1/src/error.rs:11-21`](../../../.source_1765633015/cargo-platform-0.3.1/src/error.rs#L11-L21)*
 
 #### Trait Implementations
 

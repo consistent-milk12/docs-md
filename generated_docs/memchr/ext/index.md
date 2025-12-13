@@ -18,7 +18,7 @@
 trait Pointer { ... }
 ```
 
-*Defined in [`memchr-2.7.6/src/ext.rs:2-18`](../../../.source_1765521767/memchr-2.7.6/src/ext.rs#L2-L18)*
+*Defined in [`memchr-2.7.6/src/ext.rs:2-18`](../../../.source_1765633015/memchr-2.7.6/src/ext.rs#L2-L18)*
 
 A trait for adding some helper routines to pointers.
 

@@ -21,7 +21,7 @@ struct Splice<'a, I: Iterator + 'a, A: Allocator + 'a> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/splice.rs:21-24`](../../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/vec/splice.rs#L21-L24)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/splice.rs:21-24`](../../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/vec/splice.rs#L21-L24)*
 
 A splicing iterator for `Vec`.
 

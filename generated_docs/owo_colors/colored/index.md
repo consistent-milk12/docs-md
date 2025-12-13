@@ -53,7 +53,7 @@ enum Color {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765521767/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765633015/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 Available standard ANSI colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
@@ -144,7 +144,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 trait OwoColorize: Sized { ... }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:263-489`](../../../.source_1765521767/owo-colors-4.2.3/src/lib.rs#L263-L489)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:263-489`](../../../.source_1765633015/owo-colors-4.2.3/src/lib.rs#L263-L489)*
 
 Extension trait for colorizing a type which implements any std formatter
 ([`Display`](core::fmt::Display), [`Debug`](core::fmt::Debug), [`UpperHex`](core::fmt::UpperHex),

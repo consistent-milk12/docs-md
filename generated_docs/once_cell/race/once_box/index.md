@@ -22,7 +22,7 @@ struct OnceBox<T> {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/race.rs:361-364`](../../../../.source_1765521767/once_cell-1.21.3/src/race.rs#L361-L364)*
+*Defined in [`once_cell-1.21.3/src/race.rs:361-364`](../../../../.source_1765633015/once_cell-1.21.3/src/race.rs#L361-L364)*
 
 A thread-safe cell which can be written to only once.
 
@@ -164,7 +164,7 @@ A thread-safe cell which can be written to only once.
 fn _dummy()
 ```
 
-*Defined in [`once_cell-1.21.3/src/race.rs:497`](../../../../.source_1765521767/once_cell-1.21.3/src/race.rs#L497)*
+*Defined in [`once_cell-1.21.3/src/race.rs:497`](../../../../.source_1765633015/once_cell-1.21.3/src/race.rs#L497)*
 
 ```compile_fail
 struct S(*mut ());

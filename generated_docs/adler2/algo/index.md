@@ -18,7 +18,7 @@
 struct U32X4([u32; 4]);
 ```
 
-*Defined in [`adler2-2.0.1/src/algo.rs:112`](../../../.source_1765521767/adler2-2.0.1/src/algo.rs#L112)*
+*Defined in [`adler2-2.0.1/src/algo.rs:112`](../../../.source_1765633015/adler2-2.0.1/src/algo.rs#L112)*
 
 #### Implementations
 

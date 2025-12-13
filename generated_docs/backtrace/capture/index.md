@@ -25,7 +25,7 @@ struct Backtrace {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:29-32`](../../../.source_1765521767/backtrace-0.3.76/src/capture.rs#L29-L32)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:29-32`](../../../.source_1765633015/backtrace-0.3.76/src/capture.rs#L29-L32)*
 
 Representation of an owned and self-contained backtrace.
 
@@ -264,7 +264,7 @@ enabled, and the `std` feature is enabled by default.
 struct TracePtr(*mut core::ffi::c_void);
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:35`](../../../.source_1765521767/backtrace-0.3.76/src/capture.rs#L35)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:35`](../../../.source_1765633015/backtrace-0.3.76/src/capture.rs#L35)*
 
 #### Implementations
 
@@ -345,7 +345,7 @@ struct BacktraceFrame {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:144-147`](../../../.source_1765521767/backtrace-0.3.76/src/capture.rs#L144-L147)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:144-147`](../../../.source_1765633015/backtrace-0.3.76/src/capture.rs#L144-L147)*
 
 Captured version of a frame in a backtrace.
 
@@ -525,7 +525,7 @@ struct BacktraceSymbol {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:222-228`](../../../.source_1765521767/backtrace-0.3.76/src/capture.rs#L222-L228)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:222-228`](../../../.source_1765633015/backtrace-0.3.76/src/capture.rs#L222-L228)*
 
 Captured version of a symbol in a backtrace.
 
@@ -683,7 +683,7 @@ enum Frame {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:150-158`](../../../.source_1765521767/backtrace-0.3.76/src/capture.rs#L150-L158)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:150-158`](../../../.source_1765633015/backtrace-0.3.76/src/capture.rs#L150-L158)*
 
 #### Implementations
 
@@ -765,5 +765,5 @@ enum Frame {
 fn _assert_send_sync()
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:129-132`](../../../.source_1765521767/backtrace-0.3.76/src/capture.rs#L129-L132)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:129-132`](../../../.source_1765633015/backtrace-0.3.76/src/capture.rs#L129-L132)*
 

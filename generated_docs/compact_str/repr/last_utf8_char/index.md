@@ -237,7 +237,7 @@ enum LastByte {
 }
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/last_utf8_char.rs:12-242`](../../../../.source_1765521767/compact_str-0.9.0/src/repr/last_utf8_char.rs#L12-L242)*
+*Defined in [`compact_str-0.9.0/src/repr/last_utf8_char.rs:12-242`](../../../../.source_1765633015/compact_str-0.9.0/src/repr/last_utf8_char.rs#L12-L242)*
 
 [`LastByte`](#lastbyte) is an unsigned 8-bit integer data type that has a valid range of `[0, 217]`.
 Excluding `[218, 255]` allows the Rust compiler to use these values as niches.

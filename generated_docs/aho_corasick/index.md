@@ -301,7 +301,7 @@ this crate can be used without the standard library.
 struct StreamFindIter<'a, R>(automaton::StreamFindIter<'a, alloc::sync::Arc<dyn AcAutomaton>, R>);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2100-2102`](../../.source_1765521767/aho-corasick-1.1.4/src/ahocorasick.rs#L2100-L2102)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2100-2102`](../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L2100-L2102)*
 
 An iterator that reports Aho-Corasick matches in a stream.
 
@@ -391,7 +391,7 @@ struct AhoCorasick {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:177-214`](../../.source_1765521767/aho-corasick-1.1.4/src/ahocorasick.rs#L177-L214)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:177-214`](../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L177-L214)*
 
 An automaton for searching multiple strings in linear time.
 
@@ -758,7 +758,7 @@ struct AhoCorasickBuilder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2135-2141`](../../.source_1765521767/aho-corasick-1.1.4/src/ahocorasick.rs#L2135-L2141)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2135-2141`](../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L2135-L2141)*
 
 A builder for configuring an Aho-Corasick automaton.
 
@@ -1542,7 +1542,7 @@ usage.
 struct FindIter<'a, 'h>(automaton::FindIter<'a, 'h, alloc::sync::Arc<dyn AcAutomaton>>);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2047`](../../.source_1765521767/aho-corasick-1.1.4/src/ahocorasick.rs#L2047)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2047`](../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L2047)*
 
 An iterator of non-overlapping matches in a particular haystack.
 
@@ -1624,7 +1624,7 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 struct FindOverlappingIter<'a, 'h>(automaton::FindOverlappingIter<'a, 'h, alloc::sync::Arc<dyn AcAutomaton>>);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2070-2072`](../../.source_1765521767/aho-corasick-1.1.4/src/ahocorasick.rs#L2070-L2072)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2070-2072`](../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L2070-L2072)*
 
 An iterator of overlapping matches in a particular haystack.
 
@@ -1708,7 +1708,7 @@ struct BuildError {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/error.rs:17-19`](../../.source_1765521767/aho-corasick-1.1.4/src/util/error.rs#L17-L19)*
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:17-19`](../../.source_1765633015/aho-corasick-1.1.4/src/util/error.rs#L17-L19)*
 
 An error that occurred during the construction of an Aho-Corasick
 automaton.
@@ -1809,7 +1809,7 @@ trait.
 struct MatchError(alloc::boxed::Box<MatchErrorKind>);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/error.rs:130`](../../.source_1765521767/aho-corasick-1.1.4/src/util/error.rs#L130)*
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:130`](../../.source_1765633015/aho-corasick-1.1.4/src/util/error.rs#L130)*
 
 An error that occurred during an Aho-Corasick search.
 
@@ -1997,7 +1997,7 @@ trait.
 struct PatternID(SmallIndex);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:713`](../../.source_1765521767/aho-corasick-1.1.4/src/util/primitives.rs#L713)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:713`](../../.source_1765633015/aho-corasick-1.1.4/src/util/primitives.rs#L713)*
 
 The identifier of a pattern in an Aho-Corasick automaton.
 
@@ -2269,7 +2269,7 @@ panics or silent logical errors.
 struct PatternIDError(SmallIndexError);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:736`](../../.source_1765521767/aho-corasick-1.1.4/src/util/primitives.rs#L736)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:736`](../../.source_1765633015/aho-corasick-1.1.4/src/util/primitives.rs#L736)*
 
 This error occurs when an ID could not be constructed.
 
@@ -2378,7 +2378,7 @@ struct Input<'h> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:83-88`](../../.source_1765521767/aho-corasick-1.1.4/src/util/search.rs#L83-L88)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:83-88`](../../.source_1765633015/aho-corasick-1.1.4/src/util/search.rs#L83-L88)*
 
 The configuration and the haystack to use for an Aho-Corasick search.
 
@@ -3393,7 +3393,7 @@ struct Match {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:825-830`](../../.source_1765521767/aho-corasick-1.1.4/src/util/search.rs#L825-L830)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:825-830`](../../.source_1765633015/aho-corasick-1.1.4/src/util/search.rs#L825-L830)*
 
 A representation of a match reported by an Aho-Corasick searcher.
 
@@ -3675,7 +3675,7 @@ struct Span {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:673-678`](../../.source_1765521767/aho-corasick-1.1.4/src/util/search.rs#L673-L678)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:673-678`](../../.source_1765633015/aho-corasick-1.1.4/src/util/search.rs#L673-L678)*
 
 A representation of a range in a haystack.
 
@@ -3841,7 +3841,7 @@ enum AhoCorasickKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2627-2634`](../../.source_1765521767/aho-corasick-1.1.4/src/ahocorasick.rs#L2627-L2634)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2627-2634`](../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L2627-L2634)*
 
 The type of Aho-Corasick implementation to use in an [`AhoCorasick`](ahocorasick/index.md)
 searcher.
@@ -3954,7 +3954,7 @@ enum MatchErrorKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/error.rs:200-222`](../../.source_1765521767/aho-corasick-1.1.4/src/util/error.rs#L200-L222)*
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:200-222`](../../.source_1765633015/aho-corasick-1.1.4/src/util/error.rs#L200-L222)*
 
 The underlying kind of a [`MatchError`](util/error/index.md).
 
@@ -4069,7 +4069,7 @@ enum Anchored {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:784-792`](../../.source_1765521767/aho-corasick-1.1.4/src/util/search.rs#L784-L792)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:784-792`](../../.source_1765633015/aho-corasick-1.1.4/src/util/search.rs#L784-L792)*
 
 The type of anchored search to perform.
 
@@ -4200,7 +4200,7 @@ enum MatchKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1052-1074`](../../.source_1765521767/aho-corasick-1.1.4/src/util/search.rs#L1052-L1074)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1052-1074`](../../.source_1765633015/aho-corasick-1.1.4/src/util/search.rs#L1052-L1074)*
 
 A knob for controlling the match semantics of an Aho-Corasick automaton.
 
@@ -4420,7 +4420,7 @@ enum StartKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1133-1142`](../../.source_1765521767/aho-corasick-1.1.4/src/util/search.rs#L1133-L1142)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1133-1142`](../../.source_1765633015/aho-corasick-1.1.4/src/util/search.rs#L1133-L1142)*
 
 The kind of anchored starting configurations to support in an Aho-Corasick
 searcher.

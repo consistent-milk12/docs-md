@@ -391,7 +391,7 @@ struct FileHeader32 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:16-31`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L16-L31)*
+*Defined in [`object-0.37.3/src/xcoff.rs:16-31`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L16-L31)*
 
 The header at the start of every 32-bit XCOFF file.
 
@@ -539,7 +539,7 @@ struct FileHeader64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:36-51`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L36-L51)*
+*Defined in [`object-0.37.3/src/xcoff.rs:36-51`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L36-L51)*
 
 The header at the start of every 64-bit XCOFF file.
 
@@ -709,7 +709,7 @@ struct AuxHeader32 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:95-154`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L95-L154)*
+*Defined in [`object-0.37.3/src/xcoff.rs:95-154`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L95-L154)*
 
 The auxiliary header immediately following file header. If the value of the
 f_opthdr field in the file header is 0, the auxiliary header does not exist.
@@ -1003,7 +1003,7 @@ struct AuxHeader64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:160-225`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L160-L225)*
+*Defined in [`object-0.37.3/src/xcoff.rs:160-225`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L160-L225)*
 
 The auxiliary header immediately following file header. If the value of the
 f_opthdr field in the file header is 0, the auxiliary header does not exist.
@@ -1287,7 +1287,7 @@ struct SectionHeader32 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:234-255`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L234-L255)*
+*Defined in [`object-0.37.3/src/xcoff.rs:234-255`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L234-L255)*
 
 Section header.
 
@@ -1457,7 +1457,7 @@ struct SectionHeader64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:260-283`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L260-L283)*
+*Defined in [`object-0.37.3/src/xcoff.rs:260-283`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L260-L283)*
 
 Section header.
 
@@ -1619,7 +1619,7 @@ Section header.
 struct SymbolBytes([u8; 18]);
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:350`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L350)*
+*Defined in [`object-0.37.3/src/xcoff.rs:350`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L350)*
 
 #### Trait Implementations
 
@@ -1702,7 +1702,7 @@ struct Symbol32 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:355-370`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L355-L370)*
+*Defined in [`object-0.37.3/src/xcoff.rs:355-370`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L355-L370)*
 
 Symbol table entry.
 
@@ -1835,7 +1835,7 @@ struct Symbol64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:375-388`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L375-L388)*
+*Defined in [`object-0.37.3/src/xcoff.rs:375-388`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L375-L388)*
 
 Symbol table entry.
 
@@ -1964,7 +1964,7 @@ struct FileAux32 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:528-539`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L528-L539)*
+*Defined in [`object-0.37.3/src/xcoff.rs:528-539`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L528-L539)*
 
 File Auxiliary Entry for C_FILE Symbols.
 
@@ -2076,7 +2076,7 @@ struct FileAux64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:544-557`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L544-L557)*
+*Defined in [`object-0.37.3/src/xcoff.rs:544-557`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L544-L557)*
 
 File Auxiliary Entry for C_FILE Symbols.
 
@@ -2194,7 +2194,7 @@ struct CsectAux32 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:573-588`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L573-L588)*
+*Defined in [`object-0.37.3/src/xcoff.rs:573-588`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L573-L588)*
 
 Csect auxiliary entry for C_EXT, C_WEAKEXT, and C_HIDEXT symbols.
 
@@ -2329,7 +2329,7 @@ struct CsectAux64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:593-610`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L593-L610)*
+*Defined in [`object-0.37.3/src/xcoff.rs:593-610`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L593-L610)*
 
 Csect auxiliary entry for C_EXT, C_WEAKEXT, and C_HIDEXT symbols.
 
@@ -2465,7 +2465,7 @@ struct FunAux32 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:676-687`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L676-L687)*
+*Defined in [`object-0.37.3/src/xcoff.rs:676-687`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L676-L687)*
 
 Function auxiliary entry.
 
@@ -2571,7 +2571,7 @@ struct FunAux64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:692-703`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L692-L703)*
+*Defined in [`object-0.37.3/src/xcoff.rs:692-703`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L692-L703)*
 
 Function auxiliary entry.
 
@@ -2677,7 +2677,7 @@ struct ExpAux {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:708-719`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L708-L719)*
+*Defined in [`object-0.37.3/src/xcoff.rs:708-719`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L708-L719)*
 
 Exception auxiliary entry. (XCOFF64 only)
 
@@ -2782,7 +2782,7 @@ struct BlockAux32 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:724-733`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L724-L733)*
+*Defined in [`object-0.37.3/src/xcoff.rs:724-733`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L724-L733)*
 
 Block auxiliary entry for the C_BLOCK and C_FCN Symbols.
 
@@ -2882,7 +2882,7 @@ struct BlockAux64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:738-745`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L738-L745)*
+*Defined in [`object-0.37.3/src/xcoff.rs:738-745`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L738-L745)*
 
 Block auxiliary entry for the C_BLOCK and C_FCN Symbols.
 
@@ -2979,7 +2979,7 @@ struct StatAux {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:750-759`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L750-L759)*
+*Defined in [`object-0.37.3/src/xcoff.rs:750-759`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L750-L759)*
 
 Section auxiliary entry for the C_STAT Symbol. (XCOFF32 Only)
 
@@ -3080,7 +3080,7 @@ struct DwarfAux32 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:764-773`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L764-L773)*
+*Defined in [`object-0.37.3/src/xcoff.rs:764-773`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L764-L773)*
 
 Section auxiliary entry Format for C_DWARF symbols.
 
@@ -3181,7 +3181,7 @@ struct DwarfAux64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:778-787`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L778-L787)*
+*Defined in [`object-0.37.3/src/xcoff.rs:778-787`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L778-L787)*
 
 Section auxiliary entry Format for C_DWARF symbols.
 
@@ -3282,7 +3282,7 @@ struct Rel32 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:807-816`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L807-L816)*
+*Defined in [`object-0.37.3/src/xcoff.rs:807-816`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L807-L816)*
 
 Relocation table entry
 
@@ -3395,7 +3395,7 @@ struct Rel64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:821-830`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L821-L830)*
+*Defined in [`object-0.37.3/src/xcoff.rs:821-830`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L821-L830)*
 
 Relocation table entry
 
@@ -3504,7 +3504,7 @@ Relocation table entry
 const MAGIC_64: u16 = 503u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:56`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L56)*
+*Defined in [`object-0.37.3/src/xcoff.rs:56`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L56)*
 
 the 64-bit mach magic number
 
@@ -3513,7 +3513,7 @@ the 64-bit mach magic number
 const MAGIC_32: u16 = 479u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:58`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L58)*
+*Defined in [`object-0.37.3/src/xcoff.rs:58`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L58)*
 
 the 32-bit mach magic number
 
@@ -3522,7 +3522,7 @@ the 32-bit mach magic number
 const F_RELFLG: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:64`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L64)*
+*Defined in [`object-0.37.3/src/xcoff.rs:64`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L64)*
 
 Indicates that the relocation information for binding has been removed from
 the file.
@@ -3532,7 +3532,7 @@ the file.
 const F_EXEC: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:66`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L66)*
+*Defined in [`object-0.37.3/src/xcoff.rs:66`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L66)*
 
 Indicates that the file is executable. No unresolved external references exist.
 
@@ -3541,7 +3541,7 @@ Indicates that the file is executable. No unresolved external references exist.
 const F_LNNO: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:68`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L68)*
+*Defined in [`object-0.37.3/src/xcoff.rs:68`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L68)*
 
 Indicates that line numbers have been stripped from the file by a utility program.
 
@@ -3550,7 +3550,7 @@ Indicates that line numbers have been stripped from the file by a utility progra
 const F_FDPR_PROF: u16 = 16u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:70`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L70)*
+*Defined in [`object-0.37.3/src/xcoff.rs:70`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L70)*
 
 Indicates that the file was profiled with the fdpr command.
 
@@ -3559,7 +3559,7 @@ Indicates that the file was profiled with the fdpr command.
 const F_FDPR_OPTI: u16 = 32u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:72`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L72)*
+*Defined in [`object-0.37.3/src/xcoff.rs:72`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L72)*
 
 Indicates that the file was reordered with the fdpr command.
 
@@ -3568,7 +3568,7 @@ Indicates that the file was reordered with the fdpr command.
 const F_DSA: u16 = 64u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:74`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L74)*
+*Defined in [`object-0.37.3/src/xcoff.rs:74`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L74)*
 
 Indicates that the file uses Very Large Program Support.
 
@@ -3577,7 +3577,7 @@ Indicates that the file uses Very Large Program Support.
 const F_VARPG: u16 = 256u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:77`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L77)*
+*Defined in [`object-0.37.3/src/xcoff.rs:77`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L77)*
 
 Indicates that one of the members of the auxiliary header specifying the
 medium page sizes is non-zero.
@@ -3587,7 +3587,7 @@ medium page sizes is non-zero.
 const F_DYNLOAD: u16 = 4_096u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:81`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L81)*
+*Defined in [`object-0.37.3/src/xcoff.rs:81`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L81)*
 
 Indicates the file is dynamically loadable and executable. External references
 are resolved by way of imports, and the file might contain exports and loader
@@ -3598,7 +3598,7 @@ relocation.
 const F_SHROBJ: u16 = 8_192u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:85`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L85)*
+*Defined in [`object-0.37.3/src/xcoff.rs:85`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L85)*
 
 Indicates the file is a shared object (shared library). The file is separately
 loadable. That is, it is not normally bound with other objects, and its loader
@@ -3609,7 +3609,7 @@ exports symbols are used as automatic import symbols for other object files.
 const F_LOADONLY: u16 = 16_384u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:89`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L89)*
+*Defined in [`object-0.37.3/src/xcoff.rs:89`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L89)*
 
 If the object file is a member of an archive, it can be loaded by the system
 loader, but the member is ignored by the binder. If the object file is not in
@@ -3620,7 +3620,7 @@ an archive, this flag has no effect.
 const AOUTHSZ_SHORT: u16 = 28u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:229`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L229)*
+*Defined in [`object-0.37.3/src/xcoff.rs:229`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L229)*
 
 Some AIX programs generate auxiliary headers for 32-bit object files that
 end after the data_start field.
@@ -3630,7 +3630,7 @@ end after the data_start field.
 const STYP_REG: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:288`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L288)*
+*Defined in [`object-0.37.3/src/xcoff.rs:288`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L288)*
 
 "regular" section
 
@@ -3639,7 +3639,7 @@ const STYP_REG: u16 = 0u16;
 const STYP_PAD: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:293`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L293)*
+*Defined in [`object-0.37.3/src/xcoff.rs:293`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L293)*
 
 Specifies a pad section. A section of this type is used to provide alignment
 padding between sections within an XCOFF executable object file. This section
@@ -3651,7 +3651,7 @@ corresponding pad section header.
 const STYP_DWARF: u16 = 16u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:296`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L296)*
+*Defined in [`object-0.37.3/src/xcoff.rs:296`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L296)*
 
 Specifies a DWARF debugging section, which provide source file and symbol
 information for the symbolic debugger.
@@ -3661,7 +3661,7 @@ information for the symbolic debugger.
 const STYP_TEXT: u16 = 32u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:299`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L299)*
+*Defined in [`object-0.37.3/src/xcoff.rs:299`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L299)*
 
 Specifies an executable text (code) section. A section of this type contains
 the executable instructions of a program.
@@ -3671,7 +3671,7 @@ the executable instructions of a program.
 const STYP_DATA: u16 = 64u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:302`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L302)*
+*Defined in [`object-0.37.3/src/xcoff.rs:302`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L302)*
 
 Specifies an initialized data section. A section of this type contains the
 initialized data and the TOC of a program.
@@ -3681,7 +3681,7 @@ initialized data and the TOC of a program.
 const STYP_BSS: u16 = 128u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:305`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L305)*
+*Defined in [`object-0.37.3/src/xcoff.rs:305`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L305)*
 
 Specifies an uninitialized data section. A section header of this type
 defines the uninitialized data of a program.
@@ -3691,7 +3691,7 @@ defines the uninitialized data of a program.
 const STYP_EXCEPT: u16 = 256u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:309`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L309)*
+*Defined in [`object-0.37.3/src/xcoff.rs:309`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L309)*
 
 Specifies an exception section. A section of this type provides information
 to identify the reason that a trap or exception occurred within an executable
@@ -3702,7 +3702,7 @@ object program.
 const STYP_INFO: u16 = 512u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:312`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L312)*
+*Defined in [`object-0.37.3/src/xcoff.rs:312`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L312)*
 
 Specifies a comment section. A section of this type provides comments or data
 to special processing utility programs.
@@ -3712,7 +3712,7 @@ to special processing utility programs.
 const STYP_TDATA: u16 = 1_024u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:314`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L314)*
+*Defined in [`object-0.37.3/src/xcoff.rs:314`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L314)*
 
 Specifies an initialized thread-local data section.
 
@@ -3721,7 +3721,7 @@ Specifies an initialized thread-local data section.
 const STYP_TBSS: u16 = 2_048u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:316`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L316)*
+*Defined in [`object-0.37.3/src/xcoff.rs:316`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L316)*
 
 Specifies an uninitialized thread-local data section.
 
@@ -3730,7 +3730,7 @@ Specifies an uninitialized thread-local data section.
 const STYP_LOADER: u16 = 4_096u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:321`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L321)*
+*Defined in [`object-0.37.3/src/xcoff.rs:321`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L321)*
 
 Specifies a loader section. A section of this type contains object file
 information for the system loader to load an XCOFF executable. The information
@@ -3742,7 +3742,7 @@ information, and shared object names.
 const STYP_DEBUG: u16 = 8_192u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:324`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L324)*
+*Defined in [`object-0.37.3/src/xcoff.rs:324`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L324)*
 
 Specifies a debug section. A section of this type contains stabstring
 information used by the symbolic debugger.
@@ -3752,7 +3752,7 @@ information used by the symbolic debugger.
 const STYP_TYPCHK: u16 = 16_384u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:327`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L327)*
+*Defined in [`object-0.37.3/src/xcoff.rs:327`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L327)*
 
 Specifies a type-check section. A section of this type contains
 parameter/argument type-check strings used by the binder.
@@ -3762,7 +3762,7 @@ parameter/argument type-check strings used by the binder.
 const STYP_OVRFLO: u16 = 32_768u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:332`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L332)*
+*Defined in [`object-0.37.3/src/xcoff.rs:332`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L332)*
 
 Specifies a relocation or line-number field overflow section. A section
 header of this type contains the count of relocation entries and line
@@ -3774,91 +3774,91 @@ when either of the counts exceeds 65,534.
 const SSUBTYP_DWINFO: u32 = 65_536u32;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:334`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L334)*
+*Defined in [`object-0.37.3/src/xcoff.rs:334`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L334)*
 
 ### `SSUBTYP_DWLINE`
 ```rust
 const SSUBTYP_DWLINE: u32 = 131_072u32;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:335`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L335)*
+*Defined in [`object-0.37.3/src/xcoff.rs:335`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L335)*
 
 ### `SSUBTYP_DWPBNMS`
 ```rust
 const SSUBTYP_DWPBNMS: u32 = 196_608u32;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:336`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L336)*
+*Defined in [`object-0.37.3/src/xcoff.rs:336`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L336)*
 
 ### `SSUBTYP_DWPBTYP`
 ```rust
 const SSUBTYP_DWPBTYP: u32 = 262_144u32;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:337`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L337)*
+*Defined in [`object-0.37.3/src/xcoff.rs:337`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L337)*
 
 ### `SSUBTYP_DWARNGE`
 ```rust
 const SSUBTYP_DWARNGE: u32 = 327_680u32;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:338`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L338)*
+*Defined in [`object-0.37.3/src/xcoff.rs:338`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L338)*
 
 ### `SSUBTYP_DWABREV`
 ```rust
 const SSUBTYP_DWABREV: u32 = 393_216u32;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:339`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L339)*
+*Defined in [`object-0.37.3/src/xcoff.rs:339`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L339)*
 
 ### `SSUBTYP_DWSTR`
 ```rust
 const SSUBTYP_DWSTR: u32 = 458_752u32;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:340`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L340)*
+*Defined in [`object-0.37.3/src/xcoff.rs:340`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L340)*
 
 ### `SSUBTYP_DWRNGES`
 ```rust
 const SSUBTYP_DWRNGES: u32 = 524_288u32;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:341`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L341)*
+*Defined in [`object-0.37.3/src/xcoff.rs:341`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L341)*
 
 ### `SSUBTYP_DWLOC`
 ```rust
 const SSUBTYP_DWLOC: u32 = 589_824u32;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:342`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L342)*
+*Defined in [`object-0.37.3/src/xcoff.rs:342`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L342)*
 
 ### `SSUBTYP_DWFRAME`
 ```rust
 const SSUBTYP_DWFRAME: u32 = 655_360u32;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:343`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L343)*
+*Defined in [`object-0.37.3/src/xcoff.rs:343`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L343)*
 
 ### `SSUBTYP_DWMAC`
 ```rust
 const SSUBTYP_DWMAC: u32 = 720_896u32;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:344`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L344)*
+*Defined in [`object-0.37.3/src/xcoff.rs:344`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L344)*
 
 ### `SIZEOF_SYMBOL`
 ```rust
 const SIZEOF_SYMBOL: usize = 18usize;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:346`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L346)*
+*Defined in [`object-0.37.3/src/xcoff.rs:346`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L346)*
 
 ### `N_DEBUG`
 ```rust
 const N_DEBUG: i16 = -2i16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:393`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L393)*
+*Defined in [`object-0.37.3/src/xcoff.rs:393`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L393)*
 
 A special symbolic debugging symbol.
 
@@ -3867,7 +3867,7 @@ A special symbolic debugging symbol.
 const N_ABS: i16 = -1i16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:395`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L395)*
+*Defined in [`object-0.37.3/src/xcoff.rs:395`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L395)*
 
 An absolute symbol. The symbol has a value but is not relocatable.
 
@@ -3876,7 +3876,7 @@ An absolute symbol. The symbol has a value but is not relocatable.
 const N_UNDEF: i16 = 0i16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:397`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L397)*
+*Defined in [`object-0.37.3/src/xcoff.rs:397`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L397)*
 
 An undefined external symbol.
 
@@ -3885,7 +3885,7 @@ An undefined external symbol.
 const SYM_V_MASK: u16 = 61_440u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:404`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L404)*
+*Defined in [`object-0.37.3/src/xcoff.rs:404`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L404)*
 
 Values for visibility as they would appear when encoded in the high 4 bits
 of the 16-bit unsigned n_type field of symbol table entries. Valid for
@@ -3896,35 +3896,35 @@ of the 16-bit unsigned n_type field of symbol table entries. Valid for
 const SYM_V_INTERNAL: u16 = 4_096u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:405`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L405)*
+*Defined in [`object-0.37.3/src/xcoff.rs:405`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L405)*
 
 ### `SYM_V_HIDDEN`
 ```rust
 const SYM_V_HIDDEN: u16 = 8_192u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:406`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L406)*
+*Defined in [`object-0.37.3/src/xcoff.rs:406`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L406)*
 
 ### `SYM_V_PROTECTED`
 ```rust
 const SYM_V_PROTECTED: u16 = 12_288u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:407`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L407)*
+*Defined in [`object-0.37.3/src/xcoff.rs:407`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L407)*
 
 ### `SYM_V_EXPORTED`
 ```rust
 const SYM_V_EXPORTED: u16 = 16_384u16;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:408`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L408)*
+*Defined in [`object-0.37.3/src/xcoff.rs:408`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L408)*
 
 ### `C_FILE`
 ```rust
 const C_FILE: u8 = 103u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:415`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L415)*
+*Defined in [`object-0.37.3/src/xcoff.rs:415`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L415)*
 
 Source file name and compiler information.
 
@@ -3933,7 +3933,7 @@ Source file name and compiler information.
 const C_BINCL: u8 = 108u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:417`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L417)*
+*Defined in [`object-0.37.3/src/xcoff.rs:417`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L417)*
 
 Beginning of include file.
 
@@ -3942,7 +3942,7 @@ Beginning of include file.
 const C_EINCL: u8 = 109u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:419`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L419)*
+*Defined in [`object-0.37.3/src/xcoff.rs:419`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L419)*
 
 Ending of include file.
 
@@ -3951,7 +3951,7 @@ Ending of include file.
 const C_GSYM: u8 = 128u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:421`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L421)*
+*Defined in [`object-0.37.3/src/xcoff.rs:421`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L421)*
 
 Global variable.
 
@@ -3960,7 +3960,7 @@ Global variable.
 const C_STSYM: u8 = 133u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:423`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L423)*
+*Defined in [`object-0.37.3/src/xcoff.rs:423`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L423)*
 
 Statically allocated symbol.
 
@@ -3969,7 +3969,7 @@ Statically allocated symbol.
 const C_BCOMM: u8 = 135u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:425`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L425)*
+*Defined in [`object-0.37.3/src/xcoff.rs:425`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L425)*
 
 Beginning of common block.
 
@@ -3978,7 +3978,7 @@ Beginning of common block.
 const C_ECOMM: u8 = 137u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:427`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L427)*
+*Defined in [`object-0.37.3/src/xcoff.rs:427`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L427)*
 
 End of common block.
 
@@ -3987,7 +3987,7 @@ End of common block.
 const C_ENTRY: u8 = 141u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:429`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L429)*
+*Defined in [`object-0.37.3/src/xcoff.rs:429`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L429)*
 
 Alternate entry.
 
@@ -3996,7 +3996,7 @@ Alternate entry.
 const C_BSTAT: u8 = 143u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:431`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L431)*
+*Defined in [`object-0.37.3/src/xcoff.rs:431`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L431)*
 
 Beginning of static block.
 
@@ -4005,7 +4005,7 @@ Beginning of static block.
 const C_ESTAT: u8 = 144u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:433`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L433)*
+*Defined in [`object-0.37.3/src/xcoff.rs:433`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L433)*
 
 End of static block.
 
@@ -4014,7 +4014,7 @@ End of static block.
 const C_GTLS: u8 = 145u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:435`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L435)*
+*Defined in [`object-0.37.3/src/xcoff.rs:435`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L435)*
 
 Global thread-local variable.
 
@@ -4023,7 +4023,7 @@ Global thread-local variable.
 const C_STTLS: u8 = 146u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:437`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L437)*
+*Defined in [`object-0.37.3/src/xcoff.rs:437`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L437)*
 
 Static thread-local variable.
 
@@ -4032,7 +4032,7 @@ Static thread-local variable.
 const C_DWARF: u8 = 112u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:439`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L439)*
+*Defined in [`object-0.37.3/src/xcoff.rs:439`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L439)*
 
 DWARF section symbol.
 
@@ -4041,7 +4041,7 @@ DWARF section symbol.
 const C_LSYM: u8 = 129u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:444`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L444)*
+*Defined in [`object-0.37.3/src/xcoff.rs:444`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L444)*
 
 Automatic variable allocated on stack.
 
@@ -4050,7 +4050,7 @@ Automatic variable allocated on stack.
 const C_PSYM: u8 = 130u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:446`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L446)*
+*Defined in [`object-0.37.3/src/xcoff.rs:446`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L446)*
 
 Argument to subroutine allocated on stack.
 
@@ -4059,7 +4059,7 @@ Argument to subroutine allocated on stack.
 const C_RSYM: u8 = 131u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:448`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L448)*
+*Defined in [`object-0.37.3/src/xcoff.rs:448`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L448)*
 
 Register variable.
 
@@ -4068,7 +4068,7 @@ Register variable.
 const C_RPSYM: u8 = 132u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:450`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L450)*
+*Defined in [`object-0.37.3/src/xcoff.rs:450`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L450)*
 
 Argument to function or procedure stored in register.
 
@@ -4077,7 +4077,7 @@ Argument to function or procedure stored in register.
 const C_ECOML: u8 = 136u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:452`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L452)*
+*Defined in [`object-0.37.3/src/xcoff.rs:452`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L452)*
 
 Local member of common block.
 
@@ -4086,7 +4086,7 @@ Local member of common block.
 const C_FUN: u8 = 142u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:454`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L454)*
+*Defined in [`object-0.37.3/src/xcoff.rs:454`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L454)*
 
 Function or procedure.
 
@@ -4095,7 +4095,7 @@ Function or procedure.
 const C_EXT: u8 = 2u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:459`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L459)*
+*Defined in [`object-0.37.3/src/xcoff.rs:459`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L459)*
 
 External symbol.
 
@@ -4104,7 +4104,7 @@ External symbol.
 const C_WEAKEXT: u8 = 111u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:461`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L461)*
+*Defined in [`object-0.37.3/src/xcoff.rs:461`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L461)*
 
 Weak external symbol.
 
@@ -4113,7 +4113,7 @@ Weak external symbol.
 const C_NULL: u8 = 0u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:466`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L466)*
+*Defined in [`object-0.37.3/src/xcoff.rs:466`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L466)*
 
 Symbol table entry marked for deletion.
 
@@ -4122,7 +4122,7 @@ Symbol table entry marked for deletion.
 const C_STAT: u8 = 3u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:468`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L468)*
+*Defined in [`object-0.37.3/src/xcoff.rs:468`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L468)*
 
 Static.
 
@@ -4131,7 +4131,7 @@ Static.
 const C_BLOCK: u8 = 100u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:470`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L470)*
+*Defined in [`object-0.37.3/src/xcoff.rs:470`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L470)*
 
 Beginning or end of inner block.
 
@@ -4140,7 +4140,7 @@ Beginning or end of inner block.
 const C_FCN: u8 = 101u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:472`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L472)*
+*Defined in [`object-0.37.3/src/xcoff.rs:472`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L472)*
 
 Beginning or end of function.
 
@@ -4149,7 +4149,7 @@ Beginning or end of function.
 const C_HIDEXT: u8 = 107u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:474`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L474)*
+*Defined in [`object-0.37.3/src/xcoff.rs:474`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L474)*
 
 Un-named external symbol.
 
@@ -4158,7 +4158,7 @@ Un-named external symbol.
 const C_INFO: u8 = 110u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:476`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L476)*
+*Defined in [`object-0.37.3/src/xcoff.rs:476`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L476)*
 
 Comment string in .info section.
 
@@ -4167,7 +4167,7 @@ Comment string in .info section.
 const C_DECL: u8 = 140u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:478`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L478)*
+*Defined in [`object-0.37.3/src/xcoff.rs:478`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L478)*
 
 Declaration of object (type).
 
@@ -4176,7 +4176,7 @@ Declaration of object (type).
 const C_AUTO: u8 = 1u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:483`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L483)*
+*Defined in [`object-0.37.3/src/xcoff.rs:483`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L483)*
 
 Automatic variable.
 
@@ -4185,7 +4185,7 @@ Automatic variable.
 const C_REG: u8 = 4u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:485`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L485)*
+*Defined in [`object-0.37.3/src/xcoff.rs:485`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L485)*
 
 Register variable.
 
@@ -4194,7 +4194,7 @@ Register variable.
 const C_EXTDEF: u8 = 5u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:487`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L487)*
+*Defined in [`object-0.37.3/src/xcoff.rs:487`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L487)*
 
 External definition.
 
@@ -4203,7 +4203,7 @@ External definition.
 const C_LABEL: u8 = 6u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:489`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L489)*
+*Defined in [`object-0.37.3/src/xcoff.rs:489`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L489)*
 
 Label.
 
@@ -4212,7 +4212,7 @@ Label.
 const C_ULABEL: u8 = 7u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:491`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L491)*
+*Defined in [`object-0.37.3/src/xcoff.rs:491`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L491)*
 
 Undefined label.
 
@@ -4221,7 +4221,7 @@ Undefined label.
 const C_MOS: u8 = 8u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:493`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L493)*
+*Defined in [`object-0.37.3/src/xcoff.rs:493`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L493)*
 
 Member of structure.
 
@@ -4230,7 +4230,7 @@ Member of structure.
 const C_ARG: u8 = 9u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:495`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L495)*
+*Defined in [`object-0.37.3/src/xcoff.rs:495`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L495)*
 
 Function argument.
 
@@ -4239,7 +4239,7 @@ Function argument.
 const C_STRTAG: u8 = 10u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:497`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L497)*
+*Defined in [`object-0.37.3/src/xcoff.rs:497`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L497)*
 
 Structure tag.
 
@@ -4248,7 +4248,7 @@ Structure tag.
 const C_MOU: u8 = 11u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:499`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L499)*
+*Defined in [`object-0.37.3/src/xcoff.rs:499`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L499)*
 
 Member of union.
 
@@ -4257,7 +4257,7 @@ Member of union.
 const C_UNTAG: u8 = 12u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:501`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L501)*
+*Defined in [`object-0.37.3/src/xcoff.rs:501`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L501)*
 
 Union tag.
 
@@ -4266,7 +4266,7 @@ Union tag.
 const C_TPDEF: u8 = 13u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:503`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L503)*
+*Defined in [`object-0.37.3/src/xcoff.rs:503`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L503)*
 
 Type definition.
 
@@ -4275,7 +4275,7 @@ Type definition.
 const C_USTATIC: u8 = 14u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:505`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L505)*
+*Defined in [`object-0.37.3/src/xcoff.rs:505`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L505)*
 
 Undefined static.
 
@@ -4284,7 +4284,7 @@ Undefined static.
 const C_ENTAG: u8 = 15u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:507`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L507)*
+*Defined in [`object-0.37.3/src/xcoff.rs:507`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L507)*
 
 Enumeration tag.
 
@@ -4293,7 +4293,7 @@ Enumeration tag.
 const C_MOE: u8 = 16u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:509`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L509)*
+*Defined in [`object-0.37.3/src/xcoff.rs:509`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L509)*
 
 Member of enumeration.
 
@@ -4302,7 +4302,7 @@ Member of enumeration.
 const C_REGPARM: u8 = 17u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:511`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L511)*
+*Defined in [`object-0.37.3/src/xcoff.rs:511`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L511)*
 
 Register parameter.
 
@@ -4311,7 +4311,7 @@ Register parameter.
 const C_FIELD: u8 = 18u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:513`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L513)*
+*Defined in [`object-0.37.3/src/xcoff.rs:513`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L513)*
 
 Bit field.
 
@@ -4320,7 +4320,7 @@ Bit field.
 const C_EOS: u8 = 102u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:515`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L515)*
+*Defined in [`object-0.37.3/src/xcoff.rs:515`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L515)*
 
 End of structure.
 
@@ -4329,7 +4329,7 @@ End of structure.
 const C_ALIAS: u8 = 105u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:517`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L517)*
+*Defined in [`object-0.37.3/src/xcoff.rs:517`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L517)*
 
 Duplicate tag.
 
@@ -4338,7 +4338,7 @@ Duplicate tag.
 const C_HIDDEN: u8 = 106u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:519`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L519)*
+*Defined in [`object-0.37.3/src/xcoff.rs:519`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L519)*
 
 Special storage class for external.
 
@@ -4347,7 +4347,7 @@ Special storage class for external.
 const C_EFCN: u8 = 255u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:521`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L521)*
+*Defined in [`object-0.37.3/src/xcoff.rs:521`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L521)*
 
 Physical end of function.
 
@@ -4356,7 +4356,7 @@ Physical end of function.
 const C_TCSYM: u8 = 134u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:523`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L523)*
+*Defined in [`object-0.37.3/src/xcoff.rs:523`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L523)*
 
 Reserved.
 
@@ -4365,7 +4365,7 @@ Reserved.
 const XFT_FN: u8 = 0u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:562`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L562)*
+*Defined in [`object-0.37.3/src/xcoff.rs:562`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L562)*
 
 Specifies the source-file name.
 
@@ -4374,7 +4374,7 @@ Specifies the source-file name.
 const XFT_CT: u8 = 1u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:564`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L564)*
+*Defined in [`object-0.37.3/src/xcoff.rs:564`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L564)*
 
 Specifies the compiler time stamp.
 
@@ -4383,7 +4383,7 @@ Specifies the compiler time stamp.
 const XFT_CV: u8 = 2u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:566`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L566)*
+*Defined in [`object-0.37.3/src/xcoff.rs:566`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L566)*
 
 Specifies the compiler version number.
 
@@ -4392,7 +4392,7 @@ Specifies the compiler version number.
 const XFT_CD: u8 = 128u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:568`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L568)*
+*Defined in [`object-0.37.3/src/xcoff.rs:568`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L568)*
 
 Specifies compiler-defined information.
 
@@ -4401,7 +4401,7 @@ Specifies compiler-defined information.
 const XTY_ER: u8 = 0u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:615`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L615)*
+*Defined in [`object-0.37.3/src/xcoff.rs:615`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L615)*
 
 External reference.
 
@@ -4410,7 +4410,7 @@ External reference.
 const XTY_SD: u8 = 1u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:617`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L617)*
+*Defined in [`object-0.37.3/src/xcoff.rs:617`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L617)*
 
 Csect definition for initialized storage.
 
@@ -4419,7 +4419,7 @@ Csect definition for initialized storage.
 const XTY_LD: u8 = 2u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:619`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L619)*
+*Defined in [`object-0.37.3/src/xcoff.rs:619`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L619)*
 
 Defines an entry point to an initialized csect.
 
@@ -4428,7 +4428,7 @@ Defines an entry point to an initialized csect.
 const XTY_CM: u8 = 3u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:621`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L621)*
+*Defined in [`object-0.37.3/src/xcoff.rs:621`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L621)*
 
 Common csect definition. For uninitialized storage.
 
@@ -4437,7 +4437,7 @@ Common csect definition. For uninitialized storage.
 const XMC_PR: u8 = 0u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:628`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L628)*
+*Defined in [`object-0.37.3/src/xcoff.rs:628`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L628)*
 
 Program Code
 
@@ -4446,7 +4446,7 @@ Program Code
 const XMC_RO: u8 = 1u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:630`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L630)*
+*Defined in [`object-0.37.3/src/xcoff.rs:630`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L630)*
 
 Read Only Constant
 
@@ -4455,7 +4455,7 @@ Read Only Constant
 const XMC_DB: u8 = 2u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:632`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L632)*
+*Defined in [`object-0.37.3/src/xcoff.rs:632`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L632)*
 
 Debug Dictionary Table
 
@@ -4464,7 +4464,7 @@ Debug Dictionary Table
 const XMC_GL: u8 = 6u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:634`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L634)*
+*Defined in [`object-0.37.3/src/xcoff.rs:634`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L634)*
 
 Global Linkage (Interfile Interface Code)
 
@@ -4473,7 +4473,7 @@ Global Linkage (Interfile Interface Code)
 const XMC_XO: u8 = 7u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:636`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L636)*
+*Defined in [`object-0.37.3/src/xcoff.rs:636`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L636)*
 
 Extended Operation (Pseudo Machine Instruction)
 
@@ -4482,7 +4482,7 @@ Extended Operation (Pseudo Machine Instruction)
 const XMC_SV: u8 = 8u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:638`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L638)*
+*Defined in [`object-0.37.3/src/xcoff.rs:638`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L638)*
 
 Supervisor Call (32-bit process only)
 
@@ -4491,7 +4491,7 @@ Supervisor Call (32-bit process only)
 const XMC_SV64: u8 = 17u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:640`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L640)*
+*Defined in [`object-0.37.3/src/xcoff.rs:640`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L640)*
 
 Supervisor Call for 64-bit process
 
@@ -4500,7 +4500,7 @@ Supervisor Call for 64-bit process
 const XMC_SV3264: u8 = 18u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:642`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L642)*
+*Defined in [`object-0.37.3/src/xcoff.rs:642`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L642)*
 
 Supervisor Call for both 32- and 64-bit processes
 
@@ -4509,7 +4509,7 @@ Supervisor Call for both 32- and 64-bit processes
 const XMC_TI: u8 = 12u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:644`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L644)*
+*Defined in [`object-0.37.3/src/xcoff.rs:644`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L644)*
 
 Traceback Index csect
 
@@ -4518,7 +4518,7 @@ Traceback Index csect
 const XMC_TB: u8 = 13u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:646`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L646)*
+*Defined in [`object-0.37.3/src/xcoff.rs:646`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L646)*
 
 Traceback Table csect
 
@@ -4527,7 +4527,7 @@ Traceback Table csect
 const XMC_RW: u8 = 5u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:651`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L651)*
+*Defined in [`object-0.37.3/src/xcoff.rs:651`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L651)*
 
 Read Write Data
 
@@ -4536,7 +4536,7 @@ Read Write Data
 const XMC_TC0: u8 = 15u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:653`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L653)*
+*Defined in [`object-0.37.3/src/xcoff.rs:653`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L653)*
 
 TOC Anchor for TOC Addressability
 
@@ -4545,7 +4545,7 @@ TOC Anchor for TOC Addressability
 const XMC_TC: u8 = 3u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:655`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L655)*
+*Defined in [`object-0.37.3/src/xcoff.rs:655`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L655)*
 
 General TOC item
 
@@ -4554,7 +4554,7 @@ General TOC item
 const XMC_TD: u8 = 16u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:657`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L657)*
+*Defined in [`object-0.37.3/src/xcoff.rs:657`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L657)*
 
 Scalar data item in the TOC
 
@@ -4563,7 +4563,7 @@ Scalar data item in the TOC
 const XMC_DS: u8 = 10u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:659`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L659)*
+*Defined in [`object-0.37.3/src/xcoff.rs:659`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L659)*
 
 Descriptor csect
 
@@ -4572,7 +4572,7 @@ Descriptor csect
 const XMC_UA: u8 = 4u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:661`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L661)*
+*Defined in [`object-0.37.3/src/xcoff.rs:661`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L661)*
 
 Unclassified - Treated as Read Write
 
@@ -4581,7 +4581,7 @@ Unclassified - Treated as Read Write
 const XMC_BS: u8 = 9u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:663`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L663)*
+*Defined in [`object-0.37.3/src/xcoff.rs:663`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L663)*
 
 BSS class (uninitialized static internal)
 
@@ -4590,7 +4590,7 @@ BSS class (uninitialized static internal)
 const XMC_UC: u8 = 11u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:665`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L665)*
+*Defined in [`object-0.37.3/src/xcoff.rs:665`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L665)*
 
 Un-named Fortran Common
 
@@ -4599,7 +4599,7 @@ Un-named Fortran Common
 const XMC_TL: u8 = 20u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:667`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L667)*
+*Defined in [`object-0.37.3/src/xcoff.rs:667`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L667)*
 
 Initialized thread-local variable
 
@@ -4608,7 +4608,7 @@ Initialized thread-local variable
 const XMC_UL: u8 = 21u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:669`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L669)*
+*Defined in [`object-0.37.3/src/xcoff.rs:669`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L669)*
 
 Uninitialized thread-local variable
 
@@ -4617,7 +4617,7 @@ Uninitialized thread-local variable
 const XMC_TE: u8 = 22u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:671`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L671)*
+*Defined in [`object-0.37.3/src/xcoff.rs:671`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L671)*
 
 Symbol mapped at the end of TOC
 
@@ -4626,7 +4626,7 @@ Symbol mapped at the end of TOC
 const AUX_EXCEPT: u8 = 255u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:792`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L792)*
+*Defined in [`object-0.37.3/src/xcoff.rs:792`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L792)*
 
 Identifies an exception auxiliary entry.
 
@@ -4635,7 +4635,7 @@ Identifies an exception auxiliary entry.
 const AUX_FCN: u8 = 254u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:794`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L794)*
+*Defined in [`object-0.37.3/src/xcoff.rs:794`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L794)*
 
 Identifies a function auxiliary entry.
 
@@ -4644,7 +4644,7 @@ Identifies a function auxiliary entry.
 const AUX_SYM: u8 = 253u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:796`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L796)*
+*Defined in [`object-0.37.3/src/xcoff.rs:796`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L796)*
 
 Identifies a symbol auxiliary entry.
 
@@ -4653,7 +4653,7 @@ Identifies a symbol auxiliary entry.
 const AUX_FILE: u8 = 252u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:798`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L798)*
+*Defined in [`object-0.37.3/src/xcoff.rs:798`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L798)*
 
 Identifies a file auxiliary entry.
 
@@ -4662,7 +4662,7 @@ Identifies a file auxiliary entry.
 const AUX_CSECT: u8 = 251u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:800`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L800)*
+*Defined in [`object-0.37.3/src/xcoff.rs:800`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L800)*
 
 Identifies a csect auxiliary entry.
 
@@ -4671,7 +4671,7 @@ Identifies a csect auxiliary entry.
 const AUX_SECT: u8 = 250u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:802`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L802)*
+*Defined in [`object-0.37.3/src/xcoff.rs:802`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L802)*
 
 Identifies a SECT auxiliary entry.
 
@@ -4680,7 +4680,7 @@ Identifies a SECT auxiliary entry.
 const R_POS: u8 = 0u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:835`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L835)*
+*Defined in [`object-0.37.3/src/xcoff.rs:835`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L835)*
 
 Positive relocation.
 
@@ -4689,7 +4689,7 @@ Positive relocation.
 const R_RL: u8 = 12u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:837`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L837)*
+*Defined in [`object-0.37.3/src/xcoff.rs:837`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L837)*
 
 Positive indirect load relocation.
 
@@ -4698,7 +4698,7 @@ Positive indirect load relocation.
 const R_RLA: u8 = 13u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:839`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L839)*
+*Defined in [`object-0.37.3/src/xcoff.rs:839`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L839)*
 
 Positive load address relocation. Modifiable instruction.
 
@@ -4707,7 +4707,7 @@ Positive load address relocation. Modifiable instruction.
 const R_NEG: u8 = 1u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:841`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L841)*
+*Defined in [`object-0.37.3/src/xcoff.rs:841`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L841)*
 
 Negative relocation.
 
@@ -4716,7 +4716,7 @@ Negative relocation.
 const R_REL: u8 = 2u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:843`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L843)*
+*Defined in [`object-0.37.3/src/xcoff.rs:843`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L843)*
 
 Relative to self relocation.
 
@@ -4725,7 +4725,7 @@ Relative to self relocation.
 const R_TOC: u8 = 3u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:845`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L845)*
+*Defined in [`object-0.37.3/src/xcoff.rs:845`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L845)*
 
 Relative to the TOC relocation.
 
@@ -4734,7 +4734,7 @@ Relative to the TOC relocation.
 const R_TRL: u8 = 18u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:847`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L847)*
+*Defined in [`object-0.37.3/src/xcoff.rs:847`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L847)*
 
 TOC relative indirect load relocation.
 
@@ -4743,7 +4743,7 @@ TOC relative indirect load relocation.
 const R_TRLA: u8 = 19u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:849`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L849)*
+*Defined in [`object-0.37.3/src/xcoff.rs:849`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L849)*
 
 Relative to the TOC or to the thread-local storage base relocation.
 
@@ -4752,7 +4752,7 @@ Relative to the TOC or to the thread-local storage base relocation.
 const R_GL: u8 = 5u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:851`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L851)*
+*Defined in [`object-0.37.3/src/xcoff.rs:851`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L851)*
 
 Global linkage-external TOC address relocation.
 
@@ -4761,7 +4761,7 @@ Global linkage-external TOC address relocation.
 const R_TCL: u8 = 6u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:853`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L853)*
+*Defined in [`object-0.37.3/src/xcoff.rs:853`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L853)*
 
 Local object TOC address relocation.
 
@@ -4770,7 +4770,7 @@ Local object TOC address relocation.
 const R_REF: u8 = 15u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:855`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L855)*
+*Defined in [`object-0.37.3/src/xcoff.rs:855`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L855)*
 
 A non-relocating relocation.
 
@@ -4779,7 +4779,7 @@ A non-relocating relocation.
 const R_BA: u8 = 8u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:857`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L857)*
+*Defined in [`object-0.37.3/src/xcoff.rs:857`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L857)*
 
 Branch absolute relocation. References a non-modifiable instruction.
 
@@ -4788,7 +4788,7 @@ Branch absolute relocation. References a non-modifiable instruction.
 const R_BR: u8 = 10u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:859`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L859)*
+*Defined in [`object-0.37.3/src/xcoff.rs:859`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L859)*
 
 Branch relative to self relocation. References a non-modifiable instruction.
 
@@ -4797,7 +4797,7 @@ Branch relative to self relocation. References a non-modifiable instruction.
 const R_RBA: u8 = 24u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:861`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L861)*
+*Defined in [`object-0.37.3/src/xcoff.rs:861`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L861)*
 
 Branch absolute relocation. References a modifiable instruction.
 
@@ -4806,7 +4806,7 @@ Branch absolute relocation. References a modifiable instruction.
 const R_RBR: u8 = 26u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:863`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L863)*
+*Defined in [`object-0.37.3/src/xcoff.rs:863`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L863)*
 
 Branch relative to self relocation. References a modifiable instruction.
 
@@ -4815,7 +4815,7 @@ Branch relative to self relocation. References a modifiable instruction.
 const R_TLS: u8 = 32u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:865`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L865)*
+*Defined in [`object-0.37.3/src/xcoff.rs:865`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L865)*
 
 General-dynamic reference to TLS symbol.
 
@@ -4824,7 +4824,7 @@ General-dynamic reference to TLS symbol.
 const R_TLS_IE: u8 = 33u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:867`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L867)*
+*Defined in [`object-0.37.3/src/xcoff.rs:867`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L867)*
 
 Initial-exec reference to TLS symbol.
 
@@ -4833,7 +4833,7 @@ Initial-exec reference to TLS symbol.
 const R_TLS_LD: u8 = 34u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:869`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L869)*
+*Defined in [`object-0.37.3/src/xcoff.rs:869`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L869)*
 
 Local-dynamic reference to TLS symbol.
 
@@ -4842,7 +4842,7 @@ Local-dynamic reference to TLS symbol.
 const R_TLS_LE: u8 = 35u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:871`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L871)*
+*Defined in [`object-0.37.3/src/xcoff.rs:871`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L871)*
 
 Local-exec reference to TLS symbol.
 
@@ -4851,7 +4851,7 @@ Local-exec reference to TLS symbol.
 const R_TLSM: u8 = 36u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:873`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L873)*
+*Defined in [`object-0.37.3/src/xcoff.rs:873`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L873)*
 
 Module reference to TLS.
 
@@ -4860,7 +4860,7 @@ Module reference to TLS.
 const R_TLSML: u8 = 37u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:875`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L875)*
+*Defined in [`object-0.37.3/src/xcoff.rs:875`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L875)*
 
 Module reference to the local TLS storage.
 
@@ -4869,7 +4869,7 @@ Module reference to the local TLS storage.
 const R_TOCU: u8 = 48u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:877`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L877)*
+*Defined in [`object-0.37.3/src/xcoff.rs:877`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L877)*
 
 Relative to TOC upper.
 
@@ -4878,7 +4878,7 @@ Relative to TOC upper.
 const R_TOCL: u8 = 49u8;
 ```
 
-*Defined in [`object-0.37.3/src/xcoff.rs:879`](../../../.source_1765521767/object-0.37.3/src/xcoff.rs#L879)*
+*Defined in [`object-0.37.3/src/xcoff.rs:879`](../../../.source_1765633015/object-0.37.3/src/xcoff.rs#L879)*
 
 Relative to TOC lower.
 

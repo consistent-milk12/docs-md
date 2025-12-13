@@ -52,7 +52,7 @@ struct CoreLatch {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:75-77`](../../../.source_1765521767/rayon-core-1.13.0/src/latch.rs#L75-L77)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:75-77`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L75-L77)*
 
 Spin latches are the simplest, most efficient kind, but they do
 not support a `wait()` operation. They just have a boolean flag
@@ -181,7 +181,7 @@ struct SpinLatch<'r> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:148-153`](../../../.source_1765521767/rayon-core-1.13.0/src/latch.rs#L148-L153)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:148-153`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L148-L153)*
 
 Spin latches are the simplest, most efficient kind, but they do
 not support a `wait()` operation. They just have a boolean flag
@@ -284,7 +284,7 @@ struct LockLatch {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:228-231`](../../../.source_1765521767/rayon-core-1.13.0/src/latch.rs#L228-L231)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:228-231`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L228-L231)*
 
 A Latch starts as false and eventually becomes true. You can block
 until it becomes true.
@@ -375,7 +375,7 @@ struct OnceLatch {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:282-284`](../../../.source_1765521767/rayon-core-1.13.0/src/latch.rs#L282-L284)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:282-284`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L282-L284)*
 
 Once latches are used to implement one-time blocking, primarily
 for the termination flag of the threads in the pool.
@@ -475,7 +475,7 @@ struct CountLatch {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:321-324`](../../../.source_1765521767/rayon-core-1.13.0/src/latch.rs#L321-L324)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:321-324`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L321-L324)*
 
 Counting latches are used to implement scopes. They track a
 counter. Unlike other latches, calling `set()` does not
@@ -568,7 +568,7 @@ struct LatchRef<'a, L> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:427-430`](../../../.source_1765521767/rayon-core-1.13.0/src/latch.rs#L427-L430)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:427-430`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L427-L430)*
 
 `&L` without any implication of `dereferenceable` for `Latch::set`
 
@@ -667,7 +667,7 @@ enum CountLatchKind {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:326-344`](../../../.source_1765521767/rayon-core-1.13.0/src/latch.rs#L326-L344)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:326-344`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L326-L344)*
 
 #### Variants
 
@@ -751,7 +751,7 @@ enum CountLatchKind {
 trait Latch { ... }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:35-51`](../../../.source_1765521767/rayon-core-1.13.0/src/latch.rs#L35-L51)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:35-51`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L35-L51)*
 
 We define various kinds of latches, which are all a primitive signaling
 mechanism. A latch starts as false. Eventually someone calls `set()` and
@@ -799,7 +799,7 @@ Latches need to guarantee two things:
 trait AsCoreLatch { ... }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:53-55`](../../../.source_1765521767/rayon-core-1.13.0/src/latch.rs#L53-L55)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:53-55`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L53-L55)*
 
 #### Required Methods
 
@@ -818,7 +818,7 @@ trait AsCoreLatch { ... }
 const UNSET: usize = 0usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:58`](../../../.source_1765521767/rayon-core-1.13.0/src/latch.rs#L58)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:58`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L58)*
 
 Latch is not set, owning thread is awake
 
@@ -827,7 +827,7 @@ Latch is not set, owning thread is awake
 const SLEEPY: usize = 1usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:62`](../../../.source_1765521767/rayon-core-1.13.0/src/latch.rs#L62)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:62`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L62)*
 
 Latch is not set, owning thread is going to sleep on this latch
 (but has not yet fallen asleep).
@@ -837,7 +837,7 @@ Latch is not set, owning thread is going to sleep on this latch
 const SLEEPING: usize = 2usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:66`](../../../.source_1765521767/rayon-core-1.13.0/src/latch.rs#L66)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:66`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L66)*
 
 Latch is not set, owning thread is asleep on this latch and
 must be awoken.
@@ -847,7 +847,7 @@ must be awoken.
 const SET: usize = 3usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:69`](../../../.source_1765521767/rayon-core-1.13.0/src/latch.rs#L69)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:69`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L69)*
 
 Latch is set.
 

@@ -23,7 +23,7 @@ struct ParserBuilder {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/parser.rs:25-28`](../../../.source_1765521767/regex-syntax-0.8.8/src/parser.rs#L25-L28)*
+*Defined in [`regex-syntax-0.8.8/src/parser.rs:25-28`](../../../.source_1765633015/regex-syntax-0.8.8/src/parser.rs#L25-L28)*
 
 A builder for a regular expression parser.
 
@@ -380,7 +380,7 @@ struct Parser {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/parser.rs:230-233`](../../../.source_1765521767/regex-syntax-0.8.8/src/parser.rs#L230-L233)*
+*Defined in [`regex-syntax-0.8.8/src/parser.rs:230-233`](../../../.source_1765633015/regex-syntax-0.8.8/src/parser.rs#L230-L233)*
 
 A convenience parser for regular expressions.
 
@@ -492,7 +492,7 @@ A `Parser` can be configured in more detail via a [`ParserBuilder`](#parserbuild
 fn parse(pattern: &str) -> Result<hir::Hir, crate::Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/parser.rs:13-15`](../../../.source_1765521767/regex-syntax-0.8.8/src/parser.rs#L13-L15)*
+*Defined in [`regex-syntax-0.8.8/src/parser.rs:13-15`](../../../.source_1765633015/regex-syntax-0.8.8/src/parser.rs#L13-L15)*
 
 A convenience routine for parsing a regex using default options.
 

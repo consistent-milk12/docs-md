@@ -55,7 +55,7 @@ struct ptr<'a> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/frame.rs:8-17`](../../../.source_1765521767/addr2line-0.25.1/src/frame.rs#L8-L17)*
+*Defined in [`addr2line-0.25.1/src/frame.rs:8-17`](../../../.source_1765633015/addr2line-0.25.1/src/frame.rs#L8-L17)*
 
 *Re-exported from `addr2line`*
 
@@ -141,7 +141,7 @@ struct default {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/dfa.rs:91-132`](../../../.source_1765521767/aho-corasick-1.1.4/src/dfa.rs#L91-L132)*
+*Defined in [`aho-corasick-1.1.4/src/dfa.rs:91-132`](../../../.source_1765633015/aho-corasick-1.1.4/src/dfa.rs#L91-L132)*
 
 *Re-exported from `aho_corasick`*
 
@@ -278,14 +278,6 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
-- <span id="dfa-const-dead"></span>`const DEAD: StateID`
-
-- <span id="dfa-set-matches"></span>`fn set_matches(&mut self, sid: StateID, pids: impl Iterator<Item = PatternID>)`
-
-  Adds the given pattern IDs as matches to the given state and also
-
-  records the added memory usage.
-
 - <span id="dfa-new"></span>`fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`FmtWrite`](#fmtwrite), [`default`](#default), [`FmtWrite`](#fmtwrite)
 
   Create a new Aho-Corasick DFA using the default configuration.
@@ -301,6 +293,14 @@ It is also possible to implement your own version of `try_find`. See the
   
 
   This usually permits one to just import the `DFA` type.
+
+- <span id="dfa-const-dead"></span>`const DEAD: StateID`
+
+- <span id="dfa-set-matches"></span>`fn set_matches(&mut self, sid: StateID, pids: impl Iterator<Item = PatternID>)`
+
+  Adds the given pattern IDs as matches to the given state and also
+
+  records the added memory usage.
 
 #### Trait Implementations
 

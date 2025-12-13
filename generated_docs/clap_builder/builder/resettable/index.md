@@ -22,7 +22,7 @@ enum Resettable<T> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:33-38`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/resettable.rs#L33-L38)*
+*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:33-38`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/resettable.rs#L33-L38)*
 
 Clearable builder value
 
@@ -157,7 +157,7 @@ command.mut_arg("input", |arg| arg.short(None));
 trait IntoResettable<T> { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:65-68`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/resettable.rs#L65-L68)*
+*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:65-68`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/resettable.rs#L65-L68)*
 
 Convert to the intended resettable type
 

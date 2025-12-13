@@ -23,7 +23,7 @@ struct RelocateReader<R: Reader<Offset = usize>, T: Relocate<<R as >::Offset>> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/relocate.rs:23-27`](../../../../.source_1765521767/gimli-0.32.3/src/read/relocate.rs#L23-L27)*
+*Defined in [`gimli-0.32.3/src/read/relocate.rs:23-27`](../../../../.source_1765633015/gimli-0.32.3/src/read/relocate.rs#L23-L27)*
 
 A `Reader` which applies relocations to addresses and offsets.
 
@@ -149,7 +149,7 @@ It is generally not used for reading sections in an executable file.
 trait Relocate<T: ReaderOffset> { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/relocate.rs:9-15`](../../../../.source_1765521767/gimli-0.32.3/src/read/relocate.rs#L9-L15)*
+*Defined in [`gimli-0.32.3/src/read/relocate.rs:9-15`](../../../../.source_1765633015/gimli-0.32.3/src/read/relocate.rs#L9-L15)*
 
 Trait for relocating addresses and offsets while reading a section.
 

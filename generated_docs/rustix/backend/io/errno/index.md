@@ -48,7 +48,7 @@ this restricted range of values.
 struct Errno(u16);
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:51`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L51)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:51`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L51)*
 
 `errno`—An error code.
 
@@ -195,7 +195,7 @@ but only holds an OS error code, and no extra error value.
 fn try_decode_c_int<Num: RetNumber>(raw: crate::backend::reg::RetReg<Num>) -> io::Result<c::c_int>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:102-112`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L102-L112)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:102-112`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L102-L112)*
 
 Check for an error from the result of a syscall which encodes a
 `c::c_int` on success.
@@ -206,7 +206,7 @@ Check for an error from the result of a syscall which encodes a
 fn try_decode_c_uint<Num: RetNumber>(raw: crate::backend::reg::RetReg<Num>) -> io::Result<c::c_uint>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:117-127`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L117-L127)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:117-127`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L117-L127)*
 
 Check for an error from the result of a syscall which encodes a
 `c::c_uint` on success.
@@ -217,7 +217,7 @@ Check for an error from the result of a syscall which encodes a
 fn try_decode_usize<Num: RetNumber>(raw: crate::backend::reg::RetReg<Num>) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:132-140`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L132-L140)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:132-140`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L132-L140)*
 
 Check for an error from the result of a syscall which encodes a `usize` on
 success.
@@ -228,7 +228,7 @@ success.
 fn try_decode_void_star<Num: RetNumber>(raw: crate::backend::reg::RetReg<Num>) -> io::Result<*mut c::c_void>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:145-155`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L145-L155)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:145-155`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L145-L155)*
 
 Check for an error from the result of a syscall which encodes a
 `*mut c_void` on success.
@@ -239,7 +239,7 @@ Check for an error from the result of a syscall which encodes a
 fn try_decode_u64<Num: RetNumber>(raw: crate::backend::reg::RetReg<Num>) -> io::Result<u64>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:161-169`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L161-L169)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:161-169`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L161-L169)*
 
 Check for an error from the result of a syscall which encodes a
 `u64` on success.
@@ -250,7 +250,7 @@ Check for an error from the result of a syscall which encodes a
 unsafe fn try_decode_raw_fd<Num: RetNumber>(raw: crate::backend::reg::RetReg<Num>) -> io::Result<crate::backend::fd::RawFd>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:179-199`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L179-L199)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:179-199`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L179-L199)*
 
 Check for an error from the result of a syscall which encodes a file
 descriptor on success.
@@ -266,7 +266,7 @@ success.
 unsafe fn try_decode_void<Num: RetNumber>(raw: crate::backend::reg::RetReg<Num>) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:208-230`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L208-L230)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:208-230`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L208-L230)*
 
 Check for an error from the result of a syscall which encodes no value on
 success. On success, return the unconsumed `raw` value.

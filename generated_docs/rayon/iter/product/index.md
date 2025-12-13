@@ -23,7 +23,7 @@ struct ProductConsumer<P: Send> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/product.rs:19-21`](../../../../.source_1765521767/rayon-1.11.0/src/iter/product.rs#L19-L21)*
+*Defined in [`rayon-1.11.0/src/iter/product.rs:19-21`](../../../../.source_1765633015/rayon-1.11.0/src/iter/product.rs#L19-L21)*
 
 #### Implementations
 
@@ -123,7 +123,7 @@ struct ProductFolder<P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/product.rs:82-84`](../../../../.source_1765521767/rayon-1.11.0/src/iter/product.rs#L82-L84)*
+*Defined in [`rayon-1.11.0/src/iter/product.rs:82-84`](../../../../.source_1765633015/rayon-1.11.0/src/iter/product.rs#L82-L84)*
 
 #### Trait Implementations
 
@@ -208,7 +208,7 @@ where
     P: Send + Product<<PI as >::Item> + Product
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/product.rs:7-13`](../../../../.source_1765521767/rayon-1.11.0/src/iter/product.rs#L7-L13)*
+*Defined in [`rayon-1.11.0/src/iter/product.rs:7-13`](../../../../.source_1765633015/rayon-1.11.0/src/iter/product.rs#L7-L13)*
 
 ### `mul`
 
@@ -216,5 +216,5 @@ where
 fn mul<T: Product>(left: T, right: T) -> T
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/product.rs:15-17`](../../../../.source_1765521767/rayon-1.11.0/src/iter/product.rs#L15-L17)*
+*Defined in [`rayon-1.11.0/src/iter/product.rs:15-17`](../../../../.source_1765633015/rayon-1.11.0/src/iter/product.rs#L15-L17)*
 

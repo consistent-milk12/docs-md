@@ -21,7 +21,7 @@ struct SourceCode {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/source_code.rs:11-14`](../../../.source_1765521767/miette-derive-7.6.0/src/source_code.rs#L11-L14)*
+*Defined in [`miette-derive-7.6.0/src/source_code.rs:11-14`](../../../.source_1765633015/miette-derive-7.6.0/src/source_code.rs#L11-L14)*
 
 #### Implementations
 

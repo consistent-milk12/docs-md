@@ -22,7 +22,7 @@ Thread-safe, blocking version of `OnceCell`.
 struct OnceCell<T>(super::imp::OnceCell<T>);
 ```
 
-*Defined in [`once_cell-1.21.3/src/lib.rs:901`](../../../.source_1765521767/once_cell-1.21.3/src/lib.rs#L901)*
+*Defined in [`once_cell-1.21.3/src/lib.rs:901`](../../../.source_1765633015/once_cell-1.21.3/src/lib.rs#L901)*
 
 A thread-safe cell which can be written to only once.
 
@@ -528,7 +528,7 @@ struct Lazy<T, F> {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/lib.rs:1255-1258`](../../../.source_1765521767/once_cell-1.21.3/src/lib.rs#L1255-L1258)*
+*Defined in [`once_cell-1.21.3/src/lib.rs:1255-1258`](../../../.source_1765633015/once_cell-1.21.3/src/lib.rs#L1255-L1258)*
 
 A value which is initialized on the first access.
 
@@ -660,7 +660,7 @@ fn main() {
 fn _dummy()
 ```
 
-*Defined in [`once_cell-1.21.3/src/lib.rs:1408`](../../../.source_1765521767/once_cell-1.21.3/src/lib.rs#L1408)*
+*Defined in [`once_cell-1.21.3/src/lib.rs:1408`](../../../.source_1765633015/once_cell-1.21.3/src/lib.rs#L1408)*
 
 ```compile_fail
 struct S(*mut ());

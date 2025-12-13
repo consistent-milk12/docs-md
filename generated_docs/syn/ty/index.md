@@ -75,7 +75,7 @@ struct TypeArray {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:92-101`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L92-L101)*
+*Defined in [`syn-2.0.111/src/ty.rs:92-101`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L92-L101)*
 
 A fixed size array type: `[T; n]`.
 
@@ -186,7 +186,7 @@ struct TypeBareFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:103-116`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L103-L116)*
+*Defined in [`syn-2.0.111/src/ty.rs:103-116`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L103-L116)*
 
 A bare function type: `fn(usize) -> bool`.
 
@@ -291,7 +291,7 @@ struct TypeGroup {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:118-125`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L118-L125)*
+*Defined in [`syn-2.0.111/src/ty.rs:118-125`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L118-L125)*
 
 A type contained within invisible delimiters.
 
@@ -396,7 +396,7 @@ struct TypeImplTrait {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:127-135`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L127-L135)*
+*Defined in [`syn-2.0.111/src/ty.rs:127-135`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L127-L135)*
 
 An `impl Bound1 + Bound2 + Bound3` type where `Bound` is a trait or
 a lifetime.
@@ -503,7 +503,7 @@ struct TypeInfer {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:137-143`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L137-L143)*
+*Defined in [`syn-2.0.111/src/ty.rs:137-143`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L137-L143)*
 
 Indication that a type should be inferred by the compiler: `_`.
 
@@ -607,7 +607,7 @@ struct TypeMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:145-151`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L145-L151)*
+*Defined in [`syn-2.0.111/src/ty.rs:145-151`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L145-L151)*
 
 A macro in the type position.
 
@@ -711,7 +711,7 @@ struct TypeNever {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:153-159`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L153-L159)*
+*Defined in [`syn-2.0.111/src/ty.rs:153-159`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L153-L159)*
 
 The never type: `!`.
 
@@ -816,7 +816,7 @@ struct TypeParen {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:161-168`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L161-L168)*
+*Defined in [`syn-2.0.111/src/ty.rs:161-168`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L161-L168)*
 
 A parenthesized type equivalent to the inner type.
 
@@ -921,7 +921,7 @@ struct TypePath {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:170-178`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L170-L178)*
+*Defined in [`syn-2.0.111/src/ty.rs:170-178`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L170-L178)*
 
 A path like `std::slice::Iter`, optionally qualified with a
 self-type as in `<Vec<T> as SomeTrait>::Associated`.
@@ -1029,7 +1029,7 @@ struct TypePtr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:180-189`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L180-L189)*
+*Defined in [`syn-2.0.111/src/ty.rs:180-189`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L180-L189)*
 
 A raw pointer type: `*const T` or `*mut T`.
 
@@ -1136,7 +1136,7 @@ struct TypeReference {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:191-200`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L191-L200)*
+*Defined in [`syn-2.0.111/src/ty.rs:191-200`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L191-L200)*
 
 A reference type: `&'a T` or `&'a mut T`.
 
@@ -1241,7 +1241,7 @@ struct TypeSlice {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:202-209`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L202-L209)*
+*Defined in [`syn-2.0.111/src/ty.rs:202-209`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L202-L209)*
 
 A dynamically sized slice type: `[T]`.
 
@@ -1346,7 +1346,7 @@ struct TypeTraitObject {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:211-219`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L211-L219)*
+*Defined in [`syn-2.0.111/src/ty.rs:211-219`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L211-L219)*
 
 A trait object type `dyn Bound1 + Bound2 + Bound3` where `Bound` is a
 trait or a lifetime.
@@ -1456,7 +1456,7 @@ struct TypeTuple {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:221-228`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L221-L228)*
+*Defined in [`syn-2.0.111/src/ty.rs:221-228`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L221-L228)*
 
 A tuple type: `(A, B, C, String)`.
 
@@ -1561,7 +1561,7 @@ struct Abi {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:230-237`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L230-L237)*
+*Defined in [`syn-2.0.111/src/ty.rs:230-237`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L230-L237)*
 
 The binary interface of a function: `extern "C"`.
 
@@ -1663,7 +1663,7 @@ struct BareFnArg {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:239-247`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L239-L247)*
+*Defined in [`syn-2.0.111/src/ty.rs:239-247`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L239-L247)*
 
 An argument in a function type: the `usize` in `fn(usize) -> bool`.
 
@@ -1766,7 +1766,7 @@ struct BareVariadic {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:249-258`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L249-L258)*
+*Defined in [`syn-2.0.111/src/ty.rs:249-258`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L249-L258)*
 
 The variadic argument of a function pointer like `fn(usize, ...)`.
 
@@ -1878,7 +1878,7 @@ enum Type {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:13-90`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L13-L90)*
+*Defined in [`syn-2.0.111/src/ty.rs:13-90`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L13-L90)*
 
 The possible types that a Rust value could have.
 
@@ -2063,7 +2063,7 @@ enum ReturnType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:260-271`](../../../.source_1765521767/syn-2.0.111/src/ty.rs#L260-L271)*
+*Defined in [`syn-2.0.111/src/ty.rs:260-271`](../../../.source_1765633015/syn-2.0.111/src/ty.rs#L260-L271)*
 
 Return type of a function signature.
 

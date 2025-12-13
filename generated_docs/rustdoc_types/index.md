@@ -154,7 +154,7 @@ struct Crate {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:48-67`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L48-L67)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:48-67`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L48-L67)*
 
 The root of the emitted JSON blob.
 
@@ -289,7 +289,7 @@ struct Target {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:71-77`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L71-L77)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:71-77`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L71-L77)*
 
 Information about a target
 
@@ -397,7 +397,7 @@ struct TargetFeature {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:101-121`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L101-L121)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:101-121`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L101-L121)*
 
 Information about a target feature.
 
@@ -540,7 +540,7 @@ struct ExternalCrate {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:125-143`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L125-L143)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:125-143`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L125-L143)*
 
 Metadata of a crate, either the same crate on which `rustdoc` was invoked, or its dependency.
 
@@ -663,7 +663,7 @@ struct ItemSummary {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:152-166`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L152-L166)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:152-166`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L152-L166)*
 
 Information about an external (not defined in the local crate) [`Item`](#item).
 
@@ -796,7 +796,7 @@ struct Item {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:173-208`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L173-L208)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:173-208`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L173-L208)*
 
 Anything that can hold documentation - modules, structs, enums, functions, traits, etc.
 
@@ -952,7 +952,7 @@ struct AttributeRepr {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:261-274`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L261-L274)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:261-274`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L261-L274)*
 
 The contents of a `#[repr(...)]` attribute.
 
@@ -1070,7 +1070,7 @@ struct Span {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:296-303`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L296-L303)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:296-303`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L296-L303)*
 
 A range of source code.
 
@@ -1183,7 +1183,7 @@ struct Deprecation {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:307-312`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L307-L312)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:307-312`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L307-L312)*
 
 Information about the deprecation of an [`Item`](#item).
 
@@ -1292,7 +1292,7 @@ struct DynTrait {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:339-350`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L339-L350)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:339-350`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L339-L350)*
 
 Dynamic trait object type (`dyn Trait`).
 
@@ -1407,7 +1407,7 @@ struct PolyTrait {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:354-364`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L354-L364)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:354-364`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L354-L364)*
 
 A trait and potential HRTBs
 
@@ -1521,7 +1521,7 @@ struct Constant {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:431-440`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L431-L440)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:431-440`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L431-L440)*
 
 A constant.
 
@@ -1637,7 +1637,7 @@ struct AssocItemConstraint {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:450-457`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L450-L457)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:450-457`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L450-L457)*
 
 Describes a bound applied to an associated type/constant.
 
@@ -1753,7 +1753,7 @@ IntoIterator<Item = u32, IntoIter: Clone>
 struct Id(u32);
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:490`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L490)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:490`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L490)*
 
 An opaque identifier for an item.
 
@@ -1873,7 +1873,7 @@ struct Module {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:686-697`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L686-L697)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:686-697`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L686-L697)*
 
 A module declaration, e.g. `mod foo;` or `mod foo {}`.
 
@@ -1992,7 +1992,7 @@ struct Union {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:701-714`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L701-L714)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:701-714`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L701-L714)*
 
 A `union`.
 
@@ -2114,7 +2114,7 @@ struct Struct {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:718-727`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L718-L727)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:718-727`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L718-L727)*
 
 A `struct`.
 
@@ -2231,7 +2231,7 @@ struct Enum {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:768-779`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L768-L779)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:768-779`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L768-L779)*
 
 An `enum`.
 
@@ -2350,7 +2350,7 @@ struct Variant {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:783-788`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L783-L788)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:783-788`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L783-L788)*
 
 A variant of an enum.
 
@@ -2459,7 +2459,7 @@ struct Discriminant {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:835-849`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L835-L849)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:835-849`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L835-L849)*
 
 The value that distinguishes a variant in an [`Enum`](#enum) from other variants.
 
@@ -2579,7 +2579,7 @@ struct FunctionHeader {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:853-862`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L853-L862)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:853-862`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L853-L862)*
 
 A set of fundamental properties of a function.
 
@@ -2698,7 +2698,7 @@ struct Function {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:900-909`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L900-L909)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:900-909`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L900-L909)*
 
 A function declaration (including methods and other associated functions).
 
@@ -2815,7 +2815,7 @@ struct Generics {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:913-918`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L913-L918)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:913-918`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L913-L918)*
 
 Generic parameters accepted by an item and `where` clauses imposed on it and the parameters.
 
@@ -2924,7 +2924,7 @@ struct GenericParamDef {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:922-932`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L922-L932)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:922-932`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L922-L932)*
 
 One generic parameter accepted by an item.
 
@@ -3039,7 +3039,7 @@ struct Path {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1231-1255`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L1231-L1255)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1231-1255`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1231-L1255)*
 
 A type that has a simple path to it. This is the kind of type of structs, unions, enums, etc.
 
@@ -3168,7 +3168,7 @@ struct FunctionPointer {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1259-1271`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L1259-L1271)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1259-1271`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1259-L1271)*
 
 A type that is a function pointer.
 
@@ -3287,7 +3287,7 @@ struct FunctionSignature {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1275-1289`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L1275-L1289)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1275-1289`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1275-L1289)*
 
 The signature of a function.
 
@@ -3412,7 +3412,7 @@ struct Trait {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1293-1311`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L1293-L1311)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1293-1311`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1293-L1311)*
 
 A `trait` declaration.
 
@@ -3544,7 +3544,7 @@ struct TraitAlias {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1317-1322`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L1317-L1322)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1317-1322`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1317-L1322)*
 
 A trait alias declaration, e.g. `trait Int = Add + Sub + Mul + Div;`
 
@@ -3662,7 +3662,7 @@ struct Impl {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1326-1360`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L1326-L1360)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1326-1360`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1326-L1360)*
 
 An `impl` block.
 
@@ -3810,7 +3810,7 @@ struct Use {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1365-1378`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L1365-L1378)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1365-1378`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1365-L1378)*
 
 A `use` statement.
 
@@ -3931,7 +3931,7 @@ struct ProcMacro {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1382-1401`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L1382-L1401)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1382-1401`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1382-L1401)*
 
 A procedural macro.
 
@@ -4054,7 +4054,7 @@ struct TypeAlias {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1417-1423`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L1417-L1423)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1417-1423`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1417-L1423)*
 
 A type alias declaration, e.g. `type Pig = std::borrow::Cow<'static, str>;`
 
@@ -4165,7 +4165,7 @@ struct Static {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1427-1453`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L1427-L1453)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1427-1453`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1427-L1453)*
 
 A `static` declaration.
 
@@ -4297,7 +4297,7 @@ struct Primitive {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1457-1462`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L1457-L1462)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1457-1462`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1457-L1462)*
 
 A primitive type declaration. Declarations of this kind can only come from the core library.
 
@@ -4420,7 +4420,7 @@ enum Attribute {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:217-255`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L217-L255)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:217-255`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L217-L255)*
 
 An attribute, e.g. `#[repr(C)]`
 
@@ -4571,7 +4571,7 @@ enum ReprKind {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:281-292`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L281-L292)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:281-292`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L281-L292)*
 
 The kind of `#[repr]`.
 
@@ -4693,7 +4693,7 @@ enum Visibility {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:317-335`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L317-L335)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:317-335`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L317-L335)*
 
 Visibility of an [`Item`](#item).
 
@@ -4818,7 +4818,7 @@ enum GenericArgs {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:374-395`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L374-L395)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:374-395`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L374-L395)*
 
 A set of generic arguments provided to a path segment, e.g.
 
@@ -4938,7 +4938,7 @@ enum GenericArg {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:402-427`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L402-L427)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:402-427`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L402-L427)*
 
 One argument in a list of generic arguments to a path segment.
 
@@ -5073,7 +5073,7 @@ enum AssocItemConstraintKind {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:462-475`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L462-L475)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:462-475`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L462-L475)*
 
 The way in which an associate type/constant is bound.
 
@@ -5212,7 +5212,7 @@ enum ItemKind {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:497-565`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L497-L565)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:497-565`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L497-L565)*
 
 The fundamental kind of an item. Unlike [`ItemEnum`](#itemenum), this does not carry any additional info.
 
@@ -5464,7 +5464,7 @@ enum ItemEnum {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:572-682`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L572-L682)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:572-682`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L572-L682)*
 
 Specific fields of an item.
 
@@ -5662,7 +5662,7 @@ enum StructKind {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:732-764`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L732-L764)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:732-764`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L732-L764)*
 
 The kind of a [`Struct`](#struct) and the data specific to it, i.e. fields.
 
@@ -5797,7 +5797,7 @@ enum VariantKind {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:793-831`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L793-L831)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:793-831`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L793-L831)*
 
 The kind of an [`Enum`](#enum) [`Variant`](#variant) and the data specific to it, i.e. fields.
 
@@ -5959,7 +5959,7 @@ enum Abi {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:873-896`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L873-L896)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:873-896`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L873-L896)*
 
 The ABI (Application Binary Interface) used by a function.
 
@@ -6117,7 +6117,7 @@ enum GenericParamDefKind {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:937-1001`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L937-L1001)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:937-1001`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L937-L1001)*
 
 The kind of a [`GenericParamDef`](#genericparamdef).
 
@@ -6241,7 +6241,7 @@ enum WherePredicate {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1010-1051`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L1010-L1051)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1010-1051`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1010-L1051)*
 
 One `where` clause.
 ```rust
@@ -6363,7 +6363,7 @@ enum GenericBound {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1056-1081`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L1056-L1081)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1056-1081`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1056-L1081)*
 
 Either a trait bound or a lifetime bound.
 
@@ -6481,7 +6481,7 @@ enum TraitBoundModifier {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1086-1096`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L1086-L1096)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1086-1096`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1086-L1096)*
 
 A set of modifiers applied to a trait.
 
@@ -6599,7 +6599,7 @@ enum PreciseCapturingArg {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1101-1112`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L1101-L1112)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1101-1112`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1101-L1112)*
 
 One precise capturing argument. See [the rust reference](https://doc.rust-lang.org/reference/types/impl-trait.html#precise-capturing).
 
@@ -6714,7 +6714,7 @@ enum Term {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1118-1137`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L1118-L1137)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1118-1137`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1118-L1137)*
 
 Either a type or a constant, usually stored as the right-hand side of an equation in places like
 [`AssocItemConstraint`](#associtemconstraint)
@@ -6867,7 +6867,7 @@ enum Type {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1142-1227`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L1142-L1227)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1142-1227`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1142-L1227)*
 
 A type.
 
@@ -7028,7 +7028,7 @@ enum MacroKind {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1406-1413`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L1406-L1413)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1406-1413`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1406-L1413)*
 
 The way a [`ProcMacro`](#procmacro) is declared to be used.
 
@@ -7141,7 +7141,7 @@ The way a [`ProcMacro`](#procmacro) is declared to be used.
 const FORMAT_VERSION: u32 = 57u32;
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:40`](../../.source_1765521767/rustdoc-types-0.57.0/src/lib.rs#L40)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:40`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L40)*
 
 The version of JSON output that this crate represents.
 

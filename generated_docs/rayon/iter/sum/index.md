@@ -23,7 +23,7 @@ struct SumConsumer<S: Send> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/sum.rs:19-21`](../../../../.source_1765521767/rayon-1.11.0/src/iter/sum.rs#L19-L21)*
+*Defined in [`rayon-1.11.0/src/iter/sum.rs:19-21`](../../../../.source_1765633015/rayon-1.11.0/src/iter/sum.rs#L19-L21)*
 
 #### Implementations
 
@@ -123,7 +123,7 @@ struct SumFolder<S> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/sum.rs:78-80`](../../../../.source_1765521767/rayon-1.11.0/src/iter/sum.rs#L78-L80)*
+*Defined in [`rayon-1.11.0/src/iter/sum.rs:78-80`](../../../../.source_1765633015/rayon-1.11.0/src/iter/sum.rs#L78-L80)*
 
 #### Trait Implementations
 
@@ -208,7 +208,7 @@ where
     S: Send + Sum<<PI as >::Item> + Sum
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/sum.rs:7-13`](../../../../.source_1765521767/rayon-1.11.0/src/iter/sum.rs#L7-L13)*
+*Defined in [`rayon-1.11.0/src/iter/sum.rs:7-13`](../../../../.source_1765633015/rayon-1.11.0/src/iter/sum.rs#L7-L13)*
 
 ### `add`
 
@@ -216,5 +216,5 @@ where
 fn add<T: Sum>(left: T, right: T) -> T
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/sum.rs:15-17`](../../../../.source_1765521767/rayon-1.11.0/src/iter/sum.rs#L15-L17)*
+*Defined in [`rayon-1.11.0/src/iter/sum.rs:15-17`](../../../../.source_1765633015/rayon-1.11.0/src/iter/sum.rs#L15-L17)*
 

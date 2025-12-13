@@ -88,7 +88,7 @@ struct DefaultHashBuilder {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/hasher.rs:14-17`](../../.source_1765521767/hashbrown-0.16.1/src/hasher.rs#L14-L17)*
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:14-17`](../../.source_1765633015/hashbrown-0.16.1/src/hasher.rs#L14-L17)*
 
 Default hash builder for the `S` type parameter of
 [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
@@ -179,7 +179,7 @@ struct DefaultHasher {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/hasher.rs:34-36`](../../.source_1765521767/hashbrown-0.16.1/src/hasher.rs#L34-L36)*
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:34-36`](../../.source_1765633015/hashbrown-0.16.1/src/hasher.rs#L34-L36)*
 
 Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 
@@ -282,7 +282,7 @@ struct HashMap<K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:185-188`](../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L185-L188)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:185-188`](../../.source_1765633015/hashbrown-0.16.1/src/map.rs#L185-L188)*
 
 A hash map implemented with quadratic probing and SIMD lookup.
 
@@ -832,7 +832,7 @@ struct HashSet<T, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:114-116`](../../.source_1765521767/hashbrown-0.16.1/src/set.rs#L114-L116)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:114-116`](../../.source_1765633015/hashbrown-0.16.1/src/set.rs#L114-L116)*
 
 A hash set implemented as a `HashMap` where the value is `()`.
 
@@ -1489,7 +1489,7 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:48-53`](../../.source_1765521767/hashbrown-0.16.1/src/table.rs#L48-L53)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:48-53`](../../.source_1765633015/hashbrown-0.16.1/src/table.rs#L48-L53)*
 
 Low-level hash table with explicit hashing.
 
@@ -1674,7 +1674,7 @@ enum TryReserveError {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/lib.rs:180-190`](../../.source_1765521767/hashbrown-0.16.1/src/lib.rs#L180-L190)*
+*Defined in [`hashbrown-0.16.1/src/lib.rs:180-190`](../../.source_1765633015/hashbrown-0.16.1/src/lib.rs#L180-L190)*
 
 The error type for `try_reserve` methods.
 

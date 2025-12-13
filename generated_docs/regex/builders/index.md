@@ -29,7 +29,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/builders.rs:44-48`](../../../.source_1765521767/regex-1.12.2/src/builders.rs#L44-L48)*
+*Defined in [`regex-1.12.2/src/builders.rs:44-48`](../../../.source_1765633015/regex-1.12.2/src/builders.rs#L44-L48)*
 
 A builder for constructing a `Regex`, `bytes::Regex`, `RegexSet` or a
 `bytes::RegexSet`.

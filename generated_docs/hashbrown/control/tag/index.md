@@ -19,7 +19,7 @@
 struct Tag(u8);
 ```
 
-*Defined in [`hashbrown-0.16.1/src/control/tag.rs:6`](../../../../.source_1765521767/hashbrown-0.16.1/src/control/tag.rs#L6)*
+*Defined in [`hashbrown-0.16.1/src/control/tag.rs:6`](../../../../.source_1765633015/hashbrown-0.16.1/src/control/tag.rs#L6)*
 
 Single tag in a control group.
 
@@ -131,7 +131,7 @@ Single tag in a control group.
 trait TagSliceExt { ... }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/control/tag.rs:67-76`](../../../../.source_1765521767/hashbrown-0.16.1/src/control/tag.rs#L67-L76)*
+*Defined in [`hashbrown-0.16.1/src/control/tag.rs:67-76`](../../../../.source_1765633015/hashbrown-0.16.1/src/control/tag.rs#L67-L76)*
 
 Extension trait for slices of tags.
 

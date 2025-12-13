@@ -48,7 +48,7 @@ struct AsyncInfo<'block> {
 }
 ```
 
-*Defined in [`tracing-attributes-0.1.31/src/expand.rs:546-552`](../../../.source_1765521767/tracing-attributes-0.1.31/src/expand.rs#L546-L552)*
+*Defined in [`tracing-attributes-0.1.31/src/expand.rs:546-552`](../../../.source_1765633015/tracing-attributes-0.1.31/src/expand.rs#L546-L552)*
 
 #### Implementations
 
@@ -159,7 +159,7 @@ struct IdentAndTypesRenamer<'a> {
 }
 ```
 
-*Defined in [`tracing-attributes-0.1.31/src/expand.rs:799-802`](../../../.source_1765521767/tracing-attributes-0.1.31/src/expand.rs#L799-L802)*
+*Defined in [`tracing-attributes-0.1.31/src/expand.rs:799-802`](../../../.source_1765633015/tracing-attributes-0.1.31/src/expand.rs#L799-L802)*
 
 A visitor struct to replace idents and types in some piece
 of code (e.g. the "self" and "Self" tokens in user-supplied
@@ -222,7 +222,7 @@ version of async-trait).
 struct ImplTraitEraser;
 ```
 
-*Defined in [`tracing-attributes-0.1.31/src/expand.rs:829`](../../../.source_1765521767/tracing-attributes-0.1.31/src/expand.rs#L829)*
+*Defined in [`tracing-attributes-0.1.31/src/expand.rs:829`](../../../.source_1765633015/tracing-attributes-0.1.31/src/expand.rs#L829)*
 
 #### Trait Implementations
 
@@ -283,7 +283,7 @@ enum RecordType {
 }
 ```
 
-*Defined in [`tracing-attributes-0.1.31/src/expand.rs:435-440`](../../../.source_1765521767/tracing-attributes-0.1.31/src/expand.rs#L435-L440)*
+*Defined in [`tracing-attributes-0.1.31/src/expand.rs:435-440`](../../../.source_1765633015/tracing-attributes-0.1.31/src/expand.rs#L435-L440)*
 
 Indicates whether a field should be recorded as `Value` or `Debug`.
 
@@ -363,7 +363,7 @@ enum AsyncKind<'a> {
 }
 ```
 
-*Defined in [`tracing-attributes-0.1.31/src/expand.rs:533-544`](../../../.source_1765521767/tracing-attributes-0.1.31/src/expand.rs#L533-L544)*
+*Defined in [`tracing-attributes-0.1.31/src/expand.rs:533-544`](../../../.source_1765633015/tracing-attributes-0.1.31/src/expand.rs#L533-L544)*
 
 The specific async code pattern that was detected
 
@@ -432,7 +432,7 @@ The specific async code pattern that was detected
 fn gen_function<'a, B: ToTokens + 'a>(input: crate::MaybeItemFnRef<'a, B>, args: crate::attr::InstrumentArgs, instrumented_function_name: &str, self_type: Option<&syn::TypePath>) -> proc_macro2::TokenStream
 ```
 
-*Defined in [`tracing-attributes-0.1.31/src/expand.rs:19-124`](../../../.source_1765521767/tracing-attributes-0.1.31/src/expand.rs#L19-L124)*
+*Defined in [`tracing-attributes-0.1.31/src/expand.rs:19-124`](../../../.source_1765633015/tracing-attributes-0.1.31/src/expand.rs#L19-L124)*
 
 Given an existing function, generate an instrumented version of that function
 
@@ -442,7 +442,7 @@ Given an existing function, generate an instrumented version of that function
 fn gen_block<B: ToTokens>(block: &B, params: &syn::punctuated::Punctuated<syn::FnArg, token::Comma>, async_context: bool, args: crate::attr::InstrumentArgs, instrumented_function_name: &str, self_type: Option<&syn::TypePath>) -> proc_macro2::TokenStream
 ```
 
-*Defined in [`tracing-attributes-0.1.31/src/expand.rs:127-432`](../../../.source_1765521767/tracing-attributes-0.1.31/src/expand.rs#L127-L432)*
+*Defined in [`tracing-attributes-0.1.31/src/expand.rs:127-432`](../../../.source_1765633015/tracing-attributes-0.1.31/src/expand.rs#L127-L432)*
 
 Instrument a block
 
@@ -452,7 +452,7 @@ Instrument a block
 fn param_names(pat: syn::Pat, record_type: RecordType) -> Box<dyn Iterator<Item = (syn::Ident, RecordType)>>
 ```
 
-*Defined in [`tracing-attributes-0.1.31/src/expand.rs:500-530`](../../../.source_1765521767/tracing-attributes-0.1.31/src/expand.rs#L500-L530)*
+*Defined in [`tracing-attributes-0.1.31/src/expand.rs:500-530`](../../../.source_1765633015/tracing-attributes-0.1.31/src/expand.rs#L500-L530)*
 
 ### `path_to_string`
 
@@ -460,7 +460,7 @@ fn param_names(pat: syn::Pat, record_type: RecordType) -> Box<dyn Iterator<Item 
 fn path_to_string(path: &syn::Path) -> String
 ```
 
-*Defined in [`tracing-attributes-0.1.31/src/expand.rs:781-793`](../../../.source_1765521767/tracing-attributes-0.1.31/src/expand.rs#L781-L793)*
+*Defined in [`tracing-attributes-0.1.31/src/expand.rs:781-793`](../../../.source_1765633015/tracing-attributes-0.1.31/src/expand.rs#L781-L793)*
 
 ### `erase_impl_trait`
 
@@ -468,5 +468,5 @@ fn path_to_string(path: &syn::Path) -> String
 fn erase_impl_trait(ty: &syn::Type) -> syn::Type
 ```
 
-*Defined in [`tracing-attributes-0.1.31/src/expand.rs:844-848`](../../../.source_1765521767/tracing-attributes-0.1.31/src/expand.rs#L844-L848)*
+*Defined in [`tracing-attributes-0.1.31/src/expand.rs:844-848`](../../../.source_1765633015/tracing-attributes-0.1.31/src/expand.rs#L844-L848)*
 

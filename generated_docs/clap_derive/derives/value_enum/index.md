@@ -22,7 +22,7 @@
 fn derive_value_enum(input: &syn::DeriveInput) -> Result<proc_macro2::TokenStream, syn::Error>
 ```
 
-*Defined in [`clap_derive-4.5.49/src/derives/value_enum.rs:18-35`](../../../../.source_1765521767/clap_derive-4.5.49/src/derives/value_enum.rs#L18-L35)*
+*Defined in [`clap_derive-4.5.49/src/derives/value_enum.rs:18-35`](../../../../.source_1765633015/clap_derive-4.5.49/src/derives/value_enum.rs#L18-L35)*
 
 ### `gen_for_enum`
 
@@ -30,7 +30,7 @@ fn derive_value_enum(input: &syn::DeriveInput) -> Result<proc_macro2::TokenStrea
 fn gen_for_enum(item: &crate::item::Item, item_name: &syn::Ident, variants: &[(&syn::Variant, crate::item::Item)]) -> Result<proc_macro2::TokenStream, syn::Error>
 ```
 
-*Defined in [`clap_derive-4.5.49/src/derives/value_enum.rs:37-80`](../../../../.source_1765521767/clap_derive-4.5.49/src/derives/value_enum.rs#L37-L80)*
+*Defined in [`clap_derive-4.5.49/src/derives/value_enum.rs:37-80`](../../../../.source_1765633015/clap_derive-4.5.49/src/derives/value_enum.rs#L37-L80)*
 
 ### `lits`
 
@@ -38,7 +38,7 @@ fn gen_for_enum(item: &crate::item::Item, item_name: &syn::Ident, variants: &[(&
 fn lits(variants: &[(&syn::Variant, crate::item::Item)]) -> Result<Vec<(proc_macro2::TokenStream, syn::Ident)>, syn::Error>
 ```
 
-*Defined in [`clap_derive-4.5.49/src/derives/value_enum.rs:82-104`](../../../../.source_1765521767/clap_derive-4.5.49/src/derives/value_enum.rs#L82-L104)*
+*Defined in [`clap_derive-4.5.49/src/derives/value_enum.rs:82-104`](../../../../.source_1765633015/clap_derive-4.5.49/src/derives/value_enum.rs#L82-L104)*
 
 ### `gen_value_variants`
 
@@ -46,7 +46,7 @@ fn lits(variants: &[(&syn::Variant, crate::item::Item)]) -> Result<Vec<(proc_mac
 fn gen_value_variants(lits: &[(proc_macro2::TokenStream, syn::Ident)]) -> proc_macro2::TokenStream
 ```
 
-*Defined in [`clap_derive-4.5.49/src/derives/value_enum.rs:106-114`](../../../../.source_1765521767/clap_derive-4.5.49/src/derives/value_enum.rs#L106-L114)*
+*Defined in [`clap_derive-4.5.49/src/derives/value_enum.rs:106-114`](../../../../.source_1765633015/clap_derive-4.5.49/src/derives/value_enum.rs#L106-L114)*
 
 ### `gen_to_possible_value`
 
@@ -54,5 +54,5 @@ fn gen_value_variants(lits: &[(proc_macro2::TokenStream, syn::Ident)]) -> proc_m
 fn gen_to_possible_value(item: &crate::item::Item, lits: &[(proc_macro2::TokenStream, syn::Ident)]) -> proc_macro2::TokenStream
 ```
 
-*Defined in [`clap_derive-4.5.49/src/derives/value_enum.rs:116-130`](../../../../.source_1765521767/clap_derive-4.5.49/src/derives/value_enum.rs#L116-L130)*
+*Defined in [`clap_derive-4.5.49/src/derives/value_enum.rs:116-130`](../../../../.source_1765633015/clap_derive-4.5.49/src/derives/value_enum.rs#L116-L130)*
 

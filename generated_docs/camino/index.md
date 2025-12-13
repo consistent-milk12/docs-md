@@ -96,7 +96,7 @@ as valid UTF-8 from there on, avoiding repeated lossy and confusing conversions.
 struct Utf8PathBuf(PathBuf);
 ```
 
-*Defined in [`camino-1.2.1/src/lib.rs:112`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L112)*
+*Defined in [`camino-1.2.1/src/lib.rs:112`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L112)*
 
 An owned, mutable UTF-8 path (akin to [`String`](../cargo_platform/index.md)).
 
@@ -840,7 +840,7 @@ Which method works best depends on what kind of situation you're in.
 struct Utf8Path(Path);
 ```
 
-*Defined in [`camino-1.2.1/src/lib.rs:600`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L600)*
+*Defined in [`camino-1.2.1/src/lib.rs:600`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L600)*
 
 A slice of a UTF-8 path (akin to [`str`](../clap_builder/builder/str/index.md)).
 
@@ -2457,7 +2457,7 @@ assert_eq!(extension, Some("txt"));
 struct Utf8Ancestors<'a>(Ancestors<'a>);
 ```
 
-*Defined in [`camino-1.2.1/src/lib.rs:1641`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L1641)*
+*Defined in [`camino-1.2.1/src/lib.rs:1641`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L1641)*
 
 An iterator over [`Utf8Path`](#utf8path) and its ancestors.
 
@@ -2565,7 +2565,7 @@ for ancestor in path.ancestors() {
 struct Utf8Components<'a>(Components<'a>);
 ```
 
-*Defined in [`camino-1.2.1/src/lib.rs:1684`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L1684)*
+*Defined in [`camino-1.2.1/src/lib.rs:1684`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L1684)*
 
 An iterator over the [`Utf8Component`](#utf8component)s of a [`Utf8Path`](#utf8path).
 
@@ -2727,7 +2727,7 @@ struct Iter<'a> {
 }
 ```
 
-*Defined in [`camino-1.2.1/src/lib.rs:1777-1779`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L1777-L1779)*
+*Defined in [`camino-1.2.1/src/lib.rs:1777-1779`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L1777-L1779)*
 
 An iterator over the [`Utf8Component`](#utf8component)s of a [`Utf8Path`](#utf8path), as [`str`](../clap_builder/builder/str/index.md) slices.
 
@@ -2859,7 +2859,7 @@ See its documentation for more.
 struct Utf8PrefixComponent<'a>(PrefixComponent<'a>);
 ```
 
-*Defined in [`camino-1.2.1/src/lib.rs:2132`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L2132)*
+*Defined in [`camino-1.2.1/src/lib.rs:2132`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L2132)*
 
 A structure wrapping a Windows path prefix as well as its unparsed string
 representation.
@@ -3016,7 +3016,7 @@ struct ReadDirUtf8 {
 }
 ```
 
-*Defined in [`camino-1.2.1/src/lib.rs:2212-2214`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L2212-L2214)*
+*Defined in [`camino-1.2.1/src/lib.rs:2212-2214`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L2212-L2214)*
 
 Iterator over the entries in a directory.
 
@@ -3107,7 +3107,7 @@ struct Utf8DirEntry {
 }
 ```
 
-*Defined in [`camino-1.2.1/src/lib.rs:2231-2234`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L2231-L2234)*
+*Defined in [`camino-1.2.1/src/lib.rs:2231-2234`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L2231-L2234)*
 
 Entries returned by the [`ReadDirUtf8`](#readdirutf8) iterator.
 
@@ -3405,7 +3405,7 @@ struct FromPathBufError {
 }
 ```
 
-*Defined in [`camino-1.2.1/src/lib.rs:2700-2703`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L2700-L2703)*
+*Defined in [`camino-1.2.1/src/lib.rs:2700-2703`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L2700-L2703)*
 
 A possible error value while converting a [`PathBuf`](../clap_builder/index.md) to a [`Utf8PathBuf`](#utf8pathbuf).
 
@@ -3560,7 +3560,7 @@ assert_eq!(err.into_path_buf(), non_unicode_path);
 struct FromPathError(());
 ```
 
-*Defined in [`camino-1.2.1/src/lib.rs:2781`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L2781)*
+*Defined in [`camino-1.2.1/src/lib.rs:2781`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L2781)*
 
 A possible error value while converting a [`Path`](../rustdoc_types/index.md) to a [`Utf8Path`](#utf8path).
 
@@ -3698,7 +3698,7 @@ struct FromOsStringError {
 }
 ```
 
-*Defined in [`camino-1.2.1/src/lib.rs:2841-2844`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L2841-L2844)*
+*Defined in [`camino-1.2.1/src/lib.rs:2841-2844`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L2841-L2844)*
 
 A possible error value while converting a [`OsString`](../clap_builder/index.md) to a [`Utf8PathBuf`](#utf8pathbuf).
 
@@ -3855,7 +3855,7 @@ assert_eq!(err.into_os_string(), non_unicode_string);
 struct FromOsStrError(());
 ```
 
-*Defined in [`camino-1.2.1/src/lib.rs:2922`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L2922)*
+*Defined in [`camino-1.2.1/src/lib.rs:2922`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L2922)*
 
 A possible error value while converting a [`OsStr`](../clap_builder/builder/os_str/index.md) to a [`Utf8Path`](#utf8path).
 
@@ -3996,7 +3996,7 @@ enum Utf8Component<'a> {
 }
 ```
 
-*Defined in [`camino-1.2.1/src/lib.rs:1887-1912`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L1887-L1912)*
+*Defined in [`camino-1.2.1/src/lib.rs:1887-1912`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L1887-L1912)*
 
 A single component of a path.
 
@@ -4216,7 +4216,7 @@ enum Utf8Prefix<'a> {
 }
 ```
 
-*Defined in [`camino-1.2.1/src/lib.rs:2039-2073`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L2039-L2073)*
+*Defined in [`camino-1.2.1/src/lib.rs:2039-2073`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L2039-L2073)*
 
 Windows path prefixes, e.g., `C:` or `\\server\share`.
 
@@ -4418,7 +4418,7 @@ assert_eq!(Disk(b'C'), get_path_prefix(r"C:\Users\Rust\Pictures\Ferris"));
 fn absolute_utf8<P: AsRef<Path>>(path: P) -> io::Result<Utf8PathBuf>
 ```
 
-*Defined in [`camino-1.2.1/src/lib.rs:3395-3405`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L3395-L3405)*
+*Defined in [`camino-1.2.1/src/lib.rs:3395-3405`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L3395-L3405)*
 
 Makes the path absolute without accessing the filesystem, converting it to a [`Utf8PathBuf`](#utf8pathbuf).
 
@@ -4497,23 +4497,23 @@ Note that this [may change in the future][changes].
 unsafe fn str_assume_utf8(string: &std::ffi::OsStr) -> &str
 ```
 
-*Defined in [`camino-1.2.1/src/lib.rs:3409-3428`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L3409-L3428)*
+*Defined in [`camino-1.2.1/src/lib.rs:3409-3428`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L3409-L3428)*
 
 ## Macros
 
 ### `impl_cmp!`
 
-*Defined in [`camino-1.2.1/src/lib.rs:3132-3166`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L3132-L3166)*
+*Defined in [`camino-1.2.1/src/lib.rs:3132-3166`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L3132-L3166)*
 
 ### `impl_cmp_std_path!`
 
-*Defined in [`camino-1.2.1/src/lib.rs:3174-3208`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L3174-L3208)*
+*Defined in [`camino-1.2.1/src/lib.rs:3174-3208`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L3174-L3208)*
 
 ### `impl_cmp_str!`
 
-*Defined in [`camino-1.2.1/src/lib.rs:3223-3257`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L3223-L3257)*
+*Defined in [`camino-1.2.1/src/lib.rs:3223-3257`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L3223-L3257)*
 
 ### `impl_cmp_os_str!`
 
-*Defined in [`camino-1.2.1/src/lib.rs:3272-3306`](../../.source_1765521767/camino-1.2.1/src/lib.rs#L3272-L3306)*
+*Defined in [`camino-1.2.1/src/lib.rs:3272-3306`](../../.source_1765633015/camino-1.2.1/src/lib.rs#L3272-L3306)*
 

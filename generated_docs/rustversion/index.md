@@ -7,7 +7,7 @@
 <br>
 
 This crate provides macros for conditional compilation according to rustc
-compiler version, analogous to [`#[cfg(...)]`][cfg](#cfg) and
+compiler version, analogous to [`#[cfg(...)]`][`cfg`](expand/index.md) and
 [`#[cfg_attr(...)]`][cfg_attr].
 
 
@@ -227,5 +227,5 @@ extern crate alloc;
 const RUSTVERSION: crate::version::Version;
 ```
 
-*Defined in [`rustversion-1.0.22/src/lib.rs:217`](../../.source_1765521767/rustversion-1.0.22/src/lib.rs#L217)*
+*Defined in [`rustversion-1.0.22/src/lib.rs:217`](../../.source_1765633015/rustversion-1.0.22/src/lib.rs#L217)*
 

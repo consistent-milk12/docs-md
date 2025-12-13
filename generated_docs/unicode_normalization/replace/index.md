@@ -21,7 +21,7 @@ struct Replacements<I> {
 }
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/replace.rs:18-23`](../../../.source_1765521767/unicode-normalization-0.1.25/src/replace.rs#L18-L23)*
+*Defined in [`unicode-normalization-0.1.25/src/replace.rs:18-23`](../../../.source_1765633015/unicode-normalization-0.1.25/src/replace.rs#L18-L23)*
 
 External iterator for replacements for a string's characters.
 

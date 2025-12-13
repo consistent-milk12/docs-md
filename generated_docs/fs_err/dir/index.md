@@ -28,7 +28,7 @@ struct ReadDir {
 }
 ```
 
-*Defined in [`fs-err-3.2.0/src/dir.rs:28-31`](../../../.source_1765521767/fs-err-3.2.0/src/dir.rs#L28-L31)*
+*Defined in [`fs-err-3.2.0/src/dir.rs:28-31`](../../../.source_1765633015/fs-err-3.2.0/src/dir.rs#L28-L31)*
 
 Wrapper around `std::fs::ReadDir` which adds more
 helpful information to all errors.
@@ -107,7 +107,7 @@ struct DirEntry {
 }
 ```
 
-*Defined in [`fs-err-3.2.0/src/dir.rs:51-53`](../../../.source_1765521767/fs-err-3.2.0/src/dir.rs#L51-L53)*
+*Defined in [`fs-err-3.2.0/src/dir.rs:51-53`](../../../.source_1765633015/fs-err-3.2.0/src/dir.rs#L51-L53)*
 
 Wrapper around `std::fs::DirEntry` which adds more
 helpful information to all errors.
@@ -207,7 +207,7 @@ helpful information to all errors.
 fn read_dir<P: Into<std::path::PathBuf>>(path: P) -> io::Result<ReadDir>
 ```
 
-*Defined in [`fs-err-3.2.0/src/dir.rs:11-18`](../../../.source_1765521767/fs-err-3.2.0/src/dir.rs#L11-L18)*
+*Defined in [`fs-err-3.2.0/src/dir.rs:11-18`](../../../.source_1765633015/fs-err-3.2.0/src/dir.rs#L11-L18)*
 
 Returns an iterator over the entries within a directory.
 

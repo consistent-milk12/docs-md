@@ -22,7 +22,7 @@ struct CachePadded<T> {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/fallback/utils.rs:92-94`](../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/fallback/utils.rs#L92-L94)*
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/utils.rs:92-94`](../../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/fallback/utils.rs#L92-L94)*
 
 Pads and aligns a value to the length of a cache line.
 
@@ -92,7 +92,7 @@ struct Backoff {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/fallback/utils.rs:115-117`](../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/fallback/utils.rs#L115-L117)*
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/utils.rs:115-117`](../../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/fallback/utils.rs#L115-L117)*
 
 Performs exponential backoff in spin loops.
 
@@ -153,5 +153,5 @@ Performs exponential backoff in spin loops.
 const SPIN_LIMIT: u32 = 4u32;
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/fallback/utils.rs:120`](../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/fallback/utils.rs#L120)*
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/utils.rs:120`](../../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/fallback/utils.rs#L120)*
 

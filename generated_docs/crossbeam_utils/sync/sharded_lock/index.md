@@ -46,7 +46,7 @@ struct Shard {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:21-30`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L21-L30)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:21-30`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L21-L30)*
 
 A shard containing a single reader-writer lock.
 
@@ -116,7 +116,7 @@ struct ShardedLock<T: ?Sized> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:78-84`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L78-L84)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:78-84`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L78-L84)*
 
 A sharded reader-writer lock.
 
@@ -306,7 +306,7 @@ struct ShardedLockReadGuard<'a, T: ?Sized> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:486-490`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L486-L490)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:486-490`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L486-L490)*
 
 A guard used to release the shared read access of a [`ShardedLock`](#shardedlock) when dropped.
 
@@ -387,7 +387,7 @@ struct ShardedLockWriteGuard<'a, T: ?Sized> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:518-521`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L518-L521)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:518-521`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L518-L521)*
 
 A guard used to release the exclusive write access of a [`ShardedLock`](#shardedlock) when dropped.
 
@@ -477,7 +477,7 @@ struct ThreadIndices {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:579-588`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L579-L588)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:579-588`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L579-L588)*
 
 The global registry keeping track of registered threads and indices.
 
@@ -548,7 +548,7 @@ struct Registration {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:605-608`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L605-L608)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:605-608`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L605-L608)*
 
 A registration of a thread with an index.
 
@@ -610,7 +610,7 @@ When dropped, unregisters the thread and frees the reserved index.
 fn current_index() -> Option<usize>
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:574-576`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L574-L576)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:574-576`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L574-L576)*
 
 Returns a `usize` that identifies the current thread.
 
@@ -626,7 +626,7 @@ tearing down.
 fn thread_indices() -> &'static std::sync::Mutex<ThreadIndices>
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:590-600`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L590-L600)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:590-600`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L590-L600)*
 
 ## Constants
 
@@ -635,7 +635,7 @@ fn thread_indices() -> &'static std::sync::Mutex<ThreadIndices>
 const NUM_SHARDS: usize = 8usize;
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:18`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L18)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:18`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L18)*
 
 The number of shards per sharded lock. Must be a power of two.
 
@@ -644,5 +644,5 @@ The number of shards per sharded lock. Must be a power of two.
 const REGISTRATION: thread::LocalKey<Registration>;
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:618-638`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L618-L638)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:618-638`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L618-L638)*
 

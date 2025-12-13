@@ -25,7 +25,7 @@ struct ProgressBar {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/progress_bar.rs:25-29`](../../../.source_1765521767/indicatif-0.18.3/src/progress_bar.rs#L25-L29)*
+*Defined in [`indicatif-0.18.3/src/progress_bar.rs:25-29`](../../../.source_1765633015/indicatif-0.18.3/src/progress_bar.rs#L25-L29)*
 
 A progress bar or spinner
 
@@ -616,7 +616,7 @@ struct WeakProgressBar {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/progress_bar.rs:651-655`](../../../.source_1765521767/indicatif-0.18.3/src/progress_bar.rs#L651-L655)*
+*Defined in [`indicatif-0.18.3/src/progress_bar.rs:651-655`](../../../.source_1765633015/indicatif-0.18.3/src/progress_bar.rs#L651-L655)*
 
 A weak reference to a [`ProgressBar`](#progressbar).
 
@@ -707,7 +707,7 @@ struct Ticker {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/progress_bar.rs:677-680`](../../../.source_1765521767/indicatif-0.18.3/src/progress_bar.rs#L677-L680)*
+*Defined in [`indicatif-0.18.3/src/progress_bar.rs:677-680`](../../../.source_1765633015/indicatif-0.18.3/src/progress_bar.rs#L677-L680)*
 
 #### Implementations
 
@@ -772,7 +772,7 @@ struct TickerControl {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/progress_bar.rs:719-722`](../../../.source_1765521767/indicatif-0.18.3/src/progress_bar.rs#L719-L722)*
+*Defined in [`indicatif-0.18.3/src/progress_bar.rs:719-722`](../../../.source_1765633015/indicatif-0.18.3/src/progress_bar.rs#L719-L722)*
 
 #### Implementations
 

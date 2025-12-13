@@ -25,7 +25,7 @@ where
 }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/ptr.rs:5-10`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/ptr.rs#L5-L10)*
+*Defined in [`miette-7.6.0/src/eyreish/ptr.rs:5-10`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/ptr.rs#L5-L10)*
 
 A raw pointer that owns its pointee
 
@@ -120,7 +120,7 @@ where
 }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/ptr.rs:64-70`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/ptr.rs#L64-L70)*
+*Defined in [`miette-7.6.0/src/eyreish/ptr.rs:64-70`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/ptr.rs#L64-L70)*
 
 A raw pointer that represents a shared borrow of its pointee
 
@@ -213,7 +213,7 @@ where
 }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/ptr.rs:127-133`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/ptr.rs#L127-L133)*
+*Defined in [`miette-7.6.0/src/eyreish/ptr.rs:127-133`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/ptr.rs#L127-L133)*
 
 A raw pointer that represents a unique borrow of its pointee
 
@@ -299,7 +299,7 @@ A raw pointer that represents a unique borrow of its pointee
 trait CastTo { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/ptr.rs:182-184`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/ptr.rs#L182-L184)*
+*Defined in [`miette-7.6.0/src/eyreish/ptr.rs:182-184`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/ptr.rs#L182-L184)*
 
 #### Associated Types
 

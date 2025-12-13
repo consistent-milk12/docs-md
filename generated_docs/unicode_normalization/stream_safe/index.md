@@ -26,7 +26,7 @@ struct StreamSafe<I> {
 }
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/stream_safe.rs:18-22`](../../../.source_1765521767/unicode-normalization-0.1.25/src/stream_safe.rs#L18-L22)*
+*Defined in [`unicode-normalization-0.1.25/src/stream_safe.rs:18-22`](../../../.source_1765633015/unicode-normalization-0.1.25/src/stream_safe.rs#L18-L22)*
 
 [UAX15-D4]: This iterator keeps track of how many non-starters there have been
 since the last starter in *NFKD* and will emit a Combining Grapheme Joiner
@@ -129,7 +129,7 @@ struct Decomposition {
 }
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/stream_safe.rs:71-75`](../../../.source_1765521767/unicode-normalization-0.1.25/src/stream_safe.rs#L71-L75)*
+*Defined in [`unicode-normalization-0.1.25/src/stream_safe.rs:71-75`](../../../.source_1765633015/unicode-normalization-0.1.25/src/stream_safe.rs#L71-L75)*
 
 #### Trait Implementations
 
@@ -187,7 +187,7 @@ struct Decomposition {
 fn classify_nonstarters(c: char) -> Decomposition
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/stream_safe.rs:78-112`](../../../.source_1765521767/unicode-normalization-0.1.25/src/stream_safe.rs#L78-L112)*
+*Defined in [`unicode-normalization-0.1.25/src/stream_safe.rs:78-112`](../../../.source_1765633015/unicode-normalization-0.1.25/src/stream_safe.rs#L78-L112)*
 
 ## Constants
 
@@ -196,12 +196,12 @@ fn classify_nonstarters(c: char) -> Decomposition
 const MAX_NONSTARTERS: usize = 30usize;
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/stream_safe.rs:10`](../../../.source_1765521767/unicode-normalization-0.1.25/src/stream_safe.rs#L10)*
+*Defined in [`unicode-normalization-0.1.25/src/stream_safe.rs:10`](../../../.source_1765633015/unicode-normalization-0.1.25/src/stream_safe.rs#L10)*
 
 ### `COMBINING_GRAPHEME_JOINER`
 ```rust
 const COMBINING_GRAPHEME_JOINER: char = '\u{34f}';
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/stream_safe.rs:11`](../../../.source_1765521767/unicode-normalization-0.1.25/src/stream_safe.rs#L11)*
+*Defined in [`unicode-normalization-0.1.25/src/stream_safe.rs:11`](../../../.source_1765633015/unicode-normalization-0.1.25/src/stream_safe.rs#L11)*
 

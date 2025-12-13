@@ -59,7 +59,7 @@ struct Command {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/command.rs:74-113`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/command.rs#L74-L113)*
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:74-113`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/command.rs#L74-L113)*
 
 Build a command-line interface.
 
@@ -1597,7 +1597,7 @@ let m = Command::new("My Program")
 struct TermWidth(usize);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5260`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/command.rs#L5260)*
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5260`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/command.rs#L5260)*
 
 #### Trait Implementations
 
@@ -1677,7 +1677,7 @@ struct TermWidth(usize);
 struct MaxTermWidth(usize);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5266`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/command.rs#L5266)*
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5266`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/command.rs#L5266)*
 
 #### Trait Implementations
 
@@ -1759,7 +1759,7 @@ struct MaxTermWidth(usize);
 trait Captures<'a> { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/command.rs:4933`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/command.rs#L4933)*
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:4933`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/command.rs#L4933)*
 
 A workaround:
 <https://github.com/rust-lang/rust/issues/34511#issuecomment-373423999>
@@ -1774,7 +1774,7 @@ A workaround:
 trait AppExt: Extension { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5256`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/command.rs#L5256)*
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5256`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/command.rs#L5256)*
 
 #### Implementors
 
@@ -1792,7 +1792,7 @@ where
     I: Iterator<Item = T>
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5273-5284`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/command.rs#L5273-L5284)*
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5273-5284`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/command.rs#L5273-L5284)*
 
 Returns the first two elements of an iterator as an `Option<(T, T)>`.
 

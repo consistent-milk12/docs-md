@@ -29,7 +29,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:17-34`](../../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L17-L34)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:17-34`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L17-L34)*
 
 A builder for constructing a Teddy matcher.
 
@@ -204,7 +204,7 @@ struct Searcher {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:322-337`](../../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L322-L337)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:322-337`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L322-L337)*
 
 A searcher that dispatches to one of several possible Teddy variants.
 
@@ -332,7 +332,7 @@ A searcher that dispatches to one of several possible Teddy variants.
 trait SearcherT: Debug + Send + Sync + UnwindSafe + RefUnwindSafe + 'static { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:416-448`](../../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L416-L448)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:416-448`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L416-L448)*
 
 A trait that provides dynamic dispatch over the different possible Teddy
 variants on the same algorithm.

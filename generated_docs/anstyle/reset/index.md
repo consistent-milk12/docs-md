@@ -19,7 +19,7 @@
 struct Reset;
 ```
 
-*Defined in [`anstyle-1.0.13/src/reset.rs:4`](../../../.source_1765521767/anstyle-1.0.13/src/reset.rs#L4)*
+*Defined in [`anstyle-1.0.13/src/reset.rs:4`](../../../.source_1765633015/anstyle-1.0.13/src/reset.rs#L4)*
 
 Reset terminal formatting
 
@@ -138,5 +138,5 @@ Reset terminal formatting
 const RESET: &str;
 ```
 
-*Defined in [`anstyle-1.0.13/src/reset.rs:22`](../../../.source_1765521767/anstyle-1.0.13/src/reset.rs#L22)*
+*Defined in [`anstyle-1.0.13/src/reset.rs:22`](../../../.source_1765633015/anstyle-1.0.13/src/reset.rs#L22)*
 

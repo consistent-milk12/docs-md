@@ -50,7 +50,7 @@ struct Attrs<'a> {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/attr.rs:11-18`](../../../.source_1765521767/thiserror-impl-2.0.17/src/attr.rs#L11-L18)*
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:11-18`](../../../.source_1765633015/thiserror-impl-2.0.17/src/attr.rs#L11-L18)*
 
 #### Trait Implementations
 
@@ -111,7 +111,7 @@ struct Display<'a> {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/attr.rs:21-30`](../../../.source_1765521767/thiserror-impl-2.0.17/src/attr.rs#L21-L30)*
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:21-30`](../../../.source_1765633015/thiserror-impl-2.0.17/src/attr.rs#L21-L30)*
 
 #### Implementations
 
@@ -194,7 +194,7 @@ struct Source<'a> {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/attr.rs:33-36`](../../../.source_1765521767/thiserror-impl-2.0.17/src/attr.rs#L33-L36)*
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:33-36`](../../../.source_1765633015/thiserror-impl-2.0.17/src/attr.rs#L33-L36)*
 
 #### Trait Implementations
 
@@ -267,7 +267,7 @@ struct From<'a> {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/attr.rs:39-42`](../../../.source_1765521767/thiserror-impl-2.0.17/src/attr.rs#L39-L42)*
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:39-42`](../../../.source_1765633015/thiserror-impl-2.0.17/src/attr.rs#L39-L42)*
 
 #### Trait Implementations
 
@@ -340,7 +340,7 @@ struct Transparent<'a> {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/attr.rs:45-48`](../../../.source_1765521767/thiserror-impl-2.0.17/src/attr.rs#L45-L48)*
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:45-48`](../../../.source_1765633015/thiserror-impl-2.0.17/src/attr.rs#L45-L48)*
 
 #### Trait Implementations
 
@@ -413,7 +413,7 @@ struct Fmt<'a> {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/attr.rs:51-54`](../../../.source_1765521767/thiserror-impl-2.0.17/src/attr.rs#L51-L54)*
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:51-54`](../../../.source_1765633015/thiserror-impl-2.0.17/src/attr.rs#L51-L54)*
 
 #### Trait Implementations
 
@@ -493,7 +493,7 @@ enum Trait {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/attr.rs:57-67`](../../../.source_1765521767/thiserror-impl-2.0.17/src/attr.rs#L57-L67)*
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:57-67`](../../../.source_1765633015/thiserror-impl-2.0.17/src/attr.rs#L57-L67)*
 
 #### Trait Implementations
 
@@ -593,7 +593,7 @@ enum Trait {
 fn get(input: &[syn::Attribute]) -> syn::Result<Attrs<'_>>
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/attr.rs:69-122`](../../../.source_1765521767/thiserror-impl-2.0.17/src/attr.rs#L69-L122)*
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:69-122`](../../../.source_1765633015/thiserror-impl-2.0.17/src/attr.rs#L69-L122)*
 
 ### `parse_error_attribute`
 
@@ -601,7 +601,7 @@ fn get(input: &[syn::Attribute]) -> syn::Result<Attrs<'_>>
 fn parse_error_attribute<'a>(attrs: &mut Attrs<'a>, attr: &'a syn::Attribute) -> syn::Result<()>
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/attr.rs:124-194`](../../../.source_1765521767/thiserror-impl-2.0.17/src/attr.rs#L124-L194)*
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:124-194`](../../../.source_1765633015/thiserror-impl-2.0.17/src/attr.rs#L124-L194)*
 
 ### `parse_token_expr`
 
@@ -609,5 +609,5 @@ fn parse_error_attribute<'a>(attrs: &mut Attrs<'a>, attr: &'a syn::Attribute) ->
 fn parse_token_expr(input: syn::parse::ParseStream<'_>, begin_expr: bool) -> syn::Result<proc_macro2::TokenStream>
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/attr.rs:196-300`](../../../.source_1765521767/thiserror-impl-2.0.17/src/attr.rs#L196-L300)*
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:196-300`](../../../.source_1765633015/thiserror-impl-2.0.17/src/attr.rs#L196-L300)*
 

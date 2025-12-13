@@ -61,7 +61,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:356-378`](../../../../.source_1765521767/gimli-0.32.3/src/read/op.rs#L356-L378)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:356-378`](../../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L356-L378)*
 
 The description of a single piece of the result of a DWARF
 expression.
@@ -169,7 +169,7 @@ expression.
 struct Expression<R: Reader>(R);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:924`](../../../../.source_1765521767/gimli-0.32.3/src/read/op.rs#L924)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:924`](../../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L924)*
 
 The bytecode for a DWARF expression or location description.
 
@@ -304,7 +304,7 @@ struct OperationIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:962-965`](../../../../.source_1765521767/gimli-0.32.3/src/read/op.rs#L962-L965)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:962-965`](../../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L962-L965)*
 
 An iterator for the operations in an expression.
 
@@ -403,7 +403,7 @@ struct Evaluation<R: Reader, S: EvaluationStorage<R>> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:1106-1131`](../../../../.source_1765521767/gimli-0.32.3/src/read/op.rs#L1106-L1131)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:1106-1131`](../../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L1106-L1131)*
 
 A DWARF expression evaluator.
 
@@ -532,7 +532,7 @@ enum DieReference<T> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:15-20`](../../../../.source_1765521767/gimli-0.32.3/src/read/op.rs#L15-L20)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:15-20`](../../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L15-L20)*
 
 A reference to a DIE, either relative to the current CU or
 relative to the section.
@@ -741,7 +741,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:34-293`](../../../../.source_1765521767/gimli-0.32.3/src/read/op.rs#L34-L293)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:34-293`](../../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L34-L293)*
 
 A single decoded DWARF expression operation.
 
@@ -1132,7 +1132,7 @@ enum OperationEvaluationResult<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:296-301`](../../../../.source_1765521767/gimli-0.32.3/src/read/op.rs#L296-L301)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:296-301`](../../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L296-L301)*
 
 #### Trait Implementations
 
@@ -1209,7 +1209,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:305-340`](../../../../.source_1765521767/gimli-0.32.3/src/read/op.rs#L305-L340)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:305-340`](../../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L305-L340)*
 
 A single location of a piece of the result of a DWARF expression.
 
@@ -1330,7 +1330,7 @@ enum EvaluationState<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:816-822`](../../../../.source_1765521767/gimli-0.32.3/src/read/op.rs#L816-L822)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:816-822`](../../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L816-L822)*
 
 #### Trait Implementations
 
@@ -1406,7 +1406,7 @@ enum EvaluationWaiting<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:825-839`](../../../../.source_1765521767/gimli-0.32.3/src/read/op.rs#L825-L839)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:825-839`](../../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L825-L839)*
 
 #### Trait Implementations
 
@@ -1486,7 +1486,7 @@ enum EvaluationResult<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:845-920`](../../../../.source_1765521767/gimli-0.32.3/src/read/op.rs#L845-L920)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:845-920`](../../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L845-L920)*
 
 The state of an `Evaluation` after evaluating a DWARF expression.
 The evaluation is either `Complete`, or it requires more data
@@ -1633,7 +1633,7 @@ to continue, as described by the variant.
 trait EvaluationStorage<R: Reader> { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:1044-1051`](../../../../.source_1765521767/gimli-0.32.3/src/read/op.rs#L1044-L1051)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:1044-1051`](../../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L1044-L1051)*
 
 Specification of what storage should be used for [`Evaluation`](../index.md).
 
@@ -1697,7 +1697,7 @@ println!("{:?}", result);
 fn compute_pc<R: Reader>(pc: &R, bytecode: &R, offset: i16) -> crate::read::Result<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:381-391`](../../../../.source_1765521767/gimli-0.32.3/src/read/op.rs#L381-L391)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:381-391`](../../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L381-L391)*
 
 ### `generic_type`
 
@@ -1705,5 +1705,5 @@ fn compute_pc<R: Reader>(pc: &R, bytecode: &R, offset: i16) -> crate::read::Resu
 fn generic_type<O: ReaderOffset>() -> crate::read::UnitOffset<O>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:393-395`](../../../../.source_1765521767/gimli-0.32.3/src/read/op.rs#L393-L395)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:393-395`](../../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L393-L395)*
 

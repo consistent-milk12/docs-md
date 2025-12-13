@@ -103,7 +103,7 @@ struct DebugFrame<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:36-40`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L36-L40)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:36-40`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L36-L40)*
 
 `DebugFrame` contains the `.debug_frame` section's frame unwinding
 information required to unwind to and recover registers from older frames on
@@ -230,7 +230,7 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 struct EhFrameHdr<R: Reader>(R);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:109`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L109)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:109`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L109)*
 
 `EhFrameHdr` contains the information about the `.eh_frame_hdr` section.
 
@@ -336,7 +336,7 @@ struct ParsedEhFrameHdr<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:113-121`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L113-L121)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:113-121`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L113-L121)*
 
 `ParsedEhFrameHdr` contains the parsed information from the `.eh_frame_hdr` section.
 
@@ -425,7 +425,7 @@ struct EhHdrTableIter<'a, 'bases, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:229-234`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L229-L234)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:229-234`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L229-L234)*
 
 An iterator for `.eh_frame_hdr` section's binary search table.
 
@@ -500,7 +500,7 @@ struct EhHdrTable<'a, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:299-301`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L299-L301)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:299-301`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L299-L301)*
 
 The CFI binary search table that is an optional part of the `.eh_frame_hdr` section.
 
@@ -670,7 +670,7 @@ struct EhFrame<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:488-492`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L488-L492)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:488-492`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L488-L492)*
 
 `EhFrame` contains the frame unwinding information needed during exception
 handling found in the `.eh_frame` section.
@@ -794,7 +794,7 @@ struct BaseAddresses {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:895-901`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L895-L901)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:895-901`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L895-L901)*
 
 Optional base addresses for the relative `DW_EH_PE_*` encoded pointers.
 
@@ -933,7 +933,7 @@ struct SectionBaseAddresses {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:908-924`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L908-L924)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:908-924`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L908-L924)*
 
 Optional base addresses for the relative `DW_EH_PE_*` encoded pointers
 in a particular section.
@@ -1050,7 +1050,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:998-1006`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L998-L1006)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:998-1006`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L998-L1006)*
 
 An iterator over CIE and FDE entries in a `.debug_frame` or `.eh_frame`
 section.
@@ -1173,7 +1173,7 @@ struct Augmentation {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1122-1152`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L1122-L1152)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1122-1152`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1122-L1152)*
 
 We support the z-style augmentation [defined by `.eh_frame`][ehframe].
 
@@ -1304,7 +1304,7 @@ struct AugmentationData {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1223-1225`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L1223-L1225)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1223-1225`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1223-L1225)*
 
 Parsed augmentation data for a `FrameDescriptEntry`.
 
@@ -1408,7 +1408,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1254-1306`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L1254-L1306)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1254-1306`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1254-L1306)*
 
 > A Common Information Entry holds information that is shared among many
 > Frame Description Entries. There is at least one CIE in every non-empty
@@ -1566,7 +1566,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1520-1532`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L1520-L1532)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1520-1532`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1520-L1532)*
 
 A partially parsed `FrameDescriptionEntry`.
 
@@ -1696,7 +1696,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1593-1631`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L1593-L1631)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1593-1631`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1593-L1631)*
 
 A `FrameDescriptionEntry` is a set of CFA instructions for an address range.
 
@@ -1850,7 +1850,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1951-1972`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L1951-L1972)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1951-1972`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1951-L1972)*
 
 Common context needed when evaluating the call frame unwinding information.
 
@@ -1987,7 +1987,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2193-2207`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L2193-L2207)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2193-2207`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2193-L2207)*
 
 The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 `CallFrameInstruction` program, yielding the each row one at a time.
@@ -2139,7 +2139,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2530-2536`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L2530-L2536)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2530-2536`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2530-L2536)*
 
 #### Implementations
 
@@ -2237,7 +2237,7 @@ where
     T: ReaderOffset;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2684-2686`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L2684-L2686)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2684-2686`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2684-L2686)*
 
 An unordered iterator for register rules.
 
@@ -2334,7 +2334,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2699-2709`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L2699-L2709)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2699-2709`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2699-L2709)*
 
 A row in the virtual unwind table that describes how to find the values of
 the registers in the *previous* frame for a range of PC addresses.
@@ -2592,7 +2592,7 @@ struct CallFrameInstructionIter<'a, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3471-3476`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L3471-L3476)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3471-3476`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3471-L3476)*
 
 A lazy iterator parsing call frame instructions.
 
@@ -2678,7 +2678,7 @@ struct UnwindExpression<T: ReaderOffset> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3537-3542`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L3537-L3542)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3537-3542`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3537-L3542)*
 
 The location of a DWARF expression within an unwind section.
 
@@ -2814,7 +2814,7 @@ struct PointerEncodingParameters<'a, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3626-3631`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L3626-L3631)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3626-3631`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3626-L3631)*
 
 #### Trait Implementations
 
@@ -2894,7 +2894,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1059-1070`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L1059-L1070)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1059-1070`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1059-L1070)*
 
 Either a `CommonInformationEntry` (CIE) or a `FrameDescriptionEntry` (FDE).
 
@@ -2994,7 +2994,7 @@ enum CfaRule<T: ReaderOffset> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2876-2886`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L2876-L2886)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2876-2886`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2876-L2886)*
 
 The canonical frame address (CFA) recovery rules.
 
@@ -3104,7 +3104,7 @@ enum RegisterRule<T: ReaderOffset> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2916-2951`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L2916-L2951)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2916-2951`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2916-L2951)*
 
 An entry in the abstract CFI table that describes how to find the value of a
 register.
@@ -3312,7 +3312,7 @@ enum CallFrameInstruction<T: ReaderOffset> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2961-3255`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L2961-L3255)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2961-3255`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2961-L3255)*
 
 A parsed call frame instruction.
 
@@ -3639,7 +3639,7 @@ enum Pointer {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3577-3588`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L3577-L3588)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3577-3588`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3577-L3588)*
 
 A decoded pointer.
 
@@ -3758,7 +3758,7 @@ where
     T: ReaderOffset { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:568-574`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L568-L574)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:568-574`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L568-L574)*
 
 An offset into an `UnwindSection`.
 
@@ -3779,7 +3779,7 @@ An offset into an `UnwindSection`.
 trait UnwindSection<R: Reader>: Clone + Debug + _UnwindSectionPrivate<R> { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:635-786`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L635-L786)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:635-786`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L635-L786)*
 
 A section holding unwind information: either `.debug_frame` or
 `.eh_frame`. See [`DebugFrame`](./struct.DebugFrame.html) and
@@ -3826,7 +3826,7 @@ A section holding unwind information: either `.debug_frame` or
 trait UnwindContextStorage<T: ReaderOffset>: Sized { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1896-1904`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L1896-L1904)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1896-1904`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1896-L1904)*
 
 Specification of what storage should be used for [`UnwindContext`](../index.md).
 
@@ -3895,7 +3895,7 @@ where
     Section: UnwindSection<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1072-1116`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L1072-L1116)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1072-1116`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1072-L1116)*
 
 ### `parse_encoded_pointer`
 
@@ -3903,7 +3903,7 @@ where
 fn parse_encoded_pointer<R: Reader>(encoding: constants::DwEhPe, parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> crate::read::Result<Pointer>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3633-3688`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L3633-L3688)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3633-3688`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3633-L3688)*
 
 ### `parse_encoded_value`
 
@@ -3911,7 +3911,7 @@ fn parse_encoded_pointer<R: Reader>(encoding: constants::DwEhPe, parameters: &Po
 fn parse_encoded_value<R: Reader>(encoding: constants::DwEhPe, parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> crate::read::Result<u64>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3690-3715`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L3690-L3715)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3690-3715`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3690-L3715)*
 
 ## Constants
 
@@ -3920,26 +3920,26 @@ fn parse_encoded_value<R: Reader>(encoding: constants::DwEhPe, parameters: &Poin
 const MAX_RULES: usize = 192usize;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1907`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L1907)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1907`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1907)*
 
 ### `MAX_UNWIND_STACK_DEPTH`
 ```rust
 const MAX_UNWIND_STACK_DEPTH: usize = 4usize;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1909`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L1909)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1909`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1909)*
 
 ### `CFI_INSTRUCTION_HIGH_BITS_MASK`
 ```rust
 const CFI_INSTRUCTION_HIGH_BITS_MASK: u8 = 192u8;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3257`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L3257)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3257`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3257)*
 
 ### `CFI_INSTRUCTION_LOW_BITS_MASK`
 ```rust
 const CFI_INSTRUCTION_LOW_BITS_MASK: u8 = 63u8;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3258`](../../../../.source_1765521767/gimli-0.32.3/src/read/cfi.rs#L3258)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3258`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3258)*
 

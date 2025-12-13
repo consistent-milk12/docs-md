@@ -22,7 +22,7 @@ struct ParamsInScope<'a> {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/generics.rs:8-10`](../../../.source_1765521767/thiserror-impl-2.0.17/src/generics.rs#L8-L10)*
+*Defined in [`thiserror-impl-2.0.17/src/generics.rs:8-10`](../../../.source_1765633015/thiserror-impl-2.0.17/src/generics.rs#L8-L10)*
 
 #### Implementations
 
@@ -83,7 +83,7 @@ struct InferredBounds {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/generics.rs:48-51`](../../../.source_1765521767/thiserror-impl-2.0.17/src/generics.rs#L48-L51)*
+*Defined in [`thiserror-impl-2.0.17/src/generics.rs:48-51`](../../../.source_1765633015/thiserror-impl-2.0.17/src/generics.rs#L48-L51)*
 
 #### Implementations
 
@@ -145,5 +145,5 @@ struct InferredBounds {
 fn crawl(in_scope: &ParamsInScope<'_>, ty: &syn::Type, found: &mut bool)
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/generics.rs:26-46`](../../../.source_1765521767/thiserror-impl-2.0.17/src/generics.rs#L26-L46)*
+*Defined in [`thiserror-impl-2.0.17/src/generics.rs:26-46`](../../../.source_1765633015/thiserror-impl-2.0.17/src/generics.rs#L26-L46)*
 

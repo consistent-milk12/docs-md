@@ -29,7 +29,7 @@ destructed on thread exit, which in turn unregisters the thread.
 fn collector() -> &'static crate::collector::Collector
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:13-30`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/default.rs#L13-L30)*
+*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:13-30`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/default.rs#L13-L30)*
 
 ### `pin`
 
@@ -37,7 +37,7 @@ fn collector() -> &'static crate::collector::Collector
 fn pin() -> crate::guard::Guard
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:39-41`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/default.rs#L39-L41)*
+*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:39-41`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/default.rs#L39-L41)*
 
 Pins the current thread.
 
@@ -47,7 +47,7 @@ Pins the current thread.
 fn is_pinned() -> bool
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:45-47`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/default.rs#L45-L47)*
+*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:45-47`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/default.rs#L45-L47)*
 
 Returns `true` if the current thread is pinned.
 
@@ -57,7 +57,7 @@ Returns `true` if the current thread is pinned.
 fn default_collector() -> &'static crate::collector::Collector
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:50-52`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/default.rs#L50-L52)*
+*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:50-52`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/default.rs#L50-L52)*
 
 Returns the default global collector.
 
@@ -69,7 +69,7 @@ where
     F: FnMut(&crate::collector::LocalHandle) -> R
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:55-62`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/default.rs#L55-L62)*
+*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:55-62`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/default.rs#L55-L62)*
 
 ## Constants
 
@@ -78,7 +78,7 @@ where
 const HANDLE: thread::LocalKey<crate::collector::LocalHandle>;
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:32-35`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/default.rs#L32-L35)*
+*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:32-35`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/default.rs#L32-L35)*
 
 The per-thread participant for the default garbage collector.
 

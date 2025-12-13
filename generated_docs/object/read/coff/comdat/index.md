@@ -26,7 +26,7 @@ struct CoffComdatIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/comdat.rs:17-25`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/comdat.rs#L17-L25)*
+*Defined in [`object-0.37.3/src/read/coff/comdat.rs:17-25`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/comdat.rs#L17-L25)*
 
 An iterator for the COMDAT section groups in a [`CoffFile`](../index.md).
 
@@ -107,7 +107,7 @@ struct CoffComdat<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/comdat.rs:63-73`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/comdat.rs#L63-L73)*
+*Defined in [`object-0.37.3/src/read/coff/comdat.rs:63-73`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/comdat.rs#L63-L73)*
 
 A COMDAT section group in a [`CoffFile`](../index.md).
 
@@ -191,7 +191,7 @@ struct CoffComdatSectionIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHead
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/comdat.rs:172-181`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/comdat.rs#L172-L181)*
+*Defined in [`object-0.37.3/src/read/coff/comdat.rs:172-181`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/comdat.rs#L172-L181)*
 
 An iterator for the sections in a COMDAT section group in a [`CoffFile`](../index.md).
 
@@ -265,7 +265,7 @@ An iterator for the sections in a COMDAT section group in a [`CoffFile`](../inde
 type CoffBigComdatIterator<'data, 'file, R> = CoffComdatIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/comdat.rs:12-13`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/comdat.rs#L12-L13)*
+*Defined in [`object-0.37.3/src/read/coff/comdat.rs:12-13`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/comdat.rs#L12-L13)*
 
 An iterator for the COMDAT section groups in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -275,7 +275,7 @@ An iterator for the COMDAT section groups in a [`CoffBigFile`](super::CoffBigFil
 type CoffBigComdat<'data, 'file, R> = CoffComdat<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/comdat.rs:56-57`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/comdat.rs#L56-L57)*
+*Defined in [`object-0.37.3/src/read/coff/comdat.rs:56-57`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/comdat.rs#L56-L57)*
 
 A COMDAT section group in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -287,7 +287,7 @@ Most functionality is provided by the [`ObjectComdat`](../../index.md) trait imp
 type CoffBigComdatSectionIterator<'data, 'file, R> = CoffComdatSectionIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/comdat.rs:167-168`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/comdat.rs#L167-L168)*
+*Defined in [`object-0.37.3/src/read/coff/comdat.rs:167-168`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/comdat.rs#L167-L168)*
 
 An iterator for the sections in a COMDAT section group in a [`CoffBigFile`](super::CoffBigFile).
 

@@ -99,7 +99,7 @@ struct AutoStream<S: RawStream> {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/auto.rs:19-21`](../../.source_1765521767/anstream-0.6.21/src/auto.rs#L19-L21)*
+*Defined in [`anstream-0.6.21/src/auto.rs:19-21`](../../.source_1765633015/anstream-0.6.21/src/auto.rs#L19-L21)*
 
 [`std::io::Write`](../fs_err/index.md) that adapts ANSI escape codes to the underlying `Write`s capabilities
 
@@ -285,7 +285,7 @@ where
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/strip.rs:7-13`](../../.source_1765521767/anstream-0.6.21/src/strip.rs#L7-L13)*
+*Defined in [`anstream-0.6.21/src/strip.rs:7-13`](../../.source_1765633015/anstream-0.6.21/src/strip.rs#L7-L13)*
 
 Only pass printable data to the inner `Write`
 
@@ -371,7 +371,7 @@ Only pass printable data to the inner `Write`
 fn stdout() -> Stdout
 ```
 
-*Defined in [`anstream-0.6.21/src/lib.rs:70-73`](../../.source_1765521767/anstream-0.6.21/src/lib.rs#L70-L73)*
+*Defined in [`anstream-0.6.21/src/lib.rs:70-73`](../../.source_1765633015/anstream-0.6.21/src/lib.rs#L70-L73)*
 
 Create an ANSI escape code compatible stdout
 
@@ -384,7 +384,7 @@ from the implicit locking in each [`std::io::Write`](../fs_err/index.md) call
 fn stderr() -> Stderr
 ```
 
-*Defined in [`anstream-0.6.21/src/lib.rs:80-83`](../../.source_1765521767/anstream-0.6.21/src/lib.rs#L80-L83)*
+*Defined in [`anstream-0.6.21/src/lib.rs:80-83`](../../.source_1765633015/anstream-0.6.21/src/lib.rs#L80-L83)*
 
 Create an ANSI escape code compatible stderr
 
@@ -399,7 +399,7 @@ from the implicit locking in each [`std::io::Write`](../fs_err/index.md) call
 type Stdout = AutoStream<std::io::Stdout>;
 ```
 
-*Defined in [`anstream-0.6.21/src/lib.rs:61`](../../.source_1765521767/anstream-0.6.21/src/lib.rs#L61)*
+*Defined in [`anstream-0.6.21/src/lib.rs:61`](../../.source_1765633015/anstream-0.6.21/src/lib.rs#L61)*
 
 An adaptive wrapper around the global standard output stream of the current process
 
@@ -409,7 +409,7 @@ An adaptive wrapper around the global standard output stream of the current proc
 type Stderr = AutoStream<std::io::Stderr>;
 ```
 
-*Defined in [`anstream-0.6.21/src/lib.rs:63`](../../.source_1765521767/anstream-0.6.21/src/lib.rs#L63)*
+*Defined in [`anstream-0.6.21/src/lib.rs:63`](../../.source_1765633015/anstream-0.6.21/src/lib.rs#L63)*
 
 An adaptive wrapper around the global standard error stream of the current process
 
@@ -417,7 +417,7 @@ An adaptive wrapper around the global standard error stream of the current proce
 
 ### `print!`
 
-*Defined in [`anstream-0.6.21/src/_macros.rs:61-79`](../../.source_1765521767/anstream-0.6.21/src/_macros.rs#L61-L79)*
+*Defined in [`anstream-0.6.21/src/_macros.rs:61-79`](../../.source_1765633015/anstream-0.6.21/src/_macros.rs#L61-L79)*
 
 Prints to `stdout`.
 
@@ -480,7 +480,7 @@ stdout().flush().unwrap();
 
 ### `println!`
 
-*Defined in [`anstream-0.6.21/src/_macros.rs:130-151`](../../.source_1765521767/anstream-0.6.21/src/_macros.rs#L130-L151)*
+*Defined in [`anstream-0.6.21/src/_macros.rs:130-151`](../../.source_1765633015/anstream-0.6.21/src/_macros.rs#L130-L151)*
 
 Prints to `stdout`, with a newline.
 
@@ -532,7 +532,7 @@ println!("format {local_variable} arguments");
 
 ### `eprint!`
 
-*Defined in [`anstream-0.6.21/src/_macros.rs:184-202`](../../.source_1765521767/anstream-0.6.21/src/_macros.rs#L184-L202)*
+*Defined in [`anstream-0.6.21/src/_macros.rs:184-202`](../../.source_1765633015/anstream-0.6.21/src/_macros.rs#L184-L202)*
 
 Prints to `stderr`.
 
@@ -566,7 +566,7 @@ eprint!("Error: Could not complete task");
 
 ### `eprintln!`
 
-*Defined in [`anstream-0.6.21/src/_macros.rs:235-256`](../../.source_1765521767/anstream-0.6.21/src/_macros.rs#L235-L256)*
+*Defined in [`anstream-0.6.21/src/_macros.rs:235-256`](../../.source_1765633015/anstream-0.6.21/src/_macros.rs#L235-L256)*
 
 Prints to `stderr`, with a newline.
 
@@ -600,7 +600,7 @@ eprintln!("Error: Could not complete task");
 
 ### `panic!`
 
-*Defined in [`anstream-0.6.21/src/_macros.rs:334-343`](../../.source_1765521767/anstream-0.6.21/src/_macros.rs#L334-L343)*
+*Defined in [`anstream-0.6.21/src/_macros.rs:334-343`](../../.source_1765633015/anstream-0.6.21/src/_macros.rs#L334-L343)*
 
 Panics the current thread.
 

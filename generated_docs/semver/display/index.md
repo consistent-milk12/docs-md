@@ -19,7 +19,7 @@
 fn pad(formatter: &mut fmt::Formatter<'_>, do_display: impl FnOnce(&mut fmt::Formatter<'_>) -> fmt::Result, do_len: impl FnOnce() -> usize) -> fmt::Result
 ```
 
-*Defined in [`semver-1.0.27/src/display.rs:120-155`](../../../.source_1765521767/semver-1.0.27/src/display.rs#L120-L155)*
+*Defined in [`semver-1.0.27/src/display.rs:120-155`](../../../.source_1765633015/semver-1.0.27/src/display.rs#L120-L155)*
 
 ### `digits`
 
@@ -27,5 +27,5 @@ fn pad(formatter: &mut fmt::Formatter<'_>, do_display: impl FnOnce(&mut fmt::For
 fn digits(val: u64) -> usize
 ```
 
-*Defined in [`semver-1.0.27/src/display.rs:157-163`](../../../.source_1765521767/semver-1.0.27/src/display.rs#L157-L163)*
+*Defined in [`semver-1.0.27/src/display.rs:157-163`](../../../.source_1765633015/semver-1.0.27/src/display.rs#L157-L163)*
 

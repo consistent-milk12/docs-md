@@ -41,7 +41,7 @@ enum WrapAlgorithm {
 }
 ```
 
-*Defined in [`textwrap-0.16.2/src/wrap_algorithms.rs:36-90`](../../../.source_1765521767/textwrap-0.16.2/src/wrap_algorithms.rs#L36-L90)*
+*Defined in [`textwrap-0.16.2/src/wrap_algorithms.rs:36-90`](../../../.source_1765633015/textwrap-0.16.2/src/wrap_algorithms.rs#L36-L90)*
 
 Describes how to wrap words into lines.
 
@@ -241,7 +241,7 @@ an entire paragraph at a time in order to find optimal line breaks
 fn wrap_first_fit<'a, T: Fragment>(fragments: &'a [T], line_widths: &[f64]) -> Vec<&'a [T]>
 ```
 
-*Defined in [`textwrap-0.16.2/src/wrap_algorithms.rs:336-357`](../../../.source_1765521767/textwrap-0.16.2/src/wrap_algorithms.rs#L336-L357)*
+*Defined in [`textwrap-0.16.2/src/wrap_algorithms.rs:336-357`](../../../.source_1765633015/textwrap-0.16.2/src/wrap_algorithms.rs#L336-L357)*
 
 Wrap abstract fragments into lines with a first-fit algorithm.
 

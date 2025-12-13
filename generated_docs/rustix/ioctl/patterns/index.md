@@ -25,7 +25,7 @@ struct NoArg<const OPCODE: super::Opcode> {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:17`](../../../../.source_1765521767/rustix-1.1.2/src/ioctl/patterns.rs#L17)*
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:17`](../../../../.source_1765633015/rustix-1.1.2/src/ioctl/patterns.rs#L17)*
 
 Implements an `ioctl` with no real arguments.
 
@@ -115,7 +115,7 @@ struct Getter<const OPCODE: super::Opcode, Output> {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:64-67`](../../../../.source_1765521767/rustix-1.1.2/src/ioctl/patterns.rs#L64-L67)*
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:64-67`](../../../../.source_1765633015/rustix-1.1.2/src/ioctl/patterns.rs#L64-L67)*
 
 Implements the traditional “getter” pattern for `ioctl`s.
 
@@ -218,7 +218,7 @@ struct Setter<const OPCODE: super::Opcode, Input> {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:118-121`](../../../../.source_1765521767/rustix-1.1.2/src/ioctl/patterns.rs#L118-L121)*
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:118-121`](../../../../.source_1765633015/rustix-1.1.2/src/ioctl/patterns.rs#L118-L121)*
 
 Implements the pattern for `ioctl`s where a pointer argument is given to
 the `ioctl`.
@@ -321,7 +321,7 @@ struct Updater<'a, const OPCODE: super::Opcode, Value> {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:173-176`](../../../../.source_1765521767/rustix-1.1.2/src/ioctl/patterns.rs#L173-L176)*
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:173-176`](../../../../.source_1765633015/rustix-1.1.2/src/ioctl/patterns.rs#L173-L176)*
 
 Implements an “updater” pattern for `ioctl`s.
 
@@ -420,7 +420,7 @@ struct IntegerSetter<const OPCODE: super::Opcode> {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:216-221`](../../../../.source_1765521767/rustix-1.1.2/src/ioctl/patterns.rs#L216-L221)*
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:216-221`](../../../../.source_1765633015/rustix-1.1.2/src/ioctl/patterns.rs#L216-L221)*
 
 Implements an `ioctl` that passes an integer into the `ioctl`.
 

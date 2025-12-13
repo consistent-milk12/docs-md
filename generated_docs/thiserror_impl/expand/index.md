@@ -43,7 +43,7 @@
 fn derive(input: &syn::DeriveInput) -> proc_macro2::TokenStream
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/expand.rs:12-20`](../../../.source_1765521767/thiserror-impl-2.0.17/src/expand.rs#L12-L20)*
+*Defined in [`thiserror-impl-2.0.17/src/expand.rs:12-20`](../../../.source_1765633015/thiserror-impl-2.0.17/src/expand.rs#L12-L20)*
 
 ### `try_expand`
 
@@ -51,7 +51,7 @@ fn derive(input: &syn::DeriveInput) -> proc_macro2::TokenStream
 fn try_expand(input: &syn::DeriveInput) -> syn::Result<proc_macro2::TokenStream>
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/expand.rs:22-29`](../../../.source_1765521767/thiserror-impl-2.0.17/src/expand.rs#L22-L29)*
+*Defined in [`thiserror-impl-2.0.17/src/expand.rs:22-29`](../../../.source_1765633015/thiserror-impl-2.0.17/src/expand.rs#L22-L29)*
 
 ### `impl_struct`
 
@@ -59,7 +59,7 @@ fn try_expand(input: &syn::DeriveInput) -> syn::Result<proc_macro2::TokenStream>
 fn impl_struct(input: crate::ast::Struct<'_>) -> proc_macro2::TokenStream
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/expand.rs:31-212`](../../../.source_1765521767/thiserror-impl-2.0.17/src/expand.rs#L31-L212)*
+*Defined in [`thiserror-impl-2.0.17/src/expand.rs:31-212`](../../../.source_1765633015/thiserror-impl-2.0.17/src/expand.rs#L31-L212)*
 
 ### `impl_enum`
 
@@ -67,7 +67,7 @@ fn impl_struct(input: crate::ast::Struct<'_>) -> proc_macro2::TokenStream
 fn impl_enum(input: crate::ast::Enum<'_>) -> proc_macro2::TokenStream
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/expand.rs:214-487`](../../../.source_1765521767/thiserror-impl-2.0.17/src/expand.rs#L214-L487)*
+*Defined in [`thiserror-impl-2.0.17/src/expand.rs:214-487`](../../../.source_1765633015/thiserror-impl-2.0.17/src/expand.rs#L214-L487)*
 
 ### `call_site_ident`
 
@@ -75,7 +75,7 @@ fn impl_enum(input: crate::ast::Enum<'_>) -> proc_macro2::TokenStream
 fn call_site_ident(ident: &proc_macro2::Ident) -> proc_macro2::Ident
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/expand.rs:491-495`](../../../.source_1765521767/thiserror-impl-2.0.17/src/expand.rs#L491-L495)*
+*Defined in [`thiserror-impl-2.0.17/src/expand.rs:491-495`](../../../.source_1765633015/thiserror-impl-2.0.17/src/expand.rs#L491-L495)*
 
 ### `fields_pat`
 
@@ -83,7 +83,7 @@ fn call_site_ident(ident: &proc_macro2::Ident) -> proc_macro2::Ident
 fn fields_pat(fields: &[crate::ast::Field<'_>]) -> proc_macro2::TokenStream
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/expand.rs:497-510`](../../../.source_1765521767/thiserror-impl-2.0.17/src/expand.rs#L497-L510)*
+*Defined in [`thiserror-impl-2.0.17/src/expand.rs:497-510`](../../../.source_1765633015/thiserror-impl-2.0.17/src/expand.rs#L497-L510)*
 
 ### `use_as_display`
 
@@ -91,7 +91,7 @@ fn fields_pat(fields: &[crate::ast::Field<'_>]) -> proc_macro2::TokenStream
 fn use_as_display(needs_as_display: bool) -> Option<proc_macro2::TokenStream>
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/expand.rs:512-520`](../../../.source_1765521767/thiserror-impl-2.0.17/src/expand.rs#L512-L520)*
+*Defined in [`thiserror-impl-2.0.17/src/expand.rs:512-520`](../../../.source_1765633015/thiserror-impl-2.0.17/src/expand.rs#L512-L520)*
 
 ### `from_initializer`
 
@@ -99,7 +99,7 @@ fn use_as_display(needs_as_display: bool) -> Option<proc_macro2::TokenStream>
 fn from_initializer(from_field: &crate::ast::Field<'_>, backtrace_field: Option<&crate::ast::Field<'_>>, source_var: &proc_macro2::Ident) -> proc_macro2::TokenStream
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/expand.rs:522-549`](../../../.source_1765521767/thiserror-impl-2.0.17/src/expand.rs#L522-L549)*
+*Defined in [`thiserror-impl-2.0.17/src/expand.rs:522-549`](../../../.source_1765633015/thiserror-impl-2.0.17/src/expand.rs#L522-L549)*
 
 ### `type_is_option`
 
@@ -107,7 +107,7 @@ fn from_initializer(from_field: &crate::ast::Field<'_>, backtrace_field: Option<
 fn type_is_option(ty: &syn::Type) -> bool
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/expand.rs:551-553`](../../../.source_1765521767/thiserror-impl-2.0.17/src/expand.rs#L551-L553)*
+*Defined in [`thiserror-impl-2.0.17/src/expand.rs:551-553`](../../../.source_1765633015/thiserror-impl-2.0.17/src/expand.rs#L551-L553)*
 
 ### `unoptional_type`
 
@@ -115,7 +115,7 @@ fn type_is_option(ty: &syn::Type) -> bool
 fn unoptional_type(ty: &syn::Type) -> proc_macro2::TokenStream
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/expand.rs:555-558`](../../../.source_1765521767/thiserror-impl-2.0.17/src/expand.rs#L555-L558)*
+*Defined in [`thiserror-impl-2.0.17/src/expand.rs:555-558`](../../../.source_1765633015/thiserror-impl-2.0.17/src/expand.rs#L555-L558)*
 
 ### `type_parameter_of_option`
 
@@ -123,5 +123,5 @@ fn unoptional_type(ty: &syn::Type) -> proc_macro2::TokenStream
 fn type_parameter_of_option(ty: &syn::Type) -> Option<&syn::Type>
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/expand.rs:560-584`](../../../.source_1765521767/thiserror-impl-2.0.17/src/expand.rs#L560-L584)*
+*Defined in [`thiserror-impl-2.0.17/src/expand.rs:560-584`](../../../.source_1765633015/thiserror-impl-2.0.17/src/expand.rs#L560-L584)*
 

@@ -108,7 +108,7 @@ struct Splice<'a, I: Iterator + 'a, A: Allocator + 'a> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/splice.rs:21-24`](../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/vec/splice.rs#L21-L24)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/splice.rs:21-24`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/vec/splice.rs#L21-L24)*
 
 A splicing iterator for `Vec`.
 
@@ -208,7 +208,7 @@ struct Drain<'a, T: 'a, A: Allocator + 'a> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/drain.rs:22-30`](../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/vec/drain.rs#L22-L30)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/drain.rs:22-30`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/vec/drain.rs#L22-L30)*
 
 A draining iterator for `Vec<T>`.
 
@@ -349,7 +349,7 @@ struct IntoIter<T, A: Allocator> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/into_iter.rs:27-36`](../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/vec/into_iter.rs#L27-L36)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/into_iter.rs:27-36`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/vec/into_iter.rs#L27-L36)*
 
 An iterator that moves out of a vector.
 
@@ -534,7 +534,7 @@ struct Vec<T, A: Allocator> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/mod.rs:348-351`](../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/vec/mod.rs#L348-L351)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/mod.rs:348-351`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/vec/mod.rs#L348-L351)*
 
 A contiguous growable array type, written as `Vec<T>`, short for 'vector'.
 
@@ -1286,7 +1286,7 @@ The order has changed in the past and may change again.
 struct ExtendElement<T>(T);
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/mod.rs:2481`](../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/vec/mod.rs#L2481)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/mod.rs:2481`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/vec/mod.rs#L2481)*
 
 #### Trait Implementations
 
@@ -1346,7 +1346,7 @@ struct ExtendElement<T>(T);
 trait ExtendWith<T> { ... }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/mod.rs:2476-2479`](../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/vec/mod.rs#L2476-L2479)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/mod.rs:2476-2479`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/vec/mod.rs#L2476-L2479)*
 
 #### Required Methods
 

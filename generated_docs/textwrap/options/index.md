@@ -29,7 +29,7 @@ struct Options<'a> {
 }
 ```
 
-*Defined in [`textwrap-0.16.2/src/options.rs:8-33`](../../../.source_1765521767/textwrap-0.16.2/src/options.rs#L8-L33)*
+*Defined in [`textwrap-0.16.2/src/options.rs:8-33`](../../../.source_1765633015/textwrap-0.16.2/src/options.rs#L8-L33)*
 
 Holds configuration options for wrapping and filling text.
 

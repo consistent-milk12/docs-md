@@ -28,7 +28,7 @@ struct AttributesSection<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:18-22`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/attributes.rs#L18-L22)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:18-22`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L18-L22)*
 
 An ELF attributes section.
 
@@ -126,7 +126,7 @@ struct AttributesSubsectionIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:61-64`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/attributes.rs#L61-L64)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:61-64`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L61-L64)*
 
 An iterator for the subsections in an [`AttributesSection`](../index.md).
 
@@ -227,7 +227,7 @@ struct AttributesSubsection<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:124-129`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/attributes.rs#L124-L129)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:124-129`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L124-L129)*
 
 A subsection in an [`AttributesSection`](../index.md).
 
@@ -321,7 +321,7 @@ struct AttributesSubsubsectionIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:153-156`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/attributes.rs#L153-L156)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:153-156`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L153-L156)*
 
 An iterator for the sub-subsections in an [`AttributesSubsection`](../index.md).
 
@@ -422,7 +422,7 @@ struct AttributesSubsubsection<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:229-234`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/attributes.rs#L229-L234)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:229-234`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L229-L234)*
 
 A sub-subsection in an [`AttributesSubsection`](../index.md).
 
@@ -535,7 +535,7 @@ struct AttributeIndexIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:274-276`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/attributes.rs#L274-L276)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:274-276`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L274-L276)*
 
 An iterator over the indices in an [`AttributesSubsubsection`](../index.md).
 
@@ -633,7 +633,7 @@ struct AttributeReader<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:315-317`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/attributes.rs#L315-L317)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:315-317`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L315-L317)*
 
 A parser for the attributes in an [`AttributesSubsubsection`](../index.md).
 

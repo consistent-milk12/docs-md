@@ -22,7 +22,7 @@
 struct Capacity(usize);
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/capacity.rs:55`](../../../../.source_1765521767/compact_str-0.9.0/src/repr/capacity.rs#L55)*
+*Defined in [`compact_str-0.9.0/src/repr/capacity.rs:55`](../../../../.source_1765633015/compact_str-0.9.0/src/repr/capacity.rs#L55)*
 
 An integer type that uses `core::mem::size_of::<usize>() - 1` bytes to store the capacity of
 a heap buffer.
@@ -143,14 +143,14 @@ string larger than 16 megabytes probably isn't that uncommon.
 const USIZE_SIZE: usize = 8usize;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/capacity.rs:6`](../../../../.source_1765521767/compact_str-0.9.0/src/repr/capacity.rs#L6)*
+*Defined in [`compact_str-0.9.0/src/repr/capacity.rs:6`](../../../../.source_1765633015/compact_str-0.9.0/src/repr/capacity.rs#L6)*
 
 ### `VALID_MASK`
 ```rust
 const VALID_MASK: usize = 72_057_594_037_927_935usize;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/capacity.rs:9-13`](../../../../.source_1765521767/compact_str-0.9.0/src/repr/capacity.rs#L9-L13)*
+*Defined in [`compact_str-0.9.0/src/repr/capacity.rs:9-13`](../../../../.source_1765633015/compact_str-0.9.0/src/repr/capacity.rs#L9-L13)*
 
 Mask of bits in [`Capacity`](#capacity) that encode the value.
 
@@ -159,7 +159,7 @@ Mask of bits in [`Capacity`](#capacity) that encode the value.
 const HEAP_MARKER: usize = 15_564_440_312_192_434_176usize;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/capacity.rs:16-20`](../../../../.source_1765521767/compact_str-0.9.0/src/repr/capacity.rs#L16-L20)*
+*Defined in [`compact_str-0.9.0/src/repr/capacity.rs:16-20`](../../../../.source_1765633015/compact_str-0.9.0/src/repr/capacity.rs#L16-L20)*
 
 Mask of bits that are set in [`Capacity`](#capacity) if the string data is stored on the heap.
 
@@ -168,7 +168,7 @@ Mask of bits that are set in [`Capacity`](#capacity) if the string data is store
 const MAX_VALUE: usize = 72_057_594_037_927_934usize;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/capacity.rs:30-34`](../../../../.source_1765521767/compact_str-0.9.0/src/repr/capacity.rs#L30-L34)*
+*Defined in [`compact_str-0.9.0/src/repr/capacity.rs:30-34`](../../../../.source_1765633015/compact_str-0.9.0/src/repr/capacity.rs#L30-L34)*
 
 The maximum value we're able to store, e.g. on 64-bit arch this is 2^56 - 2.
 

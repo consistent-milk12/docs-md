@@ -84,7 +84,7 @@
 struct CaseFoldError(());
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:31`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L31)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:31`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L31)*
 
 An error that occurs when Unicode-aware simple case folding fails.
 
@@ -156,7 +156,7 @@ aware case folding are unavailable. This only occurs when the
 struct UnicodeWordError(());
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:52`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L52)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:52`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L52)*
 
 An error that occurs when the Unicode-aware `\w` class is unavailable.
 
@@ -232,7 +232,7 @@ struct SimpleCaseFolder {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:81-93`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L81-L93)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:81-93`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L81-L93)*
 
 A state oriented traverser of the simple case folding table.
 
@@ -401,7 +401,7 @@ enum Error {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:17-23`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L17-L23)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:17-23`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L17-L23)*
 
 An error that occurs when dealing with Unicode.
 
@@ -469,7 +469,7 @@ enum ClassQuery<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:216-235`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L216-L235)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:216-235`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L216-L235)*
 
 A query for finding a character class defined by Unicode. This supports
 either use of a property name directly, or lookup by property value. The
@@ -573,7 +573,7 @@ enum CanonicalClassQuery {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:328-347`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L328-L347)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:328-347`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L328-L347)*
 
 Like ClassQuery, but its parameters have been canonicalized. This also
 differentiates binary properties from flattened general categories and
@@ -666,7 +666,7 @@ scripts.
 fn class(query: ClassQuery<'_>) -> Result<hir::ClassUnicode, Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:351-383`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L351-L383)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:351-383`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L351-L383)*
 
 Looks up a Unicode class given a query. If one doesn't exist, then
 `None` is returned.
@@ -677,7 +677,7 @@ Looks up a Unicode class given a query. If one doesn't exist, then
 fn perl_word() -> Result<hir::ClassUnicode, Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:388-401`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L388-L401)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:388-401`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L388-L401)*
 
 Returns a Unicode aware class for \w.
 
@@ -689,7 +689,7 @@ This returns an error if the data is not available for \w.
 fn perl_space() -> Result<hir::ClassUnicode, Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:406-425`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L406-L425)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:406-425`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L406-L425)*
 
 Returns a Unicode aware class for \s.
 
@@ -701,7 +701,7 @@ This returns an error if the data is not available for \s.
 fn perl_digit() -> Result<hir::ClassUnicode, Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:430-449`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L430-L449)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:430-449`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L430-L449)*
 
 Returns a Unicode aware class for \d.
 
@@ -713,7 +713,7 @@ This returns an error if the data is not available for \d.
 fn hir_class(ranges: &[(char, char)]) -> hir::ClassUnicode
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:452-458`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L452-L458)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:452-458`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L452-L458)*
 
 Build a Unicode HIR class from a sequence of Unicode scalar value ranges.
 
@@ -723,7 +723,7 @@ Build a Unicode HIR class from a sequence of Unicode scalar value ranges.
 fn is_word_character(c: char) -> Result<bool, UnicodeWordError>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:463-492`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L463-L492)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:463-492`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L463-L492)*
 
 Returns true only if the given codepoint is in the `\w` character class.
 
@@ -735,7 +735,7 @@ If the `unicode-perl` feature is not enabled, then this returns an error.
 fn canonical_gencat(normalized_value: &str) -> Result<Option<&'static str>, Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:501-513`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L501-L513)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:501-513`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L501-L513)*
 
 ### `canonical_script`
 
@@ -743,7 +743,7 @@ fn canonical_gencat(normalized_value: &str) -> Result<Option<&'static str>, Erro
 fn canonical_script(normalized_value: &str) -> Result<Option<&'static str>, Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:515-520`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L515-L520)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:515-520`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L515-L520)*
 
 ### `canonical_prop`
 
@@ -751,7 +751,7 @@ fn canonical_script(normalized_value: &str) -> Result<Option<&'static str>, Erro
 fn canonical_prop(normalized_name: &str) -> Result<Option<&'static str>, Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:530-563`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L530-L563)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:530-563`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L530-L563)*
 
 Find the canonical property name for the given normalized property name.
 
@@ -768,7 +768,7 @@ If the property names data is not available, then an error is returned.
 fn canonical_value(vals: &'static [(&'static str, &'static str)], normalized_value: &str) -> Option<&'static str>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:575-582`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L575-L582)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:575-582`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L575-L582)*
 
 Find the canonical property value for the given normalized property
 value.
@@ -787,7 +787,7 @@ UAX44 LM3, which can be done using `symbolic_name_normalize`.
 fn property_values(canonical_property_name: &'static str) -> Result<Option<&'static [(&'static str, &'static str)]>, Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:587-620`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L587-L620)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:587-620`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L587-L620)*
 
 Return the table of property values for the given property name.
 
@@ -799,7 +799,7 @@ If the property values data is not available, then an error is returned.
 fn property_set(name_map: &'static [(&'static str, &'static [(char, char)])], canonical: &'static str) -> Option<&'static [(char, char)]>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:625-633`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L625-L633)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:625-633`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L625-L633)*
 
 ### `ages`
 
@@ -807,7 +807,7 @@ fn property_set(name_map: &'static [(&'static str, &'static [(char, char)])], ca
 fn ages(canonical_age: &str) -> Result<impl Iterator<Item = &'static [(char, char)]>, Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:641-691`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L641-L691)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:641-691`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L641-L691)*
 
 Returns an iterator over Unicode Age sets. Each item corresponds to a set
 of codepoints that were added in a particular revision of Unicode. The
@@ -822,7 +822,7 @@ error is returned instead.
 fn gencat(canonical_name: &'static str) -> Result<hir::ClassUnicode, Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:699-726`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L699-L726)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:699-726`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L699-L726)*
 
 Returns the Unicode HIR class corresponding to the given general category.
 
@@ -837,7 +837,7 @@ category data is not available, then an error is returned.
 fn script(canonical_name: &'static str) -> Result<hir::ClassUnicode, Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:734-749`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L734-L749)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:734-749`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L734-L749)*
 
 Returns the Unicode HIR class corresponding to the given script.
 
@@ -852,7 +852,7 @@ available, then an error is returned.
 fn script_extension(canonical_name: &'static str) -> Result<hir::ClassUnicode, Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:757-774`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L757-L774)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:757-774`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L757-L774)*
 
 Returns the Unicode HIR class corresponding to the given script extension.
 
@@ -867,7 +867,7 @@ not available, then an error is returned.
 fn bool_property(canonical_name: &'static str) -> Result<hir::ClassUnicode, Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:783-804`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L783-L804)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:783-804`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L783-L804)*
 
 Returns the Unicode HIR class corresponding to the given Unicode boolean
 property.
@@ -883,7 +883,7 @@ property data is not available, then an error is returned.
 fn gcb(canonical_name: &'static str) -> Result<hir::ClassUnicode, Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:813-828`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L813-L828)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:813-828`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L813-L828)*
 
 Returns the Unicode HIR class corresponding to the given grapheme cluster
 break property.
@@ -899,7 +899,7 @@ not available, then an error is returned.
 fn wb(canonical_name: &'static str) -> Result<hir::ClassUnicode, Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:837-852`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L837-L852)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:837-852`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L837-L852)*
 
 Returns the Unicode HIR class corresponding to the given word break
 property.
@@ -915,7 +915,7 @@ not available, then an error is returned.
 fn sb(canonical_name: &'static str) -> Result<hir::ClassUnicode, Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:861-876`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L861-L876)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:861-876`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L861-L876)*
 
 Returns the Unicode HIR class corresponding to the given sentence
 break property.
@@ -931,7 +931,7 @@ not available, then an error is returned.
 fn symbolic_name_normalize(x: &str) -> alloc::string::String
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:879-890`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L879-L890)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:879-890`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L879-L890)*
 
 Like symbolic_name_normalize_bytes, but operates on a string.
 
@@ -941,7 +941,7 @@ Like symbolic_name_normalize_bytes, but operates on a string.
 fn symbolic_name_normalize_bytes(slice: &mut [u8]) -> &mut [u8]
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:902-945`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L902-L945)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:902-945`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L902-L945)*
 
 Normalize the given symbolic name in place according to UAX44-LM3.
 
@@ -962,7 +962,7 @@ See: https://unicode.org/reports/tr44/#UAX44-LM3
 type Range = &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:10`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L10)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:10`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L10)*
 
 An inclusive range of codepoints from a generated file (hence the static
 lifetime).
@@ -973,7 +973,7 @@ lifetime).
 type PropertyValues = &'static [(&'static str, &'static str)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:499`](../../../.source_1765521767/regex-syntax-0.8.8/src/unicode.rs#L499)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:499`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L499)*
 
 A mapping of property values for a specific property.
 

@@ -127,7 +127,7 @@ struct Decompositions<I> {
 }
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/decompose.rs:23-37`](../../.source_1765521767/unicode-normalization-0.1.25/src/decompose.rs#L23-L37)*
+*Defined in [`unicode-normalization-0.1.25/src/decompose.rs:23-37`](../../.source_1765633015/unicode-normalization-0.1.25/src/decompose.rs#L23-L37)*
 
 External iterator for a string decomposition's characters.
 
@@ -265,7 +265,7 @@ struct Recompositions<I> {
 }
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/recompose.rs:27-33`](../../.source_1765521767/unicode-normalization-0.1.25/src/recompose.rs#L27-L33)*
+*Defined in [`unicode-normalization-0.1.25/src/recompose.rs:27-33`](../../.source_1765633015/unicode-normalization-0.1.25/src/recompose.rs#L27-L33)*
 
 External iterator for a string recomposition's characters.
 
@@ -398,7 +398,7 @@ struct Replacements<I> {
 }
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/replace.rs:18-23`](../../.source_1765521767/unicode-normalization-0.1.25/src/replace.rs#L18-L23)*
+*Defined in [`unicode-normalization-0.1.25/src/replace.rs:18-23`](../../.source_1765633015/unicode-normalization-0.1.25/src/replace.rs#L18-L23)*
 
 External iterator for replacements for a string's characters.
 
@@ -526,7 +526,7 @@ struct StreamSafe<I> {
 }
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/stream_safe.rs:18-22`](../../.source_1765521767/unicode-normalization-0.1.25/src/stream_safe.rs#L18-L22)*
+*Defined in [`unicode-normalization-0.1.25/src/stream_safe.rs:18-22`](../../.source_1765633015/unicode-normalization-0.1.25/src/stream_safe.rs#L18-L22)*
 
 [UAX15-D4]: This iterator keeps track of how many non-starters there have been
 since the last starter in *NFKD* and will emit a Combining Grapheme Joiner
@@ -631,7 +631,7 @@ enum IsNormalized {
 }
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:13-20`](../../.source_1765521767/unicode-normalization-0.1.25/src/quick_check.rs#L13-L20)*
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:13-20`](../../.source_1765633015/unicode-normalization-0.1.25/src/quick_check.rs#L13-L20)*
 
 QuickCheck quickly determines if a string is normalized, it can return
 `Maybe`
@@ -718,7 +718,7 @@ return `Maybe` when a full decomposition and recomposition is necessary.
 trait UnicodeNormalization<I: Iterator<Item = char>> { ... }
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/lib.rs:99-136`](../../.source_1765521767/unicode-normalization-0.1.25/src/lib.rs#L99-L136)*
+*Defined in [`unicode-normalization-0.1.25/src/lib.rs:99-136`](../../.source_1765633015/unicode-normalization-0.1.25/src/lib.rs#L99-L136)*
 
 Methods for iterating over strings while applying Unicode normalizations
 as described in
@@ -764,7 +764,7 @@ as described in
 fn is_nfc(s: &str) -> bool
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:111-117`](../../.source_1765521767/unicode-normalization-0.1.25/src/quick_check.rs#L111-L117)*
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:111-117`](../../.source_1765633015/unicode-normalization-0.1.25/src/quick_check.rs#L111-L117)*
 
 Authoritatively check if a string is in NFC.
 
@@ -774,7 +774,7 @@ Authoritatively check if a string is in NFC.
 fn is_nfc_quick<I: Iterator<Item = char>>(s: I) -> IsNormalized
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:75-77`](../../.source_1765521767/unicode-normalization-0.1.25/src/quick_check.rs#L75-L77)*
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:75-77`](../../.source_1765633015/unicode-normalization-0.1.25/src/quick_check.rs#L75-L77)*
 
 Quickly check if a string is in NFC, potentially returning
 `IsNormalized::Maybe` if further checks are necessary.  In this case a check
@@ -786,7 +786,7 @@ like `s.chars().nfc().eq(s.chars())` should suffice.
 fn is_nfc_stream_safe(s: &str) -> bool
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:151-157`](../../.source_1765521767/unicode-normalization-0.1.25/src/quick_check.rs#L151-L157)*
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:151-157`](../../.source_1765633015/unicode-normalization-0.1.25/src/quick_check.rs#L151-L157)*
 
 Authoritatively check if a string is Stream-Safe NFC.
 
@@ -796,7 +796,7 @@ Authoritatively check if a string is Stream-Safe NFC.
 fn is_nfc_stream_safe_quick<I: Iterator<Item = char>>(s: I) -> IsNormalized
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:99-101`](../../.source_1765521767/unicode-normalization-0.1.25/src/quick_check.rs#L99-L101)*
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:99-101`](../../.source_1765633015/unicode-normalization-0.1.25/src/quick_check.rs#L99-L101)*
 
 Quickly check if a string is Stream-Safe NFC.
 
@@ -806,7 +806,7 @@ Quickly check if a string is Stream-Safe NFC.
 fn is_nfd(s: &str) -> bool
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:131-137`](../../.source_1765521767/unicode-normalization-0.1.25/src/quick_check.rs#L131-L137)*
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:131-137`](../../.source_1765633015/unicode-normalization-0.1.25/src/quick_check.rs#L131-L137)*
 
 Authoritatively check if a string is in NFD.
 
@@ -816,7 +816,7 @@ Authoritatively check if a string is in NFD.
 fn is_nfd_quick<I: Iterator<Item = char>>(s: I) -> IsNormalized
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:87-89`](../../.source_1765521767/unicode-normalization-0.1.25/src/quick_check.rs#L87-L89)*
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:87-89`](../../.source_1765633015/unicode-normalization-0.1.25/src/quick_check.rs#L87-L89)*
 
 Quickly check if a string is in NFD.
 
@@ -826,7 +826,7 @@ Quickly check if a string is in NFD.
 fn is_nfd_stream_safe(s: &str) -> bool
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:161-167`](../../.source_1765521767/unicode-normalization-0.1.25/src/quick_check.rs#L161-L167)*
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:161-167`](../../.source_1765633015/unicode-normalization-0.1.25/src/quick_check.rs#L161-L167)*
 
 Authoritatively check if a string is Stream-Safe NFD.
 
@@ -836,7 +836,7 @@ Authoritatively check if a string is Stream-Safe NFD.
 fn is_nfd_stream_safe_quick<I: Iterator<Item = char>>(s: I) -> IsNormalized
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:105-107`](../../.source_1765521767/unicode-normalization-0.1.25/src/quick_check.rs#L105-L107)*
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:105-107`](../../.source_1765633015/unicode-normalization-0.1.25/src/quick_check.rs#L105-L107)*
 
 Quickly check if a string is Stream-Safe NFD.
 
@@ -846,7 +846,7 @@ Quickly check if a string is Stream-Safe NFD.
 fn is_nfkc(s: &str) -> bool
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:121-127`](../../.source_1765521767/unicode-normalization-0.1.25/src/quick_check.rs#L121-L127)*
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:121-127`](../../.source_1765633015/unicode-normalization-0.1.25/src/quick_check.rs#L121-L127)*
 
 Authoritatively check if a string is in NFKC.
 
@@ -856,7 +856,7 @@ Authoritatively check if a string is in NFKC.
 fn is_nfkc_quick<I: Iterator<Item = char>>(s: I) -> IsNormalized
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:81-83`](../../.source_1765521767/unicode-normalization-0.1.25/src/quick_check.rs#L81-L83)*
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:81-83`](../../.source_1765633015/unicode-normalization-0.1.25/src/quick_check.rs#L81-L83)*
 
 Quickly check if a string is in NFKC.
 
@@ -866,7 +866,7 @@ Quickly check if a string is in NFKC.
 fn is_nfkd(s: &str) -> bool
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:141-147`](../../.source_1765521767/unicode-normalization-0.1.25/src/quick_check.rs#L141-L147)*
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:141-147`](../../.source_1765633015/unicode-normalization-0.1.25/src/quick_check.rs#L141-L147)*
 
 Authoritatively check if a string is in NFKD.
 
@@ -876,7 +876,7 @@ Authoritatively check if a string is in NFKD.
 fn is_nfkd_quick<I: Iterator<Item = char>>(s: I) -> IsNormalized
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:93-95`](../../.source_1765521767/unicode-normalization-0.1.25/src/quick_check.rs#L93-L95)*
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:93-95`](../../.source_1765633015/unicode-normalization-0.1.25/src/quick_check.rs#L93-L95)*
 
 Quickly check if a string is in NFKD.
 
@@ -887,5 +887,5 @@ Quickly check if a string is in NFKD.
 const UNICODE_VERSION: (u8, u8, u8);
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/tables.rs:18`](../../.source_1765521767/unicode-normalization-0.1.25/src/tables.rs#L18)*
+*Defined in [`unicode-normalization-0.1.25/src/tables.rs:18`](../../.source_1765633015/unicode-normalization-0.1.25/src/tables.rs#L18)*
 

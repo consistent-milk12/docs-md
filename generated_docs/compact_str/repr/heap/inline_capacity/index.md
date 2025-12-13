@@ -23,7 +23,7 @@ struct HeapBufferInnerInlineCapacity {
 }
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/heap.rs:405-407`](../../../../../.source_1765521767/compact_str-0.9.0/src/repr/heap.rs#L405-L407)*
+*Defined in [`compact_str-0.9.0/src/repr/heap.rs:405-407`](../../../../../.source_1765633015/compact_str-0.9.0/src/repr/heap.rs#L405-L407)*
 
 #### Trait Implementations
 
@@ -77,7 +77,7 @@ struct HeapBufferInnerInlineCapacity {
 unsafe fn alloc(capacity: usize) -> Result<ptr::NonNull<u8>, crate::ReserveError>
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/heap.rs:391-393`](../../../../../.source_1765521767/compact_str-0.9.0/src/repr/heap.rs#L391-L393)*
+*Defined in [`compact_str-0.9.0/src/repr/heap.rs:391-393`](../../../../../.source_1765633015/compact_str-0.9.0/src/repr/heap.rs#L391-L393)*
 
 # SAFETY:
 * `capacity` must be > 0
@@ -88,7 +88,7 @@ unsafe fn alloc(capacity: usize) -> Result<ptr::NonNull<u8>, crate::ReserveError
 unsafe fn dealloc(ptr: ptr::NonNull<u8>, capacity: usize)
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/heap.rs:399-402`](../../../../../.source_1765521767/compact_str-0.9.0/src/repr/heap.rs#L399-L402)*
+*Defined in [`compact_str-0.9.0/src/repr/heap.rs:399-402`](../../../../../.source_1765633015/compact_str-0.9.0/src/repr/heap.rs#L399-L402)*
 
 Deallocates a pointer which references a `HeapBuffer` whose capacity is stored inline
 
@@ -101,5 +101,5 @@ Deallocates a pointer which references a `HeapBuffer` whose capacity is stored i
 fn layout(capacity: usize) -> alloc::Layout
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/heap.rs:410-417`](../../../../../.source_1765521767/compact_str-0.9.0/src/repr/heap.rs#L410-L417)*
+*Defined in [`compact_str-0.9.0/src/repr/heap.rs:410-417`](../../../../../.source_1765633015/compact_str-0.9.0/src/repr/heap.rs#L410-L417)*
 

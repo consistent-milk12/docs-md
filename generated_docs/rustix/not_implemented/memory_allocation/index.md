@@ -37,7 +37,7 @@ Another allocator implementation is [talc].
 fn malloc()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:30`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L30)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:30`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L30)*
 
 See the [module comment](self).
 
@@ -47,7 +47,7 @@ See the [module comment](self).
 fn realloc()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:31`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L31)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:31`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L31)*
 
 See the [module comment](self).
 
@@ -57,7 +57,7 @@ See the [module comment](self).
 fn calloc()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:32`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L32)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:32`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L32)*
 
 See the [module comment](self).
 
@@ -67,7 +67,7 @@ See the [module comment](self).
 fn free()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:33`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L33)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:33`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L33)*
 
 See the [module comment](self).
 
@@ -77,7 +77,7 @@ See the [module comment](self).
 fn posix_memalign()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:34`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L34)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:34`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L34)*
 
 See the [module comment](self).
 
@@ -87,7 +87,7 @@ See the [module comment](self).
 fn aligned_alloc()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:35`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L35)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:35`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L35)*
 
 See the [module comment](self).
 
@@ -97,7 +97,7 @@ See the [module comment](self).
 fn malloc_usable_size()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:36`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L36)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:36`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L36)*
 
 See the [module comment](self).
 

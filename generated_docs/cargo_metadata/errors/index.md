@@ -28,7 +28,7 @@ enum Error {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/errors.rs:25-52`](../../../.source_1765521767/cargo_metadata-0.23.1/src/errors.rs#L25-L52)*
+*Defined in [`cargo_metadata-0.23.1/src/errors.rs:25-52`](../../../.source_1765633015/cargo_metadata-0.23.1/src/errors.rs#L25-L52)*
 
 Error returned when executing/parsing `cargo metadata` fails.
 
@@ -143,7 +143,7 @@ of, a failed call of `cargo_metadata` you can do one of multiple thinks:
 type Result<T, E> = ::std::result::Result<T, E>;
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/errors.rs:4`](../../../.source_1765521767/cargo_metadata-0.23.1/src/errors.rs#L4)*
+*Defined in [`cargo_metadata-0.23.1/src/errors.rs:4`](../../../.source_1765633015/cargo_metadata-0.23.1/src/errors.rs#L4)*
 
 Custom result type for `cargo_metadata::Error`
 

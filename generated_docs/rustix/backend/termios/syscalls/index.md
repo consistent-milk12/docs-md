@@ -63,7 +63,7 @@ See the `rustix::backend` module documentation for details.
 fn tcgetwinsize(fd: crate::fd::BorrowedFd<'_>) -> io::Result<crate::termios::Winsize>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:25-31`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L25-L31)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:25-31`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L25-L31)*
 
 ### `tcgetattr`
 
@@ -71,7 +71,7 @@ fn tcgetwinsize(fd: crate::fd::BorrowedFd<'_>) -> io::Result<crate::termios::Win
 fn tcgetattr(fd: crate::fd::BorrowedFd<'_>) -> io::Result<crate::termios::Termios>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:34-52`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L34-L52)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:34-52`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L34-L52)*
 
 ### `tcgetattr_fallback`
 
@@ -79,7 +79,7 @@ fn tcgetattr(fd: crate::fd::BorrowedFd<'_>) -> io::Result<crate::termios::Termio
 fn tcgetattr_fallback(fd: crate::fd::BorrowedFd<'_>) -> io::Result<crate::termios::Termios>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:57-98`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L57-L98)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:57-98`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L57-L98)*
 
 Implement `tcgetattr` using the old `TCGETS` ioctl.
 
@@ -89,7 +89,7 @@ Implement `tcgetattr` using the old `TCGETS` ioctl.
 fn tcgetpgrp(fd: crate::fd::BorrowedFd<'_>) -> io::Result<crate::pid::Pid>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:101-116`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L101-L116)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:101-116`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L101-L116)*
 
 ### `tcsetattr`
 
@@ -97,7 +97,7 @@ fn tcgetpgrp(fd: crate::fd::BorrowedFd<'_>) -> io::Result<crate::pid::Pid>
 fn tcsetattr(fd: crate::fd::BorrowedFd<'_>, optional_actions: crate::termios::OptionalActions, termios: &crate::termios::Termios) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:119-158`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L119-L158)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:119-158`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L119-L158)*
 
 ### `tcsetattr_fallback`
 
@@ -105,7 +105,7 @@ fn tcsetattr(fd: crate::fd::BorrowedFd<'_>, optional_actions: crate::termios::Op
 fn tcsetattr_fallback(fd: crate::fd::BorrowedFd<'_>, optional_actions: crate::termios::OptionalActions, termios: &crate::termios::Termios) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:163-199`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L163-L199)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:163-199`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L163-L199)*
 
 Implement `tcsetattr` using the old `TCSETS` ioctl.
 
@@ -115,7 +115,7 @@ Implement `tcsetattr` using the old `TCSETS` ioctl.
 fn tcsendbreak(fd: crate::fd::BorrowedFd<'_>) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:202-211`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L202-L211)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:202-211`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L202-L211)*
 
 ### `tcdrain`
 
@@ -123,7 +123,7 @@ fn tcsendbreak(fd: crate::fd::BorrowedFd<'_>) -> io::Result<()>
 fn tcdrain(fd: crate::fd::BorrowedFd<'_>) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:214-223`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L214-L223)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:214-223`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L214-L223)*
 
 ### `tcflush`
 
@@ -131,7 +131,7 @@ fn tcdrain(fd: crate::fd::BorrowedFd<'_>) -> io::Result<()>
 fn tcflush(fd: crate::fd::BorrowedFd<'_>, queue_selector: crate::termios::QueueSelector) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:226-235`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L226-L235)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:226-235`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L226-L235)*
 
 ### `tcflow`
 
@@ -139,7 +139,7 @@ fn tcflush(fd: crate::fd::BorrowedFd<'_>, queue_selector: crate::termios::QueueS
 fn tcflow(fd: crate::fd::BorrowedFd<'_>, action: crate::termios::Action) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:238-247`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L238-L247)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:238-247`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L238-L247)*
 
 ### `tcgetsid`
 
@@ -147,7 +147,7 @@ fn tcflow(fd: crate::fd::BorrowedFd<'_>, action: crate::termios::Action) -> io::
 fn tcgetsid(fd: crate::fd::BorrowedFd<'_>) -> io::Result<crate::pid::Pid>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:250-257`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L250-L257)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:250-257`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L250-L257)*
 
 ### `tcsetwinsize`
 
@@ -155,7 +155,7 @@ fn tcgetsid(fd: crate::fd::BorrowedFd<'_>) -> io::Result<crate::pid::Pid>
 fn tcsetwinsize(fd: crate::fd::BorrowedFd<'_>, winsize: crate::termios::Winsize) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:260-269`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L260-L269)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:260-269`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L260-L269)*
 
 ### `tcsetpgrp`
 
@@ -163,7 +163,7 @@ fn tcsetwinsize(fd: crate::fd::BorrowedFd<'_>, winsize: crate::termios::Winsize)
 fn tcsetpgrp(fd: crate::fd::BorrowedFd<'_>, pid: crate::pid::Pid) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:272-282`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L272-L282)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:272-282`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L272-L282)*
 
 ### `set_speed`
 
@@ -171,7 +171,7 @@ fn tcsetpgrp(fd: crate::fd::BorrowedFd<'_>, pid: crate::pid::Pid) -> io::Result<
 fn set_speed(termios: &mut crate::termios::Termios, arbitrary_speed: u32) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:287-300`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L287-L300)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:287-300`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L287-L300)*
 
 A wrapper around a conceptual `cfsetspeed` which handles an arbitrary
 integer speed value.
@@ -182,7 +182,7 @@ integer speed value.
 fn set_output_speed(termios: &mut crate::termios::Termios, arbitrary_speed: u32) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:305-316`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L305-L316)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:305-316`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L305-L316)*
 
 A wrapper around a conceptual `cfsetospeed` which handles an arbitrary
 integer speed value.
@@ -193,7 +193,7 @@ integer speed value.
 fn set_input_speed(termios: &mut crate::termios::Termios, arbitrary_speed: u32) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:321-332`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L321-L332)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:321-332`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L321-L332)*
 
 A wrapper around a conceptual `cfsetispeed` which handles an arbitrary
 integer speed value.
@@ -204,7 +204,7 @@ integer speed value.
 fn cfmakeraw(termios: &mut crate::termios::Termios)
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:335-359`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L335-L359)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:335-359`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L335-L359)*
 
 ### `isatty`
 
@@ -212,5 +212,5 @@ fn cfmakeraw(termios: &mut crate::termios::Termios)
 fn isatty(fd: crate::fd::BorrowedFd<'_>) -> bool
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:362-368`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L362-L368)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs:362-368`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/termios/syscalls.rs#L362-L368)*
 

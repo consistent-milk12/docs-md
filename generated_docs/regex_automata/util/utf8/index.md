@@ -28,7 +28,7 @@ incremental decoder.
 fn is_word_byte(b: u8) -> bool
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/utf8.rs:16-41`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/utf8.rs#L16-L41)*
+*Defined in [`regex-automata-0.4.13/src/util/utf8.rs:16-41`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/utf8.rs#L16-L41)*
 
 Returns true if and only if the given byte is considered a word character.
 This only applies to ASCII.
@@ -44,7 +44,7 @@ hazard here.
 fn decode(bytes: &[u8]) -> Option<Result<char, u8>>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/utf8.rs:56-70`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/utf8.rs#L56-L70)*
+*Defined in [`regex-automata-0.4.13/src/util/utf8.rs:56-70`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/utf8.rs#L56-L70)*
 
 Decodes the next UTF-8 encoded codepoint from the given byte slice.
 
@@ -65,7 +65,7 @@ crate, then please file an issue and discuss your use case.
 fn decode_last(bytes: &[u8]) -> Option<Result<char, u8>>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/utf8.rs:79-93`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/utf8.rs#L79-L93)*
+*Defined in [`regex-automata-0.4.13/src/util/utf8.rs:79-93`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/utf8.rs#L79-L93)*
 
 Decodes the last UTF-8 encoded codepoint from the given byte slice.
 
@@ -80,7 +80,7 @@ This returns `None` if and only if `bytes` is empty.
 fn len(byte: u8) -> Option<usize>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/utf8.rs:101-110`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/utf8.rs#L101-L110)*
+*Defined in [`regex-automata-0.4.13/src/util/utf8.rs:101-110`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/utf8.rs#L101-L110)*
 
 Given a UTF-8 leading byte, this returns the total number of code units
 in the following encoded codepoint.
@@ -94,7 +94,7 @@ If the given byte is not a valid UTF-8 leading byte, then this returns
 fn is_boundary(bytes: &[u8], i: usize) -> bool
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/utf8.rs:118-132`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/utf8.rs#L118-L132)*
+*Defined in [`regex-automata-0.4.13/src/util/utf8.rs:118-132`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/utf8.rs#L118-L132)*
 
 Returns true if and only if the given offset in the given bytes falls on a
 valid UTF-8 encoded codepoint boundary.
@@ -108,7 +108,7 @@ unspecified.
 fn is_leading_or_invalid_byte(b: u8) -> bool
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/utf8.rs:138-159`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/utf8.rs#L138-L159)*
+*Defined in [`regex-automata-0.4.13/src/util/utf8.rs:138-159`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/utf8.rs#L138-L159)*
 
 Returns true if and only if the given byte is either a valid leading UTF-8
 byte, or is otherwise an invalid byte that can never appear anywhere in a

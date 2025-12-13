@@ -23,7 +23,7 @@ struct Colorizer {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/fmt.rs:11-16`](../../../../.source_1765521767/clap_builder-4.5.53/src/output/fmt.rs#L11-L16)*
+*Defined in [`clap_builder-4.5.53/src/output/fmt.rs:11-16`](../../../../.source_1765633015/clap_builder-4.5.53/src/output/fmt.rs#L11-L16)*
 
 #### Implementations
 
@@ -114,7 +114,7 @@ enum Stream {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/fmt.rs:5-8`](../../../../.source_1765521767/clap_builder-4.5.53/src/output/fmt.rs#L5-L8)*
+*Defined in [`clap_builder-4.5.53/src/output/fmt.rs:5-8`](../../../../.source_1765633015/clap_builder-4.5.53/src/output/fmt.rs#L5-L8)*
 
 #### Trait Implementations
 

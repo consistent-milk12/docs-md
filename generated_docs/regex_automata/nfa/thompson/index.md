@@ -138,7 +138,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/builder.rs:313-357`](../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/builder.rs#L313-L357)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/builder.rs:313-357`](../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/builder.rs#L313-L357)*
 
 An abstraction for building Thompson NFAs by hand.
 
@@ -1507,7 +1507,7 @@ struct BuildError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/error.rs:21-23`](../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/error.rs#L21-L23)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/error.rs:21-23`](../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/error.rs#L21-L23)*
 
 An error that can occurred during the construction of a thompson NFA.
 
@@ -1515,7 +1515,7 @@ This error does not provide many introspection capabilities. There are
 generally only two things you can do with it:
 
 * Obtain a human readable message via its `std::fmt::Display` impl.
-* Access an underlying [`regex_syntax::Error`](../../../regex_syntax/error/index.md) type from its `source`
+* Access an underlying [`regex_syntax::Error`](../../../regex_syntax/ast/index.md) type from its `source`
 method via the `std::error::Error` trait. This error only occurs when using
 convenience routines for building an NFA directly from a pattern string.
 
@@ -1640,7 +1640,7 @@ struct DenseTransitions {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1882-1886`](../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1882-L1886)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1882-1886`](../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1882-L1886)*
 
 A sequence of transitions used to represent a dense state.
 
@@ -1791,7 +1791,7 @@ struct PatternIter<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:2023-2031`](../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L2023-L2031)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:2023-2031`](../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L2023-L2031)*
 
 An iterator over all pattern IDs in an NFA.
 
@@ -1880,7 +1880,7 @@ struct SparseTransitions {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1795-1798`](../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1795-L1798)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1795-1798`](../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1795-L1798)*
 
 A sequence of transitions used to represent a sparse state.
 
@@ -2020,7 +2020,7 @@ struct Transition {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1965-1972`](../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1965-L1972)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1965-1972`](../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1965-L1972)*
 
 A single transition to another state.
 
@@ -2151,7 +2151,7 @@ falls in the inclusive range of bytes specified.
 struct NFA(alloc::sync::Arc<Inner>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:190-202`](../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L190-L202)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:190-202`](../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L190-L202)*
 
 A byte oriented Thompson non-deterministic finite automaton (NFA).
 
@@ -3997,7 +3997,7 @@ struct Compiler {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:718-736`](../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L718-L736)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:718-736`](../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L718-L736)*
 
 A builder for compiling an NFA from a regex's high-level intermediate
 representation (HIR).
@@ -4512,7 +4512,7 @@ struct Config {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:28-37`](../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L28-L37)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:28-37`](../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L28-L37)*
 
 The configuration used for a Thompson NFA compiler.
 
@@ -5439,7 +5439,7 @@ enum State {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1514-1621`](../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1514-L1621)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1514-1621`](../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1514-L1621)*
 
 A state in an NFA.
 
@@ -5714,7 +5714,7 @@ enum WhichCaptures {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:547-589`](../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L547-L589)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:547-589`](../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L547-L589)*
 
 A configuration indicating which kinds of
 [`State::Capture`](crate::nfa::thompson::State::Capture) states to include.

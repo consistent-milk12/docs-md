@@ -28,7 +28,7 @@ struct Match {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:26-30`](../../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L26-L30)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:26-30`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L26-L30)*
 
 A match type specialized to the Teddy implementations below.
 
@@ -128,7 +128,7 @@ struct Slim<V, const BYTES: usize> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:54-60`](../../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L54-L60)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:54-60`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L54-L60)*
 
 A "slim" Teddy implementation that is generic over both the vector type
 and the minimum length of the patterns being searched for.
@@ -255,7 +255,7 @@ struct Fat<V, const BYTES: usize> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:387-393`](../../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L387-L393)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:387-393`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L387-L393)*
 
 A "fat" Teddy implementation that is generic over both the vector type
 and the minimum length of the patterns being searched for.
@@ -382,7 +382,7 @@ struct Teddy<const BUCKETS: usize> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:728-747`](../../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L728-L747)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:728-747`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L728-L747)*
 
 The common elements of all "slim" and "fat" Teddy search implementations.
 
@@ -558,7 +558,7 @@ struct Mask<V> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1016-1019`](../../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1016-L1019)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1016-1019`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1016-L1019)*
 
 A vector generic mask for the low and high nybbles in a set of patterns.
 Each 8-bit lane `j` in a vector corresponds to a bitset where the `i`th bit
@@ -799,7 +799,7 @@ struct SlimMaskBuilder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1178-1181`](../../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1178-L1181)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1178-1181`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1178-L1181)*
 
 Represents the low and high nybble masks that will be used during
 search. Each mask is 32 bytes wide, although only the first 16 bytes are
@@ -953,7 +953,7 @@ struct FatMaskBuilder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1288-1291`](../../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1288-L1291)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1288-1291`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1288-L1291)*
 
 Represents the low and high nybble masks that will be used during "fat"
 Teddy search.

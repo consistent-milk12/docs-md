@@ -55,7 +55,7 @@ enum BinOp {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/op.rs:1-63`](../../../.source_1765521767/syn-2.0.111/src/op.rs#L1-L63)*
+*Defined in [`syn-2.0.111/src/op.rs:1-63`](../../../.source_1765633015/syn-2.0.111/src/op.rs#L1-L63)*
 
 A binary operator: `+`, `+=`, `&`.
 
@@ -273,7 +273,7 @@ enum UnOp {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/op.rs:65-77`](../../../.source_1765521767/syn-2.0.111/src/op.rs#L65-L77)*
+*Defined in [`syn-2.0.111/src/op.rs:65-77`](../../../.source_1765633015/syn-2.0.111/src/op.rs#L65-L77)*
 
 A unary operator: `*`, `!`, `-`.
 

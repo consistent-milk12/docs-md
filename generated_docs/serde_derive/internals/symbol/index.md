@@ -94,7 +94,7 @@
 struct Symbol(&'static str);
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:5`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L5)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:5`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L5)*
 
 #### Trait Implementations
 
@@ -177,243 +177,243 @@ struct Symbol(&'static str);
 const ALIAS: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:7`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L7)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:7`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L7)*
 
 ### `BORROW`
 ```rust
 const BORROW: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:8`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L8)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:8`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L8)*
 
 ### `BOUND`
 ```rust
 const BOUND: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:9`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L9)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:9`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L9)*
 
 ### `CONTENT`
 ```rust
 const CONTENT: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:10`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L10)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:10`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L10)*
 
 ### `CRATE`
 ```rust
 const CRATE: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:11`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L11)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:11`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L11)*
 
 ### `DEFAULT`
 ```rust
 const DEFAULT: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:12`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L12)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:12`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L12)*
 
 ### `DENY_UNKNOWN_FIELDS`
 ```rust
 const DENY_UNKNOWN_FIELDS: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:13`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L13)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:13`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L13)*
 
 ### `DESERIALIZE`
 ```rust
 const DESERIALIZE: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:14`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L14)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:14`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L14)*
 
 ### `DESERIALIZE_WITH`
 ```rust
 const DESERIALIZE_WITH: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:15`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L15)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:15`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L15)*
 
 ### `EXPECTING`
 ```rust
 const EXPECTING: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:16`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L16)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:16`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L16)*
 
 ### `FIELD_IDENTIFIER`
 ```rust
 const FIELD_IDENTIFIER: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:17`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L17)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:17`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L17)*
 
 ### `FLATTEN`
 ```rust
 const FLATTEN: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:18`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L18)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:18`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L18)*
 
 ### `FROM`
 ```rust
 const FROM: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:19`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L19)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:19`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L19)*
 
 ### `GETTER`
 ```rust
 const GETTER: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:20`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L20)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:20`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L20)*
 
 ### `INTO`
 ```rust
 const INTO: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:21`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L21)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:21`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L21)*
 
 ### `NON_EXHAUSTIVE`
 ```rust
 const NON_EXHAUSTIVE: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:22`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L22)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:22`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L22)*
 
 ### `OTHER`
 ```rust
 const OTHER: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:23`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L23)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:23`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L23)*
 
 ### `REMOTE`
 ```rust
 const REMOTE: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:24`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L24)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:24`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L24)*
 
 ### `RENAME`
 ```rust
 const RENAME: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:25`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L25)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:25`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L25)*
 
 ### `RENAME_ALL`
 ```rust
 const RENAME_ALL: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:26`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L26)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:26`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L26)*
 
 ### `RENAME_ALL_FIELDS`
 ```rust
 const RENAME_ALL_FIELDS: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:27`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L27)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:27`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L27)*
 
 ### `REPR`
 ```rust
 const REPR: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:28`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L28)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:28`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L28)*
 
 ### `SERDE`
 ```rust
 const SERDE: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:29`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L29)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:29`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L29)*
 
 ### `SERIALIZE`
 ```rust
 const SERIALIZE: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:30`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L30)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:30`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L30)*
 
 ### `SERIALIZE_WITH`
 ```rust
 const SERIALIZE_WITH: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:31`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L31)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:31`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L31)*
 
 ### `SKIP`
 ```rust
 const SKIP: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:32`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L32)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:32`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L32)*
 
 ### `SKIP_DESERIALIZING`
 ```rust
 const SKIP_DESERIALIZING: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:33`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L33)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:33`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L33)*
 
 ### `SKIP_SERIALIZING`
 ```rust
 const SKIP_SERIALIZING: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:34`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L34)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:34`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L34)*
 
 ### `SKIP_SERIALIZING_IF`
 ```rust
 const SKIP_SERIALIZING_IF: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:35`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L35)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:35`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L35)*
 
 ### `TAG`
 ```rust
 const TAG: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:36`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L36)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:36`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L36)*
 
 ### `TRANSPARENT`
 ```rust
 const TRANSPARENT: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:37`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L37)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:37`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L37)*
 
 ### `TRY_FROM`
 ```rust
 const TRY_FROM: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:38`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L38)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:38`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L38)*
 
 ### `UNTAGGED`
 ```rust
 const UNTAGGED: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:39`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L39)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:39`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L39)*
 
 ### `VARIANT_IDENTIFIER`
 ```rust
 const VARIANT_IDENTIFIER: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:40`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L40)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:40`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L40)*
 
 ### `WITH`
 ```rust
 const WITH: Symbol;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:41`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/symbol.rs#L41)*
+*Defined in [`serde_derive-1.0.228/src/internals/symbol.rs:41`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/symbol.rs#L41)*
 

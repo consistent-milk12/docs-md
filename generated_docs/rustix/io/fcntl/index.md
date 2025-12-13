@@ -30,9 +30,9 @@ the [`io`](../../maybe_polyfill/io/index.md) module instead.
 struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:4-18`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L4-L18)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:4-18`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L4-L18)*
 
-`FD_*` constants for use with [`fcntl_getfd`](../../backend/io/syscalls/index.md) and [`fcntl_setfd`](../index.md).
+`FD_*` constants for use with [`fcntl_getfd`](../../backend/io/syscalls/index.md) and [`fcntl_setfd`](../../backend/io/syscalls/index.md).
 
 
 
@@ -254,7 +254,7 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 fn fcntl_getfd<Fd: AsFd>(fd: Fd) -> io::Result<FdFlags>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/fcntl.rs:40-42`](../../../../.source_1765521767/rustix-1.1.2/src/io/fcntl.rs#L40-L42)*
+*Defined in [`rustix-1.1.2/src/io/fcntl.rs:40-42`](../../../../.source_1765633015/rustix-1.1.2/src/io/fcntl.rs#L40-L42)*
 
 `fcntl(fd, F_GETFD)`—Returns a file descriptor's flags.
 
@@ -284,7 +284,7 @@ fn fcntl_getfd<Fd: AsFd>(fd: Fd) -> io::Result<FdFlags>
 fn fcntl_setfd<Fd: AsFd>(fd: Fd, flags: FdFlags) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/fcntl.rs:68-70`](../../../../.source_1765521767/rustix-1.1.2/src/io/fcntl.rs#L68-L70)*
+*Defined in [`rustix-1.1.2/src/io/fcntl.rs:68-70`](../../../../.source_1765633015/rustix-1.1.2/src/io/fcntl.rs#L68-L70)*
 
 `fcntl(fd, F_SETFD, flags)`—Sets a file descriptor's flags.
 
@@ -314,7 +314,7 @@ fn fcntl_setfd<Fd: AsFd>(fd: Fd, flags: FdFlags) -> io::Result<()>
 fn fcntl_dupfd_cloexec<Fd: AsFd>(fd: Fd, min: backend::fd::RawFd) -> io::Result<backend::fd::OwnedFd>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/fcntl.rs:105-107`](../../../../.source_1765521767/rustix-1.1.2/src/io/fcntl.rs#L105-L107)*
+*Defined in [`rustix-1.1.2/src/io/fcntl.rs:105-107`](../../../../.source_1765633015/rustix-1.1.2/src/io/fcntl.rs#L105-L107)*
 
 `fcntl(fd, F_DUPFD_CLOEXEC)`—Creates a new `OwnedFd` instance, with value
 at least `min`, that has `O_CLOEXEC` set and that shares the same

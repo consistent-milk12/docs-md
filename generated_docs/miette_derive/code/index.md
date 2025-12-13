@@ -18,7 +18,7 @@
 struct Code(String);
 ```
 
-*Defined in [`miette-derive-7.6.0/src/code.rs:16`](../../../.source_1765521767/miette-derive-7.6.0/src/code.rs#L16)*
+*Defined in [`miette-derive-7.6.0/src/code.rs:16`](../../../.source_1765633015/miette-derive-7.6.0/src/code.rs#L16)*
 
 #### Implementations
 

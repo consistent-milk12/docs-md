@@ -29,7 +29,7 @@ enum WordSplitter {
 }
 ```
 
-*Defined in [`textwrap-0.16.2/src/word_splitters.rs:37-99`](../../../.source_1765521767/textwrap-0.16.2/src/word_splitters.rs#L37-L99)*
+*Defined in [`textwrap-0.16.2/src/word_splitters.rs:37-99`](../../../.source_1765633015/textwrap-0.16.2/src/word_splitters.rs#L37-L99)*
 
 The `WordSplitter` enum describes where words can be split.
 
@@ -226,7 +226,7 @@ where
     I: IntoIterator<Item = crate::core::Word<'a>>
 ```
 
-*Defined in [`textwrap-0.16.2/src/word_splitters.rs:169-206`](../../../.source_1765521767/textwrap-0.16.2/src/word_splitters.rs#L169-L206)*
+*Defined in [`textwrap-0.16.2/src/word_splitters.rs:169-206`](../../../.source_1765633015/textwrap-0.16.2/src/word_splitters.rs#L169-L206)*
 
 Split words into smaller words according to the split points given
 by `word_splitter`.

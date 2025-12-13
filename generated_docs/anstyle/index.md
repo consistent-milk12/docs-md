@@ -118,7 +118,7 @@ let style = anstyle::Style::new().bold();
 struct Ansi256Color(u8);
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:352`](../../.source_1765521767/anstyle-1.0.13/src/color.rs#L352)*
+*Defined in [`anstyle-1.0.13/src/color.rs:352`](../../.source_1765633015/anstyle-1.0.13/src/color.rs#L352)*
 
 256 (8-bit) color support
 
@@ -254,7 +254,7 @@ struct Ansi256Color(u8);
 struct RgbColor(u8, u8, u8);
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:476`](../../.source_1765521767/anstyle-1.0.13/src/color.rs#L476)*
+*Defined in [`anstyle-1.0.13/src/color.rs:476`](../../.source_1765633015/anstyle-1.0.13/src/color.rs#L476)*
 
 24-bit ANSI RGB color codes
 
@@ -389,7 +389,7 @@ struct DisplayBuffer {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:571-574`](../../.source_1765521767/anstyle-1.0.13/src/color.rs#L571-L574)*
+*Defined in [`anstyle-1.0.13/src/color.rs:571-574`](../../.source_1765633015/anstyle-1.0.13/src/color.rs#L571-L574)*
 
 #### Implementations
 
@@ -485,7 +485,7 @@ struct DisplayBuffer {
 struct NullFormatter(&'static str);
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:635`](../../.source_1765521767/anstyle-1.0.13/src/color.rs#L635)*
+*Defined in [`anstyle-1.0.13/src/color.rs:635`](../../.source_1765633015/anstyle-1.0.13/src/color.rs#L635)*
 
 #### Trait Implementations
 
@@ -571,7 +571,7 @@ struct NullFormatter(&'static str);
 struct Effects(u16);
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:9`](../../.source_1765521767/anstyle-1.0.13/src/effect.rs#L9)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:9`](../../.source_1765633015/anstyle-1.0.13/src/effect.rs#L9)*
 
 A set of text effects
 
@@ -882,7 +882,7 @@ struct Metadata {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:263-266`](../../.source_1765521767/anstyle-1.0.13/src/effect.rs#L263-L266)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:263-266`](../../.source_1765633015/anstyle-1.0.13/src/effect.rs#L263-L266)*
 
 #### Trait Implementations
 
@@ -934,7 +934,7 @@ struct Metadata {
 struct EffectsDisplay(Effects);
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:320`](../../.source_1765521767/anstyle-1.0.13/src/effect.rs#L320)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:320`](../../.source_1765633015/anstyle-1.0.13/src/effect.rs#L320)*
 
 #### Trait Implementations
 
@@ -1023,7 +1023,7 @@ struct EffectIter {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:334-337`](../../.source_1765521767/anstyle-1.0.13/src/effect.rs#L334-L337)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:334-337`](../../.source_1765633015/anstyle-1.0.13/src/effect.rs#L334-L337)*
 
 Enumerate each enabled value in [`Effects`](#effects)
 
@@ -1122,7 +1122,7 @@ struct EffectIndexIter {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:358-361`](../../.source_1765521767/anstyle-1.0.13/src/effect.rs#L358-L361)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:358-361`](../../.source_1765633015/anstyle-1.0.13/src/effect.rs#L358-L361)*
 
 #### Trait Implementations
 
@@ -1216,7 +1216,7 @@ struct EffectIndexIter {
 struct Reset;
 ```
 
-*Defined in [`anstyle-1.0.13/src/reset.rs:4`](../../.source_1765521767/anstyle-1.0.13/src/reset.rs#L4)*
+*Defined in [`anstyle-1.0.13/src/reset.rs:4`](../../.source_1765633015/anstyle-1.0.13/src/reset.rs#L4)*
 
 Reset terminal formatting
 
@@ -1339,7 +1339,7 @@ struct Style {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/style.rs:18-23`](../../.source_1765521767/anstyle-1.0.13/src/style.rs#L18-L23)*
+*Defined in [`anstyle-1.0.13/src/style.rs:18-23`](../../.source_1765633015/anstyle-1.0.13/src/style.rs#L18-L23)*
 
 ANSI Text styling
 
@@ -1592,7 +1592,7 @@ println!("{style}{value}{style:#}");
 struct StyleDisplay(Style);
 ```
 
-*Defined in [`anstyle-1.0.13/src/style.rs:423`](../../.source_1765521767/anstyle-1.0.13/src/style.rs#L423)*
+*Defined in [`anstyle-1.0.13/src/style.rs:423`](../../.source_1765633015/anstyle-1.0.13/src/style.rs#L423)*
 
 #### Trait Implementations
 
@@ -1684,7 +1684,7 @@ enum Color {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:4-17`](../../.source_1765521767/anstyle-1.0.13/src/color.rs#L4-L17)*
+*Defined in [`anstyle-1.0.13/src/color.rs:4-17`](../../.source_1765633015/anstyle-1.0.13/src/color.rs#L4-L17)*
 
 Any ANSI color code scheme
 
@@ -1843,7 +1843,7 @@ enum AnsiColor {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:138-186`](../../.source_1765521767/anstyle-1.0.13/src/color.rs#L138-L186)*
+*Defined in [`anstyle-1.0.13/src/color.rs:138-186`](../../.source_1765633015/anstyle-1.0.13/src/color.rs#L138-L186)*
 
 Available 4-bit ANSI color palette codes
 
@@ -2044,19 +2044,19 @@ The user's terminal defines the meaning of the each palette code.
 const DISPLAY_BUFFER_CAPACITY: usize = 19usize;
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:568`](../../.source_1765521767/anstyle-1.0.13/src/color.rs#L568)*
+*Defined in [`anstyle-1.0.13/src/color.rs:568`](../../.source_1765633015/anstyle-1.0.13/src/color.rs#L568)*
 
 ### `METADATA`
 ```rust
 const METADATA: [Metadata; 12];
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:268-317`](../../.source_1765521767/anstyle-1.0.13/src/effect.rs#L268-L317)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:268-317`](../../.source_1765633015/anstyle-1.0.13/src/effect.rs#L268-L317)*
 
 ### `RESET`
 ```rust
 const RESET: &str;
 ```
 
-*Defined in [`anstyle-1.0.13/src/reset.rs:22`](../../.source_1765521767/anstyle-1.0.13/src/reset.rs#L22)*
+*Defined in [`anstyle-1.0.13/src/reset.rs:22`](../../.source_1765633015/anstyle-1.0.13/src/reset.rs#L22)*
 

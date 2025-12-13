@@ -26,7 +26,7 @@
 trait Vector: Copy + Debug + Send + Sync + UnwindSafe + RefUnwindSafe { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/vector.rs:28-207`](../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/vector.rs#L28-L207)*
+*Defined in [`aho-corasick-1.1.4/src/packed/vector.rs:28-207`](../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/vector.rs#L28-L207)*
 
 A trait for describing vector operations used by vectorized searchers.
 
@@ -112,7 +112,7 @@ them as `#[inline(always)]` to ensure they get appropriately inlined.
 trait FatVector: Vector { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/vector.rs:232-318`](../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/vector.rs#L232-L318)*
+*Defined in [`aho-corasick-1.1.4/src/packed/vector.rs:232-318`](../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/vector.rs#L232-L318)*
 
 This trait extends the `Vector` trait with additional operations to support
 Fat Teddy.

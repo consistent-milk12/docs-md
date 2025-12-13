@@ -26,7 +26,7 @@ struct Parker {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:53-56`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/sync/parker.rs#L53-L56)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:53-56`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/parker.rs#L53-L56)*
 
 A thread parking primitive.
 
@@ -344,7 +344,7 @@ struct Unparker {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:217-219`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/sync/parker.rs#L217-L219)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:217-219`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/parker.rs#L217-L219)*
 
 Unparks a thread parked by the associated [`Parker`](#parker).
 
@@ -542,7 +542,7 @@ struct Inner {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:314-318`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/sync/parker.rs#L314-L318)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:314-318`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/parker.rs#L314-L318)*
 
 #### Implementations
 
@@ -601,19 +601,19 @@ struct Inner {
 const EMPTY: usize = 0usize;
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:310`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/sync/parker.rs#L310)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:310`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/parker.rs#L310)*
 
 ### `PARKED`
 ```rust
 const PARKED: usize = 1usize;
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:311`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/sync/parker.rs#L311)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:311`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/parker.rs#L311)*
 
 ### `NOTIFIED`
 ```rust
 const NOTIFIED: usize = 2usize;
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:312`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/sync/parker.rs#L312)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:312`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/parker.rs#L312)*
 

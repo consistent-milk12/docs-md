@@ -119,7 +119,7 @@ struct Utf8Range {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/utf8.rs:218-223`](../../../.source_1765521767/regex-syntax-0.8.8/src/utf8.rs#L218-L223)*
+*Defined in [`regex-syntax-0.8.8/src/utf8.rs:218-223`](../../../.source_1765633015/regex-syntax-0.8.8/src/utf8.rs#L218-L223)*
 
 A single inclusive range of UTF-8 bytes.
 
@@ -231,7 +231,7 @@ struct Utf8Sequences {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/utf8.rs:297-299`](../../../.source_1765521767/regex-syntax-0.8.8/src/utf8.rs#L297-L299)*
+*Defined in [`regex-syntax-0.8.8/src/utf8.rs:297-299`](../../../.source_1765633015/regex-syntax-0.8.8/src/utf8.rs#L297-L299)*
 
 An iterator over ranges of matching UTF-8 byte sequences.
 
@@ -367,7 +367,7 @@ struct ScalarRange {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/utf8.rs:325-328`](../../../.source_1765521767/regex-syntax-0.8.8/src/utf8.rs#L325-L328)*
+*Defined in [`regex-syntax-0.8.8/src/utf8.rs:325-328`](../../../.source_1765633015/regex-syntax-0.8.8/src/utf8.rs#L325-L328)*
 
 #### Implementations
 
@@ -468,7 +468,7 @@ enum Utf8Sequence {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/utf8.rs:97-106`](../../../.source_1765521767/regex-syntax-0.8.8/src/utf8.rs#L97-L106)*
+*Defined in [`regex-syntax-0.8.8/src/utf8.rs:97-106`](../../../.source_1765633015/regex-syntax-0.8.8/src/utf8.rs#L97-L106)*
 
 Utf8Sequence represents a sequence of byte ranges.
 
@@ -658,7 +658,7 @@ sequence `\xDD\x61` would not match because `0x61 < 0x80`.
 fn max_scalar_value(nbytes: usize) -> u32
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/utf8.rs:445-453`](../../../.source_1765521767/regex-syntax-0.8.8/src/utf8.rs#L445-L453)*
+*Defined in [`regex-syntax-0.8.8/src/utf8.rs:445-453`](../../../.source_1765633015/regex-syntax-0.8.8/src/utf8.rs#L445-L453)*
 
 ## Constants
 
@@ -667,5 +667,5 @@ fn max_scalar_value(nbytes: usize) -> u32
 const MAX_UTF8_BYTES: usize = 4usize;
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/utf8.rs:87`](../../../.source_1765521767/regex-syntax-0.8.8/src/utf8.rs#L87)*
+*Defined in [`regex-syntax-0.8.8/src/utf8.rs:87`](../../../.source_1765633015/regex-syntax-0.8.8/src/utf8.rs#L87)*
 

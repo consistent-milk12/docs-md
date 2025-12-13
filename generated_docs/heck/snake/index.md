@@ -20,7 +20,7 @@
 struct AsSnakeCase<T: AsRef<str>>(T);
 ```
 
-*Defined in [`heck-0.5.0/src/snake.rs:55`](../../../.source_1765521767/heck-0.5.0/src/snake.rs#L55)*
+*Defined in [`heck-0.5.0/src/snake.rs:55`](../../../.source_1765633015/heck-0.5.0/src/snake.rs#L55)*
 
 This wrapper performs a snake case conversion in [`fmt::Display`](../../miette_derive/index.md).
 
@@ -93,7 +93,7 @@ assert_eq!(format!("{}", AsSnakeCase(sentence)), "we_carry_a_new_world_here_in_o
 trait ToSnakeCase: ToOwned { ... }
 ```
 
-*Defined in [`heck-0.5.0/src/snake.rs:21-24`](../../../.source_1765521767/heck-0.5.0/src/snake.rs#L21-L24)*
+*Defined in [`heck-0.5.0/src/snake.rs:21-24`](../../../.source_1765633015/heck-0.5.0/src/snake.rs#L21-L24)*
 
 This trait defines a snake case conversion.
 
@@ -124,7 +124,7 @@ assert_eq!(sentence.to_snake_case(), "we_carry_a_new_world_here_in_our_hearts");
 trait ToSnekCase: ToOwned { ... }
 ```
 
-*Defined in [`heck-0.5.0/src/snake.rs:28-31`](../../../.source_1765521767/heck-0.5.0/src/snake.rs#L28-L31)*
+*Defined in [`heck-0.5.0/src/snake.rs:28-31`](../../../.source_1765633015/heck-0.5.0/src/snake.rs#L28-L31)*
 
 Oh heck, `SnekCase` is an alias for [`ToSnakeCase`](#tosnakecase). See ToSnakeCase for
 more documentation.

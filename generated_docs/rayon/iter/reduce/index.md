@@ -23,7 +23,7 @@ struct ReduceConsumer<'r, R, ID> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/reduce.rs:18-21`](../../../../.source_1765521767/rayon-1.11.0/src/iter/reduce.rs#L18-L21)*
+*Defined in [`rayon-1.11.0/src/iter/reduce.rs:18-21`](../../../../.source_1765633015/rayon-1.11.0/src/iter/reduce.rs#L18-L21)*
 
 #### Trait Implementations
 
@@ -136,7 +136,7 @@ struct ReduceFolder<'r, R, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/reduce.rs:81-84`](../../../../.source_1765521767/rayon-1.11.0/src/iter/reduce.rs#L81-L84)*
+*Defined in [`rayon-1.11.0/src/iter/reduce.rs:81-84`](../../../../.source_1765633015/rayon-1.11.0/src/iter/reduce.rs#L81-L84)*
 
 #### Trait Implementations
 
@@ -223,5 +223,5 @@ where
     T: Send
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/reduce.rs:4-16`](../../../../.source_1765521767/rayon-1.11.0/src/iter/reduce.rs#L4-L16)*
+*Defined in [`rayon-1.11.0/src/iter/reduce.rs:4-16`](../../../../.source_1765633015/rayon-1.11.0/src/iter/reduce.rs#L4-L16)*
 

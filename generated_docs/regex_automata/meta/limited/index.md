@@ -55,7 +55,7 @@ real demonstration of how quadratic behavior is mitigated.
 fn hybrid_try_search_half_rev(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache, input: &crate::Input<'_>, min_start: usize) -> Result<Option<crate::HalfMatch>, crate::meta::error::RetryError>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/limited.rs:125-182`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/limited.rs#L125-L182)*
+*Defined in [`regex-automata-0.4.13/src/meta/limited.rs:125-182`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/limited.rs#L125-L182)*
 
 ### `hybrid_eoi_rev`
 
@@ -63,5 +63,5 @@ fn hybrid_try_search_half_rev(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::
 fn hybrid_eoi_rev(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache, input: &crate::Input<'_>, sid: &mut crate::hybrid::LazyStateID, mat: &mut Option<crate::HalfMatch>) -> Result<(), crate::MatchError>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/limited.rs:219-251`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/limited.rs#L219-L251)*
+*Defined in [`regex-automata-0.4.13/src/meta/limited.rs:219-251`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/limited.rs#L219-L251)*
 

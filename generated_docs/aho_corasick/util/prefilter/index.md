@@ -65,7 +65,7 @@ struct Prefilter {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:33-36`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L33-L36)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:33-36`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L33-L36)*
 
 A prefilter for accelerating a search.
 
@@ -178,7 +178,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:121-131`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L121-L131)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:121-131`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L121-L131)*
 
 A builder for constructing the best possible prefilter. When constructed,
 this builder will heuristically select the best prefilter it can build,
@@ -264,7 +264,7 @@ if any, and discard the rest.
 struct Packed(packed::Searcher);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:328`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L328)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:328`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L328)*
 
 A type that wraps a packed searcher and implements the `Prefilter`
 interface.
@@ -346,7 +346,7 @@ struct MemmemBuilder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:340-345`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L340-L345)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:340-345`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L340-L345)*
 
 A builder for constructing a prefilter that uses memmem.
 
@@ -424,7 +424,7 @@ A builder for constructing a prefilter that uses memmem.
 struct Memmem(memchr::memmem::Finder<'static>);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:394`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L394)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:394`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L394)*
 
 A type that wraps a SIMD accelerated single substring search from the
 `memchr` crate for use as a prefilter.
@@ -522,7 +522,7 @@ struct RareBytesBuilder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:419-441`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L419-L441)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:419-441`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L419-L441)*
 
 A builder for constructing a rare byte prefilter.
 
@@ -677,7 +677,7 @@ struct RareByteOffsets {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:445-449`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L445-L449)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:445-449`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L445-L449)*
 
 A set of byte offsets, keyed by byte.
 
@@ -778,7 +778,7 @@ struct RareByteOffset {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:482-497`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L482-L497)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:482-497`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L482-L497)*
 
 Offsets associated with an occurrence of a "rare" byte in any of the
 patterns used to construct a single Aho-Corasick automaton.
@@ -890,7 +890,7 @@ struct RareBytesOne {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:668-671`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L668-L671)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:668-671`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L668-L671)*
 
 A prefilter for scanning for a single "rare" byte.
 
@@ -972,7 +972,7 @@ struct RareBytesTwo {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:691-695`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L691-L695)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:691-695`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L691-L695)*
 
 A prefilter for scanning for two "rare" bytes.
 
@@ -1055,7 +1055,7 @@ struct RareBytesThree {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:713-718`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L713-L718)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:713-718`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L713-L718)*
 
 A prefilter for scanning for three "rare" bytes.
 
@@ -1138,7 +1138,7 @@ struct StartBytesBuilder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:746-757`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L746-L757)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:746-757`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L746-L757)*
 
 A builder for constructing a starting byte prefilter.
 
@@ -1281,7 +1281,7 @@ struct StartBytesOne {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:858-860`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L858-L860)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:858-860`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L858-L860)*
 
 A prefilter for scanning for a single starting byte.
 
@@ -1362,7 +1362,7 @@ struct StartBytesTwo {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:874-877`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L874-L877)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:874-877`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L874-L877)*
 
 A prefilter for scanning for two starting bytes.
 
@@ -1444,7 +1444,7 @@ struct StartBytesThree {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:891-895`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L891-L895)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:891-895`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L891-L895)*
 
 A prefilter for scanning for three starting bytes.
 
@@ -1528,7 +1528,7 @@ enum Candidate {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:72-81`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L72-L81)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:72-81`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L72-L81)*
 
 A candidate is the result of running a prefilter on a haystack at a
 particular position.
@@ -1644,7 +1644,7 @@ implementations are permitted to return false positives.
 trait PrefilterI: Send + Sync + RefUnwindSafe + UnwindSafe + Debug + 'static { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:99-108`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L99-L108)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:99-108`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L99-L108)*
 
 A prefilter describes the behavior of fast literal scanners for quickly
 skipping past bytes in the haystack that we know cannot possibly
@@ -1676,7 +1676,7 @@ participate in a match.
 fn opposite_ascii_case(b: u8) -> u8
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:909-917`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L909-L917)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:909-917`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L909-L917)*
 
 If the given byte is an ASCII letter, then return it in the opposite case.
 e.g., Given `b'A'`, this returns `b'a'`, and given `b'a'`, this returns
@@ -1688,7 +1688,7 @@ e.g., Given `b'A'`, this returns `b'a'`, and given `b'a'`, this returns
 fn freq_rank(b: u8) -> u8
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:921-924`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L921-L924)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:921-924`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L921-L924)*
 
 Return the frequency rank of the given byte. The higher the rank, the more
 common the byte (heuristically speaking).

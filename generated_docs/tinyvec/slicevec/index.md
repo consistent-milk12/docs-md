@@ -22,7 +22,7 @@ struct SliceVec<'s, T> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/slicevec.rs:16-19`](../../../.source_1765521767/tinyvec-1.10.0/src/slicevec.rs#L16-L19)*
+*Defined in [`tinyvec-1.10.0/src/slicevec.rs:16-19`](../../../.source_1765633015/tinyvec-1.10.0/src/slicevec.rs#L16-L19)*
 
 A slice-backed vector-like data structure.
 
@@ -748,7 +748,7 @@ struct SliceVecDrain<'p, 's, T: Default> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/slicevec.rs:714-719`](../../../.source_1765521767/tinyvec-1.10.0/src/slicevec.rs#L714-L719)*
+*Defined in [`tinyvec-1.10.0/src/slicevec.rs:714-719`](../../../.source_1765633015/tinyvec-1.10.0/src/slicevec.rs#L714-L719)*
 
 Draining iterator for [`SliceVec`](../index.md)
 

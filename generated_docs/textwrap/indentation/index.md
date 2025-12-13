@@ -25,7 +25,7 @@ The functions here can be used to uniformly indent or dedent
 fn indent(s: &str, prefix: &str) -> String
 ```
 
-*Defined in [`textwrap-0.16.2/src/indentation.rs:52-75`](../../../.source_1765521767/textwrap-0.16.2/src/indentation.rs#L52-L75)*
+*Defined in [`textwrap-0.16.2/src/indentation.rs:52-75`](../../../.source_1765633015/textwrap-0.16.2/src/indentation.rs#L52-L75)*
 
 Indent each line by the given prefix.
 
@@ -79,7 +79,7 @@ assert_eq!(indent(" \t  Foo   ", "->"), "-> \t  Foo   ");
 fn dedent(s: &str) -> String
 ```
 
-*Defined in [`textwrap-0.16.2/src/indentation.rs:95-150`](../../../.source_1765521767/textwrap-0.16.2/src/indentation.rs#L95-L150)*
+*Defined in [`textwrap-0.16.2/src/indentation.rs:95-150`](../../../.source_1765633015/textwrap-0.16.2/src/indentation.rs#L95-L150)*
 
 Removes common leading whitespace from each line.
 

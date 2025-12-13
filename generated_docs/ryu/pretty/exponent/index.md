@@ -19,7 +19,7 @@
 unsafe fn write_exponent3(k: isize, result: *mut u8) -> usize
 ```
 
-*Defined in [`ryu-1.0.20/src/pretty/exponent.rs:5-28`](../../../../.source_1765521767/ryu-1.0.20/src/pretty/exponent.rs#L5-L28)*
+*Defined in [`ryu-1.0.20/src/pretty/exponent.rs:5-28`](../../../../.source_1765633015/ryu-1.0.20/src/pretty/exponent.rs#L5-L28)*
 
 ### `write_exponent2`
 
@@ -27,5 +27,5 @@ unsafe fn write_exponent3(k: isize, result: *mut u8) -> usize
 unsafe fn write_exponent2(k: isize, result: *mut u8) -> usize
 ```
 
-*Defined in [`ryu-1.0.20/src/pretty/exponent.rs:31-48`](../../../../.source_1765521767/ryu-1.0.20/src/pretty/exponent.rs#L31-L48)*
+*Defined in [`ryu-1.0.20/src/pretty/exponent.rs:31-48`](../../../../.source_1765633015/ryu-1.0.20/src/pretty/exponent.rs#L31-L48)*
 

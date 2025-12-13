@@ -39,7 +39,7 @@ struct HeapVisitor<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:124-132`](../../../../.source_1765521767/regex-syntax-0.8.8/src/ast/visitor.rs#L124-L132)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:124-132`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/visitor.rs#L124-L132)*
 
 HeapVisitor visits every item in an `Ast` recursively using constant stack
 size and a heap size proportional to the size of the `Ast`.
@@ -166,7 +166,7 @@ enum Frame<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:136-159`](../../../../.source_1765521767/regex-syntax-0.8.8/src/ast/visitor.rs#L136-L159)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:136-159`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/visitor.rs#L136-L159)*
 
 Represents a single stack frame while performing structural induction over
 an `Ast`.
@@ -268,7 +268,7 @@ enum ClassFrame<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:163-184`](../../../../.source_1765521767/regex-syntax-0.8.8/src/ast/visitor.rs#L163-L184)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:163-184`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/visitor.rs#L163-L184)*
 
 Represents a single stack frame while performing structural induction over
 a character class.
@@ -359,7 +359,7 @@ enum ClassInduct<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:195-198`](../../../../.source_1765521767/regex-syntax-0.8.8/src/ast/visitor.rs#L195-L198)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:195-198`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/visitor.rs#L195-L198)*
 
 A representation of the inductive step when performing structural induction
 over a character class.
@@ -433,7 +433,7 @@ syntax, which is not possible.)
 trait Visitor { ... }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:20-102`](../../../../.source_1765521767/regex-syntax-0.8.8/src/ast/visitor.rs#L20-L102)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:20-102`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/visitor.rs#L20-L102)*
 
 A trait for visiting an abstract syntax tree (AST) in depth first order.
 
@@ -519,7 +519,7 @@ simpler [high-level intermediate representation](crate::hir::Hir) and its
 fn visit<V: Visitor>(ast: &crate::ast::Ast, visitor: V) -> Result<<V as >::Output, <V as >::Err>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:118-120`](../../../../.source_1765521767/regex-syntax-0.8.8/src/ast/visitor.rs#L118-L120)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:118-120`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/visitor.rs#L118-L120)*
 
 Executes an implementation of `Visitor` in constant stack space.
 

@@ -147,7 +147,7 @@ struct Str {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/str.rs:13-15`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/str.rs#L13-L15)*
+*Defined in [`clap_builder-4.5.53/src/builder/str.rs:13-15`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/str.rs#L13-L15)*
 
 A UTF-8-encoded fixed string
 
@@ -318,7 +318,7 @@ struct Arg {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg.rs:60-92`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/arg.rs#L60-L92)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg.rs:60-92`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/arg.rs#L60-L92)*
 
 The abstract representation of a command line argument. Used to set all the options and
 relationships that define a valid argument for the program.
@@ -977,7 +977,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
   
 
-  [`Command`](command/index.md) will [`panic!`](../../miette/panic/index.md) if indexes are skipped (such as defining `index(1)` and `index(3)`
+  [`Command`](../index.md) will [`panic!`](../../miette/panic/index.md) if indexes are skipped (such as defining `index(1)` and `index(3)`
 
   but not `index(2)`, or a positional argument is defined as multiple and is not the highest
 
@@ -1155,7 +1155,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
   
 
-  **NOTE:** This setting will imply [`crate::Command::dont_collapse_args_in_usage`](command/index.md#dont-collapse-args-in-usage) because failing
+  **NOTE:** This setting will imply [`crate::Command::dont_collapse_args_in_usage`](../index.md#dont-collapse-args-in-usage) because failing
 
   to set this can make the usage string very confusing.
 
@@ -1197,9 +1197,9 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
   recommended with the exception of *also* using
 
-  [`crate::Command::args_conflicts_with_subcommands`](command/index.md#args-conflicts-with-subcommands)
+  [`crate::Command::args_conflicts_with_subcommands`](../index.md#args-conflicts-with-subcommands)
 
-  (or [`crate::Command::subcommand_negates_reqs`](command/index.md#subcommand-negates-reqs) if the argument marked `Last` is also
+  (or [`crate::Command::subcommand_negates_reqs`](../index.md#subcommand-negates-reqs) if the argument marked `Last` is also
 
   marked `Arg::required`)
 
@@ -1802,7 +1802,7 @@ struct ArgGroup {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg_group.rs:68-75`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/arg_group.rs#L68-L75)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg_group.rs:68-75`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/arg_group.rs#L68-L75)*
 
 Specifies a logical group of [arguments]
 
@@ -2181,7 +2181,7 @@ assert_eq!(matches
 
   
 
-  **NOTE:** This setting only applies to the current [`Command`](command/index.md) / [`Subcommand`](../derive/index.md)s, and not
+  **NOTE:** This setting only applies to the current [`Command`](../index.md) / [`Subcommand`](../derive/index.md)s, and not
 
   globally.
 
@@ -2689,7 +2689,7 @@ struct Command {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/command.rs:74-113`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/command.rs#L74-L113)*
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:74-113`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/command.rs#L74-L113)*
 
 Build a command-line interface.
 
@@ -4229,7 +4229,7 @@ struct OsStr {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/os_str.rs:14-16`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/os_str.rs#L14-L16)*
+*Defined in [`clap_builder-4.5.53/src/builder/os_str.rs:14-16`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/os_str.rs#L14-L16)*
 
 A UTF-8-encoded fixed string
 
@@ -4369,7 +4369,7 @@ struct PossibleValue {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/possible_value.rs:40-45`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/possible_value.rs#L40-L45)*
+*Defined in [`clap_builder-4.5.53/src/builder/possible_value.rs:40-45`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/possible_value.rs#L40-L45)*
 
 A possible value of an argument.
 
@@ -4643,7 +4643,7 @@ struct ValueRange {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/range.rs:3-6`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/range.rs#L3-L6)*
+*Defined in [`clap_builder-4.5.53/src/builder/range.rs:3-6`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/range.rs#L3-L6)*
 
 Values per occurrence for an argument
 
@@ -4863,7 +4863,7 @@ Values per occurrence for an argument
 struct StyledStr(String);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/styled_str.rs:25`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/styled_str.rs#L25)*
+*Defined in [`clap_builder-4.5.53/src/builder/styled_str.rs:25`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/styled_str.rs#L25)*
 
 Terminal-styling container
 
@@ -5046,7 +5046,7 @@ struct Styles {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/styling.rs:23-33`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/styling.rs#L23-L33)*
+*Defined in [`clap_builder-4.5.53/src/builder/styling.rs:23-33`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/styling.rs#L23-L33)*
 
 Terminal styling definitions
 
@@ -5196,7 +5196,7 @@ struct BoolValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1677`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/value_parser.rs#L1677)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1677`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1677)*
 
 Implementation for `ValueParser::bool`
 
@@ -5299,7 +5299,7 @@ struct BoolishValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1877`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/value_parser.rs#L1877)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1877`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1877)*
 
 Parse bool-like string values
 
@@ -5442,7 +5442,7 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 struct EnumValueParser<E: crate::ValueEnum + Clone + Send + Sync + 'static>(std::marker::PhantomData<E>);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1079-1081`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/value_parser.rs#L1079-L1081)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1079-1081`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1079-L1081)*
 
 Parse an `ValueEnum` value.
 
@@ -5576,7 +5576,7 @@ struct FalseyValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1778`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/value_parser.rs#L1778)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1778`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1778)*
 
 Parse false-like string values, everything else is `true`
 
@@ -5718,7 +5718,7 @@ struct MapValueParser<P, F> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2014-2017`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/value_parser.rs#L2014-L2017)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2014-2017`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L2014-L2017)*
 
 Adapt a `TypedValueParser` from one value to another
 
@@ -5813,7 +5813,7 @@ struct NonEmptyStringValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1968`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/value_parser.rs#L1968)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1968`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1968)*
 
 Parse non-empty string values
 
@@ -5943,7 +5943,7 @@ struct OsStringValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:953`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/value_parser.rs#L953)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:953`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L953)*
 
 Implementation for `ValueParser::os_string`
 
@@ -6044,7 +6044,7 @@ struct PathBufValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:995`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/value_parser.rs#L995)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:995`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L995)*
 
 Implementation for `ValueParser::path_buf`
 
@@ -6144,7 +6144,7 @@ Useful for composing new [`TypedValueParser`](value_parser/index.md)s
 struct PossibleValuesParser(Vec<super::PossibleValue>);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1196`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/value_parser.rs#L1196)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1196`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1196)*
 
 Verify the value is from an enumerated set of `PossibleValue`.
 
@@ -6279,7 +6279,7 @@ struct RangedI64ValueParser<T: TryFrom<i64> + Clone + Send + Sync> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1315-1318`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/value_parser.rs#L1315-L1318)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1315-1318`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1315-L1318)*
 
 Parse number that fall within a range of values
 
@@ -6429,7 +6429,7 @@ struct RangedU64ValueParser<T: TryFrom<u64>> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1514-1517`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/value_parser.rs#L1514-L1517)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1514-1517`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1514-L1517)*
 
 Parse number that fall within a range of values
 
@@ -6569,7 +6569,7 @@ struct StringValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:905`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/value_parser.rs#L905)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:905`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L905)*
 
 Implementation for `ValueParser::string`
 
@@ -6672,7 +6672,7 @@ struct TryMapValueParser<P, F> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2073-2076`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/value_parser.rs#L2073-L2076)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2073-2076`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L2073-L2076)*
 
 Adapt a `TypedValueParser` from one value to another
 
@@ -6767,7 +6767,7 @@ struct UnknownArgumentValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2159-2162`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/value_parser.rs#L2159-L2162)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2159-2162`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L2159-L2162)*
 
 When encountered, report `ErrorKind::UnknownArgument`
 
@@ -6899,7 +6899,7 @@ assert_eq!(err.kind(), clap::error::ErrorKind::UnknownArgument);
 struct ValueParser(ValueParserInner);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:63`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/value_parser.rs#L63)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:63`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L63)*
 
 Parse/validate argument values
 
@@ -7311,7 +7311,7 @@ enum ArgAction {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/action.rs:34-353`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/action.rs#L34-L353)*
+*Defined in [`clap_builder-4.5.53/src/builder/action.rs:34-353`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/action.rs#L34-L353)*
 
 Behavior of arguments when they are encountered while parsing
 
@@ -7778,7 +7778,7 @@ enum ArgPredicate {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg_predicate.rs:8-13`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/arg_predicate.rs#L8-L13)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg_predicate.rs:8-13`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/arg_predicate.rs#L8-L13)*
 
 Operations to perform on argument values
 
@@ -7875,7 +7875,7 @@ enum Resettable<T> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:33-38`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/resettable.rs#L33-L38)*
+*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:33-38`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/resettable.rs#L33-L38)*
 
 Clearable builder value
 
@@ -8022,7 +8022,7 @@ enum ValueHint {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_hint.rs:29-68`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/value_hint.rs#L29-L68)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_hint.rs:29-68`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_hint.rs#L29-L68)*
 
 Provide shell with hint on how to complete an argument.
 
@@ -8213,7 +8213,7 @@ Overview of which hints are supported by which shell:
 trait IntoResettable<T> { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:65-68`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/resettable.rs#L65-L68)*
+*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:65-68`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/resettable.rs#L65-L68)*
 
 Convert to the intended resettable type
 
@@ -8244,7 +8244,7 @@ Convert to the intended resettable type
 trait TypedValueParser: Clone + Send + Sync + 'static { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:711-868`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/value_parser.rs#L711-L868)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:711-868`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L711-L868)*
 
 Parse/validate argument values
 
@@ -8358,7 +8358,7 @@ impl clap::builder::TypedValueParser for CustomValueParser {
 trait ValueParserFactory { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2276-2285`](../../../.source_1765521767/clap_builder-4.5.53/src/builder/value_parser.rs#L2276-L2285)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2276-2285`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L2276-L2285)*
 
 Register a type with [`value_parser!`][crate::value_parser!]
 

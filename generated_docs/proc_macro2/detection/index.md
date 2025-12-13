@@ -21,7 +21,7 @@
 fn inside_proc_macro() -> bool
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/detection.rs:7-16`](../../../.source_1765521767/proc-macro2-1.0.103/src/detection.rs#L7-L16)*
+*Defined in [`proc-macro2-1.0.103/src/detection.rs:7-16`](../../../.source_1765633015/proc-macro2-1.0.103/src/detection.rs#L7-L16)*
 
 ### `force_fallback`
 
@@ -29,7 +29,7 @@ fn inside_proc_macro() -> bool
 fn force_fallback()
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/detection.rs:18-20`](../../../.source_1765521767/proc-macro2-1.0.103/src/detection.rs#L18-L20)*
+*Defined in [`proc-macro2-1.0.103/src/detection.rs:18-20`](../../../.source_1765633015/proc-macro2-1.0.103/src/detection.rs#L18-L20)*
 
 ### `unforce_fallback`
 
@@ -37,7 +37,7 @@ fn force_fallback()
 fn unforce_fallback()
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/detection.rs:22-24`](../../../.source_1765521767/proc-macro2-1.0.103/src/detection.rs#L22-L24)*
+*Defined in [`proc-macro2-1.0.103/src/detection.rs:22-24`](../../../.source_1765633015/proc-macro2-1.0.103/src/detection.rs#L22-L24)*
 
 ### `initialize`
 
@@ -45,5 +45,5 @@ fn unforce_fallback()
 fn initialize()
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/detection.rs:27-30`](../../../.source_1765521767/proc-macro2-1.0.103/src/detection.rs#L27-L30)*
+*Defined in [`proc-macro2-1.0.103/src/detection.rs:27-30`](../../../.source_1765633015/proc-macro2-1.0.103/src/detection.rs#L27-L30)*
 

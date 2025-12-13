@@ -23,7 +23,7 @@ struct DebugAddr<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/addr.rs:6-8`](../../../../.source_1765521767/gimli-0.32.3/src/read/addr.rs#L6-L8)*
+*Defined in [`gimli-0.32.3/src/read/addr.rs:6-8`](../../../../.source_1765633015/gimli-0.32.3/src/read/addr.rs#L6-L8)*
 
 The raw contents of the `.debug_addr` section.
 
@@ -152,7 +152,7 @@ struct AddrHeaderIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/addr.rs:82-85`](../../../../.source_1765521767/gimli-0.32.3/src/read/addr.rs#L82-L85)*
+*Defined in [`gimli-0.32.3/src/read/addr.rs:82-85`](../../../../.source_1765633015/gimli-0.32.3/src/read/addr.rs#L82-L85)*
 
 An iterator over the headers of a `.debug_addr` section.
 
@@ -240,7 +240,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/addr.rs:122-131`](../../../../.source_1765521767/gimli-0.32.3/src/read/addr.rs#L122-L131)*
+*Defined in [`gimli-0.32.3/src/read/addr.rs:122-131`](../../../../.source_1765633015/gimli-0.32.3/src/read/addr.rs#L122-L131)*
 
 A header for a set of entries in the `.debug_addr` section.
 
@@ -347,7 +347,7 @@ struct AddrEntryIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/addr.rs:217-220`](../../../../.source_1765521767/gimli-0.32.3/src/read/addr.rs#L217-L220)*
+*Defined in [`gimli-0.32.3/src/read/addr.rs:217-220`](../../../../.source_1765633015/gimli-0.32.3/src/read/addr.rs#L217-L220)*
 
 An iterator over the addresses from a `.debug_addr` section.
 

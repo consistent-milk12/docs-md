@@ -22,7 +22,7 @@ struct Zip<A, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/zip.rs:12-15`](../../../../.source_1765521767/rayon-1.11.0/src/iter/zip.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/zip.rs:12-15`](../../../../.source_1765633015/rayon-1.11.0/src/iter/zip.rs#L12-L15)*
 
 `Zip` is an iterator that zips up `a` and `b` into a single iterator
 of pairs. This struct is created by the `zip()` method on
@@ -148,7 +148,7 @@ struct ZipProducer<A: Producer, B: Producer> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/zip.rs:118-121`](../../../../.source_1765521767/rayon-1.11.0/src/iter/zip.rs#L118-L121)*
+*Defined in [`rayon-1.11.0/src/iter/zip.rs:118-121`](../../../../.source_1765633015/rayon-1.11.0/src/iter/zip.rs#L118-L121)*
 
 #### Trait Implementations
 

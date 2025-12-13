@@ -44,7 +44,7 @@ struct AhoCorasick {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:177-214`](../../../.source_1765521767/aho-corasick-1.1.4/src/ahocorasick.rs#L177-L214)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:177-214`](../../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L177-L214)*
 
 An automaton for searching multiple strings in linear time.
 
@@ -405,7 +405,7 @@ assert_eq!(result, "The slow grey sloth.");
 struct FindIter<'a, 'h>(automaton::FindIter<'a, 'h, alloc::sync::Arc<dyn AcAutomaton>>);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2047`](../../../.source_1765521767/aho-corasick-1.1.4/src/ahocorasick.rs#L2047)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2047`](../../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L2047)*
 
 An iterator of non-overlapping matches in a particular haystack.
 
@@ -487,7 +487,7 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 struct FindOverlappingIter<'a, 'h>(automaton::FindOverlappingIter<'a, 'h, alloc::sync::Arc<dyn AcAutomaton>>);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2070-2072`](../../../.source_1765521767/aho-corasick-1.1.4/src/ahocorasick.rs#L2070-L2072)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2070-2072`](../../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L2070-L2072)*
 
 An iterator of overlapping matches in a particular haystack.
 
@@ -569,7 +569,7 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 struct StreamFindIter<'a, R>(automaton::StreamFindIter<'a, alloc::sync::Arc<dyn AcAutomaton>, R>);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2100-2102`](../../../.source_1765521767/aho-corasick-1.1.4/src/ahocorasick.rs#L2100-L2102)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2100-2102`](../../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L2100-L2102)*
 
 An iterator that reports Aho-Corasick matches in a stream.
 
@@ -661,7 +661,7 @@ struct AhoCorasickBuilder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2135-2141`](../../../.source_1765521767/aho-corasick-1.1.4/src/ahocorasick.rs#L2135-L2141)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2135-2141`](../../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L2135-L2141)*
 
 A builder for configuring an Aho-Corasick automaton.
 
@@ -1451,7 +1451,7 @@ enum AhoCorasickKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2627-2634`](../../../.source_1765521767/aho-corasick-1.1.4/src/ahocorasick.rs#L2627-L2634)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2627-2634`](../../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L2627-L2634)*
 
 The type of Aho-Corasick implementation to use in an [`AhoCorasick`](#ahocorasick)
 searcher.
@@ -1556,7 +1556,7 @@ detail about each choice.
 trait AcAutomaton: Automaton + Debug + Send + Sync + UnwindSafe + RefUnwindSafe + 'static { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2643-2646`](../../../.source_1765521767/aho-corasick-1.1.4/src/ahocorasick.rs#L2643-L2646)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2643-2646`](../../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L2643-L2646)*
 
 A trait that effectively gives us practical dynamic dispatch over anything
 that impls `Automaton`, but without needing to add a bunch of bounds to
@@ -1578,7 +1578,7 @@ requiring that all impls of `Automaton` do so, which would be not great.
 fn enforce_anchored_consistency(have: crate::util::search::StartKind, want: crate::util::search::Anchored) -> Result<(), crate::util::error::MatchError>
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2778-2789`](../../../.source_1765521767/aho-corasick-1.1.4/src/ahocorasick.rs#L2778-L2789)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2778-2789`](../../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L2778-L2789)*
 
 Returns an error if the start state configuration does not support the
 desired search configuration. See the internal 'AhoCorasick::start_kind'

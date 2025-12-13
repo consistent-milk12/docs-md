@@ -27,7 +27,7 @@ struct Params {
 }
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/params.rs:8-25`](../../../.source_1765521767/anstyle-parse-0.2.7/src/params.rs#L8-L25)*
+*Defined in [`anstyle-parse-0.2.7/src/params.rs:8-25`](../../../.source_1765633015/anstyle-parse-0.2.7/src/params.rs#L8-L25)*
 
 #### Fields
 
@@ -175,7 +175,7 @@ struct ParamsIter<'a> {
 }
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/params.rs:88-91`](../../../.source_1765521767/anstyle-parse-0.2.7/src/params.rs#L88-L91)*
+*Defined in [`anstyle-parse-0.2.7/src/params.rs:88-91`](../../../.source_1765633015/anstyle-parse-0.2.7/src/params.rs#L88-L91)*
 
 Immutable subparameter iterator.
 
@@ -250,5 +250,5 @@ Immutable subparameter iterator.
 const MAX_PARAMS: usize = 32usize;
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/params.rs:5`](../../../.source_1765521767/anstyle-parse-0.2.7/src/params.rs#L5)*
+*Defined in [`anstyle-parse-0.2.7/src/params.rs:5`](../../../.source_1765633015/anstyle-parse-0.2.7/src/params.rs#L5)*
 

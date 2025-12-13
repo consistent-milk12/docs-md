@@ -24,7 +24,7 @@ struct LoadCommandIterator<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/load_command.rs:12-16`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/load_command.rs#L12-L16)*
+*Defined in [`object-0.37.3/src/read/macho/load_command.rs:12-16`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/load_command.rs#L12-L16)*
 
 An iterator for the load commands from a [`MachHeader`](../index.md).
 
@@ -132,7 +132,7 @@ struct LoadCommandData<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/load_command.rs:74-79`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/load_command.rs#L74-L79)*
+*Defined in [`object-0.37.3/src/read/macho/load_command.rs:74-79`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/load_command.rs#L74-L79)*
 
 The data for a [`macho::LoadCommand`](../../../macho/index.md).
 
@@ -320,7 +320,7 @@ enum LoadCommandVariant<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/load_command.rs:280-360`](../../../../../.source_1765521767/object-0.37.3/src/read/macho/load_command.rs#L280-L360)*
+*Defined in [`object-0.37.3/src/read/macho/load_command.rs:280-360`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/load_command.rs#L280-L360)*
 
 A [`macho::LoadCommand`](../../../macho/index.md) that has been interpreted according to its `cmd` field.
 

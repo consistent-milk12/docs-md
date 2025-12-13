@@ -25,7 +25,7 @@ struct Number {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/number.rs:22-24`](../../../.source_1765521767/serde_json-1.0.145/src/number.rs#L22-L24)*
+*Defined in [`serde_json-1.0.145/src/number.rs:22-24`](../../../.source_1765633015/serde_json-1.0.145/src/number.rs#L22-L24)*
 
 Represents a JSON number, whether integer or floating point.
 
@@ -341,7 +341,7 @@ enum N {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/number.rs:28-34`](../../../.source_1765521767/serde_json-1.0.145/src/number.rs#L28-L34)*
+*Defined in [`serde_json-1.0.145/src/number.rs:28-34`](../../../.source_1765633015/serde_json-1.0.145/src/number.rs#L28-L34)*
 
 #### Variants
 
@@ -429,17 +429,17 @@ enum N {
 
 ### `deserialize_any!`
 
-*Defined in [`serde_json-1.0.145/src/number.rs:532-577`](../../../.source_1765521767/serde_json-1.0.145/src/number.rs#L532-L577)*
+*Defined in [`serde_json-1.0.145/src/number.rs:532-577`](../../../.source_1765633015/serde_json-1.0.145/src/number.rs#L532-L577)*
 
 ### `deserialize_number!`
 
-*Defined in [`serde_json-1.0.145/src/number.rs:579-597`](../../../.source_1765521767/serde_json-1.0.145/src/number.rs#L579-L597)*
+*Defined in [`serde_json-1.0.145/src/number.rs:579-597`](../../../.source_1765633015/serde_json-1.0.145/src/number.rs#L579-L597)*
 
 ### `impl_from_unsigned!`
 
-*Defined in [`serde_json-1.0.145/src/number.rs:737-757`](../../../.source_1765521767/serde_json-1.0.145/src/number.rs#L737-L757)*
+*Defined in [`serde_json-1.0.145/src/number.rs:737-757`](../../../.source_1765633015/serde_json-1.0.145/src/number.rs#L737-L757)*
 
 ### `impl_from_signed!`
 
-*Defined in [`serde_json-1.0.145/src/number.rs:759-785`](../../../.source_1765521767/serde_json-1.0.145/src/number.rs#L759-L785)*
+*Defined in [`serde_json-1.0.145/src/number.rs:759-785`](../../../.source_1765633015/serde_json-1.0.145/src/number.rs#L759-L785)*
 

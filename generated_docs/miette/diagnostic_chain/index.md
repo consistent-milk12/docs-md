@@ -23,7 +23,7 @@ struct DiagnosticChain<'a> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/diagnostic_chain.rs:10-12`](../../../.source_1765521767/miette-7.6.0/src/diagnostic_chain.rs#L10-L12)*
+*Defined in [`miette-7.6.0/src/diagnostic_chain.rs:10-12`](../../../.source_1765633015/miette-7.6.0/src/diagnostic_chain.rs#L10-L12)*
 
 Iterator of a chain of cause errors.
 
@@ -130,7 +130,7 @@ enum ErrorKind<'a> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/diagnostic_chain.rs:60-63`](../../../.source_1765521767/miette-7.6.0/src/diagnostic_chain.rs#L60-L63)*
+*Defined in [`miette-7.6.0/src/diagnostic_chain.rs:60-63`](../../../.source_1765633015/miette-7.6.0/src/diagnostic_chain.rs#L60-L63)*
 
 #### Implementations
 

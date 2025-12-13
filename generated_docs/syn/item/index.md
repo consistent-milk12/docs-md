@@ -129,7 +129,7 @@ struct ItemConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:101-116`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L101-L116)*
+*Defined in [`syn-2.0.111/src/item.rs:101-116`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L101-L116)*
 
 A constant item: `const MAX: u16 = 65535`.
 
@@ -239,7 +239,7 @@ struct ItemEnum {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:118-130`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L118-L130)*
+*Defined in [`syn-2.0.111/src/item.rs:118-130`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L118-L130)*
 
 An enum definition: `enum Foo<A, B> { A(A), B(B) }`.
 
@@ -349,7 +349,7 @@ struct ItemExternCrate {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:132-144`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L132-L144)*
+*Defined in [`syn-2.0.111/src/item.rs:132-144`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L132-L144)*
 
 An `extern crate` item: `extern crate serde`.
 
@@ -456,7 +456,7 @@ struct ItemFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:146-155`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L146-L155)*
+*Defined in [`syn-2.0.111/src/item.rs:146-155`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L146-L155)*
 
 A free-standing function: `fn process(n: usize) -> Result<()> { ... }`.
 
@@ -564,7 +564,7 @@ struct ItemForeignMod {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:157-167`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L157-L167)*
+*Defined in [`syn-2.0.111/src/item.rs:157-167`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L157-L167)*
 
 A block of foreign items: `extern "C" { ... }`.
 
@@ -676,7 +676,7 @@ struct ItemImpl {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:169-186`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L169-L186)*
+*Defined in [`syn-2.0.111/src/item.rs:169-186`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L169-L186)*
 
 An impl block providing trait or associated items: `impl<A> Trait
 for Data<A> { ... }`.
@@ -794,7 +794,7 @@ struct ItemMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:188-198`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L188-L198)*
+*Defined in [`syn-2.0.111/src/item.rs:188-198`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L188-L198)*
 
 A macro invocation, which includes `macro_rules!` definitions.
 
@@ -910,7 +910,7 @@ struct ItemMod {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:200-212`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L200-L212)*
+*Defined in [`syn-2.0.111/src/item.rs:200-212`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L200-L212)*
 
 A module or module declaration: `mod m` or `mod m { ... }`.
 
@@ -1023,7 +1023,7 @@ struct ItemStatic {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:214-229`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L214-L229)*
+*Defined in [`syn-2.0.111/src/item.rs:214-229`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L214-L229)*
 
 A static item: `static BIKE: Shed = Shed(42)`.
 
@@ -1133,7 +1133,7 @@ struct ItemStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:231-243`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L231-L243)*
+*Defined in [`syn-2.0.111/src/item.rs:231-243`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L231-L243)*
 
 A struct definition: `struct Foo<A> { x: A }`.
 
@@ -1248,7 +1248,7 @@ struct ItemTrait {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:245-262`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L245-L262)*
+*Defined in [`syn-2.0.111/src/item.rs:245-262`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L245-L262)*
 
 A trait definition: `pub trait Iterator { ... }`.
 
@@ -1359,7 +1359,7 @@ struct ItemTraitAlias {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:264-277`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L264-L277)*
+*Defined in [`syn-2.0.111/src/item.rs:264-277`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L264-L277)*
 
 A trait alias: `pub trait SharableIterator = Iterator + Sync`.
 
@@ -1470,7 +1470,7 @@ struct ItemType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:279-292`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L279-L292)*
+*Defined in [`syn-2.0.111/src/item.rs:279-292`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L279-L292)*
 
 A type alias: `type Result<T> = std::result::Result<T, MyError>`.
 
@@ -1579,7 +1579,7 @@ struct ItemUnion {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:294-305`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L294-L305)*
+*Defined in [`syn-2.0.111/src/item.rs:294-305`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L294-L305)*
 
 A union definition: `union Foo<A, B> { x: A, y: B }`.
 
@@ -1688,7 +1688,7 @@ struct ItemUse {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:307-318`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L307-L318)*
+*Defined in [`syn-2.0.111/src/item.rs:307-318`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L307-L318)*
 
 A use declaration: `use std::collections::HashMap`.
 
@@ -1794,7 +1794,7 @@ struct UsePath {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:451-459`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L451-L459)*
+*Defined in [`syn-2.0.111/src/item.rs:451-459`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L451-L459)*
 
 A path prefix of imports in a `use` item: `std::...`.
 
@@ -1890,7 +1890,7 @@ struct UseName {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:461-467`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L461-L467)*
+*Defined in [`syn-2.0.111/src/item.rs:461-467`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L461-L467)*
 
 An identifier imported by a `use` item: `HashMap`.
 
@@ -1988,7 +1988,7 @@ struct UseRename {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:469-477`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L469-L477)*
+*Defined in [`syn-2.0.111/src/item.rs:469-477`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L469-L477)*
 
 An renamed identifier imported by a `use` item: `HashMap as Map`.
 
@@ -2084,7 +2084,7 @@ struct UseGlob {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:479-485`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L479-L485)*
+*Defined in [`syn-2.0.111/src/item.rs:479-485`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L479-L485)*
 
 A glob import in a `use` item: `*`.
 
@@ -2181,7 +2181,7 @@ struct UseGroup {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:487-494`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L487-L494)*
+*Defined in [`syn-2.0.111/src/item.rs:487-494`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L487-L494)*
 
 A braced group of imports in a `use` item: `{A, B, C}`.
 
@@ -2280,7 +2280,7 @@ struct ForeignItemFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:542-551`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L542-L551)*
+*Defined in [`syn-2.0.111/src/item.rs:542-551`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L542-L551)*
 
 A foreign function in an `extern` block.
 
@@ -2391,7 +2391,7 @@ struct ForeignItemStatic {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:553-566`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L553-L566)*
+*Defined in [`syn-2.0.111/src/item.rs:553-566`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L553-L566)*
 
 A foreign static item in an `extern` block: `static ext: u8`.
 
@@ -2500,7 +2500,7 @@ struct ForeignItemType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:568-579`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L568-L579)*
+*Defined in [`syn-2.0.111/src/item.rs:568-579`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L568-L579)*
 
 A foreign type in an `extern` block: `type void`.
 
@@ -2606,7 +2606,7 @@ struct ForeignItemMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:581-589`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L581-L589)*
+*Defined in [`syn-2.0.111/src/item.rs:581-589`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L581-L589)*
 
 A macro invocation within an extern block.
 
@@ -2717,7 +2717,7 @@ struct TraitItemConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:637-650`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L637-L650)*
+*Defined in [`syn-2.0.111/src/item.rs:637-650`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L637-L650)*
 
 An associated constant within the definition of a trait.
 
@@ -2824,7 +2824,7 @@ struct TraitItemFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:652-661`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L652-L661)*
+*Defined in [`syn-2.0.111/src/item.rs:652-661`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L652-L661)*
 
 An associated function within the definition of a trait.
 
@@ -2935,7 +2935,7 @@ struct TraitItemType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:663-676`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L663-L676)*
+*Defined in [`syn-2.0.111/src/item.rs:663-676`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L663-L676)*
 
 An associated type within the definition of a trait.
 
@@ -3041,7 +3041,7 @@ struct TraitItemMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:678-686`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L678-L686)*
+*Defined in [`syn-2.0.111/src/item.rs:678-686`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L678-L686)*
 
 A macro invocation within the definition of a trait.
 
@@ -3155,7 +3155,7 @@ struct ImplItemConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:734-750`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L734-L750)*
+*Defined in [`syn-2.0.111/src/item.rs:734-750`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L734-L750)*
 
 An associated constant within an impl block.
 
@@ -3263,7 +3263,7 @@ struct ImplItemFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:752-762`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L752-L762)*
+*Defined in [`syn-2.0.111/src/item.rs:752-762`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L752-L762)*
 
 An associated function within an impl block.
 
@@ -3375,7 +3375,7 @@ struct ImplItemType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:764-778`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L764-L778)*
+*Defined in [`syn-2.0.111/src/item.rs:764-778`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L764-L778)*
 
 An associated type within an impl block.
 
@@ -3481,7 +3481,7 @@ struct ImplItemMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:780-788`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L780-L788)*
+*Defined in [`syn-2.0.111/src/item.rs:780-788`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L780-L788)*
 
 A macro invocation within an impl block.
 
@@ -3595,7 +3595,7 @@ struct Signature {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:790-807`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L790-L807)*
+*Defined in [`syn-2.0.111/src/item.rs:790-807`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L790-L807)*
 
 A function signature in a trait or implementation: `unsafe fn
 initialize(&self)`.
@@ -3707,7 +3707,7 @@ struct Receiver {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:832-849`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L832-L849)*
+*Defined in [`syn-2.0.111/src/item.rs:832-849`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L832-L849)*
 
 The `self` argument of an associated method.
 
@@ -3820,7 +3820,7 @@ struct Variadic {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:857-876`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L857-L876)*
+*Defined in [`syn-2.0.111/src/item.rs:857-876`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L857-L876)*
 
 The variadic argument of a foreign function.
 
@@ -3943,7 +3943,7 @@ enum Item {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:20-99`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L20-L99)*
+*Defined in [`syn-2.0.111/src/item.rs:20-99`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L20-L99)*
 
 Things that can appear directly inside of a module or scope.
 
@@ -4124,7 +4124,7 @@ enum UseTree {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:424-449`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L424-L449)*
+*Defined in [`syn-2.0.111/src/item.rs:424-449`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L424-L449)*
 
 A suffix of an import tree in a `use` item: `Type as Renamed` or `*`.
 
@@ -4255,7 +4255,7 @@ enum ForeignItem {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:496-540`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L496-L540)*
+*Defined in [`syn-2.0.111/src/item.rs:496-540`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L496-L540)*
 
 An item within an `extern` block.
 
@@ -4386,7 +4386,7 @@ enum TraitItem {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:591-635`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L591-L635)*
+*Defined in [`syn-2.0.111/src/item.rs:591-635`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L591-L635)*
 
 An item declaration within the definition of a trait.
 
@@ -4517,7 +4517,7 @@ enum ImplItem {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:688-732`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L688-L732)*
+*Defined in [`syn-2.0.111/src/item.rs:688-732`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L688-L732)*
 
 An item within an impl block.
 
@@ -4645,7 +4645,7 @@ enum FnArg {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:820-830`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L820-L830)*
+*Defined in [`syn-2.0.111/src/item.rs:820-830`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L820-L830)*
 
 An argument in a function signature: the `n: usize` in `fn f(n: usize)`.
 
@@ -4756,7 +4756,7 @@ enum StaticMutability {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:878-886`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L878-L886)*
+*Defined in [`syn-2.0.111/src/item.rs:878-886`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L878-L886)*
 
 The mutability of an `Item::Static` or `ForeignItem::Static`.
 
@@ -4855,7 +4855,7 @@ enum ImplRestriction {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:888-903`](../../../.source_1765521767/syn-2.0.111/src/item.rs#L888-L903)*
+*Defined in [`syn-2.0.111/src/item.rs:888-903`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L888-L903)*
 
 Unused, but reserved for RFC 3323 restrictions.
 

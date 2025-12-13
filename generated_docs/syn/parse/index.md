@@ -116,7 +116,7 @@ The `parse_quote!` macro also uses this approach.
 
 Some types can be parsed in several ways depending on context. For example
 an [`Attribute`](../attr/index.md) can be either "outer" like `#[...]` or "inner" like
-`#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](../index.md)
+`#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](../punctuated/index.md)
 may or may not allow trailing punctuation, and parsing it the wrong way
 would either reject valid input or accept invalid input.
 
@@ -247,7 +247,7 @@ struct Error {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:101-103`](../../../.source_1765521767/syn-2.0.111/src/error.rs#L101-L103)*
+*Defined in [`syn-2.0.111/src/error.rs:101-103`](../../../.source_1765633015/syn-2.0.111/src/error.rs#L101-L103)*
 
 Error returned when a Syn parser cannot parse the input tokens.
 
@@ -600,7 +600,7 @@ mod expand {
 struct End;
 ```
 
-*Defined in [`syn-2.0.111/src/lookahead.rs:310`](../../../.source_1765521767/syn-2.0.111/src/lookahead.rs#L310)*
+*Defined in [`syn-2.0.111/src/lookahead.rs:310`](../../../.source_1765633015/syn-2.0.111/src/lookahead.rs#L310)*
 
 Pseudo-token used for peeking the end of a parse stream.
 
@@ -815,7 +815,7 @@ struct Lookahead1<'a> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lookahead.rs:63-67`](../../../.source_1765521767/syn-2.0.111/src/lookahead.rs#L63-L67)*
+*Defined in [`syn-2.0.111/src/lookahead.rs:63-67`](../../../.source_1765633015/syn-2.0.111/src/lookahead.rs#L63-L67)*
 
 Support for checking the next token in a stream to decide how to parse.
 
@@ -966,7 +966,7 @@ struct ParseBuffer<'a> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/parse.rs:246-262`](../../../.source_1765521767/syn-2.0.111/src/parse.rs#L246-L262)*
+*Defined in [`syn-2.0.111/src/parse.rs:246-262`](../../../.source_1765633015/syn-2.0.111/src/parse.rs#L246-L262)*
 
 Cursor position within a buffered token stream.
 
@@ -2248,7 +2248,7 @@ struct StepCursor<'c, 'a> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/parse.rs:335-348`](../../../.source_1765521767/syn-2.0.111/src/parse.rs#L335-L348)*
+*Defined in [`syn-2.0.111/src/parse.rs:335-348`](../../../.source_1765633015/syn-2.0.111/src/parse.rs#L335-L348)*
 
 Cursor state associated with speculative parsing.
 
@@ -2383,7 +2383,7 @@ assert_eq!(remainder.to_string(), "b c");
 struct Nothing;
 ```
 
-*Defined in [`syn-2.0.111/src/parse.rs:1367`](../../../.source_1765521767/syn-2.0.111/src/parse.rs#L1367)*
+*Defined in [`syn-2.0.111/src/parse.rs:1367`](../../../.source_1765633015/syn-2.0.111/src/parse.rs#L1367)*
 
 An empty syntax tree node that consumes no tokens when parsed.
 
@@ -2518,7 +2518,7 @@ enum Unexpected {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/parse.rs:399-403`](../../../.source_1765521767/syn-2.0.111/src/parse.rs#L399-L403)*
+*Defined in [`syn-2.0.111/src/parse.rs:399-403`](../../../.source_1765633015/syn-2.0.111/src/parse.rs#L399-L403)*
 
 #### Trait Implementations
 
@@ -2592,7 +2592,7 @@ enum Unexpected {
 trait Peek: Sealed { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/lookahead.rs:174-178`](../../../.source_1765521767/syn-2.0.111/src/lookahead.rs#L174-L178)*
+*Defined in [`syn-2.0.111/src/lookahead.rs:174-178`](../../../.source_1765633015/syn-2.0.111/src/lookahead.rs#L174-L178)*
 
 Types that can be parsed by looking at just one token.
 
@@ -2614,7 +2614,7 @@ This trait is sealed and cannot be implemented for types outside of Syn.
 trait Parse: Sized { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/parse.rs:214-216`](../../../.source_1765521767/syn-2.0.111/src/parse.rs#L214-L216)*
+*Defined in [`syn-2.0.111/src/parse.rs:214-216`](../../../.source_1765633015/syn-2.0.111/src/parse.rs#L214-L216)*
 
 Parsing interface implemented by all types that can be parsed in a default
 way from a token stream.
@@ -2892,7 +2892,7 @@ the `Parse` trait.
 trait Parser: Sized { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/parse.rs:1239-1277`](../../../.source_1765521767/syn-2.0.111/src/parse.rs#L1239-L1277)*
+*Defined in [`syn-2.0.111/src/parse.rs:1239-1277`](../../../.source_1765633015/syn-2.0.111/src/parse.rs#L1239-L1277)*
 
 Parser that can parse Rust tokens into a particular syntax tree node.
 
@@ -2931,7 +2931,7 @@ Refer to the [module documentation] for details about parsing in Syn.
 fn advance_step_cursor<'c, 'a>(proof: StepCursor<'c, 'a>, to: crate::buffer::Cursor<'c>) -> crate::buffer::Cursor<'a>
 ```
 
-*Defined in [`syn-2.0.111/src/parse.rs:376-383`](../../../.source_1765521767/syn-2.0.111/src/parse.rs#L376-L383)*
+*Defined in [`syn-2.0.111/src/parse.rs:376-383`](../../../.source_1765633015/syn-2.0.111/src/parse.rs#L376-L383)*
 
 ### `new_parse_buffer`
 
@@ -2939,7 +2939,7 @@ fn advance_step_cursor<'c, 'a>(proof: StepCursor<'c, 'a>, to: crate::buffer::Cur
 fn new_parse_buffer(scope: proc_macro2::Span, cursor: crate::buffer::Cursor<'_>, unexpected: std::rc::Rc<std::cell::Cell<Unexpected>>) -> ParseBuffer<'_>
 ```
 
-*Defined in [`syn-2.0.111/src/parse.rs:385-397`](../../../.source_1765521767/syn-2.0.111/src/parse.rs#L385-L397)*
+*Defined in [`syn-2.0.111/src/parse.rs:385-397`](../../../.source_1765633015/syn-2.0.111/src/parse.rs#L385-L397)*
 
 ### `cell_clone`
 
@@ -2947,7 +2947,7 @@ fn new_parse_buffer(scope: proc_macro2::Span, cursor: crate::buffer::Cursor<'_>,
 fn cell_clone<T: Default + Clone>(cell: &std::cell::Cell<T>) -> T
 ```
 
-*Defined in [`syn-2.0.111/src/parse.rs:423-428`](../../../.source_1765521767/syn-2.0.111/src/parse.rs#L423-L428)*
+*Defined in [`syn-2.0.111/src/parse.rs:423-428`](../../../.source_1765633015/syn-2.0.111/src/parse.rs#L423-L428)*
 
 ### `inner_unexpected`
 
@@ -2955,7 +2955,7 @@ fn cell_clone<T: Default + Clone>(cell: &std::cell::Cell<T>) -> T
 fn inner_unexpected(buffer: &ParseBuffer<'_>) -> (std::rc::Rc<std::cell::Cell<Unexpected>>, Option<(proc_macro2::Span, proc_macro2::Delimiter)>)
 ```
 
-*Defined in [`syn-2.0.111/src/parse.rs:430-439`](../../../.source_1765521767/syn-2.0.111/src/parse.rs#L430-L439)*
+*Defined in [`syn-2.0.111/src/parse.rs:430-439`](../../../.source_1765633015/syn-2.0.111/src/parse.rs#L430-L439)*
 
 ### `get_unexpected`
 
@@ -2963,7 +2963,7 @@ fn inner_unexpected(buffer: &ParseBuffer<'_>) -> (std::rc::Rc<std::cell::Cell<Un
 fn get_unexpected(buffer: &ParseBuffer<'_>) -> std::rc::Rc<std::cell::Cell<Unexpected>>
 ```
 
-*Defined in [`syn-2.0.111/src/parse.rs:441-443`](../../../.source_1765521767/syn-2.0.111/src/parse.rs#L441-L443)*
+*Defined in [`syn-2.0.111/src/parse.rs:441-443`](../../../.source_1765633015/syn-2.0.111/src/parse.rs#L441-L443)*
 
 ### `span_of_unexpected_ignoring_nones`
 
@@ -2971,7 +2971,7 @@ fn get_unexpected(buffer: &ParseBuffer<'_>) -> std::rc::Rc<std::cell::Cell<Unexp
 fn span_of_unexpected_ignoring_nones(cursor: crate::buffer::Cursor<'_>) -> Option<(proc_macro2::Span, proc_macro2::Delimiter)>
 ```
 
-*Defined in [`syn-2.0.111/src/parse.rs:445-460`](../../../.source_1765521767/syn-2.0.111/src/parse.rs#L445-L460)*
+*Defined in [`syn-2.0.111/src/parse.rs:445-460`](../../../.source_1765633015/syn-2.0.111/src/parse.rs#L445-L460)*
 
 ### `tokens_to_parse_buffer`
 
@@ -2979,7 +2979,7 @@ fn span_of_unexpected_ignoring_nones(cursor: crate::buffer::Cursor<'_>) -> Optio
 fn tokens_to_parse_buffer(tokens: &crate::buffer::TokenBuffer) -> ParseBuffer<'_>
 ```
 
-*Defined in [`syn-2.0.111/src/parse.rs:1279-1284`](../../../.source_1765521767/syn-2.0.111/src/parse.rs#L1279-L1284)*
+*Defined in [`syn-2.0.111/src/parse.rs:1279-1284`](../../../.source_1765633015/syn-2.0.111/src/parse.rs#L1279-L1284)*
 
 ### `parse_scoped`
 
@@ -2987,7 +2987,7 @@ fn tokens_to_parse_buffer(tokens: &crate::buffer::TokenBuffer) -> ParseBuffer<'_
 fn parse_scoped<F: Parser>(f: F, scope: proc_macro2::Span, tokens: proc_macro2::TokenStream) -> Result<<F as >::Output>
 ```
 
-*Defined in [`syn-2.0.111/src/parse.rs:1323-1325`](../../../.source_1765521767/syn-2.0.111/src/parse.rs#L1323-L1325)*
+*Defined in [`syn-2.0.111/src/parse.rs:1323-1325`](../../../.source_1765633015/syn-2.0.111/src/parse.rs#L1323-L1325)*
 
 ### `err_unexpected_token`
 
@@ -2995,7 +2995,7 @@ fn parse_scoped<F: Parser>(f: F, scope: proc_macro2::Span, tokens: proc_macro2::
 fn err_unexpected_token(span: proc_macro2::Span, delimiter: proc_macro2::Delimiter) -> Error
 ```
 
-*Defined in [`syn-2.0.111/src/parse.rs:1327-1335`](../../../.source_1765521767/syn-2.0.111/src/parse.rs#L1327-L1335)*
+*Defined in [`syn-2.0.111/src/parse.rs:1327-1335`](../../../.source_1765633015/syn-2.0.111/src/parse.rs#L1327-L1335)*
 
 ## Type Aliases
 
@@ -3005,7 +3005,7 @@ fn err_unexpected_token(span: proc_macro2::Span, delimiter: proc_macro2::Delimit
 type Result<T> = std::result::Result<T, Error>;
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:15`](../../../.source_1765521767/syn-2.0.111/src/error.rs#L15)*
+*Defined in [`syn-2.0.111/src/error.rs:15`](../../../.source_1765633015/syn-2.0.111/src/error.rs#L15)*
 
 The result of a Syn parser.
 
@@ -3015,7 +3015,7 @@ The result of a Syn parser.
 type ParseStream<'a> = &'a ParseBuffer<'a>;
 ```
 
-*Defined in [`syn-2.0.111/src/parse.rs:224`](../../../.source_1765521767/syn-2.0.111/src/parse.rs#L224)*
+*Defined in [`syn-2.0.111/src/parse.rs:224`](../../../.source_1765633015/syn-2.0.111/src/parse.rs#L224)*
 
 Input to a Syn parser function.
 

@@ -99,7 +99,7 @@ If you're looking for [`SeekFrom`](#seekfrom), it's in the `fs` module.
 struct Errno(u16);
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:51`](../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L51)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:51`](../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L51)*
 
 `errno`—An error code.
 
@@ -246,7 +246,7 @@ but only holds an OS error code, and no extra error value.
 fn retry_on_intr<T, F: FnMut() -> Result<T>>(f: F) -> Result<T>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/errno.rs:67-74`](../../../.source_1765521767/rustix-1.1.2/src/io/errno.rs#L67-L74)*
+*Defined in [`rustix-1.1.2/src/io/errno.rs:67-74`](../../../.source_1765633015/rustix-1.1.2/src/io/errno.rs#L67-L74)*
 
 Call `f` until it either succeeds or fails other than `Errno::INTR`.
 
@@ -256,7 +256,7 @@ Call `f` until it either succeeds or fails other than `Errno::INTR`.
 unsafe fn close(raw_fd: backend::fd::RawFd)
 ```
 
-*Defined in [`rustix-1.1.2/src/io/close.rs:54-56`](../../../.source_1765521767/rustix-1.1.2/src/io/close.rs#L54-L56)*
+*Defined in [`rustix-1.1.2/src/io/close.rs:54-56`](../../../.source_1765633015/rustix-1.1.2/src/io/close.rs#L54-L56)*
 
 `close(raw_fd)`—Closes a `RawFd` directly.
 
@@ -303,7 +303,7 @@ not valid after the call.
 fn dup<Fd: AsFd>(fd: Fd) -> io::Result<crate::fd::OwnedFd>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/dup.rs:44-46`](../../../.source_1765521767/rustix-1.1.2/src/io/dup.rs#L44-L46)*
+*Defined in [`rustix-1.1.2/src/io/dup.rs:44-46`](../../../.source_1765633015/rustix-1.1.2/src/io/dup.rs#L44-L46)*
 
 `dup(fd)`—Creates a new `OwnedFd` instance that shares the same
 underlying [file description] as `fd`.
@@ -343,7 +343,7 @@ be unexpectedly allocated on other threads or in libraries.
 fn dup2<Fd: AsFd>(fd: Fd, new: &mut crate::fd::OwnedFd) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/dup.rs:89-91`](../../../.source_1765521767/rustix-1.1.2/src/io/dup.rs#L89-L91)*
+*Defined in [`rustix-1.1.2/src/io/dup.rs:89-91`](../../../.source_1765633015/rustix-1.1.2/src/io/dup.rs#L89-L91)*
 
 `dup2(fd, new)`—Changes the [file description] of a file descriptor.
 
@@ -390,7 +390,7 @@ For `dup2` to stdin, stdout, and stderr, see `stdio::dup2_stdin`,
 fn dup3<Fd: AsFd>(fd: Fd, new: &mut crate::fd::OwnedFd, flags: DupFlags) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/dup.rs:123-125`](../../../.source_1765521767/rustix-1.1.2/src/io/dup.rs#L123-L125)*
+*Defined in [`rustix-1.1.2/src/io/dup.rs:123-125`](../../../.source_1765633015/rustix-1.1.2/src/io/dup.rs#L123-L125)*
 
 `dup3(fd, new, flags)`—Changes the [file description] of a file
 descriptor, with flags.
@@ -419,7 +419,7 @@ This additional difference is the reason this function isn't named
 fn fcntl_getfd<Fd: AsFd>(fd: Fd) -> io::Result<FdFlags>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/fcntl.rs:40-42`](../../../.source_1765521767/rustix-1.1.2/src/io/fcntl.rs#L40-L42)*
+*Defined in [`rustix-1.1.2/src/io/fcntl.rs:40-42`](../../../.source_1765633015/rustix-1.1.2/src/io/fcntl.rs#L40-L42)*
 
 `fcntl(fd, F_GETFD)`—Returns a file descriptor's flags.
 
@@ -449,7 +449,7 @@ fn fcntl_getfd<Fd: AsFd>(fd: Fd) -> io::Result<FdFlags>
 fn fcntl_setfd<Fd: AsFd>(fd: Fd, flags: FdFlags) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/fcntl.rs:68-70`](../../../.source_1765521767/rustix-1.1.2/src/io/fcntl.rs#L68-L70)*
+*Defined in [`rustix-1.1.2/src/io/fcntl.rs:68-70`](../../../.source_1765633015/rustix-1.1.2/src/io/fcntl.rs#L68-L70)*
 
 `fcntl(fd, F_SETFD, flags)`—Sets a file descriptor's flags.
 
@@ -479,7 +479,7 @@ fn fcntl_setfd<Fd: AsFd>(fd: Fd, flags: FdFlags) -> io::Result<()>
 fn fcntl_dupfd_cloexec<Fd: AsFd>(fd: Fd, min: backend::fd::RawFd) -> io::Result<backend::fd::OwnedFd>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/fcntl.rs:105-107`](../../../.source_1765521767/rustix-1.1.2/src/io/fcntl.rs#L105-L107)*
+*Defined in [`rustix-1.1.2/src/io/fcntl.rs:105-107`](../../../.source_1765633015/rustix-1.1.2/src/io/fcntl.rs#L105-L107)*
 
 `fcntl(fd, F_DUPFD_CLOEXEC)`—Creates a new `OwnedFd` instance, with value
 at least `min`, that has `O_CLOEXEC` set and that shares the same
@@ -517,7 +517,7 @@ threads or in libraries.
 fn ioctl_fioclex<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/ioctl.rs:26-32`](../../../.source_1765521767/rustix-1.1.2/src/io/ioctl.rs#L26-L32)*
+*Defined in [`rustix-1.1.2/src/io/ioctl.rs:26-32`](../../../.source_1765633015/rustix-1.1.2/src/io/ioctl.rs#L26-L32)*
 
 `ioctl(fd, FIOCLEX, NULL)`—Set the close-on-exec flag.
 
@@ -533,7 +533,7 @@ descriptors.
 fn ioctl_fionclex<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/ioctl.rs:44-50`](../../../.source_1765521767/rustix-1.1.2/src/io/ioctl.rs#L44-L50)*
+*Defined in [`rustix-1.1.2/src/io/ioctl.rs:44-50`](../../../.source_1765633015/rustix-1.1.2/src/io/ioctl.rs#L44-L50)*
 
 `ioctl(fd, FIONCLEX, NULL)`—Remove the close-on-exec flag.
 
@@ -549,7 +549,7 @@ descriptors.
 fn ioctl_fionbio<Fd: AsFd>(fd: Fd, value: bool) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/ioctl.rs:64-70`](../../../.source_1765521767/rustix-1.1.2/src/io/ioctl.rs#L64-L70)*
+*Defined in [`rustix-1.1.2/src/io/ioctl.rs:64-70`](../../../.source_1765633015/rustix-1.1.2/src/io/ioctl.rs#L64-L70)*
 
 `ioctl(fd, FIONBIO, &value)`—Enables or disables non-blocking mode.
 
@@ -567,7 +567,7 @@ fn ioctl_fionbio<Fd: AsFd>(fd: Fd, value: bool) -> io::Result<()>
 fn ioctl_fionread<Fd: AsFd>(fd: Fd) -> io::Result<u64>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/ioctl.rs:92-98`](../../../.source_1765521767/rustix-1.1.2/src/io/ioctl.rs#L92-L98)*
+*Defined in [`rustix-1.1.2/src/io/ioctl.rs:92-98`](../../../.source_1765633015/rustix-1.1.2/src/io/ioctl.rs#L92-L98)*
 
 `ioctl(fd, FIONREAD)`—Returns the number of bytes ready to be read.
 
@@ -592,7 +592,7 @@ so it may contain a wrapped value.
 fn read<Fd: AsFd, Buf: Buffer<u8>>(fd: Fd, buf: Buf) -> io::Result<<Buf as >::Output>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:39-44`](../../../.source_1765521767/rustix-1.1.2/src/io/read_write.rs#L39-L44)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:39-44`](../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L39-L44)*
 
 `read(fd, buf)`—Reads from a stream.
 
@@ -622,7 +622,7 @@ fn read<Fd: AsFd, Buf: Buffer<u8>>(fd: Fd, buf: Buf) -> io::Result<<Buf as >::Ou
 fn write<Fd: AsFd>(fd: Fd, buf: &[u8]) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:69-71`](../../../.source_1765521767/rustix-1.1.2/src/io/read_write.rs#L69-L71)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:69-71`](../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L69-L71)*
 
 `write(fd, buf)`—Writes to a stream.
 
@@ -652,7 +652,7 @@ fn write<Fd: AsFd>(fd: Fd, buf: &[u8]) -> io::Result<usize>
 fn pread<Fd: AsFd, Buf: Buffer<u8>>(fd: Fd, buf: Buf, offset: u64) -> io::Result<<Buf as >::Output>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:97-106`](../../../.source_1765521767/rustix-1.1.2/src/io/read_write.rs#L97-L106)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:97-106`](../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L97-L106)*
 
 `pread(fd, buf, offset)`—Reads from a file at a given position.
 
@@ -682,7 +682,7 @@ fn pread<Fd: AsFd, Buf: Buffer<u8>>(fd: Fd, buf: Buf, offset: u64) -> io::Result
 fn pwrite<Fd: AsFd>(fd: Fd, buf: &[u8], offset: u64) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:136-138`](../../../.source_1765521767/rustix-1.1.2/src/io/read_write.rs#L136-L138)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:136-138`](../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L136-L138)*
 
 `pwrite(fd, bufs)`—Writes to a file at a given position.
 
@@ -716,7 +716,7 @@ data to the end of the file.
 fn readv<Fd: AsFd>(fd: Fd, bufs: &mut [IoSliceMut<'_>]) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:164-166`](../../../.source_1765521767/rustix-1.1.2/src/io/read_write.rs#L164-L166)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:164-166`](../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L164-L166)*
 
 `readv(fd, bufs)`—Reads from a stream into multiple buffers.
 
@@ -746,7 +746,7 @@ fn readv<Fd: AsFd>(fd: Fd, bufs: &mut [IoSliceMut<'_>]) -> io::Result<usize>
 fn writev<Fd: AsFd>(fd: Fd, bufs: &[IoSlice<'_>]) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:192-194`](../../../.source_1765521767/rustix-1.1.2/src/io/read_write.rs#L192-L194)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:192-194`](../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L192-L194)*
 
 `writev(fd, bufs)`—Writes to a stream from multiple buffers.
 
@@ -776,7 +776,7 @@ fn writev<Fd: AsFd>(fd: Fd, bufs: &[IoSlice<'_>]) -> io::Result<usize>
 fn preadv<Fd: AsFd>(fd: Fd, bufs: &mut [IoSliceMut<'_>], offset: u64) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:227-229`](../../../.source_1765521767/rustix-1.1.2/src/io/read_write.rs#L227-L229)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:227-229`](../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L227-L229)*
 
 `preadv(fd, bufs, offset)`—Reads from a file at a given position into
 multiple buffers.
@@ -803,7 +803,7 @@ multiple buffers.
 fn pwritev<Fd: AsFd>(fd: Fd, bufs: &[IoSlice<'_>], offset: u64) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:266-268`](../../../.source_1765521767/rustix-1.1.2/src/io/read_write.rs#L266-L268)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:266-268`](../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L266-L268)*
 
 `pwritev(fd, bufs, offset)`—Writes to a file at a given position from
 multiple buffers.
@@ -834,7 +834,7 @@ data to the end of the file.
 fn preadv2<Fd: AsFd>(fd: Fd, bufs: &mut [IoSliceMut<'_>], offset: u64, flags: ReadWriteFlags) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:282-289`](../../../.source_1765521767/rustix-1.1.2/src/io/read_write.rs#L282-L289)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:282-289`](../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L282-L289)*
 
 `preadv2(fd, bufs, offset, flags)`—Reads data, with several options.
 
@@ -852,7 +852,7 @@ An `offset` of `u64::MAX` means to use and update the current file offset.
 fn pwritev2<Fd: AsFd>(fd: Fd, bufs: &[IoSlice<'_>], offset: u64, flags: ReadWriteFlags) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:303-310`](../../../.source_1765521767/rustix-1.1.2/src/io/read_write.rs#L303-L310)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:303-310`](../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L303-L310)*
 
 `pwritev2(fd, bufs, offset, flags)`—Writes data, with several options.
 
@@ -872,7 +872,7 @@ An `offset` of `u64::MAX` means to use and update the current file offset.
 type Result<T> = result::Result<T, Errno>;
 ```
 
-*Defined in [`rustix-1.1.2/src/io/errno.rs:15`](../../../.source_1765521767/rustix-1.1.2/src/io/errno.rs#L15)*
+*Defined in [`rustix-1.1.2/src/io/errno.rs:15`](../../../.source_1765633015/rustix-1.1.2/src/io/errno.rs#L15)*
 
 A specialized [`Result`](errno/index.md) type for `rustix` APIs.
 

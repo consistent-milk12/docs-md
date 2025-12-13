@@ -28,7 +28,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:18-24`](../../../../.source_1765521767/gimli-0.32.3/src/read/endian_slice.rs#L18-L24)*
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:18-24`](../../../../.source_1765633015/gimli-0.32.3/src/read/endian_slice.rs#L18-L24)*
 
 A `&[u8]` slice with endianity metadata.
 
@@ -212,7 +212,7 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 struct DebugBytes<'input>(&'input [u8]);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:190`](../../../../.source_1765521767/gimli-0.32.3/src/read/endian_slice.rs#L190)*
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:190`](../../../../.source_1765633015/gimli-0.32.3/src/read/endian_slice.rs#L190)*
 
 #### Trait Implementations
 
@@ -268,7 +268,7 @@ struct DebugBytes<'input>(&'input [u8]);
 struct DebugByte(u8);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:203`](../../../../.source_1765521767/gimli-0.32.3/src/read/endian_slice.rs#L203)*
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:203`](../../../../.source_1765633015/gimli-0.32.3/src/read/endian_slice.rs#L203)*
 
 #### Trait Implementations
 
@@ -324,7 +324,7 @@ struct DebugByte(u8);
 struct DebugLen(usize);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:211`](../../../../.source_1765521767/gimli-0.32.3/src/read/endian_slice.rs#L211)*
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:211`](../../../../.source_1765633015/gimli-0.32.3/src/read/endian_slice.rs#L211)*
 
 #### Trait Implementations
 

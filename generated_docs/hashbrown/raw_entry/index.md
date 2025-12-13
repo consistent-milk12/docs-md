@@ -24,7 +24,7 @@ struct RawEntryBuilderMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:216-218`](../../../.source_1765521767/hashbrown-0.16.1/src/raw_entry.rs#L216-L218)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:216-218`](../../../.source_1765633015/hashbrown-0.16.1/src/raw_entry.rs#L216-L218)*
 
 A builder for computing where in a [`HashMap`](../hash_map/index.md) a key-value pair would be stored.
 
@@ -214,7 +214,7 @@ struct RawOccupiedEntryMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:395-399`](../../../.source_1765521767/hashbrown-0.16.1/src/raw_entry.rs#L395-L399)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:395-399`](../../../.source_1765633015/hashbrown-0.16.1/src/raw_entry.rs#L395-L399)*
 
 A view into an occupied entry in a `HashMap`.
 It is part of the [`RawEntryMut`](#rawentrymut) enum.
@@ -966,7 +966,7 @@ struct RawVacantEntryMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:466-469`](../../../.source_1765521767/hashbrown-0.16.1/src/raw_entry.rs#L466-L469)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:466-469`](../../../.source_1765633015/hashbrown-0.16.1/src/raw_entry.rs#L466-L469)*
 
 A view into a vacant entry in a `HashMap`.
 It is part of the [`RawEntryMut`](#rawentrymut) enum.
@@ -1247,7 +1247,7 @@ struct RawEntryBuilder<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:505-507`](../../../.source_1765521767/hashbrown-0.16.1/src/raw_entry.rs#L505-L507)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:505-507`](../../../.source_1765633015/hashbrown-0.16.1/src/raw_entry.rs#L505-L507)*
 
 A builder for computing where in a [`HashMap`](../hash_map/index.md) a key-value pair would be stored.
 
@@ -1453,11 +1453,11 @@ enum RawEntryMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:304-333`](../../../.source_1765521767/hashbrown-0.16.1/src/raw_entry.rs#L304-L333)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:304-333`](../../../.source_1765633015/hashbrown-0.16.1/src/raw_entry.rs#L304-L333)*
 
 A view into a single entry in a map, which may either be vacant or occupied.
 
-This is a lower-level version of [`Entry`](../hash_map/index.md).
+This is a lower-level version of [`Entry`](../hash_set/index.md).
 
 This `enum` is constructed through the `raw_entry_mut` method on [`HashMap`](../hash_map/index.md),
 then calling one of the methods of that [`RawEntryBuilderMut`](#rawentrybuildermut).

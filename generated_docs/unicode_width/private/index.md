@@ -18,7 +18,7 @@
 trait Sealed { ... }
 ```
 
-*Defined in [`unicode-width-0.2.2/src/lib.rs:184`](../../../.source_1765521767/unicode-width-0.2.2/src/lib.rs#L184)*
+*Defined in [`unicode-width-0.2.2/src/lib.rs:184`](../../../.source_1765633015/unicode-width-0.2.2/src/lib.rs#L184)*
 
 #### Implementors
 

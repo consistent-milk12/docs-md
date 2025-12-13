@@ -51,7 +51,7 @@ struct StreamResult {
 }
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/lib.rs:189-196`](../../.source_1765521767/miniz_oxide-0.8.9/src/lib.rs#L189-L196)*
+*Defined in [`miniz_oxide-0.8.9/src/lib.rs:189-196`](../../.source_1765633015/miniz_oxide-0.8.9/src/lib.rs#L189-L196)*
 
 A structure containing the result of a call to the inflate or deflate streaming functions.
 
@@ -158,7 +158,7 @@ enum MZFlush {
 }
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/lib.rs:47-66`](../../.source_1765521767/miniz_oxide-0.8.9/src/lib.rs#L47-L66)*
+*Defined in [`miniz_oxide-0.8.9/src/lib.rs:47-66`](../../.source_1765633015/miniz_oxide-0.8.9/src/lib.rs#L47-L66)*
 
 A list of flush types.
 
@@ -286,7 +286,7 @@ enum MZStatus {
 }
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/lib.rs:90-106`](../../.source_1765521767/miniz_oxide-0.8.9/src/lib.rs#L90-L106)*
+*Defined in [`miniz_oxide-0.8.9/src/lib.rs:90-106`](../../.source_1765633015/miniz_oxide-0.8.9/src/lib.rs#L90-L106)*
 
 A list of miniz successful status codes.
 
@@ -398,7 +398,7 @@ enum MZError {
 }
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/lib.rs:115-149`](../../.source_1765521767/miniz_oxide-0.8.9/src/lib.rs#L115-L149)*
+*Defined in [`miniz_oxide-0.8.9/src/lib.rs:115-149`](../../.source_1765633015/miniz_oxide-0.8.9/src/lib.rs#L115-L149)*
 
 A list of miniz failed status codes.
 
@@ -528,7 +528,7 @@ enum DataFormat {
 }
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/lib.rs:155-163`](../../.source_1765521767/miniz_oxide-0.8.9/src/lib.rs#L155-L163)*
+*Defined in [`miniz_oxide-0.8.9/src/lib.rs:155-163`](../../.source_1765633015/miniz_oxide-0.8.9/src/lib.rs#L155-L163)*
 
 How compressed data is wrapped.
 
@@ -631,7 +631,7 @@ How compressed data is wrapped.
 type MZResult = Result<MZStatus, MZError>;
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/lib.rs:184`](../../.source_1765521767/miniz_oxide-0.8.9/src/lib.rs#L184)*
+*Defined in [`miniz_oxide-0.8.9/src/lib.rs:184`](../../.source_1765633015/miniz_oxide-0.8.9/src/lib.rs#L184)*
 
 `Result` alias for all miniz status codes both successful and failed.
 

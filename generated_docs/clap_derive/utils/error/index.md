@@ -19,7 +19,7 @@
 trait SpanError { ... }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/utils/error.rs:1-4`](../../../../.source_1765521767/clap_derive-4.5.49/src/utils/error.rs#L1-L4)*
+*Defined in [`clap_derive-4.5.49/src/utils/error.rs:1-4`](../../../../.source_1765633015/clap_derive-4.5.49/src/utils/error.rs#L1-L4)*
 
 #### Required Methods
 
@@ -35,7 +35,7 @@ trait SpanError { ... }
 trait ToTokensError { ... }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/utils/error.rs:6-9`](../../../../.source_1765521767/clap_derive-4.5.49/src/utils/error.rs#L6-L9)*
+*Defined in [`clap_derive-4.5.49/src/utils/error.rs:6-9`](../../../../.source_1765633015/clap_derive-4.5.49/src/utils/error.rs#L6-L9)*
 
 #### Required Methods
 

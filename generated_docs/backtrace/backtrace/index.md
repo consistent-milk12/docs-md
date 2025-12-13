@@ -27,7 +27,7 @@ struct Frame {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:76-78`](../../../.source_1765521767/backtrace-0.3.76/src/backtrace/mod.rs#L76-L78)*
+*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:76-78`](../../../.source_1765633015/backtrace-0.3.76/src/backtrace/mod.rs#L76-L78)*
 
 A trait representing one frame of a backtrace, yielded to the `trace`
 function of this crate.
@@ -160,7 +160,7 @@ until runtime.
 fn trace<F: FnMut(&Frame) -> bool>(cb: F)
 ```
 
-*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:51-54`](../../../.source_1765521767/backtrace-0.3.76/src/backtrace/mod.rs#L51-L54)*
+*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:51-54`](../../../.source_1765633015/backtrace-0.3.76/src/backtrace/mod.rs#L51-L54)*
 
 Inspects the current call-stack, passing all active frames into the closure
 provided to calculate a stack trace.
@@ -215,7 +215,7 @@ fn main() {
 unsafe fn trace_unsynchronized<F: FnMut(&Frame) -> bool>(cb: F)
 ```
 
-*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:65-67`](../../../.source_1765521767/backtrace-0.3.76/src/backtrace/mod.rs#L65-L67)*
+*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:65-67`](../../../.source_1765633015/backtrace-0.3.76/src/backtrace/mod.rs#L65-L67)*
 
 Same as `trace`, only unsafe as it's unsynchronized.
 

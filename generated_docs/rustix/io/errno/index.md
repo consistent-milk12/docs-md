@@ -26,7 +26,7 @@ want unrecognized values to create undefined behavior.
 struct Errno(u16);
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:51`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L51)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:51`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L51)*
 
 `errno`—An error code.
 
@@ -173,7 +173,7 @@ but only holds an OS error code, and no extra error value.
 fn retry_on_intr<T, F: FnMut() -> Result<T>>(f: F) -> Result<T>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/errno.rs:67-74`](../../../../.source_1765521767/rustix-1.1.2/src/io/errno.rs#L67-L74)*
+*Defined in [`rustix-1.1.2/src/io/errno.rs:67-74`](../../../../.source_1765633015/rustix-1.1.2/src/io/errno.rs#L67-L74)*
 
 Call `f` until it either succeeds or fails other than `Errno::INTR`.
 
@@ -185,7 +185,7 @@ Call `f` until it either succeeds or fails other than `Errno::INTR`.
 type Result<T> = result::Result<T, Errno>;
 ```
 
-*Defined in [`rustix-1.1.2/src/io/errno.rs:15`](../../../../.source_1765521767/rustix-1.1.2/src/io/errno.rs#L15)*
+*Defined in [`rustix-1.1.2/src/io/errno.rs:15`](../../../../.source_1765633015/rustix-1.1.2/src/io/errno.rs#L15)*
 
 A specialized [`Result`](#result) type for `rustix` APIs.
 

@@ -58,7 +58,7 @@ struct BarState {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:15-21`](../../../.source_1765521767/indicatif-0.18.3/src/state.rs#L15-L21)*
+*Defined in [`indicatif-0.18.3/src/state.rs:15-21`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L15-L21)*
 
 #### Implementations
 
@@ -159,7 +159,7 @@ struct ProgressState {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:242-251`](../../../.source_1765521767/indicatif-0.18.3/src/state.rs#L242-L251)*
+*Defined in [`indicatif-0.18.3/src/state.rs:242-251`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L242-L251)*
 
 The state of a progress bar at a moment in time.
 
@@ -253,7 +253,7 @@ struct Estimator {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:421-427`](../../../.source_1765521767/indicatif-0.18.3/src/state.rs#L421-L427)*
+*Defined in [`indicatif-0.18.3/src/state.rs:421-427`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L421-L427)*
 
 Double-smoothed exponentially weighted estimator
 
@@ -347,7 +347,7 @@ struct AtomicPosition {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:532-537`](../../../.source_1765521767/indicatif-0.18.3/src/state.rs#L532-L537)*
+*Defined in [`indicatif-0.18.3/src/state.rs:532-537`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L532-L537)*
 
 #### Implementations
 
@@ -419,7 +419,7 @@ enum Reset {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:234-238`](../../../.source_1765521767/indicatif-0.18.3/src/state.rs#L234-L238)*
+*Defined in [`indicatif-0.18.3/src/state.rs:234-238`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L234-L238)*
 
 #### Trait Implementations
 
@@ -478,7 +478,7 @@ enum TabExpandedString {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:353-360`](../../../.source_1765521767/indicatif-0.18.3/src/state.rs#L353-L360)*
+*Defined in [`indicatif-0.18.3/src/state.rs:353-360`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L353-L360)*
 
 #### Implementations
 
@@ -572,7 +572,7 @@ enum ProgressFinish {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:615-637`](../../../.source_1765521767/indicatif-0.18.3/src/state.rs#L615-L637)*
+*Defined in [`indicatif-0.18.3/src/state.rs:615-637`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L615-L637)*
 
 Behavior of a progress bar when it is finished
 
@@ -692,7 +692,7 @@ enum Status {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:679-683`](../../../.source_1765521767/indicatif-0.18.3/src/state.rs#L679-L683)*
+*Defined in [`indicatif-0.18.3/src/state.rs:679-683`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L679-L683)*
 
 #### Trait Implementations
 
@@ -750,7 +750,7 @@ enum Status {
 fn estimator_weight(age: f64) -> f64
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:663-666`](../../../.source_1765521767/indicatif-0.18.3/src/state.rs#L663-L666)*
+*Defined in [`indicatif-0.18.3/src/state.rs:663-666`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L663-L666)*
 
 Get the appropriate dilution weight for Estimator data given the data's age (in seconds)
 
@@ -783,7 +783,7 @@ samples, a very useful feature.
 fn duration_to_secs(d: std::time::Duration) -> f64
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:668-670`](../../../.source_1765521767/indicatif-0.18.3/src/state.rs#L668-L670)*
+*Defined in [`indicatif-0.18.3/src/state.rs:668-670`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L668-L670)*
 
 ### `secs_to_duration`
 
@@ -791,7 +791,7 @@ fn duration_to_secs(d: std::time::Duration) -> f64
 fn secs_to_duration(s: f64) -> std::time::Duration
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:672-676`](../../../.source_1765521767/indicatif-0.18.3/src/state.rs#L672-L676)*
+*Defined in [`indicatif-0.18.3/src/state.rs:672-676`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L672-L676)*
 
 ## Constants
 
@@ -800,19 +800,19 @@ fn secs_to_duration(s: f64) -> std::time::Duration
 const INTERVAL: u64 = 1_000_000u64;
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:603`](../../../.source_1765521767/indicatif-0.18.3/src/state.rs#L603)*
+*Defined in [`indicatif-0.18.3/src/state.rs:603`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L603)*
 
 ### `MAX_BURST`
 ```rust
 const MAX_BURST: u8 = 10u8;
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:604`](../../../.source_1765521767/indicatif-0.18.3/src/state.rs#L604)*
+*Defined in [`indicatif-0.18.3/src/state.rs:604`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L604)*
 
 ### `DEFAULT_TAB_WIDTH`
 ```rust
 const DEFAULT_TAB_WIDTH: usize = 8usize;
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:685`](../../../.source_1765521767/indicatif-0.18.3/src/state.rs#L685)*
+*Defined in [`indicatif-0.18.3/src/state.rs:685`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L685)*
 

@@ -23,7 +23,7 @@ struct Remapper {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/remapper.rs:67-84`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/remapper.rs#L67-L84)*
+*Defined in [`aho-corasick-1.1.4/src/util/remapper.rs:67-84`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/remapper.rs#L67-L84)*
 
 Remapper is an abstraction the manages the remapping of state IDs in a
 finite state machine. This is useful when one wants to shuffle states into
@@ -148,7 +148,7 @@ struct IndexMapper {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/remapper.rs:177-182`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/remapper.rs#L177-L182)*
+*Defined in [`aho-corasick-1.1.4/src/util/remapper.rs:177-182`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/remapper.rs#L177-L182)*
 
 A simple type for mapping between state indices and state IDs.
 
@@ -244,7 +244,7 @@ identity.
 trait Remappable: core::fmt::Debug { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/remapper.rs:28-54`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/remapper.rs#L28-L54)*
+*Defined in [`aho-corasick-1.1.4/src/util/remapper.rs:28-54`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/remapper.rs#L28-L54)*
 
 Remappable is a tightly coupled abstraction that facilitates remapping
 state identifiers in DFAs.

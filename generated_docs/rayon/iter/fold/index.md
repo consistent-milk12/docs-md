@@ -26,7 +26,7 @@ struct Fold<I, ID, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/fold.rs:22-26`](../../../../.source_1765521767/rayon-1.11.0/src/iter/fold.rs#L22-L26)*
+*Defined in [`rayon-1.11.0/src/iter/fold.rs:22-26`](../../../../.source_1765633015/rayon-1.11.0/src/iter/fold.rs#L22-L26)*
 
 `Fold` is an iterator that applies a function over an iterator producing a single value.
 This struct is created by the `fold()` method on [`ParallelIterator`](../index.md)
@@ -140,7 +140,7 @@ struct FoldConsumer<'c, C, ID, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/fold.rs:56-60`](../../../../.source_1765521767/rayon-1.11.0/src/iter/fold.rs#L56-L60)*
+*Defined in [`rayon-1.11.0/src/iter/fold.rs:56-60`](../../../../.source_1765633015/rayon-1.11.0/src/iter/fold.rs#L56-L60)*
 
 #### Trait Implementations
 
@@ -232,7 +232,7 @@ struct FoldFolder<'r, C, ID, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/fold.rs:117-121`](../../../../.source_1765521767/rayon-1.11.0/src/iter/fold.rs#L117-L121)*
+*Defined in [`rayon-1.11.0/src/iter/fold.rs:117-121`](../../../../.source_1765633015/rayon-1.11.0/src/iter/fold.rs#L117-L121)*
 
 #### Trait Implementations
 
@@ -316,7 +316,7 @@ struct FoldWith<I, U, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/fold.rs:191-195`](../../../../.source_1765521767/rayon-1.11.0/src/iter/fold.rs#L191-L195)*
+*Defined in [`rayon-1.11.0/src/iter/fold.rs:191-195`](../../../../.source_1765633015/rayon-1.11.0/src/iter/fold.rs#L191-L195)*
 
 `FoldWith` is an iterator that applies a function over an iterator producing a single value.
 This struct is created by the `fold_with()` method on [`ParallelIterator`](../index.md)
@@ -430,7 +430,7 @@ struct FoldWithConsumer<'c, C, U, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/fold.rs:227-231`](../../../../.source_1765521767/rayon-1.11.0/src/iter/fold.rs#L227-L231)*
+*Defined in [`rayon-1.11.0/src/iter/fold.rs:227-231`](../../../../.source_1765633015/rayon-1.11.0/src/iter/fold.rs#L227-L231)*
 
 #### Trait Implementations
 

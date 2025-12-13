@@ -23,7 +23,7 @@ keeping all of the methods private.
 trait Pattern: Sized + Sync + Send { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:364-381`](../../../../.source_1765521767/rayon-1.11.0/src/str.rs#L364-L381)*
+*Defined in [`rayon-1.11.0/src/str.rs:364-381`](../../../../.source_1765633015/rayon-1.11.0/src/str.rs#L364-L381)*
 
 Pattern-matching trait for `ParallelString`, somewhat like a mix of
 `std::str::pattern::{Pattern, Searcher}`.

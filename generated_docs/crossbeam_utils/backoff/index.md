@@ -22,7 +22,7 @@ struct Backoff {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:80-82`](../../../.source_1765521767/crossbeam-utils-0.8.21/src/backoff.rs#L80-L82)*
+*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:80-82`](../../../.source_1765633015/crossbeam-utils-0.8.21/src/backoff.rs#L80-L82)*
 
 Performs exponential backoff in spin loops.
 
@@ -435,12 +435,12 @@ fn blocking_wait(ready: &AtomicBool) {
 const SPIN_LIMIT: u32 = 6u32;
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:5`](../../../.source_1765521767/crossbeam-utils-0.8.21/src/backoff.rs#L5)*
+*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:5`](../../../.source_1765633015/crossbeam-utils-0.8.21/src/backoff.rs#L5)*
 
 ### `YIELD_LIMIT`
 ```rust
 const YIELD_LIMIT: u32 = 10u32;
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:6`](../../../.source_1765521767/crossbeam-utils-0.8.21/src/backoff.rs#L6)*
+*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:6`](../../../.source_1765633015/crossbeam-utils-0.8.21/src/backoff.rs#L6)*
 

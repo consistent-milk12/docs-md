@@ -25,7 +25,7 @@ struct Chain<'a> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/chain.rs:32-34`](../../../.source_1765521767/miette-7.6.0/src/chain.rs#L32-L34)*
+*Defined in [`miette-7.6.0/src/chain.rs:32-34`](../../../.source_1765633015/miette-7.6.0/src/chain.rs#L32-L34)*
 
 Iterator of a chain of source errors.
 
@@ -156,7 +156,7 @@ enum ChainState<'a> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/chain.rs:37-44`](../../../.source_1765521767/miette-7.6.0/src/chain.rs#L37-L44)*
+*Defined in [`miette-7.6.0/src/chain.rs:37-44`](../../../.source_1765633015/miette-7.6.0/src/chain.rs#L37-L44)*
 
 #### Trait Implementations
 

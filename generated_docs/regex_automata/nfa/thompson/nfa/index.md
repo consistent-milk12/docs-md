@@ -24,7 +24,7 @@
 struct NFA(alloc::sync::Arc<Inner>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:190-202`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L190-L202)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:190-202`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L190-L202)*
 
 A byte oriented Thompson non-deterministic finite automaton (NFA).
 
@@ -1879,7 +1879,7 @@ struct Inner {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1195-1268`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1195-L1268)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1195-1268`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1195-L1268)*
 
 The "inner" part of the NFA. We split this part out so that we can easily
 wrap it in an `Arc` above in the definition of `NFA`.
@@ -2141,7 +2141,7 @@ struct SparseTransitions {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1795-1798`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1795-L1798)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1795-1798`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1795-L1798)*
 
 A sequence of transitions used to represent a sparse state.
 
@@ -2279,7 +2279,7 @@ struct DenseTransitions {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1882-1886`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1882-L1886)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1882-1886`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1882-L1886)*
 
 A sequence of transitions used to represent a dense state.
 
@@ -2431,7 +2431,7 @@ struct Transition {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1965-1972`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1965-L1972)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1965-1972`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1965-L1972)*
 
 A single transition to another state.
 
@@ -2565,7 +2565,7 @@ struct PatternIter<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:2023-2031`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L2023-L2031)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:2023-2031`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L2023-L2031)*
 
 An iterator over all pattern IDs in an NFA.
 
@@ -2681,7 +2681,7 @@ enum State {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1514-1621`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1514-L1621)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1514-1621`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1514-L1621)*
 
 A state in an NFA.
 

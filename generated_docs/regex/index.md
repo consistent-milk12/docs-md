@@ -1390,7 +1390,7 @@ struct RegexBuilder {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/builders.rs:212-214`](../../.source_1765521767/regex-1.12.2/src/builders.rs#L212-L214)*
+*Defined in [`regex-1.12.2/src/builders.rs:212-214`](../../.source_1765633015/regex-1.12.2/src/builders.rs#L212-L214)*
 
 A configurable builder for a [`Regex`](#regex).
 
@@ -2483,7 +2483,7 @@ struct RegexSetBuilder {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/builders.rs:787-789`](../../.source_1765521767/regex-1.12.2/src/builders.rs#L787-L789)*
+*Defined in [`regex-1.12.2/src/builders.rs:787-789`](../../.source_1765633015/regex-1.12.2/src/builders.rs#L787-L789)*
 
 A configurable builder for a [`RegexSet`](#regexset).
 
@@ -3559,7 +3559,7 @@ struct Regex {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:101-104`](../../.source_1765521767/regex-1.12.2/src/regex/string.rs#L101-L104)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:101-104`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L101-L104)*
 
 A compiled regular expression for searching Unicode haystacks.
 
@@ -5159,7 +5159,7 @@ struct Match<'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:1490-1494`](../../.source_1765521767/regex-1.12.2/src/regex/string.rs#L1490-L1494)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:1490-1494`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L1490-L1494)*
 
 Represents a single match of a regex in a haystack.
 
@@ -5384,7 +5384,7 @@ struct Captures<'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:1642-1646`](../../.source_1765521767/regex-1.12.2/src/regex/string.rs#L1642-L1646)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:1642-1646`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L1642-L1646)*
 
 Represents the capture groups for a single match.
 
@@ -5996,7 +5996,7 @@ assert_eq!("y", &caps["last"]);
 struct CaptureLocations(captures::Captures);
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2093`](../../.source_1765521767/regex-1.12.2/src/regex/string.rs#L2093)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2093`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2093)*
 
 A low level representation of the byte offsets of each capture group.
 
@@ -6212,7 +6212,7 @@ struct Matches<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2193-2196`](../../.source_1765521767/regex-1.12.2/src/regex/string.rs#L2193-L2196)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2193-2196`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2193-L2196)*
 
 An iterator over all non-overlapping matches in a haystack.
 
@@ -6305,7 +6305,7 @@ struct CaptureMatches<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2237-2240`](../../.source_1765521767/regex-1.12.2/src/regex/string.rs#L2237-L2240)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2237-2240`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2237-L2240)*
 
 An iterator over all non-overlapping capture matches in a haystack.
 
@@ -6398,7 +6398,7 @@ struct Split<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2281-2284`](../../.source_1765521767/regex-1.12.2/src/regex/string.rs#L2281-L2284)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2281-2284`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2281-L2284)*
 
 An iterator over all substrings delimited by a regex match.
 
@@ -6486,7 +6486,7 @@ struct SplitN<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2316-2319`](../../.source_1765521767/regex-1.12.2/src/regex/string.rs#L2316-L2319)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2316-2319`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2316-L2319)*
 
 An iterator over at most `N` substrings delimited by a regex match.
 
@@ -6579,7 +6579,7 @@ by the `limit` parameter to `Regex::splitn`.
 struct CaptureNames<'r>(captures::GroupInfoPatternNames<'r>);
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2348`](../../.source_1765521767/regex-1.12.2/src/regex/string.rs#L2348)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2348`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2348)*
 
 An iterator over the names of all capture groups in a regex.
 
@@ -6687,7 +6687,7 @@ struct SubCaptureMatches<'c, 'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2390-2393`](../../.source_1765521767/regex-1.12.2/src/regex/string.rs#L2390-L2393)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2390-2393`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2390-L2393)*
 
 An iterator over all group matches in a [`Captures`](#captures) value.
 
@@ -6798,7 +6798,7 @@ matched haystack.
 struct ReplacerRef<'a, R: ?Sized>(&'a mut R);
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2567`](../../.source_1765521767/regex-1.12.2/src/regex/string.rs#L2567)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2567`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2567)*
 
 A by-reference adaptor for a [`Replacer`](#replacer).
 
@@ -6867,7 +6867,7 @@ This type is created by `Replacer::by_ref`.
 struct NoExpand<'s>(&'s str);
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2599`](../../.source_1765521767/regex-1.12.2/src/regex/string.rs#L2599)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2599`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2599)*
 
 A helper type for forcing literal string replacement.
 
@@ -6968,7 +6968,7 @@ struct RegexSet {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/string.rs:132-135`](../../.source_1765521767/regex-1.12.2/src/regexset/string.rs#L132-L135)*
+*Defined in [`regex-1.12.2/src/regexset/string.rs:132-135`](../../.source_1765633015/regex-1.12.2/src/regexset/string.rs#L132-L135)*
 
 Match multiple, possibly overlapping, regexes in a single search.
 
@@ -7603,7 +7603,7 @@ alternate isn't always obvious to reason about.
 struct SetMatches(regex_automata::PatternSet);
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/string.rs:459`](../../.source_1765521767/regex-1.12.2/src/regexset/string.rs#L459)*
+*Defined in [`regex-1.12.2/src/regexset/string.rs:459`](../../.source_1765633015/regex-1.12.2/src/regexset/string.rs#L459)*
 
 A set of matches returned by a regex set.
 
@@ -7938,7 +7938,7 @@ struct SetMatchesIntoIter {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/string.rs:652-655`](../../.source_1765521767/regex-1.12.2/src/regexset/string.rs#L652-L655)*
+*Defined in [`regex-1.12.2/src/regexset/string.rs:652-655`](../../.source_1765633015/regex-1.12.2/src/regexset/string.rs#L652-L655)*
 
 An owned iterator over the set of matches from a regex set.
 
@@ -8044,7 +8044,7 @@ assert_eq!(matches, vec![0, 1, 3]);
 struct SetMatchesIter<'a>(regex_automata::PatternSetIter<'a>);
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/string.rs:698`](../../.source_1765521767/regex-1.12.2/src/regexset/string.rs#L698)*
+*Defined in [`regex-1.12.2/src/regexset/string.rs:698`](../../.source_1765633015/regex-1.12.2/src/regexset/string.rs#L698)*
 
 A borrowed iterator over the set of matches from a regex set.
 
@@ -8154,7 +8154,7 @@ enum Error {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/error.rs:8-32`](../../.source_1765521767/regex-1.12.2/src/error.rs#L8-L32)*
+*Defined in [`regex-1.12.2/src/error.rs:8-32`](../../.source_1765633015/regex-1.12.2/src/error.rs#L8-L32)*
 
 An error that occurred during parsing or compiling a regular expression.
 
@@ -8281,7 +8281,7 @@ An error that occurred during parsing or compiling a regular expression.
 trait Replacer { ... }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2452-2498`](../../.source_1765521767/regex-1.12.2/src/regex/string.rs#L2452-L2498)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2452-2498`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2452-L2498)*
 
 A trait for types that can be used to replace matches in a haystack.
 
@@ -8351,7 +8351,7 @@ assert_eq!(result, "Bruce Springsteen");
 fn escape(pattern: &str) -> alloc::string::String
 ```
 
-*Defined in [`regex-1.12.2/src/lib.rs:1351-1353`](../../.source_1765521767/regex-1.12.2/src/lib.rs#L1351-L1353)*
+*Defined in [`regex-1.12.2/src/lib.rs:1351-1353`](../../.source_1765633015/regex-1.12.2/src/lib.rs#L1351-L1353)*
 
 Escapes all regular expression meta characters in `pattern`.
 
@@ -8364,7 +8364,7 @@ expression.
 fn no_expansion<T: AsRef<str>>(replacement: &T) -> Option<alloc::borrow::Cow<'_, str>>
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2619-2625`](../../.source_1765521767/regex-1.12.2/src/regex/string.rs#L2619-L2625)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2619-2625`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2619-L2625)*
 
 Quickly checks the given replacement string for whether interpolation
 should be done on it. It returns `None` if a `$` was found anywhere in the

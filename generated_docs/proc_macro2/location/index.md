@@ -21,7 +21,7 @@ struct LineColumn {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/location.rs:8-15`](../../../.source_1765521767/proc-macro2-1.0.103/src/location.rs#L8-L15)*
+*Defined in [`proc-macro2-1.0.103/src/location.rs:8-15`](../../../.source_1765633015/proc-macro2-1.0.103/src/location.rs#L8-L15)*
 
 A line-column pair representing the start or end of a `Span`.
 

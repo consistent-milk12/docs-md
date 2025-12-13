@@ -65,7 +65,7 @@
 struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:44-57`](../../../.source_1765521767/compact_str-0.9.0/src/repr/mod.rs#L44-L57)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:44-57`](../../../.source_1765633015/compact_str-0.9.0/src/repr/mod.rs#L44-L57)*
 
 #### Implementations
 
@@ -391,7 +391,7 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 fn ensure_read(value: usize) -> usize
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:841-863`](../../../.source_1765521767/compact_str-0.9.0/src/repr/mod.rs#L841-L863)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:841-863`](../../../.source_1765633015/compact_str-0.9.0/src/repr/mod.rs#L841-L863)*
 
 Returns the supplied value, and ensures that the value is eagerly loaded into a register.
 
@@ -402,7 +402,7 @@ Returns the supplied value, and ensures that the value is eagerly loaded into a 
 const MAX_SIZE: usize = 24usize;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:32`](../../../.source_1765521767/compact_str-0.9.0/src/repr/mod.rs#L32)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:32`](../../../.source_1765633015/compact_str-0.9.0/src/repr/mod.rs#L32)*
 
 The max size of a string we can fit inline
 
@@ -411,7 +411,7 @@ The max size of a string we can fit inline
 const HEAP_MASK: u8 = 216u8;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:34`](../../../.source_1765521767/compact_str-0.9.0/src/repr/mod.rs#L34)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:34`](../../../.source_1765633015/compact_str-0.9.0/src/repr/mod.rs#L34)*
 
 Used as a discriminant to identify different variants
 
@@ -420,7 +420,7 @@ Used as a discriminant to identify different variants
 const STATIC_STR_MASK: u8 = 217u8;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:36`](../../../.source_1765521767/compact_str-0.9.0/src/repr/mod.rs#L36)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:36`](../../../.source_1765633015/compact_str-0.9.0/src/repr/mod.rs#L36)*
 
 Used for `StaticStr` variant
 
@@ -429,7 +429,7 @@ Used for `StaticStr` variant
 const LENGTH_MASK: u8 = 192u8;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:39`](../../../.source_1765521767/compact_str-0.9.0/src/repr/mod.rs#L39)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:39`](../../../.source_1765633015/compact_str-0.9.0/src/repr/mod.rs#L39)*
 
 When our string is stored inline, we represent the length of the string in the last byte, offset
 by `LENGTH_MASK`
@@ -439,5 +439,5 @@ by `LENGTH_MASK`
 const EMPTY: Repr;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:41`](../../../.source_1765521767/compact_str-0.9.0/src/repr/mod.rs#L41)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:41`](../../../.source_1765633015/compact_str-0.9.0/src/repr/mod.rs#L41)*
 

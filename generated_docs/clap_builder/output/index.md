@@ -31,12 +31,12 @@
 const TAB: &str;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/mod.rs:21`](../../../.source_1765521767/clap_builder-4.5.53/src/output/mod.rs#L21)*
+*Defined in [`clap_builder-4.5.53/src/output/mod.rs:21`](../../../.source_1765633015/clap_builder-4.5.53/src/output/mod.rs#L21)*
 
 ### `TAB_WIDTH`
 ```rust
 const TAB_WIDTH: usize = 2usize;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/mod.rs:23`](../../../.source_1765521767/clap_builder-4.5.53/src/output/mod.rs#L23)*
+*Defined in [`clap_builder-4.5.53/src/output/mod.rs:23`](../../../.source_1765633015/clap_builder-4.5.53/src/output/mod.rs#L23)*
 

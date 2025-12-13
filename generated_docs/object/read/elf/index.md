@@ -276,7 +276,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/file.rs:38-51`](../../../../.source_1765521767/object-0.37.3/src/read/elf/file.rs#L38-L51)*
+*Defined in [`object-0.37.3/src/read/elf/file.rs:38-51`](../../../../.source_1765633015/object-0.37.3/src/read/elf/file.rs#L38-L51)*
 
 A partially parsed ELF file.
 
@@ -480,7 +480,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:20-27`](../../../../.source_1765521767/object-0.37.3/src/read/elf/segment.rs#L20-L27)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:20-27`](../../../../.source_1765633015/object-0.37.3/src/read/elf/segment.rs#L20-L27)*
 
 An iterator for the segments in an [`ElfFile`](#elffile).
 
@@ -558,7 +558,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:60-67`](../../../../.source_1765521767/object-0.37.3/src/read/elf/segment.rs#L60-L67)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:60-67`](../../../../.source_1765633015/object-0.37.3/src/read/elf/segment.rs#L60-L67)*
 
 A segment in an [`ElfFile`](#elffile).
 
@@ -657,7 +657,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:25-31`](../../../../.source_1765521767/object-0.37.3/src/read/elf/section.rs#L25-L31)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:25-31`](../../../../.source_1765633015/object-0.37.3/src/read/elf/section.rs#L25-L31)*
 
 The table of section headers in an ELF file.
 
@@ -941,7 +941,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:358-365`](../../../../.source_1765521767/object-0.37.3/src/read/elf/section.rs#L358-L365)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:358-365`](../../../../.source_1765633015/object-0.37.3/src/read/elf/section.rs#L358-L365)*
 
 An iterator for the sections in an [`ElfFile`](#elffile).
 
@@ -1024,7 +1024,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:406-414`](../../../../.source_1765521767/object-0.37.3/src/read/elf/section.rs#L406-L414)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:406-414`](../../../../.source_1765633015/object-0.37.3/src/read/elf/section.rs#L406-L414)*
 
 A section in an [`ElfFile`](#elffile).
 
@@ -1189,7 +1189,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:24-34`](../../../../.source_1765521767/object-0.37.3/src/read/elf/symbol.rs#L24-L34)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:24-34`](../../../../.source_1765633015/object-0.37.3/src/read/elf/symbol.rs#L24-L34)*
 
 A table of symbol entries in an ELF file.
 
@@ -1357,7 +1357,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:229-236`](../../../../.source_1765521767/object-0.37.3/src/read/elf/symbol.rs#L229-L236)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:229-236`](../../../../.source_1765633015/object-0.37.3/src/read/elf/symbol.rs#L229-L236)*
 
 A symbol table in an [`ElfFile`](super::ElfFile).
 
@@ -1452,7 +1452,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:272-280`](../../../../.source_1765521767/object-0.37.3/src/read/elf/symbol.rs#L272-L280)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:272-280`](../../../../.source_1765633015/object-0.37.3/src/read/elf/symbol.rs#L272-L280)*
 
 An iterator for the symbols in an [`ElfFile`](super::ElfFile).
 
@@ -1536,7 +1536,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:333-342`](../../../../.source_1765521767/object-0.37.3/src/read/elf/symbol.rs#L333-L342)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:333-342`](../../../../.source_1765633015/object-0.37.3/src/read/elf/symbol.rs#L333-L342)*
 
 A symbol in an [`ElfFile`](super::ElfFile).
 
@@ -1664,7 +1664,7 @@ struct RelocationSections {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:18-20`](../../../../.source_1765521767/object-0.37.3/src/read/elf/relocation.rs#L18-L20)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:18-20`](../../../../.source_1765633015/object-0.37.3/src/read/elf/relocation.rs#L18-L20)*
 
 A mapping from section index to associated relocation sections.
 
@@ -1753,7 +1753,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:123-132`](../../../../.source_1765521767/object-0.37.3/src/read/elf/relocation.rs#L123-L132)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:123-132`](../../../../.source_1765633015/object-0.37.3/src/read/elf/relocation.rs#L123-L132)*
 
 An iterator for the dynamic relocations in an [`ElfFile`](#elffile).
 
@@ -1838,7 +1838,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:207-216`](../../../../.source_1765521767/object-0.37.3/src/read/elf/relocation.rs#L207-L216)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:207-216`](../../../../.source_1765633015/object-0.37.3/src/read/elf/relocation.rs#L207-L216)*
 
 An iterator for the relocations for an [`ElfSection`](super::ElfSection).
 
@@ -1922,7 +1922,7 @@ struct RelrIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:681-687`](../../../../.source_1765521767/object-0.37.3/src/read/elf/relocation.rs#L681-L687)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:681-687`](../../../../.source_1765633015/object-0.37.3/src/read/elf/relocation.rs#L681-L687)*
 
 An iterator over the relative relocations in an ELF `SHT_RELR` section.
 
@@ -2007,7 +2007,7 @@ struct Crel {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:792-803`](../../../../.source_1765521767/object-0.37.3/src/read/elf/relocation.rs#L792-L803)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:792-803`](../../../../.source_1765633015/object-0.37.3/src/read/elf/relocation.rs#L792-L803)*
 
 Compact relocation
 
@@ -2128,7 +2128,7 @@ struct CrelIteratorHeader {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:839-848`](../../../../.source_1765521767/object-0.37.3/src/read/elf/relocation.rs#L839-L848)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:839-848`](../../../../.source_1765633015/object-0.37.3/src/read/elf/relocation.rs#L839-L848)*
 
 #### Fields
 
@@ -2224,7 +2224,7 @@ struct CrelIteratorState {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:851-862`](../../../../.source_1765521767/object-0.37.3/src/read/elf/relocation.rs#L851-L862)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:851-862`](../../../../.source_1765633015/object-0.37.3/src/read/elf/relocation.rs#L851-L862)*
 
 #### Fields
 
@@ -2326,7 +2326,7 @@ struct CrelIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:866-873`](../../../../.source_1765521767/object-0.37.3/src/read/elf/relocation.rs#L866-L873)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:866-873`](../../../../.source_1765633015/object-0.37.3/src/read/elf/relocation.rs#L866-L873)*
 
 Compact relocation iterator.
 
@@ -2456,7 +2456,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/comdat.rs:19-26`](../../../../.source_1765521767/object-0.37.3/src/read/elf/comdat.rs#L19-L26)*
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:19-26`](../../../../.source_1765633015/object-0.37.3/src/read/elf/comdat.rs#L19-L26)*
 
 An iterator for the COMDAT section groups in an [`ElfFile`](#elffile).
 
@@ -2539,7 +2539,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/comdat.rs:70-78`](../../../../.source_1765521767/object-0.37.3/src/read/elf/comdat.rs#L70-L78)*
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:70-78`](../../../../.source_1765633015/object-0.37.3/src/read/elf/comdat.rs#L70-L78)*
 
 A COMDAT section group in an [`ElfFile`](#elffile).
 
@@ -2633,7 +2633,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/comdat.rs:166-173`](../../../../.source_1765521767/object-0.37.3/src/read/elf/comdat.rs#L166-L173)*
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:166-173`](../../../../.source_1765633015/object-0.37.3/src/read/elf/comdat.rs#L166-L173)*
 
 An iterator for the sections in a COMDAT section group in an [`ElfFile`](#elffile).
 
@@ -2711,7 +2711,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:17-24`](../../../../.source_1765521767/object-0.37.3/src/read/elf/note.rs#L17-L24)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:17-24`](../../../../.source_1765633015/object-0.37.3/src/read/elf/note.rs#L17-L24)*
 
 An iterator over the notes in an ELF section or segment.
 
@@ -2818,7 +2818,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:109-116`](../../../../.source_1765521767/object-0.37.3/src/read/elf/note.rs#L109-L116)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:109-116`](../../../../.source_1765633015/object-0.37.3/src/read/elf/note.rs#L109-L116)*
 
 A parsed [`NoteHeader`](#noteheader).
 
@@ -2932,7 +2932,7 @@ struct GnuPropertyIterator<'data, Endian: endian::Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:235-239`](../../../../.source_1765521767/object-0.37.3/src/read/elf/note.rs#L235-L239)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:235-239`](../../../../.source_1765633015/object-0.37.3/src/read/elf/note.rs#L235-L239)*
 
 An iterator for the properties in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../elf/index.md) note.
 
@@ -3017,7 +3017,7 @@ struct GnuProperty<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:277-280`](../../../../.source_1765521767/object-0.37.3/src/read/elf/note.rs#L277-L280)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:277-280`](../../../../.source_1765633015/object-0.37.3/src/read/elf/note.rs#L277-L280)*
 
 A property in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../elf/index.md) note.
 
@@ -3096,7 +3096,7 @@ struct HashTable<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/hash.rs:13-16`](../../../../.source_1765521767/object-0.37.3/src/read/elf/hash.rs#L13-L16)*
+*Defined in [`object-0.37.3/src/read/elf/hash.rs:13-16`](../../../../.source_1765633015/object-0.37.3/src/read/elf/hash.rs#L13-L16)*
 
 A SysV symbol hash table in an ELF file.
 
@@ -3190,7 +3190,7 @@ struct GnuHashTable<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/hash.rs:86-92`](../../../../.source_1765521767/object-0.37.3/src/read/elf/hash.rs#L86-L92)*
+*Defined in [`object-0.37.3/src/read/elf/hash.rs:86-92`](../../../../.source_1765633015/object-0.37.3/src/read/elf/hash.rs#L86-L92)*
 
 A GNU symbol hash table in an ELF file.
 
@@ -3294,7 +3294,7 @@ Returned by [`SectionHeader::gnu_hash`](super::SectionHeader::gnu_hash).
 struct VersionIndex(u16);
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:10`](../../../../.source_1765521767/object-0.37.3/src/read/elf/version.rs#L10)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:10`](../../../../.source_1765633015/object-0.37.3/src/read/elf/version.rs#L10)*
 
 A version index.
 
@@ -3397,7 +3397,7 @@ struct Version<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:38-44`](../../../../.source_1765521767/object-0.37.3/src/read/elf/version.rs#L38-L44)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:38-44`](../../../../.source_1765633015/object-0.37.3/src/read/elf/version.rs#L38-L44)*
 
 A version definition or requirement.
 
@@ -3502,7 +3502,7 @@ struct VersionTable<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:75-78`](../../../../.source_1765521767/object-0.37.3/src/read/elf/version.rs#L75-L78)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:75-78`](../../../../.source_1765633015/object-0.37.3/src/read/elf/version.rs#L75-L78)*
 
 A table of version definitions and requirements.
 
@@ -3626,7 +3626,7 @@ struct VerdefIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:234-237`](../../../../.source_1765521767/object-0.37.3/src/read/elf/version.rs#L234-L237)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:234-237`](../../../../.source_1765633015/object-0.37.3/src/read/elf/version.rs#L234-L237)*
 
 An iterator for the entries in an ELF [`elf::SHT_GNU_VERDEF`](../../elf/index.md) section.
 
@@ -3728,7 +3728,7 @@ struct VerdauxIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:297-301`](../../../../.source_1765521767/object-0.37.3/src/read/elf/version.rs#L297-L301)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:297-301`](../../../../.source_1765633015/object-0.37.3/src/read/elf/version.rs#L297-L301)*
 
 An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERDEF`](../../elf/index.md) section.
 
@@ -3829,7 +3829,7 @@ struct VerneedIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:350-353`](../../../../.source_1765521767/object-0.37.3/src/read/elf/version.rs#L350-L353)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:350-353`](../../../../.source_1765633015/object-0.37.3/src/read/elf/version.rs#L350-L353)*
 
 An iterator for the entries in an ELF [`elf::SHT_GNU_VERNEED`](../../elf/index.md) section.
 
@@ -3931,7 +3931,7 @@ struct VernauxIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:426-430`](../../../../.source_1765521767/object-0.37.3/src/read/elf/version.rs#L426-L430)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:426-430`](../../../../.source_1765633015/object-0.37.3/src/read/elf/version.rs#L426-L430)*
 
 An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERNEED`](../../elf/index.md) section.
 
@@ -4033,7 +4033,7 @@ struct AttributesSection<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:18-22`](../../../../.source_1765521767/object-0.37.3/src/read/elf/attributes.rs#L18-L22)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:18-22`](../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L18-L22)*
 
 An ELF attributes section.
 
@@ -4131,7 +4131,7 @@ struct AttributesSubsectionIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:61-64`](../../../../.source_1765521767/object-0.37.3/src/read/elf/attributes.rs#L61-L64)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:61-64`](../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L61-L64)*
 
 An iterator for the subsections in an [`AttributesSection`](#attributessection).
 
@@ -4232,7 +4232,7 @@ struct AttributesSubsection<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:124-129`](../../../../.source_1765521767/object-0.37.3/src/read/elf/attributes.rs#L124-L129)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:124-129`](../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L124-L129)*
 
 A subsection in an [`AttributesSection`](#attributessection).
 
@@ -4326,7 +4326,7 @@ struct AttributesSubsubsectionIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:153-156`](../../../../.source_1765521767/object-0.37.3/src/read/elf/attributes.rs#L153-L156)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:153-156`](../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L153-L156)*
 
 An iterator for the sub-subsections in an [`AttributesSubsection`](#attributessubsection).
 
@@ -4427,7 +4427,7 @@ struct AttributesSubsubsection<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:229-234`](../../../../.source_1765521767/object-0.37.3/src/read/elf/attributes.rs#L229-L234)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:229-234`](../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L229-L234)*
 
 A sub-subsection in an [`AttributesSubsection`](#attributessubsection).
 
@@ -4540,7 +4540,7 @@ struct AttributeIndexIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:274-276`](../../../../.source_1765521767/object-0.37.3/src/read/elf/attributes.rs#L274-L276)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:274-276`](../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L274-L276)*
 
 An iterator over the indices in an [`AttributesSubsubsection`](#attributessubsubsection).
 
@@ -4638,7 +4638,7 @@ struct AttributeReader<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:315-317`](../../../../.source_1765521767/object-0.37.3/src/read/elf/attributes.rs#L315-L317)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:315-317`](../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L315-L317)*
 
 A parser for the attributes in an [`AttributesSubsubsection`](#attributessubsubsection).
 
@@ -4734,7 +4734,7 @@ enum ElfRelocationIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:83-87`](../../../../.source_1765521767/object-0.37.3/src/read/elf/relocation.rs#L83-L87)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:83-87`](../../../../.source_1765633015/object-0.37.3/src/read/elf/relocation.rs#L83-L87)*
 
 #### Implementations
 
@@ -4806,7 +4806,7 @@ enum ElfRelocationIterator<'data, Elf: FileHeader> {
 trait FileHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/file.rs:530-819`](../../../../.source_1765521767/object-0.37.3/src/read/elf/file.rs#L530-L819)*
+*Defined in [`object-0.37.3/src/read/elf/file.rs:530-819`](../../../../.source_1765633015/object-0.37.3/src/read/elf/file.rs#L530-L819)*
 
 A trait for generic access to [`elf::FileHeader32`](../../elf/index.md) and [`elf::FileHeader64`](../../elf/index.md).
 
@@ -4945,7 +4945,7 @@ A trait for generic access to [`elf::FileHeader32`](../../elf/index.md) and [`el
 trait ProgramHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:152-273`](../../../../.source_1765521767/object-0.37.3/src/read/elf/segment.rs#L152-L273)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:152-273`](../../../../.source_1765633015/object-0.37.3/src/read/elf/segment.rs#L152-L273)*
 
 A trait for generic access to [`elf::ProgramHeader32`](../../elf/index.md) and [`elf::ProgramHeader64`](../../elf/index.md).
 
@@ -5016,7 +5016,7 @@ A trait for generic access to [`elf::ProgramHeader32`](../../elf/index.md) and [
 trait SectionHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:686-1170`](../../../../.source_1765521767/object-0.37.3/src/read/elf/section.rs#L686-L1170)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:686-1170`](../../../../.source_1765633015/object-0.37.3/src/read/elf/section.rs#L686-L1170)*
 
 A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [`elf::SectionHeader64`](../../elf/index.md).
 
@@ -5167,7 +5167,7 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
 trait Sym: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:491-554`](../../../../.source_1765521767/object-0.37.3/src/read/elf/symbol.rs#L491-L554)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:491-554`](../../../../.source_1765633015/object-0.37.3/src/read/elf/symbol.rs#L491-L554)*
 
 A trait for generic access to [`elf::Sym32`](../../elf/index.md) and [`elf::Sym64`](../../elf/index.md).
 
@@ -5238,7 +5238,7 @@ A trait for generic access to [`elf::Sym32`](../../elf/index.md) and [`elf::Sym6
 trait Rel: Debug + Pod + Clone { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:514-535`](../../../../.source_1765521767/object-0.37.3/src/read/elf/relocation.rs#L514-L535)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:514-535`](../../../../.source_1765633015/object-0.37.3/src/read/elf/relocation.rs#L514-L535)*
 
 A trait for generic access to [`elf::Rel32`](../../elf/index.md) and [`elf::Rel64`](../../elf/index.md).
 
@@ -5277,7 +5277,7 @@ A trait for generic access to [`elf::Rel32`](../../elf/index.md) and [`elf::Rel6
 trait Rela: Debug + Pod + Clone { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:591-613`](../../../../.source_1765521767/object-0.37.3/src/read/elf/relocation.rs#L591-L613)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:591-613`](../../../../.source_1765633015/object-0.37.3/src/read/elf/relocation.rs#L591-L613)*
 
 A trait for generic access to [`elf::Rela32`](../../elf/index.md) and [`elf::Rela64`](../../elf/index.md).
 
@@ -5318,7 +5318,7 @@ A trait for generic access to [`elf::Rela32`](../../elf/index.md) and [`elf::Rel
 trait Relr: Debug + Pod + Clone { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:727-746`](../../../../.source_1765521767/object-0.37.3/src/read/elf/relocation.rs#L727-L746)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:727-746`](../../../../.source_1765633015/object-0.37.3/src/read/elf/relocation.rs#L727-L746)*
 
 A trait for generic access to [`elf::Relr32`](../../elf/index.md) and [`elf::Relr64`](../../elf/index.md).
 
@@ -5353,7 +5353,7 @@ A trait for generic access to [`elf::Relr32`](../../elf/index.md) and [`elf::Rel
 trait Dyn: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/dynamic.rs:11-87`](../../../../.source_1765521767/object-0.37.3/src/read/elf/dynamic.rs#L11-L87)*
+*Defined in [`object-0.37.3/src/read/elf/dynamic.rs:11-87`](../../../../.source_1765633015/object-0.37.3/src/read/elf/dynamic.rs#L11-L87)*
 
 A trait for generic access to [`elf::Dyn32`](../../elf/index.md) and [`elf::Dyn64`](../../elf/index.md).
 
@@ -5402,7 +5402,7 @@ A trait for generic access to [`elf::Dyn32`](../../elf/index.md) and [`elf::Dyn6
 trait CompressionHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/compression.rs:9-16`](../../../../.source_1765521767/object-0.37.3/src/read/elf/compression.rs#L9-L16)*
+*Defined in [`object-0.37.3/src/read/elf/compression.rs:9-16`](../../../../.source_1765633015/object-0.37.3/src/read/elf/compression.rs#L9-L16)*
 
 A trait for generic access to [`elf::CompressionHeader32`](../../elf/index.md) and [`elf::CompressionHeader64`](../../elf/index.md).
 
@@ -5431,7 +5431,7 @@ A trait for generic access to [`elf::CompressionHeader32`](../../elf/index.md) a
 trait NoteHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:185-191`](../../../../.source_1765521767/object-0.37.3/src/read/elf/note.rs#L185-L191)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:185-191`](../../../../.source_1765633015/object-0.37.3/src/read/elf/note.rs#L185-L191)*
 
 A trait for generic access to [`elf::NoteHeader32`](../../elf/index.md) and [`elf::NoteHeader64`](../../elf/index.md).
 
@@ -5460,7 +5460,7 @@ A trait for generic access to [`elf::NoteHeader32`](../../elf/index.md) and [`el
 fn parse_relocation<Elf: FileHeader>(header: &Elf, endian: <Elf as >::Endian, reloc: Crel, implicit_addend: bool) -> crate::read::Relocation
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:278-510`](../../../../.source_1765521767/object-0.37.3/src/read/elf/relocation.rs#L278-L510)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:278-510`](../../../../.source_1765633015/object-0.37.3/src/read/elf/relocation.rs#L278-L510)*
 
 ## Type Aliases
 
@@ -5470,7 +5470,7 @@ fn parse_relocation<Elf: FileHeader>(header: &Elf, endian: <Elf as >::Endian, re
 type ElfFile32<'data, Endian, R> = ElfFile<'data, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/file.rs:25-26`](../../../../.source_1765521767/object-0.37.3/src/read/elf/file.rs#L25-L26)*
+*Defined in [`object-0.37.3/src/read/elf/file.rs:25-26`](../../../../.source_1765633015/object-0.37.3/src/read/elf/file.rs#L25-L26)*
 
 A 32-bit ELF object file.
 
@@ -5483,7 +5483,7 @@ to [`crate::FileKind::Elf32`](../../index.md).
 type ElfFile64<'data, Endian, R> = ElfFile<'data, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/file.rs:31-32`](../../../../.source_1765521767/object-0.37.3/src/read/elf/file.rs#L31-L32)*
+*Defined in [`object-0.37.3/src/read/elf/file.rs:31-32`](../../../../.source_1765633015/object-0.37.3/src/read/elf/file.rs#L31-L32)*
 
 A 64-bit ELF object file.
 
@@ -5496,7 +5496,7 @@ to [`crate::FileKind::Elf64`](../../index.md).
 type ElfSegmentIterator32<'data, 'file, Endian, R> = ElfSegmentIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:12-13`](../../../../.source_1765521767/object-0.37.3/src/read/elf/segment.rs#L12-L13)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:12-13`](../../../../.source_1765633015/object-0.37.3/src/read/elf/segment.rs#L12-L13)*
 
 An iterator for the segments in an [`ElfFile32`](super::ElfFile32).
 
@@ -5506,7 +5506,7 @@ An iterator for the segments in an [`ElfFile32`](super::ElfFile32).
 type ElfSegmentIterator64<'data, 'file, Endian, R> = ElfSegmentIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:15-16`](../../../../.source_1765521767/object-0.37.3/src/read/elf/segment.rs#L15-L16)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:15-16`](../../../../.source_1765633015/object-0.37.3/src/read/elf/segment.rs#L15-L16)*
 
 An iterator for the segments in an [`ElfFile64`](super::ElfFile64).
 
@@ -5516,7 +5516,7 @@ An iterator for the segments in an [`ElfFile64`](super::ElfFile64).
 type ElfSegment32<'data, 'file, Endian, R> = ElfSegment<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:50-51`](../../../../.source_1765521767/object-0.37.3/src/read/elf/segment.rs#L50-L51)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:50-51`](../../../../.source_1765633015/object-0.37.3/src/read/elf/segment.rs#L50-L51)*
 
 A segment in an [`ElfFile32`](super::ElfFile32).
 
@@ -5526,7 +5526,7 @@ A segment in an [`ElfFile32`](super::ElfFile32).
 type ElfSegment64<'data, 'file, Endian, R> = ElfSegment<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:53-54`](../../../../.source_1765521767/object-0.37.3/src/read/elf/segment.rs#L53-L54)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:53-54`](../../../../.source_1765633015/object-0.37.3/src/read/elf/segment.rs#L53-L54)*
 
 A segment in an [`ElfFile64`](super::ElfFile64).
 
@@ -5536,7 +5536,7 @@ A segment in an [`ElfFile64`](super::ElfFile64).
 type ElfSectionIterator32<'data, 'file, Endian, R> = ElfSectionIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:350-351`](../../../../.source_1765521767/object-0.37.3/src/read/elf/section.rs#L350-L351)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:350-351`](../../../../.source_1765633015/object-0.37.3/src/read/elf/section.rs#L350-L351)*
 
 An iterator for the sections in an [`ElfFile32`](super::ElfFile32).
 
@@ -5546,7 +5546,7 @@ An iterator for the sections in an [`ElfFile32`](super::ElfFile32).
 type ElfSectionIterator64<'data, 'file, Endian, R> = ElfSectionIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:353-354`](../../../../.source_1765521767/object-0.37.3/src/read/elf/section.rs#L353-L354)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:353-354`](../../../../.source_1765633015/object-0.37.3/src/read/elf/section.rs#L353-L354)*
 
 An iterator for the sections in an [`ElfFile64`](super::ElfFile64).
 
@@ -5556,7 +5556,7 @@ An iterator for the sections in an [`ElfFile64`](super::ElfFile64).
 type ElfSection32<'data, 'file, Endian, R> = ElfSection<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:396-397`](../../../../.source_1765521767/object-0.37.3/src/read/elf/section.rs#L396-L397)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:396-397`](../../../../.source_1765633015/object-0.37.3/src/read/elf/section.rs#L396-L397)*
 
 A section in an [`ElfFile32`](super::ElfFile32).
 
@@ -5566,7 +5566,7 @@ A section in an [`ElfFile32`](super::ElfFile32).
 type ElfSection64<'data, 'file, Endian, R> = ElfSection<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:399-400`](../../../../.source_1765521767/object-0.37.3/src/read/elf/section.rs#L399-L400)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:399-400`](../../../../.source_1765633015/object-0.37.3/src/read/elf/section.rs#L399-L400)*
 
 A section in an [`ElfFile64`](super::ElfFile64).
 
@@ -5576,7 +5576,7 @@ A section in an [`ElfFile64`](super::ElfFile64).
 type ElfSymbolTable32<'data, 'file, Endian, R> = ElfSymbolTable<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:221-222`](../../../../.source_1765521767/object-0.37.3/src/read/elf/symbol.rs#L221-L222)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:221-222`](../../../../.source_1765633015/object-0.37.3/src/read/elf/symbol.rs#L221-L222)*
 
 A symbol table in an [`ElfFile32`](super::ElfFile32).
 
@@ -5586,7 +5586,7 @@ A symbol table in an [`ElfFile32`](super::ElfFile32).
 type ElfSymbolTable64<'data, 'file, Endian, R> = ElfSymbolTable<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:224-225`](../../../../.source_1765521767/object-0.37.3/src/read/elf/symbol.rs#L224-L225)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:224-225`](../../../../.source_1765633015/object-0.37.3/src/read/elf/symbol.rs#L224-L225)*
 
 A symbol table in an [`ElfFile32`](super::ElfFile32).
 
@@ -5596,7 +5596,7 @@ A symbol table in an [`ElfFile32`](super::ElfFile32).
 type ElfSymbolIterator32<'data, 'file, Endian, R> = ElfSymbolIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:265-266`](../../../../.source_1765521767/object-0.37.3/src/read/elf/symbol.rs#L265-L266)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:265-266`](../../../../.source_1765633015/object-0.37.3/src/read/elf/symbol.rs#L265-L266)*
 
 An iterator for the symbols in an [`ElfFile32`](super::ElfFile32).
 
@@ -5606,7 +5606,7 @@ An iterator for the symbols in an [`ElfFile32`](super::ElfFile32).
 type ElfSymbolIterator64<'data, 'file, Endian, R> = ElfSymbolIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:268-269`](../../../../.source_1765521767/object-0.37.3/src/read/elf/symbol.rs#L268-L269)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:268-269`](../../../../.source_1765633015/object-0.37.3/src/read/elf/symbol.rs#L268-L269)*
 
 An iterator for the symbols in an [`ElfFile64`](super::ElfFile64).
 
@@ -5616,7 +5616,7 @@ An iterator for the symbols in an [`ElfFile64`](super::ElfFile64).
 type ElfSymbol32<'data, 'file, Endian, R> = ElfSymbol<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:323-324`](../../../../.source_1765521767/object-0.37.3/src/read/elf/symbol.rs#L323-L324)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:323-324`](../../../../.source_1765633015/object-0.37.3/src/read/elf/symbol.rs#L323-L324)*
 
 A symbol in an [`ElfFile32`](super::ElfFile32).
 
@@ -5626,7 +5626,7 @@ A symbol in an [`ElfFile32`](super::ElfFile32).
 type ElfSymbol64<'data, 'file, Endian, R> = ElfSymbol<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:326-327`](../../../../.source_1765521767/object-0.37.3/src/read/elf/symbol.rs#L326-L327)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:326-327`](../../../../.source_1765633015/object-0.37.3/src/read/elf/symbol.rs#L326-L327)*
 
 A symbol in an [`ElfFile64`](super::ElfFile64).
 
@@ -5636,7 +5636,7 @@ A symbol in an [`ElfFile64`](super::ElfFile64).
 type ElfDynamicRelocationIterator32<'data, 'file, Endian, R> = ElfDynamicRelocationIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:116-117`](../../../../.source_1765521767/object-0.37.3/src/read/elf/relocation.rs#L116-L117)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:116-117`](../../../../.source_1765633015/object-0.37.3/src/read/elf/relocation.rs#L116-L117)*
 
 An iterator for the dynamic relocations in an [`ElfFile32`](super::ElfFile32).
 
@@ -5646,7 +5646,7 @@ An iterator for the dynamic relocations in an [`ElfFile32`](super::ElfFile32).
 type ElfDynamicRelocationIterator64<'data, 'file, Endian, R> = ElfDynamicRelocationIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:119-120`](../../../../.source_1765521767/object-0.37.3/src/read/elf/relocation.rs#L119-L120)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:119-120`](../../../../.source_1765633015/object-0.37.3/src/read/elf/relocation.rs#L119-L120)*
 
 An iterator for the dynamic relocations in an [`ElfFile64`](super::ElfFile64).
 
@@ -5656,7 +5656,7 @@ An iterator for the dynamic relocations in an [`ElfFile64`](super::ElfFile64).
 type ElfSectionRelocationIterator32<'data, 'file, Endian, R> = ElfSectionRelocationIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:200-201`](../../../../.source_1765521767/object-0.37.3/src/read/elf/relocation.rs#L200-L201)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:200-201`](../../../../.source_1765633015/object-0.37.3/src/read/elf/relocation.rs#L200-L201)*
 
 An iterator for the relocations for an [`ElfSection32`](super::ElfSection32).
 
@@ -5666,7 +5666,7 @@ An iterator for the relocations for an [`ElfSection32`](super::ElfSection32).
 type ElfSectionRelocationIterator64<'data, 'file, Endian, R> = ElfSectionRelocationIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:203-204`](../../../../.source_1765521767/object-0.37.3/src/read/elf/relocation.rs#L203-L204)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:203-204`](../../../../.source_1765633015/object-0.37.3/src/read/elf/relocation.rs#L203-L204)*
 
 An iterator for the relocations for an [`ElfSection64`](super::ElfSection64).
 
@@ -5676,7 +5676,7 @@ An iterator for the relocations for an [`ElfSection64`](super::ElfSection64).
 type ElfComdatIterator32<'data, 'file, Endian, R> = ElfComdatIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/comdat.rs:11-12`](../../../../.source_1765521767/object-0.37.3/src/read/elf/comdat.rs#L11-L12)*
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:11-12`](../../../../.source_1765633015/object-0.37.3/src/read/elf/comdat.rs#L11-L12)*
 
 An iterator for the COMDAT section groups in an [`ElfFile32`](super::ElfFile32).
 
@@ -5686,7 +5686,7 @@ An iterator for the COMDAT section groups in an [`ElfFile32`](super::ElfFile32).
 type ElfComdatIterator64<'data, 'file, Endian, R> = ElfComdatIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/comdat.rs:14-15`](../../../../.source_1765521767/object-0.37.3/src/read/elf/comdat.rs#L14-L15)*
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:14-15`](../../../../.source_1765633015/object-0.37.3/src/read/elf/comdat.rs#L14-L15)*
 
 An iterator for the COMDAT section groups in an [`ElfFile64`](super::ElfFile64).
 
@@ -5696,7 +5696,7 @@ An iterator for the COMDAT section groups in an [`ElfFile64`](super::ElfFile64).
 type ElfComdat32<'data, 'file, Endian, R> = ElfComdat<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/comdat.rs:60-61`](../../../../.source_1765521767/object-0.37.3/src/read/elf/comdat.rs#L60-L61)*
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:60-61`](../../../../.source_1765633015/object-0.37.3/src/read/elf/comdat.rs#L60-L61)*
 
 A COMDAT section group in an [`ElfFile32`](super::ElfFile32).
 
@@ -5706,7 +5706,7 @@ A COMDAT section group in an [`ElfFile32`](super::ElfFile32).
 type ElfComdat64<'data, 'file, Endian, R> = ElfComdat<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/comdat.rs:63-64`](../../../../.source_1765521767/object-0.37.3/src/read/elf/comdat.rs#L63-L64)*
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:63-64`](../../../../.source_1765633015/object-0.37.3/src/read/elf/comdat.rs#L63-L64)*
 
 A COMDAT section group in an [`ElfFile64`](super::ElfFile64).
 
@@ -5716,7 +5716,7 @@ A COMDAT section group in an [`ElfFile64`](super::ElfFile64).
 type ElfComdatSectionIterator32<'data, 'file, Endian, R> = ElfComdatSectionIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/comdat.rs:158-159`](../../../../.source_1765521767/object-0.37.3/src/read/elf/comdat.rs#L158-L159)*
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:158-159`](../../../../.source_1765633015/object-0.37.3/src/read/elf/comdat.rs#L158-L159)*
 
 An iterator for the sections in a COMDAT section group in an [`ElfFile32`](super::ElfFile32).
 
@@ -5726,7 +5726,7 @@ An iterator for the sections in a COMDAT section group in an [`ElfFile32`](super
 type ElfComdatSectionIterator64<'data, 'file, Endian, R> = ElfComdatSectionIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/comdat.rs:161-162`](../../../../.source_1765521767/object-0.37.3/src/read/elf/comdat.rs#L161-L162)*
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:161-162`](../../../../.source_1765633015/object-0.37.3/src/read/elf/comdat.rs#L161-L162)*
 
 An iterator for the sections in a COMDAT section group in an [`ElfFile64`](super::ElfFile64).
 

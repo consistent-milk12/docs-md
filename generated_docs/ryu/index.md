@@ -136,7 +136,7 @@ struct Buffer {
 }
 ```
 
-*Defined in [`ryu-1.0.20/src/buffer/mod.rs:20-22`](../../.source_1765521767/ryu-1.0.20/src/buffer/mod.rs#L20-L22)*
+*Defined in [`ryu-1.0.20/src/buffer/mod.rs:20-22`](../../.source_1765633015/ryu-1.0.20/src/buffer/mod.rs#L20-L22)*
 
 Safe API for formatting floating point numbers to text.
 
@@ -274,7 +274,7 @@ assert_eq!(printed, "1.234");
 trait Float: Sealed { ... }
 ```
 
-*Defined in [`ryu-1.0.20/src/buffer/mod.rs:105`](../../.source_1765521767/ryu-1.0.20/src/buffer/mod.rs#L105)*
+*Defined in [`ryu-1.0.20/src/buffer/mod.rs:105`](../../.source_1765633015/ryu-1.0.20/src/buffer/mod.rs#L105)*
 
 A floating point number, f32 or f64, that can be written into a
 [`ryu::Buffer`][Buffer].

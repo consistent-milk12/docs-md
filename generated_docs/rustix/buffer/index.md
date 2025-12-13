@@ -27,7 +27,7 @@ Utilities for functions that return data via buffers.
 struct SpareCapacity<'a, T>(&'a mut alloc::vec::Vec<T>);
 ```
 
-*Defined in [`rustix-1.1.2/src/buffer.rs:233`](../../../.source_1765521767/rustix-1.1.2/src/buffer.rs#L233)*
+*Defined in [`rustix-1.1.2/src/buffer.rs:233`](../../../.source_1765633015/rustix-1.1.2/src/buffer.rs#L233)*
 
 A type that implements [`Buffer`](#buffer) by appending to a `Vec`, up to its
 capacity.
@@ -99,7 +99,7 @@ have some non-empty spare capacity.
 trait Buffer<T>: private::Sealed<T> { ... }
 ```
 
-*Defined in [`rustix-1.1.2/src/buffer.rs:106`](../../../.source_1765521767/rustix-1.1.2/src/buffer.rs#L106)*
+*Defined in [`rustix-1.1.2/src/buffer.rs:106`](../../../.source_1765633015/rustix-1.1.2/src/buffer.rs#L106)*
 
 A memory buffer that may be uninitialized.
 
@@ -207,7 +207,7 @@ that. See `error_retry_closure_uninit` in examples/buffer_errors.rs.
 fn spare_capacity<'a, T>(v: &'a mut alloc::vec::Vec<T>) -> SpareCapacity<'a, T>
 ```
 
-*Defined in [`rustix-1.1.2/src/buffer.rs:266-275`](../../../.source_1765521767/rustix-1.1.2/src/buffer.rs#L266-L275)*
+*Defined in [`rustix-1.1.2/src/buffer.rs:266-275`](../../../.source_1765633015/rustix-1.1.2/src/buffer.rs#L266-L275)*
 
 Construct an [`SpareCapacity`](#sparecapacity), which implements [`Buffer`](#buffer).
 

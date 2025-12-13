@@ -818,7 +818,7 @@ struct Attribute {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:19-179`](../../.source_1765521767/syn-2.0.111/src/attr.rs#L19-L179)*
+*Defined in [`syn-2.0.111/src/attr.rs:19-179`](../../.source_1765633015/syn-2.0.111/src/attr.rs#L19-L179)*
 
 An attribute, like `#[repr(transparent)]`.
 
@@ -1441,7 +1441,7 @@ struct MetaList {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:484-492`](../../.source_1765521767/syn-2.0.111/src/attr.rs#L484-L492)*
+*Defined in [`syn-2.0.111/src/attr.rs:484-492`](../../.source_1765633015/syn-2.0.111/src/attr.rs#L484-L492)*
 
 A structured list within an attribute, like `derive(Copy, Clone)`.
 
@@ -1557,7 +1557,7 @@ struct MetaNameValue {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:494-502`](../../.source_1765521767/syn-2.0.111/src/attr.rs#L494-L502)*
+*Defined in [`syn-2.0.111/src/attr.rs:494-502`](../../.source_1765633015/syn-2.0.111/src/attr.rs#L494-L502)*
 
 A name-value pair within an attribute, like `feature = "nightly"`.
 
@@ -1666,7 +1666,7 @@ struct Field {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:181-200`](../../.source_1765521767/syn-2.0.111/src/data.rs#L181-L200)*
+*Defined in [`syn-2.0.111/src/data.rs:181-200`](../../.source_1765633015/syn-2.0.111/src/data.rs#L181-L200)*
 
 A field of a struct or enum variant.
 
@@ -1781,7 +1781,7 @@ struct FieldsNamed {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:48-56`](../../.source_1765521767/syn-2.0.111/src/data.rs#L48-L56)*
+*Defined in [`syn-2.0.111/src/data.rs:48-56`](../../.source_1765633015/syn-2.0.111/src/data.rs#L48-L56)*
 
 Named fields of a struct or struct variant such as `Point { x: f64,
 y: f64 }`.
@@ -1887,7 +1887,7 @@ struct FieldsUnnamed {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:58-65`](../../.source_1765521767/syn-2.0.111/src/data.rs#L58-L65)*
+*Defined in [`syn-2.0.111/src/data.rs:58-65`](../../.source_1765633015/syn-2.0.111/src/data.rs#L58-L65)*
 
 Unnamed fields of a tuple struct or tuple variant such as `Some(T)`.
 
@@ -1994,7 +1994,7 @@ struct Variant {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:9-24`](../../.source_1765521767/syn-2.0.111/src/data.rs#L9-L24)*
+*Defined in [`syn-2.0.111/src/data.rs:9-24`](../../.source_1765633015/syn-2.0.111/src/data.rs#L9-L24)*
 
 An enum variant.
 
@@ -2110,7 +2110,7 @@ struct DataEnum {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:47-55`](../../.source_1765521767/syn-2.0.111/src/derive.rs#L47-L55)*
+*Defined in [`syn-2.0.111/src/derive.rs:47-55`](../../.source_1765633015/syn-2.0.111/src/derive.rs#L47-L55)*
 
 An enum input to a `proc_macro_derive` macro.
 
@@ -2202,7 +2202,7 @@ struct DataStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:37-45`](../../.source_1765521767/syn-2.0.111/src/derive.rs#L37-L45)*
+*Defined in [`syn-2.0.111/src/derive.rs:37-45`](../../.source_1765633015/syn-2.0.111/src/derive.rs#L37-L45)*
 
 A struct input to a `proc_macro_derive` macro.
 
@@ -2293,7 +2293,7 @@ struct DataUnion {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:57-64`](../../.source_1765521767/syn-2.0.111/src/derive.rs#L57-L64)*
+*Defined in [`syn-2.0.111/src/derive.rs:57-64`](../../.source_1765633015/syn-2.0.111/src/derive.rs#L57-L64)*
 
 An untagged union input to a `proc_macro_derive` macro.
 
@@ -2387,7 +2387,7 @@ struct DeriveInput {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:9-19`](../../.source_1765521767/syn-2.0.111/src/derive.rs#L9-L19)*
+*Defined in [`syn-2.0.111/src/derive.rs:9-19`](../../.source_1765633015/syn-2.0.111/src/derive.rs#L9-L19)*
 
 Data structure sent to a `proc_macro_derive` macro.
 
@@ -2487,7 +2487,7 @@ struct Error {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:101-103`](../../.source_1765521767/syn-2.0.111/src/error.rs#L101-L103)*
+*Defined in [`syn-2.0.111/src/error.rs:101-103`](../../.source_1765633015/syn-2.0.111/src/error.rs#L101-L103)*
 
 Error returned when a Syn parser cannot parse the input tokens.
 
@@ -2847,7 +2847,7 @@ struct Arm {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1119-1146`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L1119-L1146)*
+*Defined in [`syn-2.0.111/src/expr.rs:1119-1146`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L1119-L1146)*
 
 One arm of a `match` expression: `0..=10 => { return true; }`.
 
@@ -2968,7 +2968,7 @@ struct Label {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1109-1116`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L1109-L1116)*
+*Defined in [`syn-2.0.111/src/expr.rs:1109-1116`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L1109-L1116)*
 
 A lifetime labeling a `for`, `while`, or `loop`.
 
@@ -3071,7 +3071,7 @@ struct ExprBinary {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:312-321`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L312-L321)*
+*Defined in [`syn-2.0.111/src/expr.rs:312-321`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L312-L321)*
 
 A binary operation: `a + b`, `a += b`.
 
@@ -3178,7 +3178,7 @@ struct ExprCall {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:345-354`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L345-L354)*
+*Defined in [`syn-2.0.111/src/expr.rs:345-354`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L345-L354)*
 
 A function call expression: `invoke(a, b)`.
 
@@ -3285,7 +3285,7 @@ struct ExprCast {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:356-365`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L356-L365)*
+*Defined in [`syn-2.0.111/src/expr.rs:356-365`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L356-L365)*
 
 A cast expression: `foo as f64`.
 
@@ -3392,7 +3392,7 @@ struct ExprField {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:405-415`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L405-L415)*
+*Defined in [`syn-2.0.111/src/expr.rs:405-415`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L405-L415)*
 
 Access of a named struct field (`obj.k`) or unnamed tuple struct
 field (`obj.0`).
@@ -3500,7 +3500,7 @@ struct ExprIndex {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:461-470`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L461-L470)*
+*Defined in [`syn-2.0.111/src/expr.rs:461-470`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L461-L470)*
 
 A square bracketed indexing expression: `vector[2]`.
 
@@ -3605,7 +3605,7 @@ struct ExprLit {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L493-L500)*
+*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L493-L500)*
 
 A literal in place of an expression: `1`, `"foo"`.
 
@@ -3710,7 +3710,7 @@ struct ExprMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L513-L520)*
+*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L513-L520)*
 
 A macro invocation expression: `format!("{}", q)`.
 
@@ -3820,7 +3820,7 @@ struct ExprMethodCall {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:534-546`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L534-L546)*
+*Defined in [`syn-2.0.111/src/expr.rs:534-546`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L534-L546)*
 
 A method call expression: `x.foo::<T>(a, b)`.
 
@@ -3926,7 +3926,7 @@ struct ExprParen {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:548-556`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L548-L556)*
+*Defined in [`syn-2.0.111/src/expr.rs:548-556`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L548-L556)*
 
 A parenthesized expression: `(a + b)`.
 
@@ -4032,7 +4032,7 @@ struct ExprPath {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L558-L569)*
+*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L558-L569)*
 
 A path like `std::mem::replace` possibly containing generic
 parameters and a qualified self-type.
@@ -4142,7 +4142,7 @@ struct ExprReference {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:594-603`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L594-L603)*
+*Defined in [`syn-2.0.111/src/expr.rs:594-603`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L594-L603)*
 
 A referencing operation: `&a` or `&mut a`.
 
@@ -4252,7 +4252,7 @@ struct ExprStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:627-642`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L627-L642)*
+*Defined in [`syn-2.0.111/src/expr.rs:627-642`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L627-L642)*
 
 A struct literal expression: `Point { x: 1, y: 1 }`.
 
@@ -4361,7 +4361,7 @@ struct ExprUnary {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:674-682`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L674-L682)*
+*Defined in [`syn-2.0.111/src/expr.rs:674-682`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L674-L682)*
 
 A unary operation: `!x`, `*x`.
 
@@ -4468,7 +4468,7 @@ struct FieldValue {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1093-1106`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L1093-L1106)*
+*Defined in [`syn-2.0.111/src/expr.rs:1093-1106`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L1093-L1106)*
 
 A field-value pair in a struct literal.
 
@@ -4576,7 +4576,7 @@ struct Index {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1049-1056`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L1049-L1056)*
+*Defined in [`syn-2.0.111/src/expr.rs:1049-1056`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L1049-L1056)*
 
 The index of an unnamed tuple struct field.
 
@@ -4684,7 +4684,7 @@ struct ExprArray {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:269-277`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L269-L277)*
+*Defined in [`syn-2.0.111/src/expr.rs:269-277`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L269-L277)*
 
 A slice literal expression: `[a, b, c, d]`.
 
@@ -4791,7 +4791,7 @@ struct ExprAssign {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:279-288`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L279-L288)*
+*Defined in [`syn-2.0.111/src/expr.rs:279-288`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L279-L288)*
 
 An assignment expression: `a = compute()`.
 
@@ -4898,7 +4898,7 @@ struct ExprAsync {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:290-299`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L290-L299)*
+*Defined in [`syn-2.0.111/src/expr.rs:290-299`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L290-L299)*
 
 An async block: `async { ... }`.
 
@@ -5005,7 +5005,7 @@ struct ExprAwait {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:301-310`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L301-L310)*
+*Defined in [`syn-2.0.111/src/expr.rs:301-310`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L301-L310)*
 
 An await expression: `fut.await`.
 
@@ -5111,7 +5111,7 @@ struct ExprBlock {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:323-331`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L323-L331)*
+*Defined in [`syn-2.0.111/src/expr.rs:323-331`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L323-L331)*
 
 A blocked scope: `{ ... }`.
 
@@ -5218,7 +5218,7 @@ struct ExprBreak {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:333-343`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L333-L343)*
+*Defined in [`syn-2.0.111/src/expr.rs:333-343`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L333-L343)*
 
 A `break`, with an optional label to break and an optional
 expression.
@@ -5333,7 +5333,7 @@ struct ExprClosure {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:367-383`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L367-L383)*
+*Defined in [`syn-2.0.111/src/expr.rs:367-383`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L367-L383)*
 
 A closure expression: `|a, b| a + b`.
 
@@ -5439,7 +5439,7 @@ struct ExprConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L385-L393)*
+*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L385-L393)*
 
 A const block: `const { ... }`.
 
@@ -5545,7 +5545,7 @@ struct ExprContinue {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:395-403`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L395-L403)*
+*Defined in [`syn-2.0.111/src/expr.rs:395-403`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L395-L403)*
 
 A `continue`, with an optional label.
 
@@ -5655,7 +5655,7 @@ struct ExprForLoop {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:417-429`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L417-L429)*
+*Defined in [`syn-2.0.111/src/expr.rs:417-429`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L417-L429)*
 
 A for loop: `for pat in expr { ... }`.
 
@@ -5761,7 +5761,7 @@ struct ExprGroup {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:431-443`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L431-L443)*
+*Defined in [`syn-2.0.111/src/expr.rs:431-443`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L431-L443)*
 
 An expression contained within invisible delimiters.
 
@@ -5869,7 +5869,7 @@ struct ExprIf {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:445-459`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L445-L459)*
+*Defined in [`syn-2.0.111/src/expr.rs:445-459`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L445-L459)*
 
 An `if` expression with an optional `else` block: `if expr { ... }
 else { ... }`.
@@ -5978,7 +5978,7 @@ struct ExprInfer {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:472-479`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L472-L479)*
+*Defined in [`syn-2.0.111/src/expr.rs:472-479`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L472-L479)*
 
 The inferred value of a const generic argument, denoted `_`.
 
@@ -6086,7 +6086,7 @@ struct ExprLet {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:481-491`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L481-L491)*
+*Defined in [`syn-2.0.111/src/expr.rs:481-491`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L481-L491)*
 
 A `let` guard: `let Some(x) = opt`.
 
@@ -6193,7 +6193,7 @@ struct ExprLoop {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:502-511`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L502-L511)*
+*Defined in [`syn-2.0.111/src/expr.rs:502-511`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L502-L511)*
 
 Conditionless loop: `loop { ... }`.
 
@@ -6301,7 +6301,7 @@ struct ExprMatch {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:522-532`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L522-L532)*
+*Defined in [`syn-2.0.111/src/expr.rs:522-532`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L522-L532)*
 
 A `match` expression: `match n { Some(n) => {}, None => {} }`.
 
@@ -6408,7 +6408,7 @@ struct ExprRange {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L571-L580)*
+*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L571-L580)*
 
 A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 
@@ -6516,7 +6516,7 @@ struct ExprRawAddr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:582-592`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L582-L592)*
+*Defined in [`syn-2.0.111/src/expr.rs:582-592`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L582-L592)*
 
 Address-of operation: `&raw const place` or `&raw mut place`.
 
@@ -6624,7 +6624,7 @@ struct ExprRepeat {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:605-615`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L605-L615)*
+*Defined in [`syn-2.0.111/src/expr.rs:605-615`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L605-L615)*
 
 An array literal constructed from one repeated element: `[0u8; N]`.
 
@@ -6730,7 +6730,7 @@ struct ExprReturn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:617-625`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L617-L625)*
+*Defined in [`syn-2.0.111/src/expr.rs:617-625`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L617-L625)*
 
 A `return`, with an optional value to be returned.
 
@@ -6836,7 +6836,7 @@ struct ExprTry {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:644-652`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L644-L652)*
+*Defined in [`syn-2.0.111/src/expr.rs:644-652`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L644-L652)*
 
 A try-expression: `expr?`.
 
@@ -6942,7 +6942,7 @@ struct ExprTryBlock {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:654-662`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L654-L662)*
+*Defined in [`syn-2.0.111/src/expr.rs:654-662`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L654-L662)*
 
 A try block: `try { ... }`.
 
@@ -7048,7 +7048,7 @@ struct ExprTuple {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:664-672`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L664-L672)*
+*Defined in [`syn-2.0.111/src/expr.rs:664-672`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L664-L672)*
 
 A tuple expression: `(a, b, c, d)`.
 
@@ -7154,7 +7154,7 @@ struct ExprUnsafe {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:684-692`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L684-L692)*
+*Defined in [`syn-2.0.111/src/expr.rs:684-692`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L684-L692)*
 
 An unsafe block: `unsafe { ... }`.
 
@@ -7262,7 +7262,7 @@ struct ExprWhile {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:694-704`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L694-L704)*
+*Defined in [`syn-2.0.111/src/expr.rs:694-704`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L694-L704)*
 
 A while loop: `while expr { ... }`.
 
@@ -7368,7 +7368,7 @@ struct ExprYield {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:706-714`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L706-L714)*
+*Defined in [`syn-2.0.111/src/expr.rs:706-714`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L706-L714)*
 
 A yield expression: `yield expr`.
 
@@ -7474,7 +7474,7 @@ struct File {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/file.rs:4-84`](../../.source_1765521767/syn-2.0.111/src/file.rs#L4-L84)*
+*Defined in [`syn-2.0.111/src/file.rs:4-84`](../../.source_1765633015/syn-2.0.111/src/file.rs#L4-L84)*
 
 A complete file of Rust source code.
 
@@ -7647,7 +7647,7 @@ struct BoundLifetimes {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:352-361`](../../.source_1765521767/syn-2.0.111/src/generics.rs#L352-L361)*
+*Defined in [`syn-2.0.111/src/generics.rs:352-361`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L352-L361)*
 
 A set of bound lifetimes: `for<'a, 'b, 'c>`.
 
@@ -7757,7 +7757,7 @@ struct ConstParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:80-92`](../../.source_1765521767/syn-2.0.111/src/generics.rs#L80-L92)*
+*Defined in [`syn-2.0.111/src/generics.rs:80-92`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L80-L92)*
 
 A const generic parameter: `const LENGTH: usize`.
 
@@ -7860,7 +7860,7 @@ struct Generics {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:15-32`](../../.source_1765521767/syn-2.0.111/src/generics.rs#L15-L32)*
+*Defined in [`syn-2.0.111/src/generics.rs:15-32`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L15-L32)*
 
 Lifetimes and type parameters attached to a declaration of a function,
 enum, trait, etc.
@@ -8042,7 +8042,7 @@ struct LifetimeParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:56-65`](../../.source_1765521767/syn-2.0.111/src/generics.rs#L56-L65)*
+*Defined in [`syn-2.0.111/src/generics.rs:56-65`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L56-L65)*
 
 A lifetime definition: `'a: 'b + 'c + 'd`.
 
@@ -8148,7 +8148,7 @@ struct PredicateLifetime {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:490-498`](../../.source_1765521767/syn-2.0.111/src/generics.rs#L490-L498)*
+*Defined in [`syn-2.0.111/src/generics.rs:490-498`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L490-L498)*
 
 A lifetime predicate in a `where` clause: `'a: 'b + 'c`.
 
@@ -8247,7 +8247,7 @@ struct PredicateType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:500-512`](../../.source_1765521767/syn-2.0.111/src/generics.rs#L500-L512)*
+*Defined in [`syn-2.0.111/src/generics.rs:500-512`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L500-L512)*
 
 A type predicate in a `where` clause: `for<'c> Foo<'c>: Trait<'c>`.
 
@@ -8360,7 +8360,7 @@ struct TraitBound {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:410-421`](../../.source_1765521767/syn-2.0.111/src/generics.rs#L410-L421)*
+*Defined in [`syn-2.0.111/src/generics.rs:410-421`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L410-L421)*
 
 A trait used as a bound on a type parameter.
 
@@ -8479,7 +8479,7 @@ struct TypeParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:67-78`](../../.source_1765521767/syn-2.0.111/src/generics.rs#L67-L78)*
+*Defined in [`syn-2.0.111/src/generics.rs:67-78`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L67-L78)*
 
 A generic type parameter: `T: Into<String>`.
 
@@ -8580,7 +8580,7 @@ struct WhereClause {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:461-469`](../../.source_1765521767/syn-2.0.111/src/generics.rs#L461-L469)*
+*Defined in [`syn-2.0.111/src/generics.rs:461-469`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L461-L469)*
 
 A `where` clause in a definition: `where T: Deserialize<'de>, D:
 'static`.
@@ -8684,7 +8684,7 @@ struct PreciseCapture {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:433-443`](../../.source_1765521767/syn-2.0.111/src/generics.rs#L433-L443)*
+*Defined in [`syn-2.0.111/src/generics.rs:433-443`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L433-L443)*
 
 Precise capturing bound: the 'use&lt;&hellip;&gt;' in `impl Trait +
 use<'a, T>`.
@@ -8783,7 +8783,7 @@ use<'a, T>`.
 struct ImplGenerics<'a>(&'a Generics);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:275`](../../.source_1765521767/syn-2.0.111/src/generics.rs#L275)*
+*Defined in [`syn-2.0.111/src/generics.rs:275`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L275)*
 
 Returned by `Generics::split_for_impl`.
 
@@ -8877,7 +8877,7 @@ Returned by `Generics::split_for_impl`.
 struct Turbofish<'a>(&'a Generics);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:291`](../../.source_1765521767/syn-2.0.111/src/generics.rs#L291)*
+*Defined in [`syn-2.0.111/src/generics.rs:291`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L291)*
 
 Returned by `TypeGenerics::as_turbofish`.
 
@@ -8971,7 +8971,7 @@ Returned by `TypeGenerics::as_turbofish`.
 struct TypeGenerics<'a>(&'a Generics);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:283`](../../.source_1765521767/syn-2.0.111/src/generics.rs#L283)*
+*Defined in [`syn-2.0.111/src/generics.rs:283`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L283)*
 
 Returned by `Generics::split_for_impl`.
 
@@ -9076,7 +9076,7 @@ struct ForeignItemFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:542-551`](../../.source_1765521767/syn-2.0.111/src/item.rs#L542-L551)*
+*Defined in [`syn-2.0.111/src/item.rs:542-551`](../../.source_1765633015/syn-2.0.111/src/item.rs#L542-L551)*
 
 A foreign function in an `extern` block.
 
@@ -9182,7 +9182,7 @@ struct ForeignItemMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:581-589`](../../.source_1765521767/syn-2.0.111/src/item.rs#L581-L589)*
+*Defined in [`syn-2.0.111/src/item.rs:581-589`](../../.source_1765633015/syn-2.0.111/src/item.rs#L581-L589)*
 
 A macro invocation within an extern block.
 
@@ -9293,7 +9293,7 @@ struct ForeignItemStatic {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:553-566`](../../.source_1765521767/syn-2.0.111/src/item.rs#L553-L566)*
+*Defined in [`syn-2.0.111/src/item.rs:553-566`](../../.source_1765633015/syn-2.0.111/src/item.rs#L553-L566)*
 
 A foreign static item in an `extern` block: `static ext: u8`.
 
@@ -9402,7 +9402,7 @@ struct ForeignItemType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:568-579`](../../.source_1765521767/syn-2.0.111/src/item.rs#L568-L579)*
+*Defined in [`syn-2.0.111/src/item.rs:568-579`](../../.source_1765633015/syn-2.0.111/src/item.rs#L568-L579)*
 
 A foreign type in an `extern` block: `type void`.
 
@@ -9516,7 +9516,7 @@ struct ImplItemConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:734-750`](../../.source_1765521767/syn-2.0.111/src/item.rs#L734-L750)*
+*Defined in [`syn-2.0.111/src/item.rs:734-750`](../../.source_1765633015/syn-2.0.111/src/item.rs#L734-L750)*
 
 An associated constant within an impl block.
 
@@ -9624,7 +9624,7 @@ struct ImplItemFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:752-762`](../../.source_1765521767/syn-2.0.111/src/item.rs#L752-L762)*
+*Defined in [`syn-2.0.111/src/item.rs:752-762`](../../.source_1765633015/syn-2.0.111/src/item.rs#L752-L762)*
 
 An associated function within an impl block.
 
@@ -9730,7 +9730,7 @@ struct ImplItemMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:780-788`](../../.source_1765521767/syn-2.0.111/src/item.rs#L780-L788)*
+*Defined in [`syn-2.0.111/src/item.rs:780-788`](../../.source_1765633015/syn-2.0.111/src/item.rs#L780-L788)*
 
 A macro invocation within an impl block.
 
@@ -9842,7 +9842,7 @@ struct ImplItemType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:764-778`](../../.source_1765521767/syn-2.0.111/src/item.rs#L764-L778)*
+*Defined in [`syn-2.0.111/src/item.rs:764-778`](../../.source_1765633015/syn-2.0.111/src/item.rs#L764-L778)*
 
 An associated type within an impl block.
 
@@ -9955,7 +9955,7 @@ struct ItemConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:101-116`](../../.source_1765521767/syn-2.0.111/src/item.rs#L101-L116)*
+*Defined in [`syn-2.0.111/src/item.rs:101-116`](../../.source_1765633015/syn-2.0.111/src/item.rs#L101-L116)*
 
 A constant item: `const MAX: u16 = 65535`.
 
@@ -10065,7 +10065,7 @@ struct ItemEnum {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:118-130`](../../.source_1765521767/syn-2.0.111/src/item.rs#L118-L130)*
+*Defined in [`syn-2.0.111/src/item.rs:118-130`](../../.source_1765633015/syn-2.0.111/src/item.rs#L118-L130)*
 
 An enum definition: `enum Foo<A, B> { A(A), B(B) }`.
 
@@ -10175,7 +10175,7 @@ struct ItemExternCrate {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:132-144`](../../.source_1765521767/syn-2.0.111/src/item.rs#L132-L144)*
+*Defined in [`syn-2.0.111/src/item.rs:132-144`](../../.source_1765633015/syn-2.0.111/src/item.rs#L132-L144)*
 
 An `extern crate` item: `extern crate serde`.
 
@@ -10282,7 +10282,7 @@ struct ItemFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:146-155`](../../.source_1765521767/syn-2.0.111/src/item.rs#L146-L155)*
+*Defined in [`syn-2.0.111/src/item.rs:146-155`](../../.source_1765633015/syn-2.0.111/src/item.rs#L146-L155)*
 
 A free-standing function: `fn process(n: usize) -> Result<()> { ... }`.
 
@@ -10390,7 +10390,7 @@ struct ItemForeignMod {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:157-167`](../../.source_1765521767/syn-2.0.111/src/item.rs#L157-L167)*
+*Defined in [`syn-2.0.111/src/item.rs:157-167`](../../.source_1765633015/syn-2.0.111/src/item.rs#L157-L167)*
 
 A block of foreign items: `extern "C" { ... }`.
 
@@ -10502,7 +10502,7 @@ struct ItemImpl {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:169-186`](../../.source_1765521767/syn-2.0.111/src/item.rs#L169-L186)*
+*Defined in [`syn-2.0.111/src/item.rs:169-186`](../../.source_1765633015/syn-2.0.111/src/item.rs#L169-L186)*
 
 An impl block providing trait or associated items: `impl<A> Trait
 for Data<A> { ... }`.
@@ -10620,7 +10620,7 @@ struct ItemMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:188-198`](../../.source_1765521767/syn-2.0.111/src/item.rs#L188-L198)*
+*Defined in [`syn-2.0.111/src/item.rs:188-198`](../../.source_1765633015/syn-2.0.111/src/item.rs#L188-L198)*
 
 A macro invocation, which includes `macro_rules!` definitions.
 
@@ -10736,7 +10736,7 @@ struct ItemMod {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:200-212`](../../.source_1765521767/syn-2.0.111/src/item.rs#L200-L212)*
+*Defined in [`syn-2.0.111/src/item.rs:200-212`](../../.source_1765633015/syn-2.0.111/src/item.rs#L200-L212)*
 
 A module or module declaration: `mod m` or `mod m { ... }`.
 
@@ -10849,7 +10849,7 @@ struct ItemStatic {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:214-229`](../../.source_1765521767/syn-2.0.111/src/item.rs#L214-L229)*
+*Defined in [`syn-2.0.111/src/item.rs:214-229`](../../.source_1765633015/syn-2.0.111/src/item.rs#L214-L229)*
 
 A static item: `static BIKE: Shed = Shed(42)`.
 
@@ -10959,7 +10959,7 @@ struct ItemStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:231-243`](../../.source_1765521767/syn-2.0.111/src/item.rs#L231-L243)*
+*Defined in [`syn-2.0.111/src/item.rs:231-243`](../../.source_1765633015/syn-2.0.111/src/item.rs#L231-L243)*
 
 A struct definition: `struct Foo<A> { x: A }`.
 
@@ -11074,7 +11074,7 @@ struct ItemTrait {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:245-262`](../../.source_1765521767/syn-2.0.111/src/item.rs#L245-L262)*
+*Defined in [`syn-2.0.111/src/item.rs:245-262`](../../.source_1765633015/syn-2.0.111/src/item.rs#L245-L262)*
 
 A trait definition: `pub trait Iterator { ... }`.
 
@@ -11185,7 +11185,7 @@ struct ItemTraitAlias {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:264-277`](../../.source_1765521767/syn-2.0.111/src/item.rs#L264-L277)*
+*Defined in [`syn-2.0.111/src/item.rs:264-277`](../../.source_1765633015/syn-2.0.111/src/item.rs#L264-L277)*
 
 A trait alias: `pub trait SharableIterator = Iterator + Sync`.
 
@@ -11296,7 +11296,7 @@ struct ItemType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:279-292`](../../.source_1765521767/syn-2.0.111/src/item.rs#L279-L292)*
+*Defined in [`syn-2.0.111/src/item.rs:279-292`](../../.source_1765633015/syn-2.0.111/src/item.rs#L279-L292)*
 
 A type alias: `type Result<T> = std::result::Result<T, MyError>`.
 
@@ -11405,7 +11405,7 @@ struct ItemUnion {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:294-305`](../../.source_1765521767/syn-2.0.111/src/item.rs#L294-L305)*
+*Defined in [`syn-2.0.111/src/item.rs:294-305`](../../.source_1765633015/syn-2.0.111/src/item.rs#L294-L305)*
 
 A union definition: `union Foo<A, B> { x: A, y: B }`.
 
@@ -11514,7 +11514,7 @@ struct ItemUse {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:307-318`](../../.source_1765521767/syn-2.0.111/src/item.rs#L307-L318)*
+*Defined in [`syn-2.0.111/src/item.rs:307-318`](../../.source_1765633015/syn-2.0.111/src/item.rs#L307-L318)*
 
 A use declaration: `use std::collections::HashMap`.
 
@@ -11623,7 +11623,7 @@ struct Receiver {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:832-849`](../../.source_1765521767/syn-2.0.111/src/item.rs#L832-L849)*
+*Defined in [`syn-2.0.111/src/item.rs:832-849`](../../.source_1765633015/syn-2.0.111/src/item.rs#L832-L849)*
 
 The `self` argument of an associated method.
 
@@ -11743,7 +11743,7 @@ struct Signature {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:790-807`](../../.source_1765521767/syn-2.0.111/src/item.rs#L790-L807)*
+*Defined in [`syn-2.0.111/src/item.rs:790-807`](../../.source_1765633015/syn-2.0.111/src/item.rs#L790-L807)*
 
 A function signature in a trait or implementation: `unsafe fn
 initialize(&self)`.
@@ -11857,7 +11857,7 @@ struct TraitItemConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:637-650`](../../.source_1765521767/syn-2.0.111/src/item.rs#L637-L650)*
+*Defined in [`syn-2.0.111/src/item.rs:637-650`](../../.source_1765633015/syn-2.0.111/src/item.rs#L637-L650)*
 
 An associated constant within the definition of a trait.
 
@@ -11964,7 +11964,7 @@ struct TraitItemFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:652-661`](../../.source_1765521767/syn-2.0.111/src/item.rs#L652-L661)*
+*Defined in [`syn-2.0.111/src/item.rs:652-661`](../../.source_1765633015/syn-2.0.111/src/item.rs#L652-L661)*
 
 An associated function within the definition of a trait.
 
@@ -12070,7 +12070,7 @@ struct TraitItemMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:678-686`](../../.source_1765521767/syn-2.0.111/src/item.rs#L678-L686)*
+*Defined in [`syn-2.0.111/src/item.rs:678-686`](../../.source_1765633015/syn-2.0.111/src/item.rs#L678-L686)*
 
 A macro invocation within the definition of a trait.
 
@@ -12181,7 +12181,7 @@ struct TraitItemType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:663-676`](../../.source_1765521767/syn-2.0.111/src/item.rs#L663-L676)*
+*Defined in [`syn-2.0.111/src/item.rs:663-676`](../../.source_1765633015/syn-2.0.111/src/item.rs#L663-L676)*
 
 An associated type within the definition of a trait.
 
@@ -12285,7 +12285,7 @@ struct UseGlob {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:479-485`](../../.source_1765521767/syn-2.0.111/src/item.rs#L479-L485)*
+*Defined in [`syn-2.0.111/src/item.rs:479-485`](../../.source_1765633015/syn-2.0.111/src/item.rs#L479-L485)*
 
 A glob import in a `use` item: `*`.
 
@@ -12382,7 +12382,7 @@ struct UseGroup {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:487-494`](../../.source_1765521767/syn-2.0.111/src/item.rs#L487-L494)*
+*Defined in [`syn-2.0.111/src/item.rs:487-494`](../../.source_1765633015/syn-2.0.111/src/item.rs#L487-L494)*
 
 A braced group of imports in a `use` item: `{A, B, C}`.
 
@@ -12478,7 +12478,7 @@ struct UseName {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:461-467`](../../.source_1765521767/syn-2.0.111/src/item.rs#L461-L467)*
+*Defined in [`syn-2.0.111/src/item.rs:461-467`](../../.source_1765633015/syn-2.0.111/src/item.rs#L461-L467)*
 
 An identifier imported by a `use` item: `HashMap`.
 
@@ -12576,7 +12576,7 @@ struct UsePath {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:451-459`](../../.source_1765521767/syn-2.0.111/src/item.rs#L451-L459)*
+*Defined in [`syn-2.0.111/src/item.rs:451-459`](../../.source_1765633015/syn-2.0.111/src/item.rs#L451-L459)*
 
 A path prefix of imports in a `use` item: `std::...`.
 
@@ -12674,7 +12674,7 @@ struct UseRename {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:469-477`](../../.source_1765521767/syn-2.0.111/src/item.rs#L469-L477)*
+*Defined in [`syn-2.0.111/src/item.rs:469-477`](../../.source_1765633015/syn-2.0.111/src/item.rs#L469-L477)*
 
 An renamed identifier imported by a `use` item: `HashMap as Map`.
 
@@ -12773,7 +12773,7 @@ struct Variadic {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:857-876`](../../.source_1765521767/syn-2.0.111/src/item.rs#L857-L876)*
+*Defined in [`syn-2.0.111/src/item.rs:857-876`](../../.source_1765633015/syn-2.0.111/src/item.rs#L857-L876)*
 
 The variadic argument of a foreign function.
 
@@ -12880,7 +12880,7 @@ struct Lifetime {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lifetime.rs:18-21`](../../.source_1765521767/syn-2.0.111/src/lifetime.rs#L18-L21)*
+*Defined in [`syn-2.0.111/src/lifetime.rs:18-21`](../../.source_1765633015/syn-2.0.111/src/lifetime.rs#L18-L21)*
 
 A Rust lifetime: `'a`.
 
@@ -13044,7 +13044,7 @@ struct LitBool {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:126-132`](../../.source_1765521767/syn-2.0.111/src/lit.rs#L126-L132)*
+*Defined in [`syn-2.0.111/src/lit.rs:126-132`](../../.source_1765633015/syn-2.0.111/src/lit.rs#L126-L132)*
 
 A boolean literal: `true` or `false`.
 
@@ -13150,7 +13150,7 @@ struct LitByte {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:79-84`](../../.source_1765521767/syn-2.0.111/src/lit.rs#L79-L84)*
+*Defined in [`syn-2.0.111/src/lit.rs:79-84`](../../.source_1765633015/syn-2.0.111/src/lit.rs#L79-L84)*
 
 A byte literal: `b'f'`.
 
@@ -13256,7 +13256,7 @@ struct LitByteStr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:65-70`](../../.source_1765521767/syn-2.0.111/src/lit.rs#L65-L70)*
+*Defined in [`syn-2.0.111/src/lit.rs:65-70`](../../.source_1765633015/syn-2.0.111/src/lit.rs#L65-L70)*
 
 A byte string literal: `b"foo"`.
 
@@ -13362,7 +13362,7 @@ struct LitCStr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:72-77`](../../.source_1765521767/syn-2.0.111/src/lit.rs#L72-L77)*
+*Defined in [`syn-2.0.111/src/lit.rs:72-77`](../../.source_1765633015/syn-2.0.111/src/lit.rs#L72-L77)*
 
 A nul-terminated C-string literal: `c"foo"`.
 
@@ -13468,7 +13468,7 @@ struct LitChar {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:86-91`](../../.source_1765521767/syn-2.0.111/src/lit.rs#L86-L91)*
+*Defined in [`syn-2.0.111/src/lit.rs:86-91`](../../.source_1765633015/syn-2.0.111/src/lit.rs#L86-L91)*
 
 A character literal: `'a'`.
 
@@ -13574,7 +13574,7 @@ struct LitFloat {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:111-118`](../../.source_1765521767/syn-2.0.111/src/lit.rs#L111-L118)*
+*Defined in [`syn-2.0.111/src/lit.rs:111-118`](../../.source_1765633015/syn-2.0.111/src/lit.rs#L111-L118)*
 
 A floating point literal: `1f64` or `1.0e10f64`.
 
@@ -13690,7 +13690,7 @@ struct LitInt {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:98-103`](../../.source_1765521767/syn-2.0.111/src/lit.rs#L98-L103)*
+*Defined in [`syn-2.0.111/src/lit.rs:98-103`](../../.source_1765633015/syn-2.0.111/src/lit.rs#L98-L103)*
 
 An integer literal: `1` or `1u16`.
 
@@ -13804,7 +13804,7 @@ struct LitStr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:58-63`](../../.source_1765521767/syn-2.0.111/src/lit.rs#L58-L63)*
+*Defined in [`syn-2.0.111/src/lit.rs:58-63`](../../.source_1765633015/syn-2.0.111/src/lit.rs#L58-L63)*
 
 A UTF-8 string literal: `"foo"`.
 
@@ -13913,7 +13913,7 @@ struct Macro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/mac.rs:14-23`](../../.source_1765521767/syn-2.0.111/src/mac.rs#L14-L23)*
+*Defined in [`syn-2.0.111/src/mac.rs:14-23`](../../.source_1765633015/syn-2.0.111/src/mac.rs#L14-L23)*
 
 A macro invocation: `println!("{}", mac)`.
 
@@ -14190,7 +14190,7 @@ struct FieldPat {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:224-236`](../../.source_1765521767/syn-2.0.111/src/pat.rs#L224-L236)*
+*Defined in [`syn-2.0.111/src/pat.rs:224-236`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L224-L236)*
 
 A single field in a struct pattern.
 
@@ -14291,7 +14291,7 @@ struct PatConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L385-L393)*
+*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L385-L393)*
 
 A const block: `const { ... }`.
 
@@ -14399,7 +14399,7 @@ struct PatIdent {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:104-117`](../../.source_1765521767/syn-2.0.111/src/pat.rs#L104-L117)*
+*Defined in [`syn-2.0.111/src/pat.rs:104-117`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L104-L117)*
 
 A pattern that binds a new variable: `ref mut binding @ SUBPATTERN`.
 
@@ -14503,7 +14503,7 @@ struct PatLit {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L493-L500)*
+*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L493-L500)*
 
 A literal in place of an expression: `1`, `"foo"`.
 
@@ -14608,7 +14608,7 @@ struct PatMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L513-L520)*
+*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L513-L520)*
 
 A macro invocation expression: `format!("{}", q)`.
 
@@ -14714,7 +14714,7 @@ struct PatOr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:119-127`](../../.source_1765521767/syn-2.0.111/src/pat.rs#L119-L127)*
+*Defined in [`syn-2.0.111/src/pat.rs:119-127`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L119-L127)*
 
 A pattern that matches any one of a set of cases.
 
@@ -14816,7 +14816,7 @@ struct PatParen {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:129-137`](../../.source_1765521767/syn-2.0.111/src/pat.rs#L129-L137)*
+*Defined in [`syn-2.0.111/src/pat.rs:129-137`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L129-L137)*
 
 A parenthesized pattern: `(A | B)`.
 
@@ -14918,7 +14918,7 @@ struct PatPath {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L558-L569)*
+*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L558-L569)*
 
 A path like `std::mem::replace` possibly containing generic
 parameters and a qualified self-type.
@@ -15028,7 +15028,7 @@ struct PatRange {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L571-L580)*
+*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L571-L580)*
 
 A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 
@@ -15135,7 +15135,7 @@ struct PatReference {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:139-148`](../../.source_1765521767/syn-2.0.111/src/pat.rs#L139-L148)*
+*Defined in [`syn-2.0.111/src/pat.rs:139-148`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L139-L148)*
 
 A reference pattern: `&mut var`.
 
@@ -15236,7 +15236,7 @@ struct PatRest {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:150-157`](../../.source_1765521767/syn-2.0.111/src/pat.rs#L150-L157)*
+*Defined in [`syn-2.0.111/src/pat.rs:150-157`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L150-L157)*
 
 The dots in a tuple or slice pattern: `[0, 1, ..]`.
 
@@ -15338,7 +15338,7 @@ struct PatSlice {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:159-167`](../../.source_1765521767/syn-2.0.111/src/pat.rs#L159-L167)*
+*Defined in [`syn-2.0.111/src/pat.rs:159-167`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L159-L167)*
 
 A dynamically sized slice pattern: `[a, b, ref i @ .., y, z]`.
 
@@ -15443,7 +15443,7 @@ struct PatStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:169-180`](../../.source_1765521767/syn-2.0.111/src/pat.rs#L169-L180)*
+*Defined in [`syn-2.0.111/src/pat.rs:169-180`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L169-L180)*
 
 A struct or struct variant pattern: `Variant { x, y, .. }`.
 
@@ -15545,7 +15545,7 @@ struct PatTuple {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:182-190`](../../.source_1765521767/syn-2.0.111/src/pat.rs#L182-L190)*
+*Defined in [`syn-2.0.111/src/pat.rs:182-190`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L182-L190)*
 
 A tuple pattern: `(a, b)`.
 
@@ -15649,7 +15649,7 @@ struct PatTupleStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:192-202`](../../.source_1765521767/syn-2.0.111/src/pat.rs#L192-L202)*
+*Defined in [`syn-2.0.111/src/pat.rs:192-202`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L192-L202)*
 
 A tuple struct or tuple variant pattern: `Variant(x, y, .., z)`.
 
@@ -15752,7 +15752,7 @@ struct PatType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:204-213`](../../.source_1765521767/syn-2.0.111/src/pat.rs#L204-L213)*
+*Defined in [`syn-2.0.111/src/pat.rs:204-213`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L204-L213)*
 
 A type ascription pattern: `foo: f64`.
 
@@ -15857,7 +15857,7 @@ struct PatWild {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:215-222`](../../.source_1765521767/syn-2.0.111/src/pat.rs#L215-L222)*
+*Defined in [`syn-2.0.111/src/pat.rs:215-222`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L215-L222)*
 
 A pattern that matches any value: `_`.
 
@@ -15960,7 +15960,7 @@ struct AngleBracketedGenericArguments {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:196-206`](../../.source_1765521767/syn-2.0.111/src/path.rs#L196-L206)*
+*Defined in [`syn-2.0.111/src/path.rs:196-206`](../../.source_1765633015/syn-2.0.111/src/path.rs#L196-L206)*
 
 Angle bracketed arguments of a path segment: the `<K, V>` in `HashMap<K,
 V>`.
@@ -16078,7 +16078,7 @@ struct AssocConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:220-230`](../../.source_1765521767/syn-2.0.111/src/path.rs#L220-L230)*
+*Defined in [`syn-2.0.111/src/path.rs:220-230`](../../.source_1765633015/syn-2.0.111/src/path.rs#L220-L230)*
 
 An equality constraint on an associated constant: the `PANIC = false` in
 `Trait<PANIC = false>`.
@@ -16178,7 +16178,7 @@ struct AssocType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:208-218`](../../.source_1765521767/syn-2.0.111/src/path.rs#L208-L218)*
+*Defined in [`syn-2.0.111/src/path.rs:208-218`](../../.source_1765633015/syn-2.0.111/src/path.rs#L208-L218)*
 
 A binding (equality constraint) on an associated type: the `Item = u8`
 in `Iterator<Item = u8>`.
@@ -16278,7 +16278,7 @@ struct Constraint {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:232-241`](../../.source_1765521767/syn-2.0.111/src/path.rs#L232-L241)*
+*Defined in [`syn-2.0.111/src/path.rs:232-241`](../../.source_1765633015/syn-2.0.111/src/path.rs#L232-L241)*
 
 An associated type bound: `Iterator<Item: Display>`.
 
@@ -16376,7 +16376,7 @@ struct ParenthesizedGenericArguments {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:243-254`](../../.source_1765521767/syn-2.0.111/src/path.rs#L243-L254)*
+*Defined in [`syn-2.0.111/src/path.rs:243-254`](../../.source_1765633015/syn-2.0.111/src/path.rs#L243-L254)*
 
 Arguments of a function path segment: the `(A, B) -> C` in `Fn(A,B) ->
 C`.
@@ -16492,7 +16492,7 @@ struct Path {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:11-18`](../../.source_1765521767/syn-2.0.111/src/path.rs#L11-L18)*
+*Defined in [`syn-2.0.111/src/path.rs:11-18`](../../.source_1765633015/syn-2.0.111/src/path.rs#L11-L18)*
 
 A path at which a named item is exported (e.g. `std::collections::HashMap`).
 
@@ -16665,7 +16665,7 @@ struct PathSegment {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:107-114`](../../.source_1765521767/syn-2.0.111/src/path.rs#L107-L114)*
+*Defined in [`syn-2.0.111/src/path.rs:107-114`](../../.source_1765633015/syn-2.0.111/src/path.rs#L107-L114)*
 
 A segment of a path together with any path arguments on that segment.
 
@@ -16773,7 +16773,7 @@ struct QSelf {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:256-281`](../../.source_1765521767/syn-2.0.111/src/path.rs#L256-L281)*
+*Defined in [`syn-2.0.111/src/path.rs:256-281`](../../.source_1765633015/syn-2.0.111/src/path.rs#L256-L281)*
 
 The explicit Self type in a qualified path: the `T` in `<T as
 Display>::fmt`.
@@ -16883,7 +16883,7 @@ struct VisRestricted {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/restriction.rs:27-37`](../../.source_1765521767/syn-2.0.111/src/restriction.rs#L27-L37)*
+*Defined in [`syn-2.0.111/src/restriction.rs:27-37`](../../.source_1765633015/syn-2.0.111/src/restriction.rs#L27-L37)*
 
 A visibility level restricted to some path: `pub(self)` or
 `pub(super)` or `pub(crate)` or `pub(in some::module)`.
@@ -16985,7 +16985,7 @@ struct Block {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/stmt.rs:8-16`](../../.source_1765521767/syn-2.0.111/src/stmt.rs#L8-L16)*
+*Defined in [`syn-2.0.111/src/stmt.rs:8-16`](../../.source_1765633015/syn-2.0.111/src/stmt.rs#L8-L16)*
 
 A braced block containing Rust statements.
 
@@ -17197,7 +17197,7 @@ struct Local {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/stmt.rs:40-50`](../../.source_1765521767/syn-2.0.111/src/stmt.rs#L40-L50)*
+*Defined in [`syn-2.0.111/src/stmt.rs:40-50`](../../.source_1765633015/syn-2.0.111/src/stmt.rs#L40-L50)*
 
 A local `let` binding: `let x: u64 = s.parse()?;`.
 
@@ -17299,7 +17299,7 @@ struct LocalInit {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/stmt.rs:52-64`](../../.source_1765521767/syn-2.0.111/src/stmt.rs#L52-L64)*
+*Defined in [`syn-2.0.111/src/stmt.rs:52-64`](../../.source_1765633015/syn-2.0.111/src/stmt.rs#L52-L64)*
 
 The expression assigned in a local `let` binding, including optional
 diverging `else` block.
@@ -17391,7 +17391,7 @@ struct StmtMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/stmt.rs:66-78`](../../.source_1765521767/syn-2.0.111/src/stmt.rs#L66-L78)*
+*Defined in [`syn-2.0.111/src/stmt.rs:66-78`](../../.source_1765633015/syn-2.0.111/src/stmt.rs#L66-L78)*
 
 A macro invocation in statement position.
 
@@ -17496,7 +17496,7 @@ struct Abi {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:230-237`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L230-L237)*
+*Defined in [`syn-2.0.111/src/ty.rs:230-237`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L230-L237)*
 
 The binary interface of a function: `extern "C"`.
 
@@ -17598,7 +17598,7 @@ struct BareFnArg {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:239-247`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L239-L247)*
+*Defined in [`syn-2.0.111/src/ty.rs:239-247`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L239-L247)*
 
 An argument in a function type: the `usize` in `fn(usize) -> bool`.
 
@@ -17701,7 +17701,7 @@ struct BareVariadic {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:249-258`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L249-L258)*
+*Defined in [`syn-2.0.111/src/ty.rs:249-258`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L249-L258)*
 
 The variadic argument of a function pointer like `fn(usize, ...)`.
 
@@ -17800,7 +17800,7 @@ struct TypeArray {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:92-101`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L92-L101)*
+*Defined in [`syn-2.0.111/src/ty.rs:92-101`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L92-L101)*
 
 A fixed size array type: `[T; n]`.
 
@@ -17911,7 +17911,7 @@ struct TypeBareFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:103-116`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L103-L116)*
+*Defined in [`syn-2.0.111/src/ty.rs:103-116`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L103-L116)*
 
 A bare function type: `fn(usize) -> bool`.
 
@@ -18016,7 +18016,7 @@ struct TypeGroup {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:118-125`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L118-L125)*
+*Defined in [`syn-2.0.111/src/ty.rs:118-125`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L118-L125)*
 
 A type contained within invisible delimiters.
 
@@ -18121,7 +18121,7 @@ struct TypeImplTrait {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:127-135`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L127-L135)*
+*Defined in [`syn-2.0.111/src/ty.rs:127-135`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L127-L135)*
 
 An `impl Bound1 + Bound2 + Bound3` type where `Bound` is a trait or
 a lifetime.
@@ -18228,7 +18228,7 @@ struct TypeInfer {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:137-143`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L137-L143)*
+*Defined in [`syn-2.0.111/src/ty.rs:137-143`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L137-L143)*
 
 Indication that a type should be inferred by the compiler: `_`.
 
@@ -18332,7 +18332,7 @@ struct TypeMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:145-151`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L145-L151)*
+*Defined in [`syn-2.0.111/src/ty.rs:145-151`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L145-L151)*
 
 A macro in the type position.
 
@@ -18436,7 +18436,7 @@ struct TypeNever {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:153-159`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L153-L159)*
+*Defined in [`syn-2.0.111/src/ty.rs:153-159`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L153-L159)*
 
 The never type: `!`.
 
@@ -18541,7 +18541,7 @@ struct TypeParen {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:161-168`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L161-L168)*
+*Defined in [`syn-2.0.111/src/ty.rs:161-168`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L161-L168)*
 
 A parenthesized type equivalent to the inner type.
 
@@ -18646,7 +18646,7 @@ struct TypePath {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:170-178`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L170-L178)*
+*Defined in [`syn-2.0.111/src/ty.rs:170-178`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L170-L178)*
 
 A path like `std::slice::Iter`, optionally qualified with a
 self-type as in `<Vec<T> as SomeTrait>::Associated`.
@@ -18754,7 +18754,7 @@ struct TypePtr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:180-189`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L180-L189)*
+*Defined in [`syn-2.0.111/src/ty.rs:180-189`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L180-L189)*
 
 A raw pointer type: `*const T` or `*mut T`.
 
@@ -18861,7 +18861,7 @@ struct TypeReference {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:191-200`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L191-L200)*
+*Defined in [`syn-2.0.111/src/ty.rs:191-200`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L191-L200)*
 
 A reference type: `&'a T` or `&'a mut T`.
 
@@ -18966,7 +18966,7 @@ struct TypeSlice {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:202-209`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L202-L209)*
+*Defined in [`syn-2.0.111/src/ty.rs:202-209`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L202-L209)*
 
 A dynamically sized slice type: `[T]`.
 
@@ -19071,7 +19071,7 @@ struct TypeTraitObject {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:211-219`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L211-L219)*
+*Defined in [`syn-2.0.111/src/ty.rs:211-219`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L211-L219)*
 
 A trait object type `dyn Bound1 + Bound2 + Bound3` where `Bound` is a
 trait or a lifetime.
@@ -19181,7 +19181,7 @@ struct TypeTuple {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:221-228`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L221-L228)*
+*Defined in [`syn-2.0.111/src/ty.rs:221-228`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L221-L228)*
 
 A tuple type: `(A, B, C, String)`.
 
@@ -19288,7 +19288,7 @@ enum AttrStyle {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:429-449`](../../.source_1765521767/syn-2.0.111/src/attr.rs#L429-L449)*
+*Defined in [`syn-2.0.111/src/attr.rs:429-449`](../../.source_1765633015/syn-2.0.111/src/attr.rs#L429-L449)*
 
 Distinguishes between attributes that decorate an item and attributes
 that are contained within an item.
@@ -19391,7 +19391,7 @@ enum Meta {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:451-482`](../../.source_1765521767/syn-2.0.111/src/attr.rs#L451-L482)*
+*Defined in [`syn-2.0.111/src/attr.rs:451-482`](../../.source_1765633015/syn-2.0.111/src/attr.rs#L451-L482)*
 
 Content of a compile-time structured attribute.
 
@@ -19545,7 +19545,7 @@ enum Fields {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:26-46`](../../.source_1765521767/syn-2.0.111/src/data.rs#L26-L46)*
+*Defined in [`syn-2.0.111/src/data.rs:26-46`](../../.source_1765633015/syn-2.0.111/src/data.rs#L26-L46)*
 
 Data stored within an enum variant or struct.
 
@@ -19763,7 +19763,7 @@ enum Data {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:21-35`](../../.source_1765521767/syn-2.0.111/src/derive.rs#L21-L35)*
+*Defined in [`syn-2.0.111/src/derive.rs:21-35`](../../.source_1765633015/syn-2.0.111/src/derive.rs#L21-L35)*
 
 The storage of a struct, enum or union data structure.
 
@@ -19855,7 +19855,7 @@ enum PointerMutability {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1161-1169`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L1161-L1169)*
+*Defined in [`syn-2.0.111/src/expr.rs:1161-1169`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L1161-L1169)*
 
 Mutability of a raw pointer (`*const T`, `*mut T`), in which non-mutable
 isn't the implicit default.
@@ -19957,7 +19957,7 @@ enum RangeLimits {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1149-1158`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L1149-L1158)*
+*Defined in [`syn-2.0.111/src/expr.rs:1149-1158`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L1149-L1158)*
 
 Limit types of a range, inclusive or exclusive.
 
@@ -20112,7 +20112,7 @@ enum Expr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:35-267`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L35-L267)*
+*Defined in [`syn-2.0.111/src/expr.rs:35-267`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L35-L267)*
 
 A Rust expression.
 
@@ -20758,7 +20758,7 @@ enum Member {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:971-981`](../../.source_1765521767/syn-2.0.111/src/expr.rs#L971-L981)*
+*Defined in [`syn-2.0.111/src/expr.rs:971-981`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L971-L981)*
 
 A struct or tuple struct field accessed in a struct literal or field
 expression.
@@ -20881,7 +20881,7 @@ enum GenericParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:34-54`](../../.source_1765521767/syn-2.0.111/src/generics.rs#L34-L54)*
+*Defined in [`syn-2.0.111/src/generics.rs:34-54`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L34-L54)*
 
 A generic type parameter, lifetime, or const generic: `T: Into<String>`,
 `'a: 'b`, `const LEN: usize`.
@@ -21002,7 +21002,7 @@ enum TraitBoundModifier {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:423-431`](../../.source_1765521767/syn-2.0.111/src/generics.rs#L423-L431)*
+*Defined in [`syn-2.0.111/src/generics.rs:423-431`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L423-L431)*
 
 A modifier on a trait bound, currently only used for the `?` in
 `?Sized`.
@@ -21108,7 +21108,7 @@ enum TypeParamBound {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:398-408`](../../.source_1765521767/syn-2.0.111/src/generics.rs#L398-L408)*
+*Defined in [`syn-2.0.111/src/generics.rs:398-408`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L398-L408)*
 
 A trait or lifetime used as a bound on a type parameter.
 
@@ -21215,7 +21215,7 @@ enum WherePredicate {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:471-488`](../../.source_1765521767/syn-2.0.111/src/generics.rs#L471-L488)*
+*Defined in [`syn-2.0.111/src/generics.rs:471-488`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L471-L488)*
 
 A single predicate in a `where` clause: `T: Deserialize<'de>`.
 
@@ -21331,7 +21331,7 @@ enum CapturedParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:446-459`](../../.source_1765521767/syn-2.0.111/src/generics.rs#L446-L459)*
+*Defined in [`syn-2.0.111/src/generics.rs:446-459`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L446-L459)*
 
 Single parameter in a precise capturing bound.
 
@@ -21445,7 +21445,7 @@ enum FnArg {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:820-830`](../../.source_1765521767/syn-2.0.111/src/item.rs#L820-L830)*
+*Defined in [`syn-2.0.111/src/item.rs:820-830`](../../.source_1765633015/syn-2.0.111/src/item.rs#L820-L830)*
 
 An argument in a function signature: the `n: usize` in `fn f(n: usize)`.
 
@@ -21559,7 +21559,7 @@ enum ForeignItem {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:496-540`](../../.source_1765521767/syn-2.0.111/src/item.rs#L496-L540)*
+*Defined in [`syn-2.0.111/src/item.rs:496-540`](../../.source_1765633015/syn-2.0.111/src/item.rs#L496-L540)*
 
 An item within an `extern` block.
 
@@ -21690,7 +21690,7 @@ enum ImplItem {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:688-732`](../../.source_1765521767/syn-2.0.111/src/item.rs#L688-L732)*
+*Defined in [`syn-2.0.111/src/item.rs:688-732`](../../.source_1765633015/syn-2.0.111/src/item.rs#L688-L732)*
 
 An item within an impl block.
 
@@ -21816,7 +21816,7 @@ enum ImplRestriction {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:888-903`](../../.source_1765521767/syn-2.0.111/src/item.rs#L888-L903)*
+*Defined in [`syn-2.0.111/src/item.rs:888-903`](../../.source_1765633015/syn-2.0.111/src/item.rs#L888-L903)*
 
 Unused, but reserved for RFC 3323 restrictions.
 
@@ -21917,7 +21917,7 @@ enum Item {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:20-99`](../../.source_1765521767/syn-2.0.111/src/item.rs#L20-L99)*
+*Defined in [`syn-2.0.111/src/item.rs:20-99`](../../.source_1765633015/syn-2.0.111/src/item.rs#L20-L99)*
 
 Things that can appear directly inside of a module or scope.
 
@@ -22095,7 +22095,7 @@ enum StaticMutability {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:878-886`](../../.source_1765521767/syn-2.0.111/src/item.rs#L878-L886)*
+*Defined in [`syn-2.0.111/src/item.rs:878-886`](../../.source_1765633015/syn-2.0.111/src/item.rs#L878-L886)*
 
 The mutability of an `Item::Static` or `ForeignItem::Static`.
 
@@ -22199,7 +22199,7 @@ enum TraitItem {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:591-635`](../../.source_1765521767/syn-2.0.111/src/item.rs#L591-L635)*
+*Defined in [`syn-2.0.111/src/item.rs:591-635`](../../.source_1765633015/syn-2.0.111/src/item.rs#L591-L635)*
 
 An item declaration within the definition of a trait.
 
@@ -22330,7 +22330,7 @@ enum UseTree {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:424-449`](../../.source_1765521767/syn-2.0.111/src/item.rs#L424-L449)*
+*Defined in [`syn-2.0.111/src/item.rs:424-449`](../../.source_1765633015/syn-2.0.111/src/item.rs#L424-L449)*
 
 A suffix of an import tree in a `use` item: `Type as Renamed` or `*`.
 
@@ -22465,7 +22465,7 @@ enum Lit {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:17-56`](../../.source_1765521767/syn-2.0.111/src/lit.rs#L17-L56)*
+*Defined in [`syn-2.0.111/src/lit.rs:17-56`](../../.source_1765633015/syn-2.0.111/src/lit.rs#L17-L56)*
 
 A Rust literal such as a string or integer or boolean.
 
@@ -22628,7 +22628,7 @@ enum MacroDelimiter {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/mac.rs:25-33`](../../.source_1765521767/syn-2.0.111/src/mac.rs#L25-L33)*
+*Defined in [`syn-2.0.111/src/mac.rs:25-33`](../../.source_1765633015/syn-2.0.111/src/mac.rs#L25-L33)*
 
 A grouping token that surrounds a macro body: `m!(...)` or `m!{...}` or `m![...]`.
 
@@ -22745,7 +22745,7 @@ enum BinOp {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/op.rs:1-63`](../../.source_1765521767/syn-2.0.111/src/op.rs#L1-L63)*
+*Defined in [`syn-2.0.111/src/op.rs:1-63`](../../.source_1765633015/syn-2.0.111/src/op.rs#L1-L63)*
 
 A binary operator: `+`, `+=`, `&`.
 
@@ -22963,7 +22963,7 @@ enum UnOp {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/op.rs:65-77`](../../.source_1765521767/syn-2.0.111/src/op.rs#L65-L77)*
+*Defined in [`syn-2.0.111/src/op.rs:65-77`](../../.source_1765633015/syn-2.0.111/src/op.rs#L65-L77)*
 
 A unary operator: `*`, `!`, `-`.
 
@@ -23095,7 +23095,7 @@ enum Pat {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:15-102`](../../.source_1765521767/syn-2.0.111/src/pat.rs#L15-L102)*
+*Defined in [`syn-2.0.111/src/pat.rs:15-102`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L15-L102)*
 
 A pattern in a local binding, function signature, match expression, or
 various other places.
@@ -23420,7 +23420,7 @@ enum GenericArgument {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:171-194`](../../.source_1765521767/syn-2.0.111/src/path.rs#L171-L194)*
+*Defined in [`syn-2.0.111/src/path.rs:171-194`](../../.source_1765633015/syn-2.0.111/src/path.rs#L171-L194)*
 
 An individual generic argument, like `'a`, `T`, or `Item = T`.
 
@@ -23553,7 +23553,7 @@ enum PathArguments {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:128-146`](../../.source_1765521767/syn-2.0.111/src/path.rs#L128-L146)*
+*Defined in [`syn-2.0.111/src/path.rs:128-146`](../../.source_1765633015/syn-2.0.111/src/path.rs#L128-L146)*
 
 Angle bracketed or parenthesized arguments of a path segment.
 
@@ -23677,7 +23677,7 @@ enum FieldMutability {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/restriction.rs:39-57`](../../.source_1765521767/syn-2.0.111/src/restriction.rs#L39-L57)*
+*Defined in [`syn-2.0.111/src/restriction.rs:39-57`](../../.source_1765633015/syn-2.0.111/src/restriction.rs#L39-L57)*
 
 Unused, but reserved for RFC 3323 restrictions.
 
@@ -23765,7 +23765,7 @@ enum Visibility {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/restriction.rs:4-25`](../../.source_1765521767/syn-2.0.111/src/restriction.rs#L4-L25)*
+*Defined in [`syn-2.0.111/src/restriction.rs:4-25`](../../.source_1765633015/syn-2.0.111/src/restriction.rs#L4-L25)*
 
 The visibility level of an item: inherited or `pub` or
 `pub(restricted)`.
@@ -23893,7 +23893,7 @@ enum Stmt {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/stmt.rs:18-38`](../../.source_1765521767/syn-2.0.111/src/stmt.rs#L18-L38)*
+*Defined in [`syn-2.0.111/src/stmt.rs:18-38`](../../.source_1765633015/syn-2.0.111/src/stmt.rs#L18-L38)*
 
 A statement, usually ending in a semicolon.
 
@@ -24016,7 +24016,7 @@ enum ReturnType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:260-271`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L260-L271)*
+*Defined in [`syn-2.0.111/src/ty.rs:260-271`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L260-L271)*
 
 Return type of a function signature.
 
@@ -24148,7 +24148,7 @@ enum Type {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:13-90`](../../.source_1765521767/syn-2.0.111/src/ty.rs#L13-L90)*
+*Defined in [`syn-2.0.111/src/ty.rs:13-90`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L13-L90)*
 
 The possible types that a Rust value could have.
 
@@ -24332,7 +24332,7 @@ This type is a [syntax tree enum].
 fn parse<T: parse::Parse>(tokens: proc_macro::TokenStream) -> Result<T>
 ```
 
-*Defined in [`syn-2.0.111/src/lib.rs:902-904`](../../.source_1765521767/syn-2.0.111/src/lib.rs#L902-L904)*
+*Defined in [`syn-2.0.111/src/lib.rs:902-904`](../../.source_1765633015/syn-2.0.111/src/lib.rs#L902-L904)*
 
 Parse tokens of source code into the chosen syntax tree node.
 
@@ -24354,7 +24354,7 @@ unparsed tokens at the end of the stream, an error is returned.
 fn parse2<T: parse::Parse>(tokens: proc_macro2::TokenStream) -> Result<T>
 ```
 
-*Defined in [`syn-2.0.111/src/lib.rs:920-922`](../../.source_1765521767/syn-2.0.111/src/lib.rs#L920-L922)*
+*Defined in [`syn-2.0.111/src/lib.rs:920-922`](../../.source_1765633015/syn-2.0.111/src/lib.rs#L920-L922)*
 
 Parse a proc-macro2 token stream into the chosen syntax tree node.
 
@@ -24373,7 +24373,7 @@ unparsed tokens at the end of the stream, an error is returned.
 fn parse_str<T: parse::Parse>(s: &str) -> Result<T>
 ```
 
-*Defined in [`syn-2.0.111/src/lib.rs:950-952`](../../.source_1765521767/syn-2.0.111/src/lib.rs#L950-L952)*
+*Defined in [`syn-2.0.111/src/lib.rs:950-952`](../../.source_1765633015/syn-2.0.111/src/lib.rs#L950-L952)*
 
 Parse a string of Rust code into the chosen syntax tree node.
 
@@ -24406,7 +24406,7 @@ run().unwrap();
 fn parse_file(content: &str) -> Result<File>
 ```
 
-*Defined in [`syn-2.0.111/src/lib.rs:985-1009`](../../.source_1765521767/syn-2.0.111/src/lib.rs#L985-L1009)*
+*Defined in [`syn-2.0.111/src/lib.rs:985-1009`](../../.source_1765633015/syn-2.0.111/src/lib.rs#L985-L1009)*
 
 Parse the content of a file of Rust code.
 
@@ -24446,7 +24446,7 @@ run().unwrap();
 type Result<T> = std::result::Result<T, Error>;
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:15`](../../.source_1765521767/syn-2.0.111/src/error.rs#L15)*
+*Defined in [`syn-2.0.111/src/error.rs:15`](../../.source_1765633015/syn-2.0.111/src/error.rs#L15)*
 
 The result of a Syn parser.
 
@@ -24454,7 +24454,7 @@ The result of a Syn parser.
 
 ### `parenthesized!`
 
-*Defined in [`syn-2.0.111/src/group.rs:146-159`](../../.source_1765521767/syn-2.0.111/src/group.rs#L146-L159)*
+*Defined in [`syn-2.0.111/src/group.rs:146-159`](../../.source_1765633015/syn-2.0.111/src/group.rs#L146-L159)*
 
 Parse a set of parentheses and expose their content to subsequent parsers.
 
@@ -24501,7 +24501,7 @@ fn main() {
 
 ### `braced!`
 
-*Defined in [`syn-2.0.111/src/group.rs:225-238`](../../.source_1765521767/syn-2.0.111/src/group.rs#L225-L238)*
+*Defined in [`syn-2.0.111/src/group.rs:225-238`](../../.source_1765633015/syn-2.0.111/src/group.rs#L225-L238)*
 
 Parse a set of curly braces and expose their content to subsequent parsers.
 
@@ -24568,7 +24568,7 @@ fn main() {
 
 ### `bracketed!`
 
-*Defined in [`syn-2.0.111/src/group.rs:281-294`](../../.source_1765521767/syn-2.0.111/src/group.rs#L281-L294)*
+*Defined in [`syn-2.0.111/src/group.rs:281-294`](../../.source_1765633015/syn-2.0.111/src/group.rs#L281-L294)*
 
 Parse a set of square brackets and expose their content to subsequent
 parsers.
@@ -24612,7 +24612,7 @@ fn main() {
 
 ### `Token!`
 
-*Defined in [`syn-2.0.111/src/token.rs:871-972`](../../.source_1765521767/syn-2.0.111/src/token.rs#L871-L972)*
+*Defined in [`syn-2.0.111/src/token.rs:871-972`](../../.source_1765633015/syn-2.0.111/src/token.rs#L871-L972)*
 
 A type-macro that expands to the name of the Rust type representation of a
 given token.
@@ -24683,7 +24683,7 @@ See the [token module] documentation for details and examples.
 
 ### `custom_keyword!`
 
-*Defined in [`syn-2.0.111/src/custom_keyword.rs:90-123`](../../.source_1765521767/syn-2.0.111/src/custom_keyword.rs#L90-L123)*
+*Defined in [`syn-2.0.111/src/custom_keyword.rs:90-123`](../../.source_1765633015/syn-2.0.111/src/custom_keyword.rs#L90-L123)*
 
 Define a type that supports parsing and printing a given identifier as if it
 were a keyword.
@@ -24774,7 +24774,7 @@ impl Parse for Argument {
 
 ### `custom_punctuation!`
 
-*Defined in [`syn-2.0.111/src/custom_punctuation.rs:79-110`](../../.source_1765521767/syn-2.0.111/src/custom_punctuation.rs#L79-L110)*
+*Defined in [`syn-2.0.111/src/custom_punctuation.rs:79-110`](../../.source_1765633015/syn-2.0.111/src/custom_punctuation.rs#L79-L110)*
 
 Define a type that supports parsing and printing a multi-character symbol
 as if it were a punctuation token.
@@ -24854,7 +24854,7 @@ fn main() {
 
 ### `parse_macro_input!`
 
-*Defined in [`syn-2.0.111/src/parse_macro_input.rs:108-128`](../../.source_1765521767/syn-2.0.111/src/parse_macro_input.rs#L108-L128)*
+*Defined in [`syn-2.0.111/src/parse_macro_input.rs:108-128`](../../.source_1765633015/syn-2.0.111/src/parse_macro_input.rs#L108-L128)*
 
 Parse the input TokenStream of a macro, triggering a compile error if the
 tokens fail to parse.
@@ -24960,7 +24960,7 @@ fn test(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
 
 ### `parse_quote!`
 
-*Defined in [`syn-2.0.111/src/parse_quote.rs:80-84`](../../.source_1765521767/syn-2.0.111/src/parse_quote.rs#L80-L84)*
+*Defined in [`syn-2.0.111/src/parse_quote.rs:80-84`](../../.source_1765633015/syn-2.0.111/src/parse_quote.rs#L80-L84)*
 
 Quasi-quotation macro that accepts input like the `quote!` macro but uses
 type inference to figure out a return type for those tokens.
@@ -25036,7 +25036,7 @@ valid.
 
 ### `parse_quote_spanned!`
 
-*Defined in [`syn-2.0.111/src/parse_quote.rs:112-116`](../../.source_1765521767/syn-2.0.111/src/parse_quote.rs#L112-L116)*
+*Defined in [`syn-2.0.111/src/parse_quote.rs:112-116`](../../.source_1765633015/syn-2.0.111/src/parse_quote.rs#L112-L116)*
 
 This macro is [`parse_quote!`](#parse-quote) + `quote_spanned!`.
 

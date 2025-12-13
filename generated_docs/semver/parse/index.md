@@ -44,7 +44,7 @@ struct Error {
 }
 ```
 
-*Defined in [`semver-1.0.27/src/parse.rs:21-23`](../../../.source_1765521767/semver-1.0.27/src/parse.rs#L21-L23)*
+*Defined in [`semver-1.0.27/src/parse.rs:21-23`](../../../.source_1765633015/semver-1.0.27/src/parse.rs#L21-L23)*
 
 Error parsing a SemVer version or version requirement.
 
@@ -131,7 +131,7 @@ fn main() {
 fn numeric_identifier(input: &str, pos: crate::error::Position) -> Result<(u64, &str), Error>
 ```
 
-*Defined in [`semver-1.0.27/src/parse.rs:156-184`](../../../.source_1765521767/semver-1.0.27/src/parse.rs#L156-L184)*
+*Defined in [`semver-1.0.27/src/parse.rs:156-184`](../../../.source_1765633015/semver-1.0.27/src/parse.rs#L156-L184)*
 
 ### `wildcard`
 
@@ -139,7 +139,7 @@ fn numeric_identifier(input: &str, pos: crate::error::Position) -> Result<(u64, 
 fn wildcard(input: &str) -> Option<(char, &str)>
 ```
 
-*Defined in [`semver-1.0.27/src/parse.rs:186-196`](../../../.source_1765521767/semver-1.0.27/src/parse.rs#L186-L196)*
+*Defined in [`semver-1.0.27/src/parse.rs:186-196`](../../../.source_1765633015/semver-1.0.27/src/parse.rs#L186-L196)*
 
 ### `dot`
 
@@ -147,7 +147,7 @@ fn wildcard(input: &str) -> Option<(char, &str)>
 fn dot(input: &str, pos: crate::error::Position) -> Result<&str, Error>
 ```
 
-*Defined in [`semver-1.0.27/src/parse.rs:198-206`](../../../.source_1765521767/semver-1.0.27/src/parse.rs#L198-L206)*
+*Defined in [`semver-1.0.27/src/parse.rs:198-206`](../../../.source_1765633015/semver-1.0.27/src/parse.rs#L198-L206)*
 
 ### `prerelease_identifier`
 
@@ -155,7 +155,7 @@ fn dot(input: &str, pos: crate::error::Position) -> Result<&str, Error>
 fn prerelease_identifier(input: &str) -> Result<(crate::Prerelease, &str), Error>
 ```
 
-*Defined in [`semver-1.0.27/src/parse.rs:208-212`](../../../.source_1765521767/semver-1.0.27/src/parse.rs#L208-L212)*
+*Defined in [`semver-1.0.27/src/parse.rs:208-212`](../../../.source_1765633015/semver-1.0.27/src/parse.rs#L208-L212)*
 
 ### `build_identifier`
 
@@ -163,7 +163,7 @@ fn prerelease_identifier(input: &str) -> Result<(crate::Prerelease, &str), Error
 fn build_identifier(input: &str) -> Result<(crate::BuildMetadata, &str), Error>
 ```
 
-*Defined in [`semver-1.0.27/src/parse.rs:214-218`](../../../.source_1765521767/semver-1.0.27/src/parse.rs#L214-L218)*
+*Defined in [`semver-1.0.27/src/parse.rs:214-218`](../../../.source_1765633015/semver-1.0.27/src/parse.rs#L214-L218)*
 
 ### `identifier`
 
@@ -171,7 +171,7 @@ fn build_identifier(input: &str) -> Result<(crate::BuildMetadata, &str), Error>
 fn identifier(input: &str, pos: crate::error::Position) -> Result<(&str, &str), Error>
 ```
 
-*Defined in [`semver-1.0.27/src/parse.rs:220-260`](../../../.source_1765521767/semver-1.0.27/src/parse.rs#L220-L260)*
+*Defined in [`semver-1.0.27/src/parse.rs:220-260`](../../../.source_1765633015/semver-1.0.27/src/parse.rs#L220-L260)*
 
 ### `op`
 
@@ -179,7 +179,7 @@ fn identifier(input: &str, pos: crate::error::Position) -> Result<(&str, &str), 
 fn op(input: &str) -> (crate::Op, &str)
 ```
 
-*Defined in [`semver-1.0.27/src/parse.rs:262-285`](../../../.source_1765521767/semver-1.0.27/src/parse.rs#L262-L285)*
+*Defined in [`semver-1.0.27/src/parse.rs:262-285`](../../../.source_1765633015/semver-1.0.27/src/parse.rs#L262-L285)*
 
 ### `comparator`
 
@@ -187,7 +187,7 @@ fn op(input: &str) -> (crate::Op, &str)
 fn comparator(input: &str) -> Result<(crate::Comparator, crate::error::Position, &str), Error>
 ```
 
-*Defined in [`semver-1.0.27/src/parse.rs:287-364`](../../../.source_1765521767/semver-1.0.27/src/parse.rs#L287-L364)*
+*Defined in [`semver-1.0.27/src/parse.rs:287-364`](../../../.source_1765633015/semver-1.0.27/src/parse.rs#L287-L364)*
 
 ### `version_req`
 
@@ -195,5 +195,5 @@ fn comparator(input: &str) -> Result<(crate::Comparator, crate::error::Position,
 fn version_req(input: &str, out: &mut alloc::vec::Vec<crate::Comparator>, depth: usize) -> Result<usize, Error>
 ```
 
-*Defined in [`semver-1.0.27/src/parse.rs:366-404`](../../../.source_1765521767/semver-1.0.27/src/parse.rs#L366-L404)*
+*Defined in [`semver-1.0.27/src/parse.rs:366-404`](../../../.source_1765633015/semver-1.0.27/src/parse.rs#L366-L404)*
 

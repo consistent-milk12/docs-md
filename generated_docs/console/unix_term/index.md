@@ -60,7 +60,7 @@ enum Input<T> {
 }
 ```
 
-*Defined in [`console-0.16.1/src/unix_term.rs:68-71`](../../../.source_1765521767/console-0.16.1/src/unix_term.rs#L68-L71)*
+*Defined in [`console-0.16.1/src/unix_term.rs:68-71`](../../../.source_1765633015/console-0.16.1/src/unix_term.rs#L68-L71)*
 
 #### Implementations
 
@@ -122,7 +122,7 @@ enum Input<T> {
 fn is_a_terminal(out: &impl AsRawFd) -> bool
 ```
 
-*Defined in [`console-0.16.1/src/unix_term.rs:20-22`](../../../.source_1765521767/console-0.16.1/src/unix_term.rs#L20-L22)*
+*Defined in [`console-0.16.1/src/unix_term.rs:20-22`](../../../.source_1765633015/console-0.16.1/src/unix_term.rs#L20-L22)*
 
 ### `is_a_color_terminal`
 
@@ -130,7 +130,7 @@ fn is_a_terminal(out: &impl AsRawFd) -> bool
 fn is_a_color_terminal(out: &crate::term::Term) -> bool
 ```
 
-*Defined in [`console-0.16.1/src/unix_term.rs:24-37`](../../../.source_1765521767/console-0.16.1/src/unix_term.rs#L24-L37)*
+*Defined in [`console-0.16.1/src/unix_term.rs:24-37`](../../../.source_1765633015/console-0.16.1/src/unix_term.rs#L24-L37)*
 
 ### `c_result`
 
@@ -138,7 +138,7 @@ fn is_a_color_terminal(out: &crate::term::Term) -> bool
 fn c_result<F: FnOnce() -> libc::c_int>(f: F) -> io::Result<()>
 ```
 
-*Defined in [`console-0.16.1/src/unix_term.rs:39-46`](../../../.source_1765521767/console-0.16.1/src/unix_term.rs#L39-L46)*
+*Defined in [`console-0.16.1/src/unix_term.rs:39-46`](../../../.source_1765633015/console-0.16.1/src/unix_term.rs#L39-L46)*
 
 ### `terminal_size`
 
@@ -146,7 +146,7 @@ fn c_result<F: FnOnce() -> libc::c_int>(f: F) -> io::Result<()>
 fn terminal_size(out: &crate::term::Term) -> Option<(u16, u16)>
 ```
 
-*Defined in [`console-0.16.1/src/unix_term.rs:48-66`](../../../.source_1765521767/console-0.16.1/src/unix_term.rs#L48-L66)*
+*Defined in [`console-0.16.1/src/unix_term.rs:48-66`](../../../.source_1765633015/console-0.16.1/src/unix_term.rs#L48-L66)*
 
 ### `read_secure`
 
@@ -154,7 +154,7 @@ fn terminal_size(out: &crate::term::Term) -> Option<(u16, u16)>
 fn read_secure() -> io::Result<String>
 ```
 
-*Defined in [`console-0.16.1/src/unix_term.rs:125-145`](../../../.source_1765521767/console-0.16.1/src/unix_term.rs#L125-L145)*
+*Defined in [`console-0.16.1/src/unix_term.rs:125-145`](../../../.source_1765633015/console-0.16.1/src/unix_term.rs#L125-L145)*
 
 ### `poll_fd`
 
@@ -162,7 +162,7 @@ fn read_secure() -> io::Result<String>
 fn poll_fd(fd: std::os::fd::RawFd, timeout: i32) -> io::Result<bool>
 ```
 
-*Defined in [`console-0.16.1/src/unix_term.rs:147-159`](../../../.source_1765521767/console-0.16.1/src/unix_term.rs#L147-L159)*
+*Defined in [`console-0.16.1/src/unix_term.rs:147-159`](../../../.source_1765633015/console-0.16.1/src/unix_term.rs#L147-L159)*
 
 ### `select_or_poll_term_fd`
 
@@ -170,7 +170,7 @@ fn poll_fd(fd: std::os::fd::RawFd, timeout: i32) -> io::Result<bool>
 fn select_or_poll_term_fd(fd: std::os::fd::RawFd, timeout: i32) -> io::Result<bool>
 ```
 
-*Defined in [`console-0.16.1/src/unix_term.rs:194-205`](../../../.source_1765521767/console-0.16.1/src/unix_term.rs#L194-L205)*
+*Defined in [`console-0.16.1/src/unix_term.rs:194-205`](../../../.source_1765633015/console-0.16.1/src/unix_term.rs#L194-L205)*
 
 ### `read_single_char`
 
@@ -178,7 +178,7 @@ fn select_or_poll_term_fd(fd: std::os::fd::RawFd, timeout: i32) -> io::Result<bo
 fn read_single_char(fd: std::os::fd::RawFd) -> io::Result<Option<char>>
 ```
 
-*Defined in [`console-0.16.1/src/unix_term.rs:207-221`](../../../.source_1765521767/console-0.16.1/src/unix_term.rs#L207-L221)*
+*Defined in [`console-0.16.1/src/unix_term.rs:207-221`](../../../.source_1765633015/console-0.16.1/src/unix_term.rs#L207-L221)*
 
 ### `read_bytes`
 
@@ -186,7 +186,7 @@ fn read_single_char(fd: std::os::fd::RawFd) -> io::Result<Option<char>>
 fn read_bytes(fd: std::os::fd::RawFd, buf: &mut [u8], count: u8) -> io::Result<u8>
 ```
 
-*Defined in [`console-0.16.1/src/unix_term.rs:226-243`](../../../.source_1765521767/console-0.16.1/src/unix_term.rs#L226-L243)*
+*Defined in [`console-0.16.1/src/unix_term.rs:226-243`](../../../.source_1765633015/console-0.16.1/src/unix_term.rs#L226-L243)*
 
 ### `read_single_key_impl`
 
@@ -194,7 +194,7 @@ fn read_bytes(fd: std::os::fd::RawFd, buf: &mut [u8], count: u8) -> io::Result<u
 fn read_single_key_impl(fd: std::os::fd::RawFd) -> Result<crate::kb::Key, io::Error>
 ```
 
-*Defined in [`console-0.16.1/src/unix_term.rs:245-336`](../../../.source_1765521767/console-0.16.1/src/unix_term.rs#L245-L336)*
+*Defined in [`console-0.16.1/src/unix_term.rs:245-336`](../../../.source_1765633015/console-0.16.1/src/unix_term.rs#L245-L336)*
 
 ### `read_single_key`
 
@@ -202,7 +202,7 @@ fn read_single_key_impl(fd: std::os::fd::RawFd) -> Result<crate::kb::Key, io::Er
 fn read_single_key(ctrlc_key: bool) -> io::Result<crate::kb::Key>
 ```
 
-*Defined in [`console-0.16.1/src/unix_term.rs:338-365`](../../../.source_1765521767/console-0.16.1/src/unix_term.rs#L338-L365)*
+*Defined in [`console-0.16.1/src/unix_term.rs:338-365`](../../../.source_1765633015/console-0.16.1/src/unix_term.rs#L338-L365)*
 
 ### `key_from_utf8`
 
@@ -210,7 +210,7 @@ fn read_single_key(ctrlc_key: bool) -> io::Result<crate::kb::Key>
 fn key_from_utf8(buf: &[u8]) -> crate::kb::Key
 ```
 
-*Defined in [`console-0.16.1/src/unix_term.rs:367-374`](../../../.source_1765521767/console-0.16.1/src/unix_term.rs#L367-L374)*
+*Defined in [`console-0.16.1/src/unix_term.rs:367-374`](../../../.source_1765633015/console-0.16.1/src/unix_term.rs#L367-L374)*
 
 ### `wants_emoji`
 
@@ -218,7 +218,7 @@ fn key_from_utf8(buf: &[u8]) -> crate::kb::Key
 fn wants_emoji() -> bool
 ```
 
-*Defined in [`console-0.16.1/src/unix_term.rs:388-390`](../../../.source_1765521767/console-0.16.1/src/unix_term.rs#L388-L390)*
+*Defined in [`console-0.16.1/src/unix_term.rs:388-390`](../../../.source_1765633015/console-0.16.1/src/unix_term.rs#L388-L390)*
 
 ### `set_title`
 
@@ -226,7 +226,7 @@ fn wants_emoji() -> bool
 fn set_title<T: Display>(title: T)
 ```
 
-*Defined in [`console-0.16.1/src/unix_term.rs:392-394`](../../../.source_1765521767/console-0.16.1/src/unix_term.rs#L392-L394)*
+*Defined in [`console-0.16.1/src/unix_term.rs:392-394`](../../../.source_1765633015/console-0.16.1/src/unix_term.rs#L392-L394)*
 
 ### `make_raw`
 
@@ -234,7 +234,7 @@ fn set_title<T: Display>(title: T)
 fn make_raw(termios: &mut libc::termios)
 ```
 
-*Defined in [`console-0.16.1/src/unix_term.rs:415-418`](../../../.source_1765521767/console-0.16.1/src/unix_term.rs#L415-L418)*
+*Defined in [`console-0.16.1/src/unix_term.rs:415-418`](../../../.source_1765633015/console-0.16.1/src/unix_term.rs#L415-L418)*
 
 ## Constants
 
@@ -243,5 +243,5 @@ fn make_raw(termios: &mut libc::termios)
 const DEFAULT_WIDTH: u16 = 80u16;
 ```
 
-*Defined in [`console-0.16.1/src/unix_term.rs:17`](../../../.source_1765521767/console-0.16.1/src/unix_term.rs#L17)*
+*Defined in [`console-0.16.1/src/unix_term.rs:17`](../../../.source_1765633015/console-0.16.1/src/unix_term.rs#L17)*
 

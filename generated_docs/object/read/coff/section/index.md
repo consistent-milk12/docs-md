@@ -42,7 +42,7 @@ struct SectionTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:19-21`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L19-L21)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:19-21`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/section.rs#L19-L21)*
 
 The table of section headers in a COFF or PE file.
 
@@ -190,7 +190,7 @@ struct CoffSegmentIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:121-129`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L121-L129)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:121-129`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/section.rs#L121-L129)*
 
 An iterator for the loadable sections in a [`CoffFile`](../index.md).
 
@@ -265,7 +265,7 @@ struct CoffSegment<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:154-162`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L154-L162)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:154-162`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/section.rs#L154-L162)*
 
 A loadable section in a [`CoffFile`](../index.md).
 
@@ -362,7 +362,7 @@ struct CoffSectionIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:253-261`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L253-L261)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:253-261`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/section.rs#L253-L261)*
 
 An iterator for the sections in a [`CoffFile`](../index.md).
 
@@ -438,7 +438,7 @@ struct CoffSection<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:287-296`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L287-L296)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:287-296`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/section.rs#L287-L296)*
 
 A section in a [`CoffFile`](../index.md).
 
@@ -556,7 +556,7 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 type CoffBigSegmentIterator<'data, 'file, R> = CoffSegmentIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:116-117`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L116-L117)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:116-117`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/section.rs#L116-L117)*
 
 An iterator for the loadable sections in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -566,7 +566,7 @@ An iterator for the loadable sections in a [`CoffBigFile`](super::CoffBigFile).
 type CoffBigSegment<'data, 'file, R> = CoffSegment<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:147-148`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L147-L148)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:147-148`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/section.rs#L147-L148)*
 
 A loadable section in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -578,7 +578,7 @@ Most functionality is provided by the [`ObjectSegment`](../../index.md) trait im
 type CoffBigSectionIterator<'data, 'file, R> = CoffSectionIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:248-249`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L248-L249)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:248-249`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/section.rs#L248-L249)*
 
 An iterator for the sections in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -588,7 +588,7 @@ An iterator for the sections in a [`CoffBigFile`](super::CoffBigFile).
 type CoffBigSection<'data, 'file, R> = CoffSection<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:280-281`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L280-L281)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:280-281`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/section.rs#L280-L281)*
 
 A section in a [`CoffBigFile`](super::CoffBigFile).
 

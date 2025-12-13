@@ -34,7 +34,7 @@ being quite expensive.
 struct Pool<T, F>(alloc::boxed::Box<inner::Pool<T, F>>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/pool.rs:154`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/pool.rs#L154)*
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:154`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/pool.rs#L154)*
 
 A thread safe pool that works in an `alloc`-only context.
 
@@ -161,7 +161,7 @@ assert_eq!(expected, RE.find(&mut CACHE.get(), b"zzzfoo12345barzzz"));
 struct PoolGuard<'a, T: Send, F: Fn() -> T>(inner::PoolGuard<'a, T, F>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/pool.rs:196`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/pool.rs#L196)*
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:196`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/pool.rs#L196)*
 
 A guard that is returned when a caller requests a value from the pool.
 

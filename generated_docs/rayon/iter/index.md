@@ -63,7 +63,7 @@ check out the [`ParallelIterator`](#paralleliterator) and [`IndexedParallelItera
 traits.
 
 If you'd like to build a custom parallel iterator, or to write your own
-combinator, then check out the [`split`](splitter/index.md) function and the [`plumbing`](plumbing/index.md) module.
+combinator, then check out the [`split`](../str/index.md) function and the [`plumbing`](plumbing/index.md) module.
 
 
 
@@ -423,7 +423,7 @@ struct ExponentialBlocks<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/blocks.rs:59-61`](../../../.source_1765521767/rayon-1.11.0/src/iter/blocks.rs#L59-L61)*
+*Defined in [`rayon-1.11.0/src/iter/blocks.rs:59-61`](../../../.source_1765633015/rayon-1.11.0/src/iter/blocks.rs#L59-L61)*
 
 `ExponentialBlocks` is a parallel iterator that consumes itself as a sequence
 of parallel blocks of increasing sizes (exponentially).
@@ -538,7 +538,7 @@ struct UniformBlocks<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/blocks.rs:101-104`](../../../.source_1765521767/rayon-1.11.0/src/iter/blocks.rs#L101-L104)*
+*Defined in [`rayon-1.11.0/src/iter/blocks.rs:101-104`](../../../.source_1765633015/rayon-1.11.0/src/iter/blocks.rs#L101-L104)*
 
 `UniformBlocks` is a parallel iterator that consumes itself as a sequence
 of parallel blocks of constant sizes.
@@ -653,7 +653,7 @@ struct Chain<A, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/chain.rs:12-15`](../../../.source_1765521767/rayon-1.11.0/src/iter/chain.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/chain.rs:12-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/chain.rs#L12-L15)*
 
 `Chain` is an iterator that joins `b` after `a` in one continuous iterator.
 This struct is created by the `chain()` method on [`ParallelIterator`](#paralleliterator)
@@ -778,7 +778,7 @@ struct Chunks<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/chunks.rs:11-14`](../../../.source_1765521767/rayon-1.11.0/src/iter/chunks.rs#L11-L14)*
+*Defined in [`rayon-1.11.0/src/iter/chunks.rs:11-14`](../../../.source_1765633015/rayon-1.11.0/src/iter/chunks.rs#L11-L14)*
 
 `Chunks` is an iterator that groups elements of an underlying iterator.
 
@@ -903,7 +903,7 @@ struct Cloned<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/cloned.rs:13-15`](../../../.source_1765521767/rayon-1.11.0/src/iter/cloned.rs#L13-L15)*
+*Defined in [`rayon-1.11.0/src/iter/cloned.rs:13-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/cloned.rs#L13-L15)*
 
 `Cloned` is an iterator that clones the elements of an underlying iterator.
 
@@ -1028,7 +1028,7 @@ struct Copied<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/copied.rs:13-15`](../../../.source_1765521767/rayon-1.11.0/src/iter/copied.rs#L13-L15)*
+*Defined in [`rayon-1.11.0/src/iter/copied.rs:13-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/copied.rs#L13-L15)*
 
 `Copied` is an iterator that copies the elements of an underlying iterator.
 
@@ -1153,7 +1153,7 @@ struct Empty<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/empty.rs:33-35`](../../../.source_1765521767/rayon-1.11.0/src/iter/empty.rs#L33-L35)*
+*Defined in [`rayon-1.11.0/src/iter/empty.rs:33-35`](../../../.source_1765633015/rayon-1.11.0/src/iter/empty.rs#L33-L35)*
 
 Iterator adaptor for [the `empty()` function].
 
@@ -1270,7 +1270,7 @@ struct Enumerate<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/enumerate.rs:12-14`](../../../.source_1765521767/rayon-1.11.0/src/iter/enumerate.rs#L12-L14)*
+*Defined in [`rayon-1.11.0/src/iter/enumerate.rs:12-14`](../../../.source_1765633015/rayon-1.11.0/src/iter/enumerate.rs#L12-L14)*
 
 `Enumerate` is an iterator that returns the current count along with the element.
 This struct is created by the `enumerate()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
@@ -1395,7 +1395,7 @@ struct Filter<I, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/filter.rs:12-15`](../../../.source_1765521767/rayon-1.11.0/src/iter/filter.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/filter.rs:12-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/filter.rs#L12-L15)*
 
 `Filter` takes a predicate `filter_op` and filters out elements that match.
 This struct is created by the `filter()` method on [`ParallelIterator`](#paralleliterator)
@@ -1510,7 +1510,7 @@ struct FilterMap<I, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/filter_map.rs:12-15`](../../../.source_1765521767/rayon-1.11.0/src/iter/filter_map.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/filter_map.rs:12-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/filter_map.rs#L12-L15)*
 
 `FilterMap` creates an iterator that uses `filter_op` to both filter and map elements.
 This struct is created by the `filter_map()` method on [`ParallelIterator`](#paralleliterator).
@@ -1625,7 +1625,7 @@ struct FlatMap<I, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flat_map.rs:12-15`](../../../.source_1765521767/rayon-1.11.0/src/iter/flat_map.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/flat_map.rs:12-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/flat_map.rs#L12-L15)*
 
 `FlatMap` maps each element to a parallel iterator, then flattens these iterators together.
 This struct is created by the `flat_map()` method on [`ParallelIterator`](#paralleliterator)
@@ -1740,7 +1740,7 @@ struct FlatMapIter<I, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flat_map_iter.rs:12-15`](../../../.source_1765521767/rayon-1.11.0/src/iter/flat_map_iter.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/flat_map_iter.rs:12-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/flat_map_iter.rs#L12-L15)*
 
 `FlatMapIter` maps each element to a serial iterator, then flattens these iterators together.
 This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](#paralleliterator)
@@ -1854,7 +1854,7 @@ struct Flatten<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flatten.rs:10-12`](../../../.source_1765521767/rayon-1.11.0/src/iter/flatten.rs#L10-L12)*
+*Defined in [`rayon-1.11.0/src/iter/flatten.rs:10-12`](../../../.source_1765633015/rayon-1.11.0/src/iter/flatten.rs#L10-L12)*
 
 `Flatten` turns each element to a parallel iterator, then flattens these iterators
 together. This struct is created by the `flatten()` method on [`ParallelIterator`](#paralleliterator).
@@ -1968,7 +1968,7 @@ struct FlattenIter<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flatten_iter.rs:10-12`](../../../.source_1765521767/rayon-1.11.0/src/iter/flatten_iter.rs#L10-L12)*
+*Defined in [`rayon-1.11.0/src/iter/flatten_iter.rs:10-12`](../../../.source_1765633015/rayon-1.11.0/src/iter/flatten_iter.rs#L10-L12)*
 
 `FlattenIter` turns each element to a serial iterator, then flattens these iterators
 together. This struct is created by the `flatten_iter()` method on [`ParallelIterator`](#paralleliterator).
@@ -2084,7 +2084,7 @@ struct Fold<I, ID, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/fold.rs:22-26`](../../../.source_1765521767/rayon-1.11.0/src/iter/fold.rs#L22-L26)*
+*Defined in [`rayon-1.11.0/src/iter/fold.rs:22-26`](../../../.source_1765633015/rayon-1.11.0/src/iter/fold.rs#L22-L26)*
 
 `Fold` is an iterator that applies a function over an iterator producing a single value.
 This struct is created by the `fold()` method on [`ParallelIterator`](#paralleliterator)
@@ -2198,7 +2198,7 @@ struct FoldWith<I, U, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/fold.rs:191-195`](../../../.source_1765521767/rayon-1.11.0/src/iter/fold.rs#L191-L195)*
+*Defined in [`rayon-1.11.0/src/iter/fold.rs:191-195`](../../../.source_1765633015/rayon-1.11.0/src/iter/fold.rs#L191-L195)*
 
 `FoldWith` is an iterator that applies a function over an iterator producing a single value.
 This struct is created by the `fold_with()` method on [`ParallelIterator`](#paralleliterator)
@@ -2313,7 +2313,7 @@ struct FoldChunks<I, ID, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/fold_chunks.rs:15-20`](../../../.source_1765521767/rayon-1.11.0/src/iter/fold_chunks.rs#L15-L20)*
+*Defined in [`rayon-1.11.0/src/iter/fold_chunks.rs:15-20`](../../../.source_1765633015/rayon-1.11.0/src/iter/fold_chunks.rs#L15-L20)*
 
 `FoldChunks` is an iterator that groups elements of an underlying iterator and applies a
 function over them, producing a single value for each group.
@@ -2442,7 +2442,7 @@ struct FoldChunksWith<I, U, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/fold_chunks_with.rs:15-20`](../../../.source_1765521767/rayon-1.11.0/src/iter/fold_chunks_with.rs#L15-L20)*
+*Defined in [`rayon-1.11.0/src/iter/fold_chunks_with.rs:15-20`](../../../.source_1765633015/rayon-1.11.0/src/iter/fold_chunks_with.rs#L15-L20)*
 
 `FoldChunksWith` is an iterator that groups elements of an underlying iterator and applies a
 function over them, producing a single value for each group.
@@ -2569,7 +2569,7 @@ struct Inspect<I, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/inspect.rs:15-18`](../../../.source_1765521767/rayon-1.11.0/src/iter/inspect.rs#L15-L18)*
+*Defined in [`rayon-1.11.0/src/iter/inspect.rs:15-18`](../../../.source_1765633015/rayon-1.11.0/src/iter/inspect.rs#L15-L18)*
 
 `Inspect` is an iterator that calls a function with a reference to each
 element before yielding it.
@@ -2696,7 +2696,7 @@ struct Interleave<I, J> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/interleave.rs:12-15`](../../../.source_1765521767/rayon-1.11.0/src/iter/interleave.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/interleave.rs:12-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/interleave.rs#L12-L15)*
 
 `Interleave` is an iterator that interleaves elements of iterators
 `i` and `j` in one continuous iterator. This struct is created by
@@ -2821,7 +2821,7 @@ struct InterleaveShortest<I, J> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/interleave_shortest.rs:14-16`](../../../.source_1765521767/rayon-1.11.0/src/iter/interleave_shortest.rs#L14-L16)*
+*Defined in [`rayon-1.11.0/src/iter/interleave_shortest.rs:14-16`](../../../.source_1765633015/rayon-1.11.0/src/iter/interleave_shortest.rs#L14-L16)*
 
 `InterleaveShortest` is an iterator that works similarly to
 `Interleave`, but this version stops returning elements once one
@@ -2952,7 +2952,7 @@ where
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/intersperse.rs:13-19`](../../../.source_1765521767/rayon-1.11.0/src/iter/intersperse.rs#L13-L19)*
+*Defined in [`rayon-1.11.0/src/iter/intersperse.rs:13-19`](../../../.source_1765633015/rayon-1.11.0/src/iter/intersperse.rs#L13-L19)*
 
 `Intersperse` is an iterator that inserts a particular item between each
 item of the adapted iterator.  This struct is created by the
@@ -3078,7 +3078,7 @@ struct MaxLen<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/len.rs:140-143`](../../../.source_1765521767/rayon-1.11.0/src/iter/len.rs#L140-L143)*
+*Defined in [`rayon-1.11.0/src/iter/len.rs:140-143`](../../../.source_1765633015/rayon-1.11.0/src/iter/len.rs#L140-L143)*
 
 `MaxLen` is an iterator that imposes a maximum length on iterator splits.
 This struct is created by the `with_max_len()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
@@ -3203,7 +3203,7 @@ struct MinLen<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/len.rs:10-13`](../../../.source_1765521767/rayon-1.11.0/src/iter/len.rs#L10-L13)*
+*Defined in [`rayon-1.11.0/src/iter/len.rs:10-13`](../../../.source_1765633015/rayon-1.11.0/src/iter/len.rs#L10-L13)*
 
 `MinLen` is an iterator that imposes a minimum length on iterator splits.
 This struct is created by the `with_min_len()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
@@ -3328,7 +3328,7 @@ struct Map<I, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/map.rs:14-17`](../../../.source_1765521767/rayon-1.11.0/src/iter/map.rs#L14-L17)*
+*Defined in [`rayon-1.11.0/src/iter/map.rs:14-17`](../../../.source_1765633015/rayon-1.11.0/src/iter/map.rs#L14-L17)*
 
 `Map` is an iterator that transforms the elements of an underlying iterator.
 
@@ -3455,7 +3455,7 @@ struct MapInit<I, INIT, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/map_with.rs:341-345`](../../../.source_1765521767/rayon-1.11.0/src/iter/map_with.rs#L341-L345)*
+*Defined in [`rayon-1.11.0/src/iter/map_with.rs:341-345`](../../../.source_1765633015/rayon-1.11.0/src/iter/map_with.rs#L341-L345)*
 
 `MapInit` is an iterator that transforms the elements of an underlying iterator.
 
@@ -3582,7 +3582,7 @@ struct MapWith<I, T, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/map_with.rs:13-17`](../../../.source_1765521767/rayon-1.11.0/src/iter/map_with.rs#L13-L17)*
+*Defined in [`rayon-1.11.0/src/iter/map_with.rs:13-17`](../../../.source_1765633015/rayon-1.11.0/src/iter/map_with.rs#L13-L17)*
 
 `MapWith` is an iterator that transforms the elements of an underlying iterator.
 
@@ -3707,7 +3707,7 @@ struct MultiZip<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/multizip.rs:79-81`](../../../.source_1765521767/rayon-1.11.0/src/iter/multizip.rs#L79-L81)*
+*Defined in [`rayon-1.11.0/src/iter/multizip.rs:79-81`](../../../.source_1765633015/rayon-1.11.0/src/iter/multizip.rs#L79-L81)*
 
 `MultiZip` is an iterator that zips up a tuple of parallel iterators to
 produce tuples of their items.
@@ -3896,7 +3896,7 @@ struct Once<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/once.rs:32-34`](../../../.source_1765521767/rayon-1.11.0/src/iter/once.rs#L32-L34)*
+*Defined in [`rayon-1.11.0/src/iter/once.rs:32-34`](../../../.source_1765633015/rayon-1.11.0/src/iter/once.rs#L32-L34)*
 
 Iterator adaptor for [the `once()` function].
 
@@ -4013,7 +4013,7 @@ struct PanicFuse<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:14-16`](../../../.source_1765521767/rayon-1.11.0/src/iter/panic_fuse.rs#L14-L16)*
+*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:14-16`](../../../.source_1765633015/rayon-1.11.0/src/iter/panic_fuse.rs#L14-L16)*
 
 `PanicFuse` is an adaptor that wraps an iterator with a fuse in case
 of panics, to halt all threads as soon as possible.
@@ -4139,7 +4139,7 @@ struct IterBridge<Iter> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:72-74`](../../../.source_1765521767/rayon-1.11.0/src/iter/par_bridge.rs#L72-L74)*
+*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:72-74`](../../../.source_1765633015/rayon-1.11.0/src/iter/par_bridge.rs#L72-L74)*
 
 `IterBridge` is a parallel iterator that wraps a sequential iterator.
 
@@ -4249,7 +4249,7 @@ struct Positions<I, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/positions.rs:14-17`](../../../.source_1765521767/rayon-1.11.0/src/iter/positions.rs#L14-L17)*
+*Defined in [`rayon-1.11.0/src/iter/positions.rs:14-17`](../../../.source_1765633015/rayon-1.11.0/src/iter/positions.rs#L14-L17)*
 
 `Positions` takes a predicate `predicate` and filters out elements that match,
 yielding their indices.
@@ -4365,7 +4365,7 @@ struct Repeat<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/repeat.rs:10-12`](../../../.source_1765521767/rayon-1.11.0/src/iter/repeat.rs#L10-L12)*
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:10-12`](../../../.source_1765633015/rayon-1.11.0/src/iter/repeat.rs#L10-L12)*
 
 Iterator adaptor for [the `repeat()` function].
 
@@ -4492,7 +4492,7 @@ struct RepeatN<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/repeat.rs:111-113`](../../../.source_1765521767/rayon-1.11.0/src/iter/repeat.rs#L111-L113)*
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:111-113`](../../../.source_1765633015/rayon-1.11.0/src/iter/repeat.rs#L111-L113)*
 
 Iterator adaptor for [the `repeat_n()` function].
 
@@ -4609,7 +4609,7 @@ struct Rev<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/rev.rs:11-13`](../../../.source_1765521767/rayon-1.11.0/src/iter/rev.rs#L11-L13)*
+*Defined in [`rayon-1.11.0/src/iter/rev.rs:11-13`](../../../.source_1765633015/rayon-1.11.0/src/iter/rev.rs#L11-L13)*
 
 `Rev` is an iterator that produces elements in reverse order. This struct
 is created by the `rev()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
@@ -4734,7 +4734,7 @@ struct Skip<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/skip.rs:11-14`](../../../.source_1765521767/rayon-1.11.0/src/iter/skip.rs#L11-L14)*
+*Defined in [`rayon-1.11.0/src/iter/skip.rs:11-14`](../../../.source_1765633015/rayon-1.11.0/src/iter/skip.rs#L11-L14)*
 
 `Skip` is an iterator that skips over the first `n` elements.
 This struct is created by the `skip()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
@@ -4859,7 +4859,7 @@ struct SkipAny<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/skip_any.rs:11-14`](../../../.source_1765521767/rayon-1.11.0/src/iter/skip_any.rs#L11-L14)*
+*Defined in [`rayon-1.11.0/src/iter/skip_any.rs:11-14`](../../../.source_1765633015/rayon-1.11.0/src/iter/skip_any.rs#L11-L14)*
 
 `SkipAny` is an iterator that skips over `n` elements from anywhere in `I`.
 This struct is created by the `skip_any()` method on [`ParallelIterator`](#paralleliterator)
@@ -4974,7 +4974,7 @@ struct SkipAnyWhile<I, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/skip_any_while.rs:13-16`](../../../.source_1765521767/rayon-1.11.0/src/iter/skip_any_while.rs#L13-L16)*
+*Defined in [`rayon-1.11.0/src/iter/skip_any_while.rs:13-16`](../../../.source_1765633015/rayon-1.11.0/src/iter/skip_any_while.rs#L13-L16)*
 
 `SkipAnyWhile` is an iterator that skips over elements from anywhere in `I`
 until the callback returns `false`.
@@ -5090,7 +5090,7 @@ struct Split<D, S> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/splitter.rs:117-120`](../../../.source_1765521767/rayon-1.11.0/src/iter/splitter.rs#L117-L120)*
+*Defined in [`rayon-1.11.0/src/iter/splitter.rs:117-120`](../../../.source_1765633015/rayon-1.11.0/src/iter/splitter.rs#L117-L120)*
 
 `Split` is a parallel iterator using arbitrary data and a splitting function.
 This struct is created by the [`split()`](splitter/index.md) function.
@@ -5198,7 +5198,7 @@ struct StepBy<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/step_by.rs:11-14`](../../../.source_1765521767/rayon-1.11.0/src/iter/step_by.rs#L11-L14)*
+*Defined in [`rayon-1.11.0/src/iter/step_by.rs:11-14`](../../../.source_1765633015/rayon-1.11.0/src/iter/step_by.rs#L11-L14)*
 
 `StepBy` is an iterator that skips `n` elements between each yield, where `n` is the given step.
 This struct is created by the `step_by()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
@@ -5323,7 +5323,7 @@ struct Take<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/take.rs:10-13`](../../../.source_1765521767/rayon-1.11.0/src/iter/take.rs#L10-L13)*
+*Defined in [`rayon-1.11.0/src/iter/take.rs:10-13`](../../../.source_1765633015/rayon-1.11.0/src/iter/take.rs#L10-L13)*
 
 `Take` is an iterator that iterates over the first `n` elements.
 This struct is created by the `take()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
@@ -5448,7 +5448,7 @@ struct TakeAny<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/take_any.rs:11-14`](../../../.source_1765521767/rayon-1.11.0/src/iter/take_any.rs#L11-L14)*
+*Defined in [`rayon-1.11.0/src/iter/take_any.rs:11-14`](../../../.source_1765633015/rayon-1.11.0/src/iter/take_any.rs#L11-L14)*
 
 `TakeAny` is an iterator that iterates over `n` elements from anywhere in `I`.
 This struct is created by the `take_any()` method on [`ParallelIterator`](#paralleliterator)
@@ -5563,7 +5563,7 @@ struct TakeAnyWhile<I, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/take_any_while.rs:13-16`](../../../.source_1765521767/rayon-1.11.0/src/iter/take_any_while.rs#L13-L16)*
+*Defined in [`rayon-1.11.0/src/iter/take_any_while.rs:13-16`](../../../.source_1765633015/rayon-1.11.0/src/iter/take_any_while.rs#L13-L16)*
 
 `TakeAnyWhile` is an iterator that iterates over elements from anywhere in `I`
 until the callback returns `false`.
@@ -5681,7 +5681,7 @@ struct TryFold<I, U, ID, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:26-31`](../../../.source_1765521767/rayon-1.11.0/src/iter/try_fold.rs#L26-L31)*
+*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:26-31`](../../../.source_1765633015/rayon-1.11.0/src/iter/try_fold.rs#L26-L31)*
 
 `TryFold` is an iterator that applies a function over an iterator producing a single value.
 This struct is created by the `try_fold()` method on [`ParallelIterator`](#paralleliterator)
@@ -5795,7 +5795,7 @@ struct TryFoldWith<I, U: Try, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:180-184`](../../../.source_1765521767/rayon-1.11.0/src/iter/try_fold.rs#L180-L184)*
+*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:180-184`](../../../.source_1765633015/rayon-1.11.0/src/iter/try_fold.rs#L180-L184)*
 
 `TryFoldWith` is an iterator that applies a function over an iterator producing a single value.
 This struct is created by the `try_fold_with()` method on [`ParallelIterator`](#paralleliterator)
@@ -5908,7 +5908,7 @@ struct Update<I, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/update.rs:14-17`](../../../.source_1765521767/rayon-1.11.0/src/iter/update.rs#L14-L17)*
+*Defined in [`rayon-1.11.0/src/iter/update.rs:14-17`](../../../.source_1765633015/rayon-1.11.0/src/iter/update.rs#L14-L17)*
 
 `Update` is an iterator that mutates the elements of an
 underlying iterator before they are yielded.
@@ -6032,7 +6032,7 @@ This struct is created by the `update()` method on [`ParallelIterator`](#paralle
 struct WalkTree<S, B>(WalkTreePostfix<S, B>);
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:459`](../../../.source_1765521767/rayon-1.11.0/src/iter/walk_tree.rs#L459)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:459`](../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L459)*
 
 ParallelIterator for arbitrary tree-shaped patterns.
 Returned by the [`walk_tree()`](walk_tree/index.md) function.
@@ -6124,7 +6124,7 @@ struct WalkTreePostfix<S, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:302-305`](../../../.source_1765521767/rayon-1.11.0/src/iter/walk_tree.rs#L302-L305)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:302-305`](../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L302-L305)*
 
 ParallelIterator for arbitrary tree-shaped patterns.
 Returned by the [`walk_tree_postfix()`](walk_tree/index.md) function.
@@ -6216,7 +6216,7 @@ struct WalkTreePrefix<S, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:76-79`](../../../.source_1765521767/rayon-1.11.0/src/iter/walk_tree.rs#L76-L79)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:76-79`](../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L76-L79)*
 
 ParallelIterator for arbitrary tree-shaped patterns.
 Returned by the [`walk_tree_prefix()`](walk_tree/index.md) function.
@@ -6307,7 +6307,7 @@ struct WhileSome<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/while_some.rs:13-15`](../../../.source_1765521767/rayon-1.11.0/src/iter/while_some.rs#L13-L15)*
+*Defined in [`rayon-1.11.0/src/iter/while_some.rs:13-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/while_some.rs#L13-L15)*
 
 `WhileSome` is an iterator that yields the `Some` elements of an iterator,
 halting as soon as any `None` is produced.
@@ -6424,7 +6424,7 @@ struct Zip<A, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/zip.rs:12-15`](../../../.source_1765521767/rayon-1.11.0/src/iter/zip.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/zip.rs:12-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/zip.rs#L12-L15)*
 
 `Zip` is an iterator that zips up `a` and `b` into a single iterator
 of pairs. This struct is created by the `zip()` method on
@@ -6549,7 +6549,7 @@ struct ZipEq<A, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/zip_eq.rs:13-15`](../../../.source_1765521767/rayon-1.11.0/src/iter/zip_eq.rs#L13-L15)*
+*Defined in [`rayon-1.11.0/src/iter/zip_eq.rs:13-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/zip_eq.rs#L13-L15)*
 
 An [`IndexedParallelIterator`](#indexedparalleliterator) that iterates over two parallel iterators of equal
 length simultaneously.
@@ -6676,7 +6676,7 @@ see its documentation for more information.
 trait ParallelBridge: Sized { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:53-56`](../../../.source_1765521767/rayon-1.11.0/src/iter/par_bridge.rs#L53-L56)*
+*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:53-56`](../../../.source_1765633015/rayon-1.11.0/src/iter/par_bridge.rs#L53-L56)*
 
 Conversion trait to convert an `Iterator` to a `ParallelIterator`.
 
@@ -6735,7 +6735,7 @@ assert_eq!(&*output, &["one!", "three!", "two!"]);
 trait IntoParallelIterator { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:219-249`](../../../.source_1765521767/rayon-1.11.0/src/iter/mod.rs#L219-L249)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:219-249`](../../../.source_1765633015/rayon-1.11.0/src/iter/mod.rs#L219-L249)*
 
 `IntoParallelIterator` implements the conversion to a [`ParallelIterator`](#paralleliterator).
 
@@ -6838,7 +6838,7 @@ library's `std::iter::IntoIterator` trait.
 trait IntoParallelRefIterator<'data> { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:261-285`](../../../.source_1765521767/rayon-1.11.0/src/iter/mod.rs#L261-L285)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:261-285`](../../../.source_1765633015/rayon-1.11.0/src/iter/mod.rs#L261-L285)*
 
 `IntoParallelRefIterator` implements the conversion to a
 [`ParallelIterator`](#paralleliterator), providing shared references to the data.
@@ -6873,7 +6873,7 @@ this trait directly.
 trait IntoParallelRefMutIterator<'data> { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:309-329`](../../../.source_1765521767/rayon-1.11.0/src/iter/mod.rs#L309-L329)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:309-329`](../../../.source_1765633015/rayon-1.11.0/src/iter/mod.rs#L309-L329)*
 
 `IntoParallelRefMutIterator` implements the conversion to a
 [`ParallelIterator`](#paralleliterator), providing mutable references to the data.
@@ -6908,7 +6908,7 @@ this trait directly.
 trait ParallelIterator: Sized + Send { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:356-2421`](../../../.source_1765521767/rayon-1.11.0/src/iter/mod.rs#L356-L2421)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:356-2421`](../../../.source_1765633015/rayon-1.11.0/src/iter/mod.rs#L356-L2421)*
 
 Parallel version of the standard iterator trait.
 
@@ -7294,7 +7294,7 @@ For examples of using parallel iterators, see [the docs on the
 trait IndexedParallelIterator: ParallelIterator { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:2439-3244`](../../../.source_1765521767/rayon-1.11.0/src/iter/mod.rs#L2439-L3244)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:2439-3244`](../../../.source_1765633015/rayon-1.11.0/src/iter/mod.rs#L2439-L3244)*
 
 An iterator that supports "random access" to its data, meaning
 that you can split it at arbitrary indices and draw data from
@@ -7507,7 +7507,7 @@ where
     T: Send { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:3280-3303`](../../../.source_1765521767/rayon-1.11.0/src/iter/mod.rs#L3280-L3303)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:3280-3303`](../../../.source_1765633015/rayon-1.11.0/src/iter/mod.rs#L3280-L3303)*
 
 `FromParallelIterator` implements the creation of a collection
 from a [`ParallelIterator`](#paralleliterator). By implementing
@@ -7579,7 +7579,7 @@ where
     T: Send { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:3333-3353`](../../../.source_1765521767/rayon-1.11.0/src/iter/mod.rs#L3333-L3353)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:3333-3353`](../../../.source_1765633015/rayon-1.11.0/src/iter/mod.rs#L3333-L3353)*
 
 `ParallelExtend` extends an existing collection with items from a [`ParallelIterator`](#paralleliterator).
 
@@ -7640,7 +7640,7 @@ assert_eq!(bh.mass, 4080);
 trait ParallelDrainFull { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:3360-3394`](../../../.source_1765521767/rayon-1.11.0/src/iter/mod.rs#L3360-L3394)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:3360-3394`](../../../.source_1765633015/rayon-1.11.0/src/iter/mod.rs#L3360-L3394)*
 
 `ParallelDrainFull` creates a parallel iterator that moves all items
 from a collection while retaining the original capacity.
@@ -7672,7 +7672,7 @@ instead, where you can drain fully with `par_drain(..)`.
 trait ParallelDrainRange<Idx> { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:3400-3467`](../../../.source_1765521767/rayon-1.11.0/src/iter/mod.rs#L3400-L3467)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:3400-3467`](../../../.source_1765633015/rayon-1.11.0/src/iter/mod.rs#L3400-L3467)*
 
 `ParallelDrainRange` creates a parallel iterator that moves a range of items
 from a collection while retaining the original capacity.
@@ -7706,7 +7706,7 @@ Types which are not indexable may implement [`ParallelDrainFull`](#paralleldrain
 fn empty<T: Send>() -> Empty<T>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/empty.rs:24-28`](../../../.source_1765521767/rayon-1.11.0/src/iter/empty.rs#L24-L28)*
+*Defined in [`rayon-1.11.0/src/iter/empty.rs:24-28`](../../../.source_1765633015/rayon-1.11.0/src/iter/empty.rs#L24-L28)*
 
 Creates a parallel iterator that produces nothing.
 
@@ -7732,7 +7732,7 @@ assert_eq!(pi.count(), 10_000);
 fn once<T: Send>(item: T) -> Once<T>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/once.rs:24-26`](../../../.source_1765521767/rayon-1.11.0/src/iter/once.rs#L24-L26)*
+*Defined in [`rayon-1.11.0/src/iter/once.rs:24-26`](../../../.source_1765633015/rayon-1.11.0/src/iter/once.rs#L24-L26)*
 
 Creates a parallel iterator that produces an element exactly once.
 
@@ -7761,7 +7761,7 @@ assert_eq!(pi.position_any(|x| x < 0), Some(1234));
 fn repeat<T: Clone + Send>(element: T) -> Repeat<T>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/repeat.rs:30-32`](../../../.source_1765521767/rayon-1.11.0/src/iter/repeat.rs#L30-L32)*
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:30-32`](../../../.source_1765633015/rayon-1.11.0/src/iter/repeat.rs#L30-L32)*
 
 Creates a parallel iterator that endlessly repeats `element` (by
 cloning it). Note that this iterator has "infinite" length, so
@@ -7784,7 +7784,7 @@ assert_eq!(x, vec![(22, 0), (22, 1), (22, 2)]);
 fn repeat_n<T: Clone + Send>(element: T, n: usize) -> RepeatN<T>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/repeat.rs:126-132`](../../../.source_1765521767/rayon-1.11.0/src/iter/repeat.rs#L126-L132)*
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:126-132`](../../../.source_1765633015/rayon-1.11.0/src/iter/repeat.rs#L126-L132)*
 
 Creates a parallel iterator that produces `n` repeats of `element`
 (by cloning it).
@@ -7807,7 +7807,7 @@ where
     S: Fn(D) -> (D, Option<D>) + Sync
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/splitter.rs:106-112`](../../../.source_1765521767/rayon-1.11.0/src/iter/splitter.rs#L106-L112)*
+*Defined in [`rayon-1.11.0/src/iter/splitter.rs:106-112`](../../../.source_1765633015/rayon-1.11.0/src/iter/splitter.rs#L106-L112)*
 
 The `split` function takes arbitrary data and a closure that knows how to
 split it, and turns this into a `ParallelIterator`.
@@ -7920,7 +7920,7 @@ where
     I: IntoIterator<Item = S, IntoIter: DoubleEndedIterator>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:497-508`](../../../.source_1765521767/rayon-1.11.0/src/iter/walk_tree.rs#L497-L508)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:497-508`](../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L497-L508)*
 
 Create a tree like parallel iterator from an initial root node.
 The `children_of` function should take a node and iterate on all of its child nodes.
@@ -7969,7 +7969,7 @@ where
     I: IntoIterator<Item = S>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:444-454`](../../../.source_1765521767/rayon-1.11.0/src/iter/walk_tree.rs#L444-L454)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:444-454`](../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L444-L454)*
 
 Create a tree like postfix parallel iterator from an initial root node.
 The `children_of` function should take a node and iterate on all of its child nodes.
@@ -8086,7 +8086,7 @@ where
     I: IntoIterator<Item = S, IntoIter: DoubleEndedIterator>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:204-214`](../../../.source_1765521767/rayon-1.11.0/src/iter/walk_tree.rs#L204-L214)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:204-214`](../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L204-L214)*
 
 Create a tree-like prefix parallel iterator from an initial root node.
 The `children_of` function should take a node and return an iterator over its child nodes.
@@ -8197,7 +8197,7 @@ assert_eq!(v, vec![10, 3, 14, 18]);
 fn repeatn<T: Clone + Send>(element: T, n: usize) -> RepeatN<T>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/repeat.rs:139-141`](../../../.source_1765521767/rayon-1.11.0/src/iter/repeat.rs#L139-L141)*
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:139-141`](../../../.source_1765633015/rayon-1.11.0/src/iter/repeat.rs#L139-L141)*
 
 Creates a parallel iterator that produces `n` repeats of `element`
 (by cloning it).

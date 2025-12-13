@@ -604,7 +604,7 @@ enables `alloc` and `nfa-thompson`.
 struct PatternID(SmallIndex);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:736`](../../.source_1765521767/regex-automata-0.4.13/src/util/primitives.rs#L736)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:736`](../../.source_1765633015/regex-automata-0.4.13/src/util/primitives.rs#L736)*
 
 The identifier of a regex pattern, represented by a [`SmallIndex`](util/primitives/index.md).
 
@@ -857,7 +857,7 @@ struct Input<'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:102-107`](../../.source_1765521767/regex-automata-0.4.13/src/util/search.rs#L102-L107)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:102-107`](../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L102-L107)*
 
 The parameters for a regex search including the haystack to search.
 
@@ -2107,7 +2107,7 @@ struct Span {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:807-812`](../../.source_1765521767/regex-automata-0.4.13/src/util/search.rs#L807-L812)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:807-812`](../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L807-L812)*
 
 A representation of a span reported by a regex engine.
 
@@ -2266,7 +2266,7 @@ struct HalfMatch {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:924-932`](../../.source_1765521767/regex-automata-0.4.13/src/util/search.rs#L924-L932)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:924-932`](../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L924-L932)*
 
 A representation of "half" of a match reported by a DFA.
 
@@ -2423,7 +2423,7 @@ struct Match {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:985-990`](../../.source_1765521767/regex-automata-0.4.13/src/util/search.rs#L985-L990)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:985-990`](../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L985-L990)*
 
 A representation of a match reported by a regex engine.
 
@@ -2701,7 +2701,7 @@ struct PatternSet {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1149-1172`](../../.source_1765521767/regex-automata-0.4.13/src/util/search.rs#L1149-L1172)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1149-1172`](../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L1149-L1172)*
 
 A set of `PatternID`s.
 
@@ -2984,7 +2984,7 @@ struct PatternSetInsertError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1335-1338`](../../.source_1765521767/regex-automata-0.4.13/src/util/search.rs#L1335-L1338)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1335-1338`](../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L1335-L1338)*
 
 An error that occurs when a `PatternID` failed to insert into a
 `PatternSet`.
@@ -3076,7 +3076,7 @@ struct PatternSetIter<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1364-1366`](../../.source_1765521767/regex-automata-0.4.13/src/util/search.rs#L1364-L1366)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1364-1366`](../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L1364-L1366)*
 
 An iterator over all pattern identifiers in a [`PatternSet`](#patternset).
 
@@ -3175,7 +3175,7 @@ This iterator is created by the `PatternSet::iter` method.
 struct MatchError(alloc::boxed::Box<MatchErrorKind>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1778-1781`](../../.source_1765521767/regex-automata-0.4.13/src/util/search.rs#L1778-L1781)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1778-1781`](../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L1778-L1781)*
 
 An error indicating that a search stopped before reporting whether a
 match exists or not.
@@ -3387,7 +3387,7 @@ enum Anchored {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1501-1516`](../../.source_1765521767/regex-automata-0.4.13/src/util/search.rs#L1501-L1516)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1501-1516`](../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L1501-L1516)*
 
 The type of anchored search to perform.
 
@@ -3653,7 +3653,7 @@ enum MatchKind {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1698-1721`](../../.source_1765521767/regex-automata-0.4.13/src/util/search.rs#L1698-L1721)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1698-1721`](../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L1698-L1721)*
 
 The kind of match semantics to use for a regex pattern.
 
@@ -3904,7 +3904,7 @@ enum MatchErrorKind {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1849-1890`](../../.source_1765521767/regex-automata-0.4.13/src/util/search.rs#L1849-L1890)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1849-1890`](../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L1849-L1890)*
 
 The underlying kind of a [`MatchError`](#matcherror).
 

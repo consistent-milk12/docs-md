@@ -88,7 +88,7 @@ enum Architecture {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:5-45`](../../../.source_1765521767/object-0.37.3/src/common.rs#L5-L45)*
+*Defined in [`object-0.37.3/src/common.rs:5-45`](../../../.source_1765633015/object-0.37.3/src/common.rs#L5-L45)*
 
 A CPU architecture.
 
@@ -189,7 +189,7 @@ enum SubArchitecture {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:51-54`](../../../.source_1765521767/object-0.37.3/src/common.rs#L51-L54)*
+*Defined in [`object-0.37.3/src/common.rs:51-54`](../../../.source_1765633015/object-0.37.3/src/common.rs#L51-L54)*
 
 A CPU sub-architecture.
 
@@ -282,7 +282,7 @@ enum AddressSize {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:109-114`](../../../.source_1765521767/object-0.37.3/src/common.rs#L109-L114)*
+*Defined in [`object-0.37.3/src/common.rs:109-114`](../../../.source_1765633015/object-0.37.3/src/common.rs#L109-L114)*
 
 The size of an address value for an architecture.
 
@@ -385,7 +385,7 @@ enum BinaryFormat {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:128-135`](../../../.source_1765521767/object-0.37.3/src/common.rs#L128-L135)*
+*Defined in [`object-0.37.3/src/common.rs:128-135`](../../../.source_1765633015/object-0.37.3/src/common.rs#L128-L135)*
 
 A binary file format.
 
@@ -503,7 +503,7 @@ enum SectionKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:155-247`](../../../.source_1765521767/object-0.37.3/src/common.rs#L155-L247)*
+*Defined in [`object-0.37.3/src/common.rs:155-247`](../../../.source_1765633015/object-0.37.3/src/common.rs#L155-L247)*
 
 The kind of a section.
 
@@ -736,7 +736,7 @@ enum ComdatKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:264-291`](../../../.source_1765521767/object-0.37.3/src/common.rs#L264-L291)*
+*Defined in [`object-0.37.3/src/common.rs:264-291`](../../../.source_1765633015/object-0.37.3/src/common.rs#L264-L291)*
 
 The selection kind for a COMDAT section group.
 
@@ -877,7 +877,7 @@ enum SymbolKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:296-311`](../../../.source_1765521767/object-0.37.3/src/common.rs#L296-L311)*
+*Defined in [`object-0.37.3/src/common.rs:296-311`](../../../.source_1765633015/object-0.37.3/src/common.rs#L296-L311)*
 
 The kind of a symbol.
 
@@ -1000,7 +1000,7 @@ enum SymbolScope {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:315-324`](../../../.source_1765521767/object-0.37.3/src/common.rs#L315-L324)*
+*Defined in [`object-0.37.3/src/common.rs:315-324`](../../../.source_1765633015/object-0.37.3/src/common.rs#L315-L324)*
 
 A symbol scope.
 
@@ -1118,7 +1118,7 @@ enum RelocationKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:343-366`](../../../.source_1765521767/object-0.37.3/src/common.rs#L343-L366)*
+*Defined in [`object-0.37.3/src/common.rs:343-366`](../../../.source_1765633015/object-0.37.3/src/common.rs#L343-L366)*
 
 The operation used to calculate the result of the relocation.
 
@@ -1280,7 +1280,7 @@ enum RelocationEncoding {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:374-447`](../../../.source_1765521767/object-0.37.3/src/common.rs#L374-L447)*
+*Defined in [`object-0.37.3/src/common.rs:374-447`](../../../.source_1765633015/object-0.37.3/src/common.rs#L374-L447)*
 
 Information about how the result of the relocation operation is encoded in the place.
 
@@ -1479,7 +1479,7 @@ enum FileFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:452-479`](../../../.source_1765521767/object-0.37.3/src/common.rs#L452-L479)*
+*Defined in [`object-0.37.3/src/common.rs:452-479`](../../../.source_1765633015/object-0.37.3/src/common.rs#L452-L479)*
 
 File flags that are specific to each file format.
 
@@ -1602,7 +1602,7 @@ enum SegmentFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:484-506`](../../../.source_1765521767/object-0.37.3/src/common.rs#L484-L506)*
+*Defined in [`object-0.37.3/src/common.rs:484-506`](../../../.source_1765633015/object-0.37.3/src/common.rs#L484-L506)*
 
 Segment flags that are specific to each file format.
 
@@ -1722,7 +1722,7 @@ enum SectionFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:511-534`](../../../.source_1765521767/object-0.37.3/src/common.rs#L511-L534)*
+*Defined in [`object-0.37.3/src/common.rs:511-534`](../../../.source_1765633015/object-0.37.3/src/common.rs#L511-L534)*
 
 Section flags that are specific to each file format.
 
@@ -1851,7 +1851,7 @@ enum SymbolFlags<Section, Symbol> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:539-578`](../../../.source_1765521767/object-0.37.3/src/common.rs#L539-L578)*
+*Defined in [`object-0.37.3/src/common.rs:539-578`](../../../.source_1765633015/object-0.37.3/src/common.rs#L539-L578)*
 
 Symbol flags that are specific to each file format.
 
@@ -1982,7 +1982,7 @@ enum RelocationFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:583-619`](../../../.source_1765521767/object-0.37.3/src/common.rs#L583-L619)*
+*Defined in [`object-0.37.3/src/common.rs:583-619`](../../../.source_1765633015/object-0.37.3/src/common.rs#L583-L619)*
 
 Relocation fields that are specific to each file format and architecture.
 

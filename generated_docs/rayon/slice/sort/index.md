@@ -92,7 +92,7 @@ struct InsertionHole<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:27-30`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L27-L30)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:27-30`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L27-L30)*
 
 #### Trait Implementations
 
@@ -168,7 +168,7 @@ struct MergeHole<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:1055-1059`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L1055-L1059)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1055-1059`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L1055-L1059)*
 
 #### Trait Implementations
 
@@ -243,7 +243,7 @@ struct TimSortRun {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:1202-1205`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L1202-L1205)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1202-1205`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L1202-L1205)*
 
 Internal type used by merge_sort.
 
@@ -341,7 +341,7 @@ enum MergeSortResult {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:1074-1081`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L1074-L1081)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1074-1081`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L1074-L1081)*
 
 The result of merge sort.
 
@@ -455,7 +455,7 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:45-96`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L45-L96)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:45-96`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L45-L96)*
 
 Inserts `v[v.len() - 1]` into pre-sorted sequence `v[..v.len() - 1]` so that whole `v[..]`
 becomes sorted.
@@ -468,7 +468,7 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:101-157`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L101-L157)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:101-157`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L101-L157)*
 
 Inserts `v[0]` into pre-sorted sequence `v[1..]` so that whole `v[..]` becomes sorted.
 
@@ -482,7 +482,7 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:164-182`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L164-L182)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:164-182`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L164-L182)*
 
 Sort `v` assuming `v[..offset]` is already sorted.
 
@@ -497,7 +497,7 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:189-208`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L189-L208)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:189-208`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L189-L208)*
 
 Sort `v` assuming `v[offset..]` is already sorted.
 
@@ -512,7 +512,7 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:214-260`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L214-L260)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:214-260`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L214-L260)*
 
 Partially sorts a slice by shifting several out-of-order elements around.
 
@@ -526,7 +526,7 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:264-306`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L264-L306)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:264-306`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L264-L306)*
 
 Sorts `v` using heapsort, which guarantees *O*(*n* \* log(*n*)) worst-case.
 
@@ -538,7 +538,7 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:317-566`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L317-L566)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:317-566`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L317-L566)*
 
 Partitions `v` into elements smaller than `pivot`, followed by elements greater than or equal
 to `pivot`.
@@ -557,7 +557,7 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:575-630`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L575-L630)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:575-630`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L575-L630)*
 
 Partitions `v` into elements smaller than `v[pivot]`, followed by elements greater than or
 equal to `v[pivot]`.
@@ -575,7 +575,7 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:636-699`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L636-L699)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:636-699`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L636-L699)*
 
 Partitions `v` into elements equal to `v[pivot]` followed by elements greater than `v[pivot]`.
 
@@ -588,7 +588,7 @@ elements smaller than the pivot.
 fn break_patterns<T>(v: &mut [T])
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:704-748`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L704-L748)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:704-748`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L704-L748)*
 
 Scatters some elements around in an attempt to break patterns that might cause imbalanced
 partitions in quicksort.
@@ -601,7 +601,7 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:753-821`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L753-L821)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:753-821`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L753-L821)*
 
 Chooses a pivot in `v` and returns the index and `true` if the slice is likely already sorted.
 
@@ -616,7 +616,7 @@ where
     F: Fn(&T, &T) -> bool + Sync
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:829-928`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L829-L928)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:829-928`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L829-L928)*
 
 Sorts `v` recursively.
 
@@ -634,7 +634,7 @@ where
     F: Fn(&T, &T) -> bool + Sync
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:933-947`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L933-L947)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:933-947`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L933-L947)*
 
 Sorts `v` using pattern-defeating quicksort in parallel.
 
@@ -648,7 +648,7 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:956-1052`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L956-L1052)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:956-1052`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L956-L1052)*
 
 Merges non-decreasing runs `v[..mid]` and `v[mid..]` using `buf` as temporary storage, and
 stores the result into `v[..]`.
@@ -666,7 +666,7 @@ where
     CmpF: Fn(&T, &T) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:1100-1198`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L1100-L1198)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1100-1198`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L1100-L1198)*
 
 This merge sort borrows some (but not all) ideas from TimSort, which used to be described in
 detail [here](https://github.com/python/cpython/blob/main/Objects/listsort.txt). However Python
@@ -694,7 +694,7 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:1209-1235`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L1209-L1235)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1209-1235`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L1209-L1235)*
 
 Takes a range as denoted by start and end, that is already sorted and extends it to the right if
 necessary with sorts optimized for smaller ranges such as insertion sort.
@@ -707,7 +707,7 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:1240-1272`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L1240-L1272)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1240-1272`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L1240-L1272)*
 
 Finds a streak of presorted elements starting at the beginning of the slice. Returns the first
 value that is not part of said streak, and a bool denoting whether the streak was reversed.
@@ -721,7 +721,7 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:1283-1323`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L1283-L1323)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1283-1323`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L1283-L1323)*
 
 Splits two sorted slices so that they can be merged in parallel.
 
@@ -737,7 +737,7 @@ where
     F: Fn(&T, &T) -> bool + Sync
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:1333-1421`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L1333-L1421)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1333-1421`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L1333-L1421)*
 
 Merges slices `left` and `right` in parallel and stores the result into `dest`.
 
@@ -757,7 +757,7 @@ where
     F: Fn(&T, &T) -> bool + Sync
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:1435-1504`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L1435-L1504)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1435-1504`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L1435-L1504)*
 
 Recursively merges pre-sorted chunks inside `v`.
 
@@ -781,7 +781,7 @@ where
     F: Fn(&T, &T) -> bool + Sync
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/sort.rs:1510-1608`](../../../../.source_1765521767/rayon-1.11.0/src/slice/sort.rs#L1510-L1608)*
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1510-1608`](../../../../.source_1765633015/rayon-1.11.0/src/slice/sort.rs#L1510-L1608)*
 
 Sorts `v` using merge sort in parallel.
 

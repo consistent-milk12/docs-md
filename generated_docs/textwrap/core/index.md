@@ -81,7 +81,7 @@ struct Word<'a> {
 }
 ```
 
-*Defined in [`textwrap-0.16.2/src/core.rs:239-248`](../../../.source_1765521767/textwrap-0.16.2/src/core.rs#L239-L248)*
+*Defined in [`textwrap-0.16.2/src/core.rs:239-248`](../../../.source_1765633015/textwrap-0.16.2/src/core.rs#L239-L248)*
 
 A piece of wrappable text, including any trailing whitespace.
 
@@ -242,7 +242,7 @@ trailing whitespace, and potentially a penalty item.
 trait Fragment: std::fmt::Debug { ... }
 ```
 
-*Defined in [`textwrap-0.16.2/src/core.rs:221-232`](../../../.source_1765521767/textwrap-0.16.2/src/core.rs#L221-L232)*
+*Defined in [`textwrap-0.16.2/src/core.rs:221-232`](../../../.source_1765633015/textwrap-0.16.2/src/core.rs#L221-L232)*
 
 A (text) fragment denotes the unit which we wrap into lines.
 
@@ -281,7 +281,7 @@ the displayed width of each part, which this trait provides.
 fn skip_ansi_escape_sequence<I: Iterator<Item = char>>(ch: char, chars: &mut I) -> bool
 ```
 
-*Defined in [`textwrap-0.16.2/src/core.rs:52-83`](../../../.source_1765521767/textwrap-0.16.2/src/core.rs#L52-L83)*
+*Defined in [`textwrap-0.16.2/src/core.rs:52-83`](../../../.source_1765633015/textwrap-0.16.2/src/core.rs#L52-L83)*
 
 Skip ANSI escape sequences.
 
@@ -297,7 +297,7 @@ Returns `true` if one or more chars were skipped.
 fn ch_width(ch: char) -> usize
 ```
 
-*Defined in [`textwrap-0.16.2/src/core.rs:87-89`](../../../.source_1765521767/textwrap-0.16.2/src/core.rs#L87-L89)*
+*Defined in [`textwrap-0.16.2/src/core.rs:87-89`](../../../.source_1765633015/textwrap-0.16.2/src/core.rs#L87-L89)*
 
 ### `display_width`
 
@@ -305,7 +305,7 @@ fn ch_width(ch: char) -> usize
 fn display_width(text: &str) -> usize
 ```
 
-*Defined in [`textwrap-0.16.2/src/core.rs:199-209`](../../../.source_1765521767/textwrap-0.16.2/src/core.rs#L199-L209)*
+*Defined in [`textwrap-0.16.2/src/core.rs:199-209`](../../../.source_1765633015/textwrap-0.16.2/src/core.rs#L199-L209)*
 
 Compute the display width of `text` while skipping over ANSI
 escape sequences.
@@ -408,7 +408,7 @@ where
     I: IntoIterator<Item = Word<'a>>
 ```
 
-*Defined in [`textwrap-0.16.2/src/core.rs:354-367`](../../../.source_1765521767/textwrap-0.16.2/src/core.rs#L354-L367)*
+*Defined in [`textwrap-0.16.2/src/core.rs:354-367`](../../../.source_1765633015/textwrap-0.16.2/src/core.rs#L354-L367)*
 
 Forcibly break words wider than `line_width` into smaller words.
 
@@ -423,7 +423,7 @@ simply broken into smaller pieces.
 const CSI: (char, char);
 ```
 
-*Defined in [`textwrap-0.16.2/src/core.rs:40`](../../../.source_1765521767/textwrap-0.16.2/src/core.rs#L40)*
+*Defined in [`textwrap-0.16.2/src/core.rs:40`](../../../.source_1765633015/textwrap-0.16.2/src/core.rs#L40)*
 
 The CSI or “Control Sequence Introducer” introduces an ANSI escape
 sequence. This is typically used for colored text and will be
@@ -434,7 +434,7 @@ ignored when computing the text width.
 const ANSI_FINAL_BYTE: std::ops::RangeInclusive<char>;
 ```
 
-*Defined in [`textwrap-0.16.2/src/core.rs:42`](../../../.source_1765521767/textwrap-0.16.2/src/core.rs#L42)*
+*Defined in [`textwrap-0.16.2/src/core.rs:42`](../../../.source_1765633015/textwrap-0.16.2/src/core.rs#L42)*
 
 The final bytes of an ANSI escape sequence must be in this range.
 

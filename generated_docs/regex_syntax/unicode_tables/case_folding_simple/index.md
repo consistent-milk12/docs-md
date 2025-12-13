@@ -17,5 +17,5 @@
 const CASE_FOLDING_SIMPLE: &'static [(char, &'static [char])];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/case_folding_simple.rs:9-2948`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/case_folding_simple.rs#L9-L2948)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/case_folding_simple.rs:9-2948`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/case_folding_simple.rs#L9-L2948)*
 

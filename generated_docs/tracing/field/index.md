@@ -131,7 +131,7 @@ be forwarded to the visitor's `record_debug` method.
 trait AsField: crate::sealed::Sealed { ... }
 ```
 
-*Defined in [`tracing-0.1.43/src/field.rs:129-135`](../../../.source_1765521767/tracing-0.1.43/src/field.rs#L129-L135)*
+*Defined in [`tracing-0.1.43/src/field.rs:129-135`](../../../.source_1765633015/tracing-0.1.43/src/field.rs#L129-L135)*
 
 Trait implemented to allow a type to be used as a field key.
 

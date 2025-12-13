@@ -17,5 +17,5 @@
 const PERL_WORD: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/perl_word.rs:9-806`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/perl_word.rs#L9-L806)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/perl_word.rs:9-806`](../../../../.source_1765633015/regex-syntax-0.8.8/src/unicode_tables/perl_word.rs#L9-L806)*
 

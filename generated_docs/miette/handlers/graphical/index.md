@@ -39,7 +39,7 @@ struct GraphicalReportHandler {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:26-42`](../../../../.source_1765521767/miette-7.6.0/src/handlers/graphical.rs#L26-L42)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:26-42`](../../../../.source_1765633015/miette-7.6.0/src/handlers/graphical.rs#L26-L42)*
 
 A [`ReportHandler`](../../index.md) that displays a given [`Report`](crate::Report) in a
 quasi-graphical way, using terminal colors, unicode drawing characters, and
@@ -248,7 +248,7 @@ struct Line {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1388-1393`](../../../../.source_1765521767/miette-7.6.0/src/handlers/graphical.rs#L1388-L1393)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1388-1393`](../../../../.source_1765633015/miette-7.6.0/src/handlers/graphical.rs#L1388-L1393)*
 
 #### Implementations
 
@@ -332,7 +332,7 @@ struct FancySpan {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1453-1460`](../../../../.source_1765521767/miette-7.6.0/src/handlers/graphical.rs#L1453-L1460)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1453-1460`](../../../../.source_1765633015/miette-7.6.0/src/handlers/graphical.rs#L1453-L1460)*
 
 #### Fields
 
@@ -438,7 +438,7 @@ enum LinkStyle {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:45-49`](../../../../.source_1765521767/miette-7.6.0/src/handlers/graphical.rs#L45-L49)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:45-49`](../../../../.source_1765633015/miette-7.6.0/src/handlers/graphical.rs#L45-L49)*
 
 #### Trait Implementations
 
@@ -526,7 +526,7 @@ enum LabelRenderMode {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1378-1385`](../../../../.source_1765521767/miette-7.6.0/src/handlers/graphical.rs#L1378-L1385)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1378-1385`](../../../../.source_1765633015/miette-7.6.0/src/handlers/graphical.rs#L1378-L1385)*
 
 #### Variants
 
@@ -606,5 +606,5 @@ enum LabelRenderMode {
 fn split_label(v: String) -> Vec<String>
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1468-1470`](../../../../.source_1765521767/miette-7.6.0/src/handlers/graphical.rs#L1468-L1470)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1468-1470`](../../../../.source_1765633015/miette-7.6.0/src/handlers/graphical.rs#L1468-L1470)*
 

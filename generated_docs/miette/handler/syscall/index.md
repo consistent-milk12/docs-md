@@ -22,7 +22,7 @@
 fn terminal_width() -> Option<usize>
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:470-478`](../../../../.source_1765521767/miette-7.6.0/src/handler.rs#L470-L478)*
+*Defined in [`miette-7.6.0/src/handler.rs:470-478`](../../../../.source_1765633015/miette-7.6.0/src/handler.rs#L470-L478)*
 
 ### `supports_hyperlinks`
 
@@ -30,7 +30,7 @@ fn terminal_width() -> Option<usize>
 fn supports_hyperlinks() -> bool
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:481-489`](../../../../.source_1765521767/miette-7.6.0/src/handler.rs#L481-L489)*
+*Defined in [`miette-7.6.0/src/handler.rs:481-489`](../../../../.source_1765633015/miette-7.6.0/src/handler.rs#L481-L489)*
 
 ### `supports_color`
 
@@ -38,7 +38,7 @@ fn supports_hyperlinks() -> bool
 fn supports_color() -> bool
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:492-500`](../../../../.source_1765521767/miette-7.6.0/src/handler.rs#L492-L500)*
+*Defined in [`miette-7.6.0/src/handler.rs:492-500`](../../../../.source_1765633015/miette-7.6.0/src/handler.rs#L492-L500)*
 
 ### `supports_color_has_16m`
 
@@ -46,7 +46,7 @@ fn supports_color() -> bool
 fn supports_color_has_16m() -> Option<bool>
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:503-511`](../../../../.source_1765521767/miette-7.6.0/src/handler.rs#L503-L511)*
+*Defined in [`miette-7.6.0/src/handler.rs:503-511`](../../../../.source_1765633015/miette-7.6.0/src/handler.rs#L503-L511)*
 
 ### `supports_unicode`
 
@@ -54,5 +54,5 @@ fn supports_color_has_16m() -> Option<bool>
 fn supports_unicode() -> bool
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:514-522`](../../../../.source_1765521767/miette-7.6.0/src/handler.rs#L514-L522)*
+*Defined in [`miette-7.6.0/src/handler.rs:514-522`](../../../../.source_1765633015/miette-7.6.0/src/handler.rs#L514-L522)*
 

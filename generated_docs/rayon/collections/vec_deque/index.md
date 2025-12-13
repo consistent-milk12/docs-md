@@ -27,7 +27,7 @@ struct IntoIter<T: Send> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/collections/vec_deque.rs:17-19`](../../../../.source_1765521767/rayon-1.11.0/src/collections/vec_deque.rs#L17-L19)*
+*Defined in [`rayon-1.11.0/src/collections/vec_deque.rs:17-19`](../../../../.source_1765633015/rayon-1.11.0/src/collections/vec_deque.rs#L17-L19)*
 
 Parallel iterator over a double-ended queue
 
@@ -143,7 +143,7 @@ struct Iter<'a, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/collections/vec_deque.rs:39-41`](../../../../.source_1765521767/rayon-1.11.0/src/collections/vec_deque.rs#L39-L41)*
+*Defined in [`rayon-1.11.0/src/collections/vec_deque.rs:39-41`](../../../../.source_1765633015/rayon-1.11.0/src/collections/vec_deque.rs#L39-L41)*
 
 Parallel iterator over an immutable reference to a double-ended queue
 
@@ -259,7 +259,7 @@ struct IterMut<'a, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/collections/vec_deque.rs:70-72`](../../../../.source_1765521767/rayon-1.11.0/src/collections/vec_deque.rs#L70-L72)*
+*Defined in [`rayon-1.11.0/src/collections/vec_deque.rs:70-72`](../../../../.source_1765633015/rayon-1.11.0/src/collections/vec_deque.rs#L70-L72)*
 
 Parallel iterator over a mutable reference to a double-ended queue
 
@@ -361,7 +361,7 @@ struct Drain<'a, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/collections/vec_deque.rs:94-98`](../../../../.source_1765521767/rayon-1.11.0/src/collections/vec_deque.rs#L94-L98)*
+*Defined in [`rayon-1.11.0/src/collections/vec_deque.rs:94-98`](../../../../.source_1765633015/rayon-1.11.0/src/collections/vec_deque.rs#L94-L98)*
 
 Draining parallel iterator that moves a range out of a double-ended queue,
 but keeps the total capacity.

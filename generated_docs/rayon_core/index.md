@@ -184,7 +184,7 @@ struct BroadcastContext<'a> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:45-50`](../../.source_1765521767/rayon-core-1.13.0/src/broadcast/mod.rs#L45-L50)*
+*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:45-50`](../../.source_1765633015/rayon-core-1.13.0/src/broadcast/mod.rs#L45-L50)*
 
 Provides context to a closure called by `broadcast`.
 
@@ -293,7 +293,7 @@ struct ThreadBuilder {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:22-29`](../../.source_1765521767/rayon-core-1.13.0/src/registry.rs#L22-L29)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:22-29`](../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L22-L29)*
 
 Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 
@@ -387,7 +387,7 @@ struct Scope<'scope> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:24-26`](../../.source_1765521767/rayon-core-1.13.0/src/scope/mod.rs#L24-L26)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:24-26`](../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L24-L26)*
 
 Represents a fork-join scope which can be used to spawn any number of tasks.
 See [`scope()`](scope/index.md) for more information.
@@ -579,7 +579,7 @@ struct ScopeFifo<'scope> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:31-34`](../../.source_1765521767/rayon-core-1.13.0/src/scope/mod.rs#L31-L34)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:31-34`](../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L31-L34)*
 
 Represents a fork-join scope which can be used to spawn any number of tasks.
 Those spawned from the same thread are prioritized in relative FIFO order.
@@ -693,7 +693,7 @@ struct ThreadPool {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:46-48`](../../.source_1765521767/rayon-core-1.13.0/src/thread_pool/mod.rs#L46-L48)*
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:46-48`](../../.source_1765633015/rayon-core-1.13.0/src/thread_pool/mod.rs#L46-L48)*
 
 Represents a user-created [thread pool].
 
@@ -1242,7 +1242,7 @@ struct ThreadPoolBuildError {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:142-144`](../../.source_1765521767/rayon-core-1.13.0/src/lib.rs#L142-L144)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:142-144`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L142-L144)*
 
 Error when initializing a thread pool.
 
@@ -1344,7 +1344,7 @@ struct ThreadPoolBuilder<S> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:170-202`](../../.source_1765521767/rayon-core-1.13.0/src/lib.rs#L170-L202)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:170-202`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L170-L202)*
 
 Used to create a new [`ThreadPool`](thread_pool/index.md) or to configure the global rayon thread pool.
 ## Creating a ThreadPool
@@ -1486,7 +1486,7 @@ struct Configuration {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:207-209`](../../.source_1765521767/rayon-core-1.13.0/src/lib.rs#L207-L209)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:207-209`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L207-L209)*
 
 Contains the rayon thread pool configuration. Use [`ThreadPoolBuilder`](#threadpoolbuilder) instead.
 
@@ -1607,7 +1607,7 @@ struct FnContext {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:840-845`](../../.source_1765521767/rayon-core-1.13.0/src/lib.rs#L840-L845)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:840-845`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L840-L845)*
 
 Provides the calling context to a closure called by `join_context`.
 
@@ -1694,7 +1694,7 @@ enum Yield {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:497-502`](../../.source_1765521767/rayon-core-1.13.0/src/thread_pool/mod.rs#L497-L502)*
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:497-502`](../../.source_1765633015/rayon-core-1.13.0/src/thread_pool/mod.rs#L497-L502)*
 
 Result of [`yield_now()`](thread_pool/index.md) or [`yield_local()`](thread_pool/index.md).
 
@@ -1806,7 +1806,7 @@ enum ErrorKind {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:147-151`](../../.source_1765521767/rayon-core-1.13.0/src/lib.rs#L147-L151)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:147-151`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L147-L151)*
 
 #### Trait Implementations
 
@@ -1881,7 +1881,7 @@ where
     R: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:19-26`](../../.source_1765521767/rayon-core-1.13.0/src/broadcast/mod.rs#L19-L26)*
+*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:19-26`](../../.source_1765633015/rayon-core-1.13.0/src/broadcast/mod.rs#L19-L26)*
 
 Executes `op` within every thread in the current thread pool. If this is
 called from a non-Rayon thread, it will execute in the global thread pool.
@@ -1900,7 +1900,7 @@ where
     OP: Fn(BroadcastContext<'_>) + Send + Sync + 'static
 ```
 
-*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:36-42`](../../.source_1765521767/rayon-core-1.13.0/src/broadcast/mod.rs#L36-L42)*
+*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:36-42`](../../.source_1765633015/rayon-core-1.13.0/src/broadcast/mod.rs#L36-L42)*
 
 Spawns an asynchronous task on every thread in this thread pool. This task
 will run in the implicit, global scope, which means that it may outlast the
@@ -1921,7 +1921,7 @@ where
     RB: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/join/mod.rs:93-106`](../../.source_1765521767/rayon-core-1.13.0/src/join/mod.rs#L93-L106)*
+*Defined in [`rayon-core-1.13.0/src/join/mod.rs:93-106`](../../.source_1765633015/rayon-core-1.13.0/src/join/mod.rs#L93-L106)*
 
 Takes two closures and *potentially* runs them in parallel. It
 returns a pair of the results from those closures.
@@ -2014,7 +2014,7 @@ where
     RB: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/join/mod.rs:115-173`](../../.source_1765521767/rayon-core-1.13.0/src/join/mod.rs#L115-L173)*
+*Defined in [`rayon-core-1.13.0/src/join/mod.rs:115-173`](../../.source_1765633015/rayon-core-1.13.0/src/join/mod.rs#L115-L173)*
 
 Identical to `join`, except that the closures have a parameter
 that provides context for the way the closure has been called,
@@ -2032,7 +2032,7 @@ where
     OP: FnOnce(&Scope<'scope>) -> R
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:398-403`](../../.source_1765521767/rayon-core-1.13.0/src/scope/mod.rs#L398-L403)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:398-403`](../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L398-L403)*
 
 Creates a "fork-join" scope `s` and invokes the closure with a
 reference to `s`. This closure can then spawn asynchronous tasks
@@ -2065,7 +2065,7 @@ where
     R: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:277-286`](../../.source_1765521767/rayon-core-1.13.0/src/scope/mod.rs#L277-L286)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:277-286`](../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L277-L286)*
 
 Creates a "fork-join" scope `s` and invokes the closure with a
 reference to `s`. This closure can then spawn asynchronous tasks
@@ -2297,7 +2297,7 @@ where
     OP: FnOnce(&ScopeFifo<'scope>) -> R
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:449-454`](../../.source_1765521767/rayon-core-1.13.0/src/scope/mod.rs#L449-L454)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:449-454`](../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L449-L454)*
 
 Creates a "fork-join" scope `s` with FIFO order, and invokes the
 closure with a reference to `s`. This closure can then spawn
@@ -2330,7 +2330,7 @@ where
     R: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:366-375`](../../.source_1765521767/rayon-core-1.13.0/src/scope/mod.rs#L366-L375)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:366-375`](../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L366-L375)*
 
 Creates a "fork-join" scope `s` with FIFO order, and invokes the
 closure with a reference to `s`. This closure can then spawn
@@ -2417,7 +2417,7 @@ where
     F: FnOnce() + Send + 'static
 ```
 
-*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:58-64`](../../.source_1765521767/rayon-core-1.13.0/src/spawn/mod.rs#L58-L64)*
+*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:58-64`](../../.source_1765633015/rayon-core-1.13.0/src/spawn/mod.rs#L58-L64)*
 
 Puts the task into the Rayon thread pool's job queue in the "static"
 or "global" scope. Just like a standard thread, this task is not
@@ -2475,7 +2475,7 @@ where
     F: FnOnce() + Send + 'static
 ```
 
-*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:130-136`](../../.source_1765521767/rayon-core-1.13.0/src/spawn/mod.rs#L130-L136)*
+*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:130-136`](../../.source_1765633015/rayon-core-1.13.0/src/spawn/mod.rs#L130-L136)*
 
 Fires off a task into the Rayon thread pool in the "static" or
 "global" scope.  Just like a standard thread, this task is not
@@ -2509,7 +2509,7 @@ details.
 fn current_thread_has_pending_tasks() -> Option<bool>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:452-457`](../../.source_1765521767/rayon-core-1.13.0/src/thread_pool/mod.rs#L452-L457)*
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:452-457`](../../.source_1765633015/rayon-core-1.13.0/src/thread_pool/mod.rs#L452-L457)*
 
 If called from a Rayon worker thread, indicates whether that
 thread's local deque still has pending tasks. Otherwise, returns
@@ -2523,7 +2523,7 @@ thread's local deque still has pending tasks. Otherwise, returns
 fn current_thread_index() -> Option<usize>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:438-443`](../../.source_1765521767/rayon-core-1.13.0/src/thread_pool/mod.rs#L438-L443)*
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:438-443`](../../.source_1765633015/rayon-core-1.13.0/src/thread_pool/mod.rs#L438-L443)*
 
 If called from a Rayon worker thread, returns the index of that
 thread within its current pool; if not called from a Rayon thread,
@@ -2552,7 +2552,7 @@ restarted.
 fn yield_local() -> Option<Yield>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:488-493`](../../.source_1765521767/rayon-core-1.13.0/src/thread_pool/mod.rs#L488-L493)*
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:488-493`](../../.source_1765633015/rayon-core-1.13.0/src/thread_pool/mod.rs#L488-L493)*
 
 Cooperatively yields execution to local Rayon work.
 
@@ -2571,7 +2571,7 @@ nothing was available, or `None` if this thread is not part of any pool at all.
 fn yield_now() -> Option<Yield>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:471-476`](../../.source_1765521767/rayon-core-1.13.0/src/thread_pool/mod.rs#L471-L476)*
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:471-476`](../../.source_1765633015/rayon-core-1.13.0/src/thread_pool/mod.rs#L471-L476)*
 
 Cooperatively yields execution to Rayon.
 
@@ -2592,7 +2592,7 @@ nothing was available, or `None` if this thread is not part of any pool at all.
 fn max_num_threads() -> usize
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:113-116`](../../.source_1765521767/rayon-core-1.13.0/src/lib.rs#L113-L116)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:113-116`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L113-L116)*
 
 Returns the maximum number of threads that Rayon supports in a single thread pool.
 
@@ -2607,7 +2607,7 @@ The value may vary between different targets, and is subject to change in new Ra
 fn current_num_threads() -> usize
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:136-138`](../../.source_1765521767/rayon-core-1.13.0/src/lib.rs#L136-L138)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:136-138`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L136-L138)*
 
 Returns the number of threads in the current registry. If this
 code is executing within a Rayon thread pool, then this will be
@@ -2633,7 +2633,7 @@ number may vary over time in future versions (see [the
 fn initialize(config: Configuration) -> Result<(), Box<dyn Error>>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:787-789`](../../.source_1765521767/rayon-core-1.13.0/src/lib.rs#L787-L789)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:787-789`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L787-L789)*
 
 Deprecated in favor of `ThreadPoolBuilder::build_global`.
 
@@ -2645,7 +2645,7 @@ Deprecated in favor of `ThreadPoolBuilder::build_global`.
 type PanicHandler = dyn Fn(Box<dyn Any + Send>) + Send + Sync;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:213`](../../.source_1765521767/rayon-core-1.13.0/src/lib.rs#L213)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:213`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L213)*
 
 The type for a panic-handling closure. Note that this same closure
 may be invoked multiple times in parallel.
@@ -2656,7 +2656,7 @@ may be invoked multiple times in parallel.
 type StartHandler = dyn Fn(usize) + Send + Sync;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:218`](../../.source_1765521767/rayon-core-1.13.0/src/lib.rs#L218)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:218`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L218)*
 
 The type for a closure that gets invoked when a thread starts. The
 closure is passed the index of the thread on which it is invoked.
@@ -2668,7 +2668,7 @@ Note that this same closure may be invoked multiple times in parallel.
 type ExitHandler = dyn Fn(usize) + Send + Sync;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:223`](../../.source_1765521767/rayon-core-1.13.0/src/lib.rs#L223)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:223`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L223)*
 
 The type for a closure that gets invoked when a thread exits. The
 closure is passed the index of the thread on which it is invoked.
@@ -2681,12 +2681,12 @@ Note that this same closure may be invoked multiple times in parallel.
 const GLOBAL_POOL_ALREADY_INITIALIZED: &str;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:750-751`](../../.source_1765521767/rayon-core-1.13.0/src/lib.rs#L750-L751)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:750-751`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L750-L751)*
 
 ### `CURRENT_THREAD_ALREADY_IN_POOL`
 ```rust
 const CURRENT_THREAD_ALREADY_IN_POOL: &str;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:753-754`](../../.source_1765521767/rayon-core-1.13.0/src/lib.rs#L753-L754)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:753-754`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L753-L754)*
 

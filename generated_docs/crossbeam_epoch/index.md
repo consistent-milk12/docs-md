@@ -134,7 +134,7 @@ struct Atomic<T: ?Sized + Pointable> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:294-297`](../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L294-L297)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:294-297`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L294-L297)*
 
 An atomic pointer that can be safely shared between threads.
 
@@ -277,7 +277,7 @@ struct CompareExchangeError<'g, T: ?Sized + Pointable, P: Pointer<T>> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:34-40`](../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L34-L40)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:34-40`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L34-L40)*
 
 The error returned on failed compare-and-swap operation.
 
@@ -362,7 +362,7 @@ struct Owned<T: ?Sized + Pointable> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1048-1051`](../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L1048-L1051)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1048-1051`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L1048-L1051)*
 
 An owned heap-allocated object.
 
@@ -592,7 +592,7 @@ struct Shared<'g, T: 'g + ?Sized + Pointable> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1297-1300`](../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L1297-L1300)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1297-1300`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L1297-L1300)*
 
 A pointer to an object protected by the epoch GC.
 
@@ -751,7 +751,7 @@ struct Collector {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:22-24`](../../.source_1765521767/crossbeam-epoch-0.9.18/src/collector.rs#L22-L24)*
+*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:22-24`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/collector.rs#L22-L24)*
 
 An epoch-based garbage collector.
 
@@ -869,7 +869,7 @@ struct LocalHandle {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:73-75`](../../.source_1765521767/crossbeam-epoch-0.9.18/src/collector.rs#L73-L75)*
+*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:73-75`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/collector.rs#L73-L75)*
 
 A handle to a garbage collector.
 
@@ -961,7 +961,7 @@ struct Guard {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:69-71`](../../.source_1765521767/crossbeam-epoch-0.9.18/src/guard.rs#L69-L71)*
+*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:69-71`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/guard.rs#L69-L71)*
 
 A guard that keeps the current thread pinned.
 
@@ -1649,7 +1649,7 @@ assert!(!epoch::is_pinned());
 trait CompareAndSetOrdering { ... }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:67-76`](../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L67-L76)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:67-76`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L67-L76)*
 
 Memory orderings for compare-and-set operations.
 
@@ -1684,7 +1684,7 @@ The two ways of specifying orderings for compare-and-set are:
 trait Pointable { ... }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:150-192`](../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L150-L192)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:150-192`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L150-L192)*
 
 Types that are pointed to by a single word.
 
@@ -1744,7 +1744,7 @@ let o = Owned::<[MaybeUninit<i32>]>::init(10); // allocating [i32; 10]
 trait Pointer<T: ?Sized + Pointable> { ... }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1029-1040`](../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L1029-L1040)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1029-1040`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L1029-L1040)*
 
 A trait for either `Owned` or `Shared` pointers.
 
@@ -1771,7 +1771,7 @@ A trait for either `Owned` or `Shared` pointers.
 unsafe fn unprotected() -> &'static Guard
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:513-523`](../../.source_1765521767/crossbeam-epoch-0.9.18/src/guard.rs#L513-L523)*
+*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:513-523`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/guard.rs#L513-L523)*
 
 Returns a reference to a dummy guard that allows unprotected access to [`Atomic`](atomic/index.md)s.
 
@@ -1865,7 +1865,7 @@ impl<T> Drop for Stack<T> {
 fn default_collector() -> &'static crate::collector::Collector
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:50-52`](../../.source_1765521767/crossbeam-epoch-0.9.18/src/default.rs#L50-L52)*
+*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:50-52`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/default.rs#L50-L52)*
 
 Returns the default global collector.
 
@@ -1875,7 +1875,7 @@ Returns the default global collector.
 fn is_pinned() -> bool
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:45-47`](../../.source_1765521767/crossbeam-epoch-0.9.18/src/default.rs#L45-L47)*
+*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:45-47`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/default.rs#L45-L47)*
 
 Returns `true` if the current thread is pinned.
 
@@ -1885,7 +1885,7 @@ Returns `true` if the current thread is pinned.
 fn pin() -> crate::guard::Guard
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:39-41`](../../.source_1765521767/crossbeam-epoch-0.9.18/src/default.rs#L39-L41)*
+*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:39-41`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/default.rs#L39-L41)*
 
 Pins the current thread.
 
@@ -1897,7 +1897,7 @@ Pins the current thread.
 type CompareAndSetError<'g, T, P> = CompareExchangeError<'g, T, P>;
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:31`](../../.source_1765521767/crossbeam-epoch-0.9.18/src/atomic.rs#L31)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:31`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L31)*
 
 The error returned on failed compare-and-set operation.
 

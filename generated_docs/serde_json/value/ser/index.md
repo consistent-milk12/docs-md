@@ -39,7 +39,7 @@
 struct Serializer;
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/ser.rs:58`](../../../../.source_1765521767/serde_json-1.0.145/src/value/ser.rs#L58)*
+*Defined in [`serde_json-1.0.145/src/value/ser.rs:58`](../../../../.source_1765633015/serde_json-1.0.145/src/value/ser.rs#L58)*
 
 Serializer whose output is a `Value`.
 
@@ -196,7 +196,7 @@ struct SerializeVec {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/ser.rs:302-304`](../../../../.source_1765521767/serde_json-1.0.145/src/value/ser.rs#L302-L304)*
+*Defined in [`serde_json-1.0.145/src/value/ser.rs:302-304`](../../../../.source_1765633015/serde_json-1.0.145/src/value/ser.rs#L302-L304)*
 
 #### Trait Implementations
 
@@ -281,7 +281,7 @@ struct SerializeTupleVariant {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/ser.rs:306-309`](../../../../.source_1765521767/serde_json-1.0.145/src/value/ser.rs#L306-L309)*
+*Defined in [`serde_json-1.0.145/src/value/ser.rs:306-309`](../../../../.source_1765633015/serde_json-1.0.145/src/value/ser.rs#L306-L309)*
 
 #### Trait Implementations
 
@@ -346,7 +346,7 @@ struct SerializeStructVariant {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/ser.rs:322-325`](../../../../.source_1765521767/serde_json-1.0.145/src/value/ser.rs#L322-L325)*
+*Defined in [`serde_json-1.0.145/src/value/ser.rs:322-325`](../../../../.source_1765633015/serde_json-1.0.145/src/value/ser.rs#L322-L325)*
 
 #### Trait Implementations
 
@@ -408,7 +408,7 @@ struct SerializeStructVariant {
 struct MapKeySerializer;
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/ser.rs:448`](../../../../.source_1765521767/serde_json-1.0.145/src/value/ser.rs#L448)*
+*Defined in [`serde_json-1.0.145/src/value/ser.rs:448`](../../../../.source_1765633015/serde_json-1.0.145/src/value/ser.rs#L448)*
 
 #### Trait Implementations
 
@@ -549,7 +549,7 @@ enum SerializeMap {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/ser.rs:311-320`](../../../../.source_1765521767/serde_json-1.0.145/src/value/ser.rs#L311-L320)*
+*Defined in [`serde_json-1.0.145/src/value/ser.rs:311-320`](../../../../.source_1765633015/serde_json-1.0.145/src/value/ser.rs#L311-L320)*
 
 #### Trait Implementations
 
@@ -625,7 +625,7 @@ enum SerializeMap {
 fn key_must_be_a_string() -> crate::error::Error
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/ser.rs:450-452`](../../../../.source_1765521767/serde_json-1.0.145/src/value/ser.rs#L450-L452)*
+*Defined in [`serde_json-1.0.145/src/value/ser.rs:450-452`](../../../../.source_1765633015/serde_json-1.0.145/src/value/ser.rs#L450-L452)*
 
 ### `float_key_must_be_finite`
 
@@ -633,5 +633,5 @@ fn key_must_be_a_string() -> crate::error::Error
 fn float_key_must_be_finite() -> crate::error::Error
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/ser.rs:454-456`](../../../../.source_1765521767/serde_json-1.0.145/src/value/ser.rs#L454-L456)*
+*Defined in [`serde_json-1.0.145/src/value/ser.rs:454-456`](../../../../.source_1765633015/serde_json-1.0.145/src/value/ser.rs#L454-L456)*
 

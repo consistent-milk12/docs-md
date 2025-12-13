@@ -337,7 +337,7 @@ struct Underscore {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:521-523`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L521-L523)*
+*Defined in [`syn-2.0.111/src/token.rs:521-523`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L521-L523)*
 
 `_`
 
@@ -466,7 +466,7 @@ struct Group {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:574-576`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L574-L576)*
+*Defined in [`syn-2.0.111/src/token.rs:574-576`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L574-L576)*
 
 None-delimited group
 
@@ -566,7 +566,7 @@ struct Abstract {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `abstract`
 
@@ -678,7 +678,7 @@ struct As {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `as`
 
@@ -790,7 +790,7 @@ struct Async {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `async`
 
@@ -902,7 +902,7 @@ struct Auto {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `auto`
 
@@ -1014,7 +1014,7 @@ struct Await {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `await`
 
@@ -1126,7 +1126,7 @@ struct Become {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `become`
 
@@ -1238,7 +1238,7 @@ struct Box {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `box`
 
@@ -1350,7 +1350,7 @@ struct Break {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `break`
 
@@ -1462,7 +1462,7 @@ struct Const {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `const`
 
@@ -1574,7 +1574,7 @@ struct Continue {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `continue`
 
@@ -1686,7 +1686,7 @@ struct Crate {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `crate`
 
@@ -1798,7 +1798,7 @@ struct Default {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `default`
 
@@ -1910,7 +1910,7 @@ struct Do {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `do`
 
@@ -2022,7 +2022,7 @@ struct Dyn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `dyn`
 
@@ -2134,7 +2134,7 @@ struct Else {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `else`
 
@@ -2246,7 +2246,7 @@ struct Enum {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `enum`
 
@@ -2358,7 +2358,7 @@ struct Extern {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `extern`
 
@@ -2470,7 +2470,7 @@ struct Final {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `final`
 
@@ -2582,7 +2582,7 @@ struct Fn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `fn`
 
@@ -2694,7 +2694,7 @@ struct For {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `for`
 
@@ -2806,7 +2806,7 @@ struct If {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `if`
 
@@ -2918,7 +2918,7 @@ struct Impl {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `impl`
 
@@ -3030,7 +3030,7 @@ struct In {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `in`
 
@@ -3142,7 +3142,7 @@ struct Let {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `let`
 
@@ -3254,7 +3254,7 @@ struct Loop {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `loop`
 
@@ -3366,7 +3366,7 @@ struct Macro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `macro`
 
@@ -3478,7 +3478,7 @@ struct Match {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `match`
 
@@ -3590,7 +3590,7 @@ struct Mod {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `mod`
 
@@ -3702,7 +3702,7 @@ struct Move {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `move`
 
@@ -3814,7 +3814,7 @@ struct Mut {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `mut`
 
@@ -3926,7 +3926,7 @@ struct Override {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `override`
 
@@ -4038,7 +4038,7 @@ struct Priv {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `priv`
 
@@ -4150,7 +4150,7 @@ struct Pub {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `pub`
 
@@ -4262,7 +4262,7 @@ struct Raw {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `raw`
 
@@ -4374,7 +4374,7 @@ struct Ref {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `ref`
 
@@ -4486,7 +4486,7 @@ struct Return {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `return`
 
@@ -4598,7 +4598,7 @@ struct SelfType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `Self`
 
@@ -4710,7 +4710,7 @@ struct SelfValue {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `self`
 
@@ -4822,7 +4822,7 @@ struct Static {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `static`
 
@@ -4934,7 +4934,7 @@ struct Struct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `struct`
 
@@ -5046,7 +5046,7 @@ struct Super {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `super`
 
@@ -5158,7 +5158,7 @@ struct Trait {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `trait`
 
@@ -5270,7 +5270,7 @@ struct Try {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `try`
 
@@ -5382,7 +5382,7 @@ struct Type {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `type`
 
@@ -5494,7 +5494,7 @@ struct Typeof {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `typeof`
 
@@ -5606,7 +5606,7 @@ struct Union {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `union`
 
@@ -5718,7 +5718,7 @@ struct Unsafe {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `unsafe`
 
@@ -5830,7 +5830,7 @@ struct Unsized {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `unsized`
 
@@ -5942,7 +5942,7 @@ struct Use {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `use`
 
@@ -6054,7 +6054,7 @@ struct Virtual {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `virtual`
 
@@ -6166,7 +6166,7 @@ struct Where {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `where`
 
@@ -6278,7 +6278,7 @@ struct While {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `while`
 
@@ -6390,7 +6390,7 @@ struct Yield {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
 
 `yield`
 
@@ -6502,7 +6502,7 @@ struct And {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `&`
 
@@ -6631,7 +6631,7 @@ struct AndAnd {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `&&`
 
@@ -6746,7 +6746,7 @@ struct AndEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `&=`
 
@@ -6861,7 +6861,7 @@ struct At {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `@`
 
@@ -6990,7 +6990,7 @@ struct Caret {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `^`
 
@@ -7119,7 +7119,7 @@ struct CaretEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `^=`
 
@@ -7234,7 +7234,7 @@ struct Colon {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `:`
 
@@ -7363,7 +7363,7 @@ struct Comma {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `,`
 
@@ -7492,7 +7492,7 @@ struct Dollar {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `$`
 
@@ -7621,7 +7621,7 @@ struct Dot {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `.`
 
@@ -7750,7 +7750,7 @@ struct DotDot {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `..`
 
@@ -7865,7 +7865,7 @@ struct DotDotDot {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `...`
 
@@ -7980,7 +7980,7 @@ struct DotDotEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `..=`
 
@@ -8095,7 +8095,7 @@ struct Eq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `=`
 
@@ -8224,7 +8224,7 @@ struct EqEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `==`
 
@@ -8339,7 +8339,7 @@ struct FatArrow {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `=>`
 
@@ -8454,7 +8454,7 @@ struct Ge {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `>=`
 
@@ -8569,7 +8569,7 @@ struct Gt {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `>`
 
@@ -8698,7 +8698,7 @@ struct LArrow {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<-`
 
@@ -8813,7 +8813,7 @@ struct Le {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<=`
 
@@ -8928,7 +8928,7 @@ struct Lt {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<`
 
@@ -9057,7 +9057,7 @@ struct Minus {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `-`
 
@@ -9186,7 +9186,7 @@ struct MinusEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `-=`
 
@@ -9301,7 +9301,7 @@ struct Ne {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `!=`
 
@@ -9416,7 +9416,7 @@ struct Not {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `!`
 
@@ -9545,7 +9545,7 @@ struct Or {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `|`
 
@@ -9674,7 +9674,7 @@ struct OrEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `|=`
 
@@ -9789,7 +9789,7 @@ struct OrOr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `||`
 
@@ -9904,7 +9904,7 @@ struct PathSep {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `::`
 
@@ -10019,7 +10019,7 @@ struct Percent {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `%`
 
@@ -10148,7 +10148,7 @@ struct PercentEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `%=`
 
@@ -10263,7 +10263,7 @@ struct Plus {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `+`
 
@@ -10392,7 +10392,7 @@ struct PlusEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `+=`
 
@@ -10507,7 +10507,7 @@ struct Pound {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `#`
 
@@ -10636,7 +10636,7 @@ struct Question {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `?`
 
@@ -10765,7 +10765,7 @@ struct RArrow {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `->`
 
@@ -10880,7 +10880,7 @@ struct Semi {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `;`
 
@@ -11009,7 +11009,7 @@ struct Shl {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<<`
 
@@ -11124,7 +11124,7 @@ struct ShlEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<<=`
 
@@ -11239,7 +11239,7 @@ struct Shr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `>>`
 
@@ -11354,7 +11354,7 @@ struct ShrEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `>>=`
 
@@ -11469,7 +11469,7 @@ struct Slash {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `/`
 
@@ -11598,7 +11598,7 @@ struct SlashEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `/=`
 
@@ -11713,7 +11713,7 @@ struct Star {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `*`
 
@@ -11842,7 +11842,7 @@ struct StarEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `*=`
 
@@ -11957,7 +11957,7 @@ struct Tilde {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
 
 `~`
 
@@ -12086,7 +12086,7 @@ struct Brace {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:797-801`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L797-L801)*
+*Defined in [`syn-2.0.111/src/token.rs:797-801`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L797-L801)*
 
 `{`&hellip;`}`
 
@@ -12186,7 +12186,7 @@ struct Bracket {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:797-801`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L797-L801)*
+*Defined in [`syn-2.0.111/src/token.rs:797-801`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L797-L801)*
 
 ``&hellip;``
 
@@ -12286,7 +12286,7 @@ struct Paren {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:797-801`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L797-L801)*
+*Defined in [`syn-2.0.111/src/token.rs:797-801`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L797-L801)*
 
 `(`&hellip;`)`
 
@@ -12386,7 +12386,7 @@ struct Paren {
 trait Token: private::Sealed { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:125-133`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L125-L133)*
+*Defined in [`syn-2.0.111/src/token.rs:125-133`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L125-L133)*
 
 Marker trait for types that represent single tokens.
 
@@ -12519,25 +12519,25 @@ This trait is sealed and cannot be implemented for types outside of Syn.
 
 ### `impl_low_level_token!`
 
-*Defined in [`syn-2.0.111/src/token.rs:163-179`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L163-L179)*
+*Defined in [`syn-2.0.111/src/token.rs:163-179`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L163-L179)*
 
 ### `define_keywords!`
 
-*Defined in [`syn-2.0.111/src/token.rs:201-301`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L201-L301)*
+*Defined in [`syn-2.0.111/src/token.rs:201-301`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L201-L301)*
 
 ### `impl_deref_if_len_is_1!`
 
-*Defined in [`syn-2.0.111/src/token.rs:303-321`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L303-L321)*
+*Defined in [`syn-2.0.111/src/token.rs:303-321`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L303-L321)*
 
 ### `define_punctuation_structs!`
 
-*Defined in [`syn-2.0.111/src/token.rs:323-398`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L323-L398)*
+*Defined in [`syn-2.0.111/src/token.rs:323-398`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L323-L398)*
 
 ### `define_punctuation!`
 
-*Defined in [`syn-2.0.111/src/token.rs:400-440`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L400-L440)*
+*Defined in [`syn-2.0.111/src/token.rs:400-440`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L400-L440)*
 
 ### `define_delimiters!`
 
-*Defined in [`syn-2.0.111/src/token.rs:442-519`](../../../.source_1765521767/syn-2.0.111/src/token.rs#L442-L519)*
+*Defined in [`syn-2.0.111/src/token.rs:442-519`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L442-L519)*
 

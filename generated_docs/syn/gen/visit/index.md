@@ -516,7 +516,7 @@ fn main() {
 trait Visit<'ast> { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:28-945`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L28-L945)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:28-945`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L28-L945)*
 
 Syntax tree traversal to walk a shared borrow of a syntax tree.
 
@@ -911,7 +911,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:948-956`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L948-L956)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:948-956`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L948-L956)*
 
 ### `visit_angle_bracketed_generic_arguments`
 
@@ -921,7 +921,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:959-973`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L959-L973)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:959-973`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L959-L973)*
 
 ### `visit_arm`
 
@@ -931,7 +931,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:976-991`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L976-L991)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:976-991`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L976-L991)*
 
 ### `visit_assoc_const`
 
@@ -941,7 +941,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:994-1004`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L994-L1004)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:994-1004`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L994-L1004)*
 
 ### `visit_assoc_type`
 
@@ -951,7 +951,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1007-1017`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1007-L1017)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1007-1017`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1007-L1017)*
 
 ### `visit_attr_style`
 
@@ -961,7 +961,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1020-1030`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1020-L1030)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1020-1030`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1020-L1030)*
 
 ### `visit_attribute`
 
@@ -971,7 +971,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1033-1041`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1033-L1041)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1033-1041`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1033-L1041)*
 
 ### `visit_bare_fn_arg`
 
@@ -981,7 +981,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1044-1056`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1044-L1056)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1044-1056`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1044-L1056)*
 
 ### `visit_bare_variadic`
 
@@ -991,7 +991,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1059-1072`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1059-L1072)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1059-1072`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1059-L1072)*
 
 ### `visit_bin_op`
 
@@ -1001,7 +1001,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1075-1165`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1075-L1165)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1075-1165`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1075-L1165)*
 
 ### `visit_block`
 
@@ -1011,7 +1011,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1168-1176`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1168-L1176)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1168-1176`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1168-L1176)*
 
 ### `visit_bound_lifetimes`
 
@@ -1021,7 +1021,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1179-1190`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1179-L1190)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1179-1190`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1179-L1190)*
 
 ### `visit_captured_param`
 
@@ -1031,7 +1031,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1193-1205`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1193-L1205)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1193-1205`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1193-L1205)*
 
 ### `visit_const_param`
 
@@ -1041,7 +1041,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1208-1223`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1208-L1223)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1208-1223`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1208-L1223)*
 
 ### `visit_constraint`
 
@@ -1051,7 +1051,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1226-1239`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1226-L1239)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1226-1239`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1226-L1239)*
 
 ### `visit_data`
 
@@ -1061,7 +1061,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1242-1257`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1242-L1257)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1242-1257`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1242-L1257)*
 
 ### `visit_data_enum`
 
@@ -1071,7 +1071,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1260-1270`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1260-L1270)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1260-1270`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1260-L1270)*
 
 ### `visit_data_struct`
 
@@ -1081,7 +1081,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1273-1280`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1273-L1280)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1273-1280`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1273-L1280)*
 
 ### `visit_data_union`
 
@@ -1091,7 +1091,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1283-1289`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1283-L1289)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1283-1289`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1283-L1289)*
 
 ### `visit_derive_input`
 
@@ -1101,7 +1101,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1292-1303`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1292-L1303)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1292-1303`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1292-L1303)*
 
 ### `visit_expr`
 
@@ -1111,7 +1111,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1306-1432`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1306-L1432)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1306-1432`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1306-L1432)*
 
 ### `visit_expr_array`
 
@@ -1121,7 +1121,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1435-1447`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1435-L1447)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1435-1447`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1435-L1447)*
 
 ### `visit_expr_assign`
 
@@ -1131,7 +1131,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1450-1460`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1450-L1460)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1450-1460`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1450-L1460)*
 
 ### `visit_expr_async`
 
@@ -1141,7 +1141,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1463-1473`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1463-L1473)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1463-1473`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1463-L1473)*
 
 ### `visit_expr_await`
 
@@ -1151,7 +1151,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1476-1486`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1476-L1486)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1476-1486`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1476-L1486)*
 
 ### `visit_expr_binary`
 
@@ -1161,7 +1161,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1489-1499`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1489-L1499)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1489-1499`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1489-L1499)*
 
 ### `visit_expr_block`
 
@@ -1171,7 +1171,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1502-1513`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1502-L1513)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1502-1513`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1502-L1513)*
 
 ### `visit_expr_break`
 
@@ -1181,7 +1181,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1516-1530`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1516-L1530)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1516-1530`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1516-L1530)*
 
 ### `visit_expr_call`
 
@@ -1191,7 +1191,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1533-1546`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1533-L1546)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1533-1546`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1533-L1546)*
 
 ### `visit_expr_cast`
 
@@ -1201,7 +1201,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1549-1559`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1549-L1559)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1549-1559`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1549-L1559)*
 
 ### `visit_expr_closure`
 
@@ -1211,7 +1211,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1562-1584`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1562-L1584)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1562-1584`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1562-L1584)*
 
 ### `visit_expr_const`
 
@@ -1221,7 +1221,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1587-1596`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1587-L1596)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1587-1596`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1587-L1596)*
 
 ### `visit_expr_continue`
 
@@ -1231,7 +1231,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1599-1610`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1599-L1610)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1599-1610`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1599-L1610)*
 
 ### `visit_expr_field`
 
@@ -1241,7 +1241,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1613-1623`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1613-L1623)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1613-1623`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1613-L1623)*
 
 ### `visit_expr_for_loop`
 
@@ -1251,7 +1251,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1626-1641`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1626-L1641)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1626-1641`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1626-L1641)*
 
 ### `visit_expr_group`
 
@@ -1261,7 +1261,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1644-1653`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1644-L1653)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1644-1653`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1644-L1653)*
 
 ### `visit_expr_if`
 
@@ -1271,7 +1271,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1656-1670`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1656-L1670)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1656-1670`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1656-L1670)*
 
 ### `visit_expr_index`
 
@@ -1281,7 +1281,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1673-1683`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1673-L1683)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1673-1683`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1673-L1683)*
 
 ### `visit_expr_infer`
 
@@ -1291,7 +1291,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1686-1694`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1686-L1694)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1686-1694`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1686-L1694)*
 
 ### `visit_expr_let`
 
@@ -1301,7 +1301,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1697-1708`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1697-L1708)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1697-1708`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1697-L1708)*
 
 ### `visit_expr_lit`
 
@@ -1311,7 +1311,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1711-1719`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1711-L1719)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1711-1719`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1711-L1719)*
 
 ### `visit_expr_loop`
 
@@ -1321,7 +1321,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1722-1734`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1722-L1734)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1722-1734`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1722-L1734)*
 
 ### `visit_expr_macro`
 
@@ -1331,7 +1331,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1737-1745`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1737-L1745)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1737-1745`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1737-L1745)*
 
 ### `visit_expr_match`
 
@@ -1341,7 +1341,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1748-1761`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1748-L1761)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1748-1761`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1748-L1761)*
 
 ### `visit_expr_method_call`
 
@@ -1351,7 +1351,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1764-1782`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1764-L1782)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1764-1782`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1764-L1782)*
 
 ### `visit_expr_paren`
 
@@ -1361,7 +1361,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1785-1794`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1785-L1794)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1785-1794`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1785-L1794)*
 
 ### `visit_expr_path`
 
@@ -1371,7 +1371,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1797-1808`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1797-L1808)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1797-1808`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1797-L1808)*
 
 ### `visit_expr_range`
 
@@ -1381,7 +1381,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1811-1825`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1811-L1825)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1811-1825`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1811-L1825)*
 
 ### `visit_expr_raw_addr`
 
@@ -1391,7 +1391,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1828-1839`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1828-L1839)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1828-1839`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1828-L1839)*
 
 ### `visit_expr_reference`
 
@@ -1401,7 +1401,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1842-1852`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1842-L1852)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1842-1852`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1842-L1852)*
 
 ### `visit_expr_repeat`
 
@@ -1411,7 +1411,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1855-1866`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1855-L1866)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1855-1866`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1855-L1866)*
 
 ### `visit_expr_return`
 
@@ -1421,7 +1421,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1869-1880`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1869-L1880)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1869-1880`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1869-L1880)*
 
 ### `visit_expr_struct`
 
@@ -1431,7 +1431,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1883-1903`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1883-L1903)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1883-1903`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1883-L1903)*
 
 ### `visit_expr_try`
 
@@ -1441,7 +1441,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1906-1915`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1906-L1915)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1906-1915`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1906-L1915)*
 
 ### `visit_expr_try_block`
 
@@ -1451,7 +1451,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1918-1927`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1918-L1927)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1918-1927`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1918-L1927)*
 
 ### `visit_expr_tuple`
 
@@ -1461,7 +1461,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1930-1942`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1930-L1942)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1930-1942`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1930-L1942)*
 
 ### `visit_expr_unary`
 
@@ -1471,7 +1471,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1945-1954`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1945-L1954)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1945-1954`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1945-L1954)*
 
 ### `visit_expr_unsafe`
 
@@ -1481,7 +1481,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1957-1966`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1957-L1966)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1957-1966`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1957-L1966)*
 
 ### `visit_expr_while`
 
@@ -1491,7 +1491,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1969-1982`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1969-L1982)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1969-1982`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1969-L1982)*
 
 ### `visit_expr_yield`
 
@@ -1501,7 +1501,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1985-1996`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1985-L1996)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1985-1996`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1985-L1996)*
 
 ### `visit_field`
 
@@ -1511,7 +1511,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1999-2013`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L1999-L2013)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1999-2013`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L1999-L2013)*
 
 ### `visit_field_mutability`
 
@@ -1521,7 +1521,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2016-2023`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2016-L2023)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2016-2023`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2016-L2023)*
 
 ### `visit_field_pat`
 
@@ -1531,7 +1531,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2026-2036`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2026-L2036)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2026-2036`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2026-L2036)*
 
 ### `visit_field_value`
 
@@ -1541,7 +1541,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2039-2049`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2039-L2049)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2039-2049`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2039-L2049)*
 
 ### `visit_fields`
 
@@ -1551,7 +1551,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2052-2065`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2052-L2065)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2052-2065`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2052-L2065)*
 
 ### `visit_fields_named`
 
@@ -1561,7 +1561,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2068-2077`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2068-L2077)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2068-2077`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2068-L2077)*
 
 ### `visit_fields_unnamed`
 
@@ -1571,7 +1571,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2080-2089`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2080-L2089)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2080-2089`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2080-L2089)*
 
 ### `visit_file`
 
@@ -1581,7 +1581,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2092-2103`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2092-L2103)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2092-2103`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2092-L2103)*
 
 ### `visit_fn_arg`
 
@@ -1591,7 +1591,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2106-2118`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2106-L2118)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2106-2118`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2106-L2118)*
 
 ### `visit_foreign_item`
 
@@ -1601,7 +1601,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2121-2142`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2121-L2142)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2121-2142`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2121-L2142)*
 
 ### `visit_foreign_item_fn`
 
@@ -1611,7 +1611,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2145-2155`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2145-L2155)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2145-2155`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2145-L2155)*
 
 ### `visit_foreign_item_macro`
 
@@ -1621,7 +1621,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2158-2167`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2158-L2167)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2158-2167`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2158-L2167)*
 
 ### `visit_foreign_item_static`
 
@@ -1631,7 +1631,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2170-2187`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2170-L2187)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2170-2187`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2170-L2187)*
 
 ### `visit_foreign_item_type`
 
@@ -1641,7 +1641,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2190-2202`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2190-L2202)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2190-2202`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2190-L2202)*
 
 ### `visit_generic_argument`
 
@@ -1651,7 +1651,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2205-2229`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2205-L2229)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2205-2229`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2205-L2229)*
 
 ### `visit_generic_param`
 
@@ -1661,7 +1661,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2232-2247`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2232-L2247)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2232-2247`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2232-L2247)*
 
 ### `visit_generics`
 
@@ -1671,7 +1671,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2250-2263`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2250-L2263)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2250-2263`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2250-L2263)*
 
 ### `visit_ident`
 
@@ -1681,7 +1681,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2264-2269`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2264-L2269)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2264-2269`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2264-L2269)*
 
 ### `visit_impl_item`
 
@@ -1691,7 +1691,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2272-2293`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2272-L2293)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2272-2293`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2272-L2293)*
 
 ### `visit_impl_item_const`
 
@@ -1701,7 +1701,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2296-2313`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2296-L2313)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2296-2313`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2296-L2313)*
 
 ### `visit_impl_item_fn`
 
@@ -1711,7 +1711,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2316-2327`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2316-L2327)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2316-2327`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2316-L2327)*
 
 ### `visit_impl_item_macro`
 
@@ -1721,7 +1721,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2330-2339`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2330-L2339)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2330-2339`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2330-L2339)*
 
 ### `visit_impl_item_type`
 
@@ -1731,7 +1731,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2342-2357`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2342-L2357)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2342-2357`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2342-L2357)*
 
 ### `visit_impl_restriction`
 
@@ -1741,7 +1741,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2360-2365`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2360-L2365)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2360-2365`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2360-L2365)*
 
 ### `visit_index`
 
@@ -1751,7 +1751,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2368-2374`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2368-L2374)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2368-2374`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2368-L2374)*
 
 ### `visit_item`
 
@@ -1761,7 +1761,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2377-2431`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2377-L2431)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2377-2431`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2377-L2431)*
 
 ### `visit_item_const`
 
@@ -1771,7 +1771,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2434-2450`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2434-L2450)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2434-2450`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2434-L2450)*
 
 ### `visit_item_enum`
 
@@ -1781,7 +1781,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2453-2469`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2453-L2469)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2453-2469`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2453-L2469)*
 
 ### `visit_item_extern_crate`
 
@@ -1791,7 +1791,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2472-2488`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2472-L2488)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2472-2488`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2472-L2488)*
 
 ### `visit_item_fn`
 
@@ -1801,7 +1801,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2491-2501`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2491-L2501)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2491-2501`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2491-L2501)*
 
 ### `visit_item_foreign_mod`
 
@@ -1811,7 +1811,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2504-2517`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2504-L2517)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2504-2517`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2504-L2517)*
 
 ### `visit_item_impl`
 
@@ -1821,7 +1821,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2520-2541`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2520-L2541)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2520-2541`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2520-L2541)*
 
 ### `visit_item_macro`
 
@@ -1831,7 +1831,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2544-2556`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2544-L2556)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2544-2556`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2544-L2556)*
 
 ### `visit_item_mod`
 
@@ -1841,7 +1841,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2559-2577`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2559-L2577)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2559-2577`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2559-L2577)*
 
 ### `visit_item_static`
 
@@ -1851,7 +1851,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2580-2596`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2580-L2596)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2580-2596`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2580-L2596)*
 
 ### `visit_item_struct`
 
@@ -1861,7 +1861,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2599-2612`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2599-L2612)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2599-2612`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2599-L2612)*
 
 ### `visit_item_trait`
 
@@ -1871,7 +1871,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2615-2640`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2615-L2640)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2615-2640`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2615-L2640)*
 
 ### `visit_item_trait_alias`
 
@@ -1881,7 +1881,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2643-2660`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2643-L2660)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2643-2660`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2643-L2660)*
 
 ### `visit_item_type`
 
@@ -1891,7 +1891,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2663-2677`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2663-L2677)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2663-2677`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2663-L2677)*
 
 ### `visit_item_union`
 
@@ -1901,7 +1901,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2680-2692`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2680-L2692)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2680-2692`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2680-L2692)*
 
 ### `visit_item_use`
 
@@ -1911,7 +1911,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2695-2707`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2695-L2707)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2695-2707`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2695-L2707)*
 
 ### `visit_label`
 
@@ -1921,7 +1921,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2710-2716`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2710-L2716)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2710-2716`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2710-L2716)*
 
 ### `visit_lifetime`
 
@@ -1931,7 +1931,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2717-2723`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2717-L2723)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2717-2723`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2717-L2723)*
 
 ### `visit_lifetime_param`
 
@@ -1941,7 +1941,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2726-2739`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2726-L2739)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2726-2739`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2726-L2739)*
 
 ### `visit_lit`
 
@@ -1951,7 +1951,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2740-2773`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2740-L2773)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2740-2773`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2740-L2773)*
 
 ### `visit_lit_bool`
 
@@ -1961,7 +1961,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2774-2780`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2774-L2780)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2774-2780`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2774-L2780)*
 
 ### `visit_lit_byte`
 
@@ -1971,7 +1971,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2781-2784`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2781-L2784)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2781-2784`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2781-L2784)*
 
 ### `visit_lit_byte_str`
 
@@ -1981,7 +1981,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2785-2788`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2785-L2788)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2785-2788`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2785-L2788)*
 
 ### `visit_lit_cstr`
 
@@ -1991,7 +1991,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2789-2792`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2789-L2792)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2789-2792`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2789-L2792)*
 
 ### `visit_lit_char`
 
@@ -2001,7 +2001,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2793-2796`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2793-L2796)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2793-2796`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2793-L2796)*
 
 ### `visit_lit_float`
 
@@ -2011,7 +2011,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2797-2800`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2797-L2800)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2797-2800`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2797-L2800)*
 
 ### `visit_lit_int`
 
@@ -2021,7 +2021,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2801-2804`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2801-L2804)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2801-2804`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2801-L2804)*
 
 ### `visit_lit_str`
 
@@ -2031,7 +2031,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2805-2808`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2805-L2808)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2805-2808`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2805-L2808)*
 
 ### `visit_local`
 
@@ -2041,7 +2041,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2811-2824`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2811-L2824)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2811-2824`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2811-L2824)*
 
 ### `visit_local_init`
 
@@ -2051,7 +2051,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2827-2837`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2827-L2837)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2827-2837`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2827-L2837)*
 
 ### `visit_macro`
 
@@ -2061,7 +2061,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2840-2848`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2840-L2848)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2840-2848`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2840-L2848)*
 
 ### `visit_macro_delimiter`
 
@@ -2071,7 +2071,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2851-2866`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2851-L2866)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2851-2866`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2851-L2866)*
 
 ### `visit_member`
 
@@ -2081,7 +2081,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2869-2881`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2869-L2881)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2869-2881`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2869-L2881)*
 
 ### `visit_meta`
 
@@ -2091,7 +2091,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2884-2899`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2884-L2899)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2884-2899`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2884-L2899)*
 
 ### `visit_meta_list`
 
@@ -2101,7 +2101,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2902-2909`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2902-L2909)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2902-2909`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2902-L2909)*
 
 ### `visit_meta_name_value`
 
@@ -2111,7 +2111,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2912-2919`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2912-L2919)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2912-2919`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2912-L2919)*
 
 ### `visit_parenthesized_generic_arguments`
 
@@ -2121,7 +2121,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2922-2935`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2922-L2935)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2922-2935`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2922-L2935)*
 
 ### `visit_pat`
 
@@ -2131,7 +2131,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2938-2995`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2938-L2995)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2938-2995`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2938-L2995)*
 
 ### `visit_pat_ident`
 
@@ -2141,7 +2141,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2998-3012`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L2998-L3012)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2998-3012`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L2998-L3012)*
 
 ### `visit_pat_or`
 
@@ -2151,7 +2151,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3015-3027`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3015-L3027)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3015-3027`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3015-L3027)*
 
 ### `visit_pat_paren`
 
@@ -2161,7 +2161,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3030-3039`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3030-L3039)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3030-3039`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3030-L3039)*
 
 ### `visit_pat_reference`
 
@@ -2171,7 +2171,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3042-3052`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3042-L3052)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3042-3052`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3042-L3052)*
 
 ### `visit_pat_rest`
 
@@ -2181,7 +2181,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3055-3063`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3055-L3063)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3055-3063`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3055-L3063)*
 
 ### `visit_pat_slice`
 
@@ -2191,7 +2191,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3066-3078`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3066-L3078)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3066-3078`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3066-L3078)*
 
 ### `visit_pat_struct`
 
@@ -2201,7 +2201,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3081-3100`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3081-L3100)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3081-3100`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3081-L3100)*
 
 ### `visit_pat_tuple`
 
@@ -2211,7 +2211,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3103-3115`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3103-L3115)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3103-3115`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3103-L3115)*
 
 ### `visit_pat_tuple_struct`
 
@@ -2221,7 +2221,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3118-3134`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3118-L3134)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3118-3134`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3118-L3134)*
 
 ### `visit_pat_type`
 
@@ -2231,7 +2231,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3137-3147`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3137-L3147)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3137-3147`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3137-L3147)*
 
 ### `visit_pat_wild`
 
@@ -2241,7 +2241,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3150-3158`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3150-L3158)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3150-3158`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3150-L3158)*
 
 ### `visit_path`
 
@@ -2251,7 +2251,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3161-3170`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3161-L3170)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3161-3170`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3161-L3170)*
 
 ### `visit_path_arguments`
 
@@ -2261,7 +2261,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3173-3186`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3173-L3186)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3173-3186`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3173-L3186)*
 
 ### `visit_path_segment`
 
@@ -2271,7 +2271,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3189-3195`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3189-L3195)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3189-3195`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3189-L3195)*
 
 ### `visit_pointer_mutability`
 
@@ -2281,7 +2281,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3198-3210`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3198-L3210)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3198-3210`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3198-L3210)*
 
 ### `visit_precise_capture`
 
@@ -2291,7 +2291,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3213-3224`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3213-L3224)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3213-3224`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3213-L3224)*
 
 ### `visit_predicate_lifetime`
 
@@ -2301,7 +2301,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3227-3237`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3227-L3237)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3227-3237`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3227-L3237)*
 
 ### `visit_predicate_type`
 
@@ -2311,7 +2311,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3240-3253`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3240-L3253)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3240-3253`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3240-L3253)*
 
 ### `visit_qself`
 
@@ -2321,7 +2321,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3256-3265`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3256-L3265)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3256-3265`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3256-L3265)*
 
 ### `visit_range_limits`
 
@@ -2331,7 +2331,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3268-3280`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3268-L3280)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3268-3280`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3268-L3280)*
 
 ### `visit_receiver`
 
@@ -2341,7 +2341,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3283-3300`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3283-L3300)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3283-3300`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3283-L3300)*
 
 ### `visit_return_type`
 
@@ -2351,7 +2351,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3303-3314`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3303-L3314)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3303-3314`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3303-L3314)*
 
 ### `visit_signature`
 
@@ -2361,7 +2361,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3317-3339`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3317-L3339)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3317-3339`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3317-L3339)*
 
 ### `visit_span`
 
@@ -2371,7 +2371,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3340-3343`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3340-L3343)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3340-3343`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3340-L3343)*
 
 ### `visit_static_mutability`
 
@@ -2381,7 +2381,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3346-3356`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3346-L3356)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3346-3356`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3346-L3356)*
 
 ### `visit_stmt`
 
@@ -2391,7 +2391,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3359-3378`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3359-L3378)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3359-3378`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3359-L3378)*
 
 ### `visit_stmt_macro`
 
@@ -2401,7 +2401,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3381-3390`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3381-L3390)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3381-3390`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3381-L3390)*
 
 ### `visit_trait_bound`
 
@@ -2411,7 +2411,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3393-3403`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3393-L3403)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3393-3403`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3393-L3403)*
 
 ### `visit_trait_bound_modifier`
 
@@ -2421,7 +2421,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3406-3419`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3406-L3419)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3406-3419`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3406-L3419)*
 
 ### `visit_trait_item`
 
@@ -2431,7 +2431,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3422-3443`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3422-L3443)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3422-3443`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3422-L3443)*
 
 ### `visit_trait_item_const`
 
@@ -2441,7 +2441,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3446-3463`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3446-L3463)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3446-3463`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3446-L3463)*
 
 ### `visit_trait_item_fn`
 
@@ -2451,7 +2451,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3466-3478`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3466-L3478)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3466-3478`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3466-L3478)*
 
 ### `visit_trait_item_macro`
 
@@ -2461,7 +2461,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3481-3490`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3481-L3490)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3481-3490`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3481-L3490)*
 
 ### `visit_trait_item_type`
 
@@ -2471,7 +2471,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3493-3513`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3493-L3513)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3493-3513`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3493-L3513)*
 
 ### `visit_type`
 
@@ -2481,7 +2481,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3516-3567`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3516-L3567)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3516-3567`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3516-L3567)*
 
 ### `visit_type_array`
 
@@ -2491,7 +2491,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3570-3578`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3570-L3578)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3570-3578`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3570-L3578)*
 
 ### `visit_type_bare_fn`
 
@@ -2501,7 +2501,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3581-3602`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3581-L3602)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3581-3602`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3581-L3602)*
 
 ### `visit_type_group`
 
@@ -2511,7 +2511,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3605-3611`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3605-L3611)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3605-3611`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3605-L3611)*
 
 ### `visit_type_impl_trait`
 
@@ -2521,7 +2521,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3614-3623`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3614-L3623)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3614-3623`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3614-L3623)*
 
 ### `visit_type_infer`
 
@@ -2531,7 +2531,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3626-3631`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3626-L3631)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3626-3631`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3626-L3631)*
 
 ### `visit_type_macro`
 
@@ -2541,7 +2541,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3634-3639`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3634-L3639)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3634-3639`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3634-L3639)*
 
 ### `visit_type_never`
 
@@ -2551,7 +2551,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3642-3647`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3642-L3647)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3642-3647`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3642-L3647)*
 
 ### `visit_type_param`
 
@@ -2561,7 +2561,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3650-3667`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3650-L3667)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3650-3667`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3650-L3667)*
 
 ### `visit_type_param_bound`
 
@@ -2571,7 +2571,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3670-3688`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3670-L3688)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3670-3688`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3670-L3688)*
 
 ### `visit_type_paren`
 
@@ -2581,7 +2581,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3691-3697`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3691-L3697)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3691-3697`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3691-L3697)*
 
 ### `visit_type_path`
 
@@ -2591,7 +2591,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3700-3708`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3700-L3708)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3700-3708`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3700-L3708)*
 
 ### `visit_type_ptr`
 
@@ -2601,7 +2601,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3711-3719`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3711-L3719)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3711-3719`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3711-L3719)*
 
 ### `visit_type_reference`
 
@@ -2611,7 +2611,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3722-3732`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3722-L3732)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3722-3732`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3722-L3732)*
 
 ### `visit_type_slice`
 
@@ -2621,7 +2621,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3735-3741`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3735-L3741)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3735-3741`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3735-L3741)*
 
 ### `visit_type_trait_object`
 
@@ -2631,7 +2631,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3744-3753`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3744-L3753)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3744-3753`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3744-L3753)*
 
 ### `visit_type_tuple`
 
@@ -2641,7 +2641,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3756-3765`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3756-L3765)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3756-3765`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3756-L3765)*
 
 ### `visit_un_op`
 
@@ -2651,7 +2651,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3768-3783`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3768-L3783)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3768-3783`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3768-L3783)*
 
 ### `visit_use_glob`
 
@@ -2661,7 +2661,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3786-3791`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3786-L3791)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3786-3791`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3786-L3791)*
 
 ### `visit_use_group`
 
@@ -2671,7 +2671,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3794-3803`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3794-L3803)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3794-3803`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3794-L3803)*
 
 ### `visit_use_name`
 
@@ -2681,7 +2681,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3806-3811`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3806-L3811)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3806-3811`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3806-L3811)*
 
 ### `visit_use_path`
 
@@ -2691,7 +2691,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3814-3821`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3814-L3821)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3814-3821`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3814-L3821)*
 
 ### `visit_use_rename`
 
@@ -2701,7 +2701,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3824-3831`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3824-L3831)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3824-3831`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3824-L3831)*
 
 ### `visit_use_tree`
 
@@ -2711,7 +2711,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3834-3855`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3834-L3855)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3834-3855`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3834-L3855)*
 
 ### `visit_variadic`
 
@@ -2721,7 +2721,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3858-3871`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3858-L3871)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3858-3871`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3858-L3871)*
 
 ### `visit_variant`
 
@@ -2731,7 +2731,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3874-3887`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3874-L3887)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3874-3887`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3874-L3887)*
 
 ### `visit_vis_restricted`
 
@@ -2741,7 +2741,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3890-3898`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3890-L3898)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3890-3898`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3890-L3898)*
 
 ### `visit_visibility`
 
@@ -2751,7 +2751,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3901-3914`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3901-L3914)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3901-3914`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3901-L3914)*
 
 ### `visit_where_clause`
 
@@ -2761,7 +2761,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3917-3926`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3917-L3926)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3917-3926`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3917-L3926)*
 
 ### `visit_where_predicate`
 
@@ -2771,15 +2771,15 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3929-3941`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L3929-L3941)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3929-3941`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L3929-L3941)*
 
 ## Macros
 
 ### `full!`
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:9-13`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L9-L13)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:9-13`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L9-L13)*
 
 ### `skip!`
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:20-22`](../../../../.source_1765521767/syn-2.0.111/src/gen/visit.rs#L20-L22)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:20-22`](../../../../.source_1765633015/syn-2.0.111/src/gen/visit.rs#L20-L22)*
 

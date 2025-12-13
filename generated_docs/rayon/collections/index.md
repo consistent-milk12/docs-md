@@ -53,7 +53,7 @@ to name one of the iterator types.
 
 ### `into_par_vec!`
 
-*Defined in [`rayon-1.11.0/src/collections/mod.rs:10-22`](../../../.source_1765521767/rayon-1.11.0/src/collections/mod.rs#L10-L22)*
+*Defined in [`rayon-1.11.0/src/collections/mod.rs:10-22`](../../../.source_1765633015/rayon-1.11.0/src/collections/mod.rs#L10-L22)*
 
 Convert an iterable collection into a parallel iterator by first
 collecting into a temporary `Vec`, then iterating that.

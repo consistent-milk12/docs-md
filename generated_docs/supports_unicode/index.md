@@ -44,7 +44,7 @@ enum Stream {
 }
 ```
 
-*Defined in [`supports-unicode-3.0.0/src/lib.rs:5-8`](../../.source_1765521767/supports-unicode-3.0.0/src/lib.rs#L5-L8)*
+*Defined in [`supports-unicode-3.0.0/src/lib.rs:5-8`](../../.source_1765633015/supports-unicode-3.0.0/src/lib.rs#L5-L8)*
 
 possible stream sources
 
@@ -122,7 +122,7 @@ possible stream sources
 fn is_a_tty(stream: Stream) -> bool
 ```
 
-*Defined in [`supports-unicode-3.0.0/src/lib.rs:10-16`](../../.source_1765521767/supports-unicode-3.0.0/src/lib.rs#L10-L16)*
+*Defined in [`supports-unicode-3.0.0/src/lib.rs:10-16`](../../.source_1765633015/supports-unicode-3.0.0/src/lib.rs#L10-L16)*
 
 ### `on`
 
@@ -130,7 +130,7 @@ fn is_a_tty(stream: Stream) -> bool
 fn on(stream: Stream) -> bool
 ```
 
-*Defined in [`supports-unicode-3.0.0/src/lib.rs:20-27`](../../.source_1765521767/supports-unicode-3.0.0/src/lib.rs#L20-L27)*
+*Defined in [`supports-unicode-3.0.0/src/lib.rs:20-27`](../../.source_1765633015/supports-unicode-3.0.0/src/lib.rs#L20-L27)*
 
 Returns true if `stream` is a TTY or the current terminal
 [supports_unicode](#supports-unicode).
@@ -141,7 +141,7 @@ Returns true if `stream` is a TTY or the current terminal
 fn supports_unicode() -> bool
 ```
 
-*Defined in [`supports-unicode-3.0.0/src/lib.rs:31-52`](../../.source_1765521767/supports-unicode-3.0.0/src/lib.rs#L31-L52)*
+*Defined in [`supports-unicode-3.0.0/src/lib.rs:31-52`](../../.source_1765633015/supports-unicode-3.0.0/src/lib.rs#L31-L52)*
 
 Returns true if the current terminal, detected through various environment
 variables, is known to support unicode rendering.

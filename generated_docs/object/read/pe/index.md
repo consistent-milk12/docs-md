@@ -202,7 +202,7 @@ struct SectionTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:19-21`](../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L19-L21)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:19-21`](../../../../.source_1765633015/object-0.37.3/src/read/coff/section.rs#L19-L21)*
 
 The table of section headers in a COFF or PE file.
 
@@ -353,7 +353,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:24-31`](../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L24-L31)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:24-31`](../../../../.source_1765633015/object-0.37.3/src/read/coff/symbol.rs#L24-L31)*
 
 A table of symbol entries in a COFF or PE file.
 
@@ -499,7 +499,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:37-47`](../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L37-L47)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:37-47`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L37-L47)*
 
 A PE image file.
 
@@ -686,7 +686,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:432-439`](../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L432-L439)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:432-439`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L432-L439)*
 
 An iterator for the COMDAT section groups in a [`PeFile`](#pefile).
 
@@ -765,7 +765,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:465-472`](../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L465-L472)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:465-472`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L465-L472)*
 
 A COMDAT section group in a [`PeFile`](#pefile).
 
@@ -846,7 +846,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:525-532`](../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L525-L532)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:525-532`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L525-L532)*
 
 An iterator for the sections in a COMDAT section group in a [`PeFile`](#pefile).
 
@@ -926,7 +926,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:23-30`](../../../../.source_1765521767/object-0.37.3/src/read/pe/section.rs#L23-L30)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:23-30`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L23-L30)*
 
 An iterator for the loadable sections in a [`PeFile`](#pefile).
 
@@ -1004,7 +1004,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:58-65`](../../../../.source_1765521767/object-0.37.3/src/read/pe/section.rs#L58-L65)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:58-65`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L58-L65)*
 
 A loadable section in a [`PeFile`](#pefile).
 
@@ -1102,7 +1102,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:162-169`](../../../../.source_1765521767/object-0.37.3/src/read/pe/section.rs#L162-L169)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:162-169`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L162-L169)*
 
 An iterator for the sections in a [`PeFile`](#pefile).
 
@@ -1181,7 +1181,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:198-206`](../../../../.source_1765521767/object-0.37.3/src/read/pe/section.rs#L198-L206)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:198-206`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L198-L206)*
 
 A section in a [`PeFile`](#pefile).
 
@@ -1291,7 +1291,7 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 struct PeRelocationIterator<'data, 'file, R>(core::marker::PhantomData<(&'data (), &'file (), R)>);
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:466-468`](../../../../.source_1765521767/object-0.37.3/src/read/pe/section.rs#L466-L468)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:466-468`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L466-L468)*
 
 An iterator for the relocations in an [`PeSection`](#pesection).
 
@@ -1367,7 +1367,7 @@ struct DataDirectories<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/data_directory.rs:16-18`](../../../../.source_1765521767/object-0.37.3/src/read/pe/data_directory.rs#L16-L18)*
+*Defined in [`object-0.37.3/src/read/pe/data_directory.rs:16-18`](../../../../.source_1765633015/object-0.37.3/src/read/pe/data_directory.rs#L16-L18)*
 
 The table of data directories in a PE file.
 
@@ -1539,7 +1539,7 @@ struct Export<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/export.rs:42-51`](../../../../.source_1765521767/object-0.37.3/src/read/pe/export.rs#L42-L51)*
+*Defined in [`object-0.37.3/src/read/pe/export.rs:42-51`](../../../../.source_1765633015/object-0.37.3/src/read/pe/export.rs#L42-L51)*
 
 An export from a PE file.
 
@@ -1640,7 +1640,7 @@ struct ExportTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/export.rs:87-94`](../../../../.source_1765521767/object-0.37.3/src/read/pe/export.rs#L87-L94)*
+*Defined in [`object-0.37.3/src/read/pe/export.rs:87-94`](../../../../.source_1765633015/object-0.37.3/src/read/pe/export.rs#L87-L94)*
 
 A partially parsed PE export table.
 
@@ -1842,7 +1842,7 @@ struct ImportTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:15-19`](../../../../.source_1765521767/object-0.37.3/src/read/pe/import.rs#L15-L19)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:15-19`](../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L15-L19)*
 
 Information for parsing a PE import table.
 
@@ -1981,7 +1981,7 @@ struct ImportDescriptorIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:102-105`](../../../../.source_1765521767/object-0.37.3/src/read/pe/import.rs#L102-L105)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:102-105`](../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L102-L105)*
 
 A fallible iterator for the descriptors in the import data directory.
 
@@ -2081,7 +2081,7 @@ struct ImportThunkList<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:148-150`](../../../../.source_1765521767/object-0.37.3/src/read/pe/import.rs#L148-L150)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:148-150`](../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L148-L150)*
 
 A list of import thunks.
 
@@ -2175,7 +2175,7 @@ struct DelayLoadImportTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:250-254`](../../../../.source_1765521767/object-0.37.3/src/read/pe/import.rs#L250-L254)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:250-254`](../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L250-L254)*
 
 Information for parsing a PE delay-load import table.
 
@@ -2323,7 +2323,7 @@ struct DelayLoadDescriptorIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:341-344`](../../../../.source_1765521767/object-0.37.3/src/read/pe/import.rs#L341-L344)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:341-344`](../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L341-L344)*
 
 A fallible iterator for the descriptors in the delay-load data directory.
 
@@ -2423,7 +2423,7 @@ struct RelocationBlockIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/relocation.rs:11-13`](../../../../.source_1765521767/object-0.37.3/src/read/pe/relocation.rs#L11-L13)*
+*Defined in [`object-0.37.3/src/read/pe/relocation.rs:11-13`](../../../../.source_1765633015/object-0.37.3/src/read/pe/relocation.rs#L11-L13)*
 
 An iterator over the relocation blocks in the `.reloc` section of a PE file.
 
@@ -2535,7 +2535,7 @@ struct RelocationIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/relocation.rs:68-72`](../../../../.source_1765521767/object-0.37.3/src/read/pe/relocation.rs#L68-L72)*
+*Defined in [`object-0.37.3/src/read/pe/relocation.rs:68-72`](../../../../.source_1765633015/object-0.37.3/src/read/pe/relocation.rs#L68-L72)*
 
 An iterator of the relocations in a block in the `.reloc` section of a PE file.
 
@@ -2636,7 +2636,7 @@ struct Relocation {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/relocation.rs:104-109`](../../../../.source_1765521767/object-0.37.3/src/read/pe/relocation.rs#L104-L109)*
+*Defined in [`object-0.37.3/src/read/pe/relocation.rs:104-109`](../../../../.source_1765633015/object-0.37.3/src/read/pe/relocation.rs#L104-L109)*
 
 A relocation in the `.reloc` section of a PE file.
 
@@ -2728,7 +2728,7 @@ struct ResourceDirectory<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:12-14`](../../../../.source_1765521767/object-0.37.3/src/read/pe/resource.rs#L12-L14)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:12-14`](../../../../.source_1765633015/object-0.37.3/src/read/pe/resource.rs#L12-L14)*
 
 The `.rsrc` section of a PE file.
 
@@ -2819,7 +2819,7 @@ struct ResourceDirectoryTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:30-35`](../../../../.source_1765521767/object-0.37.3/src/read/pe/resource.rs#L30-L35)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:30-35`](../../../../.source_1765633015/object-0.37.3/src/read/pe/resource.rs#L30-L35)*
 
 A table of resource entries.
 
@@ -2909,7 +2909,7 @@ struct ResourceName {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:143-145`](../../../../.source_1765521767/object-0.37.3/src/read/pe/resource.rs#L143-L145)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:143-145`](../../../../.source_1765633015/object-0.37.3/src/read/pe/resource.rs#L143-L145)*
 
 A resource name.
 
@@ -3004,7 +3004,7 @@ struct RichHeaderInfo<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/rich.rs:12-26`](../../../../.source_1765521767/object-0.37.3/src/read/pe/rich.rs#L12-L26)*
+*Defined in [`object-0.37.3/src/read/pe/rich.rs:12-26`](../../../../.source_1765633015/object-0.37.3/src/read/pe/rich.rs#L12-L26)*
 
 Parsed information about a Rich Header.
 
@@ -3113,7 +3113,7 @@ struct RichHeaderEntry {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/rich.rs:33-38`](../../../../.source_1765521767/object-0.37.3/src/read/pe/rich.rs#L33-L38)*
+*Defined in [`object-0.37.3/src/read/pe/rich.rs:33-38`](../../../../.source_1765633015/object-0.37.3/src/read/pe/rich.rs#L33-L38)*
 
 A PE rich header entry after it has been unmasked.
 
@@ -3207,7 +3207,7 @@ enum ExportTarget<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/export.rs:10-21`](../../../../.source_1765521767/object-0.37.3/src/read/pe/export.rs#L10-L21)*
+*Defined in [`object-0.37.3/src/read/pe/export.rs:10-21`](../../../../.source_1765633015/object-0.37.3/src/read/pe/export.rs#L10-L21)*
 
 Where an export is pointing to.
 
@@ -3314,7 +3314,7 @@ enum Import<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:180-187`](../../../../.source_1765521767/object-0.37.3/src/read/pe/import.rs#L180-L187)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:180-187`](../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L180-L187)*
 
 A parsed import thunk.
 
@@ -3405,7 +3405,7 @@ enum ResourceDirectoryEntryData<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:112-117`](../../../../.source_1765521767/object-0.37.3/src/read/pe/resource.rs#L112-L117)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:112-117`](../../../../.source_1765633015/object-0.37.3/src/read/pe/resource.rs#L112-L117)*
 
 Data associated with a resource directory entry.
 
@@ -3510,7 +3510,7 @@ enum ResourceNameOrId {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:183-188`](../../../../.source_1765521767/object-0.37.3/src/read/pe/resource.rs#L183-L188)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:183-188`](../../../../.source_1765633015/object-0.37.3/src/read/pe/resource.rs#L183-L188)*
 
 A resource name or ID.
 
@@ -3600,7 +3600,7 @@ Can be either a string or a numeric ID.
 trait ImageNtHeaders: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:589-671`](../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L589-L671)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:589-671`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L589-L671)*
 
 A trait for generic access to [`pe::ImageNtHeaders32`](../../pe/index.md) and [`pe::ImageNtHeaders64`](../../pe/index.md).
 
@@ -3657,7 +3657,7 @@ A trait for generic access to [`pe::ImageNtHeaders32`](../../pe/index.md) and [`
 trait ImageOptionalHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:675-709`](../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L675-L709)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:675-709`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L675-L709)*
 
 A trait for generic access to [`pe::ImageOptionalHeader32`](../../pe/index.md) and [`pe::ImageOptionalHeader64`](../../pe/index.md).
 
@@ -3734,7 +3734,7 @@ A trait for generic access to [`pe::ImageOptionalHeader32`](../../pe/index.md) a
 trait ImageThunkData: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:191-207`](../../../../.source_1765521767/object-0.37.3/src/read/pe/import.rs#L191-L207)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:191-207`](../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L191-L207)*
 
 A trait for generic access to [`pe::ImageThunkData32`](../../pe/index.md) and [`pe::ImageThunkData64`](../../pe/index.md).
 
@@ -3769,7 +3769,7 @@ A trait for generic access to [`pe::ImageThunkData32`](../../pe/index.md) and [`
 fn optional_header_magic<'data, R: ReadRef<'data>>(data: R) -> crate::read::Result<u16>
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:572-585`](../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L572-L585)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:572-585`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L572-L585)*
 
 Find the optional header and read its `magic` field.
 
@@ -3782,7 +3782,7 @@ fully parse the NT headers.
 fn parse_ordinal(digits: &[u8]) -> Option<u32>
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/export.rs:324-334`](../../../../.source_1765521767/object-0.37.3/src/read/pe/export.rs#L324-L334)*
+*Defined in [`object-0.37.3/src/read/pe/export.rs:324-334`](../../../../.source_1765633015/object-0.37.3/src/read/pe/export.rs#L324-L334)*
 
 ### `memmem`
 
@@ -3790,7 +3790,7 @@ fn parse_ordinal(digits: &[u8]) -> Option<u32>
 fn memmem(data: &[u8], needle: &[u8], align: usize) -> Option<usize>
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/rich.rs:84-92`](../../../../.source_1765521767/object-0.37.3/src/read/pe/rich.rs#L84-L92)*
+*Defined in [`object-0.37.3/src/read/pe/rich.rs:84-92`](../../../../.source_1765633015/object-0.37.3/src/read/pe/rich.rs#L84-L92)*
 
 Find the offset of the first occurrence of needle in the data.
 
@@ -3804,7 +3804,7 @@ The offset must have the given alignment.
 type PeFile32<'data, R> = PeFile<'data, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:26`](../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L26)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:26`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L26)*
 
 A PE32 (32-bit) image file.
 
@@ -3817,7 +3817,7 @@ to [`crate::FileKind::Pe32`](../../index.md).
 type PeFile64<'data, R> = PeFile<'data, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:31`](../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L31)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:31`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L31)*
 
 A PE32+ (64-bit) image file.
 
@@ -3830,7 +3830,7 @@ to [`crate::FileKind::Pe64`](../../index.md).
 type PeComdatIterator32<'data, 'file, R> = PeComdatIterator<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:422-423`](../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L422-L423)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:422-423`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L422-L423)*
 
 An iterator for the COMDAT section groups in a [`PeFile32`](#pefile32).
 
@@ -3840,7 +3840,7 @@ An iterator for the COMDAT section groups in a [`PeFile32`](#pefile32).
 type PeComdatIterator64<'data, 'file, R> = PeComdatIterator<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:425-426`](../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L425-L426)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:425-426`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L425-L426)*
 
 An iterator for the COMDAT section groups in a [`PeFile64`](#pefile64).
 
@@ -3850,7 +3850,7 @@ An iterator for the COMDAT section groups in a [`PeFile64`](#pefile64).
 type PeComdat32<'data, 'file, R> = PeComdat<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:455-456`](../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L455-L456)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:455-456`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L455-L456)*
 
 A COMDAT section group in a [`PeFile32`](#pefile32).
 
@@ -3860,7 +3860,7 @@ A COMDAT section group in a [`PeFile32`](#pefile32).
 type PeComdat64<'data, 'file, R> = PeComdat<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:458-459`](../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L458-L459)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:458-459`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L458-L459)*
 
 A COMDAT section group in a [`PeFile64`](#pefile64).
 
@@ -3870,7 +3870,7 @@ A COMDAT section group in a [`PeFile64`](#pefile64).
 type PeComdatSectionIterator32<'data, 'file, R> = PeComdatSectionIterator<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:515-516`](../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L515-L516)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:515-516`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L515-L516)*
 
 An iterator for the sections in a COMDAT section group in a [`PeFile32`](#pefile32).
 
@@ -3880,7 +3880,7 @@ An iterator for the sections in a COMDAT section group in a [`PeFile32`](#pefile
 type PeComdatSectionIterator64<'data, 'file, R> = PeComdatSectionIterator<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:518-519`](../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L518-L519)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:518-519`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L518-L519)*
 
 An iterator for the sections in a COMDAT section group in a [`PeFile64`](#pefile64).
 
@@ -3890,7 +3890,7 @@ An iterator for the sections in a COMDAT section group in a [`PeFile64`](#pefile
 type PeSegmentIterator32<'data, 'file, R> = PeSegmentIterator<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:15-16`](../../../../.source_1765521767/object-0.37.3/src/read/pe/section.rs#L15-L16)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:15-16`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L15-L16)*
 
 An iterator for the loadable sections in a [`PeFile32`](super::PeFile32).
 
@@ -3900,7 +3900,7 @@ An iterator for the loadable sections in a [`PeFile32`](super::PeFile32).
 type PeSegmentIterator64<'data, 'file, R> = PeSegmentIterator<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:18-19`](../../../../.source_1765521767/object-0.37.3/src/read/pe/section.rs#L18-L19)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:18-19`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L18-L19)*
 
 An iterator for the loadable sections in a [`PeFile64`](super::PeFile64).
 
@@ -3910,7 +3910,7 @@ An iterator for the loadable sections in a [`PeFile64`](super::PeFile64).
 type PeSegment32<'data, 'file, R> = PeSegment<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:48-49`](../../../../.source_1765521767/object-0.37.3/src/read/pe/section.rs#L48-L49)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:48-49`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L48-L49)*
 
 A loadable section in a [`PeFile32`](super::PeFile32).
 
@@ -3920,7 +3920,7 @@ A loadable section in a [`PeFile32`](super::PeFile32).
 type PeSegment64<'data, 'file, R> = PeSegment<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:51-52`](../../../../.source_1765521767/object-0.37.3/src/read/pe/section.rs#L51-L52)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:51-52`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L51-L52)*
 
 A loadable section in a [`PeFile64`](super::PeFile64).
 
@@ -3930,7 +3930,7 @@ A loadable section in a [`PeFile64`](super::PeFile64).
 type PeSectionIterator32<'data, 'file, R> = PeSectionIterator<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:154-155`](../../../../.source_1765521767/object-0.37.3/src/read/pe/section.rs#L154-L155)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:154-155`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L154-L155)*
 
 An iterator for the sections in a [`PeFile32`](super::PeFile32).
 
@@ -3940,7 +3940,7 @@ An iterator for the sections in a [`PeFile32`](super::PeFile32).
 type PeSectionIterator64<'data, 'file, R> = PeSectionIterator<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:157-158`](../../../../.source_1765521767/object-0.37.3/src/read/pe/section.rs#L157-L158)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:157-158`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L157-L158)*
 
 An iterator for the sections in a [`PeFile64`](super::PeFile64).
 
@@ -3950,7 +3950,7 @@ An iterator for the sections in a [`PeFile64`](super::PeFile64).
 type PeSection32<'data, 'file, R> = PeSection<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:188-189`](../../../../.source_1765521767/object-0.37.3/src/read/pe/section.rs#L188-L189)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:188-189`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L188-L189)*
 
 A section in a [`PeFile32`](super::PeFile32).
 
@@ -3960,7 +3960,7 @@ A section in a [`PeFile32`](super::PeFile32).
 type PeSection64<'data, 'file, R> = PeSection<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:191-192`](../../../../.source_1765521767/object-0.37.3/src/read/pe/section.rs#L191-L192)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:191-192`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L191-L192)*
 
 A section in a [`PeFile64`](super::PeFile64).
 

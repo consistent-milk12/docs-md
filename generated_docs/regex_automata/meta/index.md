@@ -110,7 +110,7 @@ struct BuildError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/error.rs:27-29`](../../../.source_1765521767/regex-automata-0.4.13/src/meta/error.rs#L27-L29)*
+*Defined in [`regex-automata-0.4.13/src/meta/error.rs:27-29`](../../../.source_1765633015/regex-automata-0.4.13/src/meta/error.rs#L27-L29)*
 
 An error that occurs when construction of a `Regex` fails.
 
@@ -278,7 +278,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:3380-3384`](../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L3380-L3384)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:3380-3384`](../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L3380-L3384)*
 
 A builder for configuring and constructing a `Regex`.
 
@@ -879,7 +879,7 @@ struct Cache {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2353-2360`](../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L2353-L2360)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2353-2360`](../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L2353-L2360)*
 
 Represents mutable scratch space used by regex engines during a search.
 
@@ -1103,7 +1103,7 @@ struct CapturesMatches<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2138-2143`](../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L2138-L2143)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2138-2143`](../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L2138-L2143)*
 
 An iterator over all non-overlapping leftmost matches with their capturing
 groups.
@@ -1223,7 +1223,7 @@ struct Config {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2453-2477`](../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L2453-L2477)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2453-2477`](../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L2453-L2477)*
 
 An object describing the configuration of a `Regex`.
 
@@ -2614,7 +2614,7 @@ struct FindMatches<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2075-2079`](../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L2075-L2079)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2075-2079`](../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L2075-L2079)*
 
 An iterator over all non-overlapping matches.
 
@@ -2718,7 +2718,7 @@ struct Regex {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:235-252`](../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L235-L252)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:235-252`](../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L235-L252)*
 
 A regex matcher that works by composing several other regex matchers
 automatically.
@@ -3318,7 +3318,7 @@ struct Split<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2206-2209`](../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L2206-L2209)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2206-2209`](../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L2206-L2209)*
 
 Yields all substrings delimited by a regular expression match.
 
@@ -3416,7 +3416,7 @@ struct SplitN<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2260-2263`](../../../.source_1765521767/regex-automata-0.4.13/src/meta/regex.rs#L2260-L2263)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2260-2263`](../../../.source_1765633015/regex-automata-0.4.13/src/meta/regex.rs#L2260-L2263)*
 
 Yields at most `N` spans delimited by a regular expression match.
 

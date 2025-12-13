@@ -58,7 +58,7 @@
 trait SliceExt<T> { ... }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/slice.rs:7-67`](../../../.source_1765521767/allocator-api2-0.2.21/src/stable/slice.rs#L7-L67)*
+*Defined in [`allocator-api2-0.2.21/src/stable/slice.rs:7-67`](../../../.source_1765633015/allocator-api2-0.2.21/src/stable/slice.rs#L7-L67)*
 
 Slice methods that use `Box` and `Vec` from this crate.
 
@@ -90,7 +90,7 @@ Slice methods that use `Box` and `Vec` from this crate.
 unsafe fn assume(v: bool)
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:71-75`](../../../.source_1765521767/allocator-api2-0.2.21/src/stable/mod.rs#L71-L75)*
+*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:71-75`](../../../.source_1765633015/allocator-api2-0.2.21/src/stable/mod.rs#L71-L75)*
 
 ### `addr`
 
@@ -98,7 +98,7 @@ unsafe fn assume(v: bool)
 fn addr<T>(x: *const T) -> usize
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:91-96`](../../../.source_1765521767/allocator-api2-0.2.21/src/stable/mod.rs#L91-L96)*
+*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:91-96`](../../../.source_1765633015/allocator-api2-0.2.21/src/stable/mod.rs#L91-L96)*
 
 ### `invalid_mut`
 
@@ -106,5 +106,5 @@ fn addr<T>(x: *const T) -> usize
 fn invalid_mut<T>(addr: usize) -> *mut T
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:100-105`](../../../.source_1765521767/allocator-api2-0.2.21/src/stable/mod.rs#L100-L105)*
+*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:100-105`](../../../.source_1765633015/allocator-api2-0.2.21/src/stable/mod.rs#L100-L105)*
 

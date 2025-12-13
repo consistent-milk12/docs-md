@@ -25,7 +25,7 @@ struct FoldHasher<'a> {
 }
 ```
 
-*Defined in [`foldhash-0.2.0/src/quality.rs:15-17`](../../../.source_1765521767/foldhash-0.2.0/src/quality.rs#L15-L17)*
+*Defined in [`foldhash-0.2.0/src/quality.rs:15-17`](../../../.source_1765633015/foldhash-0.2.0/src/quality.rs#L15-L17)*
 
 A `Hasher` instance implementing foldhash, optimized for quality.
 
@@ -119,7 +119,7 @@ struct RandomState {
 }
 ```
 
-*Defined in [`foldhash-0.2.0/src/quality.rs:80-82`](../../../.source_1765521767/foldhash-0.2.0/src/quality.rs#L80-L82)*
+*Defined in [`foldhash-0.2.0/src/quality.rs:80-82`](../../../.source_1765633015/foldhash-0.2.0/src/quality.rs#L80-L82)*
 
 A [`BuildHasher`](../../serde_core/lib/index.md) for [`quality::FoldHasher`](FoldHasher) that is randomly initialized.
 
@@ -197,7 +197,7 @@ struct SeedableRandomState {
 }
 ```
 
-*Defined in [`foldhash-0.2.0/src/quality.rs:101-103`](../../../.source_1765521767/foldhash-0.2.0/src/quality.rs#L101-L103)*
+*Defined in [`foldhash-0.2.0/src/quality.rs:101-103`](../../../.source_1765633015/foldhash-0.2.0/src/quality.rs#L101-L103)*
 
 A [`BuildHasher`](../../serde_core/lib/index.md) for [`quality::FoldHasher`](FoldHasher) that is randomly
 initialized by default, but can also be initialized with a specific seed.
@@ -295,7 +295,7 @@ struct FixedState {
 }
 ```
 
-*Defined in [`foldhash-0.2.0/src/quality.rs:153-155`](../../../.source_1765521767/foldhash-0.2.0/src/quality.rs#L153-L155)*
+*Defined in [`foldhash-0.2.0/src/quality.rs:153-155`](../../../.source_1765633015/foldhash-0.2.0/src/quality.rs#L153-L155)*
 
 A [`BuildHasher`](../../serde_core/lib/index.md) for [`quality::FoldHasher`](FoldHasher) that always has the same fixed seed.
 

@@ -24,7 +24,7 @@ struct Event<'a> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/event.rs:23-27`](../../../.source_1765521767/tracing-core-0.1.35/src/event.rs#L23-L27)*
+*Defined in [`tracing-core-0.1.35/src/event.rs:23-27`](../../../.source_1765633015/tracing-core-0.1.35/src/event.rs#L23-L27)*
 
 `Event`s represent single points in time where something occurred during the
 execution of a program.

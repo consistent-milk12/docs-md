@@ -173,7 +173,7 @@ struct Term {
 }
 ```
 
-*Defined in [`console-0.16.1/src/term.rs:129-133`](../../.source_1765521767/console-0.16.1/src/term.rs#L129-L133)*
+*Defined in [`console-0.16.1/src/term.rs:129-133`](../../.source_1765633015/console-0.16.1/src/term.rs#L129-L133)*
 
 Abstraction around a terminal.
 
@@ -492,7 +492,7 @@ clones which means it largely acts as a handle.
 struct TermFeatures<'a>(&'a Term);
 ```
 
-*Defined in [`console-0.16.1/src/term.rs:63`](../../.source_1765521767/console-0.16.1/src/term.rs#L63)*
+*Defined in [`console-0.16.1/src/term.rs:63`](../../.source_1765633015/console-0.16.1/src/term.rs#L63)*
 
 Gives access to the terminal features.
 
@@ -600,7 +600,7 @@ Gives access to the terminal features.
 struct Emoji<'a, 'b>(&'a str, &'b str);
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:762`](../../.source_1765521767/console-0.16.1/src/utils.rs#L762)*
+*Defined in [`console-0.16.1/src/utils.rs:762`](../../.source_1765633015/console-0.16.1/src/utils.rs#L762)*
 
 "Intelligent" emoji formatter.
 
@@ -703,7 +703,7 @@ struct Style {
 }
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:229-237`](../../.source_1765521767/console-0.16.1/src/utils.rs#L229-L237)*
+*Defined in [`console-0.16.1/src/utils.rs:229-237`](../../.source_1765633015/console-0.16.1/src/utils.rs#L229-L237)*
 
 A stored style that can be applied.
 
@@ -908,7 +908,7 @@ struct StyledObject<D> {
 }
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:515-518`](../../.source_1765521767/console-0.16.1/src/utils.rs#L515-L518)*
+*Defined in [`console-0.16.1/src/utils.rs:515-518`](../../.source_1765633015/console-0.16.1/src/utils.rs#L515-L518)*
 
 A formatting wrapper that can be styled for a terminal.
 
@@ -1116,7 +1116,7 @@ struct AnsiCodeIterator<'a> {
 }
 ```
 
-*Defined in [`console-0.16.1/src/ansi.rs:233-239`](../../.source_1765521767/console-0.16.1/src/ansi.rs#L233-L239)*
+*Defined in [`console-0.16.1/src/ansi.rs:233-239`](../../.source_1765633015/console-0.16.1/src/ansi.rs#L233-L239)*
 
 An iterator over ansi codes in a string.
 
@@ -1207,7 +1207,7 @@ struct WithoutAnsi<'a> {
 }
 ```
 
-*Defined in [`console-0.16.1/src/ansi.rs:206-208`](../../.source_1765521767/console-0.16.1/src/ansi.rs#L206-L208)*
+*Defined in [`console-0.16.1/src/ansi.rs:206-208`](../../.source_1765633015/console-0.16.1/src/ansi.rs#L206-L208)*
 
 A wrapper struct that implements [`core::fmt::Display`](../miette_derive/index.md), only displaying non-ansi parts.
 
@@ -1297,7 +1297,7 @@ enum Key {
 }
 ```
 
-*Defined in [`console-0.16.1/src/kb.rs:9-32`](../../.source_1765521767/console-0.16.1/src/kb.rs#L9-L32)*
+*Defined in [`console-0.16.1/src/kb.rs:9-32`](../../.source_1765633015/console-0.16.1/src/kb.rs#L9-L32)*
 
 Key mapping
 
@@ -1397,7 +1397,7 @@ enum TermFamily {
 }
 ```
 
-*Defined in [`console-0.16.1/src/term.rs:50-59`](../../.source_1765521767/console-0.16.1/src/term.rs#L50-L59)*
+*Defined in [`console-0.16.1/src/term.rs:50-59`](../../.source_1765633015/console-0.16.1/src/term.rs#L50-L59)*
 
 The family of the terminal.
 
@@ -1503,7 +1503,7 @@ enum TermTarget {
 }
 ```
 
-*Defined in [`console-0.16.1/src/term.rs:33-38`](../../.source_1765521767/console-0.16.1/src/term.rs#L33-L38)*
+*Defined in [`console-0.16.1/src/term.rs:33-38`](../../.source_1765633015/console-0.16.1/src/term.rs#L33-L38)*
 
 Where the term is writing.
 
@@ -1581,7 +1581,7 @@ enum Alignment {
 }
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:221-225`](../../.source_1765521767/console-0.16.1/src/utils.rs#L221-L225)*
+*Defined in [`console-0.16.1/src/utils.rs:221-225`](../../.source_1765633015/console-0.16.1/src/utils.rs#L221-L225)*
 
 Defines the alignment for padding operations.
 
@@ -1675,7 +1675,7 @@ enum Attribute {
 }
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:128-140`](../../.source_1765521767/console-0.16.1/src/utils.rs#L128-L140)*
+*Defined in [`console-0.16.1/src/utils.rs:128-140`](../../.source_1765633015/console-0.16.1/src/utils.rs#L128-L140)*
 
 A terminal style attribute.
 
@@ -1781,7 +1781,7 @@ enum Color {
 }
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:87-97`](../../.source_1765521767/console-0.16.1/src/utils.rs#L87-L97)*
+*Defined in [`console-0.16.1/src/utils.rs:87-97`](../../.source_1765633015/console-0.16.1/src/utils.rs#L87-L97)*
 
 A terminal color.
 
@@ -1873,7 +1873,7 @@ A terminal color.
 fn user_attended() -> bool
 ```
 
-*Defined in [`console-0.16.1/src/term.rs:578-580`](../../.source_1765521767/console-0.16.1/src/term.rs#L578-L580)*
+*Defined in [`console-0.16.1/src/term.rs:578-580`](../../.source_1765633015/console-0.16.1/src/term.rs#L578-L580)*
 
 A fast way to check if the application has a user attended for stdout.
 
@@ -1887,7 +1887,7 @@ checking the `is_attended` feature on the stdout terminal.
 fn user_attended_stderr() -> bool
 ```
 
-*Defined in [`console-0.16.1/src/term.rs:588-590`](../../.source_1765521767/console-0.16.1/src/term.rs#L588-L590)*
+*Defined in [`console-0.16.1/src/term.rs:588-590`](../../.source_1765633015/console-0.16.1/src/term.rs#L588-L590)*
 
 A fast way to check if the application has a user attended for stderr.
 
@@ -1901,7 +1901,7 @@ checking the `is_attended` feature on the stderr terminal.
 fn colors_enabled() -> bool
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:34-36`](../../.source_1765521767/console-0.16.1/src/utils.rs#L34-L36)*
+*Defined in [`console-0.16.1/src/utils.rs:34-36`](../../.source_1765633015/console-0.16.1/src/utils.rs#L34-L36)*
 
 Returns `true` if colors should be enabled for stdout.
 
@@ -1917,7 +1917,7 @@ This honors the [clicolors spec](http://bixense.com/clicolors/).
 fn colors_enabled_stderr() -> bool
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:55-57`](../../.source_1765521767/console-0.16.1/src/utils.rs#L55-L57)*
+*Defined in [`console-0.16.1/src/utils.rs:55-57`](../../.source_1765633015/console-0.16.1/src/utils.rs#L55-L57)*
 
 Returns `true` if colors should be enabled for stderr.
 
@@ -1933,7 +1933,7 @@ This honors the [clicolors spec](http://bixense.com/clicolors/).
 fn measure_text_width(s: &str) -> usize
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:69-83`](../../.source_1765521767/console-0.16.1/src/utils.rs#L69-L83)*
+*Defined in [`console-0.16.1/src/utils.rs:69-83`](../../.source_1765633015/console-0.16.1/src/utils.rs#L69-L83)*
 
 Measure the width of a string in terminal characters.
 
@@ -1943,7 +1943,7 @@ Measure the width of a string in terminal characters.
 fn pad_str<'a>(s: &'a str, width: usize, align: Alignment, truncate: Option<&str>) -> alloc::borrow::Cow<'a, str>
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:892-899`](../../.source_1765521767/console-0.16.1/src/utils.rs#L892-L899)*
+*Defined in [`console-0.16.1/src/utils.rs:892-899`](../../.source_1765633015/console-0.16.1/src/utils.rs#L892-L899)*
 
 Pads a string to fill a certain number of characters.
 
@@ -1958,7 +1958,7 @@ marker.
 fn pad_str_with<'a>(s: &'a str, width: usize, align: Alignment, truncate: Option<&str>, pad: char) -> alloc::borrow::Cow<'a, str>
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:906-939`](../../.source_1765521767/console-0.16.1/src/utils.rs#L906-L939)*
+*Defined in [`console-0.16.1/src/utils.rs:906-939`](../../.source_1765633015/console-0.16.1/src/utils.rs#L906-L939)*
 
 Pads a string with specific padding to fill a certain number of characters.
 
@@ -1973,7 +1973,7 @@ marker.
 fn set_colors_enabled(val: bool)
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:43-45`](../../.source_1765521767/console-0.16.1/src/utils.rs#L43-L45)*
+*Defined in [`console-0.16.1/src/utils.rs:43-45`](../../.source_1765633015/console-0.16.1/src/utils.rs#L43-L45)*
 
 Forces colorization on or off for stdout.
 
@@ -1986,7 +1986,7 @@ This overrides the default for the current process and changes the return value 
 fn set_colors_enabled_stderr(val: bool)
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:64-66`](../../.source_1765521767/console-0.16.1/src/utils.rs#L64-L66)*
+*Defined in [`console-0.16.1/src/utils.rs:64-66`](../../.source_1765633015/console-0.16.1/src/utils.rs#L64-L66)*
 
 Forces colorization on or off for stderr.
 
@@ -1999,7 +1999,7 @@ This overrides the default for the current process and changes the return value 
 fn style<D>(val: D) -> StyledObject<D>
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:509-511`](../../.source_1765521767/console-0.16.1/src/utils.rs#L509-L511)*
+*Defined in [`console-0.16.1/src/utils.rs:509-511`](../../.source_1765633015/console-0.16.1/src/utils.rs#L509-L511)*
 
 Wraps an object for formatting for styling.
 
@@ -2024,7 +2024,7 @@ format!("Hello {}", Style::new().cyan().apply_to("World"));
 fn truncate_str<'a>(s: &'a str, width: usize, tail: &str) -> alloc::borrow::Cow<'a, str>
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:817-884`](../../.source_1765521767/console-0.16.1/src/utils.rs#L817-L884)*
+*Defined in [`console-0.16.1/src/utils.rs:817-884`](../../.source_1765633015/console-0.16.1/src/utils.rs#L817-L884)*
 
 Truncates a string to a certain number of characters.
 
@@ -2039,7 +2039,7 @@ the tail string will be appended.
 fn strip_ansi_codes(s: &str) -> alloc::borrow::Cow<'_, str>
 ```
 
-*Defined in [`console-0.16.1/src/ansi.rs:192-203`](../../.source_1765521767/console-0.16.1/src/ansi.rs#L192-L203)*
+*Defined in [`console-0.16.1/src/ansi.rs:192-203`](../../.source_1765633015/console-0.16.1/src/ansi.rs#L192-L203)*
 
 Helper function to strip ansi codes.
 

@@ -23,7 +23,7 @@ struct Version {
 }
 ```
 
-*Defined in [`rustversion-1.0.22/src/version.rs:6-10`](../../../.source_1765521767/rustversion-1.0.22/src/version.rs#L6-L10)*
+*Defined in [`rustversion-1.0.22/src/version.rs:6-10`](../../../.source_1765633015/rustversion-1.0.22/src/version.rs#L6-L10)*
 
 #### Trait Implementations
 
@@ -114,7 +114,7 @@ enum Channel {
 }
 ```
 
-*Defined in [`rustversion-1.0.22/src/version.rs:13-18`](../../../.source_1765521767/rustversion-1.0.22/src/version.rs#L13-L18)*
+*Defined in [`rustversion-1.0.22/src/version.rs:13-18`](../../../.source_1765633015/rustversion-1.0.22/src/version.rs#L13-L18)*
 
 #### Trait Implementations
 

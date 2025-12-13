@@ -18,7 +18,7 @@
 struct Global;
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/alloc/global.rs:18`](../../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/alloc/global.rs#L18)*
+*Defined in [`allocator-api2-0.2.21/src/stable/alloc/global.rs:18`](../../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/alloc/global.rs#L18)*
 
 The global memory allocator.
 

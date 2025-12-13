@@ -43,7 +43,7 @@ struct AtomicI128 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/fallback/mod.rs:451`](../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/fallback/mod.rs#L451)*
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/mod.rs:451`](../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/fallback/mod.rs#L451)*
 
 #### Implementations
 
@@ -111,7 +111,7 @@ struct AtomicU128 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/fallback/mod.rs:452`](../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/fallback/mod.rs#L452)*
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/mod.rs:452`](../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/fallback/mod.rs#L452)*
 
 #### Implementations
 
@@ -179,11 +179,11 @@ struct AtomicU128 {
 fn lock(addr: usize) -> &'static self::seq_lock::SeqLock
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/fallback/mod.rs:138-155`](../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/fallback/mod.rs#L138-L155)*
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/mod.rs:138-155`](../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/fallback/mod.rs#L138-L155)*
 
 ## Macros
 
 ### `atomic!`
 
-*Defined in [`portable-atomic-1.11.1/src/imp/fallback/mod.rs:157-414`](../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/fallback/mod.rs#L157-L414)*
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/mod.rs:157-414`](../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/fallback/mod.rs#L157-L414)*
 

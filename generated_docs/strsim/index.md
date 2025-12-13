@@ -70,7 +70,7 @@ This library implements string similarity metrics.
 struct StringWrapper<'a>(&'a str);
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:166`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L166)*
+*Defined in [`strsim-0.11.1/src/lib.rs:166`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L166)*
 
 #### Trait Implementations
 
@@ -132,7 +132,7 @@ struct RowId {
 }
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:417-419`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L417-L419)*
+*Defined in [`strsim-0.11.1/src/lib.rs:417-419`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L417-L419)*
 
 #### Trait Implementations
 
@@ -217,7 +217,7 @@ struct GrowingHashmapMapElemChar<ValueType> {
 }
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:428-431`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L428-L431)*
+*Defined in [`strsim-0.11.1/src/lib.rs:428-431`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L428-L431)*
 
 #### Trait Implementations
 
@@ -294,7 +294,7 @@ struct GrowingHashmapChar<ValueType> {
 }
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:440-445`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L440-L445)*
+*Defined in [`strsim-0.11.1/src/lib.rs:440-445`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L440-L445)*
 
 specialized hashmap to store user provided types
 this implementation relies on a couple of base assumptions in order to simplify the implementation
@@ -377,7 +377,7 @@ struct HybridGrowingHashmapChar<ValueType> {
 }
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:567-570`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L567-L570)*
+*Defined in [`strsim-0.11.1/src/lib.rs:567-570`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L567-L570)*
 
 #### Implementations
 
@@ -443,7 +443,7 @@ enum StrSimError {
 }
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:33-35`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L33-L35)*
+*Defined in [`strsim-0.11.1/src/lib.rs:33-35`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L33-L35)*
 
 #### Trait Implementations
 
@@ -521,7 +521,7 @@ where
     Elem1: PartialEq<Elem2>
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:53-72`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L53-L72)*
+*Defined in [`strsim-0.11.1/src/lib.rs:53-72`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L53-L72)*
 
 Calculates the number of positions in the two sequences where the elements
 differ. Returns an error if the sequences have different lengths.
@@ -532,7 +532,7 @@ differ. Returns an error if the sequences have different lengths.
 fn hamming(a: &str, b: &str) -> HammingResult
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:84-86`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L84-L86)*
+*Defined in [`strsim-0.11.1/src/lib.rs:84-86`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L84-L86)*
 
 Calculates the number of positions in the two strings where the characters
 differ. Returns an error if the strings have different lengths.
@@ -555,7 +555,7 @@ where
     Elem1: PartialEq<Elem2>
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:90-164`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L90-L164)*
+*Defined in [`strsim-0.11.1/src/lib.rs:90-164`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L90-L164)*
 
 Calculates the Jaro similarity between two sequences. The returned value
 is between 0.0 and 1.0 (higher value means more similar).
@@ -566,7 +566,7 @@ is between 0.0 and 1.0 (higher value means more similar).
 fn jaro(a: &str, b: &str) -> f64
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:186-188`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L186-L188)*
+*Defined in [`strsim-0.11.1/src/lib.rs:186-188`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L186-L188)*
 
 Calculates the Jaro similarity between two strings. The returned value
 is between 0.0 and 1.0 (higher value means more similar).
@@ -588,7 +588,7 @@ where
     Elem1: PartialEq<Elem2>
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:191-211`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L191-L211)*
+*Defined in [`strsim-0.11.1/src/lib.rs:191-211`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L191-L211)*
 
 Like Jaro but gives a boost to sequences that have a common prefix.
 
@@ -598,7 +598,7 @@ Like Jaro but gives a boost to sequences that have a common prefix.
 fn jaro_winkler(a: &str, b: &str) -> f64
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:221-223`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L221-L223)*
+*Defined in [`strsim-0.11.1/src/lib.rs:221-223`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L221-L223)*
 
 Like Jaro but gives a boost to strings that have a common prefix.
 
@@ -619,7 +619,7 @@ where
     Elem1: PartialEq<Elem2>
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:233-259`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L233-L259)*
+*Defined in [`strsim-0.11.1/src/lib.rs:233-259`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L233-L259)*
 
 Calculates the minimum number of insertions, deletions, and substitutions
 required to change one sequence into the other.
@@ -636,7 +636,7 @@ assert_eq!(3, generic_levenshtein(&[1,2,3], &[1,2,3,4,5,6]));
 fn levenshtein(a: &str, b: &str) -> usize
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:269-271`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L269-L271)*
+*Defined in [`strsim-0.11.1/src/lib.rs:269-271`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L269-L271)*
 
 Calculates the minimum number of insertions, deletions, and substitutions
 required to change one string into the other.
@@ -653,7 +653,7 @@ assert_eq!(3, levenshtein("kitten", "sitting"));
 fn normalized_levenshtein(a: &str, b: &str) -> f64
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:285-290`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L285-L290)*
+*Defined in [`strsim-0.11.1/src/lib.rs:285-290`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L285-L290)*
 
 Calculates a normalized score of the Levenshtein algorithm between 0.0 and
 1.0 (inclusive), where 1.0 means the strings are the same.
@@ -674,7 +674,7 @@ assert!((normalized_levenshtein("string", "string") - 1.0).abs() < 0.00001);
 fn osa_distance(a: &str, b: &str) -> usize
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:300-337`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L300-L337)*
+*Defined in [`strsim-0.11.1/src/lib.rs:300-337`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L300-L337)*
 
 Like Levenshtein but allows for adjacent transpositions. Each substring can
 only be edited once.
@@ -691,7 +691,7 @@ assert_eq!(3, osa_distance("ab", "bca"));
 fn flat_index(i: usize, j: usize, width: usize) -> usize
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:341-343`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L341-L343)*
+*Defined in [`strsim-0.11.1/src/lib.rs:341-343`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L341-L343)*
 
 ### `generic_damerau_levenshtein`
 
@@ -701,7 +701,7 @@ where
     Elem: Eq + Hash + Clone
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:353-414`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L353-L414)*
+*Defined in [`strsim-0.11.1/src/lib.rs:353-414`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L353-L414)*
 
 Like optimal string alignment, but substrings can be edited an unlimited
 number of times, and the triangle inequality holds.
@@ -721,7 +721,7 @@ where
     Iter2: Iterator<Item = char> + Clone
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:609-667`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L609-L667)*
+*Defined in [`strsim-0.11.1/src/lib.rs:609-667`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L609-L667)*
 
 ### `damerau_levenshtein`
 
@@ -729,7 +729,7 @@ where
 fn damerau_levenshtein(a: &str, b: &str) -> usize
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:677-679`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L677-L679)*
+*Defined in [`strsim-0.11.1/src/lib.rs:677-679`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L677-L679)*
 
 Like optimal string alignment, but substrings can be edited an unlimited
 number of times, and the triangle inequality holds.
@@ -746,7 +746,7 @@ assert_eq!(2, damerau_levenshtein("ab", "bca"));
 fn normalized_damerau_levenshtein(a: &str, b: &str) -> f64
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:693-702`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L693-L702)*
+*Defined in [`strsim-0.11.1/src/lib.rs:693-702`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L693-L702)*
 
 Calculates a normalized score of the Damerau–Levenshtein algorithm between
 0.0 and 1.0 (inclusive), where 1.0 means the strings are the same.
@@ -767,7 +767,7 @@ assert!((normalized_damerau_levenshtein("sunglasses", "sunglasses") - 1.0).abs()
 fn bigrams(s: &str) -> impl Iterator<Item = (char, char)> + '_
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:705-707`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L705-L707)*
+*Defined in [`strsim-0.11.1/src/lib.rs:705-707`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L705-L707)*
 
 Returns an Iterator of char tuples.
 
@@ -777,7 +777,7 @@ Returns an Iterator of char tuples.
 fn sorensen_dice(a: &str, b: &str) -> f64
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:721-754`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L721-L754)*
+*Defined in [`strsim-0.11.1/src/lib.rs:721-754`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L721-L754)*
 
 Calculates a Sørensen-Dice similarity distance using bigrams.
 See <https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient>.
@@ -800,5 +800,5 @@ assert_eq!(0.8888888888888888, sorensen_dice("feris", "ferris"));
 type HammingResult = Result<usize, StrSimError>;
 ```
 
-*Defined in [`strsim-0.11.1/src/lib.rs:49`](../../.source_1765521767/strsim-0.11.1/src/lib.rs#L49)*
+*Defined in [`strsim-0.11.1/src/lib.rs:49`](../../.source_1765633015/strsim-0.11.1/src/lib.rs#L49)*
 

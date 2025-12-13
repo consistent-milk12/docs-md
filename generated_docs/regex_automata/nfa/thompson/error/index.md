@@ -21,7 +21,7 @@ struct BuildError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/error.rs:21-23`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/error.rs#L21-L23)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/error.rs:21-23`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/error.rs#L21-L23)*
 
 An error that can occurred during the construction of a thompson NFA.
 
@@ -29,7 +29,7 @@ This error does not provide many introspection capabilities. There are
 generally only two things you can do with it:
 
 * Obtain a human readable message via its `std::fmt::Display` impl.
-* Access an underlying [`regex_syntax::Error`](../../../../regex_syntax/error/index.md) type from its `source`
+* Access an underlying [`regex_syntax::Error`](../../../../regex_syntax/ast/index.md) type from its `source`
 method via the `std::error::Error` trait. This error only occurs when using
 convenience routines for building an NFA directly from a pattern string.
 
@@ -173,7 +173,7 @@ enum BuildErrorKind {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/error.rs:27-76`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/error.rs#L27-L76)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/error.rs:27-76`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/error.rs#L27-L76)*
 
 The kind of error that occurred during the construction of a thompson NFA.
 

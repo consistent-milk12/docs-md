@@ -18,7 +18,7 @@
 fn find_byte(needle: u8, haystack: &[u8]) -> Option<usize>
 ```
 
-*Defined in [`regex-1.12.2/src/find_byte.rs:5-17`](../../../.source_1765521767/regex-1.12.2/src/find_byte.rs#L5-L17)*
+*Defined in [`regex-1.12.2/src/find_byte.rs:5-17`](../../../.source_1765633015/regex-1.12.2/src/find_byte.rs#L5-L17)*
 
 Searches for the given needle in the given haystack.
 

@@ -21,7 +21,7 @@ struct Guard {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:69-71`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/guard.rs#L69-L71)*
+*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:69-71`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/guard.rs#L69-L71)*
 
 A guard that keeps the current thread pinned.
 
@@ -709,7 +709,7 @@ assert!(!epoch::is_pinned());
 unsafe fn unprotected() -> &'static Guard
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:513-523`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/guard.rs#L513-L523)*
+*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:513-523`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/guard.rs#L513-L523)*
 
 Returns a reference to a dummy guard that allows unprotected access to [`Atomic`](../atomic/index.md)s.
 

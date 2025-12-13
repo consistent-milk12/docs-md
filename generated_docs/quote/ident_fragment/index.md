@@ -19,7 +19,7 @@
 trait IdentFragment { ... }
 ```
 
-*Defined in [`quote-1.0.42/src/ident_fragment.rs:13-23`](../../../.source_1765521767/quote-1.0.42/src/ident_fragment.rs#L13-L23)*
+*Defined in [`quote-1.0.42/src/ident_fragment.rs:13-23`](../../../.source_1765633015/quote-1.0.42/src/ident_fragment.rs#L13-L23)*
 
 Specialized formatting trait used by `format_ident!`.
 
@@ -62,5 +62,5 @@ See `format_ident!` for more information.
 
 ### `ident_fragment_display!`
 
-*Defined in [`quote-1.0.42/src/ident_fragment.rs:75-85`](../../../.source_1765521767/quote-1.0.42/src/ident_fragment.rs#L75-L85)*
+*Defined in [`quote-1.0.42/src/ident_fragment.rs:75-85`](../../../.source_1765633015/quote-1.0.42/src/ident_fragment.rs#L75-L85)*
 

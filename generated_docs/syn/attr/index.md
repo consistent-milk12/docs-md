@@ -50,7 +50,7 @@ struct Attribute {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:19-179`](../../../.source_1765521767/syn-2.0.111/src/attr.rs#L19-L179)*
+*Defined in [`syn-2.0.111/src/attr.rs:19-179`](../../../.source_1765633015/syn-2.0.111/src/attr.rs#L19-L179)*
 
 An attribute, like `#[repr(transparent)]`.
 
@@ -673,7 +673,7 @@ struct MetaList {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:484-492`](../../../.source_1765521767/syn-2.0.111/src/attr.rs#L484-L492)*
+*Defined in [`syn-2.0.111/src/attr.rs:484-492`](../../../.source_1765633015/syn-2.0.111/src/attr.rs#L484-L492)*
 
 A structured list within an attribute, like `derive(Copy, Clone)`.
 
@@ -789,7 +789,7 @@ struct MetaNameValue {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:494-502`](../../../.source_1765521767/syn-2.0.111/src/attr.rs#L494-L502)*
+*Defined in [`syn-2.0.111/src/attr.rs:494-502`](../../../.source_1765633015/syn-2.0.111/src/attr.rs#L494-L502)*
 
 A name-value pair within an attribute, like `feature = "nightly"`.
 
@@ -896,7 +896,7 @@ enum AttrStyle {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:429-449`](../../../.source_1765521767/syn-2.0.111/src/attr.rs#L429-L449)*
+*Defined in [`syn-2.0.111/src/attr.rs:429-449`](../../../.source_1765633015/syn-2.0.111/src/attr.rs#L429-L449)*
 
 Distinguishes between attributes that decorate an item and attributes
 that are contained within an item.
@@ -999,7 +999,7 @@ enum Meta {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:451-482`](../../../.source_1765521767/syn-2.0.111/src/attr.rs#L451-L482)*
+*Defined in [`syn-2.0.111/src/attr.rs:451-482`](../../../.source_1765633015/syn-2.0.111/src/attr.rs#L451-L482)*
 
 Content of a compile-time structured attribute.
 
@@ -1151,7 +1151,7 @@ This type is a [syntax tree enum].
 trait FilterAttrs<'a> { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:594-600`](../../../.source_1765521767/syn-2.0.111/src/attr.rs#L594-L600)*
+*Defined in [`syn-2.0.111/src/attr.rs:594-600`](../../../.source_1765633015/syn-2.0.111/src/attr.rs#L594-L600)*
 
 #### Associated Types
 

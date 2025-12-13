@@ -23,7 +23,7 @@ struct StaticStr {
 }
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/static_str.rs:11-16`](../../../../.source_1765521767/compact_str-0.9.0/src/repr/static_str.rs#L11-L16)*
+*Defined in [`compact_str-0.9.0/src/repr/static_str.rs:11-16`](../../../../.source_1765633015/compact_str-0.9.0/src/repr/static_str.rs#L11-L16)*
 
 A buffer stored on the stack whose size is equal to the stack size of `String`
 The last byte is set to 0.
@@ -111,5 +111,5 @@ The last byte is set to 0.
 const DISCRIMINANT_SIZE: usize = 8usize;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/static_str.rs:5`](../../../../.source_1765521767/compact_str-0.9.0/src/repr/static_str.rs#L5)*
+*Defined in [`compact_str-0.9.0/src/repr/static_str.rs:5`](../../../../.source_1765633015/compact_str-0.9.0/src/repr/static_str.rs#L5)*
 

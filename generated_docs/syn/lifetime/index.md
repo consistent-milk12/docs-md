@@ -28,7 +28,7 @@ struct Lifetime {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lifetime.rs:18-21`](../../../.source_1765521767/syn-2.0.111/src/lifetime.rs#L18-L21)*
+*Defined in [`syn-2.0.111/src/lifetime.rs:18-21`](../../../.source_1765633015/syn-2.0.111/src/lifetime.rs#L18-L21)*
 
 A Rust lifetime: `'a`.
 

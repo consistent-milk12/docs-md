@@ -342,7 +342,7 @@ the primitives needed to implement most of these functions.
 fn exit()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:67`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L67)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:67`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L67)*
 
 See the [module comment](self).
 
@@ -352,7 +352,7 @@ See the [module comment](self).
 fn fork()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:68`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L68)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:68`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L68)*
 
 See the [module comment](self).
 
@@ -362,7 +362,7 @@ See the [module comment](self).
 fn clone()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:69`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L69)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:69`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L69)*
 
 See the [module comment](self).
 
@@ -372,7 +372,7 @@ See the [module comment](self).
 fn clone3()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:70`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L70)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:70`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L70)*
 
 See the [module comment](self).
 
@@ -382,7 +382,7 @@ See the [module comment](self).
 fn brk()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:71`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L71)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:71`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L71)*
 
 See the [module comment](self).
 
@@ -392,7 +392,7 @@ See the [module comment](self).
 fn sigaction()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:72`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L72)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:72`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L72)*
 
 See the [module comment](self).
 
@@ -402,7 +402,7 @@ See the [module comment](self).
 fn sigaltstack()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:73`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L73)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:73`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L73)*
 
 See the [module comment](self).
 
@@ -412,7 +412,7 @@ See the [module comment](self).
 fn sigprocmask()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:74`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L74)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:74`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L74)*
 
 See the [module comment](self).
 
@@ -422,7 +422,7 @@ See the [module comment](self).
 fn sigwait()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:75`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L75)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:75`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L75)*
 
 See the [module comment](self).
 
@@ -432,7 +432,7 @@ See the [module comment](self).
 fn sigwaitinfo()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:76`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L76)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:76`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L76)*
 
 See the [module comment](self).
 
@@ -442,7 +442,7 @@ See the [module comment](self).
 fn sigtimedwait()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:77`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L77)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:77`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L77)*
 
 See the [module comment](self).
 
@@ -452,7 +452,7 @@ See the [module comment](self).
 fn set_thread_area()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:78`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L78)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:78`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L78)*
 
 See the [module comment](self).
 
@@ -462,7 +462,7 @@ See the [module comment](self).
 fn set_tid_address()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:79`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L79)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:79`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L79)*
 
 See the [module comment](self).
 
@@ -472,7 +472,7 @@ See the [module comment](self).
 fn tkill()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:80`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L80)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:80`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L80)*
 
 See the [module comment](self).
 
@@ -482,7 +482,7 @@ See the [module comment](self).
 fn sched_setscheduler()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:81`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L81)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:81`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L81)*
 
 See the [module comment](self).
 
@@ -492,7 +492,7 @@ See the [module comment](self).
 fn rseq()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:82`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L82)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:82`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L82)*
 
 See the [module comment](self).
 
@@ -502,7 +502,7 @@ See the [module comment](self).
 fn setuid()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:83`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L83)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:83`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L83)*
 
 See the [module comment](self).
 
@@ -512,7 +512,7 @@ See the [module comment](self).
 fn setgid()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:84`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L84)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:84`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L84)*
 
 See the [module comment](self).
 
@@ -522,7 +522,7 @@ See the [module comment](self).
 fn seteuid()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:85`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L85)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:85`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L85)*
 
 See the [module comment](self).
 
@@ -532,7 +532,7 @@ See the [module comment](self).
 fn setegid()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:86`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L86)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:86`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L86)*
 
 See the [module comment](self).
 
@@ -542,7 +542,7 @@ See the [module comment](self).
 fn setreuid()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:87`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L87)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:87`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L87)*
 
 See the [module comment](self).
 
@@ -552,7 +552,7 @@ See the [module comment](self).
 fn setregid()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:88`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L88)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:88`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L88)*
 
 See the [module comment](self).
 
@@ -562,7 +562,7 @@ See the [module comment](self).
 fn setresuid()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:89`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L89)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:89`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L89)*
 
 See the [module comment](self).
 
@@ -572,7 +572,7 @@ See the [module comment](self).
 fn setresgid()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:90`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L90)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:90`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L90)*
 
 See the [module comment](self).
 
@@ -582,7 +582,7 @@ See the [module comment](self).
 fn setgroups()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:91`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L91)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:91`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L91)*
 
 See the [module comment](self).
 
@@ -592,7 +592,7 @@ See the [module comment](self).
 fn pthread_atfork()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:93`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L93)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:93`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L93)*
 
 See the [module comment](self).
 
@@ -602,7 +602,7 @@ See the [module comment](self).
 fn pthread_attr_destroy()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:94`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L94)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:94`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L94)*
 
 See the [module comment](self).
 
@@ -612,7 +612,7 @@ See the [module comment](self).
 fn pthread_attr_getaffinity_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:95`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L95)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:95`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L95)*
 
 See the [module comment](self).
 
@@ -622,7 +622,7 @@ See the [module comment](self).
 fn pthread_attr_getdetachstate()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:96`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L96)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:96`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L96)*
 
 See the [module comment](self).
 
@@ -632,7 +632,7 @@ See the [module comment](self).
 fn pthread_attr_getguardsize()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:97`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L97)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:97`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L97)*
 
 See the [module comment](self).
 
@@ -642,7 +642,7 @@ See the [module comment](self).
 fn pthread_attr_getinheritsched()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:98`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L98)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:98`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L98)*
 
 See the [module comment](self).
 
@@ -652,7 +652,7 @@ See the [module comment](self).
 fn pthread_attr_getschedparam()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:99`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L99)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:99`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L99)*
 
 See the [module comment](self).
 
@@ -662,7 +662,7 @@ See the [module comment](self).
 fn pthread_attr_getschedpolicy()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:100`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L100)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:100`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L100)*
 
 See the [module comment](self).
 
@@ -672,7 +672,7 @@ See the [module comment](self).
 fn pthread_attr_getscope()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:101`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L101)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:101`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L101)*
 
 See the [module comment](self).
 
@@ -682,7 +682,7 @@ See the [module comment](self).
 fn pthread_attr_getsigmask_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:102`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L102)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:102`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L102)*
 
 See the [module comment](self).
 
@@ -692,7 +692,7 @@ See the [module comment](self).
 fn pthread_attr_getstack()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:103`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L103)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:103`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L103)*
 
 See the [module comment](self).
 
@@ -702,7 +702,7 @@ See the [module comment](self).
 fn pthread_attr_getstackaddr()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:104`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L104)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:104`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L104)*
 
 See the [module comment](self).
 
@@ -712,7 +712,7 @@ See the [module comment](self).
 fn pthread_attr_getstacksize()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:105`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L105)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:105`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L105)*
 
 See the [module comment](self).
 
@@ -722,7 +722,7 @@ See the [module comment](self).
 fn pthread_attr_init()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:106`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L106)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:106`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L106)*
 
 See the [module comment](self).
 
@@ -732,7 +732,7 @@ See the [module comment](self).
 fn pthread_attr_setaffinity_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:107`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L107)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:107`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L107)*
 
 See the [module comment](self).
 
@@ -742,7 +742,7 @@ See the [module comment](self).
 fn pthread_attr_setdetachstate()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:108`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L108)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:108`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L108)*
 
 See the [module comment](self).
 
@@ -752,7 +752,7 @@ See the [module comment](self).
 fn pthread_attr_setguardsize()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:109`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L109)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:109`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L109)*
 
 See the [module comment](self).
 
@@ -762,7 +762,7 @@ See the [module comment](self).
 fn pthread_attr_setinheritsched()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:110`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L110)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:110`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L110)*
 
 See the [module comment](self).
 
@@ -772,7 +772,7 @@ See the [module comment](self).
 fn pthread_attr_setschedparam()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:111`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L111)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:111`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L111)*
 
 See the [module comment](self).
 
@@ -782,7 +782,7 @@ See the [module comment](self).
 fn pthread_attr_setschedpolicy()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:112`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L112)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:112`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L112)*
 
 See the [module comment](self).
 
@@ -792,7 +792,7 @@ See the [module comment](self).
 fn pthread_attr_setscope()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:113`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L113)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:113`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L113)*
 
 See the [module comment](self).
 
@@ -802,7 +802,7 @@ See the [module comment](self).
 fn pthread_attr_setsigmask_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:114`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L114)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:114`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L114)*
 
 See the [module comment](self).
 
@@ -812,7 +812,7 @@ See the [module comment](self).
 fn pthread_attr_setstack()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:115`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L115)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:115`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L115)*
 
 See the [module comment](self).
 
@@ -822,7 +822,7 @@ See the [module comment](self).
 fn pthread_attr_setstackaddr()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:116`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L116)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:116`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L116)*
 
 See the [module comment](self).
 
@@ -832,7 +832,7 @@ See the [module comment](self).
 fn pthread_attr_setstacksize()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:117`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L117)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:117`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L117)*
 
 See the [module comment](self).
 
@@ -842,7 +842,7 @@ See the [module comment](self).
 fn pthread_barrierattr_destroy()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:118`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L118)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:118`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L118)*
 
 See the [module comment](self).
 
@@ -852,7 +852,7 @@ See the [module comment](self).
 fn pthread_barrierattr_getpshared()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:119`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L119)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:119`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L119)*
 
 See the [module comment](self).
 
@@ -862,7 +862,7 @@ See the [module comment](self).
 fn pthread_barrierattr_init()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:120`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L120)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:120`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L120)*
 
 See the [module comment](self).
 
@@ -872,7 +872,7 @@ See the [module comment](self).
 fn pthread_barrierattr_setpshared()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:121`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L121)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:121`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L121)*
 
 See the [module comment](self).
 
@@ -882,7 +882,7 @@ See the [module comment](self).
 fn pthread_barrier_destroy()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:122`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L122)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:122`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L122)*
 
 See the [module comment](self).
 
@@ -892,7 +892,7 @@ See the [module comment](self).
 fn pthread_barrier_wait()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:123`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L123)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:123`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L123)*
 
 See the [module comment](self).
 
@@ -902,7 +902,7 @@ See the [module comment](self).
 fn pthread_cancel()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:124`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L124)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:124`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L124)*
 
 See the [module comment](self).
 
@@ -912,7 +912,7 @@ See the [module comment](self).
 fn pthread_cleanup_pop()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:125`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L125)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:125`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L125)*
 
 See the [module comment](self).
 
@@ -922,7 +922,7 @@ See the [module comment](self).
 fn pthread_cleanup_pop_restore_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:126`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L126)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:126`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L126)*
 
 See the [module comment](self).
 
@@ -932,7 +932,7 @@ See the [module comment](self).
 fn pthread_cleanup_push()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:127`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L127)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:127`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L127)*
 
 See the [module comment](self).
 
@@ -942,7 +942,7 @@ See the [module comment](self).
 fn pthread_cleanup_push_defer_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:128`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L128)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:128`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L128)*
 
 See the [module comment](self).
 
@@ -952,7 +952,7 @@ See the [module comment](self).
 fn pthread_condattr_destroy()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:129`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L129)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:129`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L129)*
 
 See the [module comment](self).
 
@@ -962,7 +962,7 @@ See the [module comment](self).
 fn pthread_condattr_getclock()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:130`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L130)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:130`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L130)*
 
 See the [module comment](self).
 
@@ -972,7 +972,7 @@ See the [module comment](self).
 fn pthread_condattr_getpshared()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:131`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L131)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:131`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L131)*
 
 See the [module comment](self).
 
@@ -982,7 +982,7 @@ See the [module comment](self).
 fn pthread_condattr_init()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:132`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L132)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:132`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L132)*
 
 See the [module comment](self).
 
@@ -992,7 +992,7 @@ See the [module comment](self).
 fn pthread_condattr_setclock()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:133`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L133)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:133`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L133)*
 
 See the [module comment](self).
 
@@ -1002,7 +1002,7 @@ See the [module comment](self).
 fn pthread_condattr_setpshared()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:134`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L134)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:134`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L134)*
 
 See the [module comment](self).
 
@@ -1012,7 +1012,7 @@ See the [module comment](self).
 fn pthread_cond_broadcast()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:135`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L135)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:135`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L135)*
 
 See the [module comment](self).
 
@@ -1022,7 +1022,7 @@ See the [module comment](self).
 fn pthread_cond_destroy()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:136`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L136)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:136`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L136)*
 
 See the [module comment](self).
 
@@ -1032,7 +1032,7 @@ See the [module comment](self).
 fn pthread_cond_signal()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:137`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L137)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:137`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L137)*
 
 See the [module comment](self).
 
@@ -1042,7 +1042,7 @@ See the [module comment](self).
 fn pthread_cond_timedwait()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:138`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L138)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:138`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L138)*
 
 See the [module comment](self).
 
@@ -1052,7 +1052,7 @@ See the [module comment](self).
 fn pthread_create()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:139`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L139)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:139`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L139)*
 
 See the [module comment](self).
 
@@ -1062,7 +1062,7 @@ See the [module comment](self).
 fn pthread_detach()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:140`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L140)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:140`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L140)*
 
 See the [module comment](self).
 
@@ -1072,7 +1072,7 @@ See the [module comment](self).
 fn pthread_equal()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:141`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L141)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:141`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L141)*
 
 See the [module comment](self).
 
@@ -1082,7 +1082,7 @@ See the [module comment](self).
 fn pthread_exit()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:142`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L142)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:142`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L142)*
 
 See the [module comment](self).
 
@@ -1092,7 +1092,7 @@ See the [module comment](self).
 fn pthread_getaffinity_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:143`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L143)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:143`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L143)*
 
 See the [module comment](self).
 
@@ -1102,7 +1102,7 @@ See the [module comment](self).
 fn pthread_getattr_default_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:144`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L144)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:144`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L144)*
 
 See the [module comment](self).
 
@@ -1112,7 +1112,7 @@ See the [module comment](self).
 fn pthread_getattr_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:145`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L145)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:145`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L145)*
 
 See the [module comment](self).
 
@@ -1122,7 +1122,7 @@ See the [module comment](self).
 fn pthread_getconcurrency()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:146`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L146)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:146`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L146)*
 
 See the [module comment](self).
 
@@ -1132,7 +1132,7 @@ See the [module comment](self).
 fn pthread_getcpuclockid()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:147`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L147)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:147`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L147)*
 
 See the [module comment](self).
 
@@ -1142,7 +1142,7 @@ See the [module comment](self).
 fn pthread_getname_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:148`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L148)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:148`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L148)*
 
 See the [module comment](self).
 
@@ -1152,7 +1152,7 @@ See the [module comment](self).
 fn pthread_getschedparam()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:149`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L149)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:149`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L149)*
 
 See the [module comment](self).
 
@@ -1162,7 +1162,7 @@ See the [module comment](self).
 fn pthread_getspecific()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:150`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L150)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:150`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L150)*
 
 See the [module comment](self).
 
@@ -1172,7 +1172,7 @@ See the [module comment](self).
 fn pthread_join()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:151`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L151)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:151`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L151)*
 
 See the [module comment](self).
 
@@ -1182,7 +1182,7 @@ See the [module comment](self).
 fn pthread_key_create()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:152`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L152)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:152`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L152)*
 
 See the [module comment](self).
 
@@ -1192,7 +1192,7 @@ See the [module comment](self).
 fn pthread_key_delete()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:153`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L153)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:153`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L153)*
 
 See the [module comment](self).
 
@@ -1202,7 +1202,7 @@ See the [module comment](self).
 fn pthread_kill()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:154`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L154)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:154`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L154)*
 
 See the [module comment](self).
 
@@ -1212,7 +1212,7 @@ See the [module comment](self).
 fn pthread_kill_other_threads_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:155`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L155)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:155`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L155)*
 
 See the [module comment](self).
 
@@ -1222,7 +1222,7 @@ See the [module comment](self).
 fn pthread_mutexattr_destroy()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:156`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L156)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:156`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L156)*
 
 See the [module comment](self).
 
@@ -1232,7 +1232,7 @@ See the [module comment](self).
 fn pthread_mutexattr_getprioceiling()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:157`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L157)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:157`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L157)*
 
 See the [module comment](self).
 
@@ -1242,7 +1242,7 @@ See the [module comment](self).
 fn pthread_mutexattr_getprotocol()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:158`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L158)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:158`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L158)*
 
 See the [module comment](self).
 
@@ -1252,7 +1252,7 @@ See the [module comment](self).
 fn pthread_mutexattr_getpshared()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:159`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L159)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:159`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L159)*
 
 See the [module comment](self).
 
@@ -1262,7 +1262,7 @@ See the [module comment](self).
 fn pthread_mutexattr_getrobust()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:160`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L160)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:160`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L160)*
 
 See the [module comment](self).
 
@@ -1272,7 +1272,7 @@ See the [module comment](self).
 fn pthread_mutexattr_getrobust_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:161`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L161)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:161`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L161)*
 
 See the [module comment](self).
 
@@ -1282,7 +1282,7 @@ See the [module comment](self).
 fn pthread_mutexattr_gettype()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:162`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L162)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:162`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L162)*
 
 See the [module comment](self).
 
@@ -1292,7 +1292,7 @@ See the [module comment](self).
 fn pthread_mutexattr_init()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:163`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L163)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:163`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L163)*
 
 See the [module comment](self).
 
@@ -1302,7 +1302,7 @@ See the [module comment](self).
 fn pthread_mutexattr_setprioceiling()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:164`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L164)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:164`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L164)*
 
 See the [module comment](self).
 
@@ -1312,7 +1312,7 @@ See the [module comment](self).
 fn pthread_mutexattr_setprotocol()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:165`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L165)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:165`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L165)*
 
 See the [module comment](self).
 
@@ -1322,7 +1322,7 @@ See the [module comment](self).
 fn pthread_mutexattr_setpshared()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:166`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L166)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:166`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L166)*
 
 See the [module comment](self).
 
@@ -1332,7 +1332,7 @@ See the [module comment](self).
 fn pthread_mutexattr_setrobust()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:167`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L167)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:167`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L167)*
 
 See the [module comment](self).
 
@@ -1342,7 +1342,7 @@ See the [module comment](self).
 fn pthread_mutexattr_setrobust_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:168`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L168)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:168`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L168)*
 
 See the [module comment](self).
 
@@ -1352,7 +1352,7 @@ See the [module comment](self).
 fn pthread_mutexattr_settype()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:169`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L169)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:169`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L169)*
 
 See the [module comment](self).
 
@@ -1362,7 +1362,7 @@ See the [module comment](self).
 fn pthread_mutex_consistent()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:170`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L170)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:170`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L170)*
 
 See the [module comment](self).
 
@@ -1372,7 +1372,7 @@ See the [module comment](self).
 fn pthread_mutex_consistent_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:171`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L171)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:171`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L171)*
 
 See the [module comment](self).
 
@@ -1382,7 +1382,7 @@ See the [module comment](self).
 fn pthread_mutex_destroy()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:172`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L172)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:172`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L172)*
 
 See the [module comment](self).
 
@@ -1392,7 +1392,7 @@ See the [module comment](self).
 fn pthread_mutex_getprioceiling()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:173`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L173)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:173`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L173)*
 
 See the [module comment](self).
 
@@ -1402,7 +1402,7 @@ See the [module comment](self).
 fn pthread_mutex_init()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:174`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L174)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:174`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L174)*
 
 See the [module comment](self).
 
@@ -1412,7 +1412,7 @@ See the [module comment](self).
 fn pthread_mutex_lock()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:175`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L175)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:175`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L175)*
 
 See the [module comment](self).
 
@@ -1422,7 +1422,7 @@ See the [module comment](self).
 fn pthread_mutex_setprioceiling()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:176`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L176)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:176`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L176)*
 
 See the [module comment](self).
 
@@ -1432,7 +1432,7 @@ See the [module comment](self).
 fn pthread_mutex_timedlock()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:177`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L177)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:177`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L177)*
 
 See the [module comment](self).
 
@@ -1442,7 +1442,7 @@ See the [module comment](self).
 fn pthread_mutex_trylock()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:178`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L178)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:178`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L178)*
 
 See the [module comment](self).
 
@@ -1452,7 +1452,7 @@ See the [module comment](self).
 fn pthread_once()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:179`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L179)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:179`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L179)*
 
 See the [module comment](self).
 
@@ -1462,7 +1462,7 @@ See the [module comment](self).
 fn pthread_rwlockattr_destroy()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:180`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L180)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:180`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L180)*
 
 See the [module comment](self).
 
@@ -1472,7 +1472,7 @@ See the [module comment](self).
 fn pthread_rwlockattr_getkind_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:181`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L181)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:181`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L181)*
 
 See the [module comment](self).
 
@@ -1482,7 +1482,7 @@ See the [module comment](self).
 fn pthread_rwlockattr_getpshared()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:182`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L182)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:182`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L182)*
 
 See the [module comment](self).
 
@@ -1492,7 +1492,7 @@ See the [module comment](self).
 fn pthread_rwlockattr_init()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:183`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L183)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:183`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L183)*
 
 See the [module comment](self).
 
@@ -1502,7 +1502,7 @@ See the [module comment](self).
 fn pthread_rwlockattr_setkind_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:184`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L184)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:184`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L184)*
 
 See the [module comment](self).
 
@@ -1512,7 +1512,7 @@ See the [module comment](self).
 fn pthread_rwlockattr_setpshared()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:185`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L185)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:185`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L185)*
 
 See the [module comment](self).
 
@@ -1522,7 +1522,7 @@ See the [module comment](self).
 fn pthread_rwlock_destroy()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:186`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L186)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:186`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L186)*
 
 See the [module comment](self).
 
@@ -1532,7 +1532,7 @@ See the [module comment](self).
 fn pthread_rwlock_rdlock()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:187`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L187)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:187`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L187)*
 
 See the [module comment](self).
 
@@ -1542,7 +1542,7 @@ See the [module comment](self).
 fn pthread_rwlock_timedrdlock()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:188`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L188)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:188`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L188)*
 
 See the [module comment](self).
 
@@ -1552,7 +1552,7 @@ See the [module comment](self).
 fn pthread_rwlock_timedwrlock()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:189`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L189)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:189`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L189)*
 
 See the [module comment](self).
 
@@ -1562,7 +1562,7 @@ See the [module comment](self).
 fn pthread_rwlock_tryrdlock()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:190`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L190)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:190`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L190)*
 
 See the [module comment](self).
 
@@ -1572,7 +1572,7 @@ See the [module comment](self).
 fn pthread_rwlock_trywrlock()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:191`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L191)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:191`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L191)*
 
 See the [module comment](self).
 
@@ -1582,7 +1582,7 @@ See the [module comment](self).
 fn pthread_rwlock_unlock()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:192`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L192)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:192`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L192)*
 
 See the [module comment](self).
 
@@ -1592,7 +1592,7 @@ See the [module comment](self).
 fn pthread_rwlock_wrlock()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:193`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L193)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:193`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L193)*
 
 See the [module comment](self).
 
@@ -1602,7 +1602,7 @@ See the [module comment](self).
 fn pthread_self()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:194`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L194)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:194`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L194)*
 
 See the [module comment](self).
 
@@ -1612,7 +1612,7 @@ See the [module comment](self).
 fn pthread_setaffinity_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:195`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L195)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:195`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L195)*
 
 See the [module comment](self).
 
@@ -1622,7 +1622,7 @@ See the [module comment](self).
 fn pthread_setattr_default_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:196`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L196)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:196`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L196)*
 
 See the [module comment](self).
 
@@ -1632,7 +1632,7 @@ See the [module comment](self).
 fn pthread_setcancelstate()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:197`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L197)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:197`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L197)*
 
 See the [module comment](self).
 
@@ -1642,7 +1642,7 @@ See the [module comment](self).
 fn pthread_setcanceltype()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:198`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L198)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:198`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L198)*
 
 See the [module comment](self).
 
@@ -1652,7 +1652,7 @@ See the [module comment](self).
 fn pthread_setconcurrency()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:199`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L199)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:199`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L199)*
 
 See the [module comment](self).
 
@@ -1662,7 +1662,7 @@ See the [module comment](self).
 fn pthread_setname_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:200`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L200)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:200`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L200)*
 
 See the [module comment](self).
 
@@ -1672,7 +1672,7 @@ See the [module comment](self).
 fn pthread_setschedparam()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:201`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L201)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:201`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L201)*
 
 See the [module comment](self).
 
@@ -1682,7 +1682,7 @@ See the [module comment](self).
 fn pthread_setschedprio()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:202`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L202)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:202`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L202)*
 
 See the [module comment](self).
 
@@ -1692,7 +1692,7 @@ See the [module comment](self).
 fn pthread_setspecific()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:203`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L203)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:203`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L203)*
 
 See the [module comment](self).
 
@@ -1702,7 +1702,7 @@ See the [module comment](self).
 fn pthread_sigmask()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:204`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L204)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:204`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L204)*
 
 See the [module comment](self).
 
@@ -1712,7 +1712,7 @@ See the [module comment](self).
 fn pthread_sigqueue()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:205`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L205)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:205`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L205)*
 
 See the [module comment](self).
 
@@ -1722,7 +1722,7 @@ See the [module comment](self).
 fn pthread_spin_destroy()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:206`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L206)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:206`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L206)*
 
 See the [module comment](self).
 
@@ -1732,7 +1732,7 @@ See the [module comment](self).
 fn pthread_spin_init()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:207`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L207)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:207`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L207)*
 
 See the [module comment](self).
 
@@ -1742,7 +1742,7 @@ See the [module comment](self).
 fn pthread_spin_lock()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:208`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L208)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:208`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L208)*
 
 See the [module comment](self).
 
@@ -1752,7 +1752,7 @@ See the [module comment](self).
 fn pthread_spin_trylock()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:209`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L209)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:209`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L209)*
 
 See the [module comment](self).
 
@@ -1762,7 +1762,7 @@ See the [module comment](self).
 fn pthread_spin_unlock()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:210`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L210)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:210`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L210)*
 
 See the [module comment](self).
 
@@ -1772,7 +1772,7 @@ See the [module comment](self).
 fn pthread_testcancel()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:211`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L211)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:211`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L211)*
 
 See the [module comment](self).
 
@@ -1782,7 +1782,7 @@ See the [module comment](self).
 fn pthread_timedjoin_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:212`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L212)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:212`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L212)*
 
 See the [module comment](self).
 
@@ -1792,7 +1792,7 @@ See the [module comment](self).
 fn pthread_tryjoin_np()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:213`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L213)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:213`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L213)*
 
 See the [module comment](self).
 
@@ -1802,7 +1802,7 @@ See the [module comment](self).
 fn pthread_yield()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:214`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L214)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:214`](../../../../.source_1765633015/rustix-1.1.2/src/not_implemented.rs#L214)*
 
 See the [module comment](self).
 

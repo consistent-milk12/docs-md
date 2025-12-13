@@ -50,7 +50,7 @@ struct ArtifactProfile {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:15-28`](../../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L15-L28)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:15-28`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L15-L28)*
 
 Profile settings used to determine which compiler flags to use for a
 target.
@@ -179,7 +179,7 @@ struct Artifact {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:156-175`](../../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L156-L175)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:156-175`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L156-L175)*
 
 A compiler-generated file.
 
@@ -314,7 +314,7 @@ struct CompilerMessage {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:183-190`](../../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L183-L190)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:183-190`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L183-L190)*
 
 Message left by the compiler
 
@@ -439,7 +439,7 @@ struct BuildScript {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:197-213`](../../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L197-L213)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:197-213`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L197-L213)*
 
 Output of a build script execution.
 
@@ -565,7 +565,7 @@ struct BuildFinished {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:220-223`](../../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L220-L223)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:220-223`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L220-L223)*
 
 Final result of a build.
 
@@ -669,7 +669,7 @@ struct MessageIter<R> {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:262-264`](../../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L262-L264)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:262-264`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L262-L264)*
 
 An iterator of Messages.
 
@@ -747,7 +747,7 @@ enum ArtifactDebuginfo {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:33-57`](../../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L33-L57)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:33-57`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L33-L57)*
 
 The kind of debug information included in the artifact.
 
@@ -899,7 +899,7 @@ enum Message {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:229-245`](../../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L229-L245)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:229-245`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L229-L245)*
 
 A cargo message
 
@@ -1031,7 +1031,7 @@ A cargo message
 fn parse_messages<R: Read>(input: R) -> serde_json::StreamDeserializer<'static, serde_json::de::IoRead<R>, Message>
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:295-297`](../../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L295-L297)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:295-297`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L295-L297)*
 
 Creates an iterator of Message from a Read outputting a stream of JSON
 messages. For usage information, look at the top-level documentation.
@@ -1044,7 +1044,7 @@ messages. For usage information, look at the top-level documentation.
 type MessageIterator<R> = serde_json::StreamDeserializer<'static, serde_json::de::IoRead<R>, Message>;
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:289-290`](../../../.source_1765521767/cargo_metadata-0.23.1/src/messages.rs#L289-L290)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:289-290`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L289-L290)*
 
 An iterator of Message.
 

@@ -20,7 +20,7 @@
 struct Byte(u8);
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/debug.rs:3`](../../../.source_1765521767/regex-syntax-0.8.8/src/debug.rs#L3)*
+*Defined in [`regex-syntax-0.8.8/src/debug.rs:3`](../../../.source_1765633015/regex-syntax-0.8.8/src/debug.rs#L3)*
 
 A type that wraps a single byte with a convenient fmt::Debug impl that
 escapes the byte.
@@ -79,7 +79,7 @@ escapes the byte.
 struct Bytes<'a>(&'a [u8]);
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/debug.rs:34`](../../../.source_1765521767/regex-syntax-0.8.8/src/debug.rs#L34)*
+*Defined in [`regex-syntax-0.8.8/src/debug.rs:34`](../../../.source_1765633015/regex-syntax-0.8.8/src/debug.rs#L34)*
 
 A type that provides a human readable debug impl for arbitrary bytes.
 
@@ -144,7 +144,7 @@ N.B. This is copied nearly verbatim from regex-automata. Sigh.
 fn utf8_decode(bytes: &[u8]) -> Option<Result<char, u8>>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/debug.rs:77-107`](../../../.source_1765521767/regex-syntax-0.8.8/src/debug.rs#L77-L107)*
+*Defined in [`regex-syntax-0.8.8/src/debug.rs:77-107`](../../../.source_1765633015/regex-syntax-0.8.8/src/debug.rs#L77-L107)*
 
 Decodes the next UTF-8 encoded codepoint from the given byte slice.
 

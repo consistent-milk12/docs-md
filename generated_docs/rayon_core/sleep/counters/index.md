@@ -51,7 +51,7 @@ struct AtomicCounters {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:3-16`](../../../../.source_1765521767/rayon-core-1.13.0/src/sleep/counters.rs#L3-L16)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:3-16`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L3-L16)*
 
 #### Fields
 
@@ -199,7 +199,7 @@ struct Counters {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:19-21`](../../../../.source_1765521767/rayon-core-1.13.0/src/sleep/counters.rs#L19-L21)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:19-21`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L19-L21)*
 
 #### Implementations
 
@@ -305,7 +305,7 @@ struct Counters {
 struct JobsEventCounter(usize);
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:27`](../../../../.source_1765521767/rayon-core-1.13.0/src/sleep/counters.rs#L27)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:27`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L27)*
 
 A value read from the **Jobs Event Counter**.
 See the [`README.md`](README.md) for more
@@ -433,7 +433,7 @@ coverage of how the jobs event counter works.
 fn select_thread(word: usize, shift: usize) -> usize
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:210-212`](../../../../.source_1765521767/rayon-core-1.13.0/src/sleep/counters.rs#L210-L212)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:210-212`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L210-L212)*
 
 ### `select_jec`
 
@@ -441,7 +441,7 @@ fn select_thread(word: usize, shift: usize) -> usize
 fn select_jec(word: usize) -> usize
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:215-217`](../../../../.source_1765521767/rayon-core-1.13.0/src/sleep/counters.rs#L215-L217)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:215-217`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L215-L217)*
 
 ## Constants
 
@@ -450,7 +450,7 @@ fn select_jec(word: usize) -> usize
 const THREADS_BITS: usize = 16usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:57`](../../../../.source_1765521767/rayon-core-1.13.0/src/sleep/counters.rs#L57)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:57`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L57)*
 
 Number of bits used for the thread counters.
 
@@ -459,7 +459,7 @@ Number of bits used for the thread counters.
 const SLEEPING_SHIFT: usize = 0usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:65`](../../../../.source_1765521767/rayon-core-1.13.0/src/sleep/counters.rs#L65)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:65`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L65)*
 
 Bits to shift to select the sleeping threads
 (used with `select_bits`).
@@ -469,7 +469,7 @@ Bits to shift to select the sleeping threads
 const INACTIVE_SHIFT: usize = 16usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:70`](../../../../.source_1765521767/rayon-core-1.13.0/src/sleep/counters.rs#L70)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:70`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L70)*
 
 Bits to shift to select the inactive threads
 (used with `select_bits`).
@@ -479,7 +479,7 @@ Bits to shift to select the inactive threads
 const JEC_SHIFT: usize = 32usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:74`](../../../../.source_1765521767/rayon-core-1.13.0/src/sleep/counters.rs#L74)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:74`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L74)*
 
 Bits to shift to select the JEC
 (use JOBS_BITS).
@@ -489,7 +489,7 @@ Bits to shift to select the JEC
 const THREADS_MAX: usize = 65_535usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:77`](../../../../.source_1765521767/rayon-core-1.13.0/src/sleep/counters.rs#L77)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:77`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L77)*
 
 Max value for the thread counters.
 
@@ -498,7 +498,7 @@ Max value for the thread counters.
 const ONE_SLEEPING: usize = 1usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:80`](../../../../.source_1765521767/rayon-core-1.13.0/src/sleep/counters.rs#L80)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:80`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L80)*
 
 Constant that can be added to add one sleeping thread.
 
@@ -507,7 +507,7 @@ Constant that can be added to add one sleeping thread.
 const ONE_INACTIVE: usize = 65_536usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:84`](../../../../.source_1765521767/rayon-core-1.13.0/src/sleep/counters.rs#L84)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:84`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L84)*
 
 Constant that can be added to add one inactive thread.
 An inactive thread is either idle, sleepy, or sleeping.
@@ -517,7 +517,7 @@ An inactive thread is either idle, sleepy, or sleeping.
 const ONE_JEC: usize = 4_294_967_296usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:87`](../../../../.source_1765521767/rayon-core-1.13.0/src/sleep/counters.rs#L87)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:87`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L87)*
 
 Constant that can be added to add one to the JEC.
 

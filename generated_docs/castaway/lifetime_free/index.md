@@ -24,7 +24,7 @@
 trait LifetimeFree { ... }
 ```
 
-*Defined in [`castaway-0.2.4/src/lifetime_free.rs:43`](../../../.source_1765521767/castaway-0.2.4/src/lifetime_free.rs#L43)*
+*Defined in [`castaway-0.2.4/src/lifetime_free.rs:43`](../../../.source_1765633015/castaway-0.2.4/src/lifetime_free.rs#L43)*
 
 Marker trait for types that do not contain any lifetime parameters. Such
 types are safe to cast from non-static type parameters if their types are
@@ -127,5 +127,5 @@ unsafe impl LifetimeFree for PlainOldData {}
 
 ### `tuple_impls!`
 
-*Defined in [`castaway-0.2.4/src/lifetime_free.rs:86-92`](../../../.source_1765521767/castaway-0.2.4/src/lifetime_free.rs#L86-L92)*
+*Defined in [`castaway-0.2.4/src/lifetime_free.rs:86-92`](../../../.source_1765633015/castaway-0.2.4/src/lifetime_free.rs#L86-L92)*
 
