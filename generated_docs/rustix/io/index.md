@@ -103,7 +103,7 @@ struct Errno(u16);
 
 `errno`—An error code.
 
-The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../cargo_docs_md/error/index.md),
+The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../addr2line/index.md),
 but only holds an OS error code, and no extra error value.
 
 # References
@@ -309,7 +309,7 @@ fn dup<Fd: AsFd>(fd: Fd) -> io::Result<crate::fd::OwnedFd>
 underlying [file description] as `fd`.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup` that does
-set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](../backend/io/syscalls/index.md).
+set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](#fcntl-dupfd-cloexec).
 
 POSIX guarantees that `dup` will use the lowest unused file descriptor,
 however it is not safe in general to rely on this, as file descriptors may
@@ -354,7 +354,7 @@ be subsequently used.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup2` that does
 set `O_CLOEXEC`, use [`dup3`](#dup3) with `DupFlags::CLOEXEC` on platforms which
-support it, or [`fcntl_dupfd_cloexec`](../backend/io/syscalls/index.md).
+support it, or [`fcntl_dupfd_cloexec`](#fcntl-dupfd-cloexec).
 
 For `dup2` to stdin, stdout, and stderr, see `stdio::dup2_stdin`,
 `stdio::dup2_stdout`, and `stdio::dup2_stderr`.

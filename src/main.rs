@@ -139,8 +139,8 @@ fn run_docs_command(args: DocsArgs) -> Result<()> {
     let generate_args = GenerateArgs {
         path: None,
         dir: Some(PathBuf::from("target/doc")),
-        mdbook: !args.no_mdbook,
-        search_index: !args.no_search_index,
+        no_mdbook: args.no_mdbook,
+        no_search_index: args.no_search_index,
         primary_crate,
         output: args.output,
         format: args.format,
@@ -261,7 +261,53 @@ fn check_nightly_toolchain() -> Result<()> {
     Ok(())
 }
 
-/// Try to detect the crate name from Cargo.toml.
+/// Try to detect the crate name using cargo_metadata.
+///
+/// This is the preferred method as it correctly handles:
+/// - Workspaces with inherited package metadata
+/// - Unusual Cargo.toml formatting
+/// - Inline tables and comments
+#[cfg(feature = "source-parsing")]
+fn detect_crate_name() -> Option<String> {
+    use cargo_metadata::MetadataCommand;
+
+    let metadata = MetadataCommand::new().no_deps().exec().ok()?;
+
+    // For a single-crate project or when run from a workspace member directory,
+    // find the package whose manifest_path matches the current directory's Cargo.toml
+    let current_manifest = std::env::current_dir()
+        .ok()?
+        .join("Cargo.toml")
+        .canonicalize()
+        .ok()?;
+
+    // First, try to find a package whose manifest matches current directory
+    for pkg in &metadata.packages {
+        if let Ok(pkg_manifest) = pkg.manifest_path.canonicalize() {
+            if pkg_manifest == current_manifest {
+                eprintln!("Detected primary crate: {}", pkg.name);
+                return Some(pkg.name.to_string());
+            }
+        }
+    }
+
+    // Fallback: if we're in a workspace root, use the first workspace member
+    if !metadata.workspace_members.is_empty() {
+        for pkg in &metadata.packages {
+            if metadata.workspace_members.contains(&pkg.id) {
+                eprintln!("Detected primary crate (workspace member): {}", pkg.name);
+                return Some(pkg.name.to_string());
+            }
+        }
+    }
+
+    None
+}
+
+/// Fallback crate name detection using simple Cargo.toml parsing.
+///
+/// Used when the `source-parsing` feature is disabled (no cargo_metadata).
+#[cfg(not(feature = "source-parsing"))]
 fn detect_crate_name() -> Option<String> {
     let cargo_toml = std::fs::read_to_string("Cargo.toml").ok()?;
 
@@ -313,6 +359,8 @@ fn run_collect_sources(args: CollectSourcesArgs) -> Result<()> {
         include_dev: args.include_dev,
         output: args.output,
         dry_run: args.dry_run,
+        minimal_sources: args.minimal_sources,
+        no_gitignore: args.no_gitignore,
     };
 
     // Run collection

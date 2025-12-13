@@ -448,6 +448,20 @@ resolve items across crate boundaries.
 
   Create a new multi-crate module renderer.
 
+- <span id="multicratemodulerenderer-process-docs"></span>`fn process_docs(&self, item: &Item) -> Option<String>`
+
+  Process documentation for an item.
+
+  
+
+  Delegates to the view's `process_docs` method which handles:
+
+  - Stripping duplicate titles
+
+  - Converting doc links to markdown links
+
+  - Processing code blocks
+
 - <span id="multicratemodulerenderer-maybe-render-source-location"></span>`fn maybe_render_source_location(&self, item: &Item) -> String`
 
   Render source location if enabled in config.

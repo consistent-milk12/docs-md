@@ -143,7 +143,7 @@ enum ArgSettings {
 
 Various settings that apply to arguments and may be set, unset, and checked via getter/setter
 methods `Arg::setting`, `Arg::unset_setting`, and `Arg::is_set`. This is what the
-[`Arg`](../arg/index.md) methods which accept a `bool` use internally.
+[`Arg`](../../index.md) methods which accept a `bool` use internally.
 
 
 

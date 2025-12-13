@@ -58,7 +58,7 @@ diagnostic error code: ruget::api::bad_json
 ## Features
 
 - Generic [`Diagnostic`](#diagnostic) protocol, compatible (and dependent on)
-  [`std::error::Error`](../cargo_docs_md/error/index.md).
+  [`std::error::Error`](../addr2line/index.md).
 - Unique error codes on every [`Diagnostic`](#diagnostic).
 - Custom links to get more details on error codes.
 - Super handy derive macro for defining diagnostic metadata.
@@ -182,7 +182,7 @@ diagnostic help: try doing it better next time?">
 
 `miette` is _fully compatible_ with library usage. Consumers who don't know
 about, or don't want, `miette` features can safely use its error types as
-regular [`std::error::Error`](../cargo_docs_md/error/index.md).
+regular [`std::error::Error`](../addr2line/index.md).
 
 We highly recommend using something like [`thiserror`](https://docs.rs/thiserror)
 to define unique error types and error wrappers for your library.
@@ -1011,11 +1011,11 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
   
 
-  If the argument implements [`std::error::Error`](../cargo_docs_md/error/index.md), prefer `Report::new`
+  If the argument implements [`std::error::Error`](../addr2line/index.md), prefer `Report::new`
 
   instead which preserves the underlying error's cause chain and
 
-  backtrace. If the argument may or may not implement [`std::error::Error`](../cargo_docs_md/error/index.md)
+  backtrace. If the argument may or may not implement [`std::error::Error`](../addr2line/index.md)
 
   now or in the future, use `miette!(err)` which handles either way
 
@@ -3111,7 +3111,7 @@ Error enum for miette. Used by certain operations in the protocol.
 
 - **`IoError`**
 
-  Wrapper around [`std::io::Error`](../cargo_docs_md/error/index.md). This is returned when something went
+  Wrapper around [`std::io::Error`](../addr2line/index.md). This is returned when something went
   wrong while reading a [`SourceCode`](crate::SourceCode).
 
 - **`OutOfBounds`**

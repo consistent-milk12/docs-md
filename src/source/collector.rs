@@ -73,6 +73,16 @@ pub struct CollectOptions {
 
     /// Dry run - don't actually copy files.
     pub dry_run: bool,
+
+    /// Only copy `src/` directory and `Cargo.toml` (minimal mode).
+    ///
+    /// By default (false), the entire crate directory is copied to ensure
+    /// all source files are available (including `build.rs`, modules outside
+    /// `src/`, etc.).
+    pub minimal_sources: bool,
+
+    /// Skip adding `.source_*` pattern to `.gitignore`.
+    pub no_gitignore: bool,
 }
 
 /// Collector for gathering dependency sources.
@@ -180,7 +190,7 @@ impl SourceCollector {
                     let dest_dir = output_dir.join(&key);
 
                     // Copy source files
-                    Self::copy_crate_source(&source_path, &dest_dir)?;
+                    Self::copy_crate_source(&source_path, &dest_dir, options.minimal_sources)?;
 
                     // Add to manifest
                     manifest.crates.insert(
@@ -210,8 +220,10 @@ impl SourceCollector {
         StdFs::write(&manifest_path, manifest_json)
             .map_err(|e| Error::SourceCollector(format!("Failed to write manifest: {e}")))?;
 
-        // Update .gitignore
-        self.update_gitignore()?;
+        // Update .gitignore unless disabled
+        if !options.no_gitignore {
+            self.update_gitignore()?;
+        }
 
         Ok(CollectionResult {
             output_dir,
@@ -269,22 +281,62 @@ impl SourceCollector {
     }
 
     /// Copy crate source to destination.
-    fn copy_crate_source(source: &Path, dest: &Path) -> Result<(), Error> {
+    ///
+    /// If `minimal` is false (default), copies the entire crate directory.
+    /// If `minimal` is true, only copies `src/` and `Cargo.toml`.
+    ///
+    /// In both modes, `Cargo.toml` is renamed to `Crate.toml` to avoid
+    /// confusing cargo when the collected sources are in the workspace.
+    fn copy_crate_source(source: &Path, dest: &Path, minimal: bool) -> Result<(), Error> {
         StdFs::create_dir_all(dest)
             .map_err(|e| Error::SourceCollector(format!("Failed to create dir: {e}")))?;
 
-        // Copy src/ directory
-        let src_dir = source.join("src");
+        if minimal {
+            // Minimal mode: only copy src/ and Cargo.toml
+            let src_dir = source.join("src");
 
-        if src_dir.exists() {
-            Self::copy_dir_recursive(&src_dir, &dest.join("src"))?;
-        }
+            if src_dir.exists() {
+                Self::copy_dir_recursive(&src_dir, &dest.join("src"))?;
+            }
 
-        // Copy and rename Cargo.toml to Crate.toml
-        let cargo_toml = source.join("Cargo.toml");
-        if cargo_toml.exists() {
-            StdFs::copy(&cargo_toml, dest.join("Crate.toml"))
-                .map_err(|e| Error::SourceCollector(format!("Failed to copy Cargo.toml: {e}")))?;
+            // Copy and rename Cargo.toml to Crate.toml
+            let cargo_toml = source.join("Cargo.toml");
+            if cargo_toml.exists() {
+                StdFs::copy(&cargo_toml, dest.join("Crate.toml"))
+                    .map_err(|e| Error::SourceCollector(format!("Failed to copy Cargo.toml: {e}")))?;
+            }
+        } else {
+            // Full mode: copy entire directory, but rename Cargo.toml
+            for entry in StdFs::read_dir(source).map_err(|e| {
+                Error::SourceCollector(format!("Failed to read source dir: {e}"))
+            })? {
+                let entry = entry.map_err(|e| {
+                    Error::SourceCollector(format!("Failed to read entry: {e}"))
+                })?;
+                let path = entry.path();
+                let file_name = entry.file_name();
+                let file_name_str = file_name.to_string_lossy();
+
+                // Rename Cargo.toml to Crate.toml to avoid confusing cargo
+                let dest_name = if file_name_str == "Cargo.toml" {
+                    "Crate.toml".into()
+                } else {
+                    file_name
+                };
+                let dest_path = dest.join(dest_name);
+
+                if path.is_dir() {
+                    Self::copy_dir_recursive(&path, &dest_path)?;
+                } else {
+                    StdFs::copy(&path, &dest_path).map_err(|e| {
+                        Error::SourceCollector(format!(
+                            "Failed to copy {} to {}: {e}",
+                            path.display(),
+                            dest_path.display()
+                        ))
+                    })?;
+                }
+            }
         }
 
         Ok(())
@@ -625,6 +677,130 @@ mod tests {
         assert!(
             dep_names.contains(&"serde"),
             "Should include serde dependency"
+        );
+    }
+
+    #[test]
+    fn test_collect_options_defaults() {
+        let options = super::CollectOptions::default();
+
+        assert!(!options.include_dev, "include_dev should default to false");
+        assert!(options.output.is_none(), "output should default to None");
+        assert!(!options.dry_run, "dry_run should default to false");
+        assert!(
+            !options.minimal_sources,
+            "minimal_sources should default to false (full copy)"
+        );
+        assert!(
+            !options.no_gitignore,
+            "no_gitignore should default to false (update gitignore)"
+        );
+    }
+
+    #[test]
+    fn test_copy_crate_source_minimal_mode() {
+        use std::fs;
+        use tempfile::TempDir;
+
+        // Create a mock source directory structure
+        let source_dir = TempDir::new().expect("Failed to create temp dir");
+        let source_path = source_dir.path();
+
+        // Create src/ directory with a file
+        fs::create_dir_all(source_path.join("src")).expect("Failed to create src dir");
+        fs::write(source_path.join("src/lib.rs"), "// lib content").expect("Failed to write lib.rs");
+
+        // Create Cargo.toml
+        fs::write(source_path.join("Cargo.toml"), "[package]\nname = \"test\"")
+            .expect("Failed to write Cargo.toml");
+
+        // Create additional files that should NOT be copied in minimal mode
+        fs::write(source_path.join("build.rs"), "fn main() {}").expect("Failed to write build.rs");
+        fs::create_dir_all(source_path.join("benches")).expect("Failed to create benches dir");
+        fs::write(source_path.join("benches/bench.rs"), "// bench")
+            .expect("Failed to write bench.rs");
+
+        // Create destination directory
+        let dest_dir = TempDir::new().expect("Failed to create dest temp dir");
+        let dest_path = dest_dir.path().join("test-crate");
+
+        // Copy in minimal mode
+        SourceCollector::copy_crate_source(source_path, &dest_path, true)
+            .expect("Failed to copy crate source");
+
+        // Verify minimal mode results
+        assert!(dest_path.join("src/lib.rs").exists(), "src/lib.rs should be copied");
+        assert!(
+            dest_path.join("Crate.toml").exists(),
+            "Cargo.toml should be copied as Crate.toml"
+        );
+        assert!(
+            !dest_path.join("Cargo.toml").exists(),
+            "Cargo.toml should be renamed, not copied"
+        );
+        assert!(
+            !dest_path.join("build.rs").exists(),
+            "build.rs should NOT be copied in minimal mode"
+        );
+        assert!(
+            !dest_path.join("benches").exists(),
+            "benches/ should NOT be copied in minimal mode"
+        );
+    }
+
+    #[test]
+    fn test_copy_crate_source_full_mode() {
+        use std::fs;
+        use tempfile::TempDir;
+
+        // Create a mock source directory structure
+        let source_dir = TempDir::new().expect("Failed to create temp dir");
+        let source_path = source_dir.path();
+
+        // Create src/ directory with a file
+        fs::create_dir_all(source_path.join("src")).expect("Failed to create src dir");
+        fs::write(source_path.join("src/lib.rs"), "// lib content").expect("Failed to write lib.rs");
+
+        // Create Cargo.toml
+        fs::write(source_path.join("Cargo.toml"), "[package]\nname = \"test\"")
+            .expect("Failed to write Cargo.toml");
+
+        // Create additional files that SHOULD be copied in full mode
+        fs::write(source_path.join("build.rs"), "fn main() {}").expect("Failed to write build.rs");
+        fs::create_dir_all(source_path.join("benches")).expect("Failed to create benches dir");
+        fs::write(source_path.join("benches/bench.rs"), "// bench")
+            .expect("Failed to write bench.rs");
+        fs::write(source_path.join("README.md"), "# Test").expect("Failed to write README.md");
+
+        // Create destination directory
+        let dest_dir = TempDir::new().expect("Failed to create dest temp dir");
+        let dest_path = dest_dir.path().join("test-crate");
+
+        // Copy in full mode (minimal = false)
+        SourceCollector::copy_crate_source(source_path, &dest_path, false)
+            .expect("Failed to copy crate source");
+
+        // Verify full mode results
+        assert!(dest_path.join("src/lib.rs").exists(), "src/lib.rs should be copied");
+        assert!(
+            dest_path.join("Crate.toml").exists(),
+            "Cargo.toml should be copied as Crate.toml"
+        );
+        assert!(
+            !dest_path.join("Cargo.toml").exists(),
+            "Cargo.toml should be renamed, not duplicated"
+        );
+        assert!(
+            dest_path.join("build.rs").exists(),
+            "build.rs SHOULD be copied in full mode"
+        );
+        assert!(
+            dest_path.join("benches/bench.rs").exists(),
+            "benches/ SHOULD be copied in full mode"
+        );
+        assert!(
+            dest_path.join("README.md").exists(),
+            "README.md SHOULD be copied in full mode"
         );
     }
 }

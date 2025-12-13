@@ -54,7 +54,7 @@ rustix's APIs perform the following tasks:
  - Error values are translated to [`Result`](../cargo_metadata/errors/index.md)s.
  - Buffers are passed as Rust slices.
  - Out-parameters are presented as return values.
- - Path arguments use `Arg`, so they accept any string type.
+ - Path arguments use [`Arg`](#arg), so they accept any string type.
  - File descriptors are passed and returned via [`AsFd`](fd/index.md) and [`OwnedFd`](fd/index.md)
    instead of bare integers, ensuring I/O safety.
  - Constants use `enum`s and [`bitflags`](../bitflags/index.md) types, and enable [support for

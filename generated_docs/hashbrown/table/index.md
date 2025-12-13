@@ -240,7 +240,7 @@ where
 *Defined in [`hashbrown-0.16.1/src/table.rs:1975-1981`](../../../.source_1765521767/hashbrown-0.16.1/src/table.rs#L1975-L1981)*
 
 A view into an occupied entry in a `HashTable`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](../hash_map/index.md) enum.
 
 # Examples
 
@@ -767,7 +767,7 @@ where
 *Defined in [`hashbrown-0.16.1/src/table.rs:2286-2293`](../../../.source_1765521767/hashbrown-0.16.1/src/table.rs#L2286-L2293)*
 
 A view into a vacant entry in a `HashTable`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](../hash_map/index.md) enum.
 
 # Examples
 

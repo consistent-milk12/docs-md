@@ -7,7 +7,7 @@
 <br>
 
 This crate provides macros for conditional compilation according to rustc
-compiler version, analogous to [`#[cfg(...)]`][`cfg`](expand/index.md) and
+compiler version, analogous to [`#[cfg(...)]`][cfg](#cfg) and
 [`#[cfg_attr(...)]`][cfg_attr].
 
 

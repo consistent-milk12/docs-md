@@ -172,7 +172,7 @@ Which method works best depends on what kind of situation you're in.
 
   
 
-  For a version that returns a type that implements [`std::error::Error`](../cargo_docs_md/error/index.md),
+  For a version that returns a type that implements [`std::error::Error`](../addr2line/index.md),
 
   see [`TryFrom<&PathBuf>`][tryfrom].
 
@@ -228,7 +228,7 @@ Which method works best depends on what kind of situation you're in.
 
   
 
-  For a version that returns a type that implements [`std::error::Error`](../cargo_docs_md/error/index.md), use the
+  For a version that returns a type that implements [`std::error::Error`](../addr2line/index.md), use the
 
   `TryFrom<OsString>` impl.
 
@@ -929,7 +929,7 @@ assert_eq!(extension, Some("txt"));
 
   
 
-  For a version that returns a type that implements [`std::error::Error`](../cargo_docs_md/error/index.md),
+  For a version that returns a type that implements [`std::error::Error`](../addr2line/index.md),
 
   see [`TryFrom<&Path>`][tryfrom].
 
@@ -985,7 +985,7 @@ assert_eq!(extension, Some("txt"));
 
   
 
-  For a version that returns a type that implements [`std::error::Error`](../cargo_docs_md/error/index.md), use the
+  For a version that returns a type that implements [`std::error::Error`](../addr2line/index.md), use the
 
   [`TryFrom<&OsStr>`][tryfrom] impl.
 
@@ -1913,7 +1913,7 @@ assert_eq!(extension, Some("txt"));
 
   
 
-  If the resulting path is not UTF-8, an [`io::Error`](../cargo_docs_md/error/index.md) is returned with the
+  If the resulting path is not UTF-8, an [`io::Error`](../addr2line/index.md) is returned with the
 
   [`ErrorKind`](io::ErrorKind) set to [`InvalidData`](io::ErrorKind::InvalidData)
 
@@ -1993,7 +1993,7 @@ assert_eq!(extension, Some("txt"));
 
   
 
-  If the resulting path is not UTF-8, an [`io::Error`](../cargo_docs_md/error/index.md) is returned with the
+  If the resulting path is not UTF-8, an [`io::Error`](../addr2line/index.md) is returned with the
 
   [`ErrorKind`](io::ErrorKind) set to [`InvalidData`](io::ErrorKind::InvalidData)
 
@@ -2079,7 +2079,7 @@ assert_eq!(extension, Some("txt"));
 
   
 
-  If a directory entry is not UTF-8, an [`io::Error`](../cargo_docs_md/error/index.md) is returned with the
+  If a directory entry is not UTF-8, an [`io::Error`](../addr2line/index.md) is returned with the
 
   [`ErrorKind`](io::ErrorKind) set to [`InvalidData`](io::ErrorKind::InvalidData)
 
@@ -3032,7 +3032,7 @@ dependent.
 This [`io::Result`](../cargo_metadata/errors/index.md) will be an `Err` if there's some sort of intermittent
 IO error during iteration.
 
-If a directory entry is not UTF-8, an [`io::Error`](../cargo_docs_md/error/index.md) is returned with the
+If a directory entry is not UTF-8, an [`io::Error`](../addr2line/index.md) is returned with the
 [`ErrorKind`](io::ErrorKind) set to `InvalidData`
 and the payload set to a [`FromPathBufError`](#frompathbuferror).
 
@@ -3460,13 +3460,13 @@ assert_eq!(err.into_path_buf(), non_unicode_path);
 
 - <span id="frompathbuferror-into-io-error"></span>`fn into_io_error(self) -> io::Error`
 
-  Converts self into a [`std::io::Error`](../cargo_docs_md/error/index.md) with kind
+  Converts self into a [`std::io::Error`](../addr2line/index.md) with kind
 
   [`InvalidData`](io::ErrorKind::InvalidData).
 
   
 
-  Many users of [`FromPathBufError`](#frompathbuferror) will want to convert it into an [`io::Error`](../cargo_docs_md/error/index.md). This is a
+  Many users of [`FromPathBufError`](#frompathbuferror) will want to convert it into an [`io::Error`](../addr2line/index.md). This is a
 
   convenience method to do that.
 
@@ -3593,13 +3593,13 @@ let err: FromPathError = <&Utf8Path>::try_from(non_unicode_path)
 
 - <span id="frompatherror-into-io-error"></span>`fn into_io_error(self) -> io::Error`
 
-  Converts self into a [`std::io::Error`](../cargo_docs_md/error/index.md) with kind
+  Converts self into a [`std::io::Error`](../addr2line/index.md) with kind
 
   [`InvalidData`](io::ErrorKind::InvalidData).
 
   
 
-  Many users of [`FromPathError`](#frompatherror) will want to convert it into an [`io::Error`](../cargo_docs_md/error/index.md). This is a
+  Many users of [`FromPathError`](#frompatherror) will want to convert it into an [`io::Error`](../addr2line/index.md). This is a
 
   convenience method to do that.
 
@@ -3755,13 +3755,13 @@ assert_eq!(err.into_os_string(), non_unicode_string);
 
 - <span id="fromosstringerror-into-io-error"></span>`fn into_io_error(self) -> io::Error`
 
-  Converts self into a [`std::io::Error`](../cargo_docs_md/error/index.md) with kind
+  Converts self into a [`std::io::Error`](../addr2line/index.md) with kind
 
   [`InvalidData`](io::ErrorKind::InvalidData).
 
   
 
-  Many users of [`FromOsStringError`](#fromosstringerror) will want to convert it into an [`io::Error`](../cargo_docs_md/error/index.md).
+  Many users of [`FromOsStringError`](#fromosstringerror) will want to convert it into an [`io::Error`](../addr2line/index.md).
 
   This is a convenience method to do that.
 
@@ -3886,13 +3886,13 @@ let err: FromOsStrError = <&Utf8Path>::try_from(non_unicode_str)
 
 - <span id="fromosstrerror-into-io-error"></span>`fn into_io_error(self) -> io::Error`
 
-  Converts self into a [`std::io::Error`](../cargo_docs_md/error/index.md) with kind
+  Converts self into a [`std::io::Error`](../addr2line/index.md) with kind
 
   [`InvalidData`](io::ErrorKind::InvalidData).
 
   
 
-  Many users of [`FromOsStrError`](#fromosstrerror) will want to convert it into an [`io::Error`](../cargo_docs_md/error/index.md). This is a
+  Many users of [`FromOsStrError`](#fromosstrerror) will want to convert it into an [`io::Error`](../addr2line/index.md). This is a
 
   convenience method to do that.
 

@@ -152,7 +152,7 @@ this type directly. Using a `DFA` directly is typically only necessary when
 one needs access to the `Automaton` trait implementation.
 
 This DFA can only be built by first constructing a [`noncontiguous::NFA`](#noncontiguousnfa).
-Both [`DFA::new`](../../cargo_docs_md/error/index.md) and `Builder::build` do this for you automatically, but
+Both [`DFA::new`](../../addr2line/index.md) and `Builder::build` do this for you automatically, but
 [`Builder::build_from_noncontiguous`](../../clap_builder/index.md) permits doing it explicitly.
 
 A DFA provides the best possible search performance (in this crate) via two
@@ -278,6 +278,14 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
+- <span id="dfa-const-dead"></span>`const DEAD: StateID`
+
+- <span id="dfa-set-matches"></span>`fn set_matches(&mut self, sid: StateID, pids: impl Iterator<Item = PatternID>)`
+
+  Adds the given pattern IDs as matches to the given state and also
+
+  records the added memory usage.
+
 - <span id="dfa-new"></span>`fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`FmtWrite`](#fmtwrite), [`default`](#default), [`FmtWrite`](#fmtwrite)
 
   Create a new Aho-Corasick DFA using the default configuration.
@@ -293,14 +301,6 @@ It is also possible to implement your own version of `try_find`. See the
   
 
   This usually permits one to just import the `DFA` type.
-
-- <span id="dfa-const-dead"></span>`const DEAD: StateID`
-
-- <span id="dfa-set-matches"></span>`fn set_matches(&mut self, sid: StateID, pids: impl Iterator<Item = PatternID>)`
-
-  Adds the given pattern IDs as matches to the given state and also
-
-  records the added memory usage.
 
 #### Trait Implementations
 

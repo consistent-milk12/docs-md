@@ -230,6 +230,24 @@ pub struct CollectSourcesArgs {
     /// Path to Cargo.toml (defaults to current directory).
     #[arg(long)]
     pub manifest_path: Option<PathBuf>,
+
+    /// Only copy `src/` directory and `Cargo.toml`.
+    ///
+    /// By default, the entire crate directory is copied to ensure all source
+    /// files are available (including `build.rs`, modules outside `src/`, etc.).
+    /// Enable this flag to minimize disk usage at the cost of potentially
+    /// missing some source files.
+    #[arg(long, default_value_t = false)]
+    pub minimal_sources: bool,
+
+    /// Do not add `.source_*` pattern to `.gitignore`.
+    ///
+    /// By default, the tool appends `.source_*` to `.gitignore` to prevent
+    /// accidentally committing collected source files. Enable this flag to
+    /// skip this modification (useful for projects with strict `.gitignore`
+    /// management).
+    #[arg(long, default_value_t = false)]
+    pub no_gitignore: bool,
 }
 
 /// Command-line arguments for direct generation (no subcommand).
@@ -274,22 +292,22 @@ pub struct GenerateArgs {
     )]
     pub dir: Option<PathBuf>,
 
-    /// Generate mdBook-compatible SUMMARY.md file.
+    /// Skip generating mdBook SUMMARY.md file.
     ///
     /// Only valid with `--dir` for multi-crate documentation.
-    /// Creates a `SUMMARY.md` file in the output directory that can be
-    /// used as the entry point for an mdBook documentation site.
+    /// By default, a `SUMMARY.md` file is created in the output directory
+    /// that can be used as the entry point for an mdBook documentation site.
     #[arg(long, requires = "dir", default_value_t = false)]
-    pub mdbook: bool,
+    pub no_mdbook: bool,
 
-    /// Generate `search_index.json` for client-side search.
+    /// Skip generating `search_index.json` file.
     ///
     /// Only valid with `--dir` for multi-crate documentation.
-    /// Creates a `search_index.json` file containing all documented items,
-    /// which can be used with client-side search libraries like Fuse.js,
-    /// Lunr.js, or `FlexSearch`.
+    /// By default, a `search_index.json` file is created containing all
+    /// documented items, which can be used with client-side search libraries
+    /// like Fuse.js, Lunr.js, or `FlexSearch`.
     #[arg(long, requires = "dir", default_value_t = false)]
-    pub search_index: bool,
+    pub no_search_index: bool,
 
     /// Primary crate name for preferential link resolution.
     ///
@@ -387,5 +405,259 @@ impl From<CliOutputFormat> for OutputFormat {
 
             CliOutputFormat::Nested => Self::Nested,
         }
+    }
+}
+
+// Bounds check test functions for assembly inspection
+// Run: cargo asm cargo_docs_md::iter_zip
+
+/// Test function: iterator zip (no bounds checks in loop).
+#[inline(never)]
+pub fn iter_zip(a: Vec<i64>, b: Vec<i64>) -> i64 {
+    let mut r = 0i64;
+    assert!(a.len() == b.len());
+    for (x, y) in a.iter().zip(b.iter()) {
+        r += x + y;
+    }
+    r
+}
+
+/// Test function: index loop with assert (bounds check elided).
+#[inline(never)]
+pub fn index_loop(a: Vec<i64>, b: Vec<i64>) -> i64 {
+    let mut r = 0i64;
+    assert!(a.len() == b.len());
+    for i in 0..a.len() {
+        r += a[i] + b[i];
+    }
+    r
+}
+
+/// Test function: index loop without assert (bounds check present).
+#[inline(never)]
+pub fn index_loop_no_assert(a: Vec<i64>, b: Vec<i64>) -> i64 {
+    let mut r = 0i64;
+    for i in 0..a.len() {
+        r += a[i] + b[i];
+    }
+    r
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use clap::Parser;
+
+    /// Test that GenerateArgs correctly parses `--no-mdbook` flag.
+    #[test]
+    fn test_generate_args_no_mdbook_flag() {
+        // Without flag: no_mdbook should be false
+        let args = GenerateArgs::try_parse_from(["test", "--dir", "target/doc"]).unwrap();
+        assert!(!args.no_mdbook, "no_mdbook should default to false");
+
+        // With flag: no_mdbook should be true
+        let args =
+            GenerateArgs::try_parse_from(["test", "--dir", "target/doc", "--no-mdbook"]).unwrap();
+        assert!(args.no_mdbook, "no_mdbook should be true when flag is set");
+    }
+
+    /// Test that GenerateArgs correctly parses `--no-search-index` flag.
+    #[test]
+    fn test_generate_args_no_search_index_flag() {
+        // Without flag: no_search_index should be false
+        let args = GenerateArgs::try_parse_from(["test", "--dir", "target/doc"]).unwrap();
+        assert!(
+            !args.no_search_index,
+            "no_search_index should default to false"
+        );
+
+        // With flag: no_search_index should be true
+        let args =
+            GenerateArgs::try_parse_from(["test", "--dir", "target/doc", "--no-search-index"])
+                .unwrap();
+        assert!(
+            args.no_search_index,
+            "no_search_index should be true when flag is set"
+        );
+    }
+
+    /// Test that DocsArgs correctly parses `--no-mdbook` flag.
+    #[test]
+    fn test_docs_args_no_mdbook_flag() {
+        // Without flag: no_mdbook should be false (mdbook enabled by default)
+        let args = DocsArgs::try_parse_from(["test"]).unwrap();
+        assert!(
+            !args.no_mdbook,
+            "no_mdbook should default to false (mdbook enabled)"
+        );
+
+        // With flag: no_mdbook should be true
+        let args = DocsArgs::try_parse_from(["test", "--no-mdbook"]).unwrap();
+        assert!(args.no_mdbook, "no_mdbook should be true when flag is set");
+    }
+
+    /// Test that DocsArgs correctly parses `--no-search-index` flag.
+    #[test]
+    fn test_docs_args_no_search_index_flag() {
+        // Without flag: no_search_index should be false (search index enabled by default)
+        let args = DocsArgs::try_parse_from(["test"]).unwrap();
+        assert!(
+            !args.no_search_index,
+            "no_search_index should default to false (search index enabled)"
+        );
+
+        // With flag: no_search_index should be true
+        let args = DocsArgs::try_parse_from(["test", "--no-search-index"]).unwrap();
+        assert!(
+            args.no_search_index,
+            "no_search_index should be true when flag is set"
+        );
+    }
+
+    /// Test that DocsArgs and GenerateArgs have consistent defaults for mdbook/search behavior.
+    #[test]
+    fn test_docs_and_generate_args_consistent_defaults() {
+        let docs_args = DocsArgs::try_parse_from(["test"]).unwrap();
+        let generate_args = GenerateArgs::try_parse_from(["test", "--dir", "target/doc"]).unwrap();
+
+        // Both should have the same default behavior: features enabled (no_* = false)
+        assert_eq!(
+            docs_args.no_mdbook, generate_args.no_mdbook,
+            "DocsArgs and GenerateArgs should have same default for no_mdbook"
+        );
+        assert_eq!(
+            docs_args.no_search_index, generate_args.no_search_index,
+            "DocsArgs and GenerateArgs should have same default for no_search_index"
+        );
+    }
+
+    /// Test that CollectSourcesArgs correctly parses `--minimal-sources` flag.
+    #[cfg(feature = "source-parsing")]
+    #[test]
+    fn test_collect_sources_args_minimal_sources_flag() {
+        // Without flag: minimal_sources should be false (full copy)
+        let args = CollectSourcesArgs::try_parse_from(["test"]).unwrap();
+        assert!(
+            !args.minimal_sources,
+            "minimal_sources should default to false (full copy)"
+        );
+
+        // With flag: minimal_sources should be true
+        let args = CollectSourcesArgs::try_parse_from(["test", "--minimal-sources"]).unwrap();
+        assert!(
+            args.minimal_sources,
+            "minimal_sources should be true when flag is set"
+        );
+    }
+
+    /// Test that CollectSourcesArgs correctly parses `--no-gitignore` flag.
+    #[cfg(feature = "source-parsing")]
+    #[test]
+    fn test_collect_sources_args_no_gitignore_flag() {
+        // Without flag: no_gitignore should be false (update gitignore)
+        let args = CollectSourcesArgs::try_parse_from(["test"]).unwrap();
+        assert!(
+            !args.no_gitignore,
+            "no_gitignore should default to false (update gitignore)"
+        );
+
+        // With flag: no_gitignore should be true
+        let args = CollectSourcesArgs::try_parse_from(["test", "--no-gitignore"]).unwrap();
+        assert!(
+            args.no_gitignore,
+            "no_gitignore should be true when flag is set"
+        );
+    }
+
+    /// Test that GenerateArgs requires either --path or --dir.
+    #[test]
+    fn test_generate_args_requires_path_or_dir() {
+        // Neither provided - should fail
+        let result = GenerateArgs::try_parse_from(["test"]);
+        assert!(
+            result.is_err(),
+            "Should require either --path or --dir"
+        );
+
+        // Only --path provided - should succeed
+        let result = GenerateArgs::try_parse_from(["test", "--path", "file.json"]);
+        assert!(result.is_ok(), "Should accept --path alone");
+
+        // Only --dir provided - should succeed
+        let result = GenerateArgs::try_parse_from(["test", "--dir", "target/doc"]);
+        assert!(result.is_ok(), "Should accept --dir alone");
+
+        // Both provided - should fail (mutually exclusive)
+        let result =
+            GenerateArgs::try_parse_from(["test", "--path", "file.json", "--dir", "target/doc"]);
+        assert!(
+            result.is_err(),
+            "--path and --dir should be mutually exclusive"
+        );
+    }
+
+    /// Test that mdbook/search-index flags work correctly with --dir.
+    #[test]
+    fn test_mdbook_search_index_with_dir() {
+        // With --dir, both flags should work
+        let result = GenerateArgs::try_parse_from([
+            "test",
+            "--dir",
+            "target/doc",
+            "--no-mdbook",
+            "--no-search-index",
+        ]);
+        assert!(
+            result.is_ok(),
+            "--no-mdbook and --no-search-index should work with --dir"
+        );
+
+        // Verify the flags are correctly parsed
+        let args = result.unwrap();
+        assert!(args.no_mdbook, "--no-mdbook should be true");
+        assert!(args.no_search_index, "--no-search-index should be true");
+    }
+
+    /// Test GenerateArgs default values for common options.
+    #[test]
+    fn test_generate_args_defaults() {
+        let args = GenerateArgs::try_parse_from(["test", "--dir", "target/doc"]).unwrap();
+
+        assert_eq!(
+            args.output,
+            PathBuf::from("generated_docs"),
+            "output should default to generated_docs"
+        );
+        assert!(
+            matches!(args.format, CliOutputFormat::Nested),
+            "format should default to Nested"
+        );
+        assert!(!args.exclude_private, "exclude_private should default to false");
+        assert!(
+            !args.include_blanket_impls,
+            "include_blanket_impls should default to false"
+        );
+        assert_eq!(args.toc_threshold, 10, "toc_threshold should default to 10");
+        assert!(
+            !args.no_quick_reference,
+            "no_quick_reference should default to false"
+        );
+        assert!(!args.no_group_impls, "no_group_impls should default to false");
+        assert!(
+            !args.hide_trivial_derives,
+            "hide_trivial_derives should default to false"
+        );
+        assert!(
+            !args.no_method_anchors,
+            "no_method_anchors should default to false"
+        );
+        assert!(
+            !args.source_locations,
+            "source_locations should default to false"
+        );
+        assert!(
+            !args.full_method_docs,
+            "full_method_docs should default to false"
+        );
     }
 }

@@ -52,7 +52,7 @@ struct Errno(u16);
 
 `errno`—An error code.
 
-The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../../../cargo_docs_md/error/index.md),
+The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../../../addr2line/index.md),
 but only holds an OS error code, and no extra error value.
 
 # References

@@ -428,8 +428,8 @@ impl<'a> MultiCrateGenerator<'a> {
     #[instrument(skip(self), fields(
         crate_count = self.ctx.crates().names().len(),
         output = %self.args.output.display(),
-        mdbook = self.args.mdbook,
-        search_index = self.args.search_index
+        mdbook = !self.args.no_mdbook,
+        search_index = !self.args.no_search_index
     ))]
     pub fn generate(&self) -> Result<(), Error> {
         info!("Starting multi-crate documentation generation");
@@ -475,7 +475,7 @@ impl<'a> MultiCrateGenerator<'a> {
             })?;
 
         // Generate SUMMARY.md if requested (sequential - single file)
-        if self.args.mdbook {
+        if !self.args.no_mdbook {
             info!("Generating SUMMARY.md for mdBook");
             progress.set_message("Generating SUMMARY.md...");
             let summary_gen = SummaryGenerator::new(
@@ -487,7 +487,7 @@ impl<'a> MultiCrateGenerator<'a> {
         }
 
         // Generate search index if requested (sequential - single file)
-        if self.args.search_index {
+        if !self.args.no_search_index {
             info!("Generating search_index.json");
             progress.set_message("Generating search_index.json...");
 

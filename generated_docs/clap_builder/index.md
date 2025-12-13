@@ -3443,7 +3443,7 @@ assert_eq!(matches
 
 - <span id="arggroup-multiple"></span>`fn multiple(self, yes: bool) -> Self`
 
-  Allows more than one of the [`Arg`](builder/arg/index.md)s in this group to be used. (Default: `false`)
+  Allows more than one of the [`Arg`](#arg)s in this group to be used. (Default: `false`)
 
   
 
@@ -6827,9 +6827,9 @@ Requires `cargo` feature flag to be enabled.
 
 *Defined in [`clap_builder-4.5.53/src/macros.rs:532-563`](../../.source_1765521767/clap_builder-4.5.53/src/macros.rs#L532-L563)*
 
-Create an [`Arg`](builder/arg/index.md) from a usage string.
+Create an [`Arg`](#arg) from a usage string.
 
-Allows creation of basic settings for the [`Arg`](builder/arg/index.md).
+Allows creation of basic settings for the [`Arg`](#arg).
 
 <div class="warning">
 

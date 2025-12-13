@@ -1488,7 +1488,7 @@ struct OccupiedEntry<'a, T, S, A: Allocator> {
 *Defined in [`hashbrown-0.16.1/src/set.rs:2301-2303`](../../../.source_1765521767/hashbrown-0.16.1/src/set.rs#L2301-L2303)*
 
 A view into an occupied entry in a `HashSet`.
-It is part of the [`Entry`](#entry) enum.
+It is part of the [`Entry`](../hash_map/index.md) enum.
 
 # Examples
 
@@ -1665,7 +1665,7 @@ struct VacantEntry<'a, T, S, A: Allocator> {
 *Defined in [`hashbrown-0.16.1/src/set.rs:2339-2341`](../../../.source_1765521767/hashbrown-0.16.1/src/set.rs#L2339-L2341)*
 
 A view into a vacant entry in a `HashSet`.
-It is part of the [`Entry`](#entry) enum.
+It is part of the [`Entry`](../hash_map/index.md) enum.
 
 # Examples
 

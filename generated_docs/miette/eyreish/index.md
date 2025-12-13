@@ -112,11 +112,11 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
   
 
-  If the argument implements [`std::error::Error`](../../cargo_docs_md/error/index.md), prefer `Report::new`
+  If the argument implements [`std::error::Error`](../../addr2line/index.md), prefer `Report::new`
 
   instead which preserves the underlying error's cause chain and
 
-  backtrace. If the argument may or may not implement [`std::error::Error`](../../cargo_docs_md/error/index.md)
+  backtrace. If the argument may or may not implement [`std::error::Error`](../../addr2line/index.md)
 
   now or in the future, use `miette!(err)` which handles either way
 
@@ -530,11 +530,11 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
   
 
-  If the argument implements [`std::error::Error`](../../cargo_docs_md/error/index.md), prefer `Report::new`
+  If the argument implements [`std::error::Error`](../../addr2line/index.md), prefer `Report::new`
 
   instead which preserves the underlying error's cause chain and
 
-  backtrace. If the argument may or may not implement [`std::error::Error`](../../cargo_docs_md/error/index.md)
+  backtrace. If the argument may or may not implement [`std::error::Error`](../../addr2line/index.md)
 
   now or in the future, use `miette!(err)` which handles either way
 
@@ -1525,12 +1525,12 @@ trait IntoDiagnostic<T, E> { ... }
 *Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:35-39`](../../../.source_1765521767/miette-7.6.0/src/eyreish/into_diagnostic.rs#L35-L39)*
 
 Convenience trait that adds a [`.into_diagnostic()`](IntoDiagnostic::into_diagnostic) method that converts a type implementing
-[`std::error::Error`](../../cargo_docs_md/error/index.md) to a [`Result<T, Report>`](../../cargo_metadata/errors/index.md).
+[`std::error::Error`](../../addr2line/index.md) to a [`Result<T, Report>`](../../cargo_metadata/errors/index.md).
 
 ## Warning
 
 Calling this on a type implementing [`Diagnostic`](../index.md) will reduce it to the common denominator of
-[`std::error::Error`](../../cargo_docs_md/error/index.md). Meaning all extra information provided by [`Diagnostic`](../index.md) will be
+[`std::error::Error`](../../addr2line/index.md). Meaning all extra information provided by [`Diagnostic`](../index.md) will be
 inaccessible. If you have a type implementing [`Diagnostic`](../index.md) consider simply returning it or using
 `Into` or the [`Try`](std::ops::Try) operator (`?`).
 
@@ -1538,7 +1538,7 @@ inaccessible. If you have a type implementing [`Diagnostic`](../index.md) consid
 
 - `fn into_diagnostic(self) -> Result<T, Report>`
 
-  Converts [`Result`](../../cargo_metadata/errors/index.md) types that return regular [`std::error::Error`](../../cargo_docs_md/error/index.md)s
+  Converts [`Result`](../../cargo_metadata/errors/index.md) types that return regular [`std::error::Error`](../../addr2line/index.md)s
 
 #### Implementors
 

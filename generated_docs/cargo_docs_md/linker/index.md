@@ -148,7 +148,19 @@ Utilify functions to handle anchors
 
   may define the same associated type (e.g., `Output` in both `Add` and `Sub`).
 
-  For trait impls, the trait name is included in the anchor to ensure uniqueness.
+  
+
+  # Disambiguation Strategy
+
+  
+
+  - **Associated types/consts**: Always include trait name (high collision risk)
+
+  - **Methods**: Only include trait name when it differs from the method name
+
+    - Avoids redundant `Clone::clone` → `type-clone-clone`
+
+    - Keeps `Debug::fmt` → `type-debug-fmt` for disambiguation from `Display::fmt`
 
   
 
@@ -180,11 +192,13 @@ Utilify functions to handle anchors
 
   | Inherent | Const | `type-const-item` | `vec-const-align` |
 
-  | Trait(Add) | Method | `type-add-method` | `vec-add-add` |
+  | Trait(Clone) | Method | `type-method` | `vec-clone` (trait=method) |
 
-  | Trait(Add) | Type | `type-add-type-item` | `vec-add-type-output` |
+  | Trait(Debug) | Method | `type-trait-method` | `vec-debug-fmt` (trait≠method) |
 
-  | Trait(Add) | Const | `type-add-const-item` | `vec-add-const-max` |
+  | Trait(Add) | Type | `type-trait-type-item` | `vec-add-type-output` |
+
+  | Trait(Add) | Const | `type-trait-const-item` | `vec-add-const-max` |
 
 - <span id="anchorutils-slugify-anchor"></span>`fn slugify_anchor(name: &str) -> String`
 
@@ -357,7 +371,7 @@ struct LinkRegistry {
 }
 ```
 
-*Defined in `src/linker.rs:346-358`*
+*Defined in `src/linker.rs:366-378`*
 
 Registry mapping item IDs to their documentation file paths.
 

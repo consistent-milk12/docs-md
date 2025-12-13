@@ -127,10 +127,12 @@ struct CollectOptions {
     pub include_dev: bool,
     pub output: Option<std::path::PathBuf>,
     pub dry_run: bool,
+    pub minimal_sources: bool,
+    pub no_gitignore: bool,
 }
 ```
 
-*Defined in `src/source/collector.rs:67-76`*
+*Defined in `src/source/collector.rs:67-86`*
 
 Options for source collection.
 
@@ -147,6 +149,18 @@ Options for source collection.
 - **`dry_run`**: `bool`
 
   Dry run - don't actually copy files.
+
+- **`minimal_sources`**: `bool`
+
+  Only copy `src/` directory and `Cargo.toml` (minimal mode).
+  
+  By default (false), the entire crate directory is copied to ensure
+  all source files are available (including `build.rs`, modules outside
+  `src/`, etc.).
+
+- **`no_gitignore`**: `bool`
+
+  Skip adding `.source_*` pattern to `.gitignore`.
 
 #### Trait Implementations
 
@@ -468,7 +482,7 @@ struct SourceCollector {
 }
 ```
 
-*Defined in `src/source/collector.rs:80-86`*
+*Defined in `src/source/collector.rs:90-96`*
 
 Collector for gathering dependency sources.
 
@@ -528,9 +542,21 @@ Collector for gathering dependency sources.
 
   Find a crate's source in the cargo registry.
 
-- <span id="sourcecollector-copy-crate-source"></span>`fn copy_crate_source(source: &Path, dest: &Path) -> Result<(), Error>` — [`Error`](../error/index.md#error)
+- <span id="sourcecollector-copy-crate-source"></span>`fn copy_crate_source(source: &Path, dest: &Path, minimal: bool) -> Result<(), Error>` — [`Error`](../error/index.md#error)
 
   Copy crate source to destination.
+
+  
+
+  If `minimal` is false (default), copies the entire crate directory.
+
+  If `minimal` is true, only copies `src/` and `Cargo.toml`.
+
+  
+
+  In both modes, `Cargo.toml` is renamed to `Crate.toml` to avoid
+
+  confusing cargo when the collected sources are in the workspace.
 
 - <span id="sourcecollector-get-dev-only-packages"></span>`fn get_dev_only_packages(&self) -> HashSet<PackageId>`
 

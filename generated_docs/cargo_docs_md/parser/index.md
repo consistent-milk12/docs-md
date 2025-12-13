@@ -107,9 +107,11 @@ into the `rustdoc_types::Crate` structure.
 
   
 
-  This function is useful when the JSON content is already in memory
+  This is an alias for `parse_json` provided for API clarity when the
 
-  (e.g., fetched from a URL or embedded in tests).
+  caller wants to emphasize that they're parsing string content rather
+
+  than a file path.
 
   
 

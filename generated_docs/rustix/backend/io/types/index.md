@@ -22,7 +22,7 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 *Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:4-18`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L4-L18)*
 
-`FD_*` constants for use with [`fcntl_getfd`](../../../io/index.md) and [`fcntl_setfd`](../../../io/index.md).
+`FD_*` constants for use with [`fcntl_getfd`](../syscalls/index.md) and [`fcntl_setfd`](../../../io/index.md).
 
 
 

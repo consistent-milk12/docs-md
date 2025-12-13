@@ -64,7 +64,7 @@ struct Termios {
 
 *Defined in [`rustix-1.1.2/src/termios/types.rs:14-75`](../../../../.source_1765521767/rustix-1.1.2/src/termios/types.rs#L14-L75)*
 
-`struct termios` for use with [`tcgetattr`](../index.md) and [`tcsetattr`](../index.md).
+`struct termios` for use with [`tcgetattr`](../index.md) and [`tcsetattr`](../../backend/termios/syscalls/index.md).
 
 
 
@@ -1687,7 +1687,7 @@ enum OptionalActions {
 
 *Defined in [`rustix-1.1.2/src/termios/types.rs:1372-1385`](../../../../.source_1765521767/rustix-1.1.2/src/termios/types.rs#L1372-L1385)*
 
-`TCSA*` values for use with [`tcsetattr`](../index.md).
+`TCSA*` values for use with [`tcsetattr`](../../backend/termios/syscalls/index.md).
 
 
 #### Variants
@@ -1795,7 +1795,7 @@ enum QueueSelector {
 
 *Defined in [`rustix-1.1.2/src/termios/types.rs:1392-1404`](../../../../.source_1765521767/rustix-1.1.2/src/termios/types.rs#L1392-L1404)*
 
-`TC*` values for use with [`tcflush`](../../backend/termios/syscalls/index.md).
+`TC*` values for use with [`tcflush`](../index.md).
 
 
 #### Variants
@@ -1903,7 +1903,7 @@ enum Action {
 
 *Defined in [`rustix-1.1.2/src/termios/types.rs:1411-1427`](../../../../.source_1765521767/rustix-1.1.2/src/termios/types.rs#L1411-L1427)*
 
-`TC*` values for use with [`tcflow`](../../backend/termios/syscalls/index.md).
+`TC*` values for use with [`tcflow`](../index.md).
 
 
 #### Variants

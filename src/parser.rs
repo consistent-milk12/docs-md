@@ -118,8 +118,9 @@ impl Parser {
 
     /// Parse a rustdoc JSON string into a `Crate` structure.
     ///
-    /// This function is useful when the JSON content is already in memory
-    /// (e.g., fetched from a URL or embedded in tests).
+    /// This is an alias for [`parse_json`] provided for API clarity when the
+    /// caller wants to emphasize that they're parsing string content rather
+    /// than a file path.
     ///
     /// # Arguments
     ///
@@ -138,11 +139,12 @@ impl Parser {
     ///
     /// The `rustdoc-types` crate version must match the rustdoc JSON format
     /// version. Mismatches can cause parsing failures or missing fields.
+    #[inline]
     pub fn parse_json_string(content: &str) -> Result<Crate, Error> {
-        // Deserialize the JSON into the Crate type from rustdoc-types.
-        // This validates the structure against the expected schema.
-        let krate: Crate = serde_json::from_str(content).map_err(Error::JsonParse)?;
-
-        Ok(krate)
+        // Delegate to parse_json to ensure consistent behavior:
+        // - Feature gates (simd-json when enabled)
+        // - Tracing/logging
+        // - Error handling
+        Self::parse_json(content)
     }
 }

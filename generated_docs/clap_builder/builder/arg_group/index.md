@@ -268,7 +268,7 @@ assert_eq!(matches
 
 - <span id="arggroup-multiple"></span>`fn multiple(self, yes: bool) -> Self`
 
-  Allows more than one of the [`Arg`](../arg/index.md)s in this group to be used. (Default: `false`)
+  Allows more than one of the [`Arg`](../../index.md)s in this group to be used. (Default: `false`)
 
   
 

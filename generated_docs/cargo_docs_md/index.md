@@ -40,6 +40,10 @@ generation capabilities programmatically.
   - [`Cargo`](#cargo)
   - [`Command`](#command)
   - [`CliOutputFormat`](#clioutputformat)
+- [Functions](#functions)
+  - [`iter_zip`](#iter-zip)
+  - [`index_loop`](#index-loop)
+  - [`index_loop_no_assert`](#index-loop-no-assert)
 - [Type Aliases](#type-aliases)
   - [`Args`](#args)
 
@@ -76,6 +80,9 @@ generation capabilities programmatically.
 | [`Cargo`](#cargo) | enum | Cargo wrapper for subcommand invocation. |
 | [`Command`](#command) | enum | Available subcommands |
 | [`CliOutputFormat`](#clioutputformat) | enum | CLI-compatible output format enum (for clap `ValueEnum` derive). |
+| [`iter_zip`](#iter-zip) | fn | Test function: iterator zip (no bounds checks in loop). |
+| [`index_loop`](#index-loop) | fn | Test function: index loop with assert (bounds check elided). |
+| [`index_loop_no_assert`](#index-loop-no-assert) | fn | Test function: index loop without assert (bounds check present). |
 | [`Args`](#args) | type | Backwards-compatible type alias for existing code. |
 
 ## Modules
@@ -923,7 +930,19 @@ Utilify functions to handle anchors
 
   may define the same associated type (e.g., `Output` in both `Add` and `Sub`).
 
-  For trait impls, the trait name is included in the anchor to ensure uniqueness.
+  
+
+  # Disambiguation Strategy
+
+  
+
+  - **Associated types/consts**: Always include trait name (high collision risk)
+
+  - **Methods**: Only include trait name when it differs from the method name
+
+    - Avoids redundant `Clone::clone` → `type-clone-clone`
+
+    - Keeps `Debug::fmt` → `type-debug-fmt` for disambiguation from `Display::fmt`
 
   
 
@@ -955,11 +974,13 @@ Utilify functions to handle anchors
 
   | Inherent | Const | `type-const-item` | `vec-const-align` |
 
-  | Trait(Add) | Method | `type-add-method` | `vec-add-add` |
+  | Trait(Clone) | Method | `type-method` | `vec-clone` (trait=method) |
 
-  | Trait(Add) | Type | `type-add-type-item` | `vec-add-type-output` |
+  | Trait(Debug) | Method | `type-trait-method` | `vec-debug-fmt` (trait≠method) |
 
-  | Trait(Add) | Const | `type-add-const-item` | `vec-add-const-max` |
+  | Trait(Add) | Type | `type-trait-type-item` | `vec-add-type-output` |
+
+  | Trait(Add) | Const | `type-trait-const-item` | `vec-add-const-max` |
 
 - <span id="anchorutils-slugify-anchor"></span>`fn slugify_anchor(name: &str) -> String`
 
@@ -1132,7 +1153,7 @@ struct LinkRegistry {
 }
 ```
 
-*Defined in `src/linker.rs:346-358`*
+*Defined in `src/linker.rs:366-378`*
 
 Registry mapping item IDs to their documentation file paths.
 
@@ -3210,10 +3231,12 @@ struct CollectSourcesArgs {
     pub include_dev: bool,
     pub dry_run: bool,
     pub manifest_path: Option<std::path::PathBuf>,
+    pub minimal_sources: bool,
+    pub no_gitignore: bool,
 }
 ```
 
-*Defined in `src/lib.rs:213-233`*
+*Defined in `src/lib.rs:213-251`*
 
 Arguments for the `collect-sources` subcommand.
 
@@ -3238,6 +3261,24 @@ Arguments for the `collect-sources` subcommand.
 - **`manifest_path`**: `Option<std::path::PathBuf>`
 
   Path to Cargo.toml (defaults to current directory).
+
+- **`minimal_sources`**: `bool`
+
+  Only copy `src/` directory and `Cargo.toml`.
+  
+  By default, the entire crate directory is copied to ensure all source
+  files are available (including `build.rs`, modules outside `src/`, etc.).
+  Enable this flag to minimize disk usage at the cost of potentially
+  missing some source files.
+
+- **`no_gitignore`**: `bool`
+
+  Do not add `.source_*` pattern to `.gitignore`.
+  
+  By default, the tool appends `.source_*` to `.gitignore` to prevent
+  accidentally committing collected source files. Enable this flag to
+  skip this modification (useful for projects with strict `.gitignore`
+  management).
 
 #### Trait Implementations
 
@@ -3341,8 +3382,8 @@ Arguments for the `collect-sources` subcommand.
 struct GenerateArgs {
     pub path: Option<std::path::PathBuf>,
     pub dir: Option<std::path::PathBuf>,
-    pub mdbook: bool,
-    pub search_index: bool,
+    pub no_mdbook: bool,
+    pub no_search_index: bool,
     pub primary_crate: Option<String>,
     pub output: std::path::PathBuf,
     pub format: CliOutputFormat,
@@ -3358,7 +3399,7 @@ struct GenerateArgs {
 }
 ```
 
-*Defined in `src/lib.rs:245-367`*
+*Defined in `src/lib.rs:263-385`*
 
 Command-line arguments for direct generation (no subcommand).
 
@@ -3390,22 +3431,22 @@ The tool accepts input from two mutually exclusive sources:
   
   Mutually exclusive with `--path`.
 
-- **`mdbook`**: `bool`
+- **`no_mdbook`**: `bool`
 
-  Generate mdBook-compatible SUMMARY.md file.
+  Skip generating mdBook SUMMARY.md file.
   
   Only valid with `--dir` for multi-crate documentation.
-  Creates a `SUMMARY.md` file in the output directory that can be
-  used as the entry point for an mdBook documentation site.
+  By default, a `SUMMARY.md` file is created in the output directory
+  that can be used as the entry point for an mdBook documentation site.
 
-- **`search_index`**: `bool`
+- **`no_search_index`**: `bool`
 
-  Generate `search_index.json` for client-side search.
+  Skip generating `search_index.json` file.
   
   Only valid with `--dir` for multi-crate documentation.
-  Creates a `search_index.json` file containing all documented items,
-  which can be used with client-side search libraries like Fuse.js,
-  Lunr.js, or `FlexSearch`.
+  By default, a `search_index.json` file is created containing all
+  documented items, which can be used with client-side search libraries
+  like Fuse.js, Lunr.js, or `FlexSearch`.
 
 - **`primary_crate`**: `Option<String>`
 
@@ -3958,7 +3999,7 @@ enum CliOutputFormat {
 }
 ```
 
-*Defined in `src/lib.rs:374-381`*
+*Defined in `src/lib.rs:392-399`*
 
 CLI-compatible output format enum (for clap `ValueEnum` derive).
 
@@ -4070,6 +4111,38 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 
 ##### `impl WithSubscriber for CliOutputFormat`
 
+## Functions
+
+### `iter_zip`
+
+```rust
+fn iter_zip(a: Vec<i64>, b: Vec<i64>) -> i64
+```
+
+*Defined in `src/lib.rs:416-423`*
+
+Test function: iterator zip (no bounds checks in loop).
+
+### `index_loop`
+
+```rust
+fn index_loop(a: Vec<i64>, b: Vec<i64>) -> i64
+```
+
+*Defined in `src/lib.rs:427-434`*
+
+Test function: index loop with assert (bounds check elided).
+
+### `index_loop_no_assert`
+
+```rust
+fn index_loop_no_assert(a: Vec<i64>, b: Vec<i64>) -> i64
+```
+
+*Defined in `src/lib.rs:438-444`*
+
+Test function: index loop without assert (bounds check present).
+
 ## Type Aliases
 
 ### `Args`
@@ -4078,7 +4151,7 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 type Args = GenerateArgs;
 ```
 
-*Defined in `src/lib.rs:370`*
+*Defined in `src/lib.rs:388`*
 
 Backwards-compatible type alias for existing code.
 
