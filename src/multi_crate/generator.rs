@@ -31,40 +31,18 @@ use crate::linker::ImplContext;
 use crate::utils::PathUtils;
 use crate::{AnchorUtils, Args};
 
-// ============================================================================
-// Core Types
-// ============================================================================
-
-/// Result of resolving a potential re-export to its actual item.
-///
-/// This struct captures all context needed for rendering, eliminiating the need
-/// for duplicated resolution logic in each render method. For local items,
-/// `source_crate` is `None`. For cross-crate re-exports, it contains the
-/// source crate name for proper type rendering and impl lookup.
-///
-/// # Note on `Copy`
-///
-/// This struct derives `Copy` because `Id` is `Copy` (newtype over `u32`),
-/// and all other fields are references or `Option` of references.
-#[derive(Clone, Copy, Debug)]
-struct ResolvedItem<'a> {
-    /// Display name (from `Use.name` for re-exports, `Item.name` otherwise)
-    name: &'a str,
-
-    /// The actual resolved item (target of re-export, or original item)
-    item: &'a Item,
-
-    /// ID of the resolved item - always the actual item's ID, never a dummy
-    id: Id,
-
-    /// Source crate name for cross-crate re-exports (`None` for local items)
-    source_crate: Option<&'a str>,
-}
+// Note: CategorizedItems for multi-crate rendering is defined in generator/module.rs
+// and is used there for the single-crate rendering path. The struct below was written
+// for potential future use in multi-crate rendering but is not yet integrated.
 
 /// Categorized module items for rendering.
 ///
 /// Collects items by category during module traversal, eliminating the need
 /// for 8 separate vector parameters in TOC/QuickRef generation.
+///
+/// Note: This is currently unused - kept for potential future multi-crate
+/// rendering improvements.
+#[allow(dead_code)]
 struct CategorizedItems<'a> {
     modules: Vec<&'a Item>,
     structs: Vec<(&'a Id, &'a Item)>,
@@ -78,6 +56,7 @@ struct CategorizedItems<'a> {
     macros: Vec<&'a Item>,
 }
 
+#[allow(dead_code)]
 impl<'a> CategorizedItems<'a> {
     /// Create empty categorized items collection.
     const fn new() -> Self {
