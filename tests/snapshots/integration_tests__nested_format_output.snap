@@ -351,7 +351,7 @@ Configuration options for markdown rendering.
 
 ##### `impl Clone for RenderConfig`
 
-- <span id="renderconfig-clone-clone"></span>`fn clone(&self) -> RenderConfig` — [`RenderConfig`](#renderconfig)
+- <span id="renderconfig-clone"></span>`fn clone(&self) -> RenderConfig` — [`RenderConfig`](#renderconfig)
 
 ##### `impl Debug for RenderConfig`
 
@@ -359,7 +359,7 @@ Configuration options for markdown rendering.
 
 ##### `impl Default for RenderConfig`
 
-- <span id="renderconfig-default-default"></span>`fn default() -> Self`
+- <span id="renderconfig-default"></span>`fn default() -> Self`
 
 ##### `impl Instrument for RenderConfig`
 
@@ -415,7 +415,7 @@ Requires the `source-parsing` feature to have any effect.
 
 ##### `impl Clone for SourceConfig`
 
-- <span id="sourceconfig-clone-clone"></span>`fn clone(&self) -> SourceConfig` — [`SourceConfig`](#sourceconfig)
+- <span id="sourceconfig-clone"></span>`fn clone(&self) -> SourceConfig` — [`SourceConfig`](#sourceconfig)
 
 ##### `impl Debug for SourceConfig`
 
@@ -423,7 +423,7 @@ Requires the `source-parsing` feature to have any effect.
 
 ##### `impl Default for SourceConfig`
 
-- <span id="sourceconfig-default-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](#sourceconfig)
+- <span id="sourceconfig-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](#sourceconfig)
 
 ##### `impl Instrument for SourceConfig`
 
@@ -878,7 +878,7 @@ The variants are ordered by their typical importance/frequency of use:
 
 ##### `impl Clone for ImplCategory`
 
-- <span id="implcategory-clone-clone"></span>`fn clone(&self) -> ImplCategory` — [`ImplCategory`](#implcategory)
+- <span id="implcategory-clone"></span>`fn clone(&self) -> ImplCategory` — [`ImplCategory`](#implcategory)
 
 ##### `impl<K> Comparable<K> for ImplCategory`
 
@@ -894,11 +894,11 @@ The variants are ordered by their typical importance/frequency of use:
 
 ##### `impl<K> Equivalent<K> for ImplCategory`
 
-- <span id="implcategory-equivalent-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
+- <span id="implcategory-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
 ##### `impl Hash for ImplCategory`
 
-- <span id="implcategory-hash-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
+- <span id="implcategory-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Instrument for ImplCategory`
 
@@ -1586,7 +1586,7 @@ side effects.
 
 ##### `impl Default for MarkdownCapture`
 
-- <span id="markdowncapture-default-default"></span>`fn default() -> MarkdownCapture` — [`MarkdownCapture`](#markdowncapture)
+- <span id="markdowncapture-default"></span>`fn default() -> MarkdownCapture` — [`MarkdownCapture`](#markdowncapture)
 
 ##### `impl Instrument for MarkdownCapture`
 
@@ -1650,7 +1650,7 @@ Configuration options for markdown rendering.
 
 ##### `impl Clone for RenderConfig`
 
-- <span id="renderconfig-clone-clone"></span>`fn clone(&self) -> RenderConfig` — [`RenderConfig`](config/index.md#renderconfig)
+- <span id="renderconfig-clone"></span>`fn clone(&self) -> RenderConfig` — [`RenderConfig`](config/index.md#renderconfig)
 
 ##### `impl Debug for RenderConfig`
 
@@ -1658,7 +1658,7 @@ Configuration options for markdown rendering.
 
 ##### `impl Default for RenderConfig`
 
-- <span id="renderconfig-default-default"></span>`fn default() -> Self`
+- <span id="renderconfig-default"></span>`fn default() -> Self`
 
 ##### `impl Instrument for RenderConfig`
 
@@ -1714,7 +1714,7 @@ Requires the `source-parsing` feature to have any effect.
 
 ##### `impl Clone for SourceConfig`
 
-- <span id="sourceconfig-clone-clone"></span>`fn clone(&self) -> SourceConfig` — [`SourceConfig`](config/index.md#sourceconfig)
+- <span id="sourceconfig-clone"></span>`fn clone(&self) -> SourceConfig` — [`SourceConfig`](config/index.md#sourceconfig)
 
 ##### `impl Debug for SourceConfig`
 
@@ -1722,7 +1722,7 @@ Requires the `source-parsing` feature to have any effect.
 
 ##### `impl Default for SourceConfig`
 
-- <span id="sourceconfig-default-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](config/index.md#sourceconfig)
+- <span id="sourceconfig-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](config/index.md#sourceconfig)
 
 ##### `impl Instrument for SourceConfig`
 
@@ -2077,7 +2077,7 @@ anchor link, and first-sentence summary.
 
 ##### `impl Clone for QuickRefEntry`
 
-- <span id="quickrefentry-clone-clone"></span>`fn clone(&self) -> QuickRefEntry` — [`QuickRefEntry`](quick_ref/index.md#quickrefentry)
+- <span id="quickrefentry-clone"></span>`fn clone(&self) -> QuickRefEntry` — [`QuickRefEntry`](quick_ref/index.md#quickrefentry)
 
 ##### `impl Debug for QuickRefEntry`
 
@@ -2116,7 +2116,7 @@ kinds, and first-sentence descriptions.
 
 ##### `impl Clone for QuickRefGenerator`
 
-- <span id="quickrefgenerator-clone-clone"></span>`fn clone(&self) -> QuickRefGenerator` — [`QuickRefGenerator`](quick_ref/index.md#quickrefgenerator)
+- <span id="quickrefgenerator-clone"></span>`fn clone(&self) -> QuickRefGenerator` — [`QuickRefGenerator`](quick_ref/index.md#quickrefgenerator)
 
 ##### `impl Debug for QuickRefGenerator`
 
@@ -2124,7 +2124,7 @@ kinds, and first-sentence descriptions.
 
 ##### `impl Default for QuickRefGenerator`
 
-- <span id="quickrefgenerator-default-default"></span>`fn default() -> QuickRefGenerator` — [`QuickRefGenerator`](quick_ref/index.md#quickrefgenerator)
+- <span id="quickrefgenerator-default"></span>`fn default() -> QuickRefGenerator` — [`QuickRefGenerator`](quick_ref/index.md#quickrefgenerator)
 
 ##### `impl Instrument for QuickRefGenerator`
 
@@ -2182,7 +2182,7 @@ for nested navigation.
 
 ##### `impl Clone for TocEntry`
 
-- <span id="tocentry-clone-clone"></span>`fn clone(&self) -> TocEntry` — [`TocEntry`](toc/index.md#tocentry)
+- <span id="tocentry-clone"></span>`fn clone(&self) -> TocEntry` — [`TocEntry`](toc/index.md#tocentry)
 
 ##### `impl Debug for TocEntry`
 
@@ -2224,7 +2224,7 @@ modules with unnecessary navigation.
 
 ##### `impl Clone for TocGenerator`
 
-- <span id="tocgenerator-clone-clone"></span>`fn clone(&self) -> TocGenerator` — [`TocGenerator`](toc/index.md#tocgenerator)
+- <span id="tocgenerator-clone"></span>`fn clone(&self) -> TocGenerator` — [`TocGenerator`](toc/index.md#tocgenerator)
 
 ##### `impl Debug for TocGenerator`
 
@@ -2537,7 +2537,7 @@ The variants are ordered by their typical importance/frequency of use:
 
 ##### `impl Clone for ImplCategory`
 
-- <span id="implcategory-clone-clone"></span>`fn clone(&self) -> ImplCategory` — [`ImplCategory`](impl_category/index.md#implcategory)
+- <span id="implcategory-clone"></span>`fn clone(&self) -> ImplCategory` — [`ImplCategory`](impl_category/index.md#implcategory)
 
 ##### `impl<K> Comparable<K> for ImplCategory`
 
@@ -2553,11 +2553,11 @@ The variants are ordered by their typical importance/frequency of use:
 
 ##### `impl<K> Equivalent<K> for ImplCategory`
 
-- <span id="implcategory-equivalent-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
+- <span id="implcategory-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
 ##### `impl Hash for ImplCategory`
 
-- <span id="implcategory-hash-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
+- <span id="implcategory-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Instrument for ImplCategory`
 
@@ -2930,7 +2930,7 @@ anchor link, and first-sentence summary.
 
 ##### `impl Clone for QuickRefEntry`
 
-- <span id="quickrefentry-clone-clone"></span>`fn clone(&self) -> QuickRefEntry` — [`QuickRefEntry`](#quickrefentry)
+- <span id="quickrefentry-clone"></span>`fn clone(&self) -> QuickRefEntry` — [`QuickRefEntry`](#quickrefentry)
 
 ##### `impl Debug for QuickRefEntry`
 
@@ -2969,7 +2969,7 @@ kinds, and first-sentence descriptions.
 
 ##### `impl Clone for QuickRefGenerator`
 
-- <span id="quickrefgenerator-clone-clone"></span>`fn clone(&self) -> QuickRefGenerator` — [`QuickRefGenerator`](#quickrefgenerator)
+- <span id="quickrefgenerator-clone"></span>`fn clone(&self) -> QuickRefGenerator` — [`QuickRefGenerator`](#quickrefgenerator)
 
 ##### `impl Debug for QuickRefGenerator`
 
@@ -2977,7 +2977,7 @@ kinds, and first-sentence descriptions.
 
 ##### `impl Default for QuickRefGenerator`
 
-- <span id="quickrefgenerator-default-default"></span>`fn default() -> QuickRefGenerator` — [`QuickRefGenerator`](#quickrefgenerator)
+- <span id="quickrefgenerator-default"></span>`fn default() -> QuickRefGenerator` — [`QuickRefGenerator`](#quickrefgenerator)
 
 ##### `impl Instrument for QuickRefGenerator`
 
@@ -3092,7 +3092,7 @@ Categorized trait items for structured rendering.
 
 ##### `impl Default for CategorizedTraitItems<'a>`
 
-- <span id="categorizedtraititems-default-default"></span>`fn default() -> CategorizedTraitItems<'a>` — [`CategorizedTraitItems`](#categorizedtraititems)
+- <span id="categorizedtraititems-default"></span>`fn default() -> CategorizedTraitItems<'a>` — [`CategorizedTraitItems`](#categorizedtraititems)
 
 ##### `impl Instrument for CategorizedTraitItems<'a>`
 
@@ -3441,7 +3441,7 @@ absolute cargo registry paths to relative links pointing to the local
 
 ##### `impl Clone for SourcePathConfig`
 
-- <span id="sourcepathconfig-clone-clone"></span>`fn clone(&self) -> SourcePathConfig` — [`SourcePathConfig`](#sourcepathconfig)
+- <span id="sourcepathconfig-clone"></span>`fn clone(&self) -> SourcePathConfig` — [`SourcePathConfig`](#sourcepathconfig)
 
 ##### `impl Debug for SourcePathConfig`
 
@@ -3589,7 +3589,7 @@ for nested navigation.
 
 ##### `impl Clone for TocEntry`
 
-- <span id="tocentry-clone-clone"></span>`fn clone(&self) -> TocEntry` — [`TocEntry`](#tocentry)
+- <span id="tocentry-clone"></span>`fn clone(&self) -> TocEntry` — [`TocEntry`](#tocentry)
 
 ##### `impl Debug for TocEntry`
 
@@ -3631,7 +3631,7 @@ modules with unnecessary navigation.
 
 ##### `impl Clone for TocGenerator`
 
-- <span id="tocgenerator-clone-clone"></span>`fn clone(&self) -> TocGenerator` — [`TocGenerator`](#tocgenerator)
+- <span id="tocgenerator-clone"></span>`fn clone(&self) -> TocGenerator` — [`TocGenerator`](#tocgenerator)
 
 ##### `impl Debug for TocGenerator`
 
@@ -3827,7 +3827,7 @@ side effects.
 
 ##### `impl Default for MarkdownCapture`
 
-- <span id="markdowncapture-default-default"></span>`fn default() -> MarkdownCapture` — [`MarkdownCapture`](generator/index.md#markdowncapture)
+- <span id="markdowncapture-default"></span>`fn default() -> MarkdownCapture` — [`MarkdownCapture`](generator/index.md#markdowncapture)
 
 ##### `impl Instrument for MarkdownCapture`
 
@@ -3891,7 +3891,7 @@ Configuration options for markdown rendering.
 
 ##### `impl Clone for RenderConfig`
 
-- <span id="renderconfig-clone-clone"></span>`fn clone(&self) -> RenderConfig` — [`RenderConfig`](generator/config/index.md#renderconfig)
+- <span id="renderconfig-clone"></span>`fn clone(&self) -> RenderConfig` — [`RenderConfig`](generator/config/index.md#renderconfig)
 
 ##### `impl Debug for RenderConfig`
 
@@ -3899,7 +3899,7 @@ Configuration options for markdown rendering.
 
 ##### `impl Default for RenderConfig`
 
-- <span id="renderconfig-default-default"></span>`fn default() -> Self`
+- <span id="renderconfig-default"></span>`fn default() -> Self`
 
 ##### `impl Instrument for RenderConfig`
 
@@ -3955,7 +3955,7 @@ Requires the `source-parsing` feature to have any effect.
 
 ##### `impl Clone for SourceConfig`
 
-- <span id="sourceconfig-clone-clone"></span>`fn clone(&self) -> SourceConfig` — [`SourceConfig`](generator/config/index.md#sourceconfig)
+- <span id="sourceconfig-clone"></span>`fn clone(&self) -> SourceConfig` — [`SourceConfig`](generator/config/index.md#sourceconfig)
 
 ##### `impl Debug for SourceConfig`
 
@@ -3963,7 +3963,7 @@ Requires the `source-parsing` feature to have any effect.
 
 ##### `impl Default for SourceConfig`
 
-- <span id="sourceconfig-default-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](generator/config/index.md#sourceconfig)
+- <span id="sourceconfig-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](generator/config/index.md#sourceconfig)
 
 ##### `impl Instrument for SourceConfig`
 
@@ -4239,7 +4239,7 @@ create links between items.
 
 ##### `impl Default for LinkRegistry`
 
-- <span id="linkregistry-default-default"></span>`fn default() -> LinkRegistry` — [`LinkRegistry`](linker/index.md#linkregistry)
+- <span id="linkregistry-default"></span>`fn default() -> LinkRegistry` — [`LinkRegistry`](linker/index.md#linkregistry)
 
 ##### `impl Instrument for LinkRegistry`
 
@@ -4323,7 +4323,7 @@ for (name, krate) in collection.iter() {
 
 ##### `impl Default for CrateCollection`
 
-- <span id="cratecollection-default-default"></span>`fn default() -> CrateCollection` — [`CrateCollection`](multi_crate/index.md#cratecollection)
+- <span id="cratecollection-default"></span>`fn default() -> CrateCollection` — [`CrateCollection`](multi_crate/index.md#cratecollection)
 
 ##### `impl Instrument for CrateCollection`
 
@@ -4509,7 +4509,7 @@ Serialized to `search_index.json` for client-side consumption.
 
 ##### `impl Serialize for SearchIndex`
 
-- <span id="searchindex-serialize-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="searchindex-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl WithSubscriber for SearchIndex`
 
@@ -4656,7 +4656,7 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 ##### `impl Default for UnifiedLinkRegistry`
 
-- <span id="unifiedlinkregistry-default-default"></span>`fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](multi_crate/index.md#unifiedlinkregistry)
+- <span id="unifiedlinkregistry-default"></span>`fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](multi_crate/index.md#unifiedlinkregistry)
 
 ##### `impl Instrument for UnifiedLinkRegistry`
 
@@ -5113,7 +5113,7 @@ The tool accepts input from two mutually exclusive sources:
 
 ##### `impl Default for GenerateArgs`
 
-- <span id="generateargs-default-default"></span>`fn default() -> GenerateArgs` — [`GenerateArgs`](#generateargs)
+- <span id="generateargs-default"></span>`fn default() -> GenerateArgs` — [`GenerateArgs`](#generateargs)
 
 ##### `impl FromArgMatches for GenerateArgs`
 
@@ -5219,7 +5219,7 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 
 ##### `impl Clone for CliOutputFormat`
 
-- <span id="clioutputformat-clone-clone"></span>`fn clone(&self) -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
+- <span id="clioutputformat-clone"></span>`fn clone(&self) -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
 
 ##### `impl Copy for CliOutputFormat`
 
@@ -5229,7 +5229,7 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 
 ##### `impl Default for CliOutputFormat`
 
-- <span id="clioutputformat-default-default"></span>`fn default() -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
+- <span id="clioutputformat-default"></span>`fn default() -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
 
 ##### `impl Instrument for CliOutputFormat`
 
@@ -5341,7 +5341,7 @@ Controls how module files are organized in the output directory.
 
 ##### `impl Clone for OutputFormat`
 
-- <span id="outputformat-clone-clone"></span>`fn clone(&self) -> OutputFormat` — [`OutputFormat`](#outputformat)
+- <span id="outputformat-clone"></span>`fn clone(&self) -> OutputFormat` — [`OutputFormat`](#outputformat)
 
 ##### `impl Copy for OutputFormat`
 
@@ -5351,7 +5351,7 @@ Controls how module files are organized in the output directory.
 
 ##### `impl Default for OutputFormat`
 
-- <span id="outputformat-default-default"></span>`fn default() -> OutputFormat` — [`OutputFormat`](#outputformat)
+- <span id="outputformat-default"></span>`fn default() -> OutputFormat` — [`OutputFormat`](#outputformat)
 
 ##### `impl Instrument for OutputFormat`
 
@@ -5685,7 +5685,7 @@ create links between items.
 
 ##### `impl Default for LinkRegistry`
 
-- <span id="linkregistry-default-default"></span>`fn default() -> LinkRegistry` — [`LinkRegistry`](#linkregistry)
+- <span id="linkregistry-default"></span>`fn default() -> LinkRegistry` — [`LinkRegistry`](#linkregistry)
 
 ##### `impl Instrument for LinkRegistry`
 
@@ -5728,7 +5728,7 @@ Used to disambiguate anchors when multiple items share the same name
 
 ##### `impl Clone for AssocItemKind`
 
-- <span id="associtemkind-clone-clone"></span>`fn clone(&self) -> AssocItemKind` — [`AssocItemKind`](#associtemkind)
+- <span id="associtemkind-clone"></span>`fn clone(&self) -> AssocItemKind` — [`AssocItemKind`](#associtemkind)
 
 ##### `impl Copy for AssocItemKind`
 
@@ -5740,7 +5740,7 @@ Used to disambiguate anchors when multiple items share the same name
 
 ##### `impl<K> Equivalent<K> for AssocItemKind`
 
-- <span id="associtemkind-equivalent-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
+- <span id="associtemkind-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
 ##### `impl Instrument for AssocItemKind`
 
@@ -5786,7 +5786,7 @@ For example, both `impl Add for Foo` and `impl Sub for Foo` might have
 
 ##### `impl Clone for ImplContext<'a>`
 
-- <span id="implcontext-clone-clone"></span>`fn clone(&self) -> ImplContext<'a>` — [`ImplContext`](#implcontext)
+- <span id="implcontext-clone"></span>`fn clone(&self) -> ImplContext<'a>` — [`ImplContext`](#implcontext)
 
 ##### `impl Copy for ImplContext<'a>`
 
@@ -5916,7 +5916,7 @@ for (name, krate) in collection.iter() {
 
 ##### `impl Default for CrateCollection`
 
-- <span id="cratecollection-default-default"></span>`fn default() -> CrateCollection` — [`CrateCollection`](#cratecollection)
+- <span id="cratecollection-default"></span>`fn default() -> CrateCollection` — [`CrateCollection`](#cratecollection)
 
 ##### `impl Instrument for CrateCollection`
 
@@ -6283,7 +6283,7 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 ##### `impl Default for UnifiedLinkRegistry`
 
-- <span id="unifiedlinkregistry-default-default"></span>`fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](#unifiedlinkregistry)
+- <span id="unifiedlinkregistry-default"></span>`fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](#unifiedlinkregistry)
 
 ##### `impl Instrument for UnifiedLinkRegistry`
 
@@ -6325,7 +6325,7 @@ Serialized to `search_index.json` for client-side consumption.
 
 ##### `impl Serialize for SearchIndex`
 
-- <span id="searchindex-serialize-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="searchindex-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl WithSubscriber for SearchIndex`
 
@@ -6626,7 +6626,7 @@ Options for source collection.
 
 ##### `impl Default for CollectOptions`
 
-- <span id="collectoptions-default-default"></span>`fn default() -> CollectOptions` — [`CollectOptions`](#collectoptions)
+- <span id="collectoptions-default"></span>`fn default() -> CollectOptions` — [`CollectOptions`](#collectoptions)
 
 ##### `impl Instrument for CollectOptions`
 
@@ -6681,7 +6681,7 @@ Metadata about a collected crate.
 
 ##### `impl Clone for CollectedCrate`
 
-- <span id="collectedcrate-clone-clone"></span>`fn clone(&self) -> CollectedCrate` — [`CollectedCrate`](#collectedcrate)
+- <span id="collectedcrate-clone"></span>`fn clone(&self) -> CollectedCrate` — [`CollectedCrate`](#collectedcrate)
 
 ##### `impl Debug for CollectedCrate`
 
@@ -6689,7 +6689,7 @@ Metadata about a collected crate.
 
 ##### `impl Deserialize<'de> for CollectedCrate`
 
-- <span id="collectedcrate-deserialize-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="collectedcrate-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl DeserializeOwned for CollectedCrate`
 
@@ -6701,7 +6701,7 @@ Metadata about a collected crate.
 
 ##### `impl Serialize for CollectedCrate`
 
-- <span id="collectedcrate-serialize-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="collectedcrate-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl WithSubscriber for CollectedCrate`
 
@@ -6821,7 +6821,7 @@ Manifest stored in `.source_*/manifest.json`.
 
 ##### `impl Deserialize<'de> for SourceManifest`
 
-- <span id="sourcemanifest-deserialize-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="sourcemanifest-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl DeserializeOwned for SourceManifest`
 
@@ -6833,7 +6833,7 @@ Manifest stored in `.source_*/manifest.json`.
 
 ##### `impl Serialize for SourceManifest`
 
-- <span id="sourcemanifest-serialize-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="sourcemanifest-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl WithSubscriber for SourceManifest`
 
@@ -6934,7 +6934,7 @@ Parser for Rust source code using `syn`.
 
 ##### `impl Default for SourceParser`
 
-- <span id="sourceparser-default-default"></span>`fn default() -> SourceParser` — [`SourceParser`](#sourceparser)
+- <span id="sourceparser-default"></span>`fn default() -> SourceParser` — [`SourceParser`](#sourceparser)
 
 ##### `impl Instrument for SourceParser`
 
@@ -6999,7 +6999,7 @@ Information about a constant.
 
 ##### `impl Clone for ConstInfo`
 
-- <span id="constinfo-clone-clone"></span>`fn clone(&self) -> ConstInfo` — [`ConstInfo`](types/index.md#constinfo)
+- <span id="constinfo-clone"></span>`fn clone(&self) -> ConstInfo` — [`ConstInfo`](types/index.md#constinfo)
 
 ##### `impl Debug for ConstInfo`
 
@@ -7126,7 +7126,7 @@ Aggregated source information for an entire crate.
 
 ##### `impl Default for CrateSource`
 
-- <span id="cratesource-default-default"></span>`fn default() -> CrateSource` — [`CrateSource`](types/index.md#cratesource)
+- <span id="cratesource-default"></span>`fn default() -> CrateSource` — [`CrateSource`](types/index.md#cratesource)
 
 ##### `impl Instrument for CrateSource`
 
@@ -7191,7 +7191,7 @@ Information about a parsed enum.
 
 ##### `impl Clone for EnumInfo`
 
-- <span id="enuminfo-clone-clone"></span>`fn clone(&self) -> EnumInfo` — [`EnumInfo`](types/index.md#enuminfo)
+- <span id="enuminfo-clone"></span>`fn clone(&self) -> EnumInfo` — [`EnumInfo`](types/index.md#enuminfo)
 
 ##### `impl Debug for EnumInfo`
 
@@ -7240,7 +7240,7 @@ Information about a struct or enum field.
 
 ##### `impl Clone for FieldInfo`
 
-- <span id="fieldinfo-clone-clone"></span>`fn clone(&self) -> FieldInfo` — [`FieldInfo`](types/index.md#fieldinfo)
+- <span id="fieldinfo-clone"></span>`fn clone(&self) -> FieldInfo` — [`FieldInfo`](types/index.md#fieldinfo)
 
 ##### `impl Debug for FieldInfo`
 
@@ -7309,7 +7309,7 @@ Information about a parsed function, including its body.
 
 ##### `impl Clone for FunctionInfo`
 
-- <span id="functioninfo-clone-clone"></span>`fn clone(&self) -> FunctionInfo` — [`FunctionInfo`](types/index.md#functioninfo)
+- <span id="functioninfo-clone"></span>`fn clone(&self) -> FunctionInfo` — [`FunctionInfo`](types/index.md#functioninfo)
 
 ##### `impl Debug for FunctionInfo`
 
@@ -7368,7 +7368,7 @@ Information about an impl block.
 
 ##### `impl Clone for ImplInfo`
 
-- <span id="implinfo-clone-clone"></span>`fn clone(&self) -> ImplInfo` — [`ImplInfo`](types/index.md#implinfo)
+- <span id="implinfo-clone"></span>`fn clone(&self) -> ImplInfo` — [`ImplInfo`](types/index.md#implinfo)
 
 ##### `impl Debug for ImplInfo`
 
@@ -7427,7 +7427,7 @@ Information about a macro definition.
 
 ##### `impl Clone for MacroInfo`
 
-- <span id="macroinfo-clone-clone"></span>`fn clone(&self) -> MacroInfo` — [`MacroInfo`](types/index.md#macroinfo)
+- <span id="macroinfo-clone"></span>`fn clone(&self) -> MacroInfo` — [`MacroInfo`](types/index.md#macroinfo)
 
 ##### `impl Debug for MacroInfo`
 
@@ -7501,7 +7501,7 @@ Information about a static variable.
 
 ##### `impl Clone for StaticInfo`
 
-- <span id="staticinfo-clone-clone"></span>`fn clone(&self) -> StaticInfo` — [`StaticInfo`](types/index.md#staticinfo)
+- <span id="staticinfo-clone"></span>`fn clone(&self) -> StaticInfo` — [`StaticInfo`](types/index.md#staticinfo)
 
 ##### `impl Debug for StaticInfo`
 
@@ -7570,7 +7570,7 @@ Information about a parsed struct.
 
 ##### `impl Clone for StructInfo`
 
-- <span id="structinfo-clone-clone"></span>`fn clone(&self) -> StructInfo` — [`StructInfo`](types/index.md#structinfo)
+- <span id="structinfo-clone"></span>`fn clone(&self) -> StructInfo` — [`StructInfo`](types/index.md#structinfo)
 
 ##### `impl Debug for StructInfo`
 
@@ -7634,7 +7634,7 @@ Information about a parsed trait.
 
 ##### `impl Clone for TraitInfo`
 
-- <span id="traitinfo-clone-clone"></span>`fn clone(&self) -> TraitInfo` — [`TraitInfo`](types/index.md#traitinfo)
+- <span id="traitinfo-clone"></span>`fn clone(&self) -> TraitInfo` — [`TraitInfo`](types/index.md#traitinfo)
 
 ##### `impl Debug for TraitInfo`
 
@@ -7698,7 +7698,7 @@ Information about a type alias.
 
 ##### `impl Clone for TypeAliasInfo`
 
-- <span id="typealiasinfo-clone-clone"></span>`fn clone(&self) -> TypeAliasInfo` — [`TypeAliasInfo`](types/index.md#typealiasinfo)
+- <span id="typealiasinfo-clone"></span>`fn clone(&self) -> TypeAliasInfo` — [`TypeAliasInfo`](types/index.md#typealiasinfo)
 
 ##### `impl Debug for TypeAliasInfo`
 
@@ -7742,7 +7742,7 @@ Information about an enum variant.
 
 ##### `impl Clone for VariantInfo`
 
-- <span id="variantinfo-clone-clone"></span>`fn clone(&self) -> VariantInfo` — [`VariantInfo`](types/index.md#variantinfo)
+- <span id="variantinfo-clone"></span>`fn clone(&self) -> VariantInfo` — [`VariantInfo`](types/index.md#variantinfo)
 
 ##### `impl Debug for VariantInfo`
 
@@ -7942,7 +7942,7 @@ Information about a constant.
 
 ##### `impl Clone for ConstInfo`
 
-- <span id="constinfo-clone-clone"></span>`fn clone(&self) -> ConstInfo` — [`ConstInfo`](#constinfo)
+- <span id="constinfo-clone"></span>`fn clone(&self) -> ConstInfo` — [`ConstInfo`](#constinfo)
 
 ##### `impl Debug for ConstInfo`
 
@@ -8069,7 +8069,7 @@ Aggregated source information for an entire crate.
 
 ##### `impl Default for CrateSource`
 
-- <span id="cratesource-default-default"></span>`fn default() -> CrateSource` — [`CrateSource`](#cratesource)
+- <span id="cratesource-default"></span>`fn default() -> CrateSource` — [`CrateSource`](#cratesource)
 
 ##### `impl Instrument for CrateSource`
 
@@ -8134,7 +8134,7 @@ Information about a parsed enum.
 
 ##### `impl Clone for EnumInfo`
 
-- <span id="enuminfo-clone-clone"></span>`fn clone(&self) -> EnumInfo` — [`EnumInfo`](#enuminfo)
+- <span id="enuminfo-clone"></span>`fn clone(&self) -> EnumInfo` — [`EnumInfo`](#enuminfo)
 
 ##### `impl Debug for EnumInfo`
 
@@ -8183,7 +8183,7 @@ Information about a struct or enum field.
 
 ##### `impl Clone for FieldInfo`
 
-- <span id="fieldinfo-clone-clone"></span>`fn clone(&self) -> FieldInfo` — [`FieldInfo`](#fieldinfo)
+- <span id="fieldinfo-clone"></span>`fn clone(&self) -> FieldInfo` — [`FieldInfo`](#fieldinfo)
 
 ##### `impl Debug for FieldInfo`
 
@@ -8252,7 +8252,7 @@ Information about a parsed function, including its body.
 
 ##### `impl Clone for FunctionInfo`
 
-- <span id="functioninfo-clone-clone"></span>`fn clone(&self) -> FunctionInfo` — [`FunctionInfo`](#functioninfo)
+- <span id="functioninfo-clone"></span>`fn clone(&self) -> FunctionInfo` — [`FunctionInfo`](#functioninfo)
 
 ##### `impl Debug for FunctionInfo`
 
@@ -8311,7 +8311,7 @@ Information about an impl block.
 
 ##### `impl Clone for ImplInfo`
 
-- <span id="implinfo-clone-clone"></span>`fn clone(&self) -> ImplInfo` — [`ImplInfo`](#implinfo)
+- <span id="implinfo-clone"></span>`fn clone(&self) -> ImplInfo` — [`ImplInfo`](#implinfo)
 
 ##### `impl Debug for ImplInfo`
 
@@ -8370,7 +8370,7 @@ Information about a macro definition.
 
 ##### `impl Clone for MacroInfo`
 
-- <span id="macroinfo-clone-clone"></span>`fn clone(&self) -> MacroInfo` — [`MacroInfo`](#macroinfo)
+- <span id="macroinfo-clone"></span>`fn clone(&self) -> MacroInfo` — [`MacroInfo`](#macroinfo)
 
 ##### `impl Debug for MacroInfo`
 
@@ -8444,7 +8444,7 @@ Information about a static variable.
 
 ##### `impl Clone for StaticInfo`
 
-- <span id="staticinfo-clone-clone"></span>`fn clone(&self) -> StaticInfo` — [`StaticInfo`](#staticinfo)
+- <span id="staticinfo-clone"></span>`fn clone(&self) -> StaticInfo` — [`StaticInfo`](#staticinfo)
 
 ##### `impl Debug for StaticInfo`
 
@@ -8513,7 +8513,7 @@ Information about a parsed struct.
 
 ##### `impl Clone for StructInfo`
 
-- <span id="structinfo-clone-clone"></span>`fn clone(&self) -> StructInfo` — [`StructInfo`](#structinfo)
+- <span id="structinfo-clone"></span>`fn clone(&self) -> StructInfo` — [`StructInfo`](#structinfo)
 
 ##### `impl Debug for StructInfo`
 
@@ -8577,7 +8577,7 @@ Information about a parsed trait.
 
 ##### `impl Clone for TraitInfo`
 
-- <span id="traitinfo-clone-clone"></span>`fn clone(&self) -> TraitInfo` — [`TraitInfo`](#traitinfo)
+- <span id="traitinfo-clone"></span>`fn clone(&self) -> TraitInfo` — [`TraitInfo`](#traitinfo)
 
 ##### `impl Debug for TraitInfo`
 
@@ -8641,7 +8641,7 @@ Information about a type alias.
 
 ##### `impl Clone for TypeAliasInfo`
 
-- <span id="typealiasinfo-clone-clone"></span>`fn clone(&self) -> TypeAliasInfo` — [`TypeAliasInfo`](#typealiasinfo)
+- <span id="typealiasinfo-clone"></span>`fn clone(&self) -> TypeAliasInfo` — [`TypeAliasInfo`](#typealiasinfo)
 
 ##### `impl Debug for TypeAliasInfo`
 
@@ -8685,7 +8685,7 @@ Information about an enum variant.
 
 ##### `impl Clone for VariantInfo`
 
-- <span id="variantinfo-clone-clone"></span>`fn clone(&self) -> VariantInfo` — [`VariantInfo`](#variantinfo)
+- <span id="variantinfo-clone"></span>`fn clone(&self) -> VariantInfo` — [`VariantInfo`](#variantinfo)
 
 ##### `impl Debug for VariantInfo`
 
@@ -8894,7 +8894,7 @@ let generics = renderer.render_generics(&params);
 
 ##### `impl Clone for TypeRenderer<'a>`
 
-- <span id="typerenderer-clone-clone"></span>`fn clone(&self) -> TypeRenderer<'a>` — [`TypeRenderer`](#typerenderer)
+- <span id="typerenderer-clone"></span>`fn clone(&self) -> TypeRenderer<'a>` — [`TypeRenderer`](#typerenderer)
 
 ##### `impl Copy for TypeRenderer<'a>`
 
